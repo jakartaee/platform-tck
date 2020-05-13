@@ -30,7 +30,7 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 //TestIF is not annotated.  Since this bean implements a single interface,
 //we can use @Remote() to speicify its remote business interface.

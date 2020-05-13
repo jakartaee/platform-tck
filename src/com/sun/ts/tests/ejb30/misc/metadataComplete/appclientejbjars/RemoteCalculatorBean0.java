@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJBException;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import org.omg.CORBA.ORB;
 

@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.jms.MessageListener;

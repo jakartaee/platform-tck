@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.common.appexception;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 abstract public class AppExceptionBeanBase

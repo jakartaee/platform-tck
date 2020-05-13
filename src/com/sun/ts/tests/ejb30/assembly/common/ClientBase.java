@@ -26,7 +26,7 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 
 public class ClientBase extends EETest {

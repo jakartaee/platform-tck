@@ -18,8 +18,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.customlistener;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;

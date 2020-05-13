@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 import java.util.logging.Level;
 
 import jakarta.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;

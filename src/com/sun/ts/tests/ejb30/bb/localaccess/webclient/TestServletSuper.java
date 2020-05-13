@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.bb.localaccess.webclient;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -17,7 +17,7 @@
 package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
 import java.io.PrintStream;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.naming.NamingEnumeration;
@@ -31,7 +31,7 @@ import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
 import jakarta.ejb.EJB;
 import javax.xml.ws.WebServiceRef;
-import javax.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.jms.JMSConnectionFactoryDefinition;
 import jakarta.jms.JMSDestinationDefinition;
 import jakarta.jms.ConnectionFactory;

@@ -18,7 +18,7 @@ package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
 import java.util.logging.Level;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.*;
 import jakarta.transaction.UserTransaction;
 

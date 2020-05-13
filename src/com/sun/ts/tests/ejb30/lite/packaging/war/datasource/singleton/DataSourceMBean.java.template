@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.singleton;
 import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.verifyDataSource;
 
 import jakarta.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.annotation.sql.DataSourceDefinition;
-import javax.annotation.sql.DataSourceDefinitions;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinitions;
 import javax.sql.DataSource;
 
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;

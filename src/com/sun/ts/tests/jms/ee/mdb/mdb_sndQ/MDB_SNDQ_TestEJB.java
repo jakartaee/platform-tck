@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
 import jakarta.jms.*;
 import jakarta.ejb.*;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Properties;
 import java.util.Enumeration;
 import com.sun.ts.lib.util.*;

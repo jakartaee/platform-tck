@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;

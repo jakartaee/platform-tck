@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

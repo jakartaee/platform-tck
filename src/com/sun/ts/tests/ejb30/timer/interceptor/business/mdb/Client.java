@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
 import java.util.Properties;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

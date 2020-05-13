@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.override;
 
 import com.sun.ts.tests.ejb30.common.migration.twothree.MigrationBeanBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;

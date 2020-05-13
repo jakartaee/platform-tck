@@ -33,7 +33,7 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.ejb.EJB;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 public class EJBInjectionFilterBase implements Filter {
   private boolean postConstructCalled;

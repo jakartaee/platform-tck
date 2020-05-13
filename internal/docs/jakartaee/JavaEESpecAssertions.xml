@@ -4682,12 +4682,12 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                 Note that a "true" value for the metadata-complete attribute does not preempt the processing 
                 of all annotations, only those listed below. The annotations to which the metadata-complete 
                 attribute applies consist of the following:
-                    - javax.annotation.PostConstruct
-                    - javax.annotation.PreDestroy
-                    - javax.annotation.Resource
-                    - javax.annotation.Resources
-                    - javax.annotation.sql.DataSourceDefinition
-                    - javax.annotation.sql.DataSourceDefinitions
+                    - jakarta.annotation.PostConstruct
+                    - jakarta.annotation.PreDestroy
+                    - jakarta.annotation.Resource
+                    - jakarta.annotation.Resources
+                    - jakarta.annotation.sql.DataSourceDefinition
+                    - jakarta.annotation.sql.DataSourceDefinitions
                     - jakarta.ejb.EJB
                     - jakarta.ejb.EJBs
                     - jakarta.jms.JMSConnectionFactoryDefinition

@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.AsyncResult;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.EJB;

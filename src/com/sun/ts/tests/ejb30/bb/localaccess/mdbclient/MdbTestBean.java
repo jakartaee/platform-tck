@@ -25,7 +25,7 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBs;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.CommonIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.LocalIF;

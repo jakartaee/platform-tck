@@ -21,9 +21,9 @@ package com.sun.ts.tests.ejb30.lite.ejbcontext.stateless;
 
 import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.postConstruct1;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;

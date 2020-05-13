@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.assembly.initorder.appclientejb;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 

@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,7 +34,7 @@ cd $TS_HOME/bin
 
 sed -i "s#^build.level=.*#build.level=2#g" ts.jte
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/javax.annotation-api.jar#g" ts.jte
+sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork#g" ts.jte
 

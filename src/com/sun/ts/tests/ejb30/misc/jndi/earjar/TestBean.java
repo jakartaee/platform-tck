@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.misc.jndi.earjar;
 
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 

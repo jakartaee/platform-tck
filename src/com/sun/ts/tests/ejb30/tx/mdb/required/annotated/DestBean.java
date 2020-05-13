@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.tx.mdb.required.annotated;
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.TransactionAttribute;

@@ -30,7 +30,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.HttpConstraint;
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 
 @DeclareRoles({ "Administrator", "Manager", "Employee" })
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {

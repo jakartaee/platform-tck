@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;

@@ -20,8 +20,8 @@
 package com.sun.ts.tests.ejb30.lite.singleton.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;

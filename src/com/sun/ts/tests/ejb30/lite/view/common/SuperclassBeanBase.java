@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.common;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;

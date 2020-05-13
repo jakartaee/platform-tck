@@ -29,7 +29,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import com.sun.ts.tests.jaxws.common.AttachmentHelper;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;

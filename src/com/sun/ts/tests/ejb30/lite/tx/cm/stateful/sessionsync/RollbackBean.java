@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.AfterBegin;
 import jakarta.ejb.AfterCompletion;
 import jakarta.ejb.BeforeCompletion;

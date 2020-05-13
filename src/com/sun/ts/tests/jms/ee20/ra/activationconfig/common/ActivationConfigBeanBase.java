@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.common;
 
 import com.sun.ts.tests.jms.ee20.ra.common.messaging.TLogger;
 import com.sun.ts.tests.jms.ee20.ra.common.messaging.StatusReporter;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

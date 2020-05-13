@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_exceptQ;
 
 import java.io.*;
 import java.util.Properties;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.tests.jms.commonee.Client;

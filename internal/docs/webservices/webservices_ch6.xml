@@ -140,7 +140,7 @@ to the message is made.
 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6015</id>
-			<description>javax.annotation.PostConstruct annotation</description>
+			<description>jakarta.annotation.PostConstruct annotation</description>
 			<location chapter = "6" section = "2.2.2"/>
                <sub-assertions>
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -153,7 +153,7 @@ to the message is made.
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			         <id>WS4EE:SPEC:6015.2</id>
 			         <description>
-                            After all the injections have been carried out, the container must invoke the method carrying a javax.annotation.PostConstruct annotation. 
+                            After all the injections have been carried out, the container must invoke the method carrying a jakarta.annotation.PostConstruct annotation. 
 			         </description>
 			         <location chapter = "6" section = "2.2.2"/>
 		         </assertion>
@@ -169,13 +169,13 @@ to the message is made.
 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>WS4EE:SPEC:6016</id>
-			<description>javax.annotation.PreDestory annotation</description>
+			<description>jakarta.annotation.PreDestory annotation</description>
 			<location chapter = "6" section = "2.2.2"/>
                <sub-assertions>
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			         <id>WS4EE:SPEC:6016.1</id>
 			         <description>
-                            The container must call the lifecycle method annotated with javax.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
+                            The container must call the lifecycle method annotated with jakarta.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
 			         </description>
 			         <location chapter = "6" section = "2.2.2"/>
 		         </assertion>
@@ -392,7 +392,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6041</id>
 			<description>
-                   Access to the java:comp/env contexts must be supported from the method annotated with javax.annotation.PostConstruct.
+                   Access to the java:comp/env contexts must be supported from the method annotated with jakarta.annotation.PostConstruct.
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>
@@ -408,7 +408,7 @@ to the message is made.
 		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6043</id>
 			<description>
-                  Access may not be supported within the method annotated with javax.annotation.PreDestroy annotation. 
+                  Access may not be supported within the method annotated with jakarta.annotation.PreDestroy annotation. 
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>
@@ -432,7 +432,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6046</id>
 			<description>
-                   A JAX-WS based container must call the lifecycle method annotated with javax.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
+                   A JAX-WS based container must call the lifecycle method annotated with jakarta.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
 			</description>
 			<location chapter = "6" section = "2.4"/>
 		</assertion>

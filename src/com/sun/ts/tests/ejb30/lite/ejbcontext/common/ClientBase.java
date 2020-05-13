@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;

@@ -13513,7 +13513,7 @@
                    status="active" testable="true">
             <id>PERSISTENCE:SPEC:1689</id>
             <description>
-                If the class was generated, the javax.annotation.Generated
+                If the class was generated, the jakarta.annotation.Generated
                 annotation should be used to annotate the
                 class.
             </description>

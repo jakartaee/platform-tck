@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.omg.CORBA.ORB;
 
 public class InterceptorD extends InterceptorBase {

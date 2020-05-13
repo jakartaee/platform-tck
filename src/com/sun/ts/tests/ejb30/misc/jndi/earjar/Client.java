@@ -24,7 +24,7 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 import java.util.Properties;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;

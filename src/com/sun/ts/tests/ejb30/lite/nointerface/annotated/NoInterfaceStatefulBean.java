@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;

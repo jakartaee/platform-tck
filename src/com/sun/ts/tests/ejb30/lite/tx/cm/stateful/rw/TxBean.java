@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw;
 
 import java.util.logging.Level;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.AfterBegin;
 import jakarta.ejb.AfterCompletion;
 import jakarta.ejb.BeforeCompletion;

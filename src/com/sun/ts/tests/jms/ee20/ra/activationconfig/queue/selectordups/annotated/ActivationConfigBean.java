@@ -24,7 +24,7 @@ import com.sun.ts.tests.jms.ee20.ra.activationconfig.common.ActivationConfigBean
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.lite.appexception.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;

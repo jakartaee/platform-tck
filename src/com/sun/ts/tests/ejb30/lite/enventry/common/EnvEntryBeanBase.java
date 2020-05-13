@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.enventry.common;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 import com.sun.ts.lib.util.TestUtil;

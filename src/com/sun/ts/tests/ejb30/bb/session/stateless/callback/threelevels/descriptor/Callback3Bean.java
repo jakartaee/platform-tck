@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.threelevels.descriptor;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;

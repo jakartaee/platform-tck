@@ -27,7 +27,7 @@ import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Stateless(name = "AnnotatedInterfaceBean")
 // @Remote({AnnotatedBusinessInterface1.class,

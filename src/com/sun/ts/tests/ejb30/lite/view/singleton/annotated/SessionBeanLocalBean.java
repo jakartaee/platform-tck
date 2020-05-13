@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 

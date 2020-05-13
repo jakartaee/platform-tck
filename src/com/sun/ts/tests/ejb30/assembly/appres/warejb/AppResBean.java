@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.assembly.appres.warejb;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;

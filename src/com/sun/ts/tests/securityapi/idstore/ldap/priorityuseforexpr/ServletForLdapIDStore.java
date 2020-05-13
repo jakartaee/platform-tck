@@ -26,7 +26,7 @@ import com.sun.ts.tests.securityapi.idstore.common.ConfigBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 
 import javax.servlet.ServletException;
@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import javax.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinition;
 
 @LdapIdentityStoreDefinition(
     url = "ldap://localhost:11389/", 

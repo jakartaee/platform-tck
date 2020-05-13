@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
 import com.sun.ts.tests.ejb30.common.callback.InterceptorI;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Remote;

@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.stateful.timeout.common;
 
 import static com.sun.ts.lib.util.TestUtil.sleepSec;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import jakarta.ejb.NoSuchEJBException;

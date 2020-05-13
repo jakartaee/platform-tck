@@ -576,9 +576,9 @@ required class libraries for the full Java EE 8 platform:
 The following list constitutes the subset of Jakarta EE 8 packages that are
 required for the Jakarta EE 8 Web Profile:
 
-* javax.annotation
-* javax.annotation.security
-* javax.annotation.sql
+* jakarta.annotation
+* jakarta.annotation.security
+* jakarta.annotation.sql
 * javax.decorator
 * javax.ejb
 * jakarta.ejb.embeddable

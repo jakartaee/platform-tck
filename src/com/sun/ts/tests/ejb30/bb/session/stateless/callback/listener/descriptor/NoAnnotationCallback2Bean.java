@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor
 
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;

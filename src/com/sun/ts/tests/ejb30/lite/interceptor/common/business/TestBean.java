@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

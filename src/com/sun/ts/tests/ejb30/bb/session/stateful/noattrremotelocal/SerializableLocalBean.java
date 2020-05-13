@@ -25,7 +25,7 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Local
 @Stateful(name = "SerializableLocalBean")

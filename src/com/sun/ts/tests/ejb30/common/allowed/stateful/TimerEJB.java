@@ -24,7 +24,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Collection;
 import java.util.Iterator;
 import jakarta.ejb.EJBException;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;

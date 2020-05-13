@@ -172,7 +172,7 @@ javax.xml.ws=2.2_se6
 jakarta.persistence=2.0_se6
 
 # CAJ (Common Annotations) 1.2 
-javax.annotation=1.2_se6
+jakarta.annotation=1.2_se6
 
 # WSM (Web Svc Metadata) 2.0 
 # (This is JSR-181)

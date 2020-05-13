@@ -22,11 +22,11 @@ package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.ejb.SessionContext;
-import javax.annotation.security.RolesAllowed;
+import jakarta.annotation.security.RolesAllowed;
 
 @Stateless(name = "SecTestEJB")
 @Remote({ SecTest.class })

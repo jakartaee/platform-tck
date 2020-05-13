@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import java.util.logging.Level;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;

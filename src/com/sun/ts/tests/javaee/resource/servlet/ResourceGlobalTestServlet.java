@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.IOException;
 
 @MailSessionDefinition(name = "java:global/env/ResourceGlobalTestServlet_MailSession", properties = {

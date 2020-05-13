@@ -25,7 +25,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.equals.CartIF;
 import com.sun.ts.tests.ejb30.common.equals.LocalCartIF;
 import jakarta.ejb.TransactionManagement;

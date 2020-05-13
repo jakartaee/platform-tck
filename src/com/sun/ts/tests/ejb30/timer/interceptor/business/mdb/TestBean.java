@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;

@@ -29,7 +29,7 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.naming.NamingException;
 
 @Stateless(name = "EjbLink2Bean")

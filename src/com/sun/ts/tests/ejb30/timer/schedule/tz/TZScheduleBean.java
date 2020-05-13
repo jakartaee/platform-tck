@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.tz;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Schedules;
 import jakarta.ejb.Singleton;

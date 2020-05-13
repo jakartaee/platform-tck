@@ -24,7 +24,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import javax.sql.DataSource;
 import jakarta.jms.QueueConnectionFactory;

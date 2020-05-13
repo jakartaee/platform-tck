@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 
 import com.sun.javatest.Status;

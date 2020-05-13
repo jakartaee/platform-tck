@@ -1,5 +1,5 @@
-** `javax.annotation`
+** `jakarta.annotation`
 
-** `javax.annotation.security`
+** `jakarta.annotation.security`
 
-** `javax.annotation.sql`
+** `jakarta.annotation.sql`

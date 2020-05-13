@@ -25,7 +25,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import javax.sql.DataSource;
 import jakarta.jms.QueueConnectionFactory;

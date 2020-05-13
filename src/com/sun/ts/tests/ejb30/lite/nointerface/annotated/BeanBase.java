@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
 import java.util.Arrays;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;

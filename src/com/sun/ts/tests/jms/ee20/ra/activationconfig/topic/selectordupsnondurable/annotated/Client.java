@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectordupsnondurab
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.*;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;

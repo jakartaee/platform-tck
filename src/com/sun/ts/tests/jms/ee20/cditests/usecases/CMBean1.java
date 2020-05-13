@@ -26,8 +26,8 @@ import jakarta.ejb.*;
 import jakarta.transaction.*;
 import javax.naming.*;
 import jakarta.inject.Inject;
-import javax.annotation.Resource;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.PostConstruct;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless(name = "CDIUseCasesCMBEAN1")

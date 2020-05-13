@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.tx.common.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import javax.servlet.ServletException;

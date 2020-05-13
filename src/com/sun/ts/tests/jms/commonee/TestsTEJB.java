@@ -27,7 +27,7 @@ import jakarta.ejb.*;
 import jakarta.jms.*;
 import java.io.*;
 import java.util.*;
-import javax.annotation.*;
+import jakarta.annotation.*;
 
 @Stateful
 @Remote(TestsT.class)

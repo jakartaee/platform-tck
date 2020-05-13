@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
 import java.util.Properties;
 import jakarta.interceptor.AroundInvoke;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;

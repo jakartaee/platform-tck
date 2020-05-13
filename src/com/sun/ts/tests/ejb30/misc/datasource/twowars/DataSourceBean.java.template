@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.misc.datasource.twowars;
 
-import javax.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 

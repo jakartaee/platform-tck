@@ -26,7 +26,7 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFa
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

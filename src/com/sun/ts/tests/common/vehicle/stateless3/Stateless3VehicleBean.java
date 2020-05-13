@@ -22,8 +22,8 @@ package com.sun.ts.tests.common.vehicle.stateless3;
 
 import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.*;
 import jakarta.persistence.*;
 

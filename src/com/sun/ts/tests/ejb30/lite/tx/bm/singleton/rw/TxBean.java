@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.tx.bm.singleton.rw;
 
 import java.util.logging.Level;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;

@@ -18,7 +18,7 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import jakarta.mail.Session;
 import jakarta.enterprise.context.ApplicationScoped;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @ApplicationScoped
 public class BeanResource {

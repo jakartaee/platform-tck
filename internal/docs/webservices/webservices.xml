@@ -245,7 +245,7 @@ A Service Implementation Bean of Singleton EJB can have a shared state. The sing
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:48</id>
-<description> Service implementation EJB Currently, it may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
+<description> Service implementation EJB Currently, it may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
 <location chapter="5" section="3.2.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -1031,7 +1031,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			cycle methods on the Service Implementation Bean that are specific to
 			the container. For the web container, with JAX-RPC runtime, it calls the init method on the
 			instance if the Service Implementation Bean class implements the
-			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with javax.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with javax.annotation.PostConstruct annotation . The javax.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
+			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with jakarta.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with jakarta.annotation.PostConstruct annotation . The jakarta.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
 <location chapter="5" section="3.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1040,7 +1040,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			Service Implementation Bean instance that it is about to be removed
 			from Method Ready state by calling container/bean specific life cycle
 			methods on the instance. For the web container, with JAX-RPC runtime, the destroy method is
-			called. For the web container with JAX-WS runtime, the method annotated with javax.annotation.PreDestroy is called. For the EJB container, the method annotated with javax.annotation.PreDestroy is called.</description>
+			called. For the web container with JAX-WS runtime, the method annotated with jakarta.annotation.PreDestroy is called. For the EJB container, the method annotated with jakarta.annotation.PreDestroy is called.</description>
 <location chapter="5" section="3.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

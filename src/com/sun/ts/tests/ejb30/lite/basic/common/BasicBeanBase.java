@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;

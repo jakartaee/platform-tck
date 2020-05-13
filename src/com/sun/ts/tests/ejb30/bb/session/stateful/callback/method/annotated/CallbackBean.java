@@ -24,11 +24,11 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 //@todo
 //import jakarta.ejb.Init;

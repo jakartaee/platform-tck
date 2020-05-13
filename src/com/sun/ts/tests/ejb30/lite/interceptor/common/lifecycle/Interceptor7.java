@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.logging.Level;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor7 extends InterceptorBase {

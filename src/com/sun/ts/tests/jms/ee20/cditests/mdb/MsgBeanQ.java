@@ -32,7 +32,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import javax.sql.*;
 import jakarta.inject.Inject;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;

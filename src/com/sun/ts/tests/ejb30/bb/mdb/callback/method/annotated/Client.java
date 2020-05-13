@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.annotated;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 

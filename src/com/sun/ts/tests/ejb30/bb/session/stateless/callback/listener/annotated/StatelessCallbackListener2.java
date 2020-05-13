@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.InterceptorHelper;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 

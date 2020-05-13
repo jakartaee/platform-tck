@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Stateful(name = "EjbLink3Bean")
 // @Local({EjbLinkIF.class})

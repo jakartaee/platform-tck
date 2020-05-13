@@ -132,7 +132,7 @@ The BindingType annotation is applied to an endpoint implementation class. It sp
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:7010</id>
 			<description>
-The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the javax.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
+The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the jakarta.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
 			</description>
 			<location chapter = "7" section = "9"/>
 		</assertion>

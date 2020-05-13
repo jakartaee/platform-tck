@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.Timer;

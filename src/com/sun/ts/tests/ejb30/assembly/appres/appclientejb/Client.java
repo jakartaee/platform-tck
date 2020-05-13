@@ -30,8 +30,8 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.jms.Queue;
 import javax.sql.DataSource;

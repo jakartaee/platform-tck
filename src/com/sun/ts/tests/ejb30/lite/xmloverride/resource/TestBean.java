@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.xmloverride.resource;
 
 import java.net.URL;
 
-import javax.annotation.Resource;
-import javax.annotation.Resource.AuthenticationType;
+import jakarta.annotation.Resource;
+import jakarta.annotation.Resource.AuthenticationType;
 import jakarta.ejb.Stateless;
 
 @Stateless

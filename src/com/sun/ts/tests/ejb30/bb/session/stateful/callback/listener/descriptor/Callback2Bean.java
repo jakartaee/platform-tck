@@ -24,7 +24,7 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
