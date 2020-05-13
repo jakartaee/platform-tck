@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointconfig;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.websocket.common.TCKExtension;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.MessageValidator;
