@@ -801,6 +801,7 @@ public class WSClient extends WebSocketCommonClient {
     }
   }
 
+  @Override
   public void cleanup() throws Fault {
     super.cleanup();
   }
@@ -846,6 +847,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -871,9 +873,11 @@ public class WSClient extends WebSocketCommonClient {
     void TCKConfigurator() {
     }
 
+    @Override
     public void beforeRequest(Map<String, List<String>> headers) {
     }
 
+    @Override
     public void afterResponse(HandshakeResponse hr) {
     }
   }

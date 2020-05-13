@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
 @ClientEndpoint(decoders = { StringBeanTextDecoder.class })
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
@@ -46,6 +47,7 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
     clientEndpoint.onMessage(bean.get());
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

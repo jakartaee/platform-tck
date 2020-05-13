@@ -45,6 +45,7 @@ public class AnnotatedThrowingClient extends AnnotatedClientEndpoint<String> {
     this.typeEnum = typeEnum;
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     switch (typeEnum) {

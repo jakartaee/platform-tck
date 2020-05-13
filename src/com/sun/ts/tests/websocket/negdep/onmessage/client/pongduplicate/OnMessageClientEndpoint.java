@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
@@ -48,11 +49,13 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
         .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

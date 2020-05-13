@@ -38,11 +38,13 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
     clientEndpoint.onMessage(IOUtil.readFromReader(reader));
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

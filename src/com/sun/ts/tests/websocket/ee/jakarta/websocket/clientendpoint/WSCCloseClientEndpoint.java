@@ -42,16 +42,19 @@ public class WSCCloseClientEndpoint extends AnnotatedClientEndpoint<String> {
     super(new StringClientEndpoint());
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     super.onMessage(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     super.onOpen(session, config);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);
@@ -59,6 +62,7 @@ public class WSCCloseClientEndpoint extends AnnotatedClientEndpoint<String> {
     countDown.countDown();
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     super.onError(session, t);

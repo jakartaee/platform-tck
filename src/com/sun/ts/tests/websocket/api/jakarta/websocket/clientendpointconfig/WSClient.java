@@ -1150,9 +1150,11 @@ class TCKConfigurator extends Configurator {
   void TCKConfigurator() {
   }
 
+  @Override
   public void beforeRequest(Map<String, List<String>> headers) {
   }
 
+  @Override
   public void afterResponse(HandshakeResponse hr) {
   }
 }

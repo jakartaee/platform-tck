@@ -45,16 +45,19 @@ public class WSCReturningClientEndpointWithTextStreamEncoder
     return new StringBean(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     super.onOpen(session, config); // throwing encoder is not used here!
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     String error = WebSocketCommonClient.getCauseMessage(t);

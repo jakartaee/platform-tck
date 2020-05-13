@@ -1735,6 +1735,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKBasicEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString.append(message);
           messageLatch.countDown();
@@ -1743,6 +1744,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -1755,6 +1757,7 @@ public class WSClient extends WebSocketCommonClient {
 
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append(
           "TCKBasicEndpoint OnClose CloseCode=" + closeReason.getCloseCode());
@@ -1796,6 +1799,7 @@ public class WSClient extends WebSocketCommonClient {
       try {
         session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+          @Override
           public void onMessage(String message) {
             getMessageBuilder()
                 .append("========Second TextMessageHander received=")
@@ -1867,6 +1871,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString.append(message);
           messageLatch.countDown();
@@ -1874,6 +1879,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("onClose");
     }
@@ -1886,6 +1892,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKCloseEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString.append(message);
           messageLatch.countDown();
@@ -1894,6 +1901,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           String message_string = IOUtil.byteBufferToString(data);
 
@@ -1905,12 +1913,14 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("TCKCloseEndpoint OnClose");
       receivedMessageString.append("Pass_On_To_Error=");
       int i = 1 / 0;
     }
 
+    @Override
     public void onError(Session session, Throwable t) {
       receivedMessageString.append("TCKCloseEndpoint OnError");
       receivedMessageString.append(t.getMessage());

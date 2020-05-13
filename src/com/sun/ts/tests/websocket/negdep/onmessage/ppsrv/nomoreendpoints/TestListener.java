@@ -54,6 +54,7 @@ public class TestListener implements ServletContextListener {
    * @param sce
    *          The servlet context event
    */
+  @Override
   public void contextDestroyed(ServletContextEvent sce) {
     // Do nothing
   }

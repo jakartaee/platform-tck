@@ -1733,6 +1733,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKBasicEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1741,6 +1742,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -1753,6 +1755,7 @@ public class WSClient extends WebSocketCommonClient {
 
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append(
           "TCKBasicEndpoint OnClose CloseCode=" + closeReason.getCloseCode());
@@ -1786,9 +1789,11 @@ public class WSClient extends WebSocketCommonClient {
           .append(message);
     }
 
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString
               .append("========First TextMessageHander received=")
@@ -1799,6 +1804,7 @@ public class WSClient extends WebSocketCommonClient {
       try {
         session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+          @Override
           public void onMessage(String message) {
             receivedMessageString
                 .append("========Second TextMessageHander received=")
@@ -1821,6 +1827,7 @@ public class WSClient extends WebSocketCommonClient {
 
   public final static class TCKBasicByteEndpoint extends Endpoint {
 
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
@@ -1837,6 +1844,7 @@ public class WSClient extends WebSocketCommonClient {
       try {
         session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+          @Override
           public void onMessage(ByteBuffer data) {
             receivedMessageString
                 .append(
@@ -1860,6 +1868,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1867,6 +1876,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("onClose");
     }
@@ -1879,6 +1889,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKCloseEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1887,6 +1898,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -1898,6 +1910,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append(
           "TCKCloseEndpoint OnClose CloseCode=" + closeReason.getCloseCode());
@@ -1906,6 +1919,7 @@ public class WSClient extends WebSocketCommonClient {
       int i = 1 / 0;
     }
 
+    @Override
     public void onError(Session session, Throwable t) {
       receivedMessageString.append("TCKCloseEndpoint OnError");
       receivedMessageString.append(t.getMessage());

@@ -32,16 +32,19 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 public class AnnotatedOnErrorClientEndpoint
     extends AnnotatedStringClientEndpoint {
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     clientEndpoint.onClose(session, closeReason);
@@ -51,6 +54,7 @@ public class AnnotatedOnErrorClientEndpoint
   public void onError(Throwable t) {
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);

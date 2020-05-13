@@ -33,6 +33,7 @@ public class NegativeDeploymentClient extends WebSocketCommonClient {
 
   protected String tslib_name;
 
+  @Override
   public void setup(String[] args, Properties p) throws Fault {
     super.setup(args, p);
     tslib_name = p.getProperty("tslib.name");

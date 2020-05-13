@@ -38,16 +38,19 @@ public class AnnotatedOnOpenClientEndpoint
     clientEndpoint.onOpen(session, config, false);
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     clientEndpoint.onClose(session, closeReason);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);

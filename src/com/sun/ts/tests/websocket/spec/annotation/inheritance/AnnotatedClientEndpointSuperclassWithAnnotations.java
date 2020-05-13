@@ -35,21 +35,25 @@ public class AnnotatedClientEndpointSuperclassWithAnnotations
     super(new StringClientEndpoint());
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     super.onOpen(session, config);
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     super.onMessage(msg);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     super.onError(session, t);

@@ -152,6 +152,7 @@ public class WSClient extends WebSocketCommonClient {
     public void onOpen(Session session, EndpointConfig config) {
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -159,6 +160,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("CloseCode=" + closeReason.getCloseCode());
       receivedMessageString

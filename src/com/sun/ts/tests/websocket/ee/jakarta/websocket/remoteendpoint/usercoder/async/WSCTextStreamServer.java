@@ -42,12 +42,14 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.
     TextStreamCoderShort.class })
 public class WSCTextStreamServer extends WSCCommonServer {
 
+  @Override
   @OnMessage
   public void onMessage(String msg, Session session) throws IOException,
       EncodeException, InterruptedException, ExecutionException {
     super.onMessage(msg, session);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) throws IOException {
     super.onError(session, t);
