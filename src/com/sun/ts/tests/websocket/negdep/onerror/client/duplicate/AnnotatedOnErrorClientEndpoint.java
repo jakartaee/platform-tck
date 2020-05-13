@@ -50,6 +50,7 @@ public class AnnotatedOnErrorClientEndpoint
     clientEndpoint.onClose(session, closeReason);
   }
 
+  @SuppressWarnings("unused")
   @OnError
   public void onError(Throwable t) {
   }

@@ -36,6 +36,7 @@ public class OnOpenServerEndpoint {
     return open + echo;
   }
 
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(Session session, String thisShouldNotBeHere) {
     open = "thisShouldNotBeHere";

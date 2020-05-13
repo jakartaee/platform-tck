@@ -44,6 +44,7 @@ public class AnnotatedOnCloseClientEndpoint
     clientEndpoint.onMessage(msg);
   }
 
+  @SuppressWarnings("unused")
   @OnClose
   public void onClose(Session session, CloseReason closeReason,
       Throwable throwable) {

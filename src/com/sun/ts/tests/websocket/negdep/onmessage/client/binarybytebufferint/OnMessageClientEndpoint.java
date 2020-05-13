@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoin
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(ByteBuffer msg, int i) {
     clientEndpoint.onMessage(msg);

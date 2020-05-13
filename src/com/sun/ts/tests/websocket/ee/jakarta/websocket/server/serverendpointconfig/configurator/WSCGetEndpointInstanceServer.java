@@ -39,6 +39,7 @@ public class WSCGetEndpointInstanceServer {
 
   String additionalInformation;
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String onMessage(String msg) {
     String instance = GetEndpointInstanceConfigurator.getInstanceName();

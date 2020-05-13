@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullbooleansessionpathparam/{param}")
 public class WSFullBooleanAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(@PathParam("{param}") Boolean param, Boolean b,
       Session s) {

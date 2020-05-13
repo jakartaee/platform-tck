@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitivebytesession")
 public class WSPrimitiveByteAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(byte b, Session s) {
     return String.valueOf(b);

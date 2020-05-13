@@ -172,6 +172,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close1Test(String message, Session session) {
     try {
       session.close();
@@ -180,6 +181,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close2Test(String message, Session session) {
     try {
       session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
@@ -327,6 +329,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void setMaxTextMessageBufferSize2Test(String message_r,
       Session session) {
     System.out.println("In setMaxTextMessageBufferSize2Test");

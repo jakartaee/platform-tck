@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint(value = "/bytearraysession")
 public class WSByteArrayAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String bytesToString(byte[] array, Session s) {
     return new String(array);

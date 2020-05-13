@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint(value = "/counttwo", configurator = CountingConfigurator.class)
 public class WSCountConfiguratorInstancesSecondServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String getCountingConfiguratorValue(String op) {
     Annotation ann = getClass().getAnnotations()[0];

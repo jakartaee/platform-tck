@@ -88,7 +88,7 @@ public class WSCloseTestServer1 {
   }
 
   @OnClose
-  public void onClose3(CloseReason closeReason) {
+  public void onClose3() {
     System.out.println("==From WSCloseTestServer1 onClose(CloseReason)==");
   }
 

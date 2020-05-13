@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullbooleansession")
 public class WSFullBooleanAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Boolean b, Session s) {
     return String.valueOf(b.booleanValue());

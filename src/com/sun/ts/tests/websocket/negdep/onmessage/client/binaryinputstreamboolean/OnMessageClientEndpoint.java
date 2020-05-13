@@ -32,6 +32,7 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoin
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(InputStream msg, boolean finito) {
     // there is no server endpoint that sends binary messages

@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/bytebuffersession")
 public class WSByteBufferAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(ByteBuffer b, Session s) {
     return IOUtil.byteBufferToString(b);

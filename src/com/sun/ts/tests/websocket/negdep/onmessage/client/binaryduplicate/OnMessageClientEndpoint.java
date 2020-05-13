@@ -37,6 +37,7 @@ public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
     clientEndpoint.onMessage(msg);
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(ByteBuffer msg, boolean finito) {
     clientEndpoint.onMessage(msg);

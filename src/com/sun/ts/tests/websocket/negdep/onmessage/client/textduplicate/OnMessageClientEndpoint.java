@@ -37,6 +37,7 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
     clientEndpoint.onError(session, t);
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(String msg, boolean finito) {
     clientEndpoint.onMessage(msg);

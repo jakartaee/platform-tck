@@ -43,6 +43,7 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
         .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(PongMessage msg, Session session) {
     clientEndpoint

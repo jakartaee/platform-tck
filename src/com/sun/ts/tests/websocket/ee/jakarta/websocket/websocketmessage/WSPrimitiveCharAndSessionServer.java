@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivecharsession")
 public class WSPrimitiveCharAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(char c, Session s) {
     return String.valueOf(c) + "char";

@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fullfloatsession")
 public class WSFullFloatAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Float f, Session s) {
     return String.valueOf(f.floatValue());

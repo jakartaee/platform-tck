@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint(value = "/bytearraysessionpathparam/{param}")
 public class WSByteArrayAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String bytesToString(@PathParam("param") String param, byte[] array,
       Session s) {

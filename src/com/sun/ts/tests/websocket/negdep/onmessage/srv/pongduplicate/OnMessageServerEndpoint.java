@@ -31,12 +31,13 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 public class OnMessageServerEndpoint {
 
   @OnMessage
-  public String echo(PongMessage pong) throws IOException {
+  public String echo(PongMessage pong) {
     return IOUtil.byteBufferToString(pong.getApplicationData());
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
-  public String echo(PongMessage pong, Session session) throws IOException {
+  public String echo(PongMessage pong, Session session) {
     return IOUtil.byteBufferToString(pong.getApplicationData());
   }
 

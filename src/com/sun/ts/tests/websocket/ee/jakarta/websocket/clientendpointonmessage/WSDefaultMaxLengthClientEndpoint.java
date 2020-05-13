@@ -40,6 +40,7 @@ public class WSDefaultMaxLengthClientEndpoint
     super(new StringClientEndpoint());
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo) {
     try {

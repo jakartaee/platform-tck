@@ -33,6 +33,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(Reader reader, boolean finito) throws IOException {
     clientEndpoint.onMessage(IOUtil.readFromReader(reader));

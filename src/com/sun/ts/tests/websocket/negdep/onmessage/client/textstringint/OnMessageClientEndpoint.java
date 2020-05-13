@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(String msg, int finito) throws IOException {
     clientEndpoint.onMessage(msg);

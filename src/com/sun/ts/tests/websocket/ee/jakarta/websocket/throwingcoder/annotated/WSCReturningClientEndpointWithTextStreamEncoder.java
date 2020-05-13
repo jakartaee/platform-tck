@@ -40,6 +40,7 @@ public class WSCReturningClientEndpointWithTextStreamEncoder
     super(new StringClientEndpoint());
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public StringBean onMessage(String msg, Session session) {
     return new StringBean(msg);

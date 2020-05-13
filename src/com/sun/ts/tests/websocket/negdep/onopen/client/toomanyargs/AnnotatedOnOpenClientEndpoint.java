@@ -32,6 +32,7 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 public class AnnotatedOnOpenClientEndpoint
     extends AnnotatedStringClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(Session session, EndpointConfig config,
       Throwable throwable) {

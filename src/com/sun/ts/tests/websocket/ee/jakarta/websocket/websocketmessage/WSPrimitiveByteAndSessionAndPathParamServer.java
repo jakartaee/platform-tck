@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitivebytesessionpathparam/{param}")
 public class WSPrimitiveByteAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, @PathParam("param") byte param, byte b) {
     return String.valueOf(b) + String.valueOf(param);

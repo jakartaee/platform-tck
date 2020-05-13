@@ -1959,6 +1959,7 @@ public class WSClient extends WebSocketCommonClient {
     }
   }
 
+  @SuppressWarnings("unused")
   private int getOpenSessions(String message) {
     int start = receivedMessageString.lastIndexOf("getOpenSessions=");
     int stop = receivedMessageString

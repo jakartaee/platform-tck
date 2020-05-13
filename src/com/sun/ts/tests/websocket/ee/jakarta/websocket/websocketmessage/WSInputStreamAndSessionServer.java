@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/inputstreamsession")
 public class WSInputStreamAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(InputStream stream, Session s) throws IOException {
     String message = IOUtil.readFromStream(stream);

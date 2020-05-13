@@ -44,6 +44,7 @@ public class WSClient extends ServiceEETest {
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
+  @SuppressWarnings("unused")
   public void setup(String[] args, Properties p) throws Fault {
   }
 

@@ -30,10 +30,11 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 public class OnMessageServerEndpoint {
 
   @OnMessage
-  public String echo(String echo) throws IOException {
+  public String echo(String echo) {
     return echo;
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, boolean finito) {
     return echo;

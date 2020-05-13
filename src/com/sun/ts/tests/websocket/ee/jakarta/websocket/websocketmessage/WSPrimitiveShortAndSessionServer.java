@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitiveshortsession")
 public class WSPrimitiveShortAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(short s, Session session) {
     return String.valueOf(s);

@@ -501,7 +501,7 @@ public class WebSocketTestCase extends WebTestCase {
     return ClientEndpoint.getMessageBuilder().toString();
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "unused" })
   protected <T> T getLastResponse(Class<T> type) {
     return (T) ClientEndpointData.lastMessage;
   }

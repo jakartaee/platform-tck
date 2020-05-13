@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitiveshortsessionpathparam/{param}")
 public class WSPrimitiveShortAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(short s, @PathParam("param") short param,
       Session session) {

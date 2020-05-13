@@ -38,6 +38,7 @@ public class OnCloseStringHolderServerEndpoint {
     return close + echo;
   }
 
+  @SuppressWarnings("unused")
   @OnClose
   public void onClose(Session session, @PathParam("arg") StringHolder sb) {
     close = sb.toString();
