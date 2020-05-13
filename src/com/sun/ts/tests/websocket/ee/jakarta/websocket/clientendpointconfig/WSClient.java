@@ -869,9 +869,6 @@ public class WSClient extends WebSocketCommonClient {
 
   class TCKConfigurator extends ClientEndpointConfig.Configurator {
 
-    void TCKConfigurator() {
-    }
-
     @Override
     public void beforeRequest(Map<String, List<String>> headers) {
     }

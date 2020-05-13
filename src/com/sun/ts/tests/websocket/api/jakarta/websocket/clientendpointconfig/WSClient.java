@@ -1146,9 +1146,6 @@ public class WSClient extends ServiceEETest {
 
 class TCKConfigurator extends Configurator {
 
-  void TCKConfigurator() {
-  }
-
   @Override
   public void beforeRequest(Map<String, List<String>> headers) {
   }
