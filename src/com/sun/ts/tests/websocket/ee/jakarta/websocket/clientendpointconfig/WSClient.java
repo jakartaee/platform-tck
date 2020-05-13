@@ -229,7 +229,7 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -330,7 +330,7 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -427,7 +427,7 @@ public class WSClient extends WebSocketCommonClient {
   public void encodersTest() throws Fault {
     boolean passed = true;
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
@@ -488,7 +488,7 @@ public class WSClient extends WebSocketCommonClient {
   public void decodersTest() throws Fault {
     boolean passed = true;
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -553,7 +553,7 @@ public class WSClient extends WebSocketCommonClient {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -577,7 +577,7 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -682,13 +682,13 @@ public class WSClient extends WebSocketCommonClient {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanDecoder.class);
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
@@ -712,7 +712,7 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 

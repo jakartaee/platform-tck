@@ -32,13 +32,13 @@ public class AppConfig implements ServerApplicationConfig {
   @Override
   public Set<ServerEndpointConfig> getEndpointConfigs(
       Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<ServerEndpointConfig>();
+    Set<ServerEndpointConfig> set = new HashSet<>();
     return set;
   }
 
   @Override
   public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<Class<?>>();
+    Set<Class<?>> set = new HashSet<>();
     set.add(WSCGetUserPrincipalServer.class);
     set.add(WSCIsUserInRoleServer.class);
     return set;

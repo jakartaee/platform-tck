@@ -464,7 +464,7 @@ public class WSCClient extends WebSocketCommonClient {
     MixedProgramaticEndpoint endpoint = new MixedProgramaticEndpoint(type,
         this.entity);
     setClientEndpointInstance(endpoint);
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     if (decoderClass != null)
       list.add(decoderClass);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()

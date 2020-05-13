@@ -71,7 +71,7 @@ public class WillDecodeBinaryDecoderEndpointConfig
 
   @Override
   public List<Class<? extends Decoder>> getDecoders() {
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     list.add(WillDecodeFirstBinaryDecoder.class);
     list.add(WillDecodeSecondBinaryDecoder.class);
     return list;

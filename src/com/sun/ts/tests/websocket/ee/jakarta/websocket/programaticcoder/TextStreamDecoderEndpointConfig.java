@@ -70,7 +70,7 @@ public class TextStreamDecoderEndpointConfig implements ServerEndpointConfig {
   @Override
   public List<Class<? extends Decoder>> getDecoders() {
     Class<? extends Decoder> clz = InitDestroyTextStreamDecoder.class;
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     list.add(clz);
     return list;
   }

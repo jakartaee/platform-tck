@@ -65,7 +65,7 @@ public class BinaryStreamEncoderEndpointConfig implements ServerEndpointConfig {
   @Override
   public List<Class<? extends Encoder>> getEncoders() {
     Class<? extends Encoder> clz = InitDestroyBinaryStreamEncoder.class;
-    List<Class<? extends Encoder>> list = new LinkedList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> list = new LinkedList<>();
     list.add(clz);
     return list;
   }

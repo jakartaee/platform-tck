@@ -38,9 +38,9 @@ public class LinkedListHashSetTextDecoder
   @Override
   public LinkedList<HashSet<String>> decode(String arg0)
       throws DecodeException {
-    HashSet<String> set = new HashSet<String>();
+    HashSet<String> set = new HashSet<>();
     set.add(arg0);
-    LinkedList<HashSet<String>> list = new LinkedList<HashSet<String>>();
+    LinkedList<HashSet<String>> list = new LinkedList<>();
     list.add(set);
     return list;
   }

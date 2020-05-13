@@ -143,8 +143,8 @@ public class WebSocketTestCase extends WebTestCase {
     this.client = client;
     clientEndpointConfig = ClientEndpointConfig.Builder.create().build();
     strategy = ValidationFactory.getInstance(TOKENIZED_STRATEGY);
-    configurators = new LinkedList<ClientEndpointConfig.Configurator>();
-    slaveClientCallbacks = new LinkedList<EndpointCallback>();
+    configurators = new LinkedList<>();
+    slaveClientCallbacks = new LinkedList<>();
     ClientEndpointData.resetData();
     logTrace("A new test case has been created");
   }

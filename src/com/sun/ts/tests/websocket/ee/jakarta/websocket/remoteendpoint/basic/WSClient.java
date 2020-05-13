@@ -889,7 +889,7 @@ public class WSClient extends WebSocketCommonClient {
     setClientCallback(callback);
 
     // Add StringBean encoder just for sendObject methods
-    List<Class<? extends Encoder>> list = new LinkedList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> list = new LinkedList<>();
     list.add(StringBeanTextEncoder.class);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
         .encoders(list).build();
@@ -969,7 +969,7 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
     // Add ThrowingEncoder encoder just for sendObject methods
-    List<Class<? extends Encoder>> list = new LinkedList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> list = new LinkedList<>();
     list.add(ThrowingEncoder.class);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
         .encoders(list).build();

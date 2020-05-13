@@ -32,7 +32,7 @@ import jakarta.websocket.Extension;
  */
 public class ExtensionImpl implements Extension, Comparable<Extension> {
 
-  protected List<Parameter> list = new ArrayList<Parameter>();
+  protected List<Parameter> list = new ArrayList<>();
 
   protected String name;
 
@@ -128,7 +128,7 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
    */
   public List<ExtensionParameterImpl> getExtensionParameters(
       Extension extension) {
-    List<ExtensionParameterImpl> params = new ArrayList<ExtensionParameterImpl>();
+    List<ExtensionParameterImpl> params = new ArrayList<>();
     for (Parameter item : extension.getParameters())
       params.add(new ExtensionParameterImpl(item, caseSensitive));
     Collections.sort(params);
@@ -143,7 +143,7 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
    */
   public static List<ExtensionImpl> transformToImpl(
       List<? extends Extension> extensions) {
-    List<ExtensionImpl> list = new ArrayList<ExtensionImpl>();
+    List<ExtensionImpl> list = new ArrayList<>();
     if (extensions != null)
       for (Extension ex : extensions)
         list.add(new ExtensionImpl(ex));

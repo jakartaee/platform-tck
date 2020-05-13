@@ -795,7 +795,7 @@ public class WSProgramaticClient extends WSClient {
 
   @SafeVarargs
   private final void setEncoder(Class<? extends Encoder>... encoders) {
-    List<Class<? extends Encoder>> list = new LinkedList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> list = new LinkedList<>();
     for (Class<? extends Encoder> encoder : encoders)
       list.add(encoder);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
@@ -805,7 +805,7 @@ public class WSProgramaticClient extends WSClient {
 
   @SafeVarargs
   private final void setDecoder(Class<? extends Decoder>... decoders) {
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     for (Class<? extends Decoder> decoder : decoders)
       list.add(decoder);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
