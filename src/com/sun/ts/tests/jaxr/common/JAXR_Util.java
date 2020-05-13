@@ -31,8 +31,8 @@ import java.rmi.*;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 import java.security.cert.*;
 import java.security.PrivateKey;
@@ -42,9 +42,9 @@ import java.security.KeyStore;
 public final class JAXR_Util {
   static Locale tsLocale = new Locale("en", "US");
 
-  public javax.xml.registry.Connection conn = null;
+  public jakarta.xml.registry.Connection conn = null;
 
-  public javax.xml.registry.ConnectionFactory factory = null;
+  public jakarta.xml.registry.ConnectionFactory factory = null;
 
   public String supr = "JAXRCommonClient";
 
@@ -435,7 +435,7 @@ public final class JAXR_Util {
   public static Collection findConceptsbyName(String conceptName,
       BusinessQueryManager bqm, Collection debug) {
 
-    javax.xml.registry.infomodel.Key key = null;
+    jakarta.xml.registry.infomodel.Key key = null;
     Collection conceptKeys = null;
     try {
       // find the concept by name
@@ -474,10 +474,10 @@ public final class JAXR_Util {
   } // end of findConcepts
 
   // returns a concept key
-  public static javax.xml.registry.infomodel.Key findConceptbyName(
+  public static jakarta.xml.registry.infomodel.Key findConceptbyName(
       String conceptName, BusinessQueryManager bqm, Collection debug) {
 
-    javax.xml.registry.infomodel.Key key = null;
+    jakarta.xml.registry.infomodel.Key key = null;
     try {
       // find the concept by name
       Collection names = new ArrayList();

@@ -1,3 +1,3 @@
 ** `javax.xml.registry`
 
-** `javax.xml.registry.infomodel`
+** `jakarta.xml.registry.infomodel`

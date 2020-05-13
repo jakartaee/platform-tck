@@ -31,8 +31,8 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import javax.activation.DataHandler;
 
 public class JAXRClient extends JAXRCommonClient {

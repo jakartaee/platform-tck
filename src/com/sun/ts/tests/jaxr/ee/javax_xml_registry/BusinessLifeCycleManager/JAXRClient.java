@@ -35,8 +35,8 @@ import java.util.Set;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 public class JAXRClient extends JAXRCommonClient {
@@ -109,11 +109,11 @@ public class JAXRClient extends JAXRCommonClient {
     Collection serviceKeys = null;
     Collection orgKeys = null;
     Collection conceptKeys = null;
-    javax.xml.registry.infomodel.Key conceptKey = null;
-    javax.xml.registry.infomodel.Key serviceKey = null;
-    javax.xml.registry.infomodel.Key serviceBindingKey = null;
-    javax.xml.registry.infomodel.Key orgKey = null;
-    javax.xml.registry.infomodel.Key sbKey = null;
+    jakarta.xml.registry.infomodel.Key conceptKey = null;
+    jakarta.xml.registry.infomodel.Key serviceKey = null;
+    jakarta.xml.registry.infomodel.Key serviceBindingKey = null;
+    jakarta.xml.registry.infomodel.Key orgKey = null;
+    jakarta.xml.registry.infomodel.Key sbKey = null;
 
     String accessURI = baseuri + "jaxrTestPage1.html";
     String orgName = JAXR_Util.TS_DEFAULT_ORGANIZATION_NAME;
@@ -133,7 +133,7 @@ public class JAXRClient extends JAXRCommonClient {
       orgKeys = br.getCollection();
       Iterator iter = orgKeys.iterator();
       while (iter.hasNext()) {
-        orgKey = (javax.xml.registry.infomodel.Key) iter.next();
+        orgKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       BusinessQueryManager bqm = rs.getBusinessQueryManager();
@@ -155,7 +155,7 @@ public class JAXRClient extends JAXRCommonClient {
 
       iter = serviceKeys.iterator();
       while (iter.hasNext()) {
-        serviceKey = (javax.xml.registry.infomodel.Key) iter.next();
+        serviceKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       service = (Service) bqm.getRegistryObject(serviceKey.getId(),
@@ -173,7 +173,7 @@ public class JAXRClient extends JAXRCommonClient {
       conceptKeys = br.getCollection();
       iter = conceptKeys.iterator();
       while (iter.hasNext()) {
-        conceptKey = (javax.xml.registry.infomodel.Key) iter.next();
+        conceptKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       myConcept = (Concept) bqm.getRegistryObject(conceptKey.getId(),
@@ -203,7 +203,7 @@ public class JAXRClient extends JAXRCommonClient {
       sbKeys = br.getCollection();
       iter = sbKeys.iterator();
       while (iter.hasNext()) {
-        sbKey = (javax.xml.registry.infomodel.Key) iter.next();
+        sbKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
       Collection specifications = new ArrayList();
       specifications.add(myConcept);
@@ -293,11 +293,11 @@ public class JAXRClient extends JAXRCommonClient {
     Collection serviceKeys = null;
     Collection orgKeys = null;
     Collection conceptKeys = null;
-    javax.xml.registry.infomodel.Key conceptKey = null;
-    javax.xml.registry.infomodel.Key serviceKey = null;
-    javax.xml.registry.infomodel.Key serviceBindingKey = null;
-    javax.xml.registry.infomodel.Key orgKey = null;
-    javax.xml.registry.infomodel.Key sbKey = null;
+    jakarta.xml.registry.infomodel.Key conceptKey = null;
+    jakarta.xml.registry.infomodel.Key serviceKey = null;
+    jakarta.xml.registry.infomodel.Key serviceBindingKey = null;
+    jakarta.xml.registry.infomodel.Key orgKey = null;
+    jakarta.xml.registry.infomodel.Key sbKey = null;
 
     String accessURI = baseuri + "jaxrTestPage1.html";
     String accessURIUpd = "http://www.sun.com";
@@ -339,7 +339,7 @@ public class JAXRClient extends JAXRCommonClient {
 
       iter = serviceKeys.iterator();
       while (iter.hasNext()) {
-        serviceKey = (javax.xml.registry.infomodel.Key) iter.next();
+        serviceKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       service = (Service) bqm.getRegistryObject(serviceKey.getId(),
@@ -357,7 +357,7 @@ public class JAXRClient extends JAXRCommonClient {
       conceptKeys = br.getCollection();
       iter = conceptKeys.iterator();
       while (iter.hasNext()) {
-        conceptKey = (javax.xml.registry.infomodel.Key) iter.next();
+        conceptKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       myConcept = (Concept) bqm.getRegistryObject(conceptKey.getId(),
@@ -389,7 +389,7 @@ public class JAXRClient extends JAXRCommonClient {
       sbKeys = br.getCollection();
       iter = sbKeys.iterator();
       while (iter.hasNext()) {
-        sbKey = (javax.xml.registry.infomodel.Key) iter.next();
+        sbKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       Collection specifications = new ArrayList();
@@ -598,7 +598,7 @@ public class JAXRClient extends JAXRCommonClient {
     String type = "EquivalentTo";
     BulkResponse br = null;
     Key savekey = null;
-    javax.xml.registry.infomodel.Key assockey = null;
+    jakarta.xml.registry.infomodel.Key assockey = null;
     String objectType = LifeCycleManager.ORGANIZATION;
     BusinessQueryManager bqm2 = null;
     Collection associationKeys = null;
@@ -815,7 +815,7 @@ public class JAXRClient extends JAXRCommonClient {
     String type = "RelatedTo";
     BulkResponse br = null;
     Key savekey = null;
-    javax.xml.registry.infomodel.Key assockey = null;
+    jakarta.xml.registry.infomodel.Key assockey = null;
     String objectType = LifeCycleManager.ORGANIZATION;
     BusinessQueryManager bqm2 = null;
     Collection associationKeys = null;
@@ -984,11 +984,11 @@ public class JAXRClient extends JAXRCommonClient {
     Collection serviceKeys = null;
     Collection orgKeys = null;
     Collection conceptKeys = null;
-    javax.xml.registry.infomodel.Key conceptKey = null;
-    javax.xml.registry.infomodel.Key serviceKey = null;
-    javax.xml.registry.infomodel.Key serviceBindingKey = null;
-    javax.xml.registry.infomodel.Key orgKey = null;
-    javax.xml.registry.infomodel.Key sbKey = null;
+    jakarta.xml.registry.infomodel.Key conceptKey = null;
+    jakarta.xml.registry.infomodel.Key serviceKey = null;
+    jakarta.xml.registry.infomodel.Key serviceBindingKey = null;
+    jakarta.xml.registry.infomodel.Key orgKey = null;
+    jakarta.xml.registry.infomodel.Key sbKey = null;
 
     String accessURI = baseuri + "jaxrTestPage1.html";
     String orgName = JAXR_Util.TS_DEFAULT_ORGANIZATION_NAME;
@@ -1007,7 +1007,7 @@ public class JAXRClient extends JAXRCommonClient {
       orgKeys = br.getCollection();
       Iterator iter = orgKeys.iterator();
       while (iter.hasNext()) {
-        orgKey = (javax.xml.registry.infomodel.Key) iter.next();
+        orgKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       BusinessQueryManager bqm = rs.getBusinessQueryManager();
@@ -1028,7 +1028,7 @@ public class JAXRClient extends JAXRCommonClient {
       serviceKeys = br.getCollection();
       iter = serviceKeys.iterator();
       while (iter.hasNext()) {
-        serviceKey = (javax.xml.registry.infomodel.Key) iter.next();
+        serviceKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       service = (Service) bqm.getRegistryObject(serviceKey.getId(),
@@ -1046,7 +1046,7 @@ public class JAXRClient extends JAXRCommonClient {
       conceptKeys = br.getCollection();
       iter = conceptKeys.iterator();
       while (iter.hasNext()) {
-        conceptKey = (javax.xml.registry.infomodel.Key) iter.next();
+        conceptKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       myConcept = (Concept) bqm.getRegistryObject(conceptKey.getId(),
@@ -1071,7 +1071,7 @@ public class JAXRClient extends JAXRCommonClient {
       sbKeys = br.getCollection();
       iter = sbKeys.iterator();
       while (iter.hasNext()) {
-        sbKey = (javax.xml.registry.infomodel.Key) iter.next();
+        sbKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
       Collection specifications = new ArrayList();
       specifications.add(myConcept);
@@ -1155,8 +1155,8 @@ public class JAXRClient extends JAXRCommonClient {
     int passCount = 0;
     Collection serviceKeys = null;
     Collection orgKeys = null;
-    javax.xml.registry.infomodel.Key serviceKey = null;
-    javax.xml.registry.infomodel.Key orgKey = null;
+    jakarta.xml.registry.infomodel.Key serviceKey = null;
+    jakarta.xml.registry.infomodel.Key orgKey = null;
     String orgName = JAXR_Util.TS_DEFAULT_ORGANIZATION_NAME;
 
     try {
@@ -1174,7 +1174,7 @@ public class JAXRClient extends JAXRCommonClient {
 
       Iterator iter = orgKeys.iterator();
       while (iter.hasNext()) {
-        orgKey = (javax.xml.registry.infomodel.Key) iter.next();
+        orgKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       BusinessQueryManager bqm = rs.getBusinessQueryManager();
@@ -1196,7 +1196,7 @@ public class JAXRClient extends JAXRCommonClient {
 
       iter = serviceKeys.iterator();
       while (iter.hasNext()) {
-        serviceKey = (javax.xml.registry.infomodel.Key) iter.next();
+        serviceKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       service = (Service) bqm.getRegistryObject(serviceKey.getId(),
@@ -1273,7 +1273,7 @@ public class JAXRClient extends JAXRCommonClient {
     BulkResponse br = null;
     Collection keys = null;
     Collection classificationschemes = null;
-    javax.xml.registry.infomodel.Key ClassificationschemeKey = null;
+    jakarta.xml.registry.infomodel.Key ClassificationschemeKey = null;
 
     try {
       bqm = rs.getBusinessQueryManager();
@@ -1380,7 +1380,7 @@ public class JAXRClient extends JAXRCommonClient {
    */
   private void secondConnection() throws Fault {
     // need a second user for an extramural connection.
-    javax.xml.registry.Connection srcConnection = null;
+    jakarta.xml.registry.Connection srcConnection = null;
     try {
       srcConnection = factory.createConnection();
       Set credentials = null;

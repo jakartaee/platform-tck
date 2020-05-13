@@ -1584,7 +1584,7 @@
       <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="false">
          <id>142</id>
 
-         <description>The newInstance methods return a JAXR ConnectionFactory. The client may indicate which factory class should be instantiated by the newInstance method by defining the system property javax.xml.registry.ConnectionFactoryClass.</description>
+         <description>The newInstance methods return a JAXR ConnectionFactory. The client may indicate which factory class should be instantiated by the newInstance method by defining the system property jakarta.xml.registry.ConnectionFactoryClass.</description>
 
          <location chapter="7" section="1.2" />
       </assertion>
@@ -1624,7 +1624,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>147</id>
 
-         <description>The following table describes those connection properties that are standardized by this specification. javax.xml.registry.queryManagerURL - URL to the query manager service within the target registry provider.</description>
+         <description>The following table describes those connection properties that are standardized by this specification. jakarta.xml.registry.queryManagerURL - URL to the query manager service within the target registry provider.</description>
 
          <location chapter="7" section="2.1.1" />
       </assertion>
@@ -1632,7 +1632,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>148</id>
 
-         <description>The following table describes those connection properties that are standardized by this specification. javax.xml.registry.lifeCycleManagerURL URL to the life cycle manager service within the target registry provider. If unspecified then must default to value of the queryManagerURL described above.</description>
+         <description>The following table describes those connection properties that are standardized by this specification. jakarta.xml.registry.lifeCycleManagerURL URL to the life cycle manager service within the target registry provider. If unspecified then must default to value of the queryManagerURL described above.</description>
 
          <location chapter="7" section="2.1.1" />
       </assertion>
@@ -1648,7 +1648,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>150</id>
 
-         <description>The following table describes those connection properties that are standardized by this specification. javax.xml.registry. semanticEquivalence - Allows specification of semantic equivalences as described in Appendix B.</description>
+         <description>The following table describes those connection properties that are standardized by this specification. jakarta.xml.registry. semanticEquivalence - Allows specification of semantic equivalences as described in Appendix B.</description>
 
          <location chapter="7" section="2.1.1" />
       </assertion>
@@ -1656,7 +1656,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
          <id>151</id>
 
-         <description>The following table describes those connection properties that are standardized by this specification.javax.xml.registry. security. authenticationMethod - Provides a hint to the JAXR provider on the authentication method to be used when authenticating with the registry provider.</description>
+         <description>The following table describes those connection properties that are standardized by this specification.jakarta.xml.registry. security. authenticationMethod - Provides a hint to the JAXR provider on the authentication method to be used when authenticating with the registry provider.</description>
 
          <location chapter="7" section="2.1.1" />
       </assertion>
@@ -1664,7 +1664,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>152</id>
 
-         <description>The following table describes those connection properties that are standardized by this specification. javax.xml.registry.uddi.maxRows Specifies the maximum number of rows to be returned for find operations. This property is specific for UDDI providers.</description>
+         <description>The following table describes those connection properties that are standardized by this specification. jakarta.xml.registry.uddi.maxRows Specifies the maximum number of rows to be returned for find operations. This property is specific for UDDI providers.</description>
 
          <location chapter="7" section="2.1.1" />
       </assertion>
@@ -1968,7 +1968,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>189</id>
 
-         <description>The LifeCycleManager interface has several factory methods that follow the naming pattern create""&lt;""interface""&gt;"" where ""&lt;""interface""&gt;"" represents the name of an interface in the javax.xml.registry.infomodel package. These factory methods are used by clients to create different types of objects defined by the information model.</description>
+         <description>The LifeCycleManager interface has several factory methods that follow the naming pattern create""&lt;""interface""&gt;"" where ""&lt;""interface""&gt;"" represents the name of an interface in the jakarta.xml.registry.infomodel package. These factory methods are used by clients to create different types of objects defined by the information model.</description>
 
          <location chapter="8" section="2.2" />
       </assertion>
@@ -2443,7 +2443,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>276</id>
 
-         <description>A JAXR client may specify a particular authentication method using the javax.xml.registry.security.authenticationMethod connection property.</description>
+         <description>A JAXR client may specify a particular authentication method using the jakarta.xml.registry.security.authenticationMethod connection property.</description>
 
          <location chapter="10" section="3.1" />
       </assertion>
@@ -2587,7 +2587,7 @@
       <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
          <id>295</id>
 
-         <description>A JAXR provider must allow a client to define semantic equivalences on a per connection basis using the javax.xml.registry.semanticEquivalence connection property.</description>
+         <description>A JAXR provider must allow a client to define semantic equivalences on a per connection basis using the jakarta.xml.registry.semanticEquivalence connection property.</description>
 
          <location chapter="B" section="0" />
       </assertion>

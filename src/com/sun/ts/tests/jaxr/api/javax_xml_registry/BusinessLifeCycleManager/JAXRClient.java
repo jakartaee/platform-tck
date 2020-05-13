@@ -31,8 +31,8 @@ import java.util.*;
 import java.rmi.*;
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 public class JAXRClient extends JAXRCommonClient {
@@ -263,7 +263,7 @@ public class JAXRClient extends JAXRCommonClient {
             testName + "Error failed to get a BusinessLifeCycleManager object");
       }
       // if createObject is passed a class that is not from
-      // javax.xml.registry.infomodel
+      // jakarta.xml.registry.infomodel
       // - should throw InvalidRequestException
       Object o = blcm.createObject("String");
       pass = false; // its an error to get here
@@ -534,7 +534,7 @@ public class JAXRClient extends JAXRCommonClient {
       Iterator iter = concepts.iterator();
       concept = null;
       Collection orgKeys = new ArrayList();
-      javax.xml.registry.infomodel.Key key = null;
+      jakarta.xml.registry.infomodel.Key key = null;
       while (iter.hasNext()) {
         concept = (Concept) iter.next();
         if (concept.getName().getValue(tsLocale).equals(name)) {
@@ -586,9 +586,9 @@ public class JAXRClient extends JAXRCommonClient {
     Collection concepts = null;
     Collection keys = null;
     Collection names = null;
-    javax.xml.registry.infomodel.Key key = null;
-    javax.xml.registry.infomodel.Key conceptKey = null;
-    javax.xml.registry.infomodel.Key conceptKey1 = null;
+    jakarta.xml.registry.infomodel.Key key = null;
+    jakarta.xml.registry.infomodel.Key conceptKey = null;
+    jakarta.xml.registry.infomodel.Key conceptKey1 = null;
 
     String name = "TS TEST Name:Test BusinessLifeCycleManager_SaveConceptsTest2";
     String descr = "Description: Test BusinessLifeCycleManager_SaveConceptsTest2";
@@ -747,7 +747,7 @@ public class JAXRClient extends JAXRCommonClient {
     String name = "TS TEST Name:DeleteConcepts";
     String descr = "Description: Test DeleteConcepts";
     BulkResponse br = null;
-    javax.xml.registry.infomodel.Key conceptKey = null;
+    jakarta.xml.registry.infomodel.Key conceptKey = null;
 
     try {
       bqm = rs.getBusinessQueryManager();

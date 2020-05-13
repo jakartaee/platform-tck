@@ -23,5 +23,5 @@
 ##
 
 javax.xml.registry
-javax.xml.registry.infomodel
-javax.xml.registry.samples
+jakarta.xml.registry.infomodel
+jakarta.xml.registry.samples

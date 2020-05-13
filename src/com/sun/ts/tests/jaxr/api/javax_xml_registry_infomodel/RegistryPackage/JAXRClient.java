@@ -34,8 +34,8 @@ import java.util.*;
 import java.rmi.*;
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 public class JAXRClient extends JAXRCommonClient {
   BusinessQueryManager bqm = null;

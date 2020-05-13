@@ -31,8 +31,8 @@ import java.util.*;
 import java.rmi.*;
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 public class JAXRClient extends JAXRCommonClient {
@@ -518,7 +518,7 @@ public class JAXRClient extends JAXRCommonClient {
           debug.add("finally - delete service \n");
           blm.deleteObjects(servicekeys, LifeCycleManager.SERVICE);
         }
-      } catch (javax.xml.registry.JAXRException je) {
+      } catch (jakarta.xml.registry.JAXRException je) {
         debug.add(testName + " unexpected error during cleanup was caught \n");
       }
     }

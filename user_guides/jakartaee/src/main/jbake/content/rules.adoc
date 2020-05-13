@@ -715,7 +715,7 @@ required for Jakarta EE 8:
 * javax.ws.rs.ext
 * javax.ws.rs.sse
 * javax.xml.registry
-* javax.xml.registry.infomodel
+* jakarta.xml.registry.infomodel
 * javax.xml.rpc
 * javax.xml.rpc.encoding
 * javax.xml.rpc.handler

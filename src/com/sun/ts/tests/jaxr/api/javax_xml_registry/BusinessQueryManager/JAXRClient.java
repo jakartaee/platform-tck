@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxr.api.javax_xml_registry.BusinessQueryManager;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 import com.sun.ts.lib.util.*;
@@ -225,7 +225,7 @@ public class JAXRClient extends JAXRCommonClient {
         debug.add("Error: null returned!!\n");
         return false;
       }
-    } catch (javax.xml.registry.InvalidRequestException ex) {
+    } catch (jakarta.xml.registry.InvalidRequestException ex) {
       TestUtil.logTrace(
           "Caught exception InvalidRequestException. Multiple match found");
       return true;

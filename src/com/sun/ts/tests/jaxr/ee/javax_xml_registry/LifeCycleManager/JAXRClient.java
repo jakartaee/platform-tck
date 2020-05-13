@@ -35,8 +35,8 @@ import java.util.Set;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 public class JAXRClient extends JAXRCommonClient {
@@ -615,7 +615,7 @@ public class JAXRClient extends JAXRCommonClient {
     String type = "RelatedTo";
     BulkResponse br = null;
     Key savekey = null;
-    javax.xml.registry.infomodel.Key assockey = null;
+    jakarta.xml.registry.infomodel.Key assockey = null;
     String objectType = LifeCycleManager.ORGANIZATION;
     BusinessQueryManager bqm2 = null;
     Collection associationKeys = null;
@@ -928,7 +928,7 @@ public class JAXRClient extends JAXRCommonClient {
       Iterator iter = orgKeys.iterator();
       Key orgKey = null;
       while (iter.hasNext()) {
-        orgKey = (javax.xml.registry.infomodel.Key) iter.next();
+        orgKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
 
       myOrg = (Organization) bqm.getRegistryObject(orgKey.getId(),
@@ -1105,7 +1105,7 @@ public class JAXRClient extends JAXRCommonClient {
    */
   private void secondConnection() throws Fault {
     // need a second user for an extramural connection.
-    javax.xml.registry.Connection srcConnection = null;
+    jakarta.xml.registry.Connection srcConnection = null;
     try {
       srcConnection = factory.createConnection();
       Set credentials = null;

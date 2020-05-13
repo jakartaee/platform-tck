@@ -35,8 +35,8 @@ import java.rmi.*;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.security.cert.*;
 import java.security.PrivateKey;
 import javax.security.auth.*;
@@ -47,9 +47,9 @@ public class JAXRCommonClient extends ServiceEETest implements Serializable
 {
   protected Properties props = null;
 
-  protected javax.xml.registry.Connection conn = null;
+  protected jakarta.xml.registry.Connection conn = null;
 
-  protected javax.xml.registry.ConnectionFactory factory = null;
+  protected jakarta.xml.registry.ConnectionFactory factory = null;
 
   public String supr = "JAXRCommonClient";
 
@@ -190,13 +190,13 @@ public class JAXRCommonClient extends ServiceEETest implements Serializable
       jaxrAliasPassword = p.getProperty(JAXRALIAS_PASSWORD);
       jaxrAlias2Password = p.getProperty(JAXRALIAS2_PASSWORD);
       // must have URL for query
-      props.setProperty("javax.xml.registry.queryManagerURL",
+      props.setProperty("jakarta.xml.registry.queryManagerURL",
           p.getProperty(QUERYMANAGERURL));
       // must have URL for publishing
-      props.setProperty("javax.xml.registry.lifeCycleManagerURL",
+      props.setProperty("jakarta.xml.registry.lifeCycleManagerURL",
           p.getProperty(REGISTRYURL));
 
-      props.setProperty("javax.xml.registry.security.authenticationMethod",
+      props.setProperty("jakarta.xml.registry.security.authenticationMethod",
           p.getProperty(AUTHENTICATIONMETHOD));
 
       // ==
@@ -438,7 +438,7 @@ public class JAXRCommonClient extends ServiceEETest implements Serializable
       Iterator iter = orgs.iterator();
       Organization org;
       Collection orgKeys = new ArrayList();
-      javax.xml.registry.infomodel.Key key = null;
+      jakarta.xml.registry.infomodel.Key key = null;
       while (iter.hasNext()) {
         org = (Organization) iter.next();
         orgKeys.add(org.getKey());

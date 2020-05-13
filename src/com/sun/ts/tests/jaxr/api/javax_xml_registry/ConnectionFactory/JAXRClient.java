@@ -35,8 +35,8 @@ import java.rmi.*;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 import java.security.cert.*;
 import java.security.PrivateKey;
@@ -49,9 +49,9 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
   private Properties props = null;
 
   // ==
-  protected javax.xml.registry.Connection conn = null;
+  protected jakarta.xml.registry.Connection conn = null;
 
-  protected javax.xml.registry.ConnectionFactory factory = null;
+  protected jakarta.xml.registry.ConnectionFactory factory = null;
 
   public String supr = "JAXRCommonClient";
 
@@ -185,7 +185,7 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
    * @assertion_ids: JAXR:JAVADOC:54;
    *
    * @test_Strategy: The newInstance method returns a JAXR ConnectionFactory. If
-   * the javax.xml.registry.ConnectionFactoryClass system property is not set,
+   * the jakarta.xml.registry.ConnectionFactoryClass system property is not set,
    * the JAXR provider must return a default ConnectionFactory instance. Verify
    * that newInstance will return a ConnectionFactory.
    *
@@ -196,9 +196,9 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     ConnectionFactory factory = null;
     try {
       Properties props = new Properties();
-      props.setProperty("javax.xml.registry.queryManagerURL", queryManagerURL);
-      props.setProperty("javax.xml.registry.lifeCycleManagerURL", registryURL);
-      props.setProperty("javax.xml.registry.security.authenticationMethod",
+      props.setProperty("jakarta.xml.registry.queryManagerURL", queryManagerURL);
+      props.setProperty("jakarta.xml.registry.lifeCycleManagerURL", registryURL);
+      props.setProperty("jakarta.xml.registry.security.authenticationMethod",
           authenticationMethod);
 
       factory = ConnectionFactory.newInstance();
@@ -231,9 +231,9 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     ConnectionFactory factory = null;
     try {
       Properties props = new Properties();
-      props.setProperty("javax.xml.registry.queryManagerURL", queryManagerURL);
-      props.setProperty("javax.xml.registry.lifeCycleManagerURL", registryURL);
-      props.setProperty("javax.xml.registry.security.authenticationMethod",
+      props.setProperty("jakarta.xml.registry.queryManagerURL", queryManagerURL);
+      props.setProperty("jakarta.xml.registry.lifeCycleManagerURL", registryURL);
+      props.setProperty("jakarta.xml.registry.security.authenticationMethod",
           authenticationMethod);
 
       factory = ConnectionFactory.newInstance();
@@ -278,8 +278,8 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     ConnectionFactory factory = null;
     Properties retProperties = null;
     Properties props = null;
-    String query = "javax.xml.registry.queryManagerURL";
-    String lcm = "javax.xml.registry.lifeCycleManagerURL";
+    String query = "jakarta.xml.registry.queryManagerURL";
+    String lcm = "jakarta.xml.registry.lifeCycleManagerURL";
     try {
       props = new Properties();
       props.setProperty(query, queryManagerURL);
@@ -321,8 +321,8 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     ConnectionFactory factory = null;
     try {
       Properties props = new Properties();
-      props.setProperty("javax.xml.registry.lifeCycleManagerURL", registryURL);
-      props.setProperty("javax.xml.registry.security.authenticationMethod",
+      props.setProperty("jakarta.xml.registry.lifeCycleManagerURL", registryURL);
+      props.setProperty("jakarta.xml.registry.security.authenticationMethod",
           authenticationMethod);
 
       factory = ConnectionFactory.newInstance();
@@ -371,8 +371,8 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     ConnectionFactory factory = null;
     Properties retProperties = null;
     Properties props = null;
-    String query = "javax.xml.registry.queryManagerURL";
-    String lcm = "javax.xml.registry.lifeCycleManagerURL";
+    String query = "jakarta.xml.registry.queryManagerURL";
+    String lcm = "jakarta.xml.registry.lifeCycleManagerURL";
     String orgName = JAXR_Util.TS_DEFAULT_ORGANIZATION_NAME;
     String testName = "connectionFactory_lifeCycleManagerPropertiesTest";
 
@@ -383,7 +383,7 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
         props = new Properties();
 
         props.setProperty(query, queryManagerURL);
-        props.setProperty("javax.xml.registry.security.authenticationMethod",
+        props.setProperty("jakarta.xml.registry.security.authenticationMethod",
             authenticationMethod);
 
         switch (jaxrConnectionFactoryLookup) {
@@ -495,7 +495,7 @@ public class JAXRClient extends JAXRCommonClient // ServiceEETest
     Properties retProperties = null;
     Properties props = null;
     String maxRows = "100";
-    String maxRowsProp = "javax.xml.registry.uddi.maxRows";
+    String maxRowsProp = "jakarta.xml.registry.uddi.maxRows";
 
     try {
       props = new Properties();

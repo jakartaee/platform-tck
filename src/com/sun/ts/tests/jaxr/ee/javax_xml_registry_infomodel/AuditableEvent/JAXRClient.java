@@ -31,8 +31,8 @@ import java.util.*;
 import java.rmi.*;
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 public class JAXRClient extends JAXRCommonClient {
   java.sql.Timestamp createTS = null;
@@ -109,7 +109,7 @@ public class JAXRClient extends JAXRCommonClient {
     String createUser = null;
     String deleteUser = null;
     Collection orgKeys = null;
-    javax.xml.registry.infomodel.Key orgKey = null;
+    jakarta.xml.registry.infomodel.Key orgKey = null;
 
     try {
       // create an organization
@@ -125,7 +125,7 @@ public class JAXRClient extends JAXRCommonClient {
       orgKeys = br.getCollection();
       Iterator iter = orgKeys.iterator();
       while (iter.hasNext()) {
-        orgKey = (javax.xml.registry.infomodel.Key) iter.next();
+        orgKey = (jakarta.xml.registry.infomodel.Key) iter.next();
       }
       bqm = rs.getBusinessQueryManager();
       org = (Organization) bqm.getRegistryObject(orgKey.getId(),

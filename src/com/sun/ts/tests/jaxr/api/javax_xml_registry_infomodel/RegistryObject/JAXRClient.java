@@ -33,8 +33,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Properties;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 public class JAXRClient extends JAXRCommonClient {
   Locale tsLocale = new Locale("en", "US");

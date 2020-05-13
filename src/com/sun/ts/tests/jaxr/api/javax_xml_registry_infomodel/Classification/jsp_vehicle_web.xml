@@ -29,7 +29,7 @@
   </session-config>
   <resource-ref>
     <res-ref-name>eis/JAXR</res-ref-name>
-    <res-type>javax.xml.registry.ConnectionFactory</res-type>
+    <res-type>jakarta.xml.registry.ConnectionFactory</res-type>
     <res-auth>Application</res-auth>
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>

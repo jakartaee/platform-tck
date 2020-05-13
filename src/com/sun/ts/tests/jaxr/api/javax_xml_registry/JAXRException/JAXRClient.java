@@ -31,8 +31,8 @@ import java.util.*;
 import java.rmi.*;
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 import java.net.PasswordAuthentication;
 
 public class JAXRClient extends JAXRCommonClient {
@@ -432,14 +432,14 @@ public class JAXRClient extends JAXRCommonClient {
         if (o.size() > 0) {
           Iterator iter = o.iterator();
           while (iter.hasNext()) {
-            javax.xml.registry.infomodel.Key theKey = (javax.xml.registry.infomodel.Key) iter
+            jakarta.xml.registry.infomodel.Key theKey = (jakarta.xml.registry.infomodel.Key) iter
                 .next();
             keys.add(theKey);
             savedKeys.add(theKey);
           }
         }
       }
-      javax.xml.registry.infomodel.Key myKey = blm.createKey("myKey");
+      jakarta.xml.registry.infomodel.Key myKey = blm.createKey("myKey");
       keys.add(myKey);
       // cause a failure ..........
       br = blm.deleteOrganizations(keys);

@@ -37,8 +37,8 @@ import java.net.PasswordAuthentication;
 
 import com.sun.javatest.Status;
 
-import javax.xml.registry.*;
-import javax.xml.registry.infomodel.*;
+import jakarta.xml.registry.*;
+import jakarta.xml.registry.infomodel.*;
 
 public class JAXRClient extends JAXRCommonClient {
   Locale tsLocale = new Locale("en", "US");
@@ -716,7 +716,7 @@ public class JAXRClient extends JAXRCommonClient {
 
   private void secondConnection() throws Fault {
     // need a second user for an extramural connection.
-    javax.xml.registry.Connection srcConnection = null;
+    jakarta.xml.registry.Connection srcConnection = null;
     try {
       srcConnection = factory.createConnection();
       Set credentials = null;
