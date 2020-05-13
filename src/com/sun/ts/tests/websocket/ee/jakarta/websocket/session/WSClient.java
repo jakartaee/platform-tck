@@ -102,7 +102,6 @@ public class WSClient extends WebSocketCommonClient {
    * @test_Strategy:
    */
   public void isOpenTest1() throws Fault {
-    String testName = "isOpenTest";
     String search = "TCKTestServer opened|"
         + "session from Server is open=TRUE";
 
@@ -1520,7 +1519,6 @@ public class WSClient extends WebSocketCommonClient {
    * @test_Strategy:
    */
   public void getPathParametersTest() throws Fault {
-    String testName = "getPathParametersTest";
     String message = "invoke test";
     boolean passed = true;
     String param1 = "test1";
@@ -1954,6 +1952,7 @@ public class WSClient extends WebSocketCommonClient {
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("TCKCloseEndpoint OnClose");
       receivedMessageString.append("Pass_On_To_Error=");
+      @SuppressWarnings("unused")
       int i = 1 / 0;
     }
 

@@ -132,7 +132,6 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
 
     int size = codes_number.length;
-    CloseReason closereason;
 
     for (int i = 0; i < size; i++) {
       if (!CloseReason.CloseCodes.valueOf(codes_string[i]).equals(codes[i])) {
@@ -230,7 +229,6 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
 
     int size = codes_number.length;
-    CloseReason closereason;
     CloseCode tmp;
 
     for (int i = 0; i < size; i++) {

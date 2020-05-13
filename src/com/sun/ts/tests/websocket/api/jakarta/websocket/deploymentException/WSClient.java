@@ -52,6 +52,7 @@ public class WSClient extends ServiceEETest {
   public void constructorTest() throws Fault {
     String reason = "TCK: testing the DeploymentException(String)";
 
+    @SuppressWarnings("unused")
     DeploymentException dex = new DeploymentException(reason);
 
   }
@@ -66,6 +67,7 @@ public class WSClient extends ServiceEETest {
   public void constructorTest1() throws Fault {
     String reason = "TCK: testing the DeploymentException(String)";
 
+    @SuppressWarnings("unused")
     DeploymentException dex = new DeploymentException(reason,
         new Throwable("TCK_Test"));
   }

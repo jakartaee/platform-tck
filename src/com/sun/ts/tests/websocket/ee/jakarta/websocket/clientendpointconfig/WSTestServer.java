@@ -129,7 +129,7 @@ public class WSTestServer {
   }
 
   @OnClose
-  public void onClose(Session session) {
+  public void onClose() {
     System.out.println("==From onClose==");
   }
 }
