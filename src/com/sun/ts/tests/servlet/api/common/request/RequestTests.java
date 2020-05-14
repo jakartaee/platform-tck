@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,8 +28,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 public class RequestTests {
 
@@ -39,7 +39,7 @@ public class RequestTests {
 
   static HttpSession savedSession = null;
 
-  // ------------------------ javax_servlet.RequestRequest
+  // ------------------------ jakarta_servlet.RequestRequest
   // -------------------------------
   public static void requestWrapperConstructorTest(PrintWriter pw,
       ServletRequest request, ServletResponse response)
@@ -1449,10 +1449,10 @@ public class RequestTests {
 
     ServletTestUtil.printResult(pw, passed);
   }
-  // --------------- END javax_servlet.ServletRequest
+  // --------------- END jakarta_servlet.ServletRequest
   // ----------------------------
 
-  // --------------- javax_servlet_http.HttpServletRequest
+  // --------------- jakarta_servlet_http.HttpServletRequest
   // -----------------------
   public static void httpRequestWrapperConstructorIllegalArgumentExceptionTest(
       PrintWriter pw, HttpServletRequest request, HttpServletResponse response)
@@ -2664,6 +2664,6 @@ public class RequestTests {
         + request.getSession(false).getAttribute(attrName_NEW));
     ServletTestUtil.printResult(pw, pass);
   }
-  // --------------- END javax_servlet_http.HttpServletRequest
+  // --------------- END jakarta_servlet_http.HttpServletRequest
   // -------------------
 }

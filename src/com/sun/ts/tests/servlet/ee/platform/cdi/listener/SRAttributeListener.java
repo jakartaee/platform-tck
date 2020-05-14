@@ -19,9 +19,9 @@ package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
-import javax.servlet.ServletRequestAttributeEvent;
-import javax.servlet.ServletRequestAttributeListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.ServletRequestAttributeEvent;
+import jakarta.servlet.ServletRequestAttributeListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener
 public final class SRAttributeListener

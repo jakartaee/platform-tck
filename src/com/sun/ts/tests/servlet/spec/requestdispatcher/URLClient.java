@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -63,13 +63,13 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getRequestDispatcher(String), and access IncludedServlet
    * using RequestDispatcher.include. 3. Verify in IncludedServlet the following
    * request attributes set correctly required by Servlet 2.4 Spec:
-   * javax.servlet.include.request_uri; javax.servlet.include.context_path;
-   * javax.servlet.include.servlet_path; javax.servlet.include.path_info;
-   * javax.servlet.include.query_string;
+   * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
+   * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
+   * jakarta.servlet.include.query_string;
    */
   public void getRequestAttributes() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.include.request_uri=SET_GOOD;javax.servlet.include.context_path=SET_GOOD;javax.servlet.include.servlet_path=SET_GOOD;javax.servlet.include.path_info=SET_NO;javax.servlet.include.query_string=SET_GOOD;");
+        "jakarta.servlet.include.request_uri=SET_GOOD;jakarta.servlet.include.context_path=SET_GOOD;jakarta.servlet.include.servlet_path=SET_GOOD;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_GOOD;");
 
     TEST_PROPS.setProperty(APITEST, "includeAttributes");
     invoke();
@@ -86,13 +86,13 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getRequestDispatcher(String), and access IncludedServlet
    * using RequestDispatcher.include. 3. Verify in IncludedServlet the following
    * request attributes set correctly required by Servlet 2.4 Spec:
-   * javax.servlet.include.request_uri; javax.servlet.include.context_path;
-   * javax.servlet.include.servlet_path; javax.servlet.include.path_info;
-   * javax.servlet.include.query_string;
+   * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
+   * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
+   * jakarta.servlet.include.query_string;
    */
   public void getRequestAttributes1() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.include.request_uri=SET_GOOD;javax.servlet.include.context_path=SET_GOOD;javax.servlet.include.servlet_path=SET_GOOD;javax.servlet.include.path_info=SET_NO;javax.servlet.include.query_string=SET_GOOD;");
+        "jakarta.servlet.include.request_uri=SET_GOOD;jakarta.servlet.include.context_path=SET_GOOD;jakarta.servlet.include.servlet_path=SET_GOOD;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_GOOD;");
 
     TEST_PROPS.setProperty(APITEST, "includeAttributes1");
     invoke();
@@ -109,13 +109,13 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getNamedDispatcher(String), and access IncludedServlet using
    * RequestDispatcher.include. 3. Verify in IncludedServlet the following
    * request attributes not set required by Servlet 2.4 Spec:
-   * javax.servlet.include.request_uri; javax.servlet.include.context_path;
-   * javax.servlet.include.servlet_path; javax.servlet.include.path_info;
-   * javax.servlet.include.query_string;
+   * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
+   * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
+   * jakarta.servlet.include.query_string;
    */
   public void getRequestAttributes2() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.include.request_uri=SET_NO;javax.servlet.include.context_path=SET_NO;javax.servlet.include.servlet_path=SET_NO;javax.servlet.include.path_info=SET_NO;javax.servlet.include.query_string=SET_NO;");
+        "jakarta.servlet.include.request_uri=SET_NO;jakarta.servlet.include.context_path=SET_NO;jakarta.servlet.include.servlet_path=SET_NO;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_NO;");
 
     TEST_PROPS.setProperty(APITEST, "includeAttributes2");
     invoke();
@@ -242,17 +242,17 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getRequestDispatcher(String), and access ForwardedServlet
    * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
    * following request attributes set correctly required by Servlet 2.4 Spec:
-   * javax.servlet.forward.request_uri; javax.servlet.forward.context_path;
-   * javax.servlet.forward.servlet_path; javax.servlet.forward.path_info;
-   * javax.servlet.forward.query_string;
+   * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
+   * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
+   * jakarta.servlet.forward.query_string;
    */
   public void getRequestAttributes3() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.forward.request_uri=SET_GOOD;"
-            + "javax.servlet.forward.context_path=SET_GOOD;"
-            + "javax.servlet.forward.servlet_path=SET_GOOD;"
-            + "javax.servlet.forward.path_info=SET_NO;"
-            + "javax.servlet.forward.query_string=SET_GOOD;");
+        "jakarta.servlet.forward.request_uri=SET_GOOD;"
+            + "jakarta.servlet.forward.context_path=SET_GOOD;"
+            + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
+            + "jakarta.servlet.forward.path_info=SET_NO;"
+            + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
     TEST_PROPS.setProperty(APITEST, "forwardAttributes");
     invoke();
@@ -269,17 +269,17 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getRequestDispatcher(String), and access ForwardedServlet
    * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
    * following request attributes set correctly required by Servlet 2.4 Spec:
-   * javax.servlet.forward.request_uri; javax.servlet.forward.context_path;
-   * javax.servlet.forward.servlet_path; javax.servlet.forward.path_info;
-   * javax.servlet.forward.query_string;
+   * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
+   * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
+   * jakarta.servlet.forward.query_string;
    */
   public void getRequestAttributes4() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.forward.request_uri=SET_GOOD;"
-            + "javax.servlet.forward.context_path=SET_GOOD;"
-            + "javax.servlet.forward.servlet_path=SET_GOOD;"
-            + "javax.servlet.forward.path_info=SET_NO;"
-            + "javax.servlet.forward.query_string=SET_GOOD;");
+        "jakarta.servlet.forward.request_uri=SET_GOOD;"
+            + "jakarta.servlet.forward.context_path=SET_GOOD;"
+            + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
+            + "jakarta.servlet.forward.path_info=SET_NO;"
+            + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
     TEST_PROPS.setProperty(APITEST, "forwardAttributes1");
     invoke();
@@ -296,17 +296,17 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getNamedDispatcher(String), and access ForwardedServlet
    * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
    * following request attributes are not set required by Servlet 2.4 Spec:
-   * javax.servlet.forward.request_uri; javax.servlet.forward.context_path;
-   * javax.servlet.forward.servlet_path; javax.servlet.forward.path_info;
-   * javax.servlet.forward.query_string;
+   * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
+   * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
+   * jakarta.servlet.forward.query_string;
    */
   public void getRequestAttributes5() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.forward.request_uri=SET_NO;"
-            + "javax.servlet.forward.context_path=SET_NO;"
-            + "javax.servlet.forward.servlet_path=SET_NO;"
-            + "javax.servlet.forward.path_info=SET_NO;"
-            + "javax.servlet.forward.query_string=SET_NO;");
+        "jakarta.servlet.forward.request_uri=SET_NO;"
+            + "jakarta.servlet.forward.context_path=SET_NO;"
+            + "jakarta.servlet.forward.servlet_path=SET_NO;"
+            + "jakarta.servlet.forward.path_info=SET_NO;"
+            + "jakarta.servlet.forward.query_string=SET_NO;");
 
     TEST_PROPS.setProperty(APITEST, "forwardAttributes2");
     invoke();
@@ -326,17 +326,17 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getRequestDispatcher(String), and access ForwardedServlet
    * using RequestDispatcher.forward. 4. Verify in ForwardedServlet the
    * following request attributes are set required by Servlet 2.4 Spec:
-   * javax.servlet.forward.request_uri; javax.servlet.forward.context_path;
-   * javax.servlet.forward.servlet_path; javax.servlet.forward.path_info;
-   * javax.servlet.forward.query_string;
+   * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
+   * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
+   * jakarta.servlet.forward.query_string;
    */
   public void getRequestAttributes6() throws Fault {
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "javax.servlet.forward.request_uri=SET_GOOD;"
-            + "javax.servlet.forward.context_path=SET_GOOD;"
-            + "javax.servlet.forward.servlet_path=SET_GOOD;"
-            + "javax.servlet.forward.path_info=SET_NO;"
-            + "javax.servlet.forward.query_string=SET_GOOD;");
+        "jakarta.servlet.forward.request_uri=SET_GOOD;"
+            + "jakarta.servlet.forward.context_path=SET_GOOD;"
+            + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
+            + "jakarta.servlet.forward.path_info=SET_NO;"
+            + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
     TEST_PROPS.setProperty(APITEST, "forwardAttributes6");
     invoke();

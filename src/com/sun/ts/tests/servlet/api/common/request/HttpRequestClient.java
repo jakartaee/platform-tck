@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -176,7 +176,7 @@ public class HttpRequestClient extends RequestClient {
     TEST_PROPS.setProperty(TEST_NAME, testName);
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName()
-            + "/javax_servlet?testname=" + testName + " HTTP/1.1");
+            + "/jakarta_servlet?testname=" + testName + " HTTP/1.1");
     invoke();
   }
 

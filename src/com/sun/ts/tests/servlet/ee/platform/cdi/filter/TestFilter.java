@@ -20,8 +20,8 @@ import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
 import java.io.IOException;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
 
 @WebFilter(urlPatterns = "/*")
 public class TestFilter implements Filter {

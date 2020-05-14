@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.servlet.common.util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.Cookie;
 
 /**
  * A set of useful utility methods to help perform test functions.
