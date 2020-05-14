@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.ServletRequestListener;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
 import java.util.ArrayList;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener(value = "ServletRequestListener")
 public final class SRListener implements ServletRequestListener {

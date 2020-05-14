@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage1;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 public class TestServletException extends ServletException {
 

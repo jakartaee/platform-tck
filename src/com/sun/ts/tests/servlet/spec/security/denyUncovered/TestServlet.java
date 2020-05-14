@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.servlet.spec.security.denyUncovered;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
 import java.io.*;
 
 import com.sun.ts.lib.util.*;

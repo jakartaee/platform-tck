@@ -17,19 +17,19 @@
 package com.sun.ts.tests.servlet.spec.security.clientcertanno;
 
 import java.security.cert.X509Certificate;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import jakarta.annotation.security.DeclareRoles;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.ServletSecurity.*;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.ServletSecurity.*;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.HttpConstraint;
 
 /*
  * There are security annotations being used now which shoudl eliminate the 
@@ -101,9 +101,9 @@ public class ServletSecTestServlet extends HttpServlet {
 
     String testName = "clientCertTest";
 
-    String cipherSuiteAttrib = "javax.servlet.request.cipher_suite";
-    String keySizeAttrib = "javax.servlet.request.key_size";
-    String certificateAttrib = "javax.servlet.request.X509Certificate";
+    String cipherSuiteAttrib = "jakarta.servlet.request.cipher_suite";
+    String keySizeAttrib = "jakarta.servlet.request.key_size";
+    String certificateAttrib = "jakarta.servlet.request.X509Certificate";
 
     String cipherSuite = null;
     Integer keySize = new Integer(0);

@@ -176,7 +176,7 @@ public class HttpRequestClient extends RequestClient {
     TEST_PROPS.setProperty(TEST_NAME, testName);
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName()
-            + "/javax_servlet?testname=" + testName + " HTTP/1.1");
+            + "/jakarta_servlet?testname=" + testName + " HTTP/1.1");
     invoke();
   }
 

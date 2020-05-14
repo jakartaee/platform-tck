@@ -17,10 +17,10 @@
 package com.sun.ts.tests.servlet.spec.security.clientcert;
 
 import java.security.cert.X509Certificate;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -73,9 +73,9 @@ public class ServletSecTestServlet extends HttpServlet {
 
     String testName = "clientCertTest";
 
-    String cipherSuiteAttrib = "javax.servlet.request.cipher_suite";
-    String keySizeAttrib = "javax.servlet.request.key_size";
-    String certificateAttrib = "javax.servlet.request.X509Certificate";
+    String cipherSuiteAttrib = "jakarta.servlet.request.cipher_suite";
+    String keySizeAttrib = "jakarta.servlet.request.key_size";
+    String certificateAttrib = "jakarta.servlet.request.X509Certificate";
 
     String cipherSuite = null;
     Integer keySize = new Integer(0);

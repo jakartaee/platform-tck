@@ -16,19 +16,19 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.ServletSecurity.*;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.HttpConstraint;
 import jakarta.annotation.security.DeclareRoles;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.ServletSecurity.*;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.HttpConstraint;
 
 /*
  * This should require employee role perms to access the Get or Post

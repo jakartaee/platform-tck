@@ -21,10 +21,10 @@ package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class TestServlet extends GenericTCKServlet {
 

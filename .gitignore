@@ -17,3 +17,4 @@ target/
 /user_guides/jakartaee/src/main/jbake/content/title.inc
 /user_guides/jakartaee/src/main/jbake/content/attributes.conf
 /nbproject
+*.iml

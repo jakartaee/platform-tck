@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.servlet.spec.pluggability.common;
 
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.ServletRequestListener;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
 import java.util.ArrayList;
 
 public final class RequestListener4 implements ServletRequestListener {

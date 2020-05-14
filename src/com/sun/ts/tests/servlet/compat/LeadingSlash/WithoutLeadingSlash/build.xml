@@ -20,15 +20,21 @@
 <project name="servlet_compat_LeadingSlash_Without" basedir="." default="usage">
 
     <import file="../../../../../../../../../bin/xml/ts.import.xml"/>
-	
-    <target name="package">
-        <copy file="${src.dir}/${pkg.dir}/servlet_compat_LeadingSlash_Without_web.war" 
-              todir="${dist.dir}/${pkg.dir}"/>
-    </target>
+
+    <property name="app.name"  value="servlet_compat_LeadingSlash_Without" />
 
     <target name="compile">
         <ts.javac includes="${pkg.dir}/**/*.java,
                             com/sun/ts/tests/common/webclient/**/*.java"/>
+    </target>
+
+    <target name="package">
+        <ts.war archivename="${app.name}" descriptor="${app.name}_web.xml">
+            <zipfileset dir="${class.dir}"
+                        prefix="WEB-INF/classes"
+                        includes="${web.war.classes}"/>
+        </ts.war>
+        <ts.ear archivename="${app.name}"/>
     </target>
     
 </project>

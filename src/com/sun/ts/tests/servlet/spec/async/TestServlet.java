@@ -20,13 +20,13 @@
 package com.sun.ts.tests.servlet.spec.async;
 
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.servlet.AsyncContext;
+import jakarta.servlet.AsyncContext;
 
 public class TestServlet extends GenericTCKServlet {
 

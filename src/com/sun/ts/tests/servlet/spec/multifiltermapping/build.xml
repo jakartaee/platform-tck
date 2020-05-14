@@ -21,7 +21,7 @@
   <import file="../../../../../../../../bin/xml/ts.import.xml"/>
  
   <property name="app.name"  value="servlet_spec_multifiltermapping" />
-  <property name="content.dir" value="${src.dir}/web/servlet/api/javax_servlet/filterrequestdispatcher"/>
+  <property name="content.dir" value="${src.dir}/web/servlet/api/jakarta_servlet/filterrequestdispatcher"/>
   <property name="content.file" value="dummy.html"/>
     
   <property name="web.war.classes"

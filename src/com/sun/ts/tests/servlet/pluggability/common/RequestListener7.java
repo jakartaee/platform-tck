@@ -20,9 +20,9 @@
 package com.sun.ts.tests.servlet.pluggability.common;
 
 import java.util.ArrayList;
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.ServletRequestListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener()
 public final class RequestListener7 implements ServletRequestListener {

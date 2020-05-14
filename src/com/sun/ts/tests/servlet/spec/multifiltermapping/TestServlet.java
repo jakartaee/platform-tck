@@ -21,10 +21,10 @@
 package com.sun.ts.tests.servlet.spec.multifiltermapping;
 
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;

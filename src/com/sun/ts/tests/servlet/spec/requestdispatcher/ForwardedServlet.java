@@ -22,9 +22,9 @@ package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
@@ -93,10 +93,10 @@ public class ForwardedServlet extends GenericTCKServlet {
       throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] aname = { "javax.servlet.forward.request_uri",
-        "javax.servlet.forward.context_path",
-        "javax.servlet.forward.servlet_path", "javax.servlet.forward.path_info",
-        "javax.servlet.forward.query_string" };
+    String[] aname = { "jakarta.servlet.forward.request_uri",
+        "jakarta.servlet.forward.context_path",
+        "jakarta.servlet.forward.servlet_path", "jakarta.servlet.forward.path_info",
+        "jakarta.servlet.forward.query_string" };
 
     String[] avalue = { "/servlet_spec_requestdispatcher_web/TestServlet",
         "/servlet_spec_requestdispatcher_web", "/TestServlet", "*",

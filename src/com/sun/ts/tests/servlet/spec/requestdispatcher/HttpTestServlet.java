@@ -22,10 +22,10 @@ package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 import java.io.PrintWriter;
 
 public class HttpTestServlet extends HttpTCKServlet {
