@@ -1,7 +1,8 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
@@ -51,8 +52,8 @@
  * individuals on behalf of the Apache Software Foundation.  For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
- *
  */
+
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionactivationlistener40;
 
 import jakarta.servlet.http.HttpSessionActivationListener;
