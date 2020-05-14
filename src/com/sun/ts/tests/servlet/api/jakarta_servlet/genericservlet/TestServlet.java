@@ -3,7 +3,7 @@
  * *
  * * The Apache Software License, Version 1.1
  * *
- * * Copyright (c) YYYY Oracle and/or its affiliates. All rights reserved.
+ * * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  * * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * * reserved.
  * *
