@@ -25,8 +25,11 @@ import java.util.*;
 import java.io.*;
 
 /**
- * An implementation of the TSDeploymentInterface can be provided by a Java EE
+ * An implementation of the TSDeploymentInterface can be provided by a Jakarta EE
  * implementation, to support their own deploy/undeploy semantics.
+ *
+ * Jakarta EE implementations that previously depended on Pruned Jakarta Deployment,
+ * should also use TSDeploymentInterface instead of com.sun.ts.lib.porting.TSDeploymentInterface2.   
  * Implementations may choose to use the included JSR-88 impl of this interface
  * - com.sun.ts.lib.deliverable.cts.StandardDeployment14. If you use this impl,
  * then you can create an impl of com.sun.ts.lib.porting.TSDeploymentInterface2.

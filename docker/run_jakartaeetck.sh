@@ -361,7 +361,7 @@ sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
-  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeemgmt javaeedeploy jacc jaspic wsmd/g" ts.jte
+  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeemgmt jacc jaspic wsmd/g" ts.jte
   sed -i "s/^optional.tech.packages.to.ignore=.*/optional.tech.packages.to.ignore=javax.xml.rpc.handler/g" ts.jte
 fi
 

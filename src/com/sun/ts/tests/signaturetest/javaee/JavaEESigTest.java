@@ -31,7 +31,7 @@ import com.sun.ts.lib.util.TestUtil;
  *
  * The EE7 signature tests are to be run in 4 possible modes: (1) full/classic
  * profile (only covers REQUIRED Technologys for this profile) (2) full/classic
- * profile + OPTIONAL technologies (eg , jaxr, jaxrpc, javaeedeploy, etc) (3)
+ * profile + OPTIONAL technologies (eg , jaxr, jaxrpc, etc) (3)
  * web profile (only covers REQUIRED Technologys for this profile) (4) web
  * profile + OPTIONAL technologies (eg connector, jacc, jaxr, etc)
  *
@@ -54,12 +54,12 @@ import com.sun.ts.lib.util.TestUtil;
  * optional.
  *
  * The list of optional technologies that could be tested along with Java EE 7
- * are: jaxrpc jaxr javaeedeploy
+ * are: jaxrpc jaxr 
  *
  *
  * The incomplete list of OPTIONAL/ADDITIONAL technologies which could be tested
  * along with the web profile are: jms javamail javaeemgmt connector jaspic jacc
- * jaxrs javaeedeploy - optional technology in EE 7 jaxr - optional technology
+ * jaxrs - optional technology in EE 7 jaxr - optional technology
  * in EE 7 jaxrpc - optional technology in EE 7
  *
  */
@@ -80,15 +80,15 @@ public class JavaEESigTest extends SigTestEE {
   public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("jaxrpc", "jaxr", "javaeedeploy"));
+      Arrays.asList("jaxrpc", "jaxr"));
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("batch", "jaxrpc", "jaxr", "javaeedeploy", "connector",
+      Arrays.asList("batch", "jaxrpc", "jaxr", "connector",
           "jaxws", "jaxb", "jms", "javamail", "javaeemgmt", "jacc", "jaspic",
           "wsmd"));
 
   enum Containers {
-    ejb, servlet, jsp, appclient, standalone
+    ejb, servlet, jsp, appclient 
   };
 
   public static final Map<Containers, Map<String, String[]>> CONTAINER_PACKAGE_MAPS;
@@ -102,13 +102,11 @@ public class JavaEESigTest extends SigTestEE {
     Map SERVLET_MAP = new HashMap<String, String[]>();
     Map JSP_MAP = new HashMap<String, String[]>();
     Map APPCLIENT_MAP = new HashMap<String, String[]>();
-    Map STANDALONE_MAP = new HashMap<String, String[]>();
 
     // These need to be filled in properly. If one map is a subset of
     // another map we can use putAll to add one map to the other.
     // So maybe populate appclient first then add it to the EJB map
     // then do EJB then add it to JSP then set JSP to SERVLET.
-    // I think standalone is a disjoint set.
 
     APPCLIENT_MAP.put("ejb", new String[] { "jakarta.ejb", "jakarta.ejb.spi",
         "jakarta.ejb.embeddable", "jakarta.interceptor" });
@@ -210,23 +208,11 @@ public class JavaEESigTest extends SigTestEE {
 
     JSP_MAP = SERVLET_MAP;
 
-    STANDALONE_MAP.put("javaeedeploy",
-        new String[] { "javax.enterprise.deploy.model",
-            "javax.enterprise.deploy.model.exceptions",
-            "javax.enterprise.deploy.shared",
-            "javax.enterprise.deploy.shared.factories",
-            "javax.enterprise.deploy.spi",
-            "javax.enterprise.deploy.spi.exceptions",
-            "javax.enterprise.deploy.spi.factories",
-            "javax.enterprise.deploy.spi.status" });
-
     tempMap.put(Containers.ejb, Collections.unmodifiableMap(EJB_MAP));
     tempMap.put(Containers.servlet, Collections.unmodifiableMap(SERVLET_MAP));
     tempMap.put(Containers.jsp, Collections.unmodifiableMap(JSP_MAP));
     tempMap.put(Containers.appclient,
         Collections.unmodifiableMap(APPCLIENT_MAP));
-    tempMap.put(Containers.standalone,
-        Collections.unmodifiableMap(STANDALONE_MAP));
     CONTAINER_PACKAGE_MAPS = Collections.unmodifiableMap(tempMap);
 
   } // end static block

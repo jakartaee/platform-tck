@@ -73,7 +73,6 @@
         com/sun/ts/tests/jta,
         com/sun/ts/tests/samples,
         com/sun/ts/tests/j2eetools/mgmt,
-        com/sun/ts/tests/j2eetools/deploy,
         com/sun/ts/tests/jaxr"/>
 
       <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>

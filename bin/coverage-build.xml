@@ -330,10 +330,10 @@
   <!-- lists webservices 1.2, JAX-WS 2.0 and Web Services Metadata (not sure    -->
   <!-- how these map to our assertion docs).                                    -->
   
-  <!-- Removed jaxws, saaj and jws from the code coverage as the corresponding  -->
+  <!-- Removed Jakarta Deployment, jaxws, saaj and jws from the code coverage as the corresponding  -->
   <!-- tests are no more part of Java EE 8 CTS                                  -->
   <target name="all" depends="start.log,jaxr,j2eetools-mgt,
-	                              j2eetools-deploy,jta,jdbc,ejb,connector,jaspic,
+	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
 	                              jaxrpc,jaxrs,webservices,jsf,jsonp,
                                   jsonb,concurrency,websocket,rmiiiop,securityapi">
@@ -521,16 +521,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/j2eemgmt/J2EEMGMTJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/j2eemgmt/J2EEMGMTSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/j2eetools/mgmt"/>
-    </antcall>
-  </target>
-
-  <target name="j2eetools-deploy">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/j2eedeploy_1_2/api"/>
-      <param name="spec.coverage.dir"  value="${coverage.base.dir}/j2eedeploy_1_2/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/j2eedeploy/J2EEDeployJavaDocAssertions.xml"/>
-      <param name="spec.assertions"    value="${ts.docs.dir}/j2eedeploy/J2EEDeploySpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/j2eetools/deploy"/>
     </antcall>
   </target>
 

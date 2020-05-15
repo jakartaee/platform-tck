@@ -148,9 +148,6 @@ javax.xml.registry=1.0_se6
 # Java EE Management 1.1 
 javax.management.j2ee=1.1_se6
 
-# Java EE Deployment 1.2 
-javax.enterprise.deploy=1.2_se6
-
 # JACC 1.2 
 jakarta.security.jacc=1.2_se6
 

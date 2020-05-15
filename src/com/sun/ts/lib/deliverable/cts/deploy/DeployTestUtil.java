@@ -35,16 +35,9 @@ import com.sun.ts.lib.util.TestUtil;
 import javax.enterprise.deploy.spi.*;
 import javax.enterprise.deploy.spi.status.*;
 import javax.enterprise.deploy.spi.exceptions.*;
-import javax.enterprise.deploy.model.*;
 import javax.enterprise.deploy.shared.*;
-import javax.enterprise.deploy.model.*;
-
-import java.io.*;
-import java.util.*;
 
 import javax.enterprise.deploy.shared.factories.*;
-import javax.enterprise.deploy.spi.*;
-import javax.enterprise.deploy.spi.exceptions.*;
 import javax.enterprise.deploy.spi.factories.*;
 
 public class DeployTestUtil {

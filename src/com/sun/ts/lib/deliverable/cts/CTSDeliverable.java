@@ -143,10 +143,6 @@ public class CTSDeliverable extends AbstractDeliverable {
     htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles",
         new String[] { "ejb" });
 
-    // j2ee deploy tests
-    htTSValidVehicles.put("tests_j2eetools_deploy.service_eetest.vehicles",
-        new String[] { "standalone" });
-
     // jmx tests
     // htTSValidVehicles.put("tests_jmx.service_eetest.vehicles", new
     // String[]{"standalone"});
