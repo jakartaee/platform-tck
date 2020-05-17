@@ -23,10 +23,10 @@ package com.sun.ts.tests.ejb30.misc.moduleName.conflict;
 import java.io.IOException;
 
 import jakarta.ejb.EJB;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;

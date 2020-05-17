@@ -25,8 +25,8 @@ import com.sun.ts.lib.porting.*;
 
 import java.util.Properties;
 import java.rmi.RemoteException;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 public class AccessJSPBean {
 

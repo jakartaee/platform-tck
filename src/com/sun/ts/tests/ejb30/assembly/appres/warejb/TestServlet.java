@@ -23,10 +23,10 @@ package com.sun.ts.tests.ejb30.assembly.appres.warejb;
 import java.io.IOException;
 
 import jakarta.annotation.PostConstruct;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase2;

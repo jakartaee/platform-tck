@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspException;
 
 /**
  * Tag implementation to validate the various operators provided by the JSP 2.0

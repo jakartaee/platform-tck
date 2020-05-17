@@ -138,14 +138,14 @@ meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object)
 meth public jakarta.el.ValueReference getValueReference(jakarta.el.ELContext)
 supr jakarta.el.Expression
 
-CLSS public abstract interface javax.servlet.Servlet
+CLSS public abstract interface jakarta.servlet.Servlet
 meth public abstract java.lang.String getServletInfo()
-meth public abstract javax.servlet.ServletConfig getServletConfig()
+meth public abstract jakarta.servlet.ServletConfig getServletConfig()
 meth public abstract void destroy()
-meth public abstract void init(javax.servlet.ServletConfig) throws javax.servlet.ServletException
-meth public abstract void service(javax.servlet.ServletRequest,javax.servlet.ServletResponse) throws java.io.IOException,javax.servlet.ServletException
+meth public abstract void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
+meth public abstract void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws java.io.IOException,jakarta.servlet.ServletException
 
-CLSS public final javax.servlet.jsp.ErrorData
+CLSS public final jakarta.servlet.jsp.ErrorData
 cons public <init>(java.lang.Throwable,int,java.lang.String,java.lang.String)
 meth public int getStatusCode()
 meth public java.lang.String getRequestURI()
@@ -154,16 +154,16 @@ meth public java.lang.Throwable getThrowable()
 supr java.lang.Object
 hfds servletName,statusCode,throwable,uri
 
-CLSS public abstract interface javax.servlet.jsp.HttpJspPage
-intf javax.servlet.jsp.JspPage
-meth public abstract void _jspService(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+CLSS public abstract interface jakarta.servlet.jsp.HttpJspPage
+intf jakarta.servlet.jsp.JspPage
+meth public abstract void _jspService(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws java.io.IOException,jakarta.servlet.ServletException
 
-CLSS public abstract interface javax.servlet.jsp.JspApplicationContext
+CLSS public abstract interface jakarta.servlet.jsp.JspApplicationContext
 meth public abstract jakarta.el.ExpressionFactory getExpressionFactory()
 meth public abstract void addELContextListener(jakarta.el.ELContextListener)
 meth public abstract void addELResolver(jakarta.el.ELResolver)
 
-CLSS public abstract javax.servlet.jsp.JspContext
+CLSS public abstract jakarta.servlet.jsp.JspContext
 cons public <init>()
 meth public abstract int getAttributesScope(java.lang.String)
 meth public abstract java.lang.Object findAttribute(java.lang.String)
@@ -171,23 +171,23 @@ meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.Object getAttribute(java.lang.String,int)
 meth public abstract java.util.Enumeration<java.lang.String> getAttributeNamesInScope(int)
 meth public abstract jakarta.el.ELContext getELContext()
-meth public abstract javax.servlet.jsp.JspWriter getOut()
-meth public abstract javax.servlet.jsp.el.ExpressionEvaluator getExpressionEvaluator()
-meth public abstract javax.servlet.jsp.el.VariableResolver getVariableResolver()
+meth public abstract jakarta.servlet.jsp.JspWriter getOut()
+meth public abstract jakarta.servlet.jsp.el.ExpressionEvaluator getExpressionEvaluator()
+meth public abstract jakarta.servlet.jsp.el.VariableResolver getVariableResolver()
 meth public abstract void removeAttribute(java.lang.String)
 meth public abstract void removeAttribute(java.lang.String,int)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object,int)
-meth public javax.servlet.jsp.JspWriter popBody()
-meth public javax.servlet.jsp.JspWriter pushBody(java.io.Writer)
+meth public jakarta.servlet.jsp.JspWriter popBody()
+meth public jakarta.servlet.jsp.JspWriter pushBody(java.io.Writer)
 supr java.lang.Object
 
-CLSS public abstract javax.servlet.jsp.JspEngineInfo
+CLSS public abstract jakarta.servlet.jsp.JspEngineInfo
 cons public <init>()
 meth public abstract java.lang.String getSpecificationVersion()
 supr java.lang.Object
 
-CLSS public javax.servlet.jsp.JspException
+CLSS public jakarta.servlet.jsp.JspException
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
@@ -195,30 +195,30 @@ cons public <init>(java.lang.Throwable)
 meth public java.lang.Throwable getRootCause()
 supr java.lang.Exception
 
-CLSS public abstract javax.servlet.jsp.JspFactory
+CLSS public abstract jakarta.servlet.jsp.JspFactory
 cons public <init>()
-meth public abstract javax.servlet.jsp.JspApplicationContext getJspApplicationContext(javax.servlet.ServletContext)
-meth public abstract javax.servlet.jsp.JspEngineInfo getEngineInfo()
-meth public abstract javax.servlet.jsp.PageContext getPageContext(javax.servlet.Servlet,javax.servlet.ServletRequest,javax.servlet.ServletResponse,java.lang.String,boolean,int,boolean)
-meth public abstract void releasePageContext(javax.servlet.jsp.PageContext)
-meth public static javax.servlet.jsp.JspFactory getDefaultFactory()
-meth public static void setDefaultFactory(javax.servlet.jsp.JspFactory)
+meth public abstract jakarta.servlet.jsp.JspApplicationContext getJspApplicationContext(jakarta.servlet.ServletContext)
+meth public abstract jakarta.servlet.jsp.JspEngineInfo getEngineInfo()
+meth public abstract jakarta.servlet.jsp.PageContext getPageContext(jakarta.servlet.Servlet,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,java.lang.String,boolean,int,boolean)
+meth public abstract void releasePageContext(jakarta.servlet.jsp.PageContext)
+meth public static jakarta.servlet.jsp.JspFactory getDefaultFactory()
+meth public static void setDefaultFactory(jakarta.servlet.jsp.JspFactory)
 supr java.lang.Object
 hfds deflt
 
-CLSS public abstract interface javax.servlet.jsp.JspPage
-intf javax.servlet.Servlet
+CLSS public abstract interface jakarta.servlet.jsp.JspPage
+intf jakarta.servlet.Servlet
 meth public abstract void jspDestroy()
 meth public abstract void jspInit()
 
-CLSS public javax.servlet.jsp.JspTagException
+CLSS public jakarta.servlet.jsp.JspTagException
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
 cons public <init>(java.lang.Throwable)
-supr javax.servlet.jsp.JspException
+supr jakarta.servlet.jsp.JspException
 
-CLSS public abstract javax.servlet.jsp.JspWriter
+CLSS public abstract jakarta.servlet.jsp.JspWriter
 cons protected <init>(int,boolean)
 fld protected boolean autoFlush
 fld protected int bufferSize
@@ -254,47 +254,47 @@ meth public boolean isAutoFlush()
 meth public int getBufferSize()
 supr java.io.Writer
 
-CLSS public abstract javax.servlet.jsp.PageContext
+CLSS public abstract jakarta.servlet.jsp.PageContext
 cons public <init>()
 fld public final static int APPLICATION_SCOPE = 4
 fld public final static int PAGE_SCOPE = 1
 fld public final static int REQUEST_SCOPE = 2
 fld public final static int SESSION_SCOPE = 3
-fld public final static java.lang.String APPLICATION = "javax.servlet.jsp.jspApplication"
-fld public final static java.lang.String CONFIG = "javax.servlet.jsp.jspConfig"
-fld public final static java.lang.String EXCEPTION = "javax.servlet.jsp.jspException"
-fld public final static java.lang.String OUT = "javax.servlet.jsp.jspOut"
-fld public final static java.lang.String PAGE = "javax.servlet.jsp.jspPage"
-fld public final static java.lang.String PAGECONTEXT = "javax.servlet.jsp.jspPageContext"
-fld public final static java.lang.String REQUEST = "javax.servlet.jsp.jspRequest"
-fld public final static java.lang.String RESPONSE = "javax.servlet.jsp.jspResponse"
-fld public final static java.lang.String SESSION = "javax.servlet.jsp.jspSession"
+fld public final static java.lang.String APPLICATION = "jakarta.servlet.jsp.jspApplication"
+fld public final static java.lang.String CONFIG = "jakarta.servlet.jsp.jspConfig"
+fld public final static java.lang.String EXCEPTION = "jakarta.servlet.jsp.jspException"
+fld public final static java.lang.String OUT = "jakarta.servlet.jsp.jspOut"
+fld public final static java.lang.String PAGE = "jakarta.servlet.jsp.jspPage"
+fld public final static java.lang.String PAGECONTEXT = "jakarta.servlet.jsp.jspPageContext"
+fld public final static java.lang.String REQUEST = "jakarta.servlet.jsp.jspRequest"
+fld public final static java.lang.String RESPONSE = "jakarta.servlet.jsp.jspResponse"
+fld public final static java.lang.String SESSION = "jakarta.servlet.jsp.jspSession"
 meth public abstract java.lang.Exception getException()
 meth public abstract java.lang.Object getPage()
-meth public abstract javax.servlet.ServletConfig getServletConfig()
-meth public abstract javax.servlet.ServletContext getServletContext()
-meth public abstract javax.servlet.ServletRequest getRequest()
-meth public abstract javax.servlet.ServletResponse getResponse()
-meth public abstract javax.servlet.http.HttpSession getSession()
-meth public abstract void forward(java.lang.String) throws java.io.IOException,javax.servlet.ServletException
-meth public abstract void handlePageException(java.lang.Exception) throws java.io.IOException,javax.servlet.ServletException
-meth public abstract void handlePageException(java.lang.Throwable) throws java.io.IOException,javax.servlet.ServletException
-meth public abstract void include(java.lang.String) throws java.io.IOException,javax.servlet.ServletException
-meth public abstract void include(java.lang.String,boolean) throws java.io.IOException,javax.servlet.ServletException
-meth public abstract void initialize(javax.servlet.Servlet,javax.servlet.ServletRequest,javax.servlet.ServletResponse,java.lang.String,boolean,int,boolean) throws java.io.IOException
+meth public abstract jakarta.servlet.ServletConfig getServletConfig()
+meth public abstract jakarta.servlet.ServletContext getServletContext()
+meth public abstract jakarta.servlet.ServletRequest getRequest()
+meth public abstract jakarta.servlet.ServletResponse getResponse()
+meth public abstract jakarta.servlet.http.HttpSession getSession()
+meth public abstract void forward(java.lang.String) throws java.io.IOException,jakarta.servlet.ServletException
+meth public abstract void handlePageException(java.lang.Exception) throws java.io.IOException,jakarta.servlet.ServletException
+meth public abstract void handlePageException(java.lang.Throwable) throws java.io.IOException,jakarta.servlet.ServletException
+meth public abstract void include(java.lang.String) throws java.io.IOException,jakarta.servlet.ServletException
+meth public abstract void include(java.lang.String,boolean) throws java.io.IOException,jakarta.servlet.ServletException
+meth public abstract void initialize(jakarta.servlet.Servlet,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,java.lang.String,boolean,int,boolean) throws java.io.IOException
 meth public abstract void release()
-meth public javax.servlet.jsp.ErrorData getErrorData()
-meth public javax.servlet.jsp.tagext.BodyContent pushBody()
-supr javax.servlet.jsp.JspContext
+meth public jakarta.servlet.jsp.ErrorData getErrorData()
+meth public jakarta.servlet.jsp.tagext.BodyContent pushBody()
+supr jakarta.servlet.jsp.JspContext
 
-CLSS public javax.servlet.jsp.SkipPageException
+CLSS public jakarta.servlet.jsp.SkipPageException
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
 cons public <init>(java.lang.Throwable)
-supr javax.servlet.jsp.JspException
+supr jakarta.servlet.jsp.JspException
 
-CLSS public javax.servlet.jsp.el.ELException
+CLSS public jakarta.servlet.jsp.el.ELException
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
@@ -303,26 +303,26 @@ meth public java.lang.Throwable getRootCause()
 supr java.lang.Exception
 hfds mRootCause
 
-CLSS public javax.servlet.jsp.el.ELParseException
+CLSS public jakarta.servlet.jsp.el.ELParseException
 cons public <init>()
 cons public <init>(java.lang.String)
-supr javax.servlet.jsp.el.ELException
+supr jakarta.servlet.jsp.el.ELException
 
-CLSS public abstract javax.servlet.jsp.el.Expression
+CLSS public abstract jakarta.servlet.jsp.el.Expression
 cons public <init>()
-meth public abstract java.lang.Object evaluate(javax.servlet.jsp.el.VariableResolver) throws javax.servlet.jsp.el.ELException
+meth public abstract java.lang.Object evaluate(jakarta.servlet.jsp.el.VariableResolver) throws jakarta.servlet.jsp.el.ELException
 supr java.lang.Object
 
-CLSS public abstract javax.servlet.jsp.el.ExpressionEvaluator
+CLSS public abstract jakarta.servlet.jsp.el.ExpressionEvaluator
 cons public <init>()
-meth public abstract java.lang.Object evaluate(java.lang.String,java.lang.Class,javax.servlet.jsp.el.VariableResolver,javax.servlet.jsp.el.FunctionMapper) throws javax.servlet.jsp.el.ELException
-meth public abstract javax.servlet.jsp.el.Expression parseExpression(java.lang.String,java.lang.Class,javax.servlet.jsp.el.FunctionMapper) throws javax.servlet.jsp.el.ELException
+meth public abstract java.lang.Object evaluate(java.lang.String,java.lang.Class,jakarta.servlet.jsp.el.VariableResolver,jakarta.servlet.jsp.el.FunctionMapper) throws jakarta.servlet.jsp.el.ELException
+meth public abstract jakarta.servlet.jsp.el.Expression parseExpression(java.lang.String,java.lang.Class,jakarta.servlet.jsp.el.FunctionMapper) throws jakarta.servlet.jsp.el.ELException
 supr java.lang.Object
 
-CLSS public abstract interface javax.servlet.jsp.el.FunctionMapper
+CLSS public abstract interface jakarta.servlet.jsp.el.FunctionMapper
 meth public abstract java.lang.reflect.Method resolveFunction(java.lang.String,java.lang.String)
 
-CLSS public javax.servlet.jsp.el.ImplicitObjectELResolver
+CLSS public jakarta.servlet.jsp.el.ImplicitObjectELResolver
 cons public <init>()
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
@@ -333,7 +333,7 @@ meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object
 supr jakarta.el.ELResolver
 hcls EnumeratedMap,ImplicitObjects
 
-CLSS public javax.servlet.jsp.el.ScopedAttributeELResolver
+CLSS public jakarta.servlet.jsp.el.ScopedAttributeELResolver
 cons public <init>()
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
@@ -343,44 +343,44 @@ meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescripto
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
-CLSS public abstract interface javax.servlet.jsp.el.VariableResolver
-meth public abstract java.lang.Object resolveVariable(java.lang.String) throws javax.servlet.jsp.el.ELException
+CLSS public abstract interface jakarta.servlet.jsp.el.VariableResolver
+meth public abstract java.lang.Object resolveVariable(java.lang.String) throws jakarta.servlet.jsp.el.ELException
 
-CLSS public abstract javax.servlet.jsp.jstl.core.ConditionalTagSupport
+CLSS public abstract jakarta.servlet.jsp.jstl.core.ConditionalTagSupport
 cons public <init>()
-meth protected abstract boolean condition() throws javax.servlet.jsp.JspTagException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth protected abstract boolean condition() throws jakarta.servlet.jsp.JspTagException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public void release()
 meth public void setScope(java.lang.String)
 meth public void setVar(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds result,scope,var
 
-CLSS public javax.servlet.jsp.jstl.core.Config
+CLSS public jakarta.servlet.jsp.jstl.core.Config
 cons public <init>()
-fld public final static java.lang.String FMT_FALLBACK_LOCALE = "javax.servlet.jsp.jstl.fmt.fallbackLocale"
-fld public final static java.lang.String FMT_LOCALE = "javax.servlet.jsp.jstl.fmt.locale"
-fld public final static java.lang.String FMT_LOCALIZATION_CONTEXT = "javax.servlet.jsp.jstl.fmt.localizationContext"
-fld public final static java.lang.String FMT_TIME_ZONE = "javax.servlet.jsp.jstl.fmt.timeZone"
-fld public final static java.lang.String SQL_DATA_SOURCE = "javax.servlet.jsp.jstl.sql.dataSource"
-fld public final static java.lang.String SQL_MAX_ROWS = "javax.servlet.jsp.jstl.sql.maxRows"
-meth public static java.lang.Object find(javax.servlet.jsp.PageContext,java.lang.String)
-meth public static java.lang.Object get(javax.servlet.ServletContext,java.lang.String)
-meth public static java.lang.Object get(javax.servlet.ServletRequest,java.lang.String)
-meth public static java.lang.Object get(javax.servlet.http.HttpSession,java.lang.String)
-meth public static java.lang.Object get(javax.servlet.jsp.PageContext,java.lang.String,int)
-meth public static void remove(javax.servlet.ServletContext,java.lang.String)
-meth public static void remove(javax.servlet.ServletRequest,java.lang.String)
-meth public static void remove(javax.servlet.http.HttpSession,java.lang.String)
-meth public static void remove(javax.servlet.jsp.PageContext,java.lang.String,int)
-meth public static void set(javax.servlet.ServletContext,java.lang.String,java.lang.Object)
-meth public static void set(javax.servlet.ServletRequest,java.lang.String,java.lang.Object)
-meth public static void set(javax.servlet.http.HttpSession,java.lang.String,java.lang.Object)
-meth public static void set(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object,int)
+fld public final static java.lang.String FMT_FALLBACK_LOCALE = "jakarta.servlet.jsp.jstl.fmt.fallbackLocale"
+fld public final static java.lang.String FMT_LOCALE = "jakarta.servlet.jsp.jstl.fmt.locale"
+fld public final static java.lang.String FMT_LOCALIZATION_CONTEXT = "jakarta.servlet.jsp.jstl.fmt.localizationContext"
+fld public final static java.lang.String FMT_TIME_ZONE = "jakarta.servlet.jsp.jstl.fmt.timeZone"
+fld public final static java.lang.String SQL_DATA_SOURCE = "jakarta.servlet.jsp.jstl.sql.dataSource"
+fld public final static java.lang.String SQL_MAX_ROWS = "jakarta.servlet.jsp.jstl.sql.maxRows"
+meth public static java.lang.Object find(jakarta.servlet.jsp.PageContext,java.lang.String)
+meth public static java.lang.Object get(jakarta.servlet.ServletContext,java.lang.String)
+meth public static java.lang.Object get(jakarta.servlet.ServletRequest,java.lang.String)
+meth public static java.lang.Object get(jakarta.servlet.http.HttpSession,java.lang.String)
+meth public static java.lang.Object get(jakarta.servlet.jsp.PageContext,java.lang.String,int)
+meth public static void remove(jakarta.servlet.ServletContext,java.lang.String)
+meth public static void remove(jakarta.servlet.ServletRequest,java.lang.String)
+meth public static void remove(jakarta.servlet.http.HttpSession,java.lang.String)
+meth public static void remove(jakarta.servlet.jsp.PageContext,java.lang.String,int)
+meth public static void set(jakarta.servlet.ServletContext,java.lang.String,java.lang.Object)
+meth public static void set(jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
+meth public static void set(jakarta.servlet.http.HttpSession,java.lang.String,java.lang.Object)
+meth public static void set(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.Object,int)
 supr java.lang.Object
 hfds APPLICATION_SCOPE_SUFFIX,PAGE_SCOPE_SUFFIX,REQUEST_SCOPE_SUFFIX,SESSION_SCOPE_SUFFIX
 
-CLSS public final javax.servlet.jsp.jstl.core.IndexedValueExpression
+CLSS public final jakarta.servlet.jsp.jstl.core.IndexedValueExpression
 cons public <init>(jakarta.el.ValueExpression,int)
 fld protected final java.lang.Integer i
 fld protected final jakarta.el.ValueExpression orig
@@ -396,7 +396,7 @@ meth public void setValue(jakarta.el.ELContext,java.lang.Object)
 supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
-CLSS public final javax.servlet.jsp.jstl.core.IteratedExpression
+CLSS public final jakarta.servlet.jsp.jstl.core.IteratedExpression
 cons public <init>(jakarta.el.ValueExpression,java.lang.String)
 fld protected final java.lang.String delims
 fld protected final jakarta.el.ValueExpression orig
@@ -405,10 +405,10 @@ meth public jakarta.el.ValueExpression getValueExpression()
 supr java.lang.Object
 hfds base,index,iter,serialVersionUID
 
-CLSS public final javax.servlet.jsp.jstl.core.IteratedValueExpression
-cons public <init>(javax.servlet.jsp.jstl.core.IteratedExpression,int)
+CLSS public final jakarta.servlet.jsp.jstl.core.IteratedValueExpression
+cons public <init>(jakarta.servlet.jsp.jstl.core.IteratedExpression,int)
 fld protected final int i
-fld protected final javax.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
+fld protected final jakarta.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
 meth public boolean equals(java.lang.Object)
 meth public boolean isLiteralText()
 meth public boolean isReadOnly(jakarta.el.ELContext)
@@ -421,12 +421,12 @@ meth public void setValue(jakarta.el.ELContext,java.lang.Object)
 supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
-CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTag
-intf javax.servlet.jsp.tagext.Tag
+CLSS public abstract interface jakarta.servlet.jsp.jstl.core.LoopTag
+intf jakarta.servlet.jsp.tagext.Tag
 meth public abstract java.lang.Object getCurrent()
-meth public abstract javax.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
+meth public abstract jakarta.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
 
-CLSS public abstract interface javax.servlet.jsp.jstl.core.LoopTagStatus
+CLSS public abstract interface jakarta.servlet.jsp.jstl.core.LoopTagStatus
 meth public abstract boolean isFirst()
 meth public abstract boolean isLast()
 meth public abstract int getCount()
@@ -436,7 +436,7 @@ meth public abstract java.lang.Integer getEnd()
 meth public abstract java.lang.Integer getStep()
 meth public abstract java.lang.Object getCurrent()
 
-CLSS public abstract javax.servlet.jsp.jstl.core.LoopTagSupport
+CLSS public abstract jakarta.servlet.jsp.jstl.core.LoopTagSupport
 cons public <init>()
 fld protected boolean beginSpecified
 fld protected boolean endSpecified
@@ -447,38 +447,38 @@ fld protected int step
 fld protected java.lang.String itemId
 fld protected java.lang.String statusId
 fld protected jakarta.el.ValueExpression deferredExpression
-intf javax.servlet.jsp.jstl.core.LoopTag
-intf javax.servlet.jsp.tagext.IterationTag
-intf javax.servlet.jsp.tagext.TryCatchFinally
-meth protected abstract boolean hasNext() throws javax.servlet.jsp.JspTagException
-meth protected abstract java.lang.Object next() throws javax.servlet.jsp.JspTagException
-meth protected abstract void prepare() throws javax.servlet.jsp.JspTagException
+intf jakarta.servlet.jsp.jstl.core.LoopTag
+intf jakarta.servlet.jsp.tagext.IterationTag
+intf jakarta.servlet.jsp.tagext.TryCatchFinally
+meth protected abstract boolean hasNext() throws jakarta.servlet.jsp.JspTagException
+meth protected abstract java.lang.Object next() throws jakarta.servlet.jsp.JspTagException
+meth protected abstract void prepare() throws jakarta.servlet.jsp.JspTagException
 meth protected java.lang.String getDelims()
-meth protected void validateBegin() throws javax.servlet.jsp.JspTagException
-meth protected void validateEnd() throws javax.servlet.jsp.JspTagException
-meth protected void validateStep() throws javax.servlet.jsp.JspTagException
-meth public int doAfterBody() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth protected void validateBegin() throws jakarta.servlet.jsp.JspTagException
+meth protected void validateEnd() throws jakarta.servlet.jsp.JspTagException
+meth protected void validateStep() throws jakarta.servlet.jsp.JspTagException
+meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public java.lang.Object getCurrent()
-meth public javax.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
+meth public jakarta.servlet.jsp.jstl.core.LoopTagStatus getLoopStatus()
 meth public void doCatch(java.lang.Throwable) throws java.lang.Throwable
 meth public void doFinally()
 meth public void release()
 meth public void setVar(java.lang.String)
 meth public void setVarStatus(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds count,index,item,iteratedExpression,last,oldMappedValue,status
 
-CLSS public javax.servlet.jsp.jstl.fmt.LocaleSupport
+CLSS public jakarta.servlet.jsp.jstl.fmt.LocaleSupport
 cons public <init>()
-meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String)
-meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object[])
-meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.Object[],java.lang.String)
-meth public static java.lang.String getLocalizedMessage(javax.servlet.jsp.PageContext,java.lang.String,java.lang.String)
+meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String)
+meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.Object[])
+meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.Object[],java.lang.String)
+meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.String)
 supr java.lang.Object
 hfds EMPTY_LOCALE,HYPHEN,REQUEST_CHAR_SET,UNDEFINED_KEY,UNDERSCORE
 
-CLSS public javax.servlet.jsp.jstl.fmt.LocalizationContext
+CLSS public jakarta.servlet.jsp.jstl.fmt.LocalizationContext
 cons public <init>()
 cons public <init>(java.util.ResourceBundle)
 cons public <init>(java.util.ResourceBundle,java.util.Locale)
@@ -487,74 +487,74 @@ meth public java.util.ResourceBundle getResourceBundle()
 supr java.lang.Object
 hfds bundle,locale
 
-CLSS public abstract interface javax.servlet.jsp.jstl.sql.Result
+CLSS public abstract interface jakarta.servlet.jsp.jstl.sql.Result
 meth public abstract boolean isLimitedByMaxRows()
 meth public abstract int getRowCount()
 meth public abstract java.lang.Object[][] getRowsByIndex()
 meth public abstract java.lang.String[] getColumnNames()
 meth public abstract java.util.SortedMap[] getRows()
 
-CLSS public javax.servlet.jsp.jstl.sql.ResultSupport
+CLSS public jakarta.servlet.jsp.jstl.sql.ResultSupport
 cons public <init>()
-meth public static javax.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet)
-meth public static javax.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet,int)
+meth public static jakarta.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet)
+meth public static jakarta.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet,int)
 supr java.lang.Object
 
-CLSS public abstract interface javax.servlet.jsp.jstl.sql.SQLExecutionTag
+CLSS public abstract interface jakarta.servlet.jsp.jstl.sql.SQLExecutionTag
 meth public abstract void addSQLParameter(java.lang.Object)
 
-CLSS public javax.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
+CLSS public jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
 cons public <init>()
-meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public void release()
-supr javax.servlet.jsp.tagext.TagLibraryValidator
+supr jakarta.servlet.jsp.tagext.TagLibraryValidator
 hfds JSP_ROOT_NAME,JSP_ROOT_QN,JSP_ROOT_URI,PERMITTED_TAGLIBS_PARAM,failed,permittedTaglibs,uri
 hcls PermittedTaglibsHandler
 
-CLSS public javax.servlet.jsp.jstl.tlv.ScriptFreeTLV
+CLSS public jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
 cons public <init>()
-meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public void setInitParameters(java.util.Map<java.lang.String,java.lang.Object>)
-supr javax.servlet.jsp.tagext.TagLibraryValidator
+supr jakarta.servlet.jsp.tagext.TagLibraryValidator
 hfds allowDeclarations,allowExpressions,allowRTExpressions,allowScriptlets,factory
 hcls MyContentHandler
 
-CLSS public abstract javax.servlet.jsp.tagext.BodyContent
-cons protected <init>(javax.servlet.jsp.JspWriter)
+CLSS public abstract jakarta.servlet.jsp.tagext.BodyContent
+cons protected <init>(jakarta.servlet.jsp.JspWriter)
 meth public abstract java.io.Reader getReader()
 meth public abstract java.lang.String getString()
 meth public abstract void writeOut(java.io.Writer) throws java.io.IOException
-meth public javax.servlet.jsp.JspWriter getEnclosingWriter()
+meth public jakarta.servlet.jsp.JspWriter getEnclosingWriter()
 meth public void clearBody()
 meth public void flush() throws java.io.IOException
-supr javax.servlet.jsp.JspWriter
+supr jakarta.servlet.jsp.JspWriter
 hfds enclosingWriter
 
-CLSS public abstract interface javax.servlet.jsp.tagext.BodyTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.BodyTag
 fld public final static int EVAL_BODY_BUFFERED = 2
 fld public final static int EVAL_BODY_TAG = 2
-intf javax.servlet.jsp.tagext.IterationTag
-meth public abstract void doInitBody() throws javax.servlet.jsp.JspException
-meth public abstract void setBodyContent(javax.servlet.jsp.tagext.BodyContent)
+intf jakarta.servlet.jsp.tagext.IterationTag
+meth public abstract void doInitBody() throws jakarta.servlet.jsp.JspException
+meth public abstract void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
 
-CLSS public javax.servlet.jsp.tagext.BodyTagSupport
+CLSS public jakarta.servlet.jsp.tagext.BodyTagSupport
 cons public <init>()
-fld protected javax.servlet.jsp.tagext.BodyContent bodyContent
-intf javax.servlet.jsp.tagext.BodyTag
-meth public int doAfterBody() throws javax.servlet.jsp.JspException
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
-meth public javax.servlet.jsp.JspWriter getPreviousOut()
-meth public javax.servlet.jsp.tagext.BodyContent getBodyContent()
-meth public void doInitBody() throws javax.servlet.jsp.JspException
+fld protected jakarta.servlet.jsp.tagext.BodyContent bodyContent
+intf jakarta.servlet.jsp.tagext.BodyTag
+meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
+meth public jakarta.servlet.jsp.JspWriter getPreviousOut()
+meth public jakarta.servlet.jsp.tagext.BodyContent getBodyContent()
+meth public void doInitBody() throws jakarta.servlet.jsp.JspException
 meth public void release()
-meth public void setBodyContent(javax.servlet.jsp.tagext.BodyContent)
-supr javax.servlet.jsp.tagext.TagSupport
+meth public void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
+supr jakarta.servlet.jsp.tagext.TagSupport
 
-CLSS public abstract interface javax.servlet.jsp.tagext.DynamicAttributes
-meth public abstract void setDynamicAttribute(java.lang.String,java.lang.String,java.lang.Object) throws javax.servlet.jsp.JspException
+CLSS public abstract interface jakarta.servlet.jsp.tagext.DynamicAttributes
+meth public abstract void setDynamicAttribute(java.lang.String,java.lang.String,java.lang.Object) throws jakarta.servlet.jsp.JspException
 
-CLSS public javax.servlet.jsp.tagext.FunctionInfo
+CLSS public jakarta.servlet.jsp.tagext.FunctionInfo
 cons public <init>(java.lang.String,java.lang.String,java.lang.String)
 meth public java.lang.String getFunctionClass()
 meth public java.lang.String getFunctionSignature()
@@ -562,76 +562,76 @@ meth public java.lang.String getName()
 supr java.lang.Object
 hfds functionClass,functionSignature,name
 
-CLSS public abstract interface javax.servlet.jsp.tagext.IterationTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.IterationTag
 fld public final static int EVAL_BODY_AGAIN = 2
-intf javax.servlet.jsp.tagext.Tag
-meth public abstract int doAfterBody() throws javax.servlet.jsp.JspException
+intf jakarta.servlet.jsp.tagext.Tag
+meth public abstract int doAfterBody() throws jakarta.servlet.jsp.JspException
 
-CLSS public abstract javax.servlet.jsp.tagext.JspFragment
+CLSS public abstract jakarta.servlet.jsp.tagext.JspFragment
 cons public <init>()
-meth public abstract javax.servlet.jsp.JspContext getJspContext()
-meth public abstract void invoke(java.io.Writer) throws java.io.IOException,javax.servlet.jsp.JspException
+meth public abstract jakarta.servlet.jsp.JspContext getJspContext()
+meth public abstract void invoke(java.io.Writer) throws java.io.IOException,jakarta.servlet.jsp.JspException
 supr java.lang.Object
 
-CLSS public abstract interface javax.servlet.jsp.tagext.JspIdConsumer
+CLSS public abstract interface jakarta.servlet.jsp.tagext.JspIdConsumer
 meth public abstract void setJspId(java.lang.String)
 
-CLSS public abstract interface javax.servlet.jsp.tagext.JspTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.JspTag
 
-CLSS public abstract javax.servlet.jsp.tagext.PageData
+CLSS public abstract jakarta.servlet.jsp.tagext.PageData
 cons public <init>()
 meth public abstract java.io.InputStream getInputStream()
 supr java.lang.Object
 
-CLSS public abstract interface javax.servlet.jsp.tagext.SimpleTag
-intf javax.servlet.jsp.tagext.JspTag
-meth public abstract javax.servlet.jsp.tagext.JspTag getParent()
-meth public abstract void doTag() throws java.io.IOException,javax.servlet.jsp.JspException
-meth public abstract void setJspBody(javax.servlet.jsp.tagext.JspFragment)
-meth public abstract void setJspContext(javax.servlet.jsp.JspContext)
-meth public abstract void setParent(javax.servlet.jsp.tagext.JspTag)
+CLSS public abstract interface jakarta.servlet.jsp.tagext.SimpleTag
+intf jakarta.servlet.jsp.tagext.JspTag
+meth public abstract jakarta.servlet.jsp.tagext.JspTag getParent()
+meth public abstract void doTag() throws java.io.IOException,jakarta.servlet.jsp.JspException
+meth public abstract void setJspBody(jakarta.servlet.jsp.tagext.JspFragment)
+meth public abstract void setJspContext(jakarta.servlet.jsp.JspContext)
+meth public abstract void setParent(jakarta.servlet.jsp.tagext.JspTag)
 
-CLSS public javax.servlet.jsp.tagext.SimpleTagSupport
+CLSS public jakarta.servlet.jsp.tagext.SimpleTagSupport
 cons public <init>()
-intf javax.servlet.jsp.tagext.SimpleTag
-meth protected javax.servlet.jsp.JspContext getJspContext()
-meth protected javax.servlet.jsp.tagext.JspFragment getJspBody()
-meth public final static javax.servlet.jsp.tagext.JspTag findAncestorWithClass(javax.servlet.jsp.tagext.JspTag,java.lang.Class<?>)
-meth public javax.servlet.jsp.tagext.JspTag getParent()
-meth public void doTag() throws java.io.IOException,javax.servlet.jsp.JspException
-meth public void setJspBody(javax.servlet.jsp.tagext.JspFragment)
-meth public void setJspContext(javax.servlet.jsp.JspContext)
-meth public void setParent(javax.servlet.jsp.tagext.JspTag)
+intf jakarta.servlet.jsp.tagext.SimpleTag
+meth protected jakarta.servlet.jsp.JspContext getJspContext()
+meth protected jakarta.servlet.jsp.tagext.JspFragment getJspBody()
+meth public final static jakarta.servlet.jsp.tagext.JspTag findAncestorWithClass(jakarta.servlet.jsp.tagext.JspTag,java.lang.Class<?>)
+meth public jakarta.servlet.jsp.tagext.JspTag getParent()
+meth public void doTag() throws java.io.IOException,jakarta.servlet.jsp.JspException
+meth public void setJspBody(jakarta.servlet.jsp.tagext.JspFragment)
+meth public void setJspContext(jakarta.servlet.jsp.JspContext)
+meth public void setParent(jakarta.servlet.jsp.tagext.JspTag)
 supr java.lang.Object
 hfds jspBody,jspContext,parentTag
 
-CLSS public abstract interface javax.servlet.jsp.tagext.Tag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.Tag
 fld public final static int EVAL_BODY_INCLUDE = 1
 fld public final static int EVAL_PAGE = 6
 fld public final static int SKIP_BODY = 0
 fld public final static int SKIP_PAGE = 5
-intf javax.servlet.jsp.tagext.JspTag
-meth public abstract int doEndTag() throws javax.servlet.jsp.JspException
-meth public abstract int doStartTag() throws javax.servlet.jsp.JspException
-meth public abstract javax.servlet.jsp.tagext.Tag getParent()
+intf jakarta.servlet.jsp.tagext.JspTag
+meth public abstract int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public abstract int doStartTag() throws jakarta.servlet.jsp.JspException
+meth public abstract jakarta.servlet.jsp.tagext.Tag getParent()
 meth public abstract void release()
-meth public abstract void setPageContext(javax.servlet.jsp.PageContext)
-meth public abstract void setParent(javax.servlet.jsp.tagext.Tag)
+meth public abstract void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public abstract void setParent(jakarta.servlet.jsp.tagext.Tag)
 
-CLSS public javax.servlet.jsp.tagext.TagAdapter
-cons public <init>(javax.servlet.jsp.tagext.SimpleTag)
-intf javax.servlet.jsp.tagext.Tag
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
-meth public javax.servlet.jsp.tagext.JspTag getAdaptee()
-meth public javax.servlet.jsp.tagext.Tag getParent()
+CLSS public jakarta.servlet.jsp.tagext.TagAdapter
+cons public <init>(jakarta.servlet.jsp.tagext.SimpleTag)
+intf jakarta.servlet.jsp.tagext.Tag
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
+meth public jakarta.servlet.jsp.tagext.JspTag getAdaptee()
+meth public jakarta.servlet.jsp.tagext.Tag getParent()
 meth public void release()
-meth public void setPageContext(javax.servlet.jsp.PageContext)
-meth public void setParent(javax.servlet.jsp.tagext.Tag)
+meth public void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
 supr java.lang.Object
 hfds parent,parentDetermined,simpleTagAdaptee
 
-CLSS public javax.servlet.jsp.tagext.TagAttributeInfo
+CLSS public jakarta.servlet.jsp.tagext.TagAttributeInfo
 cons public <init>(java.lang.String,boolean,java.lang.String,boolean)
 cons public <init>(java.lang.String,boolean,java.lang.String,boolean,boolean)
 cons public <init>(java.lang.String,boolean,java.lang.String,boolean,boolean,java.lang.String,boolean,boolean,java.lang.String,java.lang.String)
@@ -647,11 +647,11 @@ meth public java.lang.String getMethodSignature()
 meth public java.lang.String getName()
 meth public java.lang.String getTypeName()
 meth public java.lang.String toString()
-meth public static javax.servlet.jsp.tagext.TagAttributeInfo getIdAttribute(javax.servlet.jsp.tagext.TagAttributeInfo[])
+meth public static jakarta.servlet.jsp.tagext.TagAttributeInfo getIdAttribute(jakarta.servlet.jsp.tagext.TagAttributeInfo[])
 supr java.lang.Object
 hfds deferredMethod,deferredValue,description,expectedTypeName,fragment,methodSignature,name,reqTime,required,type
 
-CLSS public javax.servlet.jsp.tagext.TagData
+CLSS public jakarta.servlet.jsp.tagext.TagData
 cons public <init>(java.lang.Object[][])
 cons public <init>(java.util.Hashtable<java.lang.String,java.lang.Object>)
 fld public final static java.lang.Object REQUEST_TIME_VALUE
@@ -664,34 +664,34 @@ meth public void setAttribute(java.lang.String,java.lang.Object)
 supr java.lang.Object
 hfds attributes
 
-CLSS public abstract javax.servlet.jsp.tagext.TagExtraInfo
+CLSS public abstract jakarta.servlet.jsp.tagext.TagExtraInfo
 cons public <init>()
-meth public boolean isValid(javax.servlet.jsp.tagext.TagData)
-meth public final javax.servlet.jsp.tagext.TagInfo getTagInfo()
-meth public final void setTagInfo(javax.servlet.jsp.tagext.TagInfo)
-meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(javax.servlet.jsp.tagext.TagData)
-meth public javax.servlet.jsp.tagext.VariableInfo[] getVariableInfo(javax.servlet.jsp.tagext.TagData)
+meth public boolean isValid(jakarta.servlet.jsp.tagext.TagData)
+meth public final jakarta.servlet.jsp.tagext.TagInfo getTagInfo()
+meth public final void setTagInfo(jakarta.servlet.jsp.tagext.TagInfo)
+meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(jakarta.servlet.jsp.tagext.TagData)
+meth public jakarta.servlet.jsp.tagext.VariableInfo[] getVariableInfo(jakarta.servlet.jsp.tagext.TagData)
 supr java.lang.Object
 hfds ZERO_VARIABLE_INFO,tagInfo
 
-CLSS public javax.servlet.jsp.tagext.TagFileInfo
-cons public <init>(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagInfo)
+CLSS public jakarta.servlet.jsp.tagext.TagFileInfo
+cons public <init>(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagInfo)
 meth public java.lang.String getName()
 meth public java.lang.String getPath()
-meth public javax.servlet.jsp.tagext.TagInfo getTagInfo()
+meth public jakarta.servlet.jsp.tagext.TagInfo getTagInfo()
 supr java.lang.Object
 hfds name,path,tagInfo
 
-CLSS public javax.servlet.jsp.tagext.TagInfo
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagLibraryInfo,javax.servlet.jsp.tagext.TagExtraInfo,javax.servlet.jsp.tagext.TagAttributeInfo[])
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagLibraryInfo,javax.servlet.jsp.tagext.TagExtraInfo,javax.servlet.jsp.tagext.TagAttributeInfo[],java.lang.String,java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagVariableInfo[])
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagLibraryInfo,javax.servlet.jsp.tagext.TagExtraInfo,javax.servlet.jsp.tagext.TagAttributeInfo[],java.lang.String,java.lang.String,java.lang.String,javax.servlet.jsp.tagext.TagVariableInfo[],boolean)
+CLSS public jakarta.servlet.jsp.tagext.TagInfo
+cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagLibraryInfo,jakarta.servlet.jsp.tagext.TagExtraInfo,jakarta.servlet.jsp.tagext.TagAttributeInfo[])
+cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagLibraryInfo,jakarta.servlet.jsp.tagext.TagExtraInfo,jakarta.servlet.jsp.tagext.TagAttributeInfo[],java.lang.String,java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagVariableInfo[])
+cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagLibraryInfo,jakarta.servlet.jsp.tagext.TagExtraInfo,jakarta.servlet.jsp.tagext.TagAttributeInfo[],java.lang.String,java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.TagVariableInfo[],boolean)
 fld public final static java.lang.String BODY_CONTENT_EMPTY = "empty"
 fld public final static java.lang.String BODY_CONTENT_JSP = "JSP"
 fld public final static java.lang.String BODY_CONTENT_SCRIPTLESS = "scriptless"
 fld public final static java.lang.String BODY_CONTENT_TAG_DEPENDENT = "tagdependent"
 meth public boolean hasDynamicAttributes()
-meth public boolean isValid(javax.servlet.jsp.tagext.TagData)
+meth public boolean isValid(jakarta.servlet.jsp.tagext.TagData)
 meth public java.lang.String getBodyContent()
 meth public java.lang.String getDisplayName()
 meth public java.lang.String getInfoString()
@@ -699,18 +699,18 @@ meth public java.lang.String getLargeIcon()
 meth public java.lang.String getSmallIcon()
 meth public java.lang.String getTagClassName()
 meth public java.lang.String getTagName()
-meth public javax.servlet.jsp.tagext.TagAttributeInfo[] getAttributes()
-meth public javax.servlet.jsp.tagext.TagExtraInfo getTagExtraInfo()
-meth public javax.servlet.jsp.tagext.TagLibraryInfo getTagLibrary()
-meth public javax.servlet.jsp.tagext.TagVariableInfo[] getTagVariableInfos()
-meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(javax.servlet.jsp.tagext.TagData)
-meth public javax.servlet.jsp.tagext.VariableInfo[] getVariableInfo(javax.servlet.jsp.tagext.TagData)
-meth public void setTagExtraInfo(javax.servlet.jsp.tagext.TagExtraInfo)
-meth public void setTagLibrary(javax.servlet.jsp.tagext.TagLibraryInfo)
+meth public jakarta.servlet.jsp.tagext.TagAttributeInfo[] getAttributes()
+meth public jakarta.servlet.jsp.tagext.TagExtraInfo getTagExtraInfo()
+meth public jakarta.servlet.jsp.tagext.TagLibraryInfo getTagLibrary()
+meth public jakarta.servlet.jsp.tagext.TagVariableInfo[] getTagVariableInfos()
+meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(jakarta.servlet.jsp.tagext.TagData)
+meth public jakarta.servlet.jsp.tagext.VariableInfo[] getVariableInfo(jakarta.servlet.jsp.tagext.TagData)
+meth public void setTagExtraInfo(jakarta.servlet.jsp.tagext.TagExtraInfo)
+meth public void setTagLibrary(jakarta.servlet.jsp.tagext.TagLibraryInfo)
 supr java.lang.Object
 hfds attributeInfo,bodyContent,displayName,dynamicAttributes,infoString,largeIcon,smallIcon,tagClassName,tagExtraInfo,tagLibrary,tagName,tagVariableInfo
 
-CLSS public abstract javax.servlet.jsp.tagext.TagLibraryInfo
+CLSS public abstract jakarta.servlet.jsp.tagext.TagLibraryInfo
 cons protected <init>(java.lang.String,java.lang.String)
 fld protected java.lang.String info
 fld protected java.lang.String jspversion
@@ -719,57 +719,57 @@ fld protected java.lang.String shortname
 fld protected java.lang.String tlibversion
 fld protected java.lang.String uri
 fld protected java.lang.String urn
-fld protected javax.servlet.jsp.tagext.FunctionInfo[] functions
-fld protected javax.servlet.jsp.tagext.TagFileInfo[] tagFiles
-fld protected javax.servlet.jsp.tagext.TagInfo[] tags
-meth public abstract javax.servlet.jsp.tagext.TagLibraryInfo[] getTagLibraryInfos()
+fld protected jakarta.servlet.jsp.tagext.FunctionInfo[] functions
+fld protected jakarta.servlet.jsp.tagext.TagFileInfo[] tagFiles
+fld protected jakarta.servlet.jsp.tagext.TagInfo[] tags
+meth public abstract jakarta.servlet.jsp.tagext.TagLibraryInfo[] getTagLibraryInfos()
 meth public java.lang.String getInfoString()
 meth public java.lang.String getPrefixString()
 meth public java.lang.String getReliableURN()
 meth public java.lang.String getRequiredVersion()
 meth public java.lang.String getShortName()
 meth public java.lang.String getURI()
-meth public javax.servlet.jsp.tagext.FunctionInfo getFunction(java.lang.String)
-meth public javax.servlet.jsp.tagext.FunctionInfo[] getFunctions()
-meth public javax.servlet.jsp.tagext.TagFileInfo getTagFile(java.lang.String)
-meth public javax.servlet.jsp.tagext.TagFileInfo[] getTagFiles()
-meth public javax.servlet.jsp.tagext.TagInfo getTag(java.lang.String)
-meth public javax.servlet.jsp.tagext.TagInfo[] getTags()
+meth public jakarta.servlet.jsp.tagext.FunctionInfo getFunction(java.lang.String)
+meth public jakarta.servlet.jsp.tagext.FunctionInfo[] getFunctions()
+meth public jakarta.servlet.jsp.tagext.TagFileInfo getTagFile(java.lang.String)
+meth public jakarta.servlet.jsp.tagext.TagFileInfo[] getTagFiles()
+meth public jakarta.servlet.jsp.tagext.TagInfo getTag(java.lang.String)
+meth public jakarta.servlet.jsp.tagext.TagInfo[] getTags()
 supr java.lang.Object
 
-CLSS public abstract javax.servlet.jsp.tagext.TagLibraryValidator
+CLSS public abstract jakarta.servlet.jsp.tagext.TagLibraryValidator
 cons public <init>()
 meth public java.util.Map<java.lang.String,java.lang.Object> getInitParameters()
-meth public javax.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,javax.servlet.jsp.tagext.PageData)
+meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public void release()
 meth public void setInitParameters(java.util.Map<java.lang.String,java.lang.Object>)
 supr java.lang.Object
 hfds initParameters
 
-CLSS public javax.servlet.jsp.tagext.TagSupport
+CLSS public jakarta.servlet.jsp.tagext.TagSupport
 cons public <init>()
 fld protected java.lang.String id
-fld protected javax.servlet.jsp.PageContext pageContext
+fld protected jakarta.servlet.jsp.PageContext pageContext
 intf java.io.Serializable
-intf javax.servlet.jsp.tagext.IterationTag
-meth public final static javax.servlet.jsp.tagext.Tag findAncestorWithClass(javax.servlet.jsp.tagext.Tag,java.lang.Class)
-meth public int doAfterBody() throws javax.servlet.jsp.JspException
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+intf jakarta.servlet.jsp.tagext.IterationTag
+meth public final static jakarta.servlet.jsp.tagext.Tag findAncestorWithClass(jakarta.servlet.jsp.tagext.Tag,java.lang.Class)
+meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public java.lang.Object getValue(java.lang.String)
 meth public java.lang.String getId()
 meth public java.util.Enumeration<java.lang.String> getValues()
-meth public javax.servlet.jsp.tagext.Tag getParent()
+meth public jakarta.servlet.jsp.tagext.Tag getParent()
 meth public void release()
 meth public void removeValue(java.lang.String)
 meth public void setId(java.lang.String)
-meth public void setPageContext(javax.servlet.jsp.PageContext)
-meth public void setParent(javax.servlet.jsp.tagext.Tag)
+meth public void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
 meth public void setValue(java.lang.String,java.lang.Object)
 supr java.lang.Object
 hfds parent,values
 
-CLSS public javax.servlet.jsp.tagext.TagVariableInfo
+CLSS public jakarta.servlet.jsp.tagext.TagVariableInfo
 cons public <init>(java.lang.String,java.lang.String,java.lang.String,boolean,int)
 meth public boolean getDeclare()
 meth public int getScope()
@@ -779,18 +779,18 @@ meth public java.lang.String getNameGiven()
 supr java.lang.Object
 hfds className,declare,nameFromAttribute,nameGiven,scope
 
-CLSS public abstract interface javax.servlet.jsp.tagext.TryCatchFinally
+CLSS public abstract interface jakarta.servlet.jsp.tagext.TryCatchFinally
 meth public abstract void doCatch(java.lang.Throwable) throws java.lang.Throwable
 meth public abstract void doFinally()
 
-CLSS public javax.servlet.jsp.tagext.ValidationMessage
+CLSS public jakarta.servlet.jsp.tagext.ValidationMessage
 cons public <init>(java.lang.String,java.lang.String)
 meth public java.lang.String getId()
 meth public java.lang.String getMessage()
 supr java.lang.Object
 hfds id,message
 
-CLSS public javax.servlet.jsp.tagext.VariableInfo
+CLSS public jakarta.servlet.jsp.tagext.VariableInfo
 cons public <init>(java.lang.String,java.lang.String,boolean,int)
 fld public final static int AT_BEGIN = 1
 fld public final static int AT_END = 2

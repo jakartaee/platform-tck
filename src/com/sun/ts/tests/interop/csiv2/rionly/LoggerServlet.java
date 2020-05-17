@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.interop.csiv2.rionly;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
 import java.io.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.annotation.security.PermitAll;
 
 import com.sun.ts.tests.interop.csiv2.common.CSIv2FileLoggerImpl;

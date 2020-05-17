@@ -22,10 +22,10 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.http.Cookie;
 
 import java.io.IOException;
 import java.util.ArrayList;

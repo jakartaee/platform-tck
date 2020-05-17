@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
-import javax.servlet.Filter;
+import jakarta.servlet.Filter;
 
 public class EJBInjectionFilter extends EJBInjectionFilterBase
     implements Filter {

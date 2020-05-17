@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsf.spec.navigation;
 
-import javax.servlet.http.HttpServletResponseWrapper;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 

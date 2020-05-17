@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class MethodValidatorBean {
    * attribute.
    * 
    * @return a String representing the result of the check.
-   * @throws javax.servlet.jsp.JspException
+   * @throws jakarta.servlet.jsp.JspException
    */
   public String getResult() throws JspException {
     String message = null;

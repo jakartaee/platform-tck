@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.httplistener;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionListener;
 
 import jakarta.annotation.Resource;
 

@@ -23,7 +23,7 @@ import jakarta.security.auth.message.MessageInfo;
 import jakarta.security.auth.message.config.ServerAuthContext;
 import jakarta.security.auth.message.AuthException;
 import javax.security.auth.callback.CallbackHandler;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import javax.security.auth.Subject;
 import java.util.Map;

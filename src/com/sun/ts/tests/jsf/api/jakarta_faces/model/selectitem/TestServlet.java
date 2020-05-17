@@ -23,10 +23,10 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.model.selectitem;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.faces.model.SelectItem;
 
 import java.io.IOException;
@@ -36,12 +36,12 @@ public class TestServlet extends HttpTCKServlet {
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config
    *          this Servlet's configuration
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           if an error occurs
    */
   public void init(ServletConfig config) throws ServletException {

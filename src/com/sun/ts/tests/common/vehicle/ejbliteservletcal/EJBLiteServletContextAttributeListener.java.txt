@@ -23,8 +23,8 @@ package @package@;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContextAttributeEvent;
-import javax.servlet.ServletContextAttributeListener;
+import jakarta.servlet.ServletContextAttributeEvent;
+import jakarta.servlet.ServletContextAttributeListener;
 
 public class EJBLiteServletContextAttributeListener extends Client
 	implements ServletContextAttributeListener {

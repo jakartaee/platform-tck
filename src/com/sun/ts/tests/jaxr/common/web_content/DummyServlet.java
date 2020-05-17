@@ -20,8 +20,8 @@ package com.sun.ts.tests.jaxr.common.web_content;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
-import javax.servlet.http.*;
-import javax.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
 import java.io.*;
 import java.util.*;
 

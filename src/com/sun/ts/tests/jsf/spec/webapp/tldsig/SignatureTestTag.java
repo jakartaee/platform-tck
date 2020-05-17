@@ -22,17 +22,17 @@ package com.sun.ts.tests.jsf.spec.webapp.tldsig;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * This is only used to associate a TagExtraInfo with.
  */
 public class SignatureTestTag extends TagSupport {
 
-  // -------------------------------------- Methods from javax.servlet.jsp.Tag
+  // -------------------------------------- Methods from jakarta.servlet.jsp.Tag
 
   public int doEndTag() throws JspException {
     List messages = (List) pageContext.getAttribute(

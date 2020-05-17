@@ -24,9 +24,9 @@ import com.sun.ts.tests.jaxws.wsa.common.WsaSOAPUtils;
 
 import java.io.*;
 import java.sql.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
 import java.util.*;
 import javax.xml.ws.*;
 import javax.xml.ws.soap.*;

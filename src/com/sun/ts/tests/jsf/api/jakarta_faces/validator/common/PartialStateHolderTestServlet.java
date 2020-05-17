@@ -24,10 +24,10 @@ import java.io.PrintWriter;
 
 import jakarta.faces.component.PartialStateHolder;
 import jakarta.faces.component.StateHolder;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -43,7 +43,7 @@ public abstract class PartialStateHolderTestServlet
   // Methods
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

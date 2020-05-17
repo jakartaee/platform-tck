@@ -27,8 +27,8 @@ import com.sun.ts.tests.rmiiiop.ee.orbtests.*;
 
 import java.io.*;
 import java.sql.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.util.*;
 import jakarta.ejb.*;
 import java.rmi.*;

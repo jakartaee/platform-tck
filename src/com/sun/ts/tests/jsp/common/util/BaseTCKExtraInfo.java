@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import javax.servlet.jsp.tagext.TagExtraInfo;
-import javax.servlet.jsp.tagext.ValidationMessage;
-import javax.servlet.jsp.tagext.TagData;
+import jakarta.servlet.jsp.tagext.TagExtraInfo;
+import jakarta.servlet.jsp.tagext.ValidationMessage;
+import jakarta.servlet.jsp.tagext.TagData;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 

@@ -23,8 +23,8 @@ package com.sun.ts.tests.interop.csiv2.common;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.servlet.http.*;
-import javax.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
 import java.io.*;
 import java.util.*;
 

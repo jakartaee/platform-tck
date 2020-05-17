@@ -26,10 +26,10 @@ import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.TestBean;
 
 import jakarta.faces.el.PropertyNotFoundException;
 import jakarta.faces.el.ValueBinding;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.beans.Beans;
 import java.io.IOException;

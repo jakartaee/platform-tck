@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.tldsig;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 
 /**
  * A <code>ServletContextListener</code> implementation that will store the

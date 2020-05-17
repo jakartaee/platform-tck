@@ -67,9 +67,9 @@
     */
     String testName = "test_request_attributes";
 
-    String cipherSuiteAttrib = "javax.servlet.request.cipher_suite";
-    String keySizeAttrib     = "javax.servlet.request.key_size";
-    String certificateAttrib = "javax.servlet.request.X509Certificate";
+    String cipherSuiteAttrib = "jakarta.servlet.request.cipher_suite";
+    String keySizeAttrib     = "jakarta.servlet.request.key_size";
+    String certificateAttrib = "jakarta.servlet.request.X509Certificate";
 
     String cipherSuite = null;
     Integer    keySize = new Integer(0);

@@ -21,9 +21,9 @@ import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 import com.sun.ts.tests.jsp.common.util.InstallCompositeELResolverListener;
 import jakarta.el.ELContext;
 import jakarta.el.CompositeELResolver;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 public class CompositeELResolverTag extends SimpleTagSupport {

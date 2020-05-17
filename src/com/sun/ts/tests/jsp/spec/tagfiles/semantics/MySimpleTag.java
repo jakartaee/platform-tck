@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsp.spec.tagfiles.semantics;
 
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-import javax.servlet.jsp.tagext.TryCatchFinally;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.SkipPageException;
-import javax.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import jakarta.servlet.jsp.tagext.TryCatchFinally;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.SkipPageException;
+import jakarta.servlet.jsp.JspWriter;
 import java.io.IOException;
 
 public class MySimpleTag extends SimpleTagSupport implements TryCatchFinally {

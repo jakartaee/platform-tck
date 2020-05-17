@@ -20,8 +20,8 @@ import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
+import jakarta.servlet.jsp.*;
+import jakarta.servlet.jsp.tagext.*;
 import java.io.IOException;
 
 public class ValueExpressionTag extends SimpleTagSupport {

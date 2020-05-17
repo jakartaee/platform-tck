@@ -155,7 +155,7 @@ meth public abstract java.lang.String[] getKeys() throws javax.security.jacc.Pol
 CLSS public final javax.security.jacc.WebResourcePermission
 cons public <init>(java.lang.String,java.lang.String)
 cons public <init>(java.lang.String,java.lang.String[])
-cons public <init>(javax.servlet.http.HttpServletRequest)
+cons public <init>(jakarta.servlet.http.HttpServletRequest)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()
@@ -176,7 +176,7 @@ hfds actions,hashCodeValue,serialPersistentFields,serialVersionUID
 CLSS public final javax.security.jacc.WebUserDataPermission
 cons public <init>(java.lang.String,java.lang.String)
 cons public <init>(java.lang.String,java.lang.String[],java.lang.String)
-cons public <init>(javax.servlet.http.HttpServletRequest)
+cons public <init>(jakarta.servlet.http.HttpServletRequest)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()

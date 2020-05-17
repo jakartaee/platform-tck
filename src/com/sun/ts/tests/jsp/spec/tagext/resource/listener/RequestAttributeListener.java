@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.listener;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequestAttributeEvent;
-import javax.servlet.ServletRequestAttributeListener;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRequestAttributeEvent;
+import jakarta.servlet.ServletRequestAttributeListener;
 
 import jakarta.annotation.Resource;
 

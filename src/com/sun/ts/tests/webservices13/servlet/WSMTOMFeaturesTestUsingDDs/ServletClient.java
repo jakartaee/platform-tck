@@ -29,8 +29,8 @@ import java.rmi.*;
 import java.util.*;
 import java.awt.Image;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 import javax.xml.ws.*;
 import javax.xml.ws.soap.MTOMFeature;

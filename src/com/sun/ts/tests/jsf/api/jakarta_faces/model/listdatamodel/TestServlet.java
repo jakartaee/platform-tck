@@ -24,10 +24,10 @@ import com.sun.ts.tests.jsf.common.beans.TestBean;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.faces.model.DataModel;
 import jakarta.faces.model.ListDataModel;
 
@@ -41,12 +41,12 @@ public class TestServlet extends BaseModelTestServlet {
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config
    *          this Servlet's configuration
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           if an error occurs
    */
   public void init(ServletConfig config) throws ServletException {

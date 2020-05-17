@@ -529,8 +529,8 @@ meth public abstract void init(java.lang.Object) throws javax.xml.rpc.ServiceExc
 CLSS public abstract interface javax.xml.rpc.server.ServletEndpointContext
 meth public abstract boolean isUserInRole(java.lang.String)
 meth public abstract java.security.Principal getUserPrincipal()
-meth public abstract javax.servlet.ServletContext getServletContext()
-meth public abstract javax.servlet.http.HttpSession getHttpSession()
+meth public abstract jakarta.servlet.ServletContext getServletContext()
+meth public abstract jakarta.servlet.http.HttpSession getHttpSession()
 meth public abstract javax.xml.rpc.handler.MessageContext getMessageContext()
 
 CLSS public javax.xml.rpc.soap.SOAPFaultException

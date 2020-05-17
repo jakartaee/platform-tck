@@ -200,7 +200,7 @@ meth public abstract !varargs boolean hasAccessToWebResource(java.lang.String,ja
 meth public abstract <%0 extends java.security.Principal> java.util.Set<{%%0}> getPrincipalsByType(java.lang.Class<{%%0}>)
 meth public abstract boolean isCallerInRole(java.lang.String)
 meth public abstract java.security.Principal getCallerPrincipal()
-meth public abstract javax.security.enterprise.AuthenticationStatus authenticate(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters)
+meth public abstract javax.security.enterprise.AuthenticationStatus authenticate(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters)
 
 CLSS public javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters
 cons public <init>()
@@ -243,9 +243,9 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.security.enterprise.authentication.mechanism.http.LoginToContinue loginToContinue()
 
 CLSS public abstract interface javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism
-meth public abstract javax.security.enterprise.AuthenticationStatus validateRequest(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws javax.security.enterprise.AuthenticationException
-meth public javax.security.enterprise.AuthenticationStatus secureResponse(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws javax.security.enterprise.AuthenticationException
-meth public void cleanSubject(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext)
+meth public abstract javax.security.enterprise.AuthenticationStatus validateRequest(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws javax.security.enterprise.AuthenticationException
+meth public javax.security.enterprise.AuthenticationStatus secureResponse(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext) throws javax.security.enterprise.AuthenticationException
+meth public void cleanSubject(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.HttpMessageContext)
 
 CLSS public abstract interface javax.security.enterprise.authentication.mechanism.http.HttpMessageContext
 meth public abstract boolean isAuthenticationRequest()
@@ -265,13 +265,13 @@ meth public abstract javax.security.enterprise.AuthenticationStatus redirect(jav
 meth public abstract javax.security.enterprise.AuthenticationStatus responseNotFound()
 meth public abstract javax.security.enterprise.AuthenticationStatus responseUnauthorized()
 meth public abstract javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters getAuthParameters()
-meth public abstract javax.security.enterprise.authentication.mechanism.http.HttpMessageContext withRequest(javax.servlet.http.HttpServletRequest)
-meth public abstract javax.servlet.http.HttpServletRequest getRequest()
-meth public abstract javax.servlet.http.HttpServletResponse getResponse()
+meth public abstract javax.security.enterprise.authentication.mechanism.http.HttpMessageContext withRequest(jakarta.servlet.http.HttpServletRequest)
+meth public abstract jakarta.servlet.http.HttpServletRequest getRequest()
+meth public abstract jakarta.servlet.http.HttpServletResponse getResponse()
 meth public abstract void cleanClientSubject()
 meth public abstract void setRegisterSession(java.lang.String,java.util.Set<java.lang.String>)
-meth public abstract void setRequest(javax.servlet.http.HttpServletRequest)
-meth public abstract void setResponse(javax.servlet.http.HttpServletResponse)
+meth public abstract void setRequest(jakarta.servlet.http.HttpServletRequest)
+meth public abstract void setResponse(jakarta.servlet.http.HttpServletResponse)
 
 CLSS public javax.security.enterprise.authentication.mechanism.http.HttpMessageContextWrapper
 cons public <init>(javax.security.enterprise.authentication.mechanism.http.HttpMessageContext)
@@ -294,13 +294,13 @@ meth public javax.security.enterprise.AuthenticationStatus responseNotFound()
 meth public javax.security.enterprise.AuthenticationStatus responseUnauthorized()
 meth public javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters getAuthParameters()
 meth public javax.security.enterprise.authentication.mechanism.http.HttpMessageContext getWrapped()
-meth public javax.security.enterprise.authentication.mechanism.http.HttpMessageContext withRequest(javax.servlet.http.HttpServletRequest)
-meth public javax.servlet.http.HttpServletRequest getRequest()
-meth public javax.servlet.http.HttpServletResponse getResponse()
+meth public javax.security.enterprise.authentication.mechanism.http.HttpMessageContext withRequest(jakarta.servlet.http.HttpServletRequest)
+meth public jakarta.servlet.http.HttpServletRequest getRequest()
+meth public jakarta.servlet.http.HttpServletResponse getResponse()
 meth public void cleanClientSubject()
 meth public void setRegisterSession(java.lang.String,java.util.Set<java.lang.String>)
-meth public void setRequest(javax.servlet.http.HttpServletRequest)
-meth public void setResponse(javax.servlet.http.HttpServletResponse)
+meth public void setRequest(jakarta.servlet.http.HttpServletRequest)
+meth public void setResponse(jakarta.servlet.http.HttpServletResponse)
 supr java.lang.Object
 hfds httpMessageContext
 

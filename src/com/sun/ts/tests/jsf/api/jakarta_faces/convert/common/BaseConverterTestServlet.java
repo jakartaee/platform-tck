@@ -47,10 +47,10 @@ import jakarta.faces.convert.IntegerConverter;
 import jakarta.faces.convert.LongConverter;
 import jakarta.faces.convert.ShortConverter;
 import jakarta.faces.convert.DateTimeConverter;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;

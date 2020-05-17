@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.webapp.tldsig;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 /**
  * This is necessary since the <code>ServletContext</code> is needed in order to

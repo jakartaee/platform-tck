@@ -56,7 +56,7 @@
 */
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.usebean;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class String_IntBean {
 

@@ -115,7 +115,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:229.19.1
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet.jsp package
+   * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package
    * are implicitly imported by calling JspFactory.getDefaultFactory() method.
    */
 
@@ -132,7 +132,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:229.19.1
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet package are
+   * @test_Strategy: Validate that classes from the jakarta.servlet package are
    * implicitly imported by creating and using an instance of RequestDispatcher.
    */
 
@@ -149,7 +149,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:229.19.1
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet.http package
+   * @test_Strategy: Validate that classes from the jakarta.servlet.http package
    * are implicitly imported by creating and using an instance of HttpUtils.
    */
 

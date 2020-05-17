@@ -24,9 +24,9 @@ import jakarta.security.auth.message.MessagePolicy;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.Subject;
 
-import javax.servlet.http.HttpServletResponseWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Map;
 import java.util.logging.Level;
@@ -274,7 +274,7 @@ public class TSServerAuthContext
       reqObj = messageInfo.getRequestMessage();
       if (reqObj != null) {
         // if here, we want to see if our reqObj is type HttpServletRequest
-        if (reqObj instanceof javax.servlet.http.HttpServletRequest) {
+        if (reqObj instanceof jakarta.servlet.http.HttpServletRequest) {
           String contextPath = ((HttpServletRequest) reqObj).getContextPath();
           String servletPath = ((HttpServletRequest) reqObj).getServletPath();
 
@@ -501,7 +501,7 @@ public class TSServerAuthContext
         respObj = messageInfo.getResponseMessage();
         if (reqObj != null) {
           // if here, we want to see if our reqObj is type HttpServletRequest
-          if (reqObj instanceof javax.servlet.http.HttpServletRequest) {
+          if (reqObj instanceof jakarta.servlet.http.HttpServletRequest) {
             String contextPath = ((HttpServletRequest) reqObj).getContextPath();
             String servletPath = ((HttpServletRequest) reqObj).getServletPath();
 
@@ -534,7 +534,7 @@ public class TSServerAuthContext
         if (respObj != null) {
           ((HttpServletResponse) respObj).setStatus(HttpServletResponse.SC_OK);
           HttpServletResponseWrapper respWrapper = null;
-          if (!(reqObj instanceof javax.servlet.http.HttpServletResponseWrapper)) {
+          if (!(reqObj instanceof jakarta.servlet.http.HttpServletResponseWrapper)) {
             respWrapper = new HttpServletResponseWrapper(
                 (HttpServletResponse) respObj);
             respWrapper.setStatus(HttpServletResponse.SC_OK);

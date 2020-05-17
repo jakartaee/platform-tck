@@ -28,9 +28,9 @@ import jakarta.faces.application.Application;
 import jakarta.faces.event.PostConstructCustomScopeEvent;
 import jakarta.faces.event.ScopeContext;
 import jakarta.faces.event.SystemEvent;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;

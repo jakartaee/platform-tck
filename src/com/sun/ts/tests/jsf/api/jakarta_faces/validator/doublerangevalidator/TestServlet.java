@@ -32,10 +32,10 @@ import jakarta.faces.render.RenderKitFactory;
 import jakarta.faces.validator.DoubleRangeValidator;
 import jakarta.faces.validator.Validator;
 import jakarta.faces.validator.ValidatorException;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;

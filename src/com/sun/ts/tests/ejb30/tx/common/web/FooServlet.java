@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb30.tx.common.web;
 
 import jakarta.annotation.Resource;
-import javax.servlet.http.*;
-import javax.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
 import jakarta.transaction.UserTransaction;
 
 public class FooServlet extends HttpServlet {

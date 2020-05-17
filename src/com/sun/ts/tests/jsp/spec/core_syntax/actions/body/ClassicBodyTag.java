@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.BodyContent;
-import javax.servlet.jsp.tagext.DynamicAttributes;
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
 
 public class ClassicBodyTag extends BodyTagSupport

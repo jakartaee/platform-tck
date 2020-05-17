@@ -29,9 +29,9 @@ import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.event.FacesEvent;
 import jakarta.faces.event.FacesListener;
 import jakarta.faces.event.PhaseId;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;

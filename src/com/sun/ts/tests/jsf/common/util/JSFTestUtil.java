@@ -36,8 +36,8 @@ import jakarta.el.ExpressionFactory;
 import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.event.PhaseId;
-import javax.servlet.ServletContext;
-import javax.servlet.jsp.JspFactory;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.jsp.JspFactory;
 
 public final class JSFTestUtil {
 

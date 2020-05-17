@@ -27,9 +27,9 @@ import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import jakarta.faces.FacesException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,7 +80,7 @@ public class TestServlet extends HttpTCKServlet {
         } else {
           pw.println(JSFTestUtil.FAIL + " FacesException.getCause() "
               + "returned " + "unexpected exception type.");
-          pw.println("Excpected: javax.servlet.ServletException");
+          pw.println("Excpected: jakarta.servlet.ServletException");
           pw.println("Received: " + t.getClass().getName());
         }
       } else {
@@ -114,7 +114,7 @@ public class TestServlet extends HttpTCKServlet {
         } else {
           pw.println(JSFTestUtil.FAIL + " FacesException.getCause() "
               + "returned " + "unexpected exception type.");
-          pw.println("Excpected: javax.servlet.ServletException");
+          pw.println("Excpected: jakarta.servlet.ServletException");
           pw.println("Received: " + t.getClass().getName());
         }
       } else {
@@ -138,7 +138,7 @@ public class TestServlet extends HttpTCKServlet {
         } else {
           pw.println(JSFTestUtil.FAIL + " FacesException.getCause() "
               + "returned unexepected Exception type.");
-          pw.println("Expected: javax.servlet.ServletException");
+          pw.println("Expected: jakarta.servlet.ServletException");
           pw.println("Received: " + t.getClass().getName());
         }
       } else {

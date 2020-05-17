@@ -6190,7 +6190,7 @@ hfds index,list
 
 CLSS public javax.faces.model.ResultDataModel
 cons public <init>()
-cons public <init>(javax.servlet.jsp.jstl.sql.Result)
+cons public <init>(jakarta.servlet.jsp.jstl.sql.Result)
 meth public boolean isRowAvailable()
 meth public int getRowCount()
 meth public int getRowIndex()
@@ -7001,29 +7001,29 @@ hfds config,helper,validatorId
 
 CLSS public javax.faces.webapp.AttributeTag
 cons public <init>()
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public void release()
 meth public void setName(java.lang.String)
 meth public void setValue(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds name,serialVersionUID,value
 
 CLSS public abstract javax.faces.webapp.ConverterELTag
 cons public <init>()
-meth protected abstract javax.faces.convert.Converter createConverter() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
-supr javax.servlet.jsp.tagext.TagSupport
+meth protected abstract javax.faces.convert.Converter createConverter() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds serialVersionUID
 
 CLSS public javax.faces.webapp.ConverterTag
 cons public <init>()
-meth protected javax.faces.convert.Converter createConverter() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth protected javax.faces.convert.Converter createConverter() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public void release()
-meth public void setBinding(java.lang.String) throws javax.servlet.jsp.JspException
+meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
 meth public void setConverterId(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds binding,converterId,serialVersionUID
 
 CLSS public final javax.faces.webapp.FacesServlet
@@ -7031,23 +7031,23 @@ cons public <init>()
 fld public final static java.lang.String CONFIG_FILES_ATTR = "javax.faces.CONFIG_FILES"
 fld public final static java.lang.String DISABLE_FACESSERVLET_TO_XHTML_PARAM_NAME = "javax.faces.DISABLE_FACESSERVLET_TO_XHTML"
 fld public final static java.lang.String LIFECYCLE_ID_ATTR = "javax.faces.LIFECYCLE_ID"
-intf javax.servlet.Servlet
+intf jakarta.servlet.Servlet
 meth public java.lang.String getServletInfo()
-meth public javax.servlet.ServletConfig getServletConfig()
+meth public jakarta.servlet.ServletConfig getServletConfig()
 meth public void destroy()
-meth public void init(javax.servlet.ServletConfig) throws javax.servlet.ServletException
-meth public void service(javax.servlet.ServletRequest,javax.servlet.ServletResponse) throws java.io.IOException,javax.servlet.ServletException
+meth public void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
+meth public void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws java.io.IOException,jakarta.servlet.ServletException
 supr java.lang.Object
 hfds ALLOWED_HTTP_METHODS_ATTR,LOGGER,allHttpMethods,allowAllMethods,allowedKnownHttpMethods,allowedUnknownHttpMethods,defaultAllowedHttpMethods,facesContextFactory,initFacesContextReleased,lifecycle,servletConfig
 hcls HttpMethod
 
 CLSS public javax.faces.webapp.FacetTag
 cons public <init>()
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public java.lang.String getName()
 meth public void release()
 meth public void setName(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds name,serialVersionUID
 
 CLSS public javax.faces.webapp.PreJsf2ExceptionHandlerFactory
@@ -7063,23 +7063,23 @@ supr javax.faces.webapp.UIComponentTag
 CLSS public abstract javax.faces.webapp.UIComponentClassicTagBase
 cons public <init>()
 fld protected final static java.lang.String UNIQUE_ID_PREFIX = "j_id_"
-fld protected javax.servlet.jsp.PageContext pageContext
-fld protected javax.servlet.jsp.tagext.BodyContent bodyContent
-intf javax.servlet.jsp.tagext.BodyTag
-intf javax.servlet.jsp.tagext.JspIdConsumer
+fld protected jakarta.servlet.jsp.PageContext pageContext
+fld protected jakarta.servlet.jsp.tagext.BodyContent bodyContent
+intf jakarta.servlet.jsp.tagext.BodyTag
+intf jakarta.servlet.jsp.tagext.JspIdConsumer
 meth protected abstract boolean hasBinding()
-meth protected abstract javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String) throws javax.servlet.jsp.JspException
+meth protected abstract javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String) throws jakarta.servlet.jsp.JspException
 meth protected abstract void setProperties(javax.faces.component.UIComponent)
-meth protected int getDoAfterBodyValue() throws javax.servlet.jsp.JspException
-meth protected int getDoEndValue() throws javax.servlet.jsp.JspException
-meth protected int getDoStartValue() throws javax.servlet.jsp.JspException
+meth protected int getDoAfterBodyValue() throws jakarta.servlet.jsp.JspException
+meth protected int getDoEndValue() throws jakarta.servlet.jsp.JspException
+meth protected int getDoStartValue() throws jakarta.servlet.jsp.JspException
 meth protected int getIndexOfNextChildTag()
 meth protected java.lang.String getFacesJspId()
 meth protected java.lang.String getFacetName()
 meth protected java.lang.String getId()
 meth protected java.util.List<java.lang.String> getCreatedComponents()
 meth protected javax.faces.component.UIComponent createVerbatimComponentFromBodyContent()
-meth protected javax.faces.component.UIComponent findComponent(javax.faces.context.FacesContext) throws javax.servlet.jsp.JspException
+meth protected javax.faces.component.UIComponent findComponent(javax.faces.context.FacesContext) throws jakarta.servlet.jsp.JspException
 meth protected javax.faces.component.UIOutput createVerbatimComponent()
 meth protected javax.faces.context.FacesContext getFacesContext()
 meth protected void addChild(javax.faces.component.UIComponent)
@@ -7091,49 +7091,49 @@ meth protected void encodeChildren() throws java.io.IOException
 meth protected void encodeEnd() throws java.io.IOException
 meth protected void setupResponseWriter()
 meth public boolean getCreated()
-meth public int doAfterBody() throws javax.servlet.jsp.JspException
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public java.lang.String getJspId()
 meth public javax.faces.component.UIComponent getComponentInstance()
-meth public javax.servlet.jsp.JspWriter getPreviousOut()
-meth public javax.servlet.jsp.tagext.BodyContent getBodyContent()
-meth public javax.servlet.jsp.tagext.Tag getParent()
-meth public static javax.faces.webapp.UIComponentClassicTagBase getParentUIComponentClassicTagBase(javax.servlet.jsp.PageContext)
-meth public void doInitBody() throws javax.servlet.jsp.JspException
+meth public jakarta.servlet.jsp.JspWriter getPreviousOut()
+meth public jakarta.servlet.jsp.tagext.BodyContent getBodyContent()
+meth public jakarta.servlet.jsp.tagext.Tag getParent()
+meth public static javax.faces.webapp.UIComponentClassicTagBase getParentUIComponentClassicTagBase(jakarta.servlet.jsp.PageContext)
+meth public void doInitBody() throws jakarta.servlet.jsp.JspException
 meth public void release()
-meth public void setBodyContent(javax.servlet.jsp.tagext.BodyContent)
+meth public void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
 meth public void setId(java.lang.String)
 meth public void setJspId(java.lang.String)
-meth public void setPageContext(javax.servlet.jsp.PageContext)
-meth public void setParent(javax.servlet.jsp.tagext.Tag)
+meth public void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
 supr javax.faces.webapp.UIComponentTagBase
 hfds COMPONENT_TAG_STACK_ATTR,CURRENT_FACES_CONTEXT,CURRENT_VIEW_ROOT,GLOBAL_ID_VIEW,JAVAX_FACES_PAGECONTEXT_COUNTER,JAVAX_FACES_PAGECONTEXT_MARKER,JSP_CREATED_COMPONENT_IDS,JSP_CREATED_FACET_NAMES,PREVIOUS_JSP_ID_SET,_nextChildIndex,component,context,created,createdComponents,createdFacets,facesJspId,id,isNestedInIterator,jspId,namingContainerChildIds,parent,parentTag
 
 CLSS public abstract javax.faces.webapp.UIComponentELTag
 cons public <init>()
-intf javax.servlet.jsp.tagext.Tag
+intf jakarta.servlet.jsp.tagext.Tag
 meth protected boolean hasBinding()
 meth protected jakarta.el.ELContext getELContext()
-meth protected javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String) throws javax.servlet.jsp.JspException
+meth protected javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String) throws jakarta.servlet.jsp.JspException
 meth protected void setProperties(javax.faces.component.UIComponent)
 meth public void release()
-meth public void setBinding(jakarta.el.ValueExpression) throws javax.servlet.jsp.JspException
+meth public void setBinding(jakarta.el.ValueExpression) throws jakarta.servlet.jsp.JspException
 meth public void setRendered(jakarta.el.ValueExpression)
 supr javax.faces.webapp.UIComponentClassicTagBase
 hfds binding,rendered
 
 CLSS public abstract javax.faces.webapp.UIComponentTag
 cons public <init>()
-intf javax.servlet.jsp.tagext.Tag
+intf jakarta.servlet.jsp.tagext.Tag
 meth protected boolean hasBinding()
 meth protected boolean isSuppressed()
 meth protected javax.faces.component.UIComponent createComponent(javax.faces.context.FacesContext,java.lang.String)
 meth protected void setProperties(javax.faces.component.UIComponent)
 meth public static boolean isValueReference(java.lang.String)
-meth public static javax.faces.webapp.UIComponentTag getParentUIComponentTag(javax.servlet.jsp.PageContext)
+meth public static javax.faces.webapp.UIComponentTag getParentUIComponentTag(jakarta.servlet.jsp.PageContext)
 meth public void release()
-meth public void setBinding(java.lang.String) throws javax.servlet.jsp.JspException
+meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
 meth public void setRendered(java.lang.String)
 supr javax.faces.webapp.UIComponentClassicTagBase
 hfds binding,rendered,suppressed
@@ -7142,7 +7142,7 @@ hcls UIComponentTagAdapter
 CLSS public abstract javax.faces.webapp.UIComponentTagBase
 cons public <init>()
 fld protected final static java.util.logging.Logger log
-intf javax.servlet.jsp.tagext.JspTag
+intf jakarta.servlet.jsp.tagext.JspTag
 meth protected abstract int getIndexOfNextChildTag()
 meth protected abstract javax.faces.context.FacesContext getFacesContext()
 meth protected abstract void addChild(javax.faces.component.UIComponent)
@@ -7157,19 +7157,19 @@ supr java.lang.Object
 
 CLSS public abstract javax.faces.webapp.ValidatorELTag
 cons public <init>()
-meth protected abstract javax.faces.validator.Validator createValidator() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
-supr javax.servlet.jsp.tagext.TagSupport
+meth protected abstract javax.faces.validator.Validator createValidator() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds serialVersionUID
 
 CLSS public javax.faces.webapp.ValidatorTag
 cons public <init>()
-meth protected javax.faces.validator.Validator createValidator() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+meth protected javax.faces.validator.Validator createValidator() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public void release()
-meth public void setBinding(java.lang.String) throws javax.servlet.jsp.JspException
+meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
 meth public void setValidatorId(java.lang.String)
-supr javax.servlet.jsp.tagext.TagSupport
+supr jakarta.servlet.jsp.tagext.TagSupport
 hfds binding,serialVersionUID,validatorId
 
 CLSS public abstract interface !annotation javax.inject.Qualifier
@@ -7178,14 +7178,14 @@ CLSS public abstract interface !annotation javax.inject.Qualifier
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 
-CLSS public abstract interface javax.servlet.Servlet
+CLSS public abstract interface jakarta.servlet.Servlet
 meth public abstract java.lang.String getServletInfo()
-meth public abstract javax.servlet.ServletConfig getServletConfig()
+meth public abstract jakarta.servlet.ServletConfig getServletConfig()
 meth public abstract void destroy()
-meth public abstract void init(javax.servlet.ServletConfig) throws javax.servlet.ServletException
-meth public abstract void service(javax.servlet.ServletRequest,javax.servlet.ServletResponse) throws java.io.IOException,javax.servlet.ServletException
+meth public abstract void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
+meth public abstract void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws java.io.IOException,jakarta.servlet.ServletException
 
-CLSS public abstract interface !annotation javax.servlet.annotation.MultipartConfig
+CLSS public abstract interface !annotation jakarta.servlet.annotation.MultipartConfig
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
@@ -7194,55 +7194,55 @@ meth public abstract !hasdefault java.lang.String location()
 meth public abstract !hasdefault long maxFileSize()
 meth public abstract !hasdefault long maxRequestSize()
 
-CLSS public abstract interface javax.servlet.jsp.tagext.BodyTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.BodyTag
 fld public final static int EVAL_BODY_BUFFERED = 2
 fld public final static int EVAL_BODY_TAG = 2
-intf javax.servlet.jsp.tagext.IterationTag
-meth public abstract void doInitBody() throws javax.servlet.jsp.JspException
-meth public abstract void setBodyContent(javax.servlet.jsp.tagext.BodyContent)
+intf jakarta.servlet.jsp.tagext.IterationTag
+meth public abstract void doInitBody() throws jakarta.servlet.jsp.JspException
+meth public abstract void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
 
-CLSS public abstract interface javax.servlet.jsp.tagext.IterationTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.IterationTag
 fld public final static int EVAL_BODY_AGAIN = 2
-intf javax.servlet.jsp.tagext.Tag
-meth public abstract int doAfterBody() throws javax.servlet.jsp.JspException
+intf jakarta.servlet.jsp.tagext.Tag
+meth public abstract int doAfterBody() throws jakarta.servlet.jsp.JspException
 
-CLSS public abstract interface javax.servlet.jsp.tagext.JspIdConsumer
+CLSS public abstract interface jakarta.servlet.jsp.tagext.JspIdConsumer
 meth public abstract void setJspId(java.lang.String)
 
-CLSS public abstract interface javax.servlet.jsp.tagext.JspTag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.JspTag
 
-CLSS public abstract interface javax.servlet.jsp.tagext.Tag
+CLSS public abstract interface jakarta.servlet.jsp.tagext.Tag
 fld public final static int EVAL_BODY_INCLUDE = 1
 fld public final static int EVAL_PAGE = 6
 fld public final static int SKIP_BODY = 0
 fld public final static int SKIP_PAGE = 5
-intf javax.servlet.jsp.tagext.JspTag
-meth public abstract int doEndTag() throws javax.servlet.jsp.JspException
-meth public abstract int doStartTag() throws javax.servlet.jsp.JspException
-meth public abstract javax.servlet.jsp.tagext.Tag getParent()
+intf jakarta.servlet.jsp.tagext.JspTag
+meth public abstract int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public abstract int doStartTag() throws jakarta.servlet.jsp.JspException
+meth public abstract jakarta.servlet.jsp.tagext.Tag getParent()
 meth public abstract void release()
-meth public abstract void setPageContext(javax.servlet.jsp.PageContext)
-meth public abstract void setParent(javax.servlet.jsp.tagext.Tag)
+meth public abstract void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public abstract void setParent(jakarta.servlet.jsp.tagext.Tag)
 
-CLSS public javax.servlet.jsp.tagext.TagSupport
+CLSS public jakarta.servlet.jsp.tagext.TagSupport
 cons public <init>()
 fld protected java.lang.String id
-fld protected javax.servlet.jsp.PageContext pageContext
+fld protected jakarta.servlet.jsp.PageContext pageContext
 intf java.io.Serializable
-intf javax.servlet.jsp.tagext.IterationTag
-meth public final static javax.servlet.jsp.tagext.Tag findAncestorWithClass(javax.servlet.jsp.tagext.Tag,java.lang.Class)
-meth public int doAfterBody() throws javax.servlet.jsp.JspException
-meth public int doEndTag() throws javax.servlet.jsp.JspException
-meth public int doStartTag() throws javax.servlet.jsp.JspException
+intf jakarta.servlet.jsp.tagext.IterationTag
+meth public final static jakarta.servlet.jsp.tagext.Tag findAncestorWithClass(jakarta.servlet.jsp.tagext.Tag,java.lang.Class)
+meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
+meth public int doEndTag() throws jakarta.servlet.jsp.JspException
+meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public java.lang.Object getValue(java.lang.String)
 meth public java.lang.String getId()
 meth public java.util.Enumeration<java.lang.String> getValues()
-meth public javax.servlet.jsp.tagext.Tag getParent()
+meth public jakarta.servlet.jsp.tagext.Tag getParent()
 meth public void release()
 meth public void removeValue(java.lang.String)
 meth public void setId(java.lang.String)
-meth public void setPageContext(javax.servlet.jsp.PageContext)
-meth public void setParent(javax.servlet.jsp.tagext.Tag)
+meth public void setPageContext(jakarta.servlet.jsp.PageContext)
+meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
 meth public void setValue(java.lang.String,java.lang.Object)
 supr java.lang.Object
 hfds parent,values

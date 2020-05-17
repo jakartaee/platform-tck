@@ -23,9 +23,9 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.html.htmlinputfile;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.html.HtmlInputFile;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 
 @MultipartConfig
 public final class TestServlet
@@ -33,7 +33,7 @@ public final class TestServlet
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

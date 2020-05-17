@@ -22,10 +22,10 @@ package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.render.RenderKitFactory;
 import jakarta.faces.lifecycle.LifecycleFactory;
@@ -45,7 +45,7 @@ public final class TestServlet extends HttpTCKServlet {
    * @param config
    *          the configuration for this <code>Servlet</code>
    * 
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           indicates initialization failure
    */
   public void init(ServletConfig config) throws ServletException {

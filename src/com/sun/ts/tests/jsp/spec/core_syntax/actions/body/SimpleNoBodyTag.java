@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class SimpleNoBodyTag extends SimpleTagSupport {
 

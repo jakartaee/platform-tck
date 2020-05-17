@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.html.htmlform;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.html.HtmlForm;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 public final class TestServlet
     extends com.sun.ts.tests.jsf.api.jakarta_faces.component.uiform.TestServlet {
@@ -37,7 +37,7 @@ public final class TestServlet
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

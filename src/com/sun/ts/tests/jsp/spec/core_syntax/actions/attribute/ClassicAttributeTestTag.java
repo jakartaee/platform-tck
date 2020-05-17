@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.jsp.tagext.JspFragment;
-import javax.servlet.jsp.tagext.DynamicAttributes;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.tagext.JspFragment;
+import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import java.io.IOException;
 
 public class ClassicAttributeTestTag extends TagSupport

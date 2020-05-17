@@ -24,8 +24,8 @@ import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import java.util.Iterator;
 import jakarta.el.ELContext;
 import jakarta.el.PropertyNotWritableException;
-import javax.servlet.jsp.el.ImplicitObjectELResolver;
-import javax.servlet.jsp.el.ScopedAttributeELResolver;
+import jakarta.servlet.jsp.el.ImplicitObjectELResolver;
+import jakarta.servlet.jsp.el.ScopedAttributeELResolver;
 
 public class JspResolverTest {
 
