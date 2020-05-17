@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 <body>
 <% /**	Name: implicitImportJsp
 	Description: Use jsp page directive with language="java" 
-		    Do not specify javax.servlet.http in the import attribute
+		    Do not specify jakarta.servlet.http in the import attribute
 		    as it should be available implicitly.  Validate
 		    that an HttpUtils object can be created.
 			    
@@ -38,7 +38,7 @@
   
 %>
 
-<%= hu instanceof javax.servlet.http.HttpUtils %>
+<%= hu instanceof jakarta.servlet.http.HttpUtils %>
 
 </body>
 </html>

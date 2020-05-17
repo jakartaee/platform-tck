@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,11 +18,11 @@
 
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
                  java.io.IOException,
-                 javax.servlet.jsp.tagext.TagAdapter,
-                 javax.servlet.jsp.tagext.Tag,
-                 javax.servlet.jsp.tagext.SimpleTag,
-                 javax.servlet.jsp.tagext.JspTag,
-                 javax.servlet.jsp.tagext.SimpleTagSupport" %>
+                 jakarta.servlet.jsp.tagext.TagAdapter,
+                 jakarta.servlet.jsp.tagext.Tag,
+                 jakarta.servlet.jsp.tagext.SimpleTag,
+                 jakarta.servlet.jsp.tagext.JspTag,
+                 jakarta.servlet.jsp.tagext.SimpleTagSupport" %>
 <%@ page contentType="text/plain" %>
 
 <%!

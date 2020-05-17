@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 <body>
 <% /**	Name: implicitImportServlet
 		Description: Use jsp page directive with language="java" 
-			    Do not specify the import attribute. The javax.servlet
+			    Do not specify the import attribute. The jakarta.servlet
 			    package should be available implicitly.  Validate
                 that a RequestDispatch object can be created.
 			    

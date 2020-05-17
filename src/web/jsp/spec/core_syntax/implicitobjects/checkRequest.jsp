@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,13 +21,13 @@
 <body>
 <% /** Name:checkRequest
 	   Description: Checks whether 'request' is an instance 
-	   		of javax.servlet.ServletRequest and uses the request
+	   		of jakarta.servlet.ServletRequest and uses the request
 	   		object for getting the protocol and getting parameter 
 	   		value passing Years.
 		Result:returns true,HTTP/1.0,2 	
 **/ %>
 <!-- checking for request object type -->
-<%= (request instanceof javax.servlet.ServletRequest) %>
+<%= (request instanceof jakarta.servlet.ServletRequest) %>
 
 <br>
 <!-- request object used to access getProtocol -->

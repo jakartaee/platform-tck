@@ -19,9 +19,9 @@
 <%@ tag language="java" %>
 <%
     HttpUtils ex = new HttpUtils();
-    if(ex instanceof javax.servlet.http.HttpUtils) {
+    if(ex instanceof jakarta.servlet.http.HttpUtils) {
         out.println("Test PASSED.");
     } else {
-        out.println("Test FAILED. HttpUtils instance is not instance of javax.servlet.http.HttpUtils");
+        out.println("Test FAILED. HttpUtils instance is not instance of jakarta.servlet.http.HttpUtils");
     }
 %>

@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,11 +18,11 @@
 
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
                  java.io.IOException,
-                 javax.servlet.jsp.el.ExpressionEvaluator,
+                 jakarta.servlet.jsp.el.ExpressionEvaluator,
                  com.sun.ts.tests.jsp.common.util.TSFunctionMapper,
-                 javax.servlet.jsp.el.Expression,
-                 javax.servlet.jsp.el.ELException,
-                 javax.servlet.jsp.el.VariableResolver,
+                 jakarta.servlet.jsp.el.Expression,
+                 jakarta.servlet.jsp.el.ELException,
+                 jakarta.servlet.jsp.el.VariableResolver,
                  java.io.PrintWriter"%>
 <%@ page contentType="text/plain" %>
 
@@ -61,7 +61,7 @@
                             if (result.equals("string")) {
                                 try {
                                     Expression expr2 = eval.parseExpression(VARIABLE_EXPR,
-                                        javax.servlet.jsp.PageContext.class, null);
+                                        jakarta.servlet.jsp.PageContext.class, null);
                                     if (expr2 != null) {
 
                                         PageContext pageContext = (PageContext) expr2.evaluate(resolver);

@@ -18,8 +18,8 @@
 
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
                  java.io.IOException,
-                 javax.servlet.jsp.el.VariableResolver,
-                 javax.servlet.jsp.el.ELException" %>
+                 jakarta.servlet.jsp.el.VariableResolver,
+                 jakarta.servlet.jsp.el.ELException" %>
 <%@ page contentType="text/plain" %>
 
 <%!

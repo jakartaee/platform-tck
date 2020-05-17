@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2004, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2004, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,17 +20,17 @@
 <%@ page isErrorPage="true"  %>
 
 <%
-  Object jspException = request.getAttribute("javax.servlet.jsp.jspException");
+  Object jspException = request.getAttribute("jakarta.servlet.jsp.jspException");
   Object error_exception = 
-    request.getAttribute("javax.servlet.error.exception");
+    request.getAttribute("jakarta.servlet.error.exception");
   if(jspException == null) { 
-    out.println("Test FAILED. javax.servlet.jsp.jspException is null");
+    out.println("Test FAILED. jakarta.servlet.jsp.jspException is null");
   } else if(error_exception == null) {
-    out.println("Test FAILED. javax.servlet.error.exception is null");
+    out.println("Test FAILED. jakarta.servlet.error.exception is null");
   } else if(error_exception != jspException) {
-    out.println("Test FAILED. javax.servlet.error.exception and javax.servlet.jsp.jspException are not the same");
+    out.println("Test FAILED. jakarta.servlet.error.exception and jakarta.servlet.jsp.jspException are not the same");
   } else {
-    out.println("Test PASSED. javax.servlet.error.exception and javax.servlet.jsp.jspException are the same");
+    out.println("Test PASSED. jakarta.servlet.error.exception and jakarta.servlet.jsp.jspException are the same");
     out.println(jspException.toString());
   }
 %>
