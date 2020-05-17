@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@
     <tag>
         <name>test</name>
         <tag-class>com.sun.ts.tests.jsp.common.tags.tck.SimpleTag</tag-class>
-        <tei-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.tagattributeinfo.TagAttributeInfoTEI</tei-class>
+        <tei-class>com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagattributeinfo.TagAttributeInfoTEI</tei-class>
         <body-content>JSP</body-content> 
         <attribute>
             <name>test</name>

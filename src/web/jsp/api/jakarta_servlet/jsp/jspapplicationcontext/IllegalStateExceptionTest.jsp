@@ -17,7 +17,7 @@
 --%>
 
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
-             com.sun.ts.tests.jsp.api.javax_servlet.jsp.jspapplicationcontext.FooELResolver,
+             com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspapplicationcontext.FooELResolver,
              jakarta.el.ELContext,
              jakarta.el.ELResolver"%>
 <%@ page contentType="text/plain" %>

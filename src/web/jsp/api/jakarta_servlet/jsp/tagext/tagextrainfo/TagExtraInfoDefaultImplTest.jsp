@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ page import="com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.tagextrainfo.TagExtraInfoTEI"%>
+<%@ page import="com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagextrainfo.TagExtraInfoTEI"%>
 
 <%@ page contentType="text/plain" %>
 <%@ taglib uri="http://java.sun.com/tck/jsp/tagextrainfo" prefix="tagextrainfo" %>

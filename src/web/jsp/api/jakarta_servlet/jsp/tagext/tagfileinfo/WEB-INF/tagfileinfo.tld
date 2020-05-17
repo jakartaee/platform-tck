@@ -27,7 +27,7 @@
     <tag>
         <name>test</name>
         <tag-class>com.sun.ts.tests.jsp.common.tags.tck.SimpleTag</tag-class>
-        <tei-class>com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.tagfileinfo.TagFileInfoTEI</tei-class>
+        <tei-class>com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagfileinfo.TagFileInfoTEI</tei-class>
         <body-content>JSP</body-content> 
         <attribute>
             <name>test</name>

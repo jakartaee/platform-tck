@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ tag import="com.sun.ts.tests.jsp.api.javax_servlet.jsp.tagext.pagedata.TagFilePageDataValidator" %>
+<%@ tag import="com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.pagedata.TagFilePageDataValidator" %>
 <%@ attribute name="att1" %>
 <%@ variable name-given="var1" %>
 <%@ taglib uri="http://java.sun.com/tck/jsp/pagedatatagfile" prefix="pagedatatagfile"  %>
