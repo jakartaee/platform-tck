@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_http.HTTPBinding;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_http.HTTPBinding;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
@@ -57,7 +57,7 @@ public class Client extends ServiceEETest {
 
   private static final String MODEPROP = "platform.mode";
 
-  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.javax_xml_ws.LogicalMessage.";
+  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.jakarta_xml_ws.LogicalMessage.";
 
   private static final String SHARED_CLIENT_PKG = "com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.";
 

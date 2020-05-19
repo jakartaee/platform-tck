@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<project name="jaxws_api_javax_xml_ws_handler_PortInfo" basedir="." default="usage">
+<project name="jaxws_api_jakarta_xml_ws_handler_PortInfo" basedir="." default="usage">
   <property name="wsdl.filename" value="HelloService.wsdl"/>
   <property name="service.names" value="DLHelloService"/>
   <property name="sei.names" value="Hello"/>
@@ -32,7 +32,7 @@
   <property name="dependency.classes" value="${dependency.pkg}/**/*.class"/>
 
   <property name="other.classes" value="${pkg.dir}/*.class, ${dependency.classes}"/>
-  <property name="client.class" value="com.sun.ts.tests.jaxws.api.javax_xml_ws_handler.PortInfo.Client"/>
+  <property name="client.class" value="com.sun.ts.tests.jaxws.api.jakarta_xml_ws_handler.PortInfo.Client"/>
   <property name="common.classes" value="${common.classes.all}"/>
 
   <target name="-precompile">

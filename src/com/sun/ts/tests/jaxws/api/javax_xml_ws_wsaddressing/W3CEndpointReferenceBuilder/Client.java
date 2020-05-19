@@ -18,7 +18,7 @@
  * $Id: Client.java 51088 2003-12-03 17:00:09Z af70133 $
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_wsaddressing.W3CEndpointReferenceBuilder;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_wsaddressing.W3CEndpointReferenceBuilder;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;

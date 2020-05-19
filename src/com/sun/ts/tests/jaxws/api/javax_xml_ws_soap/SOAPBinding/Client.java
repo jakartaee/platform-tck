@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_soap.SOAPBinding;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.SOAPBinding;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
@@ -63,7 +63,7 @@ public class Client extends ServiceEETest {
 
   String modeProperty = null; // platform.mode -> (standalone|javaEE)
 
-  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.javax_xml_ws_soap.SOAPBinding.";
+  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.SOAPBinding.";
 
   private static final String SHARED_CLIENT_PKG = "com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.";
 
