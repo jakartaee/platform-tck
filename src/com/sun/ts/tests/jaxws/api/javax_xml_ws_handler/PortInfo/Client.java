@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_handler.PortInfo;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_handler.PortInfo;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
@@ -57,7 +57,7 @@ public class Client extends ServiceEETest {
 
   String modeProperty = null; // platform.mode -> (standalone|javaEE)
 
-  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.javax_xml_ws_handler.PortInfo.";
+  private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.jakarta_xml_ws_handler.PortInfo.";
 
   private static final String NAMESPACEURI = "http://helloservice.org/wsdl";
 

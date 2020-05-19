@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,13 +17,13 @@
 
 -->
 
-<project name="jaxws_api_javax_xml_ws_soap_SOAPFaultException" basedir="." default="usage">
+<project name="jaxws_api_jakarta_xml_ws_soap_SOAPFaultException" basedir="." default="usage">
   <property name="app.name" value="WSSOAPFaultException"/>
 
   <!-- Import common classes properties and specific packaging file -->
   <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
 
-  <property name="client.class" value="com.sun.ts.tests.jaxws.api.javax_xml_ws_soap.SOAPFaultException.Client"/>
+  <property name="client.class" value="com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.SOAPFaultException.Client"/>
   <property name="common.classes" value="${jaxws.common.classes}"/>
 
   <target name="package" depends="client_import_package_nocreateseigsi"/>

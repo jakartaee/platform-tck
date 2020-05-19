@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_soap.SOAPFaultException;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.SOAPFaultException;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;

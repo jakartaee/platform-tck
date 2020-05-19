@@ -18,7 +18,7 @@
  * $Id: Client.java 53493 2007-05-22 17:06:35Z adf $
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_soap.AddressingFeature_Responses;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.AddressingFeature_Responses;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;

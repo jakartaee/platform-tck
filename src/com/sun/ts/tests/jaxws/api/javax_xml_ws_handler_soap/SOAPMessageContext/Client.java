@@ -18,7 +18,7 @@
  * @(#)Client.java	1.42 05/08/29
  */
 
-package com.sun.ts.tests.jaxws.api.javax_xml_ws_handler_soap.SOAPMessageContext;
+package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_handler_soap.SOAPMessageContext;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
