@@ -32,10 +32,10 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.el.MethodBinding;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.PhaseId;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,7 +52,7 @@ public final class TestServlet extends
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

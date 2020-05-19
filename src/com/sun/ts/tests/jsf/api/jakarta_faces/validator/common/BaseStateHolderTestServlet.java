@@ -26,10 +26,10 @@ import jakarta.faces.component.StateHolder;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.Validator;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
@@ -44,7 +44,7 @@ public abstract class BaseStateHolderTestServlet extends HttpTCKServlet {
   // ----------------------------------------------- Public Methods
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

@@ -31,8 +31,8 @@ import jakarta.security.auth.message.MessageInfo;
 import jakarta.security.auth.message.MessagePolicy;
 import jakarta.security.auth.message.module.ServerAuthModule;
 import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServerAuthModule implements ServerAuthModule {
 

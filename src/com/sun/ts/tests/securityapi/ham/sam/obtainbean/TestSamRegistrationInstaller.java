@@ -21,10 +21,10 @@ import java.security.PrivilegedAction;
 
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.module.ServerAuthModule;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 
 @WebListener
 public class TestSamRegistrationInstaller implements ServletContextListener {

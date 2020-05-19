@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 <% /**	Name: implicitImportJsp
 	Description: Use jsp page directive with language="java"
                  with no import statement.  Validate that
-                 javax.servlet.jsp.* was imported implicitly
+                 jakarta.servlet.jsp.* was imported implicitly
                  by creating an instance of JspFactory.
 	Result:No error
 **/ %>
@@ -37,7 +37,7 @@
 
 %>
 
-<%= jfac instanceof javax.servlet.jsp.JspFactory %>
+<%= jfac instanceof jakarta.servlet.jsp.JspFactory %>
 
 
 </body>

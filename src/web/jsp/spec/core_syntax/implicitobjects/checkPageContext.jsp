@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,14 +21,14 @@
 <body>
 <% /**	Name:checkPageContext 
         Description: Verify that implicit object pageContext
-                     is an instance of javax.servlet.jsp.PageContext.
+                     is an instance of jakarta.servlet.jsp.PageContext.
                      Then use PageContext.setAttribute() and 
                      PageContext.getAttribute() to set and retrieve
                      an attribute from the page.
 		Result: true should be returned twice. 
 **/ %>
 <!-- checking for pageContext object type -->
-<%= (pageContext instanceof javax.servlet.jsp.PageContext) %><br>
+<%= (pageContext instanceof jakarta.servlet.jsp.PageContext) %><br>
 <%
     pageContext.setAttribute( "available", new String( "true" ), PageContext.PAGE_SCOPE );
     String temp = (String) pageContext.findAttribute( "available" );

@@ -25,7 +25,7 @@ import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;

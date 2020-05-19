@@ -121,7 +121,7 @@ tsant -find record-build.xml \
 The contents of the sig-test.map file is (standard java property file):
 	javax.jms=1.0
 	javax.mail=2.0
-	javax.servlet=3.0
+	jakarta.servlet=3.0
 	javax.ejb=4.0
 
 The output of the above ant command is a set of files containing the
@@ -130,7 +130,7 @@ contents of the $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository
 directory is the following after the ant command is run (assuming it was empty):
 	jakarta.jms.sig_1.0
 	javax.mail.sig_2.0
-	javax.servlet.sig_3.0
+	jakarta.servlet.sig_3.0
 	javax.ejb.sig_4.0
 
 The jakarta.jms.sig_1.0 file contains the signatures for the javax.jms package

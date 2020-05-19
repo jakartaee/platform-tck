@@ -2016,8 +2016,8 @@ public class Client extends EETest {
   public void CheckMessageInfo() throws Fault {
     String strMsg1 = "validateRequest: MessageInfo.getRequestMessage() is of type ";
     String strMsg2 = "validateRequest: MessageInfo.getResponseMessage() is of type ";
-    String tempArgs[] = { strMsg1 + "javax.servlet.http.HttpServletRequest",
-        strMsg2 + "javax.servlet.http.HttpServletResponse" };
+    String tempArgs[] = { strMsg1 + "jakarta.servlet.http.HttpServletRequest",
+        strMsg2 + "jakarta.servlet.http.HttpServletResponse" };
 
     // this should work for servlets and static pages
     // invoking a static should cause the validateRequest to be called
@@ -2719,8 +2719,8 @@ public class Client extends EETest {
    * 
    */
   public void checkForinvalidMsgInfoMapKey() throws Fault {
-    String strMsg1 = "ERROR - invalid setting for javax.servlet.http.authType = null";
-    String strMsg2 = "ERROR - mismatch value set for javax.servlet.http.authType and getAuthType()";
+    String strMsg1 = "ERROR - invalid setting for jakarta.servlet.http.authType = null";
+    String strMsg2 = "ERROR - mismatch value set for jakarta.servlet.http.authType and getAuthType()";
     String tempArgs1[] = { strMsg1, strMsg2 };
 
     // verify that we had NO mismatches between getAuthType() and

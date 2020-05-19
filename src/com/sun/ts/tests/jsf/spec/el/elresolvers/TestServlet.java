@@ -38,12 +38,12 @@ import jakarta.el.PropertyNotWritableException;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspFactory;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.JspFactory;
+import jakarta.servlet.jsp.PageContext;
 
 import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_de;
 import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_en;
@@ -66,7 +66,7 @@ public final class TestServlet extends HttpTCKServlet {
    * @param config
    *          the configuration for this <code>Servlet</code>
    * 
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           indicates initialization failure
    */
   public void init(ServletConfig config) throws ServletException {

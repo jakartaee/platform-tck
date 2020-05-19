@@ -294,7 +294,7 @@ public final class TSPolicy extends java.security.Policy {
    * @assertion_ids: JACC:SPEC:99; JACC:JAVADOC:30
    *
    * @test_Strategy: 1) call
-   *                 PolicyContext.getContext("javax.servlet.http.HttpServletRequest")
+   *                 PolicyContext.getContext("jakarta.servlet.http.HttpServletRequest")
    *                 2) verify the return value is an instance of
    *                 HttpServletRequest
    *
@@ -303,15 +303,15 @@ public final class TSPolicy extends java.security.Policy {
     try {
       // Get HttpServletRequest object
       Object o = PolicyContext
-          .getContext("javax.servlet.http.HttpServletRequest");
-      if (o instanceof javax.servlet.http.HttpServletRequest) {
+          .getContext("jakarta.servlet.http.HttpServletRequest");
+      if (o instanceof jakarta.servlet.http.HttpServletRequest) {
         logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
-            + "javax.servlet.http.HttpServletRequest");
+            + "jakarta.servlet.http.HttpServletRequest");
         logger.log(Level.INFO, "PolicyContextKey1: PASSED");
       } else {
         logger.log(Level.INFO,
             "PolicyContext.getContext()" + "returned incorrect value for key "
-                + "javax.servlet.http.HttpServletRequest");
+                + "jakarta.servlet.http.HttpServletRequest");
         logger.log(Level.INFO, "PolicyContextKey1: FAILED");
       }
     } catch (Exception e) {

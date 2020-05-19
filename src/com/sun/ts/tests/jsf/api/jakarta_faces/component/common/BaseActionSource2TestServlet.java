@@ -25,12 +25,12 @@ import java.io.PrintWriter;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.faces.component.ActionSource2;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspFactory;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.JspFactory;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -47,7 +47,7 @@ public abstract class BaseActionSource2TestServlet
    * @param config
    *          the configuration for this <code>Servlet</code>
    *
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           indicates initialization failure
    */
   public void init(ServletConfig config) throws ServletException {

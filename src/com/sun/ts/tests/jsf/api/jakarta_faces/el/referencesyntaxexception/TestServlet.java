@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.el.referencesyntaxexception;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.BaseELExceptionTestServlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.faces.el.EvaluationException;
 import jakarta.faces.el.ReferenceSyntaxException;
 

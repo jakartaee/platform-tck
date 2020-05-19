@@ -1,5 +1,5 @@
 /*
- * Copyright (c)  2014, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c)  2014, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@ import java.util.logging.Level;
 import java.util.Map;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
@@ -89,33 +89,33 @@ public class TSRequestWrapper extends HttpServletRequestWrapper {
     // test for assertion: JASPIC:SPEC:323 from spec section 3.8.4, para 2:
     // check if getAuthType() != null, and if not null, then check if
     // MessageInfo Map
-    // sets/users key=javax.servlet.http.authType. If so, getAuthType should be
+    // sets/users key=jakarta.servlet.http.authType. If so, getAuthType should be
     // set
     // set to value of key. getAuthType should not be null on successful authN.
     if (bval) {
       String msg = "";
 
       if ((super.getAuthType() != null) && (optionsMap != null)) {
-        // see if key=javax.servlet.http.authType exists and if so, make
+        // see if key=jakarta.servlet.http.authType exists and if so, make
         // sure it matches the getAuthType() value
-        if (optionsMap.get("javax.servlet.http.authType") != null) {
+        if (optionsMap.get("jakarta.servlet.http.authType") != null) {
           // if here, then we need to make sure the value specified for
           // getAuthType matches this value.
-          String val = (String) optionsMap.get("javax.servlet.http.authType");
+          String val = (String) optionsMap.get("jakarta.servlet.http.authType");
           if (val == null) {
             // spec violation - cant be null if key exists!!!
-            msg = "ERROR - invalid setting for javax.servlet.http.authType = null";
+            msg = "ERROR - invalid setting for jakarta.servlet.http.authType = null";
           } else if (!val.equalsIgnoreCase(super.getAuthType())) {
             // spec violation - these have to match!!
-            msg = "ERROR - mismatch value set for javax.servlet.http.authType and getAuthType()";
+            msg = "ERROR - mismatch value set for jakarta.servlet.http.authType and getAuthType()";
           } else {
             // we are good if here.
-            msg = "getAuthType() matches value for javax.servlet.http.authType";
+            msg = "getAuthType() matches value for jakarta.servlet.http.authType";
           }
           logger.log(Level.INFO, msg);
           debug(msg);
           debug("authenticate(): getAuthType() = " + super.getAuthType());
-          debug("authenticate(): javax.servlet.http.authType  = " + val);
+          debug("authenticate(): jakarta.servlet.http.authType  = " + val);
         }
       }
 

@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletContext;
 
 public abstract class BaseComponentTestServlet
     extends BaseActionSource2TestServlet {
@@ -31,7 +31,7 @@ public abstract class BaseComponentTestServlet
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

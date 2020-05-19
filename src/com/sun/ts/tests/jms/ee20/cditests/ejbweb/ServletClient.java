@@ -21,9 +21,9 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
 
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ArrayList;

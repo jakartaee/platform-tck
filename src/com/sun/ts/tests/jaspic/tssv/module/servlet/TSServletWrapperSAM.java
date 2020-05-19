@@ -27,8 +27,8 @@ import jakarta.security.auth.message.MessagePolicy;
 import jakarta.security.auth.message.AuthStatus;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.MessageInfo;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
@@ -38,7 +38,7 @@ import com.sun.ts.tests.jaspic.tssv.util.SimplePrincipal;
 
 import java.util.logging.Level;
 
-import javax.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 public class TSServletWrapperSAM
     implements jakarta.security.auth.message.module.ServerAuthModule {
@@ -238,7 +238,7 @@ public class TSServletWrapperSAM
     String requestURI = null;
     Object reqObj = messageInfo.getRequestMessage();
     if ((reqObj != null)
-        && (reqObj instanceof javax.servlet.http.HttpServletRequest)) {
+        && (reqObj instanceof jakarta.servlet.http.HttpServletRequest)) {
       requestURI = ((HttpServletRequest) reqObj).getRequestURI();
     }
     return requestURI;
@@ -261,8 +261,8 @@ public class TSServletWrapperSAM
         // the
         // reqObj to be type HttpServletRequest)
         msg = methodName + ": MessageInfo.getRequestMessage() is of type ";
-        if (reqObj instanceof javax.servlet.http.HttpServletRequest) {
-          msg = msg + "javax.servlet.http.HttpServletRequest";
+        if (reqObj instanceof jakarta.servlet.http.HttpServletRequest) {
+          msg = msg + "jakarta.servlet.http.HttpServletRequest";
           requestURI = ((HttpServletRequest) reqObj).getRequestURI();
 
           // related to assertion JASPI:SPEC:95 , this block of code
@@ -292,8 +292,8 @@ public class TSServletWrapperSAM
         // the
         // respObj to be type HttpServletResponse)
         msg = methodName + ": MessageInfo.getResponseMessage() is of type ";
-        if (respObj instanceof javax.servlet.http.HttpServletResponse) {
-          msg = msg + "javax.servlet.http.HttpServletResponse";
+        if (respObj instanceof jakarta.servlet.http.HttpServletResponse) {
+          msg = msg + "jakarta.servlet.http.HttpServletResponse";
           /*
            * if (requestURI != null) { // this should have been obtained from
            * the requestObj above msg = msg +" for requestURI=" + requestURI; }

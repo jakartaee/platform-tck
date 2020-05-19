@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 <body>
 <% /**	Name:checkApplicationTest
 		Description: Returns true if application
-		 	is of type javax.servlet.ServletContext
+		 	is of type jakarta.servlet.ServletContext
 		 	else returns false. Then verify that the
             Context init parameter, contextParam1, is
             available using the application object.
@@ -32,7 +32,7 @@
 **/ %>
 <!-- checking for application object state -->
 
-<%= (application instanceof javax.servlet.ServletContext) %><br>
+<%= (application instanceof jakarta.servlet.ServletContext) %><br>
 Value of Context Init parameter param1: <%= application.getInitParameter( "contextParam1" ) %><br>
 </body>
 </html>

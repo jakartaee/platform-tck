@@ -37,9 +37,9 @@ import jakarta.faces.component.behavior.ClientBehaviorBase;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.event.AjaxBehaviorListener;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common.BaseBehaviorTestServlet;
 import com.sun.ts.tests.jsf.common.beans.AlbumBean;

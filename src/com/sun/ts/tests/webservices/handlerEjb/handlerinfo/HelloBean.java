@@ -21,8 +21,8 @@ import java.rmi.RemoteException;
 import java.security.Principal;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
-import javax.servlet.http.HttpSession;
-import javax.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.ServletContext;
 import javax.xml.rpc.handler.MessageContext;
 import javax.xml.rpc.server.ServletEndpointContext;
 

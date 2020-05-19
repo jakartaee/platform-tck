@@ -22,8 +22,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.el.evaluationexception;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.BaseELExceptionTestServlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.faces.el.EvaluationException;
 
 public final class TestServlet extends BaseELExceptionTestServlet {

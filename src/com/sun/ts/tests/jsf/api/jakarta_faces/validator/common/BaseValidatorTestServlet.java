@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.validator.common;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 public abstract class BaseValidatorTestServlet
     extends PartialStateHolderTestServlet {
@@ -31,7 +31,7 @@ public abstract class BaseValidatorTestServlet
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

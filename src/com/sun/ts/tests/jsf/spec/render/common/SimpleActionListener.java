@@ -28,7 +28,7 @@ import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ExternalContext;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class SimpleActionListener implements ActionListener {
 

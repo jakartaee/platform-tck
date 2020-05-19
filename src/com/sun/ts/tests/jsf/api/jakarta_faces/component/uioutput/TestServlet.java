@@ -31,14 +31,14 @@ import jakarta.faces.event.PostAddToViewEvent;
 import jakarta.faces.event.ComponentSystemEvent;
 import jakarta.faces.event.ComponentSystemEventListener;
 import jakarta.faces.event.ListenerFor;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 public class TestServlet extends BaseComponentTestServlet {
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

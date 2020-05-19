@@ -26,9 +26,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.ejb.EJBs;
 import jakarta.ejb.EJB;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @EJBs({
     @EJB(name = "abeanRemote", beanName = "ABean", beanInterface = TxRemoteIF.class, description = "remote ABean"),

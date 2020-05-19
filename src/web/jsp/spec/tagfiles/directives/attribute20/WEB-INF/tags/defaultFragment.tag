@@ -19,7 +19,7 @@
 <%@ attribute name="x" required="true" %>
 <%
     Object o = jspContext.getAttribute("x", PageContext.PAGE_SCOPE);
-    if(o instanceof javax.servlet.jsp.tagext.JspFragment) {
+    if(o instanceof jakarta.servlet.jsp.tagext.JspFragment) {
         out.println("Test FAILED. attr x is a fragment type.");
     } else if(o instanceof java.lang.String) {
         out.println("Test PASSED. attr x is of type java.lang.String.");

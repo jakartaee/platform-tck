@@ -24,8 +24,8 @@ import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.AuthStatus;
 import jakarta.security.auth.message.MessageInfo;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
@@ -110,8 +110,8 @@ public class TSClientAuthModule
   @Override
   public Class[] getSupportedMessageTypes() {
     logMsg("TSClientAuthModule.getSupportedMessageTypes() called.");
-    Class[] classarray = { javax.servlet.http.HttpServletRequest.class,
-        javax.servlet.http.HttpServletResponse.class };
+    Class[] classarray = { jakarta.servlet.http.HttpServletRequest.class,
+        jakarta.servlet.http.HttpServletResponse.class };
     return classarray;
   }
 

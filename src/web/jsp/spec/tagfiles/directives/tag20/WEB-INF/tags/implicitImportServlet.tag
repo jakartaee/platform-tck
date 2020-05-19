@@ -19,9 +19,9 @@
 <%@ tag language="java" %>
 <%
     ServletException ex = new ServletException();
-    if(ex instanceof javax.servlet.ServletException) {
+    if(ex instanceof jakarta.servlet.ServletException) {
         out.println("Test PASSED.");
     } else {
-        out.println("Test FAILED. ServletException instance is not of type javax.servlet.ServletException");
+        out.println("Test FAILED. ServletException instance is not of type jakarta.servlet.ServletException");
     }
 %>

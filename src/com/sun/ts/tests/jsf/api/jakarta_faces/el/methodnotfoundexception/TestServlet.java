@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.el.methodnotfoundexception;
 import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.BaseELExceptionTestServlet;
 
 import jakarta.faces.el.MethodNotFoundException;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 public final class TestServlet extends BaseELExceptionTestServlet {
 

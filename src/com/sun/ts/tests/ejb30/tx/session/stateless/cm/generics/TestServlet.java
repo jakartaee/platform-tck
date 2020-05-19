@@ -28,9 +28,9 @@ import java.util.List;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EJBTransactionRequiredException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF;
 import com.sun.ts.tests.ejb30.common.generics.LocalIntGreetingIF;

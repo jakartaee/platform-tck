@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.BodyContent;
-import javax.servlet.jsp.tagext.DynamicAttributes;
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
 
 public class ClassicBodyTag extends BodyTagSupport

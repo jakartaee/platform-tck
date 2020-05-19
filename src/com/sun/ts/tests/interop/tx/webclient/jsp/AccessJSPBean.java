@@ -26,8 +26,8 @@ import com.sun.ts.tests.ejb.ee.tx.txbean.*;
 
 import java.util.*;
 import java.rmi.RemoteException;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import jakarta.transaction.*;
 
 public class AccessJSPBean {

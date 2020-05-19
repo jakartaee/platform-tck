@@ -25,11 +25,11 @@ import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.ExternalContextWrapper;
 import jakarta.faces.context.FacesContext;
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Cookie;
 
 import java.io.IOException;
 import java.io.PrintWriter;

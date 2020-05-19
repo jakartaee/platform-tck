@@ -34,9 +34,9 @@ import jakarta.faces.event.PostRestoreStateEvent;
 import jakarta.faces.event.SystemEventListener;
 
 import jakarta.faces.event.PreRemoveFromViewEvent;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

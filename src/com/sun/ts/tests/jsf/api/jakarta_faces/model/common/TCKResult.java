@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
 import jakarta.faces.FacesException;
-import javax.servlet.jsp.jstl.sql.Result;
+import jakarta.servlet.jsp.jstl.sql.Result;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -34,7 +34,7 @@ import java.util.TreeMap;
 /**
  * <p>
  * Mock object that implements enough of
- * <code>javax.servlet.jsp.jstl.sql.ResultSet</code> to exercise the
+ * <code>jakarta.servlet.jsp.jstl.sql.ResultSet</code> to exercise the
  * <code>ResultDataModel</code> functionality. It wraps an array of JavaBeans
  * objects that are passed to the constructor.
  * </p>

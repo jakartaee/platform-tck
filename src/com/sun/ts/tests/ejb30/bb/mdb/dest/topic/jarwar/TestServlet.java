@@ -21,11 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar;
 
 import jakarta.annotation.Resource;
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;

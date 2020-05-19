@@ -31,9 +31,9 @@ import jakarta.annotation.Resources;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import javax.naming.NamingException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.omg.CORBA.ORB;
 
 @Resources({ @Resource(name = "typeLevelOrbNotInjected", type = ORB.class) })

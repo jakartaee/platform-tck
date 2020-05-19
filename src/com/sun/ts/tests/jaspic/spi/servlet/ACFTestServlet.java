@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jaspic.spi.servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
 import java.io.*;
 
 import com.sun.ts.tests.jaspic.tssv.util.*;
@@ -26,10 +26,10 @@ import com.sun.ts.tests.jaspic.spi.common.*;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.annotation.security.DeclareRoles;
 
 @DeclareRoles({ "Administrator", "Manager", "Employee" })

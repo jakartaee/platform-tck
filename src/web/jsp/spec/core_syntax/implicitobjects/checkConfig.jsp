@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +23,12 @@
 		Description: Checks whether configuration information
 			 is being passed to the server page. Verify that the
              implicit config object is an instance of
-             javax.servlet.ServletConfig and then print out the 
+             jakarta.servlet.ServletConfig and then print out the
              values of two servlet initialization parameters.
 		Result: Display true and the values of configParam1 and configParam2 
 **/ %>
 <!-- checking for config object state -->
-<%= (config instanceof javax.servlet.ServletConfig) %>
+<%= (config instanceof jakarta.servlet.ServletConfig) %>
 <br>
 Value of param1 is: <%= config.getInitParameter( "configParam1" ) %><br>
 Value of param2 is: <%= config.getInitParameter( "configParam2" ) %><br>

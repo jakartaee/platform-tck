@@ -26,10 +26,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import jakarta.annotation.PostConstruct;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;

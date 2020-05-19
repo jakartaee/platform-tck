@@ -19,7 +19,7 @@
 <%@ tag language="java" %>
 <%
     JspFactory jfac=JspFactory.getDefaultFactory();
-    if(jfac instanceof javax.servlet.jsp.JspFactory) {
+    if(jfac instanceof jakarta.servlet.jsp.JspFactory) {
         out.println("Test PASSED.");
     } else {
         out.println("Test FAILED.");

@@ -37,11 +37,11 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.FacesEvent;
 import jakarta.faces.event.PhaseListener;
 import jakarta.faces.event.SystemEventListener;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspFactory;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.JspFactory;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.common.beans.AlbumBean;

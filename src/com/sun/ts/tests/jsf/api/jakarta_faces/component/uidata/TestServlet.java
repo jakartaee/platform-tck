@@ -56,10 +56,10 @@ import jakarta.faces.model.DataModelEvent;
 import jakarta.faces.model.DataModelListener;
 import jakarta.faces.render.RenderKitFactory;
 import jakarta.faces.validator.Validator;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValidator;
@@ -75,7 +75,7 @@ public class TestServlet extends BaseComponentTestServlet {
 
   /**
    * <p>
-   * Initializes this {@link javax.servlet.Servlet}.
+   * Initializes this {@link jakarta.servlet.Servlet}.
    * </p>
    * 
    * @param config

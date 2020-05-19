@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.interop.csiv2.common;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.servlet.http.*;
-import javax.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.*;
 import java.io.*;
 import java.util.*;
 

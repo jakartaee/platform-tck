@@ -3593,7 +3593,7 @@
             must be an instance of <code>EditableValueHolder</code>, and
             return.  Otherwise, obtain the "request" property from the
             <code>ExternalContext</code> and cast it to
-            <code>javax.servlet.http.HttpServletRequest</code>.  Call
+            <code>jakarta.servlet.http.HttpServletRequest</code>.  Call
             <code>getParts()</code> on the httpServletRequest. Iterate over
             the parts.  If the "name" property of the current part is equal to
             the "clientId", pass the current part to the
