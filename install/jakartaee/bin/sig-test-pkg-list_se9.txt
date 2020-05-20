@@ -173,8 +173,6 @@ javax.xml.bind.annotation.adapters
 javax.xml.bind.attachment
 javax.xml.bind.helpers
 javax.xml.bind.util
-javax.xml.registry
-jakarta.xml.registry.infomodel
 javax.xml.rpc
 javax.xml.rpc.encoding
 javax.xml.rpc.handler

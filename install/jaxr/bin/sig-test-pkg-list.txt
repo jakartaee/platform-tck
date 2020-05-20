@@ -22,6 +22,4 @@
 # parent package's signature is checked.
 ##
 
-javax.xml.registry
-jakarta.xml.registry.infomodel
 jakarta.xml.registry.samples
