@@ -44,19 +44,6 @@ public class StatefulOperations extends Operations implements Constants {
   }
 
   @Override
-  public void runMessageContext(SessionContext sctx, Properties results) {
-    // getMessageContext test
-    // try {
-    // sctx.getMessageContext();
-    // results.setProperty(getMessageContext, allowed);
-    // } catch (IllegalStateException e) {
-    // results.setProperty(getMessageContext, disallowed);
-    // } catch (Exception e) {
-    // results.setProperty(getMessageContext, e.toString());
-    // }
-  }
-
-  @Override
   public void runRollbackOnly(SessionContext sctx, Properties results) {
     // getRollbackOnly test
     try {
