@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -56,7 +56,6 @@
         com/sun/ts/tests/compat12,
         com/sun/ts/tests/compat13,
         com/sun/ts/tests/signaturetest,
-        com/sun/ts/tests/interop,
         com/sun/ts/tests/integration,
         com/sun/ts/tests/ejb,
         com/sun/ts/tests/common,
@@ -88,7 +87,7 @@
       <javac fork="true" srcdir="${ts.home}/src" 
             destdir="${class.dir}" 
             includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
-            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java, com/sun/ts/tests/interop/jaxrpc/**/*.java"
+            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java"
             memoryInitialSize="100m"
             memoryMaximumSize="200m"
             debug="on" 
@@ -108,7 +107,6 @@
 		<javac fork="true" srcdir="${ts.home}/src" 
 			destdir="${class.dir}" 
             includes="${pkg.dir}/**/*.java,com/sun/ts/tests/common/webclient/**/*.java"
-	    excludes="**/interop/jaxrpc/**"
             memoryMaximumSize="200m"
 			debug="on" 
 			deprecation="on" >
