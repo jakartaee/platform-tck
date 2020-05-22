@@ -1,6 +1,8 @@
 # JakartaEE TCK Jenkins Jobs
-The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and are available under
-https://jenkins.eclipse.org/jakartaee-tck/
+The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are in https://ci.eclipse.org/jakartaee-tck/
+
+# Project link
+https://projects.eclipse.org/projects/ee4j.jakartaee-tck
 
 For information regarding the various JakartaEE TCK related jobs, Please refer to the wiki page below
 https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-TCK-Jenkins-jobs
@@ -35,44 +37,42 @@ https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-TCK-Jenkins-jobs
 Instructions for building and running JakartaEE TCK bundle from scratch is available in the following wiki page:
 [JakartaEE TCK - Build and Run Instructions](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Instructions-for-building-and-running-JakartaEE-TCK-bundle)
 
-# CTS User Guide
+# Platform TCK User Guide
 
 ## Introduction
 
-### CTS Overview
+### Platform TCK Overview
 
-A Java EE 8 CTS is a set of tools and tests used to verify that a licensee's
-implementation of Java EE 8 technology conforms to the applicable specification.
+A Jakarta EE Platform TCK is a set of tools and tests used to [verify that an
+implementation of Jakarta EE technology is compatible with the Platform specification](https://jakarta.ee/compatibility)([see get listed steps](https://jakarta.ee/compatibility/get_listed)).
 
-All tests in the CTS are based on the written specifications for the Java
-platform. The CTS tests compatibility of a licensee's implementation of a
+All tests in the Platform TCK are based on the written specifications for the [Jakarta
+Platform specification](https://jakarta.ee/specifications/platform/). The TCK tests 
+compatibility of an implementation of a
 technology to the applicable specification of the technology. Compatibility
 testing is a means of ensuring correctness, completeness, and consistency
-across all implementations developed by technology licensees.
-The set of tests included with the Java EE 8 CTS is called the test suite. All
-tests in the CTS test suite are self-checking, but some tests may require tester
-interaction. Most tests return either a Pass or Fail status. For a given platform
-to be certified, all of the required tests must pass. The definition of required
-tests may change from platform to platform.
+across all implementations.
+The set of tests included with the Jakarta EE Platform TCK is called the test suite. All
+tests are self-checking, but some tests may require tester
+interaction. Most tests return either a Pass or Fail status. For a given implementation
+to be compatible, all of the required tests must pass. The definition of required
+tests may change from platform version to version.
 
-The definition of required tests will change over time. Before your final
-certification test pass, be sure to download the latest Exclude List for the
-Java EE 8 CTS.
+The definition of required tests will change over time. 
 
-### About JavaEE8 CTS
+### About Jakarta EE Platform TCK
 
-Java EE 8 CTS is a portable, configurable, automated test suite for
-verifying the compliance of a licensee's implementation of the Java EE 8 technologies.
-Java EE 8 CTS includes version 5.0 of the JT harness.
+Jakarta EE Platform TCK is a portable, configurable, automated test suite for
+verifying that an implementation is fully compatible. 
+The Jakarta EE Platform TCK includes the [JT harness](https://wiki.openjdk.java.net/display/CodeTools/Documentation) for running the tests.
 
 For documentation on the test harness used for running the Java EE 8 CTS test
 suite, see https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 
 ### Hardware Requirements
 
-The following section lists the hardware requirements for the Java EE 8 CTS
-software, using the Java EE 8 RI or Java EE 8 Web Profile RI. Hardware requirements for
-other reference implementations will vary.
+The following section lists the (baseline) hardware requirements for the Jakarta EE Platform TCK
+software (with variation based on which Jakarta EE server implementation is tested and other factors). 
 
 All systems should meet the following recommended hardware requirements:
 
@@ -82,17 +82,19 @@ All systems should meet the following recommended hardware requirements:
 
 * 2 GB of swap space , if required
 
-* 6 GB of free disk space for writing data to log files, the Java EE 8 repository, and the database
+* 6 GB of free disk space for writing data to log files, the Jakarta EE Platform TCK, and the database
 
 * Network access to the Internet
 
 ### Software Requirements
 
-You can run the Java EE 8 CTS software on platforms running the Solaris,
+You can run the Jakarta EE Platform TCK software on platforms running the Solaris,
 Linux, Windows, and Mac OS software that meet the following software requirements:
 
 * Operating Systems:
 
+  - Red Hat Enterprise Linux 8
+  
   - Solaris 10 and newer
 
   - MAC OS X Mountain Lion (10.8.1+)
@@ -101,7 +103,7 @@ Linux, Windows, and Mac OS software that meet the following software requirement
 
   - Oracle Linux 6.4
 
-  - Fedora 18
+  - Fedora 32
 
   - Ubuntu Linux 12.10
 
@@ -109,7 +111,7 @@ Linux, Windows, and Mac OS software that meet the following software requirement
 
 * Java SE 8 SDK
 
-* Java EE 8 RI or Java EE 8 Web Profile RI
+* Jakarta EE Full Platform or Web Profile compatible implementation
 
 * Mail server that supports the IMAP and SMTP protocols
 
@@ -119,7 +121,7 @@ Linux, Windows, and Mac OS software that meet the following software requirement
 
   - Sybase
 
-  - DB2
+  - IBM DB2
 
   - Microsoft SQL Server
 
@@ -129,10 +131,10 @@ Linux, Windows, and Mac OS software that meet the following software requirement
 
   - Java DB
 
-### Additional Java EE 8 CTS Requirements
+### Additional Jakarta EE Platform TCK Requirements
 
 In addition to the instructions and requirements described in this document,
-all Java EE 8 and Java EE 8 Web Profile implementations must also pass the standalone
+all compatible implementations must also pass the standalone
 TCKs for the following technologies:
 
 * Contexts and Dependency Injection for Java 2.0 (JSR 365)
@@ -143,13 +145,13 @@ TCKs for the following technologies:
 
 ## Installation
 
-### Install CTS bundle
-Complete the following procedure to install the Java EE 8 CTS on a system
+### Install Platform TCK bundle
+Complete the following procedure to install the TCK on a system
 running the Solaris, Linux, or Windows operating system.
 
-1. Copy or download the CTS 8 software.
+1. Copy or download the Platform TCK software.
 
-2. Change to the directory in which you want to install the Java EE 8 CTS
+2. Change to the directory in which you want to install the TCK
 software and use the unzip command to extract the bundle:
     ```
     cd install_directory
@@ -192,7 +194,7 @@ You can modify the following test suite components only:
 
 * Any files in `<TS_HOME>/bin` and `<TS_HOME>/bin/xml` (except for `ts.*` files)
 
-### Configuring the Java EE 8 RI as the VI
+### Configuring the Jakarta EE 8 RI as the VI
 
 To configure the Java EE 8 RI as the server under test (that is, to use the
 Java EE 8 RI as the VI) follow the steps listed below.
@@ -234,11 +236,11 @@ property to enable the Security Manager in the application client container:
 
 Add this option to the list of other `-D` JVM options for this property.
 As mentioned previously, these settings can vary, but must match whatever you
-used when setting up the Java EE 8 RI server.
+used when setting up the RI server.
 
-2. Install the Java EE 8 RI and configure basic settings, as described in
+2. Install the RI and configure basic settings.
 
-3. Start the Java EE 8 RI application server.
+3. Start the RI application server.
 Refer to the application server documentation for complete instructions.
 
 4. Enable the Security Manager.
