@@ -23,9 +23,9 @@ import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.interceptor.Interceptors;
-import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
 import java.security.Principal;
 
 @WebService(name = "Hello", serviceName = "HelloService")
@@ -40,11 +40,11 @@ public class HelloImpl {
     String output = "";
 
     Object msgContext = wsContext.getMessageContext();
-    if (msgContext instanceof javax.xml.ws.handler.MessageContext) {
-      output += " 1. MessageContext is an instance of javax.xml.ws.handler.MessageContext ";
+    if (msgContext instanceof jakarta.xml.ws.handler.MessageContext) {
+      output += " 1. MessageContext is an instance of jakarta.xml.ws.handler.MessageContext ";
     } else {
       throw new WebServiceException(
-          "MessageContext not an instance of javax.xml.ws.handler.MessageContext");
+          "MessageContext not an instance of jakarta.xml.ws.handler.MessageContext");
     }
 
     Principal invocationPrincipal = wsContext.getUserPrincipal();

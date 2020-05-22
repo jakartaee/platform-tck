@@ -18,15 +18,15 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceProviderTe
 
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
-import javax.xml.ws.Provider;
-import javax.xml.ws.WebServiceProvider;
+import jakarta.xml.ws.Provider;
+import jakarta.xml.ws.WebServiceProvider;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
 

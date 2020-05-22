@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@ Conformance Requirement (Read-only handler chains): An implementation MAY preven
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:6001</id>
 			<description>
-Conformance (Concrete javax.xml.ws.spi.Provider required): An implementation MUST provide  a concrete class that extends javax.xml.ws.spi.Provider. Such a class MUST have a public constructor which takes no arguments.
+Conformance (Concrete jakarta.xml.ws.spi.Provider required): An implementation MUST provide  a concrete class that extends jakarta.xml.ws.spi.Provider. Such a class MUST have a public constructor which takes no arguments.
 			</description>
 			<location chapter = "6" section = "2"/>
 		</assertion>
@@ -43,7 +43,7 @@ Conformance (Provider createAndPublishEndpoint Method): The effect of invoking t
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6007</id>
                     <description>
-                        createEndpoint(String bindingId, Object implementor)  Creates and returns an Endpoint for the specified binding and implementor. If the bindingId is null and no binding information is specified via the javax.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. 
+                        createEndpoint(String bindingId, Object implementor)  Creates and returns an Endpoint for the specified binding and implementor. If the bindingId is null and no binding information is specified via the jakarta.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. 
                     </description>
                     <location chapter="6" section="2.2"/>
                 </assertion>
@@ -58,7 +58,7 @@ features) Same as the above createEndpoint() method. The created Endpoint is con
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:6019</id>
 			<description>
-createEndpoint(String bindingId, Class implementorClass, Invoker invoker, WebServiceFeature ... features) Creates an Endpoint for the implementor class and the endpoint invocation is handled by the Invoker. If the bindingId is null and no binding information is specified via the javax.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. The created Endpoint is configured with the web service features.
+createEndpoint(String bindingId, Class implementorClass, Invoker invoker, WebServiceFeature ... features) Creates an Endpoint for the implementor class and the endpoint invocation is handled by the Invoker. If the bindingId is null and no binding information is specified via the jakarta.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. The created Endpoint is configured with the web service features.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -74,7 +74,7 @@ createAndPublishEndpoint(String address, Object implementor, WebServiceFeature .
                     <description>
                         Creating EndpointReferences
                         The Provider class provides the following method to create EndpointReferences                
-                        readEndpointReference(javax.xml.transform.Source source) Unmarshalls and returns a javax.xml.ws.EndpointReference from the infoset contained in source.   
+                        readEndpointReference(javax.xml.transform.Source source) Unmarshalls and returns a jakarta.xml.ws.EndpointReference from the infoset contained in source.   
                     </description>
                     <location chapter="6" section="2.4"/>
                 </assertion>  
@@ -126,7 +126,7 @@ createW3CEndpointReference(String address, QName interfaceName, QName serviceNam
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:6003</id>
 			<description>
-Conformance (Concretejavax.xml.ws.spi.ServiceDelegate required): An implementation MUST provide a concrete class that extends javax.xml.ws.spi.ServiceDelegate.
+Conformance (Concretejakarta.xml.ws.spi.ServiceDelegate required): An implementation MUST provide a concrete class that extends jakarta.xml.ws.spi.ServiceDelegate.
 			</description>
 			<location chapter = "6" section = "3"/>
 		</assertion>
@@ -155,7 +155,7 @@ Conformance (One-way operations): When sending a one-way message, implementation
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6010</id>
                     <description>
-                        Conformance (javax.xml.ws.WebServiceFeatures): Each derived type of javax.xml.ws.WebServiceFeature MUST contain a public static final String ID field that uniquely identifies the feature against all features of all implementations.
+                        Conformance (jakarta.xml.ws.WebServiceFeatures): Each derived type of jakarta.xml.ws.WebServiceFeature MUST contain a public static final String ID field that uniquely identifies the feature against all features of all implementations.
                     </description>
                     <location chapter="6" section="5"/>
                 </assertion>        
@@ -163,7 +163,7 @@ Conformance (One-way operations): When sending a one-way message, implementation
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6011</id>
                     <description>
-                        Conformance (enabled property): Each derived type of javax.xml.ws.WebServiceFeature MUST provide a constructor argument and/or method to allow the web service developer to set the value of the enabled property.  
+                        Conformance (enabled property): Each derived type of jakarta.xml.ws.WebServiceFeature MUST provide a constructor argument and/or method to allow the web service developer to set the value of the enabled property.  
                     </description>
                     <location chapter="6" section="5"/>
                     <sub-assertions>
@@ -186,7 +186,7 @@ Conformance (One-way operations): When sending a one-way message, implementation
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6012</id>
                     <description>
-                        javax.xml.ws.soap.AddressingFeature feature MUST be supported with the SOAP 1.1/HTTP or SOAP 1.2/HTTP bindings.
+                        jakarta.xml.ws.soap.AddressingFeature feature MUST be supported with the SOAP 1.1/HTTP or SOAP 1.2/HTTP bindings.
                     </description>
                     <location chapter="6" section="5.1"/>
                     <sub-assertions>
@@ -244,7 +244,7 @@ Developers may choose to prevent this from happening by explicitly disabling the
                     <sub-assertions>
                         <assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                             <id>JAXWS:SPEC:6013.1</id>
-                            <description>Applications may also use the javax.xml.ws.EndpointReference class in method signatures.  
+                            <description>Applications may also use the jakarta.xml.ws.EndpointReference class in method signatures.  
                             </description>
                             <location chapter="6" section="5.1.1"/>
                         </assertion>
@@ -266,8 +266,8 @@ Developers may choose to prevent this from happening by explicitly disabling the
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6014</id>
                     <description>
-                        The javax.xml.ws.W3CEndpointReference class is a concrete implementation of the javax.xml.ws.EndpointReference class.
-                        The W3CEndpointReference class is a concrete implementation of the javax.xml.ws.EndpointReference  class and is used to reference endpoints that are compliant with the W3C Web Services Addressing 1.0 [24] recommendation.
+                        The jakarta.xml.ws.W3CEndpointReference class is a concrete implementation of the jakarta.xml.ws.EndpointReference class.
+                        The W3CEndpointReference class is a concrete implementation of the jakarta.xml.ws.EndpointReference  class and is used to reference endpoints that are compliant with the W3C Web Services Addressing 1.0 [24] recommendation.
                     </description>
                     <location chapter="6" section="5.1.2"/>
                     <sub-assertions>
@@ -307,13 +307,13 @@ Developers may choose to prevent this from happening by explicitly disabling the
                 <assertion required="true" impl-spec="false" defined-by="technology"
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6015</id>
-                    <description>Conformance (javax.xml.ws.soap.MTOMFeature): An implementation MUST support the javax.xml.ws.soap.MTOMFeature and its threshold property.
+                    <description>Conformance (jakarta.xml.ws.soap.MTOMFeature): An implementation MUST support the jakarta.xml.ws.soap.MTOMFeature and its threshold property.
                     </description>
                     <location chapter="6" section="5.2"/>
                     <sub-assertions>
                         <assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                             <id>JAXWS:SPEC:6015.1</id>
-                            <description>This feature should be used instead of the javax.xml.ws.soap.SOAPBinding.SOAP11HTTP_MTOM_BINDING, javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_MTOM_BINDING and the javax.xml.ws.soap.SOAPBinding.setMTOMEnabled().
+                            <description>This feature should be used instead of the jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_MTOM_BINDING, jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP_MTOM_BINDING and the jakarta.xml.ws.soap.SOAPBinding.setMTOMEnabled().
                             </description>
                             <location chapter="6" section="5.2"/>
                         </assertion>
@@ -357,7 +357,7 @@ Developers may choose to prevent this from happening by explicitly disabling the
                            status="active" testable="true">
                     <id>JAXWS:SPEC:6016</id>
                     <description>
-                        Conformance (javax.xml.ws.RespectBindingFeature):  When the javax.xml.ws.RespectBindingFeature is enabled, a JAX-WS implementation MUST inspect the wsdl:binding at runtime to determine result and parameter bindings as well as any wsdl:extensions that have the required=true attribute.  
+                        Conformance (jakarta.xml.ws.RespectBindingFeature):  When the jakarta.xml.ws.RespectBindingFeature is enabled, a JAX-WS implementation MUST inspect the wsdl:binding at runtime to determine result and parameter bindings as well as any wsdl:extensions that have the required=true attribute.  
                     </description>
                     <location chapter="6" section="5.3"/>
                     <sub-assertions>
@@ -381,7 +381,7 @@ addressing requirements can be explicitly disabled via AddressingFeature.
 		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>JAXWS:SPEC:6023</id>
 			<description>
-Conformance (HTTP SPI in SE platform): A JAX-WS 2.2 implementation in Java SE platform MUST support Endpoint.publish(javax.xml.ws.spi.http.HttpContext).
+Conformance (HTTP SPI in SE platform): A JAX-WS 2.2 implementation in Java SE platform MUST support Endpoint.publish(jakarta.xml.ws.spi.http.HttpContext).
 			</description>
 			<location chapter = "6" section = "6"/>
 		</assertion>

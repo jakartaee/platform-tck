@@ -21,10 +21,10 @@ package com.sun.ts.tests.webservices12.specialcases.services.w2j.doclit.provider
 
 import java.io.*;
 import java.util.Map;
-import javax.xml.ws.Provider;
-import javax.xml.ws.WebServiceProvider;
-import javax.xml.ws.ServiceMode;
-import javax.xml.ws.Service;
+import jakarta.xml.ws.Provider;
+import jakarta.xml.ws.WebServiceProvider;
+import jakarta.xml.ws.ServiceMode;
+import jakarta.xml.ws.Service;
 import jakarta.xml.soap.SOAPMessage;
 import jakarta.ejb.Stateless;
 
@@ -35,7 +35,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
 @WebServiceProvider(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://endpoint/jaxws", wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl")
 public class HelloImpl implements Provider<Source> {

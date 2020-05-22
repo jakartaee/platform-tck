@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -703,12 +703,12 @@ wsirlswatest.ctxroot.2=/WSWSIRLSwaTest_web
 wsirlswatest.endpoint.2=/WSWSIRLSwaTest_web/jaxws/SwaTestTwo
 wsirlswatest.wsdlloc.2=/WSWSIRLSwaTest_web/jaxws/SwaTestTwo?wsdl
 
-# jaxws/api/javax_xml_ws/Endpoint test urls
+# jaxws/api/jakarta_xml_ws/Endpoint test urls
 WSW2JDLEndpointTest_web=w2jdlendpointtest
 w2jdlendpointtest.endpoint.1=/WSW2JDLEndpointTest_web/jaxws/RunTest
 w2jdlendpointtest.wsdlloc.1=/WSW2JDLEndpointTest_web/jaxws/RunTest?wsdl
 w2jdlendpointtest.ctxroot.1=/WSW2JDLEndpointTest_web
-w2jdlendpointtest.impl.1=com.sun.ts.tests.jaxws.api.javax_xml_ws.Endpoint.RunTestImpl
+w2jdlendpointtest.impl.1=com.sun.ts.tests.jaxws.api.jakarta_xml_ws.Endpoint.RunTestImpl
 
 # ------------------------------------------------------------------------------
 # jaxws/mapping/j2wmapping/document/literal URL's

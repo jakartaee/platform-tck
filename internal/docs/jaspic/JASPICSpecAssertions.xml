@@ -1791,7 +1791,7 @@ must be as defined in Section 4.8.2, CallbackHandler Requirements, for a client 
 		</assertion>
  		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JASPIC:SPEC:133</id>
-			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo passed in the calls to secureRequest and validateResponse  Key= javax.xml.ws.wsdl.service
+			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo passed in the calls to secureRequest and validateResponse  Key= jakarta.xml.ws.wsdl.service
  Value= qualified service name, represented as a javax.xml.namespace.QName..
 
                         </description>      
@@ -2080,7 +2080,7 @@ MessageInfo object.
 		</assertion>
  		<assertion required="true" impl-spec="false" defined-by="technology" status="deprecated" testable="false">
 			<id>JASPIC:SPEC:160</id>
-			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo object passed in the calls to validateRequest and secureResponse.   Key= javax.xml.ws.wsdl.service  value= the application context identifier as defined in Sec 4.2 Application Context Identifier.
+			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo object passed in the calls to validateRequest and secureResponse.   Key= jakarta.xml.ws.wsdl.service  value= the application context identifier as defined in Sec 4.2 Application Context Identifier.
                         </description>      
 			<keywords>
 				<keyword>MessageInfo</keyword>      

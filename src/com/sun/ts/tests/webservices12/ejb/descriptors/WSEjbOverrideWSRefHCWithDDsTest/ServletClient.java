@@ -25,7 +25,7 @@ import java.sql.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.util.*;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import jakarta.jws.*;
 
 public class ServletClient extends HttpServlet {
@@ -34,7 +34,7 @@ public class ServletClient extends HttpServlet {
 
   private static final boolean debug = false;
 
-  @WebServiceRef(name = "service/wsejboverridewsrefhcwithddstest", type = java.lang.Object.class, value = javax.xml.ws.Service.class)
+  @WebServiceRef(name = "service/wsejboverridewsrefhcwithddstest", type = java.lang.Object.class, value = jakarta.xml.ws.Service.class)
   HelloService service = null;
 
   private Hello port;

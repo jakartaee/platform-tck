@@ -111,7 +111,7 @@ The WebEndpoint annotation is specified on the getPortName() methods of a genera
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:7008</id>
 			<description>
-The WebServiceProvider annotation is specified on classes that implement a strongly typed javax.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
+The WebServiceProvider annotation is specified on classes that implement a strongly typed jakarta.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
 			</description>
 			<location chapter = "7" section = "7"/>
 		</assertion>
@@ -234,8 +234,8 @@ of a service specific exception.
                            status="active" testable="false">
                     <id>JAXWS:SPEC:7019</id>
                     <description>
-                        javax.xml.ws.spi.WebServiceFeatureAnnotation
-                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: javax.xml.ws.soap.Addressing, javax.xml.ws.soap.MTOM, and javax.xml.ws.RespectBinding.  
+                        jakarta.xml.ws.spi.WebServiceFeatureAnnotation
+                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: jakarta.xml.ws.soap.Addressing, jakarta.xml.ws.soap.MTOM, and jakarta.xml.ws.RespectBinding.  
                     </description>
                     <location chapter="7" section="14"/>
                     <sub-assertions>
@@ -276,7 +276,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7020</id>
                     <description>
-                        javax.xml.ws.soap.Addressing
+                        jakarta.xml.ws.soap.Addressing
                         The Addressing annotation is used to control the use of WS-Addressing[24][33].  It corresponds with the AddressingFeature described in section 6.5.1.
                     </description>
                     <location chapter="7" section="14.1"/>
@@ -324,7 +324,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7021</id>
                     <description>
-                        javax.xml.ws.soap.MTOM
+                        jakarta.xml.ws.soap.MTOM
                         The MTOM annotation is used to control the use of MTOM an XOP encoding. It corresponds to the MTOMFeature described in section 6.5.2.
                     </description>
                     <location chapter="7" section="14.2"/>
@@ -360,7 +360,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7022</id>
                     <description>
-                        javax.xml.ws.RespectBinding
+                        jakarta.xml.ws.RespectBinding
                         The RespectBinding annotation is used to control whether a JAX-WS implementation MUST respect/honor the contents of the wsdl:binding associated with an endpoint. It has a corresponding RespectBindingFeature described in section 6.5.3. 
                     </description>
                     <location chapter="7" section="14.3"/>

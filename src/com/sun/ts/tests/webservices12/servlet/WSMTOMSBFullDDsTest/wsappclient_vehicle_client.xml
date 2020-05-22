@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
   <display-name>wsappclient_vehicle_client</display-name>
   <service-ref>
     <service-ref-name>service/wsservletmtomsoapbindingwithfullddstest</service-ref-name>
-    <service-interface>javax.xml.ws.Service</service-interface>
+    <service-interface>jakarta.xml.ws.Service</service-interface>
     <wsdl-file>META-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
     <port-component-ref>
       <service-endpoint-interface>com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.MTOMTest</service-endpoint-interface>

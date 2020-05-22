@@ -17,9 +17,9 @@
 package com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs;
 
 import jakarta.jws.WebService;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.Holder;
-import javax.xml.ws.RespectBinding;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.RespectBinding;
 
 @WebService(portName = "Echo2Port", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2")
 

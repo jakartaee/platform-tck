@@ -23,7 +23,7 @@ import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
 
 import jakarta.jws.*;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.net.URL;

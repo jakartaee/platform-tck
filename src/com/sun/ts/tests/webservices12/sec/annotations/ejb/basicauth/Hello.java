@@ -29,7 +29,7 @@ import jakarta.annotation.security.DenyAll;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
-import javax.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceContext;
 import jakarta.annotation.Resource;
 
 @WebService

@@ -25,9 +25,9 @@ import com.sun.javatest.Status;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.rmi.Remote;
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.WebServiceException;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.util.Properties;
@@ -38,7 +38,7 @@ public class Client extends EETest {
 
   private Tx port;
 
-  @WebServiceRef(name = "service/wsejboverridewsrefwithddstest", type = java.lang.Object.class, value = javax.xml.ws.Service.class)
+  @WebServiceRef(name = "service/wsejboverridewsrefwithddstest", type = java.lang.Object.class, value = jakarta.xml.ws.Service.class)
   static TxService service;
 
   private void getStub() throws Exception {

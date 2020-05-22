@@ -20,8 +20,8 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.Holder;
 
 import jakarta.jws.WebService;
 

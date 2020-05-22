@@ -119,7 +119,7 @@
       <sections>
         <section id="4.2.9" name="Packaging" />
         <section id="4.2.7" name="JAX-WS Asynchronous Operations" />
-        <section id="4.2.2" name="javax.xml.ws.WebServiceRef annotation" />
+        <section id="4.2.2" name="jakarta.xml.ws.WebServiceRef annotation" />
         <section id="4.1" name="Concepts" />
         <section id="4.2.6" name="JAX-WS Dispatch APIs" />
         <section id="4.2.4" name="Port Stub and Dynamic Proxy" />
@@ -219,7 +219,7 @@
 			cases in a JavaEE environment. The following JAX-RPC properties are not
 			recommended for use in a managed context defined by this
 			specification: javax.xml.rpc.security.auth.username,
-			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: javax.xml.ws.security.auth.username, javax.xml.ws.security.auth.password</description>
+			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: jakarta.xml.ws.security.auth.username, jakarta.xml.ws.security.auth.password</description>
       <location chapter="4" section="2.5" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">

@@ -31,8 +31,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import java.util.*;
 import java.net.*;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.naming.InitialContext;
 
 public class ServletClient extends HttpServlet {

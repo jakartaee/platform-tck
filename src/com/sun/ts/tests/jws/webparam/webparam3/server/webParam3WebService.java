@@ -27,7 +27,7 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 import com.sun.ts.tests.jws.common.Address;
 import com.sun.ts.tests.jws.common.Employee;

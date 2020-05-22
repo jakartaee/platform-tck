@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
-import javax.xml.ws.*;
-import javax.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.SOAPBinding;
 
 public class MTOMClientTwo extends SOAPClient {
 
@@ -34,7 +34,7 @@ public class MTOMClientTwo extends SOAPClient {
   }
 
   public MTOMClientTwo(String webServerHost, int webServerPort, int mode,
-      javax.xml.ws.Service webServiceRef) throws EETest.Fault {
+      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
     super(webServerHost, webServerPort, mode);
     stubContext.setNamespace("http://mtomtestservice.org/wsdl");
     stubContext.setService("MTOMTestService");

@@ -119,7 +119,7 @@
       <sections>
         <section id="4.2.9" name="Packaging" />
         <section id="4.2.7" name="JAX-WS Asynchronous Operations" />
-        <section id="4.2.2" name="javax.xml.ws.WebServiceRef annotation" />
+        <section id="4.2.2" name="jakarta.xml.ws.WebServiceRef annotation" />
         <section id="4.1" name="Concepts" />
         <section id="4.2.6" name="JAX-WS Dispatch APIs" />
         <section id="4.2.4" name="Port Stub and Dynamic Proxy" />
@@ -222,7 +222,7 @@
       <id>WS4EE:SPEC:156</id>
       <description>A Web Services for JavaEE
 			provider is required to provide all interfaces and classes of the
-			javax.xml.rpc.handler package and javax.xml.ws.handler package.</description>
+			javax.xml.rpc.handler package and jakarta.xml.ws.handler package.</description>
       <location chapter="6" section="2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -294,7 +294,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:4012</id>
-      <description>Required properties A container provider is required to support the javax.xml.rpc.service.endpoint.address property in JAX-RPC and javax.xml.ws.service.endpoint.address property in JAX-WS to allow components to dynamically redirect a Stub/proxy to a different URI.</description>
+      <description>Required properties A container provider is required to support the javax.xml.rpc.service.endpoint.address property in JAX-RPC and jakarta.xml.ws.service.endpoint.address property in JAX-WS to allow components to dynamically redirect a Stub/proxy to a different URI.</description>
       <location chapter="4" section="2.6.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -304,7 +304,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:5008</id>
-      <description>Publishing Endpoints   javax. xml.ws.Endpoint JAX-WS provides functionality for creating and publishing Web Service endpoints dynamically using javax.xml.ws.Endpoint API. The use of this functionality is considered non-portable in a managed environment. It is required that both the Servlet and the EJB container disallow the publishing of the Endpoint dynamically, by not granting the publishEndpoint security permission. Please refer to details on this in Section 5.2 of the JAX-WS specification.</description>
+      <description>Publishing Endpoints   javax. xml.ws.Endpoint JAX-WS provides functionality for creating and publishing Web Service endpoints dynamically using jakarta.xml.ws.Endpoint API. The use of this functionality is considered non-portable in a managed environment. It is required that both the Servlet and the EJB container disallow the publishing of the Endpoint dynamically, by not granting the publishEndpoint security permission. Please refer to details on this in Section 5.2 of the JAX-WS specification.</description>
       <location chapter="5" section="3.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

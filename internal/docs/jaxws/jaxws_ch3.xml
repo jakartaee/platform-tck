@@ -67,7 +67,7 @@ Conformance (Class mapping): An implementation MUST support the mapping of jakar
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3044</id>
                     <description>
-                        Conformance (javax.xml.ws.soap.Addressing): A Java class that is annotated with the javax.xml.ws.soap.Addressing annotation with the enabled element set to true, MUST result in the addition of a wsam:Addressing extensibility element to the  wsdl:binding element and it MUST NOT have the wsdl:required=true attribute. 
+                        Conformance (jakarta.xml.ws.soap.Addressing): A Java class that is annotated with the jakarta.xml.ws.soap.Addressing annotation with the enabled element set to true, MUST result in the addition of a wsam:Addressing extensibility element to the  wsdl:binding element and it MUST NOT have the wsdl:required=true attribute. 
                     </description>
                     <location chapter="3" section="3"/>
                 </assertion>
@@ -75,7 +75,7 @@ Conformance (Class mapping): An implementation MUST support the mapping of jakar
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3045</id>
                     <description>
-                        Conformance (javax.xml.ws.soap.Addressing): If the required element of the Addressing annotation has a value of true, then the wsam:Addressing extensibility element MUST contain the wsdl:required=true attribute. 
+                        Conformance (jakarta.xml.ws.soap.Addressing): If the required element of the Addressing annotation has a value of true, then the wsam:Addressing extensibility element MUST contain the wsdl:required=true attribute. 
                     </description>
                     <location chapter="3" section="3"/>
                 </assertion>
@@ -83,7 +83,7 @@ Conformance (Class mapping): An implementation MUST support the mapping of jakar
                            status="removed" testable="false">
                     <id>JAXWS:SPEC:3046</id>
                     <description>
-                        Conformance (javax.xml.ws.soap.Addressing): If SEI is also annotated with a BindingType.value is not compatible with this feature an error MUST be given.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): If SEI is also annotated with a BindingType.value is not compatible with this feature an error MUST be given.  
                     </description>
                     <location chapter="3" section="3"/>
                 </assertion>
@@ -91,7 +91,7 @@ Conformance (Class mapping): An implementation MUST support the mapping of jakar
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3047</id>
                     <description>
-                        Conformance (javax.xml.ws.soap.Addressing): The JAX-WS runtime MUST also use Addressing headers.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): The JAX-WS runtime MUST also use Addressing headers.  
                     </description>
                     <location chapter="3" section="3"/>
                 </assertion>
@@ -99,7 +99,7 @@ Conformance (Class mapping): An implementation MUST support the mapping of jakar
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3048</id>
                     <description>
-                        Conformance (javax.xml.ws.soap.Addressing): If the enabled element is set to false, then wsam:Addressing element MUST NOT be generated and the JAX-WS runtime MUST NOT use Addressing headers.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): If the enabled element is set to false, then wsam:Addressing element MUST NOT be generated and the JAX-WS runtime MUST NOT use Addressing headers.  
                     </description>
                     <location chapter="3" section="3"/>
                 </assertion>
@@ -155,7 +155,7 @@ Methods are either one-way or two-way: one way methods have an input but produce
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3049</id>
                     <description>
-                        Conformance (javax.xml.ws.Action): A Java method annotated with the javax.xml.ws.Action.input annotation element MUST result in the addition of a wsam:Action extensibility element to the wsdl:input element with the wsam:Action.value equal to javax.xml.ws.Action.input. 
+                        Conformance (jakarta.xml.ws.Action): A Java method annotated with the jakarta.xml.ws.Action.input annotation element MUST result in the addition of a wsam:Action extensibility element to the wsdl:input element with the wsam:Action.value equal to jakarta.xml.ws.Action.input. 
                     </description>
                     <location chapter="3" section="5"/>
                 </assertion>
@@ -163,7 +163,7 @@ Methods are either one-way or two-way: one way methods have an input but produce
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3050</id>
                     <description>
-                        Conformance (javax.xml.ws.Action): A Java method annotated with the javax.xml.ws.Action.output annotation element MUST result in the addition of a  wsam:Action extensibility element on the wsdl:output element with the wsam:Action.value equal to javax.xml.ws.Action.output. 
+                        Conformance (jakarta.xml.ws.Action): A Java method annotated with the jakarta.xml.ws.Action.output annotation element MUST result in the addition of a  wsam:Action extensibility element on the wsdl:output element with the wsam:Action.value equal to jakarta.xml.ws.Action.output. 
                     </description>
                     <location chapter="3" section="5"/>
                 </assertion>
@@ -171,7 +171,7 @@ Methods are either one-way or two-way: one way methods have an input but produce
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:3051</id>
                     <description>
-                        Conformance (javax.xml.ws.FaultAction) A Java method annotated with the javax.xml.ws.FaultAction annotation element MUST result in the addition of a wsam:Action extensibility element on the wsdl:fault element that corresponds to the Exception specified by javax.xml.ws.FaultAction.className with the wsam:Action.value equal to javax.xml.ws.FaultAction.value.
+                        Conformance (jakarta.xml.ws.FaultAction) A Java method annotated with the jakarta.xml.ws.FaultAction annotation element MUST result in the addition of a wsam:Action extensibility element on the wsdl:fault element that corresponds to the Exception specified by jakarta.xml.ws.FaultAction.className with the wsam:Action.value equal to jakarta.xml.ws.FaultAction.value.
                     </description>
                     <location chapter="3" section="5"/>
                 </assertion>     
@@ -252,14 +252,14 @@ The jakarta.jws.SOAPBinding annotation MAY be used to specify at the type level 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "removed" testable = "true">
 			<id>JAXWS:SPEC:3023</id>
 			<description>
-Conformance (Wrapper element names): The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.5 and 7.6) MAY be used to specify the localname of the elements generated for the wrapper beans.
+Conformance (Wrapper element names): The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.5 and 7.6) MAY be used to specify the localname of the elements generated for the wrapper beans.
 			</description>
 			<location chapter = "3" section = "6.2.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:3024</id>
 			<description>
-Conformance (Wrapper element names): The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to specify the qualified name of the elements generated for the wrapper beans.
+Conformance (Wrapper element names): The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to specify the qualified name of the elements generated for the wrapper beans.
 			</description>
 			<location chapter = "3" section = "6.2.1"/>
 		</assertion>
@@ -294,7 +294,7 @@ This style is identified by a jakarta.jws.SOAPBinding annotation with the follow
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:3029</id>
-			<description>Conformance Requirement (Exception naming): In the absence of customizations, the name of the global element declaration for a mapped exception MUST be the name of the Java exception. The javax.xml.ws.WebFault annotation MAY be used to customize the local name and namespace name of the element.</description>
+			<description>Conformance Requirement (Exception naming): In the absence of customizations, the name of the global element declaration for a mapped exception MUST be the name of the Java exception. The jakarta.xml.ws.WebFault annotation MAY be used to customize the local name and namespace name of the element.</description>
 			<location chapter = "3" section = "7"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -409,9 +409,9 @@ JAXB doesn't define any namespace by default to types and elements. In the web s
 Application's programming model doesn't use these bean classes, so the applications need not package these classes. JAX-WS implementations may generate these classes dynamically as specified in this section.
     * Conformance (Bundling wrapper beans): A JAX-WS implementation SHOULD not require an application to package request and response bean classes. However, when the bean classes are packaged, they MUST be used.
 
-The name of wsdl:part for the wrapper must be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.  The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to customize the name of the wsdl:part for the wrapper part.
+The name of wsdl:part for the wrapper must be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.  The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to customize the name of the wsdl:part for the wrapper part.
     * Conformance (Default Wrapper wsdl:part names): In the absence of customizations, the name of the wsdl:part for the wrapper MUST be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.
-    * Conformance (Customizing Wrapper wsdl:part names): Non-default partName values of the javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations, if specified on SEI method, MUST be used as wsdl:part name for input and output messages respectively in the generated WSDL.
+    * Conformance (Customizing Wrapper wsdl:part names): Non-default partName values of the jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations, if specified on SEI method, MUST be used as wsdl:part name for input and output messages respectively in the generated WSDL.
 
 If a SEI's method parameter or return type is annotated with @XmlElement, that annotation is used for the wrapper bean properties. This can be used to map corresponding XML schema element declaration's attributes like minOccurs, maxOccurs, and nillable etc. It is an error to specify @XmlElement with a parameter or return type that is mapped to header part. If both @XmlElement and @WebParam/@WebResult are present, then it is an error to specify @XmlElement's name, and namespace elements different from @WebParam/@WebResult's name and targetNamespace elements respectively.
     * Conformance (Wrapper property): If a SEI's method parameter or return type is annotated with @XmlElement, that annotation MUST be used on the wrapper bean property.
@@ -423,7 +423,7 @@ If a SEI's method parameter or return type is annotated with @XmlElement, that a
 			<description>Service Specific Exception.
     * Conformance (Exception naming): In the absence of customizations, the name of the wsdl:message element MUST be the name of the Java exception.
 
-The javax.xml.ws.WebFault annotation may be used to customize the name of the wsdl:message element and also to resolve any conflicts.
+The jakarta.xml.ws.WebFault annotation may be used to customize the name of the wsdl:message element and also to resolve any conflicts.
 
     * Conformance (Exception naming): If an exception has @WebFault, then messageName MUST be the name of the corresponding wsdl:message element.
 

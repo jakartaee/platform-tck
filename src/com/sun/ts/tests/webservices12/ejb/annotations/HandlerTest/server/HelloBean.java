@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server;
 
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;

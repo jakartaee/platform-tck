@@ -29,7 +29,7 @@ import java.net.*;
 import java.rmi.*;
 
 import jakarta.ejb.EJB;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 
 import java.util.*;

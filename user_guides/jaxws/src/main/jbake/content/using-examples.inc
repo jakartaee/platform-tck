@@ -72,7 +72,7 @@ following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/javax_xml_ws/Dispatch 
+cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch 
 <TS_HOME>/tools/ant/bin/ant -Dkeywords=forward runclient
 ----
 

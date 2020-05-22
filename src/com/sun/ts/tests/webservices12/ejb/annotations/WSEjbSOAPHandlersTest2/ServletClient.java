@@ -25,7 +25,7 @@ import java.sql.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.util.*;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import jakarta.jws.*;
 
 public class ServletClient extends HttpServlet {

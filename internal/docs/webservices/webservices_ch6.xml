@@ -125,7 +125,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6013</id>
 			<description>
-                   A Web Services for Java EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and javax.xml.ws.handler.soap package.
+                   A Web Services for Java EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and jakarta.xml.ws.handler.soap package.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -232,7 +232,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6021</id>
 			<description>
-                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the jakarta.jws.WebService or javax.xml.ws.WebServiceProvider annotation)
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the jakarta.jws.WebService or jakarta.xml.ws.WebServiceProvider annotation)
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -240,7 +240,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6022</id>
 			<description>
-                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the javax.xml.ws.WebServiceRef annotation).
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the jakarta.xml.ws.WebServiceRef annotation).
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -368,7 +368,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6038</id>
 			<description>
-                  With JAX-WS, only a Handler implementation that implements the javax.xml.ws.handler.soap.SOAPHandler interface must implement the getHeaders() method. The headers that a Handler declares it will process (i.e. those returned by the Handler.getHeaders() method) must be defined in the WSDL definition of the service.   
+                  With JAX-WS, only a Handler implementation that implements the jakarta.xml.ws.handler.soap.SOAPHandler interface must implement the getHeaders() method. The headers that a Handler declares it will process (i.e. those returned by the Handler.getHeaders() method) must be defined in the WSDL definition of the service.   
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>

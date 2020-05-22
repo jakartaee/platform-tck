@@ -184,7 +184,7 @@ public class SimulateRuntime {
 
   private static MessageInfo getSOAPMessageInfo() {
     Map map = new HashMap();
-    map.put("javax.xml.ws.wsdl.service", "http://hostname.port/someuri");
+    map.put("jakarta.xml.ws.wsdl.service", "http://hostname.port/someuri");
 
     // Create a dummy MessageInfo object with some dummy uri
     return new TSSOAPMessageInfo(map);

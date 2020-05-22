@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -111,12 +111,12 @@ Conformance (Incompatible handlers): An implementation MUST throw WebServiceExce
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:10023</id>
-			<description>Conformance (SOAP bindings with MTOM disabled): The bindings corresponding to the following IDs: javax.xml.ws.soap.SOAPBinding.SOAP11HTTP BINDING and javax.xml.ws.soap.SOAPBinding.SOAP12HTTP BINDING MUST have MTOM disabled by default.</description>
+			<description>Conformance (SOAP bindings with MTOM disabled): The bindings corresponding to the following IDs: jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP BINDING and jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP BINDING MUST have MTOM disabled by default.</description>
 			<location chapter = "10" section = "4.1.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:10024</id>
-			<description>Conformance (SOAP bindings with MTOM enabled): The bindings corresponding to the following IDs: javax.xml.ws.soap.SOAPBinding.SOAP11HTTP MTOM BINDING and javax.xml.ws.soap.SOAPBinding.SOAP12HTTP MTOM BINDING MUST have MTOM enabled by default.</description>
+			<description>Conformance (SOAP bindings with MTOM enabled): The bindings corresponding to the following IDs: jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP MTOM BINDING and jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP MTOM BINDING MUST have MTOM enabled by default.</description>
 			<location chapter = "10" section = "4.1.1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -137,7 +137,7 @@ Conformance (MTOM on Other SOAP Bindings): Other bindings that extend SOAPBindin
                            status="active" testable="true">
                     <id>JAXWS:SPEC:10025</id>
                     <description>
-                        Addressing section:  If the javax.xml.ws.soap.AddressingFeature is enabled, implementations are required to follow WS-Addressing[32,33,34] protocols.
+                        Addressing section:  If the jakarta.xml.ws.soap.AddressingFeature is enabled, implementations are required to follow WS-Addressing[32,33,34] protocols.
                     </description>
                     <location chapter="10" section="4.1.2"/>
                 </assertion>
@@ -157,7 +157,7 @@ Conformance (MTOM on Other SOAP Bindings): Other bindings that extend SOAPBindin
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:10018</id>
-			<description>Conformance Requirement (Authentication properties): A client side implementation MUST support use of the the standard properties javax.xml.ws.security.auth.usernameand javax.xml.ws.security.auth.password to configure HTTP basic authentication.</description>
+			<description>Conformance Requirement (Authentication properties): A client side implementation MUST support use of the the standard properties jakarta.xml.ws.security.auth.usernameand jakarta.xml.ws.security.auth.password to configure HTTP basic authentication.</description>
 			<location chapter = "10" section = "4.1.3"/>
 		</assertion>
 

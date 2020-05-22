@@ -32,7 +32,7 @@ import java.security.AccessController;
 import java.security.AccessControlException;
 import java.security.PrivilegedExceptionAction;
 import java.security.Permission;
-import javax.xml.ws.WebServicePermission;
+import jakarta.xml.ws.WebServicePermission;
 
 import java.io.*;
 import java.util.PropertyPermission;

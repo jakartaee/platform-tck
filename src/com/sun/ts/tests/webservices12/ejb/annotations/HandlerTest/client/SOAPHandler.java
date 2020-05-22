@@ -24,10 +24,10 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import jakarta.xml.soap.*;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.namespace.QName;
 
 import java.util.HashSet;
@@ -39,7 +39,7 @@ import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import com.sun.ts.tests.jaxws.common.Constants;
 
 public class SOAPHandler
-    implements javax.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
+    implements jakarta.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
 
   private static final String HANDLER_NAME = "ClientSOAPHandler";
 

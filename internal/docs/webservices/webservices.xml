@@ -132,7 +132,7 @@
 			cases in a JavaEE environment. The following JAX-RPC properties are not
 			recommended for use in a managed context defined by this
 			specification: javax.xml.rpc.security.auth.username,
-			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: javax.xml.ws.security.auth.username, javax.xml.ws.security.auth.password</description>
+			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: jakarta.xml.ws.security.auth.username, jakarta.xml.ws.security.auth.password</description>
 <location chapter="4" section="2.5" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -264,9 +264,9 @@ javax.xml.rpc.handler.MessageContext interface by means of the
 SessionContext.getMessageContext method. Refer to section 4.3.6 of the Enterprise JavaBeans
 specification (EJB Core Contracts and Requirements)
 A stateless or singleton session bean that implements a web service endpoint using the JAX-WS APIs should use the
-javax.xml.ws.WebServiceContext, which can be injected by use of the @Resource annotation (see section 2.2 of JSR-250 Common Annotations for Java Platform specification), to access message context and
+jakarta.xml.ws.WebServiceContext, which can be injected by use of the @Resource annotation (see section 2.2 of JSR-250 Common Annotations for Java Platform specification), to access message context and
 security information relative to the request being served. The WebServiceContext interface allows the
-stateless or singleton session bean instance to get access to the javax.xml.ws.handler.MessageContext. Usage
+stateless or singleton session bean instance to get access to the jakarta.xml.ws.handler.MessageContext. Usage
 of a WebServiceContext must meet the requirements defined by the JAX-WS specification section 5.3.
 </description>
 <location chapter="5" section="3.2.3.2" />
@@ -1055,7 +1055,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 <id>WS4EE:SPEC:156</id>
 <description> A Web Services for JavaEE
 			provider is required to provide all interfaces and classes of the
-			javax.xml.rpc.handler package and javax.xml.ws.handler package.</description>
+			javax.xml.rpc.handler package and jakarta.xml.ws.handler package.</description>
 <location chapter="6" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

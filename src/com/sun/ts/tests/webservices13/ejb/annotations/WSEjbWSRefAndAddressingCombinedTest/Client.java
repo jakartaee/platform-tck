@@ -23,8 +23,8 @@ import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
 
 import jakarta.ejb.EJB;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.net.*;

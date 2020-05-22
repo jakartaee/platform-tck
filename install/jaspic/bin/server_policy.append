@@ -41,7 +41,7 @@ grant codebase "file:${com.sun.aas.installRoot}/domains/domain1/applications/-" 
      permission javax.security.auth.PrivateCredentialPermission 
                 "com.sun.enterprise.security.auth.login.common.PasswordCredential * \"*\"", "read";
      permission org.osgi.framework.AdminPermission "*", "*";
-     permission javax.xml.ws.WebServicePermission  "publishEndpoint";
+     permission jakarta.xml.ws.WebServicePermission  "publishEndpoint";
      permission java.security.SecurityPermission   "getPolicy";
      permission java.security.SecurityPermission   "setPolicy";
      permission java.security.SecurityPermission   "getProperty.authconfigprovider.factory";
