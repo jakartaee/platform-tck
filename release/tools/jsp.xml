@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
 	
-    <property name="deliverable.version" value="2.3"/>
-    <property name="deliverable.tck.version" value="2.3.0"/>
+    <property name="deliverable.version" value="3.0"/>
+    <property name="deliverable.tck.version" value="3.0.0"/>
 
     
     <target name="init">
