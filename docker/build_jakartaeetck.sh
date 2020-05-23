@@ -70,17 +70,21 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/glassfish5/glassfish/modules/endorsed \
+export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/glassfish6/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
-sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/glassfish5/glassfish#g" \
-    -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/glassfish5/glassfish#g" \
+sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/glassfish6/glassfish#g" \
+    -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/glassfish6/glassfish#g" \
     -e "s#^report.dir=.*#report.dir=$BASEDIR/JTReport#g" \
     -e "s#^work.dir=.*#work.dir=$BASEDIR/JTWork#g" $BASEDIR/install/jakartaee/bin/ts.jte > $BASEDIR/install/jakartaee/bin/ts.jte.new
 mv $BASEDIR/install/jakartaee/bin/ts.jte.new $BASEDIR/install/jakartaee/bin/ts.jte
+
+#tools.jar from jdk8 has old apis
+sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/jakartaee/bin/ts.jte
+
 echo "Contents of modified TS.JTE file"
 cat $BASEDIR/install/jakartaee/bin/ts.jte
 
@@ -92,20 +96,16 @@ if [ -z "$GF_BUNDLE_URL" ]; then
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -q -o latest-glassfish.zip
-ls -l $GF_HOME/glassfish5/glassfish/
+ls -l $GF_HOME/glassfish6/glassfish/
 
-# temporary fix to get build passing until we have glassfish with new api jars
+#temporary fix to copy deployment jars - to be removed later
 wget --progress=bar:force --no-cache \
-     https://repo1.maven.org/maven2/jakarta/platform/jakarta.jakartaee-api/9.0.0-RC1/jakarta.jakartaee-api-9.0.0-RC1.jar \
-     -O $GF_HOME/glassfish5/glassfish/modules/jakartaee-api.jar
+      https://repo1.maven.org/maven2/javax/enterprise/deploy/javax.enterprise.deploy-api/1.7/javax.enterprise.deploy-api-1.7.jar \
+      -O $GF_HOME/glassfish6/glassfish/modules/jakarta.enterprise.deploy-api.jar
 wget --progress=bar:force --no-cache \
-     https://repo1.maven.org/maven2/jakarta/xml/ws/jakarta.xml.ws-api/3.0.0-RC1/jakarta.xml.ws-api-3.0.0-RC1.jar \
-     -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.ws-api.jar
-wget --progress=bar:force --no-cache \
-     https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/3.0.0-RC2/jakarta.xml.bind-api-3.0.0-RC2.jar \
-      -O $GF_HOME/glassfish5/glassfish/modules/jakarta.xml.bind-api.jar
-# temporary fix to get jaxws build passing until we have glassfish with new api jars
-. ${WORKSPACE}/docker/build_jaxws-inc.sh
+      https://repo1.maven.org/maven2/org/glassfish/main/deployment/deployment-client/5.1.0-RC2/deployment-client-5.1.0-RC2.jar \
+      -O $GF_HOME/glassfish6/glassfish/modules/deployment-client.jar
+#temporary fix to copy deployment jars - to be removed later
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
@@ -120,7 +120,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish6/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"
