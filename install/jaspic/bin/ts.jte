@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -287,9 +287,9 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jakarta.enterprise.deploy-api.jar:\
                ${jaspic.home}/modules/webservices-osgi.jar:\
                ${jaspic.home}/modules/jaxb-osgi.jar:\
-               ${jaspic.home}/modules/javax.jms-api.jar:\
-               ${jaspic.home}/modules/endorsed/jakarta.annotation-api.jar:\
-               ${jaspic.home}/modules/endorsed/webservices-api-osgi.jar:\
+               ${jaspic.home}/modules/jakarta.jms-api.jar:\
+               ${jaspic.home}/modules/jakarta.annotation-api.jar:\
+               ${jaspic.home}/modules/webservices-api-osgi.jar:\
                ${jaspic.home}/modules/deployment-client.jar:\
 	       ${jaspic.home}/modules/jakartaee-api.jar
 

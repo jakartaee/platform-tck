@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2019 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -142,7 +142,7 @@ ts.classpath=${local.classes}${pathsep}${ts.harness.classpath}
 
 ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/http.jar
 
-servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar
+servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.annotation-api.jar
 
 ########################################################################
 # @endorsedlib.dir - Location to be used for java.endorsed.dirs as some

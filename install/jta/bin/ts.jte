@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -49,7 +49,7 @@
 #     webServerPort=8001
 #     webServerHome=/sun/glassfish5/glassfish
 #     web.deployment.handler=glassfish.xml
-#     jta.classes=${webServerHome}/modules/javax.transaction.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar
+#     jta.classes=${webServerHome}/modules/jakarta.transaction.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar
 #     
 #########################################################################
 webServerHost=localhost
@@ -72,7 +72,7 @@ jta.classes=${jtaJarClasspath}${pathsep}\
             ${webServerHome}/modules/glassfish-naming.jar${pathsep}\
             ${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}\
             ${webServerHome}/modules/bean-validator.jar${pathsep}\
-            ${webServerHome}/modules/cdi-api.jar
+            ${webServerHome}/modules/jakarta.enterprise.cdi-api.jar
 
 tck.classes=${ts.home}/lib/tsharness.jar${pathsep}\
             ${ts.home}/lib/jtatck.jar${pathsep}\

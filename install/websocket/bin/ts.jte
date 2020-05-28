@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -204,7 +204,7 @@ ClientThreads=2
 # @ts.classpath         -- Classes used to build the  Web Socket TCK tests
 # @ts.run.classpath     -- Classpath required to run Web Socket TCK tests
 ##########################################################################
-websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/cdi-api.jar
+websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar
 websocket.classes=${web.home}/modules/tyrus-websocket-core.jar${pathsep}${web.home}/modules/tyrus-client.jar${pathsep}${web.home}/modules/tyrus-core.jar${pathsep}${web.home}/modules/tyrus-container-grizzly.jar${pathsep}${web.home}/modules/glassfish-grizzly-extra-all.jar${pathsep}${web.home}/modules/nucleus-grizzly-all.jar${pathsep}${web.home}/modules/tyrus-server.jar${pathsep}${web.home}/modules/tyrus-container-servlet.jar${pathsep}${web.home}/modules/tyrus-container-grizzly-client.jar${pathsep}${web.home}/modules/tyrus-spi.jar
 
 ts.classpath=${websocket.api}${pathsep}${ts.harness.classpath}
