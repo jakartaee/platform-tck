@@ -21,10 +21,10 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import jakarta.jws.WebService;
-import javax.xml.ws.BindingType;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.soap.SOAPBinding;
-import javax.xml.ws.soap.MTOM;
+import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.soap.MTOM;
 
 import com.sun.ts.tests.jaxws.common.AttachmentHelper;
 import java.net.URL;

@@ -32,8 +32,8 @@ import java.awt.Image;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.soap.MTOMFeature;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.MTOMFeature;
 import javax.naming.InitialContext;
 
 import javax.xml.transform.stream.StreamSource;

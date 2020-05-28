@@ -25,8 +25,8 @@ import  com.sun.ts.lib.util.*;
 import  com.sun.ts.lib.harness.ServiceEETest;
 import  com.sun.ts.tests.common.vehicle.VehicleClient;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.WebServiceRefs;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.WebServiceRefs;
 import jakarta.jws.HandlerChain;
 
 /**

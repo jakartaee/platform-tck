@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,9 +25,9 @@ import com.sun.ts.tests.jaspic.util.WebServiceUtils;
 import java.net.URL;
 import javax.xml.namespace.QName;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.ProtocolException;
 import java.util.Properties;
 import java.util.Map;
 

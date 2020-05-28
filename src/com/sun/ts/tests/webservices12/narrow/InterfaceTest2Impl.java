@@ -22,7 +22,7 @@ package com.sun.ts.tests.webservices12.narrow;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
 @WebService(portName = "InterfaceTest2Port", serviceName = "InterfaceTestService", targetNamespace = "http://interfacetestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/InterfaceTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.narrow.InterfaceTest2")

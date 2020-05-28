@@ -128,7 +128,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2077</id>
                     <description>
-                        Conformance (javax.xml.ws.Action): A mapped Java method MUST be annotated with a javax.xml.ws.Action annotation if the wsdl:input or wsdl:output elements contain a wsam:Action attribute. 
+                        Conformance (jakarta.xml.ws.Action): A mapped Java method MUST be annotated with a jakarta.xml.ws.Action annotation if the wsdl:input or wsdl:output elements contain a wsam:Action attribute. 
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -136,7 +136,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2078</id>
                     <description>
-                        Conformance (javax.xml.ws.Action):  If the wsdl:input element contains a wsam:Action, the value of this attribute MUST be set to the javax.xml.ws.Action.input element. 
+                        Conformance (jakarta.xml.ws.Action):  If the wsdl:input element contains a wsam:Action, the value of this attribute MUST be set to the jakarta.xml.ws.Action.input element. 
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -144,7 +144,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2079</id>
                     <description>
-                        Conformance (javax.xml.ws.Action): If the wsdl:output element contains a wsam:Action, the value of this attribute MUST be set to the javax.xml.ws.Action.output element.
+                        Conformance (jakarta.xml.ws.Action): If the wsdl:output element contains a wsam:Action, the value of this attribute MUST be set to the jakarta.xml.ws.Action.output element.
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -152,7 +152,7 @@
                            status="active" testable="true">
                     <id>JAXWS:SPEC:2080</id>
                     <description>
-                        Methods generated from wsdl:fault messages that contain a wsam:Action attribute MUST be annotated with javax.xml.ws.FaultAction. See section 7 for more information on this annotation.
+                        Methods generated from wsdl:fault messages that contain a wsam:Action attribute MUST be annotated with jakarta.xml.ws.FaultAction. See section 7 for more information on this annotation.
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -160,7 +160,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2081</id>
                     <description>
-                        Conformance (javax.xml.ws.FaultAction): A mapped Java method MUST be annotated with a javax.xml.ws.FaultAction annotation if the wsdl:fault elements contain a wsam:Action attribute.
+                        Conformance (jakarta.xml.ws.FaultAction): A mapped Java method MUST be annotated with a jakarta.xml.ws.FaultAction annotation if the wsdl:fault elements contain a wsam:Action attribute.
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -168,7 +168,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2082</id>
                     <description>
-                        Conformance (javax.xml.ws.FaultAction):  The javax.xml.ws.FaultAction.value is taken directly from the value of the wsam:Action.  
+                        Conformance (jakarta.xml.ws.FaultAction):  The jakarta.xml.ws.FaultAction.value is taken directly from the value of the wsam:Action.  
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -176,7 +176,7 @@
                            status="removed" testable="true">
                     <id>JAXWS:SPEC:2083</id>
                     <description>
-                        Conformance (javax.xml.ws.FaultAction): The javax.xml.ws.FaultAction.className MUST be the exception class name associated with this wsdl:fault.
+                        Conformance (jakarta.xml.ws.FaultAction): The jakarta.xml.ws.FaultAction.className MUST be the exception class name associated with this wsdl:fault.
                     </description>
                     <location chapter="2" section="3"/>
                 </assertion>
@@ -267,12 +267,12 @@ A WSDL operation qualifies for wrapper style mapping only if all the criteria as
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2072</id>
-			<description>Conformance (Using javax.xml.ws.RequestWrapper): If wrapper style is used, generated Java methods MUST be annotated with a javax.xml.ws.RequestWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</description>
+			<description>Conformance (Using jakarta.xml.ws.RequestWrapper): If wrapper style is used, generated Java methods MUST be annotated with a jakarta.xml.ws.RequestWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</description>
 			<location chapter = "2" section = "3.1.2"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2073</id>
-			<description>Conformance (Using javax.xml.ws.ResponseWrapper): If wrapper style is used, generated Java methods MUST be annotated with a javax.xml.ws.ResponseWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</description>
+			<description>Conformance (Using jakarta.xml.ws.ResponseWrapper): If wrapper style is used, generated Java methods MUST be annotated with a jakarta.xml.ws.ResponseWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</description>
 			<location chapter = "2" section = "3.1.2"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -304,7 +304,7 @@ order as the corresponding wrapper children appear in the wrapper.</description>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2031</id>
-			<description>Conformance (Use of Holder ): Implementations MUST map out and in/out method parameters using javax.xml.ws.Holder&lt;T&gt; with the exception of a out part that has been mapped to the method's return type.</description>
+			<description>Conformance (Use of Holder ): Implementations MUST map out and in/out method parameters using jakarta.xml.ws.Holder&lt;T&gt; with the exception of a out part that has been mapped to the method's return type.</description>
 			<location chapter = "2" section = "3.3"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -368,13 +368,13 @@ Conformance (Asychronous fault cause): An ExecutionException that is thrown by t
                            status="active" testable="true">
                     <id>JAXWS:SPEC:2086</id>
                     <description>
-                        Conformance (javax.xml.ws.wsaddressing.W3CEndpointReference): Any schema element of the type wsa:EndpointReference MUST be mapped to javax.xml.ws.wsaddressing.W3CEndpointReference.
+                        Conformance (jakarta.xml.ws.wsaddressing.W3CEndpointReference): Any schema element of the type wsa:EndpointReference MUST be mapped to jakarta.xml.ws.wsaddressing.W3CEndpointReference.
                     </description>
                     <location chapter="2" section="4.1"/>
                 </assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2074</id>
-			<description>Conformance (javax.xml.ws.WebFault required): A mapped exception MUST be annotated with a javax.xml.ws.WebFault annotation.</description>
+			<description>Conformance (jakarta.xml.ws.WebFault required): A mapped exception MUST be annotated with a jakarta.xml.ws.WebFault annotation.</description>
 			<location chapter = "2" section = "5"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -445,7 +445,7 @@ Conformance (Asychronous fault cause): An ExecutionException that is thrown by t
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2054</id>
 			<description>
-Conformance (Service superclass required): A generated service class MUST extend the javax.xml.ws.Service class.
+Conformance (Service superclass required): A generated service class MUST extend the jakarta.xml.ws.Service class.
 			</description>
 			<location chapter = "2" section = "7"/>
 		</assertion>
@@ -463,26 +463,26 @@ Conformance (Service class naming): In the absence of customization, the name of
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2063</id>
-			<description>Conformance (javax.xml.ws.WebServiceClient required): A generated service class MUST be annotated with a javax.xml.ws.WebServiceClient annotation. </description>
+			<description>Conformance (jakarta.xml.ws.WebServiceClient required): A generated service class MUST be annotated with a jakarta.xml.ws.WebServiceClient annotation. </description>
 			<location chapter = "2" section = "7"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2070</id>
 			<description>
-Conformance: A generated service class MUST have a default (i.e. zero-argument) public constructor. This constructor MUST call the protected constructor declared in javax.xml.ws.Service, passing as arguments the WSDL location and the service name. The values of the actual arguments for this call MUST be equal (in the java.lang.Object.equals sense) to the values specified in the mandatory WebServiceClient annotation on the generated service class itself.
+Conformance: A generated service class MUST have a default (i.e. zero-argument) public constructor. This constructor MUST call the protected constructor declared in jakarta.xml.ws.Service, passing as arguments the WSDL location and the service name. The values of the actual arguments for this call MUST be equal (in the java.lang.Object.equals sense) to the values specified in the mandatory WebServiceClient annotation on the generated service class itself.
 			</description>
 			<location chapter = "2" section = "7"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2071</id>
 			<description>
-Conformance: The implementation class MUST have a public constructor that takes two arguments, the wsdl location (a java.net.URL) and the service name (a javax.xml.namespace.QName). This constructor MUST call the protected constructor in javax.xml.ws.Service passing as arguments the WSDL location and the service name values with which it was invoked.
+Conformance: The implementation class MUST have a public constructor that takes two arguments, the wsdl location (a java.net.URL) and the service name (a javax.xml.namespace.QName). This constructor MUST call the protected constructor in jakarta.xml.ws.Service passing as arguments the WSDL location and the service name values with which it was invoked.
 			</description>
 			<location chapter = "2" section = "7"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2056</id>
-			<description>Conformance (Failed getPortName Method): A generated getPortName method MUST throw javax.xml.ws.WebServiceException on failure.</description>
+			<description>Conformance (Failed getPortName Method): A generated getPortName method MUST throw jakarta.xml.ws.WebServiceException on failure.</description>
 			<location chapter = "2" section = "7"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -492,14 +492,14 @@ Conformance: The implementation class MUST have a public constructor that takes 
 		</assertion>	
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2065</id>
-			<description>Conformance (javax.xml.ws.WebEndpoint required): The getPortName methods of generated service interface MUST be annotated with a javax.xml.ws.WebEndpoint annotation.</description>
+			<description>Conformance (jakarta.xml.ws.WebEndpoint required): The getPortName methods of generated service interface MUST be annotated with a jakarta.xml.ws.WebEndpoint annotation.</description>
 			<location chapter = "2" section = "7"/>
 		</assertion>	
                 <assertion required="true" impl-spec="false" defined-by="technology"
                            status="active" testable="true">
                     <id>JAXWS:SPEC:2087</id>
                     <description>
-                        getPortName(WebServiceFeatures... features)  One required method that takes a variable-length array of javax.xml.ws.WebServiceFeatures and returns a proxy that implements the mapped service endpoint interface. The method generated delegates to the Service.getPort(QName portName, Class&gt;T&lt; SEI, WebServiceFeatures... features) method passing it the port name, the SEI and the features. The value of the port name MUST be equal to the value specified in the mandatory WebEndpoint annotation on the method itself.
+                        getPortName(WebServiceFeatures... features)  One required method that takes a variable-length array of jakarta.xml.ws.WebServiceFeatures and returns a proxy that implements the mapped service endpoint interface. The method generated delegates to the Service.getPort(QName portName, Class&gt;T&lt; SEI, WebServiceFeatures... features) method passing it the port name, the SEI and the features. The value of the port name MUST be equal to the value specified in the mandatory WebEndpoint annotation on the method itself.
                     </description>
                     <location chapter="2" section="7"/>
                 </assertion>
@@ -520,7 +520,7 @@ Conformance: The implementation class MUST have a public constructor that takes 
 		</assertion>		
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:2068</id>
-			<description>If a name collision occurs between a mapped Java method and a method in javax.xml.ws.Binding Provider (an interface that proxies are required to implement, see section 4.3), the prefix is added to the mapped method.</description>
+			<description>If a name collision occurs between a mapped Java method and a method in jakarta.xml.ws.Binding Provider (an interface that proxies are required to implement, see section 4.3), the prefix is added to the mapped method.</description>
 			<location chapter = "2" section = "8.1"/>
 		</assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology"

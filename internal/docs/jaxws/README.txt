@@ -22,7 +22,7 @@ and set up the following software components:
 
    mkdir /ri
    cd /ri
-   unzip <javax.xml.ws-ri-2.3.zip>
+   unzip <jakarta.xml.ws-ri-2.3.zip>
 
 3. Create endorsed dir to put JAX-WS 2.3 API (and JAX-B API) there.
 

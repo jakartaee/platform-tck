@@ -196,19 +196,19 @@ public class TSClientAuthModule
 
     commonCallbacks.verify();
 
-    // Log the value for key javax.xml.ws.wsdl.service in messageInfoMap
+    // Log the value for key jakarta.xml.ws.wsdl.service in messageInfoMap
     Map messageInfoMap = messageInfo.getMap();
 
-    QName qName = (QName) messageInfoMap.get("javax.xml.ws.wsdl.service");
+    QName qName = (QName) messageInfoMap.get("jakarta.xml.ws.wsdl.service");
 
     if (qName != null) {
       String qNameToString = qName.toString();
 
       msg = "TSClientAuthModule.secureRequest messageInfo :"
-          + "javax.xml.ws.wsdl.service=" + qNameToString;
+          + "jakarta.xml.ws.wsdl.service=" + qNameToString;
     } else {
       msg = "TSClientAuthModule.secureRequest messageInfo :"
-          + "** ERROR ** No value found for key javax.xml.ws.wsdl.service in MessageInfoMap"
+          + "** ERROR ** No value found for key jakarta.xml.ws.wsdl.service in MessageInfoMap"
           + " : Expected a QName";
 
     }
@@ -295,19 +295,19 @@ public class TSClientAuthModule
     logMsg(msg);
     logMessageTypes(messageInfo, "validateResponse");
 
-    // Log the value for key javax.xml.ws.wsdl.service in messageInfoMap
+    // Log the value for key jakarta.xml.ws.wsdl.service in messageInfoMap
     Map messageInfoMap = messageInfo.getMap();
 
-    QName qName = (QName) messageInfoMap.get("javax.xml.ws.wsdl.service");
+    QName qName = (QName) messageInfoMap.get("jakarta.xml.ws.wsdl.service");
 
     if (qName != null) {
       String qNameToString = qName.toString();
 
       msg = "TSClientAuthModule.validateResponse messageInfo :"
-          + "javax.xml.ws.wsdl.service=" + qNameToString;
+          + "jakarta.xml.ws.wsdl.service=" + qNameToString;
     } else {
       msg = "TSClientAuthModule.validateResponse messageInfo :"
-          + "** ERROR ** No value found for key javax.xml.ws.wsdl.service in MessageInfoMap"
+          + "** ERROR ** No value found for key jakarta.xml.ws.wsdl.service in MessageInfoMap"
           + " : Expected a QName ";
 
     }

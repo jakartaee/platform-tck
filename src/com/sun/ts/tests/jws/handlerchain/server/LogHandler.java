@@ -26,8 +26,8 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
 
 import javax.xml.namespace.QName;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import jakarta.xml.soap.SOAPMessage;
 import java.util.*;
 

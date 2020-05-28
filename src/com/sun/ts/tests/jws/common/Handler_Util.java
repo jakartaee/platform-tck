@@ -24,12 +24,12 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.SOAPMessage;
 import javax.xml.transform.Source;
-import javax.xml.ws.Binding;
-import javax.xml.ws.LogicalMessage;
-import javax.xml.ws.handler.Handler;
-import javax.xml.ws.handler.LogicalMessageContext;
-import javax.xml.ws.handler.MessageContext;
-import javax.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.Binding;
+import jakarta.xml.ws.LogicalMessage;
+import jakarta.xml.ws.handler.Handler;
+import jakarta.xml.ws.handler.LogicalMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

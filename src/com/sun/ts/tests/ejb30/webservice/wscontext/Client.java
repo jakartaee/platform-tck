@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,10 +21,10 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.javatest.Status;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
 import java.lang.Exception;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.util.Properties;
 import java.util.Map;
 import java.net.URL;
@@ -92,7 +92,7 @@ public class Client extends EETest {
    * webservice should have the following.
    *
    * 1) The getMessageContext() on WebServiceContext should return an instance
-   * of JAX-WS Message context. i.e. javax.xml.ws.handler.MessageContext
+   * of JAX-WS Message context. i.e. jakarta.xml.ws.handler.MessageContext
    *
    * 2) The getUserPrincipal() Returns the Principal that identifies the sender
    * of the request.

@@ -29,7 +29,7 @@ import com.sun.ts.tests.jws.common.Employee;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebParam2WebServiceService.wsdl")
 public class webParam2WebService {

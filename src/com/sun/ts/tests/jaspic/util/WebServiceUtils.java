@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@ public class WebServiceUtils {
       QName portName, Class seiClass) throws Exception {
     TestUtil.logMsg("getPort(URL, QName, Class, QName, Class)");
 
-    javax.xml.ws.Service svc = (javax.xml.ws.Service) getService(wsdlurl,
+    jakarta.xml.ws.Service svc = (jakarta.xml.ws.Service) getService(wsdlurl,
         siName, siClass);
     TestUtil.logMsg("Get stub/proxy for seiClass -> " + seiClass.getName()
         + ", port ->" + portName);
@@ -45,16 +45,16 @@ public class WebServiceUtils {
     return stub;
   }
 
-  public static javax.xml.ws.Service getService(URL wsdlurl, QName siName,
+  public static jakarta.xml.ws.Service getService(URL wsdlurl, QName siName,
       Class siClass) throws Exception {
     TestUtil.logMsg("getService(URL, QName, Class)");
-    javax.xml.ws.Service service = null;
+    jakarta.xml.ws.Service service = null;
     if (wsdlurl != null)
       TestUtil.logMsg("URL=" + wsdlurl.toString());
     TestUtil.logMsg("siName=" + siName);
     TestUtil.logMsg("siClass=" + siClass.getName());
     Constructor ctr = siClass.getConstructor(URL.class, QName.class);
-    service = (javax.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
+    service = (jakarta.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
     if (service == null)
       TestUtil
           .logErr("FATAL: getService(URL, QName, Class) returned service=null");

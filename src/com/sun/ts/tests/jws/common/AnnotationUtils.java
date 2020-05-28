@@ -30,9 +30,9 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebFault;
-import javax.xml.ws.WebServiceClient;
+import jakarta.xml.ws.WebEndpoint;
+import jakarta.xml.ws.WebFault;
+import jakarta.xml.ws.WebServiceClient;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
@@ -488,9 +488,9 @@ public class AnnotationUtils {
   public static boolean verifyWebFaultAnnotation(Class c, String name,
       String targetNamespace, String faultBean) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.xml.ws.WebFault.class)) {
-      WebFault wf = (javax.xml.ws.WebFault) c
-          .getAnnotation(javax.xml.ws.WebFault.class);
+    if (c.isAnnotationPresent(jakarta.xml.ws.WebFault.class)) {
+      WebFault wf = (jakarta.xml.ws.WebFault) c
+          .getAnnotation(jakarta.xml.ws.WebFault.class);
       if (wf != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(wf.toString());
@@ -550,9 +550,9 @@ public class AnnotationUtils {
       TestUtil.logErr("Method name not found for -> " + methodName);
       return false;
     }
-    if (method.isAnnotationPresent(javax.xml.ws.RequestWrapper.class)) {
-      javax.xml.ws.RequestWrapper rw = (javax.xml.ws.RequestWrapper) method
-          .getAnnotation(javax.xml.ws.RequestWrapper.class);
+    if (method.isAnnotationPresent(jakarta.xml.ws.RequestWrapper.class)) {
+      jakarta.xml.ws.RequestWrapper rw = (jakarta.xml.ws.RequestWrapper) method
+          .getAnnotation(jakarta.xml.ws.RequestWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(rw.toString());
@@ -612,9 +612,9 @@ public class AnnotationUtils {
       TestUtil.logErr("Method name not found for -> " + methodName);
       return false;
     }
-    if (method.isAnnotationPresent(javax.xml.ws.ResponseWrapper.class)) {
-      javax.xml.ws.ResponseWrapper rw = (javax.xml.ws.ResponseWrapper) method
-          .getAnnotation(javax.xml.ws.ResponseWrapper.class);
+    if (method.isAnnotationPresent(jakarta.xml.ws.ResponseWrapper.class)) {
+      jakarta.xml.ws.ResponseWrapper rw = (jakarta.xml.ws.ResponseWrapper) method
+          .getAnnotation(jakarta.xml.ws.ResponseWrapper.class);
       if (rw != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(rw.toString());
@@ -668,9 +668,9 @@ public class AnnotationUtils {
   public static boolean verifyWebServiceClientAnnotation(Class c, String name,
       String targetNamespace, String wsdlLocation) {
     boolean result = true;
-    if (c.isAnnotationPresent(javax.xml.ws.WebServiceClient.class)) {
-      WebServiceClient wsc = (javax.xml.ws.WebServiceClient) c
-          .getAnnotation(javax.xml.ws.WebServiceClient.class);
+    if (c.isAnnotationPresent(jakarta.xml.ws.WebServiceClient.class)) {
+      WebServiceClient wsc = (jakarta.xml.ws.WebServiceClient) c
+          .getAnnotation(jakarta.xml.ws.WebServiceClient.class);
       if (wsc != null) {
         TestUtil.logTrace("Annotation:");
         TestUtil.logTrace(wsc.toString());
@@ -730,8 +730,8 @@ public class AnnotationUtils {
       return false;
     }
     if (methodName.equals(method.getName())) {
-      if (method.isAnnotationPresent(javax.xml.ws.WebEndpoint.class)) {
-        WebEndpoint wep = method.getAnnotation(javax.xml.ws.WebEndpoint.class);
+      if (method.isAnnotationPresent(jakarta.xml.ws.WebEndpoint.class)) {
+        WebEndpoint wep = method.getAnnotation(jakarta.xml.ws.WebEndpoint.class);
         if (wep != null) {
           TestUtil.logTrace("Annotation:");
           TestUtil.logTrace(wep.toString());

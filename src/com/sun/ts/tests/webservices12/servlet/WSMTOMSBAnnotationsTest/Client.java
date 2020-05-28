@@ -32,8 +32,8 @@ import java.rmi.*;
 import java.util.*;
 
 import java.awt.Image;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.SOAPBinding;
 import javax.xml.namespace.QName;
 import jakarta.xml.soap.*;
 

@@ -121,21 +121,21 @@
 			</chapter>
 			<chapter id = "4" name = "Client APIs">
 				<sections>
-					<section id = "1" name = "javax.xml.ws.ServiceFactory"/>
+					<section id = "1" name = "jakarta.xml.ws.ServiceFactory"/>
 					<section id = "1.1" name = "Configuration"/>
 					<section id = "1.2" name = "Factory Usage"/>
-					<section id = "2" name = "javax.xml.ws.Service"/>
+					<section id = "2" name = "jakarta.xml.ws.Service"/>
 					<section id = "2.1" name = "Handler Registry"/>
 					<section id = "2.2" name = "Security Configuration"/>
 					<section id = "2.3" name = "Executor"/>
-					<section id = "3" name = "javax.xml.ws.BindingProvider"/>
+					<section id = "3" name = "jakarta.xml.ws.BindingProvider"/>
 					<section id = "3.1" name = "Configuration"/>
 					<section id = "3.1.1" name = "Standard Properties"/>
 					<section id = "3.1.2" name = "Additional Properties"/>
 					<section id = "3.2" name = "Asynchronous Operations"/>
 					<section id = "3.3" name = "Proxies"/>
 					<section id = "3.4" name = "Exceptions"/>
-					<section id = "4" name = "javax.xml.ws.Dispatch"/>
+					<section id = "4" name = "jakarta.xml.ws.Dispatch"/>
 					<section id = "4.1" name = "Configuration"/>
 					<section id = "4.2" name = "Operation Invocation"/>
 					<section id = "4.3" name = "Asynchronous Response"/>
@@ -145,11 +145,11 @@
 			</chapter>
 			<chapter id = "5" name = "Service APIs">
 				<sections>
-					<section id = "1" name = "javax.xml.ws.server.Provider"/>
+					<section id = "1" name = "jakarta.xml.ws.server.Provider"/>
 					<section id = "1.1" name = "Invocation"/>
 					<section id = "1.2" name = "Configuration"/>
 					<section id = "1.3" name = "Examples"/>
-					<section id = "2" name = "javax.xml.ws.Endpoint"/>
+					<section id = "2" name = "jakarta.xml.ws.Endpoint"/>
 					<section id = "2.1" name = "Endpoint Usage"/>
 					<section id = "2.2" name = "Publishing"/>
 					<section id = "2.3" name = "Publishing Permission"/>
@@ -163,24 +163,24 @@
 			</chapter>
 			<chapter id = "6" name = "Core APIs">
 				<sections>
-					<section id = "1" name = "javax.xml.ws.Binding"/>
+					<section id = "1" name = "jakarta.xml.ws.Binding"/>
 					<section id = "1.1" name = "Message Security"/>
-					<section id = "2" name = "javax.xml.ws.JAXRPCContext"/>
+					<section id = "2" name = "jakarta.xml.ws.JAXRPCContext"/>
 					<section id = "2.1" name = "Protocol Specific Exception Handling"/>
 				</sections>
 			</chapter>
 			<chapter id = "7" name = "Annotations">
 				<sections>
-					<section id = "1" name = "javax.xml.ws.ServiceMode"/>
-					<section id = "2" name = "javax.xml.ws.WebFault"/>
-					<section id = "3" name = "javax.xml.ws.RequestWrapper"/>
-					<section id = "4" name = "javax.xml.ws.ResponseWrapper"/>
-					<section id = "5" name = "javax.xml.ws.WebServiceClient"/>
-					<section id = "6" name = "javax.xml.ws.WebEndpoint"/>
-					<section id = "7" name = "javax.xml.ws.WebServiceProvider"/>
-					<section id = "8" name = "javax.xml.ws.Bindingtype"/>
-					<section id = "9" name = "javax.xml.ws.WebServiceRef"/>
-					<section id = "10" name = "javax.xml.ws.WebServiceRefs"/>
+					<section id = "1" name = "jakarta.xml.ws.ServiceMode"/>
+					<section id = "2" name = "jakarta.xml.ws.WebFault"/>
+					<section id = "3" name = "jakarta.xml.ws.RequestWrapper"/>
+					<section id = "4" name = "jakarta.xml.ws.ResponseWrapper"/>
+					<section id = "5" name = "jakarta.xml.ws.WebServiceClient"/>
+					<section id = "6" name = "jakarta.xml.ws.WebEndpoint"/>
+					<section id = "7" name = "jakarta.xml.ws.WebServiceProvider"/>
+					<section id = "8" name = "jakarta.xml.ws.Bindingtype"/>
+					<section id = "9" name = "jakarta.xml.ws.WebServiceRef"/>
+					<section id = "10" name = "jakarta.xml.ws.WebServiceRefs"/>
 					<section id = "11" name = "Annotations Defined by JSR-181"/>
 					<section id = "11.1" name = "jakarta.jws.WebService"/>
 					<section id = "11.2" name = "jakarta.jws.WebMethod"/>
@@ -223,8 +223,8 @@
 					<section id = "3.2" name = "Handler Execution"/>
 					<section id = "3.3" name = "Handler Implementation Considerations"/>
 					<section id = "4" name = "Message Context"/>
-					<section id = "4.1" name = "javax.xml.ws.handler.MessageContext"/>
-					<section id = "4.2" name = "javax.xml.ws.handler.LogicalMessageContext"/>
+					<section id = "4.1" name = "jakarta.xml.ws.handler.MessageContext"/>
+					<section id = "4.2" name = "jakarta.xml.ws.handler.LogicalMessageContext"/>
 					<section id = "4.3" name = "Relationship to JAXRPCContext"/>
 				</sections>
 			</chapter>

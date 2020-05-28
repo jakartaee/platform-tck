@@ -4705,9 +4705,9 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                     - All annotations in the following packages:
                        (a) jakarta.jws
                        (b) jakarta.jws.soap
-                       (c) javax.xml.ws
-                       (d) javax.xml.ws.soap
-                       (e) javax.xml.ws.spi
+                       (c) jakarta.xml.ws
+                       (d) jakarta.xml.ws.soap
+                       (e) jakarta.xml.ws.spi
             </description>
             <location chapter = "10" section = "6"/>
         </assertion>

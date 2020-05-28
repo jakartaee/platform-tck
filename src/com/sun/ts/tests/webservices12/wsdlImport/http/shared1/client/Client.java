@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.javatest.Status;
 
 import java.util.Properties;
 
-import javax.xml.ws.Service;
+import jakarta.xml.ws.Service;
 
 import javax.naming.InitialContext;
 
@@ -64,7 +64,7 @@ public class Client extends ServiceEETest {
 
       TestUtil.logMsg(
           "JNDI lookup for shared1 Service: " + SERVICE_NAME_WITH_WSDL_1);
-      svc1 = (javax.xml.ws.Service) ctx
+      svc1 = (jakarta.xml.ws.Service) ctx
           .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_1);
       TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_1 + "found");
       TestUtil.logMsg("Get first port from Service");
@@ -76,7 +76,7 @@ public class Client extends ServiceEETest {
 
       TestUtil.logMsg(
           "JNDI lookup for shared1 Service: " + SERVICE_NAME_WITH_WSDL_2);
-      svc2 = (javax.xml.ws.Service) ctx
+      svc2 = (jakarta.xml.ws.Service) ctx
           .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_2);
       TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_2 + "found");
       TestUtil.logMsg("Get first port from Service");

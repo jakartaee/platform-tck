@@ -18,9 +18,9 @@ package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefRespBindAndAddr
 
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.Holder;
-import javax.xml.ws.RespectBinding;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.RespectBinding;
 
 @WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "META-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefRespBindAndAddressingCombinedTest.Echo")
 

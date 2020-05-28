@@ -29,8 +29,8 @@ import java.rmi.*;
 import java.util.*;
 
 import java.awt.Image;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
 
 import javax.xml.transform.stream.StreamSource;

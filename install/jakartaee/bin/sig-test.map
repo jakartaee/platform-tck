@@ -160,10 +160,10 @@ javax.xml.bind=2.1_se6
 
 # JAX-WS 
 # (This is JSR-224)
-javax.xml.ws=2.2_se6
+jakarta.xml.ws=2.2_se6
 
 # Web Services 1.3 packages (JSR-109)
-# These packages use the javax.xml.ws packages and will be covered
+# These packages use the jakarta.xml.ws packages and will be covered
 # by the signature tests when the preceeding JAX-WS 2.2 package tests
 # are run so we won't need to enter them here again. ...but we do want
 # to note that this is why there are no entries for Web Services 1.3.

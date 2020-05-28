@@ -23,7 +23,7 @@ import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
 
 import jakarta.jws.*;
-import javax.xml.ws.*;
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.net.URL;
@@ -67,7 +67,7 @@ public class Client extends EETest {
 
   private Hello port;
 
-  @WebServiceRef(name = "service/wsejboverridewsrefhcwithddstest", type = java.lang.Object.class, value = javax.xml.ws.Service.class)
+  @WebServiceRef(name = "service/wsejboverridewsrefhcwithddstest", type = java.lang.Object.class, value = jakarta.xml.ws.Service.class)
   static HelloService service;
 
   private void getPort() throws Exception {

@@ -30,7 +30,7 @@ import com.sun.javatest.Status;
 import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
 import jakarta.ejb.EJB;
-import javax.xml.ws.WebServiceRef;
+import jakarta.xml.ws.WebServiceRef;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.jms.JMSConnectionFactoryDefinition;
 import jakarta.jms.JMSDestinationDefinition;

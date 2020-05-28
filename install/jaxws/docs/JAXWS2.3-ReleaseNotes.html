@@ -3,7 +3,7 @@
 <head>
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,7 +50,7 @@ h4 {  font-style: italic; color: #000099}
    <li><p><strong>Jakarta XML Web Services TCK Signature, API, End-to-end, WS-I Conformance, Java-to-WSDL/WSDL-to-Java Mapping and Web Services Addressing Conformance tests:</strong></p>
    <ul>
       <li>A <strong>Signature test</strong> that checks that all of the public APIs are supported/defined as specified in the Jakarta XML Web Services Version 2.3 implementation that is being tested.</li>
-      <li><strong>API tests</strong> to verify the functionality of all the public APIs under <code>javax.xml.ws</code>, <code>javax.xml.ws.handler</code>, <code>javax.xml.ws.handler.soap</code>, <code>javax.xml.ws.http</code>, <code>javax.xml.ws.spi</code>, <code>javax.xml.ws.spi.http</code>, <code>javax.xml.ws.soap</code>, and <code>javax.xml.ws.wsaddressing</code>.</li>
+      <li><strong>API tests</strong> to verify the functionality of all the public APIs under <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.handler</code>, <code>jakarta.xml.ws.handler.soap</code>, <code>jakarta.xml.ws.http</code>, <code>jakarta.xml.ws.spi</code>, <code>jakarta.xml.ws.spi.http</code>, <code>jakarta.xml.ws.soap</code>, and <code>jakarta.xml.ws.wsaddressing</code>.</li>
       <li><strong>End-to-end tests</strong> that demonstrate marshalling/unmarshalling of all XML supported data types when going from WSDL-to-Java and all Jakarta XML Web Services supported Java data types when going from Java-to-WSDL as Jakarta XML Web Services SOAP Messages both through synchronous (request/response) and asynchronous (request/response) and (one-way) RPC invocations. All client programming model invocation methods (Stub-based, Dynamic Proxy, and Dispatch interface) are tested.</li>
       <li> <strong>WS-I Conformance Tests</strong> that test and check for conformance to the WS-I Basic Profile 1.1, Attachment Profile 1.0, and Simple Soap Binding Profile 1.0 conformance specifications.</li>
       <li><strong>Java-to-WSDL/WSDL-to-Java Mapping Tests</strong> that test and check for conformance to the Java-to-WSDL and WSDL-to-Java mappings.</li>
@@ -123,10 +123,10 @@ h4 {  font-style: italic; color: #000099}
         </p>
         
         <hr>
-        <h2><a name="props"><code>javax.xml.ws.Endpoint</code> publishing API's</a></h2>
+        <h2><a name="props"><code>jakarta.xml.ws.Endpoint</code> publishing API's</a></h2>
         <p>
           The following properties, which are used by the Endpoint API tests in the
-          <code>jaxws/api/javax_xml_ws/Endpoint</code> directory, must be set in the ts.jte file:
+          <code>jaxws/api/jakarta_xml_ws/Endpoint</code> directory, must be set in the ts.jte file:
         </p>
         <ul>
           <li>The <code>http.server.supports.endpoint.publish</code> property indicates whether or not your HTTP server supports endpoint publishing.
@@ -135,7 +135,7 @@ h4 {  font-style: italic; color: #000099}
         </ul>
         <p>
           If your server supports endpoint publishing (supports the use of
-          <code>javax.xml.ws.Endpoint.publish()</code> methods), set the property value
+          <code>jakarta.xml.ws.Endpoint.publish()</code> methods), set the property value
           to "true". In an unmanaged environment, such as that in standalone mode, this
           call is usually allowed. When the property is set to "true", the test will check
           that the endpoint publish methods publish the endpoints without throwing an
@@ -145,7 +145,7 @@ h4 {  font-style: italic; color: #000099}
         
         <p>
           If your server does not support endpoint publishing (does not support the use of
-          <code>javax.xml.ws.Endpoint.publish()</code> methods), set the property value to
+          <code>jakarta.xml.ws.Endpoint.publish()</code> methods), set the property value to
           "false". In a managed environment, such as the Jakarta EE 8 Compatible Implementation,
           this is usually the case and this call would not be allowed. When the property is
           set to "false", the tests will check that these endpoint publish methods do not
@@ -212,7 +212,7 @@ h4 {  font-style: italic; color: #000099}
         </ul>
         
         <hr>
-        <p><cite><small>Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.</small></cite></p>
+        <p><cite><small>Copyright (c) 2011, 2020 Oracle and/or its affiliates. All rights reserved.</small></cite></p>
       </li>
 </ul>   
 </body>

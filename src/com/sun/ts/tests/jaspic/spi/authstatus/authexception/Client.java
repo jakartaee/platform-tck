@@ -26,9 +26,9 @@ import java.net.URL;
 import jakarta.security.auth.message.AuthException;
 import javax.xml.namespace.QName;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.ProtocolException;
 import java.util.Properties;
 import java.util.Map;
 

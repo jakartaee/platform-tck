@@ -28,8 +28,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import java.util.*;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 
 @WebServlet("/ServletTest")
 public class ServletClient extends HttpServlet {

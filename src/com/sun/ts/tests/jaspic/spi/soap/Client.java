@@ -27,9 +27,9 @@ import java.lang.reflect.Constructor;
 import javax.naming.InitialContext;
 import javax.xml.namespace.QName;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.ProtocolException;
 import java.util.Properties;
 import java.util.Map;
 import java.net.URL;
@@ -1027,13 +1027,13 @@ public class Client extends EETest {
    *                 2. Use FetchLog servlet to read the server side log to
    *                 verify whether the Map in messageInfo object passed to
    *                 secureRequest and validateResponse contains the right value
-   *                 for key javax.xml.ws.wsdl.service
+   *                 for key jakarta.xml.ws.wsdl.service
    *
    *                 Description This profile requires that the message
    *                 processing runtime establish the following key-value pairs
    *                 within the Map of the MessageInfo passed in the calls to
    *                 secureRequest and validateResponse
-   *                 Key=javax.xml.ws.wsdl.service Value= the value of the
+   *                 Key=jakarta.xml.ws.wsdl.service Value= the value of the
    *                 qualified service name, represented as a
    *                 javax.xml.namespace.QName
    *
@@ -1047,10 +1047,10 @@ public class Client extends EETest {
     String args[] = {
 
         "TSClientAuthModule.secureRequest messageInfo :"
-            + "javax.xml.ws.wsdl.service=" + expectedQName.toString(),
+            + "jakarta.xml.ws.wsdl.service=" + expectedQName.toString(),
 
         "TSClientAuthModule.validateResponse messageInfo :"
-            + "javax.xml.ws.wsdl.service=" + expectedQName.toString()
+            + "jakarta.xml.ws.wsdl.service=" + expectedQName.toString()
 
     };
 

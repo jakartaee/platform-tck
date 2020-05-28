@@ -24,9 +24,9 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
 import jakarta.xml.soap.*;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
 import javax.xml.namespace.QName;
 
 import com.sun.ts.tests.jaxws.common.Handler_Util;
@@ -37,7 +37,7 @@ import java.io.StringReader;
 import javax.xml.transform.stream.StreamSource;
 
 public class LogicalHandler
-    implements javax.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
+    implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
   private final String HANDLER_NAME = "ServerLogicalHandler";
 
   public boolean handleMessage(LogicalMessageContext context) {

@@ -17,8 +17,8 @@
 package com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs;
 
 import jakarta.jws.WebService;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.Holder;
 
 @WebService(portName = "Echo4Port", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo4")
 
