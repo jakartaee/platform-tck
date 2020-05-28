@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -48,7 +48,7 @@ webServerPort=8080
 ###########################################################################
 # local.classes should contain any RI specific jars/classes
 ###########################################################################
-local.classes=${ts.home}/glassfish5/glassfish/modules/jakarta.servlet-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakartaee-api.jar${pathsep}${ts.home}/glassfish5/glassfish/modules/jakarta.xml.soap-api.jar
+local.classes=${webcontainer.home}/modules/jakarta.servlet-api.jar${pathsep}${webcontainer.home}/modules/jakarta.ejb-api.jar${pathsep}${webcontainer.home}/modules/jakarta.activation.jar${pathsep}${webcontainer.home}/modules/jakarta.xml.soap-api.jar
 
 ####################################################################
 # @endorsed.dirs  If using JavaSE 8, verify that the property 

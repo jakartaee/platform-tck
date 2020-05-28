@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -71,11 +71,11 @@ jte.version=@JTE_VERSION@
 #     impl.deploy.timeout.multiplier=20
 #     jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep} \
 #				  ${webServerHome}/modules/weld-osgi-bundle.jar
-#     jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} \
+#     jspservlet.classes=${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep} \
 #				${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep} \
-#				${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep} \
+#				${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar${pathsep} \
 #				${webServerHome}/modules/jakarta.servlet-api.jar${pathsep} \
-#				${webServerHome}/modules/javax.el-api.jar${pathsep} \
+#				${webServerHome}/modules/jakarta.el.jar${pathsep} \
 #				${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 #
 #########################################################################
@@ -86,7 +86,7 @@ impl.vi=glassfish
 impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy
 impl.deploy.timeout.multiplier=20
 jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep}${webServerHome}/modules/weld-osgi-bundle.jar
-jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/javax.el-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar
+jspservlet.classes=${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 
 ########################################################################
 # @javatest.timeout.factor This property specifies the scale factor used by
