@@ -600,7 +600,7 @@ required for Jakarta EE 8:
 * javax.batch.runtime
 * javax.batch.runtime.context
 * javax.decorator
-* javax.ejb
+* jakarta.ejb
 * jakarta.ejb.embeddable
 * jakarta.ejb.spi
 * javax.el

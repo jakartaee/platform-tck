@@ -213,7 +213,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id/>
-					<description>The following interfaces are excluded when determining whether the bean class has more than one interface:  java.io.Serialiable, java.io.Externalizable, any of the interfaces defined by the javax.ejb package.</description>
+					<description>The following interfaces are excluded when determining whether the bean class has more than one interface:  java.io.Serialiable, java.io.Externalizable, any of the interfaces defined by the jakarta.ejb package.</description>
 					<location chapter="3" section="2"/>
 				</assertion>
 			</sub-assertions>
