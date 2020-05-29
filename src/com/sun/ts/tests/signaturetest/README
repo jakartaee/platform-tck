@@ -28,7 +28,7 @@ Developers begin by defining a sig-test.map file.  This file denotes which
 version of a package should be used when executing a signature test.  This
 file does not have to include sub-packages unless the sub-package varies
 independently from its parent package.  For instance, say a developer has
-to test the javax.ejb and javax.jms package signatures.  Their map file
+to test the jakarta.ejb and javax.jms package signatures.  Their map file
 would contain the following text:
 
 ###############################################################
@@ -37,7 +37,7 @@ would contain the following text:
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
 ###############################################################
-javax.ejb=2.1
+jakarta.ejb=2.1
 javax.jms=1.1
 
 This file should be created in $TS_HOME/bin with the name "sig-test.map".
@@ -55,9 +55,9 @@ signature tests.  All signatures files live in the following directory:
 $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/
 Users should see if their signatures already exist in this directory.
 Note, every property in the sig-test.map file maps to a signature
-file.  For example the property "javax.ejb=3.2_se11" maps to the signature
+file.  For example the property "jakarta.ejb=3.2_se11" maps to the signature
 file:
- $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/javax.ejb.sig_3.2_se11
+ $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/jakarta.ejb.sig_3.2_se11
 
 If the signature file already exist, the user should checkout the signature
 file (using sccs edit) then record the new signatures and do an "sccs diff"
@@ -122,7 +122,7 @@ The contents of the sig-test.map file is (standard java property file):
 	javax.jms=1.0
 	javax.mail=2.0
 	jakarta.servlet=3.0
-	javax.ejb=4.0
+	jakarta.ejb=4.0
 
 The output of the above ant command is a set of files containing the
 signatures of the specified packages in the sig-test.map file.  The
@@ -131,7 +131,7 @@ directory is the following after the ant command is run (assuming it was empty):
 	jakarta.jms.sig_1.0
 	javax.mail.sig_2.0
 	jakarta.servlet.sig_3.0
-	javax.ejb.sig_4.0
+	jakarta.ejb.sig_4.0
 
 The jakarta.jms.sig_1.0 file contains the signatures for the javax.jms package
 including all sub-packages.  The javax.mail.sig_2.0 file contains all the

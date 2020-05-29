@@ -106,7 +106,7 @@
 ###
 
 # EJB 3.1 
-javax.ejb=3.1_se6
+jakarta.ejb=3.1_se6
 javax.interceptor=1.1_se6
 
 # Servlet 3.0 

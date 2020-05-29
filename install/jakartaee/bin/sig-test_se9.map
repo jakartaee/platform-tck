@@ -98,7 +98,7 @@
 
 # EJB 3.2 
 # (This is JSR-345)
-javax.ejb=3.2_se8
+jakarta.ejb=3.2_se8
 
 # Interceptors 1.2  
 javax.interceptor=1.2_se8

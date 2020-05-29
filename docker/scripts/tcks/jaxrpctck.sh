@@ -50,7 +50,7 @@ sed -i 's#jaxrpc\.tool=.*#jaxrpc.tool=\$\{jaxrpc.home\}/bin/wscompile#g' build.p
 sed -i 's#jaxrpc.deploy.tool=.*#jaxrpc.deploy.tool=\$\{jaxrpc.home\}/bin/wsdeploy#g' build.properties
 sed -i 's#\${class.dir}#/ts/jaxrpctck/classes#g' build.properties
 
-sed -i 's#local.classes=.*#local.classes=\$\{webserver.home\}/modules/webservices-osgi.jar:\$\{webserver.home\}/modules/javax.xml.rpc-api.jar:\${webserver.home\}/modules/javax.servlet-api.jar:\$\{webserver.home\}/modules/jakarta.mail.jar:\$\{webserver.home\}/modules/jaxb-osgi.jar:\$\{webserver.home\}/modules/javax.ejb-api.jar:\$\{webserver.home\}/modules/glassfish-naming.jar:\$\{webserver.home\}/modules/bean-validator.jar#g' build.properties
+sed -i 's#local.classes=.*#local.classes=\$\{webserver.home\}/modules/webservices-osgi.jar:\$\{webserver.home\}/modules/javax.xml.rpc-api.jar:\${webserver.home\}/modules/javax.servlet-api.jar:\$\{webserver.home\}/modules/jakarta.mail.jar:\$\{webserver.home\}/modules/jaxb-osgi.jar:\$\{webserver.home\}/modules/jakarta.ejb-api.jar:\$\{webserver.home\}/modules/glassfish-naming.jar:\$\{webserver.home\}/modules/bean-validator.jar#g' build.properties
 sed -i 's#secureWebServerPort=.*#secureWebServerPort=8181#g' ts.jte
 sed -i "s#webServerHome=.*#webServerHome=$TCK_HOME/glassfish5/glassfish#g" ts.jte
 
