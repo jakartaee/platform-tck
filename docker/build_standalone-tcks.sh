@@ -57,6 +57,7 @@ wget --progress=bar:force --no-cache \
 export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
 -Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \
+-DenableExternalEntityProcessing=true \
 -Djavax.xml.accessExternalDTD=file,http,https"
 
 export TCK_NAME="$@"
