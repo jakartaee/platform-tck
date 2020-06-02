@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
 #
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
-# Copyright (c) 2019 Payara Foundation and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2020 Payara Foundation and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,10 +37,10 @@ if [ -z "${CTS_HOME}" ]; then
 fi
 export TS_HOME=${CTS_HOME}/jakartaeetck/
 
-
 if [ -z "${RI_JAVA_HOME}" ]; then
   export RI_JAVA_HOME=$JAVA_HOME
 fi
+
 
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
@@ -139,16 +139,9 @@ if [ -z "${OLD_GF_BUNDLE_URL}" ]; then
   export OLD_GF_BUNDLE_URL=$GF_BUNDLE_URL
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
-if [[ "interop" == ${test_suite} ]]; then
-  wget --progress=bar:force --no-cache $OLD_GF_BUNDLE_URL -O ${CTS_HOME}/glassfish-5.0.zip
-fi
 rm -Rf ${CTS_HOME}/ri
 mkdir -p ${CTS_HOME}/ri
-if [[ "interop" == ${test_suite} ]]; then
-  unzip -q ${CTS_HOME}/glassfish-5.0.zip -d ${CTS_HOME}/ri
-else
-  unzip -q ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
-fi
+unzip -q ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 chmod -R 777 ${CTS_HOME}/ri
 
 if [ ! -z "${RI_JAVA_HOME}" ]; then
@@ -414,13 +407,7 @@ fi
 ##### configRI.sh ends here #####
 cd  ${TS_HOME}/bin
 ant config.ri
-ant enable.csiv2
 ##### configRI.sh ends here #####
-
-##### addInteropCerts.sh starts here #####
-cd ${TS_HOME}/bin
-ant add.interop.certs
-##### addInteropCerts.sh ends here #####
 
 ### restartRI.sh starts here #####
 cd ${CTS_HOME}

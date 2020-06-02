@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -64,7 +64,6 @@
                   com/sun/ts/tests/webservices13,
                   com/sun/ts/tests/websocket,
                   com/sun/ts/tests/concurrency,
-                  com/sun/ts/tests/interop,
                   com/sun/ts/tests/securityapi,
                   com/ibm/jbatch/tck/tests"/>
 
@@ -479,24 +478,6 @@
 		<record name="config_ri.log" action="stop"/>
 	</target>
 
-	<target name="config.interop">
-		<ts.echo>${ant.project.name} config.interop called</ts.echo>
-		<!-- This target setup interop configurations    -->
-
-		<!-- Step 1: Config VI - Vendor Implementation   -->
-		<antcall target="config.vi"/>
-
-		<!-- Step 2: Config RI - Reference Implementation -->
-		<antcall target="config.ri"/>
-
-		<!-- Step 3: Enable CSIv2  -->
-		<antcall target="enable.csiv2"/>
-
-		<!-- Step 4: Add interop certs -->
-		<antcall target="add.interop.certs"/>
-
-	</target>
-
 	<target name="restart.vi" >
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="restart.vi"/>
 	</target>
@@ -762,17 +743,6 @@
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.wss.providers"/>
 	</target>
 
-
-	<!-- Enable the use of csiv2 for the Java EE RI -->
-	<target name="enable.csiv2">
-		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="enable.csiv2"/>
-	</target>
-
-	<!-- Disable the use of csiv2 for the Java EE RI -->
-	<target name="disable.csiv2">
-		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.csiv2"/>
-	</target>
-
 	<!-- Disable the TX interoperability on the Java EE RI -->
 	<target name="disable.ri.tx.interop">
 		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.tx.interop"/>
@@ -791,11 +761,6 @@
 	<!-- Enable the TX interoperability on the app server under test -->
 	<target name="enable.vi.tx.interop">
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.tx.interop"/>
-	</target>
-
-	<!--  Add the certificates needed for interop to the RI and SJSAS -->
-	<target name="add.interop.certs"  >
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="add.interop.certs"/>
 	</target>
 
 	<!--
@@ -926,8 +891,6 @@
 		<antcall target="build.tsprovider.jar"/>
 		<antcall target="build.jaspic.jars"/>
 
-		<ant dir="${ts.home}/src/com/sun/ts/tests/interop/csiv2/common" target="build.jar"/>
-
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
 
 	</target>
@@ -1040,8 +1003,6 @@
 		<antcall target="init.javadb" />
 		<antcall target="start.javadb.ri.asadmin" />
 		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.javadb.ri"/>
-		<antcall target="enable.csiv2" />
-		<antcall target="add.interop.certs" />
 		<antcall target="restart.ri" />
 		<record name="config_csiv2.log" action="stop"/>
 	</target>
