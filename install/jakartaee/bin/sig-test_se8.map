@@ -98,9 +98,9 @@
 ###############################################################
 
 
-# EJB 3.2 
+# EJB 4.0 
 # (This is JSR-345)
-jakarta.ejb=3.2_se8
+jakarta.ejb=4.0_se8
 
 # Interceptors 1.2  
 # (This is JSR-318)
@@ -118,25 +118,25 @@ jakarta.servlet.jsp=2.3_se8
 # (This is JSR-341)
 jakarta.el=4.0_se8
 
-# JSF 2.3 (Faces) 
+# Faces 3.0 
 # (This is JSR-372)
-jakarta.faces=2.3_se8
+jakarta.faces=3.0_se8
 
 # JSTL 1.2
 # (This is JSR-52)
 jakarta.servlet.jsp.jstl=1.2_se8
 
-# JMS 2.0 
+# Messaging 3.0 
 # (This is JSR-343)
-jakarta.jms=2.0_se8
+jakarta.jms=3.0_se8
 
-# JTA 1.2 
+# Transactions 2.0 
 # (This is JSR-907)
-jakarta.transaction=1.2_se8
+jakarta.transaction=2.0_se8
 
-# JavaMail 1.6 
+# Mail 2.0 
 # (This is JSR-919)
-jakarta.mail=1.6_se8
+jakarta.mail=2.0_se8
 
 # Connector 1.7 
 # (This is JSR-322)
@@ -162,8 +162,8 @@ jakarta.enterprise.deploy=1.2_se8
 # (This is JSR-115)
 jakarta.security.jacc=1.5_se8
 
-# Persistence 2.2 
-jakarta.persistence=2.2_se8
+# Persistence 3.0
+jakarta.persistence=3.0_se8
 
 # Annotations 2.0 
 # This is JSR-250
@@ -205,7 +205,7 @@ jakarta.json=2.0.0_se8
 
 # JSON-B
 # (This is JSR-367)
-jakarta.json.bind=1.0_se8
+jakarta.json.bind=2.0_se8
 
 # WebSocket 1.1
 # (This is JSR-356)
