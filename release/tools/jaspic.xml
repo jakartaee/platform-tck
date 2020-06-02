@@ -195,8 +195,7 @@
         <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting" 
               includeEmptyDirs="no">
             <fileset dir="${ts.home}/src/com/sun/ts/lib/porting" 
-                     includes="TSDeploymentInterface2.java,
-                               DeploymentInfo.java,
+                     includes="DeploymentInfo.java,
                                TSDeploymentException.java,
                                TSURL.java,
                                TSURLInterface.java"/>

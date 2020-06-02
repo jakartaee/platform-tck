@@ -45,15 +45,6 @@ if [ ! -z "$GF_VERSION_URL" ]; then
   cat glassfish.version
 fi
 
-#temporary fix to copy deployment jars - to be removed later
-wget --progress=bar:force --no-cache \
-      https://repo1.maven.org/maven2/javax/enterprise/deploy/javax.enterprise.deploy-api/1.7/javax.enterprise.deploy-api-1.7.jar \
-      -O $GF_HOME/glassfish6/glassfish/modules/jakarta.enterprise.deploy-api.jar
-wget --progress=bar:force --no-cache \
-      https://repo1.maven.org/maven2/org/glassfish/main/deployment/deployment-client/5.1.0-RC2/deployment-client-5.1.0-RC2.jar \
-      -O $GF_HOME/glassfish6/glassfish/modules/deployment-client.jar
-#temporary fix to copy deployment jars - to be removed later
-
 export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
 -Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \

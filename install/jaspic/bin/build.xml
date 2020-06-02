@@ -320,8 +320,6 @@
                 <include name="${lib.pkg.dir}/deliverable/cts/**"/>
                 <include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
                 <include name="${lib.pkg.dir}/implementation/sun/common/**"/>
-                <include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-                <include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
                 <include name="${tssv.dir}/"/>
             </fileset>
         </delete>
@@ -337,8 +335,6 @@
                             ${lib.pkg.dir}/implementation/sun/javaee/**,
                             ${lib.pkg.dir}/implementation/sun/common/**,
                             ${lib.pkg.dir}/tests/jdbc/CS_Procs.java,
-                            ${lib.pkg.dir}/porting/TSDeploymentInterface2*.java,
-                            ${lib.pkg.dir}/porting/TSDeployment2*.java,
                             ${tssv.dir}/**"
                   excludes="${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment.java,
                             ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment1*.java,
@@ -361,8 +357,6 @@
             <include name="${lib.pkg.dir}/deliverable/**"/>
             <include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
             <include name="${lib.pkg.dir}/implementation/sun/common/**"/>
-            <include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-            <include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
             <exclude name="${lib.dir}/deliverable/cts/resource/**"/>
         </ts.lib.jar>
 

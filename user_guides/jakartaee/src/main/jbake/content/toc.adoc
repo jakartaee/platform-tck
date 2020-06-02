@@ -187,7 +187,6 @@ link:portingpackage.html#GFATG[11 Implementing the Porting Package]
 
 ** link:portingpackage.html#GFASD[11.1 Overview]
 ** link:portingpackage.html#GFAUG[11.2 Porting Package APIs]
-*** link:portingpackage.html#GFASM[11.2.1 TSDeploymentInterface2]
 *** link:portingpackage.html#GKLJO[11.2.2 Ant-Based Deployment Interface]
 *** link:portingpackage.html#GFASI[11.2.3 TSJMSAdminInterface]
 *** link:portingpackage.html#GFATH[11.2.4 TSLoginContextInterface]

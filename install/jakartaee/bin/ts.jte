@@ -1534,9 +1534,6 @@ impl.deploy.timeout.multiplier=240
 ###############################################################
 ## These properties are implementations of the pre-1.4 Deployment
 ## porting interface.  The impls defined below use those APIs.
-## The TSDeploymentInterface2 interface
-## is now the location for deployment porting code for functionality
-## not addressed by JSR-88.
 #
 # @porting.ts.deploy.class.1 This property must point to an implementation
 # of com.sun.ts.lib.porting.TSDeploymentInterface.  The default
@@ -1550,18 +1547,15 @@ impl.deploy.timeout.multiplier=240
 #
 #     porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment
 #
-# 2.  Note that Jakarta Deployment is pruned, so do not use either of the following classes:
+# 2.  Note that Jakarta Deployment is removed, so do not use either of the following classes:
 #     com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14
 #     com.sun.ts.lib.porting.TSDeploymentInterface2
 #     com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2 
 #
 #     
 # @porting.ts.deploy.class.2 This property must point to an implementation
-# of com.sun.ts.lib.porting.TSDeploymentInterface.  CTS 8 shipped
-# with this property set to a standard JSR-88 impl which
-# should be able to be used when running against an appserver that supports
-# JSR 88.  Web Profile impls may not support JSR 88.  In CTS 8, the default
-# value fo this property points to an impl that deploys via copying/deleting
+# of com.sun.ts.lib.porting.TSDeploymentInterface. 
+# The default value for this property points to an impl that deploys via copying/deleting
 # to/from the RI autodeploy directory.  This should be left unchanged...
 #
 #     porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment

@@ -104,14 +104,6 @@ wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -q -o latest-glassfish.zip
 ls -l $GF_HOME/$GF_TOPLEVEL_DIR/glassfish/
 
-#temporary fix to copy deployment jars - to be removed later
-wget --progress=bar:force --no-cache \
-      https://repo1.maven.org/maven2/javax/enterprise/deploy/javax.enterprise.deploy-api/1.7/javax.enterprise.deploy-api-1.7.jar \
-      -O $GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.enterprise.deploy-api.jar
-wget --progress=bar:force --no-cache \
-      https://repo1.maven.org/maven2/org/glassfish/main/deployment/deployment-client/5.1.0-RC2/deployment-client-5.1.0-RC2.jar \
-      -O $GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/deployment-client.jar
-#temporary fix to copy deployment jars - to be removed later
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version

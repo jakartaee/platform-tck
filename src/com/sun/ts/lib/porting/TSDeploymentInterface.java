@@ -30,9 +30,6 @@ import java.io.*;
  *
  * Jakarta EE implementations that previously depended on Pruned Jakarta Deployment,
  * should also use TSDeploymentInterface instead of com.sun.ts.lib.porting.TSDeploymentInterface2.   
- * Implementations may choose to use the included JSR-88 impl of this interface
- * - com.sun.ts.lib.deliverable.cts.StandardDeployment14. If you use this impl,
- * then you can create an impl of com.sun.ts.lib.porting.TSDeploymentInterface2.
  * 
  * @author Kyle Grucci
  */

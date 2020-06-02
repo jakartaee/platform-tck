@@ -819,8 +819,6 @@
 				<include name="${lib.pkg.dir}/tests/security/**"/>
 				<include name="${lib.pkg.dir}/tests/jdbc/**"/>
 				<include name="${lib.pkg.dir}/tests/jpa/storedprocedures/**"/>
-				<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-				<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
 				<include name="${provider.dir}/"/>
 
 			</fileset>
@@ -839,8 +837,6 @@
                             ${lib.pkg.dir}/tests/jdbc/CS_Procs.java,
                             ${lib.pkg.dir}/tests/security/**/*.java,
                             ${lib.pkg.dir}/tests/jpa/storedprocedures/**,
-                            ${lib.pkg.dir}/porting/TSDeploymentInterface2*.java,
-                            ${lib.pkg.dir}/porting/TSDeployment2*.java,
                             ${provider.dir}/**"
                   excludes="${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment.java,
                             ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment1*.java,
@@ -883,8 +879,6 @@
 			<include name="${lib.pkg.dir}/deliverable/cts/**"/>
 			<include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
 			<include name="${lib.pkg.dir}/implementation/sun/common/**"/>
-			<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-			<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
 			<include name="${lib.pkg.dir}/tests/security/**"/>
 		</ts.lib.jar>
 

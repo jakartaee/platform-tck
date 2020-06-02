@@ -1965,13 +1965,13 @@ utility class for the bean behavior test cases (`bb`). These instance
 variables, used in the enterprise bean tests, must be accessible at
 deployment time.
 
-The Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1 provides the container-managed
+The Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0 provides the container-managed
 persistence implementation-specific features as part of its runtime XML
 file. Your Jakarta Platform, Enterprise Edition platform implementation
 needs to map the container-managed fields to the appropriate backend
 datastore. The manner in which you do this is implementation-specific.
 The `DeploymentInfo` class provides all of the runtime XML information
-as an object that is passed to the `TSDeploymentInterface2`
+as an object that is passed to the `TSDeploymentInterface`
 implementation.
 
 For a list of SQL statements used in CMP 1.1 finders, refer to

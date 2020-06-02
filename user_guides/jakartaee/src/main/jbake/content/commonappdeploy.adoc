@@ -12,6 +12,8 @@ Common Applications Deployment
 A Common Applications Deployment
 --------------------------------
 
+TODO: figure out if Common Applications Deployment tests should be removed since they cannot rely on (removed) Jakarta Deployment in EE 9.
+
 Some tests in the test suite require the deployment of additional
 applications, components, or resource archives that are located in
 directories other than the test's directory. When the test harness
