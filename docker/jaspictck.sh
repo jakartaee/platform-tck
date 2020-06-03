@@ -34,6 +34,9 @@ else
   exit 1
 fi
 
+if [ -z "$GF_TOPLEVEL_DIR" ]; then
+  export GF_TOPLEVEL_DIR=glassfish6
+fi
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
   KEYWORDS="jaspic_web_profile"
@@ -56,7 +59,7 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
-sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#platform\.mode=.*#platform.mode=javaEE#g' ts.jte
 sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
 sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
@@ -79,7 +82,7 @@ echo "persistence.second.level.caching.supported=true" >> ts.jte
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
-cd $TCK_HOME/glassfish5/bin
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/bin
 ./asadmin start-domain
 ./asadmin stop-domain
 
@@ -90,7 +93,7 @@ ant config.vi
 cd $TS_HOME/bin
 ant enable.jaspic
 
-cd $TCK_HOME/glassfish5/bin
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 
@@ -110,4 +113,4 @@ echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
