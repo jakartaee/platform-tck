@@ -98,88 +98,88 @@
 ###############################################################
 
 
-# EJB 3.2 
+# EJB 4.0 
 # (This is JSR-345)
-jakarta.ejb=3.2_se8
+jakarta.ejb=4.0_se8
 
-# Interceptors 1.2  
+# Interceptors 2.0  
 # (This is JSR-318)
-jakarta.interceptor=1.2_se8
+jakarta.interceptor=2.0_se8
 
-# Servlet 4.0 
+# Servlet 5.0 
 # (This is JSR-369)
-jakarta.servlet=4.0_se8
+jakarta.servlet=5.0_se8
 
-# JSP 2.3 
+# JSP 3.0 
 # (This is JSR-245)
-jakarta.servlet.jsp=2.3_se8
+jakarta.servlet.jsp=3.0_se8
 
 # EL 3.0
 # (This is JSR-341)
 jakarta.el=4.0_se8
 
-# JSF 2.3 (Faces) 
+# Faces 3.0 
 # (This is JSR-372)
-jakarta.faces=2.3_se8
+jakarta.faces=3.0_se8
 
-# JSTL 1.2
+# Tags 1.2
 # (This is JSR-52)
-jakarta.servlet.jsp.jstl=1.2_se8
+jakarta.servlet.jsp.jstl=2.0_se8
 
-# JMS 2.0 
+# Messaging 3.0 
 # (This is JSR-343)
-jakarta.jms=2.0_se8
+jakarta.jms=3.0_se8
 
-# JTA 1.2 
+# Transactions 2.0 
 # (This is JSR-907)
-jakarta.transaction=1.2_se8
+jakarta.transaction=2.0_se8
 
-# JavaMail 1.6 
+# Mail 2.0 
 # (This is JSR-919)
-jakarta.mail=1.6_se8
+jakarta.mail=2.0_se8
 
-# Connector 1.7 
+# Connector 2.0 
 # (This is JSR-322)
-jakarta.resource=1.7_se8
+jakarta.resource=2.0_se8
 
 # JAX-RPC 1.1 
 # (This is JSR-101)
-jakarta.xml.rpc=1.1_se8
+#jakarta.xml.rpc=1.1_se8
 
 # JAXR 1.0 
 # (This is JSR-093)
-jakarta.xml.registry=1.0_se8
+#jakarta.xml.registry=1.0_se8
 
 # Java EE Management 1.1 
 # (This is JSR-077)
-jakarta.management.j2ee=1.1_se8
+#jakarta.management.j2ee=1.1_se8
 
 # Java EE Deployment 1.2 
 # (This is JSR-088)
-jakarta.enterprise.deploy=1.2_se8
+#jakarta.enterprise.deploy=1.2_se8
 
 # JACC 1.5
 # (This is JSR-115)
 jakarta.security.jacc=1.5_se8
 
-# Persistence 2.2 
-jakarta.persistence=2.2_se8
+# Persistence 3.0
+jakarta.persistence=3.0_se8
 
 # Annotations 2.0 
 # This is JSR-250
 jakarta.annotation=2.0_se8
 
-# JASPIC (Java Authentication SPI for Containters)
+# Authentication 2.0
 # (This is JSR-196)
-jakarta.security.auth.message=1.1_se8
+jakarta.security.auth.message=2.0_se8
 
-# JAX-RS 2.1
+# JAX-RS 3.0
 # (This is JSR-370)
-jakarta.ws.rs=2.1_se8
+jakarta.ws.rs=3.0_se8
 
 # Bean Validation 2.0
 # (This is JSR-380)
-jakarta.validation=2.0_se8
+jakarta.validation=3.0_se8
 
 # Managed Beans 1.0 - no API to test
 # (This is listed along w/ EE spec at JSR-316)
@@ -189,7 +189,7 @@ jakarta.validation=2.0_se8
 
 # Dependency Injection for Java 1.0
 # (This is JSR-330)
-jakarta.inject=1.0_se8
+jakarta.inject=2.0_se8
 
 # Contexts and Dependency Injection (CDI) for Java EE 2.0
 # (This is JSR-365)
@@ -197,7 +197,7 @@ jakarta.enterprise=2.0_se8
 jakarta.decorator=1.1_se8
 
 # Concurrency (JSR 236)
-jakarta.enterprise.concurrent=1.0_se8
+jakarta.enterprise.concurrent=2.0_se8
 
 # JSON-P 1.1
 # (This is JSR-374)
@@ -205,15 +205,15 @@ jakarta.json=2.0.0_se8
 
 # JSON-B
 # (This is JSR-367)
-jakarta.json.bind=1.0_se8
+jakarta.json.bind=2.0_se8
 
 # WebSocket 1.1
 # (This is JSR-356)
 jakarta.websocket=1.1_se8
 
-# Batch 1.0 
+# Batch 2.0 
 # (This is JSR-352)
-jakarta.batch=1.0_se8
+jakarta.batch=2.0_se8
 
 # Java EE Security API 1.0
 # (This is JSR-375)

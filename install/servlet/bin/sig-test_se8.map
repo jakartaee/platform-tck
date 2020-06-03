@@ -17,4 +17,4 @@
 ###############################################################
 # The signature test mapping file for the Servlet TCK.
 ###############################################################
-jakarta.servlet=4.0_se8
+jakarta.servlet=5.0_se8
