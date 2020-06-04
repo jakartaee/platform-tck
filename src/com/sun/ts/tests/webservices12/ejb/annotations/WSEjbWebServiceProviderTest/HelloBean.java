@@ -22,10 +22,10 @@ import jakarta.xml.ws.Provider;
 import jakarta.xml.ws.WebServiceProvider;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.ws.WebServiceException;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
@@ -35,14 +35,14 @@ import java.io.ByteArrayInputStream;
 public class HelloBean implements Provider<Source> {
   private static final JAXBContext jaxbContext = createJAXBContext();
 
-  public javax.xml.bind.JAXBContext getJAXBContext() {
+  public jakarta.xml.bind.JAXBContext getJAXBContext() {
     return jaxbContext;
   }
 
-  private static javax.xml.bind.JAXBContext createJAXBContext() {
+  private static jakarta.xml.bind.JAXBContext createJAXBContext() {
     try {
-      return javax.xml.bind.JAXBContext.newInstance(ObjectFactory.class);
-    } catch (javax.xml.bind.JAXBException e) {
+      return jakarta.xml.bind.JAXBContext.newInstance(ObjectFactory.class);
+    } catch (jakarta.xml.bind.JAXBException e) {
       throw new WebServiceException(e.getMessage(), e);
     }
   }

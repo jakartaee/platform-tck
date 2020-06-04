@@ -16,7 +16,7 @@
 
 package com.sun.ts.lib.implementation.sun.javaee.runtime;
 
-import javax.xml.bind.*;
+import jakarta.xml.bind.*;
 import com.sun.ts.lib.porting.DeploymentInfo;
 import com.sun.ts.lib.implementation.sun.javaee.runtime.app.*;
 import com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.*;
