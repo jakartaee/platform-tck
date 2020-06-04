@@ -34,7 +34,7 @@ rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextProp
 
 cd $TS_HOME/bin
 sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i 's#^concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/jakarta.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar${pathsep}${webcontainer.home}/modules/javax.enterprise.deploy-api.jar#g' ts.jte
+sed -i 's#^concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/javax.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar#g' ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/concurrencytckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/concurrencytckwork#g" ts.jte
 

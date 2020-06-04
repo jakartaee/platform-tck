@@ -6,7 +6,6 @@ sed -i 's/javax.ejb-api.jar/jakarta.ejb-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/
 sed -i 's/javax.el.jar/jakarta.el.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.enterprise.concurrent-api.jar/jakarta.enterprise.concurrent-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.enterprise.concurrent.jar/jakarta.enterprise.concurrent.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
-sed -i 's/javax.enterprise.deploy-api.jar/jakarta.enterprise.deploy-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.faces.jar/jakarta.faces.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.inject.jar/jakarta.inject.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.interceptor-api.jar/jakarta.interceptor-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte

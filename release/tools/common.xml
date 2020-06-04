@@ -113,9 +113,7 @@
                                        ${lib.pkg.dir}/porting/**/*,
                                        ${lib.pkg.dir}/deliverable/*,
                                        ${lib.pkg.dir}/deliverable/tck/*"
-                             excludes="${lib.pkg.dir}/porting/TSDeploymentInterface2*,
-                                       ${lib.pkg.dir}/porting/TSDeployment2*,
-                                       ${lib.pkg.dir}/porting/TSJMSObjects*,
+                             excludes="${lib.pkg.dir}/porting/TSJMSObjects*,
                                        ${lib.pkg.dir}/harness/ServiceEETes*,
                                        ${lib.pkg.dir}/harness/JCKServiceEETest*,
                                        ${lib.pkg.dir}/harness/EETest*"/>

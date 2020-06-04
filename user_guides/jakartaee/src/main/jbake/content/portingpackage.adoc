@@ -14,7 +14,7 @@ Implementing the Porting Package
 
 Some functionality in the Jakarta Platform, Enterprise Edition platform is
 not completely specified by an API. To handle this situation, the Jakarta
-EE 8 CTS test suite defines a set of interfaces in the
+EE test suite defines a set of interfaces in the
 `com.sun.cts.porting` package, which serve to abstract any
 implementation-specific code. The CTS also provides implementations of
 these interfaces to work with the Jakarta Platform, Enterprise Edition CI.
@@ -23,11 +23,7 @@ You must create your own implementations of the porting package
 interfaces to work with your particular Jakarta Platform, Enterprise
 Edition server environment. You also need to create a deployment plan
 for each deployable component (EAR, EJB JAR, WAR, and RAR files) in the
-test suite as defined by the Jakarta Platform, Enterprise Edition platform
-and JSR-88. There is a new `getDeploymentPlan()` method on the
-`TSDeploymentInterface2` interface, which returns an input stream to
-your deployment plan.
-
+test suite as defined by the Jakarta Platform, Enterprise Edition platform. 
 
 [NOTE]
 =======================================================================
@@ -149,7 +145,7 @@ this section are:
 
 11.2.1 TSDeploymentInterface2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+TODO:  remove this and TSDeployment2
 The Jakarta EE 8 CTS test suite provides a new version of the Deployment
 porting interface. With the introduction of a standard deployment API in
 the legacy J2EE 1.4 platform (via Jakarta Deployment Specification (Originally JSR-88)), many of the porting methods in the

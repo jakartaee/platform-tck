@@ -163,7 +163,7 @@
               includeEmptyDirs="no">
             <fileset dir="${ts.home}/src/com/sun/ts/lib/porting"
                      includes="TSDeploymentException.java,
-                     TSDeploymentInterface.java,TSDeployment2.java,
+                     TSDeploymentInterface.java,
             TSURLInterface.java,TSURL.java"/>
         </copy>
         

@@ -51,17 +51,16 @@
 jte.version=@JTE_VERSION@
 
 ########################################################################
-## JT Harness batch mode work directory and report directory, and policy for 
-## handling existing work and report directories.  These properties affect
+## Javatest batch mode work directory and report directory, and policy for 
+## handling existing work and report directories.  These properties affects
 ## runclient and report targets, but not gui target.
-##
 ## To disable generating test report, unset report.dir, or set it to "none" 
 ## either here or from command line, as in the following command:
 ##               ant runclient -Dreport.dir="none"
 ##
-# @work.dir     The directory used to store JT Harness test results and test
+# @work.dir     The directory used to store Javatest test results and test
 #               information.
-# @report.dir   The directory used to store JT Harness summary reports of
+# @report.dir   The directory used to store Javatest summary reports of
 #               test results.
 # @if.existing.work.report.dirs specifies how existing work.dir and
 # report.dir will be handled, and it must be one of the following values:
@@ -89,12 +88,11 @@ if.existing.work.report.dirs=auto
 
 ########################################################################
 # @javatest.timeout.factor This property specifies the scale factor used by
-# Javatest to adjust the time JT Harness will wait for a given test to
+# Javatest to adjust the time JavaTest will wait for a given test to
 # complete before returning failure.  For instance if the default test timeout
 # is 5 minutes, this value will be multiplied by 5 minutes to determine
-# the total timeout delay.  
-# Note: this value only works with batch mode (runclient) of JT Harness.  
-# When using the JT Harness GUI, users must change
+# the total timeout delay.  Note: this value only works with Javatest's
+# batch mode (runclient).  When using the Javatest GUI users must change
 # this timeout factor in the GUI. Configure -> Edit Configuration -> View
 # -> choose Standard Values -> select tab Execution ->  set Time Factor.
 #
@@ -124,33 +122,33 @@ javatest.timeout.factor=1
 #                     must support.  Specifying a javaee.level of "full"  with nothing
 #                     else implies there are NO additional technologies existing within
 #                     the vendors implementation.  Again, "full" only covers the 
-#                     REQUIRED Technologies for Java EE 8 Full profile
+#                     REQUIRED Technologies for Jakarta EE 8 Full profile
 #		      ex/   javaee.level=full
 #
 #	    2. web :  This is the minimal set of signature requirements that vendors
 #                     must support for Web Profile.  Specifying a javaee.level of "web"  
 #                     with nothing else implies there are NO additional technologies 
 #                     existing within the vendors implementation.  Again, "web" only 
-#                     covers REQUIRED Technologies for Java EE 8 Web profile
+#                     covers REQUIRED Technologies for Jakarta EE 8 Web profile
 #		      ex/   javaee.level=web
 #
 #	    3. full + optional_technologies: This covers REQUIRED Technologies for
 #		      Java EE 8 Full Profile and any combination of the optional
 #		      technologies.
 #                     Known optional technologies for CTS8 full profile include:
-#                          "jaxr", "jaxrpc" "javaeedeploy".
-#		      ex 1/   javaee.level=full jaxr jaxrpc javaeedeploy
+#                          "jaxr", "jaxrpc".
+#		      ex 1/   javaee.level=full jaxr jaxrpc 
 #		      ex 2/   javaee.level=full jaxr
-#		      ex 3/   javaee.level=full jaxrpc javaeedeploy
+#		      ex 3/   javaee.level=full jaxrpc 
 #		      ex 4/   etc...
 #
 #	    4. web + optional_technologies: This covers REQUIRED Technologies for
 #		      Java EE 8 Web Profile and any combination of optional
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
-#                            "batch", "jaxrpc", "jaxr", "javaeedeploy", "connector", "jaxb", 
+#                            "batch", "jaxrpc", "jaxr", "connector", "jaxb", 
 #                            "jms", "javamail", "javaeemgmt", "jacc", "jaspic", "wsmd" 
-#		      ex 1/   javaee.level=web connector jms jacc jaxrpc javaeedeploy
+#		      ex 1/   javaee.level=web connector jms jacc jaxrpc 
 #		      ex 2/   javaee.level=web jaspic
 #		      ex 3/   javaee.level=web jms connector javaeemgmt
 #		      ex 4/   etc...
@@ -159,7 +157,7 @@ javatest.timeout.factor=1
 # Note 2:  optional technologies for full/javaee profile are listed
 #	   in the Java EE 8 spec, in Table EE.6-1.  Currently, the only
 #          optional technologies for full profile are: "jaxr" (JAXR 1.0), 
-#          "jaxrpc" (JAX-RPC 1.1), and "javaeedeploy" (Java EE Deployment 1.2).
+#          "jaxrpc" (JAX-RPC 1.1).
 # Note 3:  The list of optional technologies for Web Profile includes any OPTIONAL
 #          technology explicitly called out in the Web Profile spec (if applicable)
 #          as well as any additional technology which is listed within 
@@ -184,8 +182,8 @@ javatest.timeout.factor=1
 #                      (see comments for optional.tech.packages.to.ignore below)
 #
 ###############################################################################
-#javaee.level=web javaeedeploy connector jaxws jaxb javamail javaeemgmt jacc jaspic wsmd
-javaee.level=full jaxr jaxrpc javaeedeploy
+#javaee.level=web connector jaxws jaxb javamail javaeemgmt jacc jaspic wsmd
+javaee.level=full jaxr jaxrpc 
 
 
 ########################################################################
@@ -1536,41 +1534,28 @@ impl.deploy.timeout.multiplier=240
 ###############################################################
 ## These properties are implementations of the pre-1.4 Deployment
 ## porting interface.  The impls defined below use those APIs.
-## The TSDeploymentInterface2 interface
-## is now the location for deployment porting code for functionality
-## not addressed by JSR-88.
 #
 # @porting.ts.deploy.class.1 This property must point to an implementation
-# of com.sun.ts.lib.porting.TSDeploymentInterface.  CTS 8 shipped
-# with this property set to a standard JSR-88 impl which
-# should be able to be used when running against an appserver that supports
-# JSR 88.  Web Profile impls may not support JSR 88.  In CTS 8, the default
-# value fo this property points to an impl that deploys via copying/deleting
-# to/from the RI autodeploy directory.  You have the following choices for
-# setting these properties in CTS 8:
+# of com.sun.ts.lib.porting.TSDeploymentInterface.  The default
+# value for this property points to an impl that deploys via copying/deleting
+# to/from the RI autodeploy directory.  More details about setting  
+# porting.ts.deploy.class.1:
 #
-# 1.  Set this property to the standard JSR 88 impl....
-#
-#     porting.ts.deploy.class.1=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14
-#     
-#     If you use the above impl, then you must also set the
-#     porting.ts.deploy2.class.1 property to a valid impl of
-#     com.sun.ts.lib.porting.TSDeploymentInterface2.  In the case of the RI,
-#     the porting.ts.deploy2.class.2 property would be set to the
-#     RI impl of com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2.
-#     
-# 2.  Or, you can set this property to deploy/undeploy to/from your impl in
+# 1.  Set this property to deploy/undeploy to/from your impl in
 #     a custom way.  In the case of the RI, it would be set to the following.
 #     This is the default setting for CTS 8.
 #
 #     porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment
+#
+# 2.  Note that Jakarta Deployment is removed, so do not use either of the following classes:
+#     com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14
+#     com.sun.ts.lib.porting.TSDeploymentInterface2
+#     com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2 
+#
 #     
 # @porting.ts.deploy.class.2 This property must point to an implementation
-# of com.sun.ts.lib.porting.TSDeploymentInterface.  CTS 8 shipped
-# with this property set to a standard JSR-88 impl which
-# should be able to be used when running against an appserver that supports
-# JSR 88.  Web Profile impls may not support JSR 88.  In CTS 8, the default
-# value fo this property points to an impl that deploys via copying/deleting
+# of com.sun.ts.lib.porting.TSDeploymentInterface. 
+# The default value for this property points to an impl that deploys via copying/deleting
 # to/from the RI autodeploy directory.  This should be left unchanged...
 #
 #     porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment
@@ -1581,56 +1566,30 @@ porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.glassfish.Aut
 porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentSeparateVM
 
 ########################################################################
-# @deploy.delay.in.minutes This property can be used to specify the 
-# amount of time in minutes that the test harness will wait for the JSR-88
-# ProgressObject to return either failed or completed from a DeploymentManager
-# API call.  After the time has elapsed, the harness will report failure for 
-# the given action.  This property is only used when porting.ts.deploy.class.1
-# is set to com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
+# @deploy.delay.in.minutes is no longer used, it was for pruned Jakarta Deployment
 ########################################################################
-deploy.delay.in.minutes=5
 
 ########################################################################
-## Vendor's Java EE implementation settings for JSR 88.  These properties
-## are only used when porting.ts.deploy.class.1 is set to
-## com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.  These
-## properties are set up to work against SJSAS 9.x PE by default.
-##
-## If you are testing against SJSAS 9.x SE/EE with SSL enabled by default, 
-## you must uncomment the deployManageruri.1 property below that ends with
-## "https", and comment the one that doesn't.
-# 
-# @deployManagerJarFile.1  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Vendor's Implementation (VI)
-# @deployManageruri.1  JSR 88 management URL, location of the deployment
-#                      process for the VI
-# @deployManageruname.1  username for deployment process for the VI
-# @deployManagerpasswd.1  password for deployment process for the VI
+## Following are no longer used, were settings for pruned Jakarta Deployment 
 ########################################################################
-deployManagerJarFile.1=${javaee.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}
-#deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}:https
-deployManageruname.1=${s1as.admin.user}
-deployManagerpasswd.1=${s1as.admin.passwd}
+#deployManagerJarFile.1
+#deployManageruri.1
+#deployManageruname.1
+#deployManagerpasswd.1
 
 ########################################################################
-## Java EE RI Settings for JSR 88.  These properties
-## are only used when porting.ts.deploy.class.2 is set to
-## com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
+## Following are no longer used, were settings for pruned Jakarta Deployment
+########################################################################
+#deployManagerJarFile.2
+#deployManageruri.2
+#deployManageruname.2
+#deployManagerpasswd.2
 #
-# @deployManagerJarFile.2  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Reference Implementation (RI)
-# @deployManageruri.2  JSR 88 management URL, location of the deployment
-#                      process for the RI
-# @deployManageruname.2  username for deployment process for the RI
-# @deployManagerpasswd.2  password for deployment process for the RI
-########################################################################
-deployManagerJarFile.2=${javaee.home.ri}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${ri.admin.port}
-deployManageruname.2=${ri.admin.user}
-deployManagerpasswd.2=${ri.admin.passwd}
+# @porting.ts.deploy2.class.1
+# @porting.ts.deploy2.class.2
+# porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+# porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+
 
 ###############################################################
 ## These properties must be set to tell the Test harness the
@@ -1640,10 +1599,6 @@ deployManagerpasswd.2=${ri.admin.passwd}
 ## always point to Sun RI classes.  The ".1" set should point to
 ## implementations that work in your specific Java EE environment.
 #
-# @porting.ts.deploy2.class.1  Vendor's Implementation (VI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2.  This property
-#    is only used when porting.ts.deploy.class.1 is set to
-#    com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
 # @porting.ts.login.class.1  VI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.1  VI of
@@ -1652,10 +1607,6 @@ deployManagerpasswd.2=${ri.admin.passwd}
 #    com.sun.ts.lib.porting.TSJMSAdminInterface
 # @porting.ts.HttpsURLConnection.class.1  VI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
-# @porting.ts.deploy2.class.2  Reference Implementation (RI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2.  This property
-#    is only used when porting.ts.deploy.class.1 is set to
-#    com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
 # @porting.ts.login.class.2  RI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.2  RI of
@@ -1665,14 +1616,12 @@ deployManagerpasswd.2=${ri.admin.passwd}
 # @porting.ts.HttpsURLConnection.class.2  RI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 ###############################################################
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection
 
 ##Porting class names for Sun RI Java EE Implementation #2 (must be Sun's RI)
-porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.2=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin

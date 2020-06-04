@@ -545,35 +545,29 @@ deployment_host.1=${orb.host}
 deployment_port.1=${s1as.admin.port}
 
 ########################################################################
-# @deploy.delay.in.minutes This property can be used to specify the 
-# amount of time in minutes that the test harness will wait for the JSR-88
-# ProgressObject to return either failed or completed from a DeploymentManager
-# API call.  After the time has elapsed, the harness will report failure for 
-# the given action.
+# @deploy.delay.in.minutes is no longer used, it was for pruned Jakarta Deployment
 ########################################################################
-deploy.delay.in.minutes=5
 
 ########################################################################
-## Vendor's Java EE implementation settings for JSR 88.  These
-## properties are set up to work against SJSAS 9.x PE by default.
-##
-## If you are testing against SJSAS 9.x SE/EE with SSL enabled by default, 
-## you must uncomment the deployManageruri.1 property below that ends with
-## "https", and comment the one that doesn't.
-# 
-# @deployManagerJarFile.1  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Vendor's Implementation (VI)
-# @deployManageruri.1  JSR 88 management URL, location of the deployment
-#                      process for the VI
-# @deployManageruname.1  username for deployment process for the VI
-# @deployManagerpasswd.1  password for deployment process for the VI
+## Following are no longer used, were settings for pruned Jakarta Deployment 
 ########################################################################
-deployManagerJarFile.1=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}
-#deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}:https
-deployManageruname.1=${s1as.admin.user}
-deployManagerpasswd.1=${s1as.admin.passwd}
+#deployManagerJarFile.1
+#deployManageruri.1
+#deployManageruname.1
+#deployManagerpasswd.1
+
+########################################################################
+## Following are no longer used, were settings for pruned Jakarta Deployment
+########################################################################
+#deployManagerJarFile.2
+#deployManageruri.2
+#deployManageruname.2
+#deployManagerpasswd.2
+#
+# @porting.ts.deploy2.class.1
+# @porting.ts.deploy2.class.2
+# porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+# porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 
 
 ###############################################################
@@ -584,8 +578,6 @@ deployManagerpasswd.1=${s1as.admin.passwd}
 ## always point to Sun RI classes.  The ".1" set should point to
 ## implementations that work in your specific Java EE environment.
 #
-# @porting.ts.deploy2.class.1  Vendor's Implementation (VI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2
 # @porting.ts.login.class.1  VI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.1  VI of
@@ -595,7 +587,6 @@ deployManagerpasswd.1=${s1as.admin.passwd}
 # @porting.ts.HttpsURLConnection.class.1  VI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 ###############################################################
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
