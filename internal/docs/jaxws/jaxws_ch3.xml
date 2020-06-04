@@ -197,7 +197,7 @@ Methods are either one-way or two-way: one way methods have an input but produce
                            status="active" testable="true">
                     <id>JAXWS:SPEC:3054</id>
                     <description>
-                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: javax.xml.bind.annotation.XmlAttachementRef, javax.xml.bind.annotation.XmlList, javax.xml.bind.XmlMimeType and javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
+                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: jakarta.xml.bind.annotation.XmlAttachementRef, jakarta.xml.bind.annotation.XmlList, jakarta.xml.bind.XmlMimeType and jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
                     </description>
                     <location chapter="3" section="6"/>
                 </assertion>   

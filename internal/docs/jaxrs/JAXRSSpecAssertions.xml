@@ -725,7 +725,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>JAXRS:SPEC:33.8</id>
-                    <description>javax.xml.bind.JAXBElement and application-supplied JAXB classes XML media types (text/xml, application/xml and application/*+xml).</description>
+                    <description>jakarta.xml.bind.JAXBElement and application-supplied JAXB classes XML media types (text/xml, application/xml and application/*+xml).</description>
                     <location chapter="4" section="2.4"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -757,7 +757,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JAXRS:SPEC:34</id>
-            <description>The implementation-supplied entity provider(s) for javax.xml.bind.JAXBElement and application-supplied JAXB classes MUST use JAXBContext instances provided by application-supplied context resolvers, see section 4.3. If an application does not supply a JAXBContext for a particular type, the implementation-supplied entity provider MUST use its own default context instead.</description>
+            <description>The implementation-supplied entity provider(s) for jakarta.xml.bind.JAXBElement and application-supplied JAXB classes MUST use JAXBContext instances provided by application-supplied context resolvers, see section 4.3. If an application does not supply a JAXBContext for a particular type, the implementation-supplied entity provider MUST use its own default context instead.</description>
             <location chapter="4" section="2.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
