@@ -62,7 +62,6 @@ public class AutoDeployment implements TSDeploymentInterface {
 
   protected Hashtable htJNDIRefs = null;
 
-  // TSDeploymentInterface2
   protected Hashtable htDeployedModules = // Map ear files to IDs so we
       new Hashtable(); // can later undeploy
 
@@ -123,7 +122,7 @@ public class AutoDeployment implements TSDeploymentInterface {
     } catch (Exception e) {
       e.printStackTrace();
       TestUtil.logHarness(
-          "Creation of TSDeployment2 implementation instance failed."
+          "Creation of TSDeployment implementation instance failed."
               + " Please check the values of 'porting.ts.deploy2.class.1' and"
               + " 'porting.ts.deploy2.class.2'");
     }

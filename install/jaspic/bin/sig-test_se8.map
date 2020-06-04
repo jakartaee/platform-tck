@@ -53,5 +53,5 @@
 ###############################################################
 
 
-# JASPIC 1.1 (Java Authentication SPI for Containters - JSR-196)
-jakarta.security.auth.message=1.1_se8
+# Authentication 2.0
+jakarta.security.auth.message=2.0_se8

@@ -51,9 +51,7 @@
                             ${pkg.dir}/deliverable/*.java,
                             ${pkg.dir}/deliverable/*.java, 
                             ${pkg.dir}/javatest/**/*.java"
-                  excludes="${pkg.dir}/porting/TSDeploymentInterface2.java, 
-                            ${pkg.dir}/porting/TSDeployment2.java, 
-                            ${pkg.dir}/porting/TSJMSObjects*.java">
+                  excludes="${pkg.dir}/porting/TSJMSObjects*.java">
             <classpath>
                 <pathelement path="${lib.dir}/javatest.jar" />
             </classpath>
@@ -77,8 +75,6 @@
             <include name="${pkg.dir}/deliverable/*.class"/>
             <include name="${pkg.dir}/javatest/**/*.class"/>
             <include name="${pkg.dir}/javatest/i18n.properties"/>
-            <exclude name="${pkg.dir}/porting/TSDeploymentInterface2*.class"/>
-            <exclude name="${pkg.dir}/porting/TSDeployment2*.class"/>
             <exclude name="${pkg.dir}/porting/TSJMSObjects*.class"/>
             <exclude name="${pkg.dir}/harness/ServiceEETest.class"/>
             <exclude name="${pkg.dir}/harness/JCKServiceEETest.class"/>

@@ -367,7 +367,7 @@ The default setting is as follows:
 
 [source,oac_no_warn]
 ----
-javaee.level=full jaxr jaxrpc javaeedeploy
+javaee.level=full jaxr jaxrpc 
 ----
 
 [[BCGHGJIC]][[using-keywords-to-create-groups-and-subsets-of-tests]]
@@ -490,7 +490,6 @@ Subsets
 |EJB 1.x, CMP, BMP, entity beans |`ejb_1x_optional or` `javaee_optional`
 |EJB 2.x, CMP, BMP, entity beans |`ejb_2x_optional` or `javaee_optional`
 |EJBQL |`javaee_optional`
-|Jakarta Deployment |`javaeedeploy_optional` or `javaee_optional`
 |JAXR |`javaee_optional`
 |JAX-RPC |javaee_optional
 |=======================================================================
@@ -634,7 +633,6 @@ Container-Managed Persistence and Bean-Managed Persistence
 * Jakarta RESTful Web Services (formerly JAX-RPC) Based Web Service Endpoints
 * Jakarta XML-RPC (formerly JAX-RPC) Web Service Client View
 * Jakarta Registries (formerly JAXR) 1.0
-* Jakarta Deployment 1.2 are also optional
 
 [[sthref43]][[to-use-keywords-to-run-tests-in-selected-vehicles]]
 

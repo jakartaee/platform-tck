@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,10 +15,10 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 export TCK_HOME=${WORKSPACE}
-echo "TCK_HOME in cajtck.sh $TCK_HOME"
-echo "ANT_HOME in cajtck.sh $ANT_HOME"
-echo "PATH in cajtck.sh $PATH"
-echo "ANT_OPTS in cajtck.sh $ANT_OPTS"
+echo "TCK_HOME in jaxwstck.sh $TCK_HOME"
+echo "ANT_HOME in jaxwstck.sh $ANT_HOME"
+echo "PATH in jaxwstck.sh $PATH"
+echo "ANT_OPTS in jaxwstck.sh $ANT_OPTS"
 
 HOST=`hostname`
 
@@ -37,6 +37,10 @@ else
   exit 1
 fi
 
+if [ -z "$GF_TOPLEVEL_DIR" ]; then
+  export GF_TOPLEVEL_DIR=glassfish6
+fi
+
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 5.0.1 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -53,8 +57,8 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 mkdir $TCK_HOME/ri
 
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/glassfish5/glassfish#g" ts.jte
+sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
 sed -i 's#webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
@@ -66,14 +70,14 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
-export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
+export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
 
-cd $TCK_HOME/vi/glassfish5/glassfish/bin
+cd $TCK_HOME/vi/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.vi
 
-RI_DOMAIN_CONFIG_FILE=$TCK_HOME/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+RI_DOMAIN_CONFIG_FILE=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
 rm -rf $TCK_HOME/ri/*
 
 # TODO : Web Profile 
@@ -86,16 +90,16 @@ sed -i 's/4848/5858/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8181/9181/g' $RI_DOMAIN_CONFIG_FILE
 
-cd $TCK_HOME/ri/glassfish5/glassfish/bin
+cd $TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.ri
 
-cd $TCK_HOME/vi/glassfish5/glassfish/bin
+cd $TCK_HOME/vi/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 
-cd $TCK_HOME/ri/glassfish5/glassfish/bin
+cd $TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 
@@ -116,4 +120,4 @@ echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${WORKSPACE}/*.log ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${WORKSPACE}/*.log ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*

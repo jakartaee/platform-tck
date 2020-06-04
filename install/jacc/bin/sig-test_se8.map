@@ -45,7 +45,7 @@
 #
 ###############################################################
 
-# JACC 1.5 
-jakarta.security.jacc=1.5_se8
+# Authorization 2.0 
+jakarta.security.jacc=2.0_se8
 
 

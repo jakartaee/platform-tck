@@ -2262,7 +2262,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>javax.xml.namespace.QName</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
         </parameters>
       </method>
@@ -2276,7 +2276,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>javax.xml.namespace.QName</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
           <parameter>jakarta.xml.ws.WebServiceFeature[]</parameter>
         </parameters>
@@ -2291,7 +2291,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>jakarta.xml.ws.EndpointReference</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
           <parameter>jakarta.xml.ws.WebServiceFeature[]</parameter>
         </parameters>
@@ -2556,7 +2556,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>javax.xml.namespace.QName</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
         </parameters>
       </method>
@@ -2570,7 +2570,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>javax.xml.namespace.QName</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
           <parameter>jakarta.xml.ws.WebServiceFeature[]</parameter>
         </parameters>
@@ -2585,7 +2585,7 @@
       <method name="createDispatch" return-type="jakarta.xml.ws.Dispatch">
         <parameters>
           <parameter>jakarta.xml.ws.EndpointReference</parameter>
-          <parameter>javax.xml.bind.JAXBContext</parameter>
+          <parameter>jakarta.xml.bind.JAXBContext</parameter>
           <parameter>jakarta.xml.ws.Service.Service.Mode</parameter>
           <parameter>jakarta.xml.ws.WebServiceFeature[]</parameter>
         </parameters>

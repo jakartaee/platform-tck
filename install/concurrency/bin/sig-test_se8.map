@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -39,4 +39,4 @@
 # This sig-test.map file is designed to be run using JDK 8 only.
 #
 ###############################################################
-jakarta.enterprise.concurrent=1.0_se8
+jakarta.enterprise.concurrent=2.0_se8

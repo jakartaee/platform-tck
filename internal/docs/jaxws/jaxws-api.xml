@@ -381,13 +381,13 @@
                     <method modifiers="public" name="createDispatch">
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
@@ -402,14 +402,14 @@
                         <since>JAX-WS 2.1</since>
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package=".xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
@@ -428,14 +428,14 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
                             <detail> If there  are any reference parameters in the   endpointReference, then those reference  parameters MUST appear as SOAP headers, indicating them to be  reference parameters, on all messages sent to the endpoint.  The endpointReference&apos;s address MUST be used  for invocations on the endpoint.  In the implementation of this method, the JAX-WS  runtime system takes the responsibility of selecting a protocol  binding (and a port) and configuring the dispatch accordingly from  the WSDL associated with this Service instance or  from the metadata from the endpointReference.  If this Service instance has a WSDL and   the endpointReference  also has a WSDL in its metadata, then the WSDL from this instance  MUST be used.  If this Service instance does not have a WSDL and  the endpointReference does have a WSDL, then the   WSDL from the endpointReference MAY be used.        An implementation MUST be able to retrieve the portName from the  endpointReference metadata.     This method behavies the same as calling    dispatch = service.createDispatch(portName, context, mode, features);    where the portName is retrieved from the   WSDL or endpointReference metadata.</detail>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
                             <parameter name="endpointReference" package="jakarta.xml.ws" type="EndpointReference">
                                 <comment>The EndpointReference  for the target service endpoint that will be invoked by the  returned Dispatch object.</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
@@ -1591,7 +1591,7 @@
                             <detail> Note that there is no   connection between the returned object and the message payload,   changes to the payload require calling setPayload.</detail>
                         </comment>
                         <parameters>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXBContext that should be used to unmarshall           the message payload</comment>
                             </parameter>
                         </parameters>
@@ -1607,7 +1607,7 @@
                             <parameter name="payload" package="java.lang" type="Object">
                                 <comment>message payload</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXBContext that should be used to marshall            the payload</comment>
                             </parameter>
                         </parameters>
@@ -2287,7 +2287,7 @@
                             <parameter name="header" package="javax.xml.namespace" type="QName">
                                 <comment>The XML qualified name of the SOAP header(s).</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXBContext that should be used to unmarshall the            header</comment>
                             </parameter>
                             <parameter name="allRoles" type="boolean">
@@ -3045,13 +3045,13 @@
                     <method modifiers="public abstract" name="createDispatch">
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
@@ -3066,14 +3066,14 @@
                         <since>JAX-WS 2.1</since>
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
@@ -3092,14 +3092,14 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with JAXB  generated objects.</lead>
                             <detail> If there  are any reference parameters in the   endpointReference, then those reference  parameters MUST appear as SOAP headers, indicating them to be  reference parameters, on all messages sent to the endpoint.  The endpointReference&apos;s address MUST be used  for invocations on the endpoint.  In the implementation of this method, the JAX-WS  runtime system takes the responsibility of selecting a protocol  binding (and a port) and configuring the dispatch accordingly from  the WSDL associated with this Service instance or  from the metadata from the endpointReference.  If this Service instance has a WSDL and   the endpointReference  also has a WSDL in its metadata, then the WSDL from this instance  MUST be used.  If this Service instance does not have a WSDL and  the endpointReference does have a WSDL, then the   WSDL from the endpointReference MAY be used.        An implementation MUST be able to retrieve the portName from the  endpointReference metadata.      This method behavies the same as calling    dispatch = service.createDispatch(portName, context, mode, features);    where the portName is retrieved from the   WSDL or endpointReference metadata.</detail>
-                            <see class="JAXBContext" package="javax.xml.bind"/>
+                            <see class="JAXBContext" package="jakarta.xml.bind"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
                             <parameter name="endpointReference" package="jakarta.xml.ws" type="EndpointReference">
                                 <comment>The EndpointReference  for the target service endpoint that will be invoked by the  returned Dispatch object.</comment>
                             </parameter>
-                            <parameter name="context" package="javax.xml.bind" type="JAXBContext">
+                            <parameter name="context" package="jakarta.xml.bind" type="JAXBContext">
                                 <comment>The JAXB context used to marshall and unmarshall  messages or message payloads.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
