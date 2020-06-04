@@ -158,9 +158,9 @@ jakarta.resource=2.0_se8
 # (This is JSR-088)
 #jakarta.enterprise.deploy=1.2_se8
 
-# JACC 1.5
+# Authorization 2.0
 # (This is JSR-115)
-jakarta.security.jacc=1.5_se8
+jakarta.security.jacc=2.0_se8
 
 # Persistence 3.0
 jakarta.persistence=3.0_se8
@@ -207,14 +207,14 @@ jakarta.json=2.0.0_se8
 # (This is JSR-367)
 jakarta.json.bind=2.0_se8
 
-# WebSocket 1.1
+# WebSocket 2.0
 # (This is JSR-356)
-jakarta.websocket=1.1_se8
+jakarta.websocket=2.0_se8
 
 # Batch 2.0 
 # (This is JSR-352)
 jakarta.batch=2.0_se8
 
-# Java EE Security API 1.0
+# Security API 2.0
 # (This is JSR-375)
-jakarta.security.enterprise=1.0_se8
+jakarta.security.enterprise=2.0_se8
