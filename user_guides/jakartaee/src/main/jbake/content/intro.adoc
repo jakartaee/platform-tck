@@ -194,8 +194,6 @@ Container-Managed Persistence and Bean-Managed Persistence
 ** Client View of an EJB 2.1 and earlier Entity Bean
 ** EJB QL: Query Language for Container-Managed Persistence Query
 Methods
-** JAX-RPC Based Web Service Endpoints
-** JAX-RPC Web Service Client View
 
 =======================================================================
 

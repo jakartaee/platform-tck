@@ -59,7 +59,6 @@ environment file to identify the fully-qualified class names:
 porting.ts.deploy2.class.1=[vendor-deployment-class]
 porting.ts.login.class.1=[vendor-login-class]
 porting.ts.url.class.1=[vendor-url-class]
-porting.ts.jaxrpc.class.1=[vendor-jaxrpc-class]
 porting.ts.jms.class.1=[vendor-jms-class]
 porting.ts.HttpsURLConnection.class.1=[vendor-httpsURLConnection-class] 
 ----
@@ -100,7 +99,6 @@ requirements:
 
 ** `TSHttpsURLConnectionInterface`
 
-** `TSJAXRPCInterface`
 * Include the implementation of the previous interfaces in the
 classpaths of JavaTest, the test clients, and the test server
 components:
@@ -139,7 +137,6 @@ this section are:
 * link:#GFATH[TSLoginContextInterface]
 * link:#GFATO[TSURLInterface]
 * link:#GFASJ[TSHttpsURLConnectionInterface]
-* link:#GFAUI[TSJAXRPCInterface]
 
 [[GFASM]][[tsdeploymentinterface2]]
 
@@ -335,22 +332,5 @@ The `SunRIHttpsURLConnection` implementation class uses
 `HttpsURLConnection` from Java SE 8.
 
 =======================================================================
-
-
-[[GFAUI]][[tsjaxrpcinterface]]
-
-11.2.7 TSJAXRPCInterface
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The `TSJAXRPC` class acts as a `Factory` object for creating concrete
-implementations of `TSJAXRPCInterface`. The concrete implementations are
-specified by the `porting.ts.jaxrpc.class.1` and `.2` properties in the
-`ts.jte` file.
-
-You must provide an implementation of `TSJAXRPCInterface` to support the
-class `TSJAXRPC`. This class is used to provide as name/value pairs the
-URL value of the deployed webservice endpoints for those sets of tests
-which use DII, direct HTTP, or direct SAAJ 1.4 to communicate to the
-endpoints. SOAP with Attachments API for Java (SAAJ) is included in Java SE 8.
 
 

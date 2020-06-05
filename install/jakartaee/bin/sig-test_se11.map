@@ -55,7 +55,6 @@
 #   JavaMail 1.6 (JSR-919)
 #   Connector 1.7 (JSR-322)
 #   Web Services 1.4 (JSR-109)
-#   JAX-RPC 1.1 (JSR-101)
 #   JAXR 1.0   (JSR-093)
 #   JAX-RS 2.1   (JSR-370)
 #   JavaEE Management 1.1  (JSR-77)
@@ -141,10 +140,6 @@ jakarta.mail=1.6_se11
 # Connector 1.7 
 # (This is JSR-322)
 jakarta.resource=1.7_se11
-
-# JAX-RPC 1.1 
-# (This is JSR-101)
-jakarta.xml.rpc=1.1_se11
 
 # JAXR 1.0 
 # (This is JSR-093)

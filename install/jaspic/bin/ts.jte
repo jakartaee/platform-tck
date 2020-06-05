@@ -839,12 +839,12 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
         $testExecuteClass $testExecuteArgs
 
 #######################################################################
-## platform.mode is used by jaxrpc/jaxws tests to know whether to use
+## platform.mode is used by jaxws tests to know whether to use
 ## the Java EE Programming Model for service and port access or the
-## JAXRPC/JAXWS/JASPIC Programming model based on the runtime execution 
+## JAXWS/JASPIC Programming model based on the runtime execution 
 ## platform.
 ##
-## platform.mode=standalone	JAXRPC/JAXWS/JASPIC Programming Model
+## platform.mode=standalone	JAXWS/JASPIC Programming Model
 ## platform.mode=javaEE		Java EE Programming Model
 ##
 ## Note: When you switch platform.mode make sure you change the property
@@ -854,16 +854,6 @@ platform.mode=javaEE
 
 
 ts_home=${ts.home}
-
-
-###############################################################
-## These properties are used for the JAXRPC specific tests,
-## they do not need to be changed.
-###############################################################
-jaxrpc.tool.unix=${jaspic.home}/bin/wscompile
-jaxrpc.tool.win=${jaspic.home}/bin/wscompile.bat
-import.only.args=-classpath ${class.dir} -keep -import -Xprintstacktrace
-jaxrpc.default.features=wsi,strict,norpcstructures
 
 ###########################################################################
 # tools.jar should be set to the location of the tools.jar from the installed

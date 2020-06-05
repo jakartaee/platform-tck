@@ -429,7 +429,6 @@ application server so it is running with the Security Manager enabled.
 
 .  Provide alternate endpoint and WSDL URLs, if necessary. +
 The `<TS_HOME>/bin` directory contains the following `.dat` files:
-* `jaxrpc-url-props.dat`
 * `jaxws-url-props.dat`
 * `jws-url-props.dat`
 * `webservices12-url-props.dat` 
@@ -3193,64 +3192,6 @@ Interface is mapped. Only required for each `port-component-ref` in the
 
 5.4.22.3.2 Setting Stub Properties
 
-[source,oac_no_warn]
-----
-element : stub-property
-----
-
-These are used to have the container set any of the properties defined
-in `javax.xml.rpc.Stub` on the stub/dynamic proxy object returned to the
-application from the Service instance. The property name must match the
-*value* of the `javax.xml.rpc.Stub` property constants. The stub
-properties are set per Port within the `service-ref`. Examples are shown
-below.
-
-* Setting endpoint address: 
-+
-[source,oac_no_warn]
-----
-<service-ref>
-    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
-    <port-info>
-        <service-endpoint-interface>googleclient.GoogleSearchPort
-        </service-endpoint-interface>
-        <wsdl-port>
-            <namespaceURI>urn:GoogleSearch</namespaceURI>
-            <localpart>GoogleSearchPort</localpart>
-        </wsdl-port>
-        <stub-property>
-            <name>javax.xml.rpc.service.endpoint.address</name>
-            <value>http://localhost:8000/google/GoogleSearch</value>
-        </stub-property>
-    </port-info>
-</service-ref>
-----
-+
-* Setting Basic Auth properties: 
-+
-[source,oac_no_warn]
-----
-<service-ref>
-    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
-    <port-info>
-        <service-endpoint-interface>googleclient.GoogleSearchPort
-        </service-endpoint-interface>
-        <wsdl-port>
-            <namespaceURI>urn:GoogleSearch</namespaceURI>
-            <localpart>GoogleSearchPort</localpart>
-        </wsdl-port>
-        <stub-property>
-            <name>javax.xml.rpc.security.auth.username</name>
-            <value>javaee</value>
-        </stub-property>
-        <stub-property>
-            <name>javax.xml.rpc.security.auth.password</name>
-            <value>javaee</value>
-        </stub-property>
-    </port-info>
-</service-ref>
-----
-+
 * Setting Logging property (Implementation-specific): +
 Name: `com.sun.enterprise.webservice.client.transport.log` +
 Value: a `file` URL +
@@ -3275,69 +3216,6 @@ responses made through the associated stub will be logged to a file.
         </stub-property>
     </port-info>
 </service-ref>
-----
-
-[[GEYMB]][[setting-call-properties]]
-
-===== 5.4.22.3.3 Setting Call Properties
-
-[source,oac_no_warn]
-----
-element : call-property
-----
-
-Call properties are set on `service-ref` for `Call` objects returned
-from `javax.xml.rpc.Service.createCall()`. This is the only kind of
-`Call` object that is not tied to a port.
-
-[source,oac_no_warn]
-----
-<service-ref>
-      <service-ref-name>service/GoogleSearch</service-ref-name>
-      <call-property>
-        <name>javax.xml.rpc.security.auth.username</name>
-        <value>javaee</value>
-      </call-property>
-      <call-property>
-        <name>javax.xml.rpc.security.auth.password</name>
-        <value>javaee</value>
-      </call-property>
-</service-ref>
-----
-
-Call properties are set within `port-info` for all other
-`javax.xml.rpc.Service` methods that return `Call` objects.
-
-[source,oac_no_warn]
-----
-<module-name>appclient.jar</module-name>
-      <service-ref>
-         <service-ref-name>service/GoogleSearch</service-ref-name>
-         <port-info>
-           <wsdl-port>
-              <namespaceURI>urn:GoogleSearch</namespaceURI>
-              <localpart>GoogleSearchPort</localpart>
-           </wsdl-port>
-           <call-property>
-             <name>javax.xml.rpc.security.auth.username</name>
-             <value>javaee</value>
-           </call-property>
-           <call-property>
-             <name>javax.xml.rpc.security.auth.password</name>
-             <value>javaee</value>
-           </call-property>
-         </port-info>
-      </service-ref>
-----
-
-The allowable properties are defined in the javadoc for
-`javax.xml.rpc.Call`.
-
-[[GEYOG]][[overriding-wsdl]]
-
-===== 5.4.22.3.4 Overriding WSDL
-
-[source,oac_no_warn]
 ----
 element : wsdl-override
 ----

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1232,8 +1232,8 @@
                                        samples, webservices12, assembly, ejb, jacc,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
                                        jws, signaturetest, xa, compat12, integration,
-                                       jaxr, jsf, rmiiiop, compat13, interop, jaxrpc,
-                                       jsp, saaj, webservices"/>
+                                       jaxr, jsf, rmiiiop, compat13,
+                                       jsp, saaj"/>
     
     <!-- timeout is specified in seconds, default is 3 minutes -->
     <property name="jointimeout" value="180"/>
