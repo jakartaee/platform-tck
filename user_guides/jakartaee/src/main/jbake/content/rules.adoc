@@ -655,8 +655,6 @@ required for Jakarta EE 8:
 * jakarta.mail.internet
 * jakarta.mail.search
 * jakarta.mail.util
-* javax.management.j2ee
-* javax.management.j2ee.statistics
 * jakarta.persistence
 * jakarta.persistence.criteria
 * jakarta.persistence.metamodel
