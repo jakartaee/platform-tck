@@ -104,23 +104,6 @@ public class CTSPropertyManager extends AbstractPropertyManager {
 
   private String password2;
 
-  // JSR-88
-  private String deployManagerJarFile1;
-
-  private String deployManageruri1;
-
-  private String deployManageruname1;
-
-  private String deployManagerpasswd1;
-
-  private String deployManagerJarFile2;
-
-  private String deployManageruri2;
-
-  private String deployManageruname2;
-
-  private String deployManagerpasswd2;
-
   private CTSPropertyManager() {
   }
 
@@ -205,17 +188,6 @@ public class CTSPropertyManager extends AbstractPropertyManager {
         "porting.ts.HttpsURLConnection.class.2", null);
     sWSDLRepository1 = getProperty("wsdlRepository1", null);
     sWSDLRepository2 = getProperty("wsdlRepository2", null);
-
-    // JSR-88
-    deployManagerJarFile1 = getProperty("deployManagerJarFile.1", null);
-    deployManageruri1 = getProperty("deployManageruri.1", null);
-    deployManageruname1 = getProperty("deployManageruname.1", null);
-    deployManagerpasswd1 = getProperty("deployManagerpasswd.1", "");
-    deployManagerJarFile2 = getProperty("deployManagerJarFile.2", null);
-    deployManageruri2 = getProperty("deployManageruri.2", null);
-    deployManageruname2 = getProperty("deployManageruname.2", null);
-    deployManagerpasswd2 = getProperty("deployManagerpasswd.2", "");
-
   }
 
   public void forwardValues() {
@@ -261,16 +233,6 @@ public class CTSPropertyManager extends AbstractPropertyManager {
         sHttpsURLConnectionClass2);
     setProperty("wsdlRepository1", sWSDLRepository1);
     setProperty("wsdlRepository2", sWSDLRepository2);
-
-    // JSR-88
-    setProperty("deployManagerJarFile.1", deployManagerJarFile1);
-    setProperty("deployManageruri.1", deployManageruri1);
-    setProperty("deployManageruname.1", deployManageruname1);
-    setProperty("deployManagerpasswd.1", deployManagerpasswd1);
-    setProperty("deployManagerJarFile.2", deployManagerJarFile2);
-    setProperty("deployManageruri.2", deployManageruri2);
-    setProperty("deployManageruname.2", deployManageruname2);
-    setProperty("deployManagerpasswd.2", deployManagerpasswd2);
 
     super.forwardValues();
   }
@@ -318,16 +280,6 @@ public class CTSPropertyManager extends AbstractPropertyManager {
         sHttpsURLConnectionClass1);
     setProperty("wsdlRepository1", sWSDLRepository2);
     setProperty("wsdlRepository2", sWSDLRepository1);
-
-    // JSR-88
-    setProperty("deployManagerJarFile.1", deployManagerJarFile2);
-    setProperty("deployManageruri.1", deployManageruri2);
-    setProperty("deployManageruname.1", deployManageruname2);
-    setProperty("deployManagerpasswd.1", deployManagerpasswd2);
-    setProperty("deployManagerJarFile.2", deployManagerJarFile1);
-    setProperty("deployManageruri.2", deployManageruri1);
-    setProperty("deployManageruname.2", deployManageruname1);
-    setProperty("deployManagerpasswd.2", deployManagerpasswd1);
 
     super.reverseValues();
   }
@@ -378,21 +330,6 @@ public class CTSPropertyManager extends AbstractPropertyManager {
     pTestProps.put("wsdlRepository1", getProperty("wsdlRepository1"));
     pTestProps.put("wsdlRepository2", getProperty("wsdlRepository2"));
 
-    // props needed when using the JSR-88 APIs
-    pTestProps.put("deployManagerJarFile.1",
-        getProperty("deployManagerJarFile.1"));
-    pTestProps.put("deployManageruri.1", getProperty("deployManageruri.1"));
-
-    pTestProps.put("deployManageruname.1", getProperty("deployManageruname.1"));
-    pTestProps.put("deployManagerpasswd.1",
-        getProperty("deployManagerpasswd.1", ""));
-    pTestProps.put("deployManagerJarFile.2",
-        getProperty("deployManagerJarFile.2"));
-    pTestProps.put("deployManageruri.2", getProperty("deployManageruri.2"));
-
-    pTestProps.put("deployManageruname.2", getProperty("deployManageruname.2"));
-    pTestProps.put("deployManagerpasswd.2",
-        getProperty("deployManagerpasswd.2", ""));
     pTestProps.put("porting.ts.deploy2.class.1",
         getProperty("porting.ts.deploy2.class.1",
             "com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2"));

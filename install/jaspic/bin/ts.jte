@@ -549,14 +549,6 @@ deployment_port.1=${s1as.admin.port}
 ########################################################################
 
 ########################################################################
-## Following are no longer used, were settings for pruned Jakarta Deployment 
-########################################################################
-#deployManagerJarFile.1
-#deployManageruri.1
-#deployManageruname.1
-#deployManagerpasswd.1
-
-########################################################################
 ## Following are no longer used, were settings for pruned Jakarta Deployment
 ########################################################################
 #deployManagerJarFile.2
@@ -609,12 +601,12 @@ namingServiceHost1=${orb.host}
 namingServicePort1=${orb.port}
 namingServiceHost2=${orb.host}
 namingServicePort2=${orb.port}
-deployManagerJarFile.2=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${s1as.admin.port}
-deployManageruname.2=${s1as.admin.user}
-deployManagerpasswd.2=${s1as.admin.passwd}
 variable.mapper=com.sun.el.lang.VariableMapperImpl
-
+# The following Jakarta Deployment properties are not supported
+#deployManagerJarFile.2=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
+#deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${s1as.admin.port}
+#deployManageruname.2=${s1as.admin.user}
+#deployManagerpasswd.2=${s1as.admin.passwd}
 
 
 ##############################################################
