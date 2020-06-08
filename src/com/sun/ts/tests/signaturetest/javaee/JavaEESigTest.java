@@ -58,7 +58,7 @@ import com.sun.ts.lib.util.TestUtil;
  *
  *
  * The incomplete list of OPTIONAL/ADDITIONAL technologies which could be tested
- * along with the web profile are: jms javamail javaeemgmt connector jaspic jacc
+ * along with the web profile are: jms javamail connector jaspic jacc
  * jaxrs - optional technology in EE 7 jaxr - optional technology
  * in EE 7 jaxrpc - optional technology in EE 7
  *
@@ -73,7 +73,7 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final String JAVAEE_WEB_KEYWORD = "javaee_web_profile";
 
-  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail javaeemgmt"
+  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail"
       + " cdi di beanval persistence jaxb saaj jaxws connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
@@ -84,7 +84,7 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
       Arrays.asList("batch", "jaxrpc", "jaxr", "connector",
-          "jaxws", "jaxb", "jms", "javamail", "javaeemgmt", "jacc", "jaspic",
+          "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
           "wsmd"));
 
   enum Containers {
@@ -117,8 +117,6 @@ public class JavaEESigTest extends SigTestEE {
     APPCLIENT_MAP.put("javamail",
         new String[] { "jakarta.mail", "jakarta.mail.event", "jakarta.mail.internet",
             "jakarta.mail.search", "jakarta.mail.util" });
-    APPCLIENT_MAP.put("javaeemgmt", new String[] { "jakarta.management.j2ee",
-        "jakarta.management.j2ee.statistics" });
     APPCLIENT_MAP.put("persistence",
         new String[] { "jakarta.persistence", "jakarta.persistence.spi",
             "jakarta.persistence.criteria", "jakarta.persistence.metamodel" });

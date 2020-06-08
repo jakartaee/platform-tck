@@ -111,7 +111,6 @@
         <echo message=" jakartaee-appclient [overrides]"/>
         <echo message=" jakartaee-assembly  [overrides]"/>
         <echo message=" jakartaee-compat    [overrides]"/>
-        <echo message=" jakartaee-j2eetools [overrides]"/>
         <echo message=" jakartaee-javamail  [overrides]"/>
         <echo message=" jakartaee-jaxr     [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
@@ -663,12 +662,6 @@
             common"/>
         <antcall target="${the.target}"/>
     </target>
-        
-    <target name="jakartaee-j2eetools" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-TOOLS"/>
-        <property name="test.areas" value="j2eetools"/>
-        <antcall target="${the.target}"/>
-    </target>
     
     <target name="jakartaee-javamail" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAVAMAIL"/>
@@ -923,7 +916,6 @@
             connector,
             ejb,
             integration,
-            j2eetools,
             jacc,
             javamail,
             jaxp,

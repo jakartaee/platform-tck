@@ -147,10 +147,10 @@ javatest.timeout.factor=1
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
 #                            "batch", "jaxrpc", "jaxr", "connector", "jaxb", 
-#                            "jms", "javamail", "javaeemgmt", "jacc", "jaspic", "wsmd" 
+#                            "jms", "javamail", "jacc", "jaspic", "wsmd" 
 #		      ex 1/   javaee.level=web connector jms jacc jaxrpc 
 #		      ex 2/   javaee.level=web jaspic
-#		      ex 3/   javaee.level=web jms connector javaeemgmt
+#		      ex 3/   javaee.level=web jms connector
 #		      ex 4/   etc...
 #
 # Note 1:  spaces separate multiple entries
@@ -182,7 +182,7 @@ javatest.timeout.factor=1
 #                      (see comments for optional.tech.packages.to.ignore below)
 #
 ###############################################################################
-#javaee.level=web connector jaxws jaxb javamail javaeemgmt jacc jaspic wsmd
+#javaee.level=web connector jaxws jaxb javamail jacc jaspic wsmd
 javaee.level=full jaxr jaxrpc 
 
 

@@ -101,7 +101,7 @@
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
   <property name="srcdirs"  value="appclient,compat12,ejb,integration,jacc,jaxr,jsf,jstl,rmiiiop,assembly,
                               compat13,ejb30,internal,jaspic,jaxrpc,jdbc,jsonb,jta,saaj,concurrency,ejb32,interop,
-                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,j2eetools,javamail,servlet,
+                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
                               webservices13,websocket,webservices,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
  
   <taskdef resource="net/sf/antcontrib/antlib.xml"
@@ -332,7 +332,7 @@
   
   <!-- Removed Jakarta Deployment, jaxws, saaj and jws from the code coverage as the corresponding  -->
   <!-- tests are no more part of Java EE 8 CTS                                  -->
-  <target name="all" depends="start.log,jaxr,j2eetools-mgt,
+  <target name="all" depends="start.log,jaxr,
 	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
 	                              jaxrpc,jaxrs,webservices,jsf,jsonp,
@@ -511,16 +511,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/jms/JMSJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/jms/JMSSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/jms"/>
-    </antcall>
-  </target>
-
-  <target name="j2eetools-mgt">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/j2eemgmt_1_1/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/j2eemgmt_1_1/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/j2eemgmt/J2EEMGMTJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/j2eemgmt/J2EEMGMTSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/j2eetools/mgmt"/>
     </antcall>
   </target>
 
