@@ -3561,24 +3561,6 @@ ALTER DATABASE ctsdb
 COLLATE Latin1_General_CS_AS ;
 ----
 
-[[GEXQP]][[deployment-test-setup]]
-
-5.4.26 Deployment Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ensure that the following properties in the `ts.jte` file have been set:
-
-* `deployManagerJarFile.1` property to a JAR file that contains manifest
-entries according to the Jakarta Platform, Enterprise Edition Jakarta Deployment API
-1.2 Specification
-
-* `deployManageruri.1` property to a URI to connect to
-
-* `deployManageruname.1` and `deployManagerpasswd.1` properties to the
-user name and password that are used when connecting to a deployment
-manager, if needed
-
-
 [NOTE]
 =======================================================================
 

@@ -143,64 +143,17 @@ this section are:
 
 [[GFASM]][[tsdeploymentinterface2]]
 
-11.2.1 TSDeploymentInterface2
+11.2.1 TSDeploymentInterface2 is removed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TODO:  remove this and TSDeployment2
-The Jakarta EE 8 CTS test suite provides a new version of the Deployment
-porting interface. With the introduction of a standard deployment API in
-the legacy J2EE 1.4 platform (via Jakarta Deployment Specification (Originally JSR-88)), many of the porting methods in the
-original interface `TSDeploymentInterface` no longer require
-implementation-specific functionality. The Jakarta EE 8 CTS test suite
-provides an implementation of the interface `TSDeploymentInterface`,
+TSDeploymentInterface2 + TSDeployment2 are no longer supported since 
+the Jakarta Deployment spec is removed. 
+Please use the `TSDeploymentInterface` instead. 
+The interface `TSDeploymentInterface`,
 which uses only the standard Deployment APIs defined by the Jakarta
 Platform, Enterprise Edition platform. The following properties are
 still in the `ts.jte` file to reflect this and should not be changed:
 
-* `porting.ts.deploy2.class.1=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14`
-* `porting.ts.deploy2.class.2=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14`
-
-The class `StandardDeployment14` also requires the following properties
-to be set in the `ts.jte` file:
-
-* `deployManagerJarFile.1=${JAVAEE_HOME}/lib/deployment/sun-deploy.jar`
-* `deployManageruri.1=deployer:Sun:AppServer:RI::localhost`
-* `deployManageruname.1=foo`
-* `deployManagerpasswd.1=bar`
-
-These properties are necessary in order to get an instance of and
-interact with the `DeploymentManager` for your Jakarta Platform, Enterprise
-Edition implementation.
-
-The `deployManagerJarFile` property must point to the JAR file that
-contains the manifest entries necessary to get your `DeploymentManager`
-instance. The `deployManageruri` property represents the URI that is
-used to locate your `DeploymentManager`.
-
-The `deployManageruname` and `deployManagerpasswd` properties are used
-when calling `DeploymentFactoryManager.getDeploymentManager`.
-
-`StandardDeployment14` calls into the new deployment porting interface
-(`TSDeploymentInterface2`). Implementers must implement this new interface
-and set the following property in the `ts.jte` file to point to their
-implementation:
-
-[source,oac_no_warn]
 ----
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.JavaEE.SunRIDeployment2 
-----
-
-The `TSDeployment2` class acts as a `Factory` object for creating
-concrete implementations of `TSDeploymentInterface2`. The concrete
-implementations are specified by the `porting.ts.deploy2.class.1` and
-`porting.ts.deploy2.class.2` properties in the `ts.jte` file. Each Jakarta
-Platform, Enterprise Edition implementation must provide an
-implementation of the interface `TSDeploymentInterface2` to support the
-automatic deployment and undeployment of test applications by the
-JavaTest test harness. Providing this functionality enables the entire
-test suite to be run without having to manually deploy/undeploy the Jakarta
-Platform, Enterprise Edition test applications prior to running the
-tests. The implementation provided with this release uses the semantics
-of the Jakarta Platform, Enterprise Edition CI.
 
 [[GKLJO]][[ant-based-deployment-interface]]
 
