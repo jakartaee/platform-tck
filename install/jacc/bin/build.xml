@@ -61,7 +61,6 @@
                      com/sun/ts/tests/signaturetests/el/**/*.java,
                      com/sun/ts/tests/signaturetests/jaspic/**/*.java,
                      com/sun/ts/tests/signaturetests/javaee/**/*.java,
-                     com/sun/ts/tests/signaturetests/javaeemgmt/**/*.java,
                      com/sun/ts/tests/signaturetests/jaxm/**/*.java,
                      com/sun/ts/tests/signaturetests/jaxr/**/*.java,
                      com/sun/ts/tests/signaturetests/jaxws/**/*.java,

@@ -114,4 +114,3 @@ ts_home=${TS_HOME}
 #These properties are needed for signaturetest.
 ###############################################################
 sigTestClasspath=${J2EE_HOME}$/lib$/j2ee.jar$:${JAVA_HOME}$/jre$/lib$/rt.jar
-sigTestUrl=file:${TS_HOME}/src/com/sun/ts/tests/j2eetools/mgmt/sig/j2eemgmtSigFile.sig
