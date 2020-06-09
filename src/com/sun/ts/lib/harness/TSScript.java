@@ -317,7 +317,7 @@ public class TSScript extends com.sun.javatest.Script {
           System.err.println("*************test args = " + executeArgs);
           // If we have a negative deployment test, and we fail deployment
           // return PASS here.
-          if (executeArgs.contains("-expectdeploymentfailure")) {
+          if (executeArgs != null && executeArgs.contains("-expectdeploymentfailure")) {
             logOut.println("Deployment failed as expected");
             return Status.passed("Deployment failed as expected");
           } else {
