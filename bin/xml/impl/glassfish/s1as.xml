@@ -1228,7 +1228,7 @@
     <property name="ant.opts" value=""/>
     <property name="run.client.args" value=""/>
     <property name="buffering.enabled" value="false"/>
-    <property name="test.areas" value="appclient, connector, j2eetools, jaxws, jstl,
+    <property name="test.areas" value="appclient, connector, jaxws, jstl,
                                        samples, webservices12, assembly, ejb, jacc,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
                                        jws, signaturetest, xa, compat12, integration,
