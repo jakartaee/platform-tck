@@ -17,10 +17,10 @@
 
 -->
 
-<connector xmlns="http://java.sun.com/xml/ns/j2ee"
+<connector xmlns="http://jakarta.ee/xml/ns/jakartaee"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-           http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"
+           xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee
+           http://jakarta.ee/xml/ns/jakartaee/connector_2_0.xsd"
            version="1.5">
     <display-name>whitebox-notx-param.rar</display-name>
     <vendor-name>Java Software</vendor-name>
