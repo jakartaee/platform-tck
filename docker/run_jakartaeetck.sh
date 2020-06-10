@@ -345,10 +345,6 @@ sed -i 's/^orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
 
 sed -i "s#^registryURL=.*#registryURL=${UDDI_REGISTRY_URL}#g" ts.jte
 sed -i "s#^queryManagerURL=.*#queryManagerURL=${UDDI_REGISTRY_URL}#g" ts.jte
-sed -i 's/^jaxrUser=.*/jaxrUser=testuser/g' ts.jte
-sed -i 's/^jaxrPassword=.*/jaxrPassword=testuser/g' ts.jte
-sed -i 's/^jaxrUser2=.*/jaxrUser2=jaxr-sqe/g' ts.jte
-sed -i 's/^jaxrPassword2=.*/jaxrPassword2=jaxrsqe/g' ts.jte
 
 sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
@@ -414,16 +410,6 @@ export PORT=5858
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} -p ${PORT} stop-domain
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} -p ${PORT} start-domain
 ### restartRI.sh ends here #####
-
-### Registry server initialization starts here
-if [[ "jaxr" == ${test_suite} ]]; then
-  if [ -f $JWSDP_HOME/bin/startup.sh ]; then
-    $JWSDP_HOME/bin/startup.sh
-    sleep 10
-    echo "Java Web Services Developer Pack started ..."
-  fi
-fi
-### Registry server initialization ends here
 
 if [[ "securityapi" == ${test_suite} ]]; then
   cd $TS_HOME/bin;

@@ -50,7 +50,6 @@
                   com/sun/ts/tests/assembly,
                   com/sun/ts/tests/jta,
                   com/sun/ts/tests/samples,
-                  com/sun/ts/tests/jaxr,
                   com/sun/ts/tests/jms,
                   com/sun/ts/tests/jsonp,
                   com/sun/ts/tests/jsonb,
