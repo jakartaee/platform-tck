@@ -51,7 +51,6 @@
         com/sun/ts/tests/jaxp,
         com/sun/ts/tests/jacc,
         com/sun/ts/tests/saaj,
-        com/sun/ts/tests/jaxrpc,
         com/sun/ts/tests/jmx,
         com/sun/ts/tests/compat12,
         com/sun/ts/tests/compat13,
@@ -71,16 +70,12 @@
         com/sun/ts/tests/assembly,
         com/sun/ts/tests/jta,
         com/sun/ts/tests/samples,
-        com/sun/ts/tests/j2eetools/mgmt,
         com/sun/ts/tests/jaxr"/>
 
       <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
 
       <property name="rmiiiop.stub.dir" 
                 value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
-
-      <echo message="First building jaxrpc/common separately..."/>
-      <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/common" todo="build"/>
 
       <echo message="Compiling:${all.java.file}"/>
       <javac fork="true" srcdir="${ts.home}/src" 

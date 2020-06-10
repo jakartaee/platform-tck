@@ -91,8 +91,6 @@ jakarta.mail.event
 jakarta.mail.internet
 jakarta.mail.search
 jakarta.mail.util
-javax.management.j2ee
-javax.management.j2ee.statistics
 javax.naming
 jakarta.persistence
 jakarta.persistence.criteria
@@ -150,13 +148,6 @@ jakarta.xml.bind.helpers
 jakarta.xml.bind.util
 javax.xml.registry
 javax.xml.registry.infomodel
-javax.xml.rpc
-javax.xml.rpc.encoding
-javax.xml.rpc.handler
-javax.xml.rpc.handler.soap
-javax.xml.rpc.holders
-javax.xml.rpc.server
-javax.xml.rpc.soap
 javax.xml.soap
 javax.xml.transform
 javax.xml.transform.dom

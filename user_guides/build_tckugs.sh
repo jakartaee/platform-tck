@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 cd ${WORKSPACE}
 export BASEDIR=`pwd`
 export USERGUIDEDIR=$BASEDIR/user_guides
-alltcks="caj concurrency el jacc jaspic jaxr jaxrpc jaxrs jaxws jca jms jpa jsf jsonb jsonp jsp jstl jta saaj securityapi servlet websocket"
+alltcks="caj concurrency el jacc jaspic jaxr jaxrs jaxws jca jms jpa jsf jsonb jsonp jsp jstl jta saaj securityapi servlet websocket"
 
 cd $USERGUIDEDIR
 rm -rf $USERGUIDEDIR/tmp

@@ -367,7 +367,7 @@ The default setting is as follows:
 
 [source,oac_no_warn]
 ----
-javaee.level=full jaxr jaxrpc 
+javaee.level=full jaxr 
 ----
 
 [[BCGHGJIC]][[using-keywords-to-create-groups-and-subsets-of-tests]]
@@ -491,7 +491,6 @@ Subsets
 |EJB 2.x, CMP, BMP, entity beans |`ejb_2x_optional` or `javaee_optional`
 |EJBQL |`javaee_optional`
 |JAXR |`javaee_optional`
-|JAX-RPC |javaee_optional
 |=======================================================================
 
 
@@ -507,15 +506,15 @@ ant -Dkeywords=javaee_optional runclient
 
 [[sthref36]]
 
-===== Example 7-11 Running the Optional JAXR and JAX-RPC Tests With the Required Full Profile Tests
+===== Example 7-11 Running the Optional JAXR Tests With the Required Full Profile Tests
 
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords="javaee | jaxr | jaxrpc" runclient
+ant -Dkeywords="javaee | jaxr" runclient
 ----
 
-The optional JAXR and JAX-RPC tests and the tests that are required by
+The optional JAXR tests and the tests that are required by
 the Full Profile will be run.
 
 [[GKKFN]][[to-use-keywords-to-run-optional-subsets-of-tests-with-the-web-profile]]
@@ -553,7 +552,6 @@ Subsets
 |Jakarta Authentication (formerly JASPIC) |`jaspic_web_profile`
 |Jakarta Mail (formerly JavaMail) |`javamail_web_profile`
 |Jakarta Registries (formerly JAXR) |`jaxr_web_profile`
-|Jakarta XML RPC (formerly JAX-RPC) |`jaxrpc_web_profile`
 |Jakarta Messaging(formerly JMS) |`jms_web_profile`
 |XA |`xa_web_profile`
 |==================================
@@ -609,8 +607,6 @@ components; components without an asterisk are not required by EJB Lite.
 
 |3x Remote |`ejb_3x_remote_optional`
 
-|JAX-RPC Web Service Endpoint * |`ejb_jaxrpc_optional`
-
 |EJB QL * |`ejb_ql_optional`
 
 |Persistent Timer Service |`ejb_persistent_timer_optional`
@@ -630,8 +626,6 @@ release:
 Container-Managed Persistence and Bean-Managed Persistence
 * Client View of an EJB 2.1 and earlier Entity Bean
 * EJB QL: Query Language for Container-Managed Persistence Query Methods
-* Jakarta RESTful Web Services (formerly JAX-RPC) Based Web Service Endpoints
-* Jakarta XML-RPC (formerly JAX-RPC) Web Service Client View
 * Jakarta Registries (formerly JAXR) 1.0
 
 [[sthref43]][[to-use-keywords-to-run-tests-in-selected-vehicles]]

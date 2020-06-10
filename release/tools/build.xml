@@ -100,7 +100,6 @@
         <echo message=" provisioning  [overrides]"/>
         <echo message=" jaxm          [overrides]"/>
         <echo message=" concurrency   [overrides]"/>
-        <echo message=" jaxrpc        [overrides]"/>
         <echo message=" jaxws         [overrides]"/>
         <echo message=" jsonb         [overrides]"/>
         <echo message=" jsonp         [overrides]"/>
@@ -111,7 +110,6 @@
         <echo message=" jakartaee-appclient [overrides]"/>
         <echo message=" jakartaee-assembly  [overrides]"/>
         <echo message=" jakartaee-compat    [overrides]"/>
-        <echo message=" jakartaee-j2eetools [overrides]"/>
         <echo message=" jakartaee-javamail  [overrides]"/>
         <echo message=" jakartaee-jaxr     [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
@@ -127,7 +125,6 @@
         <echo message=" jakartaee-jpa      [overrides]"/>
         <echo message=" jakartaee-security [overrides]"/>
         <echo message=" jakartaee-saaj     [overrides]"/>
-        <echo message=" jakartaee-jaxrpc   [overrides]"/>
         <echo message=" jakartaee-jaxws    [overrides]"/>
         <echo message=" jakartaee-jaxrs    [overrides]"/>
         <echo message=" jakartaee-jsonb    [overrides]"/>
@@ -515,11 +512,6 @@
         <property name="deliverable.name" value="JAXM"/>
         <antcall target="${the.target}"/>
     </target>
-    <target name="jaxrpc" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JAXRPC"/>
-        <property name="deliverable.tck.dir" value="xml-rpc"/>
-        <antcall target="${the.target}"/>
-    </target>
     <target name="jaxws" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXWS"/>
 	<property name="deliverable.tck.dir" value="xml-ws"/>
@@ -663,12 +655,6 @@
             common"/>
         <antcall target="${the.target}"/>
     </target>
-        
-    <target name="jakartaee-j2eetools" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-TOOLS"/>
-        <property name="test.areas" value="j2eetools"/>
-        <antcall target="${the.target}"/>
-    </target>
     
     <target name="jakartaee-javamail" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAVAMAIL"/>
@@ -687,13 +673,7 @@
         <property name="test.areas" value="jaxr/common,jaxr/ee/javax_xml_registry_infomodel,jaxr/ee/javax_xml_registry/BulkResponse,jaxr/ee/javax_xml_registry/BusinessLifeCycleManager,jaxr/ee/javax_xml_registry/BusinessQueryManager,jaxr/ee/javax_xml_registry/DeclarativeQueryManager,jaxr/ee/javax_xml_registry/LifeCycleManager,jaxr/ee/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry_infomodel,jaxr/api/javax_xml_registry/BusinessLifeCycleManager,jaxr/api/javax_xml_registry/BusinessQueryManager,jaxr/api/javax_xml_registry/CapabilityProfile,jaxr/api/javax_xml_registry/Connection,jaxr/api/javax_xml_registry/ConnectionFactory,jaxr/api/javax_xml_registry/DeleteException,jaxr/api/javax_xml_registry/FindException,jaxr/api/javax_xml_registry/InvalidRequestException,jaxr/api/javax_xml_registry/JAXRException,jaxr/api/javax_xml_registry/LifeCycleManager,jaxr/api/javax_xml_registry/Query,jaxr/api/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry/RegistryException,jaxr/api/javax_xml_registry/RegistryService,jaxr/api/javax_xml_registry/SaveException,jaxr/api/javax_xml_registry/UnexpectedObjectException,jaxr/api/javax_xml_registry/UnsupportedCapabilityException"/>
         <antcall target="${the.target}"/>
     </target>
-    
-    <target name="jakartaee-jaxrpc" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JAXRPC"/>
-        <property name="test.areas" value="jaxrpc"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
+       
     <target name="jakartaee-jaxws" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAXWS"/>
         <property name="test.areas" value="jaxws"/>
@@ -720,7 +700,7 @@
     
     <target name="jakartaee-webservices" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-WEBSERVICES"/>
-        <property name="test.areas" value="webservices, webservices12, webservices13, jaxrpc, jaxws/common, jaxws/wsi/constants"/>
+        <property name="test.areas" value="webservices12, webservices13, jaxws/common, jaxws/wsi/constants"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -848,16 +828,10 @@
             jacc/util,
             jacc/toolsContracts,
             common,
-            jaxrpc/ee/w2j/rpc/encoded/marshalltest,
-            jaxrpc/common,
-            jaxrs/api/client/clientresponsecontext,
-            jaxrs/common,
-            jaxrs/common/provider,
-            jaxrs/common/util,
             webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
             webservices12/servlet/WSMTOMSBAnnotationsTest,
             webservices12/servlet/HandlerTest,
-	    webservices12/wsdlImport/file/simple2,
+	    	webservices12/wsdlImport/file/simple2,
             webservices13/servlet/WSRespBindAndAddressingTestUsingAnnotations,
             webservices13/servlet/WSAddressingFeaturesTestUsingDDs,
             jaxws/ee/j2w/document/literal/marshalltest,
@@ -898,12 +872,10 @@
             integration/sec,
             servlet/spec/security,
             jsp/spec/security,
-            webservices/sec,
             jacc,
             jms/common,
             ejb30/common,
-            ejb30/sec,
-            jaxrpc/common" />
+            ejb30/sec" />
         <property name="web.files" value="web/jsp/sec/**/*"/>
         <antcall target="${the.target}"/>
     </target>
@@ -923,17 +895,15 @@
             connector,
             ejb,
             integration,
-            j2eetools,
             jacc,
             javamail,
             jaxp,
             jaxr,
-            jaxrpc,
             jdbc,
             jms,
-	    jsonb,
-	    jsonp,
-            jsf,
+		    jsonb,
+		    jsonp,
+	        jsf,
             jsp,
             jstl,
             jta,
@@ -946,7 +916,6 @@
             signaturetest/jsf,
             signaturetest/jstl,
             signaturetest/*,
-            webservices,
             webservices12,
             webservices13,
             xa,

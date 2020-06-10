@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,28 +45,6 @@
   <!--        technology only has API assertions delete the spec.coverage.dir   -->
   <!--        and spec.assertions parameters from your technology task.         -->
   <!--                                                                          -->
-  <!--        Be sure to add a version ID to name of the directory you write    -->
-  <!--        your API and SPEC assertion coverage numbers to.  Notice the      -->
-  <!--        JAXRPC example below.  It uses the directory name jaxrpc_1_0,     -->
-  <!--        All users should follow this style so there technology version    -->
-  <!--        will be picked up by the assertion coverage tools.                -->
-  <!--                                                                          -->
-  <!--  Here is the JAXRPC target as an example.  Notice that the absolute      -->
-  <!--  paths are defined and users only need to specify the technology         -->
-  <!--  specific path information.                                              -->
-  <!--    <target name="jaxrpc">                                                -->
-  <!--      <antcall target="calculate.coverage">                               -->
-  <!--        <param name="api.coverage.dir"                                    -->
-  <!--              value="${coverage.base.dir}/jaxrpc_1_0/api"/>               -->
-  <!--        <param name="spec.coverage.dir"                                   -->
-  <!--              value="${coverage.base.dir}/jaxrpc_1_0/spec"/>              -->
-  <!--        <param name="api.assertions"                                      -->
-  <!--              value="${ts.docs.dir}/jaxrpc/JAXRPCJavadocAssertions.xml"/> -->
-  <!--        <param name="spec.assertions"                                     -->
-  <!--              value="${ts.docs.dir}/jaxrpc/JAXRPCSpecAssertions.xml"/>    -->
-  <!--        <param name="test.src.dir"      value="/jaxrpc"/>                 -->
-  <!--      </antcall>                                                          -->
-  <!--    </target>                                                             -->
   <!--                                                                          -->
   <!--  After defining your technolgy target, add your technology target name   -->
   <!--  to the depends list of the all target if your technology is part of the -->
@@ -100,9 +78,9 @@
   <property name="api.html.assertion.file"   value="api-assertions.html"/>
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
   <property name="srcdirs"  value="appclient,compat12,ejb,integration,jacc,jaxr,jsf,jstl,rmiiiop,assembly,
-                              compat13,ejb30,internal,jaspic,jaxrpc,jdbc,jsonb,jta,saaj,concurrency,ejb32,interop,
-                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,j2eetools,javamail,servlet,
-                              webservices13,websocket,webservices,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
+                              compat13,ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
+                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
+                              webservices13,websocket,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
  
   <taskdef resource="net/sf/antcontrib/antlib.xml"
              classpath="${ts.home}/lib/ant-contrib-1.0b3.jar"/>
@@ -332,10 +310,10 @@
   
   <!-- Removed Jakarta Deployment, jaxws, saaj and jws from the code coverage as the corresponding  -->
   <!-- tests are no more part of Java EE 8 CTS                                  -->
-  <target name="all" depends="start.log,jaxr,j2eetools-mgt,
+  <target name="all" depends="start.log,jaxr,
 	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
-	                              jaxrpc,jaxrs,webservices,jsf,jsonp,
+	                              jaxrs,webservices,jsf,jsonp,
                                   jsonb,concurrency,websocket,rmiiiop,securityapi">
     <antcall target="generate.exec.summary"/>
     <antcall target="generate.index.page"/>
@@ -428,16 +406,6 @@
     </antcall>
   </target>
 
-  <target name="jaxrpc">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxrpc_1_1/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jaxrpc_1_1/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jaxrpc/JAXRPCJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jaxrpc/JAXRPCSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jaxrpc"/>
-    </antcall>
-  </target>
-
   <target name="jaxrs">
     <antcall target="calculate.coverage">
       <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxrs_2_1/api"/>
@@ -511,16 +479,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/jms/JMSJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/jms/JMSSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/jms"/>
-    </antcall>
-  </target>
-
-  <target name="j2eetools-mgt">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/j2eemgmt_1_1/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/j2eemgmt_1_1/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/j2eemgmt/J2EEMGMTJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/j2eemgmt/J2EEMGMTSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/j2eetools/mgmt"/>
     </antcall>
   </target>
 

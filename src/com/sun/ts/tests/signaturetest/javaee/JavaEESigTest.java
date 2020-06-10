@@ -31,7 +31,7 @@ import com.sun.ts.lib.util.TestUtil;
  *
  * The EE7 signature tests are to be run in 4 possible modes: (1) full/classic
  * profile (only covers REQUIRED Technologys for this profile) (2) full/classic
- * profile + OPTIONAL technologies (eg , jaxr, jaxrpc, etc) (3)
+ * profile + OPTIONAL technologies (eg , jaxr, etc) (3)
  * web profile (only covers REQUIRED Technologys for this profile) (4) web
  * profile + OPTIONAL technologies (eg connector, jacc, jaxr, etc)
  *
@@ -46,7 +46,7 @@ import com.sun.ts.lib.util.TestUtil;
  * javaee/full profile or web profile.
  *
  * For JavaEE7, there are 3 optional technologies called out in the EE 7 spec in
- * table EE.6-1: JAXRPC 1.1 , JAXR 1.0 , and Java EE Deployment 1.2. (There is
+ * table EE.6-1: JAXR 1.0 , and Java EE Deployment 1.2. (There is
  * also an optional part of EJB 3.2 (optional part is Entity Beans and EJB QL)
  * BUT while these parts of the EJB are optional, EJB 3.2 MUST have ALL API's
  * that fulfill sigtest requirements. This means that ALL of EJB 3.2 must pass
@@ -54,13 +54,13 @@ import com.sun.ts.lib.util.TestUtil;
  * optional.
  *
  * The list of optional technologies that could be tested along with Java EE 7
- * are: jaxrpc jaxr 
+ * are: jaxr 
  *
  *
  * The incomplete list of OPTIONAL/ADDITIONAL technologies which could be tested
- * along with the web profile are: jms javamail javaeemgmt connector jaspic jacc
+ * along with the web profile are: jms javamail connector jaspic jacc
  * jaxrs - optional technology in EE 7 jaxr - optional technology
- * in EE 7 jaxrpc - optional technology in EE 7
+ * in EE 7
  *
  */
 public class JavaEESigTest extends SigTestEE {
@@ -73,18 +73,23 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final String JAVAEE_WEB_KEYWORD = "javaee_web_profile";
 
-  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail javaeemgmt"
+  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail"
       + " cdi di beanval persistence jaxb saaj jaxws connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
   public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("jaxrpc", "jaxr"));
+      Arrays.asList("jaxr"));
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("batch", "jaxrpc", "jaxr", "connector",
+<<<<<<< HEAD
+      Arrays.asList("batch", "jaxr", "connector",
           "jaxws", "jaxb", "jms", "javamail", "javaeemgmt", "jacc", "jaspic",
+=======
+      Arrays.asList("batch", "jaxrpc", "jaxr", "connector",
+          "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
+>>>>>>> eclipse-ee4j#212 - Remove Jakarta Management
           "wsmd"));
 
   enum Containers {
@@ -117,18 +122,11 @@ public class JavaEESigTest extends SigTestEE {
     APPCLIENT_MAP.put("javamail",
         new String[] { "jakarta.mail", "jakarta.mail.event", "jakarta.mail.internet",
             "jakarta.mail.search", "jakarta.mail.util" });
-    APPCLIENT_MAP.put("javaeemgmt", new String[] { "jakarta.management.j2ee",
-        "jakarta.management.j2ee.statistics" });
     APPCLIENT_MAP.put("persistence",
         new String[] { "jakarta.persistence", "jakarta.persistence.spi",
             "jakarta.persistence.criteria", "jakarta.persistence.metamodel" });
     APPCLIENT_MAP.put("jaxr",
         new String[] { "jakarta.xml.registry", "jakarta.xml.registry.infomodel" });
-    APPCLIENT_MAP.put("jaxrpc",
-        new String[] { "jakarta.xml.rpc", "jakarta.xml.rpc.encoding",
-            "jakarta.xml.rpc.handler", "jakarta.xml.rpc.handler.soap",
-            "jakarta.xml.rpc.holders", "jakarta.xml.rpc.server",
-            "jakarta.xml.rpc.soap" });
     // note: cdi API's actually utilize two different base packages and
     // so will require two different sigfiles.
     APPCLIENT_MAP.put("cdi",
@@ -536,8 +534,7 @@ public class JavaEESigTest extends SigTestEE {
    * @class.setup_props: sigTestClasspath, Location of JavaEE jar files;
    * ts_home, The base path of this TCK; javaee.level, current EE level defined
    * in ts.jte web or full; optional.tech.packages.to.ignore, for excluding
-   * certain packages that may exist in Optional technologies (such as partial
-   * jaxrpc impl in web profile);
+   * certain packages that may exist in Optional technologies;
    * jtaJarClasspath, The Location of the JTA API jar file;
    */
 
