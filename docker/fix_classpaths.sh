@@ -27,7 +27,6 @@ sed -i 's/javax.servlet.jsp.jstl-api.jar/jakarta.servlet.jsp.jstl-api.jar/g' ${C
 sed -i 's/javax.transaction-api.jar/jakarta.transaction-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.websocket-api.jar/jakarta.websocket-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.xml.registry-api.jar/jakarta.xml.registry-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
-sed -i 's/javax.xml.rpc-api.jar/jakarta.xml.rpc-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 sed -i 's/javax.ws.rs-api.jar/jakarta.ws.rs-api.jar/g' ${CTS_HOME}/jakartaeetck/bin/ts.jte
 
 echo "Fixed classpath properties in ts.jte successfully."

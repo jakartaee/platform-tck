@@ -13,7 +13,7 @@ F Context Root Mapping Rules for Web Services Tests
 ---------------------------------------------------
 
 The context root mapping rules that are described in this appendix apply
-to all of the web services test areas, including Jakarta XML RPC (`jaxrpc`), Jakarta XML Web Services (`jaxws`),
+to all of the web services test areas, including Jakarta XML Web Services (`jaxws`),
 Jakarta Web Services Metadata (`jws`), `webservices`, `webservices12`, and `webservices13`.
 
 This appendix covers the following topics:
@@ -35,7 +35,7 @@ example, the context root for the archive `web-client.war` defaults to
 `web-client`.
 
 This covers the mapping for all servlet-based web services endpoints and
-clients under the Jakarta EE 8 CTS test trees [Jakarta XML RPC (`jaxrpc`), 
+clients under the Jakarta EE 8 CTS test trees 
 Jakarta XML Web Services (`jaxws`),
 Jakarta Web Services Metadata (`jws`),
 webservices, webservices12, webservices13].
@@ -78,52 +78,6 @@ The directory listing is as follows:
 [echo] WSW2JDLHttpTest_wsservlet_vehicle.ear
 [echo] WSW2JDLHttpTest_wsservlet_vehicle_web.war
 [echo] WSW2JDLHttpTest_wsservlet_vehicle_web.war.sun-web.xml
-----
-
-Similarly, for the Jakarta XML RPC (`jaxrpc`) test directory, the context root mapping is
-as shown in the following table.
-
-[[sthref63]][[GLRDI]]
-
-===== Table F-2 Context Root Mapping for Jakarta XML RPC (`jaxrpc`) Test Directory
-
-[width="100%",cols="50%,50%",options="header",]
-|=======================================================================
-|Endpoint |Context Root Mapping
-|`W2JREMarshallTest_web.war` |`W2JREMarshallTest_web`
-
-|`W2JREMarshallTest_jsp_vehicle_web.war`
-|`W2JREMarshallTest_jsp_vehicle_web`
-
-|`W2JREMarshallTest_servlet_vehicle_web.war`
-|`W2JREMarshallTest_servlet_vehicle_web`
-|=======================================================================
-
-
-The directory listing is as follows:
-
-[source,oac_no_warn]
-----
-% cd $TS_HOME/src/com/sun/ts/tests/jaxrpc/ee/w2j/rpc/encoded/marshalltest
-% ant ld
-
-[echo] W2JREMarshallTest.ear
-[echo] W2JREMarshallTest_appclient_vehicle.ear
-[echo] W2JREMarshallTest_appclient_vehicle_client.jar
-[echo] W2JREMarshallTest_appclient_vehicle_client.jar.sun-application-client.xml
-[echo] W2JREMarshallTest_ejb_vehicle.ear
-[echo] W2JREMarshallTest_ejb_vehicle_client.jar
-[echo] W2JREMarshallTest_ejb_vehicle_client.jar.sun-application-client.xml
-[echo] W2JREMarshallTest_ejb_vehicle_ejb.jar
-[echo] W2JREMarshallTest_ejb_vehicle_ejb.jar.sun-ejb-jar.xml
-[echo] W2JREMarshallTest_jsp_vehicle.ear
-[echo] W2JREMarshallTest_jsp_vehicle_web.war
-[echo] W2JREMarshallTest_jsp_vehicle_web.war.sun-web.xml
-[echo] W2JREMarshallTest_servlet_vehicle.ear
-[echo] W2JREMarshallTest_servlet_vehicle_web.war
-[echo] W2JREMarshallTest_servlet_vehicle_web.war.sun-web.xml
-[echo] W2JREMarshallTest_web.war
-[echo] W2JREMarshallTest_web.war.sun-web.xml
 ----
 
 For Web archives, the context root mapping becomes the base name of the
@@ -251,7 +205,7 @@ WSEjbWebServiceRefWithNoDDsTest "WSEjbWSRefWithNoDDsTestHelloEJBService/\
 
 The context root mappings for some, but not all, tests also exist in the
 DAT files under the `$TS_HOME/bin` directory. These include the
-`jaxrpc-url-props.dat` (Jakarta XML RPC), `jaxws-url-props.dat` (Jakarta XML Web Services), `jws-url-props.dat` (Jakarta Web Services Metadata), and
+`jaxws-url-props.dat` (Jakarta XML Web Services), `jws-url-props.dat` (Jakarta Web Services Metadata), and
 `webservices12-url-props.dat` files.
 
 Implementers can use the previously described information in their porting

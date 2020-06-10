@@ -136,9 +136,6 @@ jakarta.mail=1.4_se6
 # Connector 1.6 
 jakarta.resource=1.6_se6
 
-# JAX-RPC 1.1 
-javax.xml.rpc=1.1_se6
-
 # SAAJ 1.3 
 javax.xml.soap=1.3_se6
 

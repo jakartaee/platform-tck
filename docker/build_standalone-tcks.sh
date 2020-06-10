@@ -214,21 +214,8 @@ for tck in ${TCK_LIST[@]}; do
   echo "########## Trunk.$tck Started##########"
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
 
-  if [ "jaxrpc" == "$tck" ]
-  then
-    echo "Generating JAXRPC specific classes using wscompile"
-    # Copy additional ant library required for nested property handling in jaxrpc build
-    if [[ -f $BASEDIR/lib/ant-props.jar && ! -f $ANT_HOME/lib/ant-props.jar ]]; then
-      cp $BASEDIR/lib/ant-props.jar $ANT_HOME/lib
-    fi
-    sed -i "s#webserver\.home=.*#webserver.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish#g" $BASEDIR/install/$tck/bin/build.properties
-    sed -i "s#jaxrpc\.tool=.*#jaxrpc.tool=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/bin/wscompile#g" $BASEDIR/install/$tck/bin/build.properties
-    cat $BASEDIR/install/$tck/bin/build.properties
-    ant -f $BASEDIR/install/$tck/bin/build.jaxrpc.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed buildall
-  else 
-    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all 
-  fi
-
+  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all 
+  
   if [ "jaxrs" == "$tck" ]; then
     ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS update.jaxrs.wars
   fi

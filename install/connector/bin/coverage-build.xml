@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,24 +45,6 @@
   <!--        technology only has API assertions delete the spec.coverage.dir   -->
   <!--        and spec.assertions parameters from your technology task.         -->
   <!--                                                                          -->
-  <!--        Be sure to add a version ID to name of the directory you write    -->
-  <!--        your API and SPEC assertion coverage numbers to.  Notice the      -->
-  <!--        JAXRPC example below.  It uses the directory name jaxrpc_1_0,     -->
-  <!--        All users should follow this style so there technology version    -->
-  <!--        will be picked up by the assertion coverage tools.                -->
-  <!--                                                                          -->
-  <!--  Here is the JAXRPC target as an example.  Notice that the absolute      -->
-  <!--  paths are defined and users only need to specify the technology         -->
-  <!--  specific path information.                                              -->
-  <!--    <target name="jaxrpc">                                                -->
-  <!--      <antcall target="calculate.coverage">                               -->
-  <!--        <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxrpc_1_0/api"/> -->
-  <!--        <param name="spec.coverage.dir" value="${coverage.base.dir}/jaxrpc_1_0/spec"/> -->
-  <!--        <param name="api.assertions"    value="${ts.docs.dir}/jaxrpc/JAXRPCJavadocAssertions.xml"/> -->
-  <!--        <param name="spec.assertions"   value="${ts.docs.dir}/jaxrpc/JAXRPCSpecAssertions.xml"/> -->
-  <!--        <param name="test.src.dir"      value="/jaxrpc"/>                 -->
-  <!--      </antcall>                                                          -->
-  <!--    </target>                                                             -->
   <!--                                                                          -->
   <!--  After defining your technolgy target, add your technology target name   -->
   <!--  to the depends list of the all target.  This will cause your technology -->
