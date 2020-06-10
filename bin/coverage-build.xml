@@ -77,7 +77,7 @@
   <property name="spec.stylesheet"           value="${ts.tools.home}/docs/xsl/assertions/spec_assertions.xsl"/>
   <property name="api.html.assertion.file"   value="api-assertions.html"/>
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
-  <property name="srcdirs"  value="appclient,compat12,ejb,integration,jacc,jaxr,jsf,jstl,rmiiiop,assembly,
+  <property name="srcdirs"  value="appclient,compat12,ejb,integration,jacc,jsf,jstl,rmiiiop,assembly,
                               compat13,ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
                               javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
                               webservices13,websocket,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
@@ -310,7 +310,7 @@
   
   <!-- Removed Jakarta Deployment, jaxws, saaj and jws from the code coverage as the corresponding  -->
   <!-- tests are no more part of Java EE 8 CTS                                  -->
-  <target name="all" depends="start.log,jaxr,
+  <target name="all" depends="start.log,
 	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
 	                              jaxrs,webservices,jsf,jsonp,
@@ -459,16 +459,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/saaj/SAAJJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/saaj/SAAJSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/saaj"/>
-    </antcall>
-  </target>
-
-  <target name="jaxr">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxr_1_0/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jaxr_1_0/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jaxr/JAXRJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jaxr/JAXRSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jaxr"/>
     </antcall>
   </target>
 

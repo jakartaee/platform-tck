@@ -184,7 +184,7 @@ javatest.timeout.factor=1
 #
 ###############################################################################
 #javaee.level=web connector jaxws jaxb javamail jacc jaspic wsmd
-javaee.level=full jaxr 
+javaee.level=full
 
 
 ########################################################################
@@ -1871,105 +1871,6 @@ ejb_wait=60000
 #       2.0 or greater should suffice.
 ###############################################################################
 test.ejb.stateful.timeout.wait.seconds=480
-
-#################################################################
-##
-## The following properties must be set prior to running the JAXR
-## TCK tests.
-## ------------------------------------------------------------------
-## The following are Standard Properties for Registry URLs
-## ------------------------------------------------------------------
-#
-# @registryURL - standard connection property for publishing.
-#                for RegistryServer it is:
-#                registryURL = http://localhost:8080/RegistryServer/
-#
-# @queryManagerURL - standard connection property for querying.
-#                for RegistryServer it is:
-#                queryManagerURL = http://localhost:8080/RegistryServer/
-#
-# @jaxrPassword is used for setting connection credentials
-#               this must be set up in the UDDI registry
-# @jaxrUser     is used for setting connection credentials
-#               this must be set up in the UDDI registry
-#
-# @jaxrUser2 a user name for Association tests.
-# @jaxrPassword2 a user name for Association tests.
-#
-## For the RegistryServer you can use the
-## predefined username and passwords.
-## These would be set as follows:
-##                jaxrUser=testuser
-##                jaxrPassword=testuser
-##                jaxrUser2=jaxr-sqe
-##                jaxrPassword2=jaxrsqe
-## ---------------------------------------------------------------
-## if using digital certificates, else set to = "".
-## jaxrAlias   identifies the entry in the keystore for this user.
-## jaxrAlias2  identifies the entry in the keystore for the second user
-## jaxrAliasPassword   identifies the password in the keystore for this user.
-## jaxrAlias2Password  identifies the password in the keystore for the second user
-## ---------------------------------------------------------------
-#
-# @jaxrWebContext = the context root for jaxr html tests pages 
-#          
-## ---------------------------------------------------------------
-# @jaxrConnectionFactoryLookup  The preferred way for a client to lookup
-#                              a JAXR ConnectionFactory is to
-#                              use JNDI.  An alternate method to lookup
-#                              a JAXR ConnectionFactory is to use the
-#                              newInstance static method on the ConnectionFactory
-#
-#                              0 = use JNDI lookup
-#                              1 = use newInstance method.
-## ---------------------------------------------------------------
-#
-# @jaxrJNDIResource   JAXR ConnectionFactoryReference if JNDI lookup is
-#                     being used.  For example:
-#                     java:comp/env/eis/JAXR
-#
-#                     If not using JNDI lookup set to ""
-#
-## ---------------------------------------------------------------
-#
-# @providerCapabilityLevel the provider must set this to
-#              the supported capability level 0 or 1
-#
-## ---------------------------------------------------------------
-#
-# @authenticationMethod set this to the authentication method for the jaxr
-#                       provider.
-#                       UDDI_GET_AUTHTOKEN is the get_AuthToken 
-#                       protocol defined by [UDDI_API2]
-#
-##############################################################
-##  = use JNDI lookup
-jaxrConnectionFactoryLookup=0
-## 0 = username/password
-jaxrSecurityCredentialType=0
-
-jaxrWebContext="web_content"
-##
-jaxrJNDIResource="java:comp/env/eis/JAXR"
-## set jaxrAlias if using digital certificates for authorization
-jaxrAlias=""
-jaxrAlias2=""
-jaxrAliasPassword=""
-jaxrAlias2Password=""
-
-## the provider capability level,  uddi is level 0
-providerCapability=0
-
-authenticationMethod="UDDI_GET_AUTHTOKEN"
-
-registryURL=
-queryManagerURL=
-jaxrUser=
-jaxrPassword=
-
-jaxrUser2=
-jaxrPassword2=
-
 
 ###################################################################
 # @log.file.location  This property is used by JACC tests to create
