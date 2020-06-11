@@ -17,11 +17,11 @@
 
 -->
 
-<connector xmlns="http://java.sun.com/xml/ns/javaee"
+<connector xmlns="http://jakarta.ee/xml/ns/jakartaee"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            metadata-complete="true"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                               http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"
+           xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee
+                               http://jakarta.ee/xml/ns/jakartaee/connector_2_0.xsd"
            version="1.6">
 
     <display-name>whitebox-mdcomplete.rar</display-name>
