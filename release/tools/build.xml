@@ -94,7 +94,6 @@
         <echo message=" el            [overrides]"/>
         <echo message=" jakartaee     [overrides]"/>
         <echo message=" servlet       [overrides]"/>
-        <echo message=" jaxrs         [overrides]"/>
         <echo message=" saaj          [overrides]"/>
         <echo message=" jpa           [overrides]"/>
         <echo message=" provisioning  [overrides]"/>
@@ -103,7 +102,6 @@
         <echo message=" jaxws         [overrides]"/>
         <echo message=" jsonb         [overrides]"/>
         <echo message=" jsonp         [overrides]"/>
-        <echo message=" jaxr          [overrides]"/>
         <echo message=" jms           [overrides]"/>
         <echo message=" websocket     [overrides]"/>
         <echo message=" smoke  	      [overrides]"/>
@@ -111,7 +109,6 @@
         <echo message=" jakartaee-assembly  [overrides]"/>
         <echo message=" jakartaee-compat    [overrides]"/>
         <echo message=" jakartaee-javamail  [overrides]"/>
-        <echo message=" jakartaee-jaxr     [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
         <echo message=" jakartaee-jta      [overrides]"/>
         <echo message=" jakartaee-jstl     [overrides]"/>
@@ -310,7 +307,7 @@
     
     <target name="-ant-zip" unless="isUnixPlatform">
         <zip zipfile="${bundle.dir}/${zip.file}" 
-             basedir="${bundle.dir}" includes="${zip.name}/"/>
+             basedir="${bundle.dir}" includes="${zip.name}"/>
     </target>
     
     <target name="-excludelist-ant-zip">
@@ -525,11 +522,6 @@
         <property name="deliverable.name" value="JSONP"/>
         <antcall target="${the.target}"/>
     </target>
-    <target name="jaxr" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JAXR"/>
-        <property name="deliverable.tck.dir" value="xml-registries"/>
-        <antcall target="${the.target}"/>
-    </target>
     <target name="jms" depends="has.override, no.override" >
         <property name="deliverable.name" value="JMS"/>
         <property name="deliverable.tck.dir" value="messaging"/>
@@ -668,12 +660,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-jaxr" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JAXR"/>
-        <property name="test.areas" value="jaxr/common,jaxr/ee/javax_xml_registry_infomodel,jaxr/ee/javax_xml_registry/BulkResponse,jaxr/ee/javax_xml_registry/BusinessLifeCycleManager,jaxr/ee/javax_xml_registry/BusinessQueryManager,jaxr/ee/javax_xml_registry/DeclarativeQueryManager,jaxr/ee/javax_xml_registry/LifeCycleManager,jaxr/ee/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry_infomodel,jaxr/api/javax_xml_registry/BusinessLifeCycleManager,jaxr/api/javax_xml_registry/BusinessQueryManager,jaxr/api/javax_xml_registry/CapabilityProfile,jaxr/api/javax_xml_registry/Connection,jaxr/api/javax_xml_registry/ConnectionFactory,jaxr/api/javax_xml_registry/DeleteException,jaxr/api/javax_xml_registry/FindException,jaxr/api/javax_xml_registry/InvalidRequestException,jaxr/api/javax_xml_registry/JAXRException,jaxr/api/javax_xml_registry/LifeCycleManager,jaxr/api/javax_xml_registry/Query,jaxr/api/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry/RegistryException,jaxr/api/javax_xml_registry/RegistryService,jaxr/api/javax_xml_registry/SaveException,jaxr/api/javax_xml_registry/UnexpectedObjectException,jaxr/api/javax_xml_registry/UnsupportedCapabilityException"/>
-        <antcall target="${the.target}"/>
-    </target>
-       
     <target name="jakartaee-jaxws" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAXWS"/>
         <property name="test.areas" value="jaxws"/>
@@ -898,7 +884,6 @@
             jacc,
             javamail,
             jaxp,
-            jaxr,
             jdbc,
             jms,
 		    jsonb,

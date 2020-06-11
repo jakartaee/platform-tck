@@ -129,11 +129,6 @@ if [ "$TCK_NAME" ==  "concurrency" ];then
    exit 0
 fi
 
-if [ "$TCK_NAME" ==  "jaxr" ];then
-   source jaxrtck.sh
-   exit 0
-fi
-
 if [ "$TCK_NAME" ==  "connector" ];then
    source connectortck.sh
    exit 0
