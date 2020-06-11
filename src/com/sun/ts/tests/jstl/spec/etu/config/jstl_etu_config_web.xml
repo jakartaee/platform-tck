@@ -18,9 +18,9 @@
 -->
 
 <web-app version="2.4"
-         xmlns="http://jakarta.ee/xml/ns/jakartaee"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee http://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <description>EL/TLV/URI Tag Library TCK Tests for JSTL</description>
     <display-name>jstl_etu_config_web</display-name>
     <context-param>

@@ -17,10 +17,10 @@
 
 -->
 
-<application-client xmlns="http://jakarta.ee/xml/ns/jakartaee"
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee"
 	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	      xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee
-		http://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
+	      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+		https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
 	      version="1.4">
   <display-name>appclient_dep_compat14_50_client</display-name>
   <ejb-ref>
