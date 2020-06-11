@@ -83,13 +83,8 @@ public class JavaEESigTest extends SigTestEE {
       Arrays.asList("jaxr"));
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-<<<<<<< HEAD
       Arrays.asList("batch", "jaxr", "connector",
-          "jaxws", "jaxb", "jms", "javamail", "javaeemgmt", "jacc", "jaspic",
-=======
-      Arrays.asList("batch", "jaxrpc", "jaxr", "connector",
           "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
->>>>>>> eclipse-ee4j#212 - Remove Jakarta Management
           "wsmd"));
 
   enum Containers {
