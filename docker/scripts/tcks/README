@@ -56,7 +56,6 @@ sensitive.
 8.  websocket (Web Sockets API 1.1, JSR 356)
 9.  jacc (JACC 1.5, JSR 115)
 10. jaspic (JASPIC 1.1, JSR 196)
-11. jaxr (JAXR 1.0, JSR 93)
 12. jaxrs (JAX-RS 2.1, JSR 370)
 13. jaxws (JAX-WS 2.3, JSR 224)
 14. jms (JMS 2.0, JSR 343)

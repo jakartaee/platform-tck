@@ -367,7 +367,7 @@ The default setting is as follows:
 
 [source,oac_no_warn]
 ----
-javaee.level=full jaxr 
+javaee.level=full
 ----
 
 [[BCGHGJIC]][[using-keywords-to-create-groups-and-subsets-of-tests]]
@@ -511,7 +511,7 @@ ant -Dkeywords=javaee_optional runclient
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests
-ant -Dkeywords="javaee | jaxr" runclient
+ant -Dkeywords="javaee" runclient
 ----
 
 The optional JAXR tests and the tests that are required by

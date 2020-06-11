@@ -670,23 +670,6 @@
     </target>
 
      <!--
-       Create a Connector Connection Pool
-     -->
-     <target name="create-connector-connection-pool" >
-       <exec executable="${exec.asadmin}" >
-            <arg line="${exec.asadmin.part2}" />
-            <arg line=" --user ${admin.user}"/>
-            <arg line=" --passwordfile ${password.file}"/>
-            <arg line=" --host ${server.host}"/>
-            <arg line=" --port ${server.port}"/>
-            <arg line=" create-connector-connection-pool"/>
-            <arg line=" --raname ${rarName}"/>
-            <arg line=" --connectiondefinition com.sun.connector.jaxr.JaxrConnectionFactory"/>
-            <arg line=" ${poolName}"/>
-        </exec>
-     </target>
-
-     <!--
        Create a Connector Resource
      -->
      <target name="create-connector-resource" >

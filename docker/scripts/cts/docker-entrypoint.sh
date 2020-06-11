@@ -155,13 +155,6 @@ sed -i 's/orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
 sed -i 's/ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
 sed -i 's/orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
 
-sed -i "s#registryURL=.*#registryURL=http://localhost:8080/RegistryServer/#g" ts.jte
-sed -i "s#queryManagerURL=.*#queryManagerURL=http://localhost:8080/RegistryServer/#g" ts.jte
-sed -i 's/jaxrUser=.*/jaxrUser=testuser/g' ts.jte
-sed -i 's/jaxrPassword=.*/jaxrPassword=testuser/g' ts.jte
-sed -i 's/jaxrUser2=.*/jaxrUser2=jaxr-sqe/g' ts.jte
-sed -i 's/jaxrPassword2=.*/jaxrPassword2=jaxrsqe/g' ts.jte
-
 sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`

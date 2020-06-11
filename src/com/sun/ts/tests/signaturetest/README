@@ -405,7 +405,7 @@ sigTestClasspath variable.  If your particular TCK does not have this
 variable in the ts.jte file, add it.  This should contain the jar files
 for the classes you are testing AND any classes that will be referenced.
 Example/
-   sigTestClasspath=${javaee.home}/lib/javaee.jar:${javaee.home}/lib/jaxr-impl.jar:${JAVA_HOME}/lib/rt.jar
+   sigTestClasspath=${javaee.home}/lib/javaee.jar:${JAVA_HOME}/lib/rt.jar
 
 
 
