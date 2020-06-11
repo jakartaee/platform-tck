@@ -17,7 +17,7 @@
 
 -->
 
-<application-client version="1.4" xmlns="http://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jakarta.ee/xml/ns/jakartaee http://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
+<application-client version="1.4" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <description>TS tx stateful bm Transaction Not Supported Single test</description>
   <display-name>ejb_txSsfBm_TxNSingle_client</display-name>
   <ejb-ref>
