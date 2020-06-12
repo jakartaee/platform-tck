@@ -17,9 +17,9 @@
 
 -->
 
-<application-client xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application-client_6.xsd"
-  version="6">
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
+  version="9">
   <ejb-ref>
     <description>ejb-ref in ejb-jar.xml</description>
     <ejb-ref-name>com.sun.ts.tests.ejb30.misc.xmloverride.ejbref.Client/overrideBean</ejb-ref-name>
