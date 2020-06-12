@@ -17,7 +17,7 @@
 
 -->
 
-<application-client version="6" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application-client_6.xsd">
+<application-client version="9" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <description>TS ejbvehicle client</description>
   <display-name>appclient_vehicle_client</display-name>
   <resource-ref>
