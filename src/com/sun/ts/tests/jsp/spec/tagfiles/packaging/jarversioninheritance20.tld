@@ -17,10 +17,10 @@
 
 -->
 
-<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-    version="2.1">
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd"
+    version="3.0">
     <display-name>jarversioninherit21</display-name>
     <tlib-version>1.0</tlib-version>
     <short-name>jar21</short-name>
