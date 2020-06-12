@@ -21,7 +21,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
     http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-  version="2.1">
+  version="4.0">
     <persistence-unit name="CTS-JTA-UNIT" transaction-type="JTA">
         <description>Persistence Unit for CTS EE Package Tests</description>
         <jta-data-source>jdbc/DB1</jta-data-source>

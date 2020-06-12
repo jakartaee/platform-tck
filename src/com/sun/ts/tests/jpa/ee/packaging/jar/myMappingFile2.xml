@@ -21,7 +21,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
     http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
-    version="2.1">
+    version="4.0">
     <entity name="B" class="com.sun.ts.tests.jpa.ee.packaging.jar.B" access="PROPERTY">
         <table name="BEJB_1X1_BI_BTOB"/>
         <attributes>
