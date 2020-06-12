@@ -33,8 +33,6 @@
     <property name="deliverable.tck.version"           value="9.0.0"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
-	     **/jaxr/api/javax_xml_registry/Connection_asynch/**/*,
-	     **/jaxr/ee/javax_xml_registry/RegistryService/**/*,
 	     **/jaxm/**/*, **/jaxm1.0.1/**/*,
 	     **/provisioning/**/*,
 	     **/*.runtime.xml,
@@ -43,7 +41,6 @@
 	     com/sun/ts/lib/deliverable/jms,
 	     com/sun/ts/lib/deliverable/mgmt/**,
 	     com/sun/ts/lib/deliverable/jdbc/**,
-	     com/sun/ts/lib/deliverable/jaxr/**,
 	     com/sun/ts/lib/deliverable/jaxws/**,
 	     com/sun/ts/tests/jaspic/spi/soap/**,
 	     com/sun/ts/tests/jaspic/spi/authstatus/**,

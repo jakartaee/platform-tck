@@ -138,7 +138,7 @@ public class CommonAppVerifier {
       if (relativePath.startsWith(keys[i])) {
 
         // check that that we don't have a test leaf dir thet is a subset
-        // of another test leaf dir - e.g. jaxrs and jaxr
+        // of another test leaf dir - e.g. jaxrs
         String relativePathLeafDir = relativePath
             .substring(relativePath.lastIndexOf("/"));
         String keyLeafDir = keys[i].substring(keys[i].lastIndexOf("/"));

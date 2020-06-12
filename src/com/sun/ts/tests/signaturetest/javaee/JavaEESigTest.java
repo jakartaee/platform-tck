@@ -79,11 +79,10 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
 
-  public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("jaxr"));
+  public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
-      Arrays.asList("batch", "jaxr", "connector",
+      Arrays.asList("batch", "connector",
           "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
           "wsmd"));
 
@@ -120,8 +119,6 @@ public class JavaEESigTest extends SigTestEE {
     APPCLIENT_MAP.put("persistence",
         new String[] { "jakarta.persistence", "jakarta.persistence.spi",
             "jakarta.persistence.criteria", "jakarta.persistence.metamodel" });
-    APPCLIENT_MAP.put("jaxr",
-        new String[] { "jakarta.xml.registry", "jakarta.xml.registry.infomodel" });
     // note: cdi API's actually utilize two different base packages and
     // so will require two different sigfiles.
     APPCLIENT_MAP.put("cdi",

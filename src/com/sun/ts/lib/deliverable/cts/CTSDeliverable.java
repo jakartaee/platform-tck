@@ -111,10 +111,6 @@ public class CTSDeliverable extends AbstractDeliverable {
         "tests_interop_saaj_Standalone.service_eetest.vehicles",
         new String[] { "ejb", "servlet", "jsp", "appclient" });
 
-    // jaxr tests
-    htTSValidVehicles.put("tests_jaxr.service_eetest.vehicles",
-        new String[] { "ejb", "servlet", "jsp", "appclient" });
-
     // jdbc tests
     htTSValidVehicles.put("tests_jdbc_ee.service_eetest.vehicles",
         new String[] { "ejb", "servlet", "jsp", "appclient" });

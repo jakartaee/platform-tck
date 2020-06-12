@@ -69,8 +69,7 @@
         com/sun/ts/tests/rmiiiop,
         com/sun/ts/tests/assembly,
         com/sun/ts/tests/jta,
-        com/sun/ts/tests/samples,
-        com/sun/ts/tests/jaxr"/>
+        com/sun/ts/tests/samples"/>
 
       <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
 
