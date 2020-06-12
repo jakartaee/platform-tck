@@ -21,7 +21,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
     http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
-    version="2.1">
+    version="4.0">
     <package>com.sun.ts.tests.jpa.core.override.entity</package>
     <entity class="com.sun.ts.tests.jpa.core.override.entity.NameOnlyInXML" name="NAMEONLYINXML"/>
     <entity class="com.sun.ts.tests.jpa.core.override.entity.NameOnlyInAnnotation"/>
