@@ -17,11 +17,11 @@
 
 -->
 
-<web-fragment xmlns="http://java.sun.com/xml/ns/javaee"
+<web-fragment xmlns="https://jakarta.ee/xml/ns/jakartaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-              http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
-              version="3.0" >
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+              https://jakarta.ee/xml/ns/jakartaee/web-fragment_5_0.xsd"
+              version="5.0" >
     <filter>
         <filter-name>ServletMappedDoFilter_Filter</filter-name>
         <filter-class>com.sun.ts.tests.servlet.api.jakarta_servlet.filter.DoFilter_Filter</filter-class>
