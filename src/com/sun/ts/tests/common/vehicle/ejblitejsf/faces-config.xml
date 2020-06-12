@@ -17,10 +17,10 @@
 
 -->
 
-<faces-config version="1.2" 
-              xmlns="http://java.sun.com/xml/ns/javaee" 
+<faces-config version="3.0" 
+              xmlns="https://jakarta.ee/xml/ns/jakartaee" 
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd">
     <managed-bean>
         <managed-bean-name>client</managed-bean-name>
         <managed-bean-class>@package@.Client</managed-bean-class>
