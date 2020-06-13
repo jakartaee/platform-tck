@@ -21,7 +21,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
              https://jakarta.ee/xml/ns/jakartaee/application_9.xsd"
-             version="1.4">
+             version="9">
   <display-name>Second Simple example of application</display-name>
   <description>Second Simple example</description>
   <module>
