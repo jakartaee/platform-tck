@@ -241,7 +241,7 @@ example           Optional informal description of an example of a
                example?) >
 
 <!--
-Defines the subclass of javax.serlvet.jsp.tagext.Tag that implements
+Defines the subclass of javax.servlet.jsp.tagext.Tag that implements
 the request time semantics for this tag. (required)
 
 #PCDATA ::= fully qualified Java class name

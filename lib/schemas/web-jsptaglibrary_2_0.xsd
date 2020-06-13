@@ -462,7 +462,7 @@
 	<xsd:annotation>
 	  <xsd:documentation>
 
-	    Defines the subclass of javax.serlvet.jsp.tagext.JspTag
+	    Defines the subclass of javax.servlet.jsp.tagext.JspTag
 	    that implements the request time semantics for
 	    this tag. (required)
 

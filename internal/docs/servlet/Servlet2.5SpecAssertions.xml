@@ -1217,7 +1217,7 @@
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.6</id>
-                            <description>The 'javax.serlvet.error.servlet_name' attribute of type 'java.lang.String' will contain the logical name of the servlet in which the error occurred.</description>
+                            <description>The 'javax.servlet.error.servlet_name' attribute of type 'java.lang.String' will contain the logical name of the servlet in which the error occurred.</description>
                             <location chapter="9" section="9.1"/>
                         </assertion>
                     </sub-assertions>
