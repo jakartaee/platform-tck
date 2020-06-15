@@ -158,13 +158,13 @@ public class TestServlet extends GenericTCKServlet {
       if (result1 != false) {
         passed = false;
         pw.println(
-            "isPermanent() failed to detect that the serlvet was not initially unavailable");
+            "isPermanent() failed to detect that the servlet was not initially unavailable");
       }
 
       if (result2 != true) {
         passed = false;
         pw.println(
-            "isPermanent() failed to detect that the serlvet had become unavailable");
+            "isPermanent() failed to detect that the servlet had become unavailable");
       }
 
     }

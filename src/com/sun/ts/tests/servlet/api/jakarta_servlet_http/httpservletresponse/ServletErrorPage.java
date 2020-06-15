@@ -38,7 +38,7 @@ public class ServletErrorPage extends HttpServlet {
 
   private static final String STATUS_CODE = "jakarta.servlet.error.status_code";
 
-  private static final String EXCEPTION_TYPE = "javax.serlvet.error.exception_type";
+  private static final String EXCEPTION_TYPE = "javax.servlet.error.exception_type";
 
   private static final String MESSAGE = "jakarta.servlet.error.message";
 

@@ -36,13 +36,13 @@
     <c:if test="${param.action == 'locale'}">
         <fmt:setLocale value="en"/>
         <% checkEncoding(pageContext, response); %>
-        <c:remove var="javax.serlvet.jsp.jstl.fmt.request.charset" scope="session"/>
+        <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
     </c:if>
 
     <c:if test="${param.action == 'bundle'}">
         <fmt:bundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>
         <% checkEncoding(pageContext, response); %>
-        <c:remove var="javax.serlvet.jsp.jstl.fmt.request.charset" scope="session"/>
+        <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
     </c:if>
 
     <c:if test="${param.action == 'setbundle'}">
@@ -50,7 +50,7 @@
         <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"
                        var="tBundle" scope="application"/>
         <% checkEncoding(pageContext, response); %>
-        <c:remove var="javax.serlvet.jsp.jstl.fmt.request.charset" scope="session"/>
+        <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
     </c:if>
 
     <c:if test="${param.action == 'message'}">
