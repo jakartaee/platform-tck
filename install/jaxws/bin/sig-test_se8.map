@@ -42,4 +42,4 @@
 # than that means that signature file MUST not be referenced using JDK 7.
 #
 ###############################################################
-jakarta.xml.ws=2.3_se8
+jakarta.xml.ws=3.0_se8
