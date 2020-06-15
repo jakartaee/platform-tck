@@ -196,7 +196,7 @@ jakarta.enterprise.concurrent=1.0_se11
 
 # JSON-P 1.1
 # (This is JSR-374)
-jakarta.json=2.0.0_se11
+jakarta.json=2.0_se11
 
 # JSON-B
 # (This is JSR-367)

@@ -46,4 +46,4 @@
 # be referenced when using JDK 11.  
 #
 ###############################################################
-jakarta.json=2.0.0_se11
+jakarta.json=2.0_se11
