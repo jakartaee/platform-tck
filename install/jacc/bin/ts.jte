@@ -343,7 +343,7 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jacc.home}/modules/jakarta.security.jacc-api.jar:${jacc.home}/modules/jakarta.security.auth.message-api.jar:${JAVA_HOME}/lib/rt.jar
+sigTestClasspath=${jacc.home}/modules/jakarta.authorization-api.jar:${jacc.home}/modules/jakarta.security.auth.message-api.jar:${JAVA_HOME}/lib/rt.jar
 
 
 ########################################################################
