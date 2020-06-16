@@ -121,7 +121,7 @@ jakarta.el=4.0_se8
 # (This is JSR-372)
 jakarta.faces=3.0_se8
 
-# Tags 1.2
+# Tags 2.0
 # (This is JSR-52)
 jakarta.servlet.jsp.jstl=2.0_se8
 
@@ -186,10 +186,10 @@ jakarta.validation=3.0_se8
 # (This is JSR-330)
 jakarta.inject=2.0_se8
 
-# Contexts and Dependency Injection (CDI) for Java EE 2.0
+# Contexts and Dependency Injection (CDI) 
 # (This is JSR-365)
-jakarta.enterprise=2.0_se8
-jakarta.decorator=1.1_se8
+jakarta.enterprise=3.0_se8
+jakarta.decorator=2.0_se8
 
 # Concurrency (JSR 236)
 jakarta.enterprise.concurrent=2.0_se8
