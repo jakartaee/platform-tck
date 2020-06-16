@@ -113,7 +113,7 @@ public class Client extends EETest {
    * CONCURRENCY:SPEC:76.2;CONCURRENCY:SPEC:76.3;CONCURRENCY:SPEC:77;
    * CONCURRENCY:SPEC:78;CONCURRENCY:SPEC:82;CONCURRENCY:SPEC:84;
    *
-   * @test_Strategy: create proxy in servlet and pass it into other serlvet in
+   * @test_Strategy: create proxy in servlet and pass it into other servlet in
    * other web module, then verify classloader.
    *
    */

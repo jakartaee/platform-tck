@@ -21,7 +21,7 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                 https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
-              version="1.4">
+              version="9">
 
 
   <description>client for TS assembly compat single compat14_50 test</description>

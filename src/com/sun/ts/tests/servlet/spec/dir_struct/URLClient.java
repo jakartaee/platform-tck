@@ -64,8 +64,8 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: Servlet:SPEC:91
    * 
-   * @test_Strategy: The serlvet which is in the WEB-INF/classes directory is
-   * called by the client and should execute. Then the serlvet which is in the
+   * @test_Strategy: The servlet which is in the WEB-INF/classes directory is
+   * called by the client and should execute. Then the servlet which is in the
    * WEB-INF/lib directory is called by the client and should execute.
    *
    */

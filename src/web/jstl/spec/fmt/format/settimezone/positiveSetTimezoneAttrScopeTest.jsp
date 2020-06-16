@@ -27,7 +27,7 @@
              be set to the scope specified (implicit or explicit). -->
     <fmt:setTimeZone value="PST"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
-    <c:remove var="javax.serlvet.jsp.jstl.fmt.timeZone.page"/>
+    <c:remove var="javax.servlet.jsp.jstl.fmt.timeZone.page"/>
     <fmt:setTimeZone value="PST" scope="page"/>
     <tck:checkScope varName="jakarta.servlet.jsp.jstl.fmt.timeZone" useConfig="true"/>
     <c:remove var="jakarta.servlet.jsp.jstl.fmt.timeZone.page"/>

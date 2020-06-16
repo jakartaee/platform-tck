@@ -21,7 +21,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
          https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd"
-         version="2.1">
+         version="4.0">
   <display-name>Ejb2</display-name>
   <enterprise-beans>
     <message-driven>
