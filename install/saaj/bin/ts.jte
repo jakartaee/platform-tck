@@ -48,7 +48,7 @@ webServerPort=8080
 ###########################################################################
 # local.classes should contain any RI specific jars/classes
 ###########################################################################
-local.classes=${webcontainer.home}/modules/jakarta.servlet-api.jar${pathsep}${webcontainer.home}/modules/jakarta.ejb-api.jar${pathsep}${webcontainer.home}/modules/jakarta.activation.jar${pathsep}${webcontainer.home}/modules/jakarta.xml.soap-api.jar
+local.classes=
 
 ####################################################################
 # @endorsed.dirs  If using JavaSE 8, verify that the property 
