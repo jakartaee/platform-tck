@@ -251,14 +251,14 @@ public class URLClient extends AbstractUrlClient {
   public void getRegistrationClassNameTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "getRegistrationClassNameTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "REGISTRATION_CLASS_NAME:"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDSERVLETSTRING"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDFILTERSTRING"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDSERVLETCLASS"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDFILTERCLASS"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.CREATESERVLET"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.CREATEFILTER"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDSERVLETNOTFOUND"
-        + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDFILTERNOTFOUND");
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDSERVLETSTRING"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDFILTERSTRING"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDSERVLETCLASS"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDFILTERCLASS"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.CREATESERVLET"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.CREATEFILTER"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDSERVLETNOTFOUND"
+        + "|COM.SUN.TS.TESTS.SERVLET.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDFILTERNOTFOUND");
     invoke();
   }
 
