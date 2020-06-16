@@ -508,11 +508,11 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: Servlet:JAVADOC:685;
    *
    * @test_Strategy: Create a Servlet, in which call
-   * ServletContext.getEffectiveMajorVersion() Verify that 3 is returned.
+   * ServletContext.getEffectiveMajorVersion() Verify that 5 is returned.
    */
   public void getEffectiveMajorVersionTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "getEffectiveMajorVersionTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=3;");
+    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
     invoke();
   }
 
