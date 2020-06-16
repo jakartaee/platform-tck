@@ -198,8 +198,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
   then
-    wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/jakarta/xml/soap/jakarta.xml.soap-api/2.0.0-RC3/jakarta.xml.soap-api-2.0.0-RC3.jar -O ${GF_HOME}/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.xml.soap-api.jar
-    TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish -Dendorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed"
+    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar -Dwebcontainer.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish -Dendorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "servlet" == "$tck" ]
