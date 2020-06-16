@@ -415,7 +415,7 @@ public class URLClient extends AbstractUrlClient {
    */
   public void getEffectiveMajorVersionTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "getEffectiveMajorVersionTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=3;");
+    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
     invoke();
   }
 
