@@ -250,7 +250,7 @@ public class URLClient extends AbstractUrlClient {
    */
   public void getRegistrationClassNameTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "getRegistrationClassNameTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "REGISTRION_CLASS_NAME:"
+    TEST_PROPS.setProperty(SEARCH_STRING, "REGISTRATION_CLASS_NAME:"
         + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDSERVLETSTRING"
         + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDFILTERSTRING"
         + "|com.sun.ts.tests.servlet.api.jakarta_servlet.SERVLETCONTEXT30.ADDSERVLETCLASS"
