@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +33,7 @@ import java.net.UnknownHostException;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CRLF = System.lineSeparator();
+  private static final String CRLF = "\r\n";
 
   /**
    * Entry point for different-VM execution. It should delegate to method
@@ -107,7 +108,7 @@ public class URLClient extends AbstractUrlClient {
           .append("Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"
               + CRLF);
       reqStr.append("Upgrade: YES" + CRLF);
-      reqStr.append("Connection: Upgrade\r\n");
+      reqStr.append("Connection: Upgrade" + CRLF);
       reqStr.append("Content-type: application/x-www-form-urlencoded" + CRLF);
       reqStr.append(CRLF);
 
