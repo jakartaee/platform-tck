@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -51,7 +51,7 @@ public class StepExecutionTests extends ServiceEETest {
 	private static JobOperatorBridge jobOp;
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -84,7 +84,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testOneStepExecutionStatus() throws Fault {
 
-		String METHOD = "testOneStepExecutionStatus";
+		String METHOD = "testOneStepExecutionStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -123,7 +123,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testFourStepExecutionStatus() throws Fault {
 
-		String METHOD = "testFourStepExecutionStatus";
+		String METHOD = "testFourStepExecutionStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -163,7 +163,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testFailedStepExecutionStatus() throws Fault {
-		String METHOD = "testFailedStepExecutionStatus";
+		String METHOD = "testFailedStepExecutionStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -199,7 +199,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStoppedStepExecutionStatus() throws Fault {
-		String METHOD = "testStoppedStepExecutionStatus";
+		String METHOD = "testStoppedStepExecutionStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -233,7 +233,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testPersistedStepData() throws Fault {
-		String METHOD = "testPersistedStepData";
+		String METHOD = "testPersistedStepData";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -289,7 +289,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStepExecutionExitStatus() throws Fault {
-		String METHOD = "testStepExecutionExitStatus";
+		String METHOD = "testStepExecutionExitStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -324,7 +324,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStepInFlowStepExecution() throws Fault {
-		String METHOD = "testStepInFlowStepExecution";
+		String METHOD = "testStepInFlowStepExecution";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -362,7 +362,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStepInFlowInSplitStepExecution() throws Fault {
-		String METHOD = "testStepInFlowInSplitStepExecution";
+		String METHOD = "testStepInFlowInSplitStepExecution";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 

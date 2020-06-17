@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -47,7 +47,7 @@ public class DeciderTests extends ServiceEETest implements StatusConstants {
 
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -100,7 +100,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderEndNormal() throws Fault {
 
-		String METHOD = "testDeciderEndNormal";
+		String METHOD = "testDeciderEndNormal";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -146,7 +146,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderEndSpecial() throws Fault {
-		String METHOD = "testDeciderEndSpecial";
+		String METHOD = "testDeciderEndSpecial";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -185,7 +185,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderStopNormal() throws Fault {
-		String METHOD = " testDeciderStopNormal";
+		String METHOD = " testDeciderStopNormal";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -225,7 +225,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderStopSpecial() throws Fault {
-		String METHOD = "testDeciderStopSpecial";
+		String METHOD = "testDeciderStopSpecial";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -265,7 +265,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderFailNormal() throws Fault {
 
-		String METHOD = "testDeciderFailNormal";
+		String METHOD = "testDeciderFailNormal";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -304,7 +304,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderFailSpecial() throws Fault {
-		String METHOD = "testDeciderFailSpecial";
+		String METHOD = "testDeciderFailSpecial";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -342,7 +342,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderNextNormal() throws Fault {
-		String METHOD = "testDeciderNextNormal";
+		String METHOD = "testDeciderNextNormal";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -382,7 +382,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderNextSpecial() throws Fault {
-		String METHOD = "testDeciderNextSpecial";
+		String METHOD = "testDeciderNextSpecial";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -427,7 +427,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderExitStatusIsSetOnJobContext() throws Fault {
 
-		String METHOD = "testDeciderExitStatusIsSetOnJobContext";
+		String METHOD = "testDeciderExitStatusIsSetOnJobContext";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -465,7 +465,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderCannotbeFirstElementOnStart() throws Fault {
 
-		String METHOD = "testDeciderCannotbeFirstElementOnStart";
+		String METHOD = "testDeciderCannotbeFirstElementOnStart";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -508,7 +508,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testDeciderTransitionFromStepAndAllowRestart() throws Fault {
-		String METHOD = "testDeciderTransitionFromStepAndAllowRestart";
+		String METHOD = "testDeciderTransitionFromStepAndAllowRestart";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -565,7 +565,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromStepWithinFlowAndAllowRestart() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromStepWithinFlowAndAllowRestart";
+		String METHOD = "testDeciderTransitionFromStepWithinFlowAndAllowRestart";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -619,7 +619,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromFlowAndAllowRestart() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromFlowAndAllowRestart";
+		String METHOD = "testDeciderTransitionFromFlowAndAllowRestart";
 TestUtil.logTrace(METHOD);
 
 
@@ -677,7 +677,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromSplitAndAllowRestart() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromSplitAndAllowRestart";
+		String METHOD = "testDeciderTransitionFromSplitAndAllowRestart";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -733,7 +733,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromStepAndAllowRestartFalse() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromStepAndAllowRestartFalse";
+		String METHOD = "testDeciderTransitionFromStepAndAllowRestartFalse";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -792,7 +792,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromStepWithinFlowAndAllowRestartFalse() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromStepWithinFlowAndAllowRestartFalse";
+		String METHOD = "testDeciderTransitionFromStepWithinFlowAndAllowRestartFalse";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -850,7 +850,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromFlowAndAllowRestartFalse() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromFlowAndAllowRestartFalse";
+		String METHOD = "testDeciderTransitionFromFlowAndAllowRestartFalse";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -911,7 +911,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testDeciderTransitionFromSplitAndAllowRestartFalse() throws Fault {
 
-		String METHOD = "testDeciderTransitionFromSplitAndAllowRestartFalse";
+		String METHOD = "testDeciderTransitionFromSplitAndAllowRestartFalse";
 TestUtil.logTrace(METHOD);
 
 		try {

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.ee;
+package com.ibm.jbatch.tck.tests.ee;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -50,7 +50,7 @@ public class TransactionTests extends ServiceEETest {
 	private static JobOperatorBridge jobOp;
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -89,7 +89,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testTranRollbackRetryReadSkipRead() throws Fault {
-		String METHOD = "testTranRollbackRetryReadSkipRead";
+		String METHOD = "testTranRollbackRetryReadSkipRead";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -138,7 +138,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testTranRollbackRetryProcessSkipProcess() throws Fault {
-		String METHOD = "testTranRollbackRetryProcessSkipProcess";
+		String METHOD = "testTranRollbackRetryProcessSkipProcess";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -187,7 +187,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testTranRollbackRetryWriteSkipWrite() throws Fault {
-		String METHOD = "testTranRollbackRetryWriteSkipWrite";
+		String METHOD = "testTranRollbackRetryWriteSkipWrite";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -230,7 +230,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranNoExceptions() throws Fault {
-		String METHOD = "testGlobalTranNoExceptions";
+		String METHOD = "testGlobalTranNoExceptions";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -285,7 +285,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranForcedExceptionWithRollback() throws Fault {
-		String METHOD = "testGlobalTranForcedExceptionWithRollback";
+		String METHOD = "testGlobalTranForcedExceptionWithRollback";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -338,7 +338,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranForcedExceptionCheckpointRestart() throws Fault {
-		String METHOD = "testGlobalTranForcedExceptionCheckpointRestart";
+		String METHOD = "testGlobalTranForcedExceptionCheckpointRestart";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -409,7 +409,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranNoDelayLongTimeout() throws Fault {
-		String METHOD = "testGlobalTranNoDelayLongTimeout";
+		String METHOD = "testGlobalTranNoDelayLongTimeout";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -480,7 +480,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutSteps() throws Fault {
-		String METHOD = "testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutSteps";
+		String METHOD = "testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutSteps";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -554,7 +554,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutStepsCustomCheckpointAlgorithm() throws Fault {
-		String METHOD = "testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutStepsCustomCheckpointAlgorithm";
+		String METHOD = "testGlobalTranLongDelayMixOfLongTimeoutStepsAndShortTimeoutStepsCustomCheckpointAlgorithm";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		

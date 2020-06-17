@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -43,7 +43,7 @@ public class MetricsTests extends ServiceEETest {
 	private static JobOperatorBridge jobOp = null;
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -83,7 +83,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testMetricsInApp() throws Fault {
-		String METHOD = "testMetricsInApp";
+		String METHOD = "testMetricsInApp";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -136,7 +136,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsSkipRead() throws Fault {
 
-		String METHOD = "testMetricsSkipRead";
+		String METHOD = "testMetricsSkipRead";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -214,7 +214,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsSkipWrite() throws Fault {
 
-		String METHOD = "testMetricsSkipWrite";
+		String METHOD = "testMetricsSkipWrite";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -288,7 +288,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testMetricsSkipProcess() throws Fault {
-		String METHOD = "testMetricsSkipProcess";
+		String METHOD = "testMetricsSkipProcess";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -364,7 +364,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testReadMetric() throws Fault {
-		String METHOD = "testReadMetric";
+		String METHOD = "testReadMetric";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -436,7 +436,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testWriteMetric() throws Fault {
-		String METHOD = "testWriteMetric";
+		String METHOD = "testWriteMetric";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -499,7 +499,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsFilterCount() throws Fault {
 
-		String METHOD = "testMetricsFilterCount";
+		String METHOD = "testMetricsFilterCount";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -560,7 +560,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsCommitCount() throws Fault {
 
-		String METHOD = "testMetricsCommitCount";
+		String METHOD = "testMetricsCommitCount";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -623,7 +623,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsStepTimestamps() throws Fault {
 
-		String METHOD = "testMetricsStepTimestamps";
+		String METHOD = "testMetricsStepTimestamps";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -685,7 +685,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testMetricsJobExecutionTimestamps() throws Fault {
 
-		String METHOD = "testMetricsJobExecutionTimestamps";
+		String METHOD = "testMetricsJobExecutionTimestamps";
 TestUtil.logTrace(METHOD);
 
 		try {

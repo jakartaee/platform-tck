@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -46,7 +46,7 @@ public class ContextAndListenerTests extends ServiceEETest {
 
 	public static void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -71,7 +71,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testExamineJobContextInArtifact() throws Fault {
 
-		String METHOD = "testExamineJobContextInArtifact()";
+		String METHOD = "testExamineJobContextInArtifact()";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -108,7 +108,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testExamineStepContextInArtifact() throws Fault {
 
-		String METHOD = "testExamineStepContextInArtifact()";
+		String METHOD = "testExamineStepContextInArtifact()";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -149,7 +149,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testOneArtifactIsJobAndStepListener() throws Fault {
 
-		String METHOD = "testOneArtifactIsJobAndStepListener";
+		String METHOD = "testOneArtifactIsJobAndStepListener";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -188,7 +188,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testgetException() throws Fault {
 
-		String METHOD = "testgetException";
+		String METHOD = "testgetException";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -223,7 +223,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testgetExceptionListenerBased() throws Fault {
 
-		String METHOD = "testgetExceptionListenerBased";
+		String METHOD = "testgetExceptionListenerBased";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -260,7 +260,7 @@ TestUtil.logTrace(METHOD);
     
     public void testJobContextIsUniqueForMainThreadAndPartitions() throws Fault {
 
-        String METHOD = "testJobContextIsUniqueForMainThreadAndPartitions";
+        String METHOD = "testJobContextIsUniqueForMainThreadAndPartitions";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 
@@ -290,7 +290,7 @@ TestUtil.logTrace(METHOD);
     
     public void testJobContextIsUniqueForMainThreadAndFlowsInSplits() throws Fault {
 
-        String METHOD = "testJobContextIsUniqueForMainThreadAndFlowsInSplits";
+        String METHOD = "testJobContextIsUniqueForMainThreadAndFlowsInSplits";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 
@@ -319,7 +319,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testStepContextIsUniqueForMainThreadAndPartitions() throws Fault {
-        String METHOD = "testStepContextIsUniqueForMainThreadAndPartitions";
+        String METHOD = "testStepContextIsUniqueForMainThreadAndPartitions";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 

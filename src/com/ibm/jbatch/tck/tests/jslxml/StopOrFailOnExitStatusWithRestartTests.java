@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -44,7 +44,7 @@ public class StopOrFailOnExitStatusWithRestartTests extends ServiceEETest {
 	}
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 		try {
 			jobOp = new JobOperatorBridge();
@@ -71,7 +71,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testInvokeJobWithUserStopAndRestart() throws Fault {
 
-		String METHOD = "testInvokeJobWithUserStopAndRestart";
+		String METHOD = "testInvokeJobWithUserStopAndRestart";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -143,7 +143,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithUncaughtExceptionFailAndRestart() throws Fault {
-		String METHOD = "testInvokeJobWithUncaughtExceptionFailAndRestart";
+		String METHOD = "testInvokeJobWithUncaughtExceptionFailAndRestart";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
