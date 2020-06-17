@@ -46,7 +46,7 @@ public class ContextsGetIdTests extends ServiceEETest {
 	 * 				   3. set job exit status equals job id from JobContext in batchlet
 	 * 				   4. compare job id 'job1' to job exit status
 	 * 
-	 * 	<job id="job1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	 * 	<job id="job1" xmlns="https://jakarta.ee/xml/ns/jakartaee">
 	 * 		<step id="step1">
 	 *			<batchlet ref="contextsGetIdJobContextTestBatchlet"/>
 	 *		</step>
@@ -85,7 +85,7 @@ TestUtil.logTrace(METHOD);
 	 * 				   3. set job exit status equals step id from StepContext in batchlet
 	 * 				   4. compare step id 'step1' to job exit status
 	 * 
-	 * 	<job id="job1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	 * 	<job id="job1" xmlns="https://jakarta.ee/xml/ns/jakartaee">
 	 * 		<step id="step1">
 	 *			<batchlet ref="contextsGetIdStepContextTestBatchlet"/>
 	 *		</step>
