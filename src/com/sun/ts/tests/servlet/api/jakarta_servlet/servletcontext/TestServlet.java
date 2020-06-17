@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,13 +53,13 @@ public class TestServlet extends GenericTCKServlet {
     ServletConfig config = this.getServletConfig();
     ServletContext context = config.getServletContext();
 
-    // Version should be 3 for Servlet 3.0 release
-    if (context.getMajorVersion() == 4) {
+    // Version should be 5 for Servlet 5.0 release
+    if (context.getMajorVersion() == 5) {
       passed = true;
     } else {
       passed = false;
       pw.println("getMajorVersion() returned " + context.getMajorVersion());
-      pw.println("Expected ServletContext.getMajorVersion() -> 4 ");
+      pw.println("Expected ServletContext.getMajorVersion() -> 5 ");
     }
     ServletTestUtil.printResult(pw, passed);
   }
