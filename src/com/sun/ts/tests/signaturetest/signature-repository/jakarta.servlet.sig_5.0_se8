@@ -1,7 +1,8 @@
 #Signature file v4.3
 #Version 5.0_se8
 
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+# All rights reserved.
 
 
 CLSS public abstract interface jakarta.servlet.AsyncContext
@@ -373,6 +374,7 @@ meth public abstract java.lang.String getLocalName()
 meth public abstract java.lang.String getParameter(java.lang.String)
 meth public abstract java.lang.String getProtocol()
 meth public abstract java.lang.String getRealPath(java.lang.String)
+ anno 0 java.lang.Deprecated()
 meth public abstract java.lang.String getRemoteAddr()
 meth public abstract java.lang.String getRemoteHost()
 meth public abstract java.lang.String getScheme()
