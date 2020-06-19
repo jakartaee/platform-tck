@@ -33,7 +33,7 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTex
 public class WSCBinaryStreamDecoderServer {
 
   @OnMessage
-  public String echo(StringBean bean, Session session) {
+  public String echo(StringBean bean) {
     return bean.get();
   }
 

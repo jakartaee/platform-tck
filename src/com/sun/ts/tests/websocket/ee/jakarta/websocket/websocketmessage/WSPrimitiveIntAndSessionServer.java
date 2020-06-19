@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitiveintsession")
 public class WSPrimitiveIntAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echoInt(int i, Session s) {
     return String.valueOf(i);

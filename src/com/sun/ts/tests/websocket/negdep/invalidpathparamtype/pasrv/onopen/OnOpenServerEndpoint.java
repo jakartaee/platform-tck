@@ -42,6 +42,7 @@ public class OnOpenServerEndpoint {
 
   // This header makes the endpoint invalid, since only Strings can be
   // @PathParams
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(Session session, @PathParam("arg") StringBean sb) {
     open = sb.get();

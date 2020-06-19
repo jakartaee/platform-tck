@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointconfig;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.websocket.common.TCKExtension;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.MessageValidator;
@@ -43,7 +42,7 @@ public class WSClient extends WebSocketCommonClient {
 
   private static StringBuffer receivedMessageString = new StringBuffer();
 
-  static CountDownLatch messageLatch;
+  static volatile CountDownLatch messageLatch;
 
   public static void main(String[] args) {
     WSClient theTests = new WSClient();
@@ -74,22 +73,21 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(10);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "Extension size=0|"
@@ -142,23 +140,22 @@ public class WSClient extends WebSocketCommonClient {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
     try {
-      messageLatch = new CountDownLatch(10);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .preferredSubprotocols(expected_subprotocols).build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "Extension size=0|"
@@ -229,28 +226,27 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
     try {
-      messageLatch = new CountDownLatch(10);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .extensions(extensions).build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKTestServer received String:Dummy String Test",
@@ -330,28 +326,28 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
     try {
-      messageLatch = new CountDownLatch(10);
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .preferredSubprotocols(expected_subprotocols).extensions(extensions)
           .build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKTestServer received String:Dummy String Test",
@@ -427,30 +423,30 @@ public class WSClient extends WebSocketCommonClient {
   public void encodersTest() throws Fault {
     boolean passed = true;
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanEncoder.class);
 
     try {
-      messageLatch = new CountDownLatch(15);
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .encoders(expected_encoders).build();
 
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "EndpointConfig.getEncoders() returned encoders size=2|"
@@ -488,30 +484,29 @@ public class WSClient extends WebSocketCommonClient {
   public void decodersTest() throws Fault {
     boolean passed = true;
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanDecoder.class);
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .decoders(expected_decoders).build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "EndpointConfig.getDecoders() returned decoders size=|"
@@ -553,7 +548,7 @@ public class WSClient extends WebSocketCommonClient {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -577,29 +572,28 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
     try {
-      messageLatch = new CountDownLatch(20);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .preferredSubprotocols(expected_subprotocols).extensions(extensions)
           .decoders(expected_decoders).build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "EndpointConfig.getDecoders() returned decoders size=|"
@@ -682,13 +676,13 @@ public class WSClient extends WebSocketCommonClient {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanDecoder.class);
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
@@ -712,29 +706,28 @@ public class WSClient extends WebSocketCommonClient {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
     try {
-      messageLatch = new CountDownLatch(20);
-
       ClientEndpointConfig cec = ClientEndpointConfig.Builder.create()
           .preferredSubprotocols(expected_subprotocols).extensions(extensions)
           .decoders(expected_decoders).encoders(expected_encoders).build();
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           cec, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(5);
       session.getBasicRemote().sendText("Dummy String Test");
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "EndpointConfig.getEncoders() returned encoders size=2|"
@@ -801,6 +794,7 @@ public class WSClient extends WebSocketCommonClient {
     }
   }
 
+  @Override
   public void cleanup() throws Fault {
     super.cleanup();
   }
@@ -846,6 +840,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -868,12 +863,11 @@ public class WSClient extends WebSocketCommonClient {
 
   class TCKConfigurator extends ClientEndpointConfig.Configurator {
 
-    void TCKConfigurator() {
-    }
-
+    @Override
     public void beforeRequest(Map<String, List<String>> headers) {
     }
 
+    @Override
     public void afterResponse(HandshakeResponse hr) {
     }
   }

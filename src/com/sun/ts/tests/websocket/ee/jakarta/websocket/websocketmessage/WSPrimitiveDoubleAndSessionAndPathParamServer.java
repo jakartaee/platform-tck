@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivedoublesessionpathparam/{param}")
 public class WSPrimitiveDoubleAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(@PathParam("param") double param, double d, Session s) {
     return (String.valueOf(d) + String.valueOf(param)).replace(".0", "");

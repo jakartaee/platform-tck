@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/defaultmaxlen")
 public class WSDefaultMaxLengthServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo) {
     try {

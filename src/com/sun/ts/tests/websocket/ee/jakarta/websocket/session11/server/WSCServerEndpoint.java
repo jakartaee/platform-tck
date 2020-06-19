@@ -47,7 +47,7 @@ public class WSCServerEndpoint extends Endpoint {
   public void onOpen(Session session, EndpointConfig config) {
     switch (typeEnum) {
     case LINKEDLIST_HASHSET_TEXT:
-      LinkedList<HashSet<String>> list = new LinkedList<HashSet<String>>();
+      LinkedList<HashSet<String>> list = new LinkedList<>();
       Class<LinkedList<HashSet<String>>> clzLLHS = (Class<LinkedList<HashSet<String>>>) list
           .getClass();
       session.addMessageHandler(clzLLHS,

@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fulldoublesession")
 public class WSFullDoubleAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, Double d) {
     return String.valueOf(d.doubleValue());

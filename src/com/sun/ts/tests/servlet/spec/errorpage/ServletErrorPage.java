@@ -22,6 +22,7 @@ package com.sun.ts.tests.servlet.spec.errorpage;
 
 import com.sun.ts.tests.servlet.common.util.Data;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,17 +36,17 @@ import java.io.PrintWriter;
 
 public class ServletErrorPage extends HttpServlet {
 
-  private static final String STATUS_CODE = "jakarta.servlet.error.status_code";
+  private static final String STATUS_CODE = RequestDispatcher.ERROR_STATUS_CODE; // "jakarta.servlet.error.status_code";
 
-  private static final String EXCEPTION_TYPE = "jakarta.servlet.error.exception_type";
+  private static final String EXCEPTION_TYPE = RequestDispatcher.ERROR_EXCEPTION_TYPE; //"jakarta.servlet.error.exception_type";
 
-  private static final String MESSAGE = "jakarta.servlet.error.message";
+  private static final String MESSAGE = RequestDispatcher.ERROR_MESSAGE; //"jakarta.servlet.error.message";
 
-  private static final String EXCEPTION = "jakarta.servlet.error.exception";
+  private static final String EXCEPTION = RequestDispatcher.ERROR_EXCEPTION;  //"jakarta.servlet.error.exception"
 
-  private static final String REQUEST_URI = "jakarta.servlet.error.request_uri";
+  private static final String REQUEST_URI = RequestDispatcher.ERROR_REQUEST_URI; //"jakarta.servlet.error.request_uri";
 
-  private static final String SERVLET_NAME = "jakarta.servlet.error.servlet_name";
+  private static final String SERVLET_NAME = RequestDispatcher.ERROR_SERVLET_NAME; //"jakarta.servlet.error.servlet_name"
 
   private static final String EXP_MESSAGE = "error page invoked";
 
@@ -60,7 +61,8 @@ public class ServletErrorPage extends HttpServlet {
     pw.println("Servlet Name: " + req.getAttribute(SERVLET_NAME));
     pw.println("Request URI: " + req.getAttribute(REQUEST_URI));
     pw.println("Status Code: " + req.getAttribute(STATUS_CODE));
-    pw.println("Exception Type: " + req.getAttribute(EXCEPTION_TYPE));
+    // with the cast we even enforce it's a Class type
+    pw.println("Exception Type: " + ((Class)req.getAttribute(EXCEPTION_TYPE)).getName());
     pw.println("Exception: " + req.getAttribute(EXCEPTION));
     pw.print("Message: ");
     if (((String) req.getAttribute(MESSAGE)).indexOf(EXP_MESSAGE) > -1) {

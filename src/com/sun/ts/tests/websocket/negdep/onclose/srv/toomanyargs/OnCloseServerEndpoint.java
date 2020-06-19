@@ -36,6 +36,7 @@ public class OnCloseServerEndpoint {
     return echo + close;
   }
 
+  @SuppressWarnings("unused")
   @OnClose
   public void onClose(Session session, Exception thisShouldNotBeHere) {
     close = "thisShouldNotBeHere";

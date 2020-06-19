@@ -35,7 +35,7 @@ public class AppConfig implements ServerApplicationConfig {
     ServerEndpointConfig errorConfig = ServerEndpointConfig.Builder
         .create(WSCErrorServerEndpoint.class, "/error").build();
 
-    Set<ServerEndpointConfig> set = new HashSet<ServerEndpointConfig>();
+    Set<ServerEndpointConfig> set = new HashSet<>();
     set.add(closeConfig);
     set.add(errorConfig);
     return set;
@@ -43,7 +43,7 @@ public class AppConfig implements ServerApplicationConfig {
 
   @Override
   public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<Class<?>>();
+    Set<Class<?>> set = new HashSet<>();
     set.add(WSCMsgServer.class);
     return set;
   }

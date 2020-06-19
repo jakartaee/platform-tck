@@ -31,9 +31,9 @@ import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 public class ClientConfigurator extends Configurator {
 
-  private Map<String, List<String>> requestMap = new TreeMap<String, List<String>>();
+  private Map<String, List<String>> requestMap = new TreeMap<>();
 
-  private Map<String, List<String>> responseMap = new TreeMap<String, List<String>>();
+  private Map<String, List<String>> responseMap = new TreeMap<>();
 
   private boolean hasBeenAfterResponse = false;
 

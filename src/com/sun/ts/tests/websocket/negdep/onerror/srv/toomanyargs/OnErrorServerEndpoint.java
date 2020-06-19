@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/invalid")
 public class OnErrorServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo) {
 
@@ -37,6 +38,7 @@ public class OnErrorServerEndpoint {
     throw new RuntimeException();
   }
 
+  @SuppressWarnings("unused")
   @OnError
   public void onError(Session session, Throwable thr, CloseReason reason)
       throws IOException {

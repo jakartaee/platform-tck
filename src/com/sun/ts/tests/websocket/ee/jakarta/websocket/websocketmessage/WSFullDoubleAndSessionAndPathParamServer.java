@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fulldoublesessionpathparam/{param}")
 public class WSFullDoubleAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, Double d, @PathParam("param") Double param) {
     return (String.valueOf(d.doubleValue())

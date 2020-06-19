@@ -43,11 +43,13 @@ public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
     clientEndpoint.onMessage(ByteBuffer.wrap(holder.toString().getBytes()));
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

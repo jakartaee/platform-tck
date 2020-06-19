@@ -38,6 +38,7 @@ public class OnOpenStringHolderServerEndpoint {
     return open + echo;
   }
 
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(Session session, @PathParam("arg") StringHolder sb) {
     open = sb.toString();

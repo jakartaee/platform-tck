@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/readersessionpathparam/{param}")
 public class WSReaderAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String reader(java.io.Reader r, @PathParam("param") String param,
       Session s) throws IOException {

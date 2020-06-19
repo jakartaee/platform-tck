@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullbytesessionpathparam/{param}")
 public class WSFullByteAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Byte b, @PathParam("param") Byte param, Session s) {
     return String.valueOf(b.byteValue()) + String.valueOf(param.byteValue());

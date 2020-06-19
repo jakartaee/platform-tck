@@ -39,21 +39,25 @@ public class WSCClientEndpointWithBinaryEncoder
     super(new StringClientEndpoint());
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     super.onMessage(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     super.onOpen(session, config);// should throw on SendMessageCallback
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     String error = WebSocketCommonClient.getCauseMessage(t);

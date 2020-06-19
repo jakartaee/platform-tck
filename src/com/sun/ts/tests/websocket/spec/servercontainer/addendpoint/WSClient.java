@@ -23,6 +23,8 @@ package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.common.util.MessageValidator;
+import com.sun.ts.tests.websocket.common.util.SessionUtil;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -44,7 +46,7 @@ public class WSClient extends WebSocketCommonClient {
 
   private static StringBuffer receivedMessageString = new StringBuffer();
 
-  static CountDownLatch messageLatch;
+  static volatile CountDownLatch messageLatch;
 
   public static void main(String[] args) {
     new WSClient().run(args);
@@ -76,7 +78,6 @@ public class WSClient extends WebSocketCommonClient {
         + "First TextMessageHander received|"
         + "TCKTestServerString received String: Hello World in String|"
         + "First TextMessageHander received|" + "TCKTestServerString responds";
-    messageLatch = new CountDownLatch(20);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -84,10 +85,10 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(3);
       final Session session = clientContainer.connectToServer(
           TCKBasicStringEndpoint.class, config, new URI("ws://" + _hostname
               + ":" + _port + CONTEXT_ROOT + "/TCKTestServerString"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(search,
@@ -125,7 +126,6 @@ public class WSClient extends WebSocketCommonClient {
         + "First Basic ByteBuffer MessageHander received|"
         + "TCKTestServerByte received ByteBuffer: Hello World in ByteBuffer|"
         + "TCKTestServerByte responds: Message in bytes";
-    messageLatch = new CountDownLatch(25);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -133,12 +133,13 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(1);
       final Session session = clientContainer
           .connectToServer(TCKBasicByteEndpoint.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServerByte"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
+      messageLatch = new CountDownLatch(1);
       SENT_BYTE_MESSAGE.put("Hello World in ByteBuffer".getBytes());
       SENT_BYTE_MESSAGE.flip();
       try {
@@ -146,7 +147,6 @@ public class WSClient extends WebSocketCommonClient {
       } catch (IOException e) {
         e.printStackTrace();
       }
-      messageLatch.countDown();
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(search,
@@ -184,20 +184,20 @@ public class WSClient extends WebSocketCommonClient {
     String message_sent_string = "BasicStringMessageHandler added";
 
     try {
-      messageLatch = new CountDownLatch(30);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       final Session session = clientContainer
           .connectToServer(TCKBasicEndpoint.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       Set<MessageHandler> msgHanders = session.getMessageHandlers();
       receivedMessageString
           .append("Start with MessageHandler=" + msgHanders.size());
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText(message_sent_string);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -205,6 +205,7 @@ public class WSClient extends WebSocketCommonClient {
           .allocate(message_sent_bytebuffer.getBytes().length);
       data.put(message_sent_bytebuffer.getBytes());
       data.flip();
+      messageLatch = new CountDownLatch(3);
       session.getBasicRemote().sendBinary(data);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -258,12 +259,12 @@ public class WSClient extends WebSocketCommonClient {
     final String message_reader_msghandler = "BasicReaderMessageHander received=";
 
     try {
-      messageLatch = new CountDownLatch(50);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      // No message handlers to receive messages server sends in @OnOpen
       final Session session = clientContainer
           .connectToServer(TCKBasicEndpoint1.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
@@ -280,13 +281,14 @@ public class WSClient extends WebSocketCommonClient {
             int i = r.read(buffer);
             receivedMessageString.append("========" + message_reader_msghandler
                 + new String(buffer, 0, i));
+            messageLatch.countDown();
           } catch (IOException e) {
             e.printStackTrace();
           }
         }
       });
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      messageLatch = new CountDownLatch(2);
       Writer writer = session.getBasicRemote().getSendWriter();
       writer.append(message_sent_reader);
       writer.close();
@@ -311,6 +313,7 @@ public class WSClient extends WebSocketCommonClient {
           .allocate((message_sent_bytebuffer).getBytes().length);
       data.put((message_sent_bytebuffer).getBytes());
       data.flip();
+      messageLatch = new CountDownLatch(3);
       session.getBasicRemote().sendBinary(data);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       Set<MessageHandler> msgHanders_3 = session.getMessageHandlers();
@@ -363,21 +366,19 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(20);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "TCKTestServer opened|"
@@ -419,19 +420,18 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       session.getBasicRemote().sendText("testName=" + testName);
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKTestServer opened|" + "session from Server is open=TRUE|"
@@ -472,20 +472,18 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       session.getBasicRemote().sendText("testName=" + testName);
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "TCKTestServer opened|"
@@ -525,19 +523,19 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(20);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer"));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       session.close();
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer opened|"
@@ -579,19 +577,22 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer opened|"
@@ -633,20 +634,22 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer opened|"
@@ -686,21 +689,19 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(20);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer1"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer1 opened|"
@@ -742,19 +743,22 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer1"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer1 opened|"
@@ -796,20 +800,22 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer1"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer1 opened|"
@@ -849,21 +855,19 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(20);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer2"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       session.close();
-
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer2 opened|"
@@ -905,19 +909,21 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer2"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer2 opened|"
@@ -959,20 +965,22 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/WSCloseTestServer2"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(1);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings(
           "TCKBasicEndpoint OnOpen|" + "WSCloseTestServer2 opened|"
@@ -1014,21 +1022,20 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
-
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKCloseEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
       session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
           "TCKCloseNowWithReason"));
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
       passed = MessageValidator.checkSearchStrings("TCKCloseEndpoint OnOpen|"
           + "TCKTestServer opened|" + "CKCloseEndpoint OnClose CloseCode|"
@@ -1061,7 +1068,6 @@ public class WSClient extends WebSocketCommonClient {
    */
   public void getContainerTest() throws Fault {
     boolean passed = true;
-    messageLatch = new CountDownLatch(15);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -1069,11 +1075,12 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
       WebSocketContainer tmp = session.getContainer();
 
       if (clientContainer != tmp) {
@@ -1105,24 +1112,22 @@ public class WSClient extends WebSocketCommonClient {
    * @test_Strategy:
    */
   public void getIdTest() throws Fault {
-    messageLatch = new CountDownLatch(10);
-
     try {
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKGetIdEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
+      // No message handlers configured
 
       String tmp = session.getId();
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       session.getBasicRemote().sendText("testName=getId1Test");
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
-      System.out.println(receivedMessageString.toString());
+      // No message handlers configured
 
       session.close();
       System.err.println("getId=" + tmp);
@@ -1147,7 +1152,6 @@ public class WSClient extends WebSocketCommonClient {
   public void getId1Test() throws Fault {
     boolean passed = true;
     String testName = "getId1Test";
-    messageLatch = new CountDownLatch(5);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -1155,15 +1159,17 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       String tmp = session.getId();
 
       receivedMessageString.append("getId returned from client side" + tmp);
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -1202,21 +1208,21 @@ public class WSClient extends WebSocketCommonClient {
     boolean passed = true;
 
     try {
-      messageLatch = new CountDownLatch(15);
       WebSocketContainer clientContainer = ContainerProvider
           .getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       receivedMessageString
           .append("getMaxBinaryMessageBufferSize returned default value ="
               + session.getMaxBinaryMessageBufferSize());
       session.setMaxBinaryMessageBufferSize(size);
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       int tmp = session.getMaxBinaryMessageBufferSize();
       if (tmp == size) {
@@ -1263,9 +1269,11 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer"));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       System.out.println("getMaxTextMessageBufferSize returned default value ="
           + session.getMaxTextMessageBufferSize());
@@ -1348,7 +1356,6 @@ public class WSClient extends WebSocketCommonClient {
     String testName = "setTimeout1Test";
     boolean passed = true;
     long tt = _ws_wait * 4 * 1000L;
-    messageLatch = new CountDownLatch(10);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -1356,17 +1363,23 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer?timeout=" + _ws_wait));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       System.out
           .println("getMaxIdleTimeout returned default value on client side ="
               + session.getMaxIdleTimeout());
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
       session.setMaxIdleTimeout(tt);
+
+      // Wait for 2 messages but not third (which should be sent after timeout)
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText("testName=" + testName);
-      Thread.sleep(_ws_wait * 8000);
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait * 8, TimeUnit.SECONDS);
       if (session.isOpen()) {
         passed = false;
         receivedMessageString.append("Session is still open after timeout");
@@ -1416,7 +1429,6 @@ public class WSClient extends WebSocketCommonClient {
   public void setTimeout2Test() throws Fault {
     String testName = "setTimeout2Test";
     boolean passed = true;
-    messageLatch = new CountDownLatch(5);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -1424,16 +1436,23 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer?timeout=" + _ws_wait));
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       System.out
           .println("getMaxIdleTimeout returned default value on client side ="
               + session.getMaxIdleTimeout());
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      // Session timeout is set on server
+      // Wait for 2 messages but not third (which should be sent after timeout)
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText("testName=" + testName);
-      Thread.sleep(_ws_wait * 8000);
+      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      SessionUtil.waitUntilClosed(session, _ws_wait * 8, TimeUnit.SECONDS);
       if (session.isOpen()) {
         passed = false;
         receivedMessageString.append("Session is still open after timeout");
@@ -1484,7 +1503,6 @@ public class WSClient extends WebSocketCommonClient {
   public void getQueryStringTest() throws Fault {
     String testName = "getQueryStringTest";
     boolean passed = true;
-    messageLatch = new CountDownLatch(5);
     String querystring = "test1=value1&test2=value2&test3=value3";
 
     try {
@@ -1493,11 +1511,13 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer?" + querystring));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -1531,10 +1551,8 @@ public class WSClient extends WebSocketCommonClient {
    * @test_Strategy:
    */
   public void getPathParametersTest() throws Fault {
-    String testName = "getPathParametersTest";
     String message = "invoke test";
     boolean passed = true;
-    messageLatch = new CountDownLatch(5);
     String param1 = "test1";
     String param2 = "test2=xyz";
 
@@ -1544,11 +1562,13 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(1);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServerPathParam/" + param1 + "/" + param2));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(2);
       session.getBasicRemote().sendText(message);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -1589,7 +1609,6 @@ public class WSClient extends WebSocketCommonClient {
   public void getRequestURITest() throws Fault {
     String testName = "getRequestURITest";
     boolean passed = true;
-    messageLatch = new CountDownLatch(6);
     String querystring = "test1=value1&test2=value2&test3=value3";
 
     try {
@@ -1598,11 +1617,13 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
               + "/TCKTestServer?" + querystring));
-
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(4);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -1635,7 +1656,6 @@ public class WSClient extends WebSocketCommonClient {
   public void getOpenSessionsTest() throws Fault {
     boolean passed = true;
     String testName = "getOpenSessionsTest";
-    messageLatch = new CountDownLatch(30);
 
     try {
       WebSocketContainer clientContainer = ContainerProvider
@@ -1643,44 +1663,55 @@ public class WSClient extends WebSocketCommonClient {
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
           .build();
 
+      messageLatch = new CountDownLatch(2);
       Session session = clientContainer
           .connectToServer(TCKOpenSessionEndpoint.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(4);
       session.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       int os = getOpenSessions(receivedMessageString.toString());
 
+      messageLatch = new CountDownLatch(2);
       Session session1 = clientContainer
           .connectToServer(TCKOpenSessionEndpoint.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(4);
       session1.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       int os1 = getOpenSessions(receivedMessageString.toString());
 
+      messageLatch = new CountDownLatch(2);
       Session session2 = clientContainer
           .connectToServer(TCKOpenSessionEndpoint.class, config, new URI("ws://"
               + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+      messageLatch = new CountDownLatch(4);
       session2.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       int os2 = getOpenSessions(receivedMessageString.toString());
 
       session.close();
+      SessionUtil.waitUntilClosed(session, _ws_wait, TimeUnit.SECONDS);
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      messageLatch = new CountDownLatch(4);
       session1.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       int os3 = getOpenSessions(receivedMessageString.toString());
 
       session1.close();
+      SessionUtil.waitUntilClosed(session1, _ws_wait, TimeUnit.SECONDS);
 
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+      messageLatch = new CountDownLatch(4);
       session2.getBasicRemote().sendText("testName=" + testName);
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
@@ -1733,6 +1764,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKBasicEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1741,6 +1773,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -1753,6 +1786,7 @@ public class WSClient extends WebSocketCommonClient {
 
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append(
           "TCKBasicEndpoint OnClose CloseCode=" + closeReason.getCloseCode());
@@ -1786,9 +1820,11 @@ public class WSClient extends WebSocketCommonClient {
           .append(message);
     }
 
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString
               .append("========First TextMessageHander received=")
@@ -1799,6 +1835,7 @@ public class WSClient extends WebSocketCommonClient {
       try {
         session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+          @Override
           public void onMessage(String message) {
             receivedMessageString
                 .append("========Second TextMessageHander received=")
@@ -1821,6 +1858,7 @@ public class WSClient extends WebSocketCommonClient {
 
   public final static class TCKBasicByteEndpoint extends Endpoint {
 
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
@@ -1837,6 +1875,7 @@ public class WSClient extends WebSocketCommonClient {
       try {
         session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+          @Override
           public void onMessage(ByteBuffer data) {
             receivedMessageString
                 .append(
@@ -1860,6 +1899,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1867,6 +1907,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append("onClose");
     }
@@ -1879,6 +1920,7 @@ public class WSClient extends WebSocketCommonClient {
       receivedMessageString.append("TCKCloseEndpoint OnOpen");
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           messageLatch.countDown();
           receivedMessageString.append(message);
@@ -1887,6 +1929,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           byte[] data1 = new byte[data.remaining()];
           data.get(data1);
@@ -1898,20 +1941,25 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       receivedMessageString.append(
           "TCKCloseEndpoint OnClose CloseCode=" + closeReason.getCloseCode());
       receivedMessageString
           .append("Pass_On_To_Error=" + closeReason.getReasonPhrase());
+      
+      @SuppressWarnings("unused")
       int i = 1 / 0;
     }
 
+    @Override
     public void onError(Session session, Throwable t) {
       receivedMessageString.append("TCKCloseEndpoint OnError");
       receivedMessageString.append(t.getMessage());
     }
   }
 
+  @SuppressWarnings("unused")
   private int getOpenSessions(String message) {
     int start = receivedMessageString.lastIndexOf("getOpenSessions=");
     int stop = receivedMessageString

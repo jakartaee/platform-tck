@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.api.jakarta.websocket.server.serverendpointconfig;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.common.TCKExtension;
@@ -47,6 +46,7 @@ public class WSClient extends ServiceEETest {
   /*
    * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
    */
+  @SuppressWarnings("unused")
   public void setup(String[] args, Properties p) throws Fault {
   }
 
@@ -211,7 +211,7 @@ public class WSClient extends ServiceEETest {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -295,7 +295,7 @@ public class WSClient extends ServiceEETest {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -391,7 +391,7 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
     StringBuffer log = new StringBuffer();
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
@@ -456,7 +456,7 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
     StringBuffer log = new StringBuffer();
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -526,7 +526,7 @@ public class WSClient extends ServiceEETest {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -550,7 +550,7 @@ public class WSClient extends ServiceEETest {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -682,13 +682,13 @@ public class WSClient extends ServiceEETest {
     List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap",
         "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanEncoder.class);
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -712,7 +712,7 @@ public class WSClient extends ServiceEETest {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 
@@ -1063,13 +1063,13 @@ public class WSClient extends ServiceEETest {
     List<String> expected_subprotocols = Arrays.asList("JSON", "XML", "XMPP",
         "Hessian", "Quake", "PUB/SUB", "Query");
 
-    List<Class<? extends Encoder>> expected_encoders = new ArrayList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
     expected_encoders
         .add(com.sun.ts.tests.websocket.common.util.BooleanEncoder.class);
 
-    List<Class<? extends Decoder>> expected_decoders = new ArrayList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
     expected_decoders
         .add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
     expected_decoders
@@ -1095,7 +1095,7 @@ public class WSClient extends ServiceEETest {
       }
     };
 
-    ArrayList<Extension> extensions = new ArrayList<Extension>();
+    ArrayList<Extension> extensions = new ArrayList<>();
     extensions.add(new TCKExtension("ext1", extension1));
     extensions.add(new TCKExtension("ext2", extension2));
 

@@ -37,15 +37,19 @@ import jakarta.websocket.Session;
  */
 public class EndpointCallback {
 
+  @SuppressWarnings("unused")
   public void onError(Session session, Throwable t) {
   }
 
+  @SuppressWarnings("unused")
   public void onMessage(Object o) {
   }
 
+  @SuppressWarnings("unused")
   public void onOpen(Session session, EndpointConfig config) {
   }
 
+  @SuppressWarnings("unused")
   public void onClose(Session session, CloseReason closeReason) {
   }
 

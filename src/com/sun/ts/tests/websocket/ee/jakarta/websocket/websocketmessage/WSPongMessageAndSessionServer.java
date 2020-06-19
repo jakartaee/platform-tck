@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/pongmessagesession")
 public class WSPongMessageAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(PongMessage msg, Session s) {
     return IOUtil.byteBufferToString(msg.getApplicationData());

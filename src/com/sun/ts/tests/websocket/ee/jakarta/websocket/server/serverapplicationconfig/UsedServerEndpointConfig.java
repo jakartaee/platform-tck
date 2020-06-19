@@ -70,7 +70,7 @@ public class UsedServerEndpointConfig implements ServerEndpointConfig {
   @Override
   public List<Class<? extends Decoder>> getDecoders() {
     Class<? extends Decoder> clazz = StringBeanTextDecoder.class;
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     list.add(clazz);
     return list;
   }

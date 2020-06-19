@@ -158,6 +158,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close1Test(String message, Session session) {
     try {
       session.close();
@@ -166,6 +167,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close2Test(String message, Session session) {
     try {
       session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
@@ -280,10 +282,7 @@ public class WSTestServer {
   public void setMaxBinaryMessageBufferSizeTest2(ByteBuffer message_b,
       Session session) {
     System.out.println("In setMaxBinaryMessageBufferSizeTest2");
-    int size = 64;
     String message = "Binary Message over size 64=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String message1 = message.substring(0, size - 1);
-    String message2 = message.substring(size, 90 - 1);
 
     ByteBuffer data = ByteBuffer
         .wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
@@ -301,13 +300,11 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void setMaxTextMessageBufferSize2Test(String message_r,
       Session session) {
     System.out.println("In setMaxTextMessageBufferSize2Test");
-    int size = 64;
     String message = "String Message over size 64=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String message1 = message.substring(0, size - 1);
-    String message2 = message.substring(size, 90 - 1);
 
     try {
       session.getBasicRemote()

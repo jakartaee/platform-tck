@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/inputstreamsessionpathparam/{param}")
 public class WSInputStreamAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, @PathParam("param") String param,
       InputStream stream) throws IOException {

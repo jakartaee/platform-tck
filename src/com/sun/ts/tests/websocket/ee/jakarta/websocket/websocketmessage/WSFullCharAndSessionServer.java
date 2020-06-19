@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullcharsession")
 public class WSFullCharAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, Character c) {
     return String.valueOf(c.charValue());

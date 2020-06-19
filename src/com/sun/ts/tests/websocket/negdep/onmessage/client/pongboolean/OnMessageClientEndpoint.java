@@ -32,11 +32,13 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoin
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(PongMessage msg, boolean finito) {
     // there is no server endpoint that sends ping/pong messages
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
@@ -47,6 +49,7 @@ public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
     clientEndpoint.onMessage(ByteBuffer.wrap(msg.getBytes()));
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitivebooleansessionpathparam/{param}")
 public class WSPrimitiveBooleanAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(boolean b, Session s, @PathParam("param") boolean param) {
     return String.valueOf(b) + String.valueOf(param);

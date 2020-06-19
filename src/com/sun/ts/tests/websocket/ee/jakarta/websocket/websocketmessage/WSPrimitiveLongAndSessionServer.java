@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivelongsession")
 public class WSPrimitiveLongAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, long l) {
     return String.valueOf(l);

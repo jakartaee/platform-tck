@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fullfloatsessionpathparam/{param}")
 public class WSFullFloatAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(@PathParam("param") Float param, Float f, Session s) {
     return (String.valueOf(f.floatValue()) + String.valueOf(param.floatValue()))

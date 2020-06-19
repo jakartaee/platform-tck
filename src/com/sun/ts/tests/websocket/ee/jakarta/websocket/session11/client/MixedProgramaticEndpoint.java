@@ -51,7 +51,7 @@ public class MixedProgramaticEndpoint extends ClientEndpoint<String> {
   public void onOpen(Session session, EndpointConfig config) {
     switch (type) {
     case LINKEDLIST_HASHSET_TEXT:
-      LinkedList<HashSet<String>> list = new LinkedList<HashSet<String>>();
+      LinkedList<HashSet<String>> list = new LinkedList<>();
 
       Class<LinkedList<HashSet<String>>> clzLLHS = (Class<LinkedList<HashSet<String>>>) list
           .getClass();

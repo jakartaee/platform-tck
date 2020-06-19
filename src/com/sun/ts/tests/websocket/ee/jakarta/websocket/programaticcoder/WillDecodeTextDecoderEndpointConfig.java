@@ -71,7 +71,7 @@ public class WillDecodeTextDecoderEndpointConfig
 
   @Override
   public List<Class<? extends Decoder>> getDecoders() {
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     list.add(WillDecodeFirstTextDecoder.class);
     list.add(WillDecodeSecondTextDecoder.class);
     return list;

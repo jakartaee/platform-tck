@@ -57,6 +57,7 @@ public class WSSubprotocoledServer extends WSAbstractServer {
     return "{" + subprotocols + "}";
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) throws IOException {
     super.onError(session, t);

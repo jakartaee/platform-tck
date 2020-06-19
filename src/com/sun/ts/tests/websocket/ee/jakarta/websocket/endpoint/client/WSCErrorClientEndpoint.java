@@ -47,6 +47,7 @@ public class WSCErrorClientEndpoint extends StringClientEndpoint {
     super.onOpen(session, config);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);

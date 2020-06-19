@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullbytesession")
 public class WSFullByteAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Byte b, Session s) {
     return String.valueOf(b.byteValue());

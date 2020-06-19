@@ -40,7 +40,7 @@ public class AppConfig implements ServerApplicationConfig {
   @Override
   public Set<ServerEndpointConfig> getEndpointConfigs(
       Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<ServerEndpointConfig>();
+    Set<ServerEndpointConfig> set = new HashSet<>();
     addServerEndpoint(set, LinkedListHashSetTextDecoder.class,
         TypeEnum.LINKEDLIST_HASHSET_TEXT);
     addServerEndpoint(set, StringListTextDecoder.class, TypeEnum.LIST_TEXT);
@@ -66,7 +66,7 @@ public class AppConfig implements ServerApplicationConfig {
   private Set<ServerEndpointConfig> addServerEndpoint(
       Set<ServerEndpointConfig> set, Class<? extends Decoder> decoder,
       final TypeEnum typeEnum) {
-    List<Class<? extends Decoder>> decoders = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> decoders = new LinkedList<>();
     decoders.add(decoder);
     ServerEndpointConfig.Configurator configurator = new ServerEndpointConfig.Configurator() {
       @SuppressWarnings("unchecked")

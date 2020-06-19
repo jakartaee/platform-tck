@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.api.jakarta.websocket.closereason;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -70,6 +69,7 @@ public class WSClient extends ServiceEETest {
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
+  @SuppressWarnings("unused")
   public void setup(String[] args, Properties p) throws Fault {
   }
 
@@ -133,7 +133,6 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
 
     int size = codes_number.length;
-    CloseReason closereason;
 
     for (int i = 0; i < size; i++) {
       if (!CloseReason.CloseCodes.valueOf(codes_string[i]).equals(codes[i])) {
@@ -231,7 +230,6 @@ public class WSClient extends ServiceEETest {
     boolean passed = true;
 
     int size = codes_number.length;
-    CloseReason closereason;
     CloseCode tmp;
 
     for (int i = 0; i < size; i++) {

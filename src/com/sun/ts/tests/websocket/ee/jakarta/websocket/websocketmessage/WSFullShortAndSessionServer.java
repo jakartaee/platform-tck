@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fullshortsession")
 public class WSFullShortAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Short s, Session session) {
     return String.valueOf(s.shortValue());

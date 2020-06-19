@@ -203,7 +203,7 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint
     return ClientEndpointData.sb;
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "unused" })
   public T getLastMessage(Class<T> messageType) {
     return (T) ClientEndpointData.lastMessage;
   }

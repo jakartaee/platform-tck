@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivefloatsessionpathparam/{param}")
 public class WSPrimitiveFloatAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(float f, Session s, @PathParam("param") float param) {
     return (String.valueOf(f) + String.valueOf(param)).replace(".0", "");

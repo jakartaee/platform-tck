@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fullintsessionpathparam/{param}")
 public class WSFullIntAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Integer i, @PathParam("param") Integer param, Session s) {
     return String.valueOf(i.intValue()) + String.valueOf(param.intValue());

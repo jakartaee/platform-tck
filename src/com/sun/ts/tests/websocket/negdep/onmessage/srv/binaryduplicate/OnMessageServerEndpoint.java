@@ -35,8 +35,9 @@ public class OnMessageServerEndpoint {
     return IOUtil.readFromStream(stream);
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
-  public String echo(byte[] data, boolean finito) throws IOException {
+  public String echo(byte[] data, boolean finito) {
     return new String(data);
   }
 

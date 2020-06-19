@@ -35,7 +35,7 @@ public class WSCMsgServer {
   static String message = EMPTY;
 
   @OnMessage
-  public String onMessage(String msg, Session session) {
+  public String onMessage(String msg) {
     if (MESSAGES[0].equals(msg)) {
       setLastMessage(EMPTY);
     }

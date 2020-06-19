@@ -35,6 +35,7 @@ public class OnMessageServerEndpoint {
     return IOUtil.readFromReader(reader);
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, boolean finito) {
     return echo;

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.api.jakarta.websocket.deploymentException;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -39,6 +38,7 @@ public class WSClient extends ServiceEETest {
   /*
    * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
    */
+  @SuppressWarnings("unused")
   public void setup(String[] args, Properties p) throws Fault {
   }
 
@@ -53,6 +53,7 @@ public class WSClient extends ServiceEETest {
   public void constructorTest() throws Fault {
     String reason = "TCK: testing the DeploymentException(String)";
 
+    @SuppressWarnings("unused")
     DeploymentException dex = new DeploymentException(reason);
 
   }
@@ -67,6 +68,7 @@ public class WSClient extends ServiceEETest {
   public void constructorTest1() throws Fault {
     String reason = "TCK: testing the DeploymentException(String)";
 
+    @SuppressWarnings("unused")
     DeploymentException dex = new DeploymentException(reason,
         new Throwable("TCK_Test"));
   }
