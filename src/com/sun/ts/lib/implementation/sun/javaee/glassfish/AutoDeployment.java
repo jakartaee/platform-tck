@@ -197,6 +197,26 @@ public class AutoDeployment implements TSDeploymentInterface {
     Project p = new Project();
     antSetupFromInfo(info, p);
 
+    String javaeeLevel = propMgr.getProperty("javaee.level", "full");
+    if (javaeeLevel.contains("full")) {
+        //Sets file name to be used while generating client stubs
+        String archiveFile =p.getProperty("archive.file");
+        String applicationName = this.getAppNameFromApplicationXML(archiveFile);
+        if (applicationName == null) { // if we didn't have an ear or there was no
+            // application-name use the old scheme
+            applicationName = archiveFile.substring(archiveFile.lastIndexOf(File.separator) + 1,
+                    archiveFile.lastIndexOf("."));
+        }
+        
+        p.setProperty("deploy.app.name", applicationName);
+        p.setProperty("get.stub.clients", "true");
+        
+        String sEarFile = info.getEarFile();
+        String sTSDeploymentDir = sEarFile.substring(0,
+            sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep";
+        p.setProperty("get.stub.clients.ts_dep", sTSDeploymentDir);
+    }
+    
     try {
 
       p.executeTarget("-deploy");
@@ -214,10 +234,9 @@ public class AutoDeployment implements TSDeploymentInterface {
     // check if we have an ear with appclient jar
     // if either are not ture, then don't get stubs from server
 
-    String javaeeLevel = propMgr.getProperty("javaee.level", "full");
-    if (javaeeLevel.contains("full")) {
-      getClientClassPath(info);
-    }
+    //if (javaeeLevel.contains("full")) {
+    //  getClientClassPath(info);
+    //}
     
     return "";
 
