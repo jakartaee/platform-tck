@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -53,6 +54,7 @@ public class SecondServletErrorPage extends HttpServlet {
   /**
    * Invoked by container
    */
+  @Override
   public void service(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
 
@@ -61,8 +63,12 @@ public class SecondServletErrorPage extends HttpServlet {
     pw.println("Servlet Name: " + req.getAttribute(SERVLET_NAME));
     pw.println("Request URI: " + req.getAttribute(REQUEST_URI));
     pw.println("Status Code: " + req.getAttribute(STATUS_CODE));
-    // with the cast we even enforce it's a Class type
-    pw.println("Exception Type: " + ((Class)req.getAttribute(EXCEPTION_TYPE)).getName());
+    if (req.getAttribute(EXCEPTION_TYPE) == null) {
+      pw.println("Exception Type: null");
+    } else {
+      // with the cast we even enforce it's a Class type
+      pw.println("Exception Type: " + ((Class<?>)req.getAttribute(EXCEPTION_TYPE)).getName());
+    }
     pw.println("Exception: " + req.getAttribute(EXCEPTION));
     pw.print("Message: ");
     if (((String) req.getAttribute(MESSAGE)).indexOf(EXP_MESSAGE) > -1) {
