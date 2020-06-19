@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fulllongsessionpathparam/{param}")
 public class WSFullLongAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(@PathParam("param") Long param, Long l, Session s) {
     return String.valueOf(l.longValue()) + String.valueOf(param.longValue());

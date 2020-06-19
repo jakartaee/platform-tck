@@ -23,6 +23,7 @@ public class ThrowingStringBean {
     throw new IllegalStateException(ERROR);
   }
 
+  @SuppressWarnings("unused")
   public void set(String bean) {
   }
 

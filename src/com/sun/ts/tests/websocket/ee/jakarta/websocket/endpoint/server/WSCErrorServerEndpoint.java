@@ -46,6 +46,7 @@ public class WSCErrorServerEndpoint extends Endpoint
     this.session = session;
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);

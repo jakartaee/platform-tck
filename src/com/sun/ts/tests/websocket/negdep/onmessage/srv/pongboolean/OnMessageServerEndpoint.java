@@ -30,8 +30,9 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
-  public String echo(PongMessage pong, boolean finito) throws IOException {
+  public String echo(PongMessage pong, boolean finito) {
     String s = null;
     s = IOUtil.byteBufferToString(pong.getApplicationData());
     return s;

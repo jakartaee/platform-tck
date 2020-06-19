@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/primitivebooleansession")
 public class WSPrimitiveBooleanAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(boolean b, Session s) {
     return String.valueOf(b);

@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/readersession")
 public class WSReaderAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String reader(java.io.Reader r, Session s) throws IOException {
     String msg = IOUtil.readFromReader(r);

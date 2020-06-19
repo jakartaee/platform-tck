@@ -31,16 +31,19 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(String msg, int finito) throws IOException {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

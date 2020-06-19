@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/stringsessionpathparam/{param}")
 public class WSStringAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(@PathParam("param") String param, String echo, Session s) {
     return echo + param;

@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitiveintsessionpathparam/{param}")
 public class WSPrimitiveIntAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echoInt(int i, Session s, @PathParam("param") int param) {
     return String.valueOf(i) + String.valueOf(param);

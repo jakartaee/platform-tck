@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/fulllongsession")
 public class WSFullLongAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Long l, Session s) {
     return String.valueOf(l.longValue());

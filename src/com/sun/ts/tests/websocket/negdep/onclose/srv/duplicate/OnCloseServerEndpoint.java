@@ -37,11 +37,13 @@ public class OnCloseServerEndpoint {
     return echo + close;
   }
 
+  @SuppressWarnings("unused")
   @OnClose
   public void onClose(Session session) {
     close = "first @OnClose";
   }
 
+  @SuppressWarnings("unused")
   @OnClose
   public void onClose(Session session, CloseReason reason) {
     close = "second @OnClose";

@@ -35,6 +35,7 @@ public class OnMessageServerEndpoint {
 
   // This header makes the endpoint invalid, since only Strings can be
   // @PathParams
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, @PathParam("arg") StringBean bean) {
     return echo.toString();

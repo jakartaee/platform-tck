@@ -32,6 +32,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
     StringBeanTextStreamDecoder.class })
 public class WSTextStreamDecoderAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, StringBean bean) {
     return bean.get();

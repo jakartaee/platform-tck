@@ -38,21 +38,25 @@ public class WSCEndpointWithBinaryStreamDecoder
     super(new StringBeanClientEndpoint());
   }
 
+  @Override
   @OnMessage
   public void onMessage(StringBean msg) {
     super.onMessage(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     super.onOpen(session, config);
   }
 
+  @Override
   @OnClose
   public void onClose(Session session, CloseReason closeReason) {
     super.onClose(session, closeReason);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     super.onError(session, t);

@@ -33,6 +33,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
     StringBeanTextStreamDecoder.class })
 public class WSTextStreamDecoderAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, StringBean bean,
       @PathParam("param") String param) {

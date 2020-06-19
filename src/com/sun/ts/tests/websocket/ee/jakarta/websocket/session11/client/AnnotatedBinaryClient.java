@@ -38,6 +38,7 @@ public class AnnotatedBinaryClient extends AnnotatedClientEndpoint<String> {
     super(new StringClientEndpoint());
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     session.addMessageHandler(InputStream.class,

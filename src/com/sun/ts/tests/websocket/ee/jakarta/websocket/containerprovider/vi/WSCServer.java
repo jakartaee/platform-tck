@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/srv")
 public class WSCServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public boolean onMessage(String data) {
     WebSocketContainer container = ContainerProvider.getWebSocketContainer();

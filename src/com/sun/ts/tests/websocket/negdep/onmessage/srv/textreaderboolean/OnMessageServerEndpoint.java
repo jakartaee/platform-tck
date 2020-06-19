@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Reader reader, boolean finito) throws IOException {
     String s = null;

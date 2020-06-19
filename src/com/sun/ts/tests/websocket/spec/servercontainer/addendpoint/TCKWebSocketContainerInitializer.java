@@ -28,6 +28,7 @@ import jakarta.servlet.ServletException;
 public class TCKWebSocketContainerInitializer
     implements ServletContainerInitializer {
 
+  @Override
   public void onStartup(Set<Class<?>> arg0, ServletContext context)
       throws ServletException {
     context.addListener(

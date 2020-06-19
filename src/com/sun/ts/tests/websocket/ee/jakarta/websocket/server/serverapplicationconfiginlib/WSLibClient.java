@@ -51,6 +51,7 @@ public class WSLibClient extends WSClient {
    * to this method is the set obtained by scanning the archive containing the
    * implementation of this interface.
    */
+  @Override
   public void usedServerTest() throws Fault {
     super.usedServerTest();
   }
@@ -67,6 +68,7 @@ public class WSLibClient extends WSClient {
    * Therefore, this set passed in contains all the annotated endpoint classes
    * in the JAR or WAR file containing the implementation of this interface.
    */
+  @Override
   public void unusedServerTest() throws Fault {
     super.unusedServerTest();
   }
@@ -81,6 +83,7 @@ public class WSLibClient extends WSClient {
    * @test_Strategy: Test all
    * ServerApplicationConfig#getAnnotatedEndpointClasses methods are really used
    */
+  @Override
   public void otherUsedServerTest() throws Fault {
     super.otherUsedServerTest();
   }
@@ -101,6 +104,7 @@ public class WSLibClient extends WSClient {
    * passed in may be used the build the set of ServerEndpointConfig instances
    * to return to the container for deployment.
    */
+  @Override
   public void configuredServerTest() throws Fault {
     super.configuredServerTest();
   }
@@ -114,6 +118,7 @@ public class WSLibClient extends WSClient {
    * 
    * @test_Strategy: Test the incorrect ServerEndpointConfig is NOT used
    */
+  @Override
   public void unusedConfiguredServerTest() throws Fault {
     super.unusedConfiguredServerTest();
   }

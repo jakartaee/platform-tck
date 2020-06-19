@@ -70,7 +70,7 @@ public class TCKClassLoader extends ClassLoader {
   }
 
   private static Enumeration<URL> filter(Enumeration<URL> orig) {
-    List<URL> list = new LinkedList<URL>();
+    List<URL> list = new LinkedList<>();
     while (orig.hasMoreElements()) {
       URL url = orig.nextElement();
       String file = url.getFile();

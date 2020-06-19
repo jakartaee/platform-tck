@@ -31,16 +31,19 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoin
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
+  @Override
   @OnMessage
   public void onMessage(ByteBuffer msg) {
     clientEndpoint.onMessage(msg);
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(ByteBuffer msg, boolean finito) {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
@@ -51,6 +54,7 @@ public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
     clientEndpoint.onMessage(ByteBuffer.wrap(msg.getBytes()));
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

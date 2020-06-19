@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 public class WSCServerLifecycleServer {
   int hitCount = 0;
 
+  @SuppressWarnings("unused")
   @OnMessage
   public int onMessage(String msg, Session session) {
     return hitCount++;

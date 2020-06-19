@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/bytebuffersessionpathparam/{param}")
 public class WSByteBufferAndSessionAndPathParamServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(ByteBuffer b, @PathParam("param") String param,
       Session s) {

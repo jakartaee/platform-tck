@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/srv")
 public class WSCServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String onMessage(String data) {
     LibrariedQuestionaire lq = new LibrariedQuestionaire();

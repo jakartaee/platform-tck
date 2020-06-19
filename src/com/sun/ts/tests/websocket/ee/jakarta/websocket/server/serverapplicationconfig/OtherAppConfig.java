@@ -34,7 +34,7 @@ public class OtherAppConfig implements ServerApplicationConfig {
 
   @Override
   public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<Class<?>>();
+    Set<Class<?>> set = new HashSet<>();
     set.add(WSOtherUsedServer.class);
     return set;
   }

@@ -37,14 +37,14 @@ public class WSCOtherSideServer {
   }
 
   @OnMessage
-  public String onMessage(String msg, Session session) {
+  public String onMessage(String msg) {
     return msg;
   }
 
   @OnMessage
-  public String onMessage(ByteBuffer buffer, Session session) {
+  public String onMessage(ByteBuffer buffer) {
     String msg = IOUtil.byteBufferToString(buffer);
-    return onMessage(msg, session);
+    return onMessage(msg);
   }
 
   @OnError

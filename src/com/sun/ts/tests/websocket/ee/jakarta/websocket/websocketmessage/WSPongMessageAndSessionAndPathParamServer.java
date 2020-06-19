@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/pongmessagesessionpathparam/{param}")
 public class WSPongMessageAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(PongMessage msg, @PathParam("param") String param,
       Session s) {

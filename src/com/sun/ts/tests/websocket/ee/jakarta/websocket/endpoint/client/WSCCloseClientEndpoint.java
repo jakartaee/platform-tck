@@ -48,6 +48,7 @@ public class WSCCloseClientEndpoint extends StringClientEndpoint {
     countDown.countDown();
   }
 
+  @Override
   public void onError(Session session, Throwable t) {
     super.onError(session, t);
   }

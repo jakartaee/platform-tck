@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivedoublesession")
 public class WSPrimitiveDoubleAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(double d, Session s) {
     return String.valueOf(d);

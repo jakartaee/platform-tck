@@ -31,6 +31,7 @@ import com.sun.ts.tests.websocket.negdep.StringHolder;
 @ServerEndpoint("/invalid/{arg}")
 public class OnMessageStringHolderServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, @PathParam("arg") StringHolder bean) {
     return echo.toString();

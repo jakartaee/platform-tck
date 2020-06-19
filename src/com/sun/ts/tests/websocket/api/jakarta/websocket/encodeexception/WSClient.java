@@ -21,7 +21,6 @@
 package com.sun.ts.tests.websocket.api.jakarta.websocket.encodeexception;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import java.io.PrintWriter;
@@ -40,6 +39,7 @@ public class WSClient extends ServiceEETest {
   /*
    * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
    */
+  @SuppressWarnings("unused")
   public void setup(String[] args, Properties p) throws Fault {
   }
 

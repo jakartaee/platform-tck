@@ -244,6 +244,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString.append(message);
           messageLatch.countDown();
@@ -252,6 +253,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           String message_string = IOUtil.byteBufferToString(data);
 
@@ -263,6 +265,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       session_id_endpoint_onClose = session.getId();
       session_endpoint_onClose = session;

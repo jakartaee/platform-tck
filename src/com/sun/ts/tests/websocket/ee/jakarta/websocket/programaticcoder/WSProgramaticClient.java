@@ -74,6 +74,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void textEncoderInitDestroyTest() throws Fault {
     super.textEncoderInitDestroyTest();
   }
@@ -93,6 +94,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void textStreamEncoderInitDestroyTest() throws Fault {
     super.textStreamEncoderInitDestroyTest();
   }
@@ -112,6 +114,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void binaryEncoderInitDestroyTest() throws Fault {
     super.binaryEncoderInitDestroyTest();
   }
@@ -131,6 +134,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void binaryStreamEncoderInitDestroyTest() throws Fault {
     super.binaryStreamEncoderInitDestroyTest();
   }
@@ -153,6 +157,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode, willdecode
    */
+  @Override
   public void textDecoderInitDestroyTest() throws Fault {
     super.textDecoderInitDestroyTest();
   }
@@ -173,6 +178,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode
    */
+  @Override
   public void textStreamDecoderInitDestroyTest() throws Fault {
     super.textStreamDecoderInitDestroyTest();
   }
@@ -193,6 +199,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode, willDecode
    */
+  @Override
   public void binaryDecoderInitDestroyTest() throws Fault {
     super.binaryDecoderInitDestroyTest();
   }
@@ -213,6 +220,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode
    */
+  @Override
   public void binaryStreamDecoderInitDestroyTest() throws Fault {
     super.binaryStreamDecoderInitDestroyTest();
   }
@@ -229,6 +237,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void textEncoderEncodeTest() throws Fault {
     super.textEncoderEncodeTest();
   }
@@ -243,6 +252,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void textStreamEncoderEncodeTest() throws Fault {
     super.textStreamEncoderEncodeTest();
   }
@@ -257,6 +267,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void binaryEncoderEncodeTest() throws Fault {
     super.binaryEncoderEncodeTest();
   }
@@ -271,6 +282,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void binaryStreamEncoderEncodeTest() throws Fault {
     super.binaryStreamEncoderEncodeTest();
   }
@@ -289,6 +301,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void textDecoderDecodeTest() throws Fault {
     super.textDecoderDecodeTest();
   }
@@ -304,6 +317,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void textStreamDecoderDecodeTest() throws Fault {
     super.textStreamDecoderDecodeTest();
   }
@@ -320,6 +334,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void binaryDecoderDecodeTest() throws Fault {
     super.binaryDecoderDecodeTest();
   }
@@ -335,6 +350,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void binaryStreamDecoderDecodeTest() throws Fault {
     super.binaryStreamDecoderDecodeTest();
   }
@@ -348,6 +364,7 @@ public class WSProgramaticClient extends WSClient {
    * @test_Strategy: test binary decoder with willDecode returning false will
    * not be used
    */
+  @Override
   public void binaryDecoderWillDecodeTest() throws Fault {
     super.binaryDecoderWillDecodeTest();
   }
@@ -361,6 +378,7 @@ public class WSProgramaticClient extends WSClient {
    * @test_Strategy: test text decoder with willDecode returning false will not
    * be used
    */
+  @Override
   public void textDecoderWillDecodeTest() throws Fault {
     super.textDecoderWillDecodeTest();
   }
@@ -382,6 +400,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void textEncoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyTextEncoder.class);
@@ -405,6 +424,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void textStreamEncoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyTextStreamEncoder.class);
@@ -428,6 +448,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void binaryEncoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyBinaryEncoder.class);
@@ -451,6 +472,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * encode
    */
+  @Override
   public void binaryStreamEncoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyBinaryStreamEncoder.class);
@@ -477,6 +499,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode, willdecode
    */
+  @Override
   public void textDecoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -502,6 +525,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode
    */
+  @Override
   public void textStreamDecoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -527,6 +551,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode, willDecode
    */
+  @Override
   public void binaryDecoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -552,6 +577,7 @@ public class WSProgramaticClient extends WSClient {
    *
    * decode
    */
+  @Override
   public void binaryStreamDecoderInitDestroyOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -573,6 +599,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void textEncoderEncodeOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyTextEncoder.class);
@@ -590,6 +617,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void textStreamEncoderEncodeOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyTextStreamEncoder.class);
@@ -607,6 +635,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void binaryEncoderEncodeOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyBinaryEncoder.class);
@@ -624,6 +653,7 @@ public class WSProgramaticClient extends WSClient {
    * The implementation must attempt to encode application objects of matching
    * parametrized type as the encoder when they are attempted to be sent
    */
+  @Override
   public void binaryStreamEncoderEncodeOnClientTest() throws Fault {
     clientClear();
     setEncoder(InitDestroyBinaryStreamEncoder.class);
@@ -645,6 +675,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void textDecoderDecodeOnClientTest() throws Fault {
     clientClear();
     setDecoder(InitDestroyTextDecoder.class);
@@ -665,6 +696,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void textStreamDecoderDecodeOnClientTest() throws Fault {
     clientClear();
     setDecoder(InitDestroyTextStreamDecoder.class);
@@ -685,6 +717,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void binaryDecoderDecodeOnClientTest() throws Fault {
     clientClear();
     setDecoder(InitDestroyBinaryDecoder.class);
@@ -705,6 +738,7 @@ public class WSProgramaticClient extends WSClient {
    * decoder in the list appropriate to the native websocket message type and
    * pass the message in decoded object form to the websocket endpoint
    */
+  @Override
   public void binaryStreamDecoderDecodeOnClientTest() throws Fault {
     clientClear();
     setDecoder(InitDestroyBinaryStreamDecoder.class);
@@ -722,6 +756,7 @@ public class WSProgramaticClient extends WSClient {
    * @test_Strategy: test binary decoder with willDecode returning false will
    * not be used
    */
+  @Override
   public void binaryDecoderWillDecodeOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -743,6 +778,7 @@ public class WSProgramaticClient extends WSClient {
    * @test_Strategy: test text decoder with willDecode returning false will not
    * be used
    */
+  @Override
   public void textDecoderWillDecodeOnClientTest() throws Fault {
     clientClear();
     setClientEndpointInstance(new StringBeanClientEndpoint());
@@ -759,7 +795,7 @@ public class WSProgramaticClient extends WSClient {
 
   @SafeVarargs
   private final void setEncoder(Class<? extends Encoder>... encoders) {
-    List<Class<? extends Encoder>> list = new LinkedList<Class<? extends Encoder>>();
+    List<Class<? extends Encoder>> list = new LinkedList<>();
     for (Class<? extends Encoder> encoder : encoders)
       list.add(encoder);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
@@ -769,7 +805,7 @@ public class WSProgramaticClient extends WSClient {
 
   @SafeVarargs
   private final void setDecoder(Class<? extends Decoder>... decoders) {
-    List<Class<? extends Decoder>> list = new LinkedList<Class<? extends Decoder>>();
+    List<Class<? extends Decoder>> list = new LinkedList<>();
     for (Class<? extends Decoder> decoder : decoders)
       list.add(decoder);
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()

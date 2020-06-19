@@ -37,11 +37,13 @@ public class OnOpenServerEndpoint {
     return open + echo;
   }
 
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(Session session) {
     open = "session";
   }
 
+  @SuppressWarnings("unused")
   @OnOpen
   public void onOpen(EndpointConfig config) {
     open = "config";

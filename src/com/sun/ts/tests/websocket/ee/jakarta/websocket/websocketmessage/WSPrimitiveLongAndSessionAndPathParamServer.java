@@ -30,6 +30,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/primitivelongsessionpathparam/{param}")
 public class WSPrimitiveLongAndSessionAndPathParamServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Session s, @PathParam("param") long param, long l) {
     return String.valueOf(l) + String.valueOf(param);

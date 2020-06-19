@@ -28,6 +28,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/fullintsession")
 public class WSFullIntAndSessionServer {
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(Integer i, Session s) {
     return String.valueOf(i.intValue());

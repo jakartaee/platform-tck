@@ -50,7 +50,7 @@ public class WSCModifyHandshakeServer {
   }
 
   @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
+  public void onOpen(EndpointConfig config) {
     this.config = (ServerEndpointConfig) config;
   }
 

@@ -636,7 +636,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
         "[WebSocketCommonClient] 'ws_wait' (in seconds) ts.jte must be set greater than 0");
 
     TestUtil.logMsg("[WebSocketCommonClient] Test setup OK");
-    TEST_PROPS = new Hashtable<Property, String>();
+    TEST_PROPS = new Hashtable<>();
   }
 
   // ///////////////////////////// Utility methods
@@ -996,7 +996,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
   protected static//
   Map<String, List<String>> basicAuthenticationAsHeaderMap(String userName,
       String password) {
-    Map<String, List<String>> headers = new HashMap<String, List<String>>();
+    Map<String, List<String>> headers = new HashMap<>();
     String toEncode = new StringBuilder().append(userName).append(':')
         .append(password).toString();
     String base64 = new BASE64Encoder().encode(toEncode.getBytes());

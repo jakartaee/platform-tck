@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, int i) {
     return echo;

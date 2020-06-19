@@ -29,6 +29,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ServerEndpoint("/stringsession")
 public class WSStringAndSessionServer {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, Session s) {
     return echo;

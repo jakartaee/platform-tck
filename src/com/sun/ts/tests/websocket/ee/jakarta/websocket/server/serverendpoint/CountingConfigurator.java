@@ -28,9 +28,6 @@ public class CountingConfigurator extends Configurator {
     COUNTER.incrementAndGet();
   }
 
-  public CountingConfigurator(boolean b) {
-  }
-
   public int getCounterValue() {
     return COUNTER.intValue();
   }
