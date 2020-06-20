@@ -1619,4 +1619,20 @@ AS_ADMIN_NEWPASSWORD=${admin.password}</echo>
         <echo>******* DONE. ENABLE SECURE ADMIN ********</echo>
     </target>
 	
+    <!--
+      get.client.stubs retrieves the application JAR files needed to launch the application client..
+    -->
+    <target name="get.client.stubs" depends="configPlatform">
+       <exec executable="${exec.asadmin}" >
+           <arg line="${exec.asadmin.part2}" />
+           <arg line=" --user ${admin.user}"/>
+           <arg line=" --passwordfile ${password.file}"/>
+           <arg line=" --host ${server.host}"/>
+           <arg line=" --port ${server.port}"/>
+           <arg line=" get-client-stubs"/>
+           <arg line=" --appName ${deploy.app.name}"/>
+           <arg line=" ${get.stub.clients.ts_dep}"/>
+       </exec>
+    </target>   	
+	
 </project>
