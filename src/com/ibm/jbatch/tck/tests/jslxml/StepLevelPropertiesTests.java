@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -56,7 +56,7 @@ public class StepLevelPropertiesTests extends ServiceEETest {
 	 
 	public void testStepLevelPropertiesCount() throws Fault {
 
-		String METHOD = "testStepLevelPropertiesCount";
+		String METHOD = "testStepLevelPropertiesCount";
 TestUtil.logTrace(METHOD);
 		String SHOULD_BE_UNAVAILABLE_PROP_PREFIX = "com.ibm.jbatch.tck.tests.jslxml.StepLevelPropertiesTests";
 		
@@ -89,7 +89,7 @@ TestUtil.logTrace(METHOD);
 	 
 	public void testStepLevelPropertiesPropertyValue() throws Fault {
 
-		String METHOD = "testStepLevelPropertiesPropertyValue";
+		String METHOD = "testStepLevelPropertiesPropertyValue";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -119,7 +119,7 @@ TestUtil.logTrace(METHOD);
 	 
 	public void testStepLevelPropertiesShouldNotBeAvailableThroughJobContext() throws Fault {
 
-		String METHOD = "testStepLevelPropertiesShouldNotBeAvailableThroughJobContext";
+		String METHOD = "testStepLevelPropertiesShouldNotBeAvailableThroughJobContext";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -144,7 +144,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {

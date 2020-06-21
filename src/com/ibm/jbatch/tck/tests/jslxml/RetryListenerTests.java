@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -39,7 +39,7 @@ public class RetryListenerTests extends ServiceEETest {
 
 	public static void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -71,7 +71,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testRetryReadListener() throws Fault {
-		String METHOD = "testRetryReadListener";
+		String METHOD = "testRetryReadListener";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -110,7 +110,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testRetryProcessListener() throws Fault {
-		String METHOD = "testRetryProcessListener";
+		String METHOD = "testRetryProcessListener";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -149,7 +149,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testRetryWriteListener() throws Fault {
-		String METHOD = "testRetryWriteListener";
+		String METHOD = "testRetryWriteListener";
 TestUtil.logTrace(METHOD);
 
 		try {

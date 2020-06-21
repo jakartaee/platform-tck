@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -57,7 +57,7 @@ public class JobExecutableSequenceTests extends ServiceEETest {
 	
 	public void testJobExecutableSequenceToUnknown() throws Fault {
 
-		String METHOD = "testJobExecutableSequenceToUnknown";
+		String METHOD = "testJobExecutableSequenceToUnknown";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -91,7 +91,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {

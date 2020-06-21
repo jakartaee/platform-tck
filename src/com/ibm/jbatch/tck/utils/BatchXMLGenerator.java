@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.utils;
+package com.ibm.jbatch.tck.utils;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -59,7 +59,7 @@ public class BatchXMLGenerator {
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter(batchXMLFile));
 
-			writer.write("<batch-artifacts xmlns=\"http://xmlns.jcp.org/xml/ns/javaee\">\n");
+			writer.write("<batch-artifacts xmlns=\"https://jakarta.ee/xml/ns/jakartaee\">\n");
 
 			for (BeanDefinition beanDef : this.beanDefinitions) {
 				writer.write("    " + beanDef.getXMLString() + "\n");

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -46,7 +46,7 @@ public class ContextsGetIdTests extends ServiceEETest {
 	 * 				   3. set job exit status equals job id from JobContext in batchlet
 	 * 				   4. compare job id 'job1' to job exit status
 	 * 
-	 * 	<job id="job1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	 * 	<job id="job1" xmlns="https://jakarta.ee/xml/ns/jakartaee">
 	 * 		<step id="step1">
 	 *			<batchlet ref="contextsGetIdJobContextTestBatchlet"/>
 	 *		</step>
@@ -58,7 +58,7 @@ public class ContextsGetIdTests extends ServiceEETest {
 	
 	public void testJobContextGetId() throws Fault {
 
-		String METHOD = "testJobContextGetId";
+		String METHOD = "testJobContextGetId";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -85,7 +85,7 @@ TestUtil.logTrace(METHOD);
 	 * 				   3. set job exit status equals step id from StepContext in batchlet
 	 * 				   4. compare step id 'step1' to job exit status
 	 * 
-	 * 	<job id="job1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+	 * 	<job id="job1" xmlns="https://jakarta.ee/xml/ns/jakartaee">
 	 * 		<step id="step1">
 	 *			<batchlet ref="contextsGetIdStepContextTestBatchlet"/>
 	 *		</step>
@@ -97,7 +97,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testStepContextGetId() throws Fault {
 
-		String METHOD = "testStepContextGetId";
+		String METHOD = "testStepContextGetId";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -123,7 +123,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {

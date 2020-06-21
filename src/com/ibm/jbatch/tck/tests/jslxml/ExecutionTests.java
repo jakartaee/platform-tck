@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -44,7 +44,7 @@ public class ExecutionTests extends ServiceEETest {
 	private static JobOperatorBridge jobOp;
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -76,7 +76,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithOneBatchletStep() throws Fault {
-		String METHOD = "testInvokeJobWithOneBatchletStep";
+		String METHOD = "testInvokeJobWithOneBatchletStep";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -101,7 +101,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithTwoStepSequenceOfBatchlets() throws Fault {
-		String METHOD = "testInvokeJobWithTwoStepSequenceOfBatchlets";
+		String METHOD = "testInvokeJobWithTwoStepSequenceOfBatchlets";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -126,7 +126,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithFourStepSequenceOfBatchlets() throws Fault {
-		String METHOD = "testInvokeJobWithFourStepSequenceOfBatchlets";
+		String METHOD = "testInvokeJobWithFourStepSequenceOfBatchlets";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -151,7 +151,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithNextElement() throws Fault {
-		String METHOD = "testInvokeJobWithNextElement";
+		String METHOD = "testInvokeJobWithNextElement";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -176,7 +176,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithFailElement() throws Fault {
-		String METHOD = "testInvokeJobWithFailElement";
+		String METHOD = "testInvokeJobWithFailElement";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -203,7 +203,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithStopElement() throws Fault {
-		String METHOD = "testInvokeJobWithStopElement";
+		String METHOD = "testInvokeJobWithStopElement";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -228,7 +228,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithEndElement() throws Fault {
-		String METHOD = "testInvokeJobWithEndElement";
+		String METHOD = "testInvokeJobWithEndElement";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -255,7 +255,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobSimpleChunk() throws Fault {
-		String METHOD = "testInvokeJobSimpleChunk";
+		String METHOD = "testInvokeJobSimpleChunk";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -283,7 +283,7 @@ TestUtil.logTrace(METHOD);
 
 	
 	public void testInvokeJobChunkWithFullAttributes() throws Fault {
-		String METHOD = "testInvokeJobChunkWithFullAttributes";
+		String METHOD = "testInvokeJobChunkWithFullAttributes";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -309,7 +309,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobUsingTCCL() throws Fault {
-		String METHOD = "testInvokeJobUsingTCCL";
+		String METHOD = "testInvokeJobUsingTCCL";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -334,7 +334,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testCheckpoint() throws Fault {
-		String METHOD = "testCheckpoint";
+		String METHOD = "testCheckpoint";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -359,7 +359,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testSimpleFlow() throws Fault {
-		String METHOD = "testSimpleFlow";
+		String METHOD = "testSimpleFlow";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -63,7 +63,7 @@ public class JobAttributeRestartTests extends ServiceEETest {
 	 
 	public void testJobAttributeRestartableTrue() throws Fault {
 
-		String METHOD = "testJobAttributeRestartableTrue";
+		String METHOD = "testJobAttributeRestartableTrue";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -99,7 +99,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {

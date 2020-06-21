@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -86,7 +86,7 @@ public class SplitFlowTransitionLoopTests extends ServiceEETest {
 	
 	public void testSplitFlowTransitionLoopSplitFlowSplit() throws Fault {
 
-		String METHOD = "testSplitFlowTransitionLoopSplitFlowSplit";
+		String METHOD = "testSplitFlowTransitionLoopSplitFlowSplit";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -114,7 +114,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {

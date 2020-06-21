@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -59,7 +59,7 @@ public class FlowTransitioningTests extends ServiceEETest {
 	 
 	public void testFlowTransitionToStep() throws Fault {
 
-		String METHOD = "testFlowTransitionToStep";
+		String METHOD = "testFlowTransitionToStep";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -116,7 +116,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testFlowTransitionToStepOutOfScope() throws Fault {
 
-		String METHOD = " testFlowTransitionToStepOutOfScope";
+		String METHOD = " testFlowTransitionToStepOutOfScope";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -160,7 +160,7 @@ TestUtil.logTrace(METHOD);
 	 
 	public void testFlowTransitionToDecision() throws Fault {
 
-		String METHOD = "testFlowTransitionToDecision";
+		String METHOD = "testFlowTransitionToDecision";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -202,7 +202,7 @@ TestUtil.logTrace(METHOD);
 	 
 	public void testFlowTransitionWithinFlow() throws Fault {
 
-		String METHOD = "testFlowTransitionWithinFlow";
+		String METHOD = "testFlowTransitionWithinFlow";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -231,7 +231,7 @@ throw new Fault(methodName + " failed", e);}
 
 	public void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
