@@ -1,0 +1,20 @@
+
+This directory contains the Dockerfiles used for creating images used to run the TCK tests in the Eclipse CI using Jenkins pipeline.
+-Use eclipse bugzilla (https://bugs.eclipse.org/bugs) to avail write permissions on any repositories in these docker hub organizations
+-If the images are required to be updated, create new tags(versions) of the same docker image.
+-If the docker image is updated the same has to be updated in Jenkinsfile to use them in the CI runs.
+
+
+Dockerfile:
+
+Image - jakartaee/cts-mailserver:0.1
+
+Additional files to be downloaded
+-create_users.sh
+-james.log
+
+Build command : docker build -t jakartaee/cts-mailserver:0.1 -f Dockerfile .
+Image push command : docker push jakartaee/cts-mailserver:0.1
+
+-Image used in eclipse-ee4j/mail-tck project also
+===============================================

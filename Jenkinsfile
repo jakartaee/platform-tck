@@ -132,7 +132,7 @@ spec:
       limits:
         memory: 2176Mi
   - name: jakartaeetck-ci
-    image: jakartaee/cts-base:0.1
+    image: jakartaee/cts-base:0.2
     command:
     - cat
     tty: true
