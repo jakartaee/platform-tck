@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -687,8 +687,9 @@
     <xjc schema="${ts.home}/lib/dtds/sun-application_6_0-0.dtd"
          binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
          destdir="${ts.home}/src"
-         package="${porting.package}.app">
+         package="${porting.package}.app" fork="true">
         <arg value="-dtd"/>
+    	<jvmarg value="-DenableExternalEntityProcessing=true"/>
         <depends  dir="${ts.home}/lib/dtds" 
                   includes="sun-application_6_0-0.dtd"/>
         <produces dir="${ts.home}/src/${porting.package.dir}/app" 
@@ -697,8 +698,9 @@
     <xjc schema="${ts.home}/lib/dtds/sun-application-client_6_0-0.dtd"
          binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
          destdir="${ts.home}/src"
-         package="${porting.package}.appclient">
+         package="${porting.package}.appclient" fork="true">
         <arg value="-dtd"/>
+    	<jvmarg value="-DenableExternalEntityProcessing=true"/>
         <depends  dir="${ts.home}/lib/dtds" 
                   includes="sun-application-client_5_0-0.dtd"/>
         <produces dir="${ts.home}/src/${porting.package.dir}/appclient" 
@@ -707,8 +709,9 @@
     <xjc schema="${ts.home}/lib/dtds/sun-ejb-jar_3_1-0.dtd"
          binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
          destdir="${ts.home}/src"
-         package="${porting.package}.ejb">
+         package="${porting.package}.ejb" fork="true">
         <arg value="-dtd"/>
+    	<jvmarg value="-DenableExternalEntityProcessing=true"/>
         <depends  dir="${ts.home}/lib/dtds" includes="sun-ejb-jar_3_1-0.dtd"/>
         <produces dir="${ts.home}/src/${porting.package.dir}/ejb" 
                   includes="**/*"/>
@@ -716,8 +719,9 @@
     <xjc schema="${ts.home}/lib/dtds/sun-web-app_3_0-0.dtd"
          binding="${ts.home}/src/${porting.package.dir}/jaxb-cust.xml"
          destdir="${ts.home}/src"
-         package="${porting.package}.web">
+         package="${porting.package}.web" fork="true">
         <arg value="-dtd"/>
+    	<jvmarg value="-DenableExternalEntityProcessing=true"/>
         <depends  dir="${ts.home}/lib/dtds" includes="sun-web-app_3_0-0.dtd"/>
         <produces dir="${ts.home}/src/${porting.package.dir}/web" 
                   includes="**/*"/>
