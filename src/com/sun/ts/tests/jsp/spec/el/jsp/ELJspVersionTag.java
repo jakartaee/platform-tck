@@ -17,6 +17,8 @@
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import jakarta.el.ELContext;
+import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
@@ -24,15 +26,15 @@ import java.io.IOException;
 
 public class ELJspVersionTag extends SimpleTagSupport {
 
-  private String poundExpr;
+  private ValueExpression poundExpr;
 
-  public void setPoundExpr(String poundExpr) {
+  public void setPoundExpr(ValueExpression poundExpr) {
     this.poundExpr = poundExpr;
   }
 
   public void doTag() throws JspException, IOException {
+    ELContext elContext = getJspContext().getELContext();
     JspWriter out = getJspContext().getOut();
-
     try {
       out.println(poundExpr);
     } catch (Throwable t) {
