@@ -185,8 +185,7 @@ env.ts_win32.menu=true
 #                    The sigTestClasspath specifies a list of classes/jar files
 #                    which contains jaxrs implementation and Java SE classes.
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}
-
+sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar
 
 ########################################################################
 ## These properties are used by the Javatest harness.

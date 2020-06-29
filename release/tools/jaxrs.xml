@@ -211,11 +211,12 @@
         <!-- the com/sun/ts/lib/implementation/sun/jersey file -->
         <copy file="${ts.home}/src/com/sun/ts/lib/implementation/sun/jersey/TSWebConfiguration.java" 
               todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/implementation/sun/jersey"/>
-        
+ <!--      
         <delete quiet="true">
             <fileset dir="${deliverable.bundle.dir}/lib" 
                      includes="*jaxb*"/>
         </delete>
+ -->       
         <antcall target="mvn"/>
         <!--
             <antcall target="create.doc.bundle"/>
