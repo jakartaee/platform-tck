@@ -130,7 +130,7 @@ spec:
         value: "-XshowSettings:vm -Xmx2048m -Dsun.zip.disableMemoryMapping=true -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=true"
     resources:
       limits:
-        memory: "6Gi"
+        memory: "3Gi"
   - name: jakartaeetck-ci
     image: jakartaee/cts-base:0.2
     command:
