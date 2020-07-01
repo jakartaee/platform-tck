@@ -354,6 +354,8 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
 
   public void cleanup() throws Fault {
     try {
+      // Removing noisy stack trace.
+      if(userTransaction.getStatus() == Status.STATUS_ACTIVE) {
       // Frees Current Thread, from Transaction
       Transact.free();
       try {
@@ -373,6 +375,10 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
         retries++;
       }
       logMsg("Cleanup ok;");
+      }
+      else {
+        logMsg("CleanUp not required as Transaction is not in Active state.");
+      }
     } catch (Exception exception) {
       logErr("Cleanup Failed", exception);
       logTrace("Could not clean the environment");
