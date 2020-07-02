@@ -396,7 +396,7 @@ if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "s
   ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
   cd  ${TS_HOME}/bin
   ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
-  export DISABLE_RESOURCE_VALIDATION="-Ddeployment.resource.validation=false"
+  ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Ddeployment.resource.validation=false
 fi
 ### populateMailbox for javamail suite - End ###
 
@@ -409,7 +409,7 @@ ant config.ri
 cd ${CTS_HOME}
 export PORT=5858
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} -p ${PORT} stop-domain
-${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin $DISABLE_RESOURCE_VALIDATION --user admin --passwordfile ${ADMIN_PASSWORD_FILE} -p ${PORT} start-domain
+${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} -p ${PORT} start-domain
 ### restartRI.sh ends here #####
 
 if [[ "securityapi" == ${test_suite} ]]; then
