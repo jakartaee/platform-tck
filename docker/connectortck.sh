@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
+
 export TCK_HOME=${WORKSPACE}
 echo "TCK_HOME in connectortck.sh $TCK_HOME"
 echo "ANT_HOME in connectortck.sh $ANT_HOME"
@@ -54,6 +55,16 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+fi
+
+which java
+java -version
+
+
 
 sed -i "s#^connector.home=.*#connector.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i "s#^orb.host=.*#orb.host=localhost#g" ts.jte
