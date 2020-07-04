@@ -398,7 +398,6 @@ command.testExecuteAppClient= \
         -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
         -Dstartup.login=false \
         -Dauth.gui=false \
-        -Djava.ext.dirs=${JAVA_HOME}/lib/ext \
         -Dcom.sun.aas.configRoot=${jaspic.home}/config \
         -Ddeliverable.class=${deliverable.class} \
         -Dcom.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true \
