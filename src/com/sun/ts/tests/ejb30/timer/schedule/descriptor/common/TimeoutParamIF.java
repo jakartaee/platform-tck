@@ -36,7 +36,11 @@ public interface TimeoutParamIF {
 
   public Timer createSecondLaterTimer(String name);
 
+  public Timer createSecondLaterTimer(String name, int seconds);
+
   public Timer createSecondLaterTimer(TimerConfig timerConfig);
+
+  public Timer createSecondLaterTimer(TimerConfig timerConfig, int seconds);
 
   public void cancelAllTimers();
 

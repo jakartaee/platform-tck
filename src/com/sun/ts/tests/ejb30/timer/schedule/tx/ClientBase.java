@@ -74,14 +74,14 @@ abstract public class ClientBase
    * testName: createRollbackTxPropagation
    * 
    * @test_Strategy: Inside propagated transaction, create a timer that is to
-   * expire in 1 second. The client transaction is rolled back. The timer must
+   * expire in 2 seconds. The client transaction is rolled back. The timer must
    * not be present, and no timeout event for this timer.
    */
 
   public void createRollbackTxPropagation() throws Exception {
     ut.begin();
-    Timer timer = scheduleBean.createSecondLaterTimer(getTimerConfig());
-    TestUtil.sleep(2000); // 2 seconds
+    Timer timer = scheduleBean.createSecondLaterTimer(getTimerConfig(), 2);
+    TestUtil.sleep(3000); // 3 seconds
     ut.rollback();
     assertEquals("contains the timer? " + timer, false,
         scheduleBean.getTimers().contains(timer));
@@ -95,8 +95,8 @@ abstract public class ClientBase
 
   public void createRollbackTxPropagationBMT() throws Exception {
     ut.begin();
-    scheduleBMTBean.createSecondLaterTimer(getTimerConfig());
-    TestUtil.sleep(2000); // 2 seconds
+    scheduleBMTBean.createSecondLaterTimer(getTimerConfig(), 2);
+    TestUtil.sleep(3000); // 3 seconds
     ut.rollback();
     passIfTimeout();
   }
@@ -162,7 +162,7 @@ abstract public class ClientBase
   /*
    * testName: timeoutRollback
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second. The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * method sets rollback for this timeout event. This event must be retried at
    * least once. This only applies to CMT, not BMT. The timeout method has
    * default transaction attribute type (REQUIRED)
@@ -174,7 +174,7 @@ abstract public class ClientBase
   /*
    * testName: timeoutSystemException
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * throws system exception. This event must be retried at least once. The
    * timeout method has default transaction attribute type (REQUIRED)
    */
@@ -185,7 +185,7 @@ abstract public class ClientBase
   /*
    * testName: timeoutSystemExceptionBMT
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * throws system exception. This event must be retried at least once.
    */
   public void timeoutSystemExceptionBMT() {
@@ -198,7 +198,7 @@ abstract public class ClientBase
    * @test_Strategy: invoke the BMT bean to create a timer without tx.
    */
   public void createTimerWithoutTx() {
-    scheduleBMTBean.createSecondLaterTimer(getTimerConfig());
+    scheduleBMTBean.createSecondLaterTimer(getTimerConfig(), 2);
     passIfTimeout();
   }
 
@@ -210,7 +210,7 @@ abstract public class ClientBase
    */
   public void createTimerWithoutTxHavingClientTx() throws Exception {
     ut.begin();
-    scheduleBMTBean.createSecondLaterTimer(getTimerConfig());
+    scheduleBMTBean.createSecondLaterTimer(getTimerConfig(), 2);
     ut.commit();
     passIfTimeout();
   }
@@ -232,7 +232,7 @@ abstract public class ClientBase
   private void timeoutRollback(ScheduleTxBeanBase b) {
     appendReason(
         "If the transaction rolls back in timeout method, must retry at least once.");
-    Timer timer = b.createSecondLaterTimer(getTimerConfig());
+    Timer timer = b.createSecondLaterTimer(getTimerConfig(), 2);
     TestUtil.sleep((int) WAIT_FOR_TIMEOUT_STATUS);
     List<String> a = statusSingleton.getRecords(getTestName());
     appendReason("timeout callback result: ", a);
