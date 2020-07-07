@@ -55,6 +55,15 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+fi
+
+which java
+java -version
+
 sed -i "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.persistence-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.transaction-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
 sed -i "s#jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbyclient.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
 sed -i "s#jdbc\.db=.*#jdbc.db=derby#g" ts.jte

@@ -55,6 +55,15 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+fi
+
+which java
+java -version
+
 sed -i 's#orb\.port=.*#orb.port=3699#g' ts.jte
 sed -i 's#javaee\.level=.*#javaee.level=full#g' ts.jte
 sed -i "s#jacc\.home=.*#jacc.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte

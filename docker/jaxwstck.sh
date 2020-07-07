@@ -57,6 +57,18 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 mkdir $TCK_HOME/ri
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+  export ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
+else
+  export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
+fi
+
+which java
+java -version
+
 sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
@@ -70,7 +82,6 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
-export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
 
 cd $TCK_HOME/vi/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin start-domain

@@ -55,6 +55,16 @@ chmod -R 777 $TS_HOME
 rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextPropagate/ContextPropagate_web.war
 
 cd $TS_HOME/bin
+
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+fi
+
+which java
+java -version
+
 sed -i "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/jakarta.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/jakarta.servlet-api.jar${pathsep}${webcontainer.home}/modules/jakarta.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar${pathsep}${webcontainer.home}/modules/jakarta.enterprise.deploy-api.jar#g' ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte

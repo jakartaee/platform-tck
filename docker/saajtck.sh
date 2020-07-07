@@ -55,13 +55,23 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+else
+  sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed#g" ts.jte
+fi
+
+which java
+java -version
+
 sed -i "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
 sed -i "s#local.classes=.*#local.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jaxb-osgi.jar#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed#g" ts.jte
 
 #if [ "web" == "$PROFILE" ]; then
 #  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
