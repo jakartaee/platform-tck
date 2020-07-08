@@ -105,6 +105,7 @@ javatest.timeout.factor=1.0
 #
 ########################################################################
 connector.home=/sun/glassfish4/glassfish
+server.home=${connector.home}
 orb.host=localhost
 orb.port=3700
 
