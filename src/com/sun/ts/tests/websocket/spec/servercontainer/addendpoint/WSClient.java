@@ -288,7 +288,7 @@ public class WSClient extends WebSocketCommonClient {
         }
       });
 
-      messageLatch = new CountDownLatch(2);
+      messageLatch = new CountDownLatch(4);
       Writer writer = session.getBasicRemote().getSendWriter();
       writer.append(message_sent_reader);
       writer.close();
