@@ -54,6 +54,15 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+fi
+
+which java
+java -version
+
 sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/$GF_TOPLEVEL_DIR/mq#g" ts.jte
 sed -i 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte

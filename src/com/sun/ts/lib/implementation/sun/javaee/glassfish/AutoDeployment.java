@@ -227,17 +227,6 @@ public class AutoDeployment implements TSDeploymentInterface {
           + System.getProperty("line.separator") + getServerLogContents());
     }
 
-    // will I need to make a call here to get the location of the client jar, if
-    // any?
-
-    // check if we have an appclient jar, and get stups
-    // check if we have an ear with appclient jar
-    // if either are not ture, then don't get stubs from server
-
-    //if (javaeeLevel.contains("full")) {
-    //  getClientClassPath(info);
-    //}
-    
     return "";
 
   }
@@ -588,81 +577,6 @@ public class AutoDeployment implements TSDeploymentInterface {
     return appName;
   }
 
-  private void getClientClassPath(DeploymentInfo info)
-      throws TSDeploymentException {
-    String sAppName = null;
-    String sEarFile = info.getEarFile();
-    String sTSDeploymentDir = sEarFile.substring(0,
-        sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep";
-
-    if (sEarFile.endsWith(".ear")) { // Check for an application-name in the
-                                     // application.xml
-      sAppName = getAppNameFromApplicationXML(sEarFile);
-    }
-
-    if (sAppName == null) { // if we didn't have an ear or there was no
-                            // application-name use the old scheme
-      sAppName = sEarFile.substring(sEarFile.lastIndexOf(File.separator) + 1,
-          sEarFile.lastIndexOf("."));
-    }
-
-    if (sAppName.startsWith("vi_built_")) {
-      sAppName = sAppName.substring(9);
-      sTSDeploymentDir = sEarFile.substring(0,
-          sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep_vi_built";
-    }
-
-    File ctsDeployDir = new File(sTSDeploymentDir);
-
-    // we should only be calling this method with archives that contain an
-    // appclient
-
-    if (!ctsDeployDir.exists()) {
-      if (!ctsDeployDir.mkdir()) {
-        throw new TSDeploymentException(
-            "Failed to create the RI deployment working directory:  "
-                + sTSDeploymentDir);
-      }
-    }
-
-    String sStubJar = sTSDeploymentDir;
-    TestUtil.logHarnessDebug(
-        "$$$$$$$$$$$ getClientClassPath() sStubJar = \"" + sStubJar + "\"");
-
-    try {
-      String sDeploymentHost = info.getProperty("deployment_host");
-      String sPropNum = info.getProperty("deployment.props.number");
-      String sUname = propMgr.getProperty("deployManageruname." + sPropNum);
-      String sPassword = propMgr.getProperty("deployManagerpasswd." + sPropNum,
-          "");
-      int iPort = Integer.parseInt(info.getProperty("deployment_port"));
-      // TODO: delete the commented out Jakarta Deployment class references
-      //DeploymentFacility df = DeploymentFacilityFactory.getDeploymentFacility();
-      //ServerConnectionIdentifier sci = new ServerConnectionIdentifier();
-      //sci.setHostName(sDeploymentHost);
-      //sci.setHostPort(iPort);
-      //sci.setUserName(sUname);
-      //sci.setPassword(sPassword);
-
-      TestUtil.logHarness("V3Deployment sPropNum = " + sPropNum);
-      TestUtil.logHarness("V3Deployment uname:  " + sUname);
-      TestUtil.logHarness("V3Deployment passwd:  " + sPassword);
-      TestUtil.logHarness("V3Deployment host:  " + sDeploymentHost);
-      TestUtil.logHarness("V3Deployment port:  " + iPort);
-
-      // sci.setHostName("localhost");
-      // sci.setHostPort(4848); // 8080 for the REST client
-      // sci.setUserName("admin");
-      // sci.setPassword("adminadmin");
-
-      // TODO: Delete the commented out Jakarta Deployment class references
-      //df.connect(sci);
-      //df.getClientStubs(sTSDeploymentDir, sAppName);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  
   private void log(String s) {
     log.println("GF Deployment: " + s);
   }

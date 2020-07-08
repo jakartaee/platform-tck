@@ -396,6 +396,7 @@ if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "s
   ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
   cd  ${TS_HOME}/bin
   ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
+  ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Ddeployment.resource.validation=false
 fi
 ### populateMailbox for javamail suite - End ###
 

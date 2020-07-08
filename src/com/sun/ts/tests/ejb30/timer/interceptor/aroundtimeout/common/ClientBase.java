@@ -170,7 +170,7 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     // around-timeout-related records,
     // separate from timeout records.
     statusSingleton.removeRecords(getAroundTimeoutRecordKey());
-    b.createSecondLaterTimer(getTestName());
+    b.createSecondLaterTimer(getTestName(), 2);
     checkAndClearAroundTimeoutRecords(expectedAroundTimeout,
         getAroundTimeoutRecordKey(), timeoutInvoked);
   }
