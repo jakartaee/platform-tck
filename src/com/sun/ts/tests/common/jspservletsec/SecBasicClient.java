@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -363,7 +364,9 @@ public class SecBasicClient extends BaseUrlClient {
         getRequestLine("GET", pageSec + "/j_security_check"));
     TEST_PROPS.setProperty(BASIC_AUTH_USER, "invalid");
     TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    // The servlet is mapped to "/ServletSecTest" so this request should result
+    // in a 404 since no Servlet is mapped to the requested URI.
+    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
     invoke();
 
     dumpResponse(); // debug aid
