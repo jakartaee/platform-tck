@@ -77,8 +77,8 @@
   <property name="spec.stylesheet"           value="${ts.tools.home}/docs/xsl/assertions/spec_assertions.xsl"/>
   <property name="api.html.assertion.file"   value="api-assertions.html"/>
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
-  <property name="srcdirs"  value="appclient,compat12,ejb,integration,jacc,jsf,jstl,rmiiiop,assembly,
-                              compat13,ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
+  <property name="srcdirs"  value="appclient,ejb,integration,jacc,jsf,jstl,rmiiiop,assembly,
+                              ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
                               javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
                               webservices13,websocket,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
  

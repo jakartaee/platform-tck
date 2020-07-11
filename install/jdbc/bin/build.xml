@@ -52,8 +52,6 @@
         com/sun/ts/tests/jacc,
         com/sun/ts/tests/saaj,
         com/sun/ts/tests/jmx,
-        com/sun/ts/tests/compat12,
-        com/sun/ts/tests/compat13,
         com/sun/ts/tests/signaturetest,
         com/sun/ts/tests/integration,
         com/sun/ts/tests/ejb,
@@ -80,7 +78,6 @@
       <javac fork="true" srcdir="${ts.home}/src" 
             destdir="${class.dir}" 
             includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
-            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java"
             memoryInitialSize="100m"
             memoryMaximumSize="200m"
             debug="on" 

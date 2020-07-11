@@ -26,8 +26,6 @@
                   com/sun/ts/tests/jaxp,
                   com/sun/ts/tests/jacc,
                   com/sun/ts/tests/jaspic,
-                  com/sun/ts/tests/compat12,
-                  com/sun/ts/tests/compat13,
                   com/sun/ts/tests/signaturetest/javaee,
                   com/sun/ts/tests/integration,
                   com/sun/ts/tests/el,

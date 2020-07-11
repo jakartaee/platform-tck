@@ -1182,8 +1182,8 @@
     <property name="test.areas" value="appclient, connector, jaxws, jstl,
                                        samples, webservices12, assembly, ejb, jacc,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
-                                       jws, signaturetest, xa, compat12, integration,
-                                       jsf, rmiiiop, compat13,
+                                       jws, signaturetest, xa, integration,
+                                       jsf, rmiiiop, 
                                        jsp, saaj"/>
     
     <!-- timeout is specified in seconds, default is 3 minutes -->

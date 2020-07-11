@@ -107,7 +107,6 @@
         <echo message=" smoke  	      [overrides]"/>
         <echo message=" jakartaee-appclient [overrides]"/>
         <echo message=" jakartaee-assembly  [overrides]"/>
-        <echo message=" jakartaee-compat    [overrides]"/>
         <echo message=" jakartaee-javamail  [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
         <echo message=" jakartaee-jta      [overrides]"/>
@@ -612,12 +611,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-compat" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-COMPAT"/>
-        <property name="test.areas" value="compat12,compat13"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
     <target name="jakartaee-connector" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-CONNECTOR"/>
         <property name="test.areas" value="connector, signaturetest, xa"/>
@@ -626,7 +619,7 @@
     
     <target name="jakartaee-ejb" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-EJB"/>
-        <property name="test.areas" value="ejb,ejb30,compat12/ejb,compat13/ejb, 
+        <property name="test.areas" value="ejb,ejb30, 
             appclient,
             integration/session,
             integration/entity,
@@ -876,8 +869,6 @@
         <var name="deliverable.name" value="JAKARTAEE-COVERAGE"/>
         <property name="test.areas" value="appclient,
             assembly,
-            compat12,
-            compat13,
             connector,
             ejb,
             integration,
