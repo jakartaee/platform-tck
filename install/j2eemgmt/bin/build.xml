@@ -25,14 +25,13 @@
     <target name="build.all" depends="build.all.jars,build.all.tests"/>
 
     <target name="build.all.tests" >
-      <property name="all.test.dir" value="compat12, compat13, signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, javamail, rmiiiop, assembly, jta, samples"/>
+      <property name="all.test.dir" value="signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, javamail, rmiiiop, assembly, jta, samples"/>
       <elementappend original="${all.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="all.java.file"/>
 
       <echo message="Compiling:${all.java.file}"/>
       <javac fork="true" srcdir="${ts.home}/src" 
             destdir="${class.dir}" 
             includes="${all.java.file}"
-            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java"
             memoryInitialSize="100m"
             memoryMaximumSize="200m"
             debug="on" 
