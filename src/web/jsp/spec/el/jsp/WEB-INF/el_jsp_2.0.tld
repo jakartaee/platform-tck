@@ -32,6 +32,9 @@
     <attribute>
       <name>poundExpr</name>
       <required>true</required>
+      <deferred-value>
+        <type>java.lang.String</type>
+      </deferred-value>
     </attribute>
   </tag>
 </taglib>

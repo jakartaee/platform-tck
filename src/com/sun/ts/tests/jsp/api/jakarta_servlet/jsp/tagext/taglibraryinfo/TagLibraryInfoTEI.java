@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -124,9 +124,9 @@ public class TagLibraryInfoTEI extends BaseTCKExtraInfo {
     TagLibraryInfo info = this.getTagInfo().getTagLibrary();
     JspTestUtil.debug("[TagLibraryInfoTEI] In getRequiredVersion()");
     String version = info.getRequiredVersion();
-    if (!"2.0".equals(version)) {
+    if (!"3.0".equals(version)) {
       return "Test FAILED.  TagLibraryInfo.getRequiredVersion() returned an "
-          + "unexpected value.  Expected: '2.0', received: " + version;
+          + "unexpected value.  Expected: '3.0', received: " + version;
     }
     return null;
   }
