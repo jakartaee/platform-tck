@@ -152,7 +152,7 @@ for entry in `ls *.zip`; do
   date=`echo "$entry" | cut -d_ -f2`
   strippedEntry=`echo "$entry" | cut -d_ -f1`
   if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/eclipse-${strippedEntry}.zip
+    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/jakarta-${strippedEntry}.zip
   else
     mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/${strippedEntry}.zip
   fi
