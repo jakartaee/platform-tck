@@ -100,8 +100,8 @@ innr public abstract interface static Binary
 innr public abstract interface static BinaryStream
 innr public abstract interface static Text
 innr public abstract interface static TextStream
-meth public abstract void destroy()
-meth public abstract void init(jakarta.websocket.EndpointConfig)
+meth public void destroy()
+meth public void init(jakarta.websocket.EndpointConfig)
 
 CLSS public abstract interface static jakarta.websocket.Decoder$Binary<%0 extends java.lang.Object>
  outer jakarta.websocket.Decoder
@@ -143,8 +143,8 @@ innr public abstract interface static Binary
 innr public abstract interface static BinaryStream
 innr public abstract interface static Text
 innr public abstract interface static TextStream
-meth public abstract void destroy()
-meth public abstract void init(jakarta.websocket.EndpointConfig)
+meth public void destroy()
+meth public void init(jakarta.websocket.EndpointConfig)
 
 CLSS public abstract interface static jakarta.websocket.Encoder$Binary<%0 extends java.lang.Object>
  outer jakarta.websocket.Encoder
