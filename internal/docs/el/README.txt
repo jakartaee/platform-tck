@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the EL TCK 3.0 and related software against the EL 3.0 RI. For 
-more detailed instructions please refer to the EL 3.0 Users Guide.
+and run the EL TCK 4.0 and related software against the EL 4.0 RI. For 
+more detailed instructions please refer to the EL 4.0 Users Guide.
 
 -----------------------
 Installing the Software

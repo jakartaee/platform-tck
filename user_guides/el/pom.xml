@@ -29,7 +29,7 @@
     <artifactId>tck_el</artifactId>
     <packaging>pom</packaging>
     <version>4.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 3.0</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 4.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
