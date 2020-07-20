@@ -107,7 +107,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsf" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djsf.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.enterprise.cdi-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.inject-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.faces.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet.jsp-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.annotation-api.jar"
+    TCK_SPECIFIC_PROPS="-Djsf.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.enterprise.cdi-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.inject-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.faces.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet.jsp-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.annotation-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jsonp" == "$tck" ]
@@ -142,7 +142,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "el" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Del.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar"
+    TCK_SPECIFIC_PROPS="-Del.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "concurrency" == "$tck" ]
