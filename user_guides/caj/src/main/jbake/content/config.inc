@@ -52,8 +52,7 @@ environment variables:
   b.  Set the `endorsed.dirs`
   property to the location of the CI API jars for those technologies you
   wish to override that exist within the JDK.
-  c.  [[BABJHHAJ]] +
-  Depending on the annotations that are supported or unsupported in your
+  c.  [[BABJHHAJ]] Depending on the annotations that are supported or unsupported in your
   Jakarta Annotations implementation, the following properties
   should be set to `true` or `false` respectively. +
   By default, all of these annotations are supported in the Jakarta Annotations CI. +
