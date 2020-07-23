@@ -25,7 +25,7 @@
 <br>
 <CENTER>
 <h2>SOAP With Attachments API for Java(TM)<br>SAAJ - 1.3<br>
-				JavaDoc Assertion Detail 
+				JavaDoc Assertion Detail
 			</h2>
 </CENTER>
 <TABLE width="900" border="1" frame="box" cellpadding="5">
@@ -125,7 +125,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:9"></a><font size="1PT">SAAJ:JAVADOC:9</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.AttachmentPart.getContentId<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the value of the MIME header whose name is "Content-ID".
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -182,7 +182,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets all the values of the header identified by the given  String.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -203,9 +203,9 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:17"></a><font size="1PT">SAAJ:JAVADOC:17</font></TD><TD align="center" valign="center"><font size="1PT">InputStream</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.AttachmentPart.getRawContent<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the content of this AttachmentPart object as an   InputStream as if a call had been made to getContent and no  DataContentHandler had been registered for the   content-type of this AttachmentPart.
-                            
+
                                Note that reading from the returned InputStream would result in consuming   the data in the stream. It is the responsibility of the caller to reset  the InputStream appropriately before calling a Subsequent API. If a copy  of the raw attachment content is required then the #getRawContentBytes API   should be used instead.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -307,7 +307,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the content of this attachment part to that of the given   Object and sets the value of the Content-Type  header to the given type.
                              The type of the  Object should correspond to the value given for the  Content-Type. This depends on the particular  set of DataContentHandler objects in use.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -320,7 +320,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the MIME header whose name is "Content-ID" with the given value.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -441,7 +441,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new DetailEntry object with the given  name and adds it to this Detail object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -467,7 +467,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new DetailEntry object with the given  QName and adds it to this Detail object.
                              This method  is the preferred over the one using Name.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -560,8 +560,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:48"></a><font size="1PT">SAAJ:JAVADOC:48</font></TD><TD align="center" valign="center"><font size="1PT">MessageFactory</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.MessageFactory.newInstance<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new MessageFactory object that is an instance  of the default implementation (SOAP 1.1),   This method uses the following ordered lookup procedure to determine the MessageFactory implementation class to load:      Use the javax.xml.soap.MessageFactory system property.
-                                Use the properties file "lib/jaxm.properties" in the JRE directory. This configuration file is in standard  java.util.Properties format and contains the fully qualified name of the implementation class with the key being the  system property defined above.    Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API  will look for a classname in the file META-INF/services/javax.xml.soap.MessageFactory in jars available to the runtime.    Use the SAAJMetaFactory instance to locate the MessageFactory implementation class.  
-                            
+                                Use the properties file "lib/jaxm.properties" in the JRE directory. This configuration file is in standard  java.util.Properties format and contains the fully qualified name of the implementation class with the key being the  system property defined above.    Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API  will look for a classname in the file META-INF/services/javax.xml.soap.MessageFactory in jars available to the runtime.    Use the SAAJMetaFactory instance to locate the MessageFactory implementation class.
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -583,7 +583,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new MessageFactory object that is an instance  of the specified implementation.
                               May be a dynamic message factory,  a SOAP 1.1 message factory, or a SOAP 1.2 message factory. A dynamic  message factory creates messages based on the MIME headers specified  as arguments to the createMessage method.   This method uses the SAAJMetaFactory to locate the implementation class   and create the MessageFactory instance.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -659,7 +659,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns all of the values for the specified header as an array of  String objects.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -726,7 +726,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Replaces the current value of the first header entry whose name matches  the given name with the given value, adding a new header if no existing header  name matches.
                              This method also removes all matching headers after the first one.    Note that RFC822 headers can contain only US-ASCII characters.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -777,7 +777,7 @@
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the parent element of this Node object.
                               This method can throw an UnsupportedOperationException  if the tree is not kept in memory.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -808,7 +808,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the parent of this Node object to the given  SOAPElement object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -850,7 +850,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:76"></a><font size="1PT">SAAJ:JAVADOC:76</font></TD><TD align="center" valign="center"><font size="1PT">SAAJResult</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SAAJResult.SAAJResult<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a SAAJResult that will present results in the form  of a SAAJ tree that supports the default (SOAP 1.1) protocol.
-                            
+
                                  This kind of SAAJResult is meant for use in situations where the   results will be used as a parameter to a method that takes a parameter   whose type, such as SOAPElement, is drawn from the SAAJ   API. When used in a transformation, the results are populated into the   SOAPPart of a SOAPMessage that is created internally.  The SOAPPart returned by DOMResult#getNode()   is not guaranteed to be well-formed.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -864,7 +864,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a SAAJResult that will present results in the form  of a SAAJ tree that supports the specified protocol.
-                            
+
                              The   DYNAMIC_SOAP_PROTOCOL is ambiguous in this context and will  cause this constructor to throw an UnsupportedOperationException.     This kind of SAAJResult is meant for use in situations where the   results will be used as a parameter to a method that takes a parameter   whose type, such as SOAPElement, is drawn from the SAAJ   API. When used in a transformation the results are populated into the   SOAPPart of a SOAPMessage that is created   internally. The SOAPPart returned by DOMResult#getNode()   is not guaranteed to be well-formed.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -904,7 +904,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPBodyElement object with the specified  name and adds it to this SOAPBody object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -929,7 +929,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPBodyElement object with the specified  QName and adds it to this SOAPBody object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -953,7 +953,7 @@
 		Document
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
-                            
+
                             Adds the root node of the DOM org.w3c.dom.Document  to this SOAPBody object.
                                 Calling this method invalidates the document parameter.  The client application should discard all references to this Document  and its contents upon calling addDocument. The behavior  of an application that continues to use such references is undefined.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1000,8 +1000,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPFault object and adds it to  this SOAPBody object.
                              The type of the   SOAPFault will be a SOAP 1.1  or a SOAP 1.2   SOAPFault depending on the protocol  specified while creating the MessageFactory instance.    For SOAP 1.2 the faultCode parameter is the value of the   Fault/Code/Value element  and the faultString parameter   is the value of the Fault/Reason/Text element. For SOAP 1.1   the faultCode parameter is the value of the faultcode   element and the faultString parameter is the value of the faultstring   element.     A SOAPBody may contain at most one SOAPFault  child element.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1031,9 +1031,9 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPFault object and adds it to this   SOAPBody object.
                              The type of the SOAPFault   will be a SOAP 1.1 or a SOAP 1.2 SOAPFault depending on   the protocol specified while creating the MessageFactory   instance.    For SOAP 1.2 the faultCode parameter is the value of the   Fault/Code/Value element  and the faultString parameter   is the value of the Fault/Reason/Text element. For SOAP 1.1   the faultCode parameter is the value of the faultcode   element and the faultString parameter is the value of the faultstring   element.     A SOAPBody may contain at most one SOAPFault  child element.
-                            
-                            
-                            
+
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1062,8 +1062,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new  SOAPFault object and adds it to this   SOAPBody object.
                              The type of the SOAPFault  will be a SOAP 1.1 or a SOAP 1.2 SOAPFault depending on  the protocol specified while creating the MessageFactory  instance.    For SOAP 1.2 the faultCode parameter is the value of the   Fault/Code/Value element  and the faultString parameter   is the value of the Fault/Reason/Text element. For SOAP 1.1   the faultCode parameter is the value of the faultcode   element and the faultString parameter is the value of the faultstring   element.     In case of a SOAP 1.2 fault, the default value for the mandatory xml:lang   attribute on the Fault/Reason/Text element will be set to  java.util.Locale.getDefault()    A SOAPBody may contain at most one SOAPFault  child element.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1091,9 +1091,9 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPFault object and adds it to this SOAPBody  object.
                              The type of the SOAPFault  will be a SOAP 1.1 or a SOAP 1.2 SOAPFault depending on  the protocol specified while creating the MessageFactory  instance.    For SOAP 1.2 the faultCode parameter is the value of the   Fault/Code/Value element  and the faultString parameter   is the value of the Fault/Reason/Text element. For SOAP 1.1   the faultCode parameter is the value of the faultcode   element and the faultString parameter is the value of the faultstring   element.     In case of a SOAP 1.2 fault, the default value for the mandatory xml:lang   attribute on the Fault/Reason/Text element will be set to  java.util.Locale.getDefault()    A SOAPBody may contain at most one SOAPFault  child element
-                            
-                            
-                            
+
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1114,7 +1114,7 @@
 <TR>
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:96"></a><font size="1PT">SAAJ:JAVADOC:96</font></TD><TD align="center" valign="center"><font size="1PT">Document</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPBody.extractContentAsDocument<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
-                            
+
                             Creates a new DOM org.w3c.dom.Document and sets  the first child of this SOAPBody as it's document  element.
                              The child SOAPElement is removed as part of the  process.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1276,7 +1276,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Adds an attribute with the specified name and value to this  SOAPElement object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1303,7 +1303,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Adds an attribute with the specified name and value to this  SOAPElement object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1330,7 +1330,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPElement object initialized with the  given Name object and adds the new element to this  SOAPElement object.
                                 This method may be deprecated in a future release of SAAJ in favor of   addChildElement(javax.xml.namespace.QName)
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1356,7 +1356,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPElement object initialized with the given   QName object and adds the new element to this SOAPElement   object.
                              The  namespace, localname and prefix of the new   SOAPElement are all taken  from the qname argument.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1571,7 +1571,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the value of the attribute with the specified name.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1584,7 +1584,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the value of the attribute with the specified qname.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1592,9 +1592,9 @@
 <TR>
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:138"></a><font size="1PT">SAAJ:JAVADOC:138</font></TD><TD align="center" valign="center"><font size="1PT">Iterator</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPElement.getChildElements<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
-                            
+
                             Returns an Iterator over all the immediate child  Nodes of this element.
-                            
+
                              This includes javax.xml.soap.Text  objects as well as SOAPElement objects.    Calling this method may cause child Element,   SOAPElement and org.w3c.dom.Text nodes to be   replaced by SOAPElement, SOAPHeaderElement,   SOAPBodyElement or javax.xml.soap.Text nodes as  appropriate for the type of this parent node. As a result the calling   application must treat any existing references to these child nodes that   have been obtained through DOM APIs as invalid and either discard them or  refresh them with the values returned by this Iterator. This   behavior can be avoided by calling the equivalent DOM APIs. See  javax.xml.soap  for more details.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1607,11 +1607,11 @@
 		Name
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
-                            
+
                             Returns an Iterator over all the immediate child  Nodes of this element with the specified name.
-                            
+
                              All of these   children will be SOAPElement nodes.    Calling this method may cause child Element,   SOAPElement and org.w3c.dom.Text nodes to be   replaced by SOAPElement, SOAPHeaderElement,   SOAPBodyElement or javax.xml.soap.Text nodes as  appropriate for the type of this parent node. As a result the calling   application must treat any existing references to these child nodes that   have been obtained through DOM APIs as invalid and either discard them or  refresh them with the values returned by this Iterator. This   behavior can be avoided by calling the equivalent DOM APIs. See  javax.xml.soap  for more details.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1623,11 +1623,11 @@
 		QName
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
-                            
+
                             Returns an Iterator over all the immediate child  Nodes of this element with the specified qname.
-                            
+
                              All of these   children will be SOAPElement nodes.    Calling this method may cause child Element,   SOAPElement and org.w3c.dom.Text nodes to be   replaced by SOAPElement, SOAPHeaderElement,   SOAPBodyElement or javax.xml.soap.Text nodes as  appropriate for the type of this parent node. As a result the calling   application must treat any existing references to these child nodes that   have been obtained through DOM APIs as invalid and either discard them or  refresh them with the values returned by this Iterator. This   behavior can be avoided by calling the equivalent DOM APIs. See  javax.xml.soap  for more details.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1644,7 +1644,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:142"></a><font size="1PT">SAAJ:JAVADOC:142</font></TD><TD align="center" valign="center"><font size="1PT">QName</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPElement.getElementQName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the qname of this SOAPElement object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1653,7 +1653,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:143"></a><font size="1PT">SAAJ:JAVADOC:143</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPElement.getEncodingStyle<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the encoding style for this SOAPElement object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1696,7 +1696,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Removes the attribute with the specified name.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1709,7 +1709,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Removes the attribute with the specified qname.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1768,7 +1768,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the encoding style for this SOAPElement object  to one specified.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1793,8 +1793,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Create a SOAPElement object initialized with the  given Name object.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
@@ -1815,7 +1815,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Create a SOAPElement object initialized with the  given local name.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
@@ -1838,7 +1838,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Create a new SOAPElement object with the given  local name, prefix and uri.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
@@ -2013,8 +2013,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Initializes the cause field of this SOAPException  object with the given Throwable object.
-                            
-                            
+
+
                                 This method can be called at most once.  It is generally called from  within the constructor or immediately after the constructor has  returned a new SOAPException object.  If this SOAPException object was created with the  constructor #SOAPException(Throwable) or  #SOAPException(String,Throwable), meaning that its  cause field already has a value, this method cannot be  called even once.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2116,7 +2116,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a SOAPElement object initialized with the  given Name object.
                              The concrete type of the return value  will depend on the name given to the new SOAPElement. For   instance, a new SOAPElement with the name   "{http://www.w3.org/2003/05/soap-envelope}Envelope" would cause a   SOAPEnvelope that supports SOAP 1.2 behavior to be created.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2142,7 +2142,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a SOAPElement object initialized with the  given QName object.
                              The concrete type of the return value  will depend on the name given to the new SOAPElement. For   instance, a new SOAPElement with the name   "{http://www.w3.org/2003/05/soap-envelope}Envelope" would cause a   SOAPEnvelope that supports SOAP 1.2 behavior to be created.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2312,8 +2312,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:202"></a><font size="1PT">SAAJ:JAVADOC:202</font></TD><TD align="center" valign="center"><font size="1PT">SOAPFactory</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFactory.newInstance<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPFactory object that is an instance of  the default implementation (SOAP 1.1),   This method uses the following ordered lookup procedure to determine the SOAPFactory implementation class to load:      Use the javax.xml.soap.SOAPFactory system property.
-                                Use the properties file "lib/jaxm.properties" in the JRE directory. This configuration file is in standard  java.util.Properties format and contains the fully qualified name of the implementation class with the key being the  system property defined above.    Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API  will look for a classname in the file META-INF/services/javax.xml.soap.SOAPFactory in jars available to the runtime.    Use the SAAJMetaFactory instance to locate the SOAPFactory implementation class.  
-                            
+                                Use the properties file "lib/jaxm.properties" in the JRE directory. This configuration file is in standard  java.util.Properties format and contains the fully qualified name of the implementation class with the key being the  system property defined above.    Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API  will look for a classname in the file META-INF/services/javax.xml.soap.SOAPFactory in jars available to the runtime.    Use the SAAJMetaFactory instance to locate the SOAPFactory implementation class.
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2334,7 +2334,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPFactory object that is an instance of  the specified implementation, this method uses the SAAJMetaFactory to   locate the implementation class and create the SOAPFactory instance.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2385,7 +2385,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Appends or replaces a Reason Text item containing the specified  text message and an xml:lang derived from   locale.
-                             If a Reason Text item with this   xml:lang already exists its text value will be replaced  with text.   The locale parameter should not be null    Code sample:     SOAPFault fault = ...;  fault.addFaultReasonText("Version Mismatch", Locale.ENGLISH);  
+                             If a Reason Text item with this   xml:lang already exists its text value will be replaced  with text.   The locale parameter should not be null    Code sample:     SOAPFault fault = ...;  fault.addFaultReasonText("Version Mismatch", Locale.ENGLISH);
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2441,9 +2441,9 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:214"></a><font size="1PT">SAAJ:JAVADOC:214</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFault.getFaultActor<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the fault actor for this SOAPFault object.
-                            
+
                                 If this SOAPFault supports SOAP 1.2 then this call is  equivalent to #getFaultRole()
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2452,8 +2452,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:215"></a><font size="1PT">SAAJ:JAVADOC:215</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFault.getFaultCode<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the fault code for this SOAPFault object.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2463,7 +2463,7 @@
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the mandatory SOAP 1.1 fault code for this  SOAPFault object as a SAAJ Name object.
                               The SOAP 1.1 specification requires the value of the "faultcode"  element to be of type QName. This method returns the content of the  element as a QName in the form of a SAAJ Name object. This method  should be used instead of the getFaultCode method since  it allows applications to easily access the namespace name without  additional parsing.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2472,7 +2472,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:217"></a><font size="1PT">SAAJ:JAVADOC:217</font></TD><TD align="center" valign="center"><font size="1PT">QName</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFault.getFaultCodeAsQName<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the fault code for this  SOAPFault object as a QName object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2512,7 +2512,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the Reason Text associated with the given Locale.
                                If more than one such Reason Text exists the first matching Text is   returned
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2558,9 +2558,9 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:226"></a><font size="1PT">SAAJ:JAVADOC:226</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFault.getFaultString<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the fault string for this SOAPFault object.
-                                 If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:        String reason = null;     try {         reason = (String) getFaultReasonTexts().next();     } catch (SOAPException e) {}     return reason;  
-                            
-                            
+                                 If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:        String reason = null;     try {         reason = (String) getFaultReasonTexts().next();     } catch (SOAPException e) {}     return reason;
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2569,8 +2569,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:227"></a><font size="1PT">SAAJ:JAVADOC:227</font></TD><TD align="center" valign="center"><font size="1PT">Locale</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPFault.getFaultStringLocale<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the locale of the fault string for this SOAPFault   object.
-                                 If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:        Locale locale = null;     try {         locale = (Locale) getFaultReasonLocales().next();     } catch (SOAPException e) {}     return locale;  
-                            
+                                 If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:        Locale locale = null;     try {         locale = (Locale) getFaultReasonLocales().next();     } catch (SOAPException e) {}     return locale;
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2610,9 +2610,9 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets this SOAPFault object with the given fault actor.
-                            
+
                                 The fault actor is the recipient in the message path who caused the  fault to happen.    If this SOAPFault supports SOAP 1.2 then this call is  equivalent to #setFaultRole(String)
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2637,9 +2637,9 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets this SOAPFault object with the given fault code.
-                            
+
                                 Fault codes, which give information about the fault, are defined  in the SOAP 1.1 specification. A fault code is mandatory and must  be of type Name. This method provides a convenient  way to set a fault code. For example,     SOAPEnvelope se = ...;  // Create a qualified name in the SOAP namespace with a localName  // of "Client". Note that prefix parameter is optional and is null  // here which causes the implementation to use an appropriate prefix.  Name qname = se.createName("Client", null,                             SOAPConstants.URI_NS_SOAP_ENVELOPE);  SOAPFault fault = ...;  fault.setFaultCode(qname);    It is preferable to use this method over #setFaultCode(String).
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2664,11 +2664,11 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets this SOAPFault object with the given fault code.
-                            
+
                                It is preferable to use this method over #setFaultCode(Name).
-                            
-                            
-                            
+
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2693,11 +2693,11 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets this SOAPFault object with the give fault code.
-                            
+
                                 Fault codes, which given information about the fault, are defined in  the SOAP 1.1 specification. This element is mandatory in SOAP 1.1.  Because the fault code is required to be a QName it is preferable to  use the #setFaultCode(Name) form of this method.
-                            
-                            
-                            
+
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2772,8 +2772,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the fault string for this SOAPFault object  to the given string.
-                                If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:          addFaultReasonText(faultString, Locale.getDefault());  
-                            
+                                If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:          addFaultReasonText(faultString, Locale.getDefault());
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2799,8 +2799,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the fault string for this SOAPFault object  to the given string and localized to the given locale.
-                                If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:          addFaultReasonText(faultString, locale);  
-                            
+                                If this  SOAPFault is part of a message that supports SOAP 1.2 then  this call is equivalent to:          addFaultReasonText(faultString, locale);
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2826,7 +2826,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPHeaderElement object initialized with the  specified name and adds it to this SOAPHeader object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2851,7 +2851,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates a new SOAPHeaderElement object initialized with the  specified qname and adds it to this SOAPHeader object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2972,7 +2972,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:259"></a><font size="1PT">SAAJ:JAVADOC:259</font></TD><TD align="center" valign="center"><font size="1PT">Iterator</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPHeader.examineAllHeaderElements<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an Iterator over all the SOAPHeaderElement objects  in this SOAPHeader object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2986,8 +2986,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an Iterator over all the SOAPHeaderElement objects  in this SOAPHeader object  that have the specified actor.
                                An actor is a global attribute that indicates the intermediate  parties that should process a message before it reaches its ultimate  receiver. An actor receives the message and processes it before sending  it on to the next actor. The default actor is the ultimate intended  recipient for the message, so if no actor attribute is included in a  SOAPHeader object, it is sent to the ultimate receiver  along with the message body.    In SOAP 1.2 the env:actor attribute is replaced by the env:role   attribute, but with essentially the same semantics.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3001,9 +3001,9 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an Iterator over all the SOAPHeaderElement objects  in this SOAPHeader object  that have the specified actor and that have a MustUnderstand attribute  whose value is equivalent to true.
                                 In SOAP 1.2 the env:actor attribute is replaced by the env:role   attribute, but with essentially the same semantics.
-                            
-                            
-                            
+
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3012,7 +3012,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:262"></a><font size="1PT">SAAJ:JAVADOC:262</font></TD><TD align="center" valign="center"><font size="1PT">Iterator</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPHeader.extractAllHeaderElements<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an Iterator over all the SOAPHeaderElement objects  in this SOAPHeader object and detaches them  from this SOAPHeader object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3026,8 +3026,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an Iterator over all the SOAPHeaderElement objects  in this SOAPHeader object  that have the specified actor and detaches them  from this SOAPHeader object.
                                 This method allows an actor to process the parts of the  SOAPHeader object that apply to it and to remove  them before passing the message on to the next actor.    In SOAP 1.2 the env:actor attribute is replaced by the env:role   attribute, but with essentially the same semantics.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3036,9 +3036,9 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:264"></a><font size="1PT">SAAJ:JAVADOC:264</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPHeaderElement.getActor<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the uri of the actor attribute of this  SOAPHeaderElement.
-                            
+
                                If this SOAPHeaderElement supports SOAP 1.2 then this call is  equivalent to #getRole()
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3055,8 +3055,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:266"></a><font size="1PT">SAAJ:JAVADOC:266</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPHeaderElement.getRelay<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the boolean value of the relay attribute for this   SOAPHeaderElement
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3077,9 +3077,9 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the actor associated with this SOAPHeaderElement  object to the specified actor.
-                            
+
                              The default value of an actor is:           SOAPConstants.URI_SOAP_ACTOR_NEXT    If this SOAPHeaderElement supports SOAP 1.2 then this call is  equivalent to #setRole(String)
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3093,8 +3093,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the mustUnderstand attribute for this SOAPHeaderElement  object to be either true or false.
                                 If the mustUnderstand attribute is on, the actor who receives the  SOAPHeaderElement must process it correctly. This  ensures, for example, that if the SOAPHeaderElement  object modifies the message, that the message is being modified correctly.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3108,8 +3108,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the relay attribute for this SOAPHeaderElement to be   either true or false.
                                 The SOAP relay attribute is set to true to indicate that the SOAP header   block must be relayed by any node that is targeted by the header block   but not actually process it. This attribute is ignored on header blocks  whose mustUnderstand attribute is set to true or that are targeted at   the ultimate reciever (which is the default). The default value of this   attribute is false.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3189,8 +3189,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates an AttachmentPart object and populates it using  the given DataHandler object.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3205,8 +3205,8 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Creates an AttachmentPart object and populates it with  the specified data of the specified content type.
                              The type of the  Object should correspond to the value given for the  Content-Type.
-                            
-                            
+
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3219,9 +3219,9 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns an AttachmentPart object that is associated with an  attachment that is referenced by this SOAPElement or  null if no such attachment exists.
-                            
-                            
-                            
+
+
+
                              References can be made  via an href attribute as described in  SOAP Messages with Attachments,  or via a single Text child node containing a URI as  described in the WS-I Attachments Profile 1.0 for elements of schema  type ref:swaRef(ref:swaRef).  These two mechanisms must be supported.  The support for references via href attribute also implies that  this method should also be supported on an element that is an  xop:Include element (  XOP).  other reference mechanisms may be supported by individual  implementations of this standard. Contact your vendor for details.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3264,7 +3264,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:283"></a><font size="1PT">SAAJ:JAVADOC:283</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPMessage.getContentDescription<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Retrieves a description of this SOAPMessage object's  content.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3305,7 +3305,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:287"></a><font size="1PT">SAAJ:JAVADOC:287</font></TD><TD align="center" valign="center"><font size="1PT">SOAPBody</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPMessage.getSOAPBody<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the SOAP Body contained in this SOAPMessage object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3322,7 +3322,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:289"></a><font size="1PT">SAAJ:JAVADOC:289</font></TD><TD align="center" valign="center"><font size="1PT">SOAPHeader</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPMessage.getSOAPHeader<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets the SOAP Header contained in this SOAPMessage  object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3370,8 +3370,8 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:294"></a><font size="1PT">SAAJ:JAVADOC:294</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPMessage.saveChanges<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Updates this SOAPMessage object with all the changes that  have been made to it.
-                            
-                             This method is called automatically when  SOAPMessage#writeTo(OutputStream) is  called. However, if  changes are made to a message that was received or to one that has  already been sent, the method saveChanges needs to be  called explicitly in order to save the changes. The method saveChanges  also generates any changes that can be read back (for example, a  MessageId in profiles that support a message id). All MIME headers in a  message that is created for sending purposes are guaranteed to have  valid values only after saveChanges has been called.    In addition, this method marks the point at which the data from all  constituent AttachmentPart objects are pulled into the  message.  
+
+                             This method is called automatically when  SOAPMessage#writeTo(OutputStream) is  called. However, if  changes are made to a message that was received or to one that has  already been sent, the method saveChanges needs to be  called explicitly in order to save the changes. The method saveChanges  also generates any changes that can be read back (for example, a  MessageId in profiles that support a message id). All MIME headers in a  message that is created for sending purposes are guaranteed to have  valid values only after saveChanges has been called.    In addition, this method marks the point at which the data from all  constituent AttachmentPart objects are pulled into the  message.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3402,7 +3402,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the description of this SOAPMessage object's  content with the given description.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3416,8 +3416,8 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Associates the specified value with the specified property.
-                            
-                            
+
+
                              If there was  already a value associated with this property, the old value is  replaced.    The valid property names include  SOAPMessage#WRITE_XML_DECLARATION  and  SOAPMessage#CHARACTER_SET_ENCODING. All of these standard SAAJ  properties are prefixed by "javax.xml.soap". Vendors may also add  implementation specific properties. These properties must be prefixed  with package names that are unique to the vendor.    Setting the property WRITE_XML_DECLARATION to "true"  will cause an XML Declaration to be written out at the start of the SOAP  message. The default value of "false" suppresses this declaration.    The property CHARACTER_SET_ENCODING defaults to the value  "utf-8" which causes the SOAP message to be encoded using  UTF-8. Setting CHARACTER_SET_ENCODING to "utf-16"  causes the SOAP message to be encoded using UTF-16.    Some implementations may allow encodings in addition to UTF-8 and  UTF-16. Refer to your vendor's documentation for details.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3507,7 +3507,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:306"></a><font size="1PT">SAAJ:JAVADOC:306</font></TD><TD align="center" valign="center"><font size="1PT">Source</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPPart.getContent<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Returns the content of the SOAPEnvelope as a JAXP Source  object.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3524,7 +3524,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:308"></a><font size="1PT">SAAJ:JAVADOC:308</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPPart.getContentId<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Retrieves the value of the MIME header whose name is "Content-Id".
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3533,7 +3533,7 @@
 <TD align="center" valign="center"><a name="SAAJ:JAVADOC:309"></a><font size="1PT">SAAJ:JAVADOC:309</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.soap.SOAPPart.getContentLocation<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">
                             Retrieves the value of the MIME header whose name is "Content-Location".
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3575,7 +3575,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Gets all the values of the MimeHeader object  in this SOAPPart object that  is identified by the given String.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3621,7 +3621,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the content of the SOAPEnvelope object with the data   from the given Source object.
                              This Source   must contain a valid SOAP document.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3646,7 +3646,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the value of the MIME header named "Content-Id"  to the given String.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3659,7 +3659,7 @@
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Sets the value of the MIME header "Content-Location"  to the given String.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3674,7 +3674,7 @@
 	</font></TD><TD align="left" valign="center"><font size="1PT">
                             Changes the first header entry that matches the given header name  so that its value is the given value, adding a new header with the  given name and value if no  existing header is a match.
                              If there is a match, this method clears  all existing values for the first header that matches and sets the  given value instead. If more than one header has  the given name, this method removes all of the matching headers after  the first one.    Note that RFC822 headers can contain only US-ASCII characters.
-                            
+
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
