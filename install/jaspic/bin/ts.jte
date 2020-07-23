@@ -267,7 +267,6 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jaspic.provider.framework.jar:\
                ${jaspic.home}/modules/security.jar:\
                ${jaspic.home}/modules/security-ee.jar:\
-               ${jaspic.home}/modules/jakarta.security.auth.message-api.jar:\
                ${jaspic.home}/modules/kernel.jar:\
                ${jaspic.home}/modules/admin-cli.jar:\
                ${jaspic.home}/modules/annotation-framework.jar:\
@@ -291,7 +290,7 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jakarta.annotation-api.jar:\
                ${jaspic.home}/modules/webservices-api-osgi.jar:\
                ${jaspic.home}/modules/deployment-client.jar:\
-	       ${jaspic.home}/modules/jakartaee-api.jar
+	       ${jaspic.home}/modules/jakarta.authentication-api.jar
 
 ts.run.classpath=${jaspic.classes}:${ts.home}/lib/tsharness.jar:${ts.home}/lib/jaspic.jar:${ts.home}/lib/tssv.jar
 
@@ -471,7 +470,7 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #                    Note that on mac, classes.jar is used instead of rt.jar.
 #########################################################################
-sigTestClasspath=${jaspic.home}/modules/jakarta.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
+sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
