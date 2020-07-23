@@ -86,15 +86,15 @@
 			<property name="impl.deploy.timeout.multiplier" value="" />
 			<property name="jstl.db.name" value="" />
 			<property name="jstl.db.server" value="" />
-			<property name="jstl.db.port=" value="" />
-			<property name="jstl.db.url=" value="" />
-			<property name="jstl.db.driver=" value="" />
-			<property name="jstl.db.user=" value="" />
-			<property name="jstl.db.password=" value="" />
-			<property name="jdbc.classes=" value="" />
-			<property name="jspservlet.classes=" value="" />
-			<property name="jstl.classes=" value="" />
-			<property name="sigTestClasspath=" value="" />
+			<property name="jstl.db.port" value="" />
+			<property name="jstl.db.url" value="" />
+			<property name="jstl.db.driver" value="" />
+			<property name="jstl.db.user" value="" />
+			<property name="jstl.db.password" value="" />
+			<property name="jdbc.classes" value="" />
+			<property name="jspservlet.classes" value="" />
+			<property name="jstl.classes" value="" />
+			<property name="sigTestClasspath" value="" />
 		</props.sanitizer>
 	</target>
 
