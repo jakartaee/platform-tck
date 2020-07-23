@@ -104,8 +104,8 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   l. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the VI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -203,7 +203,7 @@ ${jaxws.lib.ri}/mimepull.jar
 --
 +
 The `jaxws.classes.ri` settings if using the Apache Tomcat web container
-with the Standalone JAX-WS 2.3 RI would be as follows:
+with the Standalone JAX-WS 3.0 RI would be as follows:
 +
 --
 [source,oac_no_warn]
@@ -248,7 +248,7 @@ impl.ri.port=${webServerPort.2}
 --
 +
 The RI settings using the Apache Tomcat web container with the
-Standalone JAX-WS 2.3 RI would be as follows:
+Standalone JAX-WS 3.0 RI would be as follows:
 +
 --
 [source,oac_no_warn]
@@ -285,8 +285,8 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   l. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the RI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -353,7 +353,7 @@ installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
@@ -439,14 +439,14 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   t. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the VI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
   u. If using Java SE 8 or above, verify that the property
   `endorsed.dirs.ri` is set to the location of the RI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -497,7 +497,7 @@ server environments for the RI and VI.
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
@@ -520,7 +520,7 @@ cd <TS_HOME>/bin
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
@@ -604,7 +604,7 @@ Enter the following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch 
+cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
 <TS_HOME>/tools/ant/bin/ant -Dkeywords=forward deploy
 ----
 
@@ -616,7 +616,7 @@ Enter the following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api 
+cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
 <TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse deploy
 ----
 

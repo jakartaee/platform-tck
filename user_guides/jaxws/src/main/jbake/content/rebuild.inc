@@ -13,7 +13,7 @@ need to be changed or removed.
 B Rebuilding the JAX-WS TCK Using the Vendor's Toolset
 ------------------------------------------------------
 
-The JAX-WS 2.3 specification requires that each implementation has a way
+The JAX-WS 3.0 specification requires that each implementation has a way
 to generate WSDL from Java, and to generate Java from WSDL. To verify
 that implementations do this in a compatible manner, half of the tests
 in the JAX-WS TCK require that you first rebuild them using your
@@ -88,10 +88,10 @@ the above two tasks.
   a.  Verify that the property `endorsed.dirs` is set to the location of
   the VI API jars for those technologies you wish to override. Java SE 8
   contains an implementation of JAX-WS 2.2 which will conflict with JAX-WS
-  2.3, therefore this property must be set so that JAX-WS 2.3 will be used
+  3.0, therefore this property must be set so that JAX-WS 3.0 will be used
   during the building of tests and during test execution.
   b.  Set the `java.endorsed.dirs` property in the `ANT_OPTS` environment
-  variable to point to the location in which only the JAX-WS 2.3 API jars
+  variable to point to the location in which only the JAX-WS 3.0 API jars
   exist; for example:
 +
 --
@@ -599,7 +599,7 @@ the default package name algorithm defined in the specification.
 
 |`-target` |Generate code for the specified version of the JAX-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 2.3.
+compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 
 |`-quiet` |Suppress `wsimport` output.
 
@@ -703,7 +703,7 @@ See the `wsimport_catalog` sample for more information. |`-catalog`
 
 |`target` |Generate code for the specified version of the JAX-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 2.3.
+compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 |`-target`
 
 |`quiet` |Suppress `wsimport` output. |`-quiet`
@@ -804,5 +804,3 @@ compiles with debug information on.
 The above example generates portable artifacts for `AddNumbers.wsdl`,
 stores `.java` files in the destination directory, and stores `.class`
 files in the same directory.
-
-

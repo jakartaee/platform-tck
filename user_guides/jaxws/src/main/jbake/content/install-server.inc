@@ -10,21 +10,21 @@ This software can be obtained from the Java Licensee Engineering Web
 site. Refer to any installation instructions that accompany the software
 for additional information.
 
-.  Install the Java EE 8 RI software which contains the JAX-WS 2.3
-Reference Implementation or install the Standalone JAX-WS 2.3 RI
+.  Install the Java EE 8 RI software which contains the JAX-WS 3.0
+Reference Implementation or install the Standalone JAX-WS 3.0 RI
 software. +
-The Java EE 8 RI software contains the JAX-WS 2.3 Reference
+The Java EE 8 RI software contains the JAX-WS 3.0 Reference
 Implementation and is used to validate your initial configuration and
-setup of the JAX-WS TCK 2.3, as well as to run the reverse tests which
+setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which
 are explained further in link:config.html#GBFVV[Chapter 4, "Setup and
 Configuration"] and link:rebuild.html#GCLIZ[Appendix B]. +
-The Standalone JAX-WS 2.3 RI software contains the JAX-WS 2.3 Reference
+The Standalone JAX-WS 3.0 RI software contains the JAX-WS 3.0 Reference
 Implementation and can be used with any web container that meets the
-minimum requirements for a container as defined in the JAX-WS 2.3
+minimum requirements for a container as defined in the JAX-WS 3.0
 Specification such as the Apache Tomcat web container. +
-If you use the Standalone JAX-WS 2.3 RI software with the Apache Tomcat
+If you use the Standalone JAX-WS 3.0 RI software with the Apache Tomcat
 web container, you need to copy the JAR files/classes from the
-standalone JAX-WS 2.3 RI software to the correct location under the
+standalone JAX-WS 3.0 RI software to the correct location under the
 Apache Tomcat web container. Assuming the Apache Tomcat web container is
 installed under `${tomcat.home}`, you would copy the JAR files/classes
 as follows:
@@ -43,11 +43,11 @@ cp commonj.sdo.jar eclipselink.jar FastInfoset.jar gmbal-api-only.jar \
     stax2-api.jar stax-ex.jar streambuffer.jar tsharness.jar \
     woodstox-core-asl.jar ${tomcat.home}/shared/lib
 
-cp jaxwstck/lib/tsharness.jar jaxwstck/lib/jaxwstck.jar ${tomcat.home}/shared/lib 
+cp jaxwstck/lib/tsharness.jar jaxwstck/lib/jaxwstck.jar ${tomcat.home}/shared/lib
 ----
 --
 +
 If, instead of using Tomcat, you are using the Java EE 8 Reference
-Implementation, which already includes JAX-WS 2.3, you only need to copy
+Implementation, which already includes JAX-WS 3.0, you only need to copy
 the `jaxwstck/lib/tsharness.jar` and `jaxwstck/lib/jaxwstck.jar` TCK JAR
 files to the domain's `lib/ext` directory.
