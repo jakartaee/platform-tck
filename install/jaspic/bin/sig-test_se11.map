@@ -15,12 +15,12 @@
 #
 
 ###############################################################
-# The signature test mapping file for the JavaEE TCK.  This file
+# The signature test mapping file for the JakartaEE TCK.  This file
 # should be formatted as a standard java properties file.  The
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
 #
-# For updates to this file when the JavaEE spec gets updated,
+# For updates to this file when the JakartaEE spec gets updated,
 # as a good rule of thumb, we pull out any packages that end
 # up as being included with the J2SE. So if any of the packages
 # listed below ends up being incorporated into J2SE in the future, 
@@ -42,7 +42,7 @@
 #       jakarta.servlet.jsp signature file can vary independent
 #       of the jakarta.servlet signature file.
 #
-# Command used to record the JavaEE signatures in reflective mode
+# Command used to record the JakartaEE signatures in reflective mode
 #
 # $TS_HOME/bin/ant -f record-build.xml \
 #   -Dsig.source=/appserver8/lib/jmac-api.jar:/appserver8/lib/javaee.jar:/java/lib/rt.jar \
@@ -53,5 +53,5 @@
 ###############################################################
 
 
-# JASPIC 1.1 (Java Authentication SPI for Containters - JSR-196)
-jakarta.security.auth.message=1.1_se11
+# Authentication 2.0
+jakarta.security.auth.message=2.0_se11

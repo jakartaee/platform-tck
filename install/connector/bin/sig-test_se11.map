@@ -52,5 +52,5 @@
 #
 ###############################################################
 
-# Connector 1.7 (JSR-322)
-jakarta.resource=1.7_se11
+# Connector 2.0 (JSR-322)
+jakarta.resource=2.0_se11
