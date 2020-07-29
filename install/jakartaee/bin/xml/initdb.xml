@@ -528,7 +528,6 @@
              onerror="continue" >
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sql"/>
         </sql>
-     <!--   <antcall target="configure.interop" /> -->
     </target>
 
 
@@ -552,27 +551,6 @@
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
         </sql>
     </target>
-
-    <!--
-        Create the interop CMP tables if they will not be created by
-        the Java EE RI at deploy time.
-    -->
-
-<!--
-    <target name="configure.interop" if="cmpNeeded">
-        <echo message="DB URL: ${db.url}"/>
-        <sql driver="${db.driver}"
-             url="${db.url}"
-             userid="${db.user}"
-             password="${db.password}"
-             classpath="${db.classes}"
-             delimiter="${db.delimiter}"
-             autocommit="true"
-             onerror="continue" >
-             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
-        </sql>
-    </target>
--->
 
     <!-- Determine if we need to worry about creating CMP tables or not  -->
 
