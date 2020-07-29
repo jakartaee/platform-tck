@@ -1,8 +1,5 @@
 #Signature file v4.3
-#Version 1.0_se11
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Version 2.0_se11
 
 CLSS public abstract interface jakarta.json.bind.Jsonb
 intf java.lang.AutoCloseable

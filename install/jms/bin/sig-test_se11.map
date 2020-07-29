@@ -14,16 +14,12 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-#
-# $Id$
-#
 
 ###############################################################
 #
 # IMPORTANT:  This sig-test.map file for use with JDK 11 only!
-#             JMS 2.0 is supported on JDK 11 and above!
 #
-# The signature test mapping file for the JMS 2.0 TCK.  This file
+# The signature test mapping file for the JMS 3.0 TCK.  This file
 # should be formatted as a standard java properties file.  The
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
@@ -32,11 +28,11 @@
 # with the following format:
 # <package>.sig_<technology_version><JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    jakarta.jms.sig_2.0_se11:
+#    jakarta.jms.sig_3.0_se11:
 #      <package> = jakarta.jms
-#      <technology_version> = 2.0  (for JMS) 
+#      <technology_version> = 3.0  (for JMS) 
 #      <JavaSE_version_these_work_with> = JDK 11 and above
 #
 # For this release valid versions are:  "_se11".
 ###############################################################
-jakarta.jms=2.0_se11
+jakarta.jms=3.0_se11

@@ -14,15 +14,12 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-#
-# $Id$
-#
 
 ###############################################################
 #
 # IMPORTANT:  this sig-test.map file for use with JDK 11 only!
 #
-# The signature test mapping file for the CONCURRENCY 1.0 TCK.
+# The signature test mapping file for the CONCURRENCY 2.0 TCK.
 # This file should be formatted as a standard java properties file.
 # The name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
@@ -31,12 +28,12 @@
 # with the following format:
 # <package>.sig_<technology_version>_<JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.enterprise.concurrent.sig_1.0_se11:
-#      <package> = javax.enterprise.concurrent
-#      <technology_version> = 1.0  (for CONCURRENCY)
+#    jakarta.enterprise.concurrent.sig_2.0_se11:
+#      <package> = jakarta.enterprise.concurrent
+#      <technology_version> = 2.0  (for CONCURRENCY)
 #      <JavaSE_version_these_work_with> = se11
 #
 # This sig-test.map file is designed to be run using JDK 11 only.
 #
 ###############################################################
-jakarta.enterprise.concurrent=1.0_se11
+jakarta.enterprise.concurrent=2.0_se11

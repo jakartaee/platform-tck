@@ -23,7 +23,7 @@
 # IMPORTANT:  this sig-test.map file for use with JDK 11 only!
 #             Using this file with other version of JDK will yield errors.
 #
-# The signature test mapping file for the JSON-P 1.1 TCK.  This file
+# The signature test mapping file for the JSON-P 2.0 TCK.  This file
 # should be formatted as a standard java properties file.  The
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
@@ -32,7 +32,7 @@
 # with the following format:
 # <package>.sig_<technology_version>_<JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    jakarta.json.sig_1.1_se11:
+#    jakarta.json.sig_2.0_se11:
 #    jakarta.json.sig_1.1_se9:
 #      <package> = jakarta.json
 #      <technology_version> = 1.1  (for JSON-P) 

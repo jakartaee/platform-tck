@@ -38,5 +38,5 @@
 ###############################################################
 
 # Persistence packages
-jakarta.persistence=2.2_se11
+jakarta.persistence=3.0_se11
 

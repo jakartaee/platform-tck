@@ -22,5 +22,5 @@
 #
 ###############################################################
 
-# JTA 1.3 packages
-jakarta.transaction=1.3_se11
+# JTA 2.0 packages
+jakarta.transaction=2.0_se11

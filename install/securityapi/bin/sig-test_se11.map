@@ -45,5 +45,5 @@
 #
 ###############################################################
 
-# Jakarta EE Security API 1.0 Specification (JSR-375)
-jakarta.security.enterprise=1.0_se11
+# Jakarta EE Security API 2.0 Specification (JSR-375)
+jakarta.security.enterprise=2.0_se11
