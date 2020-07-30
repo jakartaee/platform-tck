@@ -1,4 +1,4 @@
-TCK Coverage Document for JSR-369 Java Servlet 4.0 Specification
+TCK Coverage Document for the Jakarta Servlet 5.0 Specification
 
 
 TCK Components:
@@ -70,7 +70,7 @@ Coverage
 Quality Assurance
 -----------------
 - The TCK was run using representative configurations of the JavaEE Reference
-  Implementation on the following platforms, note all platforms use Java SE 7:
+  Implementation on the following platforms, note all platforms use Java SE 8:
    * Ubuntu 12.10
    * Fedora 18
    * openSUSE 12.2
@@ -81,6 +81,7 @@ Quality Assurance
    * Oracle Linux Server release 6.4
    * Windows XP Professional
    * Windows 2008
+   * Alpine Linux v3.12
 
 - Code quality was demonstrated through the use of code reviews and inspections
 - User's Guide was constructed from the standard CTS User's Guide template
@@ -89,10 +90,10 @@ Quality Assurance
 
 Justification of Adequacy
 -------------------------
-The Servlet TCK Version 4.0 provides a comprehensive set of tests to ensure
-all implementations of the Servlet 4.0 specification are compatible.  As with all
+The Jakarta Servlet TCK Version 5.0 provides a comprehensive set of tests to ensure
+all implementations of the Servlet 5.0 specification are compatible.  As with all
 TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
-the CTS may not have tests for all assertions in the Servlet 4.0 specification, all
+the CTS may not have tests for all assertions in the Jakarta Servlet 5.0 specification, all
 implementations must be compatible with the specification.
 
 Untested assertions are due to the effects of late specification changes, and
