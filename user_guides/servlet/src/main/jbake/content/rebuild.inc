@@ -17,7 +17,7 @@ B Packaging the Test Applications in Servlet-Compliant WAR Files With VI-Specifi
 
 The {TechnologyShortName} {TechnologyVersion} specification specifies
 how {TechnologyShortName} applications are to be published in a Java SE
-environment, JAX-WS endpoint, or Servlet–compliant Web container.
+environment, Jakarta XML Web Services endpoint, or Servlet–compliant Web container.
 
 {TechnologyShortName} TCK test application classes that are to be
 published in a Java SE environment are located under
@@ -97,7 +97,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>servlet_adaptor</servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -132,7 +132,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
             org/glassfish/jersey/servlet/ServletContainer
         </servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
