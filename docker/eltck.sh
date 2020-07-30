@@ -20,6 +20,10 @@ echo "ANT_HOME in eltck.sh $ANT_HOME"
 echo "PATH in eltck.sh $PATH"
 echo "ANT_OPTS in eltck.sh $ANT_OPTS"
 
+if [ -f "/etc/os-release" ]; then
+  cat "/etc/os-release";
+fi
+
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*eltck*.zip 1> /dev/null 2>&1; then
