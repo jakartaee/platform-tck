@@ -399,7 +399,7 @@ if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "s
 fi
 ### populateMailbox for javamail suite - End ###
 
-if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "servlet" || $test_suite == "appclient" || $test_suite == "ejb" || $test_suite == "jsp" ]]; then
+if [[ $test_suite == javamail* || $test_suite == samples* || $test_suite == servlet* || $test_suite == appclient* || $test_suite == ejb* || $test_suite == jsp* ]]; then
   ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Ddeployment.resource.validation=false
 fi
 
