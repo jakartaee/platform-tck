@@ -21,6 +21,10 @@ echo "ANT_HOME in jtatck.sh $ANT_HOME"
 echo "PATH in jtatck.sh $PATH"
 echo "ANT_OPTS in jtatck.sh $ANT_OPTS"
 
+if [ -f "/etc/os-release" ]; then
+  cat "/etc/os-release";
+fi
+
 cd ${TCK_HOME}
 if ls ${WORKSPACE}/standalone-bundles/*jtatck*.zip 1> /dev/null 2>&1; then
   echo "Using stashed bundle for jtatck created during the build phase"
