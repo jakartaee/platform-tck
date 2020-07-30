@@ -17,7 +17,7 @@
 
 -->
 
-<webservices xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xmlns:wsdl="http://mtomservice.org/wsdl" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/javaee_web_services_1_4.xsd">
+<webservices xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4" xmlns:wsdl="http://mtomservice.org/wsdl" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/javaee_web_services_1_4.xsd">
   <webservice-description>
     <webservice-description-name>MTOMTestService</webservice-description-name>
     <wsdl-file>WEB-INF/wsdl/MTOMTestService.wsdl</wsdl-file>
