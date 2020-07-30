@@ -113,7 +113,7 @@ cp ts.save $TS_HOME/bin/ts.jte
 
 printf  "
 ******************************************************
-* Installing CI/RI (Glassfish 5.1)                   *
+* Installing CI/RI (Glassfish 6.0)                   *
 ******************************************************
 
 "
