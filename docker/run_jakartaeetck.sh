@@ -27,6 +27,10 @@ fi
 echo "TEST_SUITE:${test_suite}."
 echo "VEHICLE:${vehicle}."
 
+if [ -f "/etc/os-release" ]; then 
+  cat "/etc/os-release"; 
+fi
+
 if [ -z "${test_suite}" ]; then
   echo "Please supply a valid test_suite as argument"
   exit 1
