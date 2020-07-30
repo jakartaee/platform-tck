@@ -1,5 +1,5 @@
 TCK Coverage Document for JSR-341: 
-Expression Language 3.0 Specification
+Expression Language 4.0 Specification
 
 TCK Components:
 ---------------
@@ -29,7 +29,7 @@ Terminology of Metrics
 Coverage
 --------
 - Total  assertions from the 
-  Expression Language 3.0 Specification, and Javadoc:
+  Expression Language 4.0 Specification, and Javadoc:
 
      212 specification assertions
    + 344 API assertions

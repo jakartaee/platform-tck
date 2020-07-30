@@ -27,7 +27,7 @@
 	<technology>EL</technology>
 	<id>EL</id>
 	<name>Expression Language</name>
-	<version>3.0</version>
+	<version>4.0</version>
 	<location-names>
 		<chapters>
 			<chapter id="1" name="Language Syntax and Semantics">

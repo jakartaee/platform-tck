@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the EL TCK 3.0 and related software against the EL 3.0 RI. For 
-more detailed instructions please refer to the EL 3.0 Users Guide.
+and run the EL TCK 4.0 and related software against the EL 4.0 Compatible Implementation(CI). For 
+more detailed instructions please refer to the EL 4.0 Users Guide.
 
 -----------------------
 Installing the Software
@@ -8,8 +8,8 @@ Installing the Software
 Before you can run the EL TCK tests, you need to install
 and set up the following software components:
 
-1) Java 8 or Java 11 
-2) EL RI Version 4.0
+1) Java 8 
+2) EL Compatible Implementation Version 4.0
 3) EL TCK Version 4.0
 
 1. Download and install Java 8 or Java 11 software.
@@ -18,7 +18,7 @@ and set up the following software components:
    cd /java
    unzip <java-zip-bundle>
 
-2. Download and install the EL 4.0 Reference Implementation/jarfile.
+2. Download and install the EL 4.0 Compatible Implementation/jarfile.
 
    mkdir /ri
    cd /ri
@@ -33,7 +33,7 @@ and set up the following software components:
 -----------------------------------------
 Setup and Configuration of the EL TCK
 -----------------------------------------
-1. Configure the EL TCK to run against the EL RI. Set the following
+1. Configure the EL TCK to run against the EL Compatible Implementation. Set the following
    variables in your shell environment.
 
    setenv JAVA_HOME /java
@@ -51,7 +51,7 @@ Setup and Configuration of the EL TCK
 Executing the EL TCK Tests
 ------------------------------
 At this point we are ready to run the EL TCK tests against the EL 4.0
-Reference Implementation.
+Compatible Implementation.
 
 1. Execute and run the EL TCK tests.
 

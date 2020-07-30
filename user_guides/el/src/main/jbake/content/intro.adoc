@@ -184,8 +184,7 @@ endif::end-to-end-tests[]
 
 The {TechnologyShortName} TCK tests run on the following platforms:
 
-* Microsoft Windows 10
-* Oracle Linux 7.1
+* CentOS 7
 
 [[GBFSA]][[javatest-harness]]
 
