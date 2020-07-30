@@ -44,7 +44,7 @@ fi
 
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 5.0.1 ..."
+echo "Download and install GlassFish 6.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1

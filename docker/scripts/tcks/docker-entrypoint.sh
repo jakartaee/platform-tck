@@ -30,7 +30,7 @@ echo "ANT_HOME $ANT_HOME"
 echo "PATH $PATH"
 echo "TCK_HOME $TCK_HOME"
 
-echo "Download and install GlassFish 5.0.1 ..."
+echo "Download and install GlassFish 6.0.0 ..."
 if [ -z "$GLASSFISH_BUNDLE_URL" ]; then
   wget http://<host>/latest-glassfish.zip
 else
