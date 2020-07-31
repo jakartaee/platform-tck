@@ -66,7 +66,7 @@ environment variables:
   `impl.vi, impl.vi.deploy.dir, impl.vi.host, and impl.vi.port` properties
   to the supported web container, deploy directory, host and port for the
   JAX-WS Compatible Implementation. +
-  The supported web container for the JAX-WS Compatible Implementation is the Jakarta EE 9 Compatible Implementation. So
+  The supported web container for the JAX-WS Compatible Implementation is the Jakarta EE 9 Compatible Platform. So
   the default settings for these properties are as follows:
 +
 --
@@ -181,7 +181,7 @@ environment variables:
   d.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files. +
   As an example, the `ts.jte` file contains the property
-  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9 Compatible Implementation uses. The `jaxws.classes.ri` settings for the Jakarta EE 9 Compatible Implementation web
+  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9 Compatible Platform uses. The `jaxws.classes.ri` settings for the Jakarta EE 9 Compatible Platform web
   container are as follows:
 +
 --
@@ -343,7 +343,7 @@ path entries (`;` on Windows, `:` on UNIX/Linux).
 
 On Windows, you must escape any backslashes with an extra backslash in
 path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Implementation
+slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Platform
 installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
 `C:/JavaEE8`.
 
@@ -545,8 +545,8 @@ and Vendor-built archives to the configured web container or container
 by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`) is
-written to be used with the Jakarta EE 9 Compatible Implementation. If the Vendor chooses not to
-use Jakarta EE 9 Compatible Implementation with their implementation, or chooses to rebuild the
+written to be used with the Jakarta EE 9 Compatible Platform. If the Vendor chooses not to
+use Jakarta EE 9 Compatible Platform with their implementation, or chooses to rebuild the
 JAX-WS TCK tests using some other method than the infrastructure
 provided, they should create their own version handler file to provide
 this functionality.

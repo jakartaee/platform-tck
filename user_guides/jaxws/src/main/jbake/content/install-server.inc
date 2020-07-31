@@ -1,18 +1,18 @@
-.  Install the Jakarta EE 9 Compatible Implementation software (the servlet Web container used
+.  Install the Jakarta EE 9 Compatible Platform software (the servlet Web container used
 for running the {TechnologyShortName} TCK with the
 {TechnologyShortName} {TechnologyVersion} Compatible Implementation), if it is not already
 installed. +
 Download and install the Servlet Web container with the
 {TechnologyShortName} {TechnologyVersion} Compatible Implementation used for running the
-{TechnologyShortName} TCK {TechnologyVersion}, represented by the Jakarta EE 9 Compatible Implementation.
+{TechnologyShortName} TCK {TechnologyVersion}, represented by the Jakarta EE 9 Compatible Platform.
 This software can be obtained from the Java Licensee Engineering Web
 site. Refer to any installation instructions that accompany the software
 for additional information.
 
-.  Install the Jakarta EE 9 Compatible Implementation software which contains the JAX-WS 3.0
+.  Install the Jakarta EE 9 Compatible Platform software which contains the JAX-WS 3.0
 Reference Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
 software. +
-The Jakarta EE 9 Compatible Implementation software contains the JAX-WS 3.0 Reference
+The Jakarta EE 9 Compatible Platform software contains the JAX-WS 3.0 Reference
 Implementation and is used to validate your initial configuration and
 setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which
 are explained further in link:config.html#GBFVV[Chapter 4, "Setup and
