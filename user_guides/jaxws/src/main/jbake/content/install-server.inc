@@ -1,30 +1,29 @@
-.  Install the Jakarta EE 9 RI software (the servlet Web container used
+.  Install the Jakarta EE 9 Compatible Implementation software (the servlet Web container used
 for running the {TechnologyShortName} TCK with the
-{TechnologyShortName} {TechnologyVersion} RI), if it is not already
+{TechnologyShortName} {TechnologyVersion} Compatible Implementation), if it is not already
 installed. +
 Download and install the Servlet Web container with the
-{TechnologyShortName} {TechnologyVersion} RI used for running the
-{TechnologyShortName} TCK {TechnologyVersion}, represented by the Java
-EE 8 RI.
+{TechnologyShortName} {TechnologyVersion} Compatible Implementation used for running the
+{TechnologyShortName} TCK {TechnologyVersion}, represented by the Jakarta EE 9 Compatible Implementation.
 This software can be obtained from the Java Licensee Engineering Web
 site. Refer to any installation instructions that accompany the software
 for additional information.
 
-.  Install the Jakarta EE 9 RI software which contains the JAX-WS 3.0
-Reference Implementation or install the Standalone JAX-WS 3.0 RI
+.  Install the Jakarta EE 9 Compatible Implementation software which contains the JAX-WS 3.0
+Reference Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
 software. +
-The Jakarta EE 9 RI software contains the JAX-WS 3.0 Reference
+The Jakarta EE 9 Compatible Implementation software contains the JAX-WS 3.0 Reference
 Implementation and is used to validate your initial configuration and
 setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which
 are explained further in link:config.html#GBFVV[Chapter 4, "Setup and
 Configuration"] and link:rebuild.html#GCLIZ[Appendix B]. +
-The Standalone JAX-WS 3.0 RI software contains the JAX-WS 3.0 Reference
+The Standalone JAX-WS 3.0 Compatible Implementation software contains the JAX-WS 3.0 Reference
 Implementation and can be used with any web container that meets the
 minimum requirements for a container as defined in the JAX-WS 3.0
 Specification such as the Apache Tomcat web container. +
-If you use the Standalone JAX-WS 3.0 RI software with the Apache Tomcat
+If you use the Standalone JAX-WS 3.0 Compatible Implementation software with the Apache Tomcat
 web container, you need to copy the JAR files/classes from the
-standalone JAX-WS 3.0 RI software to the correct location under the
+standalone JAX-WS 3.0 Compatible Implementation software to the correct location under the
 Apache Tomcat web container. Assuming the Apache Tomcat web container is
 installed under `${tomcat.home}`, you would copy the JAR files/classes
 as follows:

@@ -64,7 +64,7 @@ To be able to run the entire test suite in a single run, you must have
 your implementation and the Reference Implementation configured
 simultaneously. Please see link:config.html#GCLIK[Configuring Your
 Environment to Simultaneously Run the JAX-WS TCK Against the VI and the
-JAX-WS RI] for more information.
+JAX-WS Compatible Implementation] for more information.
 
 [[GCLLW]][[b.2-rebuilding-the-jax-ws-tck-classes-using-ant]]
 
@@ -145,7 +145,7 @@ the rebuilding of a single test directory.
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest`
 directory.
 2.  Run `<TS_HOME>/tools/ant/bin/ant llc`. +
-The following is a listing of classes built using the JAX-WS RI.
+The following is a listing of classes built using the JAX-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -169,7 +169,7 @@ drwxr-xr-x   3 root root     512 Apr 12 08:31 generated_sources/
 --
 +
 3.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
-This shows you the listing of archives built using the JAX-WS RI.
+This shows you the listing of archives built using the JAX-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -221,7 +221,7 @@ drwxr-xr-x   3 root root     512 Apr 12 12:01 generated_sources/
 --
 +
 6.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
-This shows the listing of all archives and JAX-WS RI deployment plan
+This shows the listing of all archives and JAX-WS Compatible Implementation deployment plan
 descriptors for this test directory. Those built using your
 implementation are prepended with `vi_built_`.
 +
