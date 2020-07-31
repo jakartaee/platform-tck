@@ -64,8 +64,7 @@ h4 {  font-style: italic; color: #000099}
         <p>The Jakarta XML Web Services TCK tests run on the following platforms:</p>
 
         <ul>
-          <li>Oracle Linux 7.1</li>
-          <li>Windows 10</li>
+          <li>CentOS 7</li>
         </ul>
 
         <p>In the instructions in this document, variables in angle brackets need to be expanded for each platform. For example, <code>&lt;TS_HOME&gt;</code> becomes <code>$TS_HOME</code> on Solaris/Linux and <code>%TS_HOME%</code> on Windows 10. In addition, the forward slashes (<code>/</code>) used in all of the examples need to be replaced with backslashes (<code>\</code>) for Windows XP.</p>
@@ -173,27 +172,27 @@ h4 {  font-style: italic; color: #000099}
         <p>Follow the steps below to configure Apache Tomcat 10 for Jakarta XML Web Services TCK 3.0</p>
 
         <ul>
-          <li>Install Apache Tomcat 8.5.x to /apache-tomcat-10.0.x</li>
+          <li>Install Apache Tomcat 10.0.x to /apache-tomcat-10.0.x</li>
           <li>Install Jakarta XML Web Services RI 3.0.0 to /jaxws-ri</li>
           <li>Install Jakarta XML Web Services TCK 3.0 to /jaxwstck</li>
           <li>Copy Jakarta XML Web Services RI 3.0.0 and Jakarta XML Web Services TCK 3.0 jars to appropriate Apache Tomcat 10.0.x directories
-          <li>mkdir -p /apache-tomcat-8.5.x/shared/lib /apache-tomcat-8.5.x/endorsed</li>
+          <li>mkdir -p /apache-tomcat-10.0.x/shared/lib /apache-tomcat-10.0.x/endorsed</li>
           <ul>
             For Java SE 8 do the following steps and use the ts.jte.tomcat.jdk18 file:
             <ul>
-              <li>cp /jaxws-ri/lib/*.jar /apache-tomcat-8.5.x/shared/lib</li>
-              <li>cd /apache-tomcat-8.5.x/shared/lib; &nbsp; mv jaxws-api.jar jaxb-api.jar /apache-tomcat-8.5.x/endorsed</li>
-              <li>cp /jaxwstck/lib/jaxwstck.jar /jaxwstck/lib/tsharness.jar /apache-tomcat-8.5.x/shared/lib</li>
+              <li>cp /jaxws-ri/lib/*.jar /apache-tomcat-10.0.x/shared/lib</li>
+              <li>cd /apache-tomcat-10.0.x/shared/lib; &nbsp; mv jaxws-api.jar jaxb-api.jar /apache-tomcat-10.0.x/endorsed</li>
+              <li>cp /jaxwstck/lib/jaxwstck.jar /jaxwstck/lib/tsharness.jar /apache-tomcat-10.0.x/shared/lib</li>
               <li>cd /jaxwstck/bin; &nbsp; mv ts.jte ts.jte.javaee8; &nbsp; cp ts.jte.tomcat.jdk18 ts.jte</li>
-              <li>Make sure endorsed.dirs, endorsed.dirs.ri properties in ts.jte file point to Apache Tomcat 8.5.x endorsed directory</li>
+              <li>Make sure endorsed.dirs, endorsed.dirs.ri properties in ts.jte file point to Apache Tomcat 10.0.x endorsed directory</li>
             </ul>
           </ul>
           <li>Configure the rest of ts.jte as per Jakarta XML Web Services TCK 3.0 User's Guide (Example: jaxws.classes, webcontainer.home, etc)</li>
-          <li>Edit /apache-tomcat-8.5.x/conf/catalina.properties and set shared.loader property to:</li>
+          <li>Edit /apache-tomcat-10.0.x/conf/catalina.properties and set shared.loader property to:</li>
           <ul>
             <li>shared.loader=${catalina.home}/shared/lib/*.jar,${catalina.home}/endorsed/*.jar</li>
           </ul>
-          <li>Configure the tomcat users in the /apache-tomcat-8.5.x/conf/tomcat-users.xml file as follows:</li>
+          <li>Configure the tomcat users in the /apache-tomcat-10.0.x/conf/tomcat-users.xml file as follows:</li>
           <pre>
 &lt;tomcat-users&gt;
   &lt;role rolename="tomcat"/&gt;
@@ -208,7 +207,7 @@ h4 {  font-style: italic; color: #000099}
   &lt;user username="role1" password="tomcat" roles="role1"/&gt;
 &lt;/tomcat-users&gt;
     </pre>
-          <li>Restart Apache Tomcat 8.5.x which is now ready for Jakarta XML Web Services TCK 3.0 testing</li>
+          <li>Restart Apache Tomcat 10.0.x which is now ready for Jakarta XML Web Services TCK 3.0 testing</li>
         </ul>
 
         <hr>

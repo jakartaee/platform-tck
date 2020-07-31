@@ -215,7 +215,7 @@ jaxws.classes.ri=${endorsed.dirs.ri}/jaxws-api.jar:
 ${endorsed.dirs.ri}/jaxb-api.jar:
 ${jaxws.lib.ri}/FastInfoset.jar:${jaxws.lib.ri}/gmbal-api-only.jar:\
 ${jaxws.lib.ri}/ha-api.jar:${jaxws.lib.ri}/jakarta.annotation-api.jar:\
-${jaxws.lib.ri}/javax.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:\
+${jaxws.lib.ri}/jakarta.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:\
 ${jaxws.lib.ri}/jaxb-impl.jar:${jaxws.lib.ri}/jaxb-jxc.jar:\
 ${jaxws.lib.ri}/jaxb-xjc.jar:${jaxws.lib.ri}/jaxws-rt.jar:\
 ${jaxws.lib.ri}/jaxwstck.jar:${jaxws.lib.ri}/jaxws-tools.jar:\
