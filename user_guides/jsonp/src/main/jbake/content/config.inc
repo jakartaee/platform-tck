@@ -12,7 +12,7 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
@@ -48,10 +48,10 @@ slashes as a path separator instead.
   +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
-  a. `jsonp.classes` to the JAR file(s) that contain your {TechnologyShortName} {TechnologyVersion} 
+  a. `jsonp.classes` to the JAR file(s) that contain your {TechnologyShortName} {TechnologyVersion}
   implementation classes +
   For example, if you were using the {TechnologyFullName} {TechnologyVersion} CI, you would set
-  this property to jsonp.classes=javax.json-{TechnologyVersion}.0.jar.
+  this property to jsonp.classes=jakarta.json-{TechnologyVersion}.0.jar.
   b. `jsonp.resources` should not be modified +
   This property points to JSON resource data files that are used by the
   {TechnologyShortName} {TechnologyVersion} TCK.
@@ -62,9 +62,9 @@ environment variables:
   The property is included as part of the `ts.run.classpath` property and
   is placed before `jsonp.classes` in the classpath so the {TechnologyShortName} TCK can
   pick up the TCK-supplied provider when set, not the provider supplied
-  with the {TechnologyShortName} 1.1 implementation under test. This property should only
+  with the {TechnologyShortName} {TechnologyVersion} implementation under test. This property should only
   be set when running the pluggability tests. All other tests use the
-  provider supplied with the {TechnologyShortName} 1.1 implementation under test.
+  provider supplied with the {TechnologyShortName} {TechnologyVersion} implementation under test.
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]

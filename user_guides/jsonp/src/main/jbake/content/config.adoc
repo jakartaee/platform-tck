@@ -58,7 +58,7 @@ with the necessary configuration steps for your implementation and place
 the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 
 For more information, you may wish to view `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
-the configuration file for Eclipse EE4J Jakarta EE 8 Compatible Implementation, Eclipse GlassFish.
+the configuration file for Eclipse EE4J Jakarta EE 9 Compatible Implementation, Eclipse GlassFish 6.0.
 
 [[GBFWG]][[custom-deployment-handlers]]
 
@@ -349,5 +349,3 @@ Note that there is some overlap between the functions in these two
 dialog boxes; for those functions use the dialog box that is most
 convenient for you. Please refer to the JavaTest Harness documentation
 or the online help for complete information about these various options.
-
-
