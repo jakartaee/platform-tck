@@ -32,7 +32,7 @@ grant codeBase "file:${com.sun.enterprise.home}/lib/javaee.jar" {
 // default permissions granted to all domains
 
 grant {
-    // Java EE security permission set from Java EE platform specification Table 6-2
+    // Jakarta EE security permission set from Jakarta EE platform specification Table 6-2
     permission java.lang.RuntimePermission "loadLibrary.*";
     permission java.lang.RuntimePermission "accessClassInPackage.*";
     permission java.lang.RuntimePermission "exitVM";

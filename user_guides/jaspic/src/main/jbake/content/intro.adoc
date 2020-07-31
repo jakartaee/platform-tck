@@ -186,6 +186,8 @@ The {TechnologyShortName} TCK tests run on the following platforms:
 
 * Microsoft Windows 10
 * Oracle Linux 7.1
+* CentOS Linux 7
+* Alpine Linux v3.12
 
 [[GBFSA]][[javatest-harness]]
 
