@@ -6,7 +6,7 @@ For example, the following is used for the JAX-WS TCK.
 
 [[GCLRR]][[running-the-jax-ws-tck-against-the-jax-ws-ri]]
 
-5.6 Running the JAX-WS TCK Against the JAX-WS RI
+5.6 Running the JAX-WS TCK Against the JAX-WS Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This test scenario is ensures that the configuration and deployment of
@@ -30,7 +30,7 @@ if desired, link:#GBFWM[Running a Subset of the Tests].
 
 This test scenario is one of the compatibility test phases that all
 Vendors must pass. This ensures that the prebuilt JAX-WS TCK tests built
-against the JAX-WS RI can be successfully run against the Vendor
+against the JAX-WS Compatible Implementation can be successfully run against the Vendor
 Implementation (VI).
 
 1.  Verify that you have followed the configuration instructions in
@@ -44,7 +44,7 @@ if desired, link:#GBFWM[Running a Subset of the Tests].
 
 [[GCLQV]][[running-the-rebuilt-jax-ws-tck-against-the-jax-ws-ri]]
 
-5.8 Running the Rebuilt JAX-WS TCK Against the JAX-WS RI
+5.8 Running the Rebuilt JAX-WS TCK Against the JAX-WS Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This test scenario is one of the compatibility test phases that all
@@ -54,7 +54,7 @@ Reference Implementation.
 
 1.  Verify that you have followed the configuration instructions in
 link:config.html#GCLHF[Configuring Your Environment to Rebuild and Run
-the JAX-WS TCK Against the JAX-WS RI].
+the JAX-WS TCK Against the JAX-WS Compatible Implementation].
 2.  Refer to link:rebuild.html#GCLIZ[Appendix B], to learn about
 rebuilding the JAX-WS TCK tests.
 3.  Specify `reverse` for the `keywords` option.
