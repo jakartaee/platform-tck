@@ -1,5 +1,5 @@
-** `javax.json`
+** `jakarta.json`
 
-** `javax.json.spi`
+** `jakarta.json.spi`
 
-** `javax.json.stream`
+** `jakarta.json.stream`

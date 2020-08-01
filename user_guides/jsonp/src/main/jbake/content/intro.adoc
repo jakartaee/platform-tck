@@ -17,7 +17,7 @@ Introduction
 
 This chapter provides an overview of the principles that apply
 generally to all Technology Compatibility Kits (TCKs) and describes the
-{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK). 
+{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK).
 It also includes a high level listing
 of what is needed to get up and running with the {TechnologyShortName}
 TCK.
@@ -184,8 +184,7 @@ endif::end-to-end-tests[]
 
 The {TechnologyShortName} TCK tests run on the following platforms:
 
-* Microsoft Windows 10
-* Oracle Linux 7.1
+* CentOS 7
 
 [[GBFSA]][[javatest-harness]]
 
@@ -244,9 +243,9 @@ matches with the filters you are using and queues them up for execution.
 ^^^^^^^^^^^^^^^^^^^
 
 Each version of a TCK includes an Exclude List contained in a `.jtx`
-file. 
+file.
 This is a list of test file URLs that identify tests which do not
-have to be run for the specific version of the TCK being used. 
+have to be run for the specific version of the TCK being used.
 Whenever tests are run, the JavaTest harness automatically excludes
 any test on the Exclude List from being executed.
 
@@ -260,7 +259,7 @@ The Exclude List file, +{jtxFileName}+, is included in the
 
 From time to time, updates to the Exclude List are made available.
 The exclude list is included in the Jakarta TCK ZIP archive.
-Each time an update is approved and released, the version number 
+Each time an update is approved and released, the version number
 will be incremented.
 You should always make sure you are using an up-to-date copy of the
 Exclude List before running the {TechnologyShortName} TCK to verify your
@@ -313,7 +312,7 @@ include::intro.inc[]
 
 [NOTE]
 ====
-The Jakarta EE Specification Process support multiple compatible implementations. 
+The Jakarta EE Specification Process support multiple compatible implementations.
 These instructions explain how to get started with the {TechnologyRI} CI.
 If you are using another compatible implementation, refer to material provided
 by that implementation for specific instructions and procedures.
