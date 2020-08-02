@@ -23,8 +23,8 @@
 	<previous-id>136</previous-id>
 	<technology>JACC</technology>
 	<id>JACC</id>
-	<name>Java Authorization Contract for Containers</name>
-	<version>1.5</version>
+	<name>Jakarta Authorization</name>
+	<version>2.0</version>
 	<location-names>
 		<chapters>
 			<chapter id = "1" name = "Overview">
@@ -50,7 +50,7 @@
 			</chapter>
 			<chapter id = "3" name = "Policy Configuration Subcontract">
 				<sections>
-					<section id = "3.1" name = "What a J2EE Platform's Deploy Tools Must do"/>
+					<section id = "3.1" name = "What a Jakarta EE Platform's Deploy Tools Must do"/>
 					<section id = "3.1.1" name = "Policy Contextsand Policy Context Identifiers"/>
 					<section id = "3.1.1.1" name = "Policy Context Life Cycle"/>
 					<section id = "3.1.1.2" name = "Linking Policy Contexts"/>
@@ -104,24 +104,23 @@
 		</chapters>
 	</location-names>
 	<assertions>
-		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>2</id>
-			<description>J2EE 1.4 platforms must implement the contract defined by this JSR.</description>
+			<description>Legacy</description>
 			<location chapter = "1" section = "1.4"/>
 			<comment>container</comment>
 		</assertion>
 		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>3</id>
-			<description>Support for the contract by J2EE 1.3 platforms is optional. (OPTIONAL)</description>
+			<description>Legacy</description>
 			<location chapter = "1" section = "1.4"/>
 			<comment>container</comment>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>4</id>
-			<description>Each Policy provider that satisfies this contract must perform or
-delegate to another provider all the permission evaluations
-requested via its interface in the JRE; not just those made by the
-container to implement J2EE security functionality.
+			<description>Each Policy provider that satisfies this contract must perform or delegate to another provider 
+            all the permission evaluations requested via its interface in the JRE; not just those made by the container to 
+            implement Jakarta EE security functionality.
 			</description>                                              
 			<location chapter = "1" section = "1.4"/>
 			<comment>provider</comment>
@@ -311,7 +310,7 @@ jakarta.security.jacc.PolicyContext utility class.
 default system Policy providers, all application servers must implement the
 following Policy replacement algorithm.
 
-For each JRE of a J2EE 1.4 application server, if the system property
+For each JRE of a Jakarta EE 9 or later version Jakarta EE application server, if the system property
 jakarta.security.jacc.policy.provider is defined, the application server must
 construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
@@ -323,36 +322,19 @@ object as the corresponding Policy object used by the JRE.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>23</id>
-			<description>For each JRE of a J2EE 1.4 application server, if the system property
+			<description>For each JRE of a Jakarta EE 9 or later version Jakarta EE application server, if the system property
 jakarta.security.jacc.policy.provider is defined, the application
 server must construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
 and set, by calling the java.security.Policy.setPolicy method, the
 resulting object as the corresponding Policy object used by the JRE.
-
-An application server that chooses to support this contract in a J2SE 1.3
-environment must perform the policy replacement algorithm described above
-when the system property
-jakarta.security.jacc.auth.policy.provider  is defined. That is,
-for each JRE of the application server, the server must construct an instance of the
-class identified by the system property, confirm that the resulting object is an
-instance of javax.security.auth.Policy, and set, by calling
-javax.security.auth.Policy.setPolicy method, the resulting object
-as the corresponding Policy object used by the JRE.
 			</description>
 			<location chapter = "2" section = "2.7"/>
 			<comment>container</comment>
 		</assertion>
-		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
+		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>24</id>
-			<description>A J2EE 1.3 application
-server must install or bundle, such that it is used by every JRE of the application
-server, a javax.security.auth.SubjectDomainCombiner whose
-combine method returns protection domains constructed using the permission
-collections returned by javax.security.auth.Policy.getPermisions.
-It is recommended that this requirement also be satisfied by J2EE 1.4 application
-servers in the case where javax.security.auth.Policy is being used (in
-backward compatibility mode) by the SubjectDomainCombiner.
+			<description>Legacy assertion no longer holds
 			</description>
 			<location chapter = "2" section = "2.7.1"/>                        
 			<comment>container</comment>
@@ -403,7 +385,7 @@ principal-to-role mapping will be applied to all the modules of the application.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>30</id>
-			<description>Independent of this specification, J2EE deployment tools must translate and
+			<description>Independent of this specification, Jakarta EE deployment tools must translate and
 complete the declarative policy statements appearing in deployment descriptors
 into a form suitable for securing applications on the platform.
 			</description>
@@ -1060,9 +1042,7 @@ repository.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>70</id>
 			<description>The containers of an application server must be granted the getPolicy
-SecurityPermission and the setPolicy SecurityPermission. J2EE 1.3 Containers
-that choose to support this contract must be granted the getPolicy
-AuthPermission and the setPolicy AuthPermission.
+SecurityPermission and the setPolicy SecurityPermission.
 			</description>
 			<location chapter = "3" section = "3.3"/>
 			<comment>provider</comment>
@@ -1468,27 +1448,18 @@ permission being checked. If checkPermission throws an
 AccessControlException, the checked permission is not granted. Otherwise the
 permission is granted.
 
-- The J2EE 1.4 container calls Policy.implies with two arguments; the
+- The container calls Policy.implies with two arguments; the
 permission being checked and a ProtectionDomain that need not be
 constructed with principals. The checked permission is granted if
 Policy.implies returns true. Otherwise, the permission is not granted.
 
-- The J2EE 1.4 container calls
+- The container calls
 java.security.Policy.getPermissions with a ProtectionDomain
 that need not be constructed with principals. The container must call the
 implies method on the returned PermissionCollection using the permission
 being checked as argument. The checked permission is granted if the
 PermissionCollection implies it. Otherwise, the permission is not granted. This
 technique is supported but not recommended.
-
--  The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions to determine the
-collection of permissions granted independent of AccessControlContext. The
-Subject in the call to getPermissions may be null. The container must call
-the implies method on the returned PermissionCollection using the
-permission being checked as argument. The checked permission is granted if
-the PermissionCollection implies it. Otherwise, the permission is not granted.
-This technique is supported but not recommended.
 
 Prior to using any of the techniques described in this section, the container
 must have established a policy context identifier as defined in Section 4.6,
@@ -1525,12 +1496,12 @@ on which the call to checkPermission is made must contain the principals
 of the caller. If checkPermission throws an AccessControlException, the
 permission is not granted to the caller. Otherwise the permission is granted.
 
-The J2EE 1.4 container calls Policy.implies with two arguments; the
+The container calls Policy.implies with two arguments; the
 permission being checked and a ProtectionDomain constructed with the
 principals of the caller. The boolean result returned by Policy.implies
 indicates whether or not the permission has been granted to the caller.
 
-The J2EE 1.4 container calls
+The container calls
 java.security.Policy.getPermissions with an argument
 ProtectionDomain that was constructed with the principals of the caller. The
 container must call the implies method on the returned
@@ -1538,17 +1509,6 @@ PermissionCollection using the permission being checked as argument. If the
 PermissionCollection implies the permission being tested, the permission has
 been granted to the caller. Otherwise it has not. This technique is supported but
 not recommended.
-
-The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions with an argument
-Subject containing the principals of the caller.The container must call the
-implies method on the returned PermissionCollection using the permission
-being checked as argument. If the PermissionCollection implies the permission
-being tested, the permission has been granted to the caller. Otherwise it has not.
-This technique is supported but not recommended.
-Prior to using any of the techniques described in this section, the container
-must have established a policy context identifier as defined in Section 4.6,
-Setting the Policy Context.
 			</description>
 			<location chapter = "4" section = "4.8"/>
 			<comment>container</comment>
@@ -1577,20 +1537,16 @@ policy context to perform its access determination.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>106</id>
-			<description>To be compatible with this contract, all of the JRE of a J2EE 1.4 application
-server must perform all of the policy decisions defined by this contract by
-interacting with the java.security.Policy instance available in the JRE
-via the java.security.Policy.getPolicy method.
+			<description>To be compatible with this contract, every JRE of an application server must perform all of the 
+            policy decisions defined by this contract by interacting with the java.security.Policy instance available in the JRE
+            via the java.security.Policy.getPolicy method.
 			</description>
 			<location chapter = "4" section = "4.11"/>
 			<comment>container</comment>
 		</assertion>
 		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>107</id>
-			<description>All of the JRE of a
-J2EE 1.3 application server must perform all of the policy decisions defined by
-this contract by interacting with the javax.security.auth.Policy instance
-available in the JRE via the jakarta.security.auth.getPolicy method.
+			<description>Legacy assertion no longer holds
 			</description>
 			<location chapter = "4" section = "4.11"/>
 			<comment>container</comment>
@@ -1886,7 +1842,7 @@ Policy providers.
 			<description>
              This subcontract also applies to the translation of 
              authorization policy annotations that have an equivalent 
-             representation in Java EE deployment descriptor policy
+             representation in Jakarta EE deployment descriptor policy
              constructs(i.e security-constraint, method-permission,
              security-role-ref, and exclude-list elements)   
             </description>
@@ -1897,21 +1853,14 @@ Policy providers.
         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>123</id>
 			<description>
-               Independent of this specification, J2EE deployment tools must 
-        translate and complete the declarative policy statements appearing 
-        in deployment descriptors into a form suitable for securing 
-        applications on the platform. On versions of the Java EE platform 
-        that require support for authorization policy annotations, the 
-        deployment tools must combine policy annotations in Java code with 
-        policy statements appearing in deployment descriptors to yield 
-        complete representations of authorization policy suitable for 
-        securing applications on the platform. The rules for combining 
-        authorization policy annotations with declarative policy statements 
-        are described in the versions of the EJB, Servlet, and Java EE 
-        platform specifications that require support for the annotations. 
-        Independent of whether annotations factor in the translation, 
-        the resulting policy statements may differ in form from the policy 
-        statements appearing in the deployment descriptors.
+               Independent of this specification, Jakarta EE deployment tools must translate and complete the declarative policy
+               statements appearing in deployment descriptors into a form suitable for securing applications on the platform. 
+               These deployment tools must combine policy annotations in Java code with policy statements appearing in deployment
+               descriptors to yield complete representations of authorization policy suitable for securing applications on the platform. 
+               The rules for combining authorization policy annotations with declarative policy statements are described in the 
+               Jakarta Enterprise Beans, Jakarta Servlet, and Jakarta EE platform specifications. Independent of whether annotations 
+               factor in the translation, the resulting policy statements may differ in form from the policy statements appearing 
+               in the deployment descriptors. 
             </description>
 			<location chapter = "3" section = "3.1"/>
 			<comment>container</comment>

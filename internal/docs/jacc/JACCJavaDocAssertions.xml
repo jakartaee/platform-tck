@@ -23,8 +23,8 @@
 <previous-id>1</previous-id>
 <technology>JACC</technology>
 <id>JACC</id>
-<name>Java Authorization Contract for Containers</name>
-<version>1.5</version>
+<name>Jakarta Authorization</name>
+<version>2.0</version>
 <assertions>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>1</id>
