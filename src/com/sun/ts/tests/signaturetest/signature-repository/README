@@ -3,7 +3,7 @@
 Overview:
 ---------
 This directory contains the signature files necessary to create any deliverable
-generated from the TS spider workspace.  Most deliverables will only include
+generated from the jakartaee-tck repository.  Most deliverables will only include
 a subset of the signature files stored in this directory.
 
 
@@ -16,24 +16,10 @@ The signature files have the following naming scheme:
 Where <package_name> is the name of the package who's signatures are in this
 file, note this includes all sub-packages.  The <version_id> is a unique ID
 used to denote one version of a package signature file from another (since
-we now support changing APIs between Java EE platform releases).  Typically,
+we now support changing APIs between Jakarta EE platform releases).  Typically,
 the version ID should be the version ID of the technology that the package
-belongs to. (eg.  javax.xml.soap.sig_1.3 are the signatures that apply to
-the SOAP v1.3 technology)
-
-Additionally, there are signature files that have the following naming scheme:
-	<package_name>.sig_<version_id>.javaee
-This naming convention is the same as above except that the "javaee" extension
-implies the signatures were recorded against the JavaEE (v5.0) TCK.  As it is 
-now, the signatures used for the JavaEE TCK should be identical to their
-respecitive signature files in the individual TCKs.  The only difference is 
-that TCKs (other than JavaEE) usually have a sigfile without the .javaee 
-extension.  (In some of these TCKs, the sigs are recorded separately and
-in other cases they are simply copied over from the corresponding .javaee 
-sigfile.  Either way the files SHOULD be the same.
-
-
-
+belongs to. (eg.  jakarta.xml.soap.sig_2.0 are the signatures that apply to
+the SOAP v2.0 technology)
 
 ----------------------------------
 Which Sig Files Apply To Your TCK:
@@ -43,6 +29,6 @@ The names of the signature files used by a TCK is called out in the
 $TS_HOME/bin/sig-test.map file.  The sig-test.map file contains key-value pairs
 where the key=package_name and value=version_id.  These key-value pairs
 are used to satisfy our naming scheme of:    
-    <package_name>.sig_<version_id>   and    <package_name>.sig_<version_id>.javaee
+    <package_name>.sig_<version_id>
 
 
