@@ -951,7 +951,7 @@
        required by cts.
      -->
      <target name="add.javamail.resources" depends="configPlatform">
-         <antcall target="create-javamail-resource" >
+         <antcall target="create-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>
@@ -965,7 +965,7 @@
        required by cts.
      -->
      <target name="drop.javamail.resources" depends="configPlatform">
-         <antcall target="delete-javamail-resource" >
+         <antcall target="delete-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>

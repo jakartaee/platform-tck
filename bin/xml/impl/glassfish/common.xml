@@ -587,31 +587,31 @@
      </target>
 
      <!--
-       Remove the javamail JNDI resources
+       Remove the mail JNDI resources
      -->
-     <target name="delete-javamail-resource">
+     <target name="delete-mail-resource">
         <exec executable="${exec.asadmin}" >
             <arg line="${exec.asadmin.part2}" />
             <arg line=" --user ${admin.user}"/>
             <arg line=" --passwordfile ${password.file}"/>
             <arg line=" --host ${server.host}"/>
             <arg line=" --port ${server.port}"/>
-            <arg line=" delete-javamail-resource"/>
+            <arg line=" delete-mail-resource"/>
             <arg line=" ${jndiName}"/>
         </exec>
      </target>
 
      <!--
-       Add the javamail JNDI resources
+       Add the mail JNDI resources
      -->
-     <target name="create-javamail-resource" >
+     <target name="create-mail-resource" >
         <exec executable="${exec.asadmin}" >
             <arg line="${exec.asadmin.part2}" />
             <arg line=" --user ${admin.user}"/>
             <arg line=" --passwordfile ${password.file}"/>
             <arg line=" --host ${server.host}"/>
             <arg line=" --port ${server.port}"/>
-            <arg line=" create-javamail-resource"/>
+            <arg line=" create-mail-resource"/>
             <arg line=" --mailhost ${mailHost}"/>
             <arg line=" --mailuser ${mailuser1}"/>
             <arg line=" --fromaddress ${mailFrom}"/>
