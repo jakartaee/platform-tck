@@ -16,10 +16,10 @@
  
 #########################################################################
 ##
-##   JavaTest Environment file for Jakarta EE Compatibility Test Suite
+##   JavaTest Environment file for Jakarta EE Platform TCK
 ##
 ##   Environment specific properties in this file will likely
-##   have to be modified prior to running the Jakarta EE-CTS. 
+##   have to be modified prior to running the Jakarta EE Platform TCK. 
 ##   Instructions for modifying these properties are contained in this
 ##   file.
 ##
@@ -38,7 +38,7 @@
 ##   property the user must start the comment with at least 2 hash (#)
 ##   characters.  The following is a valid non-property comment:
 ##     ## A valid non-property comment
-##     ## that spance multiple lines.
+##     ## that spans multiple lines.
 #########################################################################
 
 ########################################################################
