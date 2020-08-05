@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the Jakarta REST TCK.  Most references
-to Jakarta REST have been parameterized to serve as a simple starting
+This text was originally from the Jakarta RESTful Web Services TCK.  Most references
+to Jakarta RESTful Web Services have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.  The major sections 4.1, 4.2, and
 4.3 should be preserved.  If their titles are changed, the links

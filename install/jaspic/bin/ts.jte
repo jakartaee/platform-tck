@@ -703,7 +703,7 @@ log.file.location=${s1as.domain}/logs
 #   to determine if the servlet container is a Jakarta Authorization compatible 
 #   container.  (true = compatible to Jakarta Authorization, false = not compatible.)
 # @soap.is.jsr115.compatible  This is also used by JASPIC tests to
-#   determin if the SOAP container is Jakarta Authorization compatible.
+#   determine if the SOAP container is Jakarta Authorization compatible.
 ###################################################################
 servlet.is.jsr115.compatible=true
 soap.is.jsr115.compatible=false

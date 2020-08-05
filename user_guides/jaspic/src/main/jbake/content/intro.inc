@@ -140,9 +140,6 @@ The `provider-configuration.xsd` file is a schema file that resides in
 the same directory as the `ProviderConfiguration.xml` file and describes
 the `ProviderConfiguration.xml` file. This file should not be edited.
 
-thref4]]
-
-
 [[baseline-compatibility-requirements]]
 1.2.9 Baseline Compatibility Requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -240,8 +237,8 @@ expected to deploy the service and make it available for client
 invocations. For this purpose, a no-op for `deploy` and `undeploy`
 targets can be implemented in the `deploy.xml` file.
 
-The {TechnologyShortName} TCK uses Jakarta Web Services Metadata, 2.1 metadata based annotations to
-define web service applications. Although  Jakarta Web Services Metadata, 2.1 support is not
+The {TechnologyShortName} TCK uses Jakarta Web Services Metadata, 3.0 metadata based annotations to
+define web service applications. Although  Jakarta Web Services Metadata, 3.0 support is not
 required in a vendor's SOAP implementation, using web services metadata
 simplifies the definition of web services and the linking between
 various artifacts of web services (the WSDL, `ServiceEndpoint`, and
@@ -253,7 +250,7 @@ implementation, standalone implementation, and so on.
 
 Since vendors are already expected to generate web service artifacts
 using `wsgen` and `wsimport` tools, writing an annotation processor to
-support Jakarta Web Services Metadata, 2.1 based annotations is just a step further towards making
+support Jakarta Web Services Metadata, 3.0 based annotations is just a step further towards making
 a better SOAP implementation. Also having annotated web services helps
 vendors generate different artifacts that suit their SOAP
 implementation.
@@ -262,7 +259,7 @@ implementation.
 [NOTE]
 ===================================================================
 
-For Jakarta EE based SOAP implementations, Jakarta Web Services Metadata, 2.1
+For Jakarta EE based SOAP implementations, Jakarta Web Services Metadata, 3.0
 support is required.
 
 ===================================================================
