@@ -12,7 +12,7 @@ and set up the following software components:
 2) Servlet Compatible Implementation Version 5.0
 3) Servlet TCK Version 5.0
 
-1. Download and install Java SE 8 or Java 11 software.
+1. Download and install Java SE 8 software.
 
 2. Download and install the Servlet 5.0 Compatible Implementation/jarfile.
 
