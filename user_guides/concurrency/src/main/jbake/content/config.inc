@@ -13,7 +13,7 @@ as toc.adoc.
 [[GBFVU]][[configuring-your-environment-to-run-tck-with-the-reference-implementation]]
 
 4.1 Configuring Your Environment to Run the TCK With a Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.4, "Using the
@@ -47,30 +47,31 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI is running. +
+  Jakarta EE 9 CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE 9 CI is running. +
   The default setting is `8080`.
   c.  Set the `concurrency.classes` property to point to the {TechnologyRI} CI
-  classes/JAR files.
-
-  If you are using the Jakarta EE 8 CI, {TechnologyRI}, set this property to the following:.
+  classes/JAR files. 
+  If you are using the Jakarta EE 9 CI, {TechnologyRI}, set this property to the following: +
   `concurrency.classes=${glassfish.ri.classes}`
-
   d.  Set the `webcontainer.home` property to the installation directory of Jakarta EE
-  8 CI.
+  9 CI.
 
   e. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and `impl.vi.port`
   properties to the supported web container, deploy directory, host and port for
-  the Concurrency CI.
-  The supported web container for the Concurrency CI is the Jakarta EE 8 CI. The
-  default settings for these properties are as follows:
-
-  `impl.vi.deploy.dir=${webcontainer.home}/domains/domain1/autodeploy`
-  `impl.vi=glassfish`
-  `impl.vi.host=${webServerHost}`
-  `impl.vi.port=${webServerPort}`
+  the {TechnologyShortName} CI.
+  The supported web container for the {TechnologyShortName} CI is the Jakarta EE 9 CI. The
+  default settings for these properties are as follows: +
++
+[source,oac_no_warn]
+----
+impl.vi.deploy.dir=${webcontainer.home}/domains/domain1/autodeploy
+impl.vi=glassfish
+impl.vi.host=${webServerHost}
+impl.vi.port=${webServerPort}
+----
 
   f. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
@@ -94,11 +95,11 @@ into the application server's external library folder
 * Creates users and the appropriate roles
 * Enables HTTP trace requests
 
-4. Deploy the Concurrency TCK tests to the Web server:
+4. Deploy the {TechnologyShortName} TCK tests to the Web server:
   * Change to the `<TS_HOME>/bin` directory.
-  * Execute the ant `deploy.all` command.
-    This target invokes the ``<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
-    script, which deploys the Concurrency TCK 1.0 WAR files to the
+  * Execute the ant `deploy.all` command. +
+    This target invokes the `<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`
+    script, which deploys the {TechnologyShortName} TCK {TechnologyVersion} WAR files to the
     implementation server under test.
     Follow the instructions in link:using.html#GBFWO[5 Executing Tests] to run
     the tests you just deployed.
@@ -198,33 +199,31 @@ The default setting for the CI porting implementation is
 5.  Execute the `config.vi` command to configure your implementation for the
 Concurrency TCK:
   * Change to the `<TS_HOME>/bin` directory.
-  * Execute the `ant config.vi` command.
-
-  This target invokes the
-  `<TS_HOME>/bin/xml/impl/<your-implementation>/config.vi.xml` script,
-  which configures the Concurrency 1.0 implementation server under test (the
-  server that was designated by the `impl.vi` setting in the `ts.jte` file). If you are using the
-  Jakarta EE 8 CI, {TechnologyRI} with the `impl.vi` property set to `glassfish`, this target copies
-  required TCK JAR files to the server and then starts the server.
-
-  You can configure your implementation server manually or automatically. If
-  you choose to do this automatically, see link:config.html#GHGDG[4.3 "Custom Configuration
-  Handlers"] to create your own configuration handler.
+  * Execute the `ant config.vi` command. +
+This target invokes the 
+`<TS_HOME>/bin/xml/impl/<your-implementation>/config.vi.xml` script, 
+which configures the {TechnologyShortName} {TechnologyVersion} implementation server under test (the 
+server that was designated by the `impl.vi` setting in the `ts.jte` file). If you are using the 
+Jakarta EE 9 CI, {TechnologyRI} with the `impl.vi` property set to `glassfish`, this target copies 
+required TCK JAR files to the server and then starts the server. +
+ +
+You can configure your implementation server manually or automatically. If 
+you choose to do this automatically, see link:config.html#GHGDG[4.3 "Custom Configuration 
+Handlers"] to create your own configuration handler.
 6.  Deploy the Concurrency TCK tests to the Web server:
     * Change to the `<TS_HOME>/bin` directory.
-    * Execute the `ant deploy.all` command.
+    * Execute the `ant deploy.all` command. +
+This target invokes the
+`<TS_HOME>/bin/xml/impl/<your-implementation>/deploy.xml` script,
+which deploys the {TechnologyShortName} {TechnologyVersion} WAR files to the implementation server
+under test.
 
-    This target invokes the
-    `<TS_HOME>/bin/xml/impl/<your-implementation>/deploy.xml` script,
-    which deploys the Concurrency 1.0 WAR files to the implementation server
-    under test.
+You can deploy the TCK WAR files manually or automatically. If you choose
+to do this automatically, see Section 4.4.1, "To Create a Custom Deployment
+Handler," to create your own custom deployment handler.
 
-    You can deploy the TCK WAR files manually or automatically. If you choose
-    to do this automatically, see Section 4.4.1, "To Create a Custom Deployment
-    Handler," to create your own custom deployment handler.
-
-    Follow the instructions in link:using.html#GBFWO[5 Executing Tests]
-    to run the tests you just deployed.
+Follow the instructions in link:using.html#GBFWO[5 Executing Tests]
+to run the tests you just deployed.
 
 [[GHGDG]][[publishing-the-test-applications]]
 
@@ -247,4 +246,4 @@ necessary configuration steps for your implementation and place the file under t
 `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 
 For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`, the
-configuration file for a Jakarta EE 8 CI, {TechnologyRI}.
+configuration file for a Jakarta EE 9 CI, {TechnologyRI}.

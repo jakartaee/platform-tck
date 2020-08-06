@@ -1,1 +1,1 @@
-** `javax.enterprise.concurrent`
+** `jakarta.enterprise.concurrent`
