@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+<ejb-jar version="4.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
   <display-name>Ejb1</display-name>
   <enterprise-beans>
     <session>
@@ -118,7 +118,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -145,7 +145,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -180,7 +180,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -207,7 +207,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -250,7 +250,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -302,7 +302,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -346,7 +346,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -390,7 +390,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -468,7 +468,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -528,7 +528,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -588,7 +588,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -648,7 +648,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>

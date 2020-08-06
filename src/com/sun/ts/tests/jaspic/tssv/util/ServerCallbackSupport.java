@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,14 +26,14 @@ import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.message.MessageInfo;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.lib.util.BASE64Decoder;
 
-import javax.security.auth.message.callback.CallerPrincipalCallback;
-import javax.security.auth.message.callback.GroupPrincipalCallback;
-import javax.security.auth.message.callback.PasswordValidationCallback;
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
 
 /**
  *
@@ -337,7 +337,7 @@ public class ServerCallbackSupport {
 
     // see assertion JASPI:SPEC:306 for details on this
     // jsr-196 states the following key must exist for servlet profile
-    String strKey = "javax.security.auth.message.MessagePolicy.isMandatory";
+    String strKey = "jakarta.security.auth.message.MessagePolicy.isMandatory";
     String msg;
     if (map != null) {
       String keyVal = (String) map.get(strKey);

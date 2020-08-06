@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,12 +25,12 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
@@ -73,7 +73,7 @@ public class TestServlet extends HttpTCKServlet {
     StringBuilder reason = new StringBuilder();
     try {
       BasicBeanHelper.globalJNDI(getAppName(request), getModuleName(request),
-          basicBean.getBusinessInterface(), reason, (javax.ejb.EJBContext) null,
+          basicBean.getBusinessInterface(), reason, (jakarta.ejb.EJBContext) null,
           (javax.naming.Context) null);
       pw.println(Data.PASSED);
     } catch (Exception e) {

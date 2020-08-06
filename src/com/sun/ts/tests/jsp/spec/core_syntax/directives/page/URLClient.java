@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -567,7 +567,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:35
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet.jsp package
+   * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package
    * are implicitly imported by calling JspFactory.getDefaultFactory() method.
    */
 
@@ -581,7 +581,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:35
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet package are
+   * @test_Strategy: Validate that classes from the jakarta.servlet package are
    * implicitly imported by creating and using an instance of RequestDispatcher.
    */
 
@@ -595,7 +595,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSP:SPEC:35
    * 
-   * @test_Strategy: Validate that classes from the javax.servlet.http package
+   * @test_Strategy: Validate that classes from the jakarta.servlet.http package
    * are implicitly imported by creating and using an instance of HttpUtils.
    */
 
@@ -1060,8 +1060,8 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Throwable object is transferred by the throwing page
    * implementation to the error page implementation by saving the object
    * reference on the common ServletRequest object using the setAttribute
-   * method, with a name of javax.servlet.jsp.jspException (for
-   * backwards-compatibility) and also javax.servlet.error.exception (for
+   * method, with a name of jakarta.servlet.jsp.jspException (for
+   * backwards-compatibility) and also jakarta.servlet.error.exception (for
    * compatibility with the servlet specification).
    */
 
@@ -1070,7 +1070,7 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "Test PASSED|javax.servlet.error.exception and javax.servlet.jsp.jspException are the same");
+        "Test PASSED|jakarta.servlet.error.exception and jakarta.servlet.jsp.jspException are the same");
     TEST_PROPS.setProperty(IGNORE_STATUS_CODE, "true");
     invoke();
   }

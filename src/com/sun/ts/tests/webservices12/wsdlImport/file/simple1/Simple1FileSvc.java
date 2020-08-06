@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +16,6 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.file.simple1;
 
-public interface Simple1FileSvc extends javax.xml.ws.Service {
-  public Tests getTestsPort() throws javax.xml.ws.WebServiceException;
+public interface Simple1FileSvc extends jakarta.xml.ws.Service {
+  public Tests getTestsPort() throws jakarta.xml.ws.WebServiceException;
 }

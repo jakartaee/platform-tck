@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,10 +27,10 @@ import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.ServerCallbackSupport;
@@ -42,7 +42,7 @@ import javax.xml.namespace.QName;
  * @author Raja Perumal
  */
 public class TSServerAuthModule
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private static TSLogger logger = null;
 
   private static CallbackHandler callbackHandler = null;
@@ -102,7 +102,7 @@ public class TSServerAuthModule
   @Override
   public Class[] getSupportedMessageTypes() {
     logMsg("TSServerAuthModule.getSupportedMessageTypes called");
-    Class[] classarray = { javax.xml.soap.SOAPMessage.class };
+    Class[] classarray = { jakarta.xml.soap.SOAPMessage.class };
     return classarray;
   }
 
@@ -338,9 +338,9 @@ public class TSServerAuthModule
     Object responseMessage = messageInfo.getResponseMessage();
 
     if (requestMessage != null) {
-      if (requestMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (requestMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getRequestMessage() is of type "
@@ -351,9 +351,9 @@ public class TSServerAuthModule
     }
 
     if (responseMessage != null) {
-      if (responseMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (responseMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getResponseMessage() is of type "

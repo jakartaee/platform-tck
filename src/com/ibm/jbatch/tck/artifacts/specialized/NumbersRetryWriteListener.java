@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -23,15 +23,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.api.chunk.listener.RetryWriteListener;
-import javax.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.batch.api.chunk.listener.RetryWriteListener;
+import jakarta.batch.runtime.context.StepContext;
+import jakarta.inject.Inject;
 
 
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyParentException;
 
-@javax.inject.Named("numbersRetryWriteListener")
+@jakarta.inject.Named("numbersRetryWriteListener")
 public class NumbersRetryWriteListener implements RetryWriteListener {
 	 private final static String sourceClass = NumbersRetryWriteListener.class.getName();
 	    private final static Logger logger = Logger.getLogger(sourceClass);

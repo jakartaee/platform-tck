@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,7 +50,7 @@ Conformance (Use of Executor): If an executor object is successfully configured 
                            status="active" testable="true">
                     <id>JAXWS:SPEC:4022</id>
                     <description>
-                        Conformance (Required BindingProvider getEndpointReference): An implementation MUST be able to return an javax.xml.ws.EndpointReference for the target endpoint if a SOAP binding is being used.  
+                        Conformance (Required BindingProvider getEndpointReference): An implementation MUST be able to return an jakarta.xml.ws.EndpointReference for the target endpoint if a SOAP binding is being used.  
                     </description>
                     <location chapter="4" section="2"/>
                 </assertion>
@@ -125,14 +125,14 @@ Conformance (Proxy support): An implementation MUST support proxies.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:4010</id>
 			<description>
-Conformance (ImplementingBindingProvider ): An instance of a proxy MUST implement javax.xml.ws.BindingProvider.
+Conformance (ImplementingBindingProvider ): An instance of a proxy MUST implement jakarta.xml.ws.BindingProvider.
 			</description>
 			<location chapter = "4" section = "2.3"/>
 		</assertion>
                 <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                     <id>JAXWS:SPEC:4011</id>
                     <description>
-                        Conformance (Service.getPort failure): If creation of a proxy fails, an implementation MUST throw javax.xml.ws.WebServiceException. The cause of that exception SHOULD be set to an exception that provides more information on the cause of the error (e.g. an IOException).
+                        Conformance (Service.getPort failure): If creation of a proxy fails, an implementation MUST throw jakarta.xml.ws.WebServiceException. The cause of that exception SHOULD be set to an exception that provides more information on the cause of the error (e.g. an IOException).
                     </description>
                     <location chapter = "4" section = "2.3"/>
                 </assertion>
@@ -245,7 +245,7 @@ Conformance (Other Exceptions): For all other errors, i.e. all those that don't 
                 <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                     <id>JAXWS:SPEC:4014</id>
                     <description>
-                        Conformance (Dispatch support): Implementations MUST support the javax.xml.ws.Dispatch interface.
+                        Conformance (Dispatch support): Implementations MUST support the jakarta.xml.ws.Dispatch interface.
                     </description>
                     <location chapter = "4" section = "3"/>
                 </assertion>
@@ -303,7 +303,7 @@ Conformance Requirement (Marshalling failure): If an error occurs when using the
                            status="active" testable="true">
                     <id>JAXWS:SPEC:4028</id>
                     <description>
-                        Section javax.xml.ws.EndpointReference 
+                        Section jakarta.xml.ws.EndpointReference 
                         getPort(Class&lt;T&gt; serviceEndpointInterface, 
                         WebServiceFeature... features) Gets a proxy for the serviceEndpointInterface that can be used to invoke operations on the endpoint referred to by the EndpointReference instance.  The specified features MUST be enabled/disabled and configured as specified.            
                     </description>
@@ -358,7 +358,7 @@ The following code snippet shows the generated constructors:
 @WebServiceClient(name="StockQuoteService",
                   targetNamespace="http://example.com/stocks",
                   wsdlLocation="http://example.com/stocks.wsdl")
-public class StockQuoteService extends javax.xml.ws.Service {
+public class StockQuoteService extends jakarta.xml.ws.Service {
   public StockQuoteService() {
     super(new URL("http://example.com/stocks.wsdl"),
           new QName("http://example.com/stocks", "StockQuoteService"));
@@ -397,7 +397,7 @@ public class StockQuoteService extends javax.xml.ws.Service {
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:4033</id>
 			<description>
-javax.xml.ws.BindingProvider
+jakarta.xml.ws.BindingProvider
 
     * Conformance (BindingProvider's W3CEndpointReference): The returned W3CEndpointReference MUST contain wsam:ServiceName and wsam:ServiceName[@EndpointName] as per Addressing 1.0 - Metadata[35]. The wsam:InterfaceName MAY be present in the W3CEndpointReference. If there is an associated WSDL, then the WSDL location MUST be referenced using wsdli:wsdlLocation in the W3CEndpointReference's wsa:Metadata.  
 			</description>
@@ -411,15 +411,15 @@ Standard properties.
 Add the following properties to Table 4.1: Standard BindingProvider properties.
 
 Name                              Type              Mandatory Description
-javax.xml.ws.addressing.to        EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.to        EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for 
 							      wsa:To header
-javax.xml.ws.addressing.replyto   EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.replyto   EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for
 							      wsa:ReplyTo header
-javax.xml.ws.addressing.faultto   EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.faultto   EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for
 							      wsa:FaultTo
@@ -436,8 +436,8 @@ Proxies.
 Proxy instances are not guaranteed to be thread safe. If the instances are
 accessed by multiple threads, usual synchronization techniques can be used to support multiple threads.
 
-The use of WS-Addressing requirements can be indicated in a WSDL as per Addressing 1.0 - Metadata[35]. A proxy created using getPort() calls is configured with the addressing requirements as specified in the associated WSDL or explicitly passing javax.xml.ws.soap.AddressingFeature web service feature.
-    * Conformance (Proxy's Addressing use): A proxy MUST be configured with the use of addressing requirements as indicated in the associated WSDL. But if the proxy is created using javax.xml.ws.soap.AddressingFeature web service feature, the feature's addressing requirements MUST take precedence over WSDL's addressing requirements.
+The use of WS-Addressing requirements can be indicated in a WSDL as per Addressing 1.0 - Metadata[35]. A proxy created using getPort() calls is configured with the addressing requirements as specified in the associated WSDL or explicitly passing jakarta.xml.ws.soap.AddressingFeature web service feature.
+    * Conformance (Proxy's Addressing use): A proxy MUST be configured with the use of addressing requirements as indicated in the associated WSDL. But if the proxy is created using jakarta.xml.ws.soap.AddressingFeature web service feature, the feature's addressing requirements MUST take precedence over WSDL's addressing requirements.
 			</description>
 			<location chapter = "4" section = "2.3"/>
 		</assertion>

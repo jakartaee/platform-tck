@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.common;
 
-import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Topic;
-import javax.jms.TopicConnectionFactory;
+import jakarta.annotation.Resource;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 
 abstract public class TopicClientBase
     extends com.sun.ts.tests.jms.ee20.ra.common.messaging.TopicClientBase

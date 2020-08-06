@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,8 +29,8 @@ import com.sun.ts.lib.harness.ServiceEETest;
 import java.util.Properties;
 import java.lang.reflect.Method;
 
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.Holder;
 
 public class Client extends ServiceEETest {
 
@@ -69,7 +69,7 @@ public class Client extends ServiceEETest {
    * type and method parameters. They should all be of type
    * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
    * or its subtypes MUST be mapped to
-   * javax.xml.ws.wsaddressing.W3CEndpointReferencedefault.
+   * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
    */
   public void VerifyEPRSubTypesTest1() throws Fault {
     TestUtil.logTrace("VerifyEPRSubTypesTest1");
@@ -121,7 +121,7 @@ public class Client extends ServiceEETest {
    * type and method parameters. They should all be of type
    * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
    * or its subtypes MUST be mapped to
-   * javax.xml.ws.wsaddressing.W3CEndpointReferencedefault.
+   * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
    */
   public void VerifyEPRSubTypesTest2() throws Fault {
     TestUtil.logTrace("VerifyEPRSubTypesTest2");
@@ -172,7 +172,7 @@ public class Client extends ServiceEETest {
    * type and method parameters. They should all be of type
    * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
    * or its subtypes MUST be mapped to
-   * javax.xml.ws.wsaddressing.W3CEndpointReferencedefault.
+   * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
    */
   public void VerifyEPRSubTypesTest3() throws Fault {
     TestUtil.logTrace("VerifyEPRSubTypesTest3");

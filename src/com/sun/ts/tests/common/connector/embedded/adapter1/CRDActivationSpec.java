@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,19 +17,19 @@
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
 import java.util.*;
-import javax.resource.spi.*;
-import javax.resource.spi.ActivationSpec;
-import javax.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.ResourceAdapter;
 import com.sun.ts.tests.common.connector.util.*;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 
 /*
  * In this ActivationSpec, we set a listener of WorkListener.
  *
  */
-@Activation(messageListeners = { javax.resource.spi.work.WorkListener.class })
+@Activation(messageListeners = { jakarta.resource.spi.work.WorkListener.class })
 public class CRDActivationSpec implements ActivationSpec, java.io.Serializable {
 
   private String annoDestinationName;

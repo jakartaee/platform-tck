@@ -9,7 +9,7 @@
 <head><title>positiveFormatLocalizationContextLocaleTest</title></head>
 <body>
 
-    <!-- If the javax.servlet.jsp.jstl.fmt.locale attribute
+    <!-- If the jakarta.servlet.jsp.jstl.fmt.locale attribute
              is present, it will take precedence over the browser
              supplied preferred locales. --> 
     

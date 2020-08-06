@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,21 +23,21 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import java.net.URL;
-import javax.annotation.Resource.AuthenticationType;
-import javax.ejb.EJBContext;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
-import javax.annotation.Resource;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.TopicConnectionFactory;
+import jakarta.annotation.Resource.AuthenticationType;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.annotation.Resource;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.transaction.UserTransaction;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 
 @Stateless(name = "ResourceSetterBean")
@@ -53,7 +53,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   private DataSource dataSource2;
 
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   private URL url;
 
@@ -79,7 +79,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   //////////////////////////////////////////////////////////////////////
 
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return sessionContext;
   }
 
@@ -120,12 +120,12 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   //////////////////////////////////////////////////////////////////////
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return mailSession;
   }
 
   @Resource(name = "mailSession", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private void setMailSession(javax.mail.Session mailSession) {
+  private void setMailSession(jakarta.mail.Session mailSession) {
     this.mailSession = mailSession;
   }
 
@@ -251,7 +251,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
     userTransaction = ut;
   }
 
-  protected javax.transaction.UserTransaction getUserTransaction() {
+  protected jakarta.transaction.UserTransaction getUserTransaction() {
     return userTransaction;
   }
 

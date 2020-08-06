@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
     
-    <property name="deliverable.version" value="1.7"/>
-    <property name="deliverable.tck.version" value="1.7.0"/>
+    <property name="deliverable.version" value="2.0"/>
+    <property name="deliverable.tck.version" value="2.0.0"/>
 
     <ts.taskdef name="getportingclasses" 
                 classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
@@ -68,9 +68,10 @@
                      includes="connector.jar,jaxb*" />
         </copy>
 
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy>
+        </copy-->
 
         <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -156,7 +157,7 @@
                                com/sun/ts/tests/build.xml,
                                com/sun/ts/tests/signaturetest/*,
                                com/sun/ts/tests/signaturetest/connector/**/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.resource*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.resource*"
                      excludes="**/.svn/*,
                                com/sun/ts/lib/tests,
                                com/sun/ts/tests/connector/deployment/**,
@@ -180,8 +181,7 @@
         <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting" 
               includeEmptyDirs="no">
             <fileset dir="${ts.home}/src/com/sun/ts/lib/porting" 
-                     includes="TSDeploymentInterface2.java,
-                               DeploymentInfo.java,
+                     includes="DeploymentInfo.java,
                                TSDeploymentException.java,
                                TSURL.java,
                                TSURLInterface.java"/>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,21 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.util.logging.Logger;
 
-import javax.batch.api.BatchProperty;
-import javax.batch.api.chunk.listener.AbstractItemReadListener;
-import javax.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.api.chunk.listener.AbstractItemReadListener;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.chunktypes.ReadRecord;
 
-@javax.inject.Named("myItemReadListenerImpl")
+@jakarta.inject.Named("myItemReadListenerImpl")
 public class MyItemReadListenerImpl extends AbstractItemReadListener {
 
 	private final static String sourceClass = MyItemReadListenerImpl.class.getName();

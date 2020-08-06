@@ -21,4 +21,4 @@
 # sub-packages from being verified when their
 # parent package's signature is checked.
 ##
-javax.xml.soap
+jakarta.xml.soap

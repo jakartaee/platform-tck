@@ -21,8 +21,8 @@
   <!-- IMPORTS -->
   <import file="../../bin/xml/ts.common.props.xml"/>
   
-  <property name="deliverable.version" value="1.0"/>
-  <property name="deliverable.tck.version" value="1.0.0"/>
+  <property name="deliverable.version" value="2.0"/>
+  <property name="deliverable.tck.version" value="2.0.0"/>
   <property name="exclude.source.folder" value="com/sun/ts/tests/jsonb/cdi/**"/>
   
   <condition property="exclude.classes" value="">
@@ -72,9 +72,10 @@
 		<fileset dir="${ts.home}/install/jsonb/other" 
 			includes="testsuite.jtt, vehicle.properties"/>
 	  </copy>
-          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+          <!-- NOTICE will be EPL or EFTL specific: TBD-->
+          <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
-          </copy>
+          </copy-->
 
       <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -121,7 +122,7 @@
 			<fileset dir="${ts.home}/src"
 			includes="
                com/sun/ts/tests/jsonb/**/*,
-               com/sun/ts/tests/signaturetest/signature-repository/javax.json.*,
+               com/sun/ts/tests/signaturetest/signature-repository/jakarta.json.*,
                com/sun/ts/tests/signaturetest/*,
                com/sun/ts/tests/signaturetest/jsonb/*,
                com/sun/ts/tests/common/vehicle/*,

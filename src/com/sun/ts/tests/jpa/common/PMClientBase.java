@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -51,13 +51,13 @@ abstract public class PMClientBase extends ServiceEETest
 
   public boolean cachingSupported = true;
 
-  transient public static final String PROVIDER_PROP = "javax.persistence.provider";
+  transient public static final String PROVIDER_PROP = "jakarta.persistence.provider";
 
-  transient public static final String TRANSACTION_TYPE_PROP = "javax.persistence.transactionType";
+  transient public static final String TRANSACTION_TYPE_PROP = "jakarta.persistence.transactionType";
 
-  transient public static final String JTA_DATASOURCE_PROP = "javax.persistence.jtaDataSource";
+  transient public static final String JTA_DATASOURCE_PROP = "jakarta.persistence.jtaDataSource";
 
-  transient public static final String NON_JTA_DATASOURCE_PROP = "javax.persistence.nonJtaDataSource";
+  transient public static final String NON_JTA_DATASOURCE_PROP = "jakarta.persistence.nonJtaDataSource";
 
   transient public static final String RESOURCE_LOCAL = "RESOURCE_LOCAL";
 
@@ -94,15 +94,15 @@ abstract public class PMClientBase extends ServiceEETest
    * EntityManagerFactory, including both standard and provider-specific
    * properties.
    */
-  transient public static final String JAVAX_PERSISTENCE_PROVIDER = "javax.persistence.provider";
+  transient public static final String JAVAX_PERSISTENCE_PROVIDER = "jakarta.persistence.provider";
 
-  transient public static final String JAVAX_PERSISTENCE_JDBC_DRIVER = "javax.persistence.jdbc.driver";
+  transient public static final String JAVAX_PERSISTENCE_JDBC_DRIVER = "jakarta.persistence.jdbc.driver";
 
-  transient public static final String JAVAX_PERSISTENCE_JDBC_URL = "javax.persistence.jdbc.url";
+  transient public static final String JAVAX_PERSISTENCE_JDBC_URL = "jakarta.persistence.jdbc.url";
 
-  transient public static final String JAVAX_PERSISTENCE_JDBC_USER = "javax.persistence.jdbc.user";
+  transient public static final String JAVAX_PERSISTENCE_JDBC_USER = "jakarta.persistence.jdbc.user";
 
-  transient public static final String JAVAX_PERSISTENCE_JDBC_PASSWORD = "javax.persistence.jdbc.password";
+  transient public static final String JAVAX_PERSISTENCE_JDBC_PASSWORD = "jakarta.persistence.jdbc.password";
 
   transient public static final String JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES = "jpa.provider.implementation.specific.properties";
 
@@ -302,7 +302,7 @@ abstract public class PMClientBase extends ServiceEETest
     }
   }
 
-  public void setEntityManager(javax.persistence.EntityManager em) {
+  public void setEntityManager(jakarta.persistence.EntityManager em) {
     this.em = em;
   }
 

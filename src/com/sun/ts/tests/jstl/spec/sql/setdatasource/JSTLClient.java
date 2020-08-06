@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -220,7 +220,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:query actions by setting
-   * javax.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
+   * jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
    * (URL, driver, user, password) The query is passed as body content.
    */
   public void positiveSetDataSourceQueryNoVarAttributeDriverManagerTest()
@@ -236,7 +236,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:query actions by setting
-   * javax.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
+   * jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
    * passed as body content.
    */
   public void positiveSetDataSourceQueryNoVarAttributeDataSourceTest()
@@ -252,7 +252,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:update actions by setting
-   * javax.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
+   * jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
    * (URL, driver, user, password) The query is passed as body content.
    */
   public void positiveSetDataSourceUpdateNoVarAttributeDriverManagerTest()
@@ -268,7 +268,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:update actions by setting
-   * javax.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
+   * jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
    * passed as body content.
    */
   public void positiveSetDataSourceUpdateNoVarAttributeDataSourceTest()
@@ -284,7 +284,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:transaction actions by
-   * setting javax.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager
+   * setting jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager
    * properties (URL, driver, user, password) The query is passed as body
    * content.
    */
@@ -301,7 +301,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
    * 
    * @testStrategy: Validate sql:setDataSource and sql:transaction actions by
-   * setting javax.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The
+   * setting jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The
    * query is passed as body content.
    */
   public void positiveSetDataSourceTxNoVarAttributeDataSourceTest()

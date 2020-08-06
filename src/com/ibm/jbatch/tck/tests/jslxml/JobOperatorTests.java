@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -26,15 +26,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.operations.JobExecutionAlreadyCompleteException;
-import javax.batch.operations.JobExecutionIsRunningException;
-import javax.batch.operations.JobRestartException;
-import javax.batch.operations.NoSuchJobException;
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.JobInstance;
-import javax.batch.runtime.Metric;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.operations.JobExecutionAlreadyCompleteException;
+import jakarta.batch.operations.JobExecutionIsRunningException;
+import jakarta.batch.operations.JobRestartException;
+import jakarta.batch.operations.NoSuchJobException;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.JobExecution;
+import jakarta.batch.runtime.JobInstance;
+import jakarta.batch.runtime.Metric;
+import jakarta.batch.runtime.StepExecution;
 
 
 
@@ -53,7 +53,7 @@ public class JobOperatorTests extends ServiceEETest {
 
 	public static void setup(String[] args, Properties props) throws Fault {
 
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -99,7 +99,7 @@ throw new Fault(methodName + " failed", e);}
 	
 	public void testJobOperatorStart() throws Fault {
 
-		String METHOD = "testJobOperatorStart";
+		String METHOD = "testJobOperatorStart";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -134,7 +134,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOperatorRestart() throws Fault {
 
-		String METHOD = "testJobOperatorRestart";
+		String METHOD = "testJobOperatorRestart";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -210,7 +210,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOperatorRestartAlreadyCompleteException() throws Fault {
 
-		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
+		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -296,7 +296,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOperatorAbandonJobDuringARestart() throws Fault {
 
-		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
+		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -378,7 +378,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOperatorRestartJobAlreadyAbandoned() throws Fault {
 
-		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
+		String METHOD = "testJobOperatorRestartAlreadyCompleteException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -447,7 +447,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithUserStop() throws Fault {
-		String METHOD = "testInvokeJobWithUserStop";
+		String METHOD = "testInvokeJobWithUserStop";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -493,7 +493,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOperatorGetStepExecutions() throws Fault {
 
-		String METHOD = "testJobOperatorGetStepExecutions";
+		String METHOD = "testJobOperatorGetStepExecutions";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -538,7 +538,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testJobOpGetJobNames() throws Fault {
 
-		String METHOD = "testJobOpGetJobNames";
+		String METHOD = "testJobOpGetJobNames";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -573,7 +573,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testAbandoned() throws Fault {
 
-		String METHOD = "testAbandoned";
+		String METHOD = "testAbandoned";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -606,7 +606,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOpgetJobInstanceCount() throws Fault {
-		String METHOD = "testJobOpgetJobInstanceCount";
+		String METHOD = "testJobOpgetJobInstanceCount";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -674,7 +674,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOpgetJobInstanceCountException() throws Fault {
-		String METHOD = "testJobOpgetJobInstanceCountException";
+		String METHOD = "testJobOpgetJobInstanceCountException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -742,7 +742,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOpgetJobInstances() throws Fault {
-		String METHOD = " testJobOpgetJobInstances";
+		String METHOD = " testJobOpgetJobInstances";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -811,7 +811,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOpgetJobInstancesException() throws Fault {
-		String METHOD = "testJobOpgetJobInstancesException";
+		String METHOD = "testJobOpgetJobInstancesException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -869,7 +869,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOperatorGetParameters() throws Fault {
-		String METHOD = "testJobOperatorGetParameters";
+		String METHOD = "testJobOperatorGetParameters";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -962,7 +962,7 @@ TestUtil.logTrace(METHOD);
 	  
 	
 	public void testJobOperatorGetJobInstances() throws Fault {
-		String METHOD = "testJobOperatorGetJobInstances";
+		String METHOD = "testJobOperatorGetJobInstances";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -1059,7 +1059,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testJobOperatorGetRunningJobExecutions() throws Fault {
-		String METHOD = "testJobOperatorGetRunningJobExecutions";
+		String METHOD = "testJobOperatorGetRunningJobExecutions";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -1110,7 +1110,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testJobOperatorGetRunningJobInstancesException() throws Fault {
-		String METHOD = "testJobOperatorGetRunningJobInstancesException";
+		String METHOD = "testJobOperatorGetRunningJobInstancesException";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 		
@@ -1162,7 +1162,7 @@ TestUtil.logTrace(METHOD);
 	 
 	
 	public void testJobOperatorGetJobExecution() throws Fault {
-		String METHOD = "testJobOperatorGetJobExecution";
+		String METHOD = "testJobOperatorGetJobExecution";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -1232,7 +1232,7 @@ TestUtil.logTrace(METHOD);
 	 
 	
 	public void testJobOperatorGetJobExecutions() throws Fault {
-		String METHOD = "testJobOperatorGetJobExecutions";
+		String METHOD = "testJobOperatorGetJobExecutions";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 

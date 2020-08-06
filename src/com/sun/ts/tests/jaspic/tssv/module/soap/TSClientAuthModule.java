@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,10 +29,10 @@ import javax.security.auth.callback.NameCallback;
 import javax.security.auth.callback.PasswordCallback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.MessageInfo;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.CommonCallbackSupport;
@@ -44,7 +44,7 @@ import javax.xml.namespace.QName;
  * @author Raja Perumal
  */
 public class TSClientAuthModule
-    implements javax.security.auth.message.module.ClientAuthModule {
+    implements jakarta.security.auth.message.module.ClientAuthModule {
   private static TSLogger logger = null;
 
   private static CallbackHandler callbackHandler = null;
@@ -106,7 +106,7 @@ public class TSClientAuthModule
    */
   @Override
   public Class[] getSupportedMessageTypes() {
-    Class[] classarray = { javax.xml.soap.SOAPMessage.class };
+    Class[] classarray = { jakarta.xml.soap.SOAPMessage.class };
     logMsg("TSClientAuthModule.getSupportedMessageTypes called");
     return classarray;
   }
@@ -196,19 +196,19 @@ public class TSClientAuthModule
 
     commonCallbacks.verify();
 
-    // Log the value for key javax.xml.ws.wsdl.service in messageInfoMap
+    // Log the value for key jakarta.xml.ws.wsdl.service in messageInfoMap
     Map messageInfoMap = messageInfo.getMap();
 
-    QName qName = (QName) messageInfoMap.get("javax.xml.ws.wsdl.service");
+    QName qName = (QName) messageInfoMap.get("jakarta.xml.ws.wsdl.service");
 
     if (qName != null) {
       String qNameToString = qName.toString();
 
       msg = "TSClientAuthModule.secureRequest messageInfo :"
-          + "javax.xml.ws.wsdl.service=" + qNameToString;
+          + "jakarta.xml.ws.wsdl.service=" + qNameToString;
     } else {
       msg = "TSClientAuthModule.secureRequest messageInfo :"
-          + "** ERROR ** No value found for key javax.xml.ws.wsdl.service in MessageInfoMap"
+          + "** ERROR ** No value found for key jakarta.xml.ws.wsdl.service in MessageInfoMap"
           + " : Expected a QName";
 
     }
@@ -295,19 +295,19 @@ public class TSClientAuthModule
     logMsg(msg);
     logMessageTypes(messageInfo, "validateResponse");
 
-    // Log the value for key javax.xml.ws.wsdl.service in messageInfoMap
+    // Log the value for key jakarta.xml.ws.wsdl.service in messageInfoMap
     Map messageInfoMap = messageInfo.getMap();
 
-    QName qName = (QName) messageInfoMap.get("javax.xml.ws.wsdl.service");
+    QName qName = (QName) messageInfoMap.get("jakarta.xml.ws.wsdl.service");
 
     if (qName != null) {
       String qNameToString = qName.toString();
 
       msg = "TSClientAuthModule.validateResponse messageInfo :"
-          + "javax.xml.ws.wsdl.service=" + qNameToString;
+          + "jakarta.xml.ws.wsdl.service=" + qNameToString;
     } else {
       msg = "TSClientAuthModule.validateResponse messageInfo :"
-          + "** ERROR ** No value found for key javax.xml.ws.wsdl.service in MessageInfoMap"
+          + "** ERROR ** No value found for key jakarta.xml.ws.wsdl.service in MessageInfoMap"
           + " : Expected a QName ";
 
     }
@@ -373,9 +373,9 @@ public class TSClientAuthModule
     Object responseMessage = messageInfo.getResponseMessage();
 
     if (requestMessage != null) {
-      if (requestMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (requestMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getRequestMessage() is of type "
@@ -386,9 +386,9 @@ public class TSClientAuthModule
     }
 
     if (responseMessage != null) {
-      if (responseMessage instanceof javax.xml.soap.SOAPMessage) {
+      if (responseMessage instanceof jakarta.xml.soap.SOAPMessage) {
         msg = methodName
-            + " : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage";
+            + " : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage";
         logMsg(msg);
       } else {
         msg = methodName + " : MessageInfo.getResponseMessage() is of type "

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,20 +19,20 @@
  */
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
-import javax.jms.QueueSession;
-import javax.jms.QueueSender;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-import javax.jms.Message;
-import javax.ejb.SessionBean;
-import javax.ejb.SessionContext;
-import javax.ejb.CreateException;
-import javax.ejb.EJBException;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.QueueSession;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Message;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.RemoteLoggingInitException;

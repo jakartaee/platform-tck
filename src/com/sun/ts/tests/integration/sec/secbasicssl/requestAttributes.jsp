@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -67,9 +67,9 @@
     */
     String testName = "test_request_attributes";
 
-    String cipherSuiteAttrib = "javax.servlet.request.cipher_suite";
-    String keySizeAttrib     = "javax.servlet.request.key_size";
-    String certificateAttrib = "javax.servlet.request.X509Certificate";
+    String cipherSuiteAttrib = "jakarta.servlet.request.cipher_suite";
+    String keySizeAttrib     = "jakarta.servlet.request.key_size";
+    String certificateAttrib = "jakarta.servlet.request.X509Certificate";
 
     String cipherSuite = null;
     Integer    keySize = new Integer(0);

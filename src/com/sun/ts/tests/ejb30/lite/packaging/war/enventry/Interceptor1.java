@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.EJBContext;
-import javax.interceptor.InvocationContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJBContext;
+import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 extends InterceptorBase {
 

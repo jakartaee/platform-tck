@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,11 @@
 <tck:test testName="positiveTxDataSourceConfigPrecedenceTest">
 
    <!-- Validate sql:transaction action  that the dataSource attribute takes
-            precedence over the javax.servlet.jsp.jstl.sql.dataSource
+            precedence over the jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter -->
 
    <h1>Validate sql:transaction action  that the dataSource attribute takes
-            precedence over the javax.servlet.jsp.jstl.sql.dataSource
+            precedence over the jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter </h1>
    <p>
 
@@ -48,7 +48,7 @@
    <c:choose>
       <c:when test="${!empty ex2}">
          <H2>ERROR:</H2>
-         javax.servlet.jsp.jstl.sql.dataSource <strong>did</strong> take
+         jakarta.servlet.jsp.jstl.sql.dataSource <strong>did</strong> take
          precedence over the <strong>dataSource</strong> attribute!The Exception
           that was raised is:
          <strong><c:out value='${ex2}' escapeXml='false' /></strong>.
@@ -56,7 +56,7 @@
       </c:when>
       <c:otherwise>
          The dataSource attribute <strong>did</strong> take precedence over
-          javax.servlet.jsp.jstl.sql.dataSource. The query executed without
+          jakarta.servlet.jsp.jstl.sql.dataSource. The query executed without
           an error.
          <p>
       </c:otherwise>

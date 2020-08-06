@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,23 +16,23 @@
 
 package com.sun.ts.tests.connector.resourceDefs.servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
 import java.io.*;
 
-import javax.resource.AdministeredObjectDefinition;
-import javax.resource.AdministeredObjectDefinitions;
+import jakarta.resource.AdministeredObjectDefinition;
+import jakarta.resource.AdministeredObjectDefinitions;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.HttpConstraint;
-import javax.annotation.security.DeclareRoles;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.annotation.security.DeclareRoles;
 
 import com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory;
 import com.sun.ts.lib.util.*;
-import javax.resource.cci.Connection;
-import javax.resource.cci.ConnectionFactory;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.cci.ConnectionFactory;
 import javax.naming.InitialContext;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
@@ -50,13 +50,13 @@ import com.sun.ts.tests.common.connector.whitebox.TSConnection;
         @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
 @WebServlet(name = "AODTestServlet", urlPatterns = { "/AODTestServlet" })
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(name = "java:app/env/CTSAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:app/env/CTSAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:comp/env/CTSAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:comp/env/CTSAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:module/env/CTSAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:module/env/CTSAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:global/env/CTSAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
+    @AdministeredObjectDefinition(name = "java:global/env/CTSAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
 public class AODTestServlet extends HttpServlet {
   private String servletAppContext = null;
 

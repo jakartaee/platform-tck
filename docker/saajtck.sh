@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,45 +24,64 @@ echo "ANT_OPTS in saajtck.sh $ANT_OPTS"
 cd $TCK_HOME
 
 if ls ${WORKSPACE}/standalone-bundles/*saajtck*.zip 1> /dev/null 2>&1; then
-  echo "Using stashed bundle created during the build phase"
-  unzip ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
+  echo "Using stashed bundle for saajtck created during the build phase"
+  unzip -q ${WORKSPACE}/standalone-bundles/*saajtck*.zip -d ${TCK_HOME}
+  TCK_NAME=saajtck
+elif ls ${WORKSPACE}/standalone-bundles/*soap-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for soap-tck created during the build phase"
+  unzip -q ${WORKSPACE}/standalone-bundles/*soap-tck*.zip -d ${TCK_HOME}
+  TCK_NAME=soap-tck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
 
+if [ -z "$GF_TOPLEVEL_DIR" ]; then
+  export GF_TOPLEVEL_DIR=glassfish6
+fi
+
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 5.0.1 ..."
+echo "Download and install GlassFish 6.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 
-TS_HOME=$TCK_HOME/saajtck
+TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
-sed -i "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp ts.jte.jdk11 ts.jte
+else
+  sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed#g" ts.jte
+fi
+
+which java
+java -version
+
+sed -i "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/webservices-api-osgi.jar#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
+sed -i "s#local.classes=.*#local.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jaxb-osgi.jar#g" ts.jte
 
 #if [ "web" == "$PROFILE" ]; then
 #  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
 #fi
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport/saajtck#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/saajtckwork/saajtck#g" ts.jte
+sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
-mkdir -p $TCK_HOME/saajtckreport/saajtck
-mkdir -p $TCK_HOME/saajtckwork/saajtck
+mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
+mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TS_HOME/bin
 ant config.vi
@@ -80,11 +99,10 @@ ant deploy.all
 ant run.all
 echo "Test run complete"
 
-TCK_NAME=saajtck
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
 export HOST=`hostname -f`
 echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/glassfish5/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*

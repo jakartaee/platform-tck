@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jms.ee.mdb.mdb_msgTypesT2;
 
 import java.io.Serializable;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -140,7 +140,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("messageObjectCopyTopicTest")) {
         TestUtil.logTrace(
             "@onMessage - running messageObjectCopyTopicTest - read and verify the message");
-        messageObjectCopyTopicTest((javax.jms.ObjectMessage) msg);
+        messageObjectCopyTopicTest((jakarta.jms.ObjectMessage) msg);
       }
 
       if (msg.getStringProperty("TestCase")
@@ -152,7 +152,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsBoolean")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsBoolean - read and verify the message");
-        streamMessageConversionTopicTestsBoolean((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsBoolean((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -164,7 +164,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsByte")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsByte - read and verify the message");
-        streamMessageConversionTopicTestsByte((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsByte((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionTopicTestsShortCreate")) {
         TestUtil.logTrace(
@@ -174,7 +174,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsShort")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsShort - read and verify the message");
-        streamMessageConversionTopicTestsShort((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsShort((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionTopicTestsIntCreate")) {
         TestUtil.logTrace(
@@ -184,7 +184,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsInt")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsInt - read and verify the message");
-        streamMessageConversionTopicTestsInt((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsInt((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("streamMessageConversionTopicTestsLongCreate")) {
         TestUtil.logTrace(
@@ -194,7 +194,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsLong")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsLong - read and verify the message");
-        streamMessageConversionTopicTestsLong((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsLong((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -206,7 +206,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsFloat")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsFloat - read and verify the message");
-        streamMessageConversionTopicTestsFloat((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsFloat((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -218,7 +218,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsDouble")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsDouble - read and verify the message");
-        streamMessageConversionTopicTestsDouble((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsDouble((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -230,7 +230,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsString")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsString - read and verify the message");
-        streamMessageConversionTopicTestsString((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsString((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -242,7 +242,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsChar")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsChar - read and verify the message");
-        streamMessageConversionTopicTestsChar((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsChar((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -254,7 +254,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageConversionTopicTestsBytes")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsBytes - read and verify the message");
-        streamMessageConversionTopicTestsBytes((javax.jms.StreamMessage) msg);
+        streamMessageConversionTopicTestsBytes((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -267,7 +267,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace(
             "@onMessage - running streamMessageConversionTopicTestsInvFormatString - read and verify the message");
         streamMessageConversionTopicTestsInvFormatString(
-            (javax.jms.StreamMessage) msg);
+            (jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -279,7 +279,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageTopicTestsFullMsg")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageTopicTestsFullMsg - read and verify the message");
-        streamMessageTopicTestsFullMsg((javax.jms.StreamMessage) msg);
+        streamMessageTopicTestsFullMsg((jakarta.jms.StreamMessage) msg);
       }
 
       else if (msg.getStringProperty("TestCase")
@@ -291,7 +291,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
           .equals("streamMessageTopicTestNull")) {
         TestUtil.logTrace(
             "@onMessage - running streamMessageTopicTestNull - read and verify the message");
-        streamMessageTopicTestNull((javax.jms.StreamMessage) msg);
+        streamMessageTopicTestNull((jakarta.jms.StreamMessage) msg);
       } else {
         TestUtil.logTrace(
             "@onMessage - invalid message type found in StringProperty");
@@ -772,7 +772,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * after the write does not effect the msg
    */
   public void messageObjectCopyTopicTest(
-      javax.jms.ObjectMessage messageReceivedObjectMsg) {
+      jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
     boolean pass = true;
     String testCase = "messageObjectCopyTopicTest";
     String initial = "This is";
@@ -798,7 +798,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionTopicTestsBoolean(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsBoolean";
     try {
 
@@ -863,7 +863,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -887,7 +887,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -910,7 +910,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
 
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -932,7 +932,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -955,7 +955,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -977,7 +977,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1001,7 +1001,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
 
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1024,7 +1024,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
 
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1045,7 +1045,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsByte(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsByte";
     try {
       byte bValue = 127;
@@ -1071,7 +1071,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1114,7 +1114,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1177,7 +1177,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1240,7 +1240,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1262,7 +1262,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1284,7 +1284,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsShort(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsShort";
     try {
 
@@ -1312,7 +1312,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1355,7 +1355,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1377,7 +1377,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1418,7 +1418,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1481,7 +1481,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1503,7 +1503,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1524,7 +1524,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsInt(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsInt";
 
     try {
@@ -1553,7 +1553,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1596,7 +1596,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1618,7 +1618,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1639,7 +1639,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1660,7 +1660,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1723,7 +1723,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1745,7 +1745,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1765,7 +1765,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionTopicTestsLong(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsLong";
 
     try {
@@ -1793,7 +1793,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1836,7 +1836,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1858,7 +1858,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1879,7 +1879,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1900,7 +1900,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1922,7 +1922,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1963,7 +1963,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -1985,7 +1985,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2005,7 +2005,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionTopicTestsFloat(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsFloat";
 
     try {
@@ -2034,7 +2034,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2076,7 +2076,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2098,7 +2098,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2119,7 +2119,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2140,7 +2140,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2162,7 +2162,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2183,7 +2183,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2243,7 +2243,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsDouble(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsDouble";
 
     try {
@@ -2272,7 +2272,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2314,7 +2314,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2336,7 +2336,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2357,7 +2357,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2378,7 +2378,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2400,7 +2400,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2421,7 +2421,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2442,7 +2442,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2481,7 +2481,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionTopicTestsString(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsString";
 
     try {
@@ -2533,7 +2533,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2596,7 +2596,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2740,7 +2740,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsChar(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsChar";
 
     try {
@@ -2769,7 +2769,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2814,7 +2814,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2836,7 +2836,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2856,7 +2856,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2896,7 +2896,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         TestUtil.logTrace("Fail: MessageFormatException was not thrown");
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2918,7 +2918,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2939,7 +2939,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2959,7 +2959,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -2978,7 +2978,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * as in 3.11.3
    */
   private void streamMessageConversionTopicTestsBytes(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsBytes";
 
     try {
@@ -3030,7 +3030,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3052,7 +3052,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3074,7 +3074,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3096,7 +3096,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3118,7 +3118,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3141,7 +3141,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3163,7 +3163,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3186,7 +3186,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3208,7 +3208,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageFormatException) {
+        if (e instanceof jakarta.jms.MessageFormatException) {
           TestUtil.logTrace("Pass: MessageFormatException thrown as expected");
         } else {
           TestUtil.logTrace("Error: Unexpected exception "
@@ -3230,7 +3230,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageConversionTopicTestsInvFormatString(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageConversionTopicTestsInvFormatString";
 
     try {
@@ -3399,7 +3399,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * 
    */
   private void streamMessageTopicTestsFullMsg(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageTopicTestsFullMsg";
 
     try {
@@ -3624,7 +3624,7 @@ public class MsgBeanMsgTestT2 implements MessageDrivenBean, MessageListener {
    * Description: Read a StreamMessage Use readString to read back a null
    */
   private void streamMessageTopicTestNull(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "streamMessageTopicTestNull";
     try {
       boolean pass = true;

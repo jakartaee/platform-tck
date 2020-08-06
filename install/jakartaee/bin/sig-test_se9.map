@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,7 +55,6 @@
 #   JavaMail 1.5
 #   Connector 1.7
 #   Web Services 1.4 (JSR-109)
-#   JAX-RPC 1.1
 #   JAXR 1.0   (JSR-093)
 #   JAX-RS 2.0   (JSR-339)
 #   JavaEE Management 1.1  (JSR-77)
@@ -98,7 +97,7 @@
 
 # EJB 3.2 
 # (This is JSR-345)
-javax.ejb=3.2_se8
+jakarta.ejb=3.2_se8
 
 # Interceptors 1.2  
 javax.interceptor=1.2_se8
@@ -117,7 +116,7 @@ javax.el=3.0_se8
 
 # JSF 2.3 (Faces) 
 # (This is JSR-344)
-javax.faces=2.3_se8
+jakarta.faces=2.3_se8
 
 # JSTL 1.2 
 javax.servlet.jsp.jstl=1.2_se8
@@ -132,14 +131,11 @@ javax.transaction=1.2_se8
 
 # JavaMail 1.5 
 # (This is JSR-919)
-javax.mail=1.5_se8
+jakarta.mail=1.5_se8
 
 # Connector 1.7 
 # (This is JSR-322)
-javax.resource=1.7_se8
-
-# JAX-RPC 1.1 
-javax.xml.rpc=1.1_se8
+jakarta.resource=1.7_se8
 
 # JAXR 1.0 
 javax.xml.registry=1.0_se8
@@ -147,26 +143,23 @@ javax.xml.registry=1.0_se8
 # Java EE Management 1.1 
 javax.management.j2ee=1.1_se8
 
-# Java EE Deployment 1.2 
-javax.enterprise.deploy=1.2_se8
-
 # JACC 1.5 
-javax.security.jacc=1.5_se8
+jakarta.security.jacc=1.5_se8
 
 # Web Services 1.4 packages (JSR-109)
-# These packages use the javax.xml.ws packages and will be covered
+# These packages use the jakarta.xml.ws packages and will be covered
 # by the signature tests when the preceeding JAX-WS 2.2 package tests
 # are run so we won't need to enter them here again. ...but we do want
 # to note that this is why there are no entries for Web Services 1.4.
 
 # Persistence 2.1 
-javax.persistence=2.1_se8
+jakarta.persistence=2.1_se8
 
 # CAJ (Common Annotations) 1.3 
-javax.annotation=1.3_se8
+jakarta.annotation=1.3_se8
 
 # JASPIC (Java Authentication SPI for Containters - JSR-196)
-javax.security.auth.message=1.1_se8
+jakarta.security.auth.message=1.1_se8
 
 # JAX-RS 2.0
 # (This is JSR-339)
@@ -180,13 +173,13 @@ javax.validation=1.1_se8
 # Managed Beans 1.0 - no API to test
 # (This is listed along w/ EE spec at JSR-316)
 # Managed Beans consists of one annotation:   
-#     javax.annotation.ManagedBean 
+#     jakarta.annotation.ManagedBean 
 # ...so the sigtests for this area already covered under annotations sigs.
 
 
 # Dependency Injection for Java 1.0
 # (This is JSR-330)
-javax.inject=1.0_se8
+jakarta.inject=1.0_se8
 
 
 # Contexts and Dependency Injection (CDI == JSR 299)  for Java EE 1.1

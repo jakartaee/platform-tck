@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -259,7 +259,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.19.2
    * 
    * @testStrategy: Validate that if doc is null or empty, that an instance of
-   * javax.servlet.jsp.JspException is thrown.
+   * jakarta.servlet.jsp.JspException is thrown.
    */
   public void negativeParseDocNullEmptyTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "negativeParseDocNullEmptyTest");

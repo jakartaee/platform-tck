@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -49,7 +49,7 @@ cp ts.save $TS_HOME/bin/ts.jte
 
 ##### installRI.sh starts here #####
 # TODO : Take care of Web Profile
-echo "Download and install GlassFish 5.0.1 ..."
+echo "Download and install GlassFish 6.0.0 ..."
 if [ -z "$GLASSFISH_BUNDLE_URL" ]; then
   wget http://<host>/latest-glassfish.zip
 else
@@ -154,13 +154,6 @@ sed -i 's/orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
 
 sed -i 's/ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
 sed -i 's/orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
-
-sed -i "s#registryURL=.*#registryURL=http://localhost:8080/RegistryServer/#g" ts.jte
-sed -i "s#queryManagerURL=.*#queryManagerURL=http://localhost:8080/RegistryServer/#g" ts.jte
-sed -i 's/jaxrUser=.*/jaxrUser=testuser/g' ts.jte
-sed -i 's/jaxrPassword=.*/jaxrPassword=testuser/g' ts.jte
-sed -i 's/jaxrUser2=.*/jaxrUser2=jaxr-sqe/g' ts.jte
-sed -i 's/jaxrPassword2=.*/jaxrPassword2=jaxrsqe/g' ts.jte
 
 sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte

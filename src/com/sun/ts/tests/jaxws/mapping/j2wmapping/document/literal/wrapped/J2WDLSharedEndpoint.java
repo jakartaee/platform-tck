@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,40 +20,40 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
-@javax.jws.WebService(name = "MYJ2WDLSharedEndpoint", targetNamespace = "http://doclitservice.org/wsdl")
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.DOCUMENT, use = javax.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = javax.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.WebService(name = "MYJ2WDLSharedEndpoint", targetNamespace = "http://doclitservice.org/wsdl")
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.DOCUMENT, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface J2WDLSharedEndpoint extends InheritedInterface {
 
-  @javax.jws.WebMethod(operationName = "arrayOperationFromClient")
-  @javax.jws.WebResult(name = "return", targetNamespace = "http://doclitservice.org/wsdl")
+  @jakarta.jws.WebMethod(operationName = "arrayOperationFromClient")
+  @jakarta.jws.WebResult(name = "return", targetNamespace = "http://doclitservice.org/wsdl")
   public java.lang.String arrayOperationFromClient(
-      @javax.jws.WebParam(name = "arg0") java.lang.String[] arg0);
+      @jakarta.jws.WebParam(name = "arg0") java.lang.String[] arg0);
 
   public com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.J2WDLSharedBean getBean();
 
   public java.lang.String[] arrayOperation();
 
-  @javax.jws.WebMethod(operationName = "stringOperation")
-  @javax.jws.WebResult(name = "rvalue", targetNamespace = "http://doclitservice.org/wsdl")
+  @jakarta.jws.WebMethod(operationName = "stringOperation")
+  @jakarta.jws.WebResult(name = "rvalue", targetNamespace = "http://doclitservice.org/wsdl")
   public java.lang.String stringOperation(
-      @javax.jws.WebParam(name = "ivalue0") java.lang.String ivalue0);
+      @jakarta.jws.WebParam(name = "ivalue0") java.lang.String ivalue0);
 
-  @javax.jws.WebMethod(operationName = "stringOperation2")
-  @javax.jws.WebResult(name = "response", targetNamespace = "http://doclitservice.org/wsdl")
-  @javax.xml.ws.RequestWrapper(localName = "myStringOperation", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MyStringOperation")
-  @javax.xml.ws.ResponseWrapper(localName = "myStringOperationResponse", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MyStringOperationResponse")
+  @jakarta.jws.WebMethod(operationName = "stringOperation2")
+  @jakarta.jws.WebResult(name = "response", targetNamespace = "http://doclitservice.org/wsdl")
+  @jakarta.xml.ws.RequestWrapper(localName = "myStringOperation", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MyStringOperation")
+  @jakarta.xml.ws.ResponseWrapper(localName = "myStringOperationResponse", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MyStringOperationResponse")
   public java.lang.String stringOperation2(
-      @javax.jws.WebParam(name = "request") java.lang.String request);
+      @jakarta.jws.WebParam(name = "request") java.lang.String request);
 
   // Holder method with annotations for parameters
   public String holderMethodDefault(
-      javax.xml.ws.Holder<java.lang.String> varStringDefault);
+      jakarta.xml.ws.Holder<java.lang.String> varStringDefault);
 
   public String holderMethodInOut(
-      @javax.jws.WebParam(name = "varStringInOut", mode = javax.jws.WebParam.Mode.INOUT) javax.xml.ws.Holder<java.lang.String> varStringInOut);
+      @jakarta.jws.WebParam(name = "varStringInOut", mode = jakarta.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> varStringInOut);
 
   public String holderMethodOut(
-      @javax.jws.WebParam(name = "varStringOut", mode = javax.jws.WebParam.Mode.OUT) javax.xml.ws.Holder<java.lang.String> varStringOut);
+      @jakarta.jws.WebParam(name = "varStringOut", mode = jakarta.jws.WebParam.Mode.OUT) jakarta.xml.ws.Holder<java.lang.String> varStringOut);
 
   // A method with more than 1 input parts
   public java.lang.String oneTwoThree(int one, long two, double three);
@@ -63,28 +63,28 @@ public interface J2WDLSharedEndpoint extends InheritedInterface {
 
   // Annotation to disambiguate name of overloaded method helloWorld
   // and to disambiguate name of Wrappers from HelloWorld - > HelloWorld2
-  @javax.jws.WebMethod(operationName = "helloWorld2")
-  @javax.xml.ws.RequestWrapper(localName = "helloWorld2", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.HelloWorld2")
-  @javax.xml.ws.ResponseWrapper(localName = "helloWorld2Response", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.HelloWorld2Response")
+  @jakarta.jws.WebMethod(operationName = "helloWorld2")
+  @jakarta.xml.ws.RequestWrapper(localName = "helloWorld2", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.HelloWorld2")
+  @jakarta.xml.ws.ResponseWrapper(localName = "helloWorld2Response", targetNamespace = "http://doclitservice.org/wsdl", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.HelloWorld2Response")
   public java.lang.String helloWorld(String hello);
 
-  @javax.jws.WebMethod
-  @javax.jws.Oneway
+  @jakarta.jws.WebMethod
+  @jakarta.jws.Oneway
   public void oneWayOperation();
 
-  @javax.jws.WebMethod
+  @jakarta.jws.WebMethod
   public void operationWithHeaderAndHeaderFaultAndFault(
-      @javax.jws.WebParam(name = "ConfigHeader", header = true, mode = javax.jws.WebParam.Mode.IN) ConfigHeader configheader)
+      @jakarta.jws.WebParam(name = "ConfigHeader", header = true, mode = jakarta.jws.WebParam.Mode.IN) ConfigHeader configheader)
       throws ConfigHeaderFault, MyFault;
 
-  @javax.jws.WebMethod
+  @jakarta.jws.WebMethod
   public void methodWithNoReturn(int a, int b);
 
-  @javax.jws.WebMethod
-  @javax.xml.ws.RequestWrapper(partName = "request", localName = "", targetNamespace = "", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MethodWithNoReturn2Request")
-  @javax.xml.ws.ResponseWrapper(partName = "response", localName = "", targetNamespace = "", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MethodWithNoReturn2Response")
+  @jakarta.jws.WebMethod
+  @jakarta.xml.ws.RequestWrapper(partName = "request", localName = "", targetNamespace = "", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MethodWithNoReturn2Request")
+  @jakarta.xml.ws.ResponseWrapper(partName = "response", localName = "", targetNamespace = "", className = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.MethodWithNoReturn2Response")
   public void methodWithNoReturn2(String s);
 
-  @javax.jws.WebMethod
+  @jakarta.jws.WebMethod
   public void operationThatThrowsAFault() throws MyOtherFault;
 }

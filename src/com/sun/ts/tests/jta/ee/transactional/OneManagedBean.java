@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,22 +16,22 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import javax.annotation.Resource;
-import javax.transaction.SystemException;
-import javax.transaction.Transactional;
-import javax.transaction.UserTransaction;
-import javax.transaction.Transactional.TxType;
-import javax.annotation.Priority;
+import jakarta.annotation.Resource;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.UserTransaction;
+import jakarta.transaction.Transactional.TxType;
+import jakarta.annotation.Priority;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.InterceptionType;
-import javax.enterprise.util.AnnotationLiteral;
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.InterceptionType;
+import jakarta.enterprise.util.AnnotationLiteral;
+import jakarta.enterprise.inject.Any;
+import jakarta.inject.Inject;
 
 @OneManagedQualifier
 public class OneManagedBean {
@@ -144,10 +144,10 @@ public class OneManagedBean {
       Method m = bClass.getMethod(methodName);
       Annotation[] annotationArray = m.getAnnotations();
 
-      java.util.List<javax.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
+      java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
           .resolveInterceptors(InterceptionType.AROUND_INVOKE, annotationArray);
 
-      for (javax.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
+      for (jakarta.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
         System.out.println("Interceptor Name = " + interceptor.getName());
         System.out.println("Interceptor toString = " + interceptor.toString());
         System.out.println(

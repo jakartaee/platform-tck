@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,15 +23,15 @@ package com.sun.ts.tests.ejb30.common.allowed.stateful;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Collection;
 import java.util.Iterator;
-import javax.ejb.EJBException;
-import javax.annotation.Resource;
-import javax.ejb.Local;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.TimerHandle;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.ejb.EJBException;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Local;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.TimerHandle;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "TimerEJB")
 @Local({ TimerLocalIF.class })
@@ -45,15 +45,15 @@ public class TimerEJB implements TimerLocalIF {
 
   @Timeout
   @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  private void ejbTimeout(javax.ejb.Timer timer) {
+  private void ejbTimeout(jakarta.ejb.Timer timer) {
   }
 
   // @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
   public TimerHandle startTimer(long duration, String info) {
     try {
-      javax.ejb.TimerService ts = sessionContext.getTimerService();
+      jakarta.ejb.TimerService ts = sessionContext.getTimerService();
       TLogger.logTrace("create Timer");
-      javax.ejb.Timer t = ts.createTimer(duration, info);
+      jakarta.ejb.Timer t = ts.createTimer(duration, info);
       return t.getHandle();
     } catch (Exception e) {
       TLogger.printStackTrace(e);
@@ -65,7 +65,7 @@ public class TimerEJB implements TimerLocalIF {
     Collection ccol = null;
     try {
       TLogger.logTrace("findAndCancelTimer method entered");
-      javax.ejb.TimerService ts = sessionContext.getTimerService();
+      jakarta.ejb.TimerService ts = sessionContext.getTimerService();
       TLogger.logTrace("getTimers");
       ccol = ts.getTimers();
       if (!ccol.isEmpty()) {
@@ -73,7 +73,7 @@ public class TimerEJB implements TimerLocalIF {
         Iterator i = ccol.iterator();
         while (i.hasNext()) {
           TLogger.logTrace("Looking up next timer");
-          javax.ejb.Timer t = (javax.ejb.Timer) i.next();
+          jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
           TLogger.logTrace("Cancel timer with info: " + t.getInfo());
           t.cancel();
         }

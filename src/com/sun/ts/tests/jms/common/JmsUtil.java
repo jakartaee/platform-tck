@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jms.common;
 
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.*;
 import com.sun.ts.lib.util.*;
 
@@ -219,7 +219,7 @@ public final class JmsUtil {
   }
 
   public static void sendTestResults(String testCase, boolean results,
-      QueueSession qSession, javax.jms.Queue queueR) {
+      QueueSession qSession, jakarta.jms.Queue queueR) {
     TextMessage msg = null;
     QueueSender mSender = null;
 

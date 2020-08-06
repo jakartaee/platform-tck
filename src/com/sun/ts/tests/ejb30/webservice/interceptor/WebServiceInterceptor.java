@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.ejb30.webservice.interceptor;
 
-import javax.interceptor.InvocationContext;
-import javax.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
+import jakarta.interceptor.AroundInvoke;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +39,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
  * interceptor is invoked. 3) The getParameters() method should return the
  * parameters of the business method invocation. 4) The Map returned by the
  * getContextData() method must be an instance of JAX-WS Message context. i.e.
- * javax.xml.ws.handler.MessageContext
+ * jakarta.xml.ws.handler.MessageContext
  *
  * 3) If any of the above values are incorrect, then the interceptor throws
  * exception and the webservice invocation context test fails.
@@ -61,9 +61,9 @@ public class WebServiceInterceptor {
     TLogger.log("InvocationContext.getContextData() type: "
         + contextDataMap.getClass());
 
-    if (contextDataMap instanceof javax.xml.ws.handler.MessageContext) {
+    if (contextDataMap instanceof jakarta.xml.ws.handler.MessageContext) {
       TLogger.log(
-          "ContextDataMap is an instance of javax.xml.ws.handler.MessageContext ");
+          "ContextDataMap is an instance of jakarta.xml.ws.handler.MessageContext ");
 
       Object target = ctx.getTarget();
       if (target instanceof com.sun.ts.tests.ejb30.webservice.interceptor.HelloImpl) {
@@ -91,9 +91,9 @@ public class WebServiceInterceptor {
       return ctx.proceed();
     } else {
       TLogger.log(
-          "ContextDataMap is not an instance of javax.xml.ws.handler.MessageContext ");
+          "ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext ");
       throw new RuntimeException(
-          "ContextDataMap is not an instance of javax.xml.ws.handler.MessageContext");
+          "ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext");
 
     }
 

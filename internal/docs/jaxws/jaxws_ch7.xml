@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -111,7 +111,7 @@ The WebEndpoint annotation is specified on the getPortName() methods of a genera
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:7008</id>
 			<description>
-The WebServiceProvider annotation is specified on classes that implement a strongly typed javax.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
+The WebServiceProvider annotation is specified on classes that implement a strongly typed jakarta.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
 			</description>
 			<location chapter = "7" section = "7"/>
 		</assertion>
@@ -132,7 +132,7 @@ The BindingType annotation is applied to an endpoint implementation class. It sp
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:7010</id>
 			<description>
-The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the javax.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
+The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the jakarta.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
 			</description>
 			<location chapter = "7" section = "9"/>
 		</assertion>
@@ -140,7 +140,7 @@ The WebServiceRef annotation is used to declare a reference to a Web service. It
 			<id>JAXWS:SPEC:7011</id>
 			<description>
 Conformance (JSR-181 conformance): A JAX-WS 2.0 implementation MUSTbe conformant to the JAX-WS profile of JSR-181 1.1. As a convenience to the reader, the following sections reproduce the definition of the JSR-181 annotations 8
-applicable to JAX-WS.  7.10.1 javax.jws.WebService, 7.10.2 javax.jws.WebMethod, 7.10.3 javax.jws.OneWay, 7.10.4 javax.jws.WebParam, 7.10.5 javax.jws.WebResult, 7.10.6 javax.jws.SOAPBinding, 7.10.7 javax.jws.HandlerChain
+applicable to JAX-WS.  7.10.1 jakarta.jws.WebService, 7.10.2 jakarta.jws.WebMethod, 7.10.3 jakarta.jws.OneWay, 7.10.4 jakarta.jws.WebParam, 7.10.5 jakarta.jws.WebResult, 7.10.6 jakarta.jws.SOAPBinding, 7.10.7 jakarta.jws.HandlerChain
 			</description>
 			<location chapter = "7" section = "10"/>
 		</assertion>
@@ -234,8 +234,8 @@ of a service specific exception.
                            status="active" testable="false">
                     <id>JAXWS:SPEC:7019</id>
                     <description>
-                        javax.xml.ws.spi.WebServiceFeatureAnnotation
-                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: javax.xml.ws.soap.Addressing, javax.xml.ws.soap.MTOM, and javax.xml.ws.RespectBinding.  
+                        jakarta.xml.ws.spi.WebServiceFeatureAnnotation
+                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: jakarta.xml.ws.soap.Addressing, jakarta.xml.ws.soap.MTOM, and jakarta.xml.ws.RespectBinding.  
                     </description>
                     <location chapter="7" section="14"/>
                     <sub-assertions>
@@ -276,7 +276,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7020</id>
                     <description>
-                        javax.xml.ws.soap.Addressing
+                        jakarta.xml.ws.soap.Addressing
                         The Addressing annotation is used to control the use of WS-Addressing[24][33].  It corresponds with the AddressingFeature described in section 6.5.1.
                     </description>
                     <location chapter="7" section="14.1"/>
@@ -324,7 +324,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7021</id>
                     <description>
-                        javax.xml.ws.soap.MTOM
+                        jakarta.xml.ws.soap.MTOM
                         The MTOM annotation is used to control the use of MTOM an XOP encoding. It corresponds to the MTOMFeature described in section 6.5.2.
                     </description>
                     <location chapter="7" section="14.2"/>
@@ -360,7 +360,7 @@ of a service specific exception.
                            status="active" testable="true">
                     <id>JAXWS:SPEC:7022</id>
                     <description>
-                        javax.xml.ws.RespectBinding
+                        jakarta.xml.ws.RespectBinding
                         The RespectBinding annotation is used to control whether a JAX-WS implementation MUST respect/honor the contents of the wsdl:binding associated with an endpoint. It has a corresponding RespectBindingFeature described in section 6.5.3. 
                     </description>
                     <location chapter="7" section="14.3"/>

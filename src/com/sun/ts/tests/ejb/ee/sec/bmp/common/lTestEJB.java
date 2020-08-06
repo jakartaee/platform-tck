@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.rmi.*;
 
 import java.sql.*;
@@ -102,7 +102,7 @@ public class lTestEJB implements EntityBean {
     return new Integer(cofID);
   }
 
-  public void ejbRemove() throws RemoveException, javax.ejb.EJBException {
+  public void ejbRemove() throws RemoveException, jakarta.ejb.EJBException {
     TestUtil.logTrace("ejbRemove");
     DBSupport2 db = null;
     try {
@@ -283,11 +283,11 @@ public class lTestEJB implements EntityBean {
 
       ejb1ref.EjbNotAuthz();
       TestUtil.logErr(
-          "Method call did not generate an expected javax.ejb.EJBException");
+          "Method call did not generate an expected jakarta.ejb.EJBException");
       ejb1ref.remove();
       return false;
-    } catch (javax.ejb.EJBException e) {
-      TestUtil.logMsg("Caught javax.ejb.EJBException as expected");
+    } catch (jakarta.ejb.EJBException e) {
+      TestUtil.logMsg("Caught jakarta.ejb.EJBException as expected");
       cleanup(ejb1ref);
       return true;
     } catch (Exception e) {
@@ -450,7 +450,7 @@ public class lTestEJB implements EntityBean {
       boolean result = ejb1ref.excludetest1();
       ejb1ref.remove();
       return false;
-    } catch (javax.ejb.EJBException ex) {
+    } catch (jakarta.ejb.EJBException ex) {
       TestUtil.logMsg("Got expected exception.");
       cleanup(ejb1ref);
       return true;

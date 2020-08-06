@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,12 +25,12 @@ import com.sun.ts.lib.harness.*;
 import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
 import java.util.Iterator;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.WebServiceException;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
 import java.util.Properties;
-import javax.xml.ws.BindingProvider;
+import jakarta.xml.ws.BindingProvider;
 import java.util.Map;
 import javax.net.ssl.*;
 
@@ -72,7 +72,7 @@ public class Client extends ServiceEETest {
     ctx = new InitialContext();
 
     TestUtil.logMsg("JNDI lookup for basicNoIdService");
-    basicNoIdService = (javax.xml.ws.Service) ctx
+    basicNoIdService = (jakarta.xml.ws.Service) ctx
         .lookup("java:comp/env/service/wssecWar/basicNoId");
     TestUtil.logMsg("Get basicNoIdPort");
     basicNoIdPort = (HelloBasic) basicNoIdService.getPort(HelloBasic.class);
@@ -84,7 +84,7 @@ public class Client extends ServiceEETest {
     map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
 
     TestUtil.logMsg("JNDI lookup for basicAuthorizedIdService");
-    basicAuthorizedIdService = (javax.xml.ws.Service) ctx
+    basicAuthorizedIdService = (jakarta.xml.ws.Service) ctx
         .lookup("java:comp/env/service/wssecWar/basicAuthorizedId");
     TestUtil.logMsg("Get basicAuthorizedIdPort");
     basicAuthorizedIdPort = (HelloBasic) basicAuthorizedIdService
@@ -97,7 +97,7 @@ public class Client extends ServiceEETest {
     map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
 
     TestUtil.logMsg("JNDI lookup for basicUnauthorizedIdService");
-    basicUnauthorizedIdService = (javax.xml.ws.Service) ctx
+    basicUnauthorizedIdService = (jakarta.xml.ws.Service) ctx
         .lookup("java:comp/env/service/wssecWar/basicUnauthorizedId");
     TestUtil.logMsg("Get basicUnauthorizedIdPort");
     basicUnauthorizedIdPort = (HelloBasic) basicUnauthorizedIdService
@@ -110,7 +110,7 @@ public class Client extends ServiceEETest {
     map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
 
     TestUtil.logMsg("JNDI lookup for basicInvalidIdService");
-    basicInvalidIdService = (javax.xml.ws.Service) ctx
+    basicInvalidIdService = (jakarta.xml.ws.Service) ctx
         .lookup("java:comp/env/service/wssecWar/basicInvalidId");
     TestUtil.logMsg("Get basicInvalidIdPort");
     basicInvalidIdPort = (HelloBasic) basicInvalidIdService

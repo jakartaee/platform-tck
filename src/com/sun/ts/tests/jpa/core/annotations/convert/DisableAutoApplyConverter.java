@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import javax.persistence.Converter;
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
 
 // Having this set to false means that these methods should not be executed
 @Converter(autoApply = false)

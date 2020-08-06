@@ -72,7 +72,7 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "servletErrorPageTest");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: null|Exception: java.lang.IllegalStateException: error page invoked|Message: error page invoked");
+        "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: java.lang.IllegalStateException|Exception: java.lang.IllegalStateException: error page invoked|Message: error page invoked");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
 
@@ -120,7 +120,7 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "heirarchyErrorMatchTest");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: null|Exception: java.lang.IllegalThreadStateException: error page invoked|Message: error page invoked");
+        "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: java.lang.IllegalThreadStateException|Exception: java.lang.IllegalThreadStateException: error page invoked|Message: error page invoked");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
@@ -146,7 +146,7 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(SEARCH_STRING, "Second ErrorPage|"
         + "Servlet Name: WrappedException|"
         + "Request URI: /servlet_spec_errorpage_web/WrappedException|Status Code: 500|"
-        + "Exception Type: null|"
+        + "Exception Type: com.sun.ts.tests.servlet.spec.errorpage.TestException|"
         + "Exception: com.sun.ts.tests.servlet.spec.errorpage.TestException: error page invoked|Message: error page invoked");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     TEST_PROPS.setProperty(REQUEST,

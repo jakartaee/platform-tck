@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-@javax.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl", serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTest")
+@jakarta.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl", serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTest")
 public class HandlerChainTestImpl implements HandlerChainTest {
   public String helloWorld(String str) {
     return str;

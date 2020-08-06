@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.ws.rs.core.AbstractMultivaluedMap;
-import javax.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.AbstractMultivaluedMap;
+import jakarta.ws.rs.core.MultivaluedHashMap;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,28 +18,28 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
-import javax.xml.ws.WebServiceException;
-import javax.xml.soap.*;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.activation.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.activation.*;
 import javax.xml.transform.stream.*;
 import javax.xml.transform.*;
 import java.util.*;
 import java.net.*;
 import java.awt.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaTestOnePort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest1")
 
 public class SwaTestImpl1 implements SwaTest1 {
   public void getMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestGet request,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse> response,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse> response,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2) {
     try {
       System.out.println("Enter getMultipleAttachments() ......");
       OutputResponse theResponse = new OutputResponse();
@@ -60,8 +60,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public java.lang.String putMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPut request,
-      javax.activation.DataHandler attach1,
-      javax.activation.DataHandler attach2) {
+      jakarta.activation.DataHandler attach1,
+      jakarta.activation.DataHandler attach2) {
     try {
       String response = "ok";
       System.out.println("Enter putMultipleAttachments() ......");
@@ -82,8 +82,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse echoMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2) {
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2) {
     try {
       System.out.println("Enter echoMultipleAttachments() ......");
       OutputResponse theResponse = new OutputResponse();
@@ -114,7 +114,7 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public String echoGifImageType(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.VoidRequest request,
-      javax.xml.ws.Holder<java.awt.Image> attach1) {
+      jakarta.xml.ws.Holder<java.awt.Image> attach1) {
     try {
       String theResponse = "ok";
       System.out.println("Enter echoGifImageType() ......");
@@ -143,12 +143,12 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponseAll echoAllAttachmentTypes(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.VoidRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2,
-      javax.xml.ws.Holder<javax.xml.transform.Source> attach3,
-      javax.xml.ws.Holder<java.awt.Image> attach4,
-      javax.xml.ws.Holder<java.awt.Image> attach5,
-      javax.xml.ws.Holder<javax.xml.transform.Source> attach6) {
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2,
+      jakarta.xml.ws.Holder<javax.xml.transform.Source> attach3,
+      jakarta.xml.ws.Holder<java.awt.Image> attach4,
+      jakarta.xml.ws.Holder<java.awt.Image> attach5,
+      jakarta.xml.ws.Holder<javax.xml.transform.Source> attach6) {
     try {
       System.out.println("Enter echoAllAttachmentTypes() ......");
       OutputResponseAll theResponse = new OutputResponseAll();
@@ -213,13 +213,13 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public void getAllAttachmentTypes(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestGetAll request,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponseGetAll> response,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2,
-      javax.xml.ws.Holder<javax.xml.transform.Source> attach3,
-      javax.xml.ws.Holder<java.awt.Image> attach4,
-      javax.xml.ws.Holder<java.awt.Image> attach5,
-      javax.xml.ws.Holder<javax.xml.transform.Source> attach6) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponseGetAll> response,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2,
+      jakarta.xml.ws.Holder<javax.xml.transform.Source> attach3,
+      jakarta.xml.ws.Holder<java.awt.Image> attach4,
+      jakarta.xml.ws.Holder<java.awt.Image> attach5,
+      jakarta.xml.ws.Holder<javax.xml.transform.Source> attach6) {
     try {
       System.out.println("Enter getAllAttachmentTypes() ......");
       OutputResponseGetAll theResponse = new OutputResponseGetAll();
@@ -250,8 +250,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public java.lang.String putAllAttachmentTypes(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPutAll request,
-      javax.activation.DataHandler attach1,
-      javax.activation.DataHandler attach2, javax.xml.transform.Source attach3,
+      jakarta.activation.DataHandler attach1,
+      jakarta.activation.DataHandler attach2, javax.xml.transform.Source attach3,
       java.awt.Image attach4, java.awt.Image attach5,
       javax.xml.transform.Source attach6) {
     try {
@@ -290,8 +290,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse echoAttachmentsAndThrowAFault(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2)
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2)
       throws com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.MyFault {
     System.out.println("Enter echoAttachmentsAndThrowAFault() ......");
     System.out.println("Throwing back a fault [MyFault] ......");
@@ -301,8 +301,8 @@ public class SwaTestImpl1 implements SwaTest1 {
   public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.OutputResponse echoAttachmentsWithHeader(
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequest request,
       com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.MyHeader header,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2)
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2)
       throws com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.MyFault {
     System.out.println("Enter echoAttachmentsWithHeader() ......");
     if (header.getMessage().equals("do throw a fault")) {

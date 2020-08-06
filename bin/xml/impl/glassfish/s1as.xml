@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -270,7 +270,7 @@
     -->
     <target name="clean.s1as" 
            depends= "drop.cts.users, drop.javamail.resources, drop.jdbc.resources, drop.jdbc.pools, 
-                    drop.jaxr, drop.jvm.options, drop.classpathsuffix, drop.certs, 
+                    drop.jvm.options, drop.classpathsuffix, drop.certs, 
                     drop.ssl.client.config, unconfig.jpa, delete.provider.jar, drop.custom.resource" />
 
     <!--
@@ -286,7 +286,7 @@
     -->
     <target name="config.s1as" 
            depends= "start.appserver, change.applicationRoot, copy.provider.jar, config.jpa, 
-                    add.cts.users, add.javamail.resources, add.jdbc.pools, add.jaxr, 
+                    add.cts.users, add.javamail.resources, add.jdbc.pools, 
                     add.jdbc.resources,  drop.jvm.options, add.jvm.options, add.classpathsuffix,  
                     set.http.ports, set.orbport, create.asadmin.bat, concat.security, add.cert, 
                     add.custom.resource, enable.trace" />
@@ -951,7 +951,7 @@
        required by cts.
      -->
      <target name="add.javamail.resources" depends="configPlatform">
-         <antcall target="create-javamail-resource" >
+         <antcall target="create-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>
@@ -965,7 +965,7 @@
        required by cts.
      -->
      <target name="drop.javamail.resources" depends="configPlatform">
-         <antcall target="delete-javamail-resource" >
+         <antcall target="delete-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>
@@ -1076,55 +1076,6 @@
          </antcall>
      </target>
 
-     <!--
-          Install the required jaxr pool and resource
-     -->
-     <target name="add.jaxr" depends="configPlatform" >
-       <if>
-         <contains string="${javaee.level}" substring="full"/>
-       <then>
-         <antcall target="create-connector-connection-pool" >
-          <param name="rarName" value="jaxr-ra"/>
-          <param name="poolName" value="jaxr-pool-1"/>
-         </antcall>
-
-         <antcall target="create-connector-resource" >
-          <param name="poolName" value="jaxr-pool-1"/>
-          <param name="jndiName" value="eis/JAXR"/>
-         </antcall>
-       </then>
-       <else>
-         <echo>*******************************************************</echo>
-         <echo>WEB PROFILE in use, JAXR Resource and Pool NOT Created.</echo>
-         <echo>*******************************************************</echo>
-       </else>
-       </if>
-     </target>
-
-     <!--
-          Remove the required jaxr pool and resource
-     -->
-     <target name="drop.jaxr" depends="configPlatform">
-       <if>
-         <contains string="${javaee.level}" substring="full"/>
-       <then>
-         <antcall target="delete-connector-resource" >
-          <param name="jndiName" value="eis/JAXR"/>
-         </antcall>
-
-         <antcall target="delete-connector-connection-pool" >
-          <param name="poolName" value="jaxr-pool-1"/>
-         </antcall>
-       </then>
-       <else>
-         <echo>*******************************************************</echo>
-         <echo>WEB PROFILE in use, JAXR Resource and Pool NOT Created.</echo>
-         <echo>*******************************************************</echo>
-       </else>
-       </if>
-     </target>
-
-
     <!-- revisit these values for V3. -->
     <target name="set.ext.dirs.value.mac" if="isMac">
       <property name="default.ext.dirs" value="$$\{com.sun.aas.javaRoot\}/lib/ext$\{path.separator\}$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/../javadb/lib"/>
@@ -1228,12 +1179,12 @@
     <property name="ant.opts" value=""/>
     <property name="run.client.args" value=""/>
     <property name="buffering.enabled" value="false"/>
-    <property name="test.areas" value="appclient, connector, j2eetools, jaxws, jstl,
+    <property name="test.areas" value="appclient, connector, jaxws, jstl,
                                        samples, webservices12, assembly, ejb, jacc,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
-                                       jws, signaturetest, xa, compat12, integration,
-                                       jaxr, jsf, rmiiiop, compat13, interop, jaxrpc,
-                                       jsp, saaj, webservices"/>
+                                       jws, signaturetest, xa, integration,
+                                       jsf, rmiiiop, 
+                                       jsp, saaj"/>
     
     <!-- timeout is specified in seconds, default is 3 minutes -->
     <property name="jointimeout" value="180"/>

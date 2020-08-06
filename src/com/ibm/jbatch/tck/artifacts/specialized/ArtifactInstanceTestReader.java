@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.io.Serializable;
 
-import javax.batch.api.chunk.ItemReader;
+import jakarta.batch.api.chunk.ItemReader;
 
-@javax.inject.Named("artifactInstanceTestReader")
+@jakarta.inject.Named("artifactInstanceTestReader")
 public class ArtifactInstanceTestReader implements ItemReader {
     
 	@Override

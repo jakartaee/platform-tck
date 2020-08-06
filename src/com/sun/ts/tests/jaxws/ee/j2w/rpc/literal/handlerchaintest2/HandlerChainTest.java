@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2;
 
-@javax.jws.HandlerChain(name = "", file = "handler.xml")
-@javax.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl")
-@javax.jws.soap.SOAPBinding(style = javax.jws.soap.SOAPBinding.Style.RPC, use = javax.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = javax.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.HandlerChain(name = "", file = "handler.xml")
+@jakarta.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl")
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface HandlerChainTest {
   public String helloWorld(String str);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,23 +18,23 @@ package com.sun.ts.tests.connector.resourceDefs.ejb;
 
 import java.io.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.annotation.HttpConstraint;
-import javax.annotation.security.DeclareRoles;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.annotation.security.DeclareRoles;
 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
-import javax.resource.cci.Connection;
-import javax.resource.spi.TransactionSupport;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.spi.TransactionSupport;
 
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 /*
  * In order for these tests to pass, we must have whitebox-tx.rar configured & deployed.

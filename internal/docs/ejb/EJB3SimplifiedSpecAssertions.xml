@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -205,7 +205,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id/>
-					<description>A business interface must not extend javax.ejb.EJBObject or javax.ejb.EJBLocalObject.</description>
+					<description>A business interface must not extend jakarta.ejb.EJBObject or jakarta.ejb.EJBLocalObject.</description>
 					<keywords>
 						<keyword>application-role</keyword>
 					</keywords>
@@ -213,7 +213,7 @@
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id/>
-					<description>The following interfaces are excluded when determining whether the bean class has more than one interface:  java.io.Serialiable, java.io.Externalizable, any of the interfaces defined by the javax.ejb package.</description>
+					<description>The following interfaces are excluded when determining whether the bean class has more than one interface:  java.io.Serialiable, java.io.Externalizable, any of the interfaces defined by the jakarta.ejb package.</description>
 					<location chapter="3" section="2"/>
 				</assertion>
 			</sub-assertions>
@@ -560,7 +560,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>The [stateless] bean class need not implement the javax.ejb.SessionBean interface.</description>
+			<description>The [stateless] bean class need not implement the jakarta.ejb.SessionBean interface.</description>
 			<location chapter="4" section="1.2"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -647,7 +647,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>The [stateful] bean class need not implement the javax.ejb.SessionBean interface or the java.io.Serialiable interface.</description>
+			<description>The [stateful] bean class need not implement the jakarta.ejb.SessionBean interface or the java.io.Serialiable interface.</description>
 			<location chapter="5" section="1.3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -913,7 +913,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>The method [Object lookup(String name) added to the javax.ejb.EJBContext interface] can be used to lookup resources and other environment entries bound in the bean's JNDI environment naming context.</description>
+			<description>The method [Object lookup(String name) added to the jakarta.ejb.EJBContext interface] can be used to lookup resources and other environment entries bound in the bean's JNDI environment naming context.</description>
 			<location chapter="8" section="1.4"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1041,12 +1041,12 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>When the client is deployed, the container classes that implement the home and remote interfaces referenced by the client must provide the implementation of the javax.ejb.EJBHome and javax.ejb.EJBObject interfaces</description>
+			<description>When the client is deployed, the container classes that implement the home and remote interfaces referenced by the client must provide the implementation of the jakarta.ejb.EJBHome and jakarta.ejb.EJBObject interfaces</description>
 			<location chapter="9" section="3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>When the client is deployed, the container classes that implement the local home and local interfaces referenced by the client must provide the implementation of the javax.ejb.EJBLocalHome and javax.ejb.EJBLocalObject interfaces</description>
+			<description>When the client is deployed, the container classes that implement the local home and local interfaces referenced by the client must provide the implementation of the jakarta.ejb.EJBLocalHome and jakarta.ejb.EJBLocalObject interfaces</description>
 			<location chapter="9" section="3"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1110,7 +1110,7 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id/>
-			<description>It is permitted to combine the use of [EJB 3.0] annotations with the bean's implementation of one of the javax.ejb.EnterpriseBean interfaces as such combination may be useful in facilitating migration to the EJB 3.0 simplified programming model.</description>
+			<description>It is permitted to combine the use of [EJB 3.0] annotations with the bean's implementation of one of the jakarta.ejb.EnterpriseBean interfaces as such combination may be useful in facilitating migration to the EJB 3.0 simplified programming model.</description>
 			<location chapter="9" section="4"/>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

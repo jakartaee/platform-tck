@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,8 +18,8 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.mail.Session;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.mail.Session;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 

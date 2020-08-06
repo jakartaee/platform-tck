@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -159,7 +159,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:70; JSTL:SPEC:70.5
    * 
-   * @testStrategy: Validate that an instance of javax.servlet.jsp.JspException
+   * @testStrategy: Validate that an instance of jakarta.servlet.jsp.JspException
    * is thrown if the XPath expression provided to the select attribute fails to
    * evaluate.
    */

@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -96,7 +96,7 @@
 			cases in a JavaEE environment. The following JAX-RPC properties are not
 			recommended for use in a managed context defined by this
 			specification: javax.xml.rpc.security.auth.username,
-			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: javax.xml.ws.security.auth.username, javax.xml.ws.security.auth.password</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: jakarta.xml.ws.security.auth.username, jakarta.xml.ws.security.auth.password</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -128,12 +128,12 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:48"></a><font size="1PT">WS4EE:SPEC:48</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3</font></TD><TD align="left" valign="center"><font size="1PT">Service implementation EJB Currently, it may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:48"></a><font size="1PT">WS4EE:SPEC:48</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3</font></TD><TD align="left" valign="center"><font size="1PT">Service implementation EJB Currently, it may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:49"></a><font size="1PT">WS4EE:SPEC:49</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3.1</font></TD><TD align="left" valign="center"><font size="1PT">Service implementation EJB be annotated with the javax.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the javax.ejb.SessionBean interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:49"></a><font size="1PT">WS4EE:SPEC:49</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2.3.1</font></TD><TD align="left" valign="center"><font size="1PT">Service implementation EJB be annotated with the jakarta.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the jakarta.ejb.SessionBean interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -229,7 +229,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="WS4EE:SPEC:96"></a><font size="1PT">WS4EE:SPEC:96</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.3</font></TD><TD align="left" valign="center"><font size="1PT">Handlers must not
-			demarcate transactions using the javax.transaction.UserTransaction
+			demarcate transactions using the jakarta.transaction.UserTransaction
 			interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -385,12 +385,12 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:6016"></a><font size="1PT">WS4EE:SPEC:6016</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">javax.annotation.PreDestory annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:6016"></a><font size="1PT">WS4EE:SPEC:6016</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.annotation.PreDestory annotation</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:6016.1"></a><font size="1PT">WS4EE:SPEC:6016.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">The container must call the lifecycle method annotated with javax.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:6016.1"></a><font size="1PT">WS4EE:SPEC:6016.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.2</font></TD><TD align="left" valign="center"><font size="1PT">The container must call the lifecycle method annotated with jakarta.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -410,7 +410,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="WS4EE:SPEC:6036"></a><font size="1PT">WS4EE:SPEC:6036</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.4</font></TD><TD align="left" valign="center"><font size="1PT">Handlers must not demarcate transactions using the javax.transaction.UserTransaction interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="WS4EE:SPEC:6036"></a><font size="1PT">WS4EE:SPEC:6036</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.4</font></TD><TD align="left" valign="center"><font size="1PT">Handlers must not demarcate transactions using the jakarta.transaction.UserTransaction interface.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>

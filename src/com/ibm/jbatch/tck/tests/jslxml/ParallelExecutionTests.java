@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.JobExecution;
+import jakarta.batch.runtime.StepExecution;
 
 
 
@@ -51,7 +51,7 @@ public class ParallelExecutionTests extends ServiceEETest {
 	private static JobOperatorBridge jobOp = null;
 
 	public static void setup(String[] args, Properties props) throws Fault {
-		String METHOD = "setup";
+		String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
 		try {
@@ -84,7 +84,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithOnePartitionedStep() throws Fault {
-		String METHOD = "testInvokeJobWithOnePartitionedStep";
+		String METHOD = "testInvokeJobWithOnePartitionedStep";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -109,7 +109,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobWithOnePartitionedStepExitStatus() throws Fault {
-		String METHOD = "testInvokeJobWithOnePartitionedStepExitStatus";
+		String METHOD = "testInvokeJobWithOnePartitionedStepExitStatus";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -156,7 +156,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStopRunningPartitionedStep() throws Fault {
-		String METHOD = "testStopRunningPartitionedStep";
+		String METHOD = "testStopRunningPartitionedStep";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -202,7 +202,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testStopRestartRunningPartitionedStep() throws Fault {
-		String METHOD = "testStopRestartRunningPartitionedStep";
+		String METHOD = "testStopRestartRunningPartitionedStep";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -252,7 +252,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testInvokeJobSimpleSplit() throws Fault {
-		String METHOD = "testInvokeJobSimpleSplit";
+		String METHOD = "testInvokeJobSimpleSplit";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -286,7 +286,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testPartitionedPlanCollectorAnalyzerReducerComplete() throws Fault {
-		String METHOD = "testPartitionedPlanCollectorAnalyzerReducerComplete";
+		String METHOD = "testPartitionedPlanCollectorAnalyzerReducerComplete";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -328,7 +328,7 @@ TestUtil.logTrace(METHOD);
 	
 	
 	public void testZeroBasedPartitionedPlanCollectorAnalyzerReducerRollback() throws Fault {
-		String METHOD = "testZeroBasedPartitionedPlanCollectorAnalyzerReducerRollback";
+		String METHOD = "testZeroBasedPartitionedPlanCollectorAnalyzerReducerRollback";
 TestUtil.logTrace(METHOD);
 		begin(METHOD);
 
@@ -379,7 +379,7 @@ TestUtil.logTrace(METHOD);
 	
 	public void testPartitionedCollectorAnalyzerReducerChunkRestartItemCount10() throws Fault {
 
-		String METHOD = "testPartitionedCollectorAnalyzerReducerChunkRestartItemCount10";
+		String METHOD = "testPartitionedCollectorAnalyzerReducerChunkRestartItemCount10";
 TestUtil.logTrace(METHOD);
 		try {
 			TestUtil.logMsg("Create job parameters for execution #1:");
@@ -463,7 +463,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testPartitionedMapperOverrideFalseOnRestart() throws Fault {
-        String METHOD = "testPartitionedMapperOverrideFalse";
+        String METHOD = "testPartitionedMapperOverrideFalse";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 
@@ -513,7 +513,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testPartitionedMapperOverrideTrueDiffPartitionNumOnRestart() throws Fault {
-        String METHOD = "testPartitionedMapperOverrideFalse";
+        String METHOD = "testPartitionedMapperOverrideFalse";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 
@@ -562,7 +562,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testPartitionedMapperOverrideTrueSamePartitionNumOnRestart() throws Fault {
-        String METHOD = "testPartitionedMapperOverrideFalse";
+        String METHOD = "testPartitionedMapperOverrideFalse";
 TestUtil.logTrace(METHOD);
         begin(METHOD);
 

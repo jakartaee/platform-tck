@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.batch.api.Decider;
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.api.Decider;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.StepExecution;
 
 import com.ibm.jbatch.tck.artifacts.common.StatusConstants;
 
-@javax.inject.Named
+@jakarta.inject.Named
 public class SplitTransitionToDecisionTestDecider implements Decider, StatusConstants {
 
     public final static String DECIDER_EXIT_STATUS = "DECIDER_EXIT_STATUS";

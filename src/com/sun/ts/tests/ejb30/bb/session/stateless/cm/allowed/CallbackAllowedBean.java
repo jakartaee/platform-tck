@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,16 +26,16 @@ import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Properties;
-import javax.annotation.Resource;
-import javax.interceptor.Interceptors;
-import javax.ejb.Local;
-import javax.annotation.PostConstruct;
-import javax.ejb.Remote;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import jakarta.annotation.Resource;
+import jakarta.interceptor.Interceptors;
+import jakarta.ejb.Local;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "CallbackAllowedBean")
 @Remote({ CallbackAllowedIF.class })
@@ -56,7 +56,7 @@ public class CallbackAllowedBean extends CallbackAllowedBeanBase
 
   @Timeout
   @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void timeout(javax.ejb.Timer timer) {
+  public void timeout(jakarta.ejb.Timer timer) {
     TLogger.log("timeout: " + this.getClass().getName());
   }
 

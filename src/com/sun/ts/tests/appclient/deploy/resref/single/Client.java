@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -111,7 +111,7 @@ public class Client extends EETest {
    * @assertion_ids: JavaEE:SPEC:10125
    *
    * @test_Strategy: Package an application client declaring a resource
-   *                 reference for a javax.jms.QueueConnectionFactory.
+   *                 reference for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -136,7 +136,7 @@ public class Client extends EETest {
    * @assertion_ids: JavaEE:SPEC:10125
    *
    * @test_Strategy: Package an application client declaring a resource
-   *                 reference for a javax.jms.TopicConnectionFactory.
+   *                 reference for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

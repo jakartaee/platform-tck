@@ -17,7 +17,7 @@
 
 -->
 
-<application-client xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application-client_5.xsd">
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <display-name>stateful3_vehicle_client</display-name>
   <ejb-ref>
     <ejb-ref-name>ejb/Stateful3VehicleBean</ejb-ref-name>

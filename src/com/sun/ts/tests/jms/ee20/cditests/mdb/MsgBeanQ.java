@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,18 +21,18 @@ package com.sun.ts.tests.jms.ee20.cditests.mdb;
 
 import java.io.Serializable;
 import java.util.Properties;
-import javax.ejb.EJBException;
-import javax.ejb.EJBContext;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import javax.sql.*;
-import javax.inject.Inject;
-import javax.annotation.Resource;
+import jakarta.inject.Inject;
+import jakarta.annotation.Resource;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
@@ -84,7 +84,7 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
   }
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     System.out.println("MsgBeanQ.onMessage(): entering MDB");
     System.out.println("MsgBeanQ.onMessage(): JMSContext context1=" + context1);
     System.out.println("MsgBeanQ.onMessage(): JMSContext context2=" + context2);

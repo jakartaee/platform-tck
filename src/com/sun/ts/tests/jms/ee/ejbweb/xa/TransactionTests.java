@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@ import java.rmi.RemoteException;
 import java.io.*;
 import java.util.Properties;
 import com.sun.javatest.Status;
-import javax.jms.*;
-import javax.transaction.*;
+import jakarta.jms.*;
+import jakarta.transaction.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -154,7 +154,7 @@ public class TransactionTests extends ServiceEETest {
       logTrace("Cleanup");
       try {
         if (ut != null && ut
-            .getStatus() != javax.transaction.Status.STATUS_NO_TRANSACTION) {
+            .getStatus() != jakarta.transaction.Status.STATUS_NO_TRANSACTION) {
           logTrace("Cleanup open transaction");
           printTxStatus();
           ut.commit();
@@ -290,52 +290,52 @@ public class TransactionTests extends ServiceEETest {
     }
 
     switch (status) {
-    case javax.transaction.Status.STATUS_ACTIVE:
+    case jakarta.transaction.Status.STATUS_ACTIVE:
       logTrace("==== A transaction is associated with"
           + " the target object and it is in the active state.");
       break;
 
-    case javax.transaction.Status.STATUS_COMMITTED:
+    case jakarta.transaction.Status.STATUS_COMMITTED:
       logTrace("==== A transaction is associated with the target object"
           + " and it has been committed..");
       break;
-    case javax.transaction.Status.STATUS_COMMITTING:
+    case jakarta.transaction.Status.STATUS_COMMITTING:
       logTrace("==== A transaction is associated with the target object"
           + " and it is in the process of committing.");
       break;
-    case javax.transaction.Status.STATUS_MARKED_ROLLBACK:
+    case jakarta.transaction.Status.STATUS_MARKED_ROLLBACK:
       logTrace("==== A transaction is associated with the target object"
           + " and it has been marked forrollback, perhaps as a result of a setRollbackOnly operation. ");
       break;
-    case javax.transaction.Status.STATUS_NO_TRANSACTION:
+    case jakarta.transaction.Status.STATUS_NO_TRANSACTION:
       logTrace(
           "==== No transaction is currently associated with the target object.");
       break;
-    case javax.transaction.Status.STATUS_PREPARED:
+    case jakarta.transaction.Status.STATUS_PREPARED:
       logTrace("====A transaction is associated with the target object"
           + " and it has been prepared, i.e. ");
       break;
-    case javax.transaction.Status.STATUS_PREPARING:
+    case jakarta.transaction.Status.STATUS_PREPARING:
       logTrace("==== A transaction is associated with the target object"
           + " and it is in the process of preparing. ");
       break;
 
-    case javax.transaction.Status.STATUS_ROLLEDBACK:
+    case jakarta.transaction.Status.STATUS_ROLLEDBACK:
       logTrace("==== A transaction is associated with the target object"
           + " and the outcome has been determined as rollback. ");
       break;
-    case javax.transaction.Status.STATUS_ROLLING_BACK:
+    case jakarta.transaction.Status.STATUS_ROLLING_BACK:
       logTrace("==== A transaction is associated with the target object"
           + " and it is in the process of rolling back.");
       break;
 
-    case javax.transaction.Status.STATUS_UNKNOWN:
+    case jakarta.transaction.Status.STATUS_UNKNOWN:
       logTrace("==== A transaction is associated with the target object"
           + " but its current status cannot be  determined ");
       break;
 
     default:
-      TestUtil.logTrace("??? javax.transaction.Status is  " + status);
+      TestUtil.logTrace("??? jakarta.transaction.Status is  " + status);
       break;
     }
   }

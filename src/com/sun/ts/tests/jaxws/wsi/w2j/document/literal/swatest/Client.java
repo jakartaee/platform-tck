@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,9 +31,9 @@ import java.rmi.*;
 import java.util.*;
 import java.nio.charset.Charset;
 
-import javax.xml.ws.*;
-import javax.xml.soap.*;
-import javax.activation.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
 import javax.xml.transform.stream.*;
 import javax.xml.transform.*;
 
@@ -289,8 +289,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
       request.setUrl1(url1.toString());
       request.setUrl2(url2.toString());
       TestUtil.logMsg("Get 2 attachments (text/plain) and (text/html)");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       Holder<OutputResponse> response = new Holder<OutputResponse>();
       port.getMultipleAttachments(request, response, attach1, attach2);
       if (!ValidateRequestResponseAttachmentsGetTestCase(request,
@@ -369,8 +369,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
       InputRequest request = new InputRequest();
       request.setMimeType1("text/plain");
       request.setMimeType2("text/html");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       attach1.value = dh1;
       attach2.value = dh2;
       TestUtil.logMsg("Echo 2 attachments (text/plain) and (text/html)");
@@ -455,9 +455,9 @@ public class Client extends ServiceEETest implements SOAPRequests {
       }
       TestUtil.logMsg(
           "Echo all attachments (text/plain), (text/html), (text/xml), (image/jpeg)");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
       attach1.value = dh1;
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       attach2.value = dh2;
       Holder<javax.xml.transform.Source> attach3 = new Holder<javax.xml.transform.Source>();
       attach3.value = new StreamSource(dh3.getInputStream());
@@ -500,8 +500,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
       InputRequestThrowAFault request = new InputRequestThrowAFault();
       request.setMimeType1("text/plain");
       request.setMimeType2("text/html");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       attach1.value = dh1;
       attach2.value = dh2;
       TestUtil.logMsg("Echo attachments and throw a fault");
@@ -538,8 +538,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
       InputRequestWithHeader request = new InputRequestWithHeader();
       request.setMimeType1("text/plain");
       request.setMimeType2("text/html");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       attach1.value = dh1;
       attach2.value = dh2;
       MyHeader header = new MyHeader();
@@ -577,8 +577,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
       InputRequestWithHeader request = new InputRequestWithHeader();
       request.setMimeType1("text/plain");
       request.setMimeType2("text/html");
-      Holder<javax.activation.DataHandler> attach1 = new Holder<javax.activation.DataHandler>();
-      Holder<javax.activation.DataHandler> attach2 = new Holder<javax.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach1 = new Holder<jakarta.activation.DataHandler>();
+      Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
       attach1.value = dh1;
       attach2.value = dh2;
       MyHeader header = new MyHeader();
@@ -975,8 +975,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
    ******************************************************************************/
   private boolean ValidateRequestResponseAttachmentsGetTestCase(
       InputRequestGet request, OutputResponse response,
-      Holder<javax.activation.DataHandler> attach1,
-      Holder<javax.activation.DataHandler> attach2) {
+      Holder<jakarta.activation.DataHandler> attach1,
+      Holder<jakarta.activation.DataHandler> attach2) {
     boolean result = true;
     TestUtil
         .logMsg("---------------------------------------------------------");
@@ -1041,8 +1041,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
    ******************************************************************************/
   private boolean ValidateRequestResponseAttachmentsEchoTestCase(
       InputRequest request, OutputResponse response,
-      Holder<javax.activation.DataHandler> attach1,
-      Holder<javax.activation.DataHandler> attach2) {
+      Holder<jakarta.activation.DataHandler> attach1,
+      Holder<jakarta.activation.DataHandler> attach2) {
     boolean result = true;
     TestUtil
         .logMsg("---------------------------------------------------------");
@@ -1107,8 +1107,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
    ******************************************************************************/
   private boolean ValidateRequestResponseAttachmentsEchoWithHeaderTestCase(
       InputRequestWithHeader request, OutputResponse response,
-      Holder<javax.activation.DataHandler> attach1,
-      Holder<javax.activation.DataHandler> attach2) {
+      Holder<jakarta.activation.DataHandler> attach1,
+      Holder<jakarta.activation.DataHandler> attach2) {
     boolean result = true;
     TestUtil
         .logMsg("---------------------------------------------------------");
@@ -1174,8 +1174,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
    ******************************************************************************/
   private boolean ValidateRequestResponseAttachmentsEchoAllTestCase(
       VoidRequest request, OutputResponseAll response,
-      Holder<javax.activation.DataHandler> attach1,
-      Holder<javax.activation.DataHandler> attach2,
+      Holder<jakarta.activation.DataHandler> attach1,
+      Holder<jakarta.activation.DataHandler> attach2,
       Holder<javax.xml.transform.Source> attach3,
       Holder<java.awt.Image> attach4, Holder<java.awt.Image> attach5) {
     boolean result = true;

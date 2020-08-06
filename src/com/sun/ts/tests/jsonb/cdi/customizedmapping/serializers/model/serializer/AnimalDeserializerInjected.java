@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,10 +23,10 @@ package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serialize
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder;
 
-import javax.inject.Inject;
-import javax.json.bind.serializer.DeserializationContext;
-import javax.json.bind.serializer.JsonbDeserializer;
-import javax.json.stream.JsonParser;
+import jakarta.inject.Inject;
+import jakarta.json.bind.serializer.DeserializationContext;
+import jakarta.json.bind.serializer.JsonbDeserializer;
+import jakarta.json.stream.JsonParser;
 import java.lang.reflect.Type;
 
 import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.*;

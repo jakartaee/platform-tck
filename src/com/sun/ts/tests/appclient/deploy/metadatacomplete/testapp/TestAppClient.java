@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,19 +21,19 @@ package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
 import java.util.Properties;
 
-import javax.annotation.Resource;
-import javax.annotation.sql.DataSourceDefinition;
-import javax.ejb.EJB;
-import javax.jms.JMSConnectionFactoryDefinition;
-import javax.jms.JMSDestinationDefinition;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.mail.Session;
-import javax.mail.MailSessionDefinition;
+import jakarta.annotation.Resource;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.ejb.EJB;
+import jakarta.jms.JMSConnectionFactoryDefinition;
+import jakarta.jms.JMSDestinationDefinition;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.mail.Session;
+import jakarta.mail.MailSessionDefinition;
 import javax.naming.InitialContext;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.EntityManagerFactory;
-import javax.xml.ws.WebServiceRef;
+import jakarta.persistence.PersistenceUnit;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.xml.ws.WebServiceRef;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
@@ -42,8 +42,8 @@ import com.sun.javatest.Status;
 @MailSessionDefinition(name = "java:comp/myMailSession", host = "smtp.gmail.com", transportProtocol = "smtps", properties = {
     "mail.debug=true" })
 @DataSourceDefinition(name = "java:global/MyApp/MyDataSource", className = "oracle.jdbc.pool.OracleDataSource", url = "jdbc:oracle:thin:@localhost:1521:orcl", user = "TESTU", password = "TESTU")
-@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "javax.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
-@JMSDestinationDefinition(name = "java:app/jms/myappTopic", interfaceName = "javax.jms.Topic", destinationName = "MyPhysicalAppTopic")
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSDestinationDefinition(name = "java:app/jms/myappTopic", interfaceName = "jakarta.jms.Topic", destinationName = "MyPhysicalAppTopic")
 
 public class TestAppClient extends EETest {
 

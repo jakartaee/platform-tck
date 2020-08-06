@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,12 +20,12 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.textreaderboolean;
 import java.io.IOException;
 import java.io.Reader;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import jakarta.websocket.ClientEndpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -32,16 +33,19 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(Reader reader, boolean finito) throws IOException {
     clientEndpoint.onMessage(IOUtil.readFromReader(reader));
   }
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

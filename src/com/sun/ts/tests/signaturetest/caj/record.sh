@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 #
 
 cd ../signature-repository
-ant -f ../record-build.xml -Drecorder.type=sigtest -Dsig.source=/work/glassfish4/glassfish/modules/endorsed/javax.annotation-api.jar:$JAVA_HOME/jre/lib/rt.jar \
+ant -f ../record-build.xml -Drecorder.type=sigtest -Dsig.source=/work/glassfish4/glassfish/modules/endorsed/jakarta.annotation-api.jar:$JAVA_HOME/jre/lib/rt.jar \
        -Dmap.file=$TS_HOME/install/caj/bin/sig-test.map record.sig.batch
 cd ../caj
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,19 +17,19 @@
 package com.sun.ts.tests.common.connector.whitebox.multianno;
 
 import java.io.*;
-import javax.resource.spi.*;
-import javax.resource.spi.ResourceAdapter;
-import javax.resource.spi.ResourceAdapterInternalException;
-import javax.resource.spi.BootstrapContext;
-import javax.resource.spi.work.WorkManager;
-import javax.resource.spi.work.Work;
-import javax.resource.spi.endpoint.MessageEndpointFactory;
-import javax.resource.spi.ActivationSpec;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.ResourceAdapterInternalException;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.endpoint.MessageEndpointFactory;
+import jakarta.resource.spi.ActivationSpec;
 import javax.transaction.xa.XAResource;
 import java.lang.reflect.Method;
 import com.sun.ts.tests.common.connector.util.*;
-import javax.resource.spi.work.HintsContext;
-import javax.resource.spi.work.SecurityContext;
+import jakarta.resource.spi.work.HintsContext;
+import jakarta.resource.spi.work.SecurityContext;
 import com.sun.ts.tests.common.connector.whitebox.*;
 
 /*
@@ -77,7 +77,7 @@ public class OtherRAImpl implements ResourceAdapter, Serializable {
         }
 
       });
-    } catch (javax.resource.spi.work.WorkException we) {
+    } catch (jakarta.resource.spi.work.WorkException we) {
       throw new ResourceAdapterInternalException();
     }
 

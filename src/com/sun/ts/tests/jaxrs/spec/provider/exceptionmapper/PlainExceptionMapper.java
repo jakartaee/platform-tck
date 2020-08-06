@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.spec.provider.exceptionmapper;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.Provider;
 
 @Provider
 public class PlainExceptionMapper
-    implements javax.ws.rs.ext.ExceptionMapper<Exception> {
+    implements jakarta.ws.rs.ext.ExceptionMapper<Exception> {
 
   @Override
   public Response toResponse(Exception exception) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.soap.MTOM;
+import jakarta.jws.WebService;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.MTOM;
 
 @WebService(portName = "Hello2Port", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello2")
 @Addressing

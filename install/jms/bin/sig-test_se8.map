@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,11 +32,11 @@
 # with the following format:
 # <package>.sig_<technology_version><JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.jms.sig_2.0_se8:
-#      <package> = javax.jms
+#    jakarta.jms.sig_2.0_se8:
+#      <package> = jakarta.jms
 #      <technology_version> = 2.0  (for JMS) 
 #      <JavaSE_version_these_work_with> = JDK 8 and above
 #
 # For this release valid versions are:  "_se8".
 ###############################################################
-javax.jms=2.0_se8
+jakarta.jms=3.0_se8

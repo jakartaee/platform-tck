@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,19 +18,19 @@ package com.sun.ts.tests.jaxrs.platform.managedbean;
 
 import java.lang.annotation.Annotation;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.interceptor.Interceptors;
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.interceptor.Interceptors;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.ws.rs.GET;
-import javax.ws.rs.MatrixParam;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.Providers;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.MatrixParam;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.ext.Providers;
 
 @Path("/managedbean")
 @RequestScoped // TODO: remove in MR when cdi bean manager is available even

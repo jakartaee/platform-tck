@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -119,7 +119,7 @@
       <sections>
         <section id="4.2.9" name="Packaging" />
         <section id="4.2.7" name="JAX-WS Asynchronous Operations" />
-        <section id="4.2.2" name="javax.xml.ws.WebServiceRef annotation" />
+        <section id="4.2.2" name="jakarta.xml.ws.WebServiceRef annotation" />
         <section id="4.1" name="Concepts" />
         <section id="4.2.6" name="JAX-WS Dispatch APIs" />
         <section id="4.2.4" name="Port Stub and Dynamic Proxy" />
@@ -215,14 +215,14 @@
 			cycle methods on the Service Implementation Bean that are specific to
 			the container. For the web container, with JAX-RPC runtime, it calls the init method on the
 			instance if the Service Implementation Bean class implements the
-			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with javax.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with javax.annotation.PostConstruct annotation . The javax.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
+			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with jakarta.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with jakarta.annotation.PostConstruct annotation . The jakarta.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
       <location chapter="5" section="3.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:156</id>
       <description>A Web Services for JavaEE
 			provider is required to provide all interfaces and classes of the
-			javax.xml.rpc.handler package and javax.xml.ws.handler package.</description>
+			javax.xml.rpc.handler package and jakarta.xml.ws.handler package.</description>
       <location chapter="6" section="2.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -294,17 +294,17 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:4012</id>
-      <description>Required properties A container provider is required to support the javax.xml.rpc.service.endpoint.address property in JAX-RPC and javax.xml.ws.service.endpoint.address property in JAX-WS to allow components to dynamically redirect a Stub/proxy to a different URI.</description>
+      <description>Required properties A container provider is required to support the javax.xml.rpc.service.endpoint.address property in JAX-RPC and jakarta.xml.ws.service.endpoint.address property in JAX-WS to allow components to dynamically redirect a Stub/proxy to a different URI.</description>
       <location chapter="4" section="2.6.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:5003</id>
-      <description>The optional @PostConstruct or @PreDestroy annotations A Service Implementation Bean may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. The methods annotated with javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation allow the web container to notify a Service Implementation Bean instance of impending changes in its state. The bean may use the notification to prepare its internal state for the transition. If the bean implements methods that are annotated with javax.annotation.PostConstruct or javax.annotation.PreDestroy annotations then the container is required to call them in the manner described below. The container must call the method annotated with javax.annotation.PostConstruct before it can start dispatching requests to the methods exposed as Web Service operations of the bean. The bean may use the container notification to ready its internal state for receiving requests. The container must notify the bean of its intent to remove the bean instance from the container s working set by calling the method annotated with javax.annotation.PreDestroy annotation. A container may not call this method while a request is being processed by the bean instance. The container may not dispatch additional requests to the methods exposed as Web Service operations of the bean after this method is called.</description>
+      <description>The optional @PostConstruct or @PreDestroy annotations A Service Implementation Bean may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. The methods annotated with jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation allow the web container to notify a Service Implementation Bean instance of impending changes in its state. The bean may use the notification to prepare its internal state for the transition. If the bean implements methods that are annotated with jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotations then the container is required to call them in the manner described below. The container must call the method annotated with jakarta.annotation.PostConstruct before it can start dispatching requests to the methods exposed as Web Service operations of the bean. The bean may use the container notification to ready its internal state for receiving requests. The container must notify the bean of its intent to remove the bean instance from the container s working set by calling the method annotated with jakarta.annotation.PreDestroy annotation. A container may not call this method while a request is being processed by the bean instance. The container may not dispatch additional requests to the methods exposed as Web Service operations of the bean after this method is called.</description>
       <location chapter="5" section="3.2.4.2.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:5008</id>
-      <description>Publishing Endpoints   javax. xml.ws.Endpoint JAX-WS provides functionality for creating and publishing Web Service endpoints dynamically using javax.xml.ws.Endpoint API. The use of this functionality is considered non-portable in a managed environment. It is required that both the Servlet and the EJB container disallow the publishing of the Endpoint dynamically, by not granting the publishEndpoint security permission. Please refer to details on this in Section 5.2 of the JAX-WS specification.</description>
+      <description>Publishing Endpoints   javax. xml.ws.Endpoint JAX-WS provides functionality for creating and publishing Web Service endpoints dynamically using jakarta.xml.ws.Endpoint API. The use of this functionality is considered non-portable in a managed environment. It is required that both the Servlet and the EJB container disallow the publishing of the Endpoint dynamically, by not granting the publishEndpoint security permission. Please refer to details on this in Section 5.2 of the JAX-WS specification.</description>
       <location chapter="5" section="3.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -324,7 +324,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:6041</id>
-      <description>Access to the java:comp/env contexts must be supported from the method annotated with javax.annotation.PostConstruct.</description>
+      <description>Access to the java:comp/env contexts must be supported from the method annotated with jakarta.annotation.PostConstruct.</description>
       <location chapter="6" section="2.3" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -339,7 +339,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:6046</id>
-      <description>A JAX-WS based container must call the lifecycle method annotated with javax.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.</description>
+      <description>A JAX-WS based container must call the lifecycle method annotated with jakarta.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.</description>
       <location chapter="6" section="2.4" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -64,7 +64,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:15
    * 
    * @test_Strategy: Validate that the object associated with the session
-   * scripting variable is of type javax.servlet.http.HttpSession and that a
+   * scripting variable is of type jakarta.servlet.http.HttpSession and that a
    * method can be called against it.
    */
 
@@ -79,7 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: PENDING
    * 
    * @test_Strategy: Validate that the object associated with the config
-   * scripting variable is of type javax.servlet.ServletConfig and that a method
+   * scripting variable is of type jakarta.servlet.ServletConfig and that a method
    * can be called against it.
    */
 
@@ -114,7 +114,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: PENDING
    * 
    * @test_Strategy: Validate that the object associated with the out scripting
-   * variable is of type javax.servlet.jsp.JspWriter.
+   * variable is of type jakarta.servlet.jsp.JspWriter.
    */
 
   public void checkOutTest() throws Fault {
@@ -142,7 +142,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:14
    * 
    * @test_Strategy: Validate that the object associated with the pageContext
-   * scripting variable is of type javax.servlet.jsp.PageContext and that a
+   * scripting variable is of type jakarta.servlet.jsp.PageContext and that a
    * method can be called against it.
    */
 
@@ -157,7 +157,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:12
    * 
    * @test_Strategy: Validate that the object associated with the request
-   * scripting variable is of type javax.servlet.Request (parent class of
+   * scripting variable is of type jakarta.servlet.Request (parent class of
    * HttpServletRequest) and that a method can be called against it.
    */
 
@@ -176,7 +176,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:13
    * 
    * @test_Strategy: Validate that the object associated with the response
-   * scripting variable is of type javax.servlet.Response (parent class of
+   * scripting variable is of type jakarta.servlet.Response (parent class of
    * HttpServletResponse) and that a method can be called against it.
    */
 
@@ -192,7 +192,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:16
    * 
    * @test_Strategy: Validate that the object associated with the application
-   * scripting variable is of type javax.servlet.ServletContext that a method
+   * scripting variable is of type jakarta.servlet.ServletContext that a method
    * can be called against it.
    */
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,9 @@
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
 import java.io.Serializable;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.*;

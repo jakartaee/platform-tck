@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<job id="test_artifact_load_classloader" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="test_artifact_load_classloader" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
 	<step id="step1" >
 		<!--  Use a class name ref to test loading with 3rd option (thread context class loader) -->
 		<batchlet ref="com.ibm.jbatch.tck.artifacts.reusable.MyBatchletImpl" />

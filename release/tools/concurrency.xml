@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
     
-    <property name="deliverable.version"           value="1.0"/>
-    <property name="deliverable.tck.version"           value="1.0.0"/>
+    <property name="deliverable.version"           value="2.0"/>
+    <property name="deliverable.tck.version"           value="2.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -79,10 +79,10 @@
 		<fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
 			includes="testsuite.jtt, vehicle.properties"/>
 	  </copy>
-
-          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+          <!-- NOTICE will be EPL or EFTL specific: TBD-->
+          <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                 <fileset dir="${ts.home}" includes="NOTICE" />
-          </copy>
+          </copy-->
 
           <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -151,7 +151,7 @@
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/build.xml,
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/apitests/*,
 		   com/sun/ts/tests/concurrency/spec/ManagedThreadFactory/context_servlet/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.enterprise.concurrent.*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.enterprise.concurrent.*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/concurrency/*,
                    com/sun/ts/tests/common/vehicle/*,

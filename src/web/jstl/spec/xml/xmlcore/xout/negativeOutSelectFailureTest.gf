@@ -9,10 +9,10 @@
 <body>
 
     <!-- If the expression language fails to evaluated the XPath
-             expression, an instance of javax.servlet.jsp.JspException is thrown. -->
+             expression, an instance of jakarta.servlet.jsp.JspException is thrown. -->
     
         
-    The expected Exception <strong>javax.servlet.jsp.JspException</strong> was thrown!<br>
+    The expected Exception <strong>jakarta.servlet.jsp.JspException</strong> was thrown!<br>
 
 </body>
 </html>

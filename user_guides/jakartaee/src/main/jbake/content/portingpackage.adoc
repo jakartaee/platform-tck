@@ -14,7 +14,7 @@ Implementing the Porting Package
 
 Some functionality in the Jakarta Platform, Enterprise Edition platform is
 not completely specified by an API. To handle this situation, the Jakarta
-EE 8 CTS test suite defines a set of interfaces in the
+EE test suite defines a set of interfaces in the
 `com.sun.cts.porting` package, which serve to abstract any
 implementation-specific code. The CTS also provides implementations of
 these interfaces to work with the Jakarta Platform, Enterprise Edition CI.
@@ -23,11 +23,7 @@ You must create your own implementations of the porting package
 interfaces to work with your particular Jakarta Platform, Enterprise
 Edition server environment. You also need to create a deployment plan
 for each deployable component (EAR, EJB JAR, WAR, and RAR files) in the
-test suite as defined by the Jakarta Platform, Enterprise Edition platform
-and JSR-88. There is a new `getDeploymentPlan()` method on the
-`TSDeploymentInterface2` interface, which returns an input stream to
-your deployment plan.
-
+test suite as defined by the Jakarta Platform, Enterprise Edition platform. 
 
 [NOTE]
 =======================================================================
@@ -63,7 +59,6 @@ environment file to identify the fully-qualified class names:
 porting.ts.deploy2.class.1=[vendor-deployment-class]
 porting.ts.login.class.1=[vendor-login-class]
 porting.ts.url.class.1=[vendor-url-class]
-porting.ts.jaxrpc.class.1=[vendor-jaxrpc-class]
 porting.ts.jms.class.1=[vendor-jms-class]
 porting.ts.HttpsURLConnection.class.1=[vendor-httpsURLConnection-class] 
 ----
@@ -104,7 +99,6 @@ requirements:
 
 ** `TSHttpsURLConnectionInterface`
 
-** `TSJAXRPCInterface`
 * Include the implementation of the previous interfaces in the
 classpaths of JavaTest, the test clients, and the test server
 components:
@@ -143,68 +137,20 @@ this section are:
 * link:#GFATH[TSLoginContextInterface]
 * link:#GFATO[TSURLInterface]
 * link:#GFASJ[TSHttpsURLConnectionInterface]
-* link:#GFAUI[TSJAXRPCInterface]
 
 [[GFASM]][[tsdeploymentinterface2]]
 
-11.2.1 TSDeploymentInterface2
+11.2.1 TSDeploymentInterface2 is removed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Jakarta EE 8 CTS test suite provides a new version of the Deployment
-porting interface. With the introduction of a standard deployment API in
-the legacy J2EE 1.4 platform (via Jakarta Deployment Specification (Originally JSR-88)), many of the porting methods in the
-original interface `TSDeploymentInterface` no longer require
-implementation-specific functionality. The Jakarta EE 8 CTS test suite
-provides an implementation of the interface `TSDeploymentInterface`,
+TSDeploymentInterface2 + TSDeployment2 are no longer supported since 
+the Jakarta Deployment spec is removed. 
+Please use the `TSDeploymentInterface` instead. 
+The interface `TSDeploymentInterface`,
 which uses only the standard Deployment APIs defined by the Jakarta
 Platform, Enterprise Edition platform. The following properties are
 still in the `ts.jte` file to reflect this and should not be changed:
 
-* `porting.ts.deploy2.class.1=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14`
-* `porting.ts.deploy2.class.2=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14`
-
-The class `StandardDeployment14` also requires the following properties
-to be set in the `ts.jte` file:
-
-* `deployManagerJarFile.1=${JAVAEE_HOME}/lib/deployment/sun-deploy.jar`
-* `deployManageruri.1=deployer:Sun:AppServer:RI::localhost`
-* `deployManageruname.1=foo`
-* `deployManagerpasswd.1=bar`
-
-These properties are necessary in order to get an instance of and
-interact with the `DeploymentManager` for your Jakarta Platform, Enterprise
-Edition implementation.
-
-The `deployManagerJarFile` property must point to the JAR file that
-contains the manifest entries necessary to get your `DeploymentManager`
-instance. The `deployManageruri` property represents the URI that is
-used to locate your `DeploymentManager`.
-
-The `deployManageruname` and `deployManagerpasswd` properties are used
-when calling `DeploymentFactoryManager.getDeploymentManager`.
-
-`StandardDeployment14` calls into the new deployment porting interface
-(`TSDeploymentInterface2`). Implementers must implement this new interface
-and set the following property in the `ts.jte` file to point to their
-implementation:
-
-[source,oac_no_warn]
 ----
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.JavaEE.SunRIDeployment2 
-----
-
-The `TSDeployment2` class acts as a `Factory` object for creating
-concrete implementations of `TSDeploymentInterface2`. The concrete
-implementations are specified by the `porting.ts.deploy2.class.1` and
-`porting.ts.deploy2.class.2` properties in the `ts.jte` file. Each Jakarta
-Platform, Enterprise Edition implementation must provide an
-implementation of the interface `TSDeploymentInterface2` to support the
-automatic deployment and undeployment of test applications by the
-JavaTest test harness. Providing this functionality enables the entire
-test suite to be run without having to manually deploy/undeploy the Jakarta
-Platform, Enterprise Edition test applications prior to running the
-tests. The implementation provided with this release uses the semantics
-of the Jakarta Platform, Enterprise Edition CI.
 
 [[GKLJO]][[ant-based-deployment-interface]]
 
@@ -339,22 +285,5 @@ The `SunRIHttpsURLConnection` implementation class uses
 `HttpsURLConnection` from Java SE 8.
 
 =======================================================================
-
-
-[[GFAUI]][[tsjaxrpcinterface]]
-
-11.2.7 TSJAXRPCInterface
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The `TSJAXRPC` class acts as a `Factory` object for creating concrete
-implementations of `TSJAXRPCInterface`. The concrete implementations are
-specified by the `porting.ts.jaxrpc.class.1` and `.2` properties in the
-`ts.jte` file.
-
-You must provide an implementation of `TSJAXRPCInterface` to support the
-class `TSJAXRPC`. This class is used to provide as name/value pairs the
-URL value of the deployed webservice endpoints for those sets of tests
-which use DII, direct HTTP, or direct SAAJ 1.4 to communicate to the
-endpoints. SOAP with Attachments API for Java (SAAJ) is included in Java SE 8.
 
 

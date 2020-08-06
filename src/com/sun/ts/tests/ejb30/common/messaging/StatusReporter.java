@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.common.messaging;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.jms.*;
+import jakarta.jms.*;
 import com.sun.ts.tests.jms.common.JmsUtil;
 
 public class StatusReporter implements Constants {
@@ -72,7 +72,7 @@ public class StatusReporter implements Constants {
   }
 
   public static void sendTestResults(String testCase, boolean results,
-      String reason, QueueSession qSession, javax.jms.Queue queueR) {
+      String reason, QueueSession qSession, jakarta.jms.Queue queueR) {
     TextMessage msg = null;
     QueueSender mSender = null;
 

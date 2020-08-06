@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
-import javax.jms.*;
-import javax.ejb.*;
-import javax.annotation.Resource;
+import jakarta.jms.*;
+import jakarta.ejb.*;
+import jakarta.annotation.Resource;
 import java.util.Properties;
 import java.util.Enumeration;
 import com.sun.ts.lib.util.*;
@@ -194,7 +194,7 @@ public class MDB_SNDQ_TestEJB {
       Conn.start();
 
       Session session = Conn.createSession(true, 0);
-      qBrowser = session.createBrowser((javax.jms.Queue) receiveDest);
+      qBrowser = session.createBrowser((jakarta.jms.Queue) receiveDest);
       msgs = qBrowser.getEnumeration();
       if (msgs.hasMoreElements()) {
         ret = true;

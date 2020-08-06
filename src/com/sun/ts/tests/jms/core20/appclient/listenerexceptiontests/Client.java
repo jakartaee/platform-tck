@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -317,7 +317,7 @@ public class Client extends ServiceEETest {
           TestUtil.logErr("Expected IllegalStateException, got no exception");
           pass = false;
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("Caught IllegalStateException as expected");
       } catch (Exception e) {
         TestUtil.logErr("Expected IllegalStateException, received " + e);
@@ -399,7 +399,7 @@ public class Client extends ServiceEETest {
           TestUtil.logErr("Expected IllegalStateException, got no exception");
           pass = false;
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("Caught IllegalStateException as expected");
       } catch (Exception e) {
         TestUtil.logErr("Expected IllegalStateException, received " + e);
@@ -461,7 +461,7 @@ public class Client extends ServiceEETest {
           TestUtil.logErr("Expected IllegalStateException, got no exception");
           pass = false;
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("Caught IllegalStateException as expected");
       } catch (Exception e) {
         TestUtil.logErr("Expected IllegalStateException, received " + e);
@@ -534,7 +534,7 @@ public class Client extends ServiceEETest {
           TestUtil.logErr("Expected IllegalStateException, got no exception");
           pass = false;
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("Caught IllegalStateException as expected");
       } catch (Exception e) {
         TestUtil.logErr("Expected IllegalStateException, received " + e);
@@ -596,7 +596,7 @@ public class Client extends ServiceEETest {
           TestUtil.logErr("Expected IllegalStateException, got no exception");
           pass = false;
         }
-      } catch (javax.jms.IllegalStateException e) {
+      } catch (jakarta.jms.IllegalStateException e) {
         TestUtil.logMsg("Caught IllegalStateException as expected");
       } catch (Exception e) {
         TestUtil.logErr("Expected IllegalStateException, received " + e);

@@ -71,23 +71,6 @@ public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
 
   private String password2;
 
-  // JSR-88
-  private String deployManagerJarFile1;
-
-  private String deployManageruri1;
-
-  private String deployManageruname1;
-
-  private String deployManagerpasswd1;
-
-  private String deployManagerJarFile2;
-
-  private String deployManageruri2;
-
-  private String deployManageruname2;
-
-  private String deployManagerpasswd2;
-
   private JaspicJavaEEPropertyManager() {
   }
 
@@ -155,12 +138,6 @@ public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
     setProperty("wsdlRepository1", sWSDLRepository1);
     setProperty("wsdlRepository2", sWSDLRepository2);
 
-    // JSR-88
-    setProperty("deployManagerJarFile.1", deployManagerJarFile1);
-    setProperty("deployManageruri.1", deployManageruri1);
-    setProperty("deployManageruname.1", deployManageruname1);
-    setProperty("deployManagerpasswd.1", deployManagerpasswd1);
-
     super.forwardValues();
   }
 
@@ -201,18 +178,6 @@ public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
         getProperty("porting.ts.jms.class.1"));
     pTestProps.put("wsdlRepository1", getProperty("wsdlRepository1"));
     pTestProps.put("wsdlRepository2", getProperty("wsdlRepository2"));
-
-    // props needed when using the JSR-88 APIs
-    pTestProps.put("deployManagerJarFile.1",
-        getProperty("deployManagerJarFile.1"));
-    pTestProps.put("deployManageruri.1", getProperty("deployManageruri.1"));
-
-    pTestProps.put("deployManageruname.1", getProperty("deployManageruname.1"));
-    pTestProps.put("deployManagerpasswd.1",
-        getProperty("deployManagerpasswd.1"));
-
-    pTestProps.put("porting.ts.deploy2.class.1",
-        getProperty("porting.ts.deploy2.class.1"));
 
     return pTestProps;
   }

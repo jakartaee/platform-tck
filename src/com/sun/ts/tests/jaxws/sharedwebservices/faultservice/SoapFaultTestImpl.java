@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 
-import javax.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.soap.SOAPFaultException;
 import javax.xml.namespace.QName;
-import javax.xml.soap.*;
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
 import java.rmi.ServerException;
 
-@javax.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl", portName = "SoapFaultTestPort", serviceName = "FaultTest", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest")
+@jakarta.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl", portName = "SoapFaultTestPort", serviceName = "FaultTest", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest")
 public class SoapFaultTestImpl implements SoapFaultTest {
   public String alwaysThrowsException() throws DummyException {
     throw new DummyException("dummyString1", "dummyString2");

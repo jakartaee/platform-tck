@@ -1,5 +1,5 @@
 /**
- * Copyright 2013 International Business Machines Corp.
+ * Copyright 2013, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.batch.api.BatchProperty;
-import javax.batch.api.Batchlet;
-import javax.inject.Inject;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.api.Batchlet;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("failRestartBatchlet")
+@jakarta.inject.Named("failRestartBatchlet")
 public class FailRestartBatchlet implements Batchlet {
 
     @Inject    

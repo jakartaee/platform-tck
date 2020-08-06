@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.sseeventsink;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.sse.InboundSseEvent;
-import javax.ws.rs.sse.SseEventSource;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.sse.InboundSseEvent;
+import jakarta.ws.rs.sse.SseEventSource;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxrs.common.util.Holder;
@@ -311,8 +311,8 @@ public class JAXRSClient extends SSEJAXRSClient {
         .target(getAbsoluteUrl("stage"));
 
     try (SseEventSource source = SseEventSource.target(target).build()) {
-      source.open();
       source.register(holder::add);
+      source.open();
       sleepUntilHolderGetsFilled(holder);
       assertNotNull(holder.get(), "No message received");
       assertTrue(holder.get(0).readData().contains(SSEJAXRSClient.MESSAGE),

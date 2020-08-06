@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -284,7 +284,7 @@ public class Client extends ServiceEETest {
         context.setClientID("setClientIDLateTest");
         pass = false;
         TestUtil.logErr("IllegalStateRuntimeException was not thrown");
-      } catch (javax.jms.IllegalStateRuntimeException is) {
+      } catch (jakarta.jms.IllegalStateRuntimeException is) {
         TestUtil.logMsg("IllegalStateRuntimeException thrown as expected");
       } catch (Exception e) {
         TestUtil.logErr("Caught unexpected exception: " + e);
@@ -343,7 +343,7 @@ public class Client extends ServiceEETest {
       context.setClientID("changeIt");
       TestUtil.logErr("No exception was thrown on ClientID reset");
       pass = false;
-    } catch (javax.jms.IllegalStateRuntimeException e) {
+    } catch (jakarta.jms.IllegalStateRuntimeException e) {
       TestUtil.logMsg("IllegalStateRuntimeException thrown as expected");
     } catch (Exception e) {
       TestUtil.logErr("Incorrect exception received: " + e);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -84,7 +84,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:22.4; JSTL:SPEC:22.4.1
    * 
    * @testStrategy: Validate that when varStatus is specified that the exported
-   * var name is of type javax.servlet.jsp.jstl.LoopTagStatus
+   * var name is of type jakarta.servlet.jsp.jstl.LoopTagStatus
    */
   public void positiveVarStatusTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD, "positiveVarStatusTest");
@@ -186,7 +186,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:22.5.3
    * 
-   * @testStrategy: Validate that a javax.servlet.jsp.JspException is thrown if
+   * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to begin evaluates to an incorrect type.
    */
   public void negativeFTBeginTypeTest() throws Fault {
@@ -199,7 +199,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:22.6.2
    * 
-   * @testStrategy: Validate that a javax.servlet.jsp.JspException is thrown if
+   * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to end evaluates to an incorrect type.
    */
   public void negativeFTEndTypeTest() throws Fault {
@@ -212,7 +212,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:22.7.2
    * 
-   * @testStrategy: Validate that a javax.servlet.jsp.JspException is thrown if
+   * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to step evaluates to an incorrect type.
    */
   public void negativeFTStepTypeTest() throws Fault {

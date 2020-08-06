@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jms.ee.mdb.mdb_msgHdrT;
 
 import java.io.Serializable;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Enumeration;
 import java.util.Vector;
@@ -443,7 +443,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
 
   }
 
-  public void msgHdrCorlIdTTest(javax.jms.Message messageReceived) {
+  public void msgHdrCorlIdTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     String jmsCorrelationID = "test Correlation id";
     try {
@@ -489,7 +489,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrReplyToTTest(javax.jms.Message messageReceived) {
+  public void msgHdrReplyToTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     Topic replyTopic = null;
     String testCase = "msgHdrReplyToTTest";
@@ -526,7 +526,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrJMSTypeTTest(javax.jms.Message messageReceived) {
+  public void msgHdrJMSTypeTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     String type = "TESTMSG";
     String testCase = "msgHdrJMSTypeTTest";
@@ -563,7 +563,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrJMSPriorityTTest(javax.jms.Message messageReceived) {
+  public void msgHdrJMSPriorityTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     int priority = 2;
     String testCase = "msgHdrJMSPriorityTTest";
@@ -600,7 +600,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrJMSExpirationTopicTest(javax.jms.Message messageReceived) {
+  public void msgHdrJMSExpirationTopicTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     long forever = 0;
     String testCase = "msgHdrJMSExpirationTopicTest";
@@ -635,7 +635,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrJMSDestinationTTest(javax.jms.Message messageReceived) {
+  public void msgHdrJMSDestinationTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     Topic replyDestination = null;
     String testCase = "msgHdrJMSDestinationTTest";
@@ -676,7 +676,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrJMSDeliveryModeTTest(javax.jms.Message messageReceived) {
+  public void msgHdrJMSDeliveryModeTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     String testCase = "msgHdrJMSDeliveryModeTTest";
     try {
@@ -711,7 +711,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
   }
 
-  public void msgHdrIDTTest(javax.jms.Message messageReceived) {
+  public void msgHdrIDTTest(jakarta.jms.Message messageReceived) {
     boolean pass = true;
     String id = null;
     String testCase = "msgHdrIDTTest";

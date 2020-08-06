@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -54,7 +54,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                javax.faces.CONFIG_FILES -- Comma-delimited list of 
+                jakarta.faces.CONFIG_FILES -- Comma-delimited list of 
                 context-relative resource paths under which the JSF 
                 implementation will look for application configuration
                 resources  before loading a configuration resource named 
@@ -66,7 +66,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.2</id>
             <description>
-                javax.faces.DEFAULT_SUFFIX -- The default suffix for 
+                jakarta.faces.DEFAULT_SUFFIX -- The default suffix for 
                 extension-mapped resources that contain JSF components. If not 
                 specified, the default value “.jsp” must be used.
             </description>
@@ -76,7 +76,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.3</id>
             <description>
-                javax.faces.FACELETS_SUFFIX -- Allow the web application to
+                jakarta.faces.FACELETS_SUFFIX -- Allow the web application to
                 define an alternate suffix for Facelet based XHTML pages
                 containing JSF content. See the javadocs for the symbolic
                 constant ViewHandler.FACELETS_SUFFIX_PARAM_NAME for the
@@ -88,7 +88,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.4</id>
             <description>
-                javax.faces.LIFECYCLE_ID -- Lifecycle identifier of the 
+                jakarta.faces.LIFECYCLE_ID -- Lifecycle identifier of the 
                 Lifecycle instance to be used when processing JSF requests for 
                 this web application. If not specified, the JSF default 
                 instance, identified by LifecycleFactory.DEFAULT_LIFECYCLE, must 
@@ -100,7 +100,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.5</id>
             <description>
-                javax.faces.STATE_SAVING_METHOD -- The location where state 
+                jakarta.faces.STATE_SAVING_METHOD -- The location where state 
                 information is saved. Valid values are “server” (typically saved 
                 in HttpSession) and “client (typically saved as a hidden field 
                 in the subsequent form submit). If not specified, the default 
@@ -112,7 +112,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.6</id>
             <description>
-                javax.faces.PARTIAL_STATE_SAVING --The ServletContext init
+                jakarta.faces.PARTIAL_STATE_SAVING --The ServletContext init
                 parameter consulted by the runtime to determine if the partial
                 state saving mechanism should be used. If undefined, the runtime
                 must determine the version level of the application.
@@ -145,7 +145,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.7</id>
             <description>
-                javax.faces.FULL_STATE_SAVING_VIEW_IDS -- The runtime must
+                jakarta.faces.FULL_STATE_SAVING_VIEW_IDS -- The runtime must
                 interpret the value of this parameter as a comma separated list
                 of view IDs, each of which must have their state saved using the
                 state saving mechanism specified in JSF 1.2.
@@ -156,7 +156,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.8</id>
             <description>
-                javax.faces.PROJECT_STAGE -- A human readable string describing
+                jakarta.faces.PROJECT_STAGE -- A human readable string describing
                 where this particular JSF application is in the software
                 development lifecycle.
             </description>
@@ -166,7 +166,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.9</id>
             <description>
-                javax.faces.DISABLE_FACELET_JSF_VIEWHANDLER -- If this param is
+                jakarta.faces.DISABLE_FACELET_JSF_VIEWHANDLER -- If this param is
                 set, and calling toLowerCase().equals("true") on a String
                 representation of its value returns true, the default
                 ViewHandler must behave as specified in the latest 1.2 version
@@ -178,7 +178,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.10</id>
             <description>
-                javax.faces.FACELETS_LIBRARIES -- If this param is set, the
+                jakarta.faces.FACELETS_LIBRARIES -- If this param is set, the
                 runtime must interpret it as a semicolon (;) separated list of
                 paths, starting with “/” (without the quotes).
             </description>
@@ -188,7 +188,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.11</id>
             <description>
-                javax.faces.FACELETS_VIEW_MAPPINGS -- If this param is set, the
+                jakarta.faces.FACELETS_VIEW_MAPPINGS -- If this param is set, the
                 runtime must interpret it as a semicolon (;) separated list of
                 strings that is used to forcibly declare that certain pages in
                 the application must be interpreted as using Facelets,
@@ -200,7 +200,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.12</id>
             <description>
-                javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL --
+                jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL --
                 If this param is set, and calling toLowerCase().equals("true")
                 on a String representation of its value returns true, any
                 implementation of UIInput.validate() must take the following
@@ -215,11 +215,11 @@
                    status="active" testable="true">
             <id>__NUMBER__.13</id>
             <description>
-                javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZO
+                jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZO
                 NE -- If this param is set, and calling toLowerCase().equals(
                 "true") on a String representation of its value returns true,
                 Application.createConverter() must guarantee that the default
-                for the timezone of all javax.faces.convert.DateTimeConverter
+                for the timezone of all jakarta.faces.convert.DateTimeConverter
                 instances must be equal to TimeZone.getDefault() instead of
                 “GMT”.
             </description>
@@ -229,7 +229,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.14</id>
             <description>
-                javax.faces.VALIDATE_EMPTY_FIELDS -- If this param is set, and
+                jakarta.faces.VALIDATE_EMPTY_FIELDS -- If this param is set, and
                 calling toLowerCase().equals("true") on a String representation
                 of its value returns true, all submitted fields will be
                 validated
@@ -240,12 +240,12 @@
                    status="active" testable="true">
             <id>__NUMBER__.15</id>
             <description>
-                javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR -- If this
+                jakarta.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR -- If this
                 param is set, and calling toLowerCase().equals("true") on a
                 String representation of its value returns true, the runtime
                 must not automatically add the validator with validator-id equal
                 to the value of the symbolic constant
-                javax.faces.validator.VALIDATOR_ID to the list of default
+                jakarta.faces.validator.VALIDATOR_ID to the list of default
                 validators.
             </description>
             <location chapter="11" section="1.3"/>
@@ -267,7 +267,7 @@
            status="active" testable="false">
     <id>__NUMBER__</id>
     <description>
-        javax.faces.FactoryFinder implements the standard discovery algorithm
+        jakarta.faces.FactoryFinder implements the standard discovery algorithm
         for all factory objects specified in the JavaServer Faces APIs.
         For a given factory class name, a corresponding implementation class is
         searched for based on the following algorithm. Items are listed in order
@@ -291,7 +291,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 If the JavaServer Faces configuration resource(s) named by the
-                javax.faces.CONFIG_FILES ServletContext init parameter (if any)
+                jakarta.faces.CONFIG_FILES ServletContext init parameter (if any)
                 contain any factory entries of the given factory class name,
                 those factories are used, with the last one taking precedence.
             </description>
@@ -361,7 +361,7 @@
                 may optionally contain a comma-delimited list of context 
                 relative resources (in addition to /WEB-INF/facesconfig. xml 
                 which is always processed if it is present) to be processed. 
-                The value of this constant must be “javax.faces.CONFIG_FILES”.
+                The value of this constant must be “jakarta.faces.CONFIG_FILES”.
             </description>
             <location chapter="11" section="2.6.2"/>
         </assertion>
@@ -372,7 +372,7 @@
                 LIFECYCLE_ID_ATTR -- the lifecycle identifier of the Lifecycle 
                 instance to be used for processing requests to this application,
                 if an instance other than the default is required. The value of 
-                this constant must be “javax.faces.LIFECYCLE_ID”.
+                this constant must be “jakarta.faces.LIFECYCLE_ID”.
             </description>
             <location chapter="11" section="2.6.2"/>
         </assertion>
@@ -422,7 +422,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 Check for the existence of a context initialization parameter 
-                named javax.faces.CONFIG_FILES. If it exists, treat it as a 
+                named jakarta.faces.CONFIG_FILES. If it exists, treat it as a 
                 comma-delimited list of context relative resource paths 
                 (starting with a “/”), and load each of the specfied resources.
             </description>
@@ -445,7 +445,7 @@
     <id>__NUMBER__</id>
     <description>
         The runtime must publish the
-        javax.faces.event.PostConstructApplicationEvent immediately after all
+        jakarta.faces.event.PostConstructApplicationEvent immediately after all
         application configuration resources have been processed.
     </description>
     <location chapter="11" section="4.2"/>

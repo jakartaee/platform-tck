@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +22,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.websocket.Extension;
+import jakarta.websocket.Extension;
 
 /**
  * For comparable purposes, this implementation is either case sensitive, or
@@ -31,7 +32,7 @@ import javax.websocket.Extension;
  */
 public class ExtensionImpl implements Extension, Comparable<Extension> {
 
-  protected List<Parameter> list = new ArrayList<Parameter>();
+  protected List<Parameter> list = new ArrayList<>();
 
   protected String name;
 
@@ -127,7 +128,7 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
    */
   public List<ExtensionParameterImpl> getExtensionParameters(
       Extension extension) {
-    List<ExtensionParameterImpl> params = new ArrayList<ExtensionParameterImpl>();
+    List<ExtensionParameterImpl> params = new ArrayList<>();
     for (Parameter item : extension.getParameters())
       params.add(new ExtensionParameterImpl(item, caseSensitive));
     Collections.sort(params);
@@ -142,7 +143,7 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
    */
   public static List<ExtensionImpl> transformToImpl(
       List<? extends Extension> extensions) {
-    List<ExtensionImpl> list = new ArrayList<ExtensionImpl>();
+    List<ExtensionImpl> list = new ArrayList<>();
     if (extensions != null)
       for (Extension ex : extensions)
         list.add(new ExtensionImpl(ex));

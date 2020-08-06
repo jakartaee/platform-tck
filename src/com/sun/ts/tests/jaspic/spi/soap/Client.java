@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,17 +27,17 @@ import java.lang.reflect.Constructor;
 import javax.naming.InitialContext;
 import javax.xml.namespace.QName;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.ProtocolException;
 import java.util.Properties;
 import java.util.Map;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.AuthConfigProvider;
-import javax.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
 
 import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
@@ -603,7 +603,7 @@ public class Client extends EETest {
    *                 have been initialized such that the non-null objects
    *                 returned by the getRequestMessage and getResponseMessage
    *                 methods of the MessageInfo are an instanceof
-   *                 javax.xml.soap.SOAPMessage.
+   *                 jakarta.xml.soap.SOAPMessage.
    *
    *
    */
@@ -611,12 +611,12 @@ public class Client extends EETest {
     boolean verified = false;
 
     String args[] = {
-        "secureRequest : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateRequest : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "secureResponse : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "secureResponse : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateResponse : MessageInfo.getRequestMessage() is of type javax.xml.soap.SOAPMessage",
-        "validateResponse : MessageInfo.getResponseMessage() is of type javax.xml.soap.SOAPMessage" };
+        "secureRequest : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateRequest : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "secureResponse : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "secureResponse : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateResponse : MessageInfo.getRequestMessage() is of type jakarta.xml.soap.SOAPMessage",
+        "validateResponse : MessageInfo.getResponseMessage() is of type jakarta.xml.soap.SOAPMessage" };
 
     // verify whether the log contains required messages.
     verified = logProcessor.verifyLogContains(args);
@@ -1027,13 +1027,13 @@ public class Client extends EETest {
    *                 2. Use FetchLog servlet to read the server side log to
    *                 verify whether the Map in messageInfo object passed to
    *                 secureRequest and validateResponse contains the right value
-   *                 for key javax.xml.ws.wsdl.service
+   *                 for key jakarta.xml.ws.wsdl.service
    *
    *                 Description This profile requires that the message
    *                 processing runtime establish the following key-value pairs
    *                 within the Map of the MessageInfo passed in the calls to
    *                 secureRequest and validateResponse
-   *                 Key=javax.xml.ws.wsdl.service Value= the value of the
+   *                 Key=jakarta.xml.ws.wsdl.service Value= the value of the
    *                 qualified service name, represented as a
    *                 javax.xml.namespace.QName
    *
@@ -1047,10 +1047,10 @@ public class Client extends EETest {
     String args[] = {
 
         "TSClientAuthModule.secureRequest messageInfo :"
-            + "javax.xml.ws.wsdl.service=" + expectedQName.toString(),
+            + "jakarta.xml.ws.wsdl.service=" + expectedQName.toString(),
 
         "TSClientAuthModule.validateResponse messageInfo :"
-            + "javax.xml.ws.wsdl.service=" + expectedQName.toString()
+            + "jakarta.xml.ws.wsdl.service=" + expectedQName.toString()
 
     };
 

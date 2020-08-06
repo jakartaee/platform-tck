@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,29 +20,29 @@
 
 package com.sun.ts.tests.ejb30.zombie;
 
-import javax.ejb.EJBContext;
-import javax.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.Constants;
-import javax.ejb.MessageDriven;
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(name = "MessageBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MessageBean implements MessageListener {
   @Resource(name = "mdc")
@@ -56,14 +56,14 @@ public class MessageBean implements MessageListener {
     return this.mdc;
   }
 
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     String info = null;
     try {
       String testname = msg.getStringProperty(TEST_NAME_KEY);
       int testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
       info = TEST_NAME_KEY + "=" + testname + ", " + TEST_NUMBER_KEY + "="
           + testNumber;
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       info = msg.toString();
     }
     TLogger.log(this + " consumed message " + info);

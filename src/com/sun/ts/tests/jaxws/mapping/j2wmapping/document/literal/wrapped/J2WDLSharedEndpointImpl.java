@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "J2WDLSharedEndpointPort", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.J2WDLSharedEndpoint")
 public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
@@ -31,19 +31,19 @@ public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
   }
 
   public String holderMethodDefault(
-      javax.xml.ws.Holder<java.lang.String> varStringDefault) {
+      jakarta.xml.ws.Holder<java.lang.String> varStringDefault) {
     varStringDefault.value = "holderMethodDefault";
     return varStringDefault.value;
   }
 
   public String holderMethodInOut(
-      javax.xml.ws.Holder<java.lang.String> varStringInOut) {
+      jakarta.xml.ws.Holder<java.lang.String> varStringInOut) {
     varStringInOut.value = "holderMethodInOut";
     return varStringInOut.value;
   }
 
   public String holderMethodOut(
-      javax.xml.ws.Holder<java.lang.String> varStringOut) {
+      jakarta.xml.ws.Holder<java.lang.String> varStringOut) {
     varStringOut.value = "holderMethodOut";
     return varStringOut.value;
   }

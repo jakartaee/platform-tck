@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,13 +18,13 @@ package com.sun.ts.tests.connector.resourceDefs.ejb;
 
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
-import javax.resource.AdministeredObjectDefinition;
-import javax.resource.AdministeredObjectDefinitions;
+import jakarta.resource.AdministeredObjectDefinition;
+import jakarta.resource.AdministeredObjectDefinitions;
 
-import javax.resource.spi.TransactionSupport.TransactionSupportLevel;
-import javax.resource.spi.TransactionSupport;
+import jakarta.resource.spi.TransactionSupport.TransactionSupportLevel;
+import jakarta.resource.spi.TransactionSupport;
 
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
@@ -35,13 +35,13 @@ import com.sun.ts.lib.util.TSNamingContext;
  */
 
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(name = "java:app/env/EJBAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:app/env/EJBAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:comp/env/EJBAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:comp/env/EJBAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:module/env/EJBAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(name = "java:module/env/EJBAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
 
-    @AdministeredObjectDefinition(name = "java:global/env/EJBAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "javax.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
+    @AdministeredObjectDefinition(name = "java:global/env/EJBAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
 
 @Stateless
 public class TestAdminObjStatelessEjb implements ITestAdminObjStatelessEjb {

@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -107,7 +107,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2011"></a><font size="1PT">JAXWS:SPEC:2011</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using the javax.jws.WebService annotation): A mapped SEI MUST be annotated with a javax.jws.WebService annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2011"></a><font size="1PT">JAXWS:SPEC:2011</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using the jakarta.jws.WebService annotation): A mapped SEI MUST be annotated with a jakarta.jws.WebService annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -118,7 +118,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2076"></a><font size="1PT">JAXWS:SPEC:2076</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.bind.XmlSeeAlso required): An SEI generated from a WSDL that defines types not directly referenced by the Port MUST contain the javax.xml.bind.XmlSeeAlso annotation with all of the additional types referenced either directly or indirectly.  
+                        Conformance (jakarta.xml.bind.XmlSeeAlso required): An SEI generated from a WSDL that defines types not directly referenced by the Port MUST contain the jakarta.xml.bind.XmlSeeAlso annotation with all of the additional types referenced either directly or indirectly.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -134,7 +134,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2015"></a><font size="1PT">JAXWS:SPEC:2015</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (javax.jws.WebMethod required): A mapped Java method MUST be annotated with a javax.jws.WebMethod annotation. The annotation MAY be omitted if all its properties would have default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2015"></a><font size="1PT">JAXWS:SPEC:2015</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (jakarta.jws.WebMethod required): A mapped Java method MUST be annotated with a jakarta.jws.WebMethod annotation. The annotation MAY be omitted if all its properties would have default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -149,74 +149,74 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2018"></a><font size="1PT">JAXWS:SPEC:2018</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (using javax.jws.OneWay): A Java method mapped from a one-way operation MUST be annotated with a javax.jws.OneWay annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2018"></a><font size="1PT">JAXWS:SPEC:2018</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (using jakarta.jws.OneWay): A Java method mapped from a one-way operation MUST be annotated with a jakarta.jws.OneWay annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2077"></a><font size="1PT">JAXWS:SPEC:2077</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.Action): A mapped Java method MUST be annotated with a javax.xml.ws.Action annotation if the wsdl:input or wsdl:output elements contain a wsam:Action attribute. 
+                        Conformance (jakarta.xml.ws.Action): A mapped Java method MUST be annotated with a jakarta.xml.ws.Action annotation if the wsdl:input or wsdl:output elements contain a wsam:Action attribute. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2078"></a><font size="1PT">JAXWS:SPEC:2078</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.Action):  If the wsdl:input element contains a wsam:Action, the value of this attribute MUST be set to the javax.xml.ws.Action.input element. 
+                        Conformance (jakarta.xml.ws.Action):  If the wsdl:input element contains a wsam:Action, the value of this attribute MUST be set to the jakarta.xml.ws.Action.input element. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2079"></a><font size="1PT">JAXWS:SPEC:2079</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.Action): If the wsdl:output element contains a wsam:Action, the value of this attribute MUST be set to the javax.xml.ws.Action.output element.
+                        Conformance (jakarta.xml.ws.Action): If the wsdl:output element contains a wsam:Action, the value of this attribute MUST be set to the jakarta.xml.ws.Action.output element.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2080"></a><font size="1PT">JAXWS:SPEC:2080</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Methods generated from wsdl:fault messages that contain a wsam:Action attribute MUST be annotated with javax.xml.ws.FaultAction. See section 7 for more information on this annotation.
+                        Methods generated from wsdl:fault messages that contain a wsam:Action attribute MUST be annotated with jakarta.xml.ws.FaultAction. See section 7 for more information on this annotation.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2081"></a><font size="1PT">JAXWS:SPEC:2081</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.FaultAction): A mapped Java method MUST be annotated with a javax.xml.ws.FaultAction annotation if the wsdl:fault elements contain a wsam:Action attribute.
+                        Conformance (jakarta.xml.ws.FaultAction): A mapped Java method MUST be annotated with a jakarta.xml.ws.FaultAction annotation if the wsdl:fault elements contain a wsam:Action attribute.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2082"></a><font size="1PT">JAXWS:SPEC:2082</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.FaultAction):  The javax.xml.ws.FaultAction.value is taken directly from the value of the wsam:Action.  
+                        Conformance (jakarta.xml.ws.FaultAction):  The jakarta.xml.ws.FaultAction.value is taken directly from the value of the wsam:Action.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2083"></a><font size="1PT">JAXWS:SPEC:2083</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.FaultAction): The javax.xml.ws.FaultAction.className MUST be the exception class name associated with this wsdl:fault.
+                        Conformance (jakarta.xml.ws.FaultAction): The jakarta.xml.ws.FaultAction.className MUST be the exception class name associated with this wsdl:fault.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2019"></a><font size="1PT">JAXWS:SPEC:2019</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using javax.jws.SOAPBinding): An SEI mapped from a port type that is bound using the WSDL SOAP binding MUST be annotated with a javax.jws.SOAPBinding annotation describing the choice of style, encoding and parameter style. The annotation MAY be omitted if all its properties would have the default values (i.e. document/literal/wrapped).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2019"></a><font size="1PT">JAXWS:SPEC:2019</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using jakarta.jws.SOAPBinding): An SEI mapped from a port type that is bound using the WSDL SOAP binding MUST be annotated with a jakarta.jws.SOAPBinding annotation describing the choice of style, encoding and parameter style. The annotation MAY be omitted if all its properties would have the default values (i.e. document/literal/wrapped).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2020"></a><font size="1PT">JAXWS:SPEC:2020</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Usingjavax.jws.WebParam ): Generated Java method parameters MUST be annotated with a javax.jws.WebParam annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of javax.jws.WebParam MUST refer to the wsdl:part name of the parameter.
+Conformance (Usingjakarta.jws.WebParam ): Generated Java method parameters MUST be annotated with a jakarta.jws.WebParam annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of jakarta.jws.WebParam MUST refer to the wsdl:part name of the parameter.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2021"></a><font size="1PT">JAXWS:SPEC:2021</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Usingjavax.jws.WebResult ): Generated Java methods MUST be annotated with a javax.jws.WebResult annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of javax.jws.WebResult MUST refer to the wsdl:part name of the parameter. The annotation MAY be omitted if all its properties would have the default values.
+Conformance (Usingjakarta.jws.WebResult ): Generated Java methods MUST be annotated with a jakarta.jws.WebResult annotation. If the style is rpc or if the style is Document and the parameter style is BARE then the partName element of jakarta.jws.WebResult MUST refer to the wsdl:part name of the parameter. The annotation MAY be omitted if all its properties would have the default values.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -237,7 +237,7 @@ Conformance (Usingjavax.jws.WebResult ): Generated Java methods MUST be annotate
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2088"></a><font size="1PT">JAXWS:SPEC:2088</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: javax.xml.bind.annotation.XmlAttachementRef, javax.xml.bind.annotation.XmlList, javax.xml.bind.XmlMimeType and javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
+                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: jakarta.xml.bind.annotation.XmlAttachementRef, jakarta.xml.bind.annotation.XmlList, jakarta.xml.bind.XmlMimeType and jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -285,12 +285,12 @@ A WSDL operation qualifies for wrapper style mapping only if all the criteria as
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2072"></a><font size="1PT">JAXWS:SPEC:2072</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using javax.xml.ws.RequestWrapper): If wrapper style is used, generated Java methods MUST be annotated with a javax.xml.ws.RequestWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2072"></a><font size="1PT">JAXWS:SPEC:2072</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using jakarta.xml.ws.RequestWrapper): If wrapper style is used, generated Java methods MUST be annotated with a jakarta.xml.ws.RequestWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2073"></a><font size="1PT">JAXWS:SPEC:2073</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using javax.xml.ws.ResponseWrapper): If wrapper style is used, generated Java methods MUST be annotated with a javax.xml.ws.ResponseWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2073"></a><font size="1PT">JAXWS:SPEC:2073</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.1.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Using jakarta.xml.ws.ResponseWrapper): If wrapper style is used, generated Java methods MUST be annotated with a jakarta.xml.ws.ResponseWrapper annotation. The annotation MAY be omitted if all its properties would have the default values.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -322,7 +322,7 @@ order as the corresponding wrapper children appear in the wrapper.</font></TD><T
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2031"></a><font size="1PT">JAXWS:SPEC:2031</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Use of Holder ): Implementations MUST map out and in/out method parameters using javax.xml.ws.Holder&lt;T&gt; with the exception of a out part that has been mapped to the method's return type.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2031"></a><font size="1PT">JAXWS:SPEC:2031</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Use of Holder ): Implementations MUST map out and in/out method parameters using jakarta.xml.ws.Holder&lt;T&gt; with the exception of a out part that has been mapped to the method's return type.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -385,13 +385,13 @@ Conformance (Asychronous fault cause): An ExecutionException that is thrown by t
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2086"></a><font size="1PT">JAXWS:SPEC:2086</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.wsaddressing.W3CEndpointReference): Any schema element of the type wsa:EndpointReference MUST be mapped to javax.xml.ws.wsaddressing.W3CEndpointReference.
+                        Conformance (jakarta.xml.ws.wsaddressing.W3CEndpointReference): Any schema element of the type wsa:EndpointReference MUST be mapped to jakarta.xml.ws.wsaddressing.W3CEndpointReference.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2074"></a><font size="1PT">JAXWS:SPEC:2074</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (javax.xml.ws.WebFault required): A mapped exception MUST be annotated with a javax.xml.ws.WebFault annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2074"></a><font size="1PT">JAXWS:SPEC:2074</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (jakarta.xml.ws.WebFault required): A mapped exception MUST be annotated with a jakarta.xml.ws.WebFault annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -462,7 +462,7 @@ Conformance (Asychronous fault cause): An ExecutionException that is thrown by t
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2054"></a><font size="1PT">JAXWS:SPEC:2054</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Service superclass required): A generated service class MUST extend the javax.xml.ws.Service class.
+Conformance (Service superclass required): A generated service class MUST extend the jakarta.xml.ws.Service class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -480,26 +480,26 @@ Conformance (Service class naming): In the absence of customization, the name of
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2063"></a><font size="1PT">JAXWS:SPEC:2063</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (javax.xml.ws.WebServiceClient required): A generated service class MUST be annotated with a javax.xml.ws.WebServiceClient annotation. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2063"></a><font size="1PT">JAXWS:SPEC:2063</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (jakarta.xml.ws.WebServiceClient required): A generated service class MUST be annotated with a jakarta.xml.ws.WebServiceClient annotation. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2070"></a><font size="1PT">JAXWS:SPEC:2070</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance: A generated service class MUST have a default (i.e. zero-argument) public constructor. This constructor MUST call the protected constructor declared in javax.xml.ws.Service, passing as arguments the WSDL location and the service name. The values of the actual arguments for this call MUST be equal (in the java.lang.Object.equals sense) to the values specified in the mandatory WebServiceClient annotation on the generated service class itself.
+Conformance: A generated service class MUST have a default (i.e. zero-argument) public constructor. This constructor MUST call the protected constructor declared in jakarta.xml.ws.Service, passing as arguments the WSDL location and the service name. The values of the actual arguments for this call MUST be equal (in the java.lang.Object.equals sense) to the values specified in the mandatory WebServiceClient annotation on the generated service class itself.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2071"></a><font size="1PT">JAXWS:SPEC:2071</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance: The implementation class MUST have a public constructor that takes two arguments, the wsdl location (a java.net.URL) and the service name (a javax.xml.namespace.QName). This constructor MUST call the protected constructor in javax.xml.ws.Service passing as arguments the WSDL location and the service name values with which it was invoked.
+Conformance: The implementation class MUST have a public constructor that takes two arguments, the wsdl location (a java.net.URL) and the service name (a javax.xml.namespace.QName). This constructor MUST call the protected constructor in jakarta.xml.ws.Service passing as arguments the WSDL location and the service name values with which it was invoked.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2056"></a><font size="1PT">JAXWS:SPEC:2056</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Failed getPortName Method): A generated getPortName method MUST throw javax.xml.ws.WebServiceException on failure.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2056"></a><font size="1PT">JAXWS:SPEC:2056</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (Failed getPortName Method): A generated getPortName method MUST throw jakarta.xml.ws.WebServiceException on failure.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -509,13 +509,13 @@ Conformance: The implementation class MUST have a public constructor that takes 
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2065"></a><font size="1PT">JAXWS:SPEC:2065</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (javax.xml.ws.WebEndpoint required): The getPortName methods of generated service interface MUST be annotated with a javax.xml.ws.WebEndpoint annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2065"></a><font size="1PT">JAXWS:SPEC:2065</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (jakarta.xml.ws.WebEndpoint required): The getPortName methods of generated service interface MUST be annotated with a jakarta.xml.ws.WebEndpoint annotation.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:2087"></a><font size="1PT">JAXWS:SPEC:2087</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-                        getPortName(WebServiceFeatures... features)  One required method that takes a variable-length array of javax.xml.ws.WebServiceFeatures and returns a proxy that implements the mapped service endpoint interface. The method generated delegates to the Service.getPort(QName portName, Class&gt;T&lt; SEI, WebServiceFeatures... features) method passing it the port name, the SEI and the features. The value of the port name MUST be equal to the value specified in the mandatory WebEndpoint annotation on the method itself.
+                        getPortName(WebServiceFeatures... features)  One required method that takes a variable-length array of jakarta.xml.ws.WebServiceFeatures and returns a proxy that implements the mapped service endpoint interface. The method generated delegates to the Service.getPort(QName portName, Class&gt;T&lt; SEI, WebServiceFeatures... features) method passing it the port name, the SEI and the features. The value of the port name MUST be equal to the value specified in the mandatory WebEndpoint annotation on the method itself.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -536,7 +536,7 @@ Conformance: The implementation class MUST have a public constructor that takes 
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:2068"></a><font size="1PT">JAXWS:SPEC:2068</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">8.1</font></TD><TD align="left" valign="center"><font size="1PT">If a name collision occurs between a mapped Java method and a method in javax.xml.ws.Binding Provider (an interface that proxies are required to implement, see section 4.3), the prefix is added to the mapped method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:2068"></a><font size="1PT">JAXWS:SPEC:2068</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">8.1</font></TD><TD align="left" valign="center"><font size="1PT">If a name collision occurs between a mapped Java method and a method in jakarta.xml.ws.Binding Provider (an interface that proxies are required to implement, see section 4.3), the prefix is added to the mapped method.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -577,12 +577,12 @@ WSDL description may have wsam:Action attribute on wsdl:input, wsdl:output, wsdl
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3003"></a><font size="1PT">JAXWS:SPEC:3003</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Method name disambiguation): An implementation MUST support the use of the javax.jws.WebMethod annotation to disambiguate overloaded Java method names when mapped to WSDL.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3003"></a><font size="1PT">JAXWS:SPEC:3003</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Method name disambiguation): An implementation MUST support the use of the jakarta.jws.WebMethod annotation to disambiguate overloaded Java method names when mapped to WSDL.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3004"></a><font size="1PT">JAXWS:SPEC:3004</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Package name mapping): The javax.jws.WebService annotation (see section 7.9.1) MAY be used to specify the target namespace to use for a Web service and MUST be used for classes or interfaces in no package. In the absence of a javax.jws.WebService annotation the Java package name MUST be mapped to the value of the wsdl:definitions elements targetNamespace attribute using the algorithm: 1. The package name is tokenized using the "." character as a delimiter. 2. The order of the tokens is reversed.  3. The value of the targetNamespace attribute is obtained by concatenating "http://" to the list of tokens separated by "." and "/".</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3004"></a><font size="1PT">JAXWS:SPEC:3004</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Package name mapping): The jakarta.jws.WebService annotation (see section 7.9.1) MAY be used to specify the target namespace to use for a Web service and MUST be used for classes or interfaces in no package. In the absence of a jakarta.jws.WebService annotation the Java package name MUST be mapped to the value of the wsdl:definitions elements targetNamespace attribute using the algorithm: 1. The package name is tokenized using the "." character as a delimiter. 2. The order of the tokens is reversed.  3. The value of the targetNamespace attribute is obtained by concatenating "http://" to the list of tokens separated by "." and "/".</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -593,56 +593,56 @@ WSDL description may have wsam:Action attribute on wsdl:input, wsdl:output, wsdl
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3036"></a><font size="1PT">JAXWS:SPEC:3036</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Class mapping): An implementation MUST support the mapping of javax.jws.WebService annotated classes to implicit service endpoint interfaces.
+Conformance (Class mapping): An implementation MUST support the mapping of jakarta.jws.WebService annotated classes to implicit service endpoint interfaces.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3044"></a><font size="1PT">JAXWS:SPEC:3044</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.soap.Addressing): A Java class that is annotated with the javax.xml.ws.soap.Addressing annotation with the enabled element set to true, MUST result in the addition of a wsam:Addressing extensibility element to the  wsdl:binding element and it MUST NOT have the wsdl:required=true attribute. 
+                        Conformance (jakarta.xml.ws.soap.Addressing): A Java class that is annotated with the jakarta.xml.ws.soap.Addressing annotation with the enabled element set to true, MUST result in the addition of a wsam:Addressing extensibility element to the  wsdl:binding element and it MUST NOT have the wsdl:required=true attribute. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3045"></a><font size="1PT">JAXWS:SPEC:3045</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.soap.Addressing): If the required element of the Addressing annotation has a value of true, then the wsam:Addressing extensibility element MUST contain the wsdl:required=true attribute. 
+                        Conformance (jakarta.xml.ws.soap.Addressing): If the required element of the Addressing annotation has a value of true, then the wsam:Addressing extensibility element MUST contain the wsdl:required=true attribute. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3046"></a><font size="1PT">JAXWS:SPEC:3046</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.soap.Addressing): If SEI is also annotated with a BindingType.value is not compatible with this feature an error MUST be given.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): If SEI is also annotated with a BindingType.value is not compatible with this feature an error MUST be given.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3047"></a><font size="1PT">JAXWS:SPEC:3047</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.soap.Addressing): The JAX-WS runtime MUST also use Addressing headers.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): The JAX-WS runtime MUST also use Addressing headers.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3048"></a><font size="1PT">JAXWS:SPEC:3048</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.soap.Addressing): If the enabled element is set to false, then wsam:Addressing element MUST NOT be generated and the JAX-WS runtime MUST NOT use Addressing headers.  
+                        Conformance (jakarta.xml.ws.soap.Addressing): If the enabled element is set to false, then wsam:Addressing element MUST NOT be generated and the JAX-WS runtime MUST NOT use Addressing headers.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3006"></a><font size="1PT">JAXWS:SPEC:3006</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Class mapping): An implementation MUST support the mapping of javax.jws.WebService annotated classes to implicit service endpoint interfaces.
+Conformance (Class mapping): An implementation MUST support the mapping of jakarta.jws.WebService annotated classes to implicit service endpoint interfaces.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3007"></a><font size="1PT">JAXWS:SPEC:3007</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (portType naming): The javax.jws.WebService annotation (see section 7.10.1) MAY be used to customize the name and targetNamespace attributes of the wsdl:portType element. If not customized, the value of the name attribute of the wsdl:portType element MUST be the name of the SEI not including the package name and the target namespace is computed as defined above in section 3.2.
+Conformance (portType naming): The jakarta.jws.WebService annotation (see section 7.10.1) MAY be used to customize the name and targetNamespace attributes of the wsdl:portType element. If not customized, the value of the name attribute of the wsdl:portType element MUST be the name of the SEI not including the package name and the target namespace is computed as defined above in section 3.2.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -659,7 +659,7 @@ Conformance (portType naming): The javax.jws.WebService annotation (see section 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3010"></a><font size="1PT">JAXWS:SPEC:3010</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Operation naming): In the absence of customizations, the value of the name attribute of the wsdl:operation element MUST be the name of the Java method. The javax.jws.WebMethod (see 7.10.2) annotation MAY be used to customize the value of the name attribute of the wsdl:operation element and MUST be used to resolve naming conflicts. If the exclude element of the javax.jws.WebMethod is set to true then the Java method MUST NOT be present in the wsdl as a wsdl:operation element.
+Conformance (Operation naming): In the absence of customizations, the value of the name attribute of the wsdl:operation element MUST be the name of the Java method. The jakarta.jws.WebMethod (see 7.10.2) annotation MAY be used to customize the value of the name attribute of the wsdl:operation element and MUST be used to resolve naming conflicts. If the exclude element of the jakarta.jws.WebMethod is set to true then the Java method MUST NOT be present in the wsdl as a wsdl:operation element.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -683,27 +683,27 @@ Methods are either one-way or two-way: one way methods have an input but produce
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3049"></a><font size="1PT">JAXWS:SPEC:3049</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.Action): A Java method annotated with the javax.xml.ws.Action.input annotation element MUST result in the addition of a wsam:Action extensibility element to the wsdl:input element with the wsam:Action.value equal to javax.xml.ws.Action.input. 
+                        Conformance (jakarta.xml.ws.Action): A Java method annotated with the jakarta.xml.ws.Action.input annotation element MUST result in the addition of a wsam:Action extensibility element to the wsdl:input element with the wsam:Action.value equal to jakarta.xml.ws.Action.input. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3050"></a><font size="1PT">JAXWS:SPEC:3050</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.Action): A Java method annotated with the javax.xml.ws.Action.output annotation element MUST result in the addition of a  wsam:Action extensibility element on the wsdl:output element with the wsam:Action.value equal to javax.xml.ws.Action.output. 
+                        Conformance (jakarta.xml.ws.Action): A Java method annotated with the jakarta.xml.ws.Action.output annotation element MUST result in the addition of a  wsam:Action extensibility element on the wsdl:output element with the wsam:Action.value equal to jakarta.xml.ws.Action.output. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3051"></a><font size="1PT">JAXWS:SPEC:3051</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.FaultAction) A Java method annotated with the javax.xml.ws.FaultAction annotation element MUST result in the addition of a wsam:Action extensibility element on the wsdl:fault element that corresponds to the Exception specified by javax.xml.ws.FaultAction.className with the wsam:Action.value equal to javax.xml.ws.FaultAction.value.
+                        Conformance (jakarta.xml.ws.FaultAction) A Java method annotated with the jakarta.xml.ws.FaultAction annotation element MUST result in the addition of a wsam:Action extensibility element on the wsdl:fault element that corresponds to the Exception specified by jakarta.xml.ws.FaultAction.className with the wsam:Action.value equal to jakarta.xml.ws.FaultAction.value.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3014"></a><font size="1PT">JAXWS:SPEC:3014</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (One-way mapping): Implementations MUST support using the javax.jws.OneWay (see 7.9.3) annotation to specify which methods should be mapped to one-way operations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3014"></a><font size="1PT">JAXWS:SPEC:3014</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (One-way mapping): Implementations MUST support using the jakarta.jws.OneWay (see 7.9.3) annotation to specify which methods should be mapped to one-way operations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -721,46 +721,46 @@ Methods are either one-way or two-way: one way methods have an input but produce
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3054"></a><font size="1PT">JAXWS:SPEC:3054</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: javax.xml.bind.annotation.XmlAttachementRef, javax.xml.bind.annotation.XmlList, javax.xml.bind.XmlMimeType and javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
+                        Conformance (use of JAXB annotations): The set of JAXB annotations that MUST be supported are: jakarta.xml.bind.annotation.XmlAttachementRef, jakarta.xml.bind.annotation.XmlList, jakarta.xml.bind.XmlMimeType and jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3016"></a><font size="1PT">JAXWS:SPEC:3016</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Parameter classification): The javax.jws.WebParam annotation (see 7.9.4) MAY be used to specify whether a holder parameter is treated as in/out or out. If not specified, the default MUST be in/out.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3016"></a><font size="1PT">JAXWS:SPEC:3016</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Parameter classification): The jakarta.jws.WebParam annotation (see 7.9.4) MAY be used to specify whether a holder parameter is treated as in/out or out. If not specified, the default MUST be in/out.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3017"></a><font size="1PT">JAXWS:SPEC:3017</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Parameter naming): The javax.jws.WebParam annotation (see 7.10.4)MAY be used to specify the name of the wsdl:part or XML Schema element declaration corresponding to a Java parameter. If both the name and partName elements are used in the javax.jws.WebParam annotation then the partName MUST be used for the wsdl:part name attribute and the name element from the annotation will be ignored. If not specified, the default is argN, where N is replaced with the zero-based argument index. Thus, for instance, the first argument of a method will have a default parameter name of arg0, the second one arg1and so on.
+Conformance (Parameter naming): The jakarta.jws.WebParam annotation (see 7.10.4)MAY be used to specify the name of the wsdl:part or XML Schema element declaration corresponding to a Java parameter. If both the name and partName elements are used in the jakarta.jws.WebParam annotation then the partName MUST be used for the wsdl:part name attribute and the name element from the annotation will be ignored. If not specified, the default is argN, where N is replaced with the zero-based argument index. Thus, for instance, the first argument of a method will have a default parameter name of arg0, the second one arg1and so on.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3018"></a><font size="1PT">JAXWS:SPEC:3018</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Result naming): The javax.jws.WebResult annotation (see 7.10.4) MAY be used to specify the name of the wsdl:part or XML Schema element declaration corresponding to the Java method return type. If both the name and partName elements are used in the javax.jws.WebResult annotations then the partName MUST be used for the wsdl:part name attribute and the name elment from the annotation will be ignored. In the absence of customizations, the default name is return.
+Conformance (Result naming): The jakarta.jws.WebResult annotation (see 7.10.4) MAY be used to specify the name of the wsdl:part or XML Schema element declaration corresponding to the Java method return type. If both the name and partName elements are used in the jakarta.jws.WebResult annotations then the partName MUST be used for the wsdl:part name attribute and the name elment from the annotation will be ignored. In the absence of customizations, the default name is return.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3038"></a><font size="1PT">JAXWS:SPEC:3038</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Header mapping of parameters and results): The javax.jws.WebParam annotations - header element MAY be used to map parameters to SOAP headers. Header parameters MUST be included as soap:header elements in the operations input message. The javax.jws.WebResult annotations header element MAY be used to map results to SOAP headers. Header results MUST be included as soap:header elements in the operations output message.
+Conformance (Header mapping of parameters and results): The jakarta.jws.WebParam annotations - header element MAY be used to map parameters to SOAP headers. Header parameters MUST be included as soap:header elements in the operations input message. The jakarta.jws.WebResult annotations header element MAY be used to map results to SOAP headers. Header results MUST be included as soap:header elements in the operations output message.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3019"></a><font size="1PT">JAXWS:SPEC:3019</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2</font></TD><TD align="left" valign="center"><font size="1PT">
-The javax.jws.SOAPBinding annotation MAY be used to specify at the type level which style to use for all methods it contains or on a per method basis if the style is document.
+The jakarta.jws.SOAPBinding annotation MAY be used to specify at the type level which style to use for all methods it contains or on a per method basis if the style is document.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3020"></a><font size="1PT">JAXWS:SPEC:3020</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.1</font></TD><TD align="left" valign="center"><font size="1PT">This style is identified by a javax.jws.SOAPBinding annotation with the following properties: a style of DOCUMENT, a use of LITERAL and a parameterStyle of WRAPPED.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3020"></a><font size="1PT">JAXWS:SPEC:3020</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.1</font></TD><TD align="left" valign="center"><font size="1PT">This style is identified by a jakarta.jws.SOAPBinding annotation with the following properties: a style of DOCUMENT, a use of LITERAL and a parameterStyle of WRAPPED.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -776,14 +776,14 @@ The javax.jws.SOAPBinding annotation MAY be used to specify at the type level wh
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3023"></a><font size="1PT">JAXWS:SPEC:3023</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Wrapper element names): The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.5 and 7.6) MAY be used to specify the localname of the elements generated for the wrapper beans.
+Conformance (Wrapper element names): The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.5 and 7.6) MAY be used to specify the localname of the elements generated for the wrapper beans.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3024"></a><font size="1PT">JAXWS:SPEC:3024</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Wrapper element names): The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to specify the qualified name of the elements generated for the wrapper beans.
+Conformance (Wrapper element names): The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to specify the qualified name of the elements generated for the wrapper beans.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -797,13 +797,13 @@ Conformance (Wrapper bean name clash): Generated bean classes must have unique n
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3026"></a><font size="1PT">JAXWS:SPEC:3026</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-This style is identified by a javax.jws.SOAPBinding annotation with the following properties: a style of DOCUMENT, a use of LITERAL and a parameterStyle of BARE. In order to qualify for use of bare mapping mode a Java method must fulfill all of the following criteria: 1. It must have at most one in or in/out parameter. 2. If it has a return type other than void it must have no in/out or out parameters. 3. If it has a return type of void it must have at most one in/out or out parameter.
+This style is identified by a jakarta.jws.SOAPBinding annotation with the following properties: a style of DOCUMENT, a use of LITERAL and a parameterStyle of BARE. In order to qualify for use of bare mapping mode a Java method must fulfill all of the following criteria: 1. It must have at most one in or in/out parameter. 2. If it has a return type other than void it must have no in/out or out parameters. 3. If it has a return type of void it must have at most one in/out or out parameter.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3027"></a><font size="1PT">JAXWS:SPEC:3027</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.3</font></TD><TD align="left" valign="center"><font size="1PT">This style is identified by a javax.jws.SOAPBinding annotation with the following properties: a style of RPC, a use of LITERAL and a parameterStyle of WRAPPED. The Java types of each in, out and in/out parameter and the return value are mapped to named XML Schema types using the mapping defined by JAXB. For out and in/out parameters the class of the value of the holder is used rather than the holder itself. Each method parameter and the return type is mapped to a message part according to the parameter classification: in The parameter is mapped to a part of the input message. out The parameter or return value is mapped to a part of the output message. in/out The parameter is mapped to a part of the input and output message. The named types are used as the values of the wsdl:part elements type attribute, see figure 3.2. The value of the name attribute of each wsdl:part element is the name of the corresponding method parameter or return for the method return value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3027"></a><font size="1PT">JAXWS:SPEC:3027</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6.2.3</font></TD><TD align="left" valign="center"><font size="1PT">This style is identified by a jakarta.jws.SOAPBinding annotation with the following properties: a style of RPC, a use of LITERAL and a parameterStyle of WRAPPED. The Java types of each in, out and in/out parameter and the return value are mapped to named XML Schema types using the mapping defined by JAXB. For out and in/out parameters the class of the value of the holder is used rather than the holder itself. Each method parameter and the return type is mapped to a message part according to the parameter classification: in The parameter is mapped to a part of the input message. out The parameter or return value is mapped to a part of the output message. in/out The parameter is mapped to a part of the input and output message. The named types are used as the values of the wsdl:part elements type attribute, see figure 3.2. The value of the name attribute of each wsdl:part element is the name of the corresponding method parameter or return for the method return value.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -818,7 +818,7 @@ This style is identified by a javax.jws.SOAPBinding annotation with the followin
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:3029"></a><font size="1PT">JAXWS:SPEC:3029</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Exception naming): In the absence of customizations, the name of the global element declaration for a mapped exception MUST be the name of the Java exception. The javax.xml.ws.WebFault annotation MAY be used to customize the local name and namespace name of the element.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:3029"></a><font size="1PT">JAXWS:SPEC:3029</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Exception naming): In the absence of customizations, the name of the global element declaration for a mapped exception MUST be the name of the Java exception. The jakarta.xml.ws.WebFault annotation MAY be used to customize the local name and namespace name of the element.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -868,7 +868,7 @@ This style is identified by a javax.jws.SOAPBinding annotation with the followin
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3037"></a><font size="1PT">JAXWS:SPEC:3037</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Service creation): Implementations MUST be able to map classes annotated with the javax.jws.WebService annotation to WSDL wsdl:service elements.
+Conformance (Service creation): Implementations MUST be able to map classes annotated with the jakarta.jws.WebService annotation to WSDL wsdl:service elements.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -928,9 +928,9 @@ JAXB doesn't define any namespace by default to types and elements. In the web s
 Application's programming model doesn't use these bean classes, so the applications need not package these classes. JAX-WS implementations may generate these classes dynamically as specified in this section.
     * Conformance (Bundling wrapper beans): A JAX-WS implementation SHOULD not require an application to package request and response bean classes. However, when the bean classes are packaged, they MUST be used.
 
-The name of wsdl:part for the wrapper must be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.  The javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to customize the name of the wsdl:part for the wrapper part.
+The name of wsdl:part for the wrapper must be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.  The jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations (see 7.3 and 7.4) MAY be used to customize the name of the wsdl:part for the wrapper part.
     * Conformance (Default Wrapper wsdl:part names): In the absence of customizations, the name of the wsdl:part for the wrapper MUST be named as "parameters" and "result" for input and output messages respectively in the generated WSDL.
-    * Conformance (Customizing Wrapper wsdl:part names): Non-default partName values of the javax.xml.ws.RequestWrapper and javax.xml.ws.ResponseWrapper annotations, if specified on SEI method, MUST be used as wsdl:part name for input and output messages respectively in the generated WSDL.
+    * Conformance (Customizing Wrapper wsdl:part names): Non-default partName values of the jakarta.xml.ws.RequestWrapper and jakarta.xml.ws.ResponseWrapper annotations, if specified on SEI method, MUST be used as wsdl:part name for input and output messages respectively in the generated WSDL.
 
 If a SEI's method parameter or return type is annotated with @XmlElement, that annotation is used for the wrapper bean properties. This can be used to map corresponding XML schema element declaration's attributes like minOccurs, maxOccurs, and nillable etc. It is an error to specify @XmlElement with a parameter or return type that is mapped to header part. If both @XmlElement and @WebParam/@WebResult are present, then it is an error to specify @XmlElement's name, and namespace elements different from @WebParam/@WebResult's name and targetNamespace elements respectively.
     * Conformance (Wrapper property): If a SEI's method parameter or return type is annotated with @XmlElement, that annotation MUST be used on the wrapper bean property.
@@ -942,7 +942,7 @@ If a SEI's method parameter or return type is annotated with @XmlElement, that a
 <TD align="center" valign="center"><a name="JAXWS:SPEC:3058"></a><font size="1PT">JAXWS:SPEC:3058</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">Service Specific Exception.
     * Conformance (Exception naming): In the absence of customizations, the name of the wsdl:message element MUST be the name of the Java exception.
 
-The javax.xml.ws.WebFault annotation may be used to customize the name of the wsdl:message element and also to resolve any conflicts.
+The jakarta.xml.ws.WebFault annotation may be used to customize the name of the wsdl:message element and also to resolve any conflicts.
 
     * Conformance (Exception naming): If an exception has @WebFault, then messageName MUST be the name of the corresponding wsdl:message element.
 
@@ -1017,7 +1017,7 @@ Conformance (Use of Executor): If an executor object is successfully configured 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4022"></a><font size="1PT">JAXWS:SPEC:4022</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (Required BindingProvider getEndpointReference): An implementation MUST be able to return an javax.xml.ws.EndpointReference for the target endpoint if a SOAP binding is being used.  
+                        Conformance (Required BindingProvider getEndpointReference): An implementation MUST be able to return an jakarta.xml.ws.EndpointReference for the target endpoint if a SOAP binding is being used.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1089,14 +1089,14 @@ Conformance (Proxy support): An implementation MUST support proxies.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4010"></a><font size="1PT">JAXWS:SPEC:4010</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.3</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (ImplementingBindingProvider ): An instance of a proxy MUST implement javax.xml.ws.BindingProvider.
+Conformance (ImplementingBindingProvider ): An instance of a proxy MUST implement jakarta.xml.ws.BindingProvider.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4011"></a><font size="1PT">JAXWS:SPEC:4011</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (Service.getPort failure): If creation of a proxy fails, an implementation MUST throw javax.xml.ws.WebServiceException. The cause of that exception SHOULD be set to an exception that provides more information on the cause of the error (e.g. an IOException).
+                        Conformance (Service.getPort failure): If creation of a proxy fails, an implementation MUST throw jakarta.xml.ws.WebServiceException. The cause of that exception SHOULD be set to an exception that provides more information on the cause of the error (e.g. an IOException).
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1203,7 +1203,7 @@ Conformance (Other Exceptions): For all other errors, i.e. all those that don't 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4014"></a><font size="1PT">JAXWS:SPEC:4014</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (Dispatch support): Implementations MUST support the javax.xml.ws.Dispatch interface.
+                        Conformance (Dispatch support): Implementations MUST support the jakarta.xml.ws.Dispatch interface.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1259,7 +1259,7 @@ Conformance Requirement (Marshalling failure): If an error occurs when using the
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4028"></a><font size="1PT">JAXWS:SPEC:4028</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Section javax.xml.ws.EndpointReference 
+                        Section jakarta.xml.ws.EndpointReference 
                         getPort(Class&lt;T&gt; serviceEndpointInterface, 
                         WebServiceFeature... features) Gets a proxy for the serviceEndpointInterface that can be used to invoke operations on the endpoint referred to by the EndpointReference instance.  The specified features MUST be enabled/disabled and configured as specified.            
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1312,7 +1312,7 @@ The following code snippet shows the generated constructors:
 @WebServiceClient(name="StockQuoteService",
                   targetNamespace="http://example.com/stocks",
                   wsdlLocation="http://example.com/stocks.wsdl")
-public class StockQuoteService extends javax.xml.ws.Service {
+public class StockQuoteService extends jakarta.xml.ws.Service {
   public StockQuoteService() {
     super(new URL("http://example.com/stocks.wsdl"),
           new QName("http://example.com/stocks", "StockQuoteService"));
@@ -1351,7 +1351,7 @@ public class StockQuoteService extends javax.xml.ws.Service {
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:4033"></a><font size="1PT">JAXWS:SPEC:4033</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-javax.xml.ws.BindingProvider
+jakarta.xml.ws.BindingProvider
 
     * Conformance (BindingProvider's W3CEndpointReference): The returned W3CEndpointReference MUST contain wsam:ServiceName and wsam:ServiceName[@EndpointName] as per Addressing 1.0 - Metadata[35]. The wsam:InterfaceName MAY be present in the W3CEndpointReference. If there is an associated WSDL, then the WSDL location MUST be referenced using wsdli:wsdlLocation in the W3CEndpointReference's wsa:Metadata.  
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1365,15 +1365,15 @@ Standard properties.
 Add the following properties to Table 4.1: Standard BindingProvider properties.
 
 Name                              Type              Mandatory Description
-javax.xml.ws.addressing.to        EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.to        EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for 
 							      wsa:To header
-javax.xml.ws.addressing.replyto   EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.replyto   EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for
 							      wsa:ReplyTo header
-javax.xml.ws.addressing.faultto   EndpointReference  Y        If WS-Addressing
+jakarta.xml.ws.addressing.faultto   EndpointReference  Y        If WS-Addressing
                                                               is enabled, this
 							      value is used for
 							      wsa:FaultTo
@@ -1388,8 +1388,8 @@ Proxies.
 Proxy instances are not guaranteed to be thread safe. If the instances are
 accessed by multiple threads, usual synchronization techniques can be used to support multiple threads.
 
-The use of WS-Addressing requirements can be indicated in a WSDL as per Addressing 1.0 - Metadata[35]. A proxy created using getPort() calls is configured with the addressing requirements as specified in the associated WSDL or explicitly passing javax.xml.ws.soap.AddressingFeature web service feature.
-    * Conformance (Proxy's Addressing use): A proxy MUST be configured with the use of addressing requirements as indicated in the associated WSDL. But if the proxy is created using javax.xml.ws.soap.AddressingFeature web service feature, the feature's addressing requirements MUST take precedence over WSDL's addressing requirements.
+The use of WS-Addressing requirements can be indicated in a WSDL as per Addressing 1.0 - Metadata[35]. A proxy created using getPort() calls is configured with the addressing requirements as specified in the associated WSDL or explicitly passing jakarta.xml.ws.soap.AddressingFeature web service feature.
+    * Conformance (Proxy's Addressing use): A proxy MUST be configured with the use of addressing requirements as indicated in the associated WSDL. But if the proxy is created using jakarta.xml.ws.soap.AddressingFeature web service feature, the feature's addressing requirements MUST take precedence over WSDL's addressing requirements.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1565,9 +1565,9 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:5023"></a><font size="1PT">JAXWS:SPEC:5023</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Section javax.xml.ws.EndpointReference. 
-                        The following method can be used on a published Endpoint to retrieve an javax.xml.ws.EndpointReference for the endpoint.
-                        getEndpointReference(List&lt;Element&gt; referenceParameters) Creates and returns and javax.xml.ws.EndpointReference for a published Endpoint.  If the binding is SOAP 1.1/HTTP or SOAP 1.2/HTTP, then a javax.xml.ws.wsaddressing.W3CEndpointReference MUST be returned. 
+                        Section jakarta.xml.ws.EndpointReference. 
+                        The following method can be used on a published Endpoint to retrieve an jakarta.xml.ws.EndpointReference for the endpoint.
+                        getEndpointReference(List&lt;Element&gt; referenceParameters) Creates and returns and jakarta.xml.ws.EndpointReference for a published Endpoint.  If the binding is SOAP 1.1/HTTP or SOAP 1.2/HTTP, then a jakarta.xml.ws.wsaddressing.W3CEndpointReference MUST be returned. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1585,7 +1585,7 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:5023.3"></a><font size="1PT">JAXWS:SPEC:5023.3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">An implementation MUST throw a javax.xml.ws.WebServiceException if the Endpoint instance has not been published.  
+<TD align="center" valign="center"><a name="JAXWS:SPEC:5023.3"></a><font size="1PT">JAXWS:SPEC:5023.3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">An implementation MUST throw a jakarta.xml.ws.WebServiceException if the Endpoint instance has not been published.  
                             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1598,9 +1598,9 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:5024"></a><font size="1PT">JAXWS:SPEC:5024</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Section javax.xml.ws.EndpointReference 
-                        The following method can be used on a published Endpoint to retrieve an javax.xml.ws.EndpointReference for the endpoint.
-                        getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters) Creates and returns and javax.xml.ws.EndpointReference of type clazz for a published Endpoint instance. If clazz is of type javax.xml.ws.wsaddressing.W3CEndpointReference then the returned W3CEndpointReference MUST contain the specified referenceParameters.
+                        Section jakarta.xml.ws.EndpointReference 
+                        The following method can be used on a published Endpoint to retrieve an jakarta.xml.ws.EndpointReference for the endpoint.
+                        getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters) Creates and returns and jakarta.xml.ws.EndpointReference of type clazz for a published Endpoint instance. If clazz is of type jakarta.xml.ws.wsaddressing.W3CEndpointReference then the returned W3CEndpointReference MUST contain the specified referenceParameters.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1612,13 +1612,13 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">removed</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:5024.2"></a><font size="1PT">JAXWS:SPEC:5024.2</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">An implementation MUST throw a javax.xml.ws.WebServiceException if the Endpoint instance has not been published.  
+<TD align="center" valign="center"><a name="JAXWS:SPEC:5024.2"></a><font size="1PT">JAXWS:SPEC:5024.2</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">An implementation MUST throw a jakarta.xml.ws.WebServiceException if the Endpoint instance has not been published.  
                             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:5024.3"></a><font size="1PT">JAXWS:SPEC:5024.3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">If the Class clazz is not a subclass of EndpointReference or the Endpoint implementation does not support EndpointReferences of type clazz a javax.xml.ws.WebServiceException MUST be thrown.  
+<TD align="center" valign="center"><a name="JAXWS:SPEC:5024.3"></a><font size="1PT">JAXWS:SPEC:5024.3</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.8</font></TD><TD align="left" valign="center"><font size="1PT">If the Class clazz is not a subclass of EndpointReference or the Endpoint implementation does not support EndpointReferences of type clazz a jakarta.xml.ws.WebServiceException MUST be thrown.  
                             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1634,10 +1634,10 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 "Endpoints can be created using the following static methods on Endpoint:"
 
 create(Object implementor) Creates and returns an Endpoint for the specified implementor. If the
-implementor specifies a binding using the javax.xml.ws.BindingType annotation it MUST be used else a default binding of SOAP 1.1 / HTTP binding MUST be used.
+implementor specifies a binding using the jakarta.xml.ws.BindingType annotation it MUST be used else a default binding of SOAP 1.1 / HTTP binding MUST be used.
 create(String bindingID, Object implementor) Creates and returns an Endpoint for the specified
 binding and implementor. If the bindingID is null and no binding information is specified via
-the javax.xml.ws.BindingType annotation then a default SOAP 1.1 / HTTP binding MUST be
+the jakarta.xml.ws.BindingType annotation then a default SOAP 1.1 / HTTP binding MUST be
 used.
 
 publish(String address, Object implementor) Creates and publishes an Endpoint for the given
@@ -1664,9 +1664,9 @@ Conformance (Endpoint's W3CEndpointReference): The returned W3EndpointReference 
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:5028"></a><font size="1PT">JAXWS:SPEC:5028</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-javax.xml.ws.WebServiceContext
+jakarta.xml.ws.WebServiceContext
 
-An endpoint implementation can retrieve an javax.xml.ws.EndpointReference for
+An endpoint implementation can retrieve an jakarta.xml.ws.EndpointReference for
 the endpoint using getEndpointReference(List&lt;Element&gt; referenceParameters),
 and getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters)
 methods. These methods have the same semantics as the Endpoint.getEndpointReference() methods specified in the section 5.2.8
@@ -1690,7 +1690,7 @@ Conformance Requirement (Read-only handler chains): An implementation MAY preven
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6001"></a><font size="1PT">JAXWS:SPEC:6001</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Concrete javax.xml.ws.spi.Provider required): An implementation MUST provide  a concrete class that extends javax.xml.ws.spi.Provider. Such a class MUST have a public constructor which takes no arguments.
+Conformance (Concrete jakarta.xml.ws.spi.Provider required): An implementation MUST provide  a concrete class that extends jakarta.xml.ws.spi.Provider. Such a class MUST have a public constructor which takes no arguments.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1704,7 +1704,7 @@ Conformance (Provider createAndPublishEndpoint Method): The effect of invoking t
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6007"></a><font size="1PT">JAXWS:SPEC:6007</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        createEndpoint(String bindingId, Object implementor)  Creates and returns an Endpoint for the specified binding and implementor. If the bindingId is null and no binding information is specified via the javax.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. 
+                        createEndpoint(String bindingId, Object implementor)  Creates and returns an Endpoint for the specified binding and implementor. If the bindingId is null and no binding information is specified via the jakarta.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1719,7 +1719,7 @@ features) Same as the above createEndpoint() method. The created Endpoint is con
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6019"></a><font size="1PT">JAXWS:SPEC:6019</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-createEndpoint(String bindingId, Class implementorClass, Invoker invoker, WebServiceFeature ... features) Creates an Endpoint for the implementor class and the endpoint invocation is handled by the Invoker. If the bindingId is null and no binding information is specified via the javax.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. The created Endpoint is configured with the web service features.
+createEndpoint(String bindingId, Class implementorClass, Invoker invoker, WebServiceFeature ... features) Creates an Endpoint for the implementor class and the endpoint invocation is handled by the Invoker. If the bindingId is null and no binding information is specified via the jakarta.xml.ws.BindingType annotation then a default SOAP1.1/HTTP binding MUST be used. The created Endpoint is configured with the web service features.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1735,7 +1735,7 @@ createAndPublishEndpoint(String address, Object implementor, WebServiceFeature .
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6008"></a><font size="1PT">JAXWS:SPEC:6008</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">
                         Creating EndpointReferences
                         The Provider class provides the following method to create EndpointReferences                
-                        readEndpointReference(javax.xml.transform.Source source) Unmarshalls and returns a javax.xml.ws.EndpointReference from the infoset contained in source.   
+                        readEndpointReference(javax.xml.transform.Source source) Unmarshalls and returns a jakarta.xml.ws.EndpointReference from the infoset contained in source.   
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1783,7 +1783,7 @@ createW3CEndpointReference(String address, QName interfaceName, QName serviceNam
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6003"></a><font size="1PT">JAXWS:SPEC:6003</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Concretejavax.xml.ws.spi.ServiceDelegate required): An implementation MUST provide a concrete class that extends javax.xml.ws.spi.ServiceDelegate.
+Conformance (Concretejakarta.xml.ws.spi.ServiceDelegate required): An implementation MUST provide a concrete class that extends jakarta.xml.ws.spi.ServiceDelegate.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1811,14 +1811,14 @@ Conformance (One-way operations): When sending a one-way message, implementation
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6010"></a><font size="1PT">JAXWS:SPEC:6010</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.WebServiceFeatures): Each derived type of javax.xml.ws.WebServiceFeature MUST contain a public static final String ID field that uniquely identifies the feature against all features of all implementations.
+                        Conformance (jakarta.xml.ws.WebServiceFeatures): Each derived type of jakarta.xml.ws.WebServiceFeature MUST contain a public static final String ID field that uniquely identifies the feature against all features of all implementations.
                     </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6011"></a><font size="1PT">JAXWS:SPEC:6011</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (enabled property): Each derived type of javax.xml.ws.WebServiceFeature MUST provide a constructor argument and/or method to allow the web service developer to set the value of the enabled property.  
+                        Conformance (enabled property): Each derived type of jakarta.xml.ws.WebServiceFeature MUST provide a constructor argument and/or method to allow the web service developer to set the value of the enabled property.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1837,7 +1837,7 @@ Conformance (One-way operations): When sending a one-way message, implementation
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6012"></a><font size="1PT">JAXWS:SPEC:6012</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.xml.ws.soap.AddressingFeature feature MUST be supported with the SOAP 1.1/HTTP or SOAP 1.2/HTTP bindings.
+                        jakarta.xml.ws.soap.AddressingFeature feature MUST be supported with the SOAP 1.1/HTTP or SOAP 1.2/HTTP bindings.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1892,7 +1892,7 @@ Developers may choose to prevent this from happening by explicitly disabling the
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:6013.1"></a><font size="1PT">JAXWS:SPEC:6013.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Applications may also use the javax.xml.ws.EndpointReference class in method signatures.  
+<TD align="center" valign="center"><a name="JAXWS:SPEC:6013.1"></a><font size="1PT">JAXWS:SPEC:6013.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Applications may also use the jakarta.xml.ws.EndpointReference class in method signatures.  
                             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1911,8 +1911,8 @@ Developers may choose to prevent this from happening by explicitly disabling the
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6014"></a><font size="1PT">JAXWS:SPEC:6014</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.1.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        The javax.xml.ws.W3CEndpointReference class is a concrete implementation of the javax.xml.ws.EndpointReference class.
-                        The W3CEndpointReference class is a concrete implementation of the javax.xml.ws.EndpointReference  class and is used to reference endpoints that are compliant with the W3C Web Services Addressing 1.0 [24] recommendation.
+                        The jakarta.xml.ws.W3CEndpointReference class is a concrete implementation of the jakarta.xml.ws.EndpointReference class.
+                        The W3CEndpointReference class is a concrete implementation of the jakarta.xml.ws.EndpointReference  class and is used to reference endpoints that are compliant with the W3C Web Services Addressing 1.0 [24] recommendation.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1948,13 +1948,13 @@ Developers may choose to prevent this from happening by explicitly disabling the
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:6015"></a><font size="1PT">JAXWS:SPEC:6015</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (javax.xml.ws.soap.MTOMFeature): An implementation MUST support the javax.xml.ws.soap.MTOMFeature and its threshold property.
+<TD align="center" valign="center"><a name="JAXWS:SPEC:6015"></a><font size="1PT">JAXWS:SPEC:6015</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (jakarta.xml.ws.soap.MTOMFeature): An implementation MUST support the jakarta.xml.ws.soap.MTOMFeature and its threshold property.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:6015.1"></a><font size="1PT">JAXWS:SPEC:6015.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT">This feature should be used instead of the javax.xml.ws.soap.SOAPBinding.SOAP11HTTP_MTOM_BINDING, javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_MTOM_BINDING and the javax.xml.ws.soap.SOAPBinding.setMTOMEnabled().
+<TD align="center" valign="center"><a name="JAXWS:SPEC:6015.1"></a><font size="1PT">JAXWS:SPEC:6015.1</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT">This feature should be used instead of the jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_MTOM_BINDING, jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP_MTOM_BINDING and the jakarta.xml.ws.soap.SOAPBinding.setMTOMEnabled().
                             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1995,7 +1995,7 @@ Developers may choose to prevent this from happening by explicitly disabling the
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6016"></a><font size="1PT">JAXWS:SPEC:6016</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Conformance (javax.xml.ws.RespectBindingFeature):  When the javax.xml.ws.RespectBindingFeature is enabled, a JAX-WS implementation MUST inspect the wsdl:binding at runtime to determine result and parameter bindings as well as any wsdl:extensions that have the required=true attribute.  
+                        Conformance (jakarta.xml.ws.RespectBindingFeature):  When the jakarta.xml.ws.RespectBindingFeature is enabled, a JAX-WS implementation MUST inspect the wsdl:binding at runtime to determine result and parameter bindings as well as any wsdl:extensions that have the required=true attribute.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2017,7 +2017,7 @@ addressing requirements can be explicitly disabled via AddressingFeature.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:6023"></a><font size="1PT">JAXWS:SPEC:6023</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (HTTP SPI in SE platform): A JAX-WS 2.2 implementation in Java SE platform MUST support Endpoint.publish(javax.xml.ws.spi.http.HttpContext).
+Conformance (HTTP SPI in SE platform): A JAX-WS 2.2 implementation in Java SE platform MUST support Endpoint.publish(jakarta.xml.ws.spi.http.HttpContext).
 			</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -2110,7 +2110,7 @@ The WebEndpoint annotation is specified on the getPortName() methods of a genera
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7008"></a><font size="1PT">JAXWS:SPEC:7008</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
-The WebServiceProvider annotation is specified on classes that implement a strongly typed javax.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
+The WebServiceProvider annotation is specified on classes that implement a strongly typed jakarta.xml.ws.Provider. It is used to declare that a class that satisfies the requirements for a provider (see 5.1) does indeed define a Web service endpoint, much like the WebService annotation does for SEI-based endpoints.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2131,7 +2131,7 @@ The BindingType annotation is applied to an endpoint implementation class. It sp
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7010"></a><font size="1PT">JAXWS:SPEC:7010</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="left" valign="center"><font size="1PT">
-The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the javax.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
+The WebServiceRef annotation is used to declare a reference to a Web service. It follows the resource pattern exemplified by the jakarta.annotation.Resource annotation in JSR-250 [31]. The WebServiceRef annotation is required to be honored when running on the Java EE 5 platform, where it is subject to the common resource injection rules described by the platform specification [32].
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2139,7 +2139,7 @@ The WebServiceRef annotation is used to declare a reference to a Web service. It
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7011"></a><font size="1PT">JAXWS:SPEC:7011</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">
 Conformance (JSR-181 conformance): A JAX-WS 2.0 implementation MUSTbe conformant to the JAX-WS profile of JSR-181 1.1. As a convenience to the reader, the following sections reproduce the definition of the JSR-181 annotations 8
-applicable to JAX-WS.  7.10.1 javax.jws.WebService, 7.10.2 javax.jws.WebMethod, 7.10.3 javax.jws.OneWay, 7.10.4 javax.jws.WebParam, 7.10.5 javax.jws.WebResult, 7.10.6 javax.jws.SOAPBinding, 7.10.7 javax.jws.HandlerChain
+applicable to JAX-WS.  7.10.1 jakarta.jws.WebService, 7.10.2 jakarta.jws.WebMethod, 7.10.3 jakarta.jws.OneWay, 7.10.4 jakarta.jws.WebParam, 7.10.5 jakarta.jws.WebResult, 7.10.6 jakarta.jws.SOAPBinding, 7.10.7 jakarta.jws.HandlerChain
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2212,8 +2212,8 @@ of a service specific exception.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7019"></a><font size="1PT">JAXWS:SPEC:7019</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">14</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.xml.ws.spi.WebServiceFeatureAnnotation
-                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: javax.xml.ws.soap.Addressing, javax.xml.ws.soap.MTOM, and javax.xml.ws.RespectBinding.  
+                        jakarta.xml.ws.spi.WebServiceFeatureAnnotation
+                        The WebServiceFeatureAnnotation is a meta-annotation used by a JAX-WS implementation to identify other annotations as WebServiceFeatures.  JAX-WS provides the following annotations as WebServiceFeatures: jakarta.xml.ws.soap.Addressing, jakarta.xml.ws.soap.MTOM, and jakarta.xml.ws.RespectBinding.  
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -2244,7 +2244,7 @@ of a service specific exception.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7020"></a><font size="1PT">JAXWS:SPEC:7020</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">14.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.xml.ws.soap.Addressing
+                        jakarta.xml.ws.soap.Addressing
                         The Addressing annotation is used to control the use of WS-Addressing[24][33].  It corresponds with the AddressingFeature described in section 6.5.1.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2282,7 +2282,7 @@ of a service specific exception.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7021"></a><font size="1PT">JAXWS:SPEC:7021</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">14.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.xml.ws.soap.MTOM
+                        jakarta.xml.ws.soap.MTOM
                         The MTOM annotation is used to control the use of MTOM an XOP encoding. It corresponds to the MTOMFeature described in section 6.5.2.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2308,7 +2308,7 @@ of a service specific exception.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:7022"></a><font size="1PT">JAXWS:SPEC:7022</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">14.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                        javax.xml.ws.RespectBinding
+                        jakarta.xml.ws.RespectBinding
                         The RespectBinding annotation is used to control whether a JAX-WS implementation MUST respect/honor the contents of the wsdl:binding associated with an endpoint. It has a corresponding RespectBindingFeature described in section 6.5.3. 
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2648,77 +2648,77 @@ node attribute pointing at one.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9026"></a><font size="1PT">JAXWS:SPEC:9026</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.handler.message.outbound Specifies the message direction: true for outbound messages, false for inbound messages.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9026"></a><font size="1PT">JAXWS:SPEC:9026</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.handler.message.outbound Specifies the message direction: true for outbound messages, false for inbound messages.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9027"></a><font size="1PT">JAXWS:SPEC:9027</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.binding.attachments A map of attachments to a message.  The key is a unique identifier for the attachment. The value is a DataHandler for the attachment data.Bindings describe how to carry attachments with messages. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9027"></a><font size="1PT">JAXWS:SPEC:9027</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.binding.attachments A map of attachments to a message.  The key is a unique identifier for the attachment. The value is a DataHandler for the attachment data.Bindings describe how to carry attachments with messages. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9028"></a><font size="1PT">JAXWS:SPEC:9028</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.wsdl.description   A resolvable URI that may be used to obtain access to the WSDL for the endpoint.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9028"></a><font size="1PT">JAXWS:SPEC:9028</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.wsdl.description   A resolvable URI that may be used to obtain access to the WSDL for the endpoint.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9029"></a><font size="1PT">JAXWS:SPEC:9029</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.wsdl.service The name of the service being invoked in the WSDL.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9029"></a><font size="1PT">JAXWS:SPEC:9029</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.wsdl.service The name of the service being invoked in the WSDL.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9030"></a><font size="1PT">JAXWS:SPEC:9030</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.wsdl.port The name of the port over which the current message was received in the WSDL. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9030"></a><font size="1PT">JAXWS:SPEC:9030</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.wsdl.port The name of the port over which the current message was received in the WSDL. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9031"></a><font size="1PT">JAXWS:SPEC:9031</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.wsdl.interface The name of the interface (WSDL 2.0) or port type (WSDL 1.1) to which the current message belongs. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9031"></a><font size="1PT">JAXWS:SPEC:9031</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.wsdl.interface The name of the interface (WSDL 2.0) or port type (WSDL 1.1) to which the current message belongs. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9032"></a><font size="1PT">JAXWS:SPEC:9032</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.wsdl.operation The name of the WSDL operation to which the current message belongs.  For WSDL 2.0 this is the operation component designator. For WSDL 1.1 the namespace is the target namespace of the WSDL definitions element. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9032"></a><font size="1PT">JAXWS:SPEC:9032</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.wsdl.operation The name of the WSDL operation to which the current message belongs.  For WSDL 2.0 this is the operation component designator. For WSDL 1.1 the namespace is the target namespace of the WSDL definitions element. </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9033"></a><font size="1PT">JAXWS:SPEC:9033</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.http.request.headers A map of the HTTP headers for the request message. The key is the header name. The value is a list of values for that header.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9033"></a><font size="1PT">JAXWS:SPEC:9033</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.http.request.headers A map of the HTTP headers for the request message. The key is the header name. The value is a list of values for that header.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9034"></a><font size="1PT">JAXWS:SPEC:9034</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.http.request.method The HTTP method for the request message.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9034"></a><font size="1PT">JAXWS:SPEC:9034</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.http.request.method The HTTP method for the request message.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9035"></a><font size="1PT">JAXWS:SPEC:9035</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.http.response.headers  A map of the HTTP headers for the response message. The key is the header name. The value is a list of values for that header. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9035"></a><font size="1PT">JAXWS:SPEC:9035</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.http.response.headers  A map of the HTTP headers for the response message. The key is the header name. The value is a list of values for that header. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9036"></a><font size="1PT">JAXWS:SPEC:9036</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.http.response.code  The HTTP response status code.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9036"></a><font size="1PT">JAXWS:SPEC:9036</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.http.response.code  The HTTP response status code.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9037"></a><font size="1PT">JAXWS:SPEC:9037</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.servlet.context The ServletContext object belonging to the web application that contains the endpoint. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9037"></a><font size="1PT">JAXWS:SPEC:9037</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.servlet.context The ServletContext object belonging to the web application that contains the endpoint. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9038"></a><font size="1PT">JAXWS:SPEC:9038</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.servlet.request The HttpServletRequest object associated with the request currently being served.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9038"></a><font size="1PT">JAXWS:SPEC:9038</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.servlet.request The HttpServletRequest object associated with the request currently being served.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9039"></a><font size="1PT">JAXWS:SPEC:9039</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.servlet.response The HttpServletResponse object associated with the request currently being served.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9039"></a><font size="1PT">JAXWS:SPEC:9039</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.servlet.response The HttpServletResponse object associated with the request currently being served.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:9040"></a><font size="1PT">JAXWS:SPEC:9040</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.xml.ws.servlet.session The HttpSession associated with the request currently being served. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:9040"></a><font size="1PT">JAXWS:SPEC:9040</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.xml.ws.servlet.session The HttpSession associated with the request currently being served. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2731,8 +2731,8 @@ node attribute pointing at one.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:9042.1"></a><font size="1PT">JAXWS:SPEC:9042.1</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Add the javax.xml.ws.reference.parameters property to Table 9.2.
-                        Name  javax.xml.ws.reference.parameters
+                        Add the jakarta.xml.ws.reference.parameters property to Table 9.2.
+                        Name  jakarta.xml.ws.reference.parameters
                         Type  List&lt;Element&gt;
                         Mandatory Y
                         Description  A list of WS Addressing headers marked with the wsa:IsReferenceParameter=true attribute.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2831,12 +2831,12 @@ Conformance (Incompatible handlers): An implementation MUST throw WebServiceExce
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:10023"></a><font size="1PT">JAXWS:SPEC:10023</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (SOAP bindings with MTOM disabled): The bindings corresponding to the following IDs: javax.xml.ws.soap.SOAPBinding.SOAP11HTTP BINDING and javax.xml.ws.soap.SOAPBinding.SOAP12HTTP BINDING MUST have MTOM disabled by default.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:10023"></a><font size="1PT">JAXWS:SPEC:10023</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (SOAP bindings with MTOM disabled): The bindings corresponding to the following IDs: jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP BINDING and jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP BINDING MUST have MTOM disabled by default.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:10024"></a><font size="1PT">JAXWS:SPEC:10024</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (SOAP bindings with MTOM enabled): The bindings corresponding to the following IDs: javax.xml.ws.soap.SOAPBinding.SOAP11HTTP MTOM BINDING and javax.xml.ws.soap.SOAPBinding.SOAP12HTTP MTOM BINDING MUST have MTOM enabled by default.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:10024"></a><font size="1PT">JAXWS:SPEC:10024</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.1</font></TD><TD align="left" valign="center"><font size="1PT">Conformance (SOAP bindings with MTOM enabled): The bindings corresponding to the following IDs: jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP MTOM BINDING and jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP MTOM BINDING MUST have MTOM enabled by default.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2854,7 +2854,7 @@ Conformance (MTOM on Other SOAP Bindings): Other bindings that extend SOAPBindin
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:10025"></a><font size="1PT">JAXWS:SPEC:10025</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                        Addressing section:  If the javax.xml.ws.soap.AddressingFeature is enabled, implementations are required to follow WS-Addressing[32,33,34] protocols.
+                        Addressing section:  If the jakarta.xml.ws.soap.AddressingFeature is enabled, implementations are required to follow WS-Addressing[32,33,34] protocols.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2872,7 +2872,7 @@ Conformance (MTOM on Other SOAP Bindings): Other bindings that extend SOAPBindin
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JAXWS:SPEC:10018"></a><font size="1PT">JAXWS:SPEC:10018</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Authentication properties): A client side implementation MUST support use of the the standard properties javax.xml.ws.security.auth.usernameand javax.xml.ws.security.auth.password to configure HTTP basic authentication.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JAXWS:SPEC:10018"></a><font size="1PT">JAXWS:SPEC:10018</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">4.1.3</font></TD><TD align="left" valign="center"><font size="1PT">Conformance Requirement (Authentication properties): A client side implementation MUST support use of the the standard properties jakarta.xml.ws.security.auth.usernameand jakarta.xml.ws.security.auth.password to configure HTTP basic authentication.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2948,7 +2948,7 @@ Conformance (HTTP basic authentication support): An implementation of the XML/HT
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JAXWS:SPEC:11007"></a><font size="1PT">JAXWS:SPEC:11007</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">
-Conformance (Authentication properties): A client side implementation MUST support use of the the standard properties javax.xml.ws.security.auth.usernameand javax.xml.ws.security.auth.password to configure HTTP basic authentication.
+Conformance (Authentication properties): A client side implementation MUST support use of the the standard properties jakarta.xml.ws.security.auth.usernameand jakarta.xml.ws.security.auth.password to configure HTTP basic authentication.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>

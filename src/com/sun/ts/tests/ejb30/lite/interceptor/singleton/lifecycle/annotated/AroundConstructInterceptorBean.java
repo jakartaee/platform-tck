@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor9;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorA;

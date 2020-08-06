@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -57,16 +57,15 @@
     com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,
     com/sun/ts/tests/jsp/spec/core_syntax/actions/usebean,
     com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
-    com/sun/ts/tests/servlet/api/javax_servlet/servletcontext,
-    com/sun/ts/tests/servlet/api/javax_servlet_http/httpservletrequest,
-    com/sun/ts/tests/servlet/api/javax_servlet/servletresponse,
-    com/sun/ts/tests/jaxrpc/ee/w2j/rpc/encoded/marshalltest,
+    com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext,
+    com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest,
+    com/sun/ts/tests/servlet/api/jakarta_servlet/servletresponse,
     com/sun/ts/tests/webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
     com/sun/ts/tests/webservices12/ejb/annotations/WSEjbWebServiceProviderTest,
     com/sun/ts/tests/webservices12/servlet/WSMTOMSBAnnotationsTest,
     com/sun/ts/tests/webservices12/servlet/HandlerTest,
     com/sun/ts/tests/webservices12/servlet/WebServiceRefsTest,
-    com/sun/ts/tests/jsp/api/javax_el/elresolver,
+    com/sun/ts/tests/jsp/api/jakarta_el/elresolver,
     com/sun/ts/tests/jsp/spec/el/language,
     com/sun/ts/tests/jsp/spec/tagext/resource/taghandler,
     com/sun/ts/tests/jstl/spec/sql/query,

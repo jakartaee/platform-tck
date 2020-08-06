@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -56,8 +57,10 @@ public abstract class SignatureTestDriver {
       thePkgListFile = "sig-test-pkg-list_se8.txt";
     } else if (isJavaSEVersion("9")) {
       thePkgListFile = "sig-test-pkg-list_se9.txt";
+    } else if (isJavaSEVersion("11")) {
+      thePkgListFile = "sig-test-pkg-list_se11.txt";
     } else {
-      // we didnt properly identify the java se version being used so
+      // we didn't properly identify the java se version being used so
       // we will try to use the sig-test-pkg-list.txt file.
       thePkgListFile = "sig-test-pkg-list.txt";
     }
@@ -107,8 +110,10 @@ public abstract class SignatureTestDriver {
       theMapFile = "sig-test_se8.map";
     } else if (isJavaSEVersion("9")) {
       theMapFile = "sig-test_se9.map";
+    } else if (isJavaSEVersion("11")) {
+      theMapFile = "sig-test_se11.map";
     } else {
-      // we didnt properly identify the java se version being used so
+      // we didn't properly identify the java se version being used so
       // we will try to use the sig-test.map file.
       theMapFile = "sig-test.map";
     }
@@ -470,14 +475,14 @@ public abstract class SignatureTestDriver {
 
   /**
    * This method checks whether JTA API jar contains classes from
-   * javax.transaction.xa package
+   * jakarta.transaction.xa package
    *
    * @param classpath
    *           the classpath, pointing JTA API jar
    * @param repositoryDir
    *           the directory containing an empty signature file
    *
-   * @return <code>true</code> if the package javax.transaction.xa is not
+   * @return <code>true</code> if the package jakarta.transaction.xa is not
    *        found in the JTA API jar, otherwise <code>false</code>
    */
    protected  abstract boolean verifyJTAJarForNoXA(String classpath,
@@ -617,7 +622,7 @@ public abstract class SignatureTestDriver {
        * that matches the package name under test. So we look for a package name
        * in the properties file that could be the parent package for the package
        * under test. We do this by removing the specified packages last package
-       * name section. So javax.ejb.spi would become javax.ejb
+       * name section. So jakarta.ejb.spi would become jakarta.ejb
        */
       int index = packageName.lastIndexOf(".");
       if (index <= 0) {

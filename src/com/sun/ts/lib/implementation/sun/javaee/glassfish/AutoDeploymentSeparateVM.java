@@ -23,7 +23,6 @@ import java.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.deliverable.*;
-import org.glassfish.deployment.client.*;
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
 import org.jdom.input.SAXBuilder;

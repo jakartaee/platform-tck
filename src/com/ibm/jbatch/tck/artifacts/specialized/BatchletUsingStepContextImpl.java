@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,23 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.util.logging.Logger;
 
-import javax.batch.api.AbstractBatchlet;
-import javax.batch.api.BatchProperty;
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.batch.api.AbstractBatchlet;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.batch.runtime.context.StepContext;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentUserData;
 
-@javax.inject.Named("batchletUsingStepContextImpl")
+@jakarta.inject.Named("batchletUsingStepContextImpl")
 public class BatchletUsingStepContextImpl extends AbstractBatchlet{
 
 	private final static Logger logger = Logger.getLogger(BatchletUsingStepContextImpl.class.getName());

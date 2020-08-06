@@ -11,7 +11,7 @@
     <!-- The basename attribute provides the base resource bundle
              to be used when providing localized messages.  In this case,
              since var is not specified, the configuration variable 
-             javax.servlet.jsp.jstl.fmt.localizationContext will be set
+             jakarta.servlet.jsp.jstl.fmt.localizationContext will be set
              with LocalizationContext that was initialized by the 
              ResourceBundle lookup algorithm. -->
     

@@ -129,10 +129,10 @@ Java 2 Platform, Standard Edition, Version 1.5
 
 // Begin API list
 %%API%%
-javax.security.auth.message
-javax.security.auth.message.callback
-javax.security.auth.message.config
-javax.security.auth.message.module
+jakarta.security.auth.message
+jakarta.security.auth.message.callback
+jakarta.security.auth.message.config
+jakarta.security.auth.message.module
 %%API%%
 // End API list
 

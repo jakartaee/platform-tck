@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,13 +17,13 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.pongduplicate;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.PongMessage;
-import javax.websocket.Session;
+import jakarta.websocket.ClientEndpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.PongMessage;
+import jakarta.websocket.Session;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -30,6 +31,7 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
+  @Override
   @OnError
   public void onError(Session session, Throwable t) {
     clientEndpoint.onError(session, t);
@@ -41,17 +43,20 @@ public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
         .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
   }
 
+  @SuppressWarnings("unused")
   @OnMessage
   public void onMessage(PongMessage msg, Session session) {
     clientEndpoint
         .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
   }
 
+  @Override
   @OnMessage
   public void onMessage(String msg) {
     clientEndpoint.onMessage(msg);
   }
 
+  @Override
   @OnOpen
   public void onOpen(Session session, EndpointConfig config) {
     clientEndpoint.onOpen(session, config, false);

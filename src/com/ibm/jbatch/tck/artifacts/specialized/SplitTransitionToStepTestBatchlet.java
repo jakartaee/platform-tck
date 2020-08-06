@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 International Business Machines Corp.
+ * Copyright 2013, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -25,12 +25,12 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.ArrayList;
 
-import javax.batch.api.AbstractBatchlet;
-import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.batch.api.AbstractBatchlet;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.batch.runtime.context.StepContext;
+import jakarta.inject.Inject;
 
-@javax.inject.Named("splitTransitionToStepTestBatchlet")
+@jakarta.inject.Named("splitTransitionToStepTestBatchlet")
 public class SplitTransitionToStepTestBatchlet extends AbstractBatchlet {
 
 	public static String GOOD_EXIT_STATUS = "VERY GOOD INVOCATION"; 

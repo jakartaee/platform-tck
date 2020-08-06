@@ -21,8 +21,8 @@
 	<!-- IMPORTS -->
 	<import file="../../bin/xml/ts.common.props.xml" />
 
-	<property name="deliverable.version" value="1.2" />
-        <property name="deliverable.tck.version" value="1.2.0" />
+	<property name="deliverable.version" value="2.0" />
+        <property name="deliverable.tck.version" value="2.0.0" />
 
 
 	<target name="init">
@@ -67,9 +67,10 @@
 		<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
               <fileset dir="${ts.home}/install/jstl/docs" excludes="**svn**" />
 	   </copy>
-           <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+           <!-- NOTICE will be EPL or EFTL specific: TBD-->
+           <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
-           </copy>
+           </copy-->
 
 	   <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -85,15 +86,15 @@
 			<property name="impl.deploy.timeout.multiplier" value="" />
 			<property name="jstl.db.name" value="" />
 			<property name="jstl.db.server" value="" />
-			<property name="jstl.db.port=" value="" />
-			<property name="jstl.db.url=" value="" />
-			<property name="jstl.db.driver=" value="" />
-			<property name="jstl.db.user=" value="" />
-			<property name="jstl.db.password=" value="" />
-			<property name="jdbc.classes=" value="" />
-			<property name="jspservlet.classes=" value="" />
-			<property name="jstl.classes=" value="" />
-			<property name="sigTestClasspath=" value="" />
+			<property name="jstl.db.port" value="" />
+			<property name="jstl.db.url" value="" />
+			<property name="jstl.db.driver" value="" />
+			<property name="jstl.db.user" value="" />
+			<property name="jstl.db.password" value="" />
+			<property name="jdbc.classes" value="" />
+			<property name="jspservlet.classes" value="" />
+			<property name="jstl.classes" value="" />
+			<property name="sigTestClasspath" value="" />
 		</props.sanitizer>
 	</target>
 
@@ -142,7 +143,7 @@
 			<fileset dir="${ts.home}/src" includes="com/sun/ts/tests/jstl/**/*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jstl/**/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.servlet.jsp.jstl.*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.servlet.jsp.jstl.*,
                      com/sun/ts/tests/common/webclient/**/*,
                      web/jstl/**/*" excludes="com/sun/ts/tests/signaturetest/*Record*,
             com/sun/ts/tests/signaturetest/*record*" />

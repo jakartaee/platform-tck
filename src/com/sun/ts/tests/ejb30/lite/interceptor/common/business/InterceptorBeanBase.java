@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import javax.ejb.EJBContext;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
-import javax.interceptor.InvocationContext;
+import jakarta.ejb.EJBContext;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.Helper;

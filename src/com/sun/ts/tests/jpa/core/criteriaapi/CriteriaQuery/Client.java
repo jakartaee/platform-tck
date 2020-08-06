@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,12 +21,12 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.*;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 
-import javax.persistence.*;
-import javax.persistence.criteria.*;
-import javax.persistence.metamodel.Bindable;
-import javax.persistence.metamodel.EmbeddableType;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
+import jakarta.persistence.metamodel.Bindable;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.Metamodel;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -1639,9 +1639,9 @@ public class Client extends Util {
           .select(customer.get("work").<String> get("zip"));
       Expression<Path> exp1 = customer.get("work").get("zip");
       cquery.orderBy(cbuilder.asc(exp1));
-      List<javax.persistence.criteria.Order> lOrder = cquery.getOrderList();
+      List<jakarta.persistence.criteria.Order> lOrder = cquery.getOrderList();
       if (lOrder.size() == 1) {
-        javax.persistence.criteria.Order o = lOrder.get(0);
+        jakarta.persistence.criteria.Order o = lOrder.get(0);
         if (!o.isAscending()) {
           TestUtil.logErr("isAscending() did not return an order of ascending");
         } else {
@@ -1729,9 +1729,9 @@ public class Client extends Util {
       cquery.where(cbuilder.isNotNull(customer.get("work").get("zip")));
       cquery.select(customer.get("work").<String> get("zip"));
       cquery.orderBy(cbuilder.asc(customer.get("work").get("zip")).reverse());
-      List<javax.persistence.criteria.Order> lOrder = cquery.getOrderList();
+      List<jakarta.persistence.criteria.Order> lOrder = cquery.getOrderList();
       if (lOrder.size() == 1) {
-        javax.persistence.criteria.Order o = lOrder.get(0);
+        jakarta.persistence.criteria.Order o = lOrder.get(0);
         if (o.isAscending()) {
           TestUtil
               .logErr("isAscending() did not return an order of descending");
@@ -1793,7 +1793,7 @@ public class Client extends Util {
           .select(customer.get("work").<String> get("zip"))
           .orderBy(cbuilder.asc(customer.get("work").get("zip")));
 
-      List<javax.persistence.criteria.Order> orderedList = cquery
+      List<jakarta.persistence.criteria.Order> orderedList = cquery
           .getOrderList();
 
       if (orderedList != null) {

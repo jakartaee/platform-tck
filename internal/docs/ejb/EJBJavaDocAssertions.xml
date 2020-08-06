@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@
 <description>
                             Constructs an AccessLocalException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>AccessLocalException</class-interface>
 <method name="AccessLocalException" return-type="AccessLocalException"/>
 </assertion>
@@ -40,7 +40,7 @@
 <description>
                             Constructs an AccessLocalException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>AccessLocalException</class-interface>
 <method name="AccessLocalException" return-type="AccessLocalException">
 <parameters>
@@ -53,7 +53,7 @@
 <description>
                             Constructs an AccessLocalException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>AccessLocalException</class-interface>
 <method name="AccessLocalException" return-type="AccessLocalException">
 <parameters>
@@ -65,14 +65,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>4</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ActivationConfigProperty</class-interface>
 <method name="propertyName" return-type="java.lang.String"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>5</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ActivationConfigProperty</class-interface>
 <method name="propertyValue" return-type="java.lang.String"/>
 </assertion>
@@ -81,7 +81,7 @@
 <description>
                             Indicates whether the container should cause the transaction to   rollback when the exception is thrown.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ApplicationException</class-interface>
 <method name="rollback" return-type="boolean"/>
 </assertion>
@@ -90,7 +90,7 @@
 <description>
                             Constructs an ConcurrentAccessException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ConcurrentAccessException</class-interface>
 <method name="ConcurrentAccessException" return-type="ConcurrentAccessException"/>
 </assertion>
@@ -99,7 +99,7 @@
 <description>
                             Constructs an ConcurrentAccessException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ConcurrentAccessException</class-interface>
 <method name="ConcurrentAccessException" return-type="ConcurrentAccessException">
 <parameters>
@@ -112,7 +112,7 @@
 <description>
                             Constructs an ConcurrentAccessException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ConcurrentAccessException</class-interface>
 <method name="ConcurrentAccessException" return-type="ConcurrentAccessException">
 <parameters>
@@ -126,7 +126,7 @@
 <description>
                             Constructs a CreateException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>CreateException</class-interface>
 <method name="CreateException" return-type="CreateException"/>
 </assertion>
@@ -135,7 +135,7 @@
 <description>
                             Constructs a CreateException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>CreateException</class-interface>
 <method name="CreateException" return-type="CreateException">
 <parameters>
@@ -148,7 +148,7 @@
 <description>
                             Constructs a DuplicateKeyException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>DuplicateKeyException</class-interface>
 <method name="DuplicateKeyException" return-type="DuplicateKeyException"/>
 </assertion>
@@ -157,7 +157,7 @@
 <description>
                             Constructs a DuplicateKeyException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>DuplicateKeyException</class-interface>
 <method name="DuplicateKeyException" return-type="DuplicateKeyException">
 <parameters>
@@ -170,7 +170,7 @@
 <description>
                             Holds one of the following interface types of the target EJB :   [ Local business interface, Remote business interface,      Local Home interface, Remote Home interface ]
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJB</class-interface>
 <method name="beanInterface" return-type="java.lang.Class"/>
 </assertion>
@@ -180,7 +180,7 @@
                             The ejb-name of the Enterprise Java Bean to which this reference   is mapped.
                               Only applicable if the target EJB is defined within the   same application or stand-alone module as the declaring component.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJB</class-interface>
 <method name="beanName" return-type="java.lang.String"/>
 </assertion>
@@ -190,7 +190,7 @@
                             The product specific name of the EJB component to which this  ejb reference should be mapped.
                               This mapped name is often a  global JNDI name, but may be a name of any form.     Application servers are not required to support any particular   form or type of mapped name, nor the ability to use mapped names.   The mapped name is product-dependent and often installation-dependent.   No use of a mapped name is portable.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJB</class-interface>
 <method name="mappedName" return-type="java.lang.String"/>
 </assertion>
@@ -199,7 +199,7 @@
 <description>
                             The logical name of the ejb reference within the declaring component's  (java:comp/env) environment.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJB</class-interface>
 <method name="name" return-type="java.lang.String"/>
 </assertion>
@@ -208,7 +208,7 @@
 <description>
                             Constructs an EJBAccessException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBAccessException</class-interface>
 <method name="EJBAccessException" return-type="EJBAccessException"/>
 </assertion>
@@ -217,7 +217,7 @@
 <description>
                             Constructs an EJBAccessException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBAccessException</class-interface>
 <method name="EJBAccessException" return-type="EJBAccessException">
 <parameters>
@@ -231,7 +231,7 @@
                             Obtain the java.security.Identity of the caller.
                                This method is deprecated in EJB 1.1. The Container  is allowed to return alway null from this method. The enterprise  bean should use the getCallerPrincipal method instead.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getCallerIdentity" return-type="java.security.Identity"/>
 </assertion>
@@ -240,7 +240,7 @@
 <description>
                             Obtain the java.security.Principal that identifies the caller.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getCallerPrincipal" return-type="java.security.Principal"/>
 </assertion>
@@ -249,18 +249,18 @@
 <description>
                             Obtain the enterprise bean's remote home interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome"/>
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>23</id>
 <description>
                             Obtain the enterprise bean's local home interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
-<method name="getEJBLocalHome" return-type="javax.ejb.EJBLocalHome"/>
+<method name="getEJBLocalHome" return-type="jakarta.ejb.EJBLocalHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="deprecated" testable="true">
 <id>24</id>
@@ -268,7 +268,7 @@
                             Obtain the enterprise bean's environment properties.
                                 Note: If the enterprise bean has no environment properties   this method returns an empty java.util.Properties object. This method  never returns null.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getEnvironment" return-type="java.util.Properties"/>
 </assertion>
@@ -278,14 +278,14 @@
                             Test if the transaction has been marked for rollback only.
                              An enterprise  bean instance can use this operation, for example, to test after an  exception has been caught, whether it is fruitless to continue  computation on behalf of the current transaction.   Only enterprise beans with container-managed transactions are allowed  to use this method.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getRollbackOnly" return-type="boolean"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>26</id>
 <description>The Container throws the exception     if the instance is not allowed to use this method (i.e. the     instance is of a bean with bean-managed transactions).</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getRollbackOnly" return-type="boolean">
 <throw>java.lang.IllegalStateException</throw>
@@ -296,16 +296,16 @@
 <description>
                             Get access to the EJB Timer Service.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
-<method name="getTimerService" return-type="javax.ejb.TimerService"/>
+<method name="getTimerService" return-type="jakarta.ejb.TimerService"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>28</id>
 <description>The Container throws the exception     if the instance is not allowed to use this method (e.g. if the bean     is a stateful session bean)</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
-<method name="getTimerService" return-type="javax.ejb.TimerService">
+<method name="getTimerService" return-type="jakarta.ejb.TimerService">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
@@ -315,14 +315,14 @@
                             Obtain the transaction demarcation interface.
                                Only enterprise beans with bean-managed transactions are allowed to  to use the UserTransaction interface. As entity beans must always use  container-managed transactions, only session beans or message-driven  beans with bean-managed transactions are allowed to invoke this method.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getUserTransaction" return-type="UserTransaction"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>30</id>
 <description>The Container throws the exception     if the instance is not allowed to use the UserTransaction interface     (i.e. the instance is of a bean with container-managed transactions).</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="getUserTransaction" return-type="UserTransaction">
 <throw>java.lang.IllegalStateException</throw>
@@ -334,7 +334,7 @@
                             Test if the caller has a given role.
                                This method is deprecated in EJB 1.1. The enterprise bean  should use the isCallerInRole(String roleName) method instead.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="isCallerInRole" return-type="boolean">
 <parameters>
@@ -347,7 +347,7 @@
 <description>
                             Test if the caller has a given security role.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="isCallerInRole" return-type="boolean">
 <parameters>
@@ -360,7 +360,7 @@
 <description>
                             Lookup a resource within the component's private naming context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="lookup" return-type="java.lang.Object">
 <parameters>
@@ -374,14 +374,14 @@
                             Mark the current transaction for rollback.
                              The transaction will become  permanently marked for rollback. A transaction marked for rollback  can never commit.   Only enterprise beans with container-managed transactions are allowed  to use this method.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="setRollbackOnly" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>35</id>
 <description>The Container throws the exception     if the instance is not allowed to use this method (i.e. the     instance is of a bean with bean-managed transactions).</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBContext</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -392,7 +392,7 @@
 <description>
                             Constructs an EJBException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="EJBException" return-type="EJBException"/>
 </assertion>
@@ -401,7 +401,7 @@
 <description>
                             Constructs an EJBException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="EJBException" return-type="EJBException">
 <parameters>
@@ -414,7 +414,7 @@
 <description>
                             Constructs an EJBException that embeds the originally thrown exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="EJBException" return-type="EJBException">
 <parameters>
@@ -427,7 +427,7 @@
 <description>
                             Constructs an EJBException that embeds the originally thrown exception  with the specified detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="EJBException" return-type="EJBException">
 <parameters>
@@ -441,7 +441,7 @@
 <description>
                             Obtain the exception that caused the EJBException being thrown.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="getCausedByException" return-type="java.lang.Exception"/>
 </assertion>
@@ -450,7 +450,7 @@
 <description>
                             Returns the detail message, including the message from the nested  exception if there is one.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="getMessage" return-type="java.lang.String"/>
 </assertion>
@@ -459,7 +459,7 @@
 <description>
                             Prints the composite message and the embedded stack trace to  the specified stream ps.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="printStackTrace" return-type="void">
 <parameters>
@@ -472,7 +472,7 @@
 <description>
                             Prints the composite message to System.err.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="printStackTrace" return-type="void"/>
 </assertion>
@@ -481,7 +481,7 @@
 <description>
                             Prints the composite message and the embedded stack trace to  the specified print writer pw.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBException</class-interface>
 <method name="printStackTrace" return-type="void">
 <parameters>
@@ -495,16 +495,16 @@
                             Obtain the EJBMetaData interface for the enterprise Bean.
                              The  EJBMetaData interface allows the client to obtain information about  the enterprise Bean.    The information obtainable via the EJBMetaData interface is  intended to be used by tools.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
-<method name="getEJBMetaData" return-type="javax.ejb.EJBMetaData"/>
+<method name="getEJBMetaData" return-type="jakarta.ejb.EJBMetaData"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>46</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
-<method name="getEJBMetaData" return-type="javax.ejb.EJBMetaData">
+<method name="getEJBMetaData" return-type="jakarta.ejb.EJBMetaData">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -514,16 +514,16 @@
                             Obtain a handle for the remote home object.
                              The handle can be used at   later time to re-obtain a reference to the remote home object, possibly   in a different Java Virtual Machine.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
-<method name="getHomeHandle" return-type="javax.ejb.HomeHandle"/>
+<method name="getHomeHandle" return-type="jakarta.ejb.HomeHandle"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>48</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
-<method name="getHomeHandle" return-type="javax.ejb.HomeHandle">
+<method name="getHomeHandle" return-type="jakarta.ejb.HomeHandle">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -532,22 +532,22 @@
 <description>
                             Remove an EJB object identified by its handle.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
-<parameter>javax.ejb.Handle</parameter>
+<parameter>jakarta.ejb.Handle</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>50</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
-<parameter>javax.ejb.Handle</parameter>
+<parameter>jakarta.ejb.Handle</parameter>
 </parameters>
 <throw>java.rmi.RemoteException</throw>
 </method>
@@ -555,13 +555,13 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>51</id>
 <description>Thrown if the enterprise Bean or     the container does not allow the client to remove the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
-<parameter>javax.ejb.Handle</parameter>
+<parameter>jakarta.ejb.Handle</parameter>
 </parameters>
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -570,7 +570,7 @@
                             Remove an EJB object identified by its primary key.
                                This method can be used only for an entity bean. An attempt  to call this method on a session bean will result in a RemoveException.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
@@ -581,7 +581,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>53</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
@@ -593,13 +593,13 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>54</id>
 <description>Thrown if the enterprise Bean or     the container does not allow the client to remove the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -608,7 +608,7 @@
                             Remove an EJB object identified by its primary key.
                                This method can only be used by local clients of an entity bean.  An attempt  to call this method on a session bean will result in a RemoveException.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
@@ -619,25 +619,25 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>56</id>
 <description>Thrown if the enterprise Bean or     the container does not allow the client to remove the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>57</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalHome</class-interface>
 <method name="remove" return-type="void">
 <parameters>
 <parameter>java.lang.Object</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -646,17 +646,17 @@
                             Obtain the enterprise Bean's local home interface.
                              The local home  interface defines the enterprise Bean's create, finder, remove,  and home business methods that are available to local clients.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
-<method name="getEJBLocalHome" return-type="javax.ejb.EJBLocalHome"/>
+<method name="getEJBLocalHome" return-type="jakarta.ejb.EJBLocalHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>59</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
-<method name="getEJBLocalHome" return-type="javax.ejb.EJBLocalHome">
-<throw>javax.ejb.EJBException</throw>
+<method name="getEJBLocalHome" return-type="jakarta.ejb.EJBLocalHome">
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -665,17 +665,17 @@
                             Obtain the primary key of the EJB local object.
                                  This method can be called on an entity bean.   An attempt to invoke this method on a session Bean will result in  an EJBException.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>61</id>
 <description>Thrown when the method failed due to a     system-level failure or when invoked on a session bean.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -683,24 +683,24 @@
 <description>
                             Test if a given EJB local object is identical to the invoked EJB   local object.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="isIdentical" return-type="boolean">
 <parameters>
-<parameter>javax.ejb.EJBLocalObject</parameter>
+<parameter>jakarta.ejb.EJBLocalObject</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>63</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="isIdentical" return-type="boolean">
 <parameters>
-<parameter>javax.ejb.EJBLocalObject</parameter>
+<parameter>jakarta.ejb.EJBLocalObject</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -708,26 +708,26 @@
 <description>
                             Remove the EJB local object.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="remove" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>65</id>
 <description>The enterprise Bean or the container     does not allow destruction of the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="remove" return-type="void">
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>66</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBLocalObject</class-interface>
 <method name="remove" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -735,16 +735,16 @@
 <description>
                             Obtain the remote home interface of the enterprise Bean.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome"/>
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>68</id>
 <description>
                             Obtain the Class object for the enterprise Bean's remote home interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
 <method name="getHomeInterfaceClass" return-type="java.lang.Class"/>
 </assertion>
@@ -753,7 +753,7 @@
 <description>
                             Obtain the Class object for the enterprise Bean's primary key class.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
 <method name="getPrimaryKeyClass" return-type="java.lang.Class"/>
 </assertion>
@@ -762,7 +762,7 @@
 <description>
                             Obtain the Class object for the enterprise Bean's remote interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
 <method name="getRemoteInterfaceClass" return-type="java.lang.Class"/>
 </assertion>
@@ -771,7 +771,7 @@
 <description>
                             Test if the enterprise Bean's type is "session".
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
 <method name="isSession" return-type="boolean"/>
 </assertion>
@@ -780,7 +780,7 @@
 <description>
                             Test if the enterprise Bean's type is "stateless session".
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBMetaData</class-interface>
 <method name="isStatelessSession" return-type="boolean"/>
 </assertion>
@@ -790,16 +790,16 @@
                             Obtain the enterprise Bean's remote home interface.
                              The remote home   interface defines the enterprise Bean's create, finder, remove,  and home business methods.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome"/>
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>74</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome">
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -809,16 +809,16 @@
                             Obtain a handle for the EJB object.
                              The handle can be used at later  time to re-obtain a reference to the EJB object, possibly in a  different Java Virtual Machine.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
-<method name="getHandle" return-type="javax.ejb.Handle"/>
+<method name="getHandle" return-type="jakarta.ejb.Handle"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>76</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
-<method name="getHandle" return-type="javax.ejb.Handle">
+<method name="getHandle" return-type="jakarta.ejb.Handle">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -828,14 +828,14 @@
                             Obtain the primary key of the EJB object.
                                  This method can be called on an entity bean. An attempt to invoke  this method on a session bean will result in RemoteException.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>78</id>
 <description>Thrown when the method failed due to a     system-level failure or when invoked on a session bean.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object">
 <throw>java.rmi.RemoteException</throw>
@@ -846,22 +846,22 @@
 <description>
                             Test if a given EJB object is identical to the invoked EJB object.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="isIdentical" return-type="boolean">
 <parameters>
-<parameter>javax.ejb.EJBObject</parameter>
+<parameter>jakarta.ejb.EJBObject</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>80</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="isIdentical" return-type="boolean">
 <parameters>
-<parameter>javax.ejb.EJBObject</parameter>
+<parameter>jakarta.ejb.EJBObject</parameter>
 </parameters>
 <throw>java.rmi.RemoteException</throw>
 </method>
@@ -871,14 +871,14 @@
 <description>
                             Remove the EJB object.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="remove" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>82</id>
 <description>Thrown when the method failed due to a     system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="remove" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -887,25 +887,25 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>83</id>
 <description>The enterprise Bean or the container     does not allow destruction of the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBObject</class-interface>
 <method name="remove" return-type="void">
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>84</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBs</class-interface>
-<method name="value" return-type="javax.ejb.EJB[]"/>
+<method name="value" return-type="jakarta.ejb.EJB[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>85</id>
 <description>
                             Constructs an EJBTransactionRequiredException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBTransactionRequiredException</class-interface>
 <method name="EJBTransactionRequiredException" return-type="EJBTransactionRequiredException"/>
 </assertion>
@@ -914,7 +914,7 @@
 <description>
                             Constructs an EJBTransactionRequiredException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBTransactionRequiredException</class-interface>
 <method name="EJBTransactionRequiredException" return-type="EJBTransactionRequiredException">
 <parameters>
@@ -927,7 +927,7 @@
 <description>
                             Constructs an EJBTransactionRolledbackException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBTransactionRolledbackException</class-interface>
 <method name="EJBTransactionRolledbackException" return-type="EJBTransactionRolledbackException"/>
 </assertion>
@@ -936,7 +936,7 @@
 <description>
                             Constructs an EJBTransactionRolledbackException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBTransactionRolledbackException</class-interface>
 <method name="EJBTransactionRolledbackException" return-type="EJBTransactionRolledbackException">
 <parameters>
@@ -949,7 +949,7 @@
 <description>
                             Constructs an EJBTransactionRolledbackException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EJBTransactionRolledbackException</class-interface>
 <method name="EJBTransactionRolledbackException" return-type="EJBTransactionRolledbackException">
 <parameters>
@@ -964,23 +964,23 @@
                             A container invokes this method when the instance  is taken out of the pool of available instances to become associated  with a specific EJB object.
                              This method transitions the instance to   the ready state.    This method executes in an unspecified transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbActivate" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>91</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbActivate" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>92</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbActivate" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -992,23 +992,23 @@
                             A container invokes this method to instruct the  instance to synchronize its state by loading it state from the  underlying database.
                                  This method always executes in the transaction context determined  by the value of the transaction attribute in the deployment descriptor.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbLoad" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>94</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbLoad" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>95</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbLoad" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1020,23 +1020,23 @@
                             A container invokes this method on an instance before the instance  becomes disassociated with a specific EJB object.
                              After this method  completes, the container will place the instance into the pool of  available instances.    This method executes in an unspecified transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbPassivate" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>97</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbPassivate" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>98</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbPassivate" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1048,32 +1048,32 @@
                             A container invokes this method before it removes the EJB object  that is currently associated with the instance.
                              This method  is invoked when a client invokes a remove operation on the  enterprise Bean's home interface or the EJB object's remote interface.  This method transitions the instance from the ready state to the pool   of available instances.     This method is called in the transaction context of the remove   operation.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbRemove" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>100</id>
 <description>The enterprise Bean does not allow     destruction of the object.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbRemove" return-type="void">
-<throw>javax.ejb.RemoveException</throw>
+<throw>jakarta.ejb.RemoveException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>101</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbRemove" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>102</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbRemove" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1085,23 +1085,23 @@
                             A container invokes this method to instruct the  instance to synchronize its state by storing it to the underlying   database.
                                 This method always executes in the transaction context determined  by the value of the transaction attribute in the deployment descriptor.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbStore" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>104</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbStore" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>105</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="ejbStore" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1113,34 +1113,34 @@
                             Set the associated entity context.
                              The container invokes this method  on an instance after the instance has been created.    This method is called in an unspecified transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="setEntityContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.EntityContext</parameter>
+<parameter>jakarta.ejb.EntityContext</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>107</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="setEntityContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.EntityContext</parameter>
+<parameter>jakarta.ejb.EntityContext</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>108</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="setEntityContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.EntityContext</parameter>
+<parameter>jakarta.ejb.EntityContext</parameter>
 </parameters>
 <throw>java.rmi.RemoteException</throw>
 </method>
@@ -1151,23 +1151,23 @@
                             Unset the associated entity context.
                              The container calls this method  before removing the instance.    This is the last method that the container invokes on the instance.  The Java garbage collector will eventually invoke the finalize() method  on the instance.    This method is called in an unspecified transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="unsetEntityContext" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>110</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="unsetEntityContext" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>111</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>EntityBean</class-interface>
 <method name="unsetEntityContext" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1179,16 +1179,16 @@
                             Obtain a reference to the EJB local object that is currently   associated with the instance.
                                 An instance of an entity enterprise Bean can call this method only  when the instance is associated with an EJB local object identity, i.e.  in the ejbActivate, ejbPassivate, ejbPostCreate, ejbRemove,  ejbLoad, ejbStore, and business methods.    An instance can use this method, for example, when it wants to  pass a reference to itself in a method argument or result.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
-<method name="getEJBLocalObject" return-type="javax.ejb.EJBLocalObject"/>
+<method name="getEJBLocalObject" return-type="jakarta.ejb.EJBLocalObject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>113</id>
 <description>if the instance invokes this     method while the instance is in a state that does not allow the     instance to invoke this method, or if the instance does not have     a local interface.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
-<method name="getEJBLocalObject" return-type="javax.ejb.EJBLocalObject">
+<method name="getEJBLocalObject" return-type="jakarta.ejb.EJBLocalObject">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
@@ -1198,16 +1198,16 @@
                             Obtain a reference to the EJB object that is currently associated with   the instance.
                                 An instance of an entity enterprise Bean can call this method only  when the instance is associated with an EJB object identity, i.e.  in the ejbActivate, ejbPassivate, ejbPostCreate, ejbRemove,  ejbLoad, ejbStore, and business methods.    An instance can use this method, for example, when it wants to  pass a reference to itself in a method argument or result.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject"/>
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>115</id>
 <description>Thrown if the instance invokes this     method while the instance is in a state that does not allow the     instance to invoke this method, or if the instance does not have     a remote interface.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject">
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
@@ -1217,14 +1217,14 @@
                             Obtain the primary key of the EJB object that is currently  associated with this instance.
                                 An instance of an entity enterprise Bean can call this method only  when the instance is associated with an EJB object identity, i.e.  in the ejbActivate, ejbPassivate, ejbPostCreate, ejbRemove,  ejbLoad, ejbStore, and business methods.   Note: The result of this method is that same as the  result of getEJBObject().getPrimaryKey().
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>117</id>
 <description>Thrown if the instance invokes this     method while the instance is in a state that does not allow the     instance to invoke this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>EntityContext</class-interface>
 <method name="getPrimaryKey" return-type="java.lang.Object">
 <throw>java.lang.IllegalStateException</throw>
@@ -1235,7 +1235,7 @@
 <description>
                             Constructs an FinderException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>FinderException</class-interface>
 <method name="FinderException" return-type="FinderException"/>
 </assertion>
@@ -1244,7 +1244,7 @@
 <description>
                             Constructs an FinderException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>FinderException</class-interface>
 <method name="FinderException" return-type="FinderException">
 <parameters>
@@ -1257,16 +1257,16 @@
 <description>
                             Obtain the EJB object reference represented by this handle.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Handle</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject"/>
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>121</id>
 <description>The EJB object could not be obtained     because of a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Handle</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject">
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -1275,16 +1275,16 @@
 <description>
                             Obtain the home object represented by this handle.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>HomeHandle</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome"/>
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>123</id>
 <description>The home object could not be obtained     because of a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>HomeHandle</class-interface>
-<method name="getEJBHome" return-type="javax.ejb.EJBHome">
+<method name="getEJBHome" return-type="jakarta.ejb.EJBHome">
 <throw>java.rmi.RemoteException</throw>
 </method>
 </assertion>
@@ -1294,21 +1294,21 @@
                             The name of the corresponding create method of the adapted  Home/LocalHome interface.
                               This value is used to disambiguate the  case where there are multiple create methods on an  adapted Home/LocalHome interface with the same signature as the  annotated @Init method.  If no value is specified, the create  matching is based on signature only.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Init</class-interface>
 <method name="value" return-type="java.lang.String"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>125</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Local</class-interface>
 <method name="value" return-type="java.lang.Class[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>126</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>LocalHome</class-interface>
 <method name="value" return-type="java.lang.Class"/>
 </assertion>
@@ -1317,14 +1317,14 @@
 <description>
                             Activation config properties.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDriven</class-interface>
-<method name="activationConfig" return-type="javax.ejb.ActivationConfigProperty[]"/>
+<method name="activationConfig" return-type="jakarta.ejb.ActivationConfigProperty[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>128</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDriven</class-interface>
 <method name="description" return-type="java.lang.String"/>
 </assertion>
@@ -1334,7 +1334,7 @@
                             A product specific name(e.g.
                              global JNDI name of a queue)   that this message-driven bean should be mapped to.      Application servers are not required to support any particular   form or type of mapped name, nor the ability to use mapped names.   The mapped name is product-dependent and often installation-dependent.   No use of a mapped name is portable.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDriven</class-interface>
 <method name="mappedName" return-type="java.lang.String"/>
 </assertion>
@@ -1343,7 +1343,7 @@
 <description>
                             Message-listener interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDriven</class-interface>
 <method name="messageListenerInterface" return-type="java.lang.Class"/>
 </assertion>
@@ -1352,7 +1352,7 @@
 <description>
                             ejb-name for this bean.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDriven</class-interface>
 <method name="name" return-type="java.lang.String"/>
 </assertion>
@@ -1362,17 +1362,17 @@
                             A container invokes this method before it ends the life of the   message-driven object.
                              This happens when a container decides to   terminate the message-driven object.     This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDrivenBean</class-interface>
 <method name="ejbRemove" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>133</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDrivenBean</class-interface>
 <method name="ejbRemove" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1381,24 +1381,24 @@
                             Set the associated message-driven context.
                              The container calls   this method after the instance creation.    The enterprise Bean instance should store the reference to the  context object in an instance variable.    This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDrivenBean</class-interface>
 <method name="setMessageDrivenContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.MessageDrivenContext</parameter>
+<parameter>jakarta.ejb.MessageDrivenContext</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>135</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>MessageDrivenBean</class-interface>
 <method name="setMessageDrivenContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.MessageDrivenContext</parameter>
+<parameter>jakarta.ejb.MessageDrivenContext</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1406,7 +1406,7 @@
 <description>
                             Constructs a NoSuchEJBException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEJBException</class-interface>
 <method name="NoSuchEJBException" return-type="NoSuchEJBException"/>
 </assertion>
@@ -1415,7 +1415,7 @@
 <description>
                             Constructs a NoSuchEJBException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEJBException</class-interface>
 <method name="NoSuchEJBException" return-type="NoSuchEJBException">
 <parameters>
@@ -1428,7 +1428,7 @@
 <description>
                             Constructs a NoSuchEJBException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEJBException</class-interface>
 <method name="NoSuchEJBException" return-type="NoSuchEJBException">
 <parameters>
@@ -1442,7 +1442,7 @@
 <description>
                             Constructs a NoSuchEntityException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEntityException</class-interface>
 <method name="NoSuchEntityException" return-type="NoSuchEntityException"/>
 </assertion>
@@ -1451,7 +1451,7 @@
 <description>
                             Constructs a NoSuchEntityException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEntityException</class-interface>
 <method name="NoSuchEntityException" return-type="NoSuchEntityException">
 <parameters>
@@ -1464,7 +1464,7 @@
 <description>
                             Constructs a NoSuchEntityException that embeds the originally   thrown exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchEntityException</class-interface>
 <method name="NoSuchEntityException" return-type="NoSuchEntityException">
 <parameters>
@@ -1477,7 +1477,7 @@
 <description>
                             Constructs a NoSuchObjectLocalException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchObjectLocalException</class-interface>
 <method name="NoSuchObjectLocalException" return-type="NoSuchObjectLocalException"/>
 </assertion>
@@ -1486,7 +1486,7 @@
 <description>
                             Constructs a NoSuchObjectLocalException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchObjectLocalException</class-interface>
 <method name="NoSuchObjectLocalException" return-type="NoSuchObjectLocalException">
 <parameters>
@@ -1499,7 +1499,7 @@
 <description>
                             Constructs a NoSuchObjectLocalException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>NoSuchObjectLocalException</class-interface>
 <method name="NoSuchObjectLocalException" return-type="NoSuchObjectLocalException">
 <parameters>
@@ -1513,7 +1513,7 @@
 <description>
                             Constructs an ObjectNotFoundException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ObjectNotFoundException</class-interface>
 <method name="ObjectNotFoundException" return-type="ObjectNotFoundException"/>
 </assertion>
@@ -1522,7 +1522,7 @@
 <description>
                             Constructs an ObjectNotFoundException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>ObjectNotFoundException</class-interface>
 <method name="ObjectNotFoundException" return-type="ObjectNotFoundException">
 <parameters>
@@ -1533,14 +1533,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>147</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Remote</class-interface>
 <method name="value" return-type="java.lang.Class[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>148</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>RemoteHome</class-interface>
 <method name="value" return-type="java.lang.Class"/>
 </assertion>
@@ -1549,7 +1549,7 @@
 <description>
                             If true, the stateful session bean will not be removed if an   exception is thrown from the designated method.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Remove</class-interface>
 <method name="retainIfException" return-type="boolean"/>
 </assertion>
@@ -1558,7 +1558,7 @@
 <description>
                             Constructs an RemoveException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>RemoveException</class-interface>
 <method name="RemoveException" return-type="RemoveException"/>
 </assertion>
@@ -1567,7 +1567,7 @@
 <description>
                             Constructs an RemoveException with the specified  detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>RemoveException</class-interface>
 <method name="RemoveException" return-type="RemoveException">
 <parameters>
@@ -1581,23 +1581,23 @@
                             The activate method is called when the instance is activated  from its "passive" state.
                              The instance should acquire any resource  that it has released earlier in the ejbPassivate() method.    This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbActivate" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>153</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbActivate" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>154</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbActivate" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1609,23 +1609,23 @@
                             The passivate method is called before the instance enters  the "passive" state.
                              The instance should release any resources that  it can re-acquire later in the ejbActivate() method.    After the passivate method completes, the instance must be  in a state that allows the container to use the Java Serialization  protocol to externalize and store away the instance's state.    This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbPassivate" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>156</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbPassivate" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>157</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbPassivate" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1637,23 +1637,23 @@
                             A container invokes this method before it ends the life of the session  object.
                              This happens as a result of a client's invoking a remove  operation, or when a container decides to terminate the session object  after a timeout.     This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbRemove" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>159</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbRemove" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>160</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="ejbRemove" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1665,34 +1665,34 @@
                             Set the associated session context.
                              The container calls this method  after the instance creation.    The enterprise Bean instance should store the reference to the  context object in an instance variable.    This method is called with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="setSessionContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.SessionContext</parameter>
+<parameter>jakarta.ejb.SessionContext</parameter>
 </parameters>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>162</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="setSessionContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.SessionContext</parameter>
+<parameter>jakarta.ejb.SessionContext</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>163</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for applications written     for the EJB 1.0 specification. Enterprise beans written for the      EJB 1.1 specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the javax.ejb.EJBException instead of this exception.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for applications written     for the EJB 1.0 specification. Enterprise beans written for the      EJB 1.1 specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB2.0 and higher specifications     must throw the jakarta.ejb.EJBException instead of this exception.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionBean</class-interface>
 <method name="setSessionContext" return-type="void">
 <parameters>
-<parameter>javax.ejb.SessionContext</parameter>
+<parameter>jakarta.ejb.SessionContext</parameter>
 </parameters>
 <throw>java.rmi.RemoteException</throw>
 </method>
@@ -1702,7 +1702,7 @@
 <description>
                             Obtain an object that can be used to invoke the current bean through  the given business interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getBusinessObject" return-type="java.lang.Object">
 <parameters>
@@ -1713,7 +1713,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>165</id>
 <description>Thrown if this method is invoked           with an invalid business interface for the current bean.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getBusinessObject" return-type="java.lang.Object">
 <parameters>
@@ -1728,16 +1728,16 @@
                             Obtain a reference to the EJB local object that is    associated with the instance.
                                 An instance of a session enterprise Bean can call this method  at anytime between the ejbCreate() and ejbRemove() methods, including  from within the ejbCreate() and ejbRemove() methods.    An instance can use this method, for example, when it wants to  pass a reference to itself in a method argument or result.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
-<method name="getEJBLocalObject" return-type="javax.ejb.EJBLocalObject"/>
+<method name="getEJBLocalObject" return-type="jakarta.ejb.EJBLocalObject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>167</id>
 <description>Thrown if the instance invokes this     method while the instance is in a state that does not allow the     instance to invoke this method, or if the instance does not have     a local interface.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
-<method name="getEJBLocalObject" return-type="javax.ejb.EJBLocalObject">
+<method name="getEJBLocalObject" return-type="jakarta.ejb.EJBLocalObject">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
@@ -1747,16 +1747,16 @@
                             Obtain a reference to the EJB object that is currently associated with   the instance.
                                 An instance of a session enterprise Bean can call this method  at anytime between the ejbCreate() and ejbRemove() methods, including  from within the ejbCreate() and ejbRemove() methods.    An instance can use this method, for example, when it wants to  pass a reference to itself in a method argument or result.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject"/>
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>169</id>
 <description>Thrown if the instance invokes this     method while the instance is in a state that does not allow the     instance to invoke this method, or if the instance does not have     a remote interface.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
-<method name="getEJBObject" return-type="javax.ejb.EJBObject">
+<method name="getEJBObject" return-type="jakarta.ejb.EJBObject">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
@@ -1765,14 +1765,14 @@
 <description>
                             Obtain the business interface through which the current business  method invocation was made.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getInvokedBusinessInterface" return-type="java.lang.Class"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>171</id>
 <description>Thrown if this method is called        and the bean has not been invoked through a business interface.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getInvokedBusinessInterface" return-type="java.lang.Class">
 <throw>java.lang.IllegalStateException</throw>
@@ -1784,14 +1784,14 @@
                             Obtain a reference to the JAX-RPC MessageContext.
                                  An instance of a stateless session bean can call this method  from any business method invoked through its web service  endpoint interface.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getMessageContext" return-type="MessageContext"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>173</id>
 <description>Thrown if this method is invoked     while the instance is in a state that does not allow access     to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionContext</class-interface>
 <method name="getMessageContext" return-type="MessageContext">
 <throw>java.lang.IllegalStateException</throw>
@@ -1803,23 +1803,23 @@
                             The afterBegin method notifies a session Bean instance that a new  transaction has started, and that the subsequent business methods on the  instance will be invoked in the context of the transaction.
                                 The instance can use this method, for example, to read data  from a database and cache the data in the instance fields.    This method executes in the proper transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterBegin" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>175</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterBegin" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>176</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specifications should throw the     javax.ejb.EJBException instead of this exception.      Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specifications should throw the     jakarta.ejb.EJBException instead of this exception.      Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterBegin" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1831,7 +1831,7 @@
                             The afterCompletion method notifies a session Bean instance that a  transaction commit protocol has completed, and tells the instance  whether the transaction has been committed or rolled back.
                                 This method executes with no transaction context.    This method executes with no transaction context.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterCompletion" return-type="void">
 <parameters>
@@ -1842,19 +1842,19 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>178</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterCompletion" return-type="void">
 <parameters>
 <parameter>boolean</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>179</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specification should throw the     javax.ejb.EJBException instead of this exception.      Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specification should throw the     jakarta.ejb.EJBException instead of this exception.      Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="afterCompletion" return-type="void">
 <parameters>
@@ -1869,23 +1869,23 @@
                             The beforeCompletion method notifies a session Bean instance that  a transaction is about to be committed.
                              The instance can use this  method, for example, to write any cached data to a database.    This method executes in the proper transaction context.   Note: The instance may still cause the container to  rollback the transaction by invoking the setRollbackOnly() method  on the instance context, or by throwing an exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="beforeCompletion" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>181</id>
 <description>Thrown by the method to indicate a failure     caused by a system-level error.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="beforeCompletion" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>182</id>
-<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specification should throw the     javax.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
-<package>javax.ejb</package>
+<description>This exception is defined in the method     signature to provide backward compatibility for enterprise beans      written for the EJB 1.0 specification. Enterprise beans written      for the EJB 1.1 and higher specification should throw the     jakarta.ejb.EJBException instead of this exception.     Enterprise beans written for the EJB 2.0 and higher specifications      must not throw the java.rmi.RemoteException.</description>
+<package>jakarta.ejb</package>
 <class-interface>SessionSynchronization</class-interface>
 <method name="beforeCompletion" return-type="void">
 <throw>java.rmi.RemoteException</throw>
@@ -1894,7 +1894,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>183</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateful</class-interface>
 <method name="description" return-type="java.lang.String"/>
 </assertion>
@@ -1904,7 +1904,7 @@
                             A product specific name(e.g.
                              global JNDI name)   that this session bean should be mapped to.      Application servers are not required to support any particular   form or type of mapped name, nor the ability to use mapped names.   The mapped name is product-dependent and often installation-dependent.   No use of a mapped name is portable.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateful</class-interface>
 <method name="mappedName" return-type="java.lang.String"/>
 </assertion>
@@ -1913,14 +1913,14 @@
 <description>
                             ejb-name for this bean.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateful</class-interface>
 <method name="name" return-type="java.lang.String"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>186</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateless</class-interface>
 <method name="description" return-type="java.lang.String"/>
 </assertion>
@@ -1930,7 +1930,7 @@
                             A product specific name(e.g.
                              global JNDI name)   that this session bean should be mapped to.      Application servers are not required to support any particular   form or type of mapped name, nor the ability to use mapped names.   The mapped name is product-dependent and often installation-dependent.   No use of a mapped name is portable.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateless</class-interface>
 <method name="mappedName" return-type="java.lang.String"/>
 </assertion>
@@ -1939,7 +1939,7 @@
 <description>
                             ejb-name for this bean.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Stateless</class-interface>
 <method name="name" return-type="java.lang.String"/>
 </assertion>
@@ -1948,11 +1948,11 @@
 <description>
                             Invoked by the EJB container upon timer expiration.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimedObject</class-interface>
 <method name="ejbTimeout" return-type="void">
 <parameters>
-<parameter>javax.ejb.Timer</parameter>
+<parameter>jakarta.ejb.Timer</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1961,14 +1961,14 @@
 <description>
                             Cause the timer and all its associated expiration notifications to  be cancelled.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="cancel" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>191</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="cancel" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -1977,19 +1977,19 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>192</id>
 <description>If invoked on a timer  that has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="cancel" return-type="void">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>193</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="cancel" return-type="void">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1998,35 +1998,35 @@
                             Get a serializable handle to the timer.
                               This handle can  be used at a later time to re-obtain the timer reference.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
-<method name="getHandle" return-type="javax.ejb.TimerHandle"/>
+<method name="getHandle" return-type="jakarta.ejb.TimerHandle"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>195</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
-<method name="getHandle" return-type="javax.ejb.TimerHandle">
+<method name="getHandle" return-type="jakarta.ejb.TimerHandle">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>196</id>
 <description>If invoked on a timer  that has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
-<method name="getHandle" return-type="javax.ejb.TimerHandle">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<method name="getHandle" return-type="jakarta.ejb.TimerHandle">
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>197</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
-<method name="getHandle" return-type="javax.ejb.TimerHandle">
-<throw>javax.ejb.EJBException</throw>
+<method name="getHandle" return-type="jakarta.ejb.TimerHandle">
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2034,14 +2034,14 @@
 <description>
                             Get the information associated with the timer at the time of creation.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getInfo" return-type="java.io.Serializable"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>199</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getInfo" return-type="java.io.Serializable">
 <throw>java.lang.IllegalStateException</throw>
@@ -2050,19 +2050,19 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>200</id>
 <description>If invoked on a timer  that has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getInfo" return-type="java.io.Serializable">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>201</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getInfo" return-type="java.io.Serializable">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2070,14 +2070,14 @@
 <description>
                             Get the point in time at which the next timer expiration is scheduled   to occur.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getNextTimeout" return-type="java.util.Date"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>203</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getNextTimeout" return-type="java.util.Date">
 <throw>java.lang.IllegalStateException</throw>
@@ -2086,19 +2086,19 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>204</id>
 <description>If invoked on a timer  that has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getNextTimeout" return-type="java.util.Date">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>205</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getNextTimeout" return-type="java.util.Date">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2106,14 +2106,14 @@
 <description>
                             Get the number of milliseconds that will elapse before the next  scheduled timer expiration.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getTimeRemaining" return-type="long"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>207</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getTimeRemaining" return-type="long">
 <throw>java.lang.IllegalStateException</throw>
@@ -2122,19 +2122,19 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>208</id>
 <description>If invoked on a timer  that has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getTimeRemaining" return-type="long">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>209</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>Timer</class-interface>
 <method name="getTimeRemaining" return-type="long">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2142,35 +2142,35 @@
 <description>
                             Obtain a reference to the timer represented by this handle.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerHandle</class-interface>
-<method name="getTimer" return-type="javax.ejb.Timer"/>
+<method name="getTimer" return-type="jakarta.ejb.Timer"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>211</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerHandle</class-interface>
-<method name="getTimer" return-type="javax.ejb.Timer">
+<method name="getTimer" return-type="jakarta.ejb.Timer">
 <throw>java.lang.IllegalStateException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>212</id>
 <description>If invoked on a  handle whose associated timer has expired or has been cancelled.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerHandle</class-interface>
-<method name="getTimer" return-type="javax.ejb.Timer">
-<throw>javax.ejb.NoSuchObjectLocalException</throw>
+<method name="getTimer" return-type="jakarta.ejb.Timer">
+<throw>jakarta.ejb.NoSuchObjectLocalException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>213</id>
 <description>If this method could not complete due  to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerHandle</class-interface>
-<method name="getTimer" return-type="javax.ejb.Timer">
-<throw>javax.ejb.EJBException</throw>
+<method name="getTimer" return-type="jakarta.ejb.Timer">
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2178,9 +2178,9 @@
 <description>
                             Create a single-action timer that expires after a specified duration.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2190,9 +2190,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>215</id>
 <description>If duration is negative</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2203,9 +2203,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>216</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2216,14 +2216,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>217</id>
 <description>If this method fails due to a   system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2231,9 +2231,9 @@
 <description>
                             Create an interval timer whose first expiration occurs after a specified  duration, and whose subsequent expirations occur after a specified  interval.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>long</parameter>
@@ -2244,9 +2244,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>219</id>
 <description>If initialDuration is  negative, or intervalDuration is negative.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>long</parameter>
@@ -2258,9 +2258,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>220</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>long</parameter>
@@ -2272,15 +2272,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>221</id>
 <description>If this method could not complete  due to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>long</parameter>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2288,9 +2288,9 @@
 <description>
                             Create a single-action timer that expires at a given point in time.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2300,9 +2300,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>223</id>
 <description>If expiration is null, or  expiration.getTime() is negative.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2313,9 +2313,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>224</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>java.io.Serializable</parameter>
@@ -2326,14 +2326,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>225</id>
 <description>If this method could not complete  due to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2341,9 +2341,9 @@
 <description>
                             Create an interval timer whose first expiration occurs at a given  point in time and whose subsequent expirations occur after a specified  interval.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>long</parameter>
@@ -2354,9 +2354,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>227</id>
 <description>If initialExpiration is  null, or initialExpiration.getTime() is negative, or intervalDuration   is negative.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>long</parameter>
@@ -2368,9 +2368,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>228</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>long</parameter>
@@ -2382,15 +2382,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>229</id>
 <description>If this method could not complete  due to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
-<method name="createTimer" return-type="javax.ejb.Timer">
+<method name="createTimer" return-type="jakarta.ejb.Timer">
 <parameters>
 <parameter>java.util.Date</parameter>
 <parameter>long</parameter>
 <parameter>java.io.Serializable</parameter>
 </parameters>
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -2398,14 +2398,14 @@
 <description>
                             Get all the active timers associated with this bean.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
 <method name="getTimers" return-type="java.util.Collection"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>231</id>
 <description>If this method is  invoked while the instance is in a state that does not allow access   to this method.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
 <method name="getTimers" return-type="java.util.Collection">
 <throw>java.lang.IllegalStateException</throw>
@@ -2414,25 +2414,25 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>232</id>
 <description>If this method could not complete  due to a system-level failure.</description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TimerService</class-interface>
 <method name="getTimers" return-type="java.util.Collection">
-<throw>javax.ejb.EJBException</throw>
+<throw>jakarta.ejb.EJBException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>233</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionAttribute</class-interface>
-<method name="value" return-type="javax.ejb.TransactionAttributeType"/>
+<method name="value" return-type="jakarta.ejb.TransactionAttributeType"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>234</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionAttributeType</class-interface>
-<method name="valueOf" return-type="javax.ejb.TransactionAttributeType">
+<method name="valueOf" return-type="jakarta.ejb.TransactionAttributeType">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -2441,23 +2441,23 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>235</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionAttributeType</class-interface>
-<method name="values" return-type="javax.ejb.TransactionAttributeType[]"/>
+<method name="values" return-type="jakarta.ejb.TransactionAttributeType[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>236</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionManagement</class-interface>
-<method name="value" return-type="javax.ejb.TransactionManagementType"/>
+<method name="value" return-type="jakarta.ejb.TransactionManagementType"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>237</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionManagementType</class-interface>
-<method name="valueOf" return-type="javax.ejb.TransactionManagementType">
+<method name="valueOf" return-type="jakarta.ejb.TransactionManagementType">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -2466,16 +2466,16 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>238</id>
 <description/>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionManagementType</class-interface>
-<method name="values" return-type="javax.ejb.TransactionManagementType[]"/>
+<method name="values" return-type="jakarta.ejb.TransactionManagementType[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>239</id>
 <description>
                             Constructs a TransactionRequiredLocalException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionRequiredLocalException</class-interface>
 <method name="TransactionRequiredLocalException" return-type="TransactionRequiredLocalException"/>
 </assertion>
@@ -2484,7 +2484,7 @@
 <description>
                             Constructs an TransactionRequiredLocalException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionRequiredLocalException</class-interface>
 <method name="TransactionRequiredLocalException" return-type="TransactionRequiredLocalException">
 <parameters>
@@ -2497,7 +2497,7 @@
 <description>
                             Constructs a TransactionRolledbackLocalException with no detail message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionRolledbackLocalException</class-interface>
 <method name="TransactionRolledbackLocalException" return-type="TransactionRolledbackLocalException"/>
 </assertion>
@@ -2506,7 +2506,7 @@
 <description>
                             Constructs a TransactionRolledbackLocalException with the specified  detailed message.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionRolledbackLocalException</class-interface>
 <method name="TransactionRolledbackLocalException" return-type="TransactionRolledbackLocalException">
 <parameters>
@@ -2519,7 +2519,7 @@
 <description>
                             Constructs a TransactionRolledbackLocalException with the specified  detail message and a nested exception.
                         </description>
-<package>javax.ejb</package>
+<package>jakarta.ejb</package>
 <class-interface>TransactionRolledbackLocalException</class-interface>
 <method name="TransactionRolledbackLocalException" return-type="TransactionRolledbackLocalException">
 <parameters>
@@ -2534,9 +2534,9 @@
                             Deserialize the EJBHome reference corresponding to a HomeHandle.
                                 readEJBHome is called from the readObject method of   portable HomeHandle implementation classes. The istream object is the  same object that was passed in to the HomeHandle class's readObject.  When readEJBHome is called, istream must point to the location  in the stream at which the EJBHome reference can be read.  The container must ensure that the EJBHome reference is   capable of performing invocations immediately after deserialization.
                         </description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBHome" return-type="javax.ejb.EJBHome">
+<method name="readEJBHome" return-type="jakarta.ejb.EJBHome">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2545,9 +2545,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>245</id>
 <description>The EJBHome could not be deserialized     because of a system-level failure.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBHome" return-type="javax.ejb.EJBHome">
+<method name="readEJBHome" return-type="jakarta.ejb.EJBHome">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2557,9 +2557,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>246</id>
 <description>The EJBHome could not be deserialized     because some class could not be found.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBHome" return-type="javax.ejb.EJBHome">
+<method name="readEJBHome" return-type="jakarta.ejb.EJBHome">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2572,9 +2572,9 @@
                             Deserialize the EJBObject reference corresponding to a Handle.
                                 readEJBObject is called from the readObject method of   portable Handle implementation classes. The istream object is the  same object that was passed in to the Handle class's readObject.  When readEJBObject is called, istream must point to the location  in the stream at which the EJBObject reference can be read.  The container must ensure that the EJBObject reference is   capable of performing invocations immediately after deserialization.
                         </description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBObject" return-type="javax.ejb.EJBObject">
+<method name="readEJBObject" return-type="jakarta.ejb.EJBObject">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2583,9 +2583,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>248</id>
 <description>The EJBObject could not be deserialized     because of a system-level failure.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBObject" return-type="javax.ejb.EJBObject">
+<method name="readEJBObject" return-type="jakarta.ejb.EJBObject">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2595,9 +2595,9 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>249</id>
 <description>The EJBObject could not be deserialized     because some class could not be found.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
-<method name="readEJBObject" return-type="javax.ejb.EJBObject">
+<method name="readEJBObject" return-type="jakarta.ejb.EJBObject">
 <parameters>
 <parameter>java.io.ObjectInputStream</parameter>
 </parameters>
@@ -2610,11 +2610,11 @@
                             Serialize the EJBHome reference corresponding to a HomeHandle.
                                 This method is called from the writeObject method of   portable HomeHandle implementation classes. The ostream object is the  same object that was passed in to the Handle class's writeObject.
                         </description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
 <method name="writeEJBHome" return-type="void">
 <parameters>
-<parameter>javax.ejb.EJBHome</parameter>
+<parameter>jakarta.ejb.EJBHome</parameter>
 <parameter>java.io.ObjectOutputStream</parameter>
 </parameters>
 </method>
@@ -2622,11 +2622,11 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>251</id>
 <description>The EJBObject could not be serialized     because of a system-level failure.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
 <method name="writeEJBHome" return-type="void">
 <parameters>
-<parameter>javax.ejb.EJBHome</parameter>
+<parameter>jakarta.ejb.EJBHome</parameter>
 <parameter>java.io.ObjectOutputStream</parameter>
 </parameters>
 <throw>java.io.IOException</throw>
@@ -2638,11 +2638,11 @@
                             Serialize the EJBObject reference corresponding to a Handle.
                                 This method is called from the writeObject method of   portable Handle implementation classes. The ostream object is the  same object that was passed in to the Handle class's writeObject.
                         </description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
 <method name="writeEJBObject" return-type="void">
 <parameters>
-<parameter>javax.ejb.EJBObject</parameter>
+<parameter>jakarta.ejb.EJBObject</parameter>
 <parameter>java.io.ObjectOutputStream</parameter>
 </parameters>
 </method>
@@ -2650,11 +2650,11 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>253</id>
 <description>The EJBObject could not be serialized     because of a system-level failure.</description>
-<package>javax.ejb.spi</package>
+<package>jakarta.ejb.spi</package>
 <class-interface>HandleDelegate</class-interface>
 <method name="writeEJBObject" return-type="void">
 <parameters>
-<parameter>javax.ejb.EJBObject</parameter>
+<parameter>jakarta.ejb.EJBObject</parameter>
 <parameter>java.io.ObjectOutputStream</parameter>
 </parameters>
 <throw>java.io.IOException</throw>
@@ -2663,7 +2663,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>254</id>
 <description/>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>Interceptors</class-interface>
 <method name="value" return-type="java.lang.Class[]"/>
 </assertion>
@@ -2673,7 +2673,7 @@
                             Returns the context data associated with this invocation or  lifecycle callback.
                               If there is no context data, an  empty Map object will be returned.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getContextData" return-type="java.util.Map"/>
 </assertion>
@@ -2683,7 +2683,7 @@
                             Returns the method of the bean class for which the interceptor  was invoked.
                               For AroundInvoke methods, this is the business  method on the bean class. For lifecycle callback methods,   returns null.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getMethod" return-type="java.lang.reflect.Method"/>
 </assertion>
@@ -2693,7 +2693,7 @@
                             Returns the parameters that will be used to invoke  the business method.
                               If setParameters has been called,   getParameters() returns the values to which the parameters   have been set.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getParameters" return-type="java.lang.Object[]"/>
 </assertion>
@@ -2702,7 +2702,7 @@
 <description>
                             Returns the target instance.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="getTarget" return-type="java.lang.Object"/>
 </assertion>
@@ -2712,14 +2712,14 @@
                             Proceed to the next entry in the interceptor chain.
                               The proceed method returns the result of the next  method invoked.  If the method returns void, proceed  returns null.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="proceed" return-type="java.lang.Object"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>260</id>
 <description/>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="proceed" return-type="java.lang.Object">
 <throw>java.lang.Exception</throw>
@@ -2730,7 +2730,7 @@
 <description>
                             Sets the parameters that will be used to invoke the   business method.
                         </description>
-<package>javax.interceptor</package>
+<package>jakarta.interceptor</package>
 <class-interface>InvocationContext</class-interface>
 <method name="setParameters" return-type="void">
 <parameters>

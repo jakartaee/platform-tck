@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -179,7 +179,7 @@ public final class URLClient extends AbstractUrlClient {
    * @testName: jsfJsDoesExistTest
    * @assertion_ids: JSF:SPEC:225; JSF:SPEC:226
    * @test_Strategy: Validate that we are able to get the Resource jsf.js from
-   *                 the libarary javax.faces.
+   *                 the libarary jakarta.faces.
    * 
    * @since 2.2
    */

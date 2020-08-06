@@ -52,7 +52,7 @@ grant {
      permission javax.security.auth.PrivateCredentialPermission 
                 "com.sun.enterprise.security.auth.login.common.PasswordCredential * \"*\"", "read";
      permission org.osgi.framework.AdminPermission "*", "*";
-     permission javax.xml.ws.WebServicePermission  "publishEndpoint";
+     permission jakarta.xml.ws.WebServicePermission  "publishEndpoint";
      permission java.security.SecurityPermission   "getPolicy";
      permission java.security.SecurityPermission   "setPolicy";
      permission java.security.SecurityPermission   "getProperty.authconfigprovider.factory";
@@ -81,6 +81,6 @@ grant {
 grant {
     permission java.security.SecurityPermission  "CTSPermission1_name";
     permission java.security.SecurityPermission  "CTSPermission1_name2";
-    permission javax.xml.ws.WebServicePermission  "ConnectorPermission1_name2";
+    permission jakarta.xml.ws.WebServicePermission  "ConnectorPermission1_name2";
 };
 

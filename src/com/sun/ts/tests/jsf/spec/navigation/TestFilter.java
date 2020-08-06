@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,19 +19,19 @@
  */
 package com.sun.ts.tests.jsf.spec.navigation;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.FilterChain;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 public class TestFilter implements Filter {
 
-  // --------------------------------------- Methods from javax.servlet.Filter
+  // --------------------------------------- Methods from jakarta.servlet.Filter
 
   public void init(FilterConfig filterConfig) throws ServletException {
 

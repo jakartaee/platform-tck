@@ -1390,7 +1390,7 @@
 	    The messaging-type element specifies the message
 	    listener interface of the message-driven bean. If
 	    the messaging-type element is not specified, it is
-	    assumed to be javax.jms.MessageListener.
+	    assumed to be jakarta.jms.MessageListener.
 
 	  </xsd:documentation>
 	</xsd:annotation>

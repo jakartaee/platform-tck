@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,8 +32,8 @@ import com.sun.ts.tests.ejb30.common.allowed.ClientBase;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 public class Client extends ClientBase implements Constants {
   @EJB(name = "ejb/allowedBean", beanName = "AllowedBean")
@@ -447,8 +447,8 @@ public class Client extends ClientBase implements Constants {
       allowedBean = lookupAllowedBean();
       allowedBean.setTestMethod(beforeCompletionTest);
       results = allowedBean.beforeCompletionTest();
-      // @todo should we catch javax.transaction.TransactionRolledbackException?
-      // } catch (javax.transaction.TransactionRolledbackException e) {
+      // @todo should we catch jakarta.transaction.TransactionRolledbackException?
+      // } catch (jakarta.transaction.TransactionRolledbackException e) {
       //
     } catch (Exception e) {
       throw new Fault("beforeCompletionTest failed", e);
@@ -658,7 +658,7 @@ public class Client extends ClientBase implements Constants {
         reason = "Expected " + expected + ", but got " + result;
         throw new Fault(reason);
       }
-      // @todo should we catch javax.transaction.TransactionRolledbackException?
+      // @todo should we catch jakarta.transaction.TransactionRolledbackException?
     } catch (EJBException e) {
       result = setRollbackOnlyBean
           .getResultFor(beforeCompletionSetRollbackOnlyTest);

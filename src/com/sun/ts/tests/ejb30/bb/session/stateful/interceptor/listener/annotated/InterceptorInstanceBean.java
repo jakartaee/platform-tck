@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
+import jakarta.ejb.Remove;
+import jakarta.ejb.Stateful;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateful
 @Interceptors(InterceptorInstanceInterceptor.class)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.connector.mdb;
 
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.*;
 import com.sun.ts.tests.common.connector.util.*;
 import java.security.Principal;
 
 /**
  * The JCAMessageBean class is a message-driven bean. It implements the
- * javax.ejb.MessageDrivenBean and TSMessageListenerInterface. It is defined as
+ * jakarta.ejb.MessageDrivenBean and TSMessageListenerInterface. It is defined as
  * public (but not final or abstract). It defines a constructor and the methods
  * setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
  */
@@ -51,7 +51,7 @@ public class JCAMessageBean
   /**
    * setMessageDrivenContext method, declared as public (but not final or
    * static), with a return type of void, and with one argument of type
-   * javax.ejb.MessageDrivenContext.
+   * jakarta.ejb.MessageDrivenContext.
    *
    * @param mdc
    *          the context to set
@@ -70,7 +70,7 @@ public class JCAMessageBean
 
   /**
    * onMessage method, declared as public (but not final or static), with a
-   * return type of void, and with one argument of type javax.jms.Message.
+   * return type of void, and with one argument of type jakarta.jms.Message.
    *
    * @param inMessage
    *          the incoming message

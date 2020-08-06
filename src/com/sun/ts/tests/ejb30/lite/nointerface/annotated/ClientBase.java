@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
-import javax.ejb.EJBException;
-import javax.ejb.NoSuchEJBException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.NoSuchEJBException;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
@@ -71,7 +71,7 @@ public class ClientBase extends EJBLiteClientBase {
    * testName: invokeRemovedStateful
    * 
    * @test_Strategy: Invoking a removed stateful no-interface bean results in
-   * javax.ejb.NoSuchEJBException. Also verify the overloaded method with same
+   * jakarta.ejb.NoSuchEJBException. Also verify the overloaded method with same
    * method name but different params is not considered a remove-method.
    */
   public void invokeRemovedStateful() {
@@ -81,7 +81,7 @@ public class ClientBase extends EJBLiteClientBase {
     try {
       String result = statefulToBeRemoved.passAsParam(singleton);
       throw new RuntimeException(
-          "Expected javax.ejb.NoSuchEJBException when invoking a removed stateful no-interface bean, but got "
+          "Expected jakarta.ejb.NoSuchEJBException when invoking a removed stateful no-interface bean, but got "
               + result);
     } catch (NoSuchEJBException expected) {
       appendReason(

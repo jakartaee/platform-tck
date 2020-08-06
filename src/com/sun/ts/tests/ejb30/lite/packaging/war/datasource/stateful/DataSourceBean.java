@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +23,12 @@ import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSo
 
 import java.sql.Connection;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.annotation.sql.DataSourceDefinition;
-import javax.ejb.Local;
-import javax.ejb.Stateful;
-import javax.interceptor.Interceptors;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateful;
+import jakarta.interceptor.Interceptors;
 import javax.sql.DataSource;
 
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;

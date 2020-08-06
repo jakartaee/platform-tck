@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the Jakarta Annotations TCK 1.3 and related software against the Jakarta Annotations Compatible Implementation (CI) 1.3. For 
-more detailed instructions please refer to the Jakarta Annotations TCK 1.3 Users Guide.
+and run the Jakarta Annotations TCK 2.0 and related software against the Jakarta Annotations Compatible Implementation (CI) 2.0. For
+more detailed instructions please refer to the Jakarta Annotations TCK 2.0 Users Guide.
 
 -----------------------
 Installing the Software
@@ -9,8 +9,8 @@ Before you can run the Jakarta Annotations TCK tests, you need to install
 and set up the following software components:
 
 1) Java SE 8
-2) Jakarta Annotations CI Version 1.3
-3) Jakarta Annotations TCK Version 1.3
+2) Jakarta Annotations CI Version 2.0
+3) Jakarta Annotations TCK Version 2.0
 
 1. Download and install Java SE 8 software.
 
@@ -18,17 +18,17 @@ and set up the following software components:
    cd /javase8
    unzip <javase8-zip-bundle>
 
-2. Download and install the Jakarta Annotations 1.3 Reference Implementation.
+2. Download and install the Jakarta Annotations 2.0 Reference Implementation.
 
    mkdir /ri
    cd /ri
-   unzip <cajri1.3-zip-bundle>
+   unzip <annotations-tck-2.0-zip-bundle>
 
-3. Download and install the Jakarta Annotations TCK 1.3 software.
+3. Download and install the Jakarta Annotations TCK 2.0 software.
 
    mkdir /tck
    cd /tck
-   unzip cajtck-1.3_<date>.zip
+   unzip annotations-tck-2.0.0_<date>.zip
 
 -----------------------------------------
 Setup and Configuration of the Jakarta Annotations TCK
@@ -37,16 +37,16 @@ Setup and Configuration of the Jakarta Annotations TCK
    variables in your shell environment.
 
    setenv JAVA_HOME /javase8
-   setenv TS_HOME /tck/cajtck
+   setenv TS_HOME /tck/annotations-tck
    setenv ANT_HOME /tck/anthome
    setenv PATH $JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 2. Edit the $TS_HOME/bin/ts.jte file and set the following properties:
 
-    Add the path to the Jakarta Annotations 1.3 CI classes/jar that contain the
+    Add the path to the Jakarta Annotations 2.0 CI classes/jar that contain the
     annotations
 
-    local.classes=/ri/lib/javax-annotation-api.jar
+    local.classes=/ri/lib/jakarta-annotation-api.jar
 
     Add the path to endorsed dirs to the location of the CI API jars for
     those technologies you wish to override that exist within the JDK
@@ -56,7 +56,7 @@ Setup and Configuration of the Jakarta Annotations TCK
 ------------------------------
 Executing the Jakarta Annotations TCK Tests
 ------------------------------
-At this point we are ready to run the Jakarta Annotations TCK tests against the Jakarta Annotations 1.3
+At this point we are ready to run the Jakarta Annotations TCK tests against the Jakarta Annotations 2.0
 Reference Implementation.
 
 1. Execute and run the Jakarta Annotations TCK tests.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 
 public class IncludedServlet extends GenericServlet {
 
-  private static final String attr_prefix = "javax.servlet.include.";
+  private static final String attr_prefix = "jakarta.servlet.include.";
 
   private static final String TEST_HEADER = "testname";
 

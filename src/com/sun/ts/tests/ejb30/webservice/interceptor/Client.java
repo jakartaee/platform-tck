@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,9 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.javatest.Status;
 
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.BindingProvider;
-import javax.xml.ws.ProtocolException;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.ProtocolException;
 import java.util.Properties;
 import java.util.Map;
 import java.net.URL;
@@ -90,7 +90,7 @@ public class Client extends EETest {
    * interceptor is invoked. 3) The getParameters() method should return the
    * parameters of the business method invocation. 4) The Map returned by the
    * getContextData() method must be an instance of JAX-WS Message context. i.e.
-   * javax.xml.ws.handler.MessageContext
+   * jakarta.xml.ws.handler.MessageContext
    *
    * 3) If any of the above values are incorrect, then the interceptor throws
    * exception and the webservice method invocation test fails.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.sql.Connection;
 
-import javax.ejb.embeddable.EJBContainer;
+import jakarta.ejb.embeddable.EJBContainer;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
@@ -130,7 +130,7 @@ public class Client extends EJBLiteClientBase {
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules.
    * 
    */
@@ -148,7 +148,7 @@ public class Client extends EJBLiteClientBase {
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules.
    */
   public void additionalModuleDir() throws Exception {
@@ -166,7 +166,7 @@ public class Client extends EJBLiteClientBase {
    * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
    * 
    * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-   * modules. Also javax.ejb.embeddable.modules property is set to include the
+   * modules. Also jakarta.ejb.embeddable.modules property is set to include the
    * file location of the additional ejb modules.
    * 
    * 

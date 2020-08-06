@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
 import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.SERVER_MSG;
-import static javax.transaction.Status.STATUS_ACTIVE;
-import static javax.transaction.Status.STATUS_MARKED_ROLLBACK;
-import static javax.transaction.Status.STATUS_UNKNOWN;
+import static jakarta.transaction.Status.STATUS_ACTIVE;
+import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
+import static jakarta.transaction.Status.STATUS_UNKNOWN;
 
-import javax.ejb.EJBContext;
-import javax.ejb.EJBTransactionRolledbackException;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.EJBTransactionRolledbackException;
 import javax.naming.NamingException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
@@ -135,7 +135,7 @@ public abstract class TestBeanBase implements TestBeanIF {
       ut.begin();
       bean.runtimeExceptionTest();
       status = false;
-      reason = "Expect javax.ejb.EJBTransactionRolledbackException, but got no exception.";
+      reason = "Expect jakarta.ejb.EJBTransactionRolledbackException, but got no exception.";
     } catch (EJBTransactionRolledbackException e) {
       int code = STATUS_UNKNOWN;
       try {

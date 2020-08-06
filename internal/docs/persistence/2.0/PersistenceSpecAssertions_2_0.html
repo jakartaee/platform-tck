@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1668,7 +1668,7 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:606"></a><font size="1PT">PERSISTENCE:SPEC:606</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">1.1</font></TD><TD align="left" valign="center"><font size="1PT">The persist, merge, remove, flush, and refresh methods must be invoked within a transaction
                 context when an entity
                 manager with a transaction-scoped persistence context is used. If there is no transaction context, the
-                javax.persistence. TransactionRequiredException
+                jakarta.persistence. TransactionRequiredException
                 is thrown.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -4152,10 +4152,10 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:851"></a><font size="1PT">PERSISTENCE:SPEC:851</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Outside the JavaEE container environment, the javax.persistence.Persistence class is the
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:851"></a><font size="1PT">PERSISTENCE:SPEC:851</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">Outside the JavaEE container environment, the jakarta.persistence.Persistence class is the
                 bootstrap class that provides access to an entity
                 manager factory. The application creates an entity manager factory by called the
-                createEntityManagerFactory method of the javax.persistence.Persistence class.
+                createEntityManagerFactory method of the jakarta.persistence.Persistence class.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -4703,7 +4703,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:933"></a><font size="1PT">PERSISTENCE:SPEC:933</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1.3</font></TD><TD align="left" valign="center"><font size="1PT">The provider element specifies the name of the persistence provider's
-                javax.persistence.spi.PersistenceProvider class.
+                jakarta.persistence.spi.PersistenceProvider class.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -5045,7 +5045,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:981"></a><font size="1PT">PERSISTENCE:SPEC:981</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3</font></TD><TD align="left" valign="center"><font size="1PT">The interface javax.persistence.spi.PersistenceProvider is implemented by the persistence
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:981"></a><font size="1PT">PERSISTENCE:SPEC:981</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3</font></TD><TD align="left" valign="center"><font size="1PT">The interface jakarta.persistence.spi.PersistenceProvider is implemented by the persistence
                 provider.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5057,7 +5057,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:983"></a><font size="1PT">PERSISTENCE:SPEC:983</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3</font></TD><TD align="left" valign="center"><font size="1PT">It is invoked by the javax.persistence.Persistence class in Java SE environments.
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:983"></a><font size="1PT">PERSISTENCE:SPEC:983</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3</font></TD><TD align="left" valign="center"><font size="1PT">It is invoked by the jakarta.persistence.Persistence class in Java SE environments.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -5090,27 +5090,27 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:988"></a><font size="1PT">PERSISTENCE:SPEC:988</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.provider - corresponds to the provider element in the persistence.xml
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:988"></a><font size="1PT">PERSISTENCE:SPEC:988</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.provider - corresponds to the provider element in the persistence.xml
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:989"></a><font size="1PT">PERSISTENCE:SPEC:989</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.transactionType - corresponds to the transaction-type attribute of
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:989"></a><font size="1PT">PERSISTENCE:SPEC:989</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.transactionType - corresponds to the transaction-type attribute of
                         the persistence-unit element in the persistence.xml
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:990"></a><font size="1PT">PERSISTENCE:SPEC:990</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.jtaDataSource - corresponds to the jta-data-source element in the
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:990"></a><font size="1PT">PERSISTENCE:SPEC:990</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.jtaDataSource - corresponds to the jta-data-source element in the
                         persistence.xml
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:991"></a><font size="1PT">PERSISTENCE:SPEC:991</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">javax.persistence.nonJtaDataSource - corresponds to the jnon-ta-data-source element in
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:991"></a><font size="1PT">PERSISTENCE:SPEC:991</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">1.3.1</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.nonJtaDataSource - corresponds to the jnon-ta-data-source element in
                         the persistence.xml
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>

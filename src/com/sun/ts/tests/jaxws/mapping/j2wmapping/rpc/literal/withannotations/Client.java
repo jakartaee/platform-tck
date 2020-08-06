@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -628,7 +628,7 @@ public class Client extends ServiceEETest
    * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
    *
    * @test_Strategy: Verify that the targetNamespace in the generated WSDL
-   * matches the targetNamespace as specified in the javax.jws.WebService
+   * matches the targetNamespace as specified in the jakarta.jws.WebService
    * annotation. (Java to WSDL 1.1 Mapping). Conformance requirement done: -
    * Package name mapping
    *

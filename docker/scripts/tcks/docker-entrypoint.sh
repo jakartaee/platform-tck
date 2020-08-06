@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ echo "ANT_HOME $ANT_HOME"
 echo "PATH $PATH"
 echo "TCK_HOME $TCK_HOME"
 
-echo "Download and install GlassFish 5.0.1 ..."
+echo "Download and install GlassFish 6.0.0 ..."
 if [ -z "$GLASSFISH_BUNDLE_URL" ]; then
   wget http://<host>/latest-glassfish.zip
 else
@@ -129,11 +129,6 @@ if [ "$TCK_NAME" ==  "concurrency" ];then
    exit 0
 fi
 
-if [ "$TCK_NAME" ==  "jaxr" ];then
-   source jaxrtck.sh
-   exit 0
-fi
-
 if [ "$TCK_NAME" ==  "connector" ];then
    source connectortck.sh
    exit 0
@@ -151,10 +146,5 @@ fi
 
 if [ "$TCK_NAME" ==  "saaj" ];then
    source saajtck.sh
-   exit 0
-fi
-
-if [ "$TCK_NAME" ==  "jaxrpc" ];then
-   source jaxrpctck.sh
    exit 0
 fi

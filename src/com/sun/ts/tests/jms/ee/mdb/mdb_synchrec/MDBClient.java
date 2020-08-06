@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,14 +21,14 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_synchrec;
 
 import java.io.*;
 import java.util.Properties;
-import javax.ejb.EJBHome;
+import jakarta.ejb.EJBHome;
 
 import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.tests.jms.commonee.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import com.sun.javatest.Status;
 
 public class MDBClient extends EETest {

@@ -1,3 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+///////////////////////////////////////////////////////////////////////////////
+
 type=page
 status=published
 title=Setup and Configuration
@@ -411,7 +429,6 @@ application server so it is running with the Security Manager enabled.
 
 .  Provide alternate endpoint and WSDL URLs, if necessary. +
 The `<TS_HOME>/bin` directory contains the following `.dat` files:
-* `jaxrpc-url-props.dat`
 * `jaxws-url-props.dat`
 * `jws-url-props.dat`
 * `webservices12-url-props.dat` 
@@ -1105,7 +1122,7 @@ use self signed certificate bundled with the CTS bundle. These
 certificates are generated with localhost as the hostname and would work
 only when orb.host value is set to localhost in ts.jte. If the server's
 hostname is used instead of the localhost, the tests in this suite might
-fail with the below exception - javax.websocket.DeploymentException: SSL
+fail with the below exception - jakarta.websocket.DeploymentException: SSL
 handshake has failed.
 
 =======================================================================
@@ -1947,13 +1964,13 @@ utility class for the bean behavior test cases (`bb`). These instance
 variables, used in the enterprise bean tests, must be accessible at
 deployment time.
 
-The Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1 provides the container-managed
+The Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0 provides the container-managed
 persistence implementation-specific features as part of its runtime XML
 file. Your Jakarta Platform, Enterprise Edition platform implementation
 needs to map the container-managed fields to the appropriate backend
 datastore. The manner in which you do this is implementation-specific.
 The `DeploymentInfo` class provides all of the runtime XML information
-as an object that is passed to the `TSDeploymentInterface2`
+as an object that is passed to the `TSDeploymentInterface`
 implementation.
 
 For a list of SQL statements used in CMP 1.1 finders, refer to
@@ -2733,10 +2750,10 @@ these new variables to invoke the real provider.
 The property names `A`, `B`, `C`, and `D` are used for convenience here.
 The real property names are as follows:
 
-* `A=javax.security.jacc.PolicyConfigurationFactory.provider`
-* `B=javax.security.jacc.policy.provider`
-* `C=vendor.javax.security.jacc.PolicyConfigurationFactory.provider`
-* `D=vendor.javax.security.jacc.policy.provider`
+* `A=jakarta.security.jacc.PolicyConfigurationFactory.provider`
+* `B=jakarta.security.jacc.policy.provider`
+* `C=vendor.jakarta.security.jacc.PolicyConfigurationFactory.provider`
+* `D=vendor.jakarta.security.jacc.policy.provider`
 
 To configure the Jakarta Authorization provider for the Jakarta Platform, Enterprise Edition
 CI, execute the Jakarta Authorization Ant target from:
@@ -3175,64 +3192,6 @@ Interface is mapped. Only required for each `port-component-ref` in the
 
 5.4.22.3.2 Setting Stub Properties
 
-[source,oac_no_warn]
-----
-element : stub-property
-----
-
-These are used to have the container set any of the properties defined
-in `javax.xml.rpc.Stub` on the stub/dynamic proxy object returned to the
-application from the Service instance. The property name must match the
-*value* of the `javax.xml.rpc.Stub` property constants. The stub
-properties are set per Port within the `service-ref`. Examples are shown
-below.
-
-* Setting endpoint address: 
-+
-[source,oac_no_warn]
-----
-<service-ref>
-    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
-    <port-info>
-        <service-endpoint-interface>googleclient.GoogleSearchPort
-        </service-endpoint-interface>
-        <wsdl-port>
-            <namespaceURI>urn:GoogleSearch</namespaceURI>
-            <localpart>GoogleSearchPort</localpart>
-        </wsdl-port>
-        <stub-property>
-            <name>javax.xml.rpc.service.endpoint.address</name>
-            <value>http://localhost:8000/google/GoogleSearch</value>
-        </stub-property>
-    </port-info>
-</service-ref>
-----
-+
-* Setting Basic Auth properties: 
-+
-[source,oac_no_warn]
-----
-<service-ref>
-    <service-ref-name>service/GoogleSearchProxy</service-ref-name>
-    <port-info>
-        <service-endpoint-interface>googleclient.GoogleSearchPort
-        </service-endpoint-interface>
-        <wsdl-port>
-            <namespaceURI>urn:GoogleSearch</namespaceURI>
-            <localpart>GoogleSearchPort</localpart>
-        </wsdl-port>
-        <stub-property>
-            <name>javax.xml.rpc.security.auth.username</name>
-            <value>javaee</value>
-        </stub-property>
-        <stub-property>
-            <name>javax.xml.rpc.security.auth.password</name>
-            <value>javaee</value>
-        </stub-property>
-    </port-info>
-</service-ref>
-----
-+
 * Setting Logging property (Implementation-specific): +
 Name: `com.sun.enterprise.webservice.client.transport.log` +
 Value: a `file` URL +
@@ -3257,69 +3216,6 @@ responses made through the associated stub will be logged to a file.
         </stub-property>
     </port-info>
 </service-ref>
-----
-
-[[GEYMB]][[setting-call-properties]]
-
-===== 5.4.22.3.3 Setting Call Properties
-
-[source,oac_no_warn]
-----
-element : call-property
-----
-
-Call properties are set on `service-ref` for `Call` objects returned
-from `javax.xml.rpc.Service.createCall()`. This is the only kind of
-`Call` object that is not tied to a port.
-
-[source,oac_no_warn]
-----
-<service-ref>
-      <service-ref-name>service/GoogleSearch</service-ref-name>
-      <call-property>
-        <name>javax.xml.rpc.security.auth.username</name>
-        <value>javaee</value>
-      </call-property>
-      <call-property>
-        <name>javax.xml.rpc.security.auth.password</name>
-        <value>javaee</value>
-      </call-property>
-</service-ref>
-----
-
-Call properties are set within `port-info` for all other
-`javax.xml.rpc.Service` methods that return `Call` objects.
-
-[source,oac_no_warn]
-----
-<module-name>appclient.jar</module-name>
-      <service-ref>
-         <service-ref-name>service/GoogleSearch</service-ref-name>
-         <port-info>
-           <wsdl-port>
-              <namespaceURI>urn:GoogleSearch</namespaceURI>
-              <localpart>GoogleSearchPort</localpart>
-           </wsdl-port>
-           <call-property>
-             <name>javax.xml.rpc.security.auth.username</name>
-             <value>javaee</value>
-           </call-property>
-           <call-property>
-             <name>javax.xml.rpc.security.auth.password</name>
-             <value>javaee</value>
-           </call-property>
-         </port-info>
-      </service-ref>
-----
-
-The allowable properties are defined in the javadoc for
-`javax.xml.rpc.Call`.
-
-[[GEYOG]][[overriding-wsdl]]
-
-===== 5.4.22.3.4 Overriding WSDL
-
-[source,oac_no_warn]
 ----
 element : wsdl-override
 ----
@@ -3543,24 +3439,6 @@ ALTER DATABASE ctsdb
 COLLATE Latin1_General_CS_AS ;
 ----
 
-[[GEXQP]][[deployment-test-setup]]
-
-5.4.26 Deployment Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ensure that the following properties in the `ts.jte` file have been set:
-
-* `deployManagerJarFile.1` property to a JAR file that contains manifest
-entries according to the Jakarta Platform, Enterprise Edition Jakarta Deployment API
-1.2 Specification
-
-* `deployManageruri.1` property to a URI to connect to
-
-* `deployManageruname.1` and `deployManagerpasswd.1` properties to the
-user name and password that are used when connecting to a deployment
-manager, if needed
-
-
 [NOTE]
 =======================================================================
 
@@ -3648,78 +3526,6 @@ s1as.jvm.options=-Dhttp.proxyHost=${http.proxyHost}:
 Note that this is only needed for Jakarta Registries when using an external registry.
 You should not add proxy info when running the rest of the CTS test
 suite.
-
-[[GEXPI]][[jakarta-registries-ts.jte-properties]]
-
-5.4.27.2 Jakarta Registries ts.jte Properties
-+++++++++++++++++++++++++++++++++++++++++++++
-
-For Jakarta Registries testing, make sure the following properties have been set in
-the `<TS_HOME>/bin/ts.jte` file:
-
-* `authenticationMethod`: Authentication method for the Jakarta Registries provider;
-UDDI_GET_AUTHTOKEN is the AuthToken protocol defined by [UDDI_API2]
-
-* `registryURL`: Standard connection property for publishing. for the
-RegistryServer, the UDDI Registry that comes with the _Java Web Services
-Developers Pack_: `registryURL = http://localhost:8080/RegistryServer/`
-
-* `queryManagerURL`: Standard connection property for querying. for the
-RegistryServer, the UDDI Registry that comes with the _Java Web Services
-Developers Pack_:
-`queryManagerURL = http://localhost:8080/RegistryServer/`
-
-* `jaxrPassword`: Used for setting connection credentials; this must be
-set up in the UDDI registry
-
-* `jaxrUser`: Used for setting connection credentials; this must be set
-up in the UDDI registry
-
-* `jaxrUser2`, `jaxrPassword2`: Second account for Association tests +
-For the `RegistryServer` you can use the predefined username and
-passwords. These would be set as follows:
-
-** `jaxrUser=testuser`
-
-** `jaxrPassword=testuser`
-
-** `jaxrUser2=jaxr-sqe`
-
-** `jaxrPassword2=jaxrsqe` +
-If using digital certificates set to `= ""` instead.
-
-* `jaxrSecurityCredentialType`: Tells CTS whether to use
-username/password or digital certificates for Jakarta Registries credentials:
-
-** `0`: Username/password
-
-** `1`: Digital certificates
-
-* `jaxrAlias`: Identifies the entry in the keystore for this user.
-
-* `jaxrAlias2`: Identifies the entry in the keystore for the second user
-
-* `jaxrAliasPassword`: Identifies the password in the keystore for this
-user.
-
-* `jaxrAlias2Password`: Identifies the password in the keystore for the
-second user
-* `jaxrWebContext`: Context root for jaxr html tests pages
-
-* `jaxrConnectionFactoryLookup`: Preferred way for a client to lookup a
-Jakarta Registries ConnectionFactory is to use JNDI; an alternate method is to use the
-`newInstance` static method on the `ConnectionFactory`
-
-** `0` = use JNDI lookup
-
-** `1` = use `newInstance` method.
-
-* `jaxrJNDIResource`: `JAXR` `ConnectionFactoryReference` if JNDI lookup
-is being used; for example `java:comp/env/eis/JAXR`; if not using JNDI
-lookup set to `""`.
-
-* `providerCapabilityLevel`: Provider must set this to the supported
-capability level `0` or `1`
 
 [[GEYPB]][[using-the-javatest-harness-configuration-gui]]
 

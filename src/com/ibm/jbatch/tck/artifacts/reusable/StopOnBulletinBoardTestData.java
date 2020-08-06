@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.ibm.jbatch.tck.artifacts.reusable;
+package com.ibm.jbatch.tck.artifacts.reusable;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;

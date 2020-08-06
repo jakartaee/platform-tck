@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,22 +20,22 @@ package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.websocket.Endpoint;
-import javax.websocket.server.ServerEndpointConfig;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig
-    implements javax.websocket.server.ServerApplicationConfig {
+    implements jakarta.websocket.server.ServerApplicationConfig {
 
   @Override
   public Set<ServerEndpointConfig> getEndpointConfigs(
       Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<ServerEndpointConfig>();
+    Set<ServerEndpointConfig> set = new HashSet<>();
     return set;
   }
 
   @Override
   public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<Class<?>>();
+    Set<Class<?>> set = new HashSet<>();
     return set;
   }
 

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2019 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -140,9 +140,9 @@ local.classes=${ts.home}/classes${pathsep}${servlet.classes}${pathsep}${ts.home}
 
 ts.classpath=${local.classes}${pathsep}${ts.harness.classpath}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/http.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${servlet.classes}${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
 
-servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/endorsed/jakarta.annotation-api.jar
+servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.annotation-api.jar
 
 ########################################################################
 # @endorsedlib.dir - Location to be used for java.endorsed.dirs as some
@@ -192,7 +192,7 @@ env.ts_win32.menu=true
 # The sigTestClasspath specify the location of servlet implementation 
 # classes that used for signature test
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${servlet.classes}
+sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${java.home}/lib/modules${pathsep}${servlet.classes}
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -269,7 +269,7 @@ certLoginUserAlias=cts
 #                        the number of threads used by the client for
 #                        the SingleThreadModel servlet test. If the
 #                        container implementation supports pooling of
-#                        SingleThreadModel serlvets, set the value of
+#                        SingleThreadModel servlets, set the value of
 #                        ServletClientThreads to twice the value of
 #                        the default servlet instance pool size.  If
 #                        the container implementation only maintains

@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,6 +31,11 @@ if [ -z "$GF_HOME" ]; then
   export GF_HOME=$BASEDIR
 fi
 
+
+if [ -z "$GF_TOPLEVEL_DIR" ]; then
+  export GF_TOPLEVEL_DIR=glassfish6
+fi
+
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    echo "Skipping build and using pre-build binary jakartaeetck bundle: $TCK_BUNDLE_BASE_URL/$TCK_BUNDLE_FILE_NAME"
    mkdir -p ${WORKSPACE}/jakartaeetck-bundles
@@ -42,7 +47,7 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    else
      #renaming folder javaeetck to jakartaeetck in the Oracle Bundle
      cd ${WORKSPACE}/jakartaeetck-bundles
-     unzip -o jakartaeetck.zip
+     unzip -q -o jakartaeetck.zip
      mv javaeetck jakartaeetck
      rm -rf jakartaeetck.zip
      zip -r jakartaeetck.zip jakartaeetck
@@ -70,17 +75,22 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/glassfish5/glassfish/modules/endorsed \
+export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
+		 -DenableExternalEntityProcessing=true \
                  -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
-sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/glassfish5/glassfish#g" \
-    -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/glassfish5/glassfish#g" \
+sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish#g" \
+    -e "s#^javaee.home.ri=.*#javaee.home.ri=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish#g" \
     -e "s#^report.dir=.*#report.dir=$BASEDIR/JTReport#g" \
     -e "s#^work.dir=.*#work.dir=$BASEDIR/JTWork#g" $BASEDIR/install/jakartaee/bin/ts.jte > $BASEDIR/install/jakartaee/bin/ts.jte.new
 mv $BASEDIR/install/jakartaee/bin/ts.jte.new $BASEDIR/install/jakartaee/bin/ts.jte
+
+#tools.jar from jdk8 has old apis
+sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/jakartaee/bin/ts.jte
+
 echo "Contents of modified TS.JTE file"
 cat $BASEDIR/install/jakartaee/bin/ts.jte
 
@@ -91,8 +101,9 @@ if [ -z "$GF_BUNDLE_URL" ]; then
   export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
 fi
 wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip -o latest-glassfish.zip
-ls -l $GF_HOME/glassfish5/glassfish/
+unzip -q -o latest-glassfish.zip
+ls -l $GF_HOME/$GF_TOPLEVEL_DIR/glassfish/
+
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
@@ -107,7 +118,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/glassfish5/glassfish/modules/endorsed build.all
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"
@@ -134,14 +145,18 @@ ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles
 
-if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/eclipse-jakartaeetck.zip
-else
-  cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip
-fi
+cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/
+cp ${WORKSPACE}/release/JAKARTAEE_BUILD/latest/jakartaeetck*.zip ${WORKSPACE}/jakartaeetck-bundles/
 
-cp ${WORKSPACE}/release/JAKARTAEE-SMOKE_BUILD/latest/jakartaee-smoke*.zip ${WORKSPACE}/jakartaeetck-bundles/jakartaee-smoke.zip
-
+for entry in `ls *.zip`; do
+  date=`echo "$entry" | cut -d_ -f2`
+  strippedEntry=`echo "$entry" | cut -d_ -f1`
+  if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/jakarta-${strippedEntry}.zip
+  else
+    mv ${WORKSPACE}/jakartaeetck-bundles/$entry ${WORKSPACE}/jakartaeetck-bundles/${strippedEntry}.zip
+  fi
+done
 
 #Generate Version file
 GIT_HASH=`git rev-parse HEAD`

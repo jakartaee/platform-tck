@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -286,8 +286,8 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:106.3; JSTL:SPEC:106.3.1
    * 
    * @testStrategy: Validate that if the configuration variables
-   * javax.servlet.jsp.jstl.fmt.locale and
-   * javax.servlet.jsp.jstl.fmt.localizationContext are available, and the
+   * jakarta.servlet.jsp.jstl.fmt.locale and
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext are available, and the
    * message action is not nested within a bundle action, the message can
    * properly be localized. To try to throw a wrench in things, the client will
    * send a preferred locale across the wire that, if used, will not resolve to
@@ -330,7 +330,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:107.1; JSTL:SPEC:107.1.1; JSTL:SPEC:107.2;
    * JSTL:SPEC:107.2.1; JSTL:SPEC:107.3; JSTL:SPEC:107.4
    * 
-   * @test_Strategy: validates javax.servlet.jsp.jstl.fmt.LocaleSupport for
+   * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
    * static getLocalizedMessage() methods.
    */
 
@@ -350,7 +350,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:107.1.2; JSTL:SPEC:107.2.2
    * 
-   * @test_Strategy: validates javax.servlet.jsp.jstl.fmt.LocaleSupport for
+   * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
    * static getLocalizedMessage() methods.
    */
 

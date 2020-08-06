@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,31 +20,31 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.interceptor.listener.descriptor;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.interceptor.Interceptors;
-import javax.annotation.Resource;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.interceptor.Interceptors;
+import jakarta.annotation.Resource;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-import javax.ejb.MessageDrivenContext;
-import javax.ejb.MessageDriven;
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.Message;
-import javax.jms.MessageListener;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB1;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB2;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 @MessageDriven(name = "AroundInvokeBean", description = "A Simple MDB AroundInvokeBean", messageListenerInterface = MessageListener.class)
 
 // activationConfig ={
 // @ActivationConfigProperty(propertyName="destinationType",
-// propertyValue="javax.jms.Queue")
+// propertyValue="jakarta.jms.Queue")
 
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -93,7 +93,7 @@ public class AroundInvokeBean extends AroundInvokeBase {
   }
 
   // ============ abstract methods from super ==========================
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return this.ejbContext;
   }
 }

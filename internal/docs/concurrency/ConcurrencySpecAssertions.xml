@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -194,27 +194,27 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.1</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskAborted()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskAborted()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.2</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskSubmitted()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskSubmitted()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.3</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener - taskStarting()</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener - taskStarting()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.4</id>
-                    <description>javax.enterprise.concurrent.Trigger - getNextRunTime()</description>
+                    <description>jakarta.enterprise.concurrent.Trigger - getNextRunTime()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:7.5</id>
-                    <description>javax.enterprise.concurrent.Trigger - skipRun()</description>
+                    <description>jakarta.enterprise.concurrent.Trigger - skipRun()</description>
                     <location chapter="2" section="3.1.1"/>
                 </assertion>
             </sub-assertions>
@@ -226,12 +226,12 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:8.1</id>
-                    <description>a javax.enterprise.concurrent.ManagedExecutorService</description>
+                    <description>a jakarta.enterprise.concurrent.ManagedExecutorService</description>
                     <location chapter="2" section="4"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:8.2</id>
-                    <description>or java.util.concurrent.ExecutorService with a javax.enterprise.concurrent.ManagedThreadFactory.</description>
+                    <description>or java.util.concurrent.ExecutorService with a jakarta.enterprise.concurrent.ManagedThreadFactory.</description>
                     <location chapter="2" section="4"/>
                 </assertion>
             </sub-assertions>
@@ -255,7 +255,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:10.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedExecutorService.
+                        jakarta.enterprise.concurrent.ManagedExecutorService.
                     </description>
                     <location chapter="3" section="1.1"/>
                 </assertion>
@@ -284,7 +284,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:13</id>
-            <description>Task classes can optionally implement the javax.enterprise.concurrent.ManagedTask interface</description>
+            <description>Task classes can optionally implement the jakarta.enterprise.concurrent.ManagedTask interface</description>
             <location chapter="3" section="1.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -343,7 +343,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:16</id>
-            <description>Java EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the javax.enterprise.concurrent.ManagedTaskListener interface.</description>
+            <description>Java EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the jakarta.enterprise.concurrent.ManagedTaskListener interface.</description>
             <location chapter="3" section="1.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -480,7 +480,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:30</id>
-            <description>ManagedExecutorService implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</description>
+            <description>ManagedExecutorService implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</description>
             <location chapter="3" section="1.8"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -507,7 +507,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:32</id>
-            <description>The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+            <description>The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </description>
             <location chapter="3" section="1.8.1"/>
@@ -528,7 +528,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:35</id>
-            <description>A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction..</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction..</description>
             <location chapter="3" section="1.8.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -543,7 +543,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:38</id>
-            <description>The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</description>
+            <description>The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</description>
             <location chapter="3" section="1.8.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -590,7 +590,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:42.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedScheduledExecutorService.
+                        jakarta.enterprise.concurrent.ManagedScheduledExecutorService.
                     </description>
                     <location chapter="3" section="2.1"/>
                 </assertion>
@@ -667,7 +667,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:45</id>
-            <description>Task classes can optionally implement the javax.enterprise.concurrent.ManagedTask interface to provide</description>
+            <description>Task classes can optionally implement the jakarta.enterprise.concurrent.ManagedTask interface to provide</description>
             <location chapter="3" section="2.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -699,7 +699,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:46.2</id>
-                    <description>javax.enterprise.concurrent.ManagedTaskListener thread</description>
+                    <description>jakarta.enterprise.concurrent.ManagedTaskListener thread</description>
                     <location chapter="3" section="2.4"/>
                 </assertion>
             </sub-assertions>
@@ -859,7 +859,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:63</id>
-            <description>ManagedScheduledExecutorService implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</description>
+            <description>ManagedScheduledExecutorService implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</description>
             <location chapter="3" section="2.8"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -886,7 +886,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:65</id>
-            <description>The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+            <description>The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </description>
             <location chapter="3" section="2.8.1"/>
@@ -907,7 +907,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:68</id>
-            <description>A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
             <location chapter="3" section="2.8.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -922,7 +922,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:71</id>
-            <description>The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</description>
+            <description>The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</description>
             <location chapter="3" section="2.8.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -959,7 +959,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:76.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ContextService.
+                        jakarta.enterprise.concurrent.ContextService.
                     </description>
                     <location chapter="3" section="3.1"/>
                 </assertion>
@@ -1047,7 +1047,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:86</id>
-            <description>Contextual dynamic proxies support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface</description>
+            <description>Contextual dynamic proxies support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface</description>
             <location chapter="3" section="3.5"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1082,7 +1082,7 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:91.1</id>
-                    <description>The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+                    <description>The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                         as environment entry: java:comp/UserTransaction
                     </description>
                     <location chapter="3" section="3.5.1"/>
@@ -1103,7 +1103,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:91.4</id>
-                    <description>A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+                    <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
                     <location chapter="3" section="3.5.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1127,7 +1127,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:92.2</id>
-                    <description>The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</description>
+                    <description>The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</description>
                     <location chapter="3" section="3.5.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1153,7 +1153,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:93</id>
-            <description>The javax.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
+            <description>The jakarta.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
                 Java EE Product Provider without creating new java.lang.Thread instances directly.
             </description>
             <location chapter="3" section="4"/>
@@ -1180,7 +1180,7 @@
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:96.1</id>
                     <description>Assign an entry in the application component’s environment to the reference using the reference type of:
-                        javax.enterprise.concurrent.ManagedThreadFactory.
+                        jakarta.enterprise.concurrent.ManagedThreadFactory.
                     </description>
                     <location chapter="3" section="4.1"/>
                 </assertion>
@@ -1322,7 +1322,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:107</id>
-            <description>ManagedThreadFactory implementations must support user-managed global transaction demarcation using the javax.transaction.UserTransaction interface,</description>
+            <description>ManagedThreadFactory implementations must support user-managed global transaction demarcation using the jakarta.transaction.UserTransaction interface,</description>
             <location chapter="3" section="4.6"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1332,7 +1332,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:109</id>
-            <description>The javax.transaction.UserTransaction interface must be made available in the local JNDI namespace
+            <description>The jakarta.transaction.UserTransaction interface must be made available in the local JNDI namespace
                 as environment entry: java:comp/UserTransaction
             </description>
             <location chapter="3" section="4.6.1"/>
@@ -1353,7 +1353,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:112</id>
-            <description>A task instance that starts a transaction using the javax.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
             <location chapter="3" section="4.6.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1368,7 +1368,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:115</id>
-            <description>The task provider uses the javax.transaction.UserTransaction interface to demarcate transactions.</description>
+            <description>The task provider uses the jakarta.transaction.UserTransaction interface to demarcate transactions.</description>
             <location chapter="3" section="4.6.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

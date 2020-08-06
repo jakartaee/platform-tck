@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@
     <fmt:setLocale value="en_US"/>
     <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
 
-    <!-- If the javax.servlet.jsp.jstl.fmt.locale attribute
+    <!-- If the jakarta.servlet.jsp.jstl.fmt.locale attribute
              is present, it will take precedence over the browser
              supplied preferred locales. --> 
     <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="p2"/>

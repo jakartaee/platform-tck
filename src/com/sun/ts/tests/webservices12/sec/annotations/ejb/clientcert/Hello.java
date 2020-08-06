@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,16 +21,16 @@
 
 package com.sun.ts.tests.webservices12.sec.annotations.ejb.clientcert;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.DenyAll;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.DenyAll;
 
-import javax.ejb.Stateless;
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.xml.ws.WebServiceContext;
-import javax.annotation.Resource;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.annotation.Resource;
 
 @WebService
 @Stateless

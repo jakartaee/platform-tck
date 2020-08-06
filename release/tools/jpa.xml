@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
 
-    <property name="deliverable.version" value="2.2"/>
-    <property name="deliverable.tck.version" value="2.2.0"/>
+    <property name="deliverable.version" value="3.0"/>
+    <property name="deliverable.tck.version" value="3.0.0"/>
 
     <target name="init">
         <mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -82,9 +82,10 @@
         <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
             <fileset dir="${ts.home}/install/jpa/docs" excludes="**svn**, **/*2.1*" />
         </copy>
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy> 
+        </copy--> 
         <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>                     
     </target>
@@ -133,7 +134,7 @@
                                com/sun/ts/tests/common/vehicle/ejb3share/*,
                                com/sun/ts/tests/signaturetest/jpa/**/*,
                                com/sun/ts/tests/signaturetest/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.persistence.*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.persistence.*"
                       excludes="**/*log,com/sun/ts/tests/common/web,
                                com/sun/ts/tests/signaturetest/*Record*,
                                com/sun/ts/tests/signaturetest/*record*,

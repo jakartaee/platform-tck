@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,11 +23,11 @@ package com.sun.ts.tests.common.vehicle.wsejb;
 import java.io.*;
 import java.net.*;
 import java.rmi.Remote;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.util.*;
-import javax.xml.ws.WebServiceRef;
-import javax.xml.ws.WebServiceRefs;
-import javax.jws.HandlerChain;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.xml.ws.WebServiceRefs;
+import jakarta.jws.HandlerChain;
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.*;
 import com.sun.javatest.Status;

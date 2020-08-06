@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.invocationcontext;
 
-import javax.annotation.ManagedBean;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
+import jakarta.annotation.ManagedBean;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;

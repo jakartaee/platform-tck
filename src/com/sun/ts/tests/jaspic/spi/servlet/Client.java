@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,8 +34,8 @@ import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.tests.jaspic.util.LogFileProcessor;
 import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
 
-import javax.security.auth.message.config.AuthConfigFactory;
-import javax.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
@@ -2016,8 +2016,8 @@ public class Client extends EETest {
   public void CheckMessageInfo() throws Fault {
     String strMsg1 = "validateRequest: MessageInfo.getRequestMessage() is of type ";
     String strMsg2 = "validateRequest: MessageInfo.getResponseMessage() is of type ";
-    String tempArgs[] = { strMsg1 + "javax.servlet.http.HttpServletRequest",
-        strMsg2 + "javax.servlet.http.HttpServletResponse" };
+    String tempArgs[] = { strMsg1 + "jakarta.servlet.http.HttpServletRequest",
+        strMsg2 + "jakarta.servlet.http.HttpServletResponse" };
 
     // this should work for servlets and static pages
     // invoking a static should cause the validateRequest to be called
@@ -2263,7 +2263,7 @@ public class Client extends EETest {
    *                 key-value pair within the Map of the MessageInfo object
    *                 passed in the calls to getAuthContextID, validateRequest,
    *                 and secureResponse. (key)
-   *                 javax.security.auth.message.MessagePolicy.isMandatory (val)
+   *                 jakarta.security.auth.message.MessagePolicy.isMandatory (val)
    *                 Any non-null String value, s, for which
    *                 Boolean.valueOf(s).booleanValue() == true. The MessageInfo
    *                 map must contain this key and its associated value, if and
@@ -2272,7 +2272,7 @@ public class Client extends EETest {
    *                 ServerAuthContext will be applied.
    *
    *                 If we are 115 compatible, there is an additional test we
-   *                 must make. The key=javax.security.jacc.PolicyContext better
+   *                 must make. The key=jakarta.security.jacc.PolicyContext better
    *                 exist in the Properties arg passed into getAuthContext().
    *
    */
@@ -2280,7 +2280,7 @@ public class Client extends EETest {
     String CMN_HDR = "dumpServletProfileKeys() called with attrs:  layer=HttpServlet";
     CMN_HDR += " servletName=/ModTestServlet callerMethod=";
 
-    String CMN_TAIL = " key=javax.security.auth.message.MessagePolicy.isMandatory";
+    String CMN_TAIL = " key=jakarta.security.auth.message.MessagePolicy.isMandatory";
     CMN_TAIL += " value=Valid";
 
     String strAuthCtxt = CMN_HDR + "getAuthContextID" + CMN_TAIL;
@@ -2303,7 +2303,7 @@ public class Client extends EETest {
     if (bIs115Compatible) {
       String HDR = "layer=HttpServlet appContext=" + appContext;
       String str1 = HDR
-          + " Key=javax.security.jacc.PolicyContext does exist thus 115 compatible";
+          + " Key=jakarta.security.jacc.PolicyContext does exist thus 115 compatible";
       String arg1[] = { str1 };
 
       invokeServlet(servletPath, "POST", "CheckMsgInfoKey");
@@ -2719,8 +2719,8 @@ public class Client extends EETest {
    * 
    */
   public void checkForinvalidMsgInfoMapKey() throws Fault {
-    String strMsg1 = "ERROR - invalid setting for javax.servlet.http.authType = null";
-    String strMsg2 = "ERROR - mismatch value set for javax.servlet.http.authType and getAuthType()";
+    String strMsg1 = "ERROR - invalid setting for jakarta.servlet.http.authType = null";
+    String strMsg2 = "ERROR - mismatch value set for jakarta.servlet.http.authType and getAuthType()";
     String tempArgs1[] = { strMsg1, strMsg2 };
 
     // verify that we had NO mismatches between getAuthType() and

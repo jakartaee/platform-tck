@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,24 +20,24 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest;
 
-import javax.xml.ws.WebServiceException;
-import javax.xml.soap.*;
-import javax.activation.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
 import javax.xml.transform.stream.*;
 import javax.xml.transform.*;
 import java.net.*;
 import java.awt.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaTestOnePort", serviceName = "WSIDLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest1")
 
 public class SwaTestImpl1 implements SwaTest1 {
   public void getMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestGet request,
-      javax.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponse> response,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2) {
+      jakarta.xml.ws.Holder<com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponse> response,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2) {
     try {
       System.out.println("Enter getMultipleAttachments() ......");
       OutputResponse theResponse = new OutputResponse();
@@ -58,8 +58,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString putMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestPut request,
-      javax.activation.DataHandler attach1,
-      javax.activation.DataHandler attach2) {
+      jakarta.activation.DataHandler attach1,
+      jakarta.activation.DataHandler attach2) {
     try {
       OutputResponseString theResponse = new OutputResponseString();
       theResponse.setMyString("ok");
@@ -81,8 +81,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponse echoMultipleAttachments(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2) {
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2) {
     try {
       System.out.println("Enter echoMultipleAttachments() ......");
       OutputResponse theResponse = new OutputResponse();
@@ -126,11 +126,11 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseAll echoAllAttachmentTypes(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.VoidRequest request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2,
-      javax.xml.ws.Holder<javax.xml.transform.Source> attach3,
-      javax.xml.ws.Holder<java.awt.Image> attach4,
-      javax.xml.ws.Holder<java.awt.Image> attach5) {
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2,
+      jakarta.xml.ws.Holder<javax.xml.transform.Source> attach3,
+      jakarta.xml.ws.Holder<java.awt.Image> attach4,
+      jakarta.xml.ws.Holder<java.awt.Image> attach5) {
     try {
       System.out.println("Enter echoAllAttachmentTypes() ......");
       OutputResponseAll theResponse = new OutputResponseAll();
@@ -186,8 +186,8 @@ public class SwaTestImpl1 implements SwaTest1 {
 
   public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponse echoAttachmentsAndThrowAFault(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestThrowAFault request,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2)
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2)
       throws com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.MyFault {
     System.out.println("Enter echoAttachmentsAndThrowAFault() ......");
     System.out.println("Throwing back a fault [MyFault] ......");
@@ -197,8 +197,8 @@ public class SwaTestImpl1 implements SwaTest1 {
   public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponse echoAttachmentsWithHeader(
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestWithHeader request,
       com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.MyHeader header,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach1,
-      javax.xml.ws.Holder<javax.activation.DataHandler> attach2)
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach1,
+      jakarta.xml.ws.Holder<jakarta.activation.DataHandler> attach2)
       throws com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.MyFault {
     System.out.println("Enter echoAttachmentsWithHeader() ......");
     if (header.getMessage().equals("do throw a fault")) {

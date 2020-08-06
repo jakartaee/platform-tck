@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,7 +68,7 @@
         If the f:actionListener tag is not nested inside a UIComponent custom 
         action, or the UIComponent implementation class does not correctly 
         implement ActionSource, or the specified listener class does not 
-        implement javax.faces.event.ActionListener, throw a JspException.
+        implement jakarta.faces.event.ActionListener, throw a JspException.
     </description>
     <location chapter="9" section="4.1"/>
 </assertion>
@@ -95,7 +95,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterTag.
+                Must extend jakarta.faces.webapp.ConverterTag.
             </description>
             <location chapter="9" section="4.3"/>
         </assertion>
@@ -107,8 +107,8 @@
                 call getValue() on it to obtain a reference to the
                 Converter instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, it must then cast the returned 
-                instance to javax.faces.convert.DateTimeConverter and configure 
+                jakarta.faces.convert.Converter, it must then cast the returned 
+                instance to jakarta.faces.convert.DateTimeConverter and configure 
                 its properties based on the specified attributes for this custom 
                 action, and return the configured instance. 
             </description>
@@ -174,7 +174,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterTag.
+                Must extend jakarta.faces.webapp.ConverterTag.
             </description>
             <location chapter="9" section="4.4"/>
         </assertion>
@@ -186,8 +186,8 @@
                 binding.getValue() to obtain a reference to the Converter 
                 instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, it must then cast the returned 
-                instance to javax.faces.convert.NumberConverter and configure 
+                jakarta.faces.convert.Converter, it must then cast the returned 
+                instance to jakarta.faces.convert.NumberConverter and configure 
                 its properties based on the specified attributes for this custom 
                 action, and return the configured instance. 
             </description>
@@ -208,10 +208,10 @@
             <description>
                 Call the createConverter() method of the Application 
                 instance for this application, passing converter id 
-                “javax.faces.Number”. If the binding attribute was also set, 
+                “jakarta.faces.Number”. If the binding attribute was also set, 
                 store the converter instance by calling binding.setValue(). It 
                 must then cast the returned instance to 
-                javax.faces.convert.NumberConverter and configure its properties
+                jakarta.faces.convert.NumberConverter and configure its properties
                 based on the specified attributes for this custom action, and 
                 return the configured instance.
             </description>
@@ -242,7 +242,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ConverterJspTag.
+                Must extend jakarta.faces.webapp.ConverterJspTag.
             </description>
             <location chapter="9" section="4.5"/>
         </assertion>
@@ -254,7 +254,7 @@
                 binding.getValue() to obtain a reference to the Converter 
                 instance. If there is no exception thrown, and 
                 binding.getValue() returned a non-null object that implements 
-                javax.faces.convert.Converter, register it by calling 
+                jakarta.faces.convert.Converter, register it by calling 
                 setConverter(). If there was an exception thrown, rethrow 
                 the exception as a JspException.
             </description>
@@ -303,7 +303,7 @@
     <id>__NUMBER__</id>
     <description>
         The implementation class of the f:facet tag must be, or extend, 
-        javax.faces.webapp.FacetTag.
+        jakarta.faces.webapp.FacetTag.
     </description>
     <location chapter="9" section="4.6"/>
 </assertion>
@@ -336,7 +336,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.8"/>
         </assertion>  
@@ -371,7 +371,7 @@
     <id>__NUMBER__</id>
     <description>
         The specified listener class for f:phaseListener must implement 
-        javax.faces.event.PhaseListener.
+        jakarta.faces.event.PhaseListener.
     </description>
     <location chapter="9" section="4.9"/>
 </assertion>
@@ -405,7 +405,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.10"/>
         </assertion>
@@ -449,7 +449,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.UIComponentELTag.
+                Must extend jakarta.faces.UIComponentELTag.
             </description>
             <location chapter="9" section="4.11"/>
         </assertion>
@@ -458,7 +458,7 @@
             <id>__NUMBER__.2</id>
             <description>
                 The getComponentType() method must return 
-                “javax.faces.SelectItems”.
+                “jakarta.faces.SelectItems”.
             </description>
             <location chapter="9" section="4.11"/>
         </assertion>
@@ -527,7 +527,7 @@
         If this tag is not nested inside a UIComponent custom action, or the 
         UIComponent implementation class does not correctly implement 
         ActionSource, or the specified listener class does not implement
-        javax.faces.event.ActionListener, throw a JspException.
+        jakarta.faces.event.ActionListener, throw a JspException.
     </description>
     <location chapter="9" section="4.12"/>
 </assertion>
@@ -563,7 +563,7 @@
     <id>__NUMBER__</id>
     <description>
         The implementation class for f:subview must extend 
-        javax.faces.UIComponentELTag.
+        jakarta.faces.UIComponentELTag.
     </description>
     <location chapter="9" section="4.13"/>
 </assertion>
@@ -607,7 +607,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.14"/>
         </assertion>
@@ -666,7 +666,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.15"/>
         </assertion>
@@ -751,7 +751,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorTag.
+                Must extend jakarta.faces.webapp.ValidatorTag.
             </description>
             <location chapter="9" section="4.16"/>
         </assertion>
@@ -827,7 +827,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.webapp.ValidatorJspTag.
+                Must extend jakarta.faces.webapp.ValidatorJspTag.
             </description>
             <location chapter="9" section="4.17"/>
         </assertion>
@@ -886,7 +886,7 @@
     <id>__NUMBER__</id>
     <description>
         The specified listener class for f:valueChangeListener must implement 
-        javax.faces.event.ValueChangeListener.
+        jakarta.faces.event.ValueChangeListener.
     </description>
     <location chapter="9" section="4.18"/>
 </assertion>
@@ -905,7 +905,7 @@
         If this tag is not nested inside a UIComponent custom action, or the
         UIComponent implementation class does not correctly implement
         EditableValueHolder, or the specified listener class does not implement
-        javax.faces.event.ValueChangeListener, throw a JspException.
+        jakarta.faces.event.ValueChangeListener, throw a JspException.
     </description>
     <location chapter="9" section="4.18"/>
 </assertion>
@@ -922,7 +922,7 @@
     <id>__NUMBER__</id>
     <description>
         The rendererType property for the f:verbatim tag's UIOutput component
-        must be set to “javax.faces.Text”
+        must be set to “jakarta.faces.Text”
     </description>
     <location chapter="9" section="4.19"/>
 </assertion>
@@ -949,7 +949,7 @@
     <id>__NUMBER__</id>
     <description>
         Any JSP-created response using actions from the JSF Core Tag Library, 
-        as well as actions extending javax.faces.webapp.UIComponentELTag from 
+        as well as actions extending jakarta.faces.webapp.UIComponentELTag from 
         other tag libraries, must be nested inside an occurrence of the 
         f:view action.
     </description>
@@ -968,7 +968,7 @@
                    status="active" testable="true">
             <id>__NUMBER__.1</id>
             <description>
-                Must extend javax.faces.UIComponentBodyTag.
+                Must extend jakarta.faces.UIComponentBodyTag.
             </description>
             <location chapter="9" section="4.20"/>
         </assertion>
@@ -1047,7 +1047,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 Action column: 
-                getComponentType()- returns javax.faces.Column
+                getComponentType()- returns jakarta.faces.Column
                 getRendererType()- returns (null)*
             </description>
             <location chapter="9" section="5.0"/>
@@ -1057,8 +1057,8 @@
             <id>__NUMBER__.2</id>
             <description>
                 Action commandButton:
-                getComponentType()- returns javax.faces.HtmlCommandButton
-                getRendererType()- returns javax.faces.Button
+                getComponentType()- returns jakarta.faces.HtmlCommandButton
+                getRendererType()- returns jakarta.faces.Button
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1067,8 +1067,8 @@
             <id>__NUMBER__.3</id>
             <description>
                 Action commandLink:
-                getComponentType()- returns javax.faces.HtmlCommandLink
-                getRendererType()- returns javax.faces.Link
+                getComponentType()- returns jakarta.faces.HtmlCommandLink
+                getRendererType()- returns jakarta.faces.Link
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1077,8 +1077,8 @@
             <id>__NUMBER__.4</id>
             <description>
                 Action dataTable:
-                getComponentType()- returns javax.faces.HtmlDataTable
-                getRendererType()- returns javax.faces.Table
+                getComponentType()- returns jakarta.faces.HtmlDataTable
+                getRendererType()- returns jakarta.faces.Table
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1087,8 +1087,8 @@
             <id>__NUMBER__.5</id>
             <description>
                 Action form:
-                getComponentType()- returns javax.faces.HtmlForm
-                getRendererType()- returns javax.faces.Form
+                getComponentType()- returns jakarta.faces.HtmlForm
+                getRendererType()- returns jakarta.faces.Form
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1097,8 +1097,8 @@
             <id>__NUMBER__.6</id>
             <description>
                 Action graphicImage:
-                getComponentType()- returns javax.faces.HtmlGraphicImage
-                getRendererType()- returns javax.faces.Image
+                getComponentType()- returns jakarta.faces.HtmlGraphicImage
+                getRendererType()- returns jakarta.faces.Image
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1107,8 +1107,8 @@
             <id>__NUMBER__.7</id>
             <description>
                 Action inputHidden:
-                getComponentType()- returns javax.faces.HtmlInputHidden
-                getRendererType()- returns javax.faces.Hidden
+                getComponentType()- returns jakarta.faces.HtmlInputHidden
+                getRendererType()- returns jakarta.faces.Hidden
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1117,8 +1117,8 @@
             <id>__NUMBER__.8</id>
             <description>
                 Action inputSecret:
-                getComponentType()- returns javax.faces.HtmlInputSecret
-                getRendererType()- returns javax.faces.Secret
+                getComponentType()- returns jakarta.faces.HtmlInputSecret
+                getRendererType()- returns jakarta.faces.Secret
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1127,8 +1127,8 @@
             <id>__NUMBER__.9</id>
             <description>
                 Action inputSecret:
-                getComponentType()- returns javax.faces.HtmlInputSecret
-                getRendererType()- returns javax.faces.Secret
+                getComponentType()- returns jakarta.faces.HtmlInputSecret
+                getRendererType()- returns jakarta.faces.Secret
             </description>
             <location chapter="" section=""/>
         </assertion>
@@ -1137,8 +1137,8 @@
             <id>__NUMBER__.10</id>
             <description>
                 Action inputText:
-                getComponentType()- returns javax.faces.HtmlInputText
-                getRendererType()- returns javax.faces.Text
+                getComponentType()- returns jakarta.faces.HtmlInputText
+                getRendererType()- returns jakarta.faces.Text
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1147,8 +1147,8 @@
             <id>__NUMBER__.11</id>
             <description>
                 Action inputTextarea:
-                getComponentType()- returns javax.faces.HtmlInputTextarea
-                getRendererType()- returns javax.faces.Textarea
+                getComponentType()- returns jakarta.faces.HtmlInputTextarea
+                getRendererType()- returns jakarta.faces.Textarea
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1157,8 +1157,8 @@
             <id>__NUMBER__.12</id>
             <description>
                 Action message:
-                getComponentType()- returns javax.faces.HtmlMessage
-                getRendererType()- returns javax.faces.Message
+                getComponentType()- returns jakarta.faces.HtmlMessage
+                getRendererType()- returns jakarta.faces.Message
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1167,8 +1167,8 @@
             <id>__NUMBER__.13</id>
             <description>
                 Action messages:
-                getComponentType()- returns javax.faces.HtmlMessages
-                getRendererType()- returns javax.faces.Messages
+                getComponentType()- returns jakarta.faces.HtmlMessages
+                getRendererType()- returns jakarta.faces.Messages
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1177,8 +1177,8 @@
             <id>__NUMBER__.14</id>
             <description>
                 Action outputFormat:
-                getComponentType()- returns javax.faces.HtmlOutputFormat
-                getRendererType()- returns javax.faces.Format
+                getComponentType()- returns jakarta.faces.HtmlOutputFormat
+                getRendererType()- returns jakarta.faces.Format
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1187,8 +1187,8 @@
             <id>__NUMBER__.15</id>
             <description>
                 Action outputLabel:
-                getComponentType()- returns javax.faces.HtmlOutputLabel
-                getRendererType()- returns javax.faces.Label
+                getComponentType()- returns jakarta.faces.HtmlOutputLabel
+                getRendererType()- returns jakarta.faces.Label
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1197,8 +1197,8 @@
             <id>__NUMBER__.16</id>
             <description>
                 Action outputLink:
-                getComponentType()- returns javax.faces.HtmlOutputLink
-                getRendererType()- returns javax.faces.Link
+                getComponentType()- returns jakarta.faces.HtmlOutputLink
+                getRendererType()- returns jakarta.faces.Link
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1207,8 +1207,8 @@
             <id>__NUMBER__.17</id>
             <description>
                 Action outputText:
-                getComponentType()- returns javax.faces.HtmlOutputText
-                getRendererType()- returns javax.faces.Text
+                getComponentType()- returns jakarta.faces.HtmlOutputText
+                getRendererType()- returns jakarta.faces.Text
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1217,8 +1217,8 @@
             <id>__NUMBER__.18</id>
             <description>
                 Action panelGrid:
-                getComponentType()- returns javax.faces.HtmlPanelGrid
-                getRendererType()- returns javax.faces.Grid
+                getComponentType()- returns jakarta.faces.HtmlPanelGrid
+                getRendererType()- returns jakarta.faces.Grid
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1227,8 +1227,8 @@
             <id>__NUMBER__.19</id>
             <description>
                 Action panelGroup:
-                getComponentType()- returns javax.faces.HtmlPanelGroup
-                getRendererType()- returns javax.faces.Group
+                getComponentType()- returns jakarta.faces.HtmlPanelGroup
+                getRendererType()- returns jakarta.faces.Group
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1238,8 +1238,8 @@
             <description>
                 Action selectBooleanCheckbox:
                 getComponentType()- 
-                returns javax.faces.HtmlSelectBooleanCheckbox
-                getRendererType()- returns javax.faces.Checkbox
+                returns jakarta.faces.HtmlSelectBooleanCheckbox
+                getRendererType()- returns jakarta.faces.Checkbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1248,8 +1248,8 @@
             <id>__NUMBER__.21</id>
             <description>
                 Action selectManyListbox:
-                getComponentType()- returns javax.faces.HtmlSelectManyListbox
-                getRendererType()- returns javax.faces.Listbox
+                getComponentType()- returns jakarta.faces.HtmlSelectManyListbox
+                getRendererType()- returns jakarta.faces.Listbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1258,8 +1258,8 @@
             <id>__NUMBER__.22</id>
             <description>
                 Action selectManyMenu:
-                getComponentType()- returns javax.faces.HtmlSelectManyMenu
-                getRendererType()- returns javax.faces.Menu
+                getComponentType()- returns jakarta.faces.HtmlSelectManyMenu
+                getRendererType()- returns jakarta.faces.Menu
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1268,8 +1268,8 @@
             <id>__NUMBER__.23</id>
             <description>
                 Action selectOneListbox:
-                getComponentType()- returns javax.faces.HtmlSelectOneListbox
-                getRendererType()- returns javax.faces.Listbox
+                getComponentType()- returns jakarta.faces.HtmlSelectOneListbox
+                getRendererType()- returns jakarta.faces.Listbox
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1278,8 +1278,8 @@
             <id>__NUMBER__.24</id>
             <description>
                 Action selectOneMenu:
-                getComponentType()- returns javax.faces.HtmlSelectOneMenu
-                getRendererType()- returns javax.faces.Menu
+                getComponentType()- returns jakarta.faces.HtmlSelectOneMenu
+                getRendererType()- returns jakarta.faces.Menu
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>
@@ -1288,8 +1288,8 @@
             <id>__NUMBER__.25</id>
             <description>
                 Action selectOneRadio:
-                getComponentType()- returns javax.faces.HtmlSelectOneRadio
-                getRendererType()- returns javax.faces.Radio
+                getComponentType()- returns jakarta.faces.HtmlSelectOneRadio
+                getRendererType()- returns jakarta.faces.Radio
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>        
@@ -1320,12 +1320,12 @@
                    status="active" testable="true">
             <id>__NUMBER__.2</id>
             <description>
-                If the type of the attribute is javax.el.MethodExpression, the 
+                If the type of the attribute is jakarta.el.MethodExpression, the 
                 TLD for the attribute must contain a &lt;deferred-method&gt; 
                 with a nested &lt;method-signature&gt;, inside of which is the
                 method signature for that MethodExpression, as given in the 
                 TLDDocs. The JavaBeans setter method in the tag handler for the 
-                tag must  be of type javax.el.MethodExpression.
+                tag must  be of type jakarta.el.MethodExpression.
             </description>
             <location chapter="9" section="5.0"/>
         </assertion>

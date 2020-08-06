@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,19 +18,19 @@ package com.sun.ts.tests.connector.resourceDefs.ejb;
 
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
 import java.security.AccessController;
 import java.security.AccessControlException;
 
-import javax.resource.ConnectionFactoryDefinitions;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.spi.TransactionSupport.TransactionSupportLevel;
-import javax.resource.spi.TransactionSupport;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.ConnectionFactoryDefinitions;
-import javax.resource.cci.Connection;
-import javax.resource.cci.ConnectionFactory;
+import jakarta.resource.ConnectionFactoryDefinitions;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.spi.TransactionSupport.TransactionSupportLevel;
+import jakarta.resource.spi.TransactionSupport;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.ConnectionFactoryDefinitions;
+import jakarta.resource.cci.Connection;
+import jakarta.resource.cci.ConnectionFactory;
 
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;

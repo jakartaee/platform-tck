@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,12 +24,12 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.busiface.TestBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.TestIF;
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Remove;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateful;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 
 //no-attribute @Remote and @Local should work if there is only one potential
 //business interface, which can only be TestIF for this bean.

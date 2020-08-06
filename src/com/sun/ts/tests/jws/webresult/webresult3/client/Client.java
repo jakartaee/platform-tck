@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -193,7 +193,7 @@ public class Client extends ServiceEETest {
     InitialContext ctx = new InitialContext();
     TestUtil.logMsg("Obtained InitialContext");
     TestUtil.logMsg("Lookup java:comp/env/service/WebResultwebservice");
-    javax.xml.ws.Service svc = (javax.xml.ws.Service) ctx
+    jakarta.xml.ws.Service svc = (jakarta.xml.ws.Service) ctx
         .lookup("java:comp/env/service/WebResultwebservice");
     TestUtil.logMsg("Obtained service");
     TestUtil.logMsg("Get port");

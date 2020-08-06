@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-@javax.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl", serviceName = "SimpleTest", portName = "SimpleEndpointPort", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
+@jakarta.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl", serviceName = "SimpleTest", portName = "SimpleEndpointPort", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
   public String helloWorld() {
     return "hello world";
@@ -54,8 +54,8 @@ public class SimpleEndpointImpl implements SimpleEndpoint {
     return "success";
   }
 
-  public String holderOperation(javax.xml.ws.Holder<java.lang.String> holder1,
-      javax.xml.ws.Holder<java.lang.String> holder2) {
+  public String holderOperation(jakarta.xml.ws.Holder<java.lang.String> holder1,
+      jakarta.xml.ws.Holder<java.lang.String> holder2) {
     return "success";
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,10 +36,10 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 
-import javax.ejb.ScheduleExpression;
-import javax.ejb.Timer;
-import javax.ejb.TimerConfig;
-import javax.ejb.TimerService;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TimerService;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 
@@ -264,17 +264,33 @@ public final class TimerUtil {
   }
 
   public static Timer createSecondLaterTimer(TimerService timerService,
+      String testName, int seconds) {
+    return createSecondLaterTimer(timerService, new TimerInfo(testName),
+            seconds);
+  }
+
+  public static Timer createSecondLaterTimer(TimerService timerService,
       TimerConfig timerConfig) {
+    return createSecondLaterTimer(timerService, timerConfig, 1);
+  }
+
+  public static Timer createSecondLaterTimer(TimerService timerService,
+      TimerConfig timerConfig, int seconds) {
     Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.SECOND, 1); // next second
+    cal.add(Calendar.SECOND, seconds); // certain seconds later
     return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
         timerConfig);
   }
 
   public static Timer createSecondLaterTimer(TimerService timerService,
       TimerInfo info) {
+    return createSecondLaterTimer(timerService, info, 1);
+  }
+
+  public static Timer createSecondLaterTimer(TimerService timerService,
+      TimerInfo info, int seconds) {
     Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.SECOND, 1); // next second
+    cal.add(Calendar.SECOND, seconds); // certain seconds later
     return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
         new TimerConfig(info, true));
   }
@@ -334,14 +350,14 @@ public final class TimerUtil {
 
   /**
    * Gets the current date-related values according to the rules of
-   * javax.ejb.ScheduleExpression. In java.util.Calendar, DAY_OF_WEEK is 1-7
+   * jakarta.ejb.ScheduleExpression. In java.util.Calendar, DAY_OF_WEEK is 1-7
    * (Sunday-Saturday); MONTH is 0-11 (Jan-Dec)
    * 
    * @param field
    *          a java.util.Calendar field for year, month, hour, etc
    * @param an
    *          optional Calendar that may have been manipulated
-   * @return a value that can be used for javax.ejb.ScheduleExpression
+   * @return a value that can be used for jakarta.ejb.ScheduleExpression
    */
   public static int getForSchedule(int field, Calendar... calendars) {
     int result = 0;

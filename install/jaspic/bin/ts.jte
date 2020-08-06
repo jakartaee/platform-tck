@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -267,7 +267,6 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jaspic.provider.framework.jar:\
                ${jaspic.home}/modules/security.jar:\
                ${jaspic.home}/modules/security-ee.jar:\
-               ${jaspic.home}/modules/jakarta.security.auth.message-api.jar:\
                ${jaspic.home}/modules/kernel.jar:\
                ${jaspic.home}/modules/admin-cli.jar:\
                ${jaspic.home}/modules/annotation-framework.jar:\
@@ -287,10 +286,11 @@ jaspic.classes=${jaspic.home}/modules/war-util.jar:\
                ${jaspic.home}/modules/jakarta.enterprise.deploy-api.jar:\
                ${jaspic.home}/modules/webservices-osgi.jar:\
                ${jaspic.home}/modules/jaxb-osgi.jar:\
-               ${jaspic.home}/modules/javax.jms-api.jar:\
-               ${jaspic.home}/modules/endorsed/jakarta.annotation-api.jar:\
-               ${jaspic.home}/modules/endorsed/webservices-api-osgi.jar:\
-               ${jaspic.home}/modules/deployment-client.jar
+               ${jaspic.home}/modules/jakarta.jms-api.jar:\
+               ${jaspic.home}/modules/jakarta.annotation-api.jar:\
+               ${jaspic.home}/modules/webservices-api-osgi.jar:\
+               ${jaspic.home}/modules/deployment-client.jar:\
+	       ${jaspic.home}/modules/jakarta.authentication-api.jar
 
 ts.run.classpath=${jaspic.classes}:${ts.home}/lib/tsharness.jar:${ts.home}/lib/jaspic.jar:${ts.home}/lib/tssv.jar
 
@@ -470,7 +470,7 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #                    Note that on mac, classes.jar is used instead of rt.jar.
 #########################################################################
-sigTestClasspath=${jaspic.home}/modules/jakarta.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
+sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -544,35 +544,21 @@ deployment_host.1=${orb.host}
 deployment_port.1=${s1as.admin.port}
 
 ########################################################################
-# @deploy.delay.in.minutes This property can be used to specify the 
-# amount of time in minutes that the test harness will wait for the JSR-88
-# ProgressObject to return either failed or completed from a DeploymentManager
-# API call.  After the time has elapsed, the harness will report failure for 
-# the given action.
+# @deploy.delay.in.minutes is no longer used, it was for pruned Jakarta Deployment
 ########################################################################
-deploy.delay.in.minutes=5
 
 ########################################################################
-## Vendor's Java EE implementation settings for JSR 88.  These
-## properties are set up to work against SJSAS 9.x PE by default.
-##
-## If you are testing against SJSAS 9.x SE/EE with SSL enabled by default, 
-## you must uncomment the deployManageruri.1 property below that ends with
-## "https", and comment the one that doesn't.
-# 
-# @deployManagerJarFile.1  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Vendor's Implementation (VI)
-# @deployManageruri.1  JSR 88 management URL, location of the deployment
-#                      process for the VI
-# @deployManageruname.1  username for deployment process for the VI
-# @deployManagerpasswd.1  password for deployment process for the VI
+## Following are no longer used, were settings for pruned Jakarta Deployment
 ########################################################################
-deployManagerJarFile.1=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}
-#deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}:https
-deployManageruname.1=${s1as.admin.user}
-deployManagerpasswd.1=${s1as.admin.passwd}
+#deployManagerJarFile.2
+#deployManageruri.2
+#deployManageruname.2
+#deployManagerpasswd.2
+#
+# @porting.ts.deploy2.class.1
+# @porting.ts.deploy2.class.2
+# porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+# porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 
 
 ###############################################################
@@ -583,8 +569,6 @@ deployManagerpasswd.1=${s1as.admin.passwd}
 ## always point to Sun RI classes.  The ".1" set should point to
 ## implementations that work in your specific Java EE environment.
 #
-# @porting.ts.deploy2.class.1  Vendor's Implementation (VI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2
 # @porting.ts.login.class.1  VI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.1  VI of
@@ -594,7 +578,6 @@ deployManagerpasswd.1=${s1as.admin.passwd}
 # @porting.ts.HttpsURLConnection.class.1  VI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 ###############################################################
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
@@ -617,12 +600,12 @@ namingServiceHost1=${orb.host}
 namingServicePort1=${orb.port}
 namingServiceHost2=${orb.host}
 namingServicePort2=${orb.port}
-deployManagerJarFile.2=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${s1as.admin.port}
-deployManageruname.2=${s1as.admin.user}
-deployManagerpasswd.2=${s1as.admin.passwd}
 variable.mapper=com.sun.el.lang.VariableMapperImpl
-
+# The following Jakarta Deployment properties are not supported
+#deployManagerJarFile.2=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
+#deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${s1as.admin.port}
+#deployManageruname.2=${s1as.admin.user}
+#deployManagerpasswd.2=${s1as.admin.passwd}
 
 
 ##############################################################
@@ -647,7 +630,7 @@ certLoginUserAlias=cts
 #                        the number of threads used by the client for
 #                        the SingleThreadModel servlet test. If the
 #                        container implementation supports pooling of
-#                        SingleThreadModel serlvets, set the value of
+#                        SingleThreadModel servlets, set the value of
 #                        ServletClientThreads to twice the value of
 #                        the default servlet instance pool size.  If
 #                        the container implementation only maintains
@@ -847,12 +830,12 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
         $testExecuteClass $testExecuteArgs
 
 #######################################################################
-## platform.mode is used by jaxrpc/jaxws tests to know whether to use
+## platform.mode is used by jaxws tests to know whether to use
 ## the Java EE Programming Model for service and port access or the
-## JAXRPC/JAXWS/JASPIC Programming model based on the runtime execution 
+## JAXWS/JASPIC Programming model based on the runtime execution 
 ## platform.
 ##
-## platform.mode=standalone	JAXRPC/JAXWS/JASPIC Programming Model
+## platform.mode=standalone	JAXWS/JASPIC Programming Model
 ## platform.mode=javaEE		Java EE Programming Model
 ##
 ## Note: When you switch platform.mode make sure you change the property
@@ -862,16 +845,6 @@ platform.mode=javaEE
 
 
 ts_home=${ts.home}
-
-
-###############################################################
-## These properties are used for the JAXRPC specific tests,
-## they do not need to be changed.
-###############################################################
-jaxrpc.tool.unix=${jaspic.home}/bin/wscompile
-jaxrpc.tool.win=${jaspic.home}/bin/wscompile.bat
-import.only.args=-classpath ${class.dir} -keep -import -Xprintstacktrace
-jaxrpc.default.features=wsi,strict,norpcstructures
 
 ###########################################################################
 # tools.jar should be set to the location of the tools.jar from the installed

@@ -29,12 +29,10 @@
     <property name="cts.internal.compat"           value="NULL"/>
     <property name="sjsas.internal.compat"         value="NULL"/>
     <property name="cts.internal.comment"          value=""/>
-    <property name="deliverable.version"           value="8.0"/>
-    <property name="deliverable.tck.version"           value="8.0.0"/>
+    <property name="deliverable.version"           value="9.0"/>
+    <property name="deliverable.tck.version"           value="9.0.0"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
-	     **/jaxr/api/javax_xml_registry/Connection_asynch/**/*,
-	     **/jaxr/ee/javax_xml_registry/RegistryService/**/*,
 	     **/jaxm/**/*, **/jaxm1.0.1/**/*,
 	     **/provisioning/**/*,
 	     **/*.runtime.xml,
@@ -43,7 +41,6 @@
 	     com/sun/ts/lib/deliverable/jms,
 	     com/sun/ts/lib/deliverable/mgmt/**,
 	     com/sun/ts/lib/deliverable/jdbc/**,
-	     com/sun/ts/lib/deliverable/jaxr/**,
 	     com/sun/ts/lib/deliverable/jaxws/**,
 	     com/sun/ts/tests/jaspic/spi/soap/**,
 	     com/sun/ts/tests/jaspic/spi/authstatus/**,
@@ -101,9 +98,10 @@
         <fileset dir="${ts.home}/install/${deliverable.name.lower}/other"
             includes="testsuite.jtt, vehicle.properties"/>
         </copy>
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy>
+        </copy-->
 	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
         </copy>
 	</target>

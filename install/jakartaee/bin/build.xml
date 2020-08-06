@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,8 +26,6 @@
                   com/sun/ts/tests/jaxp,
                   com/sun/ts/tests/jacc,
                   com/sun/ts/tests/jaspic,
-                  com/sun/ts/tests/compat12,
-                  com/sun/ts/tests/compat13,
                   com/sun/ts/tests/signaturetest/javaee,
                   com/sun/ts/tests/integration,
                   com/sun/ts/tests/el,
@@ -50,21 +48,15 @@
                   com/sun/ts/tests/assembly,
                   com/sun/ts/tests/jta,
                   com/sun/ts/tests/samples,
-                  com/sun/ts/tests/j2eetools/mgmt,
-                  com/sun/ts/tests/j2eetools/deploy,
-                  com/sun/ts/tests/jaxr,
                   com/sun/ts/tests/jms,
                   com/sun/ts/tests/jsonp,
                   com/sun/ts/tests/jsonb,
-                  com/sun/ts/tests/jaxrpc,
                   com/sun/ts/tests/jaxws/common,
                   com/sun/ts/tests/jaxws/wsi/constants,
-                  com/sun/ts/tests/webservices,
                   com/sun/ts/tests/webservices12,
                   com/sun/ts/tests/webservices13,
                   com/sun/ts/tests/websocket,
                   com/sun/ts/tests/concurrency,
-                  com/sun/ts/tests/interop,
                   com/sun/ts/tests/securityapi,
                   com/ibm/jbatch/tck/tests"/>
 
@@ -192,32 +184,6 @@
                          value="${bin.dir}/java.policy"/>
 			<arg line="-v"/>
 			<arg line="-p ${rmiiiop.http.server.port}"/>
-		</java>
-	</target>
-
-	<target name="start.standard.deployment.server" depends="init">
-		<java classname="com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14Server" 
-              fork="yes"
-              classpath="${ts.standard.deployment.server.classpath}">
-			<sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
-			<sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
-			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
-			<sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
-			<sysproperty key="deliverable.class" value="${deliverable.class}" />
-			<sysproperty key="java.compiler" value="NONE"/>
-			<sysproperty key="TS_HOME" value="${ts.home}" />
-			<sysproperty key="ts.home" value="${ts.home}" />
-			<sysproperty key="pathsep" value="${pathsep}" />
-			<sysproperty key="J2EE_HOME" value="${javaee.home}" />
-			<sysproperty key="JAVA_HOME" value="${java.home}"  />
-			<sysproperty key="java.security.policy" value="${bin.dir}/harness.policy" />
-			<sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
-			<sysproperty key="windir" value="${env.windir}" />
-			<sysproperty key="SYSTEMROOT" value="${env.SystemRoot}" />
-			<sysproperty key="javatest.security.allowPropertiesAccess" value="true" />
-			<sysproperty key="java.endorsed.dirs" value="${ri.java.endorsed.dirs}" />
-			<sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
-			<sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
 		</java>
 	</target>
 
@@ -477,24 +443,6 @@
 		<ant antfile="javaee_ri.xml" target="start.javadb" dir="${bin.dir}/xml/impl/${impl.ri}"/>
 		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.javadb.ri"/>
 		<record name="config_ri.log" action="stop"/>
-	</target>
-
-	<target name="config.interop">
-		<ts.echo>${ant.project.name} config.interop called</ts.echo>
-		<!-- This target setup interop configurations    -->
-
-		<!-- Step 1: Config VI - Vendor Implementation   -->
-		<antcall target="config.vi"/>
-
-		<!-- Step 2: Config RI - Reference Implementation -->
-		<antcall target="config.ri"/>
-
-		<!-- Step 3: Enable CSIv2  -->
-		<antcall target="enable.csiv2"/>
-
-		<!-- Step 4: Add interop certs -->
-		<antcall target="add.interop.certs"/>
-
 	</target>
 
 	<target name="restart.vi" >
@@ -762,17 +710,6 @@
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.wss.providers"/>
 	</target>
 
-
-	<!-- Enable the use of csiv2 for the Java EE RI -->
-	<target name="enable.csiv2">
-		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="enable.csiv2"/>
-	</target>
-
-	<!-- Disable the use of csiv2 for the Java EE RI -->
-	<target name="disable.csiv2">
-		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.csiv2"/>
-	</target>
-
 	<!-- Disable the TX interoperability on the Java EE RI -->
 	<target name="disable.ri.tx.interop">
 		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.tx.interop"/>
@@ -791,11 +728,6 @@
 	<!-- Enable the TX interoperability on the app server under test -->
 	<target name="enable.vi.tx.interop">
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.tx.interop"/>
-	</target>
-
-	<!--  Add the certificates needed for interop to the RI and SJSAS -->
-	<target name="add.interop.certs"  >
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="add.interop.certs"/>
 	</target>
 
 	<!--
@@ -846,8 +778,6 @@
 				<include name="${lib.pkg.dir}/tests/security/**"/>
 				<include name="${lib.pkg.dir}/tests/jdbc/**"/>
 				<include name="${lib.pkg.dir}/tests/jpa/storedprocedures/**"/>
-				<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-				<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
 				<include name="${provider.dir}/"/>
 
 			</fileset>
@@ -866,8 +796,6 @@
                             ${lib.pkg.dir}/tests/jdbc/CS_Procs.java,
                             ${lib.pkg.dir}/tests/security/**/*.java,
                             ${lib.pkg.dir}/tests/jpa/storedprocedures/**,
-                            ${lib.pkg.dir}/porting/TSDeploymentInterface2*.java,
-                            ${lib.pkg.dir}/porting/TSDeployment2*.java,
                             ${provider.dir}/**"
                   excludes="${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment.java,
                             ${lib.pkg.dir}/implementation/sun/javaee/SunRIDeployment1*.java,
@@ -878,7 +806,6 @@
 				<pathelement path="${ts.lib.classpath}" />
 			</classpath>
 		</ts.javac>
-		<rmic classname="com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14Server" base="${class.dir}"/>
 		<rmic classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer" base="${class.dir}"/>
 	</target>
 
@@ -911,8 +838,6 @@
 			<include name="${lib.pkg.dir}/deliverable/cts/**"/>
 			<include name="${lib.pkg.dir}/implementation/sun/javaee/**"/>
 			<include name="${lib.pkg.dir}/implementation/sun/common/**"/>
-			<include name="${lib.pkg.dir}/porting/TSDeploymentInterface2*"/>
-			<include name="${lib.pkg.dir}/porting/TSDeployment2*"/>
 			<include name="${lib.pkg.dir}/tests/security/**"/>
 		</ts.lib.jar>
 
@@ -925,8 +850,6 @@
 
 		<antcall target="build.tsprovider.jar"/>
 		<antcall target="build.jaspic.jars"/>
-
-		<ant dir="${ts.home}/src/com/sun/ts/tests/interop/csiv2/common" target="build.jar"/>
 
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
 
@@ -1040,8 +963,6 @@
 		<antcall target="init.javadb" />
 		<antcall target="start.javadb.ri.asadmin" />
 		<ant antfile="initdb.xml" dir="${bin.dir}/xml" target="init.javadb.ri"/>
-		<antcall target="enable.csiv2" />
-		<antcall target="add.interop.certs" />
 		<antcall target="restart.ri" />
 		<record name="config_csiv2.log" action="stop"/>
 	</target>

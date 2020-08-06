@@ -1,3 +1,3 @@
 4/21/04
 
-     This directory should be used for CTS style tests which cover functionality specific to Sun Java System Application Server.  Any tests added to this directory should fall under an appropriate technology directory similar to those that live under src/com/sun/ts/tests.  For example, any jaxrpc related tests which rely on SJSAS specific APIs should live under src/com/sun/ts/tests/internal/implementation/sjsas/jaxrpc.
+     This directory should be used for CTS style tests which cover functionality specific to Sun Java System Application Server.  Any tests added to this directory should fall under an appropriate technology directory similar to those that live under src/com/sun/ts/tests.

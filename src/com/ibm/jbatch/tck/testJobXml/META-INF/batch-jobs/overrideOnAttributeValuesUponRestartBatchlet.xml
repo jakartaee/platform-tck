@@ -22,7 +22,7 @@
       
       PLEASE KEEP THAT IN SYNCH WITH THIS JSL TO ENABLE SOMEONE TO UNDERSTAND WHAT WE'RE DOING HERE ! 
      ********************************************************************************************************** -->
-<job id="overrideOnAttributeValuesUponRestartBatchlet" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="overrideOnAttributeValuesUponRestartBatchlet" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
 	<step id="step1">
 		<batchlet ref="overrideOnAttributeValuesUponRestartBatchlet">
 			<properties>

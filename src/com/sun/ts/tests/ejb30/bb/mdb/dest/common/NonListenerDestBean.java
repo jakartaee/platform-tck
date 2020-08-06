@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,27 +20,27 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.common;
 
-import javax.ejb.EJBContext;
-import javax.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.Constants;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import javax.ejb.MessageDriven;
-import javax.ejb.ActivationConfigProperty;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
-//This MDB does not implement javax.jms.MessageListener interface, doesn't
+//This MDB does not implement jakarta.jms.MessageListener interface, doesn't
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type.
-//the default is javax.jms.MessageListener
+//the default is jakarta.jms.MessageListener
 //destinationType is also annotated here, though it should also be optional.
 //optional destinationType is tested in mdb/dest/optional and mdb/dest/optional2.
 //
 @MessageDriven(name = "NonListenerDestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 public class NonListenerDestBean
     extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
   // implements MessageListener {

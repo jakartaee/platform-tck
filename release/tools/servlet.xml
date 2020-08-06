@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
 	<import file="../../bin/xml/ts.common.props.xml"/>
 
-	<property name="deliverable.version"  value="4.0"/>
-        <property name="deliverable.tck.version"  value="4.0.0"/>
+	<property name="deliverable.version"  value="5.0"/>
+        <property name="deliverable.tck.version"  value="5.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -87,9 +87,10 @@
             <fileset dir="${ts.home}/internal/docs/${deliverable.name.lower}" 
                      includes="ServletJavadocAssertions.html, ServletSpecAssertions.html" />
         </copy>
-               <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+               <!-- NOTICE will be EPL or EFTL specific: TBD-->
+               <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                    <fileset dir="${ts.home}" includes="NOTICE" />
-               </copy>
+               </copy-->
 		<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
 	</target>
@@ -176,7 +177,7 @@
 		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/tests/signaturetest/signature-repository/"
 			  includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src/com/sun/ts/tests/signaturetest/signature-repository/"
-					 includes="javax.servlet.sig_2.5*" />
+					 includes="jakarta.servlet.sig_*" />
 		</copy>
 
         <!-- the com/sun/ts/lib file -->

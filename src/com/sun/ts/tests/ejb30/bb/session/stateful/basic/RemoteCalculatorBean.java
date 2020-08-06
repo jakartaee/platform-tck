@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,18 +23,18 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import java.io.Serializable;
-import javax.ejb.Remote;
-import javax.ejb.Stateful;
-import javax.ejb.Remove;
-import javax.annotation.Resource;
-import javax.ejb.SessionContext;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.transaction.UserTransaction;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.Remove;
+import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.transaction.UserTransaction;
 
 /**
  * A stateful base calculator session bean class that implements
- * javax.ejb.SessionBean. ejbCreate method is optional and not implemented here.
+ * jakarta.ejb.SessionBean. ejbCreate method is optional and not implemented here.
  */
 
 @Stateful(name = "RemoteCalculatorBean", description = "same as <description> element in ejb-jar.xml")

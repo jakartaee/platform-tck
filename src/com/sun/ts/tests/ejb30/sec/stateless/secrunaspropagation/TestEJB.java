@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,20 +26,20 @@ import com.sun.ts.tests.ejb30.sec.stateless.common.Test;
 import com.sun.ts.tests.ejb30.sec.stateless.common.SecTest;
 import com.sun.ts.tests.ejb30.sec.stateless.common.SecTestRoleRef;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
-import javax.annotation.security.RunAs;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.EJBs;
-import javax.ejb.EJB;
-import javax.annotation.Resource;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
-import javax.ejb.EJBException;
-import javax.ejb.Remote;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.annotation.security.RunAs;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.EJB;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
 
 // Set JNDI name
 @Stateless(name = "TestEJB")

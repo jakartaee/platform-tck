@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,18 +22,18 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import com.sun.ts.tests.el.api.javax_el.valueexpression.Worker;
+import com.sun.ts.tests.el.api.jakarta_el.valueexpression.Worker;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
 
 import java.util.Properties;
 
-import javax.el.BeanELResolver;
-import javax.el.CompositeELResolver;
-import javax.el.ELContext;
-import javax.el.ELResolver;
-import javax.el.FunctionMapper;
-import javax.el.VariableMapper;
+import jakarta.el.BeanELResolver;
+import jakarta.el.CompositeELResolver;
+import jakarta.el.ELContext;
+import jakarta.el.ELResolver;
+import jakarta.el.FunctionMapper;
+import jakarta.el.VariableMapper;
 
 public class VRContext extends ELContext {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jms.ee.mdb.mdb_msgTypesT3;
 
 import java.io.Serializable;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -136,7 +136,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyTopicTextTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyTopicTextTest - read and verify the message");
-        msgClearBodyTopicTextTest((javax.jms.TextMessage) msg);
+        msgClearBodyTopicTextTest((jakarta.jms.TextMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyTopicObjectTestCreate")) {
         TestUtil.logTrace(
@@ -146,7 +146,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyTopicObjectTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyTopicObjectTest - read and verify the message");
-        msgClearBodyTopicObjectTest((javax.jms.ObjectMessage) msg);
+        msgClearBodyTopicObjectTest((jakarta.jms.ObjectMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyTopicMapTestCreate")) {
         TestUtil.logTrace(
@@ -156,7 +156,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyTopicMapTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyTopicMapTest - read and verify the message");
-        msgClearBodyTopicMapTest((javax.jms.MapMessage) msg);
+        msgClearBodyTopicMapTest((jakarta.jms.MapMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyTopicBytesTestCreate")) {
         TestUtil.logTrace(
@@ -166,7 +166,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyTopicBytesTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyTopicBytesTest - read and verify the message");
-        msgClearBodyTopicBytesTest((javax.jms.BytesMessage) msg);
+        msgClearBodyTopicBytesTest((jakarta.jms.BytesMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgClearBodyTopicStreamTestCreate")) {
         TestUtil.logTrace(
@@ -176,7 +176,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("msgClearBodyTopicStreamTest")) {
         TestUtil.logTrace(
             "@onMessage - running msgClearBodyTopicStreamTest - read and verify the message");
-        msgClearBodyTopicStreamTest((javax.jms.StreamMessage) msg);
+        msgClearBodyTopicStreamTest((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("msgResetTopicTest")) {
         TestUtil.logTrace(
@@ -191,7 +191,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("readNullCharNotValidTopicStreamTest")) {
         TestUtil.logTrace(
             "@onMessage - running readNullCharNotValidTopicStreamTest - read and verify the message");
-        readNullCharNotValidTopicStreamTest((javax.jms.StreamMessage) msg);
+        readNullCharNotValidTopicStreamTest((jakarta.jms.StreamMessage) msg);
       } else if (msg.getStringProperty("TestCase")
           .equals("readNullCharNotValidTopicMapTestCreate")) {
         TestUtil.logTrace(
@@ -201,7 +201,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
           .equals("readNullCharNotValidTopicMapTest")) {
         TestUtil.logTrace(
             "@onMessage - running readNullCharNotValidTopicMapTest - read and verify the message");
-        readNullCharNotValidTopicMapTest((javax.jms.MapMessage) msg);
+        readNullCharNotValidTopicMapTest((jakarta.jms.MapMessage) msg);
       } else {
         TestUtil.logTrace(
             "@onMessage - invalid message type found in StringProperty");
@@ -336,7 +336,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    * empty after clearBody. verify properties are not effected by clearBody.
    * Write to the message again 3.11
    */
-  public void msgClearBodyTopicTextTest(javax.jms.TextMessage messageReceived) {
+  public void msgClearBodyTopicTextTest(jakarta.jms.TextMessage messageReceived) {
     String testCase = "msgClearBodyTopicTextTest";
     boolean pass = true;
     // Text Message
@@ -386,7 +386,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyTopicObjectTest(
-      javax.jms.ObjectMessage messageReceivedObjectMsg) {
+      jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
     String testCase = "msgClearBodyTopicObjectTest";
     boolean pass = true;
     try {
@@ -436,7 +436,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   private void msgClearBodyTopicMapTest(
-      javax.jms.MapMessage messageReceivedMapMessage) {
+      jakarta.jms.MapMessage messageReceivedMapMessage) {
     String testCase = "msgClearBodyTopicMapTest";
     boolean pass = true;
     try {
@@ -488,7 +488,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyTopicBytesTest(
-      javax.jms.BytesMessage messageReceivedBytesMessage) {
+      jakarta.jms.BytesMessage messageReceivedBytesMessage) {
     String testCase = "msgClearBodyTopicBytesTest";
     boolean pass = true;
     byte bValue2 = 22;
@@ -507,7 +507,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageNotReadableException) {
+        if (e instanceof jakarta.jms.MessageNotReadableException) {
           TestUtil
               .logTrace("Pass: MessageNotReadableException thrown as expected");
         } else {
@@ -552,7 +552,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    * Write to the message again 3.11
    */
   public void msgClearBodyTopicStreamTest(
-      javax.jms.StreamMessage messageReceivedStreamMessage) {
+      jakarta.jms.StreamMessage messageReceivedStreamMessage) {
     String testCase = "msgClearBodyTopicStreamTest";
     boolean pass = true;
     try {
@@ -571,7 +571,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
         pass = false;
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
-        if (e instanceof javax.jms.MessageNotReadableException) {
+        if (e instanceof jakarta.jms.MessageNotReadableException) {
           TestUtil
               .logTrace("Pass: MessageNotReadableException thrown as expected");
         } else {
@@ -737,7 +737,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    */
 
   public void readNullCharNotValidTopicMapTest(
-      javax.jms.MapMessage mapReceived) {
+      jakarta.jms.MapMessage mapReceived) {
     String testCase = "readNullCharNotValidTopicMapTest";
     boolean pass = true;
     try {
@@ -768,7 +768,7 @@ public class MsgBeanMsgTestT3 implements MessageDrivenBean, MessageListener {
    */
 
   public void readNullCharNotValidTopicStreamTest(
-      javax.jms.StreamMessage messageReceived) {
+      jakarta.jms.StreamMessage messageReceived) {
     String testCase = "readNullCharNotValidTopicStreamTest";
     boolean pass = true;
     try {

@@ -461,7 +461,7 @@
 	<xsd:annotation>
 	  <xsd:documentation>
 
-	    Defines the subclass of javax.serlvet.jsp.tagext.JspTag
+	    Defines the subclass of javax.servlet.jsp.tagext.JspTag
 	    that implements the request time semantics for
 	    this tag. (required)
 
@@ -671,7 +671,7 @@
 	    <xsd:documentation>
 
 	      "true" if this attribute is of type
-	      javax.jsp.tagext.JspFragment, representing dynamic
+	      javax.servlet.jsp.tagext.JspFragment, representing dynamic
 	      content that can be re-evaluated as many times
 	      as needed by the tag handler.  If omitted or "false",
 	      the default is still type="java.lang.String"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,10 +23,10 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.SharedCacheMode;
-import javax.persistence.ValidationMode;
-import javax.persistence.spi.PersistenceUnitInfo;
-import javax.persistence.spi.PersistenceUnitTransactionType;
+import jakarta.persistence.SharedCacheMode;
+import jakarta.persistence.ValidationMode;
+import jakarta.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
 import java.net.URL;
 import java.util.*;
@@ -630,7 +630,7 @@ public class Client extends PMClientBase {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called getProviderUtil()" };
 
-    javax.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
+    jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
     logProcessor.fetchLog();
     boolean pass = logProcessor.verifyLogContains(expected, currentSeqNum);
     if (!pass) {
@@ -648,7 +648,7 @@ public class Client extends PMClientBase {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called isLoaded()" };
 
-    javax.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
+    jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
     logProcessor.fetchLog();
     boolean pass = logProcessor.verifyLogContains(expected, currentSeqNum);
 

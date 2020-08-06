@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,22 +16,22 @@
 
 package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.resource.ConnectionFactoryDefinition;
-import javax.resource.AdministeredObjectDefinition;
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.AdministeredObjectDefinition;
 
 @ConnectionFactoryDefinition(
 	name = "java:app/jms/TestConnectionFactory",
 	description = "application scoped jms connector resource definition",
-	interfaceName = "javax.jms.ConnectionFactory",
+	interfaceName = "jakarta.jms.ConnectionFactory",
 	resourceAdapter="@raname@"
 )
 @AdministeredObjectDefinition(
                 name = "java:app/jms/TestQ",
                 description = "application scoped AdminObjectDefinition",
-                interfaceName = "javax.jms.Queue",
+                interfaceName = "jakarta.jms.Queue",
                 className = "com.sun.messaging.Queue",
                 resourceAdapter="@raname@")
 @ManagedBean("mybean")

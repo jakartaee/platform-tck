@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import javax.resource.*;
-import javax.resource.spi.*;
-import javax.resource.spi.security.PasswordCredential;
-import javax.resource.spi.SecurityException;
+import jakarta.resource.*;
+import jakarta.resource.spi.*;
+import jakarta.resource.spi.security.PasswordCredential;
+import jakarta.resource.spi.SecurityException;
 import java.io.*;
 import javax.security.auth.Subject;
 import java.util.*;
@@ -30,7 +30,7 @@ import com.sun.ts.tests.common.connector.whitebox.*;
 @ConnectionDefinitions({
     @ConnectionDefinition(connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class, connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class, connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class, connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class) })
 public class CRDManagedConnectionFactory implements ManagedConnectionFactory,
-    ResourceAdapterAssociation, javax.resource.Referenceable, Serializable {
+    ResourceAdapterAssociation, jakarta.resource.Referenceable, Serializable {
   private javax.naming.Reference reference;
 
   private ResourceAdapter resourceAdapter;

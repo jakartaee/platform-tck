@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -75,10 +75,6 @@ env.ts_unix.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd DI
 	-Djava.security.auth.login.config=${TS_HOME}/bin/login.config \
 	-Djava.security.auth.policy=${TS_HOME}/bin/java.security.auth.policy \
 	-Dcom.sun.enterprise.home=${J2EE_HOME} \
-	-Dcom.sun.enterprise.keyStore=${TS_HOME}/src/com/sun/ts/tests/interop/csiv2/clientcert.jks \
-	-Dcom.sun.enterprise.keyStorePass=changeit \
-        -Djavax.net.ssl.keyStore=${TS_HOME}/src/com/sun/ts/tests/interop/csiv2/clientcert.jks \
-        -Djavax.net.ssl.keyStorePassword=changeit \
 	-Djavax.net.ssl.trustStore=${J2EE_HOME}/lib/security/cacerts.jks \
     -Djava.endorsed.dirs=${java.endorsed.dirs} \
 	-Dstartup.login=false -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter -Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser -Ddeliverable.class=${deliverable.class} -classpath ${J2EE_HOME}/lib/j2ee.jar:${J2EE_HOME}/lib/schema2beans.jar:${J2EE_HOME}/lib/toolclasses:${J2EE_HOME}/lib/management/MEJBServerClient.jar:${TS_HOME}/lib/tsharness.jar:${TS_HOME}/lib/cts.jar:${TS_HOME}/lib/javatest.jar:${J2EE_HOME}/lib/locale:${LOCAL_CLASSES}  com.sun.enterprise.appclient.Main $testExecuteArgs
@@ -96,10 +92,6 @@ env.ts_unix.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd D
 	-Djava.security.auth.login.config=${TS_HOME}/bin/login.config \
 	-Djava.security.auth.policy=${TS_HOME}/bin/java.security.auth.policy \
 	-Dcom.sun.enterprise.home=${J2EE_HOME_RI} \
-	-Dcom.sun.enterprise.keyStore=${TS_HOME}/src/com/sun/ts/tests/interop/csiv2/clientcert.jks \
-	-Dcom.sun.enterprise.keyStorePass=changeit \
-        -Djavax.net.ssl.keyStore=${TS_HOME}/src/com/sun/ts/tests/interop/csiv2/clientcert.jks \
-        -Djavax.net.ssl.keyStorePassword=changeit \
 	-Djavax.net.ssl.trustStore=${J2EE_HOME_RI}/lib/security/cacerts.jks \
     -Djava.endorsed.dirs=${java.endorsed.dirs} \
 	-Dstartup.login=false -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter -Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser -Ddeliverable.class=${deliverable.class} -classpath ${J2EE_HOME_RI}/lib/j2ee.jar:${J2EE_HOME_RI}/lib/schema2beans.jar:${J2EE_HOME_RI}/lib/toolclasses:${J2EE_HOME_RI}/lib/management/MEJBServerClient.jar:${J2EE_HOME_RI}/lib/system/riinterceptors.jar:${TS_HOME}/lib/tsharness.jar:${TS_HOME}/lib/cts.jar:${TS_HOME}/lib/javatest.jar:${J2EE_HOME_RI}/lib/locale:${LOCAL_CLASSES_RI}  com.sun.enterprise.appclient.Main $testExecuteArgs
@@ -138,10 +130,6 @@ env.ts_win32.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd \
 	-Djava.security.auth.login.config=${TS_HOME}\\bin\\login.config \
 	-Djava.security.auth.policy=${TS_HOME}\\bin\\java.security.auth.policy \
 	-Dcom.sun.enterprise.home=${J2EE_HOME} \
-	-Dcom.sun.enterprise.keyStore=${TS_HOME}\\tests\\interop\\csiv2\\clientcert.jks \
-	-Dcom.sun.enterprise.keyStorePass=changeit \
-        -Djavax.net.ssl.keyStore=${TS_HOME}\\tests\\interop\\csiv2\\clientcert.jks \
-        -Djavax.net.ssl.keyStorePassword=changeit \
 	-Djavax.net.ssl.trustStore=${J2EE_HOME}\\lib\\security\\cacerts.jks \
     -Djava.endorsed.dirs=${java.endorsed.dirs} \
 	-Dstartup.login=false -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter -Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser -Ddeliverable.class=${deliverable.class} -classpath ${J2EE_HOME}\\lib\\j2ee.jar;${J2EE_HOME}\\lib\\schema2beans.jar;${J2EE_HOME}\\lib\\toolclasses;${J2EE_HOME}\\lib\\management\\MEJBServerClient.jar;${TS_HOME}\\lib\\tsharness.jar;${TS_HOME}\\lib\\cts.jar;${TS_HOME}\\lib\\javatest.jar;${J2EE_HOME}\\lib\\locale;${LOCAL_CLASSES}  com.sun.enterprise.appclient.Main $testExecuteArgs
@@ -159,10 +147,6 @@ env.ts_win32.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd 
 	-Djava.security.auth.login.config=${TS_HOME}\\bin\\login.config \
 	-Djava.security.auth.policy=${TS_HOME}\\bin\\java.security.auth.policy \
 	-Dcom.sun.enterprise.home=${J2EE_HOME_RI} \
-	-Dcom.sun.enterprise.keyStore=${TS_HOME}\\tests\\interop\\csiv2\\clientcert.jks \
-	-Dcom.sun.enterprise.keyStorePass=changeit \
-        -Djavax.net.ssl.keyStore=${TS_HOME}\\tests\\interop\\csiv2\\clientcert.jks \
-        -Djavax.net.ssl.keyStorePassword=changeit \
 	-Djavax.net.ssl.trustStore=${J2EE_HOME_RI}\\lib\\security\\cacerts.jks \
     -Djava.endorsed.dirs=${java.endorsed.dirs} \
 	-Dstartup.login=false -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter -Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser -Ddeliverable.class=${deliverable.class} -classpath ${J2EE_HOME_RI}\\lib\\j2ee.jar;${J2EE_HOME_RI}\\lib\\schema2beans.jar;${J2EE_HOME_RI}\\lib\\toolclasses;${J2EE_HOME_RI}\\lib\\management\\MEJBServerClient.jar;${J2EE_HOME_RI}\\lib\\system\\riinterceptors.jar;${TS_HOME}\\lib\\tsharness.jar;${TS_HOME}\\lib\\cts.jar;${TS_HOME}\\lib\\javatest.jar;${J2EE_HOME_RI}\\lib\\locale;${LOCAL_CLASSES_RI}  com.sun.enterprise.appclient.Main $testExecuteArgs
@@ -260,7 +244,7 @@ certLoginUserAlias=cts
 #The ServletClientThreads property configures the number of threads
 #used by the client for the SingleThreadModel servlet test.
 #If the container implementation supports pooling of SingleThreadModel
-#serlvets, set the value of ServletClientThreads to twice the value
+#servlets, set the value of ServletClientThreads to twice the value
 # of the default servlet instance pool size.  If the container 
 #implementation only maintains a single instance of a SingleTheadModel 
 #servlet, leave the default value of 2.

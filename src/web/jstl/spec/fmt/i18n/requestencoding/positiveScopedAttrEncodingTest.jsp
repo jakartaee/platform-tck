@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,13 +21,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positiveScopedAttrEncodingTest">
-    <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
-    <c:set var="javax.servlet.jsp.jstl.fmt.request.charset" value="US-ASCII" scope="session"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
+    <c:set var="jakarta.servlet.jsp.jstl.fmt.request.charset" value="US-ASCII" scope="session"/>
 
-    <!-- Encoding should be based of javax.servlet.jsp.jstl.fmt.request.charset
+    <!-- Encoding should be based of jakarta.servlet.jsp.jstl.fmt.request.charset
              attribute -->
     <fmt:requestEncoding/>
     <%= request.getCharacterEncoding().toLowerCase() %>
 
-    <c:remove var="javax.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
+    <c:remove var="jakarta.servlet.jsp.jstl.fmt.request.charset" scope="session"/>
 </tck:test>

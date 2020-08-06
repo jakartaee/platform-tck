@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,15 +16,15 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.resource.spi.work.SecurityContext;
+import jakarta.resource.spi.work.SecurityContext;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.Subject;
 import java.security.Principal;
-import javax.security.auth.message.callback.CallerPrincipalCallback;
-import javax.security.auth.message.callback.PasswordValidationCallback;
-import javax.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;

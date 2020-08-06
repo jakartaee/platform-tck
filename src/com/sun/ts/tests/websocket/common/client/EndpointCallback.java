@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,32 +19,37 @@ package com.sun.ts.tests.websocket.common.client;
 
 import java.util.concurrent.CountDownLatch;
 
-import javax.websocket.CloseReason;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-import javax.websocket.MessageHandler.Whole;
-import javax.websocket.Session;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.MessageHandler.Partial;
+import jakarta.websocket.MessageHandler.Whole;
+import jakarta.websocket.Session;
 
 /**
  * Default empty implementation of merged functionality of {@link Endpoint}
  * interface with {@link MessageHandler} interface.
  * </p>
  * Depending on what {@link WebSocketCommonClient.Entity} is defined (partial,
- * whole), {@link Whole} or {@link MessageHandler.Partial} functionality is used
+ * whole), {@link Whole} or {@link Partial} functionality is used
  * with onMessage
  */
 public class EndpointCallback {
 
+  @SuppressWarnings("unused")
   public void onError(Session session, Throwable t) {
   }
 
+  @SuppressWarnings("unused")
   public void onMessage(Object o) {
   }
 
+  @SuppressWarnings("unused")
   public void onOpen(Session session, EndpointConfig config) {
   }
 
+  @SuppressWarnings("unused")
   public void onClose(Session session, CloseReason closeReason) {
   }
 

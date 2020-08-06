@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -83,7 +83,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:28.2; JSTL:SPEC:28.2.1
    * 
    * @testStrategy: Validate that variant can accept both dynamic and static
-   * values as well as validate that the javax.servlet.jsp.jstl.fmt.locale
+   * values as well as validate that the jakarta.servlet.jsp.jstl.fmt.locale
    * scoped variable is set with the proper value.
    */
   public void positiveSetLocaleVariantTest() throws Fault {
@@ -111,7 +111,7 @@ public class JSTLClient extends AbstractUrlClient {
    * JSTL:SPEC:28.3.2; JSTL:SPEC:28.3.3; JSTL:SPEC:28.3.4; JSTL:SPEC:28.4
    * 
    * @testStrategy: Validate the behvior of the action with regards to scope. If
-   * scope is specified, verify the javax.servlet.jsp.jstl.fmt.locale
+   * scope is specified, verify the jakarta.servlet.jsp.jstl.fmt.locale
    * configuration variable is in the expected scope. If scope is not specifed,
    * verify that it is in the page scope.
    */
@@ -126,7 +126,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:108
    * 
    * @testStrategy: Validate that browser-based locales from an HTTP client are
-   * not considered if the javax.servlet. jsp.jstl.fmt.locale attribute is
+   * not considered if the jakarta.servlet. jsp.jstl.fmt.locale attribute is
    * present. The client will send it's preferred locales of fr and sw, but the
    * page will be set to en_US. The en resources bundle should be used and not
    * the sw bundle.

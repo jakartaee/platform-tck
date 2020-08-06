@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,15 +22,15 @@ package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.faces.FactoryFinder;
-import javax.faces.render.RenderKitFactory;
-import javax.faces.lifecycle.LifecycleFactory;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.application.ApplicationFactory;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.render.RenderKitFactory;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.application.ApplicationFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,7 +45,7 @@ public final class TestServlet extends HttpTCKServlet {
    * @param config
    *          the configuration for this <code>Servlet</code>
    * 
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           indicates initialization failure
    */
   public void init(ServletConfig config) throws ServletException {
@@ -86,7 +86,7 @@ public final class TestServlet extends HttpTCKServlet {
   public void factoryFinderConfig2Test(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
-    // validate FactoryFinder can be configured via javax.faces.CONFIG_FILES
+    // validate FactoryFinder can be configured via jakarta.faces.CONFIG_FILES
     // context parameter
     PrintWriter out = response.getWriter();
     FacesContextFactory factory = (FacesContextFactory) FactoryFinder

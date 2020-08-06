@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,11 +22,11 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.noselnocidautodurabl
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.*;
-import javax.annotation.Resource;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.Topic;
-import javax.jms.TopicConnectionFactory;
+import jakarta.annotation.Resource;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 
 public class Client extends
     com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase {
@@ -58,7 +58,7 @@ public class Client extends
     TestUtil.logMsg("Testing the following activationConfig properties");
     TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
     TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
-    TestUtil.logMsg("  destinationType=javax.jms.Topic");
+    TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
     TestUtil.logMsg("  acknowledgeMode=Auto-acknowledge");
     TestUtil.logMsg("  subscriptionDurability=Durable");
     TestUtil.logMsg("  subscriptionName=MySubscriptionName4ForRATests");

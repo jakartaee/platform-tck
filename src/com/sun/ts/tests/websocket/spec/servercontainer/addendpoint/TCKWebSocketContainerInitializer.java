@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +21,14 @@
 package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 
 import java.util.Set;
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletContainerInitializer;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 public class TCKWebSocketContainerInitializer
     implements ServletContainerInitializer {
 
+  @Override
   public void onStartup(Set<Class<?>> arg0, ServletContext context)
       throws ServletException {
     context.addListener(

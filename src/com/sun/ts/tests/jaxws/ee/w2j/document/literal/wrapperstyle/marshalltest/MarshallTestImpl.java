@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.rmi.ServerException;
 
 import java.util.GregorianCalendar;
@@ -37,7 +37,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import java.util.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "MarshallTestPort", serviceName = "MarshallTestService", targetNamespace = "http://MarshallTest.org/", wsdlLocation = "WEB-INF/wsdl/WSW2JDLWMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTest")
 

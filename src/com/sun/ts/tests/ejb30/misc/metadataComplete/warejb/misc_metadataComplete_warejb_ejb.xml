@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="3.1" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+<ejb-jar xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="4.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
     <enterprise-beans>
     <!-- all beans are local, though they have remote in their names -->
         <session>
@@ -70,7 +70,7 @@
             </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
-                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
                     <injection-target-name>sessionContext</injection-target-name>
@@ -104,7 +104,7 @@
             </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
-                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
                     <injection-target-name>sessionContext</injection-target-name>
@@ -139,7 +139,7 @@
             </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
-                <resource-env-ref-type>javax.ejb.SessionContext</resource-env-ref-type>
+                <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
                 <injection-target>
                     <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
                     <injection-target-name>sessionContext</injection-target-name>

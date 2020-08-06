@@ -1,5 +1,35 @@
 
+This directory contains the Dockerfiles used for creating images used to run the TCK tests in the Eclipse CI using Jenkins pipeline.
+-Use eclipse bugzilla (https://bugs.eclipse.org/bugs) to avail write permissions on any repositories in these docker hub organizations
+-If the images are required to be updated, create new tags(versions) of the same docker image ; it is possible to overwrite the existing image:version but not recommended.
+-If the docker image is updated with another version the same has to be updated in Jenkinsfile to use them in the CI runs.
+
+=====================================
+
+Dockerfile1:
+
+Image - jakartaee/cts-base:0.1
+
 Additional softwares to be downloaded
-=======================================
-j2sdk-1_4_2_41-linux-i586.tar.gz
-jdk-8u191-linux-x64.tar.gz
+-j2sdk-1_4_2_41-linux-i586.tar.gz
+-jdk-8u191-linux-x64.tar.gz
+
+Build command : docker build -t jakartaee/cts-base:0.1 -f Dockerfile1 .
+Image push command : docker push jakartaee/cts-base:0.1
+
+=====================================
+
+Dockerfile2:
+
+Image - jakartaee/cts-base:0.2
+
+Additional softwares to be downloaded
+-jdk-11.0.7_linux-x64_bin.tar.gz
+-jdk-8u191-linux-x64.tar.gz
+
+JDK11_HOME will the available as JDK11 home path at /opt/jdk-11.0.7
+
+Build command : docker build -t jakartaee/cts-base:0.2 -f Dockerfile2 .
+Image push command : docker push jakartaee/cts-base:0.2
+
+=====================================

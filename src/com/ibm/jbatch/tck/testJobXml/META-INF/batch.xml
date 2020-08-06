@@ -16,7 +16,7 @@
 
 -->
 
-<batch-artifacts xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+<batch-artifacts xmlns="https://jakarta.ee/xml/ns/jakartaee">
     <ref id="connectionHelper" class="com.ibm.jbatch.tck.artifacts.chunkartifacts.ConnectionHelper" />
     <ref id="inventoryInitProcessor" class="com.ibm.jbatch.tck.artifacts.chunkartifacts.InventoryInitProcessor" />
     <ref id="inventoryInitReader" class="com.ibm.jbatch.tck.artifacts.chunkartifacts.InventoryInitReader" />

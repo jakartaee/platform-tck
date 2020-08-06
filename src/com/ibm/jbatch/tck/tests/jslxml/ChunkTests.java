@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.tests.jslxml;
+package com.ibm.jbatch.tck.tests.jslxml;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -24,11 +24,11 @@ import static com.ibm.jbatch.tck.utils.AssertionUtils.assertWithMessage;
 import java.util.List;
 import java.util.Properties;
 
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.JobExecution;
-import javax.batch.runtime.JobInstance;
-import javax.batch.runtime.Metric;
-import javax.batch.runtime.StepExecution;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.JobExecution;
+import jakarta.batch.runtime.JobInstance;
+import jakarta.batch.runtime.Metric;
+import jakarta.batch.runtime.StepExecution;
 
 import com.ibm.jbatch.tck.artifacts.reusable.MyPersistentRestartUserData;
 import com.ibm.jbatch.tck.artifacts.specialized.MyItemProcessListenerImpl;
@@ -52,7 +52,7 @@ public class ChunkTests extends ServiceEETest {
     private static JobOperatorBridge jobOp = null;
 
     public static void setup(String[] args, Properties props) throws Fault {
-        String METHOD = "setup";
+        String METHOD = "setup";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -89,7 +89,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkNoProcessorDefined() throws Fault {
-        String METHOD = "testChunkDefaultItemCount";
+        String METHOD = "testChunkDefaultItemCount";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -133,7 +133,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkNullCheckpointInfo() throws Fault {
-        String METHOD = "testChunkDefaultItemCount";
+        String METHOD = "testChunkDefaultItemCount";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -170,7 +170,7 @@ TestUtil.logTrace(METHOD);
    
    
    public void testChunkArtifactInstanceUniqueness() throws Fault {
-       String METHOD = "testChunkDefaultItemCount";
+       String METHOD = "testChunkDefaultItemCount";
 TestUtil.logTrace(METHOD);
 
        try {
@@ -208,7 +208,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkOnErrorListener() throws Fault {
     	
-    	String METHOD = "testChunkOnErrorListener";
+    	String METHOD = "testChunkOnErrorListener";
 TestUtil.logTrace(METHOD);
     	
     	try {
@@ -254,7 +254,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkRestartItemCount7() throws Fault {
-        String METHOD = "testChunkRestartItemCount7";
+        String METHOD = "testChunkRestartItemCount7";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -328,7 +328,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkRestartItemCount10() throws Fault {
 
-        String METHOD = "testChunkRestartItemCount10";
+        String METHOD = "testChunkRestartItemCount10";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -401,7 +401,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkRestartChunk5() throws Fault {
 
-        String METHOD = "testChunkRestartChunk5";
+        String METHOD = "testChunkRestartChunk5";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -472,7 +472,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkDefaultItemCount() throws Fault {
-        String METHOD = "testChunkDefaultItemCount";
+        String METHOD = "testChunkDefaultItemCount";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -519,7 +519,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkRestartCustomCheckpoint() throws Fault {
-        String METHOD = "testChunkRestartCustomCheckpoint";
+        String METHOD = "testChunkRestartCustomCheckpoint";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -592,7 +592,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkTimeBasedDefaultCheckpoint() throws Fault {
-        String METHOD = "testChunkTimeBasedDefaultCheckpoint";
+        String METHOD = "testChunkTimeBasedDefaultCheckpoint";
 TestUtil.logTrace(METHOD);
         
         String DEFAULT_SLEEP_TIME = "500";
@@ -638,7 +638,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkTimeBasedTimeLimit0() throws Fault {
-        String METHOD = "testChunkTimeBasedDefaultCheckpoint";
+        String METHOD = "testChunkTimeBasedDefaultCheckpoint";
 TestUtil.logTrace(METHOD);
         
         String DEFAULT_SLEEP_TIME = "500";
@@ -689,7 +689,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkTimeBased10Seconds() throws Fault {
     	
-    	 String METHOD = "testChunkTimeBased10Seconds";
+    	 String METHOD = "testChunkTimeBased10Seconds";
 TestUtil.logTrace(METHOD);
     	 
     	 String DEFAULT_SLEEP_TIME = "500";
@@ -732,7 +732,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkRestartTimeBasedCheckpoint() throws Fault {
-        String METHOD = "testChunkRestartTimeBasedCheckpoint";
+        String METHOD = "testChunkRestartTimeBasedCheckpoint";
 TestUtil.logTrace(METHOD);
         
         String DEFAULT_SLEEP_TIME = "500";
@@ -801,7 +801,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkRestartTimeBasedDefaultCheckpoint() throws Fault {
 
-        String METHOD = "testChunkRestartTimeBasedDefaultCheckpoint";
+        String METHOD = "testChunkRestartTimeBasedDefaultCheckpoint";
 TestUtil.logTrace(METHOD);
         
         String DEFAULT_SLEEP_TIME = "500";
@@ -876,7 +876,7 @@ TestUtil.logTrace(METHOD);
 	
     public void testChunkSkipMultipleExceptions() throws Fault {
 
-        String METHOD = "testChunkSkipRead";
+        String METHOD = "testChunkSkipRead";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -921,7 +921,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkSkipRead() throws Fault {
 
-        String METHOD = "testChunkSkipRead";
+        String METHOD = "testChunkSkipRead";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -966,7 +966,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkSkipProcess() throws Fault {
-        String METHOD = "testChunkSkipProcess";
+        String METHOD = "testChunkSkipProcess";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -1010,7 +1010,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkSkipWrite() throws Fault {
-        String METHOD = "testChunkSkipWrite";
+        String METHOD = "testChunkSkipWrite";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -1056,7 +1056,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkSkipOnError() throws Fault {
 
-        String METHOD = "testChunkSkipOnError";
+        String METHOD = "testChunkSkipOnError";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -1139,7 +1139,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkRetryOnError() throws Fault {
 
-        String METHOD = "testChunkRetryOnError";
+        String METHOD = "testChunkRetryOnError";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -1221,7 +1221,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkSkipReadExceedSkip() throws Fault {
-        String METHOD = "testChunkSkipReadExceedSkip";
+        String METHOD = "testChunkSkipReadExceedSkip";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1268,7 +1268,7 @@ TestUtil.logTrace(METHOD);
     
     public void testChunkSkipProcessExceedSkip() throws Fault {
 
-        String METHOD = "testChunkSkipProcessExceedSkip";
+        String METHOD = "testChunkSkipProcessExceedSkip";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1314,7 +1314,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkSkipWriteExceedSkip() throws Fault {
-        String METHOD = "testChunkSkipWriteExceedSkip";
+        String METHOD = "testChunkSkipWriteExceedSkip";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1361,7 +1361,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkSkipReadNoSkipChildEx() throws Fault {
-        String METHOD = "testChunkSkipReadNoSkipChildEx";
+        String METHOD = "testChunkSkipReadNoSkipChildEx";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1407,7 +1407,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkRetryRead() throws Fault {
-        String METHOD = "testChunkRetryRead";
+        String METHOD = "testChunkRetryRead";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1458,7 +1458,7 @@ TestUtil.logTrace(METHOD);
 	
     public void testChunkRetryMultipleExceptions() throws Fault {
 
-        String METHOD = "testChunkRetryMultipleExceptions";
+        String METHOD = "testChunkRetryMultipleExceptions";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");
@@ -1506,7 +1506,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkItemListeners() throws Fault {
-        String METHOD = "testChunkItemListeners";
+        String METHOD = "testChunkItemListeners";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1602,7 +1602,7 @@ TestUtil.logTrace(METHOD);
     
     
     public void testChunkItemListenersOnError() throws Fault {
-        String METHOD = "testChunkItemListeners";
+        String METHOD = "testChunkItemListeners";
 TestUtil.logTrace(METHOD);
 
         try {
@@ -1671,7 +1671,7 @@ TestUtil.logTrace(METHOD);
     
     public void testUserDataIsPersistedAfterCheckpoint() throws Fault {
 
-        String METHOD = "testChunkRestartItemCount10";
+        String METHOD = "testChunkRestartItemCount10";
 TestUtil.logTrace(METHOD);
         try {
             TestUtil.logMsg("Create job parameters for execution #1:");

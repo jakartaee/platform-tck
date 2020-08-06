@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -587,31 +587,31 @@
      </target>
 
      <!--
-       Remove the javamail JNDI resources
+       Remove the mail JNDI resources
      -->
-     <target name="delete-javamail-resource">
+     <target name="delete-mail-resource">
         <exec executable="${exec.asadmin}" >
             <arg line="${exec.asadmin.part2}" />
             <arg line=" --user ${admin.user}"/>
             <arg line=" --passwordfile ${password.file}"/>
             <arg line=" --host ${server.host}"/>
             <arg line=" --port ${server.port}"/>
-            <arg line=" delete-javamail-resource"/>
+            <arg line=" delete-mail-resource"/>
             <arg line=" ${jndiName}"/>
         </exec>
      </target>
 
      <!--
-       Add the javamail JNDI resources
+       Add the mail JNDI resources
      -->
-     <target name="create-javamail-resource" >
+     <target name="create-mail-resource" >
         <exec executable="${exec.asadmin}" >
             <arg line="${exec.asadmin.part2}" />
             <arg line=" --user ${admin.user}"/>
             <arg line=" --passwordfile ${password.file}"/>
             <arg line=" --host ${server.host}"/>
             <arg line=" --port ${server.port}"/>
-            <arg line=" create-javamail-resource"/>
+            <arg line=" create-mail-resource"/>
             <arg line=" --mailhost ${mailHost}"/>
             <arg line=" --mailuser ${mailuser1}"/>
             <arg line=" --fromaddress ${mailFrom}"/>
@@ -668,23 +668,6 @@
             <arg line=" ${poolName}"/>
         </exec>
     </target>
-
-     <!--
-       Create a Connector Connection Pool
-     -->
-     <target name="create-connector-connection-pool" >
-       <exec executable="${exec.asadmin}" >
-            <arg line="${exec.asadmin.part2}" />
-            <arg line=" --user ${admin.user}"/>
-            <arg line=" --passwordfile ${password.file}"/>
-            <arg line=" --host ${server.host}"/>
-            <arg line=" --port ${server.port}"/>
-            <arg line=" create-connector-connection-pool"/>
-            <arg line=" --raname ${rarName}"/>
-            <arg line=" --connectiondefinition com.sun.connector.jaxr.JaxrConnectionFactory"/>
-            <arg line=" ${poolName}"/>
-        </exec>
-     </target>
 
      <!--
        Create a Connector Resource
@@ -1434,19 +1417,19 @@
     -->
     <target name="create.jacc.vm.options" depends="configPlatform">
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
          </antcall>
 
          <antcall target="create-one-jvm-option" >
@@ -1471,19 +1454,19 @@
     -->
     <target name="delete.jacc.vm.options" depends="configPlatform">
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
          </antcall>
         
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
          </antcall>
 
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djavax.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
+          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
          </antcall>
 
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.javax.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
          </antcall>
 
          <antcall target="delete-one-jvm-option" >
@@ -1635,5 +1618,21 @@ AS_ADMIN_NEWPASSWORD=${admin.password}</echo>
         </exec>
         <echo>******* DONE. ENABLE SECURE ADMIN ********</echo>
     </target>
+	
+    <!--
+      get.client.stubs retrieves the application JAR files needed to launch the application client..
+    -->
+    <target name="get.client.stubs" depends="configPlatform">
+       <exec executable="${exec.asadmin}" >
+           <arg line="${exec.asadmin.part2}" />
+           <arg line=" --user ${admin.user}"/>
+           <arg line=" --passwordfile ${password.file}"/>
+           <arg line=" --host ${server.host}"/>
+           <arg line=" --port ${server.port}"/>
+           <arg line=" get-client-stubs"/>
+           <arg line=" --appName ${deploy.app.name}"/>
+           <arg line=" ${get.stub.clients.ts_dep}"/>
+       </exec>
+    </target>   	
 	
 </project>

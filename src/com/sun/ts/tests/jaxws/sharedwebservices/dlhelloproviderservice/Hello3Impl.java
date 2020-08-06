@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice;
 
-import javax.xml.ws.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 
 import java.util.Iterator;
 
@@ -35,8 +35,8 @@ import javax.xml.transform.stream.StreamSource;
  * Provider<Source> - req/res a Source in Payload Mode
  */
 @WebServiceProvider(serviceName = "HelloService", portName = "Hello3Port", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
-@BindingType(value = javax.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
-@ServiceMode(value = javax.xml.ws.Service.Mode.PAYLOAD)
+@BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
+@ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 public class Hello3Impl implements Provider<Source> {
 
   String helloResp = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>response</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";

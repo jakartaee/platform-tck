@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>Jakarta Authorization TCK, Version 2.0 Release Notes, September 2020</title>
+<!--
+
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<style type="text/css">
+<!--
+body {  background-color: #ffffdd; color: #000000}
+pre {  background-color: #eeeeee; color: #000099; font-size: smaller}
+code {  color: #000099; font-size: smaller}
+h1 {  color: #000099}
+h2 {  color: #000099}
+h3 {  color: #000099; text-decoration: underline}
+h4 {  font-style: italic; color: #000099}
+.tabletitle {  font-style: italic; color: #ffffcc; font-size: small; font-variant: small-caps}
+.subtitle {  font-style: italic; color: #ffffcc; font-variant: small-caps}
+.emphasize  {  font-style: italic; color: #000099}
+.step  { font-weight: bold}
+.note { background-color: #fffff0; border-bottom-width: thin; border-top-width: thin; border-top-style: inset; border-bottom-style: inset; font-size: -10%;}
+th {  background-color: #eeeeee; padding-left: 2pt; padding-right: 2pt;}
+-->
+</style></head>
+
+<body>
+<div align="center">
+<h1>Jakarta Authorization  Technology Compatibility Kit, Version 2.0<br>
+<em class="emphasize">Release Notes, September 2020</em></h1>
+</div>
+
+<h2><a name="kit_contents">Kit Contents</a></h2>
+
+<p>The Jakarta Authorization, Version 2.0 Technology Compatibility Kit (TCK) includes the following items:</p>
+
+<ul>
+   <li><p><strong>Jakarta Authorization TCK tests for signature, API, and End-to-End tests:</strong></p></li>
+   <li>
+       <ul type="square">
+	   <li><p>A <strong>signature test</strong> checks that all of the public APIs are supported in the Jakarta Authorization Version 2.0 implementation that is being tested</p></li>
+   	   <li><p><strong>API tests</strong> for all of the public APIs under the <code>jakarta.security.jacc</code> package</p></li>
+   	   <li>
+           <p><strong>End-To-End tests</strong> that demonstrate compliance with the <em>Jakarta Authorization 2.0 Specification</em></p></li>
+       </ul>
+   </li>
+</ul>
+
+<hr>
+<h2><a name="platform">Platform Notes</a></h2>
+
+<p>The Jakarta Authorization TCK tests have been built and tested with Java<font size="-2"><sup>TM</sup></font>
+Platform, Standard Edition 8 (Java SE 8).</P>
+
+<p>The Jakarta Authorization TCK tests have been run on the following platforms:</p>
+<ul>
+
+  <li>MAC OS X, <em>El Capitan</em> (10.9.5+)</li>
+  <li>Oracle Linux 7.1</li>
+  <li>Windows 10</li>
+  <li>CentOS Linux 7</li>
+  <li>Alpine Linux v3.12</li>
+</ul>
+
+<p>The Jakarta Authorization TCK tests have been run against the Jakarta Authorization 2.0 Compatible Implementation (CI), Eclipse GlassFish 6.0.</p>
+<p>Jakarta Enterprise Beans was formerly known as Enterprise Java Beans and abbreviated EJB. References to EJB below refer to Jakarta Enterprise Beans. Use of this term, as commands, switches, or keywords have not been revised.</p>
+
+<hr>
+
+<h2><a name="install_setup_run">Installing, Setting Up, and Running the Jakarta Authorization TCK</a></h2>
+
+<p>Refer to the <cite>Jakarta Authorization TCK 2.0 User's Guide</cite> for complete instructions on installing, setting up, and running the Jakarta Authorization TCK.
+The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
+
+<hr>
+<h2>Jakarta Authorization TCK Requirements, Facts, and Figures</h2>
+
+<p>The Jakarta Authorization TCK requires a minimum of 103 MB of free disk space:</p>
+
+<ul>
+   <li>Jakarta Authorization TCK (zipped): 23 MB</li>
+   <li>Jakarta Authorization TCK (unzipped):  79 MB</li>
+   <li>Space for Jakarta Authorization log/report files: 1 MB minimum </li>
+</ul>
+
+<p>The test suite bundle contains the following:</p>
+
+<ul>
+ <li>EARs: 0</li>
+ <li>JARs: 41</li>
+ <li>WARs: 6</li>
+ <li>Total tests:   32
+ <ul>
+    <li>Web Container:  23</li>
+    <li>EJB-lite:  9</li>
+    <li>EJB Container:  n/a (Jakarta Enterprise Beans Container tests are only available in full CTS 8)</li>
+ </ul></li>
+</ul>
+
+<p> There are multiple levels of compliance available for Jakarta Authorization certification.  Jakarta Authorization allows for certification of the following containers:  Web Container, Jakarta Enterprise Beans Container, or Both.  The standalone Jakarta Authorization TCK only concerns itself with Web Container tests and possibly some Jakarta Enterprise Beans-lite tests (which could be run in a Web Profile environment). There are keywords available which can be supplied on the command line which allow isolating the tests for a given level of certification.  (For more on keywords, see the Jakarta Authorization 2.0 TCK User Guide).  The list of keywords available for Jakarta Authorization 2.0 TCK is as follows:</p>
+ <ul>
+    <li>keyword  <strong>jacc_web</strong> :   used to run Web Container tests  </li>
+    <li>keyword  <strong>jacc_ejb</strong> :   used to run Jakarta Enterprise Beans Container tests  </li>
+    <li>keyword  <strong>jacc_web_profile</strong> :   used to run WEB and Jakarta Enterprise Beans Lite Container tests in Web Profile environment </li>
+    <li>keyword  <strong>jacc</strong>  :  used to run all Jakarta Authorization standalone TCK tests </li>
+ </ul>
+
+<hr>
+<h2>Status Information</h2>
+<h3>Exclude List</h3>
+<blockquote>
+<p>You can find the exclude list in the Jakarta Authorization bundle in <code>&lt;TS_HOME&gt;/bin/ts.jtx</code>. Since the list can change over time, please be sure to get the latest exclude list from the Jakarta Authorization Specification Web site: <a href="https://jakarta.ee/specifications/authorization/2.0/">https://jakarta.ee/specifications/authorization/2.0/</a>.</p>
+</blockquote>
+
+<hr>
+<h2>Known Problems and Workarounds</h2>
+
+<h3>Running the Jakarta Authorization TCK Against Jakara EE compatible implementation on Windows</h3>
+<blockquote>
+<p>When configuring and running the Jakarta Authorization TCK against the CI on Windows, please make sure to install all related software (Java SE 8, the CI, the Jakarta Authorization TCK, etc.) on the same drive (for example, <code>C:</code>). If you want to install on a drive other than <code>C:</code>, please be sure to change the following properties in <code>&lt;TS_HOME&gt;/bin/ts.jte:</code></p>
+
+<pre>
+s1as.applicationRoot=c:
+</pre>
+</blockquote>
+<hr>
+<p><cite><small><address>
+Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+</address></small></cite></p>
+</body></html>

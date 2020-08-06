@@ -23,7 +23,7 @@ import java.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.deliverable.*;
-import org.glassfish.deployment.client.*;
+
 import java.util.jar.JarFile;
 import java.util.jar.JarEntry;
 import org.jdom.input.SAXBuilder;
@@ -62,7 +62,6 @@ public class AutoDeployment implements TSDeploymentInterface {
 
   protected Hashtable htJNDIRefs = null;
 
-  // TSDeploymentInterface2
   protected Hashtable htDeployedModules = // Map ear files to IDs so we
       new Hashtable(); // can later undeploy
 
@@ -123,7 +122,7 @@ public class AutoDeployment implements TSDeploymentInterface {
     } catch (Exception e) {
       e.printStackTrace();
       TestUtil.logHarness(
-          "Creation of TSDeployment2 implementation instance failed."
+          "Creation of TSDeployment implementation instance failed."
               + " Please check the values of 'porting.ts.deploy2.class.1' and"
               + " 'porting.ts.deploy2.class.2'");
     }
@@ -198,6 +197,26 @@ public class AutoDeployment implements TSDeploymentInterface {
     Project p = new Project();
     antSetupFromInfo(info, p);
 
+    String javaeeLevel = propMgr.getProperty("javaee.level", "full");
+    if (javaeeLevel.contains("full")) {
+        //Sets file name to be used while generating client stubs
+        String archiveFile =p.getProperty("archive.file");
+        String applicationName = this.getAppNameFromApplicationXML(archiveFile);
+        if (applicationName == null) { // if we didn't have an ear or there was no
+            // application-name use the old scheme
+            applicationName = archiveFile.substring(archiveFile.lastIndexOf(File.separator) + 1,
+                    archiveFile.lastIndexOf("."));
+        }
+        
+        p.setProperty("deploy.app.name", applicationName);
+        p.setProperty("get.stub.clients", "true");
+        
+        String sEarFile = info.getEarFile();
+        String sTSDeploymentDir = sEarFile.substring(0,
+            sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep";
+        p.setProperty("get.stub.clients.ts_dep", sTSDeploymentDir);
+    }
+    
     try {
 
       p.executeTarget("-deploy");
@@ -206,19 +225,6 @@ public class AutoDeployment implements TSDeploymentInterface {
       t.printStackTrace();
       throw new TSDeploymentException(t.getMessage()
           + System.getProperty("line.separator") + getServerLogContents());
-    }
-
-    // will I need to make a call here to get the location of the client jar, if
-    // any?
-
-    // check if we have an appclient jar, and get stups
-    // check if we have an ear with appclient jar
-    // if either are not ture, then don't get stubs from server
-
-    String javaeeLevel = propMgr.getProperty("javaee.level", "full");
-
-    if (javaeeLevel.contains("full")) {
-      getClientClassPath(info);
     }
 
     return "";
@@ -569,114 +575,6 @@ public class AutoDeployment implements TSDeploymentInterface {
     TestUtil.logHarness(
         "getAppNameFromApplicationXML() returning \"" + appName + "\"");
     return appName;
-  }
-
-  /**
-   * This method is called by the test harness to deploy an .ear file into Sun's
-   * Java EE reference implementation. We extract such info as the app earfile
-   * from the provided deployment information. The following properties are
-   * available for this method's use:
-   * <p>
-   * generateSQL - "true" if SQL is to be generated for CMP beans
-   * <p>
-   * <p>
-   * deployment_host - the host where this app is to be deployed
-   * <p>
-   *
-   * All additional information is queryable from the DeploymentInfo interface.
-   *
-   * @param targetIDs
-   *          The list of deployment target IDs.
-   * @param info
-   *          Object containing necessary deployment info.
-   * @return This method should return a string which is formatted such that it
-   *         can be appended to the classpath. This implementation returns the
-   *         fully qualified path to a jar file, which contains the generated
-   *         ejb stub classes, which are used by any appclient tests (tests
-   *         whose client directly uses an ejb).
-   */
-  private String getClientClassPath(DeploymentInfo info)
-      throws TSDeploymentException {
-    String sAppName = null;
-    String sEarFile = info.getEarFile();
-    String sTSDeploymentDir = sEarFile.substring(0,
-        sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep";
-
-    if (sEarFile.endsWith(".ear")) { // Check for an application-name in the
-                                     // application.xml
-      sAppName = getAppNameFromApplicationXML(sEarFile);
-    }
-
-    if (sAppName == null) { // if we didn't have an ear or there was no
-                            // application-name use the old scheme
-      sAppName = sEarFile.substring(sEarFile.lastIndexOf(File.separator) + 1,
-          sEarFile.lastIndexOf("."));
-    }
-
-    if (sAppName.startsWith("vi_built_")) {
-      sAppName = sAppName.substring(9);
-      sTSDeploymentDir = sEarFile.substring(0,
-          sEarFile.lastIndexOf(File.separator) + 1) + "ts_dep_vi_built";
-    }
-
-    File ctsDeployDir = new File(sTSDeploymentDir);
-
-    // we should only be calling this method with archives that contain an
-    // appclient
-
-    if (!ctsDeployDir.exists()) {
-      if (!ctsDeployDir.mkdir()) {
-        throw new TSDeploymentException(
-            "Failed to create the RI deployment working directory:  "
-                + sTSDeploymentDir);
-      }
-    }
-
-    String sStubJar = sTSDeploymentDir;
-    TestUtil.logHarnessDebug(
-        "$$$$$$$$$$$ getClientClassPath() sStubJar = \"" + sStubJar + "\"");
-
-    try {
-      String sDeploymentHost = info.getProperty("deployment_host");
-      String sPropNum = info.getProperty("deployment.props.number");
-      String sUname = propMgr.getProperty("deployManageruname." + sPropNum);
-      String sPassword = propMgr.getProperty("deployManagerpasswd." + sPropNum,
-          "");
-      int iPort = Integer.parseInt(info.getProperty("deployment_port"));
-
-      DeploymentFacility df = DeploymentFacilityFactory.getDeploymentFacility();
-      ServerConnectionIdentifier sci = new ServerConnectionIdentifier();
-      sci.setHostName(sDeploymentHost);
-      sci.setHostPort(iPort);
-      sci.setUserName(sUname);
-      sci.setPassword(sPassword);
-
-      TestUtil.logHarness("V3Deployment sPropNum = " + sPropNum);
-      TestUtil.logHarness("V3Deployment uname:  " + sUname);
-      TestUtil.logHarness("V3Deployment passwd:  " + sPassword);
-      TestUtil.logHarness("V3Deployment host:  " + sDeploymentHost);
-      TestUtil.logHarness("V3Deployment port:  " + iPort);
-
-      // sci.setHostName("localhost");
-      // sci.setHostPort(4848); // 8080 for the REST client
-      // sci.setUserName("admin");
-      // sci.setPassword("adminadmin");
-
-      df.connect(sci);
-
-      df.getClientStubs(sTSDeploymentDir, sAppName);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    // TestUtil.logHarnessDebug("$$$$$$$$$$$ getClientClassPath() returning \""
-    // + returnString + "\"");
-    // We no longer need to return the jar file with the EJB stubs since the
-    // S1AS
-    // now passes the generated jar file (containing the stubs and other
-    // necessary classes)
-    // to the appclient Main class.
-    return "";
   }
 
   private void log(String s) {

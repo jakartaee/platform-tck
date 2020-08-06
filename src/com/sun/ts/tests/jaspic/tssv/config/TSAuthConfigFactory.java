@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,8 +24,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import javax.security.auth.message.config.RegistrationListener;
-import javax.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.config.AuthConfigProvider;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
@@ -51,7 +51,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
  *
  */
 public class TSAuthConfigFactory
-    extends javax.security.auth.message.config.AuthConfigFactory {
+    extends jakarta.security.auth.message.config.AuthConfigFactory {
 
   private static TSLogger logger = null;
 

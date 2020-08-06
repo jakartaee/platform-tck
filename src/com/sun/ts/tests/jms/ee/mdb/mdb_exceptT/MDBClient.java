@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import com.sun.ts.tests.jms.commonee.Client;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import com.sun.javatest.Status;
 
 public class MDBClient extends Client {
@@ -70,7 +70,7 @@ public class MDBClient extends Client {
    * @assertion_ids: EJB:SPEC:529; EJB:SPEC:530; EJB:SPEC:547; EJB:SPEC:580;
    *
    * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. The mdb
-   * begins a javax.transaction.UserTransaction, then attempts a
+   * begins a jakarta.transaction.UserTransaction, then attempts a
    * MessageDrivenContext getRollBackOnly() method. Return verification message
    * that a java.lang.IllegalStateException was thrown.
    */
@@ -99,7 +99,7 @@ public class MDBClient extends Client {
    * @assertion_ids: EJB:SPEC:529; EJB:SPEC:530; EJB:SPEC:547; EJB:SPEC:580;
    *
    * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. The mdb
-   * begins a javax.transaction.UserTransaction, then attempts a
+   * begins a jakarta.transaction.UserTransaction, then attempts a
    * MessageDrivenContext setRollBackOnly() method. Return verification message
    * that a java.lang.IllegalStateException was thrown.
    *
@@ -360,9 +360,9 @@ public class MDBClient extends Client {
    * @assertion_ids: EJB:SPEC:579;
    *
    * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. The mdb
-   * begins a javax.transaction.UserTransaction. The mdb begins another
-   * javax.transaction.UserTransaction Verify that the container throws a
-   * javax.transaction.NotSupportedException
+   * begins a jakarta.transaction.UserTransaction. The mdb begins another
+   * jakarta.transaction.UserTransaction Verify that the container throws a
+   * jakarta.transaction.NotSupportedException
    */
   public void Test13() throws Fault {
     String TestCase = "expTest13";

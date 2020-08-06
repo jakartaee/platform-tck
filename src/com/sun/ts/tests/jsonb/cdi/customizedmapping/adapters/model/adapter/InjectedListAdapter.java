@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.inject.Inject;
+import jakarta.json.bind.adapter.JsonbAdapter;
 
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson;

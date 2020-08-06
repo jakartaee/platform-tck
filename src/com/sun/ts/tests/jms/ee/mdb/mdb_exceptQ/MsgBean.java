@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +24,14 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.tests.jms.commonee.ParentMsgBeanNoTx;
 import java.io.Serializable;
 import java.util.*;
-import javax.ejb.EJBException;
-import javax.ejb.EJBHome;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBHome;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.security.*;
 import java.sql.*;
 import javax.sql.*;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
@@ -262,7 +262,7 @@ public class MsgBean extends ParentMsgBeanNoTx {
       try {
         ut.begin();
         TestUtil.logErr("BMT MDB getBeginAgain() Test Failed!");
-      } catch (javax.transaction.NotSupportedException e) {
+      } catch (jakarta.transaction.NotSupportedException e) {
         TestUtil.logTrace("BMT MDB getBeginAgain() Test Succeeded!");
         TestUtil.logTrace("Got expected NotSupportedException");
         result = true;

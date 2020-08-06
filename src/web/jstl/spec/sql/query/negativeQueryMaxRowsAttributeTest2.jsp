@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@
    JspException </h1>
    <p>
 
-  <tck:catch var="e2" exception= "javax.servlet.jsp.JspException" >
+  <tck:catch var="e2" exception= "jakarta.servlet.jsp.JspException" >
      <sql:query var="resultSet2"  maxRows="-5"
                     dataSource='<%=(DataSource) pageContext.getAttribute("jstlDS", PageContext.APPLICATION_SCOPE) %>'  >
           <%=((Properties)pageContext.getAttribute("sqlProps",PageContext.APPLICATION_SCOPE)).getProperty("Simple_Select_Query") %>

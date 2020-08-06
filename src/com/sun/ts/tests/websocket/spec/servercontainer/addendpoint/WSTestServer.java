@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,8 +29,8 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.websocket.*;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.websocket.*;
+import jakarta.websocket.server.ServerEndpoint;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -157,6 +158,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close1Test(String message, Session session) {
     try {
       session.close();
@@ -165,6 +167,7 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void close2Test(String message, Session session) {
     try {
       session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
@@ -279,10 +282,7 @@ public class WSTestServer {
   public void setMaxBinaryMessageBufferSizeTest2(ByteBuffer message_b,
       Session session) {
     System.out.println("In setMaxBinaryMessageBufferSizeTest2");
-    int size = 64;
     String message = "Binary Message over size 64=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String message1 = message.substring(0, size - 1);
-    String message2 = message.substring(size, 90 - 1);
 
     ByteBuffer data = ByteBuffer
         .wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
@@ -300,13 +300,11 @@ public class WSTestServer {
     }
   }
 
+  @SuppressWarnings("unused")
   public void setMaxTextMessageBufferSize2Test(String message_r,
       Session session) {
     System.out.println("In setMaxTextMessageBufferSize2Test");
-    int size = 64;
     String message = "String Message over size 64=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String message1 = message.substring(0, size - 1);
-    String message2 = message.substring(size, 90 - 1);
 
     try {
       session.getBasicRemote()

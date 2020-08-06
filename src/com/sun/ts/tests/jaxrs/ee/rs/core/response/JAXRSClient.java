@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,24 +31,24 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.ws.rs.ProcessingException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientResponseContext;
-import javax.ws.rs.client.ClientResponseFilter;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.EntityTag;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Link;
-import javax.ws.rs.core.Link.Builder;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.NewCookie;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.Response.StatusType;
+import jakarta.ws.rs.ProcessingException;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.client.ClientResponseContext;
+import jakarta.ws.rs.client.ClientResponseFilter;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.EntityTag;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.Link;
+import jakarta.ws.rs.core.Link.Builder;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.NewCookie;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.Response.StatusType;
 
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
@@ -1549,6 +1549,29 @@ public class JAXRSClient extends JaxrsCommonClient {
           "No exception has been thrown when reader for entity is not buffered");
     } catch (IllegalStateException e) {
       logMsg("IllegalStateException has been thrown as expected");
+    }
+  }
+
+    /*
+   * @testName: responseCreatedRelativeURITest
+   *
+   * @assertion_ids: JAXRS:JAVADOC:121;
+   *
+   * @test_Strategy: The resource calls Response.created() to set the Location header with a
+   * relative URI. The relative URI should be converted into an absolute URI by resolving it
+   * relative to the base URI.
+   */
+  public void responseCreatedRelativeURITest()
+      throws Fault {
+    String resourceUrl = getAbsoluteUrl();
+    String expected = resourceUrl.substring(0, resourceUrl.length() - "resource".length()) + "created";
+    Response response = invokeGet("created");
+    try {
+      assertFault(expected.equals(response.getHeaderString("location")),
+        "#response.getHeaderString(\"location\") [" +
+        response.getHeaderString("location") + "] differs from ", expected);
+    } finally {
+      response.close();
     }
   }
 

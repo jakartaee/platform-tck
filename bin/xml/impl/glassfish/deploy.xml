@@ -18,10 +18,8 @@
 
 <project name="Glassfish Deployment" default="-deploy">
 
-    <!-- IMPORTS -->
-    <import file="../../ts.common.props.xml" optional="true"/>
-
-    <!--<property name="deploy.dir" value="${deploy.dir}/"/>-->
+	<!-- Import to be used by stub generation and also includes common-->
+	<import file="./s1as.xml" optional="true"/>
 
     <!-- PRESETDEFS -->
     <presetdef name="gf.echo">
@@ -33,28 +31,40 @@
     </presetdef>
 
     <!-- Deployment: DO NOT EDIT -->
-    <target name="-deploy">
+	<!-- Deployment: DO NOT EDIT -->
+	<target name="-deploy">
 
-        <if>
-            <isset property="archive.file"/>
-            <then>
-                <fileset file="${archive.file}" id="deploy.archive.set"/>
-                <gf.echo message="Deploying:  ${archive.file}"/>
-            </then>
-        </if>
+		<if>
+			<isset property="archive.file"/>
+			<then>
+				<fileset file="${archive.file}" id="deploy.archive.set"/>
+				<gf.echo message="Deploying:  ${archive.file}"/>
+			</then>
+		</if>
+		
+		<ts.glassfish.undeploy>
+			<fileset refid="deploy.archive.set" />
+		</ts.glassfish.undeploy>
 
-        <ts.glassfish.undeploy>
-            <fileset refid="deploy.archive.set"/>
-        </ts.glassfish.undeploy>
-        
-        <ts.add.sun.xml.to.component.archive> 
-            <fileset refid="deploy.archive.set"/>
-        </ts.add.sun.xml.to.component.archive>
-        
-        <ts.glassfish.deploy>
-            <fileset refid="deploy.archive.set"/>
-        </ts.glassfish.deploy>
-    </target>
+		<ts.add.sun.xml.to.component.archive>
+			<fileset refid="deploy.archive.set" />
+		</ts.add.sun.xml.to.component.archive>
+
+		<ts.glassfish.deploy>
+			<fileset refid="deploy.archive.set"/>
+		</ts.glassfish.deploy>
+		
+		<!-- Client stub generation-->
+		<if>
+			<isset property="get.stub.clients"/>
+			<then>
+				 <antcall target="get.client.stubs">
+				 	<param name="deploy.app.name" value="${deploy.app.name}" />
+				 	<param name="get.stub.clients.ts_dep" value="${get.stub.clients.ts_dep}"/>
+				</antcall>
+			</then>
+		</if>
+	</target>
     
     <target name="-deploy.all">
         <ts.glassfish.undeploy> 

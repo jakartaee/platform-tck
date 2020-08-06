@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -94,27 +94,20 @@
         <echo message=" el            [overrides]"/>
         <echo message=" jakartaee     [overrides]"/>
         <echo message=" servlet       [overrides]"/>
-        <echo message=" jaxrs         [overrides]"/>
         <echo message=" saaj          [overrides]"/>
         <echo message=" jpa           [overrides]"/>
         <echo message=" provisioning  [overrides]"/>
         <echo message=" jaxm          [overrides]"/>
         <echo message=" concurrency   [overrides]"/>
-        <echo message=" jaxrpc        [overrides]"/>
         <echo message=" jaxws         [overrides]"/>
         <echo message=" jsonb         [overrides]"/>
         <echo message=" jsonp         [overrides]"/>
-        <echo message=" jaxr          [overrides]"/>
         <echo message=" jms           [overrides]"/>
         <echo message=" websocket     [overrides]"/>
         <echo message=" smoke  	      [overrides]"/>
         <echo message=" jakartaee-appclient [overrides]"/>
         <echo message=" jakartaee-assembly  [overrides]"/>
-        <echo message=" jakartaee-compat    [overrides]"/>
-        <echo message=" jakartaee-interop  [overrides]"/>
-        <echo message=" jakartaee-j2eetools [overrides]"/>
         <echo message=" jakartaee-javamail  [overrides]"/>
-        <echo message=" jakartaee-jaxr     [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
         <echo message=" jakartaee-jta      [overrides]"/>
         <echo message=" jakartaee-jstl     [overrides]"/>
@@ -128,14 +121,12 @@
         <echo message=" jakartaee-jpa      [overrides]"/>
         <echo message=" jakartaee-security [overrides]"/>
         <echo message=" jakartaee-saaj     [overrides]"/>
-        <echo message=" jakartaee-jaxrpc   [overrides]"/>
         <echo message=" jakartaee-jaxws    [overrides]"/>
         <echo message=" jakartaee-jaxrs    [overrides]"/>
         <echo message=" jakartaee-jsonb    [overrides]"/>
         <echo message=" jakartaee-jsonp    [overrides]"/>
         <echo message=" jakartaee-webservices [overrides]"/>
         <echo message=" jakartaee-websocket [overrides]"/>
-        <echo message=" jakartaee-interop-security [overrides]"/>
         <echo message=" jakartaee-servlet [overrides]"/>
         <echo message=" usage"/>
         <echo message=" "/>
@@ -160,8 +151,26 @@
                 <contains string="${deliverable.name}" substring="jakartaee-" casesensitive="false"/>
             </not>
         </condition>
+        <if>
+            <not>
+                <isset property="deliverable.tck.dir"/>
+            </not>
+            <then>
+		<property name="deliverable.tck.dir" value="${deliverable.name}"/>
+            </then>
+        </if>
+
         <changeCase name="deliverable.name.lower" value="${deliverable.name}" />
         <changeCase name="deliverable.name.upper" value="${deliverable.name}" toCase="upper"/>
+        <changeCase name="deliverable.tck.dir.lower" value="${deliverable.tck.dir}" />
+        <changeCase name="deliverable.tck.dir.upper" value="${deliverable.tck.dir}" toCase="upper"/>
+        <propertyregex property="deliverable.tck.dir.token" input="${deliverable.tck.dir.lower}" 
+                       regexp="(.*)j2ee(.*)"
+                       replace="\1jakartaee\2"
+                       defaultValue="${deliverable.tck.dir.lower}"/>
+        <changeCase name="deliverable.tck.dir.token.upper" value="${deliverable.tck.dir.token}" toCase="upper"/>
+
+
         <propertyregex property="deliverable.name.token" input="${deliverable.name.lower}" 
                        regexp="(.*)j2ee(.*)"
                        replace="\1jakartaee\2"
@@ -171,8 +180,28 @@
         <property name="build.num" value="build_${time.stamp.bundle.string}"/>
         <property name="bundle.dir" value="${build.dir}/${build.num}/bundle"/>
         
-        <property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/>
-        <property name="zip.name" value="${deliverable.name.token}${deliverable.type}"/>
+        <!--property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}"/-->
+        <condition property="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.name.token}${deliverable.type}">
+            <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+        </condition>
+        <condition property="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.tck.dir}-${deliverable.type}">
+            <not>
+                <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+            </not>
+        </condition>
+
+	<!--property name="deliverable.bundle.dir" value="${bundle.dir}/${deliverable.tck.dir}-${deliverable.type}"/-->
+
+        <!--property name="zip.name" value="${deliverable.tck.dir.token}-${deliverable.type}"/-->
+	<condition property="zip.name" value="${deliverable.name.token}${deliverable.type}">
+            <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+        </condition>
+        <condition property="zip.name" value="${deliverable.tck.dir.token}-${deliverable.type}">
+            <not>
+                <contains string="${deliverable.name}" substring="jakartaee" casesensitive="false"/>
+            </not>
+        </condition>
+
          <if>
             <isset property="useEFTLicensefile"/>
          <then>
@@ -277,7 +306,7 @@
     
     <target name="-ant-zip" unless="isUnixPlatform">
         <zip zipfile="${bundle.dir}/${zip.file}" 
-             basedir="${bundle.dir}" includes="${zip.name}/"/>
+             basedir="${bundle.dir}" includes="${zip.name}"/>
     </target>
     
     <target name="-excludelist-ant-zip">
@@ -382,17 +411,20 @@
     
     <target name="caj" depends="has.override, no.override" >
         <property name="deliverable.name" value="caj"/>
+        <property name="deliverable.tck.dir" value="annotations"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="connector" depends="has.override, no.override" >
         <property name="deliverable.name" value="CONNECTOR"/>
+        <property name="deliverable.tck.dir" value="connectors"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jacc" depends="has.override, no.override">
         <property name="deliverable.name" value="JACC"/>
         <property name="test.areas" value="jacc"/>
+        <property name="deliverable.tck.dir" value="authorization"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -403,57 +435,68 @@
     
     <target name="jsp" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSP"/>
+        <property name="deliverable.tck.dir" value="pages"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="el" depends="has.override, no.override" >
         <property name="deliverable.name" value="EL"/>
+    	<property name="deliverable.tck.dir" value="expression-language"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jaspic" depends="has.override, no.override" >
         <property name="deliverable.name" value="JASPIC"/>
+        <property name="deliverable.tck.dir" value="authentication"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="securityapi" depends="has.override, no.override" >
         <property name="deliverable.name" value="SECURITYAPI"/>
+        <property name="deliverable.tck.dir" value="security"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jstl" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSTL"/>
+        <property name="deliverable.tck.dir" value="tags"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jsf" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSF"/>
+        <property name="deliverable.tck.dir" value="faces"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="jta" depends="has.override, no.override" >
         <property name="deliverable.name" value="JTA"/>
+        <property name="deliverable.tck.dir" value="transactions"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="servlet" depends="has.override, no.override" >
         <property name="deliverable.name" value="SERVLET"/>
+        <property name="deliverable.tck.dir" value="servlet"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="jaxrs" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXRS"/>
+        <property name="deliverable.tck.dir" value="restful-ws"/>
         <antcall target="${the.target}"/>
     </target>
 
     <target name="saaj" depends="has.override, no.override" >
         <property name="deliverable.name" value="SAAJ"/>
+        <property name="deliverable.tck.dir" value="soap"/>
         <antcall target="${the.target}"/>
     </target>
     
     <target name="jpa" depends="has.override, no.override">
         <property name="deliverable.name" value="JPA"/>
         <property name="test.areas" value="jpa"/>
+        <property name="deliverable.tck.dir" value="persistence"/>
         <antcall target="${the.target}"/>
     </target>
 
@@ -465,12 +508,9 @@
         <property name="deliverable.name" value="JAXM"/>
         <antcall target="${the.target}"/>
     </target>
-    <target name="jaxrpc" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JAXRPC"/>
-        <antcall target="${the.target}"/>
-    </target>
     <target name="jaxws" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAXWS"/>
+	<property name="deliverable.tck.dir" value="xml-ws"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="jsonb" depends="has.override, no.override" >
@@ -481,12 +521,9 @@
         <property name="deliverable.name" value="JSONP"/>
         <antcall target="${the.target}"/>
     </target>
-    <target name="jaxr" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JAXR"/>
-        <antcall target="${the.target}"/>
-    </target>
     <target name="jms" depends="has.override, no.override" >
         <property name="deliverable.name" value="JMS"/>
+        <property name="deliverable.tck.dir" value="messaging"/>
         <antcall target="${the.target}"/>
     </target>
     <target name="concurrency" depends="has.override, no.override" >
@@ -574,12 +611,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-compat" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-COMPAT"/>
-        <property name="test.areas" value="compat12,compat13"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
     <target name="jakartaee-connector" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-CONNECTOR"/>
         <property name="test.areas" value="connector, signaturetest, xa"/>
@@ -588,7 +619,7 @@
     
     <target name="jakartaee-ejb" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-EJB"/>
-        <property name="test.areas" value="ejb,ejb30,compat12/ejb,compat13/ejb, 
+        <property name="test.areas" value="ejb,ejb30, 
             appclient,
             integration/session,
             integration/entity,
@@ -610,18 +641,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-interop" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-INTEROP"/>
-        <property name="test.areas" value="interop"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
-    <target name="jakartaee-j2eetools" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-TOOLS"/>
-        <property name="test.areas" value="j2eetools"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
     <target name="jakartaee-javamail" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAVAMAIL"/>
         <property name="test.areas" value="javamail"/>
@@ -631,18 +650,6 @@
     <target name="jakartaee-jaxm" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAXM"/>
         <property name="test.areas" value="jaxm"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
-    <target name="jakartaee-jaxr" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JAXR"/>
-        <property name="test.areas" value="jaxr/common,jaxr/ee/javax_xml_registry_infomodel,jaxr/ee/javax_xml_registry/BulkResponse,jaxr/ee/javax_xml_registry/BusinessLifeCycleManager,jaxr/ee/javax_xml_registry/BusinessQueryManager,jaxr/ee/javax_xml_registry/DeclarativeQueryManager,jaxr/ee/javax_xml_registry/LifeCycleManager,jaxr/ee/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry_infomodel,jaxr/api/javax_xml_registry/BusinessLifeCycleManager,jaxr/api/javax_xml_registry/BusinessQueryManager,jaxr/api/javax_xml_registry/CapabilityProfile,jaxr/api/javax_xml_registry/Connection,jaxr/api/javax_xml_registry/ConnectionFactory,jaxr/api/javax_xml_registry/DeleteException,jaxr/api/javax_xml_registry/FindException,jaxr/api/javax_xml_registry/InvalidRequestException,jaxr/api/javax_xml_registry/JAXRException,jaxr/api/javax_xml_registry/LifeCycleManager,jaxr/api/javax_xml_registry/Query,jaxr/api/javax_xml_registry/QueryManager,jaxr/api/javax_xml_registry/RegistryException,jaxr/api/javax_xml_registry/RegistryService,jaxr/api/javax_xml_registry/SaveException,jaxr/api/javax_xml_registry/UnexpectedObjectException,jaxr/api/javax_xml_registry/UnsupportedCapabilityException"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
-    <target name="jakartaee-jaxrpc" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JAXRPC"/>
-        <property name="test.areas" value="jaxrpc"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -672,7 +679,7 @@
     
     <target name="jakartaee-webservices" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-WEBSERVICES"/>
-        <property name="test.areas" value="webservices, webservices12, webservices13, jaxrpc, jaxws/common, jaxws/wsi/constants"/>
+        <property name="test.areas" value="webservices12, webservices13, jaxws/common, jaxws/wsi/constants"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -783,11 +790,11 @@
             concurrency/api/ManagedScheduledExecutorService,
             jsp/spec/core_syntax/actions/usebean,
             jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
-            servlet/api/javax_servlet_http/httpservletrequest,
-            servlet/api/javax_servlet/servletcontext,
-            servlet/api/javax_servlet/servletresponse,
+            servlet/api/jakarta_servlet_http/httpservletrequest,
+            servlet/api/jakarta_servlet/servletcontext,
+            servlet/api/jakarta_servlet/servletresponse,
             servlet/api/common,
-            jsp/api/javax_el/elresolver,
+            jsp/api/jakarta_el/elresolver,
             jsp/spec/el/language,
             jsp/spec/tagext/resource/taghandler,
             jms/common,
@@ -800,16 +807,10 @@
             jacc/util,
             jacc/toolsContracts,
             common,
-            jaxrpc/ee/w2j/rpc/encoded/marshalltest,
-            jaxrpc/common,
-            jaxrs/api/client/clientresponsecontext,
-            jaxrs/common,
-            jaxrs/common/provider,
-            jaxrs/common/util,
             webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
             webservices12/servlet/WSMTOMSBAnnotationsTest,
             webservices12/servlet/HandlerTest,
-	    webservices12/wsdlImport/file/simple2,
+	    	webservices12/wsdlImport/file/simple2,
             webservices13/servlet/WSRespBindAndAddressingTestUsingAnnotations,
             webservices13/servlet/WSAddressingFeaturesTestUsingDDs,
             jaxws/ee/j2w/document/literal/marshalltest,
@@ -817,7 +818,7 @@
             jaxws/wsa/common,
             jaxws/wsi/constants,
             jsf/common,
-            jsf/api/javax_faces/application/application,
+            jsf/api/jakarta_faces/application/application,
             jsf/spec/el/managedbean,
             jstl/common,
             jstl/spec/core/iteration/foreach,
@@ -850,26 +851,14 @@
             integration/sec,
             servlet/spec/security,
             jsp/spec/security,
-            webservices/sec,
             jacc,
             jms/common,
             ejb30/common,
-            ejb30/sec,
-            jaxrpc/common" />
+            ejb30/sec" />
         <property name="web.files" value="web/jsp/sec/**/*"/>
         <antcall target="${the.target}"/>
     </target>
-    
-    <target name="jakartaee-interop-security" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-INTEROP-SECURITY"/>
-        <property name="test.areas" value="interop/security, 
-            interop/csiv2,
-            interop/webservices/sec,
-            jms/common,
-            jaxrpc/common" />
-        <antcall target="${the.target}"/>
-    </target>
-    
+        
     <target name="jakartaee-servlet" depends="has.override, no.override" >
         <property name="deliverable.name" value="JAKARTAEE-SERVLET"/>
         <property name="test.areas" value="servlet"/>
@@ -880,23 +869,17 @@
         <var name="deliverable.name" value="JAKARTAEE-COVERAGE"/>
         <property name="test.areas" value="appclient,
             assembly,
-            compat12,
-            compat13,
             connector,
             ejb,
             integration,
-            interop,
-            j2eetools,
             jacc,
             javamail,
             jaxp,
-            jaxr,
-            jaxrpc,
             jdbc,
             jms,
-	    jsonb,
-	    jsonp,
-            jsf,
+		    jsonb,
+		    jsonp,
+	        jsf,
             jsp,
             jstl,
             jta,
@@ -909,7 +892,6 @@
             signaturetest/jsf,
             signaturetest/jstl,
             signaturetest/*,
-            webservices,
             webservices12,
             webservices13,
             xa,

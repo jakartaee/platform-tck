@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<job id="splitTransitionToStepOutOfScope" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="splitTransitionToStepOutOfScope" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
 
     <split id="split1">
 	    <flow id="flow1" next="step1">

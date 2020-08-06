@@ -17,8 +17,8 @@
 -->
 
 <project name="JACC" basedir="." default="build">
-    <property name="deliverable.version" value="1.5"/>
-    <property name="deliverable.tck.version" value="1.5.0"/>
+    <property name="deliverable.version" value="2.0"/>
+    <property name="deliverable.tck.version" value="2.0.0"/>
 
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
@@ -61,10 +61,11 @@
        <copy todir="${deliverable.bundle.dir}/sql" includeEmptyDirs="no">
             <fileset dir="${ts.home}/sql"
                     includes="**/*jacc.sql"/>
-       </copy> 
-       <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
-           <fileset dir="${ts.home}" includes="NOTICE" />
        </copy>
+       <!-- NOTICE will be EPL or EFTL specific: TBD--> 
+       <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+           <fileset dir="${ts.home}" includes="NOTICE" />
+       </copy-->
        <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
 
@@ -152,7 +153,7 @@
                                com/sun/ts/tests/build.xml,
                                com/sun/ts/tests/signaturetest/*,
                                com/sun/ts/tests/signaturetest/jacc/**/*,
-                               com/sun/ts/tests/signaturetest/signature-repository/javax.security.jacc*"
+                               com/sun/ts/tests/signaturetest/signature-repository/jakarta.security.jacc*"
                      excludes="**/.svn/*,
                                com/sun/ts/lib/tests,
                                com/sun/ts/tests/jacc/ejb/methodperm/**,

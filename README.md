@@ -320,7 +320,7 @@ This runs all tests in the current directory and any subdirectories.
 
 9. To run a single test directory in the forward direction, enter the following commands:
     ```
-    cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/javax_xml_ws/Dispatch
+    cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
     ant -Dkeywords=forward runclient
     ```
 

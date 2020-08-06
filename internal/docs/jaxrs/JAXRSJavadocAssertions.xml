@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -3931,7 +3931,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>455</id>
-      <description>Filter method called before a request has been dispatched to a client transport layer. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</description>
+      <description>Filter method called before a request has been dispatched to a client transport layer. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</description>
       <package>javax.ws.rs.client</package>
       <class-interface>ClientRequestFilter</class-interface>
       <method name="filter" return-type="void">
@@ -4136,7 +4136,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>479</id>
-      <description>Filter method called after a response has been provided for a request (either by a ClientRequestFilter request filter or when the HTTP invocation returns. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</description>
+      <description>Filter method called after a response has been provided for a request (either by a ClientRequestFilter request filter or when the HTTP invocation returns. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</description>
       <package>javax.ws.rs.client</package>
       <class-interface>ClientResponseFilter</class-interface>
       <method name="filter" return-type="void">
@@ -5164,7 +5164,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>677</id>
-      <description>Filter method called before a request has been dispatched to a resource. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value. If a request filter produces a response by calling ContainerRequestContext#abortWith method, the execution of the (either pre-match or post-match) request filter chain is stopped and the response is passed to the corresponding response filter chain (either pre-match or post-match). For example, a pre-match caching filter may produce a response in this way, which would effectively skip any post-match request filters as well as post-match response filters. Note however that a responses produced in this manner would still be processed by the pre-match response filter chain.</description>
+      <description>Filter method called before a request has been dispatched to a resource. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value. If a request filter produces a response by calling ContainerRequestContext#abortWith method, the execution of the (either pre-match or post-match) request filter chain is stopped and the response is passed to the corresponding response filter chain (either pre-match or post-match). For example, a pre-match caching filter may produce a response in this way, which would effectively skip any post-match request filters as well as post-match response filters. Note however that a responses produced in this manner would still be processed by the pre-match response filter chain.</description>
       <package>javax.ws.rs.container</package>
       <class-interface>ContainerRequestFilter</class-interface>
       <method name="filter" return-type="void">
@@ -5417,7 +5417,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>707</id>
-      <description>Filter method called after a response has been provided for a request (either by a ContainerRequestFilter request filter or by a matched resource method. Filters in the filter chain are ordered according to their javax.annotation.Priority class-level annotation value.</description>
+      <description>Filter method called after a response has been provided for a request (either by a ContainerRequestFilter request filter or by a matched resource method. Filters in the filter chain are ordered according to their jakarta.annotation.Priority class-level annotation value.</description>
       <package>javax.ws.rs.container</package>
       <class-interface>ContainerResponseFilter</class-interface>
       <method name="filter" return-type="void">
@@ -5716,7 +5716,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>755</id>
-      <description>Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Class) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</description>
+      <description>Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Class) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</description>
       <package>javax.ws.rs.core</package>
       <class-interface>Configurable</class-interface>
       <method name="register" return-type="javax.ws.rs.core.Configurable">
@@ -5751,7 +5751,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>759</id>
-      <description>Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Object) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</description>
+      <description>Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides the same functionality as #register(Object) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden with the supplied priority value. Note that in case the priority is not applicable to a particular provider contract implemented by the class of the registered component, the supplied priority value will be ignored for that contract.</description>
       <package>javax.ws.rs.core</package>
       <class-interface>Configurable</class-interface>
       <method name="register" return-type="javax.ws.rs.core.Configurable">
@@ -7472,7 +7472,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>989</id>
-      <description>Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Class, Class[]) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</description>
+      <description>Register a class of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Class, Class[]) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</description>
       <package>javax.ws.rs.core</package>
       <class-interface>Configurable</class-interface>
       <method name="register" return-type="javax.ws.rs.core.Configurable">
@@ -7484,7 +7484,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>990</id>
-      <description>Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Object, Class[]) except that any priority specified on the registered JAX-RS component class via javax.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</description>
+      <description>Register an instance of a custom JAX-RS component (such as an extension provider or a javax.ws.rs.core.Feature feature meta-provider) to be instantiated and used in the scope of this configurable context. This registration method provides same functionality as #register(Object, Class[]) except that any priority specified on the registered JAX-RS component class via jakarta.annotation.Priority annotation is overridden for each extension provider contract type separately with an integer priority value specified as a value in the supplied map of [contract type, priority] pairs. Note that in case a priority is not applicable to a provider contract registered for the JAX-RS component, the supplied priority value is ignored for such contract.</description>
       <package>javax.ws.rs.core</package>
       <class-interface>Configurable</class-interface>
       <method name="register" return-type="javax.ws.rs.core.Configurable">

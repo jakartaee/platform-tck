@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -91,7 +91,7 @@ public class TSLogger extends Logger {
    * @param name
    *          A name for the logger. This should be a dot-separated name and
    *          should normally be based on the package name or class name of the
-   *          subsystem, such as java.net or javax.swing
+   *          subsystem, such as java.net or jakarta.swing
    * @return a suitable Logger
    */
   public static synchronized TSLogger getTSLogger(String name) {

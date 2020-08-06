@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.ejb.EJBException;
-import javax.ejb.embeddable.EJBContainer;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.embeddable.EJBContainer;
 import javax.naming.NamingException;
 
 import com.sun.ts.lib.harness.ServiceEETest;

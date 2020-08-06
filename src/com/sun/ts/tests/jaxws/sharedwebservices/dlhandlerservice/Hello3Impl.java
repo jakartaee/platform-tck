@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,21 +23,21 @@ package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-import javax.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.soap.SOAPFaultException;
 import javax.xml.namespace.QName;
-import javax.xml.soap.Detail;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.Name;
-import javax.xml.soap.SOAPFault;
+import jakarta.xml.soap.Detail;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
+import jakarta.xml.soap.SOAPFault;
 
 import com.sun.ts.tests.jaxws.common.*;
 import java.util.Properties;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Hello3Port", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello3")
 

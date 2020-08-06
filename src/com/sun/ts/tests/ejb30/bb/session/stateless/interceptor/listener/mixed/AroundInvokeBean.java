@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,17 +22,17 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.mixed;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorNoat1;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.annotation.Resource;
-import javax.ejb.SessionContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.Interceptor1;
 import java.util.ArrayList;
-import javax.interceptor.ExcludeClassInterceptors;
-import javax.interceptor.ExcludeDefaultInterceptors;
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.ExcludeClassInterceptors;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 @Stateless
 @Remote({ AroundInvokeIF.class })
@@ -49,7 +49,7 @@ public class AroundInvokeBean extends AroundInvokeBase
   }
 
   // ============ abstract methods from super ==========================
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return this.ejbContext;
   }
 

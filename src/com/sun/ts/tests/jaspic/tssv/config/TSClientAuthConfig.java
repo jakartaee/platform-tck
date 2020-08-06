@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,33 +17,33 @@
 package com.sun.ts.tests.jaspic.tssv.config;
 
 import java.util.Iterator;
-import javax.security.auth.message.MessageInfo;
-import javax.security.auth.message.config.ClientAuthContext;
-import javax.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.config.ClientAuthContext;
+import jakarta.security.auth.message.AuthException;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import java.util.Map;
 import java.util.logging.Level;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
-import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.Name;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPEnvelope;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPPart;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.Name;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPEnvelope;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 /**
  *
  * @author Raja Perumal
  */
 public class TSClientAuthConfig
-    implements javax.security.auth.message.config.ClientAuthConfig {
+    implements jakarta.security.auth.message.config.ClientAuthConfig {
 
   private static String messageLayer = null;
 

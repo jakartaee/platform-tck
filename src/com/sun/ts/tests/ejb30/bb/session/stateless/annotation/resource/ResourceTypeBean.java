@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,30 +25,30 @@ import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import java.net.URL;
-import javax.annotation.Resource.AuthenticationType;
-import javax.annotation.Resources;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
-import javax.annotation.Resource;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.mail.Session;
+import jakarta.annotation.Resource.AuthenticationType;
+import jakarta.annotation.Resources;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.annotation.Resource;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.mail.Session;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
-import javax.jms.Queue;
-import javax.jms.Topic;
+import jakarta.transaction.UserTransaction;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 import org.omg.CORBA.ORB;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TIMER_SERVICE_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
-import javax.ejb.TimerService;
-import javax.jms.Destination;
-import javax.transaction.TransactionSynchronizationRegistry;
+import jakarta.ejb.TimerService;
+import jakarta.jms.Destination;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 
 @Stateless(name = "ResourceTypeBean")
 @Remote({ ResourceIF.class })
@@ -151,7 +151,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
   public void remove() {
   }
 
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return sessionContext;
   }
 
@@ -163,7 +163,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (DataSource) getEJBContext().lookup(getDataSource2Name());
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return (Session) getEJBContext().lookup(getMailSessionName());
   }
 
@@ -207,7 +207,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (Topic) getEJBContext().lookup(getTopicName());
   }
 
-  protected javax.transaction.UserTransaction getUserTransaction() {
+  protected jakarta.transaction.UserTransaction getUserTransaction() {
     return (UserTransaction) getEJBContext().lookup(getUserTransactionName());
   }
 

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,17 +51,16 @@
 jte.version=@JTE_VERSION@
 
 ########################################################################
-## JT Harness batch mode work directory and report directory, and policy for 
-## handling existing work and report directories.  These properties affect
+## Javatest batch mode work directory and report directory, and policy for 
+## handling existing work and report directories.  These properties affects
 ## runclient and report targets, but not gui target.
-##
 ## To disable generating test report, unset report.dir, or set it to "none" 
 ## either here or from command line, as in the following command:
 ##               ant runclient -Dreport.dir="none"
 ##
-# @work.dir     The directory used to store JT Harness test results and test
+# @work.dir     The directory used to store Javatest test results and test
 #               information.
-# @report.dir   The directory used to store JT Harness summary reports of
+# @report.dir   The directory used to store Javatest summary reports of
 #               test results.
 # @if.existing.work.report.dirs specifies how existing work.dir and
 # report.dir will be handled, and it must be one of the following values:
@@ -89,12 +88,11 @@ if.existing.work.report.dirs=auto
 
 ########################################################################
 # @javatest.timeout.factor This property specifies the scale factor used by
-# Javatest to adjust the time JT Harness will wait for a given test to
+# Javatest to adjust the time JavaTest will wait for a given test to
 # complete before returning failure.  For instance if the default test timeout
 # is 5 minutes, this value will be multiplied by 5 minutes to determine
-# the total timeout delay.  
-# Note: this value only works with batch mode (runclient) of JT Harness.  
-# When using the JT Harness GUI, users must change
+# the total timeout delay.  Note: this value only works with Javatest's
+# batch mode (runclient).  When using the Javatest GUI users must change
 # this timeout factor in the GUI. Configure -> Edit Configuration -> View
 # -> choose Standard Values -> select tab Execution ->  set Time Factor.
 #
@@ -124,42 +122,43 @@ javatest.timeout.factor=1
 #                     must support.  Specifying a javaee.level of "full"  with nothing
 #                     else implies there are NO additional technologies existing within
 #                     the vendors implementation.  Again, "full" only covers the 
-#                     REQUIRED Technologies for Java EE 8 Full profile
+#                     REQUIRED Technologies for Jakarta EE 8 Full profile
 #		      ex/   javaee.level=full
 #
 #	    2. web :  This is the minimal set of signature requirements that vendors
 #                     must support for Web Profile.  Specifying a javaee.level of "web"  
 #                     with nothing else implies there are NO additional technologies 
 #                     existing within the vendors implementation.  Again, "web" only 
-#                     covers REQUIRED Technologies for Java EE 8 Web profile
+#                     covers REQUIRED Technologies for Jakarta EE 8 Web profile
 #		      ex/   javaee.level=web
 #
 #	    3. full + optional_technologies: This covers REQUIRED Technologies for
 #		      Java EE 8 Full Profile and any combination of the optional
 #		      technologies.
 #                     Known optional technologies for CTS8 full profile include:
-#                          "jaxr", "jaxrpc" "javaeedeploy".
-#		      ex 1/   javaee.level=full jaxr jaxrpc javaeedeploy
+#                          "jaxr".
+#		      ex 1/   javaee.level=full jaxr  
 #		      ex 2/   javaee.level=full jaxr
-#		      ex 3/   javaee.level=full jaxrpc javaeedeploy
+#		      ex 3/   javaee.level=full  
 #		      ex 4/   etc...
 #
 #	    4. web + optional_technologies: This covers REQUIRED Technologies for
 #		      Java EE 8 Web Profile and any combination of optional
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
-#                            "batch", "jaxrpc", "jaxr", "javaeedeploy", "connector", "jaxb", 
-#                            "jms", "javamail", "javaeemgmt", "jacc", "jaspic", "wsmd" 
-#		      ex 1/   javaee.level=web connector jms jacc jaxrpc javaeedeploy
+#                            "batch", "jaxr", "connector", "jaxb", 
+#                            "jms", "javamail", "jacc", "jaspic", "wsmd" 
+#		      ex 1/   javaee.level=web connector jms jacc 
 #		      ex 2/   javaee.level=web jaspic
-#		      ex 3/   javaee.level=web jms connector javaeemgmt
+#		      ex 3/   javaee.level=web jms connector
 #		      ex 4/   etc...
 #
 # Note 1:  spaces separate multiple entries
+#
 # Note 2:  optional technologies for full/javaee profile are listed
 #	   in the Java EE 8 spec, in Table EE.6-1.  Currently, the only
-#          optional technologies for full profile are: "jaxr" (JAXR 1.0), 
-#          "jaxrpc" (JAX-RPC 1.1), and "javaeedeploy" (Java EE Deployment 1.2).
+#          optional technologies for full profile are: "jaxr" (JAXR 1.0)
+#
 # Note 3:  The list of optional technologies for Web Profile includes any OPTIONAL
 #          technology explicitly called out in the Web Profile spec (if applicable)
 #          as well as any additional technology which is listed within 
@@ -184,8 +183,8 @@ javatest.timeout.factor=1
 #                      (see comments for optional.tech.packages.to.ignore below)
 #
 ###############################################################################
-#javaee.level=web javaeedeploy connector jaxws jaxb javamail javaeemgmt jacc jaspic wsmd
-javaee.level=full jaxr jaxrpc javaeedeploy
+#javaee.level=web connector jaxws jaxb javamail jacc jaspic wsmd
+javaee.level=full
 
 
 ########################################################################
@@ -1085,9 +1084,9 @@ implementation.classes.ri=${ri.modules}/orb-connector.jar${pathsep}${ri.modules}
 
 implementation.classes=${s1as.modules}/deployment-client.jar${pathsep}${s1as.modules}/security.jar${pathsep}${s1as.modules}/common-util.jar${pathsep}${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/deployment-common.jar${pathsep}${s1as.modules}/gmbal.jar${pathsep}${s1as.modules}/bean-validator.jar${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/jersey-client.jar${pathsep}${s1as.modules}/jersey-common.jar${pathsep}${s1as.modules}/jersey-hk2.jar${pathsep}${s1as.modules}/jersey-media-jaxb.jar${pathsep}${s1as.modules}/jersey-media-sse.jar${pathsep}${s1as.modules}/jersey-media-json-processing.jar${pathsep}${s1as.modules}/jsonp-jaxrs.jar${pathsep}${s1as.modules}/jersey-media-json-binding.jar${pathsep}${s1as.modules}/jersey-server.jar${pathsep}${s1as.modules}/jersey-container-servlet.jar${pathsep}${s1as.modules}/jersey-container-servlet-core.jar${pathsep}${s1as.modules}/guava.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/tyrus-websocket-core.jar${pathsep}${s1as.modules}/tyrus-client.jar${pathsep}${s1as.modules}/tyrus-core.jar${pathsep}${s1as.modules}/tyrus-container-grizzly.jar${pathsep}${s1as.modules}/tyrus-container-grizzly-client.jar${pathsep}${s1as.modules}/glassfish-grizzly-extra-all.jar${pathsep}${s1as.modules}/nucleus-grizzly-all.jar${pathsep}${s1as.modules}/tyrus-server.jar${pathsep}${s1as.modules}/tyrus-container-servlet.jar${pathsep}${s1as.modules}/tyrus-spi.jar${pathsep}${s1as.modules}/com.ibm.jbatch-runtime-all.jar${pathsep}${s1as.modules}/com.ibm.jbatch-ri-spi.jar${pathsep}${s1as.modules}/glassfish-batch-connector.jar${pathsep}${s1as.modules}/glassfish-batch-commands.jar${pathsep}${s1as.modules}/yasson.jar
 
-javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.xml.registry-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${endorsed.dirs.ri}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${endorsed.dirs.ri}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/javax.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/jakarta.xml.rpc-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${endorsed.dirs.ri}/webservices-api-osgi.jar${pathsep}${ri.modules}/jakarta.management.j2ee-api.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/javax.batch-api.jar${pathsep}${ri.modules}/cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar
+javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.xml.registry-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${ri.modules}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${ri.modules}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${ri.modules}/webservices-api-osgi.jar${pathsep}${ri.modules}/jakarta.management.j2ee-api.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/jakarta.batch-api.jar${pathsep}${ri.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar
 
-javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.xml.registry-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${endorsed.dirs}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${endorsed.dirs}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/javax.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/jakarta.xml.rpc-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${endorsed.dirs}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/javax.batch-api.jar${pathsep}${s1as.modules}/cdi-api.jar
+javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.xml.registry-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar
 
 ts.run.classpath.ri=${javaee.classes.ri}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar
 
@@ -1193,7 +1192,7 @@ command.testExecuteAppClient= \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
-        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/cdi-api.jar \
+        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
         TZ=${tz} \
         ${JAVA_HOME}/bin/java \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader  \
@@ -1287,7 +1286,7 @@ command.testExecuteAppClient2= \
         PATH="${javaee.home.ri}/nativelib" \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
-        ${JAVA_HOME}/bin/java \
+        ${RI_JAVA_HOME}/bin/java \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1316,7 +1315,7 @@ command.testExecuteAppClient2= \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
         -Dcom.sun.enterprise.iiop.security.interceptorFactory=com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory \
-        -Djava.ext.dirs=${JAVA_HOME}/lib/ext${pathsep}${JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
+        -Djava.ext.dirs=${RI_JAVA_HOME}/lib/ext${pathsep}${RI_JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
         -Dcom.sun.aas.configRoot=${javaee.home.ri}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home.ri}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/ri.sun-acc.xml,client=jar=$testExecuteArgs
 
@@ -1397,7 +1396,7 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #########################################################################
 
-sigTestClasspath=${s1as.modules}/cdi-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/javax.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.xml.registry-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/bean-validator.jar${pathsep}${s1as.modules}/endorsed/jakarta.annotation-api.jar${pathsep}${s1as.modules}/endorsed/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/endorsed/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.xml.rpc-api.jar${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/javax.servlet.jsp.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
+sigTestClasspath=${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
 
 
 ########################################################################
@@ -1414,11 +1413,8 @@ sigTestClasspath=${s1as.modules}/cdi-api.jar${pathsep}${s1as.modules}/jakarta.js
 ##    - If no packages are to be ignored, use "null". 
 ##    - For EE 8 (RI) Full Platform use:
 ##           optional.tech.packages.to.ignore=null 
-##    - For EE 8 (RI) Web Profile use:
-##           optional.tech.packages.to.ignore=javax.xml.rpc.handler 
-##  
+##   
 #########################################################################
-#optional.tech.packages.to.ignore=javax.xml.rpc.handler
 optional.tech.packages.to.ignore=null
 
 ########################################################################
@@ -1536,41 +1532,28 @@ impl.deploy.timeout.multiplier=240
 ###############################################################
 ## These properties are implementations of the pre-1.4 Deployment
 ## porting interface.  The impls defined below use those APIs.
-## The TSDeploymentInterface2 interface
-## is now the location for deployment porting code for functionality
-## not addressed by JSR-88.
 #
 # @porting.ts.deploy.class.1 This property must point to an implementation
-# of com.sun.ts.lib.porting.TSDeploymentInterface.  CTS 8 shipped
-# with this property set to a standard JSR-88 impl which
-# should be able to be used when running against an appserver that supports
-# JSR 88.  Web Profile impls may not support JSR 88.  In CTS 8, the default
-# value fo this property points to an impl that deploys via copying/deleting
-# to/from the RI autodeploy directory.  You have the following choices for
-# setting these properties in CTS 8:
+# of com.sun.ts.lib.porting.TSDeploymentInterface.  The default
+# value for this property points to an impl that deploys via copying/deleting
+# to/from the RI autodeploy directory.  More details about setting  
+# porting.ts.deploy.class.1:
 #
-# 1.  Set this property to the standard JSR 88 impl....
-#
-#     porting.ts.deploy.class.1=com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14
-#     
-#     If you use the above impl, then you must also set the
-#     porting.ts.deploy2.class.1 property to a valid impl of
-#     com.sun.ts.lib.porting.TSDeploymentInterface2.  In the case of the RI,
-#     the porting.ts.deploy2.class.2 property would be set to the
-#     RI impl of com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2.
-#     
-# 2.  Or, you can set this property to deploy/undeploy to/from your impl in
+# 1.  Set this property to deploy/undeploy to/from your impl in
 #     a custom way.  In the case of the RI, it would be set to the following.
 #     This is the default setting for CTS 8.
 #
 #     porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment
+#
+# 2.  Note that Jakarta Deployment is removed, so do not use either of the following classes:
+#     com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14
+#     com.sun.ts.lib.porting.TSDeploymentInterface2
+#     com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2 
+#
 #     
 # @porting.ts.deploy.class.2 This property must point to an implementation
-# of com.sun.ts.lib.porting.TSDeploymentInterface.  CTS 8 shipped
-# with this property set to a standard JSR-88 impl which
-# should be able to be used when running against an appserver that supports
-# JSR 88.  Web Profile impls may not support JSR 88.  In CTS 8, the default
-# value fo this property points to an impl that deploys via copying/deleting
+# of com.sun.ts.lib.porting.TSDeploymentInterface. 
+# The default value for this property points to an impl that deploys via copying/deleting
 # to/from the RI autodeploy directory.  This should be left unchanged...
 #
 #     porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment
@@ -1581,56 +1564,30 @@ porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.glassfish.Aut
 porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentSeparateVM
 
 ########################################################################
-# @deploy.delay.in.minutes This property can be used to specify the 
-# amount of time in minutes that the test harness will wait for the JSR-88
-# ProgressObject to return either failed or completed from a DeploymentManager
-# API call.  After the time has elapsed, the harness will report failure for 
-# the given action.  This property is only used when porting.ts.deploy.class.1
-# is set to com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
+# @deploy.delay.in.minutes is no longer used, it was for pruned Jakarta Deployment
 ########################################################################
-deploy.delay.in.minutes=5
 
 ########################################################################
-## Vendor's Java EE implementation settings for JSR 88.  These properties
-## are only used when porting.ts.deploy.class.1 is set to
-## com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.  These
-## properties are set up to work against SJSAS 9.x PE by default.
-##
-## If you are testing against SJSAS 9.x SE/EE with SSL enabled by default, 
-## you must uncomment the deployManageruri.1 property below that ends with
-## "https", and comment the one that doesn't.
-# 
-# @deployManagerJarFile.1  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Vendor's Implementation (VI)
-# @deployManageruri.1  JSR 88 management URL, location of the deployment
-#                      process for the VI
-# @deployManageruname.1  username for deployment process for the VI
-# @deployManagerpasswd.1  password for deployment process for the VI
+## Following are no longer used, were settings for pruned Jakarta Deployment 
 ########################################################################
-deployManagerJarFile.1=${javaee.home}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}
-#deployManageruri.1=deployer:Sun:AppServer::${deployment_host.1}:${s1as.admin.port}:https
-deployManageruname.1=${s1as.admin.user}
-deployManagerpasswd.1=${s1as.admin.passwd}
+#deployManagerJarFile.1
+#deployManageruri.1
+#deployManageruname.1
+#deployManagerpasswd.1
 
 ########################################################################
-## Java EE RI Settings for JSR 88.  These properties
-## are only used when porting.ts.deploy.class.2 is set to
-## com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
+## Following are no longer used, were settings for pruned Jakarta Deployment
+########################################################################
+#deployManagerJarFile.2
+#deployManageruri.2
+#deployManageruname.2
+#deployManagerpasswd.2
 #
-# @deployManagerJarFile.2  Location of the jar file that contains the
-#                          JSR 88 deployment manager factory class name
-#                          for the Reference Implementation (RI)
-# @deployManageruri.2  JSR 88 management URL, location of the deployment
-#                      process for the RI
-# @deployManageruname.2  username for deployment process for the RI
-# @deployManagerpasswd.2  password for deployment process for the RI
-########################################################################
-deployManagerJarFile.2=${javaee.home.ri}/lib/deployment/sun-as-jsr88-dm.jar
-deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${ri.admin.port}
-deployManageruname.2=${ri.admin.user}
-deployManagerpasswd.2=${ri.admin.passwd}
+# @porting.ts.deploy2.class.1
+# @porting.ts.deploy2.class.2
+# porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+# porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
+
 
 ###############################################################
 ## These properties must be set to tell the Test harness the
@@ -1640,10 +1597,6 @@ deployManagerpasswd.2=${ri.admin.passwd}
 ## always point to Sun RI classes.  The ".1" set should point to
 ## implementations that work in your specific Java EE environment.
 #
-# @porting.ts.deploy2.class.1  Vendor's Implementation (VI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2.  This property
-#    is only used when porting.ts.deploy.class.1 is set to
-#    com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
 # @porting.ts.login.class.1  VI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.1  VI of
@@ -1652,10 +1605,6 @@ deployManagerpasswd.2=${ri.admin.passwd}
 #    com.sun.ts.lib.porting.TSJMSAdminInterface
 # @porting.ts.HttpsURLConnection.class.1  VI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
-# @porting.ts.deploy2.class.2  Reference Implementation (RI) of
-#    com.sun.ts.lib.porting.TSDeploymentInterface2.  This property
-#    is only used when porting.ts.deploy.class.1 is set to
-#    com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14.
 # @porting.ts.login.class.2  RI of
 #    com.sun.ts.lib.porting.TSLoginContextInterface
 # @porting.ts.url.class.2  RI of
@@ -1665,14 +1614,12 @@ deployManagerpasswd.2=${ri.admin.passwd}
 # @porting.ts.HttpsURLConnection.class.2  RI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 ###############################################################
-porting.ts.deploy2.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection
 
 ##Porting class names for Sun RI Java EE Implementation #2 (must be Sun's RI)
-porting.ts.deploy2.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment2
 porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
 porting.ts.url.class.2=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
@@ -1713,7 +1660,7 @@ certLoginUserAlias=cts
 #                        the number of threads used by the client for
 #                        the SingleThreadModel servlet test. If the
 #                        container implementation supports pooling of
-#                        SingleThreadModel serlvets, set the value of
+#                        SingleThreadModel servlets, set the value of
 #                        ServletClientThreads to twice the value of
 #                        the default servlet instance pool size.  If
 #                        the container implementation only maintains
@@ -1925,105 +1872,6 @@ ejb_wait=60000
 ###############################################################################
 test.ejb.stateful.timeout.wait.seconds=480
 
-#################################################################
-##
-## The following properties must be set prior to running the JAXR
-## TCK tests.
-## ------------------------------------------------------------------
-## The following are Standard Properties for Registry URLs
-## ------------------------------------------------------------------
-#
-# @registryURL - standard connection property for publishing.
-#                for RegistryServer it is:
-#                registryURL = http://localhost:8080/RegistryServer/
-#
-# @queryManagerURL - standard connection property for querying.
-#                for RegistryServer it is:
-#                queryManagerURL = http://localhost:8080/RegistryServer/
-#
-# @jaxrPassword is used for setting connection credentials
-#               this must be set up in the UDDI registry
-# @jaxrUser     is used for setting connection credentials
-#               this must be set up in the UDDI registry
-#
-# @jaxrUser2 a user name for Association tests.
-# @jaxrPassword2 a user name for Association tests.
-#
-## For the RegistryServer you can use the
-## predefined username and passwords.
-## These would be set as follows:
-##                jaxrUser=testuser
-##                jaxrPassword=testuser
-##                jaxrUser2=jaxr-sqe
-##                jaxrPassword2=jaxrsqe
-## ---------------------------------------------------------------
-## if using digital certificates, else set to = "".
-## jaxrAlias   identifies the entry in the keystore for this user.
-## jaxrAlias2  identifies the entry in the keystore for the second user
-## jaxrAliasPassword   identifies the password in the keystore for this user.
-## jaxrAlias2Password  identifies the password in the keystore for the second user
-## ---------------------------------------------------------------
-#
-# @jaxrWebContext = the context root for jaxr html tests pages 
-#          
-## ---------------------------------------------------------------
-# @jaxrConnectionFactoryLookup  The preferred way for a client to lookup
-#                              a JAXR ConnectionFactory is to
-#                              use JNDI.  An alternate method to lookup
-#                              a JAXR ConnectionFactory is to use the
-#                              newInstance static method on the ConnectionFactory
-#
-#                              0 = use JNDI lookup
-#                              1 = use newInstance method.
-## ---------------------------------------------------------------
-#
-# @jaxrJNDIResource   JAXR ConnectionFactoryReference if JNDI lookup is
-#                     being used.  For example:
-#                     java:comp/env/eis/JAXR
-#
-#                     If not using JNDI lookup set to ""
-#
-## ---------------------------------------------------------------
-#
-# @providerCapabilityLevel the provider must set this to
-#              the supported capability level 0 or 1
-#
-## ---------------------------------------------------------------
-#
-# @authenticationMethod set this to the authentication method for the jaxr
-#                       provider.
-#                       UDDI_GET_AUTHTOKEN is the get_AuthToken 
-#                       protocol defined by [UDDI_API2]
-#
-##############################################################
-##  = use JNDI lookup
-jaxrConnectionFactoryLookup=0
-## 0 = username/password
-jaxrSecurityCredentialType=0
-
-jaxrWebContext="web_content"
-##
-jaxrJNDIResource="java:comp/env/eis/JAXR"
-## set jaxrAlias if using digital certificates for authorization
-jaxrAlias=""
-jaxrAlias2=""
-jaxrAliasPassword=""
-jaxrAlias2Password=""
-
-## the provider capability level,  uddi is level 0
-providerCapability=0
-
-authenticationMethod="UDDI_GET_AUTHTOKEN"
-
-registryURL=
-queryManagerURL=
-jaxrUser=
-jaxrPassword=
-
-jaxrUser2=
-jaxrPassword2=
-
-
 ###################################################################
 # @log.file.location  This property is used by JACC tests to create
 #   and analyze provider logs. Specify the log directory in which
@@ -2122,23 +1970,11 @@ longvarbinarySize=50
 ts_home=${ts.home}
 
 #######################################################################
-## platform.mode is used by jaxrpc/jpa tests to know whether to use
-## the Java EE Programming Model for service and port access or the
-## JAXRPC Programming model based on the runtime execution platform.
-##
-## platform.mode=standalone	JAXRPC Programming Model
+## platform.mode is used by jpa tests to know whether to use
+## the Java EE Programming Model for service and port access.
 ## platform.mode=javaEE		Java EE Programming Model
 ######################################################################
 platform.mode=javaEE
-
-###############################################################
-## These properties are used for the JAXRPC specific tests,
-## they do not need to be changed.
-###############################################################
-jaxrpc.tool.unix=${javaee.home}/bin/wscompile
-jaxrpc.tool.win=${javaee.home}/bin/wscompile.bat
-import.only.args=-classpath ${class.dir} -keep -import -Xprintstacktrace
-jaxrpc.default.features=wsi,strict,norpcstructures
 
 ###########################################################################
 # tools.jar should be set to the location of the tools.jar from the installed
@@ -2653,8 +2489,8 @@ persistencs.properties.file=${bin.dir}/jpa-provider.properties
 persistence.unit.name.2=JPATCK2
 
 jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF
-javax.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
-javax.persistence.jdbc.driver=${derby.driver}
-javax.persistence.jdbc.url=${derby.url}
-javax.persistence.jdbc.user=${derby.user}
-javax.persistence.jdbc.password=${derby.passwd}
+jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
+jakarta.persistence.jdbc.driver=${derby.driver}
+jakarta.persistence.jdbc.url=${derby.url}
+jakarta.persistence.jdbc.user=${derby.user}
+jakarta.persistence.jdbc.password=${derby.passwd}

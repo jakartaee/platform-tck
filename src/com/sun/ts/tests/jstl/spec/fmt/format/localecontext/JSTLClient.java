@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -72,7 +72,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: If a formatting action is nested within a <fmt:bundle>
    * action, the formatting action will use the locale of the parent action.
    * This will be verified by Setting the
-   * javax.servlet.jsp.jstl.fmt.localizationContext scoped variable. The
+   * jakarta.servlet.jsp.jstl.fmt.localizationContext scoped variable. The
    * basename attribute will refer to an fr_FR bundle. The fmt:setBundle action
    * that encloses a formatting action will have a single en_US resource bundle,
    * so the resulting locale will be en_US. If the action chooses the proper
@@ -94,10 +94,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:46.2
    * 
-   * @testStrategy: If the javax.servlet.jsp.jstl.fmt.localizationContext
+   * @testStrategy: If the jakarta.servlet.jsp.jstl.fmt.localizationContext
    * attribute is present, and the formatting action is not nested in a
    * <fmt:bundle> action, the basename attribute will take precedence over the
-   * javax.servlet.jsp.jstl.fmt.locale scoped attribute. This will be verified
+   * jakarta.servlet.jsp.jstl.fmt.locale scoped attribute. This will be verified
    * by setting the localizationContext attribute so that it will resolve to an
    * en_US bundle, and the set the locale attribute to de_DE. If the formatting
    * action correctly uses the locale from the basename attribute, then no parse
@@ -119,7 +119,7 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JSTL:SPEC:105.1
    * 
-   * @testStrategy: If the javax.servlet.jsp.jstl.fmt.locale attribute is set,
+   * @testStrategy: If the jakarta.servlet.jsp.jstl.fmt.locale attribute is set,
    * the locale specified by this attribute will be used vs. those provided by
    * the browser (i.e. preferred locales from an Accept-Language header). This
    * will be verified by setting the locale attribute to en_US and the client's
@@ -143,8 +143,8 @@ public class JSTLClient extends AbstractUrlClient {
    * @assertion_ids: JSTL:SPEC:46.4
    * 
    * @testStrategy: If the formatting action is not wrapped in a <fmt:bundle>
-   * action, nor are the javax.servlet.jsp.jstl.fmt.localizationContext or
-   * javax.servlet.jsp.jstl.fmt.locale attributes set, the formatting locale
+   * action, nor are the jakarta.servlet.jsp.jstl.fmt.localizationContext or
+   * jakarta.servlet.jsp.jstl.fmt.locale attributes set, the formatting locale
    * will be based on the preferred locales provided by the client (via the
    * Accept-Language request header).
    */

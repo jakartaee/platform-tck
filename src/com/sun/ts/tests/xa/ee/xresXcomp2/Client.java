@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ package com.sun.ts.tests.xa.ee.xresXcomp2;
 
 import java.io.*;
 import java.util.*;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.transaction.xa.XAException;
 
 import com.sun.ts.lib.util.*;
@@ -472,7 +472,7 @@ public class Client extends ServiceEETest implements Serializable {
         beanRef.insertDup("EIS", Integer.toString(tSizeDuplicate)); // 6
 
         ut.commit();
-      } catch (javax.transaction.RollbackException rex) {
+      } catch (jakarta.transaction.RollbackException rex) {
         TestUtil.printStackTrace(rex);
         b5 = true;
         TestUtil.logMsg("Captured Rollback Exception : b5 : " + b5);
@@ -930,7 +930,7 @@ public class Client extends ServiceEETest implements Serializable {
         beanRef.insertDup("EIS", Integer.toString(tSizeDuplicate)); // 6
 
         ut.commit();
-      } catch (javax.transaction.RollbackException rex) {
+      } catch (jakarta.transaction.RollbackException rex) {
         TestUtil.printStackTrace(rex);
         b5 = true;
         TestUtil.logMsg("Captured Rollback Exception : b5 : " + b5);

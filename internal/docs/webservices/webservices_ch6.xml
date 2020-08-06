@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -93,7 +93,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6009</id>
 			<description>
-                   A JAX-WS Web Services for Java EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the javax.jws.HandlerChain annotation.
+                   A JAX-WS Web Services for Java EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -125,7 +125,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6013</id>
 			<description>
-                   A Web Services for Java EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and javax.xml.ws.handler.soap package.
+                   A Web Services for Java EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and jakarta.xml.ws.handler.soap package.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -140,7 +140,7 @@ to the message is made.
 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6015</id>
-			<description>javax.annotation.PostConstruct annotation</description>
+			<description>jakarta.annotation.PostConstruct annotation</description>
 			<location chapter = "6" section = "2.2.2"/>
                <sub-assertions>
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -153,7 +153,7 @@ to the message is made.
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			         <id>WS4EE:SPEC:6015.2</id>
 			         <description>
-                            After all the injections have been carried out, the container must invoke the method carrying a javax.annotation.PostConstruct annotation. 
+                            After all the injections have been carried out, the container must invoke the method carrying a jakarta.annotation.PostConstruct annotation. 
 			         </description>
 			         <location chapter = "6" section = "2.2.2"/>
 		         </assertion>
@@ -169,13 +169,13 @@ to the message is made.
 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>WS4EE:SPEC:6016</id>
-			<description>javax.annotation.PreDestory annotation</description>
+			<description>jakarta.annotation.PreDestory annotation</description>
 			<location chapter = "6" section = "2.2.2"/>
                <sub-assertions>
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			         <id>WS4EE:SPEC:6016.1</id>
 			         <description>
-                            The container must call the lifecycle method annotated with javax.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
+                            The container must call the lifecycle method annotated with jakarta.annotation.PreDestroy annotation on any Handler instances which it instantiated, before releasing a handler instance from its working set. 
 			         </description>
 			         <location chapter = "6" section = "2.2.2"/>
 		         </assertion>
@@ -232,7 +232,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6021</id>
 			<description>
-                   The javax.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the javax.jws.WebService or javax.xml.ws.WebServiceProvider annotation)
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on Web Service endpoints (those declared with the jakarta.jws.WebService or jakarta.xml.ws.WebServiceProvider annotation)
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -240,7 +240,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6022</id>
 			<description>
-                   The javax.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the javax.xml.ws.WebServiceRef annotation).
+                   The jakarta.jws.HandlerChain annotation from JSR-181 (imported by JAX-WS) may be declared on on Web Service references (those declared with the jakarta.xml.ws.WebServiceRef annotation).
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -248,7 +248,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6023</id>
 			<description>
-                   The deployment descriptors on port component or Service reference override the javax.jws.HandlerChain annotation specified in the implementation.
+                   The deployment descriptors on port component or Service reference override the jakarta.jws.HandlerChain annotation specified in the implementation.
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -272,7 +272,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6026</id>
 			<description>
-                   JAX-WS based container provider is required to support this (javax.jws.HandlerChain) annotation.
+                   JAX-WS based container provider is required to support this (jakarta.jws.HandlerChain) annotation.
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -288,7 +288,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6028</id>
 			<description>
-                  They are also required to provide an implementation of HandlerResolver that returns a handler chain with handlers specified in the javax.jws.HandlerChain annotation.   
+                  They are also required to provide an implementation of HandlerResolver that returns a handler chain with handlers specified in the jakarta.jws.HandlerChain annotation.   
 			</description>
 			<location chapter = "6" section = "2.2.3"/>
 		</assertion>
@@ -352,7 +352,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>WS4EE:SPEC:6036</id>
 			<description>
-                   Handlers must not demarcate transactions using the javax.transaction.UserTransaction interface.
+                   Handlers must not demarcate transactions using the jakarta.transaction.UserTransaction interface.
 			</description>
 			<location chapter = "6" section = "2.2.4"/>
 		</assertion>
@@ -368,7 +368,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6038</id>
 			<description>
-                  With JAX-WS, only a Handler implementation that implements the javax.xml.ws.handler.soap.SOAPHandler interface must implement the getHeaders() method. The headers that a Handler declares it will process (i.e. those returned by the Handler.getHeaders() method) must be defined in the WSDL definition of the service.   
+                  With JAX-WS, only a Handler implementation that implements the jakarta.xml.ws.handler.soap.SOAPHandler interface must implement the getHeaders() method. The headers that a Handler declares it will process (i.e. those returned by the Handler.getHeaders() method) must be defined in the WSDL definition of the service.   
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>
@@ -392,7 +392,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6041</id>
 			<description>
-                   Access to the java:comp/env contexts must be supported from the method annotated with javax.annotation.PostConstruct.
+                   Access to the java:comp/env contexts must be supported from the method annotated with jakarta.annotation.PostConstruct.
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>
@@ -408,7 +408,7 @@ to the message is made.
 		<assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6043</id>
 			<description>
-                  Access may not be supported within the method annotated with javax.annotation.PreDestroy annotation. 
+                  Access may not be supported within the method annotated with jakarta.annotation.PreDestroy annotation. 
 			</description>
 			<location chapter = "6" section = "2.3"/>
 		</assertion>
@@ -432,7 +432,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6046</id>
 			<description>
-                   A JAX-WS based container must call the lifecycle method annotated with javax.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
+                   A JAX-WS based container must call the lifecycle method annotated with jakarta.annotation.PostConstruct within the context of a Port component s environment. The container must ensure the Port component s env-entrys are setup for this lifecycle method to access.
 			</description>
 			<location chapter = "6" section = "2.4"/>
 		</assertion>
@@ -461,7 +461,7 @@ to the message is made.
 		         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			         <id>WS4EE:SPEC:6049.1</id>
 			         <description>
-                            The handler chain file in the javax.jws.HandlerChain annotation is required to be packaged in the module. It must follow the requirements for location as specified in section 4.6.1 of JSR-181 specification (Web Services Metadata for the Java Platform).
+                            The handler chain file in the jakarta.jws.HandlerChain annotation is required to be packaged in the module. It must follow the requirements for location as specified in section 4.6.1 of JSR-181 specification (Web Services Metadata for the Java Platform).
 			         </description>
 			         <location chapter = "6" section = "3"/>
 		         </assertion>
@@ -504,7 +504,7 @@ to the message is made.
 			<description>
                    In a JAX-WS based container, a Handler chain is processed according to the JAX-WS specification section
                    9.2.1.2. In addition to this, the ordering of any given type of Handler (logical or protocol) in the 
-                   handler configuration file specified in the javax.jws.HandlerChain annotation, must be maintained.
+                   handler configuration file specified in the jakarta.jws.HandlerChain annotation, must be maintained.
 			</description>
 			<location chapter = "6" section = "2.4"/>
 		</assertion>

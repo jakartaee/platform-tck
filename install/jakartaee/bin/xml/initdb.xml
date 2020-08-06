@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -528,7 +528,6 @@
              onerror="continue" >
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sql"/>
         </sql>
-        <antcall target="configure.interop" />
     </target>
 
 
@@ -549,25 +548,6 @@
              onerror="continue" >
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.cmp.sql"/>
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.persistence.sql"/>
-             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
-        </sql>
-    </target>
-
-    <!--
-        Create the interop CMP tables if they will not be created by
-        the Java EE RI at deploy time.
-    -->
-
-    <target name="configure.interop" if="cmpNeeded">
-        <echo message="DB URL: ${db.url}"/>
-        <sql driver="${db.driver}"
-             url="${db.url}"
-             userid="${db.user}"
-             password="${db.password}"
-             classpath="${db.classes}"
-             delimiter="${db.delimiter}"
-             autocommit="true"
-             onerror="continue" >
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.interop.sql"/>
         </sql>
     </target>

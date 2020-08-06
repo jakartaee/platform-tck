@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1089,7 +1089,7 @@ ifferent type.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JMS:SPEC:258"></a><font size="1PT">JMS:SPEC:258</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6.1.8</font></TD><TD align="left" valign="center"><font size="1PT">A message listener must not attempt to close its own connection as this would lead to deadlock. The JMS provider must detect this and throw a javax.jms.IllegalStateException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JMS:SPEC:258"></a><font size="1PT">JMS:SPEC:258</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6.1.8</font></TD><TD align="left" valign="center"><font size="1PT">A message listener must not attempt to close its own connection as this would lead to deadlock. The JMS provider must detect this and throw a jakarta.jms.IllegalStateException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1134,7 +1134,7 @@ ifferent type.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JMS:SPEC:259"></a><font size="1PT">JMS:SPEC:259</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6.2.15</font></TD><TD align="left" valign="center"><font size="1PT">A message listener must not attempt to close its own session as this would lead to deadlock. The JMS provider must detect this and throw a javax.jms.IllegalStateException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JMS:SPEC:259"></a><font size="1PT">JMS:SPEC:259</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6.2.15</font></TD><TD align="left" valign="center"><font size="1PT">A message listener must not attempt to close its own session as this would lead to deadlock. The JMS provider must detect this and throw a jakarta.jms.IllegalStateException.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1687,7 +1687,7 @@ When a durable subscription is created on a topic, the noLocal argument may be u
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:263"></a><font size="1PT">JMS:SPEC:263</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.1</font></TD><TD align="left" valign="center"><font size="1PT">The Java Platform, Enterprise Edition (Java EE) Specification, v7 requires support for the JMS API as part of the full Java EE platform.
-The Java EE platform provides a number of additional features which are not available in the Java Platform Standard Edition (Java SE). These include the following: 1) Support for distributed transactions which are demarcated either programmatically, using methods on javax.transaction.UserTransaction, or automatically by the container. These are referred to in this specification as JTA transactions to distinguish them from JMS local transactions.  2) Support for JMS message-driven beans.  These features are defined in detail in other specifications including the Java EE 7 specification and the Enterprise JavaBeans 3.2 specification. However the use of the Java EE platform imposes restrictions on the way that the JMS API may be used by applications, and those restrictions are described here.  The JMS specification does not define how a Java EE container integrates with its JMS provider. Different Java EE containers may integrate with their JMS provider in different ways.  In the future, an integration point for JMS integration into J2EE platforms will be provided using the J2EE Connector Architecture.
+The Java EE platform provides a number of additional features which are not available in the Java Platform Standard Edition (Java SE). These include the following: 1) Support for distributed transactions which are demarcated either programmatically, using methods on jakarta.transaction.UserTransaction, or automatically by the container. These are referred to in this specification as JTA transactions to distinguish them from JMS local transactions.  2) Support for JMS message-driven beans.  These features are defined in detail in other specifications including the Java EE 7 specification and the Enterprise JavaBeans 3.2 specification. However the use of the Java EE platform imposes restrictions on the way that the JMS API may be used by applications, and those restrictions are described here.  The JMS specification does not define how a Java EE container integrates with its JMS provider. Different Java EE containers may integrate with their JMS provider in different ways.  In the future, an integration point for JMS integration into J2EE platforms will be provided using the J2EE Connector Architecture.
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -1714,34 +1714,34 @@ Applications running in the Java EE web and EJB containers must not attempt to c
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:264.3"></a><font size="1PT">JMS:SPEC:264.3</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.2</font></TD><TD align="left" valign="center"><font size="1PT">The following methods are intended for use by the application server and their use by applications running in the Java EE web or EJB container may interfere with the container's ability to properly manage the threads used in the runtime environment. They must therefore not be called by applications running in the Java EE web or EJB container:
-1) javax.jms.Session method setMessageListener
-2) javax.jms.Session method getMessageListener
-3) javax.jms.Session method run
-4) javax.jms.Connection method createConnectionConsumer
-5) javax.jms.Connection method createDurableConnectionConsumer
+1) jakarta.jms.Session method setMessageListener
+2) jakarta.jms.Session method getMessageListener
+3) jakarta.jms.Session method run
+4) jakarta.jms.Connection method createConnectionConsumer
+5) jakarta.jms.Connection method createDurableConnectionConsumer
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:264.4"></a><font size="1PT">JMS:SPEC:264.4</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.2</font></TD><TD align="left" valign="center"><font size="1PT">The following methods may interfere with the container's ability to properly manage the threads used in the runtime environment and must not be used by applications running in the Java EE web or EJB container:
-1) javax.jms.MessageConsumer method setMessageListener
-2) javax.jms.MessageConsumer method getMessageListener
-3) javax.jms.JMSContext method setMessageListener
-4) javax.jms.JMSContext method getMessageListener This restriction means that applications running in the Java EE web or EJB container which need to receive messages asynchronously may only do so using message-driven beans.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+1) jakarta.jms.MessageConsumer method setMessageListener
+2) jakarta.jms.MessageConsumer method getMessageListener
+3) jakarta.jms.JMSContext method setMessageListener
+4) jakarta.jms.JMSContext method getMessageListener This restriction means that applications running in the Java EE web or EJB container which need to receive messages asynchronously may only do so using message-driven beans.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:264.5"></a><font size="1PT">JMS:SPEC:264.5</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.2</font></TD><TD align="left" valign="center"><font size="1PT">The following methods may interfere with the container's management of connections and must not be used by applications running in the Java EE web or EJB container:
-1) javax.jms.Connection method setClientID
-2) javax.jms.Connection method stop
-3) javax.jms.Connection method setExceptionListener
-4) javax.jms.JMSContext method setClientID
-5) javax.jms.JMSContext method stop
-6) javax.jms.JMSContext method setExceptionListener
+1) jakarta.jms.Connection method setClientID
+2) jakarta.jms.Connection method stop
+3) jakarta.jms.Connection method setExceptionListener
+4) jakarta.jms.JMSContext method setClientID
+5) jakarta.jms.JMSContext method stop
+6) jakarta.jms.JMSContext method setExceptionListener
 Applications which need to use a specific client identifier must set it on the connection factory, as described in section 6.1.2 "Client Identifier"
-All the methods listed in this section may throw a javax.jms.JMSException (if allowed by the method) or a javax.jms.JMSRuntimeException (if not) when called by an application running in the Java EE web or EJB container. This is recommended but not required.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+All the methods listed in this section may throw a jakarta.jms.JMSException (if allowed by the method) or a jakarta.jms.JMSRuntimeException (if not) when called by an application running in the Java EE web or EJB container. This is recommended but not required.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1749,7 +1749,7 @@ All the methods listed in this section may throw a javax.jms.JMSException (if al
 <TD align="center" valign="center"><a name="JMS:SPEC:265"></a><font size="1PT">JMS:SPEC:265</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.3</font></TD><TD align="left" valign="center"><font size="1PT">The behaviour of a JMS session in respect of transactions and message acknowledgement is different for applications which run in a Java EE web or EJB container than it is for applications which run in a normal Java SE environment or in the Java EE application client container.
 These differences also apply to JMS messaging context objects, since these incorporate a JMS session.
 When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is an active JTA transaction in progress, then the session that is created will participate in the JTA transaction and will be committed or rolled back when the JTA transaction is committed or rolled back. Any session parameters that are specified when creating the session or messaging context are ignored. The use of local transactions or client acknowledgement is not permitted.
-This applies irrespective of whether the JTA transaction is demarcated automatically by the container or programmatically using methods on javax.transaction.UserTransaction.
+This applies irrespective of whether the JTA transaction is demarcated automatically by the container or programmatically using methods on jakarta.transaction.UserTransaction.
 The term "session parameters" here refers to the arguments that may be passed into a call to the createSession or createContext methods to specify whether the session should use a local transaction and, if the session is non-transacted, what the acknowledgement mode should be.
 When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is no active JTA transaction in progress, then the session that is created will be non-transacted and will be automatically-acknowledged. The use of local transactions or client acknowledgement is still not permitted. Parameters may be specified when creating the session or messaging context to specify whether the acknowledgement mode should be AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE. If any other session parameter values are specified they will be ignored and an acknowledgement mode of AUTO_ACKNOWLEDGE used.
 The use of local transactions or client acknowledgement is not permitted in a Java EE web or EJB container even if there is no active JTA transaction because this would require applications to be written differently depending on whether there was a JTA transaction or not.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1758,27 +1758,27 @@ The use of local transactions or client acknowledgement is not permitted in a Ja
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:265.1"></a><font size="1PT">JMS:SPEC:265.1</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.3</font></TD><TD align="left" valign="center"><font size="1PT">The JMS API provides the following methods to create a session which allow the session to be defined using either the two parameters transacted and acknowledgeMode or by the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then these parameters will be overridden as described above.
-1) javax.jms.Connection method createSession(boolean transacted, int acknowledgeMode)
-2) javax.jms.QueueConnection method createQueueSession(boolean transacted, int acknowledgeMode)
-3) javax.jms.TopicConnection method createTopicSession(boolean transacted, int acknowledgeMode)
-4) javax.jms.Connection method createSession(int sessionMode)
-It is recommended that applications that run in the Java EE web or EJB container create a session using the following method which does not specify a parameter: javax.jms.Connection method createSession() </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+1) jakarta.jms.Connection method createSession(boolean transacted, int acknowledgeMode)
+2) jakarta.jms.QueueConnection method createQueueSession(boolean transacted, int acknowledgeMode)
+3) jakarta.jms.TopicConnection method createTopicSession(boolean transacted, int acknowledgeMode)
+4) jakarta.jms.Connection method createSession(int sessionMode)
+It is recommended that applications that run in the Java EE web or EJB container create a session using the following method which does not specify a parameter: jakarta.jms.Connection method createSession() </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:265.2"></a><font size="1PT">JMS:SPEC:265.2</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.3</font></TD><TD align="left" valign="center"><font size="1PT">The JMS API provides the following methods to create a messaging context which allow the session to be defined using the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then this parameter will be overridden as described above.
-1) javax.jms.ConnectionFactory method createContext(int sessionMode)
-2) javax.jms.ConnectionFactory method createContext(String userName, String password, int sessionMode)</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+1) jakarta.jms.ConnectionFactory method createContext(int sessionMode)
+2) jakarta.jms.ConnectionFactory method createContext(String userName, String password, int sessionMode)</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:265.3"></a><font size="1PT">JMS:SPEC:265.3</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.3</font></TD><TD align="left" valign="center"><font size="1PT">The following method to create a messaging context from an existing messaging context is not permitted in a Java EE web or EJB container because it would create a second session on an existing connection, which is not permitted in a java EE web or EJB container.]
-1) javax.jms.JMSContext method createContext(int sessionMode)
+1) jakarta.jms.JMSContext method createContext(int sessionMode)
 It is recommended that applications that run in the Java EE web or EJb container creates a messaging context using one of the following methods which does do specify a sessionMode:
-1) javax.jms.ConnectionFactory method createContext() 
-2) javax.jms.ConnectionFactory method createContext(String username, String password)</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+1) jakarta.jms.ConnectionFactory method createContext() 
+2) jakarta.jms.ConnectionFactory method createContext(String username, String password)</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1801,7 +1801,7 @@ A JMS standard resource adapter must support the ActivationSpec JavaBean propert
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:276.1"></a><font size="1PT">JMS:SPEC:276.1</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">13.1</font></TD><TD align="left" valign="center"><font size="1PT">
 destinationLookup -
-This property may be used to specify the lookup name of an administratively-defined javax.jms.Queue or javax.jms.Topic object which defines the JMS queue or topic from which the endpoint (message-driven bean) is to receive messages.
+This property may be used to specify the lookup name of an administratively-defined jakarta.jms.Queue or jakarta.jms.Topic object which defines the JMS queue or topic from which the endpoint (message-driven bean) is to receive messages.
 			    </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1809,7 +1809,7 @@ This property may be used to specify the lookup name of an administratively-defi
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:276.2"></a><font size="1PT">JMS:SPEC:276.2</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">13.1</font></TD><TD align="left" valign="center"><font size="1PT">
 connectionFactoryLookup -
-This property may be used to specify the lookup name of an administratively-defined javax.jms.ConnectionFactory, javax.jms.QueueConnectionFactory or javax.jms.TopicConnectionFactory object that will be used to connect to the JMS provider from which the endpoint (message-driven bean) is to receive messages.
+This property may be used to specify the lookup name of an administratively-defined jakarta.jms.ConnectionFactory, jakarta.jms.QueueConnectionFactory or jakarta.jms.TopicConnectionFactory object that will be used to connect to the JMS provider from which the endpoint (message-driven bean) is to receive messages.
 			    </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1834,7 +1834,7 @@ This property may be used to specify a message selector. If this property is not
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:276.5"></a><font size="1PT">JMS:SPEC:276.5</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">13.1</font></TD><TD align="left" valign="center"><font size="1PT">
 destinationType -
-This property may be used to specify whether the specified destination is a queue or topic. The valid values are javax.jms.Queue or javax.jms.Topic.
+This property may be used to specify whether the specified destination is a queue or topic. The valid values are jakarta.jms.Queue or jakarta.jms.Topic.
 			    </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1888,18 +1888,18 @@ A JMSContext object which has been created by calling the ConnectionFactory meth
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JMS:SPEC:279"></a><font size="1PT">JMS:SPEC:279</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">12.4.3</font></TD><TD align="left" valign="center"><font size="1PT">Injection syntax.
-Applications may declare a field of type javax.jms.JMSContext and annotate it with the javax.inject.Inject annotation:
-@Inject private JMSContext context; The container will inject a JMSContext. This object will have a scope as defined by section 12.4.3 "Scope of injected JMSContext objects". The annotation javax.jms.JMSConnectionFactory may be used to specify the JNDI lookup name of the ConnectionFactory used to create the JMSContext. For example:
+Applications may declare a field of type jakarta.jms.JMSContext and annotate it with the jakarta.inject.Inject annotation:
+@Inject private JMSContext context; The container will inject a JMSContext. This object will have a scope as defined by section 12.4.3 "Scope of injected JMSContext objects". The annotation jakarta.jms.JMSConnectionFactory may be used to specify the JNDI lookup name of the ConnectionFactory used to create the JMSContext. For example:
 @Inject @JMSConnectionFactory("jms/connectionFactory") private JMSContext context;
 If no lookup name is specified or the JMSConnectionFactory annotation is omitted then the platform default JMS connection factory will be used.
-The annotation javax.jms.JMSPasswordCredential may be used to specify a user name and password which will be used when the JMSContext is created. For example:
+The annotation jakarta.jms.JMSPasswordCredential may be used to specify a user name and password which will be used when the JMSContext is created. For example:
 @Inject @JMSConnectionFactory("jms/connectionFactory") @JMSPasswordCredential(userName="admin",password="mypassword")
 private JMSContext context;
 Since it is undesirable to hardcode clear text passwords in an application, the password may be specified as an alias:
 @Inject @JMSPasswordCredential( username="admin", password="${ALIAS=myAdminPassword}")
 private JMSContext context;
 The use of a password alias allows the password to be defined in a secure manner separately from the application. See the Java EE 7 platform specification for more information on password aliases.
-The annotation javax.jms.JMSSessionMode may be used to specify the session mode of the JMSContext. For example:
+The annotation jakarta.jms.JMSSessionMode may be used to specify the session mode of the JMSContext. For example:
 @Inject
 @JMSConnectionFactory("jms/connectionFactory")
 @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)

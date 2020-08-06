@@ -2,7 +2,7 @@
 <!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 Servlet 3.0//EN" "http://www.sun.com/software/appserver/dtds/sun-web-app_3_0-0.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,11 +50,11 @@
         <localpart>HelloProtectedPort1</localpart>
       </wsdl-port>
       <stub-property>
-        <name>javax.xml.ws.security.auth.password</name>
+        <name>jakarta.xml.ws.security.auth.password</name>
         <value>j2ee</value>
       </stub-property>
       <stub-property>
-        <name>javax.xml.ws.security.auth.username</name>
+        <name>jakarta.xml.ws.security.auth.username</name>
         <value>j2ee</value>
       </stub-property>
     </port-info>
@@ -69,11 +69,11 @@
         <localpart>HelloProtectedPort2</localpart>
       </wsdl-port>
       <stub-property>
-        <name>javax.xml.ws.security.auth.username</name>
+        <name>jakarta.xml.ws.security.auth.username</name>
         <value>invalid</value>
       </stub-property>
       <stub-property>
-        <name>javax.xml.ws.security.auth.password</name>
+        <name>jakarta.xml.ws.security.auth.password</name>
         <value>invalid</value>
       </stub-property>
     </port-info>
@@ -88,11 +88,11 @@
         <localpart>HelloProtectedPort3</localpart>
       </wsdl-port>
       <stub-property>
-        <name>javax.xml.ws.security.auth.password</name>
+        <name>jakarta.xml.ws.security.auth.password</name>
         <value>javajoe</value>
       </stub-property>
       <stub-property>
-        <name>javax.xml.ws.security.auth.username</name>
+        <name>jakarta.xml.ws.security.auth.username</name>
         <value>javajoe</value>
       </stub-property>
     </port-info>
@@ -107,11 +107,11 @@
         <localpart>HelloGuestPort</localpart>
       </wsdl-port>
       <stub-property>
-        <name>javax.xml.ws.security.auth.username</name>
+        <name>jakarta.xml.ws.security.auth.username</name>
         <value>javajoe</value>
       </stub-property>
       <stub-property>
-        <name>javax.xml.ws.security.auth.password</name>
+        <name>jakarta.xml.ws.security.auth.password</name>
         <value>javajoe</value>
       </stub-property>
     </port-info>

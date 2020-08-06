@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,17 +22,17 @@ package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import javax.annotation.Resource;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.annotation.Resource;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 
 /**
- * This class must not implement javax.jms.MessageListener interface. A subclass
+ * This class must not implement jakarta.jms.MessageListener interface. A subclass
  * may choose one of the following to specify messaging type: implements
- * javax.jms.MessageListener; uses
+ * jakarta.jms.MessageListener; uses
  * annotation @MessageDriven(messageListenerInterface=MessageListener.class);
  * uses descritpor element messaging-type
  *
@@ -40,7 +40,7 @@ import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 abstract public class ActivationConfigBeanBase {
   public static final String test1 = "test1";
 
-  abstract public javax.ejb.EJBContext getEJBContext();
+  abstract public jakarta.ejb.EJBContext getEJBContext();
 
   @Resource(name = "qFactory")
   private QueueConnectionFactory qFactory;
@@ -49,7 +49,7 @@ abstract public class ActivationConfigBeanBase {
   private Queue replyQueue;
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     TLogger.log("Entering onMessage method of: " + this.getClass().getName());
     boolean status = false;
     String reason = null;
@@ -58,7 +58,7 @@ abstract public class ActivationConfigBeanBase {
     try {
       testname = msg.getStringProperty(TEST_NAME_KEY);
       testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = "Failed to get test name/number from message: " + msg;
       TLogger.log(reason);

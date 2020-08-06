@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,19 +24,19 @@ import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
-import javax.ejb.Remote;
-import javax.ejb.Stateful;
-import javax.annotation.Resource;
-import javax.ejb.Remove;
-import javax.interceptor.InvocationContext;
-import javax.ejb.SessionContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Remove;
+import jakarta.interceptor.InvocationContext;
+import jakarta.ejb.SessionContext;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestImpl;
 import com.sun.ts.tests.ejb30.common.interceptor.Constants;
 import java.io.Serializable;
 import java.lang.reflect.Method;
-import javax.ejb.SessionSynchronization;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import jakarta.ejb.SessionSynchronization;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "AroundInvokeBean")
 @Remote({ AroundInvokeIF.class })
@@ -61,7 +61,7 @@ public class AroundInvokeBean extends AroundInvokeBase
   }
 
   // ============ abstract methods from super ==========================
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return this.ejbContext;
   }
 
@@ -138,15 +138,15 @@ public class AroundInvokeBean extends AroundInvokeBase
   }
 
   // ============ SessionSynchronization related methods =================
-  public void afterCompletion(boolean param) throws javax.ejb.EJBException {
+  public void afterCompletion(boolean param) throws jakarta.ejb.EJBException {
     setAfterCompletionCalled(true);
   }
 
-  public void beforeCompletion() throws javax.ejb.EJBException {
+  public void beforeCompletion() throws jakarta.ejb.EJBException {
     setBeforeCompletionCalled(true);
   }
 
-  public void afterBegin() throws javax.ejb.EJBException {
+  public void afterBegin() throws jakarta.ejb.EJBException {
     setAfterBeginCalled(true);
   }
 

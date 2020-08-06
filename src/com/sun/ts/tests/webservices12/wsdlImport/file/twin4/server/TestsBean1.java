@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.file.twin4.server;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Tests1Port", serviceName = "Twin4FileSvc1", targetNamespace = "http://Twin4FileSvc1.org/wsdl", wsdlLocation = "META-INF/wsdl/svc1/Twin4FileSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.twin4.server.Tests1")
 

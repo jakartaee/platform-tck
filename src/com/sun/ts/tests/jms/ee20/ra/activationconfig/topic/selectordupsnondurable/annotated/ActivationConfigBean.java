@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,22 +21,22 @@
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectordupsnondurable.annotated;
 
 import com.sun.ts.tests.jms.ee20.ra.activationconfig.common.ActivationConfigBeanBase;
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.EJBContext;
-import javax.ejb.MessageDrivenContext;
-import javax.annotation.Resource;
-import javax.ejb.MessageDriven;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.MessageListener;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.annotation.Resource;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.MessageListener;
 
-//This MDB implements javax.jms.MessageListener interface, so no need to
+//This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element
 //messaging-type
 @MessageDriven(name = "ActivationConfigBean", activationConfig = {
     @ActivationConfigProperty(propertyName = "connectionFactoryLookup", propertyValue = "jms/QueueConnectionFactory"),
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "MY_TOPIC"),
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
     @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
     @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999") })

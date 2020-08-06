@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,18 +22,18 @@ package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 import java.io.Serializable;
 import java.util.Properties;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.util.Enumeration;
 import java.util.Properties;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.annotation.ManagedBean;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
-import javax.inject.*;
-import javax.enterprise.inject.*;
-import javax.enterprise.context.*;
+import jakarta.inject.*;
+import jakarta.enterprise.inject.*;
+import jakarta.enterprise.context.*;
 
 @ManagedBean(value = "mybean")
 public class MyManagedBean implements Serializable {

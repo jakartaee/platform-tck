@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,15 +25,15 @@ import com.sun.ts.lib.porting.*;
 
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 import java.security.Principal;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
-import javax.annotation.Resource;
+import jakarta.jws.WebService;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSHelloSecureService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello")
 

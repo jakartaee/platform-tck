@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,14 +17,14 @@
 
 -->
 
-<web-app version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
+<web-app version="5.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <description>EL/TLV/URI Tag Library TCK Tests for JSTL</description>
     <display-name>jstl_etu_func_web</display-name>
     <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-name>jakarta.servlet.jsp.jstl.fmt.locale</param-name>
         <param-value>en-US</param-value>
     </context-param>
     <context-param>

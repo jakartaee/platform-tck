@@ -1,15 +1,15 @@
-** `javax.xml.ws`
+** `jakarta.xml.ws`
 
-** `javax.xml.ws.handler`
+** `jakarta.xml.ws.handler`
 
-** `javax.xml.ws.handler.soap`
+** `jakarta.xml.ws.handler.soap`
 
-** `javax.xml.ws.http`
+** `jakarta.xml.ws.http`
 
-** `javax.xml.ws.soap`
+** `jakarta.xml.ws.soap`
 
-** `javax.xml.ws.spi`
+** `jakarta.xml.ws.spi`
 
-** `javax.xml.ws.spi.http`
+** `jakarta.xml.ws.spi.http`
 
-** `javax.xml.ws.wsaddressing`
+** `jakarta.xml.ws.wsaddressing`

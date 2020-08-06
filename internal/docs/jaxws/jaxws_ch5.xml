@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -194,9 +194,9 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
                            status="active" testable="true">
                     <id>JAXWS:SPEC:5023</id>
                     <description>
-                        Section javax.xml.ws.EndpointReference. 
-                        The following method can be used on a published Endpoint to retrieve an javax.xml.ws.EndpointReference for the endpoint.
-                        getEndpointReference(List&lt;Element&gt; referenceParameters) Creates and returns and javax.xml.ws.EndpointReference for a published Endpoint.  If the binding is SOAP 1.1/HTTP or SOAP 1.2/HTTP, then a javax.xml.ws.wsaddressing.W3CEndpointReference MUST be returned. 
+                        Section jakarta.xml.ws.EndpointReference. 
+                        The following method can be used on a published Endpoint to retrieve an jakarta.xml.ws.EndpointReference for the endpoint.
+                        getEndpointReference(List&lt;Element&gt; referenceParameters) Creates and returns and jakarta.xml.ws.EndpointReference for a published Endpoint.  If the binding is SOAP 1.1/HTTP or SOAP 1.2/HTTP, then a jakarta.xml.ws.wsaddressing.W3CEndpointReference MUST be returned. 
                     </description>
                     <location chapter="5" section="2.8"/>
                     <sub-assertions>
@@ -214,7 +214,7 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
                         </assertion>
                         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                             <id>JAXWS:SPEC:5023.3</id>
-                            <description>An implementation MUST throw a javax.xml.ws.WebServiceException if the Endpoint instance has not been published.  
+                            <description>An implementation MUST throw a jakarta.xml.ws.WebServiceException if the Endpoint instance has not been published.  
                             </description>
                             <location chapter = "5" section = "2.8"/>
                         </assertion>
@@ -230,9 +230,9 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
                            status="active" testable="true">
                     <id>JAXWS:SPEC:5024</id>
                     <description>
-                        Section javax.xml.ws.EndpointReference 
-                        The following method can be used on a published Endpoint to retrieve an javax.xml.ws.EndpointReference for the endpoint.
-                        getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters) Creates and returns and javax.xml.ws.EndpointReference of type clazz for a published Endpoint instance. If clazz is of type javax.xml.ws.wsaddressing.W3CEndpointReference then the returned W3CEndpointReference MUST contain the specified referenceParameters.
+                        Section jakarta.xml.ws.EndpointReference 
+                        The following method can be used on a published Endpoint to retrieve an jakarta.xml.ws.EndpointReference for the endpoint.
+                        getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters) Creates and returns and jakarta.xml.ws.EndpointReference of type clazz for a published Endpoint instance. If clazz is of type jakarta.xml.ws.wsaddressing.W3CEndpointReference then the returned W3CEndpointReference MUST contain the specified referenceParameters.
                     </description>
                     <location chapter="5" section="2.8"/>
                     <sub-assertions>
@@ -244,13 +244,13 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
                         </assertion>
                         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                             <id>JAXWS:SPEC:5024.2</id>
-                            <description>An implementation MUST throw a javax.xml.ws.WebServiceException if the Endpoint instance has not been published.  
+                            <description>An implementation MUST throw a jakarta.xml.ws.WebServiceException if the Endpoint instance has not been published.  
                             </description>
                             <location chapter = "5" section = "2.8"/>
                         </assertion>
                         <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
                             <id>JAXWS:SPEC:5024.3</id>
-                            <description>If the Class clazz is not a subclass of EndpointReference or the Endpoint implementation does not support EndpointReferences of type clazz a javax.xml.ws.WebServiceException MUST be thrown.  
+                            <description>If the Class clazz is not a subclass of EndpointReference or the Endpoint implementation does not support EndpointReferences of type clazz a jakarta.xml.ws.WebServiceException MUST be thrown.  
                             </description>
                             <location chapter = "5" section = "2.8"/>
                         </assertion>
@@ -268,10 +268,10 @@ Conformance (Default Executor): If an executor has not been set on an Endpoint, 
 "Endpoints can be created using the following static methods on Endpoint:"
 <p>
 create(Object implementor) Creates and returns an Endpoint for the specified implementor. If the
-implementor specifies a binding using the javax.xml.ws.BindingType annotation it MUST be used else a default binding of SOAP 1.1 / HTTP binding MUST be used.
+implementor specifies a binding using the jakarta.xml.ws.BindingType annotation it MUST be used else a default binding of SOAP 1.1 / HTTP binding MUST be used.
 create(String bindingID, Object implementor) Creates and returns an Endpoint for the specified
 binding and implementor. If the bindingID is null and no binding information is specified via
-the javax.xml.ws.BindingType annotation then a default SOAP 1.1 / HTTP binding MUST be
+the jakarta.xml.ws.BindingType annotation then a default SOAP 1.1 / HTTP binding MUST be
 used.
 </p>
 <p>
@@ -303,9 +303,9 @@ Conformance (Endpoint's W3CEndpointReference): The returned W3EndpointReference 
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:5028</id>
 			<description>
-javax.xml.ws.WebServiceContext
+jakarta.xml.ws.WebServiceContext
 <p>
-An endpoint implementation can retrieve an javax.xml.ws.EndpointReference for
+An endpoint implementation can retrieve an jakarta.xml.ws.EndpointReference for
 the endpoint using getEndpointReference(List&lt;Element&gt; referenceParameters),
 and getEndpointReference(Class&lt;T&gt; clazz, List&lt;Element&gt; referenceParameters)
 methods. These methods have the same semantics as the Endpoint.getEndpointReference() methods specified in the section 5.2.8

@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,12 +51,8 @@
         com/sun/ts/tests/jaxp,
         com/sun/ts/tests/jacc,
         com/sun/ts/tests/saaj,
-        com/sun/ts/tests/jaxrpc,
         com/sun/ts/tests/jmx,
-        com/sun/ts/tests/compat12,
-        com/sun/ts/tests/compat13,
         com/sun/ts/tests/signaturetest,
-        com/sun/ts/tests/interop,
         com/sun/ts/tests/integration,
         com/sun/ts/tests/ejb,
         com/sun/ts/tests/common,
@@ -71,24 +67,17 @@
         com/sun/ts/tests/rmiiiop,
         com/sun/ts/tests/assembly,
         com/sun/ts/tests/jta,
-        com/sun/ts/tests/samples,
-        com/sun/ts/tests/j2eetools/mgmt,
-        com/sun/ts/tests/j2eetools/deploy,
-        com/sun/ts/tests/jaxr"/>
+        com/sun/ts/tests/samples"/>
 
       <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
 
       <property name="rmiiiop.stub.dir" 
                 value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
 
-      <echo message="First building jaxrpc/common separately..."/>
-      <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/common" todo="build"/>
-
       <echo message="Compiling:${all.java.file}"/>
       <javac fork="true" srcdir="${ts.home}/src" 
             destdir="${class.dir}" 
             includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
-            excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java, com/sun/ts/tests/interop/jaxrpc/**/*.java"
             memoryInitialSize="100m"
             memoryMaximumSize="200m"
             debug="on" 
@@ -108,7 +97,6 @@
 		<javac fork="true" srcdir="${ts.home}/src" 
 			destdir="${class.dir}" 
             includes="${pkg.dir}/**/*.java,com/sun/ts/tests/common/webclient/**/*.java"
-	    excludes="**/interop/jaxrpc/**"
             memoryMaximumSize="200m"
 			debug="on" 
 			deprecation="on" >

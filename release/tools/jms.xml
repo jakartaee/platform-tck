@@ -22,8 +22,8 @@
     <import file="../../bin/xml/ts.common.props.xml"/>
     <!-- import file="./tck-internal-default.xml"/ -->
     
-    <property name="deliverable.version"           value="2.0"/>
-    <property name="deliverable.tck.version"           value="2.0.0"/>
+    <property name="deliverable.version"           value="3.0"/>
+    <property name="deliverable.tck.version"           value="3.0.0"/>
 
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -65,9 +65,10 @@
 		<fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
 			includes="testsuite.jtt, vehicle.properties"/>
 	  </copy>
-          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+          <!-- NOTICE will be EPL or EFTL specific: TBD-->
+          <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
-          </copy>
+          </copy-->
 
       <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -139,7 +140,7 @@
                    com/sun/ts/tests/common/vehicle/standalone/*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/jms/*,
-                   com/sun/ts/tests/signaturetest/signature-repository/javax.jms.*${deliverable.version}*,
+                   com/sun/ts/tests/signaturetest/signature-repository/jakarta.jms.*${deliverable.version}*,
                    com/sun/ts/tests/jms/common/**/*,
                    com/sun/ts/tests/jms/core/**/*,
                    com/sun/ts/tests/jms/core20/**/*,

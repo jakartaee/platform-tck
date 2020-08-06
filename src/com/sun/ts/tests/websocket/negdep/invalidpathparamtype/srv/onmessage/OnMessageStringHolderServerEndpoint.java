@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,11 +19,11 @@ package com.sun.ts.tests.websocket.negdep.invalidpathparamtype.srv.onmessage;
 
 import java.io.IOException;
 
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.Session;
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.PathParam;
+import jakarta.websocket.server.ServerEndpoint;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.negdep.StringHolder;
@@ -30,6 +31,7 @@ import com.sun.ts.tests.websocket.negdep.StringHolder;
 @ServerEndpoint("/invalid/{arg}")
 public class OnMessageStringHolderServerEndpoint {
 
+  @SuppressWarnings("unused")
   @OnMessage
   public String echo(String echo, @PathParam("arg") StringHolder bean) {
     return echo.toString();

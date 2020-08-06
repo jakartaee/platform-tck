@@ -1,3 +1,21 @@
+<!--
+
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
@@ -137,22 +155,22 @@ provided porting package and JNDI file system provider.
 [width="80%",cols="50%,50%",options="header",]
 |====================================================================
 |Name |Type
-|`MY_QUEUE` |`javax.jms.Queue`
-|`MY_QUEUE2` |`javax.jms.Queue`
-|`testQ0` |`javax.jms.Queue`
-|`testQ1` |`javax.jms.Queue`
-|`testQ2` |`javax.jms.Queue`
-|`testQueue2` |`javax.jms.Queue`
-|`Q2` |`javax.jms.Queue`
-|`MY_TOPIC` |`javax.jms.Topic`
+|`MY_QUEUE` |`jakarta.jms.Queue`
+|`MY_QUEUE2` |`jakarta.jms.Queue`
+|`testQ0` |`jakarta.jms.Queue`
+|`testQ1` |`jakarta.jms.Queue`
+|`testQ2` |`jakarta.jms.Queue`
+|`testQueue2` |`jakarta.jms.Queue`
+|`Q2` |`jakarta.jms.Queue`
+|`MY_TOPIC` |`jakarta.jms.Topic`
 |`MY_TOPIC2` |j`avax.jms.Topic`
-|`testT0` |`javax.jms.Topic`
+|`testT0` |`jakarta.jms.Topic`
 |`testT1` |j`avax.jms.Topic`
-|`testT2` |`javax.jms.Topic`
-|`MyConnectionFactory` |`javax.jms.ConnectionFactory`
-|`MyQueueConnectionFactory` |`javax.jms.QueueConnectionFactory`
-|`MyTopicConnectionFactory` |`javax.jms.TopicConnectionFactory`
-|`DURABLE_SUB_CONNECTION_FACTORY` |`javax.jms.TopicConnectionFactory`
+|`testT2` |`jakarta.jms.Topic`
+|`MyConnectionFactory` |`jakarta.jms.ConnectionFactory`
+|`MyQueueConnectionFactory` |`jakarta.jms.QueueConnectionFactory`
+|`MyTopicConnectionFactory` |`jakarta.jms.TopicConnectionFactory`
+|`DURABLE_SUB_CONNECTION_FACTORY` |`jakarta.jms.TopicConnectionFactory`
 |====================================================================
 --
 
@@ -335,22 +353,22 @@ This directory must match the `jndi.fs.dir`. property setting in the
 [width="80%",cols="50%,50%",options="header",]
 |====================================================================
 |Name |Type
-|`MY_QUEUE` |`javax.jms.Queue`
-|`MY_QUEUE2` |`javax.jms.Queue`
-|`testQ0` |`javax.jms.Queue`
-|`testQ1` |`javax.jms.Queue`
-|`testQ2` |`javax.jms.Queue`
-|`testQueue2` |`javax.jms.Queue`
-|`Q2` |`javax.jms.Queue`
-|`MY_TOPIC` |`javax.jms.Topic`
+|`MY_QUEUE` |`jakarta.jms.Queue`
+|`MY_QUEUE2` |`jakarta.jms.Queue`
+|`testQ0` |`jakarta.jms.Queue`
+|`testQ1` |`jakarta.jms.Queue`
+|`testQ2` |`jakarta.jms.Queue`
+|`testQueue2` |`jakarta.jms.Queue`
+|`Q2` |`jakarta.jms.Queue`
+|`MY_TOPIC` |`jakarta.jms.Topic`
 |`MY_TOPIC2` |j`avax.jms.Topic`
-|`testT0` |`javax.jms.Topic`
+|`testT0` |`jakarta.jms.Topic`
 |`testT1` |j`avax.jms.Topic`
-|`testT2` |`javax.jms.Topic`
-|`MyConnectionFactory` |`javax.jms.ConnectionFactory`
-|`MyQueueConnectionFactory` |`javax.jms.QueueConnectionFactory`
-|`MyTopicConnectionFactory` |`javax.jms.TopicConnectionFactory`
-|`DURABLE_SUB_CONNECTION_FACTORY` |`javax.jms.TopicConnectionFactory`
+|`testT2` |`jakarta.jms.Topic`
+|`MyConnectionFactory` |`jakarta.jms.ConnectionFactory`
+|`MyQueueConnectionFactory` |`jakarta.jms.QueueConnectionFactory`
+|`MyTopicConnectionFactory` |`jakarta.jms.TopicConnectionFactory`
+|`DURABLE_SUB_CONNECTION_FACTORY` |`jakarta.jms.TopicConnectionFactory`
 |====================================================================
 --
 

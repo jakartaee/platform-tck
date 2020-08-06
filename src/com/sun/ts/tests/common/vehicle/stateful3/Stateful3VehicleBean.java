@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,13 +23,13 @@ package com.sun.ts.tests.common.vehicle.stateful3;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.Remote;
-import javax.ejb.Remove;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateful;
-import javax.persistence.*;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
+import jakarta.persistence.*;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3VehicleBean")

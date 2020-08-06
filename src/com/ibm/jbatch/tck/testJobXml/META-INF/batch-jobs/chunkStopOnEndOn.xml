@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<job id="chunkStopOnEndOn" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="chunkStopOnEndOn" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
 	<step id="step1">
 		<chunk
 		 	checkpoint-policy="item"

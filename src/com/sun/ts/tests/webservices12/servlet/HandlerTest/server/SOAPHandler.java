@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,11 +23,11 @@ package com.sun.ts.tests.webservices12.servlet.HandlerTest.server;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
-import javax.xml.soap.*;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.namespace.QName;
 
 import java.util.HashSet;
@@ -39,7 +39,7 @@ import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import com.sun.ts.tests.jaxws.common.Constants;
 
 public class SOAPHandler
-    implements javax.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
+    implements jakarta.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
 
   private final String HANDLER_NAME = "ServerSOAPHandler";
 

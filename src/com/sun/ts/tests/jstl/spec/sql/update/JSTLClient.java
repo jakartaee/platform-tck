@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -198,8 +198,8 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:60
    * 
    * @testStrategy: Validate sql:update action utilizing the configuration
-   * parameter javax.servlet.jsp.jstl.sql.dataSource. The query is passed as
-   * body content. - that javax.servlet.jsp.jstl.sql.dataSource can be provided
+   * parameter jakarta.servlet.jsp.jstl.sql.dataSource. The query is passed as
+   * body content. - that jakarta.servlet.jsp.jstl.sql.dataSource can be provided
    * a DataSource.
    */
   public void positiveUpdateDataSourceConfigDataSourceTest() throws Fault {
@@ -214,7 +214,7 @@ public class JSTLClient extends SqlUrlClient {
    * @assertion_ids: JSTL:SPEC:60
    * 
    * @testStrategy: Validate sql:update action utilizing the configuration
-   * parameter javax.servlet.jsp.jstl.sql.dataSource and setting it to a String
+   * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a String
    * representing JDBC DriverManager parameters. The query is passed as body
    * content
    */
@@ -231,7 +231,7 @@ public class JSTLClient extends SqlUrlClient {
    * 
    * @testStrategy: Validate sql:update action dataSource attribute takes
    * precedence over the configuration parameter
-   * javax.servlet.jsp.jstl.sql.dataSource.
+   * jakarta.servlet.jsp.jstl.sql.dataSource.
    */
   public void positiveUpdateDataSourceConfigPrecedenceTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD,

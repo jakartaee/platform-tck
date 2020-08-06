@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -401,7 +401,7 @@ webServerHost=localhost
 webServerPort=8080
 web.home=${javaee.home}
 web.modules=${web.home}/modules
-jaxrs_impl.classes=${web.modules}/jersey-client.jar:${web.modules}/jersey-common.jar:${web.modules}/jersey-server.jar:${web.modules}/jersey-container-servlet.jar:${web.modules}/jersey-container-servlet-core.jar:${web.modules}/osgi-resource-locator.jar:${web.modules}/javax.inject.jar:${web.modules}/guava.jar:${web.modules}/hk2-api.jar:${web.modules}/hk2-locator.jar:${web.modules}/hk2-utils.jar:${web.modules}/cglib.jar:${web.modules}/asm-all-repackaged.jar:${web.modules}/bean-validator.jar:${web.modules}/endorsed/javax.annotation-api.jar:${web.modules}/javax.json.jar
+jaxrs_impl.classes=${web.modules}/jersey-client.jar:${web.modules}/jersey-common.jar:${web.modules}/jersey-server.jar:${web.modules}/jersey-container-servlet.jar:${web.modules}/jersey-container-servlet-core.jar:${web.modules}/osgi-resource-locator.jar:${web.modules}/javax.inject.jar:${web.modules}/guava.jar:${web.modules}/hk2-api.jar:${web.modules}/hk2-locator.jar:${web.modules}/hk2-utils.jar:${web.modules}/cglib.jar:${web.modules}/asm-all-repackaged.jar:${web.modules}/bean-validator.jar:${web.modules}/endorsed/jakarta.annotation-api.jar:${web.modules}/javax.json.jar
 jaxrs.classes=${web.modules}/javax.ws.rs-api.jar
 jersey.home=D:/CTS/CTS_JAXRS/jaxrstck/jersey
 jaxrs_impl_lib=${web.modules}/jersey-container-servlet-core.jar

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,12 +21,12 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.InvocationContext;
-import javax.ejb.PostActivate;
-import javax.ejb.PrePassivate;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
+import jakarta.ejb.PostActivate;
+import jakarta.ejb.PrePassivate;
 
 /**
  * A callback listerner for stateful session beans. Callback methods may throw

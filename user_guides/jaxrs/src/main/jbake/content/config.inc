@@ -1,3 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+///////////////////////////////////////////////////////////////////////////////
+
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
@@ -78,7 +96,7 @@ ${web.home}/modules/jersey-media-jaxb.jar:
 ${web.home}/modules/jersey-media-sse.jar:
 ${web.home}/modules/jersey-hk2.jar:
 ${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/javax.inject.jar:
+${web.home}/modules/jakarta.inject.jar:
 ${web.home}/modules/guava.jar:
 ${web.home}/modules/hk2-api.jar:
 ${web.home}/modules/hk2-locator.jar:
@@ -86,7 +104,7 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
+${web.home}/modules/endorsed/jakarta.annotation-api.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor
@@ -255,7 +273,7 @@ ${web.home}/modules/jersey-media-jaxb.jar:
 ${web.home}/modules/jersey-media-sse.jar:
 ${web.home}/modules/jersey-hk2.jar
 ${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/javax.inject.jar:
+${web.home}/modules/jakarta.inject.jar:
 ${web.home}/modules/guava.jar:
 ${web.home}/modules/hk2-api.jar:
 ${web.home}/modules/hk2-locator.jar:
@@ -263,7 +281,7 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/javax.annotation-api.jar
+${web.home}/modules/endorsed/jakarta.annotation-api.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor

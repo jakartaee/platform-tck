@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+<ejb-jar version="4.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
   <display-name>Ejb1</display-name>
   <enterprise-beans>
     <session>
@@ -118,7 +118,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -145,7 +145,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -180,7 +180,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -207,7 +207,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -282,7 +282,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -334,7 +334,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -378,7 +378,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -422,7 +422,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -520,103 +520,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbSecRoleRefScope</method-name>
-        <method-params>
-          <method-param>java.lang.String</method-param>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbOverloadedSecRoleRefs</method-name>
-        <method-params>
-          <method-param>java.lang.String</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbSecRoleRef</method-name>
-        <method-params>
-          <method-param>java.lang.String</method-param>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>initLogging</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbSecRoleRef1</method-name>
-        <method-params>
-          <method-param>java.lang.String</method-param>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbNotAuthz</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>EjbIsAuthz</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>checktest1</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>excludetest1</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-    </method-permission>
-    <method-permission>
-      <role-name>Manager</role-name>
-      <method>
-        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -706,13 +610,109 @@
       </method>
     </method-permission>
     <method-permission>
+      <role-name>Manager</role-name>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>remove</method-name>
+        <method-params>
+          <method-param>jakarta.ejb.Handle</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbSecRoleRefScope</method-name>
+        <method-params>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbOverloadedSecRoleRefs</method-name>
+        <method-params>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbSecRoleRef</method-name>
+        <method-params>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>initLogging</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbSecRoleRef1</method-name>
+        <method-params>
+          <method-param>java.lang.String</method-param>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbNotAuthz</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>EjbIsAuthz</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>checktest1</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>excludetest1</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+        </method-params>
+      </method>
+      <method>
+        <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
+        <method-intf>Home</method-intf>
+        <method-name>remove</method-name>
+        <method-params>
+          <method-param>java.lang.Object</method-param>
+        </method-params>
+      </method>
+    </method-permission>
+    <method-permission>
       <role-name>VP</role-name>
       <method>
         <ejb-name>ejb_ee_sec_stateless_secpropagation_Test</ejb-name>
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>
@@ -808,7 +808,7 @@
         <method-intf>Home</method-intf>
         <method-name>remove</method-name>
         <method-params>
-          <method-param>javax.ejb.Handle</method-param>
+          <method-param>jakarta.ejb.Handle</method-param>
         </method-params>
       </method>
       <method>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -102,16 +102,6 @@ public class CTSDeliverable extends AbstractDeliverable {
     htTSValidVehicles.put("tests_saaj_ee_Standalone.service_eetest.vehicles",
         new String[] { "ejb", "servlet", "jsp", "appclient" });
 
-    // jaxrpc tests
-    htTSValidVehicles.put("tests_jaxrpc.service_eetest.vehicles",
-        new String[] { "ejb", "servlet", "jsp", "appclient" });
-    htTSValidVehicles.put(
-        "tests_jaxrpc_api_javax_xml_rpc_handler.service_eetest.vehicles",
-        new String[] { "appclient" });
-    htTSValidVehicles.put(
-        "tests_jaxrpc_api_javax_xml_rpc_handler_soap.service_eetest.vehicles",
-        new String[] { "appclient" });
-
     // interop/webservices
     htTSValidVehicles.put("tests_interop_webservices.service_eetest.vehicles",
         new String[] { "ejb", "servlet", "jsp", "appclient" });
@@ -119,10 +109,6 @@ public class CTSDeliverable extends AbstractDeliverable {
     // interop/saaj/Standalone
     htTSValidVehicles.put(
         "tests_interop_saaj_Standalone.service_eetest.vehicles",
-        new String[] { "ejb", "servlet", "jsp", "appclient" });
-
-    // jaxr tests
-    htTSValidVehicles.put("tests_jaxr.service_eetest.vehicles",
         new String[] { "ejb", "servlet", "jsp", "appclient" });
 
     // jdbc tests
@@ -142,10 +128,6 @@ public class CTSDeliverable extends AbstractDeliverable {
     // j2ee Management tests
     htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles",
         new String[] { "ejb" });
-
-    // j2ee deploy tests
-    htTSValidVehicles.put("tests_j2eetools_deploy.service_eetest.vehicles",
-        new String[] { "standalone" });
 
     // jmx tests
     // htTSValidVehicles.put("tests_jmx.service_eetest.vehicles", new

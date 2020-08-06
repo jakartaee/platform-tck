@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,9 +26,9 @@
 # parent package's signature is checked.
 ##
 
-javax.json.bind
-javax.json.bind.adapter
-javax.json.bind.annotation
-javax.json.bind.config
-javax.json.bind.serializer
-javax.json.bind.spi
+jakarta.json.bind
+jakarta.json.bind.adapter
+jakarta.json.bind.annotation
+jakarta.json.bind.config
+jakarta.json.bind.serializer
+jakarta.json.bind.spi

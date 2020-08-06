@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.http.simple1;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "TestsPort", serviceName = "Simple1HttpSvc", targetNamespace = "http://Simple1HttpSvc.org/wsdl", wsdlLocation = "WEB-INF/wsdl/Simple1HttpSvc.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.simple1.Tests")
 

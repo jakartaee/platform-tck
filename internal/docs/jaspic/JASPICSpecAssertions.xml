@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -1051,7 +1051,7 @@
   		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JASPIC:SPEC:300</id>
 			<description>  If the runtime is a JSR 115 compatible Servlet container, the properties argument passed in all calls to getAuthContext must contain the following key-value pair:
-(key) javax.security.jacc.PolicyContext
+(key) jakarta.security.jacc.PolicyContext
 (value) The PolicyContext identifier value that the container must set.
                         </description>      
 			<keywords>
@@ -1062,7 +1062,7 @@
  		<assertion required="true" impl-spec="false" defined-by="technology" 
                            status="active" testable="false">
 			<id>JASPIC:SPEC:83</id>
-			<description>  When the runtime is not a JSR 115 compatible Servlet container, the properties argument used in all calls to getAuthContext must not include a javax.security.jacc.PolicyContext key-value pair, and a null value may be passed for the properties argument.
+			<description>  When the runtime is not a JSR 115 compatible Servlet container, the properties argument used in all calls to getAuthContext must not include a jakarta.security.jacc.PolicyContext key-value pair, and a null value may be passed for the properties argument.
                         </description>      
 			<keywords>
 				<keyword>getAuthContext</keyword>      
@@ -1259,7 +1259,7 @@
                            status="active" testable="true">
 			<id>JASPIC:SPEC:306</id>
 			<description>  This profile requires that the message processing runtime conditionally establish the following key-value pair within the Map of the MessageInfo object passed in the calls to getAuthContextID, validateRequest, and secureResponse.
-(key)  javax.security.auth.message.MessagePolicy.isMandatory
+(key)  jakarta.security.auth.message.MessagePolicy.isMandatory
 (val)  Any non-null String value, s, for which
          Boolean.valueOf(s).booleanValue() == true.
 
@@ -1791,7 +1791,7 @@ must be as defined in Section 4.8.2, CallbackHandler Requirements, for a client 
 		</assertion>
  		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JASPIC:SPEC:133</id>
-			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo passed in the calls to secureRequest and validateResponse  Key= javax.xml.ws.wsdl.service
+			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo passed in the calls to secureRequest and validateResponse  Key= jakarta.xml.ws.wsdl.service
  Value= qualified service name, represented as a javax.xml.namespace.QName..
 
                         </description>      
@@ -2080,7 +2080,7 @@ MessageInfo object.
 		</assertion>
  		<assertion required="true" impl-spec="false" defined-by="technology" status="deprecated" testable="false">
 			<id>JASPIC:SPEC:160</id>
-			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo object passed in the calls to validateRequest and secureResponse.   Key= javax.xml.ws.wsdl.service  value= the application context identifier as defined in Sec 4.2 Application Context Identifier.
+			<description>  This profile requires that the message processing runtime establish the following key-value pairs within the Map of the MessageInfo object passed in the calls to validateRequest and secureResponse.   Key= jakarta.xml.ws.wsdl.service  value= the application context identifier as defined in Sec 4.2 Application Context Identifier.
                         </description>      
 			<keywords>
 				<keyword>MessageInfo</keyword>      
@@ -2431,7 +2431,7 @@ requestPolicy.
 		</assertion>
  		<assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JASPIC:SPEC:192</id>
-			<description>  The getSupportedMessageTypes method of all authentication modules integrated for use with this profile, must include javax.jms.Message in its return value.
+			<description>  The getSupportedMessageTypes method of all authentication modules integrated for use with this profile, must include jakarta.jms.Message in its return value.
                               
                         </description>      
 			<keywords>
@@ -2644,7 +2644,7 @@ ability to determine the hostname for which they wish to perform the registratio
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2660,7 +2660,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2675,7 +2675,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2690,7 +2690,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2706,7 +2706,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2721,7 +2721,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2736,7 +2736,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2753,7 +2753,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" section="AuthConfigFactory"/>    
+			<location chapter="PackageHead - jakarta.security.auth.message.config" section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
             </comment>
@@ -2768,7 +2768,7 @@ setFactory, it will be returned.
 			<keywords>
 				<keyword>AuthConfigFactory.RegistrationContext</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory.RegistrationContext"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2798,7 +2798,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory.RegistrationContext</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="RegistrationListener"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2816,7 +2816,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2832,7 +2832,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2849,7 +2849,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2866,7 +2866,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2883,7 +2883,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2901,7 +2901,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.
@@ -2918,7 +2918,7 @@ When a listener argument is included in the call to acquire a provider, the fact
 			<keywords>
 				<keyword>AuthConfigFactory</keyword>      
 			</keywords>      
-			<location chapter="PackageHead - javax.security.auth.message.config" 
+			<location chapter="PackageHead - jakarta.security.auth.message.config" 
                       section="AuthConfigFactory"/>    
             <comment>
                 This reference is in the JASPIC spec but is in the API section and includes some of the javadoc refs.  It seemed better suited for this spec than the javadoc spec - even though it may technically be javadoc.

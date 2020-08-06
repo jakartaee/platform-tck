@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
     
-    <property name="deliverable.version" value="1.3"/>
-    <property name="deliverable.tck.version" value="1.3.0"/>
+    <property name="deliverable.version" value="2.0"/>
+    <property name="deliverable.tck.version" value="2.0.0"/>
 
     
     <target name="init">
@@ -71,9 +71,10 @@
             <fileset dir="${common.bin.dir}"
                      includes="deploy/**/*"/>
         </copy>
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy>
+        </copy-->
 	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	</copy>
     </target>
@@ -136,7 +137,7 @@
                      ${lib.pkg.dir}/deliverable/jta/*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jta/**,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.transaction*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.transaction*,
                      com/sun/ts/tests/signaturetest/signature-repository/empty.sig"
                      excludes="com/sun/ts/tests/signaturetest/*Record*,
                                com/sun/ts/tests/signaturetest/*record*"/>

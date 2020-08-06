@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,10 +32,10 @@ import java.nio.charset.Charset;
 import java.math.BigInteger;
 import java.math.BigDecimal;
 
-import javax.json.*;
-import javax.json.stream.*;
-import javax.json.stream.JsonParser.Event.*;
-import javax.json.JsonValue.ValueType.*;
+import jakarta.json.*;
+import jakarta.json.stream.*;
+import jakarta.json.stream.JsonParser.Event.*;
+import jakarta.json.JsonValue.ValueType.*;
 
 public final class JSONP_Util {
 

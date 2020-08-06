@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,17 +22,17 @@ package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspFactory;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.faces.application.Application;
-import javax.faces.el.ValueBinding;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ExternalContext;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspFactory;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.el.ValueBinding;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ExternalContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,7 +56,7 @@ public final class TestServlet extends HttpTCKServlet {
    * @param config
    *          the configuration for this <code>Servlet</code>
    * 
-   * @throws javax.servlet.ServletException
+   * @throws jakarta.servlet.ServletException
    *           indicates initialization failure
    */
   public void init(ServletConfig config) throws ServletException {

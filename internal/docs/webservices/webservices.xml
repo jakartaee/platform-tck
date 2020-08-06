@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -132,7 +132,7 @@
 			cases in a JavaEE environment. The following JAX-RPC properties are not
 			recommended for use in a managed context defined by this
 			specification: javax.xml.rpc.security.auth.username,
-			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: javax.xml.ws.security.auth.username, javax.xml.ws.security.auth.password</description>
+			javax.xml.rpc.security.auth.password. The The following JAX-WS properties are not recommended for use in a managed context defined by this specification: jakarta.xml.ws.security.auth.username, jakarta.xml.ws.security.auth.password</description>
 <location chapter="4" section="2.5" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -245,12 +245,12 @@ A Service Implementation Bean of Singleton EJB can have a shared state. The sing
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:48</id>
-<description> Service implementation EJB Currently, it may use javax.annotation.PostConstruct or javax.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
+<description> Service implementation EJB Currently, it may use jakarta.annotation.PostConstruct or jakarta.annotation.PreDestroy annotation on methods for lifecycle event callbacks. See Enterprise JavaBeans specification section 4.1.4 and 10.7 for more details on this.</description>
 <location chapter="5" section="3.2.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:49</id>
-<description> Service implementation EJB be annotated with the javax.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the javax.ejb.SessionBean interface.
+<description> Service implementation EJB be annotated with the jakarta.ejb.Stateless annotation or denoted in the deployment descriptor as a stateless session bean. The bean class no longer implements the jakarta.ejb.SessionBean interface.
 			</description>
 <location chapter="5" section="3.2.3.1" />
 </assertion>
@@ -264,9 +264,9 @@ javax.xml.rpc.handler.MessageContext interface by means of the
 SessionContext.getMessageContext method. Refer to section 4.3.6 of the Enterprise JavaBeans
 specification (EJB Core Contracts and Requirements)
 A stateless or singleton session bean that implements a web service endpoint using the JAX-WS APIs should use the
-javax.xml.ws.WebServiceContext, which can be injected by use of the @Resource annotation (see section 2.2 of JSR-250 Common Annotations for Java Platform specification), to access message context and
+jakarta.xml.ws.WebServiceContext, which can be injected by use of the @Resource annotation (see section 2.2 of JSR-250 Common Annotations for Java Platform specification), to access message context and
 security information relative to the request being served. The WebServiceContext interface allows the
-stateless or singleton session bean instance to get access to the javax.xml.ws.handler.MessageContext. Usage
+stateless or singleton session bean instance to get access to the jakarta.xml.ws.handler.MessageContext. Usage
 of a WebServiceContext must meet the requirements defined by the JAX-WS specification section 5.3.
 </description>
 <location chapter="5" section="3.2.3.2" />
@@ -274,7 +274,7 @@ of a WebServiceContext must meet the requirements defined by the JAX-WS specific
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:252</id>
 <description>
-EJB 3.1 introduces Singleton session bean component that provides an easy access to shared state. A Singleton session bean is instantiated once per application. A Singleton session bean must be annotated with the javax.ejb.Singleton annotation or denoted in the deployment descriptor as a singleton session bean.
+EJB 3.1 introduces Singleton session bean component that provides an easy access to shared state. A Singleton session bean is instantiated once per application. A Singleton session bean must be annotated with the jakarta.ejb.Singleton annotation or denoted in the deployment descriptor as a singleton session bean.
 
 The full requirements for Singleton Session Bean are defined in the section 4.8 of EJB 3.1 specification. 
 </description>
@@ -516,7 +516,7 @@ descriptor (not required with JAX-WS when annotations are used) in a Java EE mod
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:85</id>
 <description> A JAX-WS Web Services for JavaEE provider is required to provide an
-			implementation of HandlerResolver that returns the HandlerClain with Handlers specified in the deployment descriptor or the javax.jws.HandlerChain annotation</description>
+			implementation of HandlerResolver that returns the HandlerClain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation</description>
 <location chapter="6" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -600,7 +600,7 @@ descriptor (not required with JAX-WS when annotations are used) in a Java EE mod
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 <id>WS4EE:SPEC:96</id>
 <description> Handlers must not
-			demarcate transactions using the javax.transaction.UserTransaction
+			demarcate transactions using the jakarta.transaction.UserTransaction
 			interface.</description>
 <location chapter="6" section="2.2.3" />
 </assertion>
@@ -921,7 +921,7 @@ Service Implementations using a stateless or singleton session bean may use EJB 
 			contains no service or port elements. The JAX-RPC mapping file
 			specified by the developer will not include a
 			service-interface-mapping in this case.
-	If JAX-WS is used, client developer may use the following methods of the Service class: &lt;T&gt; T getPort(java.lang.Class(T) serviceEndpointInterface); javax.xml.namespace.QName getServiceName(); java.util.Iterator&lt;javax.xml.namespace.QName&gt; getPorts(); java.net.URL getWSDLDocumentLocation(); &lt;T&gt; Dispatch&lt;T&gt; createDispatch(javax.xml.namespace.QName portName, java.lang.Class&lt;T&gt; type, Service.Mode mode); Dispatch&lt;java.lang.Object&gt; createDispatch(javax.xml.namespace.QName portName, javax.xml.bind.JAXBContext context, Service.Mode mode); java.util.concurrent.Executor getExecutor(); void setExecutor(java.util.concurrent.Executor executor);</description>
+	If JAX-WS is used, client developer may use the following methods of the Service class: &lt;T&gt; T getPort(java.lang.Class(T) serviceEndpointInterface); javax.xml.namespace.QName getServiceName(); java.util.Iterator&lt;javax.xml.namespace.QName&gt; getPorts(); java.net.URL getWSDLDocumentLocation(); &lt;T&gt; Dispatch&lt;T&gt; createDispatch(javax.xml.namespace.QName portName, java.lang.Class&lt;T&gt; type, Service.Mode mode); Dispatch&lt;java.lang.Object&gt; createDispatch(javax.xml.namespace.QName portName, jakarta.xml.bind.JAXBContext context, Service.Mode mode); java.util.concurrent.Executor getExecutor(); void setExecutor(java.util.concurrent.Executor executor);</description>
 <location chapter="4" section="2.3.5" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1031,7 +1031,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			cycle methods on the Service Implementation Bean that are specific to
 			the container. For the web container, with JAX-RPC runtime, it calls the init method on the
 			instance if the Service Implementation Bean class implements the
-			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with javax.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with javax.annotation.PostConstruct annotation . The javax.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
+			ServiceLifecycle. For web containers with JAX-WS runtime, it calls the method annotated with jakarta.annotation.PostConstruct annotation. For the EJB container, it calls the setSessionContext and ejbCreate methodsmethod annotated with jakarta.annotation.PostConstruct annotation . The jakarta.annotation.PostConstruct callback occurs after any dependency injection has been performed by the container and before the first business method invocation on the bean.</description>
 <location chapter="5" section="3.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1040,7 +1040,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			Service Implementation Bean instance that it is about to be removed
 			from Method Ready state by calling container/bean specific life cycle
 			methods on the instance. For the web container, with JAX-RPC runtime, the destroy method is
-			called. For the web container with JAX-WS runtime, the method annotated with javax.annotation.PreDestroy is called. For the EJB container, the method annotated with javax.annotation.PreDestroy is called.</description>
+			called. For the web container with JAX-WS runtime, the method annotated with jakarta.annotation.PreDestroy is called. For the EJB container, the method annotated with jakarta.annotation.PreDestroy is called.</description>
 <location chapter="5" section="3.3" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1055,7 +1055,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 <id>WS4EE:SPEC:156</id>
 <description> A Web Services for JavaEE
 			provider is required to provide all interfaces and classes of the
-			javax.xml.rpc.handler package and javax.xml.ws.handler package.</description>
+			javax.xml.rpc.handler package and jakarta.xml.ws.handler package.</description>
 <location chapter="6" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1227,7 +1227,7 @@ The programming models are fully defined in sections 5.3.2.3 and 5.3.2.4.
 			element in the web.xml deployment descriptor. A Stateless Session
 			Bean Service Implementation must match the behavior defined by the
 			&lt;session&gt; element and the &lt;assembly&gt; element.
-Generation of any run-time classes the container requires to support a JAX-RPC or JAX-WS Service Endpoint or Stateless Session Bean or Singleton Bean Service Implementation is provider specific. A Singleton Bean Service Implementation must match the behavior defined by the javax.ejb.Singleton annotation or &lt;session&gt; element and the &lt;assembly-descriptor&gt; in the ejb-jar.xml deployment descriptor.</description>
+Generation of any run-time classes the container requires to support a JAX-RPC or JAX-WS Service Endpoint or Stateless Session Bean or Singleton Bean Service Implementation is provider specific. A Singleton Bean Service Implementation must match the behavior defined by the jakarta.ejb.Singleton annotation or &lt;session&gt; element and the &lt;assembly-descriptor&gt; in the ejb-jar.xml deployment descriptor.</description>
 <location chapter="8" section="2.2" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

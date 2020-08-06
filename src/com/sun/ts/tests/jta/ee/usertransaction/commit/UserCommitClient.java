@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,13 +33,13 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 // Test Specific Imports.
-import javax.transaction.Status;
-import javax.transaction.UserTransaction;
-import javax.transaction.SystemException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
+import jakarta.transaction.Status;
+import jakarta.transaction.UserTransaction;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.HeuristicMixedException;
+import jakarta.transaction.HeuristicRollbackException;
 
 /**
  * The UserCommitClient class tests commit() method of UserTransaction interface
@@ -379,6 +379,9 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
 
   public void cleanup() throws Fault {
     try {
+     // Referring to issue raised (https://github.com/eclipse-ee4j/jakartaee-tck/issues/70)
+     // Performing additional check if userTransaction is Active or not.
+     if(userTransaction.getStatus() == Status.STATUS_ACTIVE) {
       // Frees Current Thread, from Transaction
       Transact.free();
       try {
@@ -398,6 +401,10 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
         retries++;
       }
       logMsg("Cleanup ok;");
+      }
+      else {
+	    logMsg("CleanUp not required as Transaction is not in Active state.");
+      }
     } catch (Exception exception) {
       logErr("Cleanup Failed", exception);
       logTrace("Could not clean the environment");

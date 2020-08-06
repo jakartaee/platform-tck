@@ -22,7 +22,7 @@ and set up the following software components:
 
    mkdir /ri
    cd /ri
-   unzip <javax.xml.ws-ri-2.3.zip>
+   unzip <jakarta.xml.ws-ri-2.3.zip>
 
 3. Create endorsed dir to put JAX-WS 2.3 API (and JAX-B API) there.
 
@@ -58,7 +58,7 @@ Setup and Configuration of the JAX-WS TCK
    and:
    
    FastInfoset.jar, jaxb-jxc.jar, policy.jar, gmbal-api-only.jar, jaxb-xjc.jar,
-   resolver.jar, ha-api.jar, jaxws-rt.jar, saaj-impl.jar, javax.annotation-api.jar,
+   resolver.jar, ha-api.jar, jaxws-rt.jar, saaj-impl.jar, jakarta.annotation-api.jar,
    jaxws-tools.jar, stax-ex.jar, javax.xml.soap-api.jar, jsr181-api.jar, 
    stax2-api.jar, jaxb-core.jar, management-api.jar, streambuffer.jar, 
    jaxb-impl.jar, mimepull.jar, woodstox-core-asl.jar  

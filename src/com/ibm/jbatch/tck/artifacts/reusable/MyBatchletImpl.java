@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -14,19 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 */
-package com.ibm.jbatch.tck.artifacts.reusable;
+package com.ibm.jbatch.tck.artifacts.reusable;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.util.logging.Logger;
 
-import javax.batch.api.AbstractBatchlet;
-import javax.batch.runtime.context.JobContext;
-import javax.inject.Inject;
+import jakarta.batch.api.AbstractBatchlet;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.inject.Inject;
 
 
-@javax.inject.Named("myBatchletImpl")
+@jakarta.inject.Named("myBatchletImpl")
 public class MyBatchletImpl extends AbstractBatchlet {
 	private final static Logger logger = Logger.getLogger(MyBatchletImpl.class.getName());
 	

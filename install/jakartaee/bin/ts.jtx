@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -172,61 +172,38 @@ com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.
 com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_jsp
 com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_servlet
 
-################
-# Interop
-################
+#
+# Bug ID: https://github.com/eclipse-ee4j/jsonb-api/issues/180
+#
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/basictypes/BasicJavaTypesMappingTest.java#testLongMapping_from_servlet
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/bignumbers/BigNumbersMappingTest.java#testBigNumberMarshalling_from_servlet
 
 #
-# Bug ID : 27950931
+# Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/102
 #
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_ccid/reverse/Client.java#ew_ssl_ssln_upn_ccid_sb_sb_testid3b_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_ccid/reverse/Client.java#ew_ssl_sslr_upn_ccid_sb_sb_testid7a_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_upid/reverse/Client.java#ew_ssln_ssln_upn_upid_wb_sb_testid6_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_upid/reverse/Client.java#ew_ssln_ssln_upn_upid_sb_sb_testid6_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_anonid/reverse/Client.java#ew_ssl_ssln_upn_anonid_wb_sb_testid3_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_anonid/reverse/Client.java#ew_ssl_ssln_upn_anonid_sb_sb_testid3_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_ccid/reverse/Client.java#ew_ssln_ssln_upn_ccid_sb_sb_testid4a_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_upid/reverse/Client.java#ew_ssl_ssln_upn_upid_sb_sb_testid3a_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_upid/reverse/Client.java#ew_ssl_ssln_upn_upid_wb_sb_testid3a_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_anonid/reverse/Client.java#ew_ssl_sslr_upn_anonid_sb_sb_testid8_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_anonid/reverse/Client.java#ew_ssl_sslr_upn_anonid_wb_sb_testid8_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_anonid/reverse/Client.java#ew_ssln_ssln_upn_anonid_sb_sb_testid4_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_anonid/reverse/Client.java#ew_ssln_ssln_upn_anonid_wb_sb_testid4_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_upid/reverse/Client.java#ew_ssl_sslr_upn_upid_wb_sb_testid7_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_upid/reverse/Client.java#ew_ssl_sslr_upn_upid_sb_sb_testid7_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_ssln_upn_ccid/reverse/Client.java#ew_ssl_ssln_upn_ccid_wb_sb_testid3b_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssl_sslr_upn_ccid/reverse/Client.java#ew_ssl_sslr_upn_ccid_wb_sb_testid7a_reverse
-com/sun/ts/tests/interop/csiv2/ew_ssln_ssln_upn_ccid/reverse/Client.java#ew_ssln_ssln_upn_ccid_wb_sb_testid4a_reverse
+com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/dates/DatesMappingTest.java#testGregorianCalendarWithTimeMapping_from_servlet
 
 #
-# Issue : 16661 (https://github.com/javaee/glassfish/issues/16661)
+# Bug ID: https://github.com/eclipse-ee4j/jakartaee-tck/issues/103
 #
-com/sun/ts/tests/interop/tx/session/stateful/bm/TxN_GlobalSingle/Client.java#test1
-com/sun/ts/tests/interop/tx/webclient/jsp/URLClient.java#test13
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumMap_from_servlet
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_appclient
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_ejb
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_jsp
+com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#testEnumSet_from_servlet
 
-#
-# Tests excluded for challenge 251826
-#
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test1_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test2_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test3_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test4_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test5_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test6_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test7_reverse
-com/sun/ts/tests/interop/security/appclient/stateful/Client.java#test8_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test1_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test2_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test3_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test4_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test5_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test6_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test7_reverse
-com/sun/ts/tests/interop/security/appclient/stateless/Client.java#test8_reverse
-com/sun/ts/tests/interop/security/ejbclient/sfrunas/Client.java#test5_reverse
-com/sun/ts/tests/interop/security/ejbclient/slrunas/Client.java#test5_reverse
-com/sun/ts/tests/interop/security/ejbclient/stateful/Client.java#test5_reverse
-com/sun/ts/tests/interop/security/ejbclient/stateless/Client.java#test5_reverse
 
 ################
 # Security API

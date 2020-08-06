@@ -1,4 +1,4 @@
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // TCK project properties to be used in TCK User's Guides for Java TCK
 // technologies. The property_name=value pairs represent specific TCK
 // project details, such as version number, release date, required
@@ -28,36 +28,36 @@ TCKFullName=SOAP with Attachments API for Java (SAAJ) TCK
 TCKShortName=SAAJ TCK
 
 // 1c. Technology full name.
-TechnologyFullName=SOAP with Attachments API for Java (SAAJ) 1.3
+TechnologyFullName=SOAP with Attachments API for Java (SAAJ) 2.0
 
 // 1d. Technology short name.
 TechnologyShortName=SAAJ
 
 // 1e. Technology/TCK version.
-TechnologyVersion=1.3
+TechnologyVersion=2.0
 
 // 1f. TCK release date.
 ReleaseDate=April 2006
 
 // 1g. Version of JavaTest included with/used by the TCK.
-JavaTestVersion=3.2.1
+JavaTestVersion=5.0
 
 // 1h. Version of Java SE required to run the TCK.
-J2SEVersion=J2SE 1.5
+J2SEVersion=J2SE 1.8
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Section 2. Paths, package names, and URLs.
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 2a. Name of the package ZIP file.
-TCKPackageName=saaj-1_3-tck.zip
+TCKPackageName=soap-tck-2.0.0.zip
 
 // 2b. Directory base name created when TCK bundle is unzipped; do
 // not enter path prefix.
-TCKInstallDir=saajtck
+TCKInstallDir=soap-tck
 
 // 2c. Path name to package after it has been unzipped.
-TCKPackagePath=OPTPKG-XML/saaj
+TCKPackagePath=OPTPKG-XML/soap-tck
 
 // 2d. URL to technology specification.
 SpecURL=http://jcp.org/aboutJava/communityprocess/final/jsr067/index3.html

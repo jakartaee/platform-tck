@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2012, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -14,22 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
 
 import java.io.Serializable;
 
-import javax.batch.api.partition.AbstractPartitionAnalyzer;
-import javax.batch.runtime.BatchStatus;
-import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
-import javax.inject.Inject;
+import jakarta.batch.api.partition.AbstractPartitionAnalyzer;
+import jakarta.batch.runtime.BatchStatus;
+import jakarta.batch.runtime.context.JobContext;
+import jakarta.batch.runtime.context.StepContext;
+import jakarta.inject.Inject;
 
 import com.ibm.jbatch.tck.artifacts.reusable.ExternalizableString;
 
-@javax.inject.Named
+@jakarta.inject.Named
 public class MyPartitionAnalyzer extends AbstractPartitionAnalyzer {
 
 	private volatile String analyzedData = "";

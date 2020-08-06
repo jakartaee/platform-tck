@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,9 +32,9 @@ import java.text.MessageFormat;
 import java.net.*;
 import java.io.*;
 import java.util.UUID;
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
 import java.util.Properties;
 import javax.xml.namespace.QName;
 import javax.naming.InitialContext;
@@ -171,7 +171,7 @@ public class Client extends ServiceEETest {
   private Dispatch<SOAPMessage> createDispatchSOAPMessage(Service service,
       QName port) throws Exception {
     return service.createDispatch(port, SOAPMessage.class,
-        javax.xml.ws.Service.Mode.MESSAGE, DISABLED_ADDRESSING_FEATURE);
+        jakarta.xml.ws.Service.Mode.MESSAGE, DISABLED_ADDRESSING_FEATURE);
   }
 
   private Dispatch<SOAPMessage> createAnonymousResponsesDispatch() {

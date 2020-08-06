@@ -14,10 +14,10 @@
 
 
    <!-- Validate sql:query and sql:setDataSource actions by specifying a
-        DataSource Object for javax.servlet.jsp.jstl.sql.dataSource-->
+        DataSource Object for jakarta.servlet.jsp.jstl.sql.dataSource-->
 
    <h1>Validate sql:query and sql:setDataSource actions by specifying a
-       DataSource object for javax.servlet.jsp.jstl.sql.dataSource </h1>
+       DataSource object for jakarta.servlet.jsp.jstl.sql.dataSource </h1>
    <p>
 
 
@@ -40,7 +40,7 @@
 
 
 
-         Successfully executed the query when javax.servlet.jsp.jstl.sql.dataSource
+         Successfully executed the query when jakarta.servlet.jsp.jstl.sql.dataSource
          was provided a DataSource Object.
          <p>
 

@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -220,11 +220,11 @@
 					<section id="1" name="JavaEE Deployment"/>
 					<section id="1.1" name="Responsibilities of the Container"/>
 					<section id="1.2" name="Responsibilities of the Persistence Provider"/>
-					<section id="1.3" name="javax.persistence.spi.PersistenceProvider"/>
+					<section id="1.3" name="jakarta.persistence.spi.PersistenceProvider"/>
 					<section id="1.3.1" name="Persistence Unit Properties"/>
-					<section id="1.4" name="javax.persistence.spi.PersistenceUnitInfo Inerface"/>
+					<section id="1.4" name="jakarta.persistence.spi.PersistenceUnitInfo Inerface"/>
 					<section id="2" name="Bootstrapping in Java SE Environments"/>
-					<section id="1.5" name="javax.persistence.Persistence Class"/>
+					<section id="1.5" name="jakarta.persistence.Persistence Class"/>
 				</sections>
 			</chapter>
 			<chapter id="8" name="MetaData Annotations">
@@ -1047,7 +1047,7 @@
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>PERSISTENCE:SPEC:606</id>
 			<description>The persist, merge, remove, flush, and refresh methods must be invoked within a transaction context when an entity
-					manager with a transaction-scoped persistence context is used.  If there is no transaction context, the javax.persistence. TransactionRequiredException
+					manager with a transaction-scoped persistence context is used.  If there is no transaction context, the jakarta.persistence. TransactionRequiredException
 					is thrown.</description>
 			<location chapter="3" section="1.1"/>
 		</assertion>
@@ -3088,8 +3088,8 @@ empty comparison expression is unknown.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>PERSISTENCE:SPEC:851</id>
-			<description>Outside the JavaEE container environment, the javax.persistence.Persistence class is the bootstrap class that provides access to an entity
-			manager factory.  The application creates an entity manager factory by called the createEntityManagerFactory method of the javax.persistence.Persistence class.</description>
+			<description>Outside the JavaEE container environment, the jakarta.persistence.Persistence class is the bootstrap class that provides access to an entity
+			manager factory.  The application creates an entity manager factory by called the createEntityManagerFactory method of the jakarta.persistence.Persistence class.</description>
 			<location chapter="5" section="3.2"/>
 			<comment>STANDALONE</comment>
 		</assertion>
@@ -3550,7 +3550,7 @@ empty comparison expression is unknown.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>PERSISTENCE:SPEC:933</id>
-			<description>The provider element specifies the name of the persistence provider's javax.persistence.spi.PersistenceProvider class. </description>
+			<description>The provider element specifies the name of the persistence provider's jakarta.persistence.spi.PersistenceProvider class. </description>
 			<location chapter="6" section="2.1.3"/>
 			<comment>STANDALONE</comment>
 		</assertion>
@@ -3817,7 +3817,7 @@ empty comparison expression is unknown.
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>PERSISTENCE:SPEC:981</id>
-			<description>The interface javax.persistence.spi.PersistenceProvider is implemented by the persistence provider.</description>
+			<description>The interface jakarta.persistence.spi.PersistenceProvider is implemented by the persistence provider.</description>
 			<location chapter="7" section="1.3"/>
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -3827,7 +3827,7 @@ empty comparison expression is unknown.
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>PERSISTENCE:SPEC:983</id>
-					<description>It is invoked by the javax.persistence.Persistence class in Java SE environments.</description>
+					<description>It is invoked by the jakarta.persistence.Persistence class in Java SE environments.</description>
 					<location chapter="7" section="1.3"/>
 					<comment>STANDALONE</comment>
 				</assertion>
@@ -3859,25 +3859,25 @@ empty comparison expression is unknown.
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>PERSISTENCE:SPEC:988</id>
-					<description>javax.persistence.provider - corresponds to the provider element in the persistence.xml</description>
+					<description>jakarta.persistence.provider - corresponds to the provider element in the persistence.xml</description>
 					<location chapter="7" section="1.3.1"/>
 					<comment>STANDALONE</comment>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>PERSISTENCE:SPEC:989</id>
-					<description>javax.persistence.transactionType - corresponds to the transaction-type attribute of the persistence-unit element in the persistence.xml</description>
+					<description>jakarta.persistence.transactionType - corresponds to the transaction-type attribute of the persistence-unit element in the persistence.xml</description>
 					<location chapter="7" section="1.3.1"/>
 					<comment>STANDALONE</comment>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>PERSISTENCE:SPEC:990</id>
-					<description>javax.persistence.jtaDataSource - corresponds to the jta-data-source element in the persistence.xml</description>
+					<description>jakarta.persistence.jtaDataSource - corresponds to the jta-data-source element in the persistence.xml</description>
 					<location chapter="7" section="1.3.1"/>
 					<comment>STANDALONE</comment>
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 					<id>PERSISTENCE:SPEC:991</id>
-					<description>javax.persistence.nonJtaDataSource - corresponds to the jnon-ta-data-source element in the persistence.xml</description>
+					<description>jakarta.persistence.nonJtaDataSource - corresponds to the jnon-ta-data-source element in the persistence.xml</description>
 					<location chapter="7" section="1.3.1"/>
 					<comment>STANDALONE</comment>
 				</assertion>

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,14 +23,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.ClientEndpointConfig.Configurator;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.EndpointConfig;
-import javax.websocket.HandshakeResponse;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.HandshakeResponse;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.TestFailureException;
@@ -142,8 +143,8 @@ public class WebSocketTestCase extends WebTestCase {
     this.client = client;
     clientEndpointConfig = ClientEndpointConfig.Builder.create().build();
     strategy = ValidationFactory.getInstance(TOKENIZED_STRATEGY);
-    configurators = new LinkedList<ClientEndpointConfig.Configurator>();
-    slaveClientCallbacks = new LinkedList<EndpointCallback>();
+    configurators = new LinkedList<>();
+    slaveClientCallbacks = new LinkedList<>();
     ClientEndpointData.resetData();
     logTrace("A new test case has been created");
   }
@@ -500,7 +501,7 @@ public class WebSocketTestCase extends WebTestCase {
     return ClientEndpoint.getMessageBuilder().toString();
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "unused" })
   protected <T> T getLastResponse(Class<T> type) {
     return (T) ClientEndpointData.lastMessage;
   }

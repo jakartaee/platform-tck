@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@
  */
 package com.sun.ts.tests.xa.ee.resXcomp2;
 
-//import javax.jms.*;
+//import jakarta.jms.*;
 //import java.rmi.*; 
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.harness.*;
@@ -31,7 +31,7 @@ import com.sun.ts.lib.porting.*;
 
 import java.sql.*;
 import javax.sql.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import java.util.*;
 
 import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;

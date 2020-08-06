@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.http.shared4.server;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "Tests2Port", serviceName = "Shared4HttpSvc2", targetNamespace = "http://Shared4HttpSvc2.org/wsdl", wsdlLocation = "META-INF/wsdl/std/svc2/Shared4HttpSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared4.server.Tests2")
 @Stateless(name = "StatelessTestBean2")

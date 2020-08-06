@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,9 +32,9 @@
                 The join column that is being mapped to the persistent attribute.
                 The mapping type will remain the same as is defined in the mapped superclass.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AssociationOverride</class-interface>
-            <method name="joinColumns" return-type="javax.persistence.JoinColumn[]"/>
+            <method name="joinColumns" return-type="jakarta.persistence.JoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>2</id>
@@ -42,7 +42,7 @@
                 The name of the relationship property whose mapping is being overridden if property-based access is
                 being used, or the name of the relationship field if field-based access is used.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AssociationOverride</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -51,9 +51,9 @@
             <description>
                 Mapping overrides of relationship properties or fields
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AssociationOverrides</class-interface>
-            <method name="value" return-type="javax.persistence.AssociationOverride[]"/>
+            <method name="value" return-type="jakarta.persistence.AssociationOverride[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>4</id>
@@ -61,9 +61,9 @@
                 (Required) The column that is being mapped to the persistent attribute.
                 The mapping type will remain the same as is defined in the embeddable class or mapped superclass.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AttributeOverride</class-interface>
-            <method name="column" return-type="javax.persistence.Column"/>
+            <method name="column" return-type="jakarta.persistence.Column"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>5</id>
@@ -71,7 +71,7 @@
                 (Required) The name of the property whose mapping is being overridden if property-based access is being
                 used, or the name of the field if field-based access is used.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AttributeOverride</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -80,9 +80,9 @@
             <description>
                 One or more mapping override
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>AttributeOverrides</class-interface>
-            <method name="value" return-type="javax.persistence.AttributeOverride[]"/>
+            <method name="value" return-type="jakarta.persistence.AttributeOverride[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>7</id>
@@ -93,9 +93,9 @@
                 fetched. The LAZY strategy is a hint to the persistence provider runtime. If not specified, defaults to
                 EAGER.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Basic</class-interface>
-            <method name="fetch" return-type="javax.persistence.FetchType"/>
+            <method name="fetch" return-type="jakarta.persistence.FetchType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>8</id>
@@ -104,16 +104,16 @@
                 This is a hint and is disregarded for primitive types; it may be used in schema generation. If not
                 specified, defaults to true.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Basic</class-interface>
             <method name="optional" return-type="boolean"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>9</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>CascadeType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.CascadeType">
+            <method name="valueOf" return-type="jakarta.persistence.CascadeType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -122,9 +122,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>10</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>CascadeType</class-interface>
-            <method name="values" return-type="javax.persistence.CascadeType[]"/>
+            <method name="values" return-type="jakarta.persistence.CascadeType[]"/>
         </assertion>
         <assertion required="false" impl-spec="false" status="active" testable="true">
             <id>11</id>
@@ -132,7 +132,7 @@
                 (Optional) The SQL fragment that is used when generating the DDL for the column.
                 Defaults to the generated SQL to create a column of the inferred type.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="columnDefinition" return-type="java.lang.String"/>
         </assertion>
@@ -142,7 +142,7 @@
                 (Optional) Whether the column is included in SQL INSERT statements generated by the persistence
                 provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="insertable" return-type="boolean"/>
         </assertion>
@@ -152,7 +152,7 @@
                 (Optional) The column length.
                 (Applies only if a string-valued column is used.)
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="length" return-type="int"/>
         </assertion>
@@ -162,7 +162,7 @@
                 (Optional) The name of the column.
                 Defaults to the property or field name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -171,7 +171,7 @@
             <description>
                 Optional) Whether the database column is nullable.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="nullable" return-type="boolean"/>
         </assertion>
@@ -182,7 +182,7 @@
                 (Applies only if a decimal column is used.) Value must be set by developer if used when generating the
                 DDL for the column.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="precision" return-type="int"/>
         </assertion>
@@ -192,7 +192,7 @@
                 (Optional) The scale for a decimal (exact numeric) column.
                 (Applies only if a decimal column is used.)
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="scale" return-type="int"/>
         </assertion>
@@ -202,7 +202,7 @@
                 (Optional) The name of the table that contains the column.
                 If absent the column is assumed to be in the primary table.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="table" return-type="java.lang.String"/>
         </assertion>
@@ -214,7 +214,7 @@
                 unique key constraint is only a single field. This constraint applies in addition to any constraint
                 entailed by primary key mapping and to constraints specified at the table level.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="unique" return-type="boolean"/>
         </assertion>
@@ -224,7 +224,7 @@
                 (Optional) Whether the column is included in SQL UPDATE statements generated by the persistence
                 provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Column</class-interface>
             <method name="updatable" return-type="boolean"/>
         </assertion>
@@ -233,7 +233,7 @@
             <description>
                 The name of a column in the SELECT clause of a SQL query
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ColumnResult</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -243,7 +243,7 @@
                 (Optional) The SQL fragment that is used when generating the DDL for the discriminator column.
                 Defaults to the provider-generated SQL to create a column of the specified discriminator type.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorColumn</class-interface>
             <method name="columnDefinition" return-type="java.lang.String"/>
         </assertion>
@@ -254,9 +254,9 @@
 
                 Defaults to DiscriminatorType#STRING DiscriminatorType.STRING.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorColumn</class-interface>
-            <method name="discriminatorType" return-type="javax.persistence.DiscriminatorType"/>
+            <method name="discriminatorType" return-type="jakarta.persistence.DiscriminatorType"/>
         </assertion>
         <assertion required="false" impl-spec="false" status="active" testable="true">
             <id>24</id>
@@ -264,7 +264,7 @@
                 (Optional) The column length for String-based discriminator types.
                 Ignored for other discriminator types.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorColumn</class-interface>
             <method name="length" return-type="int"/>
         </assertion>
@@ -273,16 +273,16 @@
             <description>
                 (Optional) The name of column to be used for the discriminator.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorColumn</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>26</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.DiscriminatorType">
+            <method name="valueOf" return-type="jakarta.persistence.DiscriminatorType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -291,9 +291,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>27</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorType</class-interface>
-            <method name="values" return-type="javax.persistence.DiscriminatorType[]"/>
+            <method name="values" return-type="jakarta.persistence.DiscriminatorType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>28</id>
@@ -305,7 +305,7 @@
                 DiscriminatorType is DiscriminatorType#STRING STRING, the discriminator value default is the entity
                 name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>DiscriminatorValue</class-interface>
             <method name="value" return-type="java.lang.String"/>
         </assertion>
@@ -316,7 +316,7 @@
                 Defaults to the unqualified name of the entity class. This name is used to refer to the entity in
                 queries. The name must not be a reserved literal in the Java Persistence query language.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Entity</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -325,7 +325,7 @@
             <description>
                 Constructs a new EntityExistsException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityExistsException</class-interface>
             <method name="EntityExistsException" return-type="EntityExistsException"/>
         </assertion>
@@ -334,7 +334,7 @@
             <description>
                 Constructs a new EntityExistsException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityExistsException</class-interface>
             <method name="EntityExistsException" return-type="EntityExistsException">
                 <parameters>
@@ -347,7 +347,7 @@
             <description>
                 Constructs a new EntityExistsException exception with the specified detail message and cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityExistsException</class-interface>
             <method name="EntityExistsException" return-type="EntityExistsException">
                 <parameters>
@@ -361,7 +361,7 @@
             <description>
                 Constructs a new EntityExistsException exception with the specified cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityExistsException</class-interface>
             <method name="EntityExistsException" return-type="EntityExistsException">
                 <parameters>
@@ -374,7 +374,7 @@
             <description>
                 The callback listener classes
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityListeners</class-interface>
             <method name="value" return-type="java.lang.Class[]"/>
         </assertion>
@@ -384,7 +384,7 @@
                 Clear the persistence context, causing all managed entities to become detached.
                 Changes made to entities that have not been flushed to the database will not be persisted.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="clear" return-type="void"/>
         </assertion>
@@ -397,7 +397,7 @@
                 return false). If this method is called when the EntityManager is associated with an active transaction,
                 the persistence context remains managed until the transaction completes.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="close" return-type="void"/>
         </assertion>
@@ -406,7 +406,7 @@
             <description>
                 Check if the instance belongs to the current persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="contains" return-type="boolean">
                 <parameters>
@@ -420,9 +420,9 @@
                 Create an instance of Query for executing a named query (in the Java Persistence query language or in
                 native SQL).
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="createNamedQuery" return-type="javax.persistence.Query">
+            <method name="createNamedQuery" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -433,9 +433,9 @@
             <description>
                 Create an instance of Query for executing a native SQL statement, e.g., for update or delete.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="createNativeQuery" return-type="javax.persistence.Query">
+            <method name="createNativeQuery" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -446,9 +446,9 @@
             <description>
                 Create an instance of Query for executing a native SQL query.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="createNativeQuery" return-type="javax.persistence.Query">
+            <method name="createNativeQuery" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.lang.Class</parameter>
@@ -460,9 +460,9 @@
             <description>
                 Create an instance of Query for executing a native SQL query.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="createNativeQuery" return-type="javax.persistence.Query">
+            <method name="createNativeQuery" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.lang.String</parameter>
@@ -474,9 +474,9 @@
             <description>
                 Create an instance of Query for executing a Java Persistence query language statement.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="createQuery" return-type="javax.persistence.Query">
+            <method name="createQuery" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -487,7 +487,7 @@
             <description>
                 Find by primary key.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="find" return-type="java.lang.Object">
                 <parameters>
@@ -501,7 +501,7 @@
             <description>
                 Synchronize the persistence context to the underlying database.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="flush" return-type="void"/>
         </assertion>
@@ -511,7 +511,7 @@
                 Return the underlying provider object for the EntityManager, if available.
                 The result of this method is implementation specific.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="getDelegate" return-type="java.lang.Object"/>
         </assertion>
@@ -520,9 +520,9 @@
             <description>
                 Get the flush mode that applies to all objects contained in the persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="getFlushMode" return-type="javax.persistence.FlushModeType"/>
+            <method name="getFlushMode" return-type="jakarta.persistence.FlushModeType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>47</id>
@@ -536,7 +536,7 @@
                 instance state will be available upon detachment, unless it was accessed by the application while the
                 entity manager was open.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="getReference" return-type="java.lang.Object">
                 <parameters>
@@ -551,16 +551,16 @@
                 Returns the resource-level transaction object.
                 The EntityTransaction instance may be used serially to begin and commit multiple transactions.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
-            <method name="getTransaction" return-type="javax.persistence.EntityTransaction"/>
+            <method name="getTransaction" return-type="jakarta.persistence.EntityTransaction"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>49</id>
             <description>
                 Determine whether the EntityManager is open.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="isOpen" return-type="boolean"/>
         </assertion>
@@ -571,7 +571,7 @@
                 This method should be called on a JTA application managed EntityManager that was created outside the
                 scope of the active transaction to associate it with the current JTA transaction.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="joinTransaction" return-type="void"/>
         </assertion>
@@ -580,12 +580,12 @@
             <description>
                 Set the lock mode for an entity object contained in the persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="lock" return-type="void">
                 <parameters>
                     <parameter>java.lang.Object</parameter>
-                    <parameter>javax.persistence.LockModeType</parameter>
+                    <parameter>jakarta.persistence.LockModeType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -594,7 +594,7 @@
             <description>
                 Merge the state of the given entity into the current persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="merge" return-type="java.lang.Object">
                 <parameters>
@@ -607,7 +607,7 @@
             <description>
                 Make an entity instance managed and persistent.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="persist" return-type="void">
                 <parameters>
@@ -620,7 +620,7 @@
             <description>
                 Refresh the state of the instance from the database, overwriting changes made to the entity, if any.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="refresh" return-type="void">
                 <parameters>
@@ -633,7 +633,7 @@
             <description>
                 Remove the entity instance.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="remove" return-type="void">
                 <parameters>
@@ -646,11 +646,11 @@
             <description>
                 Set the flush mode that applies to all objects contained in the persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManager</class-interface>
             <method name="setFlushMode" return-type="void">
                 <parameters>
-                    <parameter>javax.persistence.FlushModeType</parameter>
+                    <parameter>jakarta.persistence.FlushModeType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -662,7 +662,7 @@
                 except for isOpen, which will return false. Once an EntityManagerFactory has been closed, all its entity
                 managers are considered to be in the closed state.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManagerFactory</class-interface>
             <method name="close" return-type="void"/>
         </assertion>
@@ -673,9 +673,9 @@
                 This method returns a new EntityManager instance each time it is invoked. The isOpen method will return
                 true on the returned instance.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManagerFactory</class-interface>
-            <method name="createEntityManager" return-type="javax.persistence.EntityManager"/>
+            <method name="createEntityManager" return-type="jakarta.persistence.EntityManager"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>59</id>
@@ -684,9 +684,9 @@
                 This method returns a new EntityManager instance each time it is invoked. The isOpen method will return
                 true on the returned instance.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManagerFactory</class-interface>
-            <method name="createEntityManager" return-type="javax.persistence.EntityManager">
+            <method name="createEntityManager" return-type="jakarta.persistence.EntityManager">
                 <parameters>
                     <parameter>java.util.Map</parameter>
                 </parameters>
@@ -698,7 +698,7 @@
                 Indicates whether or not this factory is open.
                 Returns true until a call to close has been made.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityManagerFactory</class-interface>
             <method name="isOpen" return-type="boolean"/>
         </assertion>
@@ -707,7 +707,7 @@
             <description>
                 Constructs a new EntityNotFoundException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityNotFoundException</class-interface>
             <method name="EntityNotFoundException" return-type="EntityNotFoundException"/>
         </assertion>
@@ -716,7 +716,7 @@
             <description>
                 Constructs a new EntityNotFoundException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityNotFoundException</class-interface>
             <method name="EntityNotFoundException" return-type="EntityNotFoundException">
                 <parameters>
@@ -730,7 +730,7 @@
                 Specifies the column name (or alias) of the column in the SELECT list that is used to determine the type
                 of the entity instance.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityResult</class-interface>
             <method name="discriminatorColumn" return-type="java.lang.String"/>
         </assertion>
@@ -739,7 +739,7 @@
             <description>
                 The class of the result
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityResult</class-interface>
             <method name="entityClass" return-type="java.lang.Class"/>
         </assertion>
@@ -749,16 +749,16 @@
                 Maps the columns specified in the SELECT list of the query to the properties or fields of the entity
                 class.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityResult</class-interface>
-            <method name="fields" return-type="javax.persistence.FieldResult[]"/>
+            <method name="fields" return-type="jakarta.persistence.FieldResult[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>66</id>
             <description>
                 Start the resource transaction.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="begin" return-type="void"/>
         </assertion>
@@ -767,7 +767,7 @@
             <description>
                 Commit the current transaction, writing any unflushed changes to the database.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="commit" return-type="void"/>
         </assertion>
@@ -776,7 +776,7 @@
             <description>
                 Determine whether the current transaction has been marked for rollback.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="getRollbackOnly" return-type="boolean"/>
         </assertion>
@@ -785,7 +785,7 @@
             <description>
                 Indicate whether a transaction is in progress.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="isActive" return-type="boolean"/>
         </assertion>
@@ -794,7 +794,7 @@
             <description>
                 Roll back the current transaction
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="rollback" return-type="void"/>
         </assertion>
@@ -804,7 +804,7 @@
                 Mark the current transaction so that the only possible outcome of the transaction is for the transaction
                 to be rolled back.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EntityTransaction</class-interface>
             <method name="setRollbackOnly" return-type="void"/>
         </assertion>
@@ -813,16 +813,16 @@
             <description>
                 (Optional) The type used in mapping an enum type.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Enumerated</class-interface>
-            <method name="value" return-type="javax.persistence.EnumType"/>
+            <method name="value" return-type="jakarta.persistence.EnumType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>73</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EnumType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.EnumType">
+            <method name="valueOf" return-type="jakarta.persistence.EnumType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -831,16 +831,16 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>74</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>EnumType</class-interface>
-            <method name="values" return-type="javax.persistence.EnumType[]"/>
+            <method name="values" return-type="jakarta.persistence.EnumType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>75</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FetchType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.FetchType">
+            <method name="valueOf" return-type="jakarta.persistence.FetchType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -849,16 +849,16 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>76</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FetchType</class-interface>
-            <method name="values" return-type="javax.persistence.FetchType[]"/>
+            <method name="values" return-type="jakarta.persistence.FetchType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>77</id>
             <description>
                 Name of the column in the SELECT clause - i.e., column aliases, if applicable.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FieldResult</class-interface>
             <method name="column" return-type="java.lang.String"/>
         </assertion>
@@ -867,16 +867,16 @@
             <description>
                 Name of the persistent field or property of the class.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FieldResult</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>79</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FlushModeType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.FlushModeType">
+            <method name="valueOf" return-type="jakarta.persistence.FlushModeType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -885,9 +885,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>80</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>FlushModeType</class-interface>
-            <method name="values" return-type="javax.persistence.FlushModeType[]"/>
+            <method name="values" return-type="jakarta.persistence.FlushModeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>81</id>
@@ -898,7 +898,7 @@
                 TableGenerator annotation.
                 Defaults to the id generator supplied by persistence provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>GeneratedValue</class-interface>
             <method name="generator" return-type="java.lang.String"/>
         </assertion>
@@ -908,16 +908,16 @@
                 (Optional) The primary key generation strategy that the persistence provider must use to generate the
                 annotated entity primary key.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>GeneratedValue</class-interface>
-            <method name="strategy" return-type="javax.persistence.GenerationType"/>
+            <method name="strategy" return-type="jakarta.persistence.GenerationType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>83</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>GenerationType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.GenerationType">
+            <method name="valueOf" return-type="jakarta.persistence.GenerationType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -926,16 +926,16 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>84</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>GenerationType</class-interface>
-            <method name="values" return-type="javax.persistence.GenerationType[]"/>
+            <method name="values" return-type="jakarta.persistence.GenerationType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>85</id>
             <description>
                 Primary key class
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>IdClass</class-interface>
             <method name="value" return-type="java.lang.Class"/>
         </assertion>
@@ -944,16 +944,16 @@
             <description>
                 The strategy to be used
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Inheritance</class-interface>
-            <method name="strategy" return-type="javax.persistence.InheritanceType"/>
+            <method name="strategy" return-type="jakarta.persistence.InheritanceType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>87</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>InheritanceType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.InheritanceType">
+            <method name="valueOf" return-type="jakarta.persistence.InheritanceType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -962,9 +962,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>88</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>InheritanceType</class-interface>
-            <method name="values" return-type="javax.persistence.InheritanceType[]"/>
+            <method name="values" return-type="jakarta.persistence.InheritanceType[]"/>
         </assertion>
         <assertion required="false" impl-spec="false" status="active" testable="true">
             <id>89</id>
@@ -972,7 +972,7 @@
                 (Optional) The SQL fragment that is used when generating the DDL for the column.
                 Defaults to the generated SQL for the column.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="columnDefinition" return-type="java.lang.String"/>
         </assertion>
@@ -982,7 +982,7 @@
                 (Optional) Whether the column is included in SQL INSERT statements generated by the persistence
                 provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="insertable" return-type="boolean"/>
         </assertion>
@@ -998,7 +998,7 @@
                 relationship property or field in the entity, the join column name is formed as the concatenation of the
                 following: the name of the entity; "_"; the name of the referenced primary key column.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1007,7 +1007,7 @@
             <description>
                 (Optional) Whether the foreign key column is nullable.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="nullable" return-type="boolean"/>
         </assertion>
@@ -1020,7 +1020,7 @@
                 entity, or inverse entity if the join is part of the inverse join definition. Default (only applies if
                 single join column is being used): The same name as the primary key column of the referenced table.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="referencedColumnName" return-type="java.lang.String"/>
         </assertion>
@@ -1030,7 +1030,7 @@
                 (Optional) The name of the table that contains the column.
                 If a table is not specified, the column is assumed to be in the primary table of the applicable entity.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="table" return-type="java.lang.String"/>
         </assertion>
@@ -1042,7 +1042,7 @@
                 unique key constraint is only a single field. It is not necessary to explicitly specify this for a join
                 column that corresponds to a primary key that is part of a foreign key.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="unique" return-type="boolean"/>
         </assertion>
@@ -1052,16 +1052,16 @@
                 (Optional) Whether the column is included in SQL UPDATE statements generated by the persistence
                 provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumn</class-interface>
             <method name="updatable" return-type="boolean"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>97</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinColumns</class-interface>
-            <method name="value" return-type="javax.persistence.JoinColumn[]"/>
+            <method name="value" return-type="jakarta.persistence.JoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>98</id>
@@ -1069,7 +1069,7 @@
                 (Optional) The catalog of the table.
                 Defaults to the default catalog.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
             <method name="catalog" return-type="java.lang.String"/>
         </assertion>
@@ -1081,9 +1081,9 @@
 
                 the inverse side of the association). Uses the same defaults as for JoinColumn.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
-            <method name="inverseJoinColumns" return-type="javax.persistence.JoinColumn[]"/>
+            <method name="inverseJoinColumns" return-type="jakarta.persistence.JoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>100</id>
@@ -1093,9 +1093,9 @@
 
                 the owning side of the association). Uses the same defaults as for JoinColumn.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
-            <method name="joinColumns" return-type="javax.persistence.JoinColumn[]"/>
+            <method name="joinColumns" return-type="jakarta.persistence.JoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>101</id>
@@ -1104,7 +1104,7 @@
                 Defaults to the concatenated names of the two associated primary entity tables, separated by an
                 underscore.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1114,7 +1114,7 @@
                 (Optional) The schema of the table.
                 Defaults to the default schema for user.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
             <method name="schema" return-type="java.lang.String"/>
         </assertion>
@@ -1124,16 +1124,16 @@
                 (Optional) Unique constraints that are to be placed on the table.
                 These are only used if table generation is in effect. Defaults to no additional constraints.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>JoinTable</class-interface>
-            <method name="uniqueConstraints" return-type="javax.persistence.UniqueConstraint[]"/>
+            <method name="uniqueConstraints" return-type="jakarta.persistence.UniqueConstraint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>104</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>LockModeType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.LockModeType">
+            <method name="valueOf" return-type="jakarta.persistence.LockModeType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -1142,9 +1142,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>105</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>LockModeType</class-interface>
-            <method name="values" return-type="javax.persistence.LockModeType[]"/>
+            <method name="values" return-type="jakarta.persistence.LockModeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>106</id>
@@ -1152,9 +1152,9 @@
                 (Optional) The operations that must be cascaded to the target of the association.
                 Defaults to no operations being cascaded.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToMany</class-interface>
-            <method name="cascade" return-type="javax.persistence.CascadeType[]"/>
+            <method name="cascade" return-type="jakarta.persistence.CascadeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>107</id>
@@ -1166,9 +1166,9 @@
                 associatedentities must be eagerly fetched. The FetchType#LAZY LAZY strategy is a hint to the
                 persistence provider runtime.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToMany</class-interface>
-            <method name="fetch" return-type="javax.persistence.FetchType"/>
+            <method name="fetch" return-type="jakarta.persistence.FetchType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>108</id>
@@ -1176,7 +1176,7 @@
                 The field that owns the relationship.
                 Required unless the relationship is unidirectional.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToMany</class-interface>
             <method name="mappedBy" return-type="java.lang.String"/>
         </assertion>
@@ -1187,7 +1187,7 @@
                 Optional only if the collection property is defined using Java generics. Must be specified otherwise.
                 Defaults to the parameterized type of the collection when defined using generics.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToMany</class-interface>
             <method name="targetEntity" return-type="java.lang.Class"/>
         </assertion>
@@ -1197,9 +1197,9 @@
                 (Optional) The operations that must be cascaded to the target of the association.
                 By default no operations are cascaded.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToOne</class-interface>
-            <method name="cascade" return-type="javax.persistence.CascadeType[]"/>
+            <method name="cascade" return-type="jakarta.persistence.CascadeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>111</id>
@@ -1211,9 +1211,9 @@
                 associated entity must be eagerly fetched. The FetchType#LAZY LAZY strategy is a hint to the persistence
                 provider runtime.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToOne</class-interface>
-            <method name="fetch" return-type="javax.persistence.FetchType"/>
+            <method name="fetch" return-type="jakarta.persistence.FetchType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>112</id>
@@ -1221,7 +1221,7 @@
                 (Optional) Whether the association is optional.
                 If set to false then a non-null relationship must always exist.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToOne</class-interface>
             <method name="optional" return-type="boolean"/>
         </assertion>
@@ -1231,7 +1231,7 @@
                 (Optional) The entity class that is the target of the association.
                 Defaults to the type of the field or property that stores the association.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>ManyToOne</class-interface>
             <method name="targetEntity" return-type="java.lang.Class"/>
         </assertion>
@@ -1244,7 +1244,7 @@
                 If the primary key is a composite primary key and is mapped as IdClass, an instance of the primary key
                 class is used as the key.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>MapKey</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1253,18 +1253,18 @@
             <description>
                 Array of native SQL named queries
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQueries</class-interface>
-            <method name="value" return-type="javax.persistence.NamedNativeQuery[]"/>
+            <method name="value" return-type="jakarta.persistence.NamedNativeQuery[]"/>
         </assertion>
         <assertion required="true" impl-spec="true" status="active" testable="false">
             <id>116</id>
             <description>
                 Vendor-specific query hints
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQuery</class-interface>
-            <method name="hints" return-type="javax.persistence.QueryHint[]"/>
+            <method name="hints" return-type="jakarta.persistence.QueryHint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>117</id>
@@ -1272,7 +1272,7 @@
 
                 Is used to refer to the query when using the EntityManager methods that create query objects.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQuery</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1281,7 +1281,7 @@
             <description>
                 The SQL query string
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQuery</class-interface>
             <method name="query" return-type="java.lang.String"/>
         </assertion>
@@ -1290,7 +1290,7 @@
             <description>
                 The class of the result
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQuery</class-interface>
             <method name="resultClass" return-type="java.lang.Class"/>
         </assertion>
@@ -1300,7 +1300,7 @@
 
                 The name of a SqlResultSetMapping, as defined in metadata
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedNativeQuery</class-interface>
             <method name="resultSetMapping" return-type="java.lang.String"/>
         </assertion>
@@ -1309,18 +1309,18 @@
             <description>
                 An array of named Java Persistence query language queries.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedQueries</class-interface>
-            <method name="value" return-type="javax.persistence.NamedQuery[]"/>
+            <method name="value" return-type="jakarta.persistence.NamedQuery[]"/>
         </assertion>
         <assertion required="true" impl-spec="true" status="active" testable="false">
             <id>122</id>
             <description>
                 Vendor-specific query hints
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedQuery</class-interface>
-            <method name="hints" return-type="javax.persistence.QueryHint[]"/>
+            <method name="hints" return-type="jakarta.persistence.QueryHint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>123</id>
@@ -1328,7 +1328,7 @@
 
                 Refers to the query when using the EntityManager methods that create query objects.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedQuery</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1337,7 +1337,7 @@
             <description>
                 The query string in the Java Persistence query language
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NamedQuery</class-interface>
             <method name="query" return-type="java.lang.String"/>
         </assertion>
@@ -1346,7 +1346,7 @@
             <description>
                 Constructs a new NonUniqueResultException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NonUniqueResultException</class-interface>
             <method name="NonUniqueResultException" return-type="NonUniqueResultException"/>
         </assertion>
@@ -1355,7 +1355,7 @@
             <description>
                 Constructs a new NonUniqueResultException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NonUniqueResultException</class-interface>
             <method name="NonUniqueResultException" return-type="NonUniqueResultException">
                 <parameters>
@@ -1368,7 +1368,7 @@
             <description>
                 Constructs a new NoResultException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NoResultException</class-interface>
             <method name="NoResultException" return-type="NoResultException"/>
         </assertion>
@@ -1377,7 +1377,7 @@
             <description>
                 Constructs a new NoResultException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>NoResultException</class-interface>
             <method name="NoResultException" return-type="NoResultException">
                 <parameters>
@@ -1391,9 +1391,9 @@
                 (Optional) The operations that must be cascaded to the target of the association.
                 Defaults to no operations being cascaded.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToMany</class-interface>
-            <method name="cascade" return-type="javax.persistence.CascadeType[]"/>
+            <method name="cascade" return-type="jakarta.persistence.CascadeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>130</id>
@@ -1405,9 +1405,9 @@
                 associatedentities must be eagerly fetched. The FetchType#LAZY LAZY strategy is a hint to the
                 persistence provider runtime.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToMany</class-interface>
-            <method name="fetch" return-type="javax.persistence.FetchType"/>
+            <method name="fetch" return-type="jakarta.persistence.FetchType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>131</id>
@@ -1415,7 +1415,7 @@
                 The field that owns the relationship.
                 Required unless the relationship is unidirectional.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToMany</class-interface>
             <method name="mappedBy" return-type="java.lang.String"/>
         </assertion>
@@ -1426,7 +1426,7 @@
                 Optional only if the collection property is defined using Java generics. Must be specified otherwise.
                 Defaults to the parameterized type of the collection when defined using generics.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToMany</class-interface>
             <method name="targetEntity" return-type="java.lang.Class"/>
         </assertion>
@@ -1436,9 +1436,9 @@
                 (Optional) The operations that must be cascaded to the target of the association.
                 By default no operations are cascaded.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToOne</class-interface>
-            <method name="cascade" return-type="javax.persistence.CascadeType[]"/>
+            <method name="cascade" return-type="jakarta.persistence.CascadeType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>134</id>
@@ -1450,9 +1450,9 @@
                 associated entity must be eagerly fetched. The FetchType#LAZY LAZY strategy is a hint to the persistence
                 provider runtime.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToOne</class-interface>
-            <method name="fetch" return-type="javax.persistence.FetchType"/>
+            <method name="fetch" return-type="jakarta.persistence.FetchType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>135</id>
@@ -1460,7 +1460,7 @@
                 (Optional) The field that owns the relationship.
                 This element is only specified on the inverse (non-owning) side of the association.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToOne</class-interface>
             <method name="mappedBy" return-type="java.lang.String"/>
         </assertion>
@@ -1470,7 +1470,7 @@
                 (Optional) Whether the association is optional.
                 If set to false then a non-null relationship must always exist.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToOne</class-interface>
             <method name="optional" return-type="boolean"/>
         </assertion>
@@ -1480,7 +1480,7 @@
                 (Optional) The entity class that is the target of the association.
                 Defaults to the type of the field or property that stores the association.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OneToOne</class-interface>
             <method name="targetEntity" return-type="java.lang.Class"/>
         </assertion>
@@ -1489,7 +1489,7 @@
             <description>
                 Returns the entity that caused this exception.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="getEntity" return-type="java.lang.Object"/>
         </assertion>
@@ -1498,7 +1498,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException"/>
         </assertion>
@@ -1507,7 +1507,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException">
                 <parameters>
@@ -1520,7 +1520,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with the specified detail message and cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException">
                 <parameters>
@@ -1534,7 +1534,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with the specified cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException">
                 <parameters>
@@ -1547,7 +1547,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with the specified entity.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException">
                 <parameters>
@@ -1560,7 +1560,7 @@
             <description>
                 Constructs a new OptimisticLockException exception with the specified detail message, cause, and entity.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OptimisticLockException</class-interface>
             <method name="OptimisticLockException" return-type="OptimisticLockException">
                 <parameters>
@@ -1578,7 +1578,7 @@
                 or DESC is not specified, ASC (ascending order) is assumed. If the ordering element is not specified,
                 ordering by the primary key of the associated entity is assumed.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>OrderBy</class-interface>
             <method name="value" return-type="java.lang.String"/>
         </assertion>
@@ -1587,9 +1587,9 @@
             <description>
                 Create and return an EntityManagerFactory for the named persistence unit.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Persistence</class-interface>
-            <method name="createEntityManagerFactory" return-type="javax.persistence.EntityManagerFactory">
+            <method name="createEntityManagerFactory" return-type="jakarta.persistence.EntityManagerFactory">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -1600,9 +1600,9 @@
             <description>
                 Create and return an EntityManagerFactory for the named persistence unit using the given properties.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Persistence</class-interface>
-            <method name="createEntityManagerFactory" return-type="javax.persistence.EntityManagerFactory">
+            <method name="createEntityManagerFactory" return-type="jakarta.persistence.EntityManagerFactory">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.util.Map</parameter>
@@ -1612,7 +1612,7 @@
         <assertion required="true" impl-spec="false" status="active" testable="false">
             <id>148</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Persistence</class-interface>
             <method name="Persistence" return-type="Persistence"/>
         </assertion>
@@ -1622,7 +1622,7 @@
                 The name by which the entity manager is to be accessed in the environment referencing context, and is
                 not needed when dependency injection is used.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContext</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1633,18 +1633,18 @@
                 Vendor specific properties may be included in this set of properties. Properties that are not recognized
                 by a vendor are ignored.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContext</class-interface>
-            <method name="properties" return-type="javax.persistence.PersistenceProperty[]"/>
+            <method name="properties" return-type="jakarta.persistence.PersistenceProperty[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>151</id>
             <description>
                 Specifies whether this is a transaction-scoped persistence context or an extended persistence context.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContext</class-interface>
-            <method name="type" return-type="javax.persistence.PersistenceContextType"/>
+            <method name="type" return-type="jakarta.persistence.PersistenceContextType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>152</id>
@@ -1653,7 +1653,7 @@
                 If the unitName element is specified, the persistence unit for the entity manager that is accessible in
                 JNDI must have the same name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContext</class-interface>
             <method name="unitName" return-type="java.lang.String"/>
         </assertion>
@@ -1662,16 +1662,16 @@
             <description>
                 One or more persistence context
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContexts</class-interface>
-            <method name="value" return-type="javax.persistence.PersistenceContext[]"/>
+            <method name="value" return-type="jakarta.persistence.PersistenceContext[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>154</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContextType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.PersistenceContextType">
+            <method name="valueOf" return-type="jakarta.persistence.PersistenceContextType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -1680,16 +1680,16 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>155</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceContextType</class-interface>
-            <method name="values" return-type="javax.persistence.PersistenceContextType[]"/>
+            <method name="values" return-type="jakarta.persistence.PersistenceContextType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>156</id>
             <description>
                 Constructs a new PersistenceException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceException</class-interface>
             <method name="PersistenceException" return-type="PersistenceException"/>
         </assertion>
@@ -1698,7 +1698,7 @@
             <description>
                 Constructs a new PersistenceException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceException</class-interface>
             <method name="PersistenceException" return-type="PersistenceException">
                 <parameters>
@@ -1711,7 +1711,7 @@
             <description>
                 Constructs a new PersistenceException exception with the specified detail message and cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceException</class-interface>
             <method name="PersistenceException" return-type="PersistenceException">
                 <parameters>
@@ -1725,7 +1725,7 @@
             <description>
                 Constructs a new PersistenceException exception with the specified cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceException</class-interface>
             <method name="PersistenceException" return-type="PersistenceException">
                 <parameters>
@@ -1738,7 +1738,7 @@
             <description>
                 The name of the property
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceProperty</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1747,7 +1747,7 @@
             <description>
                 The value of the property
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceProperty</class-interface>
             <method name="value" return-type="java.lang.String"/>
         </assertion>
@@ -1757,7 +1757,7 @@
                 The name by which the entity manager factory is to be accessed in the environment referencing context,
                 and is not needed when dependency injection is used.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceUnit</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1768,7 +1768,7 @@
                 If specified, the persistence unit for the entity manager factory that is accessible in JNDI must have
                 the same name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceUnit</class-interface>
             <method name="unitName" return-type="java.lang.String"/>
         </assertion>
@@ -1778,9 +1778,9 @@
 
                 One or more PersistenceUnit annotations.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PersistenceUnits</class-interface>
-            <method name="value" return-type="javax.persistence.PersistenceUnit[]"/>
+            <method name="value" return-type="jakarta.persistence.PersistenceUnit[]"/>
         </assertion>
         <assertion required="false" impl-spec="true" status="active" testable="true">
             <id>165</id>
@@ -1790,7 +1790,7 @@
                 This should not be specified for a OneToOne primary key association. Defaults to the generated SQL to
                 create a column of the inferred type.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PrimaryKeyJoinColumn</class-interface>
             <method name="columnDefinition" return-type="java.lang.String"/>
         </assertion>
@@ -1805,7 +1805,7 @@
                 table (SecondaryTable mapping); or the same name as the primary key column for the table for the
                 referencing entity (OneToOne mapping)
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PrimaryKeyJoinColumn</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -1820,7 +1820,7 @@
                 table (SecondaryTable mapping); or the same name as the primary key column for the table for the
                 referencing entity (OneToOne mapping)
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PrimaryKeyJoinColumn</class-interface>
             <method name="referencedColumnName" return-type="java.lang.String"/>
         </assertion>
@@ -1830,16 +1830,16 @@
 
                 One or more PrimaryKeyJoinColumn annotations.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>PrimaryKeyJoinColumns</class-interface>
-            <method name="value" return-type="javax.persistence.PrimaryKeyJoinColumn[]"/>
+            <method name="value" return-type="jakarta.persistence.PrimaryKeyJoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>169</id>
             <description>
                 Execute an update or delete statement.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
             <method name="executeUpdate" return-type="int"/>
         </assertion>
@@ -1848,7 +1848,7 @@
             <description>
                 Execute a SELECT query and return the query results as a List.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
             <method name="getResultList" return-type="java.util.List"/>
         </assertion>
@@ -1857,7 +1857,7 @@
             <description>
                 Execute a SELECT query that returns a single result.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
             <method name="getSingleResult" return-type="java.lang.Object"/>
         </assertion>
@@ -1866,9 +1866,9 @@
             <description>
                 Set the position of the first result to retrieve.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setFirstResult" return-type="javax.persistence.Query">
+            <method name="setFirstResult" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>int</parameter>
                 </parameters>
@@ -1881,11 +1881,11 @@
                 The flush mode type applies to the query regardless of the flush mode type in use for the entity
                 manager.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setFlushMode" return-type="javax.persistence.Query">
+            <method name="setFlushMode" return-type="jakarta.persistence.Query">
                 <parameters>
-                    <parameter>javax.persistence.FlushModeType</parameter>
+                    <parameter>jakarta.persistence.FlushModeType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -1895,9 +1895,9 @@
                 Set an implementation-specific hint.
                 If the hint name is not recognized, it is silently ignored.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setHint" return-type="javax.persistence.Query">
+            <method name="setHint" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.lang.Object</parameter>
@@ -1909,9 +1909,9 @@
             <description>
                 Set the maximum number of results to retrieve.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setMaxResults" return-type="javax.persistence.Query">
+            <method name="setMaxResults" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>int</parameter>
                 </parameters>
@@ -1922,9 +1922,9 @@
             <description>
                 Bind an argument to a named parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.lang.Object</parameter>
@@ -1936,13 +1936,13 @@
             <description>
                 Bind an instance of java.util.Date to a named parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.util.Date</parameter>
-                    <parameter>javax.persistence.TemporalType</parameter>
+                    <parameter>jakarta.persistence.TemporalType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -1951,13 +1951,13 @@
             <description>
                 Bind an instance of java.util.Calendar to a named parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.util.Calendar</parameter>
-                    <parameter>javax.persistence.TemporalType</parameter>
+                    <parameter>jakarta.persistence.TemporalType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -1966,9 +1966,9 @@
             <description>
                 Bind an argument to a positional parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>int</parameter>
                     <parameter>java.lang.Object</parameter>
@@ -1980,13 +1980,13 @@
             <description>
                 Bind an instance of java.util.Date to a positional parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>int</parameter>
                     <parameter>java.util.Date</parameter>
-                    <parameter>javax.persistence.TemporalType</parameter>
+                    <parameter>jakarta.persistence.TemporalType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -1995,13 +1995,13 @@
             <description>
                 Bind an instance of java.util.Calendar to a positional parameter.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Query</class-interface>
-            <method name="setParameter" return-type="javax.persistence.Query">
+            <method name="setParameter" return-type="jakarta.persistence.Query">
                 <parameters>
                     <parameter>int</parameter>
                     <parameter>java.util.Calendar</parameter>
-                    <parameter>javax.persistence.TemporalType</parameter>
+                    <parameter>jakarta.persistence.TemporalType</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -2010,7 +2010,7 @@
             <description>
                 Name of the hint
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>QueryHint</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2019,7 +2019,7 @@
             <description>
                 Value of the hint
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>QueryHint</class-interface>
             <method name="value" return-type="java.lang.String"/>
         </assertion>
@@ -2028,7 +2028,7 @@
             <description>
                 Constructs a new RollbackException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>RollbackException</class-interface>
             <method name="RollbackException" return-type="RollbackException"/>
         </assertion>
@@ -2037,7 +2037,7 @@
             <description>
                 Constructs a new RollbackException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>RollbackException</class-interface>
             <method name="RollbackException" return-type="RollbackException">
                 <parameters>
@@ -2050,7 +2050,7 @@
             <description>
                 Constructs a new RollbackException exception with the specified detail message and cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>RollbackException</class-interface>
             <method name="RollbackException" return-type="RollbackException">
                 <parameters>
@@ -2064,7 +2064,7 @@
             <description>
                 Constructs a new RollbackException exception with the specified cause.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>RollbackException</class-interface>
             <method name="RollbackException" return-type="RollbackException">
                 <parameters>
@@ -2078,7 +2078,7 @@
                 (Optional) The catalog of the table.
                 Defaults to the default catalog.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTable</class-interface>
             <method name="catalog" return-type="java.lang.String"/>
         </assertion>
@@ -2087,7 +2087,7 @@
             <description>
                 (Required) The name of the table.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTable</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2097,9 +2097,9 @@
                 (Optional) The columns that are used to join with the primary table.
                 Defaults to the column(s) of the same name(s) as the primary key column(s) in the primary table
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTable</class-interface>
-            <method name="pkJoinColumns" return-type="javax.persistence.PrimaryKeyJoinColumn[]"/>
+            <method name="pkJoinColumns" return-type="jakarta.persistence.PrimaryKeyJoinColumn[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>191</id>
@@ -2107,7 +2107,7 @@
                 (Optional) The schema of the table.
                 Defaults to the default schema for user.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTable</class-interface>
             <method name="schema" return-type="java.lang.String"/>
         </assertion>
@@ -2119,25 +2119,25 @@
                 any constraints specified by the Column and JoinColumn annotations and constraints entailed by primary
                 key mappings. Defaults to no additional constraints.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTable</class-interface>
-            <method name="uniqueConstraints" return-type="javax.persistence.UniqueConstraint[]"/>
+            <method name="uniqueConstraints" return-type="jakarta.persistence.UniqueConstraint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>193</id>
             <description>
                 The secondary tables for an entity.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SecondaryTables</class-interface>
-            <method name="value" return-type="javax.persistence.SecondaryTable[]"/>
+            <method name="value" return-type="jakarta.persistence.SecondaryTable[]"/>
         </assertion>
         <assertion required="true" impl-spec="true" status="active" testable="true">
             <id>194</id>
             <description>
                 (Optional) The amount to increment by when allocating sequence numbers from the sequence.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SequenceGenerator</class-interface>
             <method name="allocationSize" return-type="int"/>
         </assertion>
@@ -2146,7 +2146,7 @@
             <description>
                 (Optional) The value from which the sequence object is to start generating.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SequenceGenerator</class-interface>
             <method name="initialValue" return-type="int"/>
         </assertion>
@@ -2156,7 +2156,7 @@
                 (Required) A unique generator name that can be referenced by one or more classes to be the generator for
                 primary key values.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SequenceGenerator</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2166,7 +2166,7 @@
                 (Optional) The name of the database sequence object from which to obtain primary key values.
                 Defaults to a provider-chosen value.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SequenceGenerator</class-interface>
             <method name="sequenceName" return-type="java.lang.String"/>
         </assertion>
@@ -2175,18 +2175,18 @@
             <description>
                 Specifies the result set mapping to scalar values.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SqlResultSetMapping</class-interface>
-            <method name="columns" return-type="javax.persistence.ColumnResult[]"/>
+            <method name="columns" return-type="jakarta.persistence.ColumnResult[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>199</id>
             <description>
                 Specifies the result set mapping to entities.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SqlResultSetMapping</class-interface>
-            <method name="entities" return-type="javax.persistence.EntityResult[]"/>
+            <method name="entities" return-type="jakarta.persistence.EntityResult[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>200</id>
@@ -2194,7 +2194,7 @@
 
                 The name given to the result set mapping, and used to refer to it in the methods of the Query API.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SqlResultSetMapping</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2204,9 +2204,9 @@
 
                 One or more SqlResultSetMapping.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>SqlResultSetMappings</class-interface>
-            <method name="value" return-type="javax.persistence.SqlResultSetMapping[]"/>
+            <method name="value" return-type="jakarta.persistence.SqlResultSetMapping[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>202</id>
@@ -2214,7 +2214,7 @@
                 (Optional) The catalog of the table.
                 Defaults to the default catalog.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Table</class-interface>
             <method name="catalog" return-type="java.lang.String"/>
         </assertion>
@@ -2224,7 +2224,7 @@
                 (Optional) The name of the table.
                 Defaults to the entity name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Table</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2234,7 +2234,7 @@
                 (Optional) The schema of the table.
                 Defaults to the default schema for user.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Table</class-interface>
             <method name="schema" return-type="java.lang.String"/>
         </assertion>
@@ -2248,16 +2248,16 @@
                 constraints specified by the Column and JoinColumn annotations and constraints entailed by primary key
                 mappings. Defaults to no additional constraints.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Table</class-interface>
-            <method name="uniqueConstraints" return-type="javax.persistence.UniqueConstraint[]"/>
+            <method name="uniqueConstraints" return-type="jakarta.persistence.UniqueConstraint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>206</id>
             <description>
                 (Optional) The amount to increment by when allocating id numbers from the generator.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="allocationSize" return-type="int"/>
         </assertion>
@@ -2267,7 +2267,7 @@
                 (Optional) The catalog of the table.
                 Defaults to the default catalog.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="catalog" return-type="java.lang.String"/>
         </assertion>
@@ -2276,7 +2276,7 @@
             <description>
                 (Optional) The initial value to be used when allocating id numbers from the generator.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="initialValue" return-type="int"/>
         </assertion>
@@ -2286,7 +2286,7 @@
                 (Required) A unique generator name that can be referenced by one or more classes to be the generator for
                 id values.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="name" return-type="java.lang.String"/>
         </assertion>
@@ -2296,7 +2296,7 @@
                 (Optional) Name of the primary key column in the table.
                 Defaults to a provider-chosen name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="pkColumnName" return-type="java.lang.String"/>
         </assertion>
@@ -2307,7 +2307,7 @@
                 from others that may be stored in the table.
                 Defaults to a provider-chosen value to store in the primary key column of the generator table
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="pkColumnValue" return-type="java.lang.String"/>
         </assertion>
@@ -2317,7 +2317,7 @@
                 (Optional) The schema of the table.
                 Defaults to the default schema for user.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="schema" return-type="java.lang.String"/>
         </assertion>
@@ -2327,7 +2327,7 @@
                 (Optional) Name of table that stores the generated id values.
                 Defaults to a name chosen by persistence provider.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="table" return-type="java.lang.String"/>
         </assertion>
@@ -2338,9 +2338,9 @@
                 These are only used if table generation is in effect. These constraints apply in addition to primary key
                 constraints. Defaults to no additional constraints.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
-            <method name="uniqueConstraints" return-type="javax.persistence.UniqueConstraint[]"/>
+            <method name="uniqueConstraints" return-type="jakarta.persistence.UniqueConstraint[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>215</id>
@@ -2348,7 +2348,7 @@
                 (Optional) Name of the column that stores the last value generated.
                 Defaults to a provider-chosen name.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TableGenerator</class-interface>
             <method name="valueColumnName" return-type="java.lang.String"/>
         </assertion>
@@ -2357,16 +2357,16 @@
             <description>
                 The type used in mapping java.util.Date or java.util.Calendar.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>Temporal</class-interface>
-            <method name="value" return-type="javax.persistence.TemporalType"/>
+            <method name="value" return-type="jakarta.persistence.TemporalType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>217</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TemporalType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.TemporalType">
+            <method name="valueOf" return-type="jakarta.persistence.TemporalType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -2375,16 +2375,16 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>218</id>
             <description/>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TemporalType</class-interface>
-            <method name="values" return-type="javax.persistence.TemporalType[]"/>
+            <method name="values" return-type="jakarta.persistence.TemporalType[]"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>219</id>
             <description>
                 Constructs a new TransactionRequiredException exception with null as its detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TransactionRequiredException</class-interface>
             <method name="TransactionRequiredException" return-type="TransactionRequiredException"/>
         </assertion>
@@ -2393,7 +2393,7 @@
             <description>
                 Constructs a new TransactionRequiredException exception with the specified detail message.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>TransactionRequiredException</class-interface>
             <method name="TransactionRequiredException" return-type="TransactionRequiredException">
                 <parameters>
@@ -2406,7 +2406,7 @@
             <description>
                 (Required) An array of the column names that make up the constraint.
             </description>
-            <package>javax.persistence</package>
+            <package>jakarta.persistence</package>
             <class-interface>UniqueConstraint</class-interface>
             <method name="columnNames" return-type="java.lang.String[]"/>
         </assertion>
@@ -2417,7 +2417,7 @@
                 The implementation of this method may transform the supplied class file and return a new replacement
                 class file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>ClassTransformer</class-interface>
             <method name="transform" return-type="byte[]">
                 <parameters>
@@ -2432,7 +2432,7 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>223</id>
             <description>If the input does not represent a well-formed class file</description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>ClassTransformer</class-interface>
             <method name="transform" return-type="byte[]">
                 <parameters>
@@ -2449,13 +2449,13 @@
             <id>224</id>
             <description>
 
-                Called by the container when an javax.persistence.EntityManagerFactory is to be created.
+                Called by the container when an jakarta.persistence.EntityManagerFactory is to be created.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceProvider</class-interface>
-            <method name="createContainerEntityManagerFactory" return-type="javax.persistence.EntityManagerFactory">
+            <method name="createContainerEntityManagerFactory" return-type="jakarta.persistence.EntityManagerFactory">
                 <parameters>
-                    <parameter>javax.persistence.spi.PersistenceUnitInfo</parameter>
+                    <parameter>jakarta.persistence.spi.PersistenceUnitInfo</parameter>
                     <parameter>java.util.Map</parameter>
                 </parameters>
             </method>
@@ -2464,11 +2464,11 @@
             <id>225</id>
             <description>
 
-                Called by Persistence class when an javax.persistence.EntityManagerFactory is to be created.
+                Called by Persistence class when an jakarta.persistence.EntityManagerFactory is to be created.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceProvider</class-interface>
-            <method name="createEntityManagerFactory" return-type="javax.persistence.EntityManagerFactory">
+            <method name="createEntityManagerFactory" return-type="jakarta.persistence.EntityManagerFactory">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                     <parameter>java.util.Map</parameter>
@@ -2486,11 +2486,11 @@
                 method. Classes are only transformed once within the same classloading scope, regardless of how many
                 persistence units they may be a part of.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="addTransformer" return-type="void">
                 <parameters>
-                    <parameter>javax.persistence.spi.ClassTransformer</parameter>
+                    <parameter>jakarta.persistence.spi.ClassTransformer</parameter>
                 </parameters>
             </method>
         </assertion>
@@ -2501,7 +2501,7 @@
                 be included in the set of managed classes.
                 This value corresponds to the element in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="excludeUnlistedClasses" return-type="boolean"/>
         </assertion>
@@ -2510,7 +2510,7 @@
             <description>
                 Returns ClassLoader that the provider may use to load any classes, resources, or open URLs.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getClassLoader" return-type="java.lang.ClassLoader"/>
         </assertion>
@@ -2523,7 +2523,7 @@
                 referring to a jar file or referring to a directory that contains an exploded jar file, or some other
                 URL from which an InputStream in jar format can be obtained.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getJarFileUrls" return-type="java.util.List"/>
         </assertion>
@@ -2534,7 +2534,7 @@
                 The data source corresponds to the element in the persistence.xml file or is provided at deployment or
                 by the container.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getJtaDataSource" return-type="javax.sql.DataSource"/>
         </assertion>
@@ -2545,7 +2545,7 @@
                 managed classes.
                 Each name corresponds to a named element in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getManagedClassNames" return-type="java.util.List"/>
         </assertion>
@@ -2558,7 +2558,7 @@
                 from the application classpath. This list will not include the orm.xml file if one was specified. Each
                 mapping file name corresponds to a element in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getMappingFileNames" return-type="java.util.List"/>
         </assertion>
@@ -2574,7 +2574,7 @@
                 application components. The provider may only use this ClassLoader within the scope of the
                 PersistenceProvider#createContainerEntityManagerFactory call.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getNewTempClassLoader" return-type="java.lang.ClassLoader"/>
         </assertion>
@@ -2586,7 +2586,7 @@
                 The data source corresponds to the named element in the persistence.xml file or provided at deployment
                 or by the container.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getNonJtaDataSource" return-type="javax.sql.DataSource"/>
         </assertion>
@@ -2596,7 +2596,7 @@
                 Returns the fully qualified name of the persistence provider implementation class.
                 Corresponds to the element in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getPersistenceProviderClassName" return-type="java.lang.String"/>
         </assertion>
@@ -2606,7 +2606,7 @@
                 Returns the name of the persistence unit.
                 Corresponds to the name attribute in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getPersistenceUnitName" return-type="java.lang.String"/>
         </assertion>
@@ -2619,7 +2619,7 @@
                 contains an exploded jar file, or some other URL from which an InputStream in jar format can be
                 obtained.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getPersistenceUnitRootUrl" return-type="java.net.URL"/>
         </assertion>
@@ -2629,7 +2629,7 @@
                 Returns properties object.
                 Each property corresponds to a element in the persistence.xml file
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
             <method name="getProperties" return-type="java.util.Properties"/>
         </assertion>
@@ -2639,16 +2639,16 @@
                 Returns the transaction type of the entity managers created by the EntityManagerFactory.
                 The transaction type corresponds to the transaction-type attribute in the persistence.xml file.
             </description>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitInfo</class-interface>
-            <method name="getTransactionType" return-type="javax.persistence.spi.PersistenceUnitTransactionType"/>
+            <method name="getTransactionType" return-type="jakarta.persistence.spi.PersistenceUnitTransactionType"/>
         </assertion>
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>240</id>
             <description/>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitTransactionType</class-interface>
-            <method name="valueOf" return-type="javax.persistence.spi.PersistenceUnitTransactionType">
+            <method name="valueOf" return-type="jakarta.persistence.spi.PersistenceUnitTransactionType">
                 <parameters>
                     <parameter>java.lang.String</parameter>
                 </parameters>
@@ -2657,9 +2657,9 @@
         <assertion required="true" impl-spec="false" status="active" testable="true">
             <id>241</id>
             <description/>
-            <package>javax.persistence.spi</package>
+            <package>jakarta.persistence.spi</package>
             <class-interface>PersistenceUnitTransactionType</class-interface>
-            <method name="values" return-type="javax.persistence.spi.PersistenceUnitTransactionType[]"/>
+            <method name="values" return-type="jakarta.persistence.spi.PersistenceUnitTransactionType[]"/>
         </assertion>
     </assertions>
 </javadoc>

@@ -1,1 +1,1 @@
-** `javax.xml.soap`
+** `jakarta.xml.soap`

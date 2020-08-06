@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +32,7 @@
                             Constructs an AuthException with no detail message.
                              A detail  message is a String that describes this particular exception.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>AuthException</class-interface>
 <method name="AuthException" return-type="AuthException"/>
 </assertion>
@@ -42,7 +42,7 @@
                             Constructs an AuthException with the specified detail message.
                               A detail message is a String that describes this particular  exception.   
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>AuthException</class-interface>
 <method name="AuthException" return-type="AuthException">
 <parameters>
@@ -55,11 +55,11 @@
 <description>
                             Remove implementation specific principals and credentials from the   subject.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
 <method name="cleanSubject" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
@@ -67,14 +67,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>4</id>
 <description>If an error occurs during the Subject            processing.</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
 <method name="cleanSubject" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -83,11 +83,11 @@
                             Secure a service request message before sending it to the service.
                                 This method is called to transform the request message acquired   by calling getRequestMessage (on messageInfo) into the   mechanism-specific form to be sent by the runtime.   This method conveys the outcome of its message processing either  by returning an AuthStatus value or by throwing an AuthException.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
-<method name="secureRequest" return-type="javax.security.auth.message.AuthStatus">
+<method name="secureRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
@@ -95,14 +95,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>6</id>
 <description>When the message processing failed without           establishing a failure response message (in messageInfo).</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
-<method name="secureRequest" return-type="javax.security.auth.message.AuthStatus">
+<method name="secureRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -111,11 +111,11 @@
                             Validate a received service response.
                                  This method is called to transform the mechanism-specific response  message acquired by calling getResponseMessage (on messageInfo)   into the validated application message to be returned to the   message processing runtime. If the response message is a   (mechanism-specific) meta-message, the method implementation must   attempt to transform the meta-message into the next   mechanism-specific request message to be sent by the runtime.   This method conveys the outcome of its message processing either  by returning an AuthStatus value or by throwing an AuthException.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
-<method name="validateResponse" return-type="javax.security.auth.message.AuthStatus">
+<method name="validateResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
@@ -124,15 +124,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>8</id>
 <description>When the message processing failed without           establishing a failure response message (in messageInfo).</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ClientAuth</class-interface>
-<method name="validateResponse" return-type="javax.security.auth.message.AuthStatus">
+<method name="validateResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -141,7 +141,7 @@
                             Get (a reference to) the Map object of this MessageInfo.
                                Operations performed on the acquired Map must effect the   Map within the MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessageInfo</class-interface>
 <method name="getMap" return-type="java.util.Map"/>
 </assertion>
@@ -150,7 +150,7 @@
 <description>
                             Get the request message object from this MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessageInfo</class-interface>
 <method name="getRequestMessage" return-type="java.lang.Object"/>
 </assertion>
@@ -159,7 +159,7 @@
 <description>
                             Get the response message object from this MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessageInfo</class-interface>
 <method name="getResponseMessage" return-type="java.lang.Object"/>
 </assertion>
@@ -168,7 +168,7 @@
 <description>
                             Set the request message object in this MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessageInfo</class-interface>
 <method name="setRequestMessage" return-type="void">
 <parameters>
@@ -181,7 +181,7 @@
 <description>
                             Set the response message object in this MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessageInfo</class-interface>
 <method name="setResponseMessage" return-type="void">
 <parameters>
@@ -195,16 +195,16 @@
                             Get the target policies that comprise the authentication policy.
                             
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy</class-interface>
-<method name="getTargetPolicies" return-type="javax.security.auth.message.MessagePolicy.MessagePolicy.TargetPolicy[]"/>
+<method name="getTargetPolicies" return-type="jakarta.security.auth.message.MessagePolicy.MessagePolicy.TargetPolicy[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>15</id>
 <description>
                             Get the MessagePolicy modifier.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy</class-interface>
 <method name="isMandatory" return-type="boolean"/>
 </assertion>
@@ -213,11 +213,11 @@
 <description>
                             Create a MessagePolicy instance with an array of target policies.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy</class-interface>
 <method name="MessagePolicy" return-type="MessagePolicy">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy.MessagePolicy.TargetPolicy[]</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy.MessagePolicy.TargetPolicy[]</parameter>
 <parameter>boolean</parameter>
 </parameters>
 </method>
@@ -228,7 +228,7 @@
                             Get the ProtectionPolicy identifier.
                              An identifier may represent  a conceptual protection policy (as is the case with the static   identifiers defined within this interface) or it may identify  a procedural policy expression or plan that may be more difficult  to categorize in terms of a conceptual identifier.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.ProtectionPolicy</class-interface>
 <method name="getID" return-type="java.lang.String"/>
 </assertion>
@@ -237,11 +237,11 @@
 <description>
                             Get the Object identified by the Target from the MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.Target</class-interface>
 <method name="get" return-type="java.lang.Object">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 </parameters>
 </method>
 </assertion>
@@ -250,11 +250,11 @@
 <description>
                             Put the Object into the MessageInfo at the location identified  by the target.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.Target</class-interface>
 <method name="put" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>java.lang.Object</parameter>
 </parameters>
 </method>
@@ -264,11 +264,11 @@
 <description>
                             Remove the Object identified by the Target from the MessageInfo.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.Target</class-interface>
 <method name="remove" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 </parameters>
 </method>
 </assertion>
@@ -277,30 +277,30 @@
 <description>
                             Get the ProtectionPolicy that applies to the targets.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.TargetPolicy</class-interface>
-<method name="getProtectionPolicy" return-type="javax.security.auth.message.MessagePolicy.MessagePolicy.ProtectionPolicy"/>
+<method name="getProtectionPolicy" return-type="jakarta.security.auth.message.MessagePolicy.MessagePolicy.ProtectionPolicy"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>22</id>
 <description>
                             Get the array of layer-specific target descriptors that identify  the one or more message parts to which the specified message  protection policy applies.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.TargetPolicy</class-interface>
-<method name="getTargets" return-type="javax.security.auth.message.MessagePolicy.MessagePolicy.Target[]"/>
+<method name="getTargets" return-type="jakarta.security.auth.message.MessagePolicy.MessagePolicy.Target[]"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>23</id>
 <description>
                             Create a TargetPolicy instance with an array of Targets  and with a ProtectionPolicy.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>MessagePolicy.TargetPolicy</class-interface>
 <method name="MessagePolicy.TargetPolicy" return-type="MessagePolicy.TargetPolicy">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy.MessagePolicy.Target[]</parameter>
-<parameter>javax.security.auth.message.MessagePolicy.MessagePolicy.ProtectionPolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy.MessagePolicy.Target[]</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy.MessagePolicy.ProtectionPolicy</parameter>
 </parameters>
 </method>
 </assertion>
@@ -309,11 +309,11 @@
 <description>
                             Remove method specific principals and credentials from the subject.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
 <method name="cleanSubject" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
@@ -321,14 +321,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>25</id>
 <description>If an error occurs during the Subject            processing.</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
 <method name="cleanSubject" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -337,11 +337,11 @@
                             Secure a service response before sending it to the client.
                                This method is called to transform the response message acquired by  calling getResponseMessage (on messageInfo) into the mechanism-specific  form to be sent by the runtime.   This method conveys the outcome of its message processing either  by returning an AuthStatus value or by throwing an AuthException.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
-<method name="secureResponse" return-type="javax.security.auth.message.AuthStatus">
+<method name="secureResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
 </method>
@@ -349,14 +349,14 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>27</id>
 <description>When the message processing failed without           establishing a failure response message (in messageInfo).</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
-<method name="secureResponse" return-type="javax.security.auth.message.AuthStatus">
+<method name="secureResponse" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -365,11 +365,11 @@
                             Authenticate a received service request.
                                This method is called to transform the mechanism-specific request   message acquired by calling getRequestMessage (on messageInfo)   into the validated application message to be returned to the message   processing runtime.   If the received message is a (mechanism-specific) meta-message,   the method implementation must attempt to transform the meta-message   into a corresponding mechanism-specific response message, or to the  validated application request message.  The runtime will bind a validated application message into the  the corresponding service invocation.   This method conveys the outcome of its message processing either  by returning an AuthStatus value or by throwing an AuthException.
                         </description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
-<method name="validateRequest" return-type="javax.security.auth.message.AuthStatus">
+<method name="validateRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
@@ -378,15 +378,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>29</id>
 <description>When the message processing failed without           establishing a failure response message (in messageInfo).</description>
-<package>javax.security.auth.message</package>
+<package>jakarta.security.auth.message</package>
 <class-interface>ServerAuth</class-interface>
-<method name="validateRequest" return-type="javax.security.auth.message.AuthStatus">
+<method name="validateRequest" return-type="jakarta.security.auth.message.AuthStatus">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -394,7 +394,7 @@
 <description>
                             Create a CallerPrincipalCallback to set the container's   representation of the caller principal
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="CallerPrincipalCallback" return-type="CallerPrincipalCallback">
 <parameters>
@@ -408,7 +408,7 @@
 <description>
                             Create a CallerPrincipalCallback to set the container's   representation of the caller principal.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="CallerPrincipalCallback" return-type="CallerPrincipalCallback">
 <parameters>
@@ -422,7 +422,7 @@
 <description>
                             Get the caller principal name.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="getName" return-type="java.lang.String"/>
 </assertion>
@@ -431,7 +431,7 @@
 <description>
                             Get the caller principal.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="getPrincipal" return-type="java.security.Principal"/>
 </assertion>
@@ -440,7 +440,7 @@
 <description>
                             Get the Subject in which the handler will distinguish the caller   principal
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CallerPrincipalCallback</class-interface>
 <method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
@@ -449,7 +449,7 @@
 <description>
                             Create a CertStoreCallback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CertStoreCallback</class-interface>
 <method name="CertStoreCallback" return-type="CertStoreCallback"/>
 </assertion>
@@ -458,7 +458,7 @@
 <description>
                             Used by the CertStore user to obtain the CertStore set within the    Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CertStoreCallback</class-interface>
 <method name="getCertStore" return-type="java.security.cert.CertStore"/>
 </assertion>
@@ -467,7 +467,7 @@
 <description>
                             Used by the CallbackHandler to set the CertStore within the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>CertStoreCallback</class-interface>
 <method name="setCertStore" return-type="void">
 <parameters>
@@ -480,7 +480,7 @@
 <description>
                             Get the array of group names.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>GroupPrincipalCallback</class-interface>
 <method name="getGroups" return-type="java.lang.String[]"/>
 </assertion>
@@ -489,7 +489,7 @@
 <description>
                             Get the Subject in which the handler will establish the   group principals.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>GroupPrincipalCallback</class-interface>
 <method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
@@ -498,7 +498,7 @@
 <description>
                             Create a GroupPrincipalCallback to establish the container's   representation of the corresponding group principals within  the Subject.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>GroupPrincipalCallback</class-interface>
 <method name="GroupPrincipalCallback" return-type="GroupPrincipalCallback">
 <parameters>
@@ -512,7 +512,7 @@
 <description>
                             Clear the password.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="clearPassword" return-type="void"/>
 </assertion>
@@ -522,7 +522,7 @@
                             Get the password.
                                 Note that this method returns a reference to the password.  If a clone of the array is created it is the caller's  responsibility to zero out the password information after  it is no longer needed.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="getPassword" return-type="char[]"/>
 </assertion>
@@ -531,7 +531,7 @@
 <description>
                             Get the authentication result.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="getResult" return-type="boolean"/>
 </assertion>
@@ -540,7 +540,7 @@
 <description>
                             Get the subject.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="getSubject" return-type="javax.security.auth.Subject"/>
 </assertion>
@@ -549,7 +549,7 @@
 <description>
                             Get the username.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="getUsername" return-type="java.lang.String"/>
 </assertion>
@@ -558,7 +558,7 @@
 <description>
                             Create a PasswordValidationCallback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="PasswordValidationCallback" return-type="PasswordValidationCallback">
 <parameters>
@@ -573,7 +573,7 @@
 <description>
                             Set the authentication result.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PasswordValidationCallback</class-interface>
 <method name="setResult" return-type="void">
 <parameters>
@@ -586,7 +586,7 @@
 <description>
                             Used to obtain the certicicate chain set within the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback</class-interface>
 <method name="getChain" return-type="java.security.cert.Certificate[]"/>
 </assertion>
@@ -595,7 +595,7 @@
 <description>
                             Used to obtain the private key set within the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback</class-interface>
 <method name="getKey" return-type="java.security.PrivateKey"/>
 </assertion>
@@ -604,9 +604,9 @@
 <description>
                             Used by the CallbackHandler to  get the Request object that identifies the private key to be returned.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback</class-interface>
-<method name="getRequest" return-type="javax.security.auth.message.callback.PrivateKeyCallback.PrivateKeyCallback.Request"/>
+<method name="getRequest" return-type="jakarta.security.auth.message.callback.PrivateKeyCallback.PrivateKeyCallback.Request"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>51</id>
@@ -614,11 +614,11 @@
                             Constructs this PrivateKeyCallback with a private key Request object.
                                 The request object identifies the private key  to be returned.  The corresponding certificate chain for the  private key is also returned.    If the request object is null,  the handler of the callback relies on its own default.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback</class-interface>
 <method name="PrivateKeyCallback" return-type="PrivateKeyCallback">
 <parameters>
-<parameter>javax.security.auth.message.callback.PrivateKeyCallback.PrivateKeyCallback.Request</parameter>
+<parameter>jakarta.security.auth.message.callback.PrivateKeyCallback.PrivateKeyCallback.Request</parameter>
 </parameters>
 </method>
 </assertion>
@@ -628,7 +628,7 @@
                             Used by the CallbackHandler to set the requested private key and  the corresponding certificate chain within the Callback.
                                 If the requested private key or chain could not be found,  then both values must be set to null.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback</class-interface>
 <method name="setKey" return-type="void">
 <parameters>
@@ -642,7 +642,7 @@
 <description>
                             Get the alias.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.AliasRequest</class-interface>
 <method name="getAlias" return-type="java.lang.String"/>
 </assertion>
@@ -652,7 +652,7 @@
                             Construct an AliasRequest with an alias.
                                 The alias is used to directly identify the private key  to be returned.  The corresponding certificate chain for the  private key is also returned.    If the alias is null,  the handler of the callback relies on its own default.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.AliasRequest</class-interface>
 <method name="PrivateKeyCallback.AliasRequest" return-type="PrivateKeyCallback.AliasRequest">
 <parameters>
@@ -665,7 +665,7 @@
 <description>
                             Get the algorithm identifier.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.DigestRequest</class-interface>
 <method name="getAlgorithm" return-type="java.lang.String"/>
 </assertion>
@@ -674,7 +674,7 @@
 <description>
                             Get the digest value.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.DigestRequest</class-interface>
 <method name="getDigest" return-type="byte[]"/>
 </assertion>
@@ -684,7 +684,7 @@
                             Constructs a DigestRequest with a digest value and algorithm   identifier.
                                 The digest of the certificate whose private key is returned   must match the provided digest. The certificate digest is computed   by applying the specified algorithm to the bytes of the certificate.  For example:     MessageDigest.getInstance(algorithm).digest(cert.getEncoded())          . The corresponding certificate chain for the private key is   also returned.    If the digest or algorithm parameters are null,  the handler of the callback relies on its own defaults.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.DigestRequest</class-interface>
 <method name="PrivateKeyCallback.DigestRequest" return-type="PrivateKeyCallback.DigestRequest">
 <parameters>
@@ -698,7 +698,7 @@
 <description>
                             Get the issuer.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.IssuerSerialNumRequest</class-interface>
 <method name="getIssuer" return-type="javax.security.auth.x500.X500Principal"/>
 </assertion>
@@ -707,7 +707,7 @@
 <description>
                             Get the serial number.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.IssuerSerialNumRequest</class-interface>
 <method name="getSerialNum" return-type="java.math.BigInteger"/>
 </assertion>
@@ -717,7 +717,7 @@
                             Constructs a IssuerSerialNumRequest with an issuer/serial number.
                                 The issuer/serial number is used to identify a  public key certificate.  The corresponding private key  is returned in the callback.  The corresponding certificate chain  for the private key is also returned.   If the issuer/serialNumber parameters are null,  the handler of the callback relies on its own defaults.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.IssuerSerialNumRequest</class-interface>
 <method name="PrivateKeyCallback.IssuerSerialNumRequest" return-type="PrivateKeyCallback.IssuerSerialNumRequest">
 <parameters>
@@ -731,7 +731,7 @@
 <description>
                             Get the subjectKeyID.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.SubjectKeyIDRequest</class-interface>
 <method name="getSubjectKeyID" return-type="byte[]"/>
 </assertion>
@@ -741,7 +741,7 @@
                             Construct a SubjectKeyIDRequest with an subjectKeyID.
                                 The subjectKeyID is used to directly identify the private key  to be returned.  The corresponding certificate chain for the  private key is also returned.    If the subjectKeyID is null,  the handler of the callback relies on its own default.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>PrivateKeyCallback.SubjectKeyIDRequest</class-interface>
 <method name="PrivateKeyCallback.SubjectKeyIDRequest" return-type="PrivateKeyCallback.SubjectKeyIDRequest">
 <parameters>
@@ -754,7 +754,7 @@
 <description>
                             Used to obtain the secret key set within the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback</class-interface>
 <method name="getKey" return-type="javax.crypto.SecretKey"/>
 </assertion>
@@ -763,9 +763,9 @@
 <description>
                             Used by the CallbackHandler to get the Request object which identifies   the secret key to be returned.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback</class-interface>
-<method name="getRequest" return-type="javax.security.auth.message.callback.SecretKeyCallback.SecretKeyCallback.Request"/>
+<method name="getRequest" return-type="jakarta.security.auth.message.callback.SecretKeyCallback.SecretKeyCallback.Request"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>65</id>
@@ -773,11 +773,11 @@
                             Constructs this SecretKeyCallback with a secret key Request object.
                                 The request object identifies the secret key  to be returned.   If the alias is null, the handler of the callback  relies on its own default.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback</class-interface>
 <method name="SecretKeyCallback" return-type="SecretKeyCallback">
 <parameters>
-<parameter>javax.security.auth.message.callback.SecretKeyCallback.SecretKeyCallback.Request</parameter>
+<parameter>jakarta.security.auth.message.callback.SecretKeyCallback.SecretKeyCallback.Request</parameter>
 </parameters>
 </method>
 </assertion>
@@ -786,7 +786,7 @@
 <description>
                             Used by the CallbackHandler to set the requested secret key within  the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback</class-interface>
 <method name="setKey" return-type="void">
 <parameters>
@@ -799,7 +799,7 @@
 <description>
                             Get the alias.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback.AliasRequest</class-interface>
 <method name="getAlias" return-type="java.lang.String"/>
 </assertion>
@@ -809,7 +809,7 @@
                             Construct an AliasRequest with an alias.
                                 The alias is used to directly identify the secret key  to be returned.    If the alias is null,  the handler of the callback relies on its own default.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>SecretKeyCallback.AliasRequest</class-interface>
 <method name="SecretKeyCallback.AliasRequest" return-type="SecretKeyCallback.AliasRequest">
 <parameters>
@@ -822,7 +822,7 @@
 <description>
                             Used by the TrustStore user to obtain the TrustStore set within the    Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>TrustStoreCallback</class-interface>
 <method name="getTrustStore" return-type="java.security.KeyStore"/>
 </assertion>
@@ -831,7 +831,7 @@
 <description>
                             Used by the CallbackHandler to set the trusted certificate keystore   within the Callback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>TrustStoreCallback</class-interface>
 <method name="setTrustStore" return-type="void">
 <parameters>
@@ -844,7 +844,7 @@
 <description>
                             Create a TrustStoreCallback.
                         </description>
-<package>javax.security.auth.message.callback</package>
+<package>jakarta.security.auth.message.callback</package>
 <class-interface>TrustStoreCallback</class-interface>
 <method name="TrustStoreCallback" return-type="TrustStoreCallback"/>
 </assertion>
@@ -853,7 +853,7 @@
 <description>
                             Get the application context identifier of this authentication   context configuration object.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfig</class-interface>
 <method name="getAppContext" return-type="java.lang.String"/>
 </assertion>
@@ -862,11 +862,11 @@
 <description>
                             Get the authentication context identifier corresponding to the  request and response objects encapsulated in messageInfo.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfig</class-interface>
 <method name="getAuthContextID" return-type="java.lang.String">
 <parameters>
-<parameter>javax.security.auth.message.MessageInfo</parameter>
+<parameter>jakarta.security.auth.message.MessageInfo</parameter>
 </parameters>
 </method>
 </assertion>
@@ -875,7 +875,7 @@
 <description>
                             Get the message layer name of this authentication context configuration   object.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfig</class-interface>
 <method name="getMessageLayer" return-type="java.lang.String"/>
 </assertion>
@@ -884,7 +884,7 @@
 <description>
                             Used to determine whether the authentication context configuration   object encapsulates any protected authentication contexts.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfig</class-interface>
 <method name="isProtected" return-type="boolean"/>
 </assertion>
@@ -893,14 +893,14 @@
 <description>
                             Causes a dynamic anthentication context configuration object to   update the internal state that it uses to process calls to its  getAuthContext method.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfig</class-interface>
 <method name="refresh" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>77</id>
 <description/>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="AuthConfigFactory" return-type="AuthConfigFactory"/>
 </assertion>
@@ -910,11 +910,11 @@
                             Disassociate the listener from all the provider  registrations whose layer and appContext values are matched  by the corresponding arguments to this method.
                                 Factories should periodically notify Listeners to effectively  detach listeners that are no longer in use.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="detachListener" return-type="java.lang.String[]">
 <parameters>
-<parameter>javax.security.auth.message.config.RegistrationListener</parameter>
+<parameter>jakarta.security.auth.message.config.RegistrationListener</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -926,13 +926,13 @@
                             Get a registered AuthConfigProvider from the factory.
                                Get the provider of ServerAuthConfig and  ClientAuthConfig objects registered for the identified message   layer and application context.   All factories shall employ the following precedence rules to select  the registered AuthConfigProvider that matches the layer and appContext   arguments:    The provider specifically registered for the values   passed as the layer and appContext arguments   shall be selected.   If no provider is selected according to the preceding rule,  the provider specifically registered for the value passed as the   appContext argument and for all (that is, null) layers  shall be selected.   If no provider is selected according to the preceding rules,  the provider specifically registered for the value passed as the  layer argument and for all (that is, null) appContexts  shall be selected.   If no provider is selected according to the preceding rules,  the provider registered for all (that is, null) layers   and for all (that is, null) appContexts shall be selected.   If no provider is selected according to the preceding rules,  the factory shall terminate its search for a registered provider.     The above precedence rules apply equivalently to registrations created  with a null or non-null className argument.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
-<method name="getConfigProvider" return-type="javax.security.auth.message.config.AuthConfigProvider">
+<method name="getConfigProvider" return-type="jakarta.security.auth.message.config.AuthConfigProvider">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
-<parameter>javax.security.auth.message.config.RegistrationListener</parameter>
+<parameter>jakarta.security.auth.message.config.RegistrationListener</parameter>
 </parameters>
 </method>
 </assertion>
@@ -942,18 +942,18 @@
                             Get the system-wide AuthConfigFactory implementation.
                                 If a non-null system-wide factory instance is defined at the time   of the call,  for example, with setFactory, it will be returned. Otherwise, an  attempt will be made to construct an instance of the default  AuthConfigFactory implementation class. The fully qualified class name  of the default factory implementation class is obtained from the  value of the authconfigprovider.factory security property. When an  instance of the default factory implementation class is successfully  constructed by this method, this method will set it as the system-wide   factory instance.     The absolute pathname of the Java security properties file is  JAVA_HOME/lib/security/java.security, where JAVA_HOME  refers to the directory where the JDK was installed.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
-<method name="getFactory" return-type="javax.security.auth.message.config.AuthConfigFactory"/>
+<method name="getFactory" return-type="jakarta.security.auth.message.config.AuthConfigFactory"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>81</id>
 <description>
                             Get the the registration context for the identified registration.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
-<method name="getRegistrationContext" return-type="javax.security.auth.message.config.AuthConfigFactory.AuthConfigFactory.RegistrationContext">
+<method name="getRegistrationContext" return-type="jakarta.security.auth.message.config.AuthConfigFactory.AuthConfigFactory.RegistrationContext">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -964,11 +964,11 @@
 <description>
                             Get the registration identifiers for all registrations of the   provider instance at the factory.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="getRegistrationIDs" return-type="java.lang.String[]">
 <parameters>
-<parameter>javax.security.auth.message.config.AuthConfigProvider</parameter>
+<parameter>jakarta.security.auth.message.config.AuthConfigProvider</parameter>
 </parameters>
 </method>
 </assertion>
@@ -978,7 +978,7 @@
                             Cause the factory to reprocess its persisent declarative   representation of provider registrations.
                                  A factory should only replace an existing registration when   a change of provider implementation class or initialization   properties has occurred.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="refresh" return-type="void"/>
 </assertion>
@@ -988,7 +988,7 @@
                             Registers within the factory and records within the factory's    persistent declarative representation of provider registrations  a provider of ServerAuthConfig and/or ClientAuthConfig objects for a  message layer and application context identifier.
                                 This method typically constructs an instance of the provider  before registering it with the factory. Factories may extend or modify   the persisted registrations of existing provider instances, if   those instances were registered with ClassName and   properties arguments equivalent to those passed in the current call.     This method employs the two argument constructor required to  be supported by every implementation of the AuthConfigProvider   interface, and this method must pass a null value for the factory   argument of the constructor.  AuthConfigProviderImpl AuthConfigProviderImpl(Map properties,   AuthConfigFactory factory).    At most one registration may exist within the factory for a   given combination of message layer   and appContext. Any pre-existing  registration with identical values for layer and appContext is replaced   by a subsequent registration. When replacement occurs, the registration  identifier, layer, and appContext identifier remain unchanged,  and the AuthConfigProvider (with initialization properties) and   description are replaced.   Within the lifetime of its Java process, a factory must assign unique  registration identifiers to registrations, and must never   assign a previously used registration identifier to a registration   whose message layer and or appContext identifier differ from   the previous use.    Programmatic registrations performed by using this method must update  (according to the replacement rules described above) the persistent   declarative representation of provider registrations employed by the   factory constructor.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="registerConfigProvider" return-type="java.lang.String">
 <parameters>
@@ -1006,11 +1006,11 @@
                             Registers within the (in-memory) factory, a provider   of ServerAuthConfig and/or ClientAuthConfig objects for a   message layer and application context identifier.
                               This method does NOT effect the factory's persistent   declarative representation of provider registrations, and is intended  to be used by providers to perform self-Registration.   At most one registration may exist within the factory for a   given combination of message layer   and appContext. Any pre-existing  registration with identical values for layer and appContext is replaced   by a subsequent registration. When replacement occurs, the registration  identifier, layer, and appContext identifier remain unchanged,  and the AuthConfigProvider (with initialization properties) and   description are replaced.   Within the lifetime of its Java process, a factory must assign unique  registration identifiers to registrations, and must never   assign a previously used registration identifier to a registration   whose message layer and or appContext identifier differ from   the previous use.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="registerConfigProvider" return-type="java.lang.String">
 <parameters>
-<parameter>javax.security.auth.message.config.AuthConfigProvider</parameter>
+<parameter>jakarta.security.auth.message.config.AuthConfigProvider</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -1022,7 +1022,7 @@
 <description>
                             Remove the identified provider registration from the factory (and from  the persistent declarative representation of provider registrations,   if appropriate) and invoke any listeners associated with the removed   registration.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="removeRegistration" return-type="boolean">
 <parameters>
@@ -1036,11 +1036,11 @@
                             Set the system-wide AuthConfigFactory implementation.
                                 If an implementation was set previously, it will be replaced.   Listeners are not notified of a change to the registered factory.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory</class-interface>
 <method name="setFactory" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.config.AuthConfigFactory</parameter>
+<parameter>jakarta.security.auth.message.config.AuthConfigFactory</parameter>
 </parameters>
 </method>
 </assertion>
@@ -1049,7 +1049,7 @@
 <description>
                             Get the application context identifier from the registration context
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory.RegistrationContext</class-interface>
 <method name="getAppContext" return-type="java.lang.String"/>
 </assertion>
@@ -1058,7 +1058,7 @@
 <description>
                             Get the description from the registration context
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory.RegistrationContext</class-interface>
 <method name="getDescription" return-type="java.lang.String"/>
 </assertion>
@@ -1067,7 +1067,7 @@
 <description>
                             Get the layer name from the registration context
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory.RegistrationContext</class-interface>
 <method name="getMessageLayer" return-type="java.lang.String"/>
 </assertion>
@@ -1076,7 +1076,7 @@
 <description>
                             Get the persisted status from the registration context.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigFactory.RegistrationContext</class-interface>
 <method name="isPersistent" return-type="boolean"/>
 </assertion>
@@ -1086,9 +1086,9 @@
                             Get an instance of ClientAuthConfig from this provider.
                                 The implementation of this method returns a ClientAuthConfig  instance that describes the configuration of ClientAuthModules  at a given message layer, and for use in an identified application  context.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigProvider</class-interface>
-<method name="getClientAuthConfig" return-type="javax.security.auth.message.config.ClientAuthConfig">
+<method name="getClientAuthConfig" return-type="jakarta.security.auth.message.config.ClientAuthConfig">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -1099,15 +1099,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>93</id>
 <description>If this provider does not support the            assignment of a default CallbackHandler to the returned            ClientAuthConfig.</description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigProvider</class-interface>
-<method name="getClientAuthConfig" return-type="javax.security.auth.message.config.ClientAuthConfig">
+<method name="getClientAuthConfig" return-type="jakarta.security.auth.message.config.ClientAuthConfig">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1116,9 +1116,9 @@
                             Get an instance of ServerAuthConfig from this provider.
                                 The implementation of this method returns a ServerAuthConfig  instance that describes the configuration of ServerAuthModules  at a given message layer, and for a particular application context.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigProvider</class-interface>
-<method name="getServerAuthConfig" return-type="javax.security.auth.message.config.ServerAuthConfig">
+<method name="getServerAuthConfig" return-type="jakarta.security.auth.message.config.ServerAuthConfig">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
@@ -1129,15 +1129,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>95</id>
 <description>If this provider does not support the            assignment of a default CallbackHandler to the returned           ServerAuthConfig.</description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigProvider</class-interface>
-<method name="getServerAuthConfig" return-type="javax.security.auth.message.config.ServerAuthConfig">
+<method name="getServerAuthConfig" return-type="jakarta.security.auth.message.config.ServerAuthConfig">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1145,7 +1145,7 @@
 <description>
                             Causes a dynamic configuration provider to update its internal   state such that any resulting change to its state is reflected in  the corresponding authentication context configuration objects   previously created by the provider within the current process context.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>AuthConfigProvider</class-interface>
 <method name="refresh" return-type="void"/>
 </assertion>
@@ -1155,9 +1155,9 @@
                             Get a ClientAuthContext instance from this ClientAuthConfig.
                                 The implementation of this method returns a ClientAuthContext  instance that encapsulates the ClientAuthModules used to  secure and validate requests/responses associated  with the given authContextID.    Specifically, this method accesses this ClientAuthConfig  object with the argument authContextID to determine the  ClientAuthModules that are to be encapsulated in the returned  ClientAuthContext instance.     The ClientAuthConfig object establishes the request   and response MessagePolicy objects that are passed to the encapsulated   modules when they are initialized by the returned ClientAuthContext   instance. It is the modules' responsibility to enforce these policies   when invoked.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>ClientAuthConfig</class-interface>
-<method name="getAuthContext" return-type="javax.security.auth.message.config.ClientAuthContext">
+<method name="getAuthContext" return-type="jakarta.security.auth.message.config.ClientAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.Subject</parameter>
@@ -1168,15 +1168,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>98</id>
 <description>If this method fails.</description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>ClientAuthConfig</class-interface>
-<method name="getAuthContext" return-type="javax.security.auth.message.config.ClientAuthContext">
+<method name="getAuthContext" return-type="jakarta.security.auth.message.config.ClientAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1185,7 +1185,7 @@
                             Notify the listener that a registration with which it was  associated was replaced or unregistered.
                                 When a RegistrationListener is associated with a provider  registration within the factory, the factory must call its  notify method when the corresponding registration   is unregistered or replaced.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>RegistrationListener</class-interface>
 <method name="notify" return-type="void">
 <parameters>
@@ -1200,9 +1200,9 @@
                             Get a ServerAuthContext instance from this ServerAuthConfig.
                                 The implementation of this method returns a ServerAuthContext  instance that encapsulates the ServerAuthModules used to  validate requests and secure responses associated  with the given authContextID.    Specifically, this method accesses this ServerAuthConfig  object with the argument authContextID to determine the  ServerAuthModules that are to be encapsulated in the returned  ServerAuthContext instance.     The ServerAuthConfig object establishes the request   and response MessagePolicy objects that are passed to the encapsulated   modules when they are initialized by the returned ServerAuthContext   instance. It is the modules' responsibility to enforce these policies   when invoked.
                         </description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>ServerAuthConfig</class-interface>
-<method name="getAuthContext" return-type="javax.security.auth.message.config.ServerAuthContext">
+<method name="getAuthContext" return-type="jakarta.security.auth.message.config.ServerAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.Subject</parameter>
@@ -1213,15 +1213,15 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>101</id>
 <description>If this method fails.</description>
-<package>javax.security.auth.message.config</package>
+<package>jakarta.security.auth.message.config</package>
 <class-interface>ServerAuthConfig</class-interface>
-<method name="getAuthContext" return-type="javax.security.auth.message.config.ServerAuthContext">
+<method name="getAuthContext" return-type="jakarta.security.auth.message.config.ServerAuthContext">
 <parameters>
 <parameter>java.lang.String</parameter>
 <parameter>javax.security.auth.Subject</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1229,7 +1229,7 @@
 <description>
                             Get the one or more Class objects representing the message types   supported by the module.
                         </description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ClientAuthModule</class-interface>
 <method name="getSupportedMessageTypes" return-type="java.lang.Class[]"/>
 </assertion>
@@ -1239,12 +1239,12 @@
                             Initialize this module with request and response message policies  to enforce, a CallbackHandler, and any module-specific configuration  properties.
                                 The request policy and the response policy must not both be null.
                         </description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ClientAuthModule</class-interface>
 <method name="initialize" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
@@ -1253,16 +1253,16 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>104</id>
 <description>If module initialization fails, including for  the case where the options argument contains elements that are not   supported by the module.</description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ClientAuthModule</class-interface>
 <method name="initialize" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
@@ -1270,7 +1270,7 @@
 <description>
                             Get the one or more Class objects representing the message types   supported by the module.
                         </description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ServerAuthModule</class-interface>
 <method name="getSupportedMessageTypes" return-type="java.lang.Class[]"/>
 </assertion>
@@ -1280,12 +1280,12 @@
                             Initialize this module with request and response message policies  to enforce, a CallbackHandler, and any module-specific configuration  properties.
                                 The request policy and the response policy must not both be null.
                         </description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ServerAuthModule</class-interface>
 <method name="initialize" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
@@ -1294,16 +1294,16 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>107</id>
 <description>If module initialization fails, including for  the case where the options argument contains elements that are not   supported by the module.</description>
-<package>javax.security.auth.message.module</package>
+<package>jakarta.security.auth.message.module</package>
 <class-interface>ServerAuthModule</class-interface>
 <method name="initialize" return-type="void">
 <parameters>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
-<parameter>javax.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
+<parameter>jakarta.security.auth.message.MessagePolicy</parameter>
 <parameter>javax.security.auth.callback.CallbackHandler</parameter>
 <parameter>java.util.Map</parameter>
 </parameters>
-<throw>javax.security.auth.message.AuthException</throw>
+<throw>jakarta.security.auth.message.AuthException</throw>
 </method>
 </assertion>
 </assertions>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest;
 
-import javax.xml.ws.WebServiceException;
-import javax.xml.soap.*;
-import javax.activation.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
 import javax.xml.transform.stream.*;
 import javax.xml.transform.*;
 import java.net.*;
 import java.awt.*;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaRefTestPort", serviceName = "WSIDLSwaRefTestService", targetNamespace = "http://SwaRefTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
 

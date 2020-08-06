@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,7 +68,7 @@ endorsed.dirs=
 ####################################################################
 ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
-ts.classpath=${local.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar
+ts.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${local.classes}
 
 ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/saajtck.jar${pathsep}${ts.home}/classes${pathsep}${local.classes}
 

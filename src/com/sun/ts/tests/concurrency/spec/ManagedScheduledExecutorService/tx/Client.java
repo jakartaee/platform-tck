@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import javax.sql.DataSource;
 
 import com.sun.javatest.Status;
@@ -106,7 +106,7 @@ public class Client extends EETest {
    * 
    * @test_Strategy: get UserTransaction inside one task submitted by
    * ManagedScheduledExecutorService.it support user-managed global transaction
-   * demarcation using the javax.transaction.UserTransaction interface.
+   * demarcation using the jakarta.transaction.UserTransaction interface.
    */
 
   public void testCommitTransactionWithManagedScheduledExecutorService()

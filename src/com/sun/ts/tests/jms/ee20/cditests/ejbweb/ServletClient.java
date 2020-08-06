@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,18 +21,18 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jms.common.*;
 
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.WebServlet;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ArrayList;
-import javax.transaction.*;
+import jakarta.transaction.*;
 import javax.naming.*;
-import javax.jms.*;
-import javax.inject.Inject;
-import javax.annotation.Resource;
-import javax.enterprise.inject.*;
+import jakarta.jms.*;
+import jakarta.inject.Inject;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.inject.*;
 
 public class ServletClient extends HttpServlet {
   private static final long serialVersionUID = 1L;

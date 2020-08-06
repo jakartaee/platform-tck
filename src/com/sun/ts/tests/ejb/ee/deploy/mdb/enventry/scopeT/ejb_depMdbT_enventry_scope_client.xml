@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,39 +17,39 @@
 
 -->
 
-<application-client version="1.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/application-client_1_4.xsd">
+<application-client version="9" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <description>TS client for MDB Topic enventry scope test</description>
   <display-name>ejb_depMdbT_enventry_scope_client</display-name>
   <resource-ref>
     <res-ref-name>jms/MyTopicConnectionFactory</res-ref-name>
-    <res-type>javax.jms.TopicConnectionFactory</res-type>
+    <res-type>jakarta.jms.TopicConnectionFactory</res-type>
     <res-auth>Application</res-auth>
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>
   <resource-ref>
     <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
-    <res-type>javax.jms.QueueConnectionFactory</res-type>
+    <res-type>jakarta.jms.QueueConnectionFactory</res-type>
     <res-auth>Application</res-auth>
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/Bean1_SameJar</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Topic</resource-env-ref-type>
   </resource-env-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/Bean2_SameJar</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Topic</resource-env-ref-type>
   </resource-env-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/Bean1_MultiJar</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Topic</resource-env-ref-type>
   </resource-env-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/Bean2_MultiJar</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Topic</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Topic</resource-env-ref-type>
   </resource-env-ref>
   <resource-env-ref>
     <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
-    <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+    <resource-env-ref-type>jakarta.jms.Queue</resource-env-ref-type>
   </resource-env-ref>
 </application-client>

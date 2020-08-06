@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,10 +21,10 @@ import java.util.logging.Level;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 
@@ -33,7 +33,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  * @author Raja Perumal
  */
 public class TSAuthExceptionServerAuthModule
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private static TSLogger logger = null;
 
   private static Map options = null;
@@ -90,7 +90,7 @@ public class TSAuthExceptionServerAuthModule
   @Override
   public Class[] getSupportedMessageTypes() {
     logMsg("TSAuthExceptionServerAuthModule.getSupportedMessageTypes called");
-    Class[] classarray = { javax.xml.soap.SOAPMessage.class };
+    Class[] classarray = { jakarta.xml.soap.SOAPMessage.class };
     return classarray;
   }
 

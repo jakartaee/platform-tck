@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,9 +52,9 @@ public class Client extends ServiceEETest {
   private static final String EXPECTED_ENDPOINT = WSDL_PKG
       + "W2JDLNoncustomizationEndpoint";
 
-  private static final String EXPECTED_SERVICE_INTERFACE = "javax.xml.ws.Service";
+  private static final String EXPECTED_SERVICE_INTERFACE = "jakarta.xml.ws.Service";
 
-  private static final String EXPECTED_SERVICE_EXCEPTION = "javax.xml.ws.WebServiceException";
+  private static final String EXPECTED_SERVICE_EXCEPTION = "jakarta.xml.ws.WebServiceException";
 
   private static final String EXPECTED_GET_PORTNAME_METHOD = "getW2JDLNoncustomizationEndpointPort";
 

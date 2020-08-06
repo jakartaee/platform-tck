@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,19 +37,19 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Enumeration;
 import java.rmi.RemoteException;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import javax.naming.Context;
-import javax.transaction.UserTransaction;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.QueueConnection;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.QueueSession;
-import javax.jms.QueueSender;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueBrowser;
-import javax.jms.Message;
-import javax.jms.TextMessage;
+import jakarta.transaction.UserTransaction;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.Queue;
+import jakarta.jms.Session;
+import jakarta.jms.QueueSession;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.Message;
+import jakarta.jms.TextMessage;
 import java.security.Principal;
 
 public class TimerImpl {
@@ -1100,8 +1100,8 @@ public class TimerImpl {
       TextMessage message = session.createTextMessage();
       message.setText(smsg);
       message.setStringProperty("testName", TestUtil.getProperty("testName"));
-      sender.send(message, javax.jms.Message.DEFAULT_DELIVERY_MODE, priority,
-          javax.jms.Message.DEFAULT_TIME_TO_LIVE);
+      sender.send(message, jakarta.jms.Message.DEFAULT_DELIVERY_MODE, priority,
+          jakarta.jms.Message.DEFAULT_TIME_TO_LIVE);
 
       TestUtil.logTrace("message sent: " + message.getText());
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,18 +21,18 @@ import com.sun.ts.lib.porting.*;
 
 import java.util.Properties;
 import java.util.ArrayList;
-import javax.ejb.EJBException;
-import javax.ejb.Remote;
-import javax.ejb.Stateful;
-import javax.ejb.SessionContext;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.*;
-import javax.transaction.*;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.*;
+import jakarta.transaction.*;
 import javax.naming.*;
-import javax.inject.Inject;
-import javax.annotation.Resource;
-import javax.annotation.PostConstruct;
+import jakarta.inject.Inject;
+import jakarta.annotation.Resource;
+import jakarta.annotation.PostConstruct;
 
 import com.sun.ts.tests.jms.common.*;
 
@@ -40,9 +40,9 @@ import com.sun.ts.tests.jms.common.*;
 // JMS Destination Resource Definitions
 //-------------------------------------
 @JMSDestinationDefinitions(value = {
-    @JMSDestinationDefinition(description = "Define Queue EJBMyTestQueue", interfaceName = "javax.jms.Queue", name = "java:global/env/EJBMyTestQueue", destinationName = "EJBMyTestQueue"),
+    @JMSDestinationDefinition(description = "Define Queue EJBMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/EJBMyTestQueue", destinationName = "EJBMyTestQueue"),
 
-    @JMSDestinationDefinition(description = "Define Topic EJBMyTestTopic", interfaceName = "javax.jms.Topic", name = "java:app/env/EJBMyTestTopic", destinationName = "EJBMyTestTopic")
+    @JMSDestinationDefinition(description = "Define Topic EJBMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/EJBMyTestTopic", destinationName = "EJBMyTestTopic")
 
 })
 
@@ -50,13 +50,13 @@ import com.sun.ts.tests.jms.common.*;
 // JMS ConnectionFactory Resource Definitions
 // -------------------------------------------
 @JMSConnectionFactoryDefinitions(value = {
-    @JMSConnectionFactoryDefinition(description = "Define ConnectionFactory EJBMyTestConnectionFactory", interfaceName = "javax.jms.ConnectionFactory", name = "java:global/EJBMyTestConnectionFactory", user = "j2ee", password = "j2ee"),
+    @JMSConnectionFactoryDefinition(description = "Define ConnectionFactory EJBMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/EJBMyTestConnectionFactory", user = "j2ee", password = "j2ee"),
 
-    @JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory EJBMyTestQueueConnectionFactory", interfaceName = "javax.jms.QueueConnectionFactory", name = "java:app/EJBMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee"),
+    @JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory EJBMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/EJBMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee"),
 
-    @JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory EJBMyTestTopicConnectionFactory", interfaceName = "javax.jms.TopicConnectionFactory", name = "java:module/EJBMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee"),
+    @JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory EJBMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/EJBMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee"),
 
-    @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory", interfaceName = "javax.jms.TopicConnectionFactory", name = "java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
+    @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
         "Property1=10",
         "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20) })
 

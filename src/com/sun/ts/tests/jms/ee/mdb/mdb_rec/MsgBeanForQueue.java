@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jms.ee.mdb.mdb_rec;
 
 import java.io.Serializable;
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 import javax.naming.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.sql.*;
 import java.util.Properties;
 import javax.sql.*;
@@ -77,7 +77,7 @@ public class MsgBeanForQueue implements MessageDrivenBean, MessageListener {
       connection.start();
 
       QueueSession session = connection.createQueueSession(true, 0);
-      javax.jms.TextMessage reply = session.createTextMessage();
+      jakarta.jms.TextMessage reply = session.createTextMessage();
       QueueSender replier = session.createSender(replyQueue);
       reply.setText("MDB Responding to message receipt");
       reply.setStringProperty("Verify", msg.getStringProperty("Verify"));

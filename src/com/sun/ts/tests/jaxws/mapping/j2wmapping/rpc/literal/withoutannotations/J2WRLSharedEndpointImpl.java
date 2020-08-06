@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedEndpoint")
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {

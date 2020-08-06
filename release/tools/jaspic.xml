@@ -24,8 +24,8 @@
     <ts.taskdef name="getportingclasses" 
                 classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
 
-    <property name="deliverable.version" value="1.1"/>
-    <property name="deliverable.tck.version" value="1.1.0"/>
+    <property name="deliverable.version" value="2.0"/>
+    <property name="deliverable.tck.version" value="2.0.0"/>
     
     <target name="init">
         <mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -68,9 +68,10 @@
         <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
               <fileset dir="${ts.home}/install/jaspic/docs" excludes="**svn**" />
 	</copy>
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
               <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy>
+        </copy-->
 	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	</copy>
     </target>
@@ -180,7 +181,7 @@
                          com/sun/ts/tests/build.xml,
                          com/sun/ts/tests/signaturetest/*,
                          com/sun/ts/tests/signaturetest/jaspic/**/*,
-                         com/sun/ts/tests/signaturetest/signature-repository/javax.security.auth*"
+                         com/sun/ts/tests/signaturetest/signature-repository/jakarta.security.auth*"
                      excludes="**/.svn/*,
                          com/sun/ts/tests/signaturetest/*Record*,
                          com/sun/ts/tests/signaturetest/*record*"/>
@@ -194,8 +195,7 @@
         <copy todir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting" 
               includeEmptyDirs="no">
             <fileset dir="${ts.home}/src/com/sun/ts/lib/porting" 
-                     includes="TSDeploymentInterface2.java,
-                               DeploymentInfo.java,
+                     includes="DeploymentInfo.java,
                                TSDeploymentException.java,
                                TSURL.java,
                                TSURLInterface.java"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<ejb-jar version="3.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+<ejb-jar version="4.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/ejb-jar_4_0.xsd">
   <display-name>Ejb1</display-name>
   <enterprise-beans>
     <session>
@@ -28,24 +28,24 @@
     <resource-ref>
       <description>description</description>
       <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
-      <res-type>javax.jms.QueueConnectionFactory</res-type>
+      <res-type>jakarta.jms.QueueConnectionFactory</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <resource-ref>
       <description>description</description>
       <res-ref-name>jms/MyTopicConnectionFactory</res-ref-name>
-      <res-type>javax.jms.TopicConnectionFactory</res-type>
+      <res-type>jakarta.jms.TopicConnectionFactory</res-type>
       <res-auth>Application</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
 	<message-destination-ref>
 		<message-destination-ref-name>jms/MDB_TOPIC</message-destination-ref-name>
-		<message-destination-type>javax.jms.Topic</message-destination-type>
+		<message-destination-type>jakarta.jms.Topic</message-destination-type>
 	</message-destination-ref>
 	<message-destination-ref>
 		<message-destination-ref-name>jms/MDB_QUEUE_REPLY</message-destination-ref-name>
-		<message-destination-type>javax.jms.Queue</message-destination-type>
+		<message-destination-type>jakarta.jms.Queue</message-destination-type>
 	</message-destination-ref>
     <security-identity>
       <use-caller-identity/>
@@ -54,30 +54,30 @@
     <message-driven>
     <ejb-name>MDB_TOPIC</ejb-name>
     <ejb-class>com.sun.ts.tests.jms.ee.mdb.mdb_msgHdrT.MsgBeanMsgTestHdrT</ejb-class>
-    <messaging-type>javax.jms.MessageListener</messaging-type>
+    <messaging-type>jakarta.jms.MessageListener</messaging-type>
     <transaction-type>Container</transaction-type>
-    <message-destination-type>javax.jms.Topic</message-destination-type>            
+    <message-destination-type>jakarta.jms.Topic</message-destination-type>            
     <resource-ref>
       <description>description</description>
       <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
-      <res-type>javax.jms.QueueConnectionFactory</res-type>
+      <res-type>jakarta.jms.QueueConnectionFactory</res-type>
       <res-auth>Container</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
     <resource-ref>
       <description>description</description>
       <res-ref-name>jms/MyTopicConnectionFactory</res-ref-name>
-      <res-type>javax.jms.TopicConnectionFactory</res-type>
+      <res-type>jakarta.jms.TopicConnectionFactory</res-type>
       <res-auth>Container</res-auth>
       <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>    
  	<message-destination-ref>
 		<message-destination-ref-name>jms/MDB_TOPIC</message-destination-ref-name>
-		<message-destination-type>javax.jms.Topic</message-destination-type>
+		<message-destination-type>jakarta.jms.Topic</message-destination-type>
 	</message-destination-ref>
 	<message-destination-ref>
 		<message-destination-ref-name>jms/MDB_QUEUE_REPLY</message-destination-ref-name>
-		<message-destination-type>javax.jms.Queue</message-destination-type>
+		<message-destination-type>jakarta.jms.Queue</message-destination-type>
 	</message-destination-ref>
     </message-driven>
   </enterprise-beans>
@@ -136,7 +136,7 @@
     <ejb-name>MDB_TOPIC</ejb-name>
     <method-name>onMessage</method-name>
     <method-params>
-    <method-param>javax.jms.Message</method-param>
+    <method-param>jakarta.jms.Message</method-param>
     </method-params>
     </method>
     <trans-attribute>Required</trans-attribute>

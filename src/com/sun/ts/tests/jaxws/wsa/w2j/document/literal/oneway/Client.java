@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,8 +24,8 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
 import java.text.MessageFormat;
 
 import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
@@ -35,9 +35,9 @@ import com.sun.ts.tests.jaxws.sharedclients.*;
 
 import java.net.URL;
 
-import javax.xml.ws.*;
-import javax.xml.ws.soap.*;
-import javax.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
 
 import java.util.Properties;
 import java.util.UUID;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 package com.sun.ts.tests.ejb30.timer.schedule.txnonpersistent;
 
 import com.sun.ts.tests.ejb30.timer.schedule.tx.ScheduleTxBeanBase;
-import javax.ejb.EJB;
-import javax.ejb.TimerConfig;
+import jakarta.ejb.EJB;
+import jakarta.ejb.TimerConfig;
 
 public class Client
     extends com.sun.ts.tests.ejb30.timer.schedule.tx.ClientBase {
@@ -59,7 +59,7 @@ public class Client
    * @testName: createRollbackTxPropagation
    * 
    * @test_Strategy: Inside propagated transaction, create a timer that is to
-   * expire in 1 second. The client transaction is rolled back. The timer must
+   * expire in 2 seconds. The client transaction is rolled back. The timer must
    * not be present, and no timeout event for this timer.
    */
   /*
@@ -97,7 +97,7 @@ public class Client
   /*
    * @testName: timeoutRollback
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second. The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * method sets rollback for this timeout event. This event must be retried at
    * least once. The timeout method has default transaction attribute type
    * (REQUIRED)
@@ -105,14 +105,14 @@ public class Client
   /*
    * @testName: timeoutSystemException
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * throws system exception. This event must be retried at least once. The
    * timeout method has default transaction attribute type (REQUIRED)
    */
   /*
    * @testName: timeoutSystemExceptionBMT
    * 
-   * @test_Strategy: create a timer that is to expire in 1 second The timeout
+   * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
    * throws system exception. This event must be retried at least once.
    */
   /*

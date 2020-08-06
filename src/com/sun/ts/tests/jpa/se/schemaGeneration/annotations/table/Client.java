@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -95,14 +95,14 @@ public class Client extends PMClientBase {
     deleteItem(f2);
 
     Properties props = getPersistenceUnitProperties();
-    props.put("javax.persistence.schema-generation.database.action", "none");
-    props.put("javax.persistence.schema-generation.scripts.action",
+    props.put("jakarta.persistence.schema-generation.database.action", "none");
+    props.put("jakarta.persistence.schema-generation.scripts.action",
         "drop-and-create");
-    props.put("javax.persistence.schema-generation.create-database-schemas",
+    props.put("jakarta.persistence.schema-generation.create-database-schemas",
         "false");
-    props.put("javax.persistence.schema-generation.scripts.create-target",
+    props.put("jakarta.persistence.schema-generation.scripts.create-target",
         convertToURI(CREATEFILENAME));
-    props.put("javax.persistence.schema-generation.scripts.drop-target",
+    props.put("jakarta.persistence.schema-generation.scripts.drop-target",
         convertToURI(DROPFILENAME));
 
     displayProperties(props);
@@ -121,11 +121,11 @@ public class Client extends PMClientBase {
     TestUtil.logTrace("Execute the create script");
     props = getPersistenceUnitProperties();
 
-    props.put("javax.persistence.schema-generation.database.action", "create");
-    props.put("javax.persistence.schema-generation.scripts.action", "none");
-    props.put("javax.persistence.schema-generation.create-database-schemas",
+    props.put("jakarta.persistence.schema-generation.database.action", "create");
+    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+    props.put("jakarta.persistence.schema-generation.create-database-schemas",
         "true");
-    props.put("javax.persistence.schema-generation.create-script-source",
+    props.put("jakarta.persistence.schema-generation.create-script-source",
         convertToURI(CREATEFILENAME));
     displayProperties(props);
 
@@ -155,9 +155,9 @@ public class Client extends PMClientBase {
 
     TestUtil.logTrace("Execute the drop script");
     props = getPersistenceUnitProperties();
-    props.put("javax.persistence.schema-generation.database.action", "drop");
-    props.put("javax.persistence.schema-generation.scripts.action", "none");
-    props.put("javax.persistence.schema-generation.drop-script-source",
+    props.put("jakarta.persistence.schema-generation.database.action", "drop");
+    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+    props.put("jakarta.persistence.schema-generation.drop-script-source",
         convertToURI(DROPFILENAME));
     displayProperties(props);
 

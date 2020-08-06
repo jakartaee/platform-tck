@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.bb.localaccess.mdbclient;
 
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulDefaultLocalIF;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
-import javax.ejb.EJB;
-import javax.ejb.EJBContext;
-import javax.ejb.EJBs;
-import javax.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.EJBs;
+import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.CommonIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.LocalIF;
@@ -38,23 +38,23 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import java.util.HashMap;
 import java.util.Map;
-import javax.ejb.MessageDriven;
-import javax.ejb.ActivationConfigProperty;
-import javax.ejb.MessageDrivenContext;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.ejb.TransactionRolledbackLocalException;
-import javax.ejb.EJBTransactionRolledbackException;
-import javax.jms.MessageListener;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
-import javax.transaction.UserTransaction;
-import static javax.transaction.Status.STATUS_MARKED_ROLLBACK;
-import static javax.transaction.Status.STATUS_UNKNOWN;
-import static javax.transaction.Status.STATUS_ACTIVE;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.TransactionRolledbackLocalException;
+import jakarta.ejb.EJBTransactionRolledbackException;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.transaction.UserTransaction;
+import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
+import static jakarta.transaction.Status.STATUS_UNKNOWN;
+import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 @MessageDriven(name = "MdbTestBean", messageListenerInterface = MessageListener.class, activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") })
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
 
 @EJBs({
     @EJB(name = "ejb/localStatelessRefName", beanName = "StatelessLocalBean", beanInterface = LocalIF.class),
@@ -141,14 +141,14 @@ public class MdbTestBean extends TestBeanBase implements MessageListener,
   }
 
   // ================== business methods ====================================
-  public void onMessage(javax.jms.Message msg) {
+  public void onMessage(jakarta.jms.Message msg) {
     boolean status = false;
     String reason = null;
     String testname = null;
     try {
       testname = msg.getStringProperty(
           com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
-    } catch (javax.jms.JMSException e) {
+    } catch (jakarta.jms.JMSException e) {
       status = false;
       reason = "Failed to get test name from message: " + msg;
       TLogger.log(reason);
@@ -294,7 +294,7 @@ public class MdbTestBean extends TestBeanBase implements MessageListener,
       ut.begin();
       bean.runtimeExceptionTest();
       status = false;
-      reason = "Expect javax.ejb.EJBTransactionRolledbackException, but got no exception.";
+      reason = "Expect jakarta.ejb.EJBTransactionRolledbackException, but got no exception.";
     } catch (EJBTransactionRolledbackException e) {
       int code = STATUS_UNKNOWN;
       try {

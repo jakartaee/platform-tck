@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -105,6 +105,7 @@ javatest.timeout.factor=1.0
 #
 ########################################################################
 connector.home=/sun/glassfish4/glassfish
+server.home=${connector.home}
 orb.host=localhost
 orb.port=3700
 
@@ -273,7 +274,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 # @ts.classpath         --  Classes used to build the Connector tests
 # @ts.lib.classpath     --  Classes used to build connector.jar 
 ###############################################################
-connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.servlet-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${ri.lib}/jakarta.ejb-api.jar
+connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.servlet-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.authorization-api.jar${pathsep}${ri.lib}/jakarta.ejb-api.jar${pathsep}${ri.lib}/jakarta.enterprise.deploy-api.jar
 
 connector.classes=${ts.home}/classes${pathsep}${connector.classes.1}
 
@@ -361,7 +362,7 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${ri.lib}/endorsed/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
+sigTestClasspath=${ri.lib}/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
 
 
 ########################################################################
@@ -483,7 +484,7 @@ certLoginUserAlias=cts
 #                        the number of threads used by the client for
 #                        the SingleThreadModel servlet test. If the
 #                        container implementation supports pooling of
-#                        SingleThreadModel serlvets, set the value of
+#                        SingleThreadModel servlets, set the value of
 #                        ServletClientThreads to twice the value of
 #                        the default servlet instance pool size.  If
 #                        the container implementation only maintains

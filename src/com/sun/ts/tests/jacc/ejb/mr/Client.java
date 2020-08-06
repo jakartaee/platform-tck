@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.Properties;
 import com.sun.javatest.Status;
-import javax.ejb.EJBException;
-import javax.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJB;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -118,7 +118,7 @@ public class Client extends EJBLiteClientBase {
    * bean TargetBean. 5. Since then InterMediateBean uses runas identity,
    * <Manager>, which does not share any principals with role <Administrator>.
    * so access to the method EjbNotAuthz shouldnot be allowed. 6. Verify
-   * javax.ejb.EJBAccessException is generated.
+   * jakarta.ejb.EJBAccessException is generated.
    */
 
   public void EjbNotAuthz() throws Fault {
@@ -300,7 +300,7 @@ public class Client extends EJBLiteClientBase {
    * @test_Strategy: 1. Create a stateless session bean with runas identity
    * <Manager> 2. Invoke InterMediateBean.excludeTest(), this in-turn invokes
    * TargetBean.excludeTest(). 3. Put the TargetBean's excludeTest() method in
-   * the exclude-list or DenyAll 4. Verify that javax.ejb.EJBAccessException is
+   * the exclude-list or DenyAll 4. Verify that jakarta.ejb.EJBAccessException is
    * generated.
    */
 

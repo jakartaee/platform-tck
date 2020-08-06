@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,19 +20,19 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.httplistener;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionAttributeListener;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import javax.sql.DataSource;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.TopicConnectionFactory;
-import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
-import javax.jms.Topic;
-import javax.mail.Session;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
+import jakarta.mail.Session;
 import java.net.URL;
 
 public final class SessionAttributeListener
@@ -59,7 +59,7 @@ public final class SessionAttributeListener
   private Topic myTopic;
 
   @Resource(name = "mailSession")
-  private javax.mail.Session mailSession;
+  private jakarta.mail.Session mailSession;
 
   @Resource(name = "myUrl")
   private java.net.URL myUrl;
@@ -92,7 +92,7 @@ public final class SessionAttributeListener
     }
 
     if (qcFactory != null) {
-      if (!(qcFactory instanceof javax.jms.QueueConnectionFactory)) {
+      if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
         passed = false;
         pw.append("wrong type QueueConnectionFactory");
       } else
@@ -103,7 +103,7 @@ public final class SessionAttributeListener
     }
 
     if (tcFactory != null) {
-      if (!(tcFactory instanceof javax.jms.TopicConnectionFactory)) {
+      if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
         passed = false;
         pw.append("wrong type TopicConnectionFactory");
       } else
@@ -114,7 +114,7 @@ public final class SessionAttributeListener
     }
 
     if (cFactory != null) {
-      if (!(cFactory instanceof javax.jms.ConnectionFactory)) {
+      if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
         pw.append("wrong type ConnectionFactory");
         passed = false;
       } else
@@ -125,7 +125,7 @@ public final class SessionAttributeListener
     }
 
     if (myQueue != null) {
-      if (!(myQueue instanceof javax.jms.Queue)) {
+      if (!(myQueue instanceof jakarta.jms.Queue)) {
         pw.append("wrong type Queue");
         passed = false;
       } else
@@ -136,7 +136,7 @@ public final class SessionAttributeListener
     }
 
     if (myTopic != null) {
-      if (!(myTopic instanceof javax.jms.Topic)) {
+      if (!(myTopic instanceof jakarta.jms.Topic)) {
         pw.append("wrong type Topic");
         passed = false;
       } else
@@ -147,7 +147,7 @@ public final class SessionAttributeListener
     }
 
     if (mailSession != null) {
-      if (!(mailSession instanceof javax.mail.Session)) {
+      if (!(mailSession instanceof jakarta.mail.Session)) {
         passed = false;
         pw.append("wrong type .Session");
       } else

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
-import javax.ejb.*;
+import jakarta.ejb.*;
 import com.sun.javatest.Status;
 
 public class Client extends EETest {
@@ -97,7 +97,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateful Session Bean declaring a resource
-   *                 reference for a javax.mail.Session.
+   *                 reference for a jakarta.mail.Session.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the mail Session. - We can use this factory to send
@@ -155,7 +155,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateful Session Bean declaring a resource
-   *                 reference for a javax.jms.QueueConnectionFactory.
+   *                 reference for a jakarta.jms.QueueConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Queue Connection Factory.
@@ -183,7 +183,7 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:10766
    *
    * @test_Strategy: Create a Stateful Session Bean declaring a resource
-   *                 reference for a javax.jms.TopicConnectionFactory.
+   *                 reference for a jakarta.jms.TopicConnectionFactory.
    * 
    *                 Check that: - We can deploy the application. - We can
    *                 lookup the JMS Topic Connection Factory.

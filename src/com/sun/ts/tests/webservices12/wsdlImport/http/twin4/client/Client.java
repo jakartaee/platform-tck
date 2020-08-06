@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ import com.sun.javatest.Status;
 
 import java.util.Properties;
 
-import javax.xml.ws.Service;
-import javax.xml.ws.WebServiceRef;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.WebServiceRef;
 
 public class Client extends EETest {
   private String SERVICE_NAME_WITH_WSDL_1 = "WSTwin4Http1";

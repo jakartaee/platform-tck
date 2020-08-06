@@ -300,10 +300,10 @@ ${smoke.log.contents}
 		</copy>
 
 		<!-- Create symlinks for latest bundles -->
-		<symlink link="${target}/jakartaeetck_latest.zip" resource="jakartaeetck-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
-		<symlink link="${target}/cts-internal_latest.zip" resource="cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
-		<!-- symlink link="${target}/wls-cts-internal_latest.zip" resource="wls-cts-internal-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/ -->
-		<symlink link="${target}/jakartaee-smoke-8.0_latest.zip" resource="jakartaee-smoke-8.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<symlink link="${target}/jakartaeetck_latest.zip" resource="jakartaeetck-9.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<symlink link="${target}/cts-internal_latest.zip" resource="cts-internal-9.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
+		<!-- symlink link="${target}/wls-cts-internal_latest.zip" resource="wls-cts-internal-9.0_${time.stamp.bundle.string}.zip" overwrite="true"/ -->
+		<symlink link="${target}/jakartaee-smoke-9.0_latest.zip" resource="jakartaee-smoke-9.0_${time.stamp.bundle.string}.zip" overwrite="true"/>
 
 	</target>
 
@@ -314,7 +314,7 @@ ${smoke.log.contents}
 		<symlink action="delete" link="${target}/jakartaeetck_latest.zip"/>
 		<symlink action="delete" link="${target}/cts-internal_latest.zip"/>
 		<!-- symlink action="delete" link="${target}/wls-cts-internal_latest.zip"/ -->
-		<symlink action="delete" link="${target}/jakartaee-smoke-8.0_latest.zip"/>
+		<symlink action="delete" link="${target}/jakartaee-smoke-9.0_latest.zip"/>
 	</target>
 
 

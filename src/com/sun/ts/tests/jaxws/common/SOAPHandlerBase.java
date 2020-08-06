@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,30 +23,30 @@ package com.sun.ts.tests.jaxws.common;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 
-import javax.xml.soap.*;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.soap.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.transform.Source;
-import javax.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBContext;
 import javax.xml.namespace.QName;
 
-import javax.annotation.PreDestroy;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.Iterator;
-import javax.activation.DataHandler;
+import jakarta.activation.DataHandler;
 
 import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 public class SOAPHandlerBase
-    implements javax.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
+    implements jakarta.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {
 
   private int doingHandlerWork = 0;
 

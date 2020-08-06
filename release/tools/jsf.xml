@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
 			
-    <property name="deliverable.version" value="2.3"/>
-    <property name="deliverable.tck.version" value="2.3.0"/>
+    <property name="deliverable.version" value="3.0"/>
+    <property name="deliverable.tck.version" value="3.0.0"/>
 
 	
     <target name="init">
@@ -62,9 +62,10 @@
 	    <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
             <fileset dir="${ts.home}/install/jsf/docs" excludes="**svn**" />
 	    </copy>
-        <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+        <!-- NOTICE will be EPL or EFTL specific: TBD-->
+        <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
-        </copy>
+        </copy-->
 	<copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}" />
     </target>
     <target name="-create.latest.link"
@@ -177,7 +178,7 @@
                      includes="com/sun/ts/tests/jsf/**/*,
                      com/sun/ts/tests/common/webclient/**/*,
                      web/jsf/**/*,
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.faces.*,
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.faces.*,
                      com/sun/ts/tests/signaturetest/*,
                      com/sun/ts/tests/signaturetest/jsf/**/*,
                      ${lib.pkg.dir}/deliverable/jsf/*"

@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -311,94 +311,94 @@
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9026</id>
-            <description>javax.xml.ws.handler.message.outbound Specifies the message direction: true for outbound messages, false for inbound messages.</description>
+            <description>jakarta.xml.ws.handler.message.outbound Specifies the message direction: true for outbound messages, false for inbound messages.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9027</id>
-            <description>javax.xml.ws.binding.attachments A map of attachments to a message.  The key is a unique identifier for the attachment. The value is a DataHandler for the attachment data.Bindings describe how to carry attachments with messages. </description>
+            <description>jakarta.xml.ws.binding.attachments A map of attachments to a message.  The key is a unique identifier for the attachment. The value is a DataHandler for the attachment data.Bindings describe how to carry attachments with messages. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>
         
         <assertion required="false" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9028</id>
-            <description>javax.xml.ws.wsdl.description   A resolvable URI that may be used to obtain access to the WSDL for the endpoint.</description>
+            <description>jakarta.xml.ws.wsdl.description   A resolvable URI that may be used to obtain access to the WSDL for the endpoint.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>
         
         <assertion required="false" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9029</id>
-            <description>javax.xml.ws.wsdl.service The name of the service being invoked in the WSDL.</description>
+            <description>jakarta.xml.ws.wsdl.service The name of the service being invoked in the WSDL.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>        
         <assertion required="false" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9030</id>
-            <description>javax.xml.ws.wsdl.port The name of the port over which the current message was received in the WSDL. </description>
+            <description>jakarta.xml.ws.wsdl.port The name of the port over which the current message was received in the WSDL. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>
         <assertion required="false" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9031</id>
-            <description>javax.xml.ws.wsdl.interface The name of the interface (WSDL 2.0) or port type (WSDL 1.1) to which the current message belongs. </description>
+            <description>jakarta.xml.ws.wsdl.interface The name of the interface (WSDL 2.0) or port type (WSDL 1.1) to which the current message belongs. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>    
         <assertion required="false" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9032</id>
-            <description>javax.xml.ws.wsdl.operation The name of the WSDL operation to which the current message belongs.  For WSDL 2.0 this is the operation component designator. For WSDL 1.1 the namespace is the target namespace of the WSDL definitions element. </description>
+            <description>jakarta.xml.ws.wsdl.operation The name of the WSDL operation to which the current message belongs.  For WSDL 2.0 this is the operation component designator. For WSDL 1.1 the namespace is the target namespace of the WSDL definitions element. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>        
         
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9033</id>
-            <description>javax.xml.ws.http.request.headers A map of the HTTP headers for the request message. The key is the header name. The value is a list of values for that header.</description>
+            <description>jakarta.xml.ws.http.request.headers A map of the HTTP headers for the request message. The key is the header name. The value is a list of values for that header.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>            
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9034</id>
-            <description>javax.xml.ws.http.request.method The HTTP method for the request message.</description>
+            <description>jakarta.xml.ws.http.request.method The HTTP method for the request message.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>        
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9035</id>
-            <description>javax.xml.ws.http.response.headers  A map of the HTTP headers for the response message. The key is the header name. The value is a list of values for that header. </description>
+            <description>jakarta.xml.ws.http.response.headers  A map of the HTTP headers for the response message. The key is the header name. The value is a list of values for that header. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>        
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9036</id>
-            <description>javax.xml.ws.http.response.code  The HTTP response status code.</description>
+            <description>jakarta.xml.ws.http.response.code  The HTTP response status code.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>            
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9037</id>
-            <description>javax.xml.ws.servlet.context The ServletContext object belonging to the web application that contains the endpoint. </description>
+            <description>jakarta.xml.ws.servlet.context The ServletContext object belonging to the web application that contains the endpoint. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9038</id>
-            <description>javax.xml.ws.servlet.request The HttpServletRequest object associated with the request currently being served.</description>
+            <description>jakarta.xml.ws.servlet.request The HttpServletRequest object associated with the request currently being served.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>        
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9039</id>
-            <description>javax.xml.ws.servlet.response The HttpServletResponse object associated with the request currently being served.</description>
+            <description>jakarta.xml.ws.servlet.response The HttpServletResponse object associated with the request currently being served.</description>
             <location chapter="9" section="4.1.1"/>
         </assertion>    
         <assertion required="true" impl-spec="false" defined-by="technology"
                    status="active" testable="true">
             <id>JAXWS:SPEC:9040</id>
-            <description>javax.xml.ws.servlet.session The HttpSession associated with the request currently being served. </description>
+            <description>jakarta.xml.ws.servlet.session The HttpSession associated with the request currently being served. </description>
             <location chapter="9" section="4.1.1"/>
         </assertion>   
         <assertion required="true" impl-spec="false" defined-by="technology"
@@ -412,9 +412,9 @@
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:9042.1</id>
 			<description><br/>
-                        Add the javax.xml.ws.reference.parameters property to Table 9.2.<br/>
+                        Add the jakarta.xml.ws.reference.parameters property to Table 9.2.<br/>
                         <br/>
-                        Name  javax.xml.ws.reference.parameters<br/>
+                        Name  jakarta.xml.ws.reference.parameters<br/>
                         Type  List&lt;Element&gt;<br/>
                         Mandatory Y<br/>
                         Description  A list of WS Addressing headers marked with the wsa:IsReferenceParameter=true attribute.<br/>

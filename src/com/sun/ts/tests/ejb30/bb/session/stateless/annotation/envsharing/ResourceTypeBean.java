@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,14 +22,14 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing;
 
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import java.net.URL;
-import javax.annotation.Resources;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ejb.SessionContext;
-import javax.annotation.Resource;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.mail.Session;
+import jakarta.annotation.Resources;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.SessionContext;
+import jakarta.annotation.Resource;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.mail.Session;
 import com.sun.ts.tests.ejb30.common.annotation.resource.EnvSharingBeanBase;
 
 @Stateless(name = "ResourceTypeBean")
@@ -51,11 +51,11 @@ public class ResourceTypeBean extends EnvSharingBeanBase implements ResourceIF {
     return "url";
   }
 
-  protected javax.ejb.EJBContext getEJBContext() {
+  protected jakarta.ejb.EJBContext getEJBContext() {
     return sessionContext;
   }
 
-  protected javax.mail.Session getMailSession() {
+  protected jakarta.mail.Session getMailSession() {
     return (Session) getEJBContext().lookup(getMailSessionName());
   }
 

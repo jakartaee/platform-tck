@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@
 <tck:test testName="positiveBundleLocaleConfigurationTest">
     <fmt:setLocale value="en_US"/>
 
-    <!-- If the javax.servlet.jsp.jstl.fmt.locale configuration variable
+    <!-- If the jakarta.servlet.jsp.jstl.fmt.locale configuration variable
              is set, the browser locales are ignored and it is used
              to localize a message. -->
     <fmt:bundle basename="com.sun.ts.tests.jstl.common.resources.Resources">

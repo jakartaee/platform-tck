@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.Deflater;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response.Status;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
@@ -275,7 +275,7 @@ public class JAXRSClient extends JAXRSCommonClient {
    * MessageBodyReader and MessageBodyWriter implementations for the following
    * Java and media type combinations
    * 
-   * javax.xml.bind.JAXBElement and application-supplied JAXB classes XML media
+   * jakarta.xml.bind.JAXBElement and application-supplied JAXB classes XML media
    * types (text/xml, application/xml and application/*+xml)
    */
   public void jaxbElementProviderTest() throws Fault {

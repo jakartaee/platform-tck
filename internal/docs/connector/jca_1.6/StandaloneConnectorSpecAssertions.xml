@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -429,7 +429,7 @@
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:18</id>
-			<description> A connection implementation class implements its methods in a resource adapter implementation specific way. It must use 				javax.resource.spi.ManagedConnection instance as its underlying physical connection.
+			<description> A connection implementation class implements its methods in a resource adapter implementation specific way. It must use 				jakarta.resource.spi.ManagedConnection instance as its underlying physical connection.
 				</description>
 			<location chapter="6" section="5.1"/>
 		</assertion>
@@ -484,43 +484,43 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>Connector:SPEC:27</id>
 			<description>A resource adapter must provide implementations of the following interfaces: 
- 						javax.resource.spi.ManagedConnectionFactory 
-						 javax.resource.spi.ManagedConnection 
-						 javax.resource.spi.ManagedConnectionMetaData
+ 						jakarta.resource.spi.ManagedConnectionFactory 
+						 jakarta.resource.spi.ManagedConnection 
+						 jakarta.resource.spi.ManagedConnectionMetaData
 			</description>
 			<location chapter="6" section="10.1"/>
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:28</id>
 			<description>The ManagedConnection implementation provided by a resource adapter must use the following interface and classes to provide 							support to an application server for connection management (and transaction management, as explained later): 
-						 javax.resource.spi.ConnectionEvent 
-						 javax.resource.spi.ConnectionEventListener
+						 jakarta.resource.spi.ConnectionEvent 
+						 jakarta.resource.spi.ConnectionEventListener
 			</description>
 			<location chapter="6" section="10.1"/>
 		</assertion>
 <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="false">
 			<id>Connector:SPEC:29</id>
-			<description> A resource adapter is required to provide a default implementation of the javax.resource.spi.ConnectionManager interface.
+			<description> A resource adapter is required to provide a default implementation of the jakarta.resource.spi.ConnectionManager interface.
 			</description>
 			<location chapter="6" section="10.1"/>
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:30</id>
 			<description> An application server must use the interfaces defined in the connection management contract to use services provided by a resource 			adapter. These interfaces are as follows:
-			javax.resource.spi.ManagedConnectionFactory 
-			javax.resource.spi.ManagedConnection 
-			javax.resource.spi.ManagedConnectionMetaData
+			jakarta.resource.spi.ManagedConnectionFactory 
+			jakarta.resource.spi.ManagedConnection 
+			jakarta.resource.spi.ManagedConnectionMetaData
 			</description>
 			<location chapter="6" section="10.2"/>
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:31</id>
-			<description>An application server is required to provide an implementation of the javax.resource.spi.ConnectionManager interface.				</description>
+			<description>An application server is required to provide an implementation of the jakarta.resource.spi.ConnectionManager interface.				</description>
 			<location chapter="6" section="10.2"/>
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:32</id>
-			<description>An application server is required to implement the javax.resource.spi.-ConnectionEventListener interface and to register 					ConnectionEventListener with resource adapter to get connection-related event notifications. An application server uses these event notifications to 			do its pool management, transaction management, and connection cleanup.
+			<description>An application server is required to implement the jakarta.resource.spi.-ConnectionEventListener interface and to register 					ConnectionEventListener with resource adapter to get connection-related event notifications. An application server uses these event notifications to 			do its pool management, transaction management, and connection cleanup.
 			</description>
 			<location chapter="6" section="10.2"/>
 		</assertion>
@@ -532,7 +532,7 @@
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:34</id>
-			<description> An application server is required to use the javax.resource.spi.ConnectionManager hook-in mechanism to provide its specific quality 				 of services.
+			<description> An application server is required to use the jakarta.resource.spi.ConnectionManager hook-in mechanism to provide its specific quality 				 of services.
 			 </description>
 			<location chapter="6" section="10.2"/>
 		</assertion>
@@ -709,7 +709,7 @@
 
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:56</id>
-			<description>The application server is required to implement the javax.resource.spi.-ConnectionEventListener interface to get transaction-related 				event notifications.
+			<description>The application server is required to implement the jakarta.resource.spi.-ConnectionEventListener interface to get transaction-related 				event notifications.
 			 </description>
 			<location chapter="7" section="13.2"/>
 		</assertion>
@@ -1424,7 +1424,7 @@
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 		<id>Connector:SPEC:260</id>
 		<description> 
-                    Resource adapters and application servers must not use 'javax.resource.'-prefixed 
+                    Resource adapters and application servers must not use 'jakarta.resource.'-prefixed 
                     names for their custom requirements.
 		</description>
 		<location chapter="11" section="6"/>
@@ -1815,8 +1815,8 @@ a live resource adapter instance.
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:112</id>
-			<description> The application server must wrap such an unchecked exception within a javax.ejb.EJBException (which is a java.lang.RuntimeException) 
-			and throw the javax.ejb.EJBException to the resource adapter.
+			<description> The application server must wrap such an unchecked exception within a jakarta.ejb.EJBException (which is a java.lang.RuntimeException) 
+			and throw the jakarta.ejb.EJBException to the resource adapter.
 			</description>
 			<location chapter="13" section="5.7"/>
 		</assertion>
@@ -1934,7 +1934,7 @@ a live resource adapter instance.
 		<description> 
                     An administered object instance, that implements ResourceAdapterAssociation
                     interface must ensure that its Java class and the interface type implements
-                    javax.resource.Referenceable and java.io.Serializable interfaces.a
+                    jakarta.resource.Referenceable and java.io.Serializable interfaces.a
                 </description>
 		<location chapter="13" section="4.2.3"/>
 		<comment>
@@ -2025,7 +2025,7 @@ recovery.</description>
 		</assertion>
 <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>Connector:SPEC:130</id>
-			<description>A ConnectionFactory implementation class is also required to implement javax.resource.Referenceable.
+			<description>A ConnectionFactory implementation class is also required to implement jakarta.resource.Referenceable.
 			</description>
 			<location chapter="17" section="5.1"/>
 		</assertion>
@@ -2080,7 +2080,7 @@ recovery.</description>
 		</assertion>
 <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:138</id>
-			<description>  If an Interaction implementation does not support a variant of execute method, the method is required to throw a 						javax.resource.NotSupportedException.
+			<description>  If an Interaction implementation does not support a variant of execute method, the method is required to throw a 						jakarta.resource.NotSupportedException.
 			</description>
 			<location chapter="17" section="6.1"/>
 		</assertion>
@@ -2127,7 +2127,7 @@ recovery.</description>
 		</assertion>
 <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>Connector:SPEC:146</id>
-			<description>A CCI implementation is not required to support javax.resource.cci.ResultSetInfo in-terface.
+			<description>A CCI implementation is not required to support jakarta.resource.cci.ResultSetInfo in-terface.
 			</description>
 			<location chapter="17" section="10.3"/>
 		</assertion>
@@ -2788,7 +2788,7 @@ recovery.</description>
 		<id>Connector:SPEC:281</id>
 		<description> 
                   A resource adapter capable of message delivery to message endpoints must 
-                  provide a JavaBean class that implements the javax.resource.spi.ActivationSpec 
+                  provide a JavaBean class that implements the jakarta.resource.spi.ActivationSpec 
                   interface (see Section 5.3.3 "ActivationSpec JavaBean and Inbound Communication") 
                   or annotate a JavaBean with the Activation annotation for each supported 
                   endpoint message listener type. 
@@ -3003,14 +3003,14 @@ recovery.</description>
 
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>Connector:SPEC:154</id>
-			<description>The resource adapter provider must specify the fully qualified name of a Java class that implements the 						javax.resource.spi.ResourceAdapter interface.
+			<description>The resource adapter provider must specify the fully qualified name of a Java class that implements the 						jakarta.resource.spi.ResourceAdapter interface.
 			</description>
 			<location chapter="20" section="3.1"/>
 			<comment>These is Verifier tests</comment>
 		</assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
 			<id>Connector:SPEC:155</id>
-			<description>The resource adapter provider must specify the fully qualified name of the Java class that implements the 						javax.resource.spi.ManagedConnectionFactory interface.
+			<description>The resource adapter provider must specify the fully qualified name of the Java class that implements the 						jakarta.resource.spi.ManagedConnectionFactory interface.
 			</description>
 			<location chapter="20" section="3.1"/>
 			<comment>These is Verifier tests</comment>
@@ -3055,7 +3055,7 @@ recovery.</description>
 		<id>Connector:SPEC:292</id>
 		<description> 
                   The Java class which implements the interface
-                  javax.resource.spi.ResourceAdapter must be a JavaBean.
+                  jakarta.resource.spi.ResourceAdapter must be a JavaBean.
 		</description>
 		<location chapter="20" section="5.1"/>
 		<comment>

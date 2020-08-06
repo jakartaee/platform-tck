@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,20 +21,20 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.Serializable;
-import javax.interceptor.Interceptor;
+import jakarta.interceptor.Interceptor;
 
 import com.sun.ts.lib.harness.ServiceEETest;
 
-import javax.transaction.UserTransaction;
-import javax.transaction.SystemException;
-import javax.transaction.Status;
-import javax.transaction.TransactionalException;
-import javax.transaction.TransactionRequiredException;
-import javax.transaction.InvalidTransactionException;
-import javax.inject.Inject;
-import javax.enterprise.context.ContextNotActiveException;
+import jakarta.transaction.UserTransaction;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.Status;
+import jakarta.transaction.TransactionalException;
+import jakarta.transaction.TransactionRequiredException;
+import jakarta.transaction.InvalidTransactionException;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.ContextNotActiveException;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
@@ -793,7 +793,7 @@ public class Client extends EJBLiteClientBase {
    * 
    * @test_Strategy:
    * 
-   * The javax.transaction.TransactionScoped annotation provides the ability to
+   * The jakarta.transaction.TransactionScoped annotation provides the ability to
    * specify a standard CDI scope to define bean instances whose lifecycle is
    * scoped to the currently active JTA transaction.
    * 
@@ -803,7 +803,7 @@ public class Client extends EJBLiteClientBase {
    * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
    * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
    *
-   * A javax.enterprise.context.ContextNotActiveException must be thrown if a
+   * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
    * bean with this annotation is used when the transaction context is not
    * active.
    * 
@@ -837,7 +837,7 @@ public class Client extends EJBLiteClientBase {
    * 
    * @test_Strategy:
    * 
-   * The javax.transaction.TransactionScoped annotation provides the ability to
+   * The jakarta.transaction.TransactionScoped annotation provides the ability to
    * specify a standard CDI scope to define bean instances whose lifecycle is
    * scoped to the currently active JTA transaction.
    * 
@@ -847,7 +847,7 @@ public class Client extends EJBLiteClientBase {
    * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
    * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
    * 
-   * A javax.enterprise.context.ContextNotActiveException must be thrown if a
+   * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
    * bean with this annotation is used when the transaction context is not
    * active.
    */

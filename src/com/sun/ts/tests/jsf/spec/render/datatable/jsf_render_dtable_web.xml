@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,10 +17,10 @@
 
 -->
 
-<web-app version="2.5"
-         xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app version="5.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <display-name>jsf_render_dtable</display-name>
 
     <context-param>
@@ -30,17 +30,17 @@
     
     <!-- Use .xhtml for Facelets -->
     <context-param>
-        <param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
+        <param-name>jakarta.faces.FACELETS_VIEW_MAPPINGS</param-name>
         <param-value>*.xhtml</param-value>
     </context-param>
     <!-- Default to JSP! -->
     <context-param>
-        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-name>jakarta.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.jsp</param-value>
     </context-param>    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

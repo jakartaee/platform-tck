@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,9 +28,9 @@ import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutPar
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.Timer;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Timer;
 
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
@@ -64,7 +64,7 @@ public class Client extends ClientBase {
   public void programmatic() {
     for (TimeoutParamIF b : beans) {
       String timerName = b.getBeanName() + PROGRAMMATIC_TIMER_SUFFIX;
-      Timer t = b.createSecondLaterTimer(timerName);
+      Timer t = b.createSecondLaterTimer(timerName, 2);
       appendReason("Created a timer with name " + timerName + "; " + t);
       passIfTimeout(timerName);
       removeStatusAndRecords(timerName);

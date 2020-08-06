@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,8 +21,8 @@
 package com.sun.ts.tests.jta.ee.common;
 
 // JTA Specific Packages.
-import javax.transaction.TransactionManager;
-import javax.transaction.Status;
+import jakarta.transaction.TransactionManager;
+import jakarta.transaction.Status;
 
 // TS Specific Utils
 import com.sun.ts.lib.util.*;

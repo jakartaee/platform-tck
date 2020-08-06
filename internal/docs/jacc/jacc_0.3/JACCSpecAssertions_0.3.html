@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -86,7 +86,7 @@
 <TR>
 <TD valign="center" align="center"><a name="JACC:SPEC:13"></a><font size="1PT">JACC:SPEC:13</font></TD><TD valign="center" align="center"><font size="1PT">2</font></TD><TD valign="center" align="center"><font size="1PT">2.4</font></TD><TD valign="center" align="left"><font size="1PT">For a container to avail itself of the authorization functionality
    defined in this contract, it must be provided with implementations
-   of the Permission classes in the javax.security.jacc package.
+   of the Permission classes in the jakarta.security.jacc package.
    These classes are:
        EJBMethodPermission
        EJBRoleRefPermission
@@ -205,7 +205,7 @@
 <TD valign="center" align="center"><a name="JACC:SPEC:55"></a><font size="1PT">JACC:SPEC:55</font></TD><TD valign="center" align="center"><font size="1PT">4</font></TD><TD valign="center" align="center"><font size="1PT">4.1</font></TD><TD valign="center" align="left"><font size="1PT">A container must rely on the java.security.Policy and or
    javax.security.auth.Policy objects of the VM (available via
    java.security.Policy.getPolicy(), and
-   javax.security.auth.getPolicy() respectively) for all of the policy
+   jakarta.security.auth.getPolicy() respectively) for all of the policy
    decisions defined by this contract.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
 <br>
 </font></TD><TD valign="center" align="center"><font size="1PT">false</font></TD><TD valign="center" align="center"><font size="1PT">technology</font></TD><TD valign="center" align="center"><font size="1PT">active</font></TD><TD valign="center" align="center"><font size="1PT">false</font></TD>
@@ -482,7 +482,7 @@
 </TR>
 <TR>
 <TD valign="center" align="center"><a name="JACC:SPEC:12"></a><font size="1PT">JACC:SPEC:12</font></TD><TD valign="center" align="center"><font size="1PT">2</font></TD><TD valign="center" align="center"><font size="1PT">2.3</font></TD><TD valign="center" align="left"><font size="1PT">A provider must include an implementation of a utility class,
-   javax.security.jacc.PolicyConfigurationFactory, for container
+   jakarta.security.jacc.PolicyConfigurationFactory, for container
    deploy tools to use to create and locate instances of a class
    within the provider that implements the PolicyConfiguration
    interface.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
@@ -501,7 +501,7 @@
 <TR>
 <TD valign="center" align="center"><a name="JACC:SPEC:17"></a><font size="1PT">JACC:SPEC:17</font></TD><TD valign="center" align="center"><font size="1PT">2</font></TD><TD valign="center" align="center"><font size="1PT">2.4</font></TD><TD valign="center" align="left"><font size="1PT">The Policy objects whose methods are invoked by the container must
    assume responsibility for answering all Policy questions, which may
-   be accomplished by delegating non javax.security.jacc policy
+   be accomplished by delegating non jakarta.security.jacc policy
    decisions to some other Policy object. </font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
 <br>
 </font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">technology</font></TD><TD valign="center" align="center"><font size="1PT">active</font></TD><TD valign="center" align="center"><font size="1PT">false</font></TD>
@@ -875,9 +875,9 @@ patterns.</font></TD><TD valign="center" align="center"><font size="1PT">true</f
 <TH bgcolor="#BFBFBF"><FONT size="1PT">ID</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Chapter</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Section</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Description</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Required</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Dependency</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Implementation Specific</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Defined by</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Status</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Testable</FONT></TH>
 <TR>
 <TD valign="center" align="center"><a name="JACC:SPEC:14"></a><font size="1PT">JACC:SPEC:14</font></TD><TD valign="center" align="center"><font size="1PT">2</font></TD><TD valign="center" align="center"><font size="1PT">2.4</font></TD><TD valign="center" align="left"><font size="1PT">The container deploy tools must also be provided with an
-   implementation ofthe javax.security.jacc.PolicyConfigurationFactory
+   implementation ofthe jakarta.security.jacc.PolicyConfigurationFactory
    class along with a matched implementation of a class that
-   implements the javax.security.jacc.PolicyConfiguration interface.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
+   implements the jakarta.security.jacc.PolicyConfiguration interface.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
 <br>
 </font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">technology</font></TD><TD valign="center" align="center"><font size="1PT">active</font></TD><TD valign="center" align="center"><font size="1PT">false</font></TD>
 </TR>
@@ -885,7 +885,7 @@ patterns.</font></TD><TD valign="center" align="center"><font size="1PT">true</f
 <TD valign="center" align="center"><a name="JACC:SPEC:20"></a><font size="1PT">JACC:SPEC:20</font></TD><TD valign="center" align="center"><font size="1PT">3</font></TD><TD valign="center" align="center"><font size="1PT">3.1</font></TD><TD valign="center" align="left"><font size="1PT">The deploy tools must translate the declarative authorization policy
    statements derived from application or module deployment 
    descriptor(s) into instances of the corrresponding
-   javax.security.jacc Permission classes.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
+   jakarta.security.jacc Permission classes.</font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">
 <br>
 </font></TD><TD valign="center" align="center"><font size="1PT">true</font></TD><TD valign="center" align="center"><font size="1PT">technology</font></TD><TD valign="center" align="center"><font size="1PT">active</font></TD><TD valign="center" align="center"><font size="1PT">false</font></TD>
 </TR>

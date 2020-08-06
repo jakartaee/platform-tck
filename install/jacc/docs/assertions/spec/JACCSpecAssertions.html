@@ -3,7 +3,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,11 +22,11 @@
 <title>Specification Assertion Detail</title>
 </head>
 <body bgcolor="white">
+<br>
 <CENTER>
-  <h2>&nbsp;</h2>
-  <h2>    Jakarta Authorization  - 1.5<br>
-    Specification Assertion Detail 
-  </h2>
+<h2>Jakarta Authorization<br>2.0<br>
+				Specification Assertion Detail 
+			</h2>
 </CENTER>
 <TABLE width="900" border="1" frame="box" cellpadding="5">
 <TH bgcolor="#BFBFBF"><FONT size="1PT">Totals</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Total</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Active</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Deprecated</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Removed</FONT></TH>
@@ -50,12 +50,12 @@
 <TABLE width="900" border="1" frame="box" cellpadding="5" summary="Specification Assertions">
 <TH bgcolor="#BFBFBF"><FONT size="1PT">ID</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Chapter</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Section</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Description</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Required</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Dependency</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Implementation Specific</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Defined by</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Status</FONT></TH><TH bgcolor="#BFBFBF"><FONT size="1PT">Testable</FONT></TH>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:2"></a><font size="1PT">JACC:SPEC:2</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="center" valign="center"><font size="1PT">1.4</font></TD><TD align="left" valign="center"><font size="1PT">J2EE 1.4 platforms must implement the contract defined by this JSR.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JACC:SPEC:2"></a><font size="1PT">JACC:SPEC:2</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="center" valign="center"><font size="1PT">1.4</font></TD><TD align="left" valign="center"><font size="1PT">Legacy</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:3"></a><font size="1PT">JACC:SPEC:3</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="center" valign="center"><font size="1PT">1.4</font></TD><TD align="left" valign="center"><font size="1PT">Support for the contract by J2EE 1.3 platforms is optional. (OPTIONAL)</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JACC:SPEC:3"></a><font size="1PT">JACC:SPEC:3</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="center" valign="center"><font size="1PT">1.4</font></TD><TD align="left" valign="center"><font size="1PT">Legacy</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -180,7 +180,7 @@ a JAAS Policy object).
 <TD align="center" valign="center"><a name="JACC:SPEC:17"></a><font size="1PT">JACC:SPEC:17</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.5</font></TD><TD align="left" valign="center"><font size="1PT">A replacement Policy object must assume responsibility for performing all
 policy decisions within the JRE in which it is installed that are requested by way
 of the Policy interface that it implements. A replacement Policy object may
-accomplish this by delegating non-javax.security.jacc policy decisions to
+accomplish this by delegating non-jakarta.security.jacc policy decisions to
 the corresponding default system Policy implementation class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -206,7 +206,7 @@ provider.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:20"></a><font size="1PT">JACC:SPEC:20</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.6</font></TD><TD align="left" valign="center"><font size="1PT">A J2SE 1.4 provider may support replacement of
-the JAAS Policy object if and only if all javax.security.jacc policy decisions
+the JAAS Policy object if and only if all jakarta.security.jacc policy decisions
 performed by the replacement JAAS Policy object return the same result as when
 the java.security.Policy interface is used. To satisfy this requirement, the
 replacement JAAS Policy object must be compatible with the implementations of
@@ -218,25 +218,25 @@ provided for use with the java.security.Policy implementation class.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:21"></a><font size="1PT">JACC:SPEC:21</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">An application server or container must bundle or install the
-javax.security.jacc standard extension. This package must include the
-abstract javax.security.jacc.PolicyConfigurationFactory class,
-the javax.security.jacc.PolicyConfiguration and
-javax.security.jacc.PolicyContextHandler interfaces, and
+jakarta.security.jacc standard extension. This package must include the
+abstract jakarta.security.jacc.PolicyConfigurationFactory class,
+the jakarta.security.jacc.PolicyConfiguration and
+jakarta.security.jacc.PolicyContextHandler interfaces, and
 implementations of the
-javax.security.jacc.PolicyContextException exception, the
-javax.security.jacc Permission classes, and the
-javax.security.jacc.PolicyContext utility class.
+jakarta.security.jacc.PolicyContextException exception, the
+jakarta.security.jacc Permission classes, and the
+jakarta.security.jacc.PolicyContext utility class.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:22"></a><font size="1PT">JACC:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">To enable delegation of non-javax.security.jacc policy decisions to
+<TD align="center" valign="center"><a name="JACC:SPEC:22"></a><font size="1PT">JACC:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">To enable delegation of non-jakarta.security.jacc policy decisions to
 default system Policy providers, all application servers must implement the
 following Policy replacement algorithm.
 
 For each JRE of a J2EE 1.4 application server, if the system property
-javax.security.jacc.policy.provider is defined, the application server must
+jakarta.security.jacc.policy.provider is defined, the application server must
 construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
 and set, by calling the java.security.Policy.setPolicy, the resulting
@@ -247,7 +247,7 @@ object as the corresponding Policy object used by the JRE.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:23"></a><font size="1PT">JACC:SPEC:23</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">For each JRE of a J2EE 1.4 application server, if the system property
-javax.security.jacc.policy.provider is defined, the application
+jakarta.security.jacc.policy.provider is defined, the application
 server must construct an instance of the class identified by the system property,
 confirm that the resulting object is an instance of java.security.Policy,
 and set, by calling the java.security.Policy.setPolicy method, the
@@ -256,7 +256,7 @@ resulting object as the corresponding Policy object used by the JRE.
 An application server that chooses to support this contract in a J2SE 1.3
 environment must perform the policy replacement algorithm described above
 when the system property
-javax.security.jacc.auth.policy.provider  is defined. That is,
+jakarta.security.jacc.auth.policy.provider  is defined. That is,
 for each JRE of the application server, the server must construct an instance of the
 class identified by the system property, confirm that the resulting object is an
 instance of javax.security.auth.Policy, and set, by calling
@@ -298,7 +298,7 @@ application or modules being deployed.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:27"></a><font size="1PT">JACC:SPEC:27</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The declarative authorization policy statements derived from application or
 module deployment descriptor(s) must be translated to create instances of the
-corresponding javax.security.jacc Permission classes.
+corresponding jakarta.security.jacc Permission classes.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -319,7 +319,7 @@ principal-to-role mapping will be applied to all the modules of the application.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:30"></a><font size="1PT">JACC:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Independent of this specification, J2EE deployment tools must translate and
+<TD align="center" valign="center"><a name="JACC:SPEC:30"></a><font size="1PT">JACC:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">Independent of this specification, Jakarta EE deployment tools must translate and
 complete the declarative policy statements appearing in deployment descriptors
 into a form suitable for securing applications on the platform.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -826,9 +826,9 @@ to which the module has been redeployed.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:63"></a><font size="1PT">JACC:SPEC:63</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">the provider must include an implementation of the
-javax.security.jacc.PolicyConfigurationFactory class along
+jakarta.security.jacc.PolicyConfigurationFactory class along
 with a matched implementation of a class that implements the
-javax.security.jacc.PolicyConfiguration interface.
+jakarta.security.jacc.PolicyConfiguration interface.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -865,7 +865,7 @@ statements.
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:67"></a><font size="1PT">JACC:SPEC:67</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">The getPolicyConfigurationFactory, and inService methods of the
 abstract factory class,
-javax.security.jacc.PolicyConfigurationFactory, must throw a
+jakarta.security.jacc.PolicyConfigurationFactory, must throw a
 SecurityException when called by an AccessControlContext that has not been
 granted the setPolicy SecurityPermission.
 The getPolicyConfiguration method of all implementations of the
@@ -895,9 +895,7 @@ repository.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:70"></a><font size="1PT">JACC:SPEC:70</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.3</font></TD><TD align="left" valign="center"><font size="1PT">The containers of an application server must be granted the getPolicy
-SecurityPermission and the setPolicy SecurityPermission. J2EE 1.3 Containers
-that choose to support this contract must be granted the getPolicy
-AuthPermission and the setPolicy AuthPermission.
+SecurityPermission and the setPolicy SecurityPermission.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -1228,8 +1226,8 @@ component request being processed by the container.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:100"></a><font size="1PT">JACC:SPEC:100</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1.4</font></TD><TD align="left" valign="center"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
-method returns a javax.ejb.EnterpriseBean object when invoked with the key
-javax.ejb.EnterpriseBean. When this handler is activated, the container must
+method returns a jakarta.ejb.EnterpriseBean object when invoked with the key
+jakarta.ejb.EnterpriseBean. When this handler is activated, the container must
 return the EnterpriseBean object corresponding to theEJB component request being
 processed by the container.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1240,7 +1238,7 @@ processed by the container.
 <TD align="center" valign="center"><a name="JACC:SPEC:101"></a><font size="1PT">JACC:SPEC:101</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.6.1.5</font></TD><TD align="left" valign="center"><font size="1PT">All EJB containers must register a PolicyContextHandler whose getContext
 method returns an array of objects (Object[]) containing the arguments of the EJB
 method invocation (in the same order as they appear in the method signature)
-when invoked with the key javax.ejb.arguments. The context handler must
+when invoked with the key jakarta.ejb.arguments. The context handler must
 return the value null when called in the context of a SOAP request that arrived at
 the ServiceEndpoint method interface. Otherwise, the context handler must return
 the array of objects corresponding to the parameters of the EJB component
@@ -1271,27 +1269,18 @@ permission being checked. If checkPermission throws an
 AccessControlException, the checked permission is not granted. Otherwise the
 permission is granted.
 
-- The J2EE 1.4 container calls Policy.implies with two arguments; the
+- The container calls Policy.implies with two arguments; the
 permission being checked and a ProtectionDomain that need not be
 constructed with principals. The checked permission is granted if
 Policy.implies returns true. Otherwise, the permission is not granted.
 
-- The J2EE 1.4 container calls
+- The container calls
 java.security.Policy.getPermissions with a ProtectionDomain
 that need not be constructed with principals. The container must call the
 implies method on the returned PermissionCollection using the permission
 being checked as argument. The checked permission is granted if the
 PermissionCollection implies it. Otherwise, the permission is not granted. This
 technique is supported but not recommended.
-
--  The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions to determine the
-collection of permissions granted independent of AccessControlContext. The
-Subject in the call to getPermissions may be null. The container must call
-the implies method on the returned PermissionCollection using the
-permission being checked as argument. The checked permission is granted if
-the PermissionCollection implies it. Otherwise, the permission is not granted.
-This technique is supported but not recommended.
 
 Prior to using any of the techniques described in this section, the container
 must have established a policy context identifier as defined in Section 4.6,
@@ -1327,12 +1316,12 @@ on which the call to checkPermission is made must contain the principals
 of the caller. If checkPermission throws an AccessControlException, the
 permission is not granted to the caller. Otherwise the permission is granted.
 
-The J2EE 1.4 container calls Policy.implies with two arguments; the
+The container calls Policy.implies with two arguments; the
 permission being checked and a ProtectionDomain constructed with the
 principals of the caller. The boolean result returned by Policy.implies
 indicates whether or not the permission has been granted to the caller.
 
-The J2EE 1.4 container calls
+The container calls
 java.security.Policy.getPermissions with an argument
 ProtectionDomain that was constructed with the principals of the caller. The
 container must call the implies method on the returned
@@ -1341,16 +1330,6 @@ PermissionCollection implies the permission being tested, the permission has
 been granted to the caller. Otherwise it has not. This technique is supported but
 not recommended.
 
-The J2EE 1.3 container calls
-javax.security.auth.Policy.getPermissions with an argument
-Subject containing the principals of the caller.The container must call the
-implies method on the returned PermissionCollection using the permission
-being checked as argument. If the PermissionCollection implies the permission
-being tested, the permission has been granted to the caller. Otherwise it has not.
-This technique is supported but not recommended.
-Prior to using any of the techniques described in this section, the container
-must have established a policy context identifier as defined in Section 4.6,
-Setting the Policy Context.
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1376,7 +1355,7 @@ policy context to perform its access determination.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:106"></a><font size="1PT">JACC:SPEC:106</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.11</font></TD><TD align="left" valign="center"><font size="1PT">To be compatible with this contract, all of the JRE of a J2EE 1.4 application
+<TD align="center" valign="center"><a name="JACC:SPEC:106"></a><font size="1PT">JACC:SPEC:106</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.11</font></TD><TD align="left" valign="center"><font size="1PT">To be compatible with this contract, all of the JRE of an application
 server must perform all of the policy decisions defined by this contract by
 interacting with the java.security.Policy instance available in the JRE
 via the java.security.Policy.getPolicy method.
@@ -1385,10 +1364,7 @@ via the java.security.Policy.getPolicy method.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JACC:SPEC:107"></a><font size="1PT">JACC:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.11</font></TD><TD align="left" valign="center"><font size="1PT">All of the JRE of a
-J2EE 1.3 application server must perform all of the policy decisions defined by
-this contract by interacting with the javax.security.auth.Policy instance
-available in the JRE via the javax.security.auth.getPolicy method.
+<TD align="center" valign="center"><a name="JACC:SPEC:107"></a><font size="1PT">JACC:SPEC:107</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.11</font></TD><TD align="left" valign="center"><font size="1PT">Legacy
 			</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1667,7 +1643,7 @@ Policy providers.
 <TD align="center" valign="center"><a name="JACC:SPEC:122"></a><font size="1PT">JACC:SPEC:122</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.0</font></TD><TD align="left" valign="center"><font size="1PT">
              This subcontract also applies to the translation of 
              authorization policy annotations that have an equivalent 
-             representation in Java EE deployment descriptor policy
+             representation in Jakarta EE deployment descriptor policy
              constructs(i.e security-constraint, method-permission,
              security-role-ref, and exclude-list elements)   
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1676,21 +1652,14 @@ Policy providers.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JACC:SPEC:123"></a><font size="1PT">JACC:SPEC:123</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">
-               Independent of this specification, J2EE deployment tools must 
-        translate and complete the declarative policy statements appearing 
-        in deployment descriptors into a form suitable for securing 
-        applications on the platform. On versions of the Java EE platform 
-        that require support for authorization policy annotations, the 
-        deployment tools must combine policy annotations in Java code with 
-        policy statements appearing in deployment descriptors to yield 
-        complete representations of authorization policy suitable for 
-        securing applications on the platform. The rules for combining 
-        authorization policy annotations with declarative policy statements 
-        are described in the versions of the EJB, Servlet, and Java EE 
-        platform specifications that require support for the annotations. 
-        Independent of whether annotations factor in the translation, 
-        the resulting policy statements may differ in form from the policy 
-        statements appearing in the deployment descriptors.
+             Independent of this specification, Jakarta EE deployment tools must translate and complete the declarative policy
+             statements appearing in deployment descriptors into a form suitable for securing applications on the platform. 
+             These deployment tools must combine policy annotations in Java code with policy statements appearing in deployment
+             descriptors to yield complete representations of authorization policy suitable for securing applications on the platform. 
+             The rules for combining authorization policy annotations with declarative policy statements are described in the 
+             Jakarta Enterprise Beans, Jakarta Servlet, and Jakarta EE platform specifications. Independent of whether annotations 
+             factor in the translation, the resulting policy statements may differ in form from the policy statements appearing 
+             in the deployment descriptors. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1742,7 +1711,7 @@ Policy providers.
        business method of the EJB Remote, Local, or ServiceEndpoint 
        interfaces of the EnterpriseBean object. The value null must be 
        returned if the bean implementation class does not implement the 
-       javax.ejb.EnterpriseBean interface.
+       jakarta.ejb.EnterpriseBean interface.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>

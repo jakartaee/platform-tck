@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
 
 @Path("resource/declaration")
 public class ConstraintDeclarationResource {
@@ -25,7 +25,7 @@ public class ConstraintDeclarationResource {
   @POST
   @Path("constraintdeclarationexception")
   // Actually a subclass UnexpectedTypeException is thrown:
-  // javax.validation.UnexpectedTypeException: HV000030: No validator could be
+  // jakarta.validation.UnexpectedTypeException: HV000030: No validator could be
   // found for type: java.lang.String.
   public String constraintDeclarationException(
       @ConstraintDeclarationAnnotation String content) {

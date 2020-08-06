@@ -45,8 +45,7 @@
         </copy-->
         <copy todir="${deliverable.bundle.dir}/lib">
             <fileset dir="${ts.home}/lib"
-                includes="jaxrtck.jar, 
-                          tsprovider.jar,
+                includes="tsprovider.jar,
                           riinterceptors.jar,
                           sigtest.jar,
                           tssv.jar"/>
@@ -56,13 +55,11 @@
             <fileset dir="${ts.home}/install/${deliverable.name.lower}/other" 
                      includes="vehicle.properties, testsuite.jtt"/>
         </copy>
-		<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
-              <fileset dir="${ts.home}/install/jaxr/docs" excludes="**svn**" />
-	   </copy>
 
-         <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+         <!-- NOTICE will be EPL or EFTL specific: TBD-->
+         <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
             <fileset dir="${ts.home}" includes="NOTICE" />
-         </copy>
+         </copy-->
 
 	 <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	 </copy>
@@ -74,14 +71,12 @@
         <!-- the classes directory -->
         <copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
             <fileset dir="${ts.home}/classes"
-                     includes="com/sun/ts/tests/jaxr/**/*.class, 
                      com/sun/ts/tests/signaturetest/**/*.class, 
             com/sun/ts/tests/common/vehicle/**/*"/>
         </copy>
         
         <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="yes">
             <fileset dir="${ts.home}/dist" 
-                     includes="com/sun/ts/tests/jaxr/**/*" 
                      excludes="com/sun/ts/tests/**/*runtime.xml, 
             com/sun/ts/tests/**/*/*sun-*.xml"/>
         </copy>
@@ -89,13 +84,10 @@
         <!-- the specific deliverable source directories -->
         <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
             <fileset dir="${ts.home}/src"
-                     includes="com/sun/ts/tests/jaxr/**/*, 
-                     com/sun/ts/tests/signaturetest/signature-repository/javax.xml.registry.sig_1.0*, 
-                     com/sun/ts/tests/signaturetest/jaxr/**/*, 
+                     com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.registry.sig_1.0*, 
                      com/sun/ts/tests/signaturetest/*, 
                      com/sun/ts/tests/common/vehicle/**/*,
                      ${lib.pkg.dir}/deliverable/*,
-                     ${lib.pkg.dir}/deliverable/jaxr/*,
                      ${lib.pkg.dir}/deliverable/tck/*"
                      excludes="com/sun/ts/tests/**/*runtime.xml, 
                      com/sun/ts/tests/**/*/*sun-*.xml, 

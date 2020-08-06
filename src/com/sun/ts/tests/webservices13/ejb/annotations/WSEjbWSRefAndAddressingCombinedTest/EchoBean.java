@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest;
 
-import javax.ejb.Stateless;
-import javax.jws.WebService;
-import javax.xml.ws.soap.Addressing;
-import javax.xml.ws.Holder;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.Holder;
 
 @WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "META-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest.Echo")
 @Stateless(name = "WSEjbWSRefAndAddressingCombinedTest")

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,17 +23,17 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import javax.websocket.HandshakeResponse;
-import javax.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.HandshakeResponse;
+import jakarta.websocket.ClientEndpointConfig.Configurator;
 
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 public class ClientConfigurator extends Configurator {
 
-  private Map<String, List<String>> requestMap = new TreeMap<String, List<String>>();
+  private Map<String, List<String>> requestMap = new TreeMap<>();
 
-  private Map<String, List<String>> responseMap = new TreeMap<String, List<String>>();
+  private Map<String, List<String>> responseMap = new TreeMap<>();
 
   private boolean hasBeenAfterResponse = false;
 

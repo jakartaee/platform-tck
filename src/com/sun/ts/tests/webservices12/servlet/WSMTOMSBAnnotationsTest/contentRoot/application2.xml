@@ -17,11 +17,11 @@
 
 -->
 
-<application xmlns="http://java.sun.com/xml/ns/j2ee"
+<application xmlns="https://jakarta.ee/xml/ns/jakartaee"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-             http://java.sun.com/xml/ns/j2ee/application_1_4.xsd"
-             version="1.4">
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+             https://jakarta.ee/xml/ns/jakartaee/application_9.xsd"
+             version="9">
   <display-name>Second Simple example of application</display-name>
   <description>Second Simple example</description>
   <module>

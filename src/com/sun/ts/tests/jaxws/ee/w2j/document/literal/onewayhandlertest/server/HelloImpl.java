@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,25 +25,25 @@ import com.sun.ts.lib.porting.*;
 
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 
 import java.io.*;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Vector;
-import javax.xml.ws.handler.MessageContext;
-import javax.activation.DataHandler;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.activation.DataHandler;
 import java.util.Properties;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
-import javax.annotation.Resource;
+import jakarta.jws.WebService;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://dlowhandlertestservice.org/wsdl", serviceName = "DLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSDLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.Hello")
 

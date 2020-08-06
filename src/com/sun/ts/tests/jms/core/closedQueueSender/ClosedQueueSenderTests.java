@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,7 @@ import com.sun.ts.tests.jms.common.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import javax.jms.*;
+import jakarta.jms.*;
 import java.io.*;
 import java.util.Properties;
 import java.util.ArrayList;
@@ -201,7 +201,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         int foo = tool.getDefaultQueueSender().getDeliveryMode();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -236,7 +236,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         boolean foo = tool.getDefaultQueueSender().getDisableMessageID();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -271,7 +271,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         boolean foo = tool.getDefaultQueueSender().getDisableMessageTimestamp();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -306,7 +306,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         int foo = tool.getDefaultQueueSender().getPriority();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -341,7 +341,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         long foo = tool.getDefaultQueueSender().getTimeToLive();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -376,7 +376,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         tool.getDefaultQueueSender()
             .setDeliveryMode(Message.DEFAULT_DELIVERY_MODE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -410,7 +410,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setDisableMessageID(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -444,7 +444,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setDisableMessageTimestamp(true);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -478,7 +478,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().setPriority(Message.DEFAULT_PRIORITY);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -513,7 +513,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         tool.getDefaultQueueSender()
             .setTimeToLive(Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -548,7 +548,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
         Queue foo = tool.getDefaultQueueSender().getQueue();
 
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -582,7 +582,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().send(new MessageTestImpl());
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -619,7 +619,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -653,7 +653,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
       try {
         tool.getDefaultQueueSender().send(new MessageTestImpl());
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {
@@ -689,7 +689,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
             Message.DEFAULT_DELIVERY_MODE, Message.DEFAULT_PRIORITY,
             Message.DEFAULT_TIME_TO_LIVE);
         logTrace("Fail: Exception was not thrown!");
-      } catch (javax.jms.IllegalStateException ise) {
+      } catch (jakarta.jms.IllegalStateException ise) {
         logTrace("Pass: threw expected error");
         passed = true;
       } catch (Exception e) {

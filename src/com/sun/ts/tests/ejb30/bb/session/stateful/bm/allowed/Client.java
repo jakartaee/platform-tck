@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,7 +29,7 @@ import com.sun.ts.tests.ejb30.common.allowed.ClientBase;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase implements Constants {
   @EJB(name = "ejb/allowedBean", beanName = "AllowedBean")
@@ -319,7 +319,7 @@ public class Client extends ClientBase implements Constants {
    *
    * @test_Strategy: For a bean-managed stateful session bean, attempt to call
    * ut.begin() after a TX has already been started. This is disallowed so check
-   * that a javax.transaction. NotSupportedException is thrown.
+   * that a jakarta.transaction. NotSupportedException is thrown.
    */
 
   public void utBeginTest() throws Fault {

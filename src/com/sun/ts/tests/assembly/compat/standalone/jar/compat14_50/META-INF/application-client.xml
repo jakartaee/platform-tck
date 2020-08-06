@@ -17,11 +17,11 @@
 
 -->
 
-<application-client xmlns="http://java.sun.com/xml/ns/j2ee"
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-                http://java.sun.com/xml/ns/j2ee/application-client_1_4.xsd"
-              version="1.4">
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
+              version="9">
 
   <description>client for TS assembly compat stand-alone compat14_50 ejb-jar test</description>
   <display-name>assembly_compat_standalone_jar_compat14_50_client</display-name>

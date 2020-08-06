@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@ import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
 import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceException;
 import java.rmi.AccessException;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -37,11 +37,11 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 import javax.xml.namespace.QName;
 
-import javax.xml.ws.Holder;
+import jakarta.xml.ws.Holder;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 
 @WebService(portName = "ParameterModeTestPort", serviceName = "ParameterModeTestService", targetNamespace = "http://ParameterModeTest.org/", wsdlLocation = "WEB-INF/wsdl/WSW2JRLParameterModeTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest.ParameterModeTest")
 public class ParameterModeTestImpl implements ParameterModeTest {

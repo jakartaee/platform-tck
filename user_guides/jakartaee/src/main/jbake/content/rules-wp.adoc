@@ -1,3 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+///////////////////////////////////////////////////////////////////////////////
+
 type=page
 status=published
 title=Procedure for Jakarta Platform, Enterprise Edition 8 Web Profile Certification
@@ -558,49 +576,49 @@ required class libraries for the full Java EE 8 platform:
 The following list constitutes the subset of Jakarta EE 8 packages that are
 required for the Jakarta EE 8 Web Profile:
 
-* javax.annotation
-* javax.annotation.security
-* javax.annotation.sql
+* jakarta.annotation
+* jakarta.annotation.security
+* jakarta.annotation.sql
 * javax.decorator
-* javax.ejb
-* javax.ejb.embeddable
-* javax.ejb.spi
+* jakarta.ejb
+* jakarta.ejb.embeddable
+* jakarta.ejb.spi
 * javax.el
-* javax.enterprise.context
-* javax.enterprise.context.spi
-* javax.enterprise.event
-* javax.enterprise.inject
-* javax.enterprise.inject.spi
-* javax.enterprise.util
-* javax.faces
-* javax.faces.application
-* javax.faces.bean
-* javax.faces.component
-* javax.faces.component.behavior
-* javax.faces.component.html
-* javax.faces.component.visit
-* javax.faces.context
-* javax.faces.convert
-* javax.faces.el
-* javax.faces.event
-* javax.faces.flow
-* javax.faces.flow.builder
-* javax.faces.lifecycle
-* javax.faces.model
-* javax.faces.render
-* javax.faces.validator
-* javax.faces.view
-* javax.faces.view.facelets
-* javax.faces.webapp
-* javax.inject
-* javax.interceptor
+* jakarta.enterprise.context
+* jakarta.enterprise.context.spi
+* jakarta.enterprise.event
+* jakarta.enterprise.inject
+* jakarta.enterprise.inject.spi
+* jakarta.enterprise.util
+* jakarta.faces
+* jakarta.faces.application
+* jakarta.faces.bean
+* jakarta.faces.component
+* jakarta.faces.component.behavior
+* jakarta.faces.component.html
+* jakarta.faces.component.visit
+* jakarta.faces.context
+* jakarta.faces.convert
+* jakarta.faces.el
+* jakarta.faces.event
+* jakarta.faces.flow
+* jakarta.faces.flow.builder
+* jakarta.faces.lifecycle
+* jakarta.faces.model
+* jakarta.faces.render
+* jakarta.faces.validator
+* jakarta.faces.view
+* jakarta.faces.view.facelets
+* jakarta.faces.webapp
+* jakarta.inject
+* jakarta.interceptor
 * javax.json
 * javax.json.spi
 * javax.json.stream
-* javax.persistence
-* javax.persistence.criteria
-* javax.persistence.metamodel
-* javax.persistence.spi
+* jakarta.persistence
+* jakarta.persistence.criteria
+* jakarta.persistence.metamodel
+* jakarta.persistence.spi
 * javax.servlet
 * javax.servlet.annotation
 * javax.servlet.descriptor
@@ -614,16 +632,16 @@ required for the Jakarta EE 8 Web Profile:
 * javax.servlet.jsp.tagext
 * javax.transaction
 * javax.transaction.xa
-* javax.validation
-* javax.validation.bootstrap
-* javax.validation.constraints
-* javax.validation.constraintvalidation
-* javax.validation.executable
-* javax.validation.groups
-* javax.validation.metadata
-* javax.validation.spi
-* javax.websocket
-* javax.websocket.server
+* jakarta.validation
+* jakarta.validation.bootstrap
+* jakarta.validation.constraints
+* jakarta.validation.constraintvalidation
+* jakarta.validation.executable
+* jakarta.validation.groups
+* jakarta.validation.metadata
+* jakarta.validation.spi
+* jakarta.websocket
+* jakarta.websocket.server
 * javax.ws.rs
 * javax.ws.rs.client
 * javax.ws.rs.container
@@ -635,9 +653,9 @@ required for the Jakarta EE 8 Web Profile:
 * javax.json.bind.config
 * javax.json.bind.serializer
 * javax.json.bind.spi
-* javax.security.enterprise
-* javax.security.enterprise.authentication.mechanism.http
-* javax.security.enterprise.credential
-* javax.security.enterprise.identitystore
+* jakarta.security.enterprise
+* jakarta.security.enterprise.authentication.mechanism.http
+* jakarta.security.enterprise.credential
+* jakarta.security.enterprise.identitystore
 
 

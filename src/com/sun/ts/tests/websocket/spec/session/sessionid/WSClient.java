@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +25,14 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.websocket.ClientEndpointConfig;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -243,6 +244,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
+        @Override
         public void onMessage(String message) {
           receivedMessageString.append(message);
           messageLatch.countDown();
@@ -251,6 +253,7 @@ public class WSClient extends WebSocketCommonClient {
 
       session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
 
+        @Override
         public void onMessage(ByteBuffer data) {
           String message_string = IOUtil.byteBufferToString(data);
 
@@ -262,6 +265,7 @@ public class WSClient extends WebSocketCommonClient {
       });
     }
 
+    @Override
     public void onClose(Session session, CloseReason closeReason) {
       session_id_endpoint_onClose = session.getId();
       session_endpoint_onClose = session;

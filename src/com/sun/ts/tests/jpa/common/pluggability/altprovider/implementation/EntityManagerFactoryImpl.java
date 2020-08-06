@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.metamodel.Metamodel;
-import javax.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.metamodel.Metamodel;
+import jakarta.persistence.spi.PersistenceUnitInfo;
 import java.util.Map;
 
 public class EntityManagerFactoryImpl
-    implements javax.persistence.EntityManagerFactory {
+    implements jakarta.persistence.EntityManagerFactory {
 
   public Map properties;
 
@@ -81,7 +81,7 @@ public class EntityManagerFactoryImpl
   }
 
   public EntityManager createEntityManager(
-      javax.persistence.SynchronizationType st) {
+      jakarta.persistence.SynchronizationType st) {
     logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
     verifyOpen();
     EntityManagerImpl em = new EntityManagerImpl();
@@ -91,7 +91,7 @@ public class EntityManagerFactoryImpl
   }
 
   public EntityManager createEntityManager(
-      javax.persistence.SynchronizationType st, Map map) {
+      jakarta.persistence.SynchronizationType st, Map map) {
     logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
     verifyOpen();
     EntityManagerImpl em = new EntityManagerImpl();

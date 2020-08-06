@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
 import com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.ejb.SessionContext;
-import javax.interceptor.AroundInvoke;
+import jakarta.ejb.SessionContext;
+import jakarta.interceptor.AroundInvoke;
 
 public class StatefulCancelInterceptor extends CancelInterceptor {
   private static StatefulCancelInterceptor instance = new StatefulCancelInterceptor();
@@ -46,7 +46,7 @@ public class StatefulCancelInterceptor extends CancelInterceptor {
   // in superclass. Make sure this is what we want.
   @Override
   @AroundInvoke
-  public Object intercept(javax.interceptor.InvocationContext inv)
+  public Object intercept(jakarta.interceptor.InvocationContext inv)
       throws Exception {
 
     Object retValue;

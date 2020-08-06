@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar;
 
-import javax.annotation.Resource;
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 import java.io.PrintWriter;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;

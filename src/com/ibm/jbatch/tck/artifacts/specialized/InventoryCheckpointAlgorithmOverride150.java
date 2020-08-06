@@ -1,5 +1,5 @@
 /**
- * Copyright 2013 International Business Machines Corp.
+ * Copyright 2013, 2020 International Business Machines Corp.
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ibm.jbatch.tck.artifacts.specialized;
+package com.ibm.jbatch.tck.artifacts.specialized;
 
 import com.sun.ts.lib.harness.*;
 import com.sun.ts.lib.util.TestUtil;
@@ -22,12 +22,12 @@ import com.sun.ts.lib.util.TestUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.batch.api.BatchProperty;
-import javax.batch.api.chunk.AbstractCheckpointAlgorithm;
-import javax.inject.Inject;
+import jakarta.batch.api.BatchProperty;
+import jakarta.batch.api.chunk.AbstractCheckpointAlgorithm;
+import jakarta.inject.Inject;
 
 /*
-* Copyright 2012 International Business Machines Corp.
+* Copyright 2012, 2020 International Business Machines Corp.
 * 
 * See the NOTICE file distributed with this work for additional information
 * regarding copyright ownership. Licensed under the Apache License, 
@@ -45,7 +45,7 @@ import javax.inject.Inject;
 
 
 
-@javax.inject.Named("inventoryCheckpointAlgorithmOverride150")
+@jakarta.inject.Named("inventoryCheckpointAlgorithmOverride150")
 public class InventoryCheckpointAlgorithmOverride150 extends AbstractCheckpointAlgorithm {
 
 	private static final String className = InventoryCheckpointAlgorithmNoOverride.class.getName();

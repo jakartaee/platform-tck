@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +23,12 @@ import java.security.Principal;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.message.MessagePolicy;
-import javax.security.auth.message.AuthStatus;
-import javax.security.auth.message.AuthException;
-import javax.security.auth.message.MessageInfo;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
@@ -38,14 +38,14 @@ import com.sun.ts.tests.jaspic.tssv.util.SimplePrincipal;
 
 import java.util.logging.Level;
 
-import javax.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 /**
  *
  * @author Sun Microsystems
  */
 public class TSServerAuthModule
-    implements javax.security.auth.message.module.ServerAuthModule {
+    implements jakarta.security.auth.message.module.ServerAuthModule {
   private TSLogger logger = null;
 
   private static MessagePolicy requestPolicy = null;
@@ -176,8 +176,8 @@ public class TSServerAuthModule
   @Override
   public Class[] getSupportedMessageTypes() {
     logMsg("TSServerAuthModule.getSupportedMessageTypes called");
-    Class[] classarray = { javax.servlet.http.HttpServletRequest.class,
-        javax.servlet.http.HttpServletResponse.class };
+    Class[] classarray = { jakarta.servlet.http.HttpServletRequest.class,
+        jakarta.servlet.http.HttpServletResponse.class };
     return classarray;
   }
 
@@ -399,7 +399,7 @@ public class TSServerAuthModule
     String requestURI = null;
     Object reqObj = messageInfo.getRequestMessage();
     if ((reqObj != null)
-        && (reqObj instanceof javax.servlet.http.HttpServletRequest)) {
+        && (reqObj instanceof jakarta.servlet.http.HttpServletRequest)) {
       requestURI = ((HttpServletRequest) reqObj).getRequestURI();
     }
     return requestURI;
@@ -469,12 +469,12 @@ public class TSServerAuthModule
     Object respObj = msgInfo.getResponseMessage();
     HttpServletResponseWrapper response = null;
     if (respObj != null) {
-      if (respObj instanceof javax.servlet.http.HttpServletResponseWrapper) {
+      if (respObj instanceof jakarta.servlet.http.HttpServletResponseWrapper) {
         if (response != null) {
           response.setStatus(statusCode);
           msgInfo.setResponseMessage(response);
         }
-      } else if (respObj instanceof javax.servlet.http.HttpServletResponse) {
+      } else if (respObj instanceof jakarta.servlet.http.HttpServletResponse) {
         response = new HttpServletResponseWrapper(
             (HttpServletResponse) respObj);
         response.setStatus(statusCode);
@@ -508,7 +508,7 @@ public class TSServerAuthModule
     /*
      * // see assertion JASPI:SPEC:306 for details on this // jsr-196 states the
      * following key must exist for servlet profile String strKey =
-     * "javax.security.auth.message.MessagePolicy.isMandatory"; if (map != null)
+     * "jakarta.security.auth.message.MessagePolicy.isMandatory"; if (map != null)
      * { String keyVal = (String)map.get(strKey); String msg =
      * "dumpServletProfileKeys() called with attrs: "; msg += " layer=" +
      * JASPICData.LAYER_SERVLET; msg += " servletName=" + servletName; msg +=
@@ -571,7 +571,7 @@ public class TSServerAuthModule
 
     // see assertion JASPI:SPEC:306 for details on this
     // jsr-196 states the following key must exist for servlet profile
-    String strKey = "javax.security.auth.message.MessagePolicy.isMandatory";
+    String strKey = "jakarta.security.auth.message.MessagePolicy.isMandatory";
     String msg;
     if (map != null) {
       String keyVal = (String) map.get(strKey);
@@ -615,8 +615,8 @@ public class TSServerAuthModule
         // and if so print out a log msg stating so. (jsr-196 expects the
         // reqObj to be type HttpServletRequest)
         msg = methodName + ": MessageInfo.getRequestMessage() is of type ";
-        if (reqObj instanceof javax.servlet.http.HttpServletRequest) {
-          msg = msg + "javax.servlet.http.HttpServletRequest";
+        if (reqObj instanceof jakarta.servlet.http.HttpServletRequest) {
+          msg = msg + "jakarta.servlet.http.HttpServletRequest";
           requestURI = ((HttpServletRequest) reqObj).getRequestURI();
 
           // related to assertion JASPI:SPEC:95 , this block of code
@@ -641,8 +641,8 @@ public class TSServerAuthModule
         // and if so print out a log msg stating so. (jsr-196 expects the
         // respObj to be type HttpServletResponse)
         msg = methodName + ": MessageInfo.getResponseMessage() is of type ";
-        if (respObj instanceof javax.servlet.http.HttpServletResponse) {
-          msg = msg + "javax.servlet.http.HttpServletResponse";
+        if (respObj instanceof jakarta.servlet.http.HttpServletResponse) {
+          msg = msg + "jakarta.servlet.http.HttpServletResponse";
           /*
            * if (requestURI != null) { // this should have been obtained from
            * the requestObj above msg = msg +" for requestURI=" + requestURI; }

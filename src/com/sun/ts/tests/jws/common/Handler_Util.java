@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,14 +22,14 @@ package com.sun.ts.tests.jws.common;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import javax.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPMessage;
 import javax.xml.transform.Source;
-import javax.xml.ws.Binding;
-import javax.xml.ws.LogicalMessage;
-import javax.xml.ws.handler.Handler;
-import javax.xml.ws.handler.LogicalMessageContext;
-import javax.xml.ws.handler.MessageContext;
-import javax.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.Binding;
+import jakarta.xml.ws.LogicalMessage;
+import jakarta.xml.ws.handler.Handler;
+import jakarta.xml.ws.handler.LogicalMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,10 +29,10 @@ import java.net.*;
 import java.util.*;
 import java.rmi.*;
 
-import javax.xml.ws.*;
-import javax.xml.ws.handler.*;
-import javax.xml.ws.handler.soap.*;
-import javax.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
@@ -40,8 +40,8 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.jaxws.common.*;
 
 import javax.naming.InitialContext;
-import javax.xml.ws.WebServiceRef;
-import javax.jws.HandlerChain;
+import jakarta.xml.ws.WebServiceRef;
+import jakarta.jws.HandlerChain;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)
@@ -112,7 +112,7 @@ public class Client extends ServiceEETest {
 
   private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.client.DLOWHandlerTestService.class;
 
-  private static final String THEBINDINGPROTOCOL = javax.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
+  private static final String THEBINDINGPROTOCOL = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
 
   private static final String LOGICAL = "Logical";
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class MethodValidatorBean {
    * attribute.
    * 
    * @return a String representing the result of the check.
-   * @throws javax.servlet.jsp.JspException
+   * @throws jakarta.servlet.jsp.JspException
    */
   public String getResult() throws JspException {
     String message = null;

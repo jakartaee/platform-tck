@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jms.common;
 
 import java.util.*;
-import javax.jms.*;
+import jakarta.jms.*;
 
 /**
  * Class Declaration.
@@ -72,8 +72,8 @@ public class MessageTestImpl implements Message {
    */
   public MessageTestImpl() {
     properties = new Hashtable();
-    this.JMSPriority = javax.jms.Message.DEFAULT_PRIORITY;
-    this.JMSDeliveryMode = javax.jms.Message.DEFAULT_DELIVERY_MODE;
+    this.JMSPriority = jakarta.jms.Message.DEFAULT_PRIORITY;
+    this.JMSDeliveryMode = jakarta.jms.Message.DEFAULT_DELIVERY_MODE;
     this.JMSDeliveryDelay = 0L;
   }
 

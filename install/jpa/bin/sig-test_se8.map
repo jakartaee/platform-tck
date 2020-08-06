@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,20 +23,20 @@
 # Note: Recording the signatures of a package includes all
 #       child packages.  The signature test tool looks for
 #       the best signature file to use when playing back
-#       signatures.  Meaning if we have a javax.servlet
-#       signature file and a javax.servlet.jsp signature file,
-#       the signature test tool will use the javax.servlet.jsp
-#       signature file to verify the javax.servlet.jsp package
-#       signatures even though the javax.servlet signature
-#       file contains the javax.servlet.jsp package signatures.
+#       signatures.  Meaning if we have a jakarta.servlet
+#       signature file and a jakarta.servlet.jsp signature file,
+#       the signature test tool will use the jakarta.servlet.jsp
+#       signature file to verify the jakarta.servlet.jsp package
+#       signatures even though the jakarta.servlet signature
+#       file contains the jakarta.servlet.jsp package signatures.
 #       The signatures are in both files (since the API Check
 #       tool records child package signatures and there does
 #       not seem to be a way to turn this feature off) but the
-#       javax.servlet.jsp signature file can vary independent
-#       of the javax.servlet signature file.
+#       jakarta.servlet.jsp signature file can vary independent
+#       of the jakarta.servlet signature file.
 #
 ###############################################################
 
 # Persistence packages
-javax.persistence=2.2_se8
+jakarta.persistence=3.0_se8
 

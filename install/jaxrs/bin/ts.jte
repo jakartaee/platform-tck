@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -185,8 +185,7 @@ env.ts_win32.menu=true
 #                    The sigTestClasspath specifies a list of classes/jar files
 #                    which contains jaxrs implementation and Java SE classes.
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}
-
+sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar
 
 ########################################################################
 ## These properties are used by the Javatest harness.
@@ -371,10 +370,10 @@ s1as.admin.port=${glassfish.admin.port}
 #                             Default to ${web.home}/modules/jersey-container-servlet-core.jar
 #
 # @jaxrs.classes           -- The classes for the JAX-RS api's
-#                             Default to ${web.home}/modules/javax.ws.rs-api.jar
+#                             Default to ${web.home}/modules/jakarta.ws.rs-api.jar
 #
 # @servlet.classes         -- The classes for the Servlet api's
-#                             Default to ${web.home}/modules/javax.servlet.jar
+#                             Default to ${web.home}/modules/jakarta.servlet.jar
 #
 # @servlet_adaptor         -- servlet adaptor class provided by vendor, 
 #                             used to package resource in .war file and

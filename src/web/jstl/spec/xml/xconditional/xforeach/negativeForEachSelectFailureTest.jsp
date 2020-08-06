@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,9 +23,9 @@
 <tck:test testName="negativeForEachSelectFailureTest">
 
     <!-- If the XPath expression provided to the select attribute
-             fails to evaluated, an instance of javax.servlet.jsp.JspException
+             fails to evaluated, an instance of jakarta.servlet.jsp.JspException
              is thrown. -->
-    <tck:catch var="rex" exception="javax.servlet.jsp.JspException">
+    <tck:catch var="rex" exception="jakarta.servlet.jsp.JspException">
         <x:forEach select="$doc//b">
             Body Content improperly processed.<br>
         </x:forEach>

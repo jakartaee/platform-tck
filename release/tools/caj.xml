@@ -21,8 +21,8 @@
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
 
-    <property name="deliverable.version"           value="1.3"/>
-    <property name="deliverable.tck.version"           value="1.3.0"/>
+    <property name="deliverable.version"           value="2.0"/>
+    <property name="deliverable.tck.version"           value="2.0.0"/>
     
 	<target name="init">
 		<mkdir dir="${deliverable.bundle.dir}/bin"/>
@@ -68,9 +68,10 @@
 			includes="testsuite.jtt, vehicle.properties"/>
 	  </copy>
 	  
-          <copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
+	  <!-- NOTICE will be EPL or EFTL specific: TBD-->
+          <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                 <fileset dir="${ts.home}" includes="NOTICE" />
-          </copy>
+          </copy-->
 
 	  <copy tofile="${deliverable.bundle.dir}/LICENSE.md" file="${ts.home}/${licensefile}">
 	  </copy>
@@ -103,7 +104,7 @@
 		<copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src"
    			   includes="
-                       com/sun/ts/tests/signaturetest/signature-repository/javax.annotation.*${deliverable.version}*,
+                       com/sun/ts/tests/signaturetest/signature-repository/jakarta.annotation.*${deliverable.version}*,
                        com/sun/ts/tests/signaturetest/*,
                        com/sun/ts/tests/signaturetest/caj/*"
 			   excludes="

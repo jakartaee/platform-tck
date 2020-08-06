@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,10 +24,10 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import javax.ejb.Timer;
-import javax.jms.Message;
-import javax.jms.Queue;
-import javax.jms.QueueConnectionFactory;
+import jakarta.ejb.Timer;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * A class that reflectively dispatches to the method corresponding to the test

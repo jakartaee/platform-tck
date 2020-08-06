@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,11 @@
 <tck:test testName="positiveQueryDataSourceConfigPrecedenceTest">
 
    <!-- Validate sql:query action  that the dataSource attribute takes
-            precedence over the javax.servlet.jsp.jstl.sql.dataSource
+            precedence over the jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter -->
 
    <h1>Validate sql:query action  that the dataSource attribute takes
-            precedence over the javax.servlet.jsp.jstl.sql.dataSource
+            precedence over the jakarta.servlet.jsp.jstl.sql.dataSource
             configuration parameter </h1>
    <p>
 
@@ -51,12 +51,12 @@
          <H2>ERROR:</H2>
          Could not execute the query <strong><c:out value="${sqlProps.Select_Jstl_Tab1_By_Id_Query}" />
          </strong> when using <strong><c:out value='${driverInfo}'/></strong> for
-          javax.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
+          jakarta.servlet.jsp.jstl.sql.dataSource! The Exception that was raised is:
          <strong><c:out value='${ex2}' escapeXml='false' /></strong>.
          <p>
       </c:when>
       <c:otherwise>
-         Successfully executed the query when javax.servlet.jsp.jstl.sql.dataSource
+         Successfully executed the query when jakarta.servlet.jsp.jstl.sql.dataSource
           was provided a DataSource Object.
          <p>
       </c:otherwise>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,16 +16,16 @@
 
 package com.sun.ts.tests.ejb30.webservice.wscontext;
 
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.ejb.Stateless;
-import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
-import javax.interceptor.Interceptors;
-import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.handler.MessageContext;
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
+import jakarta.ejb.Stateless;
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.interceptor.Interceptors;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
 import java.security.Principal;
 
 @WebService(name = "Hello", serviceName = "HelloService")
@@ -40,11 +40,11 @@ public class HelloImpl {
     String output = "";
 
     Object msgContext = wsContext.getMessageContext();
-    if (msgContext instanceof javax.xml.ws.handler.MessageContext) {
-      output += " 1. MessageContext is an instance of javax.xml.ws.handler.MessageContext ";
+    if (msgContext instanceof jakarta.xml.ws.handler.MessageContext) {
+      output += " 1. MessageContext is an instance of jakarta.xml.ws.handler.MessageContext ";
     } else {
       throw new WebServiceException(
-          "MessageContext not an instance of javax.xml.ws.handler.MessageContext");
+          "MessageContext not an instance of jakarta.xml.ws.handler.MessageContext");
     }
 
     Principal invocationPrincipal = wsContext.getUserPrincipal();

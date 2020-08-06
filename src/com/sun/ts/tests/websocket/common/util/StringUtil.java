@@ -146,8 +146,8 @@ public class StringUtil {
    */
   public static <T> boolean //
       contains(List<T> where, List<T> what, Comparator<? super T> comparator) {
-    where = new ArrayList<T>(where); // new collection not to affect
-    what = new ArrayList<T>(what); // the original by sorting
+    where = new ArrayList<>(where); // new collection not to affect
+    what = new ArrayList<>(what); // the original by sorting
     Collections.sort(what, comparator);
     Collections.sort(where, comparator);
     Iterator<T> j = where.iterator();
@@ -175,8 +175,8 @@ public class StringUtil {
    */
   public static <T extends Comparable<? super T>> //
   boolean contains(List<T> where, List<T> what) {
-    where = new ArrayList<T>(where); // new collection not to affect
-    what = new ArrayList<T>(what); // the original by sorting
+    where = new ArrayList<>(where); // new collection not to affect
+    what = new ArrayList<>(what); // the original by sorting
     Collections.sort(what);
     Collections.sort(where);
     return containsInOrder(where, what);
