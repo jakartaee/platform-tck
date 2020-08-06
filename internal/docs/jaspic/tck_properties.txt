@@ -2,7 +2,7 @@
 // TCK project properties to be used in TCK User's Guides for Java TCK
 // technologies. The property_name=value pairs represent specific TCK
 // project details, such as version number, release date, required
-// J2SE version, JavaTest version, package name, etc.
+// Java SE version, JavaTest version, package name, etc.
 //
 // Properties will be parsed into SGML entities files, which will in
 // turn be used to generate TCK User's Guide.
@@ -22,19 +22,19 @@
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 1a. TCK full name.
-TCKFullName=Java Authentication SPI for Containers TCK
+TCKFullName=Jakarta Authentication TCK
 
 // 1b. TCK short name.
-TCKShortName=JASPIC TCK
+TCKShortName=Jakarta Authentication TCK
 
 // 1c. Technology full name.
-TechnologyFullName=Java Authentication SPI for Containers 1.0
+TechnologyFullName=Jakarta Authentication 2.0
 
 // 1d. Technology short name.
 TechnologyShortName=???
 
 // 1e. Technology/TCK version.
-TechnologyVersion=1.0
+TechnologyVersion=2.0
 
 // 1f. TCK release date.
 ReleaseDate= <GF FCS which should be within next couple months>
@@ -43,7 +43,7 @@ ReleaseDate= <GF FCS which should be within next couple months>
 JavaTestVersion=3.2.1
 
 // 1h. Version of Java SE required to run the TCK.
-J2SEVersion=Java SE 1.4 or newer
+J2SEVersion=Java SE 8 or newer
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Section 2. Paths, package names, and URLs.

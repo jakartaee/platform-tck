@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the JAX-RS TCK.  Most references
-to JAX-RS have been parameterized to serve as a simple starting
+This text was originally from the Jakarta RESTful Web Services TCK.  Most references
+to Jakarta RESTful Web Services have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.  The major sections 4.1, 4.2, and
 4.3 should be preserved.  If their titles are changed, the links
@@ -78,10 +78,10 @@ environment variables:
   classpath must also include any other classes that are referenced,
   implemented, or extended by your implementation .
   f.  Set the `servlet.is.jsr115.compatible` property based on whether or
-  not you are running the Servlet profile in a Jakarta Authorization 1.5 compatible
+  not you are running the Servlet profile in a Jakarta Authorization 2.0 compatible
   container.
   g.  Set the `soap.is.jsr115.compatible` property based on whether or not
-  you are running the SOAP profile in a Jakarta Authorization 1.5 compatible container.
+  you are running the SOAP profile in a Jakarta Authorization 2.0 compatible container.
   h.  Set the `log.file.location` property to the location where your
   implementation's log files and the {TechnologyShortName} log file will be written.
   i.  Set the `logical.hostname.servlet` property to the logical host that
@@ -196,11 +196,11 @@ implementation to load the test suite's `AuthConfigFactory`.
   f.  Copies the TSSV configuration files (`ProviderConfiguration.xml`,
   `provider-configuration.xsd`) to your implementation instance library
   directory.
-  g.  Deploys the JASPIC file processor,
+  g.  Deploys the Jakarta Authentication file processor,
   `com/sun/ts/tests/jaspic/util/jaspic_util_web.war`.
 +
 5.  If necessary, provide your own implementations of the porting
-package interface provided with the JASPIC TCK. +
+package interface provided with the Jakarta Authentication TCK. +
 `TSURLInterface.java` obtains URL strings for web resources in an
 implementation-specific manner. API documentation for the
 `TSURLInterface.java` porting package interface is available in the

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,7 +37,7 @@
    <property name="enable.jms" value="true"/>
 
    <target name="usage">
-        <echo message="The following ant targets are available to configure a Java EE server for CTS:"/>
+        <echo message="The following ant targets are available to configure a Jakarta EE server for CTS:"/>
         <echo message="ant -f config_vi.xml task"/>
         <echo message=""/>
         <echo message="The tasks are:"/>
@@ -80,7 +80,7 @@
        </else>
    </if>
 
-   <!--  Target to configure the JASPIC-server under test -->
+   <!--  Target to configure the Jakarta Authentication server under test -->
    <target name="config.vi"  depends="checkCTSConfiguration, update.jaspic.jar, copy.cts.ext.jars, copy.jsr196.hooks.config.jar">
        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="start.appserver"/>
        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.classpathsuffix"/>
@@ -101,7 +101,7 @@
    </target>
 
 
-   <!--  Target to remove the configuration for the Java EE app server under test -->
+   <!--  Target to remove the configuration for the Jakarta EE app server under test -->
    <target name="clean.vi" depends="checkCTSConfiguration">
        <antcall target="delete.cts.ext.jars"/>
        <antcall target="delete.jsr196.hooks.config.jar"/>
@@ -116,7 +116,7 @@
    </target>
 
 
-   <!--  Target to shutdown the Java EE app server under test -->
+   <!--  Target to shutdown the Jakarta EE app server under test -->
    <target name="stop.vi" depends="checkCTSConfiguration">
        <antcall target="stop.remoteInstance"/>
        <echo message="****Stopping the domain under test *****" />
@@ -124,7 +124,7 @@
    </target>
 
 
-   <!--  Target to disable jacc for the Java EE app server under test -->
+   <!--  Target to disable jacc for the Jakarta EE app server under test -->
    <target name="disable.wss.providers" depends="checkCTSConfiguration">
        <antcall target="disable.wss.providers.das"/>
    </target>
@@ -136,7 +136,7 @@
    </target>
    
 
-   <!--  Target to enable wss providers for the Java EE app server under test -->
+   <!--  Target to enable wss providers for the Jakarta EE app server under test -->
    <target name="enable.wss.providers" depends="checkCTSConfiguration">
        <antcall target="enable.wss.providers.das"/>
    </target>

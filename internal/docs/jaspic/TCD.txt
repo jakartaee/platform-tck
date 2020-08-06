@@ -1,5 +1,5 @@
-TCK Coverage Document for JSR-196 Java Authentication SPI for Containers (JASPIC):
-(version 1.1)
+TCK Coverage Document for Jakarta Authentication:
+(version 2.0)
 
 
 TCK Components:
@@ -31,7 +31,7 @@ Terminology of Metrics
 
 Coverage
 --------
-- Total testable assertions derived from JSR-196 Specifications and Javadoc:
+- Total testable assertions derived from Jakarta Authentication Specifications and Javadoc:
        157 specification assertions 
      + 107 API assertions 
      ------------------------------
@@ -50,12 +50,12 @@ Coverage
   - 51.89% of all (specification and API) assertions tested
 
 - Assertions were identified through the use of CTS Tools and hand markup
-  (hand markup was required for the JSR-196 specifications)
+  (hand markup was required for the Jakarta Authentication specifications)
 
 - API Signature Coverage: 100% for all defined public and protected members and validated
-  by the signature test included with the JSR-196 TCK.
+  by the signature test included with the Jakarta Authentication TCK.
 
-- See the following HTML reports in this bundle for JSR-196 specification and API coverage metrics:
+- See the following HTML reports in this bundle for Jakarta Authentication specification and API coverage metrics:
     * coverage/jaspic/api/summary.html
     * coverage/jaspic/spec/summary.html
 
@@ -64,9 +64,8 @@ Quality Assurance
 -----------------
 - TCK was run using representative configurations of the Reference Implementation on
   the following platforms:
-   * Solaris 10 sparc / J2SE 1.5
-   * Red Hat Enterprise Linux 4 / J2SE 1.5
-   * Solaris 10 sparc / J2SE 1.6
+    * CentOS Linux 7 / Java SE 8
+    * Alpine Linux v3.12 / Java SE 8
 - Code quality was demonstrated through use of code reviews and inspections
 - User's Guide was constructed from the standard CTS User's Guide template
 - Documentation instructions were verified and tested
@@ -74,11 +73,11 @@ Quality Assurance
 
 Justification of Adequacy
 -------------------------
-The JSR-196 CTS provides a set of tests to ensure all implementations of
-the JSR-196 specifications are compatible.  As with all TCKs it is 
+The Jakarta Authentication CTS provides a set of tests to ensure all implementations of
+the Jakarta Authentication specifications are compatible.  As with all TCKs it is 
 impossible to provide tests for 100% assertion coverage.  Note, while
-the CTS may not have tests for all assertions in JSR-196, all
-implementations of JSR-196 must be compatible with the specifications.
+the CTS may not have tests for all assertions in Jakarta Authentication, all
+implementations of Jakarta Authentication must be compatible with the specifications.
 
 Untested assertions are due to the effects of availability and cost of 
 test development resources.
