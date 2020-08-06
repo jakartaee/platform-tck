@@ -6,4 +6,4 @@
 
 ** Apache Commons Codec 1.9
 
-** Apache Ant 1.8.4
+** Apache Ant 1.10.8
