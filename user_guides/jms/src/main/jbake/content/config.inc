@@ -1,21 +1,3 @@
-<!--
-
-    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
-    This program and the accompanying materials are made available under the
-    terms of the Eclipse Public License v. 2.0, which is available at
-    http://www.eclipse.org/legal/epl-2.0.
-
-    This Source Code may also be made available under the following Secondary
-    Licenses when the conditions for such availability set forth in the
-    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-    version 2 with the GNU Classpath Exception, which is available at
-    https://www.gnu.org/software/classpath/license.html.
-
-    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-
--->
-
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
@@ -30,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -62,7 +44,7 @@ slashes as a path separator instead.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1.  Set the following environment variables in your shell environment:
-* `JAVA_HOME` to the directory in which Java SE 8 is installed
+* `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
 * `TS_HOME` to the directory in which the {TechnologyShortName} {TechnologyVersion} software is
 installed
 * `JMS_HOME` to the directory in which the {TechnologyShortName} {TechnologyVersion} CI has been installed
@@ -83,7 +65,7 @@ and stopping the {TechnologyShortName} implementation under test as well as crea
 deleting all of the {TechnologyShortName} administered objects and {TechnologyShortName} users needed by the
 {TechnologyShortName} TCK. +
 The `ts.jte` file supports two {TechnologyShortName} {TechnologyVersion} Compatible Implementations: {TechnologyRI}
-CI and Eclipse GlassFish 5.1 CI. +
+CI and Eclipse GlassFish 6.0 CI. +
 For example, if using the {TechnologyRI} CI , the `impl.vi` property is set to
 `impl.vi=ri`. With this setting, the config.vi and clean.vi ant targets
 will invoke the script under `<TS_HOME>/bin/xml/impl/ri/config.vi.xml`.
@@ -163,9 +145,9 @@ provided porting package and JNDI file system provider.
 |`testQueue2` |`jakarta.jms.Queue`
 |`Q2` |`jakarta.jms.Queue`
 |`MY_TOPIC` |`jakarta.jms.Topic`
-|`MY_TOPIC2` |j`avax.jms.Topic`
+|`MY_TOPIC2` |`jakarta.jms.Topic`
 |`testT0` |`jakarta.jms.Topic`
-|`testT1` |j`avax.jms.Topic`
+|`testT1` |`jakarta.jms.Topic`
 |`testT2` |`jakarta.jms.Topic`
 |`MyConnectionFactory` |`jakarta.jms.ConnectionFactory`
 |`MyQueueConnectionFactory` |`jakarta.jms.QueueConnectionFactory`
@@ -211,7 +193,7 @@ Complete the following steps to automatically configure and start up the
 {TechnologyRI} CI:
 
 1.  Set the following environment variables in your shell environment:
-* `JAVA_HOME` to the directory in which the Java SE 7 software has been
+* `JAVA_HOME` to the directory in which the Java SE {SEversion} software has been
 installed
 * `IMQ_JAVAHOME` to the value of `JAVA_HOME`. +
 This is needed for {TTechnologyRI} CI commands and scripts.
@@ -276,7 +258,7 @@ cd $TS_HOME/bin
 ant clean.vi
 ----
 
-If you are using the CI Eclipse GlassFisn 5.1  or {TechnologyRI},
+If you are using the CI Eclipse GlassFisn 6  or {TechnologyRI},
 this target invokes the `<TS_HOME>/bin/xml/impl/ri/config.vi.xml` script
 which stops the {TechnologyShortName} service and deletes all the {TechnologyShortName} administered objects
 and {TechnologyShortName} users needed by the {TechnologyShortName} TCK. In the `ts.jte` file, set the
@@ -304,7 +286,7 @@ Complete the following steps to manually configure and start up the {TechnologyS
 CI:
 
 1.  Set the following environment variables in your shell environment:
-* `JAVA_HOME` to the directory in which the Java SE 7 software has been
+* `JAVA_HOME` to the directory in which the Java SE {SEversion} software has been
 installed
 * `IMQ_JAVAHOME` to the value of `JAVA_HOME`. +
 This is needed for {TechnologyShortName} {TechnologyVersion} CI commands and scripts.
@@ -361,9 +343,9 @@ This directory must match the `jndi.fs.dir`. property setting in the
 |`testQueue2` |`jakarta.jms.Queue`
 |`Q2` |`jakarta.jms.Queue`
 |`MY_TOPIC` |`jakarta.jms.Topic`
-|`MY_TOPIC2` |j`avax.jms.Topic`
+|`MY_TOPIC2` |`jakarta.jms.Topic`
 |`testT0` |`jakarta.jms.Topic`
-|`testT1` |j`avax.jms.Topic`
+|`testT1` |`jakarta.jms.Topic`
 |`testT2` |`jakarta.jms.Topic`
 |`MyConnectionFactory` |`jakarta.jms.ConnectionFactory`
 |`MyQueueConnectionFactory` |`jakarta.jms.QueueConnectionFactory`
@@ -427,7 +409,7 @@ the {TechnologyShortName} TCK.
 Note that if you do implement this interface, you will also need to set
 the `porting.ts.jmsObjects.class.1` property in the `ts.jte` file for
 accessing your porting implementation class. The default for this
-property value is set to the implementation used by the {TechnologyShortName} Reference
+property value is set to the implementation used by the {TechnologyShortName} Compatible
 Implementation. You may need to set this value to point to your
 implementation of this interface. See link:#GLQOJ[Manual Configuration
 and Startup of the {TechnologyShortName} CI] for information about modifying the `ts.jte`

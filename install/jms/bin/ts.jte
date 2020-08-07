@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,30 +20,30 @@
 
 ####################################################################################
 #                                                                   	           #
-#   JavaTest Environment file for JMS Compatibility Test Suite                     #
+#   JavaTest Environment file for Jakarta Messaging Compatibility Test Suite       #
 #                                                                                  #
 #   Environment specific properties in this file will likely	                   #
-#   have to be modified prior to running the JMS TCK. Instructions                 #
+#   have to be modified prior to running the Jakarta Messaging TCK. Instructions   #
 #   for modifying these properties are contained in this file.	                   #
 #                                                                                  #
 ####################################################################################
 
 ####################################################################################
-# Properties to set prior to running the JMS TCK tests		      
-# @jms.home		-- Install directory of the JMS Reference Implementation.
-# @jms.classes		-- Classes of the JMS Reference Implementation needed to
-#			   run and/or build the JMS TCK. If testing with the JMS
-#			   Reference Implementation then set jms.classes to the
+# Properties to set prior to running the Jakarta Messaging TCK tests		      
+# @jms.home		-- Install directory of the Jakarta Messaging Compatible Implementation.
+# @jms.classes	-- Classes of the Jakarta Messaging Compatible Implementation needed to
+#			   run and/or build the Jakarta Messaging TCK. If testing with the Jakarta Messaging 
+#			   Compatible Implementation then set jms.classes to the
 #			   following:
 #
 #			   jms.classes=${ri.jars}
 #
-# See the bottom of this ts.jte file for properties specific to the JMS Reference 
+# See the bottom of this ts.jte file for properties specific to the Jakarta Messaging Compatible 
 # Implementation. The variable "ri.jars" at bottom of ts.jte file hardcodes the 
-# classes/jars for the JMS Reference Implementation. 
+# classes/jars for the Jakarta Messaging Compatible Implementation. 
 #
-# The JMS Reference Implementation and the Open Message Queue Product are the 
-# Standalone JMS RI implementations. The JMS TCK has been run against both.
+# Eclipse Open Message Queue is one example 
+# Jakarta Messaging compatible implementation. The Jakarta Messaging TCK Eclipse Open MQ.
 ####################################################################################
 jms.home=
 jms.classes=
@@ -71,7 +71,7 @@ tools.jar=${jdk.home}/lib/tools.jar
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
-#                    Java EE and Java SE classes. Paths must be 
+#                    Jakarta EE and Java SE classes. Paths must be 
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #############################################################################
@@ -195,7 +195,7 @@ env.ts_win32.menu=true
 porting.ts.jmsObjects.class.1=com.sun.ts.lib.implementation.sun.jms.SunRIJMSObjects
 
 ###############################################################
-#These properties are needed for the JMS tests.
+#These properties are needed for the Jakarta Messaging tests.
 ###############################################################
 jms_timeout=10000
 user=j2ee
@@ -210,25 +210,25 @@ tslib.name=jmstck
 
 #########################################################################
 # platform.mode is used by to specify runtime environment for testing
-# which can be either javaEE or standalone. For JMS TCK this setting
+# which can be either javaEE or standalone. For Jakarta Messaging TCK this setting
 # is standalone.
 #
-# platform.mode=standalone     Testing JMS TCK as Standalone environment
+# platform.mode=standalone     Testing Jakarta Messaging TCK as Standalone environment
 #########################################################################
 platform.mode=standalone
 
 #######################################################################################
-# JMS RI Implementation Property Settings for Vendor Implementation under test
+# Jakarta Messaging CI Implementation Property Settings for Vendor Implementation under test
 #
-# The TCK uses the following JMS RI Implementations:
-#   - ri	  (For the JMS Reference Implementation or Open Message Queue Product)
+# The TCK uses the following Jakarta Messaging CI Implementations:
+#   - ri	  (for Eclipse Open Message Queue)
 #
 # Here are the common properties that need to be defined for the common implementation
 # functionality:
 #
 # @impl.vi    	This property must be set to the Vendor implementation under test.
 #
-#		Default value is (ri) for the Standalone JMS Reference Implementation 
+#		Default value is (ri) for the Standalone Jakarta Messaging Compatible Implementation 
 #		or the Open Message Queue Product (impl.vi=ri).
 #######################################################################################
 
@@ -236,13 +236,13 @@ impl.vi=ri
 
 # ---------------------------------------------------------------------------------
 # ================================================
-# Standalone JMS Reference Implementation and Open
+# Standalone Jakarta Messaging Compatible Implementation and Open
 # Message Queue Product Configuration Properties
 # ================================================
 #
 # Property settings for ant config.vi/clean.vi tasks to configure, unconfigure, 
-# setup, cleanup, start, and stop the Standalone JMS Reference Implementation 
-# and the Open Message Queue Product for a JMS TCK run.
+# setup, cleanup, start, and stop the Standalone Jakarta Messaging Compatible Implementation 
+# and the Open Message Queue Product for a Jakarta Messaging TCK run.
 #
 # These properties require NO CHANGES other than adding the drive letter to the
 # (admin.pass.file) and (jndi.fs.dir) properties if you are running on a WINDOWS
@@ -258,18 +258,18 @@ impl.vi=ri
 #
 # java.naming.provider.url=file:///C:/tmp/ri_admin_objects
 # 
-# The JMS TCK uses the JNDI Filesystem Context Provider as the JMS Object store
-# for the JMS administered objects for the Standalone JMS Reference Implementation
+# The Jakarta Messaging TCK uses the JNDI Filesystem Context Provider as the Jakarta Messaging Object store
+# for the Jakarta Messaging administered objects for the Standalone Jakarta Messaging Compatible Implementation
 # and the Open Message Queue Product.
 # 
-# For the Standalone JMS Reference Implementation and the Open Message Queue 
+# For the Standalone Jakarta Messaging Compatible Implementation and the Open Message Queue 
 # Product all you need to set is the "jms.home" property at the top of this 
-# file to the location where the Standalone JMS Reference Implementation or 
+# file to the location where the Standalone Jakarta Messaging Compatible Implementation or 
 # Open Message Queue Product is installed. Then you to set the "jms.classes" 
-# property to the location of the classes/jars of the Standalone JMS Reference 
+# property to the location of the classes/jars of the Standalone Jakarta Messaging Compatible 
 # Implementation or the Open Message Queue Product. The classes/jars are 
 # hardcoded in the property "ri.jars" below. So set "jms.classes="${ri.jars}"
-# and you are now set to run the JMS TCK against the Standalone JMS Reference 
+# and you are now set to run the Jakarta Messaging TCK against the Standalone Jakarta Messaging Compatible 
 # Implementation or the Open Message Queue Product.
 #####################################################################
 # ---------------------------------------------------------------------------------
