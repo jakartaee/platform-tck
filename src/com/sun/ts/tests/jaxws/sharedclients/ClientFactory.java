@@ -47,7 +47,7 @@ public class ClientFactory {
     }
     if (property.equalsIgnoreCase("standalone")) {
       mode = SOAPClient.MODE_STANDALONE;
-    } else if (property.equalsIgnoreCase("javaEE")) {
+    } else if (property.equalsIgnoreCase("jakartaEE")) {
       mode = SOAPClient.MODE_JavaEE;
 
     } else {

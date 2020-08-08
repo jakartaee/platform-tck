@@ -82,7 +82,7 @@ public class Client extends ServiceEETest {
 
   private QName PORT_QNAME = new QName(NAMESPACEURI, PORT_NAME);
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   Echo port = null;
 

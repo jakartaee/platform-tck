@@ -61,7 +61,7 @@ public class Client extends ServiceEETest {
 
   private static final String MODEPROP = "platform.mode";
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private static final String ENDPOINTPUBLISHPROP = "http.server.supports.endpoint.publish";
 
@@ -396,7 +396,7 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       endpoint.publish(url);
-      if (modeProperty.equals("javaEE") || !endpointPublishSupport) {
+      if (modeProperty.equals("jakartaEE") || !endpointPublishSupport) {
         TestUtil
             .logErr("expected exception when endpoint publish not supported");
         pass = false;
@@ -436,7 +436,7 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       endpoint = Endpoint.publish(url, IMPLEMENTOR);
-      if (modeProperty.equals("javaEE") || !endpointPublishSupport) {
+      if (modeProperty.equals("jakartaEE") || !endpointPublishSupport) {
         TestUtil
             .logErr("expected exception when endpoint publish not supported");
         pass = false;
@@ -475,7 +475,7 @@ public class Client extends ServiceEETest {
     boolean pass = true;
     try {
       endpoint.publish(url);
-      if (modeProperty.equals("javaEE") || !endpointPublishSupport) {
+      if (modeProperty.equals("jakartaEE") || !endpointPublishSupport) {
         TestUtil
             .logErr("expected exception when endpoint publish not supported");
         pass = false;
@@ -527,7 +527,7 @@ public class Client extends ServiceEETest {
       } else
         TestUtil.logMsg("Endpoint is not published - expected");
       endpoint.publish(url);
-      if (modeProperty.equals("javaEE") || !endpointPublishSupport) {
+      if (modeProperty.equals("jakartaEE") || !endpointPublishSupport) {
         TestUtil
             .logErr("expected exception when endpoint publish not supported");
         pass = false;
@@ -699,8 +699,8 @@ public class Client extends ServiceEETest {
   public void getEndpointReferenceParamsTest() throws Fault {
     TestUtil.logTrace("getEndpointReferenceParamsTest");
     boolean pass = true;
-    if (modeProperty.equals("javaEE")) {
-      TestUtil.logMsg("Not tested in javaEE platform");
+    if (modeProperty.equals("jakartaEE")) {
+      TestUtil.logMsg("Not tested in jakartaEE platform");
       pass = false;
     }
     try {
@@ -747,8 +747,8 @@ public class Client extends ServiceEETest {
   public void getEndpointReferenceClassTest() throws Fault {
     TestUtil.logTrace("getEndpointReferenceClassTest");
     boolean pass = true;
-    if (modeProperty.equals("javaEE")) {
-      TestUtil.logMsg("Not tested in javaEE platform");
+    if (modeProperty.equals("jakartaEE")) {
+      TestUtil.logMsg("Not tested in jakartaEE platform");
       pass = false;
     }
     try {

@@ -587,7 +587,7 @@ porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.S
 ###############################################################
 # The following properties should not be needed unless trying
 # to execute the SOAP profile tests within a JavaEE container
-# which implies platform.mode is set to javaEE
+# which implies platform.mode is set to jakartaEE
 # Even then, these properties should only be needed to
 # satisfy some requirements for properly lookups.
 ###############################################################
@@ -801,10 +801,10 @@ tslib.name=jaspic
 
 ###############################################################
 ## Use JaspicDeliverable class when the platform.mode is in standalone mode
-## Use CTSDeliverable class when the platform.mode is in JavaEE mode
+## Use CTSDeliverable class when the platform.mode is in JakartaEE mode
 ###############################################################
 #deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicDeliverable
-#deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable
+#deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJakartaEEDeliverable
 deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable
 
 
@@ -836,12 +836,12 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 ## platform.
 ##
 ## platform.mode=standalone	JAXWS/JASPIC Programming Model
-## platform.mode=javaEE		Jakarta EE Programming Model
+## platform.mode=jakartaEE		Jakarta EE Programming Model
 ##
 ## Note: When you switch platform.mode make sure you change the property
 ##       deliverable.class as well(this is appilcable only for JASPIC tests)
 ######################################################################
-platform.mode=javaEE
+platform.mode=jakartaEE
 
 
 ts_home=${ts.home}

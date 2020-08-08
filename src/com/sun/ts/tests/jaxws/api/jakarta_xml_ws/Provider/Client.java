@@ -61,7 +61,7 @@ public class Client extends ServiceEETest {
 
   private static final String MODEPROP = "platform.mode";
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private static final String SHARED_CLIENT_PKG = "com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.";
 

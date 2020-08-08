@@ -68,7 +68,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
 
   private static final String MODEPROP = "platform.mode";
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private TSURL ctsurl = new TSURL();
 

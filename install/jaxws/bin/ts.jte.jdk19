@@ -443,7 +443,7 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 # JAXWS Programming model based on the runtime execution platform.
 #
 # platform.mode=standalone	JAXWS Programming Model
-# platform.mode=javaEE		Java EE Programming Model
+# platform.mode=jakartaEE		Java EE Programming Model
 #######################################################################
 platform.mode=standalone
 

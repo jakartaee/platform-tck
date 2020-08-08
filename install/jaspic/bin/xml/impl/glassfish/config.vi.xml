@@ -71,7 +71,7 @@
 
    <!-- set prop to be used for case where we have glassfish app server -->
    <if>
-       <equals arg1="${platform.mode}" arg2="javaEE"/>
+       <equals arg1="${platform.mode}" arg2="jakartaEE"/>
        <then>
             <property name="use.create.system.properties"   value="true"/>
        </then>

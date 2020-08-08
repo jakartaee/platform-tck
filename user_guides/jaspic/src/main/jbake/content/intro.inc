@@ -195,7 +195,7 @@ handled in the following ways:
 * A Jakarta Deployment version 1.2 deployment is used for Jakarta EE based
 implementations. This is differentiated by using a different deliverable
 class,
-`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable`,
+`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJakartaEEDeliverable`,
 which is configurable in the `ts.jte` file. Vendors need to write their
 own `Deliverable` class that can be used to deploy in their environment.
 * For standalone implementations (this includes container and
@@ -220,7 +220,7 @@ and leaves the deployment up to the licensee by way of an Ant target.
 `ts.jte` file, `platform.mode`, is used to distinguish the different
 SOAP implementations.
 
-** `platform.mode=javaEE` (for Jakarta EE based implementations)
+** `platform.mode=jakartaEE` (for Jakarta EE based implementations)
 
 ** `platform.mode=standalone` +
 

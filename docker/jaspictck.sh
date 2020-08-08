@@ -71,7 +71,7 @@ java -version
 
 sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
 sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#platform\.mode=.*#platform.mode=javaEE#g' ts.jte
+sed -i 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
 sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
 sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
 sed -i 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte

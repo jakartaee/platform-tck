@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,9 +25,9 @@ import java.util.Properties;
  * This class serves as a well known place for harness, util, and porting
  * classes to retrieve property values.
  */
-public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
+public class JaspicJakartaEEPropertyManager extends AbstractPropertyManager {
 
-  private static JaspicJavaEEPropertyManager jteMgr = new JaspicJavaEEPropertyManager();
+  private static JaspicJakartaEEPropertyManager jteMgr = new JaspicJakartaEEPropertyManager();
 
   private String sDeployClass1;
 
@@ -71,19 +71,19 @@ public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
 
   private String password2;
 
-  private JaspicJavaEEPropertyManager() {
+  private JaspicJakartaEEPropertyManager() {
   }
 
   /**
-   * This method returns the singleton instance of JaspicJavaEEPropertyManager
+   * This method returns the singleton instance of JaspicJakartaEEPropertyManager
    * which provides access to all ts.jte properties. This is only called once by
    * the test harness.
    *
    * @param env
    *          - TestEnvironment object from JavaTest
-   * @return JaspicJavaEEPropertyManager - singleton property manager object
+   * @return JaspicJakartaEEPropertyManager - singleton property manager object
    */
-  public final static JaspicJavaEEPropertyManager getJaspicJavaEEPropertyManager(
+  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(
       TestEnvironment env) throws PropertyNotSetException {
     jteMgr.setTestEnvironment(env);
     jteMgr.initInteropProperties(); // TODO: why init interop only here?
@@ -91,21 +91,21 @@ public class JaspicJavaEEPropertyManager extends AbstractPropertyManager {
   }
 
   /**
-   * This method returns the singleton instance of JaspicJavaEEPropertyManager
+   * This method returns the singleton instance of JaspicJakartaEEPropertyManager
    * which provides access to all ts.jte properties. This is only called by the
    * init() method in ManualDeployment.java
    *
    * @param p
    *          - Properties object from JavaTest
-   * @return JaspicJavaEEPropertyManager - singleton property manager object
+   * @return JaspicJakartaEEPropertyManager - singleton property manager object
    */
-  public final static JaspicJavaEEPropertyManager getJaspicJavaEEPropertyManager(
+  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(
       Properties p) throws PropertyNotSetException {
     jteMgr.setJteProperties(p);
     return jteMgr;
   }
 
-  public final static JaspicJavaEEPropertyManager getJaspicJavaEEPropertyManager()
+  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager()
       throws PropertyNotSetException {
     return jteMgr;
   }

@@ -49,7 +49,7 @@ Deploy the {TechnologyShortName} TCK tests in the manner that your implementatio
 requires, based on the type of profile.
 
 If your implementation is Jakart EE based, set the `platform.mode`
-property in the `ts.jte` file to `javaEE`.
+property in the `ts.jte` file to `jakartaEE`.
 
 If your implementation is not Jakarta EE based, set the `platform.mode`
 property in the `ts.jte` file to `standalone`.
