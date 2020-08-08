@@ -14,46 +14,50 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-#
-# $Id: ts.jte 69480 2013-01-11 18:52:37Z af70133 $
-#
-
 ####################################################################################
 #                                                                   	           #
 #   JavaTest Environment file for Jakarta Messaging Compatibility Test Suite       #
 #                                                                                  #
-#   Environment specific properties in this file will likely	                   #
-#   have to be modified prior to running the Jakarta Messaging TCK. Instructions   #
+#   Environment specific properties in this file must        	                   #
+#   be modified prior to running the Jakarta Messaging TCK. Instructions           #
 #   for modifying these properties are contained in this file.	                   #
 #                                                                                  #
 ####################################################################################
 
 ####################################################################################
+#
 # Properties to set prior to running the Jakarta Messaging TCK tests		      
 # @jms.home		-- Install directory of the Jakarta Messaging Compatible Implementation.
 # @jms.classes	-- Classes of the Jakarta Messaging Compatible Implementation needed to
-#			   run and/or build the Jakarta Messaging TCK. If testing with the Jakarta Messaging 
-#			   Compatible Implementation then set jms.classes to the
-#			   following:
+#			   run and/or build the Jakarta Messaging TCK. 
+#
+#              Note: Jakarta EE does not provide a special compatible implementation
+#              (formerly called the RI). Some vestiges of this remain in these settings.
+#              These will be removed in a future release of this TCK.
+#
+#              Initial TCK testing for Jakarta Messaging in Jakarta EE 9 is performed against
+#              Eclipse Open Message Queue (Open MQ). The JAR list is preset for
+#              Open MQ
+#
 #
 #			   jms.classes=${ri.jars}
 #
 # See the bottom of this ts.jte file for properties specific to the Jakarta Messaging Compatible 
-# Implementation. The variable "ri.jars" at bottom of ts.jte file hardcodes the 
-# classes/jars for the Jakarta Messaging Compatible Implementation. 
+# Implementation. The variable "ri.jars" at bottom of this file sets the 
+# classes/jars for Open MQ. These may need to be changed for other vendor implementations.
 #
-# Eclipse Open Message Queue is one example 
-# Jakarta Messaging compatible implementation. The Jakarta Messaging TCK Eclipse Open MQ.
 ####################################################################################
 jms.home=
 jms.classes=
 
 ####################################################################################
+#
 # The jars/classes for the TS harness/javatest and the test classes
 # @ts.harness.classpath --  Classes required by javatest
 # @ts.classpath         --  Classes used to build the CTS tests
 # @ts.run.classpath     --  Classpath required by the vendor
 #                           appclient container.
+#
 ####################################################################################
 ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jmstck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
@@ -73,7 +77,7 @@ tools.jar=${jdk.home}/lib/tools.jar
 #                    jar files and/or directories which contain your 
 #                    Jakarta EE and Java SE classes. Paths must be 
 #                    separated by the appropriate path separator 
-#                    (';' windows, ':' Unixes).
+#                    (';' windows, ':' Unix).
 #############################################################################
 sigTestClasspath=${jms.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
 
@@ -220,29 +224,28 @@ platform.mode=standalone
 #######################################################################################
 # Jakarta Messaging CI Implementation Property Settings for Vendor Implementation under test
 #
-# The TCK uses the following Jakarta Messaging CI Implementations:
-#   - ri	  (for Eclipse Open Message Queue)
+# The TCK uses the following for Jakarta Messaging CI Implementations:
+#   - ri	  (for Open MQ)
 #
 # Here are the common properties that need to be defined for the common implementation
 # functionality:
 #
 # @impl.vi    	This property must be set to the Vendor implementation under test.
 #
-#		Default value is (ri) for the Standalone Jakarta Messaging Compatible Implementation 
-#		or the Open Message Queue Product (impl.vi=ri).
+#		Default value is (ri) for the initial testing of Standalone Jakarta Messaging 
+#		with Open MQ (impl.vi=ri).
 #######################################################################################
 
 impl.vi=ri
 
 # ---------------------------------------------------------------------------------
 # ================================================
-# Standalone Jakarta Messaging Compatible Implementation and Open
-# Message Queue Product Configuration Properties
+# Standalone Jakarta Messaging Compatible Implementation 
+# Configuration Properties used for Open MQ
 # ================================================
 #
 # Property settings for ant config.vi/clean.vi tasks to configure, unconfigure, 
-# setup, cleanup, start, and stop the Standalone Jakarta Messaging Compatible Implementation 
-# and the Open Message Queue Product for a Jakarta Messaging TCK run.
+# setup, cleanup, start, and stop Open MQ for a Jakarta Messaging TCK run.
 #
 # These properties require NO CHANGES other than adding the drive letter to the
 # (admin.pass.file) and (jndi.fs.dir) properties if you are running on a WINDOWS
@@ -258,19 +261,18 @@ impl.vi=ri
 #
 # java.naming.provider.url=file:///C:/tmp/ri_admin_objects
 # 
-# The Jakarta Messaging TCK uses the JNDI Filesystem Context Provider as the Jakarta Messaging Object store
-# for the Jakarta Messaging administered objects for the Standalone Jakarta Messaging Compatible Implementation
-# and the Open Message Queue Product.
+# The Jakarta Messaging TCK uses the JNDI Filesystem Context Provider as the 
+# Jakarta Messaging Object store for the Jakarta Messaging administered 
+# objects for  Open MQ.
 # 
-# For the Standalone Jakarta Messaging Compatible Implementation and the Open Message Queue 
-# Product all you need to set is the "jms.home" property at the top of this 
-# file to the location where the Standalone Jakarta Messaging Compatible Implementation or 
-# Open Message Queue Product is installed. Then you to set the "jms.classes" 
-# property to the location of the classes/jars of the Standalone Jakarta Messaging Compatible 
-# Implementation or the Open Message Queue Product. The classes/jars are 
-# hardcoded in the property "ri.jars" below. So set "jms.classes="${ri.jars}"
-# and you are now set to run the Jakarta Messaging TCK against the Standalone Jakarta Messaging Compatible 
-# Implementation or the Open Message Queue Product.
+# For Open MQ you need to set the "jms.home" property at the top of this 
+# file to the location where Open MQ is installed. 
+# Then you to set the "jms.classes" property to the location of the 
+# classes/jars of Open MQ. 
+# The classes/jars are hard-coded in the property "ri.jars" below. 
+# So set "jms.classes="${ri.jars}" and you are now set to run the 
+# Jakarta Messaging TCK against Open MQ.
+#
 #####################################################################
 # ---------------------------------------------------------------------------------
 #
