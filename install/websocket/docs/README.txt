@@ -44,7 +44,7 @@ Setup and Configuration of the WebSocket TCK
 
 2. Edit the $TS_HOME/bin/ts.jte file and set the following properties:
 
-        web.home=/ci/glassfish5/glassfish
+        web.home=/ci/glassfish6/glassfish
         webServerHost=localhost
         webServerPort=8080
         impl.vi=glassfish
@@ -58,7 +58,7 @@ Reference Implementation.
 
 1. Start WebSocket 2.0 Reference Implementation:
 
-   cd /ci/glassfish5/glassfish/bin
+   cd /ci/glassfish6/glassfish/bin
    ./asadmin start-domain
 
 2. Deploy all WebSocket TCK tests.
