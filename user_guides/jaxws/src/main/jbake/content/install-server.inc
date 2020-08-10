@@ -10,14 +10,14 @@ site. Refer to any installation instructions that accompany the software
 for additional information.
 
 .  Install the Jakarta EE 9 Compatible Platform software which contains the JAX-WS 3.0
-Reference Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
+Compatible Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
 software. +
-The Jakarta EE 9 Compatible Platform software contains the JAX-WS 3.0 Reference
+The Jakarta EE 9 Compatible Platform software contains the JAX-WS 3.0 Compatible
 Implementation and is used to validate your initial configuration and
 setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which
 are explained further in link:config.html#GBFVV[Chapter 4, "Setup and
 Configuration"] and link:rebuild.html#GCLIZ[Appendix B]. +
-The Standalone JAX-WS 3.0 Compatible Implementation software contains the JAX-WS 3.0 Reference
+The Standalone JAX-WS 3.0 Compatible Implementation software contains the JAX-WS 3.0 Compatible
 Implementation and can be used with any web container that meets the
 minimum requirements for a container as defined in the JAX-WS 3.0
 Specification such as the Apache Tomcat web container. +
@@ -46,7 +46,7 @@ cp jaxwstck/lib/tsharness.jar jaxwstck/lib/jaxwstck.jar ${tomcat.home}/shared/li
 ----
 --
 +
-If, instead of using Tomcat, you are using the Jakarta EE 9 Reference
+If, instead of using Tomcat, you are using the Jakarta EE 9 Compatible
 Implementation, which already includes JAX-WS 3.0, you only need to copy
 the `jaxwstck/lib/tsharness.jar` and `jaxwstck/lib/jaxwstck.jar` TCK JAR
 files to the domain's `lib/ext` directory.

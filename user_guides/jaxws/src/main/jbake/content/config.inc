@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -283,7 +283,7 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   whether Endpoint Publish APIs are supported on the container.
   l. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the Compatible Implementation API jars for those
-  technologies you wish to override. Jakarta EE 9 contains an implementation
+  technologies you wish to override. Java SE 8 contains an implementation
   of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
   property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
@@ -317,11 +317,11 @@ appropriately for your environment.
 [[GCLHF]][[configuring-your-environment-to-rebuild-and-run-the-jax-ws-tck-against-the-jax-ws-ri]]
 
 4.3.1 Configuring Your Environment to Rebuild and Run the JAX-WS TCK Against the JAX-WS Compatible Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes the steps needed to configure the JAX-WS TCK so
 that the tests can be rebuilt (using the Vendor Implementation toolset),
-and then deployed and run against the JAX-WS Reference Implementation.
+and then deployed and run against the JAX-WS Compatible Implementation.
 
 If you are not ready to proceed with this portion of the testing
 process, skip this section for now and proceed to
@@ -515,7 +515,7 @@ cd <TS_HOME>/bin
 
 [[GCFFB]][[to-configure-the-jax-ws-reference-implementation-as-your-ri-environment]]
 
-==== 4.3.3.2 To Configure the JAX-WS Reference Implementation as your Compatible Implementation Environment
+==== 4.3.3.2 Configure the provided JAX-WS Compatible Implementation as your Compatible Implementation environment
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed

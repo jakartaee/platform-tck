@@ -33,16 +33,16 @@ B.1 Overview
 ~~~~~~~~~~~~
 
 The set of prebuilt archives and classes that ship with the JAX-WS TCK
-were built using the JAX-WS Reference Implementation tools
+were built using the JAX-WS Compatible Implementation tools
 (link:#GCQJY[wsgen Reference] and link:#GCQMM[wsimport Reference]), and
 must be deployed and run against your implementation of JAX-WS. These
 tests are referred to as `forward` tests.
 
 You must also rebuild the archives and classes associated with these
 tests using your generation tools, and then deploy and run them against
-the JAX-WS Reference Implementation. These tests are known as `reverse`
+the JAX-WS Compatible Implementation. These tests are known as `reverse`
 tests. The test names of all the tests that will be run against the
-Reference Implementation are identical to the `forward` test names found
+Compatible Implementation are identical to the `forward` test names found
 in the client Java source files, with the added suffix of `_reverse`.
 Essentially, for each `forward` test, there is an identical `reverse`
 test. This ensures that the same behaviors are verified on each JAX-WS
@@ -61,7 +61,7 @@ source file.
 
 
 To be able to run the entire test suite in a single run, you must have
-your implementation and the Reference Implementation configured
+your implementation and the Compatible Implementation configured
 simultaneously. Please see link:config.html#GCLIK[Configuring Your
 Environment to Simultaneously Run the JAX-WS TCK Against the VI and the
 JAX-WS Compatible Implementation] for more information.
@@ -118,10 +118,10 @@ these targets will result in the prebuilt classes and archives being
 deleted and/or overwritten. +
 After completing the steps above, rebuilt class files will appear under
 `<TS_HOME>/classes_vi_built` so as not to affect class files that were
-generated and compiled with the JAX-WS Reference Implementation. Rebuilt
+generated and compiled with the JAX-WS Compatible Implementation. Rebuilt
 archives will be prefixed with the string, `vi_built`, and will be
 created in the same directory (under `<TS_HOME>/dist`) as those built
-using the Reference Implementation.
+using the Compatible Implementation.
 
 [NOTE]
 =======================================================================
