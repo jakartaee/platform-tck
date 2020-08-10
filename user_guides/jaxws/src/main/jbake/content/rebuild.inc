@@ -13,7 +13,7 @@ need to be changed or removed.
 B Rebuilding the JAX-WS TCK Using the Vendor's Toolset
 ------------------------------------------------------
 
-The JAX-WS 2.3 specification requires that each implementation has a way
+The JAX-WS 3.0 specification requires that each implementation has a way
 to generate WSDL from Java, and to generate Java from WSDL. To verify
 that implementations do this in a compatible manner, half of the tests
 in the JAX-WS TCK require that you first rebuild them using your
@@ -33,16 +33,16 @@ B.1 Overview
 ~~~~~~~~~~~~
 
 The set of prebuilt archives and classes that ship with the JAX-WS TCK
-were built using the JAX-WS Reference Implementation tools
+were built using the JAX-WS Compatible Implementation tools
 (link:#GCQJY[wsgen Reference] and link:#GCQMM[wsimport Reference]), and
 must be deployed and run against your implementation of JAX-WS. These
 tests are referred to as `forward` tests.
 
 You must also rebuild the archives and classes associated with these
 tests using your generation tools, and then deploy and run them against
-the JAX-WS Reference Implementation. These tests are known as `reverse`
+the JAX-WS Compatible Implementation. These tests are known as `reverse`
 tests. The test names of all the tests that will be run against the
-Reference Implementation are identical to the `forward` test names found
+Compatible Implementation are identical to the `forward` test names found
 in the client Java source files, with the added suffix of `_reverse`.
 Essentially, for each `forward` test, there is an identical `reverse`
 test. This ensures that the same behaviors are verified on each JAX-WS
@@ -61,10 +61,10 @@ source file.
 
 
 To be able to run the entire test suite in a single run, you must have
-your implementation and the Reference Implementation configured
+your implementation and the Compatible Implementation configured
 simultaneously. Please see link:config.html#GCLIK[Configuring Your
 Environment to Simultaneously Run the JAX-WS TCK Against the VI and the
-JAX-WS RI] for more information.
+JAX-WS Compatible Implementation] for more information.
 
 [[GCLLW]][[b.2-rebuilding-the-jax-ws-tck-classes-using-ant]]
 
@@ -88,10 +88,10 @@ the above two tasks.
   a.  Verify that the property `endorsed.dirs` is set to the location of
   the VI API jars for those technologies you wish to override. Java SE 8
   contains an implementation of JAX-WS 2.2 which will conflict with JAX-WS
-  2.3, therefore this property must be set so that JAX-WS 2.3 will be used
+  3.0, therefore this property must be set so that JAX-WS 3.0 will be used
   during the building of tests and during test execution.
   b.  Set the `java.endorsed.dirs` property in the `ANT_OPTS` environment
-  variable to point to the location in which only the JAX-WS 2.3 API jars
+  variable to point to the location in which only the JAX-WS 3.0 API jars
   exist; for example:
 +
 --
@@ -118,10 +118,10 @@ these targets will result in the prebuilt classes and archives being
 deleted and/or overwritten. +
 After completing the steps above, rebuilt class files will appear under
 `<TS_HOME>/classes_vi_built` so as not to affect class files that were
-generated and compiled with the JAX-WS Reference Implementation. Rebuilt
+generated and compiled with the JAX-WS Compatible Implementation. Rebuilt
 archives will be prefixed with the string, `vi_built`, and will be
 created in the same directory (under `<TS_HOME>/dist`) as those built
-using the Reference Implementation.
+using the Compatible Implementation.
 
 [NOTE]
 =======================================================================
@@ -145,7 +145,7 @@ the rebuilding of a single test directory.
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest`
 directory.
 2.  Run `<TS_HOME>/tools/ant/bin/ant llc`. +
-The following is a listing of classes built using the JAX-WS RI.
+The following is a listing of classes built using the JAX-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -169,7 +169,7 @@ drwxr-xr-x   3 root root     512 Apr 12 08:31 generated_sources/
 --
 +
 3.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
-This shows you the listing of archives built using the JAX-WS RI.
+This shows you the listing of archives built using the JAX-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -221,7 +221,7 @@ drwxr-xr-x   3 root root     512 Apr 12 12:01 generated_sources/
 --
 +
 6.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
-This shows the listing of all archives and JAX-WS RI deployment plan
+This shows the listing of all archives and JAX-WS Compatible Implementation deployment plan
 descriptors for this test directory. Those built using your
 implementation are prepended with `vi_built_`.
 +
@@ -599,7 +599,7 @@ the default package name algorithm defined in the specification.
 
 |`-target` |Generate code for the specified version of the JAX-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 2.3.
+compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 
 |`-quiet` |Suppress `wsimport` output.
 
@@ -703,7 +703,7 @@ See the `wsimport_catalog` sample for more information. |`-catalog`
 
 |`target` |Generate code for the specified version of the JAX-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 2.3.
+compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 |`-target`
 
 |`quiet` |Suppress `wsimport` output. |`-quiet`
@@ -804,5 +804,3 @@ compiles with debug information on.
 The above example generates portable artifacts for `AddNumbers.wsdl`,
 stores `.java` files in the destination directory, and stores `.class`
 files in the same directory.
-
-
