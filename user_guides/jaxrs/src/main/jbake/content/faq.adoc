@@ -55,7 +55,7 @@ The JavaTest exclude file (+{jtxFileName}+) contains all tests that are not
 required to be run. The following is a list of reasons for a test to be
 included in the Exclude List:
 
-* An error in a reference implementation that does not allow the test to
+* An error in a compatible implementation that does not allow the test to
 execute properly has been discovered.
 * An error in the specification that was used as the basis of the test
 has been discovered.

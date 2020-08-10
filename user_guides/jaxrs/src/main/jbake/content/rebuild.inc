@@ -30,7 +30,7 @@ published in a Java SE environment are located under
 `$TS_HOME/classes`.
 
 The {TechnologyShortName} TCK comes with prebuilt test WAR files for
-deployment on JAkarta EE 8 CI, Eclipse GlassFish 5.1, which provides a Servlet–compliant Web
+deployment on JAkarta EE {JakartaEEVersion} CI, Eclipse GlassFish 6, which provides a Servlet–compliant Web
 container. The WAR files are {TechnologyRI}-specific, with {TechnologyRI}'s servlet
 class and {TechnologyRI}'s servlet defined in the `web.xml` deployment
 descriptor. To run the TCK tests against the VI in a Servlet–compliant
@@ -56,8 +56,8 @@ B.1 Overview
 ~~~~~~~~~~~~
 
 The set of prebuilt archives and classes that ship with the
-{TechnologyShortName} TCK were built using the Eclipse GlassFish 5.1, Compatible
-Implementation, and must be deployed on a Jakarta EE 8 CI and run against
+{TechnologyShortName} TCK were built using the Eclipse GlassFish 6, Compatible
+Implementation, and must be deployed on a Jakarta EE {JakartaEEVersion} CI and run against
 the {TechnologyRI} CI.
 
 The prebuilt {TechnologyRI}-specific Servlet–compliant WAR files are located
@@ -154,7 +154,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 ----
 
 The {TechnologyShortName} TCK provides a tool,
-`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for use with the Jakarta EE 8 CI, Eclipse GlassFish 5.1
+`${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for use with the Jakarta EE {JakartaEEVersion} CI, Eclipse GlassFish 6
 that you can use as a model to help you create your own VI-specific Web
 test application.
 

@@ -1,11 +1,11 @@
-** `javax.ws.rs`
+** `jakarta.ws.rs`
 
-** `javax.ws.rs.client`
+** `jakarta.ws.rs.client`
 
-** `javax.ws.rs.container`
+** `jakarta.ws.rs.container`
 
-** `javax.ws.rs.core`
+** `jakarta.ws.rs.core`
 
-** `javax.ws.rs.ext`
+** `jakarta.ws.rs.ext`
 
-** `javax.ws.rs.sse`
+** `jakarta.ws.rs.sse`

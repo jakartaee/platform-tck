@@ -16,10 +16,12 @@
 
 #########################################################################
 #                                                                   	#
-#   JavaTest Environment file for JAX-RS Compatibility Test Suite       #
+#   JavaTest Environment file for Jakarta Restful Web Services          #
+#   Compatibility Test Suite                                            #
 #                                                                       #
 #   Environment specific properties in this file will likely	 	    #
-#   have to be modified prior to running the JAX-RS TCK. Instructions	#
+#   have to be modified prior to running the Jakarta Restful Web        #
+#   Services TCK. Instructions	                                        #
 #   for modifying these properties are contained in this file.	 	    #
 #                                                                       #
 #########################################################################
@@ -82,12 +84,14 @@ javatest.timeout.factor=1.0
 ###################################################################
 
 ###################################################################
-## When installing JAX-RS TCK/RI on Windows, users must install JAXRS-TCK and
+## When installing Jakarta Restful Web Services TCK/RI on Windows,
+## users must install Jakarta Restful Web Services-TCK and
 ## the RI on the same drive.  Also note that you should never
 ## specify drive letters in any path defined in this properties
 ## file.
 ##
-# @ts.display -- location to display JAX-RS TCK output on Unix
+# @ts.display -- location to display Jakarta Restful Web Services 
+#   TCK output on Unix
 ###############################################################
 ts.display=:0.0
 
@@ -110,10 +114,10 @@ alt.dtd.dir=${ts.home}/lib/dtds
 alt.schema.dir=${ts.home}/lib/schemas
 
 ###############################################################
-## Classpath properties required by JAX-RS TCK:
-# @ts.run.classpath     --  Classpath required by JAX-RS impl
+## Classpath properties required by Jakarta Restful Web Services TCK:
+# @ts.run.classpath     --  Classpath required by Jakarta Restful Web Services impl
 # @ts.harness.classpath --  Classes required by javatest
-# @ts.classpath         --  Classes used to build the JAX-RS tests
+# @ts.classpath         --  Classes used to build the Jakarta Restful Web Services tests
 ###############################################################
 ts.run.classpath=${jaxrs_impl.classes}${pathsep}${jaxrs.classes}${pathsep}${servlet.classes}
 
@@ -188,7 +192,8 @@ env.ts_win32.menu=true
 # @sigTestClasspath: This property must be set when running signature tests.
 #
 #                    The sigTestClasspath specifies a list of classes/jar files
-#                    which contains jaxrs implementation and Java SE classes.
+#                    which contains Jakarta Restful Web Services implementation 
+#                    and Java SE classes.
 ##########################################################################
 sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}
 
@@ -259,11 +264,11 @@ porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.S
 
 
 #####################################################################
-## The following properties must be set prior to running the JAX-RS
+## The following properties must be set prior to running the Jakarta Restful Web Services
 ## tests.
 ##
 ## These properties must specify the host and port of the web server,
-## in which the JAX-RS application deployed on.
+## in which the Jakarta Restful Web Services application deployed on.
 #
 # @webServerHost  hostname for the Vendor's Java EE Web Server
 # @webServerPort  port number of the Vendor's Java EE Web Server
@@ -328,9 +333,10 @@ glassfish.server.instance=server
 glassfish.domain.name=domain1
 
 #################################################################
-#The following properties must be set prior to running the JAXRS
-#TCK tests. These properties are used for the JAXRS security tests
-#which test HTTP Authentication.
+# The following properties must be set prior to running the 
+# Jakarta Restful Web Services TCK tests. These properties are 
+# used for the Jakarta Restful Web Services security tests
+# which test HTTP Authentication.
 #
 # @user           User defined to exercise rolemapping feature
 # @password       Associated password for the user
@@ -348,10 +354,10 @@ authpassword=javajoe
 #
 # @jaxrs_impl.classes      -- Used for running tests. 
 # @jaxrs_impl_lib          -- Used for repackaging test application 
-#                             JAX-RS implementation classes by vendor
+#                             Jakarta Restful Web Services implementation classes by vendor
 #                             Default to ${web.home}/modules/jersey-gf-servlet.jar
 #
-# @jaxrs.classes           -- The classes for the JAX-RS api's
+# @jaxrs.classes           -- The classes for the Jakarta Restful Web Services api's
 #                             Default to ${web.home}/modules/jsr311-api.jar
 #
 # @servlet.classes         -- The classes for the Servlet api's
@@ -371,7 +377,7 @@ authpassword=javajoe
 #                             this points to the autodeployment directory
 #                             Default to ${web.home}/domains/domain1/autodpeloy
 #
-# @jaxrs_impl_name         -- Name of the JAX-RS implementation to be tested.  
+# @jaxrs_impl_name         -- Name of the Jakarta Restful Web Services implementation to be tested.  
 #                             A file bearing the name will be created under 
 #                             $TS_HOME/bin/xml/impl/${impl.vi}/${jaxrs_impl_name}.xml 
 #                             with instructions on how to package and deploy
