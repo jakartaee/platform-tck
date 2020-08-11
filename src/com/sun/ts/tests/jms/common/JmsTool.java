@@ -133,7 +133,7 @@ public class JmsTool {
 
   public static final String TCKDURABLETOPICCONNECTIONFACTORY = "DURABLE_SUB_CONNECTION_FACTORY";
 
-  // JNDI names for JMS objects (JavaEE mode)
+  // JNDI names for JMS objects (JakartaEE mode)
   public static final String TESTQUEUENAME = "java:comp/env/jms/MY_QUEUE";
 
   public static final String TESTTOPICNAME = "java:comp/env/jms/MY_TOPIC";
@@ -163,7 +163,7 @@ public class JmsTool {
 
   private TSJMSObjectsInterface jmsObjects = null;
 
-  private String mode = "javaEE";
+  private String mode = "jakartaEE";
 
   /**********************************************************************************
    * Public constructor. Takes a connection type and mode argument. Create
@@ -173,7 +173,7 @@ public class JmsTool {
    * @param int
    *          type (QUEUE type or TOPIC type)
    * @param String
-   *          m (JavaEE mode or Standalone mode)
+   *          m (JakartaEE mode or Standalone mode)
    **********************************************************************************/
   public JmsTool(int type, String m) throws Exception {
 
@@ -194,7 +194,7 @@ public class JmsTool {
    * @param String
    *          lookup (connection factory to lookup)
    * @param String
-   *          m (JavaEE mode or Standalone mode)
+   *          m (JakartaEE mode or Standalone mode)
    **********************************************************************************/
   public JmsTool(int type, String user, String pw, String lookup, String m)
       throws Exception {
@@ -203,7 +203,7 @@ public class JmsTool {
     ttype = type;
     mode = m;
 
-    if (mode.equals("javaEE")) {
+    if (mode.equals("jakartaEE")) {
       getJNDIContext();
     } else {
       jmsObjects = TSJMSObjects.getJMSObjectsInstance();
@@ -247,7 +247,7 @@ public class JmsTool {
    * @param String
    *          pw (password)
    * @param String
-   *          m (JavaEE mode or Standalone mode)
+   *          m (JakartaEE mode or Standalone mode)
    **********************************************************************************/
   public JmsTool(int type, String user, String pw, String m) throws Exception {
     username = user;
@@ -255,7 +255,7 @@ public class JmsTool {
     ttype = type;
     mode = m;
 
-    if (mode.equals("javaEE")) {
+    if (mode.equals("jakartaEE")) {
       getJNDIContext();
     } else {
       jmsObjects = TSJMSObjects.getJMSObjectsInstance();
@@ -346,7 +346,7 @@ public class JmsTool {
 
     if ((ftype == QUEUE_FACTORY) || (ftype == FACTORIES_ONLY)) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace(
               "Getting QueueConnectionFactory " + QUEUECONNECTIONFACTORY);
           qcf = (QueueConnectionFactory) jndiContext
@@ -369,7 +369,7 @@ public class JmsTool {
 
     if ((ftype == TOPIC_FACTORY) || (ftype == FACTORIES_ONLY)) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace(
               "Getting TopicConnectionFactory " + TOPICCONNECTIONFACTORY);
           tcf = (TopicConnectionFactory) jndiContext
@@ -393,7 +393,7 @@ public class JmsTool {
 
     if (ftype == DURABLE_TOPIC_FACTORY) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace("Getting Durable TopicConnectionFactory "
               + DURABLETOPICCONNECTIONFACTORY);
           tcf = (TopicConnectionFactory) jndiContext
@@ -417,7 +417,7 @@ public class JmsTool {
 
     if (ftype == COMMON_FACTORY) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace("Getting ConnectionFactory " + CONNECTIONFACTORY);
           cf = (ConnectionFactory) jndiContext.lookup(CONNECTIONFACTORY);
           jndiLookupName = CONNECTIONFACTORY;
@@ -437,7 +437,7 @@ public class JmsTool {
 
     if ((ftype == FACTORY_T) || (ftype == FACTORIES_ONLY)) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil
               .logTrace("Getting TopicConnectionFactory as a ConnectionFactory "
                   + TOPICCONNECTIONFACTORY);
@@ -461,7 +461,7 @@ public class JmsTool {
 
     if (ftype == FACTORY_DT) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace(
               "Getting Durable TopicConnectionFactory as a ConnectionFactory "
                   + DURABLETOPICCONNECTIONFACTORY);
@@ -486,7 +486,7 @@ public class JmsTool {
 
     if ((ftype == FACTORY_Q) || (ftype == FACTORIES_ONLY)) {
       try {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil
               .logTrace("Getting QueueConnectionFactory as a ConnectionFactory "
                   + QUEUECONNECTIONFACTORY);
@@ -518,7 +518,7 @@ public class JmsTool {
     String eMsg = ""; // error Message if exception thrown
 
     try {
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil.logTrace(
             "Getting QueueConnectionFactory " + QUEUECONNECTIONFACTORY);
         qcf = (QueueConnectionFactory) jndiContext
@@ -535,7 +535,7 @@ public class JmsTool {
       }
 
       // now lookup the queue
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil.logTrace("Getting Queue " + TESTQUEUENAME);
         testQueue = (Queue) jndiContext.lookup(TESTQUEUENAME);
         eMsg = "Failed to lookup Queue " + TESTQUEUENAME;
@@ -584,7 +584,7 @@ public class JmsTool {
     try {
 
       if (durableTopic) {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace("Getting Durable TopicConnectionFactory "
               + DURABLETOPICCONNECTIONFACTORY);
           tcf = (TopicConnectionFactory) jndiContext
@@ -600,7 +600,7 @@ public class JmsTool {
               + TCKDURABLETOPICCONNECTIONFACTORY;
         }
       } else {
-        if (mode.equals("javaEE")) {
+        if (mode.equals("jakartaEE")) {
           TestUtil.logTrace(
               "Getting TopicConnectionFactory " + TOPICCONNECTIONFACTORY);
           tcf = (TopicConnectionFactory) jndiContext
@@ -617,7 +617,7 @@ public class JmsTool {
         }
       }
 
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil.logTrace("Getting Topic " + TESTTOPICNAME);
         testTopic = (Topic) jndiContext.lookup(TESTTOPICNAME);
         eMsg = "Failed to lookup Topic " + TESTTOPICNAME;
@@ -664,7 +664,7 @@ public class JmsTool {
     try {
 
       TestUtil.logTrace("Getting TopicConnectionFactory " + lookup);
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         tcf = (TopicConnectionFactory) jndiContext
             .lookup("java:comp/env/jms/" + lookup);
         eMsg = "Failed to lookup TopicConnectionFactory using name java:comp/env/jms/"
@@ -675,7 +675,7 @@ public class JmsTool {
         eMsg = "Failed to lookup TopicConnectionFactory using name " + lookup;
       }
 
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil.logTrace("Getting Topic " + TESTTOPICNAME);
         testTopic = (Topic) jndiContext.lookup(TESTTOPICNAME);
         eMsg = "Failed to lookup Topic " + TESTTOPICNAME;
@@ -721,7 +721,7 @@ public class JmsTool {
 
     try {
 
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil
             .logTrace("Getting ConnectionFactory " + QUEUECONNECTIONFACTORY);
         cf = (ConnectionFactory) jndiContext.lookup(QUEUECONNECTIONFACTORY);
@@ -737,7 +737,7 @@ public class JmsTool {
       }
       qcf = (QueueConnectionFactory) cf;
 
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil.logTrace("Getting Queue " + TESTQUEUENAME);
         testDestination = (Destination) jndiContext.lookup(TESTQUEUENAME);
         eMsg = "Failed to lookup Queue " + TESTQUEUENAME;
@@ -781,7 +781,7 @@ public class JmsTool {
 
     try {
 
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         TestUtil
             .logTrace("Getting ConnectionFactory " + TOPICCONNECTIONFACTORY);
         cf = (ConnectionFactory) jndiContext.lookup(TOPICCONNECTIONFACTORY);
@@ -797,7 +797,7 @@ public class JmsTool {
       }
 
       TestUtil.logTrace("Getting Topic " + TESTTOPICNAME);
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         testDestination = (Destination) jndiContext.lookup(TESTTOPICNAME);
         eMsg = "Failed to lookup Topic " + TESTTOPICNAME;
       } else {
@@ -840,7 +840,7 @@ public class JmsTool {
     try {
 
       TestUtil.logTrace("Getting ConnectionFactory " + lookup);
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         cf = (ConnectionFactory) jndiContext
             .lookup("java:comp/env/jms/" + lookup);
         eMsg = "Failed to lookup ConnectionFactory using name java:comp/env/jms/"
@@ -851,7 +851,7 @@ public class JmsTool {
       }
 
       TestUtil.logTrace("Getting Topic " + TESTTOPICNAME);
-      if (mode.equals("javaEE")) {
+      if (mode.equals("jakartaEE")) {
         testDestination = (Destination) jndiContext.lookup(TESTTOPICNAME);
         eMsg = "Failed to lookup Topic " + TESTTOPICNAME;
       } else {
@@ -921,7 +921,7 @@ public class JmsTool {
    **********************************************************************************/
   public Topic createNewTopic(String topicName) throws Exception {
     Topic testT = null;
-    if (mode.equals("javaEE"))
+    if (mode.equals("jakartaEE"))
       testT = (Topic) jndiContext.lookup("java:comp/env/jms/" + topicName);
     else
       testT = (Topic) jmsObjects.getTopic(topicName);
@@ -938,7 +938,7 @@ public class JmsTool {
    **********************************************************************************/
   public Queue createNewQueue(String queueName) throws Exception {
     Queue testQ = null;
-    if (mode.equals("javaEE"))
+    if (mode.equals("jakartaEE"))
       testQ = (Queue) jndiContext.lookup("java:comp/env/jms/" + queueName);
     else
       testQ = (Queue) jmsObjects.getQueue(queueName);
@@ -1108,7 +1108,7 @@ public class JmsTool {
 
   public Destination getQueueDestination(String lookup) throws Exception {
     Destination dest = null;
-    if (mode.equals("javaEE"))
+    if (mode.equals("jakartaEE"))
       dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
     else
       dest = (Destination) jmsObjects.getQueue(lookup);
@@ -1144,7 +1144,7 @@ public class JmsTool {
 
   public Destination getTopicDestination(String lookup) throws Exception {
     Destination dest = null;
-    if (mode.equals("javaEE"))
+    if (mode.equals("jakartaEE"))
       dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
     else
       dest = (Destination) jmsObjects.getTopic(lookup);
@@ -1491,7 +1491,7 @@ public class JmsTool {
     Connection cC = null;
 
     if ((type == TOPIC) || (type == TX_TOPIC)) {
-      if (mode.equals("javaEE"))
+      if (mode.equals("jakartaEE"))
         tcf2 = (TopicConnectionFactory) jndiContext
             .lookup("java:comp/env/jms/" + lookup);
       else
@@ -1513,7 +1513,7 @@ public class JmsTool {
         return tC;
       }
     } else if ((type == COMMON_T) || (type == COMMON_TTX)) {
-      if (mode.equals("javaEE"))
+      if (mode.equals("jakartaEE"))
         cf2 = (TopicConnectionFactory) jndiContext
             .lookup("java:comp/env/jms/" + lookup);
       else

@@ -73,7 +73,7 @@ public class Client extends ServiceEETest {
 
   private URL wsdlurl = null;
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   Hello port = null;
 

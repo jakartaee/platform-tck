@@ -225,7 +225,7 @@ tslib.name=jmstck
 
 #########################################################################
 # platform.mode is used by to specify runtime environment for testing
-# which can be either javaEE or standalone. For JMS TCK this setting
+# which can be either jakartaEE or standalone. For JMS TCK this setting
 # is standalone.
 #
 # platform.mode=standalone     Testing JMS TCK as Standalone environment

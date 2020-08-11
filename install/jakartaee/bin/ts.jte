@@ -1972,9 +1972,9 @@ ts_home=${ts.home}
 #######################################################################
 ## platform.mode is used by jpa tests to know whether to use
 ## the Java EE Programming Model for service and port access.
-## platform.mode=javaEE		Java EE Programming Model
+## platform.mode=jakartaEE		Java EE Programming Model
 ######################################################################
-platform.mode=javaEE
+platform.mode=jakartaEE
 
 ###########################################################################
 # tools.jar should be set to the location of the tools.jar from the installed

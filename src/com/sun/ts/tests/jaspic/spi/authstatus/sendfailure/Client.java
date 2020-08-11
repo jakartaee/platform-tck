@@ -125,7 +125,7 @@ public class Client extends EETest {
     try {
       SendFailureHello port = null;
 
-      if (platformMode.equals("javaEE")) {
+      if (platformMode.equals("jakartaEE")) {
         port = (SendFailureHello) getJavaEEPort();
       } else {
         port = (SendFailureHello) getStandAlonePort();

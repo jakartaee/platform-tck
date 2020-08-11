@@ -62,7 +62,7 @@ public class Client extends ServiceEETest {
 
   private static final String MODEPROP = "platform.mode";
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private static final String NAMESPACEURI = "http://helloservice.org/wsdl";
 

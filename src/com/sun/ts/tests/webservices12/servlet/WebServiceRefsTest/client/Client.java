@@ -62,7 +62,7 @@ public class Client extends ServiceEETest {
 
   private int portnum = PORTNUM;
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   WSHello1 port1 = null;
 

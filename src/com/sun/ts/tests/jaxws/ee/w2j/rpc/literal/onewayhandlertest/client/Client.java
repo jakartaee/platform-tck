@@ -62,7 +62,7 @@ public class Client extends ServiceEETest {
 
   private int clientDelay = 1;
 
-  private String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  private String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private static final String HARNESSHOST = "harness.host";
 

@@ -44,10 +44,10 @@ abstract public class PMClientBase extends ServiceEETest
   transient private boolean inContainer;
 
   // The following are properties specific to standalone TCK,
-  // not used when running tests in JavaEE environment
+  // not used when running tests in JakartaEE environment
   transient private EntityManagerFactory emf;
 
-  EntityManagerFactory javaEEemf;
+  EntityManagerFactory jakartaEEemf;
 
   public boolean cachingSupported = true;
 
@@ -62,7 +62,7 @@ abstract public class PMClientBase extends ServiceEETest
   transient public static final String RESOURCE_LOCAL = "RESOURCE_LOCAL";
 
   /**
-   * Name of a property defined in ts.jte, to denote whether tests run in JavaEE
+   * Name of a property defined in ts.jte, to denote whether tests run in JakartaEE
    * or Java SE mode.
    */
   transient public static final String MODE_PROP = "platform.mode";
@@ -71,7 +71,7 @@ abstract public class PMClientBase extends ServiceEETest
    * Denotes that tests are running in Java EE mode. This is the only valid
    * non-null value for this property.
    */
-  transient public static final String JAVAEE_MODE = "javaEE";
+  transient public static final String JAVAEE_MODE = "jakartaEE";
 
   /**
    * Denotes that tests are running in Java SE mode. This is the only valid
@@ -164,7 +164,7 @@ abstract public class PMClientBase extends ServiceEETest
         .logTrace("Second Persistence Unit Name =" + secondPersistenceUnitName);
     if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
       TestUtil.logTrace(MODE_PROP + " is set to " + mode
-          + ", so tests are running in JavaEE environment.");
+          + ", so tests are running in JakartaEE environment.");
     } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
       TestUtil.logTrace(MODE_PROP + " is set to " + mode
           + ", so tests are running in J2SE environment standalone mode."
@@ -197,7 +197,7 @@ abstract public class PMClientBase extends ServiceEETest
   }
 
   /**
-   * In JavaEE environment, does nothing. In Java SE environment, closes the
+   * In JakartaEE environment, does nothing. In Java SE environment, closes the
    * EntityManager if its open, and closes the EntityManagerFactory if its open.
    * If a subclass overrides this method, the overriding implementation must
    * call super.cleanup() at the end. Also, the cache cleared.
@@ -214,7 +214,7 @@ abstract public class PMClientBase extends ServiceEETest
   }
 
   /**
-   * In JavaEE environment, does nothing. In Java SE environment, closes the
+   * In JakartaEE environment, does nothing. In Java SE environment, closes the
    * EntityManager if its open, and closes the EntityManagerFactory if its open.
    * Also, the cache cleared.
    */
@@ -307,7 +307,7 @@ abstract public class PMClientBase extends ServiceEETest
   }
 
   public void setEntityManagerFactory(EntityManagerFactory emf) {
-    this.javaEEemf = emf;
+    this.jakartaEEemf = emf;
   }
 
   public EntityManager getEntityManager() {
@@ -334,7 +334,7 @@ abstract public class PMClientBase extends ServiceEETest
       return this.em;
     }
     throw new IllegalStateException(
-        "The test is running in JavaEE environment, "
+        "The test is running in JakartaEE environment, "
             + "but PMClientBase.em has not been initialized from the vehicle component.");
   }
 
@@ -346,11 +346,11 @@ abstract public class PMClientBase extends ServiceEETest
       }
       return emf;
     } else {
-      if (javaEEemf != null) {
+      if (jakartaEEemf != null) {
         TestUtil.logTrace("EntityManagerFactory class:"
-            + javaEEemf.getClass().getName() + " isOpen:" + javaEEemf.isOpen());
+            + jakartaEEemf.getClass().getName() + " isOpen:" + jakartaEEemf.isOpen());
       }
-      return javaEEemf;
+      return jakartaEEemf;
     }
   }
 
@@ -378,7 +378,7 @@ abstract public class PMClientBase extends ServiceEETest
       return this.et;
     }
     throw new IllegalStateException(
-        "The test is running in JavaEE environment, "
+        "The test is running in JakartaEE environment, "
             + "but PMClientBase.et has not been initialized from the vehicle component.");
   }
 
@@ -402,7 +402,7 @@ abstract public class PMClientBase extends ServiceEETest
       return this.et;
     }
     throw new IllegalStateException(
-        "The test is running in JavaEE environment, "
+        "The test is running in JakartaEE environment, "
             + "but PMClientBase.et has not been initialized from the vehicle component.");
   }
 
@@ -425,12 +425,12 @@ abstract public class PMClientBase extends ServiceEETest
       return this.et;
     }
     throw new IllegalStateException(
-        "The test is running in JavaEE environment, "
+        "The test is running in JakartaEE environment, "
             + "but PMClientBase.et has not been initialized from the vehicle component.");
   }
 
   /**
-   * Creates EntityManager in JavaSE environment. In JavaEE environment,
+   * Creates EntityManager in JavaSE environment. In JakartaEE environment,
    * EntityManager should already have been set from within the vehicle.
    */
   protected void initEntityManager(String persistenceUnitName,
@@ -453,13 +453,13 @@ abstract public class PMClientBase extends ServiceEETest
       }
       this.em = emf.createEntityManager();
     } else {
-      TestUtil.logMsg("The test is running in JavaEE environment, "
+      TestUtil.logMsg("The test is running in JakartaEE environment, "
           + "the EntityManager is initialized in the vehicle component.");
     }
   }
 
   /**
-   * Creates EntityTransaction in JavaSE environment. In JavaEE environment,
+   * Creates EntityTransaction in JavaSE environment. In JakartaEE environment,
    * EntityManager should already have been set from within the vehicle.
    */
   protected void initEntityTransaction() {
@@ -468,7 +468,7 @@ abstract public class PMClientBase extends ServiceEETest
   }
 
   /**
-   * Creates EntityTransaction in JavaSE environment. In JavaEE environment,
+   * Creates EntityTransaction in JavaSE environment. In JakartaEE environment,
    * EntityManager should already have been set from within the vehicle.
    */
   protected void initEntityTransaction(EntityManager em) {

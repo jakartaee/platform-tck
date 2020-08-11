@@ -78,7 +78,7 @@ public class Client extends ServiceEETest {
 
   private int portnum = PORTNUM;
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   HandlerChainTest port = null;
 

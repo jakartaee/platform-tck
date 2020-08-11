@@ -197,7 +197,7 @@ handled in the following ways:
 * A Jakarta Deployment compliant deployment is used for Jakarta EE-based
 implementations. This is differentiated by using a different deliverable
 class,
-`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJavaEEDeliverable`,
+`deliverable.class=com.sun.ts.lib.deliverable.jaspic.JaspicJakartaEEDeliverable`,
 which is configurable in the `ts.jte` file. Vendors need to write their
 own `Deliverable` class that can be used to deploy in their environment.
 * For standalone implementations (this includes container and
@@ -228,7 +228,7 @@ Change the following mode string?
 
 ====
 
-** `platform.mode=javaEE` (for Jakarta EE based implementation)
+** `platform.mode=jakartaEE` (for Jakarta EE based implementation)
 
 ** `platform.mode=standalone` +
 

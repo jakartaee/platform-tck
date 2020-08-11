@@ -60,7 +60,7 @@ public class Client extends ServiceEETest {
 
   private static final String CLIENTDELAY = "client.delay";
 
-  private String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  private String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private int clientDelay = 1;
 

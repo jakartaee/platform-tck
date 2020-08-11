@@ -2081,9 +2081,9 @@ ts_home=${ts.home}
 ## JAXWS Programming model based on the runtime execution platform.
 ##
 ## platform.mode=standalone	JAXWS Programming Model
-## platform.mode=javaEE		Java EE Programming Model
+## platform.mode=jakartaEE		Java EE Programming Model
 ######################################################################
-platform.mode=javaEE
+platform.mode=jakartaEE
 
 ###########################################################################
 # tools.jar should be set to the location of the tools.jar from the installed

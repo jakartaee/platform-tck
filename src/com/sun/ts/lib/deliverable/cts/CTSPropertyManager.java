@@ -339,7 +339,7 @@ public class CTSPropertyManager extends AbstractPropertyManager {
 
     pTestProps.put("variable.mapper", getProperty("variable.mapper"));
     pTestProps.put("javaee.level", getProperty("javaee.level", "full"));
-    pTestProps.put("platform.mode", getProperty("platform.mode", "javaEE"));
+    pTestProps.put("platform.mode", getProperty("platform.mode", "jakartaEE"));
     pTestProps.put("persistence.second.level.caching.supported",
         getProperty("persistence.second.level.caching.supported", "true"));
 

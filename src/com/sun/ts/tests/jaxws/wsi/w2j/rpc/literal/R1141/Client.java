@@ -54,7 +54,7 @@ public class Client extends ServiceEETest {
 
   private static final String MODEPROP = "platform.mode";
 
-  String modeProperty = null; // platform.mode -> (standalone|javaEE)
+  String modeProperty = null; // platform.mode -> (standalone|jakartaEE)
 
   private static final String PKG_NAME = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.";
 

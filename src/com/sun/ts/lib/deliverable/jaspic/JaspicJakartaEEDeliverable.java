@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,17 +35,17 @@ import java.util.Map;
 import java.io.File;
 
 /**
- * This class serves as a place for JaspicJavaEE Deliverable specific info.
+ * This class serves as a place for JaspicJakartaEE Deliverable specific info.
  */
-public class JaspicJavaEEDeliverable extends AbstractDeliverable {
+public class JaspicJakartaEEDeliverable extends AbstractDeliverable {
 
   public PropertyManagerInterface createPropertyManager(TestEnvironment te)
       throws Exception {
 
-    JaspicJavaEEPropertyManager propMgr = JaspicJavaEEPropertyManager
-        .getJaspicJavaEEPropertyManager(te);
+    JaspicJakartaEEPropertyManager propMgr = JaspicJakartaEEPropertyManager
+        .getJaspicJakartaEEPropertyManager(te);
 
-    // create JaspicJavaEE specific working directories
+    // create JaspicJakartaEE specific working directories
     createDir(propMgr.getProperty("wsdlRepository1"));
     createDir(propMgr.getProperty("wsdlRepository2"));
     return propMgr;
@@ -53,11 +53,11 @@ public class JaspicJavaEEDeliverable extends AbstractDeliverable {
 
   public PropertyManagerInterface createPropertyManager(Properties p)
       throws Exception {
-    return JaspicJavaEEPropertyManager.getJaspicJavaEEPropertyManager(p);
+    return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager(p);
   }
 
   public PropertyManagerInterface getPropertyManager() throws Exception {
-    return JaspicJavaEEPropertyManager.getJaspicJavaEEPropertyManager();
+    return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager();
   }
 
   public DeploymentInfo getDeploymentInfo(String earFile,
