@@ -48,7 +48,7 @@ public class TestBeanEJB implements SessionBean, TimedObject {
   private Hashtable table = new Hashtable();
 
   String expected[] = { "true", "true", "true", "true", "true", "true", "true",
-      "true", "true", "true", "true", "true", "true", "true", "true", "false",
+      "true", "true", "true", "true", "true", "true", "true", "false",
       "false" };
 
   // These are the method tests
@@ -138,7 +138,6 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     methodList[i].setProperty("getEJBLocalObject", "true");
     methodList[i].setProperty("getTimerService", "true");
     methodList[i].setProperty("Timer_Service_Methods", "true");
-    methodList[i].setProperty("getMessageContext", "true");
     methodList[i].setProperty("getRollbackOnly", "true");
     methodList[i].setProperty("setRollbackOnly", "true");
   }
@@ -519,17 +518,12 @@ public class TestBeanEJB implements SessionBean, TimedObject {
       pass = false;
     }
 
-    if (!p.getProperty("getMessageContext").equals(r[14])) {
-      TestUtil.logErr("getMessageContext operations test failed");
-      pass = false;
-    }
-
-    if (!p.getProperty("getRollbackOnly").equals(r[15])) {
+    if (!p.getProperty("getRollbackOnly").equals(r[14])) {
       TestUtil.logErr("getRollbackOnly operations test failed");
       pass = false;
     }
 
-    if (!p.getProperty("setRollbackOnly").equals(r[16])) {
+    if (!p.getProperty("setRollbackOnly").equals(r[15])) {
       TestUtil.logErr("setRollbackOnly operations test failed");
       pass = false;
     }

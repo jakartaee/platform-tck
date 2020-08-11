@@ -175,15 +175,11 @@ public class Client extends EETest {
         logErr("TimerService_Methods_Test7 operations test failed");
         pass = false;
       }
-      if (!p.getProperty("getMessageContext").equals(r[20])) {
-        logErr("getMessageContext operations test failed");
-        pass = false;
-      }
-      if (!p.getProperty("getRollbackOnly").equals(r[21])) {
+      if (!p.getProperty("getRollbackOnly").equals(r[20])) {
         logErr("getRollbackOnly operations test failed");
         pass = false;
       }
-      if (!p.getProperty("setRollbackOnly").equals(r[22])) {
+      if (!p.getProperty("setRollbackOnly").equals(r[21])) {
         logErr("setRollbackOnly operations test failed");
         pass = false;
       }
@@ -267,8 +263,8 @@ public class Client extends EETest {
    * TimerService_Methods_Test2 - not allowed o TimerService_Methods_Test3 - not
    * allowed o TimerService_Methods_Test4 - not allowed o
    * TimerService_Methods_Test5 - not allowed o TimerService_Methods_Test6 - not
-   * allowed o TimerService_Methods_Test7 - not allowed o getMessageContext -
-   * not allowed o getRollbackOnly - not allowed o setRollbackOnly - not allowed
+   * allowed o TimerService_Methods_Test7 - not allowed 
+   * o getRollbackOnly - not allowed o setRollbackOnly - not allowed
    * 
    * Deploy it on the J2EE server. Verify correct operations.
    * 
@@ -280,7 +276,7 @@ public class Client extends EETest {
     String expected[] = { "true", "false", "false", "true", "true", "true",
         UNSPECIFIED, UNSPECIFIED, UNSPECIFIED, UNSPECIFIED, "true", "true",
         "true", "false", "false", "false", "false", "false", "false", "false",
-        "false", "false", "false" };
+        "false", "false" };
     try {
       // create EJB instance
       logMsg("Create EJB instance");
@@ -329,7 +325,7 @@ public class Client extends EETest {
    * allowed o TimerService_Methods_Test3 - not allowed o
    * TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not
    * allowed o TimerService_Methods_Test6 - not allowed o
-   * TimerService_Methods_Test7 - not allowed o getMessageContext - not allowed
+   * TimerService_Methods_Test7 - not allowed 
    * o getRollbackOnly - not allowed o setRollbackOnly - not allowed
    * 
    * Create a stateless Session Bean. Deploy it on the J2EE server. Verify
@@ -342,7 +338,7 @@ public class Client extends EETest {
     boolean pass = true;
     String expected[] = { "true", "false", "false", "false", "true", "false",
         "false", "false", "false", "false", "true", "false", "false", "false",
-        "false", "false", "false", "false", "false", "false", "false", "false",
+        "false", "false", "false", "false", "false", "false", "false",
         "false" };
     try {
       // create EJB instance
@@ -386,8 +382,8 @@ public class Client extends EETest {
    * TimerService_Methods_Test1 - allowed o TimerService_Methods_Test2 - allowed
    * o TimerService_Methods_Test3 - allowed o TimerService_Methods_Test4 -
    * allowed o TimerService_Methods_Test5 - allowed o TimerService_Methods_Test6
-   * - allowed o TimerService_Methods_Test7 - allowed o getMessageContext - not
-   * allowed o getRollbackOnly - not allowed o setRollbackOnly - not allowed
+   * - allowed o TimerService_Methods_Test7 - allowed 
+   * o getRollbackOnly - not allowed o setRollbackOnly - not allowed
    *
    * Create a stateless Session Bean. Deploy it on the J2EE server. Verify
    * correct operations for allowed methods and that getCallerPrincipal returns
@@ -400,7 +396,7 @@ public class Client extends EETest {
     boolean pass = true;
     String expected[] = { "true", "true", "true", "true", "true", "true",
         "true", "true", "true", "true", "true", "true", "true", "true", "true",
-        "true", "true", "true", "true", "true", "false", "false", "false" };
+        "true", "true", "true", "true", "true", "false", "false" };
     try {
       // create Helper EJB instance
       logMsg("Create Helper EJB instance");

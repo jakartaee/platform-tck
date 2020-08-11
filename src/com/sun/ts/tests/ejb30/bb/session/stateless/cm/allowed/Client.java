@@ -114,7 +114,7 @@ public class Client extends ClientBase implements Constants {
     expected.setProperty(TimerService_Methods_Test5, disallowed);
     expected.setProperty(TimerService_Methods_Test6, disallowed);
     expected.setProperty(TimerService_Methods_Test7, disallowed);
-    expected.setProperty(getMessageContext, disallowed);
+    // expected.setProperty(getMessageContext, disallowed);
     expected.setProperty(getRollbackOnly, disallowed);
     expected.setProperty(setRollbackOnly, disallowed);
     expected.setProperty(getBusinessObject, allowed);
@@ -170,7 +170,7 @@ public class Client extends ClientBase implements Constants {
     expected.setProperty(TimerService_Methods_Test5, disallowed);
     expected.setProperty(TimerService_Methods_Test6, disallowed);
     expected.setProperty(TimerService_Methods_Test7, disallowed);
-    expected.setProperty(getMessageContext, disallowed);
+    // expected.setProperty(getMessageContext, disallowed);
     expected.setProperty(getRollbackOnly, disallowed);
     expected.setProperty(setRollbackOnly, disallowed);
 
@@ -223,7 +223,7 @@ public class Client extends ClientBase implements Constants {
     expected.setProperty(TimerService_Methods_Test5, allowed);
     expected.setProperty(TimerService_Methods_Test6, allowed);
     expected.setProperty(TimerService_Methods_Test7, allowed);
-    expected.setProperty(getMessageContext, disallowed);
+    // expected.setProperty(getMessageContext, disallowed);
     expected.setProperty(getRollbackOnly, allowed);
     expected.setProperty(setRollbackOnly, allowed);
     expected.setProperty(getBusinessObject, allowed);
@@ -278,7 +278,7 @@ public class Client extends ClientBase implements Constants {
     expected.setProperty(TimerService_Methods_Test5, allowed);
     expected.setProperty(TimerService_Methods_Test6, allowed);
     expected.setProperty(TimerService_Methods_Test7, allowed);
-    expected.setProperty(getMessageContext, disallowed);
+    // expected.setProperty(getMessageContext, disallowed);
     expected.setProperty(getRollbackOnly, allowed);
     expected.setProperty(setRollbackOnly, allowed);
     expected.setProperty(getBusinessObject, allowed);
@@ -333,7 +333,7 @@ public class Client extends ClientBase implements Constants {
     expected.setProperty(TimerService_Methods_Test5, allowed);
     expected.setProperty(TimerService_Methods_Test6, allowed);
     expected.setProperty(TimerService_Methods_Test7, allowed);
-    expected.setProperty(getMessageContext, disallowed);
+    // expected.setProperty(getMessageContext, disallowed);
     expected.setProperty(getRollbackOnly, allowed);
     expected.setProperty(setRollbackOnly, allowed);
     expected.setProperty(getBusinessObject, allowed);
