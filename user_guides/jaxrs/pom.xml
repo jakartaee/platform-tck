@@ -27,8 +27,8 @@
     <groupId>org.glassfish</groupId>
     <artifactId>tck_jaxrs</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta RESTful Web Services for Jakarta EE, Release 2.1</name>
+    <version>3.0.0-SNAPSHOT</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta RESTful Web Services for Jakarta EE, Release 3.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +47,7 @@
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:javaee/tck_jaxrs_v2_1.git</url>
+            <url>scm:git:git@github.com:eclipse-ee4j/jaxrs-api.git</url>
         </site>
     </distributionManagement>
 

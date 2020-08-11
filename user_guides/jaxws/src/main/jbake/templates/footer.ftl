@@ -7,7 +7,7 @@
 		<col width="12%"/>
 		<col width="*"/>
 	</colgroup>
-	<tr>		
+	<tr>
 	    <#if content.prev??>
 		<td align="left">
 		<a href="${content.prev}">
@@ -36,8 +36,8 @@
 </table>
 
 <span id="copyright">
-		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;			
-		<span >Copyright&nbsp;&copy;&nbsp;2018,&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
+		<img src="img/eclipse_foundation_logo_tiny.png" height="20px" alt="Eclipse Foundation Logo" align="top"/>&nbsp;
+		<span >Copyright&nbsp;&copy;&nbsp;2018,&nbsp;2020&nbsp;Oracle&nbsp;and/or&nbsp;its&nbsp;affiliates.&nbsp;All&nbsp;rights&nbsp;reserved.</span>
 </span>
 
 </body>

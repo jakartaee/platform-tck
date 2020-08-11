@@ -57,7 +57,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
@@ -67,13 +67,13 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CII is running. +
+  Jakarta EE {JakartaEEVersion} CII is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  Set the `web.home` property to the installation directory of Jakarta EE
-  8 CI.
+  {JakartaEEVersion} CI.
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the {TechnologyShortName} {TechnologyVersion} API. +
   The default setting for this property is
@@ -111,7 +111,7 @@ ${web.home}/modules/endorsed/jakarta.annotation-api.jar
   class for the {TechnologyShortName} implementation. +
   The default setting for this property, if you are using the {TechnologyRI} CI is
   `org/glassfish/jersey/servlet/ServletContainer.class`.
-  g.  Set the `impl.vi` property to the name of the Jakarta EE 8 CI . +
+  g.  Set the `impl.vi` property to the name of the Jakarta EE {JakartaEEVersion} CI . +
   The relevant porting files are located under the
   `$TS_HOME/bin/xml/impl/glassfish/` directory. +
   The default setting for this property, when using Eclipse GlassFish as the CI is `glassfish`.
@@ -122,7 +122,7 @@ ${web.home}/modules/endorsed/jakarta.annotation-api.jar
   instructions. +
   The default setting for this property when using the {TechnologyRI} CI is `jersey`.
   i.  Set the `impl.vi.deploy.dir` property to point to the `autodeploy`
-  directory of the Jakarta EE 8 CI you are using. +
+  directory of the Jakarta EE {JakartaEEVersion} CI you are using. +
   The default setting for this property is
   `${web.home}/domains/domain1/autodeploy`.
   j. Verify that the `tools.jar` property is set to the location of the
@@ -157,7 +157,7 @@ strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
 4.  If the {TechnologyShortName} TCK test applications are published on a Servlet
-2.5-compliant Web container to certify the VI, the `servlet_adaptor`
+5.0-compliant Web container to certify the VI, the `servlet_adaptor`
 property needs to be set in the `ts.jte` file, and VI-specific WAR files
 containing the Servlet information need to be created for publishing. +
 The VI-specific WAR files should never override any existing files that
@@ -179,9 +179,9 @@ ant config.vi
 ----
 +
 This target performs the following tasks:
+
 * Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
-* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
-into the application server's external library folder
+* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar` into the application server's external library folder
 * Starts the application server
 * Creates users and the appropriate roles
 * Enables HTTP trace requests
@@ -318,7 +318,7 @@ strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
 4.  If the {TechnologyShortName} TCK test applications are published on
-a Servlet 3.0-compliant Web container to certify the VI, the `servlet_adaptor`
+a Servlet 5.0-compliant Web container to certify the VI, the `servlet_adaptor`
 property needs to be set in the `ts.jte` file, and VI-specific WAR files
 containing the Servlet information need to be created for publishing. +
 The VI-specific WAR files should never override any existing files that
@@ -340,8 +340,8 @@ both the prebuilt and Vendor-built archives to the configured web
 container or containers by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/jersey.xml` is
-written to be used with {TechnologyRI} and Jakarta EE 8 CI, Eclipse GlassFish 5.1. If the Vendor chooses
-not to use Jakarta EE 8 CI, Eclipse GlassFish 5.1 to run with their implementation but still
+written to be used with {TechnologyRI} and Jakarta EE {JakartaEEVersion} CI, Eclipse GlassFish 6.0. If the Vendor chooses
+not to use Jakarta EE {JakartaEEVersion} CI, Eclipse GlassFish 6.0 to run with their implementation but still
 chooses to publish to a Servlet-compliant Web container, then a
 VI-specific {TechnologyShortName} TCK tests Web archive needs to be created.
 This archive contains the VI-specific servlet class, and the Vendor should
@@ -364,7 +364,7 @@ classes or WAR files to the configured web container.
 4.3.1 Generic Deployment Command Scenarios
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can deploy all {TechnologyShortName} WAR files to Jakarta EE 8 CI or
+You can deploy all {TechnologyShortName} WAR files to Jakarta EE {JakartaEEVersion} CI or
 the Web server chosen by a Vendor, deploy just a single test directory,
 or deploy of subset of test directories.
 
@@ -413,7 +413,7 @@ ant deploy
 
 [NOTE]
 ====
-If you are using a compatible implementation that is not Eclipse GlassFish 5.1,
+If you are using a compatible implementation that is not Eclipse GlassFish 6,
 please refer to deployment details provided with that implementation.
 
 ====
@@ -422,21 +422,21 @@ This section explains issues regarding the deployment of the
 {TechnologyShortName} TCK prebuilt archives. Before conducting any
 deployment, ensure that your environment has been configured by
 following the instructions in either link:#GBFVU[Section 4.1,
-"Configuring Your Environment to Run the TCK Against the Eclipse GlassFish 5.1 Compatible
+"Configuring Your Environment to Run the TCK Against the Eclipse GlassFish 6 Compatible
 Implementation,"] or link:#GCLHU[Section 4.2, "Configuring Your
 Environment to Repackage and Run the TCK Against the Vendor
 Implementation."]
 
 The `<TS_HOME>/dist` directory contains all WAR files for the
 {TechnologyShortName} TCK tests that have been compiled and packaged
-using the Eclipse GlassFish 5.1 Compatible Implementation for deployment on a
-Servlet-compliant Web container, Jakarta EE 8 CI, using the standard Web
+using the Eclipse GlassFish 6 Compatible Implementation for deployment on a
+Servlet-compliant Web container, Jakarta EE {JakartaEEVersion} CI, using the standard Web
 Archive (WAR) format.
 
-These WAR files contain only {TechnologyRI}, a Jakarta EE 8 CI-specfic servlet
-adaptor, and are tailored to run against the Eclipse GlassFish 5.1 Compatible Implementation.
+These WAR files contain only {TechnologyRI}, a Jakarta EE {JakartaEEVersion} CI-specfic servlet
+adaptor, and are tailored to run against the Eclipse GlassFish 6 Compatible Implementation.
 These WAR files allow you to deploy (without any additional setup or
-modification) against the Eclipse GlassFish 5.1 Compatible Implementation to test the various
+modification) against the Eclipse GlassFish 6 Compatible Implementation to test the various
 features and functionality of this implementation.
 
 To deploy the {TechnologyShortName} TCK tests, use either the `deploy`
@@ -459,7 +459,7 @@ under `$TS_HOME/classes`. All test resources packaged in WAR files are
 located under `$TS_HOME/dist`.
 
 If a vendor chooses to deploy WAR files on a Servlet–compliant Web
-container other than a Jakarta EE 8 CI, it is necessary to build test WAR
+container other than a Jakarta EE {JakartaEEVersion} CI, it is necessary to build test WAR
 files that contain the VI's servlet class and servlet class property in
 the `web.xml` deployment descriptor, as specified in the {TechnologyShortName}
 specification. The {TechnologyShortName} TCK comes with a

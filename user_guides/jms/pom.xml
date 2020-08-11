@@ -27,8 +27,8 @@
     <groupId>org.glassfish</groupId>
     <artifactId>tck_jms</artifactId>
     <packaging>pom</packaging>
-    <version>2.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Messaging for Jakarta EE, Release 2.0</name>
+    <version>3.0.0-SNAPSHOT</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Messaging for Jakarta EE, Release 3.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +40,7 @@
         <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
-        <status>DRAFT</status>
+        <status></status>
         <doc.pdf>Jakarta-Messaging-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>

@@ -16,11 +16,13 @@
 
 #########################################################################
 #                                                                   	#
-#   JavaTest Environment file for JAX-RS Compatibility Test Suite       #
+#   JavaTest Environment file for Jakarta RESTful Web Services          #
+#   Compatibility Test Suite                                            #
 #                                                                       #
-#   Environment specific properties in this file will likely	 	#
-#   have to be modified prior to running the JAX-RS TCK. Instructions	#
-#   for modifying these properties are contained in this file.	 	#
+#   Environment specific properties in this file will likely	 	    #
+#   have to be modified prior to running the Jakarta RESTful Web        #
+#   Services TCK. Instructions for modifying these properties are       #
+#   contained in this file.	 	                                        #
 #                                                                       #
 #########################################################################
 
@@ -75,18 +77,20 @@ javatest.timeout.factor=1
 ###################################################################
 ###################################################################
 ###################################################################
-##  RI SPECIFIC PROPERTIES LIVE BELOW
+##  CI SPECIFIC PROPERTIES LIVE BELOW
 ###################################################################
 ###################################################################
 ###################################################################
 
 ###################################################################
-## When installing JAX-RS TCK/RI on Windows, users must install JAXRS-TCK and
-## the RI on the same drive.  Also note that you should never
+## When installing Jakarta RESTful Web Services TCK/CI on Windows, 
+## users must install Jakarta Restful Web Services TCK and
+## the CI on the same drive.  Also note that you should never
 ## specify drive letters in any path defined in this properties
 ## file.
 ##
-# @ts.display -- location to display JAX-RS TCK output on Unix
+# @ts.display -- location to display Jakarta RESTful Web Services 
+#   TCK output on Unix
 ###############################################################
 ts.display=:0.0
 
@@ -109,10 +113,10 @@ alt.dtd.dir=${ts.home}/lib/dtds
 alt.schema.dir=${ts.home}/lib/schemas
 
 ###############################################################
-## Classpath properties required by JAX-RS TCK:
-# @ts.run.classpath     --  Classpath required by JAX-RS impl
+## Classpath properties required by Jakarta RESTful Web Services TCK:
+# @ts.run.classpath     --  Classpath required by Jakarta RESTful Web Services impl
 # @ts.harness.classpath --  Classes required by javatest
-# @ts.classpath         --  Classes used to build the JAX-RS tests
+# @ts.classpath         --  Classes used to build the Jakarta RESTful Web Services tests
 ###############################################################
 ts.run.classpath=${jaxrs_impl.classes}${pathsep}${jaxrs.classes}${pathsep}${servlet.classes}
 
@@ -183,7 +187,7 @@ env.ts_win32.menu=true
 # @sigTestClasspath: This property must be set when running signature tests.
 #
 #                    The sigTestClasspath specifies a list of classes/jar files
-#                    which contains jaxrs implementation and Java SE classes.
+#                    which contains Jakarta RESTful Web Services implementation and Java SE classes.
 ##########################################################################
 sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar
 
@@ -213,7 +217,7 @@ sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${we
 #    4 - deploy and run only
 #
 # @harness.socket.retry.count - denotes the number of time we should
-#          attempt to create a server socket when intilizing a test
+#          attempt to create a server socket when initializing a test
 #          client.  The socket is used for logging purposes.
 #
 # @harness.log.delayseconds  Number of seconds to delay to allow
@@ -241,7 +245,7 @@ deploy.delay.in.minutes=5
 ###############################################################
 ## These properties must be set to tell the Test harness the
 ## class names of your porting class implementations.  By default
-## both property sets below point to Sun RI specific classes.
+## both property sets below point to Sun CI specific classes.
 #
 # @porting.ts.url.class.1  VI of
 #    com.sun.ts.lib.porting.TSURLInterface
@@ -253,11 +257,11 @@ porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.S
 
 
 #####################################################################
-## The following properties must be set prior to running the JAX-RS
+## The following properties must be set prior to running the Jakarta RESTful Web Services
 ## tests.
 ##
 ## These properties must specify the host and port of the web server,
-## in which the JAX-RS application deployed on.
+## in which the Jakarta RESTful Web Services application deployed on.
 #
 # @webServerHost  hostname for the Vendor's Java EE Web Server
 # @webServerPort  port number of the Vendor's Java EE Web Server
@@ -275,7 +279,7 @@ webServerPort=
 ###################################################################
 
 ##
-## The directory seperator for the platform.  User should not change
+## The directory separator for the platform.  User should not change
 ## this property.
 ##
 dirsep=/
@@ -308,7 +312,7 @@ tools.jar=${jdk.home}/lib/tools.jar
 test.client=JAXRSClient.java
 
 ####################################################################
-# For the webcontainer home properties defined above, if glassfish
+# For the webcontainer home properties defined above, if GlassFish
 # is selected these are the various additional properties that should
 # be set for use with configuration setup.
 ####################################################################
@@ -322,8 +326,8 @@ glassfish.server.instance=server
 glassfish.domain.name=domain1
 
 #################################################################
-#The following properties must be set prior to running the JAXRS
-#TCK tests. These properties are used for the JAXRS security tests
+#The following properties must be set prior to running the Jakarta Restful Web Services
+#TCK tests. These properties are used for the Jakarta Restful Web Services security tests
 #which test HTTP Authentication.
 #
 # @user           User defined to exercise rolemapping feature
@@ -362,14 +366,14 @@ s1as.admin.port=${glassfish.admin.port}
 
 ##########################################################################
 # 
-# @web.home                -- JavaEE 7 implementation installation home
+# @web.home                -- Jakarta EE 9 implementation installation home
 #
 # @jaxrs_impl.classes      -- Used for running tests. 
 # @jaxrs_impl_lib          -- Used for repackaging test application 
-#                             JAX-RS implementation classes by vendor
+#                             Jakarta RESTful Web Services implementation classes by vendor
 #                             Default to ${web.home}/modules/jersey-container-servlet-core.jar
 #
-# @jaxrs.classes           -- The classes for the JAX-RS api's
+# @jaxrs.classes           -- The classes for the Jakarta RESTful Web Services api's
 #                             Default to ${web.home}/modules/jakarta.ws.rs-api.jar
 #
 # @servlet.classes         -- The classes for the Servlet api's
@@ -380,7 +384,7 @@ s1as.admin.port=${glassfish.admin.port}
 #                             deploy resource classes in servlet container
 #                             Default to org/glassfish/jersey/servlet/ServletContainer.class
 #
-# @impl.vi                 -- Name of JavaEE 7 implementation.  
+# @impl.vi                 -- Name of Jakarta EE 9 implementation.  
 #                             All relevant porting files are located under
 #                             $TS_HOME/bin/xml/impl/${impl.vi}/
 #                             Default to glassfish
@@ -389,7 +393,7 @@ s1as.admin.port=${glassfish.admin.port}
 #                             this points to the autodeployment directory
 #                             Default to ${web.home}/domains/domain1/autodeploy
 #
-# @jaxrs_impl_name         -- Name of the JAX-RS implementation to be tested.  
+# @jaxrs_impl_name         -- Name of the Jakarta RESTful Web Services implementation to be tested.  
 #                             A file bearing the name will be created under 
 #                             $TS_HOME/bin/xml/impl/${impl.vi}/${jaxrs_impl_name}.xml 
 #                             with instructions on how to package and deploy

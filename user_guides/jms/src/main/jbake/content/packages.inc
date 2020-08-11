@@ -1,1 +1,1 @@
-** `javax.jms`
+** `jakarta.jms`

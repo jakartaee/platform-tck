@@ -13,6 +13,6 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
-name=JAX-RS Compatibility Test Suite Version 2.1
+name=Jakarta RESTful Web Services Compatibility Test Suite Version 3.0
 classpath=$TS_HOME/lib/tsharness.jar
 testsuite=com.sun.ts.lib.harness.TS

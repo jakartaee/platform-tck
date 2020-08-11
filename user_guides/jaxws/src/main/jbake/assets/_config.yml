@@ -1,14 +1,14 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
-title: [tck_jaxws_v2_3]
-description: [Oracle Java API for Web Services (JAX-WS) Technology Compatibility Kit User's Guide for Technology Licensees, Release 2.3]
+title: [tck_jaxws_v3_0]
+description: [Oracle Java API for Web Services (JAX-WS) Technology Compatibility Kit User's Guide for Technology Licensees, Release 3.0]
 
 # sidebar links url
 links:
-  source: https://github.com/javaee/tck_jaxws_v2_3
-  download: https://github.com/javaee/tck_jaxws_v2_3/releases
+  source: https://github.com/eclipse-ee4j/jax-ws-api
+  download: https://github.com/eclipse-ee4j/jax-ws-api/releases/tag/3.0.0-RC3
   #mailinglist: https://javaee.groups.io/g/tck_jaxws_v2_3
   #javadocs:
-  docs: https://javaee.github.io/tck_jaxws_v2_3
+  # https://eclipse-ee4j.github.io/jax-ws-api is missing
+  docs: https://projects.eclipse.org/projects/ee4j.jaxws
   #faq:
-

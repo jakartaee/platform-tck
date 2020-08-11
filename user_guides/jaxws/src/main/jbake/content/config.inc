@@ -12,8 +12,8 @@ as toc.adoc.
 
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
-4.1 Configuring Your Environment to Run the TCK Against the Reference Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.6, "Using the
@@ -46,17 +46,17 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
-  server is running that is configured with the JAX-WS RI. +
+  server is running that is configured with the JAX-WS Compatible Implementation. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number where the web
-  server is running that is configured with the JAX-WS RI. +
+  server is running that is configured with the JAX-WS Compatible Implementation. +
   The default setting is `8000`.
-  c.  Set the `jaxws.home` property to the location where the JAX-WS RI is
+  c.  Set the `jaxws.home` property to the location where the JAX-WS Compatible Implementation is
   installed. +
   The default setting is `${webcontainer.home}`. The value of this
   property must match the value of the `webcontainer.home` property that
   is set in step link:#BABBJEDF[g].
-  d.  Set the `jaxws.classes` property to point to the JAX-WS RI
+  d.  Set the `jaxws.classes` property to point to the JAX-WS Compatible Implementation
   classes/jars. +
   Note that this property is already set and should not require any
   changes.
@@ -65,8 +65,8 @@ environment variables:
   f.  Set the
   `impl.vi, impl.vi.deploy.dir, impl.vi.host, and impl.vi.port` properties
   to the supported web container, deploy directory, host and port for the
-  JAX-WS RI. +
-  The supported web container for the JAX-WS RI is the Java EE 8 RI. So
+  JAX-WS Compatible Implementation. +
+  The supported web container for the JAX-WS Compatible Implementation is the Jakarta EE 9 Compatible Platform. So
   the default settings for these properties are as follows:
 +
 --
@@ -80,11 +80,11 @@ impl.vi.port=${webServerPort}
 --
 +
   g.  Set the `webcontainer.home` property to the location where the web
-  server is installed for the JAX-WS RI. This will be where the Java EE 8
-  RI is installed.
+  server is installed for the JAX-WS Compatible Implementation. This will be where the Jakarta EE 9
+  Compatible Implementation is installed.
   h.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
-  The default setting for the JAX-WS RI porting implementation is:
+  The default setting for the JAX-WS Compatible Implementation porting implementation is:
 +
 --
 [source,oac_no_warn]
@@ -104,8 +104,8 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   l. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the VI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -181,8 +181,7 @@ environment variables:
   d.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files. +
   As an example, the `ts.jte` file contains the property
-  `jaxws.classes.ri`, which contains the classes/jar files that the Java
-  EE 8 RI uses. The `jaxws.classes.ri` settings for the Java EE 8 RI web
+  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9 Compatible Platform uses. The `jaxws.classes.ri` settings for the Jakarta EE 9 Compatible Platform web
   container are as follows:
 +
 --
@@ -203,7 +202,7 @@ ${jaxws.lib.ri}/mimepull.jar
 --
 +
 The `jaxws.classes.ri` settings if using the Apache Tomcat web container
-with the Standalone JAX-WS 2.3 RI would be as follows:
+with the Standalone JAX-WS 3.0 Compatible Implementation would be as follows:
 +
 --
 [source,oac_no_warn]
@@ -215,7 +214,7 @@ jaxws.classes.ri=${endorsed.dirs.ri}/jaxws-api.jar:
 ${endorsed.dirs.ri}/jaxb-api.jar:
 ${jaxws.lib.ri}/FastInfoset.jar:${jaxws.lib.ri}/gmbal-api-only.jar:\
 ${jaxws.lib.ri}/ha-api.jar:${jaxws.lib.ri}/jakarta.annotation-api.jar:\
-${jaxws.lib.ri}/javax.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:\
+${jaxws.lib.ri}/jakarta.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:\
 ${jaxws.lib.ri}/jaxb-impl.jar:${jaxws.lib.ri}/jaxb-jxc.jar:\
 ${jaxws.lib.ri}/jaxb-xjc.jar:${jaxws.lib.ri}/jaxws-rt.jar:\
 ${jaxws.lib.ri}/jaxwstck.jar:${jaxws.lib.ri}/jaxws-tools.jar:\
@@ -233,8 +232,8 @@ ${jaxws.lib.ri}/streambuffer.jar:${jaxws.lib.ri}/woodstox-core-asl.jar:
   f.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
   directory, host and port for the Vendor Implementation. +
-  As an example, the `ts.jte` file contains the settings for the Java EE 8
-  RI, which are as follows:
+  As an example, the `ts.jte` file contains the settings for the Jakarta EE 9
+  Compatible Implementation, which are as follows:
 +
 --
 [source,oac_no_warn]
@@ -247,8 +246,8 @@ impl.ri.port=${webServerPort.2}
 ----
 --
 +
-The RI settings using the Apache Tomcat web container with the
-Standalone JAX-WS 2.3 RI would be as follows:
+The Compatible Implementation settings using the Apache Tomcat web container with the
+Standalone JAX-WS 3.0 Compatible Implementation would be as follows:
 +
 --
 [source,oac_no_warn]
@@ -265,7 +264,7 @@ impl.ri.port=${webServerPort.2}
   container for the Vendor Implementation is installed.
   h.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
-  The default setting for the JAX-WS RI porting implementation is:
+  The default setting for the JAX-WS Compatible Implementation porting implementation is:
 +
 --
 [source,oac_no_warn]
@@ -283,10 +282,10 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   k. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
   l. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs` is set to the location of the RI API jars for those
+  `endorsed.dirs` is set to the location of the Compatible Implementation API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -301,8 +300,8 @@ documentation for the `TSURLInterface.java` porting package interface is
 available in the JAX-WS TCK documentation bundle. +
 The `<TS_HOME>/bin/jaxws-url-props.dat` file contains the webservice
 endpoint and WSDL URLs that the TCK tests use when running against the
-JAX-WS RI. In the porting package that the TCK uses, the URLs are
-returned as is since this is the form that the JAX-WS RI expects. You
+JAX-WS Compatible Implementation. In the porting package that the TCK uses, the URLs are
+returned as is since this is the form that the JAX-WS Compatible Implementation expects. You
 may need an alternate form of these URLs in order to run the TCK tests
 in your environment. However, you MUST NOT modify the
 `jaxws-url-props.dat` file, but instead make any necessary changes in
@@ -317,12 +316,12 @@ appropriately for your environment.
 
 [[GCLHF]][[configuring-your-environment-to-rebuild-and-run-the-jax-ws-tck-against-the-jax-ws-ri]]
 
-4.3.1 Configuring Your Environment to Rebuild and Run the JAX-WS TCK Against the JAX-WS RI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.1 Configuring Your Environment to Rebuild and Run the JAX-WS TCK Against the JAX-WS Compatible Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes the steps needed to configure the JAX-WS TCK so
 that the tests can be rebuilt (using the Vendor Implementation toolset),
-and then deployed and run against the JAX-WS Reference Implementation.
+and then deployed and run against the JAX-WS Compatible Implementation.
 
 If you are not ready to proceed with this portion of the testing
 process, skip this section for now and proceed to
@@ -344,7 +343,7 @@ path entries (`;` on Windows, `:` on UNIX/Linux).
 
 On Windows, you must escape any backslashes with an extra backslash in
 path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Java EE 8 RI
+slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Platform
 installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
 `C:/JavaEE8`.
 
@@ -353,7 +352,7 @@ installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
@@ -366,9 +365,9 @@ environment variables:
   server for the Vendor Implementation is running. +
   The default setting is`8080`
   c.  Set the `webServerHost.2` property to the hostname where the web
-  server for the JAX-WS RI is running.
+  server for the JAX-WS Compatible Implementation is running.
   d.  Set the `webServerPort.2` property to the port number where the web
-  server for the JAX-WS RI is running.
+  server for the JAX-WS Compatible Implementation is running.
   e.  Set the `jaxws.home` property to the location where the Vendor
   Implementation is installed. +
   The default setting is `${webcontainer.home}`. The value of this
@@ -376,19 +375,19 @@ environment variables:
   is set in step link:#BABEGFEB[m].
   f.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files.
-  g.  Set the `jaxws.home.ri` property to the location where the JAX-WS RI
+  g.  Set the `jaxws.home.ri` property to the location where the JAX-WS Compatible Implementation
   is installed. +
   The default setting is `${webcontainer.home.ri}`. The value of this
   property must match the value of the `webcontainer.home.ri` property
   that is set in step link:#BABCAAFJ[n].
   h.  The `jaxws.classes.ri` property is already configured to point to
-  the JAX-WS RI classes/JAR files. +
+  the JAX-WS Compatible Implementation classes/JAR files. +
   No changes are necessary for this property.
   i.  Set the `wsgen.ant.classname` property to the Vendor Implementation
-  class that mimics the JAX-WS RI Ant task, which in turn calls the
+  class that mimics the JAX-WS Compatible Implementation Ant task, which in turn calls the
   `wsgen` Java-to-WSDL tool.
   j. Set the `wsimport.ant.classname` property to the Vendor
-  Implementation class that mimics the JAX-WS RI Ant task, which in turn
+  Implementation class that mimics the JAX-WS Compatible Implementation Ant task, which in turn
   calls the `wsimport` WSDL-to-Java tool.
   k. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
@@ -397,7 +396,7 @@ environment variables:
   `impl.ri.port` properties to the supported web container, deploy
   directory, host and port used for the JAX-WS Reference Implementation. +
   The supported web container for standalone web applications is the Java
-  EE 8 RI. The default settings for these properties are as follows:
+  EE 8 Compatible Implementation. The default settings for these properties are as follows:
 +
 --
 [source,oac_no_warn]
@@ -415,7 +414,7 @@ impl.ri.port=${webServerPort.2}
   container for the JAX-WS Reference Implementation is installed.
   o. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
-  The default setting points to the JAX-WS RI porting implementation which
+  The default setting points to the JAX-WS Compatible Implementation porting implementation which
   is:
 +
 --
@@ -425,7 +424,7 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
 ----
 --
 +
-  p. Set the `porting.ts.url.class.2` property to the JAX-WS RI porting
+  p. Set the `porting.ts.url.class.2` property to the JAX-WS Compatible Implementation porting
   implementation class that is used for obtaining URLs. +
   No changes are necessary for this property.
   q. Set the `user` and `password` properties to the user name and
@@ -439,14 +438,14 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   t. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the VI API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
   u. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs.ri` is set to the location of the RI API jars for those
+  `endorsed.dirs.ri` is set to the location of the Compatible Implementation API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with JAX-WS 2.3, therefore this
-  property must be set so that JAX-WS 2.3 will be used during the building
+  of JAX-WS 2.2 which will conflict with JAX-WS 3.0, therefore this
+  property must be set so that JAX-WS 3.0 will be used during the building
   of tests and during test execution.
 +
 3.  Edit the catalog file
@@ -458,7 +457,7 @@ your host and port setting where the WSDL is published.
 
 [[GCLIK]][[configuring-your-environment-to-simultaneously-run-the-jax-ws-tck-against-the-vi-and-the-jax-ws-ri]]
 
-4.3.2 Configuring Your Environment to Simultaneously Run the JAX-WS TCK Against the VI and the JAX-WS RI
+4.3.2 Configuring Your Environment to Simultaneously Run the JAX-WS TCK Against the VI and the JAX-WS Compatible Implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes the steps needed to configure the JAX-WS TCK so
@@ -480,7 +479,7 @@ the following sections:
 * link:#GCLHU[Configuring Your Environment to Run the JAX-WS TCK Against
 the Vendor Implementation]
 * link:#GCLHF[Configuring Your Environment to Rebuild and Run the JAX-WS
-TCK Against the JAX-WS RI]
+TCK Against the JAX-WS Compatible Implementation]
 
 
 [[GCFOI]][[configuring-and-starting-your-application-server-or-servers]]
@@ -489,7 +488,7 @@ TCK Against the JAX-WS RI]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Complete the following two procedures to configure your application
-server environments for the RI and VI.
+server environments for the Compatible Implementation and VI.
 
 [[GCFOC]][[to-configure-the-vendor-implementation-as-your-vi-environment]]
 
@@ -497,7 +496,7 @@ server environments for the RI and VI.
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
@@ -516,17 +515,17 @@ cd <TS_HOME>/bin
 
 [[GCFFB]][[to-configure-the-jax-ws-reference-implementation-as-your-ri-environment]]
 
-==== 4.3.3.2 To Configure the JAX-WS Reference Implementation as your RI Environment
+==== 4.3.3.2 Configure the provided JAX-WS Compatible Implementation as your Compatible Implementation environment
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the JAX-WS TCK 2.3 software is
+  b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
   c.  `ANT_HOME` should not be set in your environment. If it is set,
   unset it.
-2.  Ensure that the `ts.jte` settings for RI specific properties have
+2.  Ensure that the `ts.jte` settings for Compatible Implementation specific properties have
 been configured.
-3.  Run the `ant config.ri` target to configure for RI implementation.
+3.  Run the `ant config.ri` target to configure for Compatible Implementation implementation.
 +
 --
 [source,oac_no_warn]
@@ -546,8 +545,8 @@ and Vendor-built archives to the configured web container or container
 by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`) is
-written to be used with the Java EE 8 RI. If the Vendor chooses not to
-use Java EE 8 RI with their implementation, or chooses to rebuild the
+written to be used with the Jakarta EE 9 Compatible Platform. If the Vendor chooses not to
+use Jakarta EE 9 Compatible Platform with their implementation, or chooses to rebuild the
 JAX-WS TCK tests using some other method than the infrastructure
 provided, they should create their own version handler file to provide
 this functionality.
@@ -604,7 +603,7 @@ Enter the following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch 
+cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
 <TS_HOME>/tools/ant/bin/ant -Dkeywords=forward deploy
 ----
 
@@ -616,7 +615,7 @@ Enter the following commands:
 
 [source,oac_no_warn]
 ----
-cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api 
+cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
 <TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse deploy
 ----
 
