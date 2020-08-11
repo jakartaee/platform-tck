@@ -17,14 +17,14 @@ B Packaging the Test Applications in Servlet-Compliant WAR Files With VI-Specifi
 
 The {TechnologyShortName} {TechnologyVersion} specification specifies
 how {TechnologyShortName} applications are to be published in a Java SE
-environment, JAX-WS endpoint, or Servlet–compliant Web container.
+environment, Jakarta XML Web Services endpoint, or Servlet–compliant Web container.
 
 {TechnologyShortName} TCK test application classes that are to be
 published in a Java SE environment are located under
 `$TS_HOME/classes`.
 
 The {TechnologyShortName} TCK comes with prebuilt test WAR files for
-deployment on Jakarta EE 8 CI {TechnologyRI}, which provides a Servlet–compliant Web
+deployment on Jakarta EE 9 CI {TechnologyRI}, which provides a Servlet–compliant Web
 container. The WAR files are {TechnologyRI}-specific, with {TechnologyRI}'s servlet
 class and {TechnologyRI}'s servlet defined in the `web.xml` deployment
 descriptor. To run the TCK tests against the VI in a Servlet–compliant
@@ -51,7 +51,7 @@ B.1 Overview
 
 The set of prebuilt archives and classes that ship with the
 {TechnologyShortName} TCK were built using the {TechnologyRI} Jakarta EE Compatible
-Implementation, and must be deployed on a Jakarta EE 8 CI and run against
+Implementation, and must be deployed on a Jakarta EE 9 CI and run against
 the {TechnologyRI} CI.
 
 The prebuilt {TechnologyRI}-specific Servlet–compliant WAR files are located
@@ -97,7 +97,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>servlet_adaptor</servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -132,7 +132,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
             org/glassfish/jersey/servlet/ServletContainer
         </servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

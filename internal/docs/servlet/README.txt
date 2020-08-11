@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the Servlet TCK 4.0 and related software against the Servlet 4.0 RI. For 
-more detailed instructions please refer to the Servlet 4.0 Users Guide.
+and run the Servlet TCK 5.0 and related software against the Servlet 5.0 Compatible Implementation. For 
+more detailed instructions please refer to the Servlet 5.0 Users Guide.
 
 -----------------------
 Installing the Software
@@ -8,19 +8,19 @@ Installing the Software
 Before you can run the Servlet TCK tests, you need to install
 and set up the following software components:
 
-1) Java SE 7
-2) Servlet RI Version 4.0
-3) Servlet TCK Version 4.0
+1) Java SE 8
+2) Servlet Compatible Implementation Version 5.0
+3) Servlet TCK Version 5.0
 
-1. Download and install Java SE 7 software.
+1. Download and install Java SE 8 software.
 
-2. Download and install the Servlet 4.0 Reference Implementation/jarfile.
+2. Download and install the Servlet 5.0 Compatible Implementation/jarfile.
 
    mkdir /ri
    cd /ri
    
 
-3. Download and install the Servlet TCK 4.0 software.
+3. Download and install the Servlet TCK 5.0 software.
 
    mkdir /tck
    cd /tck
@@ -29,10 +29,10 @@ and set up the following software components:
 -----------------------------------------
 Setup and Configuration of the Servlet TCK
 -----------------------------------------
-1. Configure the Servlet TCK to run against the Servlet RI. Set the following
+1. Configure the Servlet TCK to run against the Servlet Compatible Implementation. Set the following
    variables in your shell environment.
 
-   setenv JAVA_HOME /javase7
+   setenv JAVA_HOME /javase8
    setenv TS_HOME /tck/servlettck
    setenv ANT_HOME /tck/anthome
    setenv PATH $JAVA_HOME/bin:$ANT_HOME/bin:$PATH
@@ -49,10 +49,10 @@ Setup and Configuration of the Servlet TCK
 ------------------------------
 Executing the Servlet TCK Tests
 ------------------------------
-At this point we are ready to run the Servlet TCK tests against the Servlet 4.0
+At this point we are ready to run the Servlet TCK tests against the Servlet 5.0
 Reference Implementation.
 
-1. Start Servlet 4.0 Reference Implementation:
+1. Start Servlet 5.0 Reference Implementation:
 
    cd /ri/glassfish4/glassfish/bin
    ./asadmin start-domain

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,8 @@
     <previous-id>311</previous-id>
     <technology>Servlet</technology>
     <id>Servlet</id>
-    <name>Java(TM) Servlet</name>
-    <version>4.0</version>
+    <name>Jakarta Servlet</name>
+    <version>5.0</version>
     <location-names>
         <chapters>
             <chapter id="1" name="Overview">
@@ -283,7 +283,7 @@
                     <section id="2.2" name="Web Application Environment"/>
                     <section id="2.3" name="JNDI Name for Web Module Context Root URL"/>
                     <section id="3" name="Security"/>
-                    <section id="3.1" name="Propagation of Security Identity in EJB Calls"/>
+                    <section id="3.1" name="Propagation of Security Identity in Jakarta Enterprise Beans Calls"/>
                     <section id="3.2" name="Container Authorization Requirements"/>
                     <section id="3.3" name="Container Authentication Requirements"/>
                     <section id="4" name="Deployment"/>
@@ -320,7 +320,7 @@
                     <section id="6.2" name="Update Deployment descriptor http-method values allowed"/>
                     <section id="6.3" name="Clarify SRV 7.7.1 Threading Issues"/>
                     <section id="7" name="Changes since Servlet 2.5 MR2"/>
-                    <section id="7.1" name="Updated Annotation Requirements for Java EE containers"/>
+                    <section id="7.1" name="Updated Annotation Requirements for Jakarta EE containers"/>
                     <section id="7.2" name="Updated Java Enterprise Edition Requirements"/>
                     <section id="7.3" name="Clarified HttpServletRequest.getRequestURL()"/>
                     <section id="7.4" name="Removal of IllegalStateException from HttpSession.getId()"/>
@@ -332,7 +332,7 @@
                     <section id="8.3" name="Multiple Occurrences of Servlet Mappings"/>
                     <section id="8.4" name="Multiple Occurrences Filter Mappings"/>
                     <section id="8.5" name="Support Alternative HTTP Methods with Authorization Constraints"/>
-                    <section id="8.6" name="Minimum J2SE Requirement"/>
+                    <section id="8.6" name="Minimum Java SE Requirement"/>
                     <section id="8.7" name="Annotations and Resource Injection"/>
                     <section id="8.8" name="SRV.9.9 (Error Handling) Requirement Removed"/>
                     <section id="8.9" name="HttpServletRequest.isRequestedSessionIdValid() Clarification"/>
@@ -383,7 +383,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:5</id>
-            <description>The life cycle of a servlet is expressed in the API by the 'init', 'service', and 'destroy' methods of the javax.servlet.Servlet interface that all servlets must implement directly, or indirectly through the GenericServlet or HttpServlet abstract classes.</description>
+            <description>The life cycle of a servlet is expressed in the API by the 'init', 'service', and 'destroy' methods of the jakarta.servlet.Servlet interface that all servlets must implement directly, or indirectly through the GenericServlet or HttpServlet abstract classes.</description>
             <location chapter="2" section="3"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -762,17 +762,17 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:26.1</id>
-                    <description>attribute: cipher suite - attribute name: javax.servlet.request.cipher_suite - Java type: String </description>
+                    <description>attribute: cipher suite - attribute name: jakarta.servlet.request.cipher_suite - Java type: String </description>
                     <location chapter="3" section="9"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:26.2</id>
-                    <description>attribute: bit size of the algorithm - attribute name: javax.servlet.request.key_size - Java type: Integer</description>
+                    <description>attribute: bit size of the algorithm - attribute name: jakarta.servlet.request.key_size - Java type: Integer</description>
                     <location chapter="3" section="9"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:26.4</id>
-                    <description>attribute: SSL session id - attribute name: javax.servlet.request.ssl_session_id - Java type: String</description>
+                    <description>attribute: SSL session id - attribute name: jakarta.servlet.request.ssl_session_id - Java type: String</description>
                     <location chapter="3" section="9"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -780,13 +780,13 @@
                     <description>If there is an SSL certificate associated with the request, it must be exposed by the
                         servlet container to the servlet programmer as an array of objects of type
                         java.security.cert.X509Certificate and accessible via a ServletRequest
-                        attribute of javax.servlet.request.X509Certificate.
+                        attribute of jakarta.servlet.request.X509Certificate.
                     </description>
                     <location chapter="3" section="9"/>
                     <sub-assertions>
                         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                             <id>Servlet:SPEC:26.3.1</id>
-                            <description>The order of this array (associated with the javax.servlet.request.X509Certificate request attribute)
+                            <description>The order of this array (associated with the jakarta.servlet.request.X509Certificate request attribute)
                                 is being defined as being in ascending order of trust.
                                 The first certificate in the chain is the one set by the client,
                                 the next is the one used to authenticate first, and so on.
@@ -897,7 +897,7 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:19.1</id>
-                    <description>(The container must) make it available via the javax.servlet.context.tempdir context attribute.
+                    <description>(The container must) make it available via the jakarta.servlet.context.tempdir context attribute.
                         The objects associated with the attribute must be of type java.io.File.
                     </description>
                     <location chapter="4" section="8.1"/>
@@ -1569,7 +1569,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:221.10</id>
-                    <description>Classes annotated with @WebServlet class MUST extend the javax.servlet.http.HttpServlet class.</description>
+                    <description>Classes annotated with @WebServlet class MUST extend the jakarta.servlet.http.HttpServlet class.</description>
                     <location chapter="8" section="1.1"/>
                 </assertion>
             </sub-assertions>
@@ -1581,7 +1581,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:223</id>
-            <description>The location attribute of the javax.servlet.annotation.MultipartConfig and the &lt;location&gt; element of the &lt;multipart-config&gt; is interpreted as an absolut path and defaults to the value of the javax.servlet.context.tempdir. </description>
+            <description>The location attribute of the jakarta.servlet.annotation.MultipartConfig and the &lt;location&gt; element of the &lt;multipart-config&gt; is interpreted as an absolut path and defaults to the value of the jakarta.servlet.context.tempdir. </description>
             <location chapter="8" section="1.5"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1814,25 +1814,25 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:255.1</id>
-                    <description> Implementations of javax.servlet.ServletContextListener are invoked at their contextInitialized method in the order in which they have been declared, and at their contextDestroyed method in reverse order. </description>
+                    <description> Implementations of jakarta.servlet.ServletContextListener are invoked at their contextInitialized method in the order in which they have been declared, and at their contextDestroyed method in reverse order. </description>
                     <location chapter="8" section="2.3"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:255.2</id>
-                    <description> Implementations of javax.servlet.ServletRequestListener are invoked at their requestInitialized method in the order in which they have been declared, and at their requestDestroyed method in reverse order. </description>
+                    <description> Implementations of jakarta.servlet.ServletRequestListener are invoked at their requestInitialized method in the order in which they have been declared, and at their requestDestroyed method in reverse order. </description>
                     <location chapter="8" section="2.3"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:255.3</id>
-                    <description> Implementations of javax.servlet.http.HttpSessionListener are invoked at their sessionCreated method in the order in which they have been declared, and at their sessionDestroyed method in reverse order. </description>
+                    <description> Implementations of jakarta.servlet.http.HttpSessionListener are invoked at their sessionCreated method in the order in which they have been declared, and at their sessionDestroyed method in reverse order. </description>
                     <location chapter="8" section="2.3"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:255.4</id>
                     <description>The methods of implementation of 
-                        javax.servlet.ServletContextAttributeListener,
-                        javax.servlet.ServletRequestAttributeListener and 
-                        javax.servlet.HttpSessionAttributeListener are invoked in 
+                        jakarta.servlet.ServletContextAttributeListener,
+                        jakarta.servlet.ServletRequestAttributeListener and 
+                        jakarta.servlet.HttpSessionAttributeListener are invoked in 
                         the order in which they are declared when corresponding events are fired.
                     </description>
                     <location chapter="8" section="2.3"/>
@@ -2095,7 +2095,7 @@
                         by the container at application startup time.
                         The framework providing an implementation of the ServletContainerInitializer MUST bundle
                         in the META-INF/services directory of the jar file a file called
-                        javax.servlet.ServletContainerInitializer, as per the jar services API,
+                        jakarta.servlet.ServletContainerInitializer, as per the jar services API,
                         that points to the implementation class of the ServletContainerInitializer.
                     </description>
                     <location chapter="8" section="2.4"/>
@@ -2181,7 +2181,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:264</id>
-            <description>In addition, a Servlet 3.0 compliant Servlet container must provide a ServletContext attribute with name javax.servlet.context.orderedLibs, whose value (of type java.util.List&lt;java.lang.String&gt;) contains the list of names of JAR files in the WEB-INF/lib directory of the application represented by the ServletContext, ordered by their web fragment names (with possible exclusions if fragment JAR files have been excluded from absolute-ordering), or null if the application does not specify any absolute or relative ordering. </description>
+            <description>In addition, a Servlet 3.0 compliant Servlet container must provide a ServletContext attribute with name jakarta.servlet.context.orderedLibs, whose value (of type java.util.List&lt;java.lang.String&gt;) contains the list of names of JAR files in the WEB-INF/lib directory of the application represented by the ServletContext, ordered by their web fragment names (with possible exclusions if fragment JAR files have been excluded from absolute-ordering), or null if the application does not specify any absolute or relative ordering. </description>
             <location chapter="8" section="3"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -2240,27 +2240,27 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:76.1</id>
-                    <description>'javax.servlet.include.request_uri' which is the URI by which it was invoked.</description>
+                    <description>'jakarta.servlet.include.request_uri' which is the URI by which it was invoked.</description>
                     <location chapter="9" section="3.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:76.2</id>
-                    <description>'javax.servlet.include.context_path' which is the context path portion of the request URI by which it was invoked.</description>
+                    <description>'jakarta.servlet.include.context_path' which is the context path portion of the request URI by which it was invoked.</description>
                     <location chapter="9" section="3.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:76.3</id>
-                    <description>'javax.servlet.include.servlet_path' the servlet-path portion of the request URI by which it was invoked.</description>
+                    <description>'jakarta.servlet.include.servlet_path' the servlet-path portion of the request URI by which it was invoked.</description>
                     <location chapter="9" section="3.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:76.4</id>
-                    <description>'javax.servlet.include.path_info' the path-info portion of the request URI by which it was invoked.</description>
+                    <description>'jakarta.servlet.include.path_info' the path-info portion of the request URI by which it was invoked.</description>
                     <location chapter="9" section="3.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:76.5</id>
-                    <description>'javax.servlet.include.query_string' the query string portion of the request URI by which it was invoked.</description>
+                    <description>'jakarta.servlet.include.query_string' the query string portion of the request URI by which it was invoked.</description>
                     <location chapter="9" section="3.1"/>
                 </assertion>
             </sub-assertions>
@@ -2300,27 +2300,27 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:180.1</id>
-                    <description>javax.servlet.forward.request_uri</description>
+                    <description>jakarta.servlet.forward.request_uri</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:180.2</id>
-                    <description>javax.servlet.forward.context_path</description>
+                    <description>jakarta.servlet.forward.context_path</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:180.3</id>
-                    <description>javax.servlet.forward.servlet_path</description>
+                    <description>jakarta.servlet.forward.servlet_path</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:180.4</id>
-                    <description>javax.servlet.forward.path_info</description>
+                    <description>jakarta.servlet.forward.path_info</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:180.5</id>
-                    <description>javax.servlet.forward.query_string</description>
+                    <description>jakarta.servlet.forward.query_string</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
             </sub-assertions>
@@ -2332,27 +2332,27 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:181.1</id>
-                    <description>javax.servlet.forward.request_uri</description>
+                    <description>jakarta.servlet.forward.request_uri</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:181.2</id>
-                    <description>javax.servlet.forward.context_path</description>
+                    <description>jakarta.servlet.forward.context_path</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:181.3</id>
-                    <description>javax.servlet.forward.servlet_path</description>
+                    <description>jakarta.servlet.forward.servlet_path</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:181.4</id>
-                    <description>javax.servlet.forward.path_info</description>
+                    <description>jakarta.servlet.forward.path_info</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>Servlet:SPEC:181.5</id>
-                    <description>javax.servlet.forward.query_string</description>
+                    <description>jakarta.servlet.forward.query_string</description>
                     <location chapter="9" section="4.2"/>
                 </assertion>
             </sub-assertions>
@@ -2426,7 +2426,7 @@
         </assertion>
         <assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="false">
             <id>Servlet:SPEC:93</id>
-            <description>Java EE technology-compliant containers are required to provide a mechanism by which a deployer can learn what JAR files containing resources and code are available for the Web application.</description>
+            <description>Jakarta EE technology-compliant containers are required to provide a mechanism by which a deployer can learn what JAR files containing resources and code are available for the Web application.</description>
             <location chapter="10" section="7.1"/>
         </assertion>
         <assertion required="false" impl-spec="true" defined-by="technology" status="active" testable="false">
@@ -2436,7 +2436,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
             <id>Servlet:SPEC:94</id>
-            <description>During deployment of the Web application, the Web container must make the correct versions of the extensions available to the application following the rules defined by the Optional Package Versioning mechanism (http://java.sun.com/j2se/1.4/docs/guide/extensions/).</description>
+            <description>During deployment of the Web application, the Web container must make the correct versions of the extensions available to the application following the rules defined by the Optional Package Versioning mechanism (https://docs.oracle.com/javase/8/docs/technotes/guides/extensions/extensions.html).</description>
             <location chapter="10" section="7.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -2451,22 +2451,22 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:98</id>
-            <description>The classloader that a container uses to load a servlet in a WAR must allow the developer to load any resources contained in library JARs within the WAR following normal J2SE semantics using getResource.</description>
+            <description>The classloader that a container uses to load a servlet in a WAR must allow the developer to load any resources contained in library JARs within the WAR following normal Java SE semantics using getResource.</description>
             <location chapter="10" section="7.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:99</id>
-            <description>As described in the Java EE license agreement, servlet containers that are not part of a Java EE product should not allow the application to override Java SE platform classes, such as those in the java.* and javax.* namespaces, that Java SE does not allow to be modified.</description>
+            <description>As described in the Jakarta EE license agreement, servlet containers that are not part of a Jakarta EE product should not allow the application to override Java SE platform classes, such as those in the java.* and javax.* namespaces, that Java SE does not allow to be modified.</description>
             <location chapter="10" section="7.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:99.1</id>
-            <description>Also, servlet containers that are part of a Java EE product should not allow the application to override J2SE or Java EE platform classes, such as those in the java.* and javax.* namespaces, that either J2SE or Java EE do not allow to be modified.</description>
+            <description>Also, servlet containers that are part of a Jakarta EE product should not allow the application to override Java SE or Jakarta EE platform classes, such as those in the java.* and javax.* namespaces, that either Java SE or Jakarta EE do not allow to be modified.</description>
             <location chapter="10" section="7.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:99.2</id>
-            <description>The class loader that a container uses to load a servlet in a WAR must allow the developer to load any resources contained in library JARs within the WAR following normal J2SE semantics using getResource.</description>
+            <description>The class loader that a container uses to load a servlet in a WAR must allow the developer to load any resources contained in library JARs within the WAR following normal Java SE semantics using getResource.</description>
             <location chapter="10" section="7.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -2517,32 +2517,32 @@
                     <sub-assertions>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.1</id>
-                            <description>The request attribute 'javax.servlet.error.status_code' of type 'java.lang.Integer' will be set containing the HTTP status code of the error condition.</description>
+                            <description>The request attribute 'jakarta.servlet.error.status_code' of type 'java.lang.Integer' will be set containing the HTTP status code of the error condition.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.2</id>
-                            <description>The request attribute 'javax.servlet.error.exception_type' of type 'java.lang.Class' will be set if the error page was invoked due to an uncaught exception.</description>
+                            <description>The request attribute 'jakarta.servlet.error.exception_type' of type 'java.lang.Class' will be set if the error page was invoked due to an uncaught exception.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.3</id>
-                            <description>The request attribute 'javax.servlet.error.message' of type 'java.lang.String' will be set if the error page was invoked due to an uncaught exception.</description>
+                            <description>The request attribute 'jakarta.servlet.error.message' of type 'java.lang.String' will be set if the error page was invoked due to an uncaught exception.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.4</id>
-                            <description>The 'javax.servlet.error.exception' attribute of type 'java.lang.Throwable' will be set if the error page was invoked due to an uncaught exception.</description>
+                            <description>The 'jakarta.servlet.error.exception' attribute of type 'java.lang.Throwable' will be set if the error page was invoked due to an uncaught exception.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.5</id>
-                            <description>The 'javax.servlet.error.request_uri' attribute of type 'java.lang.String' will contain the URI of the offending resource.</description>
+                            <description>The 'jakarta.servlet.error.request_uri' attribute of type 'java.lang.String' will contain the URI of the offending resource.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                             <id>Servlet:SPEC:104.3.6</id>
-                            <description>The 'javax.servlet.error.servlet_name' attribute of type 'java.lang.String' will contain the logical name of the servlet in which the error occurred.</description>
+                            <description>The 'jakarta.servlet.error.servlet_name' attribute of type 'java.lang.String' will contain the logical name of the servlet in which the error occurred.</description>
                             <location chapter="10" section="9.1"/>
                         </assertion>
                     </sub-assertions>
@@ -2615,7 +2615,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:116</id>
-            <description>Java EE compliant servlet containers are required to support the following elements of the web deployment descriptor for specifying information allowing a servlet to obtain references to resources and enterprise beans. The deployment elements that contain this information are:</description>
+            <description>Jakarta EE compliant servlet containers are required to support the following elements of the web deployment descriptor for specifying information allowing a servlet to obtain references to resources and enterprise beans. The deployment elements that contain this information are:</description>
             <location chapter="10" section="11"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -2652,7 +2652,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:118</id>
-            <description>Servlet containers that are part of a Java EE technology compliant implementation must support lookups of such objects and calls made to those objects when performed on a thread managed by the servlet container.</description>
+            <description>Servlet containers that are part of a Jakarta EE technology compliant implementation must support lookups of such objects and calls made to those objects when performed on a thread managed by the servlet container.</description>
             <location chapter="10" section="11"/>
         </assertion>
         <assertion required="false" impl-spec="false" defined-by="technology" status="active" testable="false">
@@ -2853,7 +2853,7 @@
             <id>Servlet:SPEC:290</id>
             <description> Servlet containers MUST support the use of the @ServletSecurity
                 annotation on classes (and subclasses thereof) that implement
-                the javax.servlet.Servlet interface.
+                the jakarta.servlet.Servlet interface.
             </description>
             <location chapter="13" section="4.1"/>
         </assertion>
@@ -3035,7 +3035,7 @@
         </assertion>
         <assertion required="false" impl-spec="false" defined-by="platform" status="active" testable="false">
             <id>Servlet:SPEC:143</id>
-            <description>Servlet containers that are not Java EE technology compliant are not required to support HTTPS protocol/authentication.</description>
+            <description>Servlet containers that are not Jakarta EE technology compliant are not required to support HTTPS protocol/authentication.</description>
             <location chapter="13" section="6.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="false">
@@ -3050,12 +3050,12 @@
         </assertion>
         <assertion required="true" impl-spec="true" defined-by="platform" status="active" testable="false">
             <id>Servlet:SPEC:146</id>
-            <description>The default mode in calls to enterprise beans from web applications is for the security identity of a web user to be propagated to the EJB container.</description>
+            <description>The default mode in calls to enterprise beans from web applications is for the security identity of a web user to be propagated to the Jakarta Enterprise Beans container.</description>
             <location chapter="15" section="3.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="false">
             <id>Servlet:SPEC:147</id>
-            <description>If a container supports calls to EJB's containers are required to support access to web resources by clients that have not authenticated themselves to the container through the use of the run-as element of the deployment descriptor.  The container will use this identity when propagating the call from the web layer to the EJB layer.</description>
+            <description>If a container supports calls to Jakarta Enterprise Beans' containers are required to support access to web resources by clients that have not authenticated themselves to the container through the use of the run-as element of the deployment descriptor.  The container will use this identity when propagating the call from the web layer to the Jakarta Enterprise Beans layer.</description>
             <location chapter="15" section="3.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="true" defined-by="platform" status="active" testable="false">
@@ -3068,7 +3068,7 @@
                     <description>
                          When a run-as role is specified for a Servlet, the Servlet container 
                          must propagate a principal mapped to the role as the security 
-                         identity in any call from the Servlet to an EJBs, including calls 
+                         identity in any call from the Servlet to a Jakarta Enterprise Bean, including calls 
                          originating from the Servlet’s init and destroy methods. 
                     </description>
                     <location chapter="15" section="3.1"/>
@@ -3078,7 +3078,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="false">
             <id>Servlet:SPEC:148</id>
-            <description>Web containers running as part of a Java EE platform, the use of run-as elements must be supported both for calls to EJB components within the same Java EE application, and for calls to EJB components deployed in other Java EE applications.</description>
+            <description>Web containers running as part of a Jakarta EE platform, the use of run-as elements must be supported both for calls to Jakarta Enterprise Beans components within the same Jakarta EE application, and for calls to Jakarta Enterprise Beans components deployed in other Jakarta EE applications.</description>
             <location chapter="15" section="3.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -3300,12 +3300,12 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:170</id>
-            <description>Security information which may appear in the deployment descriptor is not required to be supported unless the servlet container is part of an implementation of the Java EE specification.</description>
+            <description>Security information which may appear in the deployment descriptor is not required to be supported unless the servlet container is part of an implementation of the Jakarta EE specification.</description>
             <location chapter="14" section="1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:193</id>
-            <description>The following additional elements exist in the Web application deployment descriptor to meet the requirements of Web containers that are JSP pages enabledor part of a Java EE application server. They are not required to be supported by containers wishing to support only the servlet specification:</description>
+            <description>The following additional elements exist in the Web application deployment descriptor to meet the requirements of Web containers that are JSP pages enabledor part of a Jakarta EE application server. They are not required to be supported by containers wishing to support only the servlet specification:</description>
             <location chapter="15" section="4.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -3341,7 +3341,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>Servlet:SPEC:175</id>
             <description>The containers and tools that are
-                part of Java EE technology-compliant implementation are required to validate
+                part of Jakarta EE technology-compliant implementation are required to validate
                 deployment descriptor against the XML schema for structural correctness.
             </description>
             <location chapter="14" section="2"/>
@@ -3447,7 +3447,7 @@
             <id>Servlet:SPEC:214</id>
             <description>
                 Servlet containers are required to support the use of these annotations
-                within classes that extend the javax.servlet.http.HttpServlet abstract
+                within classes that extend the jakarta.servlet.http.HttpServlet abstract
                 class.
             </description>
             <location chapter="14" section="4"/>
@@ -3520,7 +3520,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="false">
             <id>Servlet:SPEC:184</id>
-            <description>Java EE technology-compliant containers are required to provide a mechanism by which a deployer can learn about what jar file containing resources and code are available for the Web application.</description>
+            <description>Jakarta EE technology-compliant containers are required to provide a mechanism by which a deployer can learn about what jar file containing resources and code are available for the Web application.</description>
             <location chapter="15" section="2"/>
         </assertion>
         <assertion required="false" impl-spec="true" defined-by="platform" status="active" testable="false">
@@ -3530,10 +3530,10 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:186</id>
-            <description>Servlet containers that are part of a Java EE product should not
-                allow the application to override Java SE or Java EE platform classes,
+            <description>Servlet containers that are part of a Jakarta EE product should not
+                allow the application to override Java SE or Jakarta EE platform classes,
                 such as those in the java.* and javax.* namespaces,
-                that either Java SE or Java EE do not allow to be modified.
+                that either Java SE or Jakarta EE do not allow to be modified.
             </description>
             <location chapter="15" section="2.1"/>
         </assertion>
@@ -3545,14 +3545,14 @@
         <assertion required="true" impl-spec="true" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:188</id>
             <description>The default mode in calls to enterprise beans from web applications is
-                for the security identity of a web user to be propagated to the EJB container.
+                for the security identity of a web user to be propagated to the Jakarta Enterprise Beans container.
             </description>
             <location chapter="15" section="3.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:189</id>
             <description>web containers are required to allow web users that are not known to the web container
-                or to the EJB container to make calls:
+                or to the Jakarta Enterprise Beans container to make calls:
             </description>
             <location chapter="15" section="3.1"/>
             <sub-assertions>
@@ -3578,7 +3578,7 @@
             <description>a web application deployment descriptor may specify a run-as element.
                 When a run-as role is specified for a Servlet, the Servlet container must
                 propagate a principal mapped to the role as the security identity in any call from the
-                Servlet to an EJBs, including calls originating from the Servlet's init and destroy
+                Servlet to a Jakarta Enterprise Bean, including calls originating from the Servlet's init and destroy
                 methods. The security role name must be one of the security role names defined for
                 the web application.
             </description>
@@ -3586,9 +3586,9 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:191</id>
-            <description>For web containers running as part of a Java EE platform,
-                the use of run-as elements must be supported both for calls to EJB components within the same Java EE application,
-                and for calls to EJB components deployed in other Java EE applications.
+            <description>For web containers running as part of a Jakarta EE platform,
+                the use of run-as elements must be supported both for calls to Jakarta Enterprise Beans components within the same Jakarta EE application,
+                and for calls to Jakarta Enterprise Beans components deployed in other Jakarta EE applications.
             </description>
             <location chapter="15" section="3.1"/>
         </assertion>
@@ -3655,7 +3655,7 @@
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                             <id>Servlet:SPEC:173.3.6</id>
-                            <description>the run-as element may be used to override the identity propagated to EJBs called by this component</description>
+                            <description>the run-as element may be used to override the identity propagated to Jakarta Enterprise Beans called by this component</description>
                             <location chapter="15" section="4.2"/>
                         </assertion>
                     </sub-assertions>
@@ -3694,7 +3694,7 @@
                         </assertion>
                         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                             <id>Servlet:SPEC:173.5.5</id>
-                            <description>links to Java EE objects stored in the JNDI namespace</description>
+                            <description>links to Jakarta EE objects stored in the JNDI namespace</description>
                             <location chapter="15" section="4.2"/>
                         </assertion>
                     </sub-assertions>
@@ -3712,52 +3712,52 @@
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.1</id>
-                    <description>javax.servlet.Servlet</description>
+                    <description>jakarta.servlet.Servlet</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.2</id>
-                    <description>javax.servlet.Filter</description>
+                    <description>jakarta.servlet.Filter</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.3</id>
-                    <description>javax.servlet.ServletContextListener</description>
+                    <description>jakarta.servlet.ServletContextListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.4</id>
-                    <description>javax.servlet.ServletContextAttributeListener</description>
+                    <description>jakarta.servlet.ServletContextAttributeListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.5</id>
-                    <description>javax.servlet.ServletRequestListener</description>
+                    <description>jakarta.servlet.ServletRequestListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.6</id>
-                    <description>javax.servlet.ServletRequestAttributeListener</description>
+                    <description>jakarta.servlet.ServletRequestAttributeListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.7</id>
-                    <description>javax.servlet.http.HttpSessionListener</description>
+                    <description>jakarta.servlet.http.HttpSessionListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.8</id>
-                    <description>javax.servlet.http.HttpSessionAttributeListener</description>
+                    <description>jakarta.servlet.http.HttpSessionAttributeListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.10</id>
-                    <description>javax.servlet.http.HttpSessionIdListener</description>
+                    <description>jakarta.servlet.http.HttpSessionIdListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:195.9</id>
-                    <description>javax.servlet.AsyncListener</description>
+                    <description>jakarta.servlet.AsyncListener</description>
                     <location chapter="15" section="5"/>
                 </assertion>
             </sub-assertions>
@@ -3809,7 +3809,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>Servlet:SPEC:199</id>
-            <description>Following are the annotations that are required by a Java EE technology compliant web container.</description>
+            <description>Following are the annotations that are required by a Jakarta EE technology compliant web container.</description>
             <location chapter="15" section="5"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -3839,10 +3839,10 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:199.4</id>
-                    <description>Enterprise JavaBeansTM 3.0 (EJB) components may be referenced from a web component using the @EJB annotation.
+                    <description>Jakarta Enterprise Beans 4.0 components may be referenced from a web component using the @EJB annotation.
                         The @EJB annotation provides the equivalent functionality of declaring the ejb-ref
                         or ejb-local-ref elements in the deployment descriptor.
-                        Fields that have a corresponding @EJB annotation are injected with the a reference to the corresponding EJB component.
+                        Fields that have a corresponding @EJB annotation are injected with the a reference to the corresponding Jakarta Enterprise Beans component.
                     </description>
                     <location chapter="15" section="5.2"/>
                 </assertion>
@@ -3861,14 +3861,14 @@
                         the annotated class. Roles that are implicitly declared as a result of their use in a
                         @RolesAllowed need not be explicitly declared using the @DeclareRoles annotaion.
                         The @DeclareRoles annotation may only be defined in classes implementing the
-                        javax.servlet.Servlet interface or a subclass thereof.
+                        jakarta.servlet.Servlet interface or a subclass thereof.
                     </description>
                     <location chapter="15" section="5.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
                     <id>Servlet:SPEC:199.7</id>
                     <description>The @RunAs annotation is equivalent to the run-as element in the deployment descriptor.
-                        The @RunAs annotation may only be defined in classes implementing the javax.servlet.Servlet interface
+                        The @RunAs annotation may only be defined in classes implementing the jakarta.servlet.Servlet interface
                         or a subclass thereof.
                     </description>
                     <location chapter="15" section="5.12"/>
@@ -3897,7 +3897,7 @@
                     <description>The @PersistenceUnit annotation provides Enterprise Java Beans components
                         declared in a servlet a reference to a entity manager factory. The entity manager
                         factory is bound to a separate persistence.xml configuration file as described in
-                        section 5.10 of the EJB 3.0 specification (JSR220).
+                        section 5.10 of the Jakarta Enterprise Beans 4.0 specification.
                     </description>
                     <location chapter="15" section="5.7"/>
                 </assertion>

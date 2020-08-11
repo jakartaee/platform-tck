@@ -1,7 +1,7 @@
-** `javax.servlet`
+** `jakarta.servlet`
 
-** `javax.servlet.annotation`
+** `jakarta.servlet.annotation`
 
-** `javax.servlet.descriptor`
+** `jakarta.servlet.descriptor`
 
-** `javax.servlet.http`
+** `jakarta.servlet.http`
