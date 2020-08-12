@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -182,9 +182,15 @@
          <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
          <copy toDir="${deliverable.bundle.dir}/docs/">
          <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
-                 includes="staging/*.html,
-                	generated-docs/*.pdf"/>
-         </copy>
+                         includes="staging/*.html,staging/css/*,staging/img/*,
+                        generated-docs/*.pdf"/>
+                </copy>
+                <move todir="${deliverable.bundle.dir}/docs/pdf-usersguide">
+                    <fileset dir="${deliverable.bundle.dir}/docs/generated-docs"/>
+                </move>
+                <move todir="${deliverable.bundle.dir}/docs/html-usersguide">
+                    <fileset dir="${deliverable.bundle.dir}/docs/staging"/>
+                </move>
 	</target>
         <target name="create.doc.bundle">
               <delete file="${deliverable.bundle.dir}/../${deliverable.name}tck-doc*.zip"/>
