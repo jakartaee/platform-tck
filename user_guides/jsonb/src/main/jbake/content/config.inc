@@ -49,7 +49,7 @@ environment variables:
   a.  Set the `jsonb.classes` property to the jar file(s) that contain
   the {TechnologyShortName} implementation. +
   For example, if you were using the {TechnologyFullName} {TechnologyVersion} RI, you would set
-  this property to `jsonb.classes=javax.json.bind-{TechnologyVersion}.jar`.
+  this property to `jsonb.classes=jakarta.json.bind-{TechnologyVersion}.jar`.
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 

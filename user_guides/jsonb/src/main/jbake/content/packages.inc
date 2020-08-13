@@ -1,11 +1,11 @@
-** `javax.json.bind`
+** `jakarta.json.bind`
 
-** `javax.json.bind.adapter`
+** `jakarta.json.bind.adapter`
 
-** `javax.json.bind.annotation`
+** `jakarta.json.bind.annotation`
 
-** `javax.json.bind.config`
+** `jakarta.json.bind.config`
 
-** `javax.json.bind.serializer`
+** `jakarta.json.bind.serializer`
 
-** `javax.json.bind.spi`
+** `jakarta.json.bind.spi`
