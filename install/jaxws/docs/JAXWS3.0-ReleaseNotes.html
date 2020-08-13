@@ -19,7 +19,7 @@
 
 -->
 
-    <title>Jakarta XML Web Services TCK, Version 3.0 Release Notes, September 2019</title>
+    <title>Jakarta XML Web Services TCK, Version 3.0 Release Notes, September 2020</title>
 <style type="text/css">
 <!--
 body {  background-color: #ffffdd; color: #000000}
@@ -40,7 +40,7 @@ h4 {  font-style: italic; color: #000099}
 <body>
 <div align="Center">
 <h1>Jakarta XML Web Services Technology Compatibility Kit, Version 3.0<br>
-<em class="emphasize">Release Notes, September 2019</em></h1>
+<em class="emphasize">Release Notes, September 2020</em></h1>
 </div>
 
 <hr>
@@ -50,7 +50,7 @@ h4 {  font-style: italic; color: #000099}
    <li><p><strong>Jakarta XML Web Services TCK Signature, API, End-to-end, WS-I Conformance, Java-to-WSDL/WSDL-to-Java Mapping and Web Services Addressing Conformance tests:</strong></p>
    <ul>
       <li>A <strong>Signature test</strong> that checks that all of the public APIs are supported/defined as specified in the Jakarta XML Web Services Version 3.0 implementation that is being tested.</li>
-      <li><strong>API tests</strong> to verify the functionality of all the public APIs under <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.handler</code>, <code>jakarta.xml.ws.handler.soap</code>, <code>jakarta.xml.ws.http</code>, <code>jakarta.xml.ws.spi</code>, <code>jakarta.xml.ws.spi.http</code>, <code>jakarta.xml.ws.soap</code>, and <code>jakarta.xml.ws.wsaddressing</code>.</li>
+      <li><strong>API tests</strong> to verify the functionality of all the public APIs under <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.handler</code>, <code>jakarta.xml.ws.handler.soap</code>, <code>jakarta.xml.ws.http</code>, <code>jakarta.xml.ws.spi</code>, <code>jakarta.xml.ws.spi.http</code>, <code>jakarta.xml.ws.soap</code>,  <code>jakarta.xml.ws.wsaddressing</code>, <code>jakarta.jws</code>, and <code>jakarta.jws.soap</code>.</li>
       <li><strong>End-to-end tests</strong> that demonstrate marshalling/unmarshalling of all XML supported data types when going from WSDL-to-Java and all Jakarta XML Web Services supported Java data types when going from Java-to-WSDL as Jakarta XML Web Services SOAP Messages both through synchronous (request/response) and asynchronous (request/response) and (one-way) RPC invocations. All client programming model invocation methods (Stub-based, Dynamic Proxy, and Dispatch interface) are tested.</li>
       <li> <strong>WS-I Conformance Tests</strong> that test and check for conformance to the WS-I Basic Profile 1.1, Attachment Profile 1.0, and Simple Soap Binding Profile 1.0 conformance specifications.</li>
       <li><strong>Java-to-WSDL/WSDL-to-Java Mapping Tests</strong> that test and check for conformance to the Java-to-WSDL and WSDL-to-Java mappings.</li>
@@ -59,7 +59,7 @@ h4 {  font-style: italic; color: #000099}
 
         <h2><a name="platform">Platform Notes</a></h2>
 
-        <p>The Jakarta XML Web Services TCK tests have been built and tested with the the Compatible Implementation (CI) Eclipse GlassFish Server 5.1 running on the Java(tm) Standard Edition 8 (Java SE 8) platforms. If you are using a different Web server, you will need to make adjustments to the procedures outlined in this document.</p>
+        <p>The Jakarta XML Web Services TCK tests have been built and tested with the the Compatible Implementation (CI) Eclipse GlassFish Server 6.0 running on the Java(tm) Standard Edition 8 (Java SE 8) platforms. If you are using a different Web server, you will need to make adjustments to the procedures outlined in this document.</p>
 
         <p>The Jakarta XML Web Services TCK tests run on the following platforms:</p>
 
@@ -130,7 +130,7 @@ h4 {  font-style: italic; color: #000099}
         <ul>
           <li>The <code>http.server.supports.endpoint.publish</code> property indicates whether or not your HTTP server supports endpoint publishing.
           </li>
-          <li>The <code>http.server.supports.endpoint.publish.2</code> property indicates whether or not the Jakarta EE 8 CI server supports endpoint publishing.
+          <li>The <code>http.server.supports.endpoint.publish.2</code> property indicates whether or not the Jakarta EE 9 CI server supports endpoint publishing.
         </ul>
         <p>
           If your server supports endpoint publishing (supports the use of
@@ -145,7 +145,7 @@ h4 {  font-style: italic; color: #000099}
         <p>
           If your server does not support endpoint publishing (does not support the use of
           <code>jakarta.xml.ws.Endpoint.publish()</code> methods), set the property value to
-          "false". In a managed environment, such as the Jakarta EE 8 Compatible Implementation,
+          "false". In a managed environment, such as the Jakarta EE 9 Compatible Implementation,
           this is usually the case and this call would not be allowed. When the property is
           set to "false", the tests will check that these endpoint publish methods do not
           publish the endpoints and an exception will be thrown. When this result occurs
@@ -154,16 +154,16 @@ h4 {  font-style: italic; color: #000099}
 
         <p>
           The <code>http.server.supports.endpoint.publish.2</code> property settings are used to specify
-          whether or not endpoint publishing is supported by the Jakarta EE 8 CI HTTP server.
+          whether or not endpoint publishing is supported by the Jakarta EE 9 CI HTTP server.
           The same settings and caveats as the <code>http.server.supports.endpoint.publish
-            </code> property apply to this property, based on whether or not the Jakarta EE 8 CI
+            </code> property apply to this property, based on whether or not the Jakarta EE 9 CI
           supports endpoint publishing.
         </p>
 
         <hr>
         <h2><a name="install_setup_run">Installing, Setting Up, and Running the Jakarta XML Web Services TCK</a></h2>
 
-        <p>Refer to the <cite>Jakarta XML Web Services TCK 3.0 User's Guide</cite>, available in the Jakarta XML Web Services TCK 3.0 documentation bundle, for complete instructions on installing, setting up, and running the Jakarta XML Web Services TCK.
+        <p>Refer to the <a href="html-usersguide/toc.html">Jakarta XML Web Services TCK 3.0 User's Guide</a>, available in the Jakarta XML Web Services TCK 3.0 documentation bundle, for complete instructions on installing, setting up, and running the Jakarta XML Web Services TCK.
         The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
 
         <hr>
