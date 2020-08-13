@@ -17,7 +17,7 @@
 
 -->
 
-<persistence xmlns="http://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jakarta.ee/xml/ns/persistence     http://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd" version="3.0">
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence     https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd" version="3.0">
     <persistence-unit name="JPATCK" transaction-type="RESOURCE_LOCAL">
         <description>Persistence Unit for Java Persistence API Standalone TCK</description>
         <class>com.sun.ts.tests.jpa.se.cache.xml.none.Order</class>
