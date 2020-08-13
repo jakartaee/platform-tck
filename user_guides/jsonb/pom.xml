@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@
     <artifactId>tck_jsonb</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta JSON Binding for Jakarta EE, Release 1.0</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta JSON Binding for Jakarta EE, Release 2.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +47,7 @@
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:javaee/tck_jsonb_v1_0.git</url>
+            <url>scm:git:git@github.com:eclipse-ee4j/jakartaee-tck.git</url>
         </site>
     </distributionManagement>
 
