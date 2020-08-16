@@ -53,6 +53,14 @@ Download and install the Java SE {SEversion} software from
 http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
+.  Install the Apache Ant {AntVersion} software, if it is not already installed. +
+Download and install Apache Ant {AntVersion} software from Apache Ant
+Project. For complete information about Ant, refer to the extensive documentation 
+on the Apache Ant Project site. The Apache Ant Manual is available at
+`http://ant.apache.org/manual/index.html`.
+Apache Ant is protected under the Apache Software, License 2.0, which is
+is available on the Apache Ant Project license page at 
+`http://ant.apache.org/license.html`.
 .  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your
       local system. +

@@ -354,8 +354,7 @@ installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -498,8 +497,7 @@ server environments for the Compatible Implementation and VI.
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Vendor specific properties
 have been configured.
 3.  Run the `ant config.vi` target to configure for the Vendor
@@ -521,8 +519,7 @@ ant config.vi
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Compatible Implementation specific properties have
 been configured.
 3.  Run the `ant config.ri` target to configure for Compatible Implementation implementation.
