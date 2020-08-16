@@ -60,7 +60,7 @@ property in the `ts.jte` file to `standalone`.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  `pathsep` to the type of path separator used by your operating

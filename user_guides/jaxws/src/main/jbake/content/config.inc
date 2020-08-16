@@ -42,7 +42,7 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -164,7 +164,7 @@ Information,"] for information about repackaging the
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -509,7 +509,7 @@ Implementation.
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.vi
+ant config.vi
 ----
 --
 
@@ -531,7 +531,7 @@ been configured.
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.ri
+ant config.ri
 ----
 --
 
@@ -565,7 +565,7 @@ Reference Implementation]
 
 The `keywords` system property enables you to deploy a subset of the
 tests that would normally be deployed in batch mode by means of
-`<TS_HOME>/tools/ant/bin/ant deploy`. To specify it, add the option
+`ant deploy`. To specify it, add the option
 `-Dkeywords=`value to the `ant` command, where value is either
 `forward`, `reverse`, or `all`. The supported values control the
 directions in which the rebuildable tests are deployed.
@@ -585,14 +585,14 @@ Enter the following command:
 
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant deploy.all
+ant deploy.all
 ----
 
 or
 
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=all deploy.all
+ant -Dkeywords=all deploy.all
 ----
 
 [[GCLII]][[to-deploy-a-single-test-directory-in-the-forward-direction]]
@@ -604,7 +604,7 @@ Enter the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=forward deploy
+ant -Dkeywords=forward deploy
 ----
 
 [[GCLJC]][[to-deploy-a-subset-of-test-directories-in-the-reverse-direction]]
@@ -616,7 +616,7 @@ Enter the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse deploy
+ant -Dkeywords=reverse deploy
 ----
 
 

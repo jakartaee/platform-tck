@@ -107,7 +107,7 @@ target:
 --
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant -Dbuild.vi=true clean build
+ant -Dbuild.vi=true clean build
 ----
 --
 +
@@ -144,7 +144,7 @@ the rebuilding of a single test directory.
 1.  Change to the
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest`
 directory.
-2.  Run `<TS_HOME>/tools/ant/bin/ant llc`. +
+2.  Run `ant llc`. +
 The following is a listing of classes built using the JAX-WS Compatible Implementation.
 +
 --
@@ -168,7 +168,7 @@ drwxr-xr-x   3 root root     512 Apr 12 08:31 generated_sources/
 ----
 --
 +
-3.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
+3.  Run `ant lld`. +
 This shows you the listing of archives built using the JAX-WS Compatible Implementation.
 +
 --
@@ -189,13 +189,13 @@ the following command:
 --
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant -Dbuild.vi=true build
+ant -Dbuild.vi=true build
 ----
 --
 +
 This builds the classes and archives using your implementation. Once
 this has been done successfully, proceed to the next step.
-5.  Run `<TS_HOME>/tools/ant/bin/ant -Dbuild.vi=true llc`. +
+5.  Run `ant -Dbuild.vi=true llc`. +
 This shows you the listing of classes (under
 `<TS_HOME>/classes_vi_built`) built using your Implementation.
 +
@@ -220,7 +220,7 @@ drwxr-xr-x   3 root root     512 Apr 12 12:01 generated_sources/
 ----
 --
 +
-6.  Run `<TS_HOME>/tools/ant/bin/ant lld`. +
+6.  Run `ant lld`. +
 This shows the listing of all archives and JAX-WS Compatible Implementation deployment plan
 descriptors for this test directory. Those built using your
 implementation are prepended with `vi_built_`.
@@ -244,7 +244,7 @@ clean them, run:
 --
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant -Dbuild.vi=true clean
+ant -Dbuild.vi=true clean
 ----
 --
 +

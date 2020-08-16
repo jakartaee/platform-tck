@@ -45,7 +45,7 @@ slashes as a path separator instead.
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
   {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
@@ -92,7 +92,7 @@ test. The target can be run from `<TS_HOME>/bin`.
 
 For example, change to the `<TS_HOME>/bin` directory, then enter
 
-`<TS_HOME>/tools/ant/bin/ant init.javadb`
+`ant init.javadb`
 
 This adds the database users and run db statements that are necessary
 for the tests to run successfully.
@@ -117,7 +117,7 @@ This JAR file (or files) must contain all of the TLDs (located in the
 by the {TechnologyShortName} specification and any additional support JAR files upon
 which the {TechnologyShortName} implementation is dependent.
 2.  Change to the `<TS_HOME>/src/com/sun/ts/tests` directory and run
-`<TS_HOME>/tools/ant/bin/ant build` to package the web archives. +
+`ant build` to package the web archives. +
 This adds the JAR file or files from the `<TS_HOME>/weblib` directory to
 each of the WAR files.
 
@@ -191,7 +191,7 @@ tests is running.
   `./asadmin restart-domain`
 +
 2.  Change to the `<TS_HOME>/bin` directory.
-3.  Execute the `<TS_HOME>/tools/ant/bin/ant deploy.all` command. +
+3.  Execute the `ant deploy.all` command. +
 All of the WAR files containing the {TechnologyShortName} TCK tests have been deployed.
 Follow the instructions in link:using.html#GBFUZ[Section 5.1, "Using the
 GUI for TCK Test Execution,"] or link:using.html#GJCIW[Section 5.2,

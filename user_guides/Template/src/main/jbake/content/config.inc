@@ -67,10 +67,10 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI is running. +
+  Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  Set the `web.home` property to the installation directory of Jakarta EE
   8 CI.
@@ -122,7 +122,7 @@ ${web.home}/modules/endorsed/jakarta.annotation-api.jar
   instructions. +
   The default setting for this property is `jersey`.
   i.  Set the `impl.vi.deploy.dir` property to point to the `autodeploy`
-  directory of the Jakarta EE 8 CI . +
+  directory of the Jakarta EE {JakartaEEVersion} CI . +
   The default setting for this property is
   `${web.home}/domains/domain1/autodeploy`.
   j. Verify that the `tools.jar` property is set to the location of the
