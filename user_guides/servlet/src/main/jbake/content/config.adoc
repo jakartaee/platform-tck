@@ -58,7 +58,7 @@ with the necessary configuration steps for your implementation and place
 the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 
 For more information, you may wish to view `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
-the configuration file for Jakarta EE 9 Compatible Implementation, Eclipse GlassFish.
+the configuration file for Jakarta EE {JakartaEEVersion} Compatible Implementation, Eclipse GlassFish.
 
 [[GBFWG]][[custom-deployment-handlers]]
 

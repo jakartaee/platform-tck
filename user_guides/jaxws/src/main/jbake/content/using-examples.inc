@@ -35,7 +35,7 @@ or `all`.
 --
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant [-Dkeywords=forward|reverse|all] runclient 
+ant [-Dkeywords=forward|reverse|all] runclient 
 ----
 --
 
@@ -59,7 +59,7 @@ To run the JAX-WS TCK signature tests, enter the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/signaturetest/jaxws
-<TS_HOME>/tools/ant/bin/ant [-Dkeywords=forward|reverse|all] runclient 
+ant [-Dkeywords=forward|reverse|all] runclient 
 ----
 
 [[TCJWS00013]][[GCMBV]]
@@ -73,7 +73,7 @@ following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch 
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=forward runclient
+ant -Dkeywords=forward runclient
 ----
 
 [[TCJWS00014]][[GCMCA]]
@@ -87,5 +87,5 @@ the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api 
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse runclient
+ant -Dkeywords=reverse runclient
 ----

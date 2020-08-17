@@ -164,8 +164,7 @@ restrictions, and so on.
 The {TechnologyShortName} TCK {TechnologyVersion} includes the
 following components:
 
-* JavaTest harness version {JavaTestVersion} and related documentation. See the
-`ReleaseNotes-jtharness.html` file and the
+* JavaTest harness version {JavaTestVersion} and related documentation. See
 link:https://wiki.openjdk.java.net/display/CodeTools/JT+Harness[JT Harness web site]
 for additional information.
 * {TechnologyShortName} TCK signature tests; check that all public APIs
@@ -184,7 +183,7 @@ endif::end-to-end-tests[]
 
 The {TechnologyShortName} TCK tests run on the following platforms:
 
-* CentOS 7
+include::platforms.inc[]
 
 [[GBFSA]][[javatest-harness]]
 
@@ -331,6 +330,7 @@ guide.
 on the system hosting the JavaTest harness:
 include::req-software.inc[]
 * Java SE {SEversion}
+* Apache Ant {AntVersion}
 * A CI for {TechnologyShortName} {TechnologyVersion}. One example is {TechnologyRI}.
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]

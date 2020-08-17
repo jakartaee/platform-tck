@@ -49,7 +49,7 @@ slashes as a path separator instead.
 installed
 * `JMS_HOME` to the directory in which the {TechnologyShortName} {TechnologyVersion} CI has been installed
 * `PATH` to include the following directories: `JAVA_HOME/bin`,
-`JMS_HOME/bin`, and `<TS_HOME>/tools/ant/bin`
+`JMS_HOME/bin`, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 properties:
 * `jms.home` to the directory in which you installed your {TechnologyShortName} {TechnologyVersion}
@@ -295,7 +295,7 @@ has been installed
 * `JMS_HOME` to the directory in which your {TechnologyShortName} {TechnologyVersion} implementation has
 been installed
 * `PATH` to include the following directories: `JAVA_HOME/bin`,
-`JMS_HOME/bin`, and `<TS_HOME>/tools/ant/bin`
+`JMS_HOME/bin`, and `ANT_HOME/bin`
 2.  Use the following command to start the {TechnologyRI} Broker
 Service:
 +

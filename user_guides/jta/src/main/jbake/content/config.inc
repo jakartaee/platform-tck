@@ -45,7 +45,7 @@ slashes as a path separator instead.
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
   {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  If you are testing an implementation within a Web container, set the
@@ -70,10 +70,10 @@ environment variables:
   f.  To copy the `tsharness.jar` and `jtatck.jar` files to the server's
   extension directory, change to the `<TS_HOME>/bin` directory and execute
   the following command: +
-  `<TS_HOME>/tools/ant/bin/ant config.vi`
+  `ant config.vi`
   g.  To deploy the JTATCKWAR files, change to the <TS_HOME>/bin directory
   and execute the following command: +
-  `<TS_HOME>/tools/ant/bin/ant deploy.all`
+  `ant deploy.all`
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 
@@ -118,7 +118,7 @@ will be run and determine to which Servlet–compliant Web server the
   c.  +{TechnologyHomeEnv}+ to the directory in which the
   {TechnologyShortName} {TechnologyVersion} VI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +`{TechnologyHomeEnv}/bin`+, and `<TS_HOME>/tools/ant/bin`
+  +`{TechnologyHomeEnv}/bin`+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  If you are testing an implementation within a Web container, set the
@@ -145,10 +145,10 @@ environment variables:
   g.  To copy the `tsharness.jar` and `jtatck.jar` files to the server's
   extension directory, change to the `<TS_HOME>/bin` directory and execute
   the following command: +
-  `<TS_HOME>/tools/ant/bin/ant config.vi`
+  `ant config.vi`
   h.  To deploy the JTATCKWAR files, change to the `<TS_HOME>/bin`
   directory and execute the following command: +
-  `<TS_HOME>/tools/ant/bin/ant deploy.all`
+  `ant deploy.all`
 
 [[GHGDG]][[publishing-the-test-applications]]
 
