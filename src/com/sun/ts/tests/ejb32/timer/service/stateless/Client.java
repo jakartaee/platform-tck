@@ -34,6 +34,6 @@ public class Client extends ClientBase {
   public void setup(String[] args, Properties p) {
     super.setup(args, p);
     clientBean = statelessBean;
-    autoTimerCount = 6;
+    autoTimerCount = 8;
   }
 }
