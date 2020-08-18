@@ -39,7 +39,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
@@ -49,13 +49,13 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI (for example {TechnologyRI}) is running. +
+  Jakarta EE {JakartaEEVersion} CI (for example {TechnologyRI}) is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which your Jakarta EE 8 CI is running. +
+  which your Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  Set the `webServerHome` property to the installation directory of Jakarta EE
-  8 CI.
+  {JakartaEEVersion} CI.
   d.  `web.deployment.handler` to an Ant file that contains at least a
   single target named `deploy`. +
   When `ant deploy` is invoked, this target will be invoked to handle the
@@ -65,7 +65,7 @@ environment variables:
   The {TechnologyShortName} TCK includes the following handlers:
 
   * `noop`: No deployment; default setting
-  * `glassfish`: Deploy to the Jakarta EE 8 CI server {TechnologyRI}
+  * `glassfish`: Deploy to the Jakarta EE {JakartaEEVersion} CI server {TechnologyRI}
   * `jwsdp`: Deploy to a server running the Java Web Services Developers
   Pack or to a Tomcat server +
   See link:#GCRVD[Section 4.5, "Custom Deployment Handlers,"] for

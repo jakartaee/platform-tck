@@ -39,7 +39,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
@@ -176,7 +176,7 @@ tests is running.
   For example, with {TechnologyRI} we can use the `asadmin` to start/stop database and domain. +
   `./asadmin start-database` +
   `./asadmin start-domain`
-  c.  In addition, with Java SE 8 security changes, it is necessary to set
+  c.  In addition, with Java SE {SEversion} security changes, it is necessary to set
   the following JVM properties on the domain in order to ensure all tests
   pass. +
   `-Djavax.xml.accessExternalStylesheet=all` +

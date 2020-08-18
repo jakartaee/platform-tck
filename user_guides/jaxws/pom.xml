@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@
     <groupId>org.glassfish</groupId>
     <artifactId>tck_jaxws</artifactId>
     <packaging>pom</packaging>
-    <version>2.3.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Java API for Web Services (JAX-WS) Technology Compatibility Kit User's Guide for Jakarta EE, Release 2.3</name>
+    <version>3.0.0</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide Jakarta XML Binding for Jakarta EE, Release 3.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,13 +41,13 @@
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status></status>
-        <doc.pdf>JAX-WS-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>XML-WS-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:javaee/tck_jaxws_v2_3.git</url>
+            <url>scm:git:git@github.com:eclipse-ee4j/jakartaee-tck.git</url>
         </site>
     </distributionManagement>
 

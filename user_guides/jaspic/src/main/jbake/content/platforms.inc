@@ -1,2 +1,2 @@
-CentOS Linux 7
-Alpine Linux v3.12
+* CentOS Linux 7
+* Alpine Linux v3.12

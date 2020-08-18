@@ -1,5 +1,5 @@
-** `javax.servlet.jsp`
+** `jakarta.servlet.jsp`
 
-** `javax.servlet.jsp.el`
+** `jakarta.servlet.jsp.el`
 
-** `javax.servlet.tagext`
+** `jakarta.servlet.tagext`

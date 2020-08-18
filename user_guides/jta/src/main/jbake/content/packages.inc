@@ -1,1 +1,1 @@
-** `javax.transaction`
+** `jakarta.transaction`

@@ -32,7 +32,7 @@ B.1 Overview
 This section describes the deployment scenarios under which the CSIv2
 interoperability tests are executed. Each scenario uses two servers. The
 label "Implementer Jakarta Platform, Enterprise Edition Server" refers to the
-server under test. The label "Jakarta EE 8 CI Server" refers to the
+server under test. The label "Jakarta EE 9 CI Server" refers to the
 reference server against which compatibility will be verified.
 
 There are three primary deployment scenarios, each of which is described
@@ -46,7 +46,7 @@ Although these scenarios often involve more than one invocation, the
 invocation of primary interest is the final invocation, which is always
 between servers.
 
-A new logging mechanism was introduced with Jakarta EE 8 CTS. Logging now
+A new logging mechanism was introduced with Jakarta EE 9 CTS. Logging now
 occurs as follows:
 
 * From the VI, logging operations are done through a servlet request.
@@ -73,10 +73,10 @@ which will cause all the CSIv2 tests to fail as well.
 =======================================================================
 
 
-When the server that is running the Jakarta EE 8 CI is started, a set of
+When the server that is running the Jakarta EE 9 CI is started, a set of
 logging interceptors are registered, allowing the test code to collect
 protocol-level information. Note that this interceptor is only installed
-on the server that is running the Jakarta EE 8 CI. The Jakarta EE 8 CTS does
+on the server that is running the Jakarta EE 9 CI. The Jakarta EE 9 CTS does
 not require the Implementer Jakarta Platform, Enterprise Edition Server to
 support CORBA Portable Interceptors.
 
@@ -86,11 +86,11 @@ direction:
 * In the `forward` direction, the client component of the invocation of
 primary interest is on the Implementer Jakarta Platform, Enterprise Edition
 Server, and the server component is on the server that is running the
-Jakarta EE 8 CI. In this direction, information about the CSIv2 request
+Jakarta EE 9 CI. In this direction, information about the CSIv2 request
 message is collected and analyzed.
 
 * In the `reverse` direction, the client component of the invocation of
-primary interest is on the server that is running the Jakarta EE 8 CI, and
+primary interest is on the server that is running the Jakarta EE 9 CI, and
 the server component is on the Jakarta Platform, Enterprise Edition
 Implementer server. In this direction, information about the published IOR
 and the CSIv2 response message is collected and analyzed.
@@ -113,11 +113,11 @@ Each application client-to-Jakarta Enterprise Beans scenario includes an applica
 and an Jakarta Enterprise Beans, as shown in link:#GFKGD[Figure B-1]. In the `forward`
 direction, the application client is deployed on the Implementer Jakarta
 Platform, Enterprise Edition server and the Jakarta Enterprise Beans is deployed on the
-server that is running the Jakarta EE 8 CI. In the `reverse` direction, the
+server that is running the Jakarta EE 9 CI. In the `reverse` direction, the
 application client is deployed on the server that is running the Jakarta EE
 8 CI, and the Jakarta Enterprise Beans is deployed on the Implementer Jakarta Platform, Enterprise
 Edition Server. The Logging Interceptor (LI) is deployed on the server
-that is running the Jakarta EE 8 CI.
+that is running the Jakarta EE 9 CI.
 
 [[GFKGD]]
 
@@ -136,11 +136,11 @@ Each of the Jakarta Enterprise Beans-to-Jakarta Enterprise Beans scenarios inclu
 enterprise beans, as shown in link:#GFKEV[Figure B-2]. In the `forward`
 direction, the application client and Jakarta Enterprise Bean 1 are deployed on the Implementer
 Jakarta Platform, Enterprise Edition Server. Jakarta Enterprise Bean 2 is deployed on the server
-that is running the Jakarta EE 8 CI. In the `reverse` direction, the
+that is running the Jakarta EE 9 CI. In the `reverse` direction, the
 Application Client and Jakarta Enterprise Bean 3 are deployed on the server that is running
-the Jakarta EE 8 CI. Jakarta Enterprise Bean 4 is deployed on the Implementer Jakarta Platform,
+the Jakarta EE 9 CI. Jakarta Enterprise Bean 4 is deployed on the Implementer Jakarta Platform,
 Enterprise Edition Server. The Logging Interceptor (LI) is deployed on
-the server that is running the Jakarta EE 8 CI.
+the server that is running the Jakarta EE 9 CI.
 
 [[GFKEV]]
 
@@ -159,9 +159,9 @@ Each Web client-to-Jakarta Enterprise Beans scenarios includes an application cl
 servlet, and a Jakarta Enterprise Beans, as shown in link:#GFKGE[Figure B-3]. In the forward
 direction, the application client and the Web client are deployed on the
 Implementer Jakarta Platform, Enterprise Edition Server. The Jakarta Enterprise Beans is deployed
-on the server that is running the Jakarta EE 8 CI. In the reverse
+on the server that is running the Jakarta EE 9 CI. In the reverse
 direction, the application client and the Web client are deployed on the
-server that is running the Jakarta EE 8 CI. The Jakarta Enterprise Beans is deployed on the
+server that is running the Jakarta EE 9 CI. The Jakarta Enterprise Beans is deployed on the
 Implementer Jakarta Platform, Enterprise Edition Server.
 
 [[GFKGE]]
@@ -178,8 +178,8 @@ B.2 CSIv2 Logging Servlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Along with any EAR files for the directory under test, the Logging
-Servlet should get copied over to the Jakarta EE 8 CI as part of the
-autodeployment process. The Logging Servlet is needed on the Jakarta EE 8
+Servlet should get copied over to the Jakarta EE 9 CI as part of the
+autodeployment process. The Logging Servlet is needed on the Jakarta EE 9
 CI. After the Logging Servlet has been deployed, verify that it is
 working properly by accessing the following URL:
 
@@ -188,11 +188,11 @@ working properly by accessing the following URL:
 http://localhost:8002/logger_servlet_web/LoggerServlet?log.file.location=USE_DEFAULT&ping=
 ----
 
-where `localhost` is the Jakarta EE 8 CI host represented as `ts.jte`
+where `localhost` is the Jakarta EE 9 CI host represented as `ts.jte`
 values `orb.host.ri` and `remote.orb.host` and `8002` is the port
 represented as `ts.jte` values `webServerPort.2` and `remote.orb.port`.
 
-If you can not access the page at URL on your Jakarta EE 8 CI, all CSIv2
+If you can not access the page at URL on your Jakarta EE 9 CI, all CSIv2
 tests will fail. Ensure that you can access the URL. Accessing this page
 displays the following text:
 
@@ -216,12 +216,12 @@ system log directory
 Several properties and JVM options that control logging need to be set
 in the `ts.jte` file:
 
-* `ri.log.file.location` to the location to which the Jakarta EE 8 CI log
+* `ri.log.file.location` to the location to which the Jakarta EE 9 CI log
 files will be written and optionally stored if the
 `harness.log.traceflag` property is set to `true`. The setting for this
 property should not have to be changed.
 
-* `ri.jvm.options` to the following for the Jakarta EE 8 CI:
+* `ri.jvm.options` to the following for the Jakarta EE 9 CI:
 
 ** `-Dremote.orb.port=${webServerPort.2}`
 
@@ -315,10 +315,10 @@ indicate different deployment settings. Each subdirectory has a
 
 Tests in the `/forward` subdirectory are run in the forward direction
 only (for example, the application client runs in the Implementer Jakarta
-Platform, Enterprise Edition server, and a call is made to the Jakarta EE 8
+Platform, Enterprise Edition server, and a call is made to the Jakarta EE 9
 CI server). Tests in the `/reverse` subdirectory are run in the reverse
 direction only (for example, the application client runs in the server
-that is running the Jakarta EE 8 CI, and a call is made to the Implementer
+that is running the Jakarta EE 9 CI, and a call is made to the Implementer
 Jakarta Platform, Enterprise Edition server). The directory structure might
 look like the following: 
 
@@ -373,8 +373,8 @@ ew_ssl_ssln_upn_anonid
 
 * direction is the direction of the test. The direction is omitted if
 forward, or reverse if in the reverse direction. For these tests,
-forward means from Implementer server to the Jakarta EE 8 CI server, and
-reverse means from the Jakarta EE 8 CI server to the Implementer server. In
+forward means from Implementer server to the Jakarta EE 9 CI server, and
+reverse means from the Jakarta EE 9 CI server to the Implementer server. In
 other words, the application client runs in the Implementer's container in
 the forward direction.
 
@@ -755,8 +755,8 @@ B.7 Debugging CSIv2 Test Failures
 The CSIv2 test infrastructure provides two areas from which to obtain
 debugging output:
 
-* Jakarta EE 8 CTS clients, beans, and servlets
-* Jakarta EE 8 CTS CSIv2 interceptors
+* Jakarta EE 9 CTS clients, beans, and servlets
+* Jakarta EE 9 CTS CSIv2 interceptors
 
 The sections that follow explain how to enable/disable logging to help
 you debug CSIv2 test failures.
@@ -766,9 +766,9 @@ you debug CSIv2 test failures.
 B.7.1 Debugging CTS Clients, Beans, and Servlets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first area in which you can enable logging is Jakarta EE 8 CTS clients,
+The first area in which you can enable logging is Jakarta EE 9 CTS clients,
 beans, and servlets. If you have done any debugging in other technology
-areas in the Jakarta EE 8 CTS test suite, you are likely to be familiar
+areas in the Jakarta EE 9 CTS test suite, you are likely to be familiar
 with enabling and using logging to obtain additional information with
 which you can debug test problems. This kind of debugging output is
 enabled by setting the `harness.log.traceflag` property to "true" in the
@@ -779,7 +779,7 @@ enabled by setting the `harness.log.traceflag` property to "true" in the
 B.7.2 Debugging CTS CSIv2 Interceptors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The second area in which you can enable logging is Jakarta EE 8 CTS CSIv2
+The second area in which you can enable logging is Jakarta EE 9 CTS CSIv2
 interceptors, including Logging Interceptor Factory, Server Interceptor,
 and Client Interceptor. These three entities are configured during the
 CSIv2 test setup, which is described in link:config.html#GEXWW[CSIv2 Test
@@ -803,14 +803,14 @@ output in the `server.log` file.
 B.7.2.1 To Increase the Logging Level
 +++++++++++++++++++++++++++++++++++++
 
-.  Stop the Jakarta EE 8 CI.
+.  Stop the Jakarta EE 9 CI.
 .  Edit the file
 `<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
 logging level to "FINE" for the three CSIv2 interceptors.
-.  Restart the Jakarta EE 8 CI. 
+.  Restart the Jakarta EE 9 CI. 
 
 From this point on, an increased amount of logging output from the Java
-EE 8 CTS CSIv2 logging interceptors will be written to the `server.log`
+EE 9 CTS CSIv2 logging interceptors will be written to the `server.log`
 file.
 
 [[GJJWY]][[b.7.2.2-to-reset-the-logging-level]]
@@ -818,11 +818,11 @@ file.
 B.7.2.2 To Reset the Logging Level
 ++++++++++++++++++++++++++++++++++
 
-.  Stop the Jakarta EE 8 CI.
+.  Stop the Jakarta EE 9 CI.
 .  Edit the file
 `<javaee.home.ri>/domains/domain1/config/logging.properties` and set the
 logging level back to "INFO" for the three CSIv2 interceptors.
-.  Restart the Jakarta EE 8 CI. 
+.  Restart the Jakarta EE 9 CI. 
 +
 [NOTE]
 =======================================================================
@@ -917,7 +917,7 @@ log.
 .  Output validation results follow the log. +
 In the forward direction, the tests validate the request (see the
 EstablishContext message). In the reverse direction, the tests validate
-the IOR that the Implementer's Jakarta EE 8 server publishes for the Jakarta Enterprise Beans and
+the IOR that the Implementer's Jakarta EE 9 server publishes for the Jakarta Enterprise Beans and
 the response (see the `CompleteEstablishContext` message or the
 `ContextError` message). See link:#GFKKB[IORs and Associated CSIv2
 Tests] for a list of the IORs that the test validation code and the test
@@ -1420,7 +1420,7 @@ will be invoked.
 
 |`<client-interceptor>` a|
 Indicates that the client interceptor was invoked. This will happen when
-the Jakarta EE 8 Compatible Implementation is a client of some invocation.
+the Jakarta EE 9 Compatible Implementation is a client of some invocation.
 The following information is collected by the client interceptor:
 
 .  `<operation>`
@@ -1521,7 +1521,7 @@ the following information:
 
 |`<server-interceptor>` a|
 Indicates that the server interceptor was invoked. This will happen when
-the Jakarta EE 8 Compatible Implementation is a server of some invocation.
+the Jakarta EE 9 Compatible Implementation is a server of some invocation.
 The following information is collected by the server interceptor:
 
 .  `<operation>`
