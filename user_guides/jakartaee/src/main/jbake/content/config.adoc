@@ -1,21 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-
-    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
-    This program and the accompanying materials are made available under the
-    terms of the Eclipse Public License v. 2.0, which is available at
-    http://www.eclipse.org/legal/epl-2.0.
-
-    This Source Code may also be made available under the following Secondary
-    Licenses when the conditions for such availability set forth in the
-    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-    version 2 with the GNU Classpath Exception, which is available at
-    https://www.gnu.org/software/classpath/license.html.
-
-    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-
-///////////////////////////////////////////////////////////////////////////////
-
 type=page
 status=published
 title=Setup and Configuration
@@ -506,7 +488,7 @@ follows:
 |=========================================
 +
 Note that adding the `asadmin` group is only necessary when running
-against the Eclipse GlassFis 5.1 Jakarta EE 9 CI application server. It is required in this case
+against the Eclipse GlassFish 6.0 Jakarta EE 9 CI application server. It is required in this case
 because the management Jakarta Enterprise Bean (MEjb) in the Jakarta EE 9 server is protected
 with the `asadmin` group. Other appservers may or may not choose to
 protect their MEjb. If necessary for your appserver implementation, you
@@ -1991,8 +1973,8 @@ managed by the entity manager.
 Within a Jakarta Platform, Enterprise Edition environment, support for both
 container-managed and application-managed entity managers is required.
 Application-managed entity managers can be Jakarta Transactions or resource-local. Refer
-to Chapter 8 of the Jakarta Persistence API Specification
-(`http://jcp.org/en/jsr/detail?id=338`) for additional information
+to Chapter 7 of the Jakarta Persistence API Specification
+(`https://jakarta.ee/specifications/persistence/3.0`) for additional information
 regarding entity managers.
 
 [[GJKPA]][[to-configure-the-test-environment-to-run-the-jakarta-persistence-pluggability-tests]]
@@ -2814,9 +2796,13 @@ to specify the new porting implementation class.
 
 For information about the Jakarta Batch tests themselves, see the
 _Technology Compatibility Kit Reference Guide for JSR-352: Batch
-Applications for the Java Platform_ at the following location:
+Applications for the Java Platform_. This document is included with the TCK
+ZIP archive, or you may review the latest working copy,
+https://github.com/eclipse-ee4j/batch-tck/blob/master/jakarta.batch.official.tck/src/main/asciidoc/batch-tck-reference-guide.adoc[here].
 
-https://github.com/WASdev/standards.jsr352.tck
+All the Batch TCK material can be found here:
+
+`https://github.com/eclipse-ee4j/batch-tck`
 
 [[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
 

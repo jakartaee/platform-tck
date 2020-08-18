@@ -1,25 +1,25 @@
 type=page
 status=published
-title=Setup and Configuration for Testing with the Jakarta EE 8 Web Profile
+title=Setup and Configuration for Testing with the Jakarta EE 9 Web Profile
 next=using.html
 prev=config.html
 ~~~~~~
-Setup and Configuration for Testing with the Jakarta EE 8 Web Profile
+Setup and Configuration for Testing with the Jakarta EE 9 Web Profile
 =====================================================================
 
 [[GJRHB]][[setup-and-configuration-for-testing-with-the-jakarta-ee-8-web-profile]]
 
-6 Setup and Configuration for Testing with the Jakarta EE 8 Web Profile
+6 Setup and Configuration for Testing with the Jakarta EE 9 Web Profile
 -----------------------------------------------------------------------
 
-This chapter describes how to configure the Jakarta EE 8 CTS test suite to
-work with your Jakarta EE 8 Web Profile test environment. It is recommended
-that you first set up the testing environment using the Jakarta EE 8 Web
-Profile CI and then with your Jakarta EE 8 Web Profile server.
+This chapter describes how to configure the Jakarta EE 9 CTS test suite to
+work with your Jakarta EE 9 Web Profile test environment. It is recommended
+that you first set up the testing environment using the Jakarta EE 9 Web
+Profile CI and then with your Jakarta EE 9 Web Profile server.
 
 [[GLSEL]][[configuring-the-jakarta-ee-8-web-profile-test-environment]]
 
-6.1 Configuring the Jakarta EE 8 Web Profile Test Environment
+6.1 Configuring the Jakarta EE 9 Web Profile Test Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The instructions in this section and in
@@ -29,23 +29,23 @@ Windows, and Linux platforms.
 
 [[GJWED]][[to-run-tests-against-a-jakarta-ee-8-web-profile-implementation]]
 
-6.1.1 To Run Tests Against a Jakarta EE 8 Web Profile Implementation
+6.1.1 To Run Tests Against a Jakarta EE 9 Web Profile Implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 8 CTS is the Technology Compatibility Kit (TCK) for the Jakarta
-Platform, Enterprise Edition as well as the Jakarta EE 8 Web Profile.
+The Jakarta EE 9 CTS is the Technology Compatibility Kit (TCK) for the Jakarta
+Platform, Enterprise Edition as well as the Jakarta EE 9 Web Profile.
 Implementations of the full Jakarta Platform, Enterprise Edition must pass
-all of the tests as defined by Jakarta EE 8 CTS Rules in
+all of the tests as defined by Jakarta EE 9 CTS Rules in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
-Edition 8 Certification"].
+Edition 9 Certification"].
 
-Implementations of the Jakarta EE 8 Web Profile must run the tests that
-verify requirements defined by the Jakarta EE 8 Web Profile Specification.
+Implementations of the Jakarta EE 9 Web Profile must run the tests that
+verify requirements defined by the Jakarta EE 9 Web Profile Specification.
 These tests are defined by the Rules in link:rules-wp.html#GJJPZ[Chapter
-3, "Procedure for Jakarta Platform, Enterprise Edition 8 Web Profile
+3, "Procedure for Jakarta Platform, Enterprise Edition 9 Web Profile
 Certification"]. These requirements are a subset of the tests contained
-in the Jakarta EE 8 CTS test suite. The test suite provides a mechanism
-whereby only those tests for the Jakarta EE 8 Web Profile will be run. The
+in the Jakarta EE 9 CTS test suite. The test suite provides a mechanism
+whereby only those tests for the Jakarta EE 9 Web Profile will be run. The
 following steps explain how to use this mechanism.
 
 1.  Set the `javaee.level` property to `web` in the
@@ -53,7 +53,7 @@ following steps explain how to use this mechanism.
 +
 [source,oac_no_warn]
 ----
-javaee.level= web
+javaee.level=web
 ----
 +
 This setting will only allow WAR files (that is, no EAR files) to be
@@ -61,7 +61,7 @@ passed to the Deployment Porting Package. This is the minimal set of
 signature requirements that vendors must support for Web Profile.
 Specifying a javaee.level of "web" with nothing else implies there are
 NO additional technologies existing within the vendors implementation.
-Again, "web" only covers REQUIRED technologies for the Jakarta EE 8 Web
+Again, "web" only covers REQUIRED technologies for the Jakarta EE 9 Web
 Profile.
 2.  Set the `javaee_web_profile` keyword in one of the following ways:
 * In batch mode, change to a test directory and execute the following
@@ -72,12 +72,12 @@ command:
 ant -Dkeywords=javaee_web_profile runclient 
 ----
 +
-Only tests that are required by the Jakarta EE 8 Web Profile will be run. +
+Only tests that are required by the Jakarta EE 9 Web Profile will be run. +
 
 [NOTE]
 =======================================================================
 
-If you start a test run in a test directory that contains no Jakarta EE 8
+If you start a test run in a test directory that contains no Jakarta EE 9
 Web Profile tests, the test run will be aborted and the test harness
 will report that no tests were found.
 
@@ -91,7 +91,7 @@ Keywords.
 3.  In the Keywords dialog, select the Select Tests that Match check
 box, specify the `javaee_web_profile` keyword in the field, then click
 Done. +
-Only those tests that are valid in the Jakarta EE 8 Web Profile will be
+Only those tests that are valid in the Jakarta EE 9 Web Profile will be
 enabled in the test tree.
 
 

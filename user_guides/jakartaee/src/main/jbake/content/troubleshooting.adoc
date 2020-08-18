@@ -23,11 +23,11 @@ Test Suite.
 
 This section lists common problems that you may encounter as you run the
 Jakarta Platform, Enterprise Edition Compatibility Test Suite software on
-the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1. It also proposes resolutions
+the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0. It also proposes resolutions
 for the problems, where applicable.
 
 * Problem: +
-The following exception may occur when a Jakarta EE 8 CTS test tries to
+The following exception may occur when a Jakarta EE 9 CTS test tries to
 write a very long tracelog: +
 [source,oac_no_warn]
 ----
@@ -53,7 +53,7 @@ Set the `-Djavatest.maxOutputSize=`nnn system parameter in the
 to a value that is higher than the default setting of `100,000` on the
 JavaTest VM.
 * Problem: +
-When you start the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 5.1 on 
+When you start the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0 on 
 Windows by using the `javaee -verbose` command, the system may not find
 the specified path and could display one of the following errors: +
 [source,oac_no_warn]
@@ -86,7 +86,7 @@ extension class loader of your Jakarta Platform, Enterprise Edition server.
 
 Jakarta EE is a community sponsored and community supported project. If you need additional
 assistance, you can reach out to the specific developer community. You will find the 
-list of all Eclipse EE4J projects at ``https://projects.eclipse.org/projects/ee4j`. All the sub-projects
+list of all Eclipse EE4J projects at `https://projects.eclipse.org/projects/ee4j`. All the sub-projects
 are listed. Each project page has details regarding how to contact thir developer community.
 
 

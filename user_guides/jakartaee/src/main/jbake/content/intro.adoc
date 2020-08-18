@@ -451,39 +451,18 @@ repository, and the database
 1.4 Software Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can run the Jakarta EE 9 CTS software on platforms running the Solaris,
-Linux, Windows, and Mac OS software that meet the following software
-requirements:
+You can run the Jakarta EE 9 CTS software on platforms running the
+Linux software that meet the following software requirements:
 
 * Operating Systems:
 
-** Solaris 10 and newer
+** CentOS Linux 7
 
-** MAC OS X Mountain Lion (10.8.1+)
-
-** Windows XP SP3, Windows 2008 R2
-
-** Oracle Linux 6.4
-
-** Fedora 18
-
-** Ubuntu Linux 12.10
-
-** Suse Enterprise Linux 12.2
+** Alpine Linux v3.12
 * Java SE 8 SDK
 * Jakarta EE 9 CI or Jakarta EE 9 Web Profile CI
 * Mail server that supports the IMAP and SMTP protocols
 * One of the following databases:
-
-** Oracle
-
-** Sybase
-
-** DB2
-
-** Microsoft SQL Server
-
-** Postgres SQL
 
 ** MySQL
 
@@ -498,18 +477,18 @@ In addition to the instructions and requirements described in this
 document, all Jakarta EE 9 and Jakarta EE 9 Web Profile implementations must
 also pass the standalone TCKs for the following technologies:
 
-* Jakarta Contexts and Dependency Injection 2.0
-* Jakarta Dependency Injection 1.0
-* Jakarta Bean Validation 2.0 
+* Jakarta Contexts and Dependency Injection 3.0
+* Jakarta Dependency Injection 2.0
+* Jakarta Bean Validation 3.0 
 
 For more information about the Jakarta Contexts and Dependency Injection technology, 
-see the specification at LINK TBD (Formerly `http://jcp.org/en/jsr/detail?id=365`).
+see the specification at `https://jakarta.ee/specifications/cdi/3.0/`
 
 For more information about the Jakarta Dependency Injection,
-see the specification at LINK TBD (Formerly `http://jcp.org/en/jsr/detail?id=330`).
+see the specification at `https://jakarta.ee/specifications/dependency-injection/2.0/` 
 
 For more information about the Jakarta Bean Validation technology, see the
-specification at LINK TBD (Formerly `http://jcp.org/en/jsr/detail?id=380`).
+specification at `https://jakarta.ee/specifications/bean-validation/3.0/`
 
 [[GBFQW]][[getting-started-with-the-java-ee-8-cts-test-suite]]
 
