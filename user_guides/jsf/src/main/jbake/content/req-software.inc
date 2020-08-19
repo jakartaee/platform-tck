@@ -8,4 +8,5 @@ below line can be removed.
 This is used in intro.adoc in section 1.3 and install.adoc in section 3.2.
 ///////////////////////////////////////////////////////////////////////
 
-* Jakarta EE {JakartaEEVersion} CI such as {TechnologyRI}, or Eclipse GlassFish 5.1,  or, at a minimum, a Web server with a Servlet container
+* Jakarta EE {JakartaEEVersion} CI such as {TechnologyRI}, or Eclipse GlassFish 6.0,  or, at a minimum, a Web server
+with a Servlet container

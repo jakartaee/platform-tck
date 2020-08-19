@@ -50,7 +50,7 @@ environment variables:
   that are under test
   f. `jspservlet.classes` to the path to the Servlet and JSP API classes. +
   The ts.jte file includes examples that show how to set the classes properties
-  for GlassFish servers.
+  for Eclipse GlassFish servers.
   g. `report.dir` to the default directory in which JavaTest creates a test
   report for the most recent test run. +
   This property is a required property for the TCK Ant targets; it must
