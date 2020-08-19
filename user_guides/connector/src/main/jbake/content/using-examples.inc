@@ -49,9 +49,9 @@ cd {subsetTestDirectoryExample}
 ant runclient
 ----
 
-Example 5-4 MDB-Specific JCA TCK Tests
+Example 5-4 MDB-Specific {TechnologyShortName} TCK Tests
 
-To run the MDB-specific JCA TCK tests, enter the following commands:
+To run the MDB-specific {TechnologyShortName} TCK tests, enter the following commands:
 
 [source,oac_no_warn]
 ----
@@ -60,7 +60,7 @@ ant runclient
 ----
 
 Alternatively, from the <TS_HOME>/src/com/sun/ts/tests/connector
-directory, you can also run the MDB-specific JCA TCK tests by using the
+directory, you can also run the MDB-specific {TechnologyShortName} TCK tests by using the
 appropriate keyword:
 
 [source,oac_no_warn]
@@ -72,7 +72,7 @@ ant -Dkeywords="connector_mdb_optional" runclient
 
 Example 5-5 EJB and Servlet Resource Definition Annotation Tests
 
-To run the JCA TCK EJB and Servlet Resource Definition Annotation Tests,
+To run the {TechnologyShortName} TCK EJB and Servlet Resource Definition Annotation Tests,
 enter the following commands:
 
 [source,oac_no_warn]
@@ -82,7 +82,7 @@ ant runclient
 ----
 
 Alternatively, from the <TS_HOME>/src/com/sun/ts/tests/connector
-directory, you can also run the JCA TCK Web tests by using the
+directory, you can also run the {TechnologyShortName} TCK Web tests by using the
 appropriate keyword:
 
 [source,oac_no_warn]
@@ -93,11 +93,11 @@ ant -Dkeywords=  "(connector_resourcedef_ejb_optional | connector_resourcedef_se
 ----
 
 
-Example 5-6 All JCA TCK Tests Except the EJB and Servlet Resource
+Example 5-6 All {TechnologyShortName} TCK Tests Except the EJB and Servlet Resource
 Definition Annotation Tests
 
 From the <TS_HOME>/src/com/sun/ts/tests/connector directory, you can run
-all the JCA TCK tests except the EJB and Servlet Resource Definition
+all the {TechnologyShortName} TCK tests except the EJB and Servlet Resource Definition
 Annotation Tests by using the appropriate keyword:
 
 [source,oac_no_warn]
