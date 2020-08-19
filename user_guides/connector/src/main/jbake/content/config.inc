@@ -149,7 +149,7 @@ includes a reference to the whitebox extension library. The
 separate entity that all the standalone RAR files can access. This
 extension library is needed to address classloading issues.
 
-[[GJOUV]][[jca-1.7-tck-resource-adapter-files]]
+[[GJOUV]][[connectors-2.0-tck-resource-adapter-files]]
 
 4.3.1.1 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapter Files
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -171,7 +171,7 @@ resource adapter server may employ the library mechanisms in Jakarta EE {Platfor
 See section 20.2.0.4 of the {TechnologyShortName} {TechnologyVersion} specification, which uses the
 classloading requirements listed in section 20.3 in the specification.
 
-[[GJOUR]][[jca-1.7-tck-resource-adapters-and-classloading]]
+[[GJOUR]][[connectors-2.0-tck-resource-adapters-and-classloading]]
 
 4.3.1.2 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapters and Classloading
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -305,10 +305,10 @@ the application server's `domains/domain1/lib/applibs` directory, a
 location where it can be loaded by the server and can be accessed by all
 the RAR files.
 
-To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE {PlatformVersion} platform, perform the
 following steps.
 
-[[GCRWU]][[to-configure-and-deploy-the-jca-tck-tests-on-the-java-ee-7-web-profile-ri]]
+[[GCRWU]][[to-configure-and-deploy-the-connectors-tck-tests-on-the-jakarta-ee-8-web-profile-ri]]
 
 4.3.2 To Configure and Deploy the {TechnologyShortName} TCK Tests on the Jakarta EE {PlatformVersion} Web Profile CI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -350,7 +350,7 @@ GUI for TCK Test Execution,"] or link:using.html#GJCIW[Section 5.2,
 "Using the Command-Line for TCK Test Execution,"] to run the tests you
 just deployed.
 
-[[GJKWJ]][[configuring-the-jca-tck-tests-on-the-vendor-implementation]]
+[[GJKWJ]][[configuring-the-connectors-tck-tests-on-the-vendor-implementation]]
 
 4.3.3 Configuring the {TechnologyShortName} TCK Tests on the Vendor Implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
