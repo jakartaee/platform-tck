@@ -98,17 +98,17 @@ ${pathsep}${web.home}/modules/tyrus-spi.jar
   This property is required for the TCK Ant targets.
   i.  `impl.vi` to the name of the Vendor implementation. +
   This property is used for identifying the deployment handler. +
-  Set this property to `glassfish` for the Jakarta EE 8 CI (Eclipse GlassFish 5.1) full-, or web-profile CI.
+  Set this property to `glassfish` for the Jakarta EE 9 CI (Eclipse GlassFish 6.0) full-, or web-profile CI.
   j. `impl.vi.deploy.dir` to the Vendor implementation deployment
   directory. +
   Set this property to `${web.home}/domains/domain1/autodeploy` for the
-  Jakarta EE 8 CI (Eclipse GlassFish 5.1) full-, or web-profile CI.
+   CI (Eclipse GlassFish 6.0) full-, or web-profile CI.
 +
 3.  Add permissions from the file `<TS_HOME>/bin/server_policy.append`
-to the Java policy file or files on your Java EE 8 server. +
-In case of Jakarta EE 8 CI (Eclipse GlassFish 5.1), add permissions that are not already defined to
+to the Java policy file or files on your Jakarta EE 9 server. +
+In case of Jakarta EE 9 CI (Eclipse GlassFish 6.0), add permissions that are not already defined to
 the file $\{web.home}`/domains/domain1/config/server.policy`, where
-$\{web.home} is the location of your installation of the Jakarta EE 8 CI (Eclipse GlassFish 5.1).
+$\{web.home} is the location of your installation of the Jakarta EE 9 CI (Eclipse GlassFish 6.0).
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]

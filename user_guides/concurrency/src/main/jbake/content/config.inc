@@ -43,7 +43,7 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
@@ -156,7 +156,7 @@ Information,"] for information about repackaging the
   c.  +{TechnologyHomeEnv}+ to the directory in which the
   {TechnologyShortName} {TechnologyVersion} VI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which

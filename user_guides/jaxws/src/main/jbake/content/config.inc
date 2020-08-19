@@ -42,7 +42,7 @@ slashes as a path separator instead.
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -164,7 +164,7 @@ Information,"] for information about repackaging the
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `<TS_HOME>/tools/ant/bin`
+  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -354,8 +354,7 @@ installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
@@ -498,8 +497,7 @@ server environments for the Compatible Implementation and VI.
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Vendor specific properties
 have been configured.
 3.  Run the `ant config.vi` target to configure for the Vendor
@@ -509,7 +507,7 @@ Implementation.
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.vi
+ant config.vi
 ----
 --
 
@@ -521,8 +519,7 @@ cd <TS_HOME>/bin
   a.  `JAVA_HOME` to the directory in which Java SE is installed
   b.  `TS_HOME` to the directory in which the JAX-WS TCK 3.0 software is
   installed
-  c.  `ANT_HOME` should not be set in your environment. If it is set,
-  unset it.
+  c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Compatible Implementation specific properties have
 been configured.
 3.  Run the `ant config.ri` target to configure for Compatible Implementation implementation.
@@ -531,7 +528,7 @@ been configured.
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/bin
-<TS_HOME>/tools/ant/bin/ant config.ri
+ant config.ri
 ----
 --
 
@@ -565,7 +562,7 @@ Reference Implementation]
 
 The `keywords` system property enables you to deploy a subset of the
 tests that would normally be deployed in batch mode by means of
-`<TS_HOME>/tools/ant/bin/ant deploy`. To specify it, add the option
+`ant deploy`. To specify it, add the option
 `-Dkeywords=`value to the `ant` command, where value is either
 `forward`, `reverse`, or `all`. The supported values control the
 directions in which the rebuildable tests are deployed.
@@ -585,14 +582,14 @@ Enter the following command:
 
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant deploy.all
+ant deploy.all
 ----
 
 or
 
 [source,oac_no_warn]
 ----
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=all deploy.all
+ant -Dkeywords=all deploy.all
 ----
 
 [[GCLII]][[to-deploy-a-single-test-directory-in-the-forward-direction]]
@@ -604,7 +601,7 @@ Enter the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=forward deploy
+ant -Dkeywords=forward deploy
 ----
 
 [[GCLJC]][[to-deploy-a-subset-of-test-directories-in-the-reverse-direction]]
@@ -616,7 +613,7 @@ Enter the following commands:
 [source,oac_no_warn]
 ----
 cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
-<TS_HOME>/tools/ant/bin/ant -Dkeywords=reverse deploy
+ant -Dkeywords=reverse deploy
 ----
 
 

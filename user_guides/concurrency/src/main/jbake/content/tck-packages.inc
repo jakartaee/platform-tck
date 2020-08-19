@@ -5,5 +5,3 @@
 ** Apache Commons Logging 1.1.3
 
 ** Apache Commons Codec 1.9
-
-** Apache Ant 1.10.8
