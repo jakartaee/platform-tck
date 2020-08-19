@@ -49,10 +49,10 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE {PlatformVersion} CI is running. +
+  Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE {PlatformVersion} CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  `connector.home` to the location where your {TechnologyShortName} runtime
   implementation is installed.
@@ -164,9 +164,9 @@ This was done to address the following compatibility issues:
 
 * Portable use of Installed Libraries for specifying a resource
 adapter's shared libraries +
-See section EE.8.2.2 of the Jakarta EE {PlatformVersion} platform specification and section
+See section EE.8.2.2 of the Jakarta EE {JakartaEEVersion} platform specification and section
 20.2.0.1 in the {TechnologyShortName} {TechnologyVersion} specification, which explicitly state that the
-resource adapter server may employ the library mechanisms in Jakarta EE {PlatformVersion}.
+resource adapter server may employ the library mechanisms in Jakarta EE {JakartaEEVersion}.
 * Support application-based standalone connector accessibility +
 See section 20.2.0.4 of the {TechnologyShortName} {TechnologyVersion} specification, which uses the
 classloading requirements listed in section 20.3 in the specification.
@@ -225,7 +225,7 @@ exception.
 
 The portable way of solving the issues raised by this use case problem
 scenario is to use installed libraries, as described in section EE.8.2.2
-in the Jakarta EE {PlatformVersion} platform specification. If both RAR files (RAR1 and
+in the Jakarta EE {JakartaEEVersion} platform specification. If both RAR files (RAR1 and
 RAR2) reference `whitebox.jar` as an installed library and the
 application server can use a single classloader to load this common
 dependency, there will be no type-related issues.
@@ -255,7 +255,7 @@ that mechanism does not allow the `whitebox.jar` file to support its
 dependencies on the Jakarta EE APIs. For this reason, the Installed Library
 must support access to the Jakarta EE APIs.
 
-See section EE.8.2.2 in the Jakarta EE {PlatformVersion} platform specification for
+See section EE.8.2.2 in the Jakarta EE {JakartaEEVersion} platform specification for
 information about the reference implementation's support for Installed
 libraries. However, note that this section does not recommend a
 mechanism that a deployer can use to provide Installed Libraries in a
@@ -305,12 +305,12 @@ the application server's `domains/domain1/lib/applibs` directory, a
 location where it can be loaded by the server and can be accessed by all
 the RAR files.
 
-To deploy the {TechnologyShortName} TCK tests to the Jakarta EE {PlatformVersion} platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE {JakartaEEVersion} platform, perform the
 following steps.
 
 [[GCRWU]][[to-configure-and-deploy-the-connectors-tck-tests-on-the-jakarta-ee-8-web-profile-ri]]
 
-4.3.2 To Configure and Deploy the {TechnologyShortName} TCK Tests on the Jakarta EE {PlatformVersion} Web Profile CI
+4.3.2 To Configure and Deploy the {TechnologyShortName} TCK Tests on the Jakarta EE {JakartaEEVersion} Web Profile CI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `config.vi` Ant task performs several configuration procedures on

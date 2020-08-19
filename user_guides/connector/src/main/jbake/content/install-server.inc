@@ -1,4 +1,4 @@
-.  Install the Jakarta EE {PlatformVersion} CI software, if it is not already installed. +
+.  Install the Jakarta EE {JakartaEEVersion} CI software, if it is not already installed. +
 Refer to any installation instructions that accompany the software
 for additional information.
 One CI is {TechnologyRI}. 
