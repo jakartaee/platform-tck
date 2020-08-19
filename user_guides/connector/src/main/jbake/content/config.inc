@@ -49,10 +49,10 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI is running. +
+  Jakarta EE {PlatformVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE {PlatformVersion} CI is running. +
   The default setting is `8080`.
   c.  `connector.home` to the location where your {TechnologyShortName} runtime
   implementation is installed.
@@ -164,9 +164,9 @@ This was done to address the following compatibility issues:
 
 * Portable use of Installed Libraries for specifying a resource
 adapter's shared libraries +
-See section EE.8.2.2 of the Java EE 7 platform specification and section
-20.2.0.1 in the JCA 1.7 specification, which explicitly state that the
-resource adapter server may employ the library mechanisms in Java EE 7.
+See section EE.8.2.2 of the Jakarta EE {PlatformVersion} platform specification and section
+20.2.0.1 in the {TechnologyShortName} {TechnologyVersion} specification, which explicitly state that the
+resource adapter server may employ the library mechanisms in Jakarta EE {PlatformVersion}.
 * Support application-based standalone connector accessibility +
 See section 20.2.0.4 of the JCA 1.7 specification, which uses the
 classloading requirements listed in section 20.3 in the specification.
@@ -225,7 +225,7 @@ exception.
 
 The portable way of solving the issues raised by this use case problem
 scenario is to use installed libraries, as described in section EE.8.2.2
-in the Java EE 7 platform specification. If both RAR files (RAR1 and
+in the Jakarta EE {PlatformVersion} platform specification. If both RAR files (RAR1 and
 RAR2) reference `whitebox.jar` as an installed library and the
 application server can use a single classloader to load this common
 dependency, there will be no type-related issues.
@@ -255,7 +255,7 @@ that mechanism does not allow the `whitebox.jar` file to support its
 dependencies on the Jakarta EE APIs. For this reason, the Installed Library
 must support access to the Jakarta EE APIs.
 
-See section EE.8.2.2 in the Java EE 7 platform specification for
+See section EE.8.2.2 in the Jakarta EE {PlatformVersion} platform specification for
 information about the reference implementation's support for Installed
 libraries. However, note that this section does not recommend a
 mechanism that a deployer can use to provide Installed Libraries in a

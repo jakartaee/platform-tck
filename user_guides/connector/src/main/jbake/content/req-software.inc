@@ -8,4 +8,4 @@ below line can be removed.
 This is used in intro.adoc in section 1.3 and install.adoc in section 3.2.
 ///////////////////////////////////////////////////////////////////////
 
-* A Jakarta EE 8 CI or an implementation of the {TechnologyFullName} {TechnologyVersion} specification
+* A Jakarta EE {PlatformVersion} CI or an implementation of the {TechnologyFullName} {TechnologyVersion} specification
