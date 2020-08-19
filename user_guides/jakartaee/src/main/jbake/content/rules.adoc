@@ -1,47 +1,29 @@
-///////////////////////////////////////////////////////////////////////////////
-
-    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
-    This program and the accompanying materials are made available under the
-    terms of the Eclipse Public License v. 2.0, which is available at
-    http://www.eclipse.org/legal/epl-2.0.
-
-    This Source Code may also be made available under the following Secondary
-    Licenses when the conditions for such availability set forth in the
-    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-    version 2 with the GNU Classpath Exception, which is available at
-    https://www.gnu.org/software/classpath/license.html.
-
-    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-
-///////////////////////////////////////////////////////////////////////////////
-
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 8 Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 9 Certification
 next=rules-wp.html
 prev=intro.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 8 Certification
+Procedure for Jakarta Platform, Enterprise Edition 9 Certification
 ==================================================================
 
 [[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-8-certification]]
 
-2 Procedure for Jakarta Platform, Enterprise Edition 8 Certification
+2 Procedure for Jakarta Platform, Enterprise Edition 9 Certification
 --------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
-8.
+9.
 
 This chapter contains the following sections:
 
 * link:#CJACEHEF[Certification Overview]
 * link:#CJAJFCJI[Compatibility Requirements]
-* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 8 Test
+* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 9 Test
 Appeals Process]
 * link:#CJAHFAJE[Specifications for Jakarta Platform, Enterprise Edition
-Version 8]
+Version 9]
 * link:#CJAHIGAB[Libraries for Jakarta Platform, Enterprise Edition Version
 8]
 
@@ -50,7 +32,7 @@ Version 8]
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 8 consists of the
+The certification process for Jakarta EE 9 consists of the
 following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
@@ -68,7 +50,7 @@ as required by the Eclipse Foundation TCK License.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 8 consist of meeting the
+The compatibility requirements for Jakarta EE 9 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
@@ -170,7 +152,7 @@ rules described in the Specifications.
 The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
-The Libraries for Jakarta Platform, Enterprise Edition Version 8 are listed
+The Libraries for Jakarta Platform, Enterprise Edition Version 9 are listed
 at the end of this chapter.
 
 |Location Resource a|
@@ -189,7 +171,7 @@ Technology. The Specification Project Team will propose revisions and
 updates to the Jakarta EE Specification Committee which will approve and 
 release new versions of the specification and TCK. Eclipse Jakarta EE 
 Specification Committee is the Maintenance Lead for Jakarta Platform, 
-Enterprise Edition Version 8. 
+Enterprise Edition Version 9. 
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -250,7 +232,7 @@ this chapter.
 through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
-for Jakarta Platform, Enterprise Edition Version 8.
+for Jakarta Platform, Enterprise Edition Version 9.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
@@ -270,7 +252,7 @@ Specification.
 
 [[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-8-products]]
 
-2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 8 Products
+2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 9 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each version of an operating system,
@@ -384,7 +366,7 @@ the newer Version.
 
 For example, the Jakarta Platform, Enterprise Edition Maintenance Lead
 could authorize use of a newer version of a Java technology such as
-JAX-WS.
+Jakarta XML Web Services.
 
 EE8 Except for tests specifically required by this TCK to be rebuilt
 (if any), the binary Conformance Tests supplied as part of the Test
@@ -470,15 +452,15 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE21 Compliance testing for Jakarta EE 8 consists of running Jakarta EE 8
+EE21 Compliance testing for Jakarta EE 9 consists of running Jakarta EE 9
 CTS and the following Technology Compatibility Kits (TCKs):
 
-* Jakarta Contexts and Dependency Injection 2.0
-* Jakarta Dependency Injection 1.0 
-* Jakarta Bean Validation 2.0
+* Jakarta Contexts and Dependency Injection 3.0
+* Jakarta Dependency Injection 2.0 
+* Jakarta Bean Validation 3.0
 
 In addition to the compatibility rules outlined in this CTS User's
-Guide, Jakarta EE 8 implementations must also adhere to all of the
+Guide, Jakarta EE 9 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
@@ -497,12 +479,12 @@ source code that does not conform to the Java Language Specification
 
 [[CJACBJIB]][[jakarta-platform-enterprise-edition-version-8-test-appeals-process]]
 
-2.3 Jakarta Platform, Enterprise Edition Version 8 Test Appeals Process
+2.3 Jakarta Platform, Enterprise Edition Version 9 Test Appeals Process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE version 8 TCK (AKA CTS) as it relates to their implementation.  Implementor
+Jakarta EE version 9 TCK (AKA CTS) as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
@@ -574,11 +556,11 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 
 [[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-8]]
 
-2.4 Specifications for Jakarta Platform, Enterprise Edition Version 8
+2.4 Specifications for Jakarta Platform, Enterprise Edition Version 9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 8 are found on
-the Eclipse Foundation, Jakarta EE Specifications web site at `http://jakarta.ee/specifications`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 9 are found on
+the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/9/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 [[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-8]]
 
@@ -586,24 +568,24 @@ the Eclipse Foundation, Jakarta EE Specifications web site at `http://jakarta.ee
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
-required for Jakarta EE 8:
+required for Jakarta EE 9:
 
 * jakarta.annotation
 * jakarta.annotation.security
 * jakarta.annotation.sql
-* javax.batch.api
-* javax.batch.api.chunk
-* javax.batch.api.chunk.listener
-* javax.batch.api.listener
-* javax.batch.api.partition
-* javax.batch.operations
-* javax.batch.runtime
-* javax.batch.runtime.context
-* javax.decorator
+* jakarta.batch.api
+* jakarta.batch.api.chunk
+* jakarta.batch.api.chunk.listener
+* jakarta.batch.api.listener
+* jakarta.batch.api.partition
+* jakarta.batch.operations
+* jakarta.batch.runtime
+* jakarta.batch.runtime.context
+* jakarta.decorator
 * jakarta.ejb
 * jakarta.ejb.embeddable
 * jakarta.ejb.spi
-* javax.el
+* jakarta.el
 * jakarta.enterprise.concurrent
 * jakarta.enterprise.context
 * jakarta.enterprise.context.control
@@ -640,16 +622,16 @@ required for Jakarta EE 8:
 * jakarta.faces.webapp
 * jakarta.inject
 * jakarta.interceptor
-* javax.jms
-* javax.json
-* javax.json.bind
-* javax.json.bind.adapter
-* javax.json.bind.annotation
-* javax.json.bind.config
-* javax.json.bind.serializer
-* javax.json.bind.spi
-* javax.json.spi
-* javax.json.stream
+* jakarta.jms
+* jakarta.json
+* jakarta.json.bind
+* jakarta.json.bind.adapter
+* jakarta.json.bind.annotation
+* jakarta.json.bind.config
+* jakarta.json.bind.serializer
+* jakarta.json.bind.spi
+* jakarta.json.spi
+* jakarta.json.stream
 * jakarta.mail
 * jakarta.mail.event
 * jakarta.mail.internet
@@ -674,19 +656,19 @@ required for Jakarta EE 8:
 * jakarta.security.enterprise.credential
 * jakarta.security.enterprise.identitystore
 * jakarta.security.jacc
-* javax.servlet
-* javax.servlet.annotation
-* javax.servlet.descriptor
-* javax.servlet.http
-* javax.servlet.jsp
-* javax.servlet.jsp.el
-* javax.servlet.jsp.jstl.core
-* javax.servlet.jsp.jstl.fmt
-* javax.servlet.jsp.jstl.sql
-* javax.servlet.jsp.jstl.tlv
-* javax.servlet.jsp.tagext
-* javax.transaction
-* javax.transaction.xa
+* jakarta.servlet
+* jakarta.servlet.annotation
+* jakarta.servlet.descriptor
+* jakarta.servlet.http
+* jakarta.servlet.jsp
+* jakarta.servlet.jsp.el
+* jakarta.servlet.jsp.jstl.core
+* jakarta.servlet.jsp.jstl.fmt
+* jakarta.servlet.jsp.jstl.sql
+* jakarta.servlet.jsp.jstl.tlv
+* jakarta.servlet.jsp.tagext
+* jakarta.transaction
+* jakarta.transaction.xa
 * jakarta.validation
 * jakarta.validation.bootstrap
 * jakarta.validation.constraints
@@ -698,12 +680,12 @@ required for Jakarta EE 8:
 * jakarta.validation.valueextraction
 * jakarta.websocket
 * jakarta.websocket.server
-* javax.ws.rs
-* javax.ws.rs.client
-* javax.ws.rs.container
-* javax.ws.rs.core
-* javax.ws.rs.ext
-* javax.ws.rs.sse
-* javax.xml.registry
-* javax.xml.registry.infomodel
+* jakarta.ws.rs
+* jakarta.ws.rs.client
+* jakarta.ws.rs.container
+* jakarta.ws.rs.core
+* jakarta.ws.rs.ext
+* jakarta.ws.rs.sse
+* jakarta.xml.registry
+* jakarta.xml.registry.infomodel
  

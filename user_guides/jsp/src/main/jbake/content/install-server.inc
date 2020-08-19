@@ -1,4 +1,4 @@
-.  Install the Jakarta EE 8 CI software, for example {TechnologyRI} (which hosts the servlet Web container used
+.  Install the Jakarta EE {JakartaEEVersion} CI software, for example {TechnologyRI} (which hosts the servlet Web container used
 for running the {TechnologyShortName} TCK with the
 {TechnologyShortName} {TechnologyVersion} CI), if it is not already
 installed. +

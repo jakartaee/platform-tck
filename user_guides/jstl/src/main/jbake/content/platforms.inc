@@ -1,1 +1,1 @@
-CentOS 7
+* CentOS Linux 7

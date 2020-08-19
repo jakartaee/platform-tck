@@ -10,20 +10,20 @@ need to be changed or removed.
 [[GCLIZ]]
 
 [[b-rebuilding-the-jax-ws-tck-using-the-vendors-toolset]]
-B Rebuilding the JAX-WS TCK Using the Vendor's Toolset
+B Rebuilding the XML-WS TCK Using the Vendor's Toolset
 ------------------------------------------------------
 
-The JAX-WS 3.0 specification requires that each implementation has a way
+The XML-WS 3.0 specification requires that each implementation has a way
 to generate WSDL from Java, and to generate Java from WSDL. To verify
 that implementations do this in a compatible manner, half of the tests
-in the JAX-WS TCK require that you first rebuild them using your
+in the XML-WS TCK require that you first rebuild them using your
 generation tools.
 
 This appendix contains the following sections:
 
 * link:#GCLIO[Overview]
-* link:#GCLLW[Rebuilding the JAX-WS TCK Classes Using Ant]
-* link:#GCLOO[Rebuilding the JAX-WS TCK Classes Manually]
+* link:#GCLLW[Rebuilding the XML-WS TCK Classes Using Ant]
+* link:#GCLOO[Rebuilding the XML-WS TCK Classes Manually]
 * link:#GCQJY[wsgen Reference]
 * link:#GCQMM[wsimport Reference]
 
@@ -32,20 +32,20 @@ This appendix contains the following sections:
 B.1 Overview
 ~~~~~~~~~~~~
 
-The set of prebuilt archives and classes that ship with the JAX-WS TCK
-were built using the JAX-WS Compatible Implementation tools
+The set of prebuilt archives and classes that ship with the XML-WS TCK
+were built using the XML-WS Compatible Implementation tools
 (link:#GCQJY[wsgen Reference] and link:#GCQMM[wsimport Reference]), and
-must be deployed and run against your implementation of JAX-WS. These
+must be deployed and run against your implementation of XML-WS. These
 tests are referred to as `forward` tests.
 
 You must also rebuild the archives and classes associated with these
 tests using your generation tools, and then deploy and run them against
-the JAX-WS Compatible Implementation. These tests are known as `reverse`
+the XML-WS Compatible Implementation. These tests are known as `reverse`
 tests. The test names of all the tests that will be run against the
 Compatible Implementation are identical to the `forward` test names found
 in the client Java source files, with the added suffix of `_reverse`.
 Essentially, for each `forward` test, there is an identical `reverse`
-test. This ensures that the same behaviors are verified on each JAX-WS
+test. This ensures that the same behaviors are verified on each XML-WS
 implementation.
 
 
@@ -63,19 +63,19 @@ source file.
 To be able to run the entire test suite in a single run, you must have
 your implementation and the Compatible Implementation configured
 simultaneously. Please see link:config.html#GCLIK[Configuring Your
-Environment to Simultaneously Run the JAX-WS TCK Against the VI and the
-JAX-WS Compatible Implementation] for more information.
+Environment to Simultaneously Run the XML-WS TCK Against the VI and the
+XML-WS Compatible Implementation] for more information.
 
 [[GCLLW]][[b.2-rebuilding-the-jax-ws-tck-classes-using-ant]]
 
-B.2 Rebuilding the JAX-WS TCK Classes Using Ant
+B.2 Rebuilding the XML-WS TCK Classes Using Ant
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Instead of rebuilding and overwriting the TCK prebuilt classes and
-archives for each test directory, the JAX-WS TCK provides a way for you
+archives for each test directory, the XML-WS TCK provides a way for you
 to plug in your generation tools so that you may leverage the existing
 build infrastructure that creates new classes and archives alongside
-those that ship with the JAX-WS TCK.
+those that ship with the XML-WS TCK.
 
 1.  Create your own version of the Ant tasks `WsImport` and `WsGen`. +
 Documentation for these tasks can be found later in this appendix:
@@ -87,11 +87,11 @@ the above two tasks.
 3.  If using Java SE 8 or above:
   a.  Verify that the property `endorsed.dirs` is set to the location of
   the VI API jars for those technologies you wish to override. Java SE 8
-  contains an implementation of JAX-WS 2.2 which will conflict with JAX-WS
-  3.0, therefore this property must be set so that JAX-WS 3.0 will be used
+  contains an implementation of JAX-WS 2.2 which will conflict with XML-WS
+  3.0, therefore this property must be set so that XML-WS 3.0 will be used
   during the building of tests and during test execution.
   b.  Set the `java.endorsed.dirs` property in the `ANT_OPTS` environment
-  variable to point to the location in which only the JAX-WS 3.0 API jars
+  variable to point to the location in which only the XML-WS 3.0 API jars
   exist; for example:
 +
 --
@@ -118,7 +118,7 @@ these targets will result in the prebuilt classes and archives being
 deleted and/or overwritten. +
 After completing the steps above, rebuilt class files will appear under
 `<TS_HOME>/classes_vi_built` so as not to affect class files that were
-generated and compiled with the JAX-WS Compatible Implementation. Rebuilt
+generated and compiled with the XML-WS Compatible Implementation. Rebuilt
 archives will be prefixed with the string, `vi_built`, and will be
 created in the same directory (under `<TS_HOME>/dist`) as those built
 using the Compatible Implementation.
@@ -126,7 +126,7 @@ using the Compatible Implementation.
 [NOTE]
 =======================================================================
 
-None of the JAX-WS test client source code or the service endpoint
+None of the XML-WS test client source code or the service endpoint
 implementation test source code is to be altered in any way by a Vendor
 as part of the rebuild process.
 
@@ -145,7 +145,7 @@ the rebuilding of a single test directory.
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest`
 directory.
 2.  Run `ant llc`. +
-The following is a listing of classes built using the JAX-WS Compatible Implementation.
+The following is a listing of classes built using the XML-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -169,7 +169,7 @@ drwxr-xr-x   3 root root     512 Apr 12 08:31 generated_sources/
 --
 +
 3.  Run `ant lld`. +
-This shows you the listing of archives built using the JAX-WS Compatible Implementation.
+This shows you the listing of archives built using the XML-WS Compatible Implementation.
 +
 --
 [source,oac_no_warn]
@@ -221,7 +221,7 @@ drwxr-xr-x   3 root root     512 Apr 12 12:01 generated_sources/
 --
 +
 6.  Run `ant lld`. +
-This shows the listing of all archives and JAX-WS Compatible Implementation deployment plan
+This shows the listing of all archives and XML-WS Compatible Implementation deployment plan
 descriptors for this test directory. Those built using your
 implementation are prepended with `vi_built_`.
 +
@@ -260,17 +260,17 @@ these archives and how to run the `reverse` tests.
 
 [[GCLOO]][[b.3-rebuilding-the-jax-ws-tck-classes-manually]]
 
-B.3 Rebuilding the JAX-WS TCK Classes Manually
+B.3 Rebuilding the XML-WS TCK Classes Manually
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When rebuilding the JAX-WS TCK classes, it is strongly recommended that
+When rebuilding the XML-WS TCK classes, it is strongly recommended that
 you use the procedure described in the previous section,
-link:#GCLLW[Rebuilding the JAX-WS TCK Classes Using Ant]. However, if
+link:#GCLLW[Rebuilding the XML-WS TCK Classes Using Ant]. However, if
 you choose not to use the existing Ant-based TCK infrastructure to
 rebuild the tests, you can use the following procedure to rebuild the
 classes manually.
 
-1.  Run your tools in each of the JAX-WS test directories under
+1.  Run your tools in each of the XML-WS test directories under
 `<TS_HOME>/src/com/sun/ts/tests/jaxws`, being sure to place all newly
 compiled classes under `<TS_HOME>/classes_vi_built`. +
 Also be sure not to overwrite any of the compiled classes under
@@ -288,7 +288,7 @@ Next Steps
 
 As part of the manual rebuild process, you may also need to modify some
 of the following files. However, this is not recommended, since doing so
-can result in the JAX-WS TCK not being able to be built or run the
+can result in the XML-WS TCK not being able to be built or run the
 prebuilt archives shipped with the TCK. The files you may need to modify
 are:
 
@@ -298,13 +298,13 @@ various WARs.
 * The `<TS_HOME>/src/com/sun/ts/tests/jaxws/common/common.xml` file,
 which is the main build file used for the `jaxws` build process. This
 `common.xml` file contains all the Ant tasks specific to invoking the
-JAX-WS TCK `jaxws` tools.
+XML-WS TCK `jaxws` tools.
 
 
 [NOTE]
 =======================================================================
 
-None of the JAX-WS TCK test client source code or the service endpoint
+None of the XML-WS TCK test client source code or the service endpoint
 implementation test source code is to be altered in any way by a Vendor
 as part of the rebuild process.
 
@@ -320,7 +320,7 @@ to deploy these archives and how to run the reverse tests.
 B.4 wsgen Reference
 ~~~~~~~~~~~~~~~~~~~
 
-The `wsgen` tool generates JAX-WS portable artifacts used in JAX-WS Web
+The `wsgen` tool generates XML-WS portable artifacts used in XML-WS Web
 services. The tool reads a Web service endpoint class and generates all
 the required artifacts for Web service deployment and invocation.
 
@@ -501,7 +501,7 @@ using nested `<classpath>` elements. Before this task can be used, a
 where `jaxws.classpath` is a reference to a path-like structure
 (`http://ant.apache.org/manual/using.html#path`), defined elsewhere in
 the build environment, and contains the list of classes required by the
-JAX-WS tools.
+XML-WS tools.
 
 [[GCQJI]][[b.4.3-wsgen-example]]
 
@@ -522,7 +522,7 @@ B.4.3 wsgen Example
 B.5 wsimport Reference
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The `wsimport` tool generates JAX-WS portable artifacts, such as:
+The `wsimport` tool generates XML-WS portable artifacts, such as:
 
 * Service Endpoint Interface (SEI)
 * Service
@@ -564,7 +564,7 @@ Table B-3 wsimport Command Syntax
 |Option |Description
 |`-d` directory |Specify where to place generated output files.
 
-|`-b` path |Specify external JAX-WS or JAXB binding files (Each `<file>`
+|`-b` path |Specify external XML-WS or JAXB binding files (Each `<file>`
 must have its own `-b`).
 
 |`-B` jaxbOption |Pass this option to JAXB schema compiler
@@ -597,7 +597,7 @@ the default package name algorithm defined in the specification.
 |`-wsdllocation` location |`@WebService.wsdlLocation` and
 `@WebServiceClient.wsdlLocation` value.
 
-|`-target` |Generate code for the specified version of the JAX-WS
+|`-target` |Generate code for the specified version of the XML-WS
 specification. For example, a value of 2.0 generates code that is
 compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 
@@ -622,9 +622,9 @@ verification while fetching the wsdls.
 |=======================================================================
 
 
-Multiple JAX-WS and JAXB binding files can be specified using the `-b`
+Multiple XML-WS and JAXB binding files can be specified using the `-b`
 option, and they can be used to customize various things, such as
-package names and bean names. More information on JAX-WS and JAXB
+package names and bean names. More information on XML-WS and JAXB
 binding files can be found in the customization documentation.
 
 [[GCQLY]][[b.5.2-wsimport-ant-task]]
@@ -682,7 +682,7 @@ turned on with this option |`-s`
 
 |`verbose` |Output messages about what the compiler is doing |`-verbose`
 
-|`binding` |Specify external JAX-WS or JAXB binding files |`-b`
+|`binding` |Specify external XML-WS or JAXB binding files |`-b`
 
 |`extension` |Allow vendor extensions (functionality not specified by
 the specification). Use of extensions may result in applications that
@@ -701,7 +701,7 @@ See the `wsimport_catalog` sample for more information. |`-catalog`
 
 |`package` |Specifies the target package |`-p`
 
-|`target` |Generate code for the specified version of the JAX-WS
+|`target` |Generate code for the specified version of the XML-WS
 specification. For example, a value of 2.0 generates code that is
 compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
 |`-target`
@@ -739,7 +739,7 @@ below.
 where `jaxws.classpath` is a reference to a path-like structure
 (`http://ant.apache.org/manual/using.html#path`), defined elsewhere in
 the build environment, and contains the list of classes required by the
-JAX-WS tools.
+XML-WS tools.
 
 [[GJIKN]][[b.5.2.1-nested-elements]]
 
