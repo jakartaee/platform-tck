@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
-This is a list of software required in addition to the TCK and the RI.
+This is a list of software required in addition to the TCK and the CI.
 For many Jakart EE APIs, the Jakarta EE CI will be required, as described below.
 For standalone technologies, no other software may be required, and the
 below line can be removed.
