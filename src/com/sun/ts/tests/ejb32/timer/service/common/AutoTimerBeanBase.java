@@ -47,7 +47,7 @@ public class AutoTimerBeanBase extends TimerBeanBase implements TimerIF {
 
   }
 
-  // Since Jakarta Enterprise Beans 3.2, @Schedule is repeatable
+  // Since Jakarta Enterprise Beans 4.0, @Schedule is repeatable
   @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = true, info = "a6")
   @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a7")
   void doubleAutoTimersCallbackPersistentAndNot() {
