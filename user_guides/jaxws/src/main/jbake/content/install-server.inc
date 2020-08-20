@@ -12,6 +12,19 @@ for additional information.
 .  Install the Jakarta EE 9 Compatible Platform software which contains the JAX-WS 3.0
 Compatible Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
 software. +
+You need to copy the TCK JAR files/classes to the correct location under the
+Jakarta EE 9 Compatible Platform installation directory. Assuming
+the installation directory is `${GLASSFISH_HOME}` and JAX-WS TCK 3.0 under `${TS_HOME}`,
+you would copy the JAR files/classes as follows:
++
+--
+[source,oac_no_warn]
+----
+cp ${TS_HOME}/lib/tsharness.jar ${TS_HOME}/lib/jaxwstck.jar \
+   ${GLASSFISH_HOME}/lib
+----
+--
++
 The Jakarta EE 9 Compatible Platform software contains the JAX-WS 3.0 Compatible
 Implementation and is used to validate your initial configuration and
 setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which

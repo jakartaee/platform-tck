@@ -99,12 +99,6 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   The default setting for both is `javajoe`.
   j. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
-  k. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs` is set to the location of the VI API jars for those
-  technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with XML-WS 3.0, therefore this
-  property must be set so that XML-WS 3.0 will be used during the building
-  of tests and during test execution.
 
 3.  If you use the Standalone JAX-WS 3.0 Compatible Implementation software
 with the ApacheTomcat web container, set the following environment variables
@@ -116,7 +110,7 @@ in your `<TS_HOME>/bin/ts.jte` file:
     `${jaxws.home}/shared/lib`
     d.  Set the `jaxws.classes` to contain all libraries copied to `${jaxws.home}/shared/lib`
         directory. This shell script can generate proper value,
-  +
++
   --
   [source,oac_no_warn]
   ----
@@ -131,6 +125,7 @@ in your `<TS_HOME>/bin/ts.jte` file:
   done && echo
   ----
   --
+
   which shall contain following list of `jaxws.classes`:
 
   *  ${jaxws.lib}/FastInfoset.jar
@@ -166,7 +161,8 @@ in your `<TS_HOME>/bin/ts.jte` file:
   *  ${jaxws.lib}/streambuffer.jar
   *  ${jaxws.lib}/tsharness.jar
   *  ${jaxws.lib}/woodstox-core.jar
-    separated by `${pathsep}`
+
+  separated by `${pathsep}`
     e.  Set the `impl.vi` and `impl.vi.deploy.dir` properties to the supported
        web container and deploy directory for ApacheTomcat web container:
   +
@@ -253,18 +249,18 @@ environment variables:
   d.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files. +
   As an example, the `ts.jte` file contains the property
-  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9 Compatible Platform uses. The `jaxws.classes.ri` settings for the Jakarta EE {JakartaEEVersion} Compatible Platform web
-  container are as follows:
+  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9
+  Compatible Platform uses. The `jaxws.classes.ri` settings for the Jakarta EE
+  {JakartaEEVersion} Compatible Platform web container are as follows:
 +
 --
 [source,oac_no_warn]
 ----
 jaxws.home.ri=${webcontainer.home.ri}
 jaxws.lib.ri=${jaxws.home.ri}/modules
-endorsed.dirs.ri=${jaxws.home.ri}/modules/endorsed
 
-jaxws.classes.ri=${endorsed.dirs.ri}/webservices-api-osgi.jar:
-${endorsed.dirs.ri}/jaxb-api-osgi.jar:
+jaxws.classes.ri=${jaxws.lib.ri}/webservices-api-osgi.jar:
+${jaxws.lib.ri}/jaxb-api-osgi.jar:
 ${jaxws.lib.ri}/webservices-osgi.jar:
 ${jaxws.lib.ri}/jaxb-osgi.jar:
 ${jaxws.lib.ri}/gmbal.jar:
