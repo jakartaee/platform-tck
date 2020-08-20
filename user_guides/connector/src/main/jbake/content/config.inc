@@ -49,10 +49,10 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI is running. +
+  Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  `connector.home` to the location where your {TechnologyShortName} runtime
   implementation is installed.
@@ -132,30 +132,30 @@ slashes as a path separator instead.
 Adapt the instructions above for your environment.
 
 
-[[GCRWX]][[deploying-the-jca-tck-tests]]
+[[GCRWX]][[deploying-the-connectors-tck-tests]]
 
-4.3 Deploying the JCA TCK Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.3 Deploying the {TechnologyShortName} TCK Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[GJKVJ]][[extension-libraries]]
 
 4.3.1 Extension Libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The JCA 1.7 TCK RAR files are deployed simultaneously.
+The {TechnologyShortName} {TechnologyVersion} TCK RAR files are deployed simultaneously.
 The manifest file in each RAR file
 includes a reference to the whitebox extension library. The
 `whitebox.jar` file is a shared library that must be deployed as a
 separate entity that all the standalone RAR files can access. This
 extension library is needed to address classloading issues.
 
-[[GJOUV]][[jca-1.7-tck-resource-adapter-files]]
+[[GJOUV]][[connectors-2.0-tck-resource-adapter-files]]
 
-4.3.1.1 JCA 1.7 TCK Resource Adapter Files
-++++++++++++++++++++++++++++++++++++++++++
+4.3.1.1 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapter Files
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The Resource Adapter (RAR) files that are used with the JCA 1.7 TCK
-differ from those that were used in earlier JCA TCK releases. The TCK no
+The Resource Adapter (RAR) files that are used with the {TechnologyShortName} {TechnologyVersion} TCK
+differ from those that were used in earlier {TechnologyShortName} TCK releases. The TCK no
 longer includes the same common classes into every RAR file. Duplicate
 common classes, such as `whitebox.jar`, have been removed from each RAR
 file and are now handled as an Installed Library.
@@ -164,19 +164,19 @@ This was done to address the following compatibility issues:
 
 * Portable use of Installed Libraries for specifying a resource
 adapter's shared libraries +
-See section EE.8.2.2 of the Java EE 7 platform specification and section
-20.2.0.1 in the JCA 1.7 specification, which explicitly state that the
-resource adapter server may employ the library mechanisms in Java EE 7.
+See section EE.8.2.2 of the Jakarta EE {JakartaEEVersion} platform specification and section
+20.2.0.1 in the {TechnologyShortName} {TechnologyVersion} specification, which explicitly state that the
+resource adapter server may employ the library mechanisms in Jakarta EE {JakartaEEVersion}.
 * Support application-based standalone connector accessibility +
-See section 20.2.0.4 of the JCA 1.7 specification, which uses the
+See section 20.2.0.4 of the {TechnologyShortName} {TechnologyVersion} specification, which uses the
 classloading requirements listed in section 20.3 in the specification.
 
-[[GJOUR]][[jca-1.7-tck-resource-adapters-and-classloading]]
+[[GJOUR]][[connectors-2.0-tck-resource-adapters-and-classloading]]
 
-4.3.1.2 JCA 1.7 TCK Resource Adapters and Classloading
-++++++++++++++++++++++++++++++++++++++++++++++++++++++
+4.3.1.2 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapters and Classloading
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The JCA TCK 1.7 has scenarios in which multiple standalone RAR files
+The {TechnologyShortName} TCK {TechnologyVersion} has scenarios in which multiple standalone RAR files
 that use the same shared library (for example, `whitebox.jar`) are
 referenced from a TCK application component.
 
@@ -225,7 +225,7 @@ exception.
 
 The portable way of solving the issues raised by this use case problem
 scenario is to use installed libraries, as described in section EE.8.2.2
-in the Java EE 7 platform specification. If both RAR files (RAR1 and
+in the Jakarta EE {JakartaEEVersion} platform specification. If both RAR files (RAR1 and
 RAR2) reference `whitebox.jar` as an installed library and the
 application server can use a single classloader to load this common
 dependency, there will be no type-related issues.
@@ -239,7 +239,7 @@ gets copied. Refer to specific instructions for other CIs.
 4.3.1.4 Required Porting Package
 ++++++++++++++++++++++++++++++++
 
-The JCA 1.7 TCK treats the `whitebox.jar` dependency as an Installed
+The {TechnologyShortName} {TechnologyVersion} TCK treats the `whitebox.jar` dependency as an Installed
 Library dependency instead of bundling the dependency (or dependencies)
 with every RAR file. Each RAR file now contains a reference to the
 `whitebox.jar` file through its Manifest files Extension-List attribute.
@@ -255,13 +255,13 @@ that mechanism does not allow the `whitebox.jar` file to support its
 dependencies on the Jakarta EE APIs. For this reason, the Installed Library
 must support access to the Jakarta EE APIs.
 
-See section EE.8.2.2 in the Java EE 7 platform specification for
+See section EE.8.2.2 in the Jakarta EE {JakartaEEVersion} platform specification for
 information about the reference implementation's support for Installed
 libraries. However, note that this section does not recommend a
 mechanism that a deployer can use to provide Installed Libraries in a
 portable manner.
 
-The JCA TCK tests should only be deployed after you properly configure
+The {TechnologyShortName} TCK tests should only be deployed after you properly configure
 your connector runtime. This configuration includes creating users and
 JVM options in the runtime, mapping RA users to existing runtime users,
 deploying RAs, and creating connection pools and connection resources.
@@ -305,13 +305,13 @@ the application server's `domains/domain1/lib/applibs` directory, a
 location where it can be loaded by the server and can be accessed by all
 the RAR files.
 
-To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE {JakartaEEVersion} platform, perform the
 following steps.
 
-[[GCRWU]][[to-configure-and-deploy-the-jca-tck-tests-on-the-java-ee-7-web-profile-ri]]
+[[GCRWU]][[to-configure-and-deploy-the-connectors-tck-tests-on-the-jakarta-ee-8-web-profile-ri]]
 
-4.3.2 To Configure and Deploy the JCA TCK Tests on the Jakarta EE 8 Web Profile CI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.2 To Configure and Deploy the {TechnologyShortName} TCK Tests on the Jakarta EE {JakartaEEVersion} Web Profile CI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `config.vi` Ant task performs several configuration procedures on
 your connector server. This target deploys some of the required Resource
@@ -322,7 +322,7 @@ connection resources. This Ant target is in the
 `<TS_HOME>/bin/xml/impl/glassfish/connector.xml` file. See the Ant
 target `setup.all.rars.and.pools` for more information.
 
-1.  Make sure that the server to which you will deploy the JCA TCK tests
+1.  Make sure that the server to which you will deploy the {TechnologyShortName} TCK tests
 is running.
 2.  Change to the `<TS_HOME>/bin` directory and execute the Ant task to
 configure the CI.
@@ -350,10 +350,10 @@ GUI for TCK Test Execution,"] or link:using.html#GJCIW[Section 5.2,
 "Using the Command-Line for TCK Test Execution,"] to run the tests you
 just deployed.
 
-[[GJKWJ]][[configuring-the-jca-tck-tests-on-the-vendor-implementation]]
+[[GJKWJ]][[configuring-the-connectors-tck-tests-on-the-vendor-implementation]]
 
-4.3.3 Configuring the JCA TCK Tests on the Vendor Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.3 Configuring the {TechnologyShortName} TCK Tests on the Vendor Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Vendors need to configure their application or connector servers to run
 the TCK tests. This configuration needs to support the same features
@@ -361,7 +361,7 @@ that are currently performed against all CIs through the execution of the
 `config.vi` and `setup.all.rars.and.pools` Ant targets.
 
 This section describes how to configure the Vendor Implementation (VI)
-before running the JCA TCK tests.
+before running the {TechnologyShortName} TCK tests.
 
 Performing the tasks of these targets should minimally include the
 following:
@@ -437,7 +437,7 @@ connector runtime:
 If your connector server does not have web support, you will need to
 create your own vehicle. A vehicle is a wrapper that supports running
 tests in different server-side containers, such as servlet, JSP, and so
-on. The JCA TCK provides a default vehicle, `connectorservlet`, which
+on. The {TechnologyShortName} TCK provides a default vehicle, `connectorservlet`, which
 supports running the TCK tests in a connector runtime that has a Servlet
 container. To support running tests in an environment other than a
 Servlet container, you need to implement your own vehicle, effectively
@@ -464,7 +464,7 @@ topic.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes how deploy the RAR files to the VI before running
-the JCA TCK tests.
+the {TechnologyShortName} TCK tests.
 
 The deployment requirements for VI are similar to the requirements for
 the CI in that the required Resource Adapter (RAR) files must be
