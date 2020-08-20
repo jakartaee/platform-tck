@@ -17,11 +17,11 @@
 
 -->
 
-<faces-config version="3.0" 
-			  xmlns="https://jakarta.ee/xml/ns/jakartaee"
+<faces-config version="2.2" 
+			  xmlns="http://xmlns.jcp.org/xml/ns/javaee"
    			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   			  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-        			https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd">
+   			  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        			http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     
     <flow-definition id="bounded-task-flow">
         <flow-return id="taskFlowReturn1">
