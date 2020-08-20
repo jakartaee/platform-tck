@@ -103,78 +103,79 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
 3.  If you use the Standalone JAX-WS 3.0 Compatible Implementation software
 with the ApacheTomcat web container, set the following environment variables
 in your `<TS_HOME>/bin/ts.jte` file:
-    a.  Set `webcontainer.home` value to the location where the Apache Tomcat web
-    container is installed (value of `${CATALINA_HOME}`).
-    b.  Keep `jaxws.home` default value, which is `${webcontainer.home}`.
-    c.  Set `jaxws.lib` value to the location where JAR files/classes were copied:
-    `${jaxws.home}/shared/lib`
-    d.  Set the `jaxws.classes` to contain all libraries copied to `${jaxws.home}/shared/lib`
-        directory. This shell script can generate proper value,
+  a.  Set `webcontainer.home` value to the location where the Apache Tomcat web
+  container is installed (value of `${CATALINA_HOME}`).
+  b.  Keep `jaxws.home` default value, which is `${webcontainer.home}`.
+  c.  Set `jaxws.lib` value to the location where JAR files/classes were copied:
+  `${jaxws.home}/shared/lib`
+  d.  Set the `jaxws.classes` to contain all libraries copied to `${jaxws.home}/shared/lib`
+  directory. This shell script can generate proper value,
 +
-  --
-  [source,oac_no_warn]
-  ----
-  cd ${CATALINA_HOME}/shared/lib && unset first && \
-  for lib in `ls *.jar`; do
-    if [ -n "${first}" ]; then
-      echo -n '${pathsep}'
-    else
-      echo -n 'jaxws.classes=' && first='false'
-    fi
-    echo -n '${jaxws.lib}/'${lib}
-  done && echo
-  ----
-  --
-
-  which shall contain following list of `jaxws.classes`:
-
-  *  ${jaxws.lib}/FastInfoset.jar
-  *  ${jaxws.lib}/commonj.sdo.jar
-  *  ${jaxws.lib}/gmbal-api-only.jar
-  *  ${jaxws.lib}/ha-api.jar
-  *  ${jaxws.lib}/jakarta.activation.jar
-  *  ${jaxws.lib}/jakarta.annotation-api.jar
-  *  ${jaxws.lib}/jakarta.jws-api.jar
-  *  ${jaxws.lib}/jakarta.mail.jar
-  *  ${jaxws.lib}/jakarta.xml.bind-api.jar
-  *  ${jaxws.lib}/jakarta.xml.soap-api.jar
-  *  ${jaxws.lib}/jakarta.xml.ws-api.jar
-  *  ${jaxws.lib}/jaxb-core.jar
-  *  ${jaxws.lib}/jaxb-impl.jar
-  *  ${jaxws.lib}/jaxb-jxc.jar
-  *  ${jaxws.lib}/jaxb-xjc.jar
-  *  ${jaxws.lib}/jaxws-eclipselink-plugin.jar
-  *  ${jaxws.lib}/jaxws-rt.jar
-  *  ${jaxws.lib}/jaxws-tools.jar
-  *  ${jaxws.lib}/jaxwstck.jar
-  *  ${jaxws.lib}/management-api.jar
-  *  ${jaxws.lib}/mimepull.jar
-  *  ${jaxws.lib}/org.eclipse.persistence.asm.jar
-  *  ${jaxws.lib}/org.eclipse.persistence.core.jar
-  *  ${jaxws.lib}/org.eclipse.persistence.moxy.jar
-  *  ${jaxws.lib}/org.eclipse.persistence.sdo.jar
-  *  ${jaxws.lib}/resolver.jar
-  *  ${jaxws.lib}/saaj-impl.jar
-  *  ${jaxws.lib}/sdo-eclipselink-plugin.jar
-  *  ${jaxws.lib}/stax-ex.jar
-  *  ${jaxws.lib}/stax2-api.jar
-  *  ${jaxws.lib}/streambuffer.jar
-  *  ${jaxws.lib}/tsharness.jar
-  *  ${jaxws.lib}/woodstox-core.jar
-
-  separated by `${pathsep}`
-    e.  Set the `impl.vi` and `impl.vi.deploy.dir` properties to the supported
-       web container and deploy directory for ApacheTomcat web container:
-  +
-  --
-  [source,oac_no_warn]
-  ----
-  impl.vi.deploy.dir=${webcontainer.home}/webapps/
-  impl.vi=tomcat
-  ----
-  --
-  +
-    e.  Comment out `javaee.home` and all `s1as.` properties.
+--
+[source,oac_no_warn]
+----
+cd ${CATALINA_HOME}/shared/lib && unset first && \
+for lib in `ls *.jar`; do
+  if [ -n "${first}" ]; then
+    echo -n '${pathsep}'
+  else
+    echo -n 'jaxws.classes=' && first='false'
+  fi
+  echo -n '${jaxws.lib}/'${lib}
+done && echo
+----
+--
++
+which shall contain following list of `jaxws.classes`:
++
+*  ${jaxws.lib}/FastInfoset.jar
+*  ${jaxws.lib}/commonj.sdo.jar
+*  ${jaxws.lib}/gmbal-api-only.jar
+*  ${jaxws.lib}/ha-api.jar
+*  ${jaxws.lib}/jakarta.activation.jar
+*  ${jaxws.lib}/jakarta.annotation-api.jar
+*  ${jaxws.lib}/jakarta.jws-api.jar
+*  ${jaxws.lib}/jakarta.mail.jar
+*  ${jaxws.lib}/jakarta.xml.bind-api.jar
+*  ${jaxws.lib}/jakarta.xml.soap-api.jar
+*  ${jaxws.lib}/jakarta.xml.ws-api.jar
+*  ${jaxws.lib}/jaxb-core.jar
+*  ${jaxws.lib}/jaxb-impl.jar
+*  ${jaxws.lib}/jaxb-jxc.jar
+*  ${jaxws.lib}/jaxb-xjc.jar
+*  ${jaxws.lib}/jaxws-eclipselink-plugin.jar
+*  ${jaxws.lib}/jaxws-rt.jar
+*  ${jaxws.lib}/jaxws-tools.jar
+*  ${jaxws.lib}/jaxwstck.jar
+*  ${jaxws.lib}/management-api.jar
+*  ${jaxws.lib}/mimepull.jar
+*  ${jaxws.lib}/org.eclipse.persistence.asm.jar
+*  ${jaxws.lib}/org.eclipse.persistence.core.jar
+*  ${jaxws.lib}/org.eclipse.persistence.moxy.jar
+*  ${jaxws.lib}/org.eclipse.persistence.sdo.jar
+*  ${jaxws.lib}/resolver.jar
+*  ${jaxws.lib}/saaj-impl.jar
+*  ${jaxws.lib}/sdo-eclipselink-plugin.jar
+*  ${jaxws.lib}/stax-ex.jar
+*  ${jaxws.lib}/stax2-api.jar
+*  ${jaxws.lib}/streambuffer.jar
+*  ${jaxws.lib}/tsharness.jar
+*  ${jaxws.lib}/woodstox-core.jar
++
+separated by `${pathsep}`
++
+  e.  Set the `impl.vi` and `impl.vi.deploy.dir` properties to the supported
+  web container and deploy directory for ApacheTomcat web container:
++
+--
+[source,oac_no_warn]
+----
+impl.vi.deploy.dir=${webcontainer.home}/webapps/
+impl.vi=tomcat
+----
+--
++
+  f.  Comment out `javaee.home` and all `s1as.` properties.
 
 4.  Edit the catalog file
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
