@@ -17,7 +17,7 @@
 
 -->
 
-<connector xmlns="http://java.sun.com/xml/ns/javaee"
+<connector xmlns="https://jakarta.ee/xml/ns/jakartaee"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            metadata-complete="false"
            xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
