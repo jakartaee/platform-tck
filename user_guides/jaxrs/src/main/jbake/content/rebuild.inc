@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the JAX-RS TCK.  Most references
-to JAX-RS have been parameterized to serve as a simple starting
+This text was originally from the {TechnologyShortName} TCK.  Most references
+to {TechnologyShortName} have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.
 ///////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ which may contain additional details specific for that implementation.
 
 The {TechnologyShortName} {TechnologyVersion} specification specifies
 how {TechnologyShortName} applications are to be published in a Java SE
-environment, JAX-WS endpoint, or Servlet–compliant Web container.
+environment, {TechnologyShortName} endpoint, or Servlet–compliant Web container.
 
 {TechnologyShortName} TCK test application classes that are to be
 published in a Java SE environment are located under
