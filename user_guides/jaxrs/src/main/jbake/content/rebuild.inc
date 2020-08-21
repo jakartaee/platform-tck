@@ -103,7 +103,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>servlet_adaptor</servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.core.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -138,7 +138,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
             org/glassfish/jersey/servlet/ServletContainer
         </servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.core.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

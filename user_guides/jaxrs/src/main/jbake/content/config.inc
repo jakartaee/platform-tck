@@ -77,7 +77,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the {TechnologyShortName} {TechnologyVersion} API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to, for example the {TechnologyRI} CI. +
   The default setting for the `jaxrs_impl_lib` property is
@@ -254,7 +254,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the {TechnologyShortName} {TechnologyVersion} API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  If you are using {TechnologyRI}, set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to the {TechnologyRI} CI. +
   The default setting for the `jaxrs_impl_lib` property is
