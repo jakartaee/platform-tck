@@ -8,4 +8,5 @@ below line can be removed.
 This is used in intro.adoc in section 1.3 and install.adoc in section 3.2.
 ///////////////////////////////////////////////////////////////////////
 
-* Jakarta EE 8 CI (for example {TechnologyRI}, from {TechnologyRIURL}) or, at a minimum, a Web server with a Servlet container
+* Jakarta EE {JakartaEEVersion} CI (for example {TechnologyRI}, from {TechnologyRIURL}) or, at a minimum, a Web server with a Servlet
+container
