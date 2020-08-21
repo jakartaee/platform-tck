@@ -24,7 +24,7 @@
 <body bgcolor="white">
 <br>
 <CENTER>
-<h2> Jakarta Faces 2.3<br>
+<h2> Jakarta Server Faces 3.0<br>
 				Specification Assertion Detail 
 			</h2>
 </CENTER>
@@ -3461,7 +3461,7 @@
                 containing the corresponding implementation classes, suitable 
                 for inclusion with a web application, such that the tag library 
                 descriptor will be located automatically by the algorithm 
-                described in Section 7.3 of the JavaServer Pages Specification 
+                described in Section 7.3 of the Jakarta Server Pages Specification
                 (version 2.1).
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -4307,7 +4307,7 @@
                 containing the corresponding implementation classes, suitable 
                 for inclusion with a web application, such that the tag library
                 descriptor will be located automatically by the algorithm
-                described in Section 7.3  of the JavaServer Pages Specification
+                described in Section 7.3  of the Jakarta Server Pages Specification
                 (version 1.2).
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5235,7 +5235,7 @@
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:200"></a><font size="1PT">JSF:SPEC:200</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">2.6.1</font></TD><TD align="left" valign="center"><font size="1PT">
         jakarta.faces.FactoryFinder implements the standard discovery algorithm
-        for all factory objects specified in the JavaServer Faces APIs.
+        for all factory objects specified in the Jakarta Server Faces APIs.
         For a given factory class name, a corresponding implementation class is
         searched for based on the following algorithm. Items are listed in order
         of decreasing search precedence:
@@ -5245,7 +5245,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:200.1"></a><font size="1PT">JSF:SPEC:200.1</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">2.6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                If a default JavaServer Faces configuration file
+                If a default Jakarta Server Faces configuration file
                 (/WEB-INF/faces-config.xml) is bundled into the web application,
                 and it contains a factory entry of the given factory class name,
                 that factory class is used.
@@ -5255,7 +5255,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:200.2"></a><font size="1PT">JSF:SPEC:200.2</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">2.6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                If the JavaServer Faces configuration resource(s) named by the
+                If the Jakarta Server Faces configuration resource(s) named by the
                 jakarta.faces.CONFIG_FILES ServletContext init parameter (if any)
                 contain any factory entries of the given factory class name,
                 those factories are used, with the last one taking precedence.
@@ -5286,7 +5286,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:200.5"></a><font size="1PT">JSF:SPEC:200.5</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="center" valign="center"><font size="1PT">2.6.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                If none of the above steps yield a match, the JavaServer Faces
+                If none of the above steps yield a match, the Jakarta Server Faces
                 implementation specific class is used. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5684,7 +5684,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:228"></a><font size="1PT">JSF:SPEC:228</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-      Any implementation that intends to use the JavaServer Faces 2.0 JavaScript
+      Any implementation that intends to use the Jakarta Server Faces 2.0 JavaScript
       API must define a top level JavaScript object name jsf, whose type is a
       JavaScript associative array. Within that top level JavaScript object,
       found in the OpenAjax Hub, there must be a property named ajax..
@@ -5878,7 +5878,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JSF:SPEC:238"></a><font size="1PT">JSF:SPEC:238</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="center" valign="center"><font size="1PT">3.7</font></TD><TD align="left" valign="center"><font size="1PT">
-        JavaServer Faces Ajax frameworks must ensure exception information is
+        Jakarta Server Faces Ajax frameworks must ensure exception information is
         written to the response in the format:
     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>

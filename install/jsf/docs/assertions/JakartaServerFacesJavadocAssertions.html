@@ -24,7 +24,7 @@
 <body bgcolor="white">
 <br>
 <CENTER>
-<h2> Jakarta Faces - 2.3<br>
+<h2> Jakarta Server Faces - 3.0<br>
 JavaDoc Assertion Detail</h2>
 </CENTER>
 <TABLE width="900" border="1" frame="box" cellpadding="5">
@@ -164,7 +164,7 @@ JavaDoc Assertion Detail</h2>
 		( String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Create
 		(if necessary) and return a per-web-application instance of the
-		appropriate implementation class for the specified JavaServer Faces
+		appropriate implementation class for the specified Jakarta Server Faces
 		factory class, based on the discovery algorithm described in the class
 		description. The standard factories and wrappers in JSF all implement
 		the interface FacesWrapper. If the returned Object is an
@@ -202,7 +202,7 @@ JavaDoc Assertion Detail</h2>
 		throws IllegalArgumentException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">if
-		factoryName does not identify a standard JavaServer Faces factory name</font></TD>
+		factoryName does not identify a standard Jakarta Server Faces factory name</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -302,7 +302,7 @@ JavaDoc Assertion Detail</h2>
 		throws IllegalArgumentException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">if
-		factoryName does not identify a standard JavaServer Faces factory name</font></TD>
+		factoryName does not identify a standard Jakarta Server Faces factory name</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -509,7 +509,7 @@ JavaDoc Assertion Detail</h2>
 		( ELResolver ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Cause
 		an the argument resolver to be added to the resolver chain as
-		specified in section JSF.5.5.1 of the JavaServer Faces Specification.
+		specified in section JSF.5.5.1 of the Jakarta Server Faces Specification.
 
 		It is not possible to remove an ELResolver registered with this
 		method, once it has been registered. It is illegal to register an
@@ -1591,7 +1591,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the fully qualified class name of the ResourceBundle to be used for
-		JavaServer Faces messages for this application. If not explicitly set,
+		Jakarta Server Faces messages for this application. If not explicitly set,
 		null is returned. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -1752,7 +1752,7 @@ JavaDoc Assertion Detail</h2>
 
 		If not explicitly set, a default implementation must be provided that
 		performs the functions described in the StateManager description in
-		the JavaServer Faces Specification. </font></TD>
+		the Jakarta Server Faces Specification. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -1815,7 +1815,7 @@ JavaDoc Assertion Detail</h2>
 		and Render Response phases of the request processing lifecycle. If not
 		explicitly set, a default implementation must be provided that
 		performs the functions described in the ViewHandler description in the
-		JavaServer Faces Specification. </font></TD>
+		Jakarta Server Faces Specification. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -2060,7 +2060,7 @@ JavaDoc Assertion Detail</h2>
 		( String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Set the
 		fully qualified class name of the ResourceBundle to be used for
-		JavaServer Faces messages for this application. See the JavaDocs for
+		Jakarta Server Faces messages for this application. See the JavaDocs for
 		the java.util.ResourceBundle class for more information about the
 		syntax for resource bundle names. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2544,7 +2544,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">if any
 		combination of context, systemEventClass, or listener are null.
-		http://java.sun.com/javaee/javaserverfaces/reference/api/index.html</font></TD>
+		http://java.sun.com/javaee/Jakarta Serverfaces/reference/api/index.html</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -3835,7 +3835,7 @@ JavaDoc Assertion Detail</h2>
 
 		( String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> A
-		convenience method to signal the JavaServer Faces implementation to
+		convenience method to signal the Jakarta Server Faces implementation to
 		perform navigaton with the provided outcome. When the
 		NavigationHandler is invoked, the current viewId is treated as the
 		"from viewId" and the "from action" is null. </font></TD>
@@ -6910,7 +6910,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		a flag indicating that the default ActionListener provided by the
-		JavaServer Faces implementation should be executed immediately (that
+		Jakarta Server Faces implementation should be executed immediately (that
 		is, during Apply Request Values phase of the request processing
 		lifecycle), rather than waiting until the Invoke Application phase.
 		The default value for this property must be false. </font></TD>
@@ -7914,7 +7914,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -8224,7 +8224,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -9056,7 +9056,7 @@ JavaDoc Assertion Detail</h2>
 		UIComponentBase#getRendersChildren tries to find the renderer for this
 		component. If it does, it calls Renderer#getRendersChildren and
 		returns the result. If it doesn't, it returns false. As of version 1.2
-		of the JavaServer Faces Specification, component authors are
+		of the Jakarta Server Faces Specification, component authors are
 		encouraged to return true from this method and rely on
 		UIComponentBase#encodeChildren. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -10090,7 +10090,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -10767,7 +10767,7 @@ JavaDoc Assertion Detail</h2>
 		UIComponentBase#getRendersChildren tries to find the renderer for this
 		component. If it does, it calls Renderer#getRendersChildren and
 		returns the result. If it doesn't, it returns false. As of version 1.2
-		of the JavaServer Faces Specification, component authors are
+		of the Jakarta Server Faces Specification, component authors are
 		encouraged to return true from this method and rely on
 		UIComponentBase#encodeChildren. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -11459,7 +11459,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -17080,7 +17080,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -17160,7 +17160,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -22463,7 +22463,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT">jakarta.faces.context.FacesContext.renderResponse<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Signal
-		the JavaServer faces implementation that, as soon as the current phase
+		the Jakarta Server faces implementation that, as soon as the current phase
 		of the request processing lifecycle has been completed, control should
 		be passed to the Render Response phase, bypassing any phases that have
 		not been executed yet. </font></TD>
@@ -22494,7 +22494,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT">jakarta.faces.context.FacesContext.responseComplete<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Signal
-		the JavaServer Faces implementation that the HTTP response for this
+		the Jakarta Server Faces implementation that the HTTP response for this
 		request has already been generated (such as an HTTP redirect), and
 		that the request processing lifecycle should be terminated as soon as
 		the current phase is completed. </font></TD>
@@ -29789,7 +29789,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -29820,7 +29820,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -29886,7 +29886,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -30287,7 +30287,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -31266,7 +31266,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -31420,7 +31420,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -31470,7 +31470,7 @@ JavaDoc Assertion Detail</h2>
 		throws AbortProcessingException<br>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT">Signal
-		the JavaServer Faces implementation that no further processing on the
+		the Jakarta Server Faces implementation that no further processing on the
 		current event should be performed</font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -31519,7 +31519,7 @@ JavaDoc Assertion Detail</h2>
 		( FacesContext ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Execute
 		all of the phases of the request processing lifecycle, up to but not
-		including the Render Response phase, as described in the JavaServer
+		including the Render Response phase, as described in the Jakarta Server
 		Faces Specification, in the specified order. The processing flow can
 		be affected (by the application, by components, or by event listeners)
 		by calls to the renderResponse() or responseComplete() methods of the
