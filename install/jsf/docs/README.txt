@@ -17,4 +17,4 @@ The Java Server Faces Technology Compatibility Kit 3.0 User's Guide provides
 the information you need to install, configure, and run the Server Faces
 TCK. The User's Guide also contains the rules you need to pass for
 certification. The guide is available in PDF format at
-guides/ug/Jakarta-Server-Faces-TCK-Users-Guide.pdf relative to this README file.
+pdf-usersguide/Jakarta-Server-Faces-TCK-Users-Guide.pdf relative to this README file.
