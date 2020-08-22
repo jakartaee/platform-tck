@@ -1,14 +1,16 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
-title: [tck_jta_v1_2]
-description: [Oracle Technology Compatibility Kit User's Guide for Java Transaction API (JTA) 1.2 for Technology Licensees, Release 1.2]
+title: [tck_jta_v2_0]
+description: [Oracle Technology Compatibility Kit User's Guide for Jakarta Transactions 2.0 for Technology
+                Licensees,
+              Release 2.0]
 
 # sidebar links url
 links:
-  source: https://github.com/javaee/tck_jta_v1_2
-  download: https://github.com/javaee/tck_jta_v1_2/releases
+  source: https://github.com/eclipse-ee4j/jakartaee-tck
+  download: https://jakarta.ee/specifications/transactions/2.0/
   #mailinglist: https://javaee.groups.io/g/tck_jta_v1_2
   #javadocs:
-  docs: https://javaee.github.io/tck_jta_v1_2
+  docs: https://jakarta.ee/specifications/transactions/2.0/apidocs
   #faq:
 
