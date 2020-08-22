@@ -98,7 +98,7 @@ contains the following elements:
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>servlet_adaptor</servlet-class>
@@ -131,7 +131,7 @@ and has the values for the
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>
