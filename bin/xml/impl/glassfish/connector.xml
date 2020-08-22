@@ -97,7 +97,7 @@
              Due to bug# 6842858, we need to deploy an annotation based .rar before
              the non-annotation based .rar files.  Failure to do so currently results
              in a ClassCastException at runtime of the TCK tests.
-          -->
+        -->
         <fileset  id="anno_rar_file"
                   dir="${ts.home}/dist/"
                   includes="com/sun/ts/tests/common/connector/whitebox/annotated/whitebox-anno_no_md.rar"/>
@@ -105,9 +105,24 @@
             <fileset refid="anno_rar_file"/>
         </ts.glassfish.deploy>
 
-        <fileset  id="archives"
+        <if>
+          <contains string="${javaee.level}" substring="full"/>
+        <then>
+            <fileset  id="archives"
                   dir="${ts.home}/dist/"
                   includes="com/sun/ts/tests/common/connector/whitebox/**/*.rar"/>
+        </then>
+        <else>
+            <fileset  id="archives"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/common/connector/whitebox/*.rar,
+                            com/sun/ts/tests/common/connector/whitebox/ibanno/*.rar,  
+                            com/sun/ts/tests/common/connector/whitebox/mdcomplete/*.rar,
+                            com/sun/ts/tests/common/connector/whitebox/mixedmode/*.rar,
+                            com/sun/ts/tests/common/connector/whitebox/multianno/*.rar"/>
+       </else>
+       </if>
+
         <ts.glassfish.deploy>
             <fileset refid="archives"/>
         </ts.glassfish.deploy>
@@ -228,10 +243,15 @@
             <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
         </antcall>
 
-        <antcall target="create-a-connection-pool" >
-            <param name="rarName" value="whitebox-permissiondd"/>
-            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
-        </antcall>
+        <if>
+          <contains string="${javaee.level}" substring="full"/>
+        <then>
+            <antcall target="create-a-connection-pool" >
+                <param name="rarName" value="whitebox-permissiondd"/>
+                <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+            </antcall>
+        </then>
+        </if>
 
     </target>
 
@@ -305,9 +325,14 @@
             <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
         </antcall>
 
-        <antcall target="delete-connector-connection-pool" >
-            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
-        </antcall>
+        <if>
+          <contains string="${javaee.level}" substring="full"/>
+        <then>
+            <antcall target="delete-connector-connection-pool" >
+                <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+            </antcall>
+        </then>
+        </if>
 
     </target>
 
@@ -402,10 +427,15 @@
             <param name="jndiName" value="${oldwhitebox-xa-param}"/>
         </antcall>
 
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
-            <param name="jndiName" value="${whitebox-permissiondd}"/>
-        </antcall>
+        <if>
+          <contains string="${javaee.level}" substring="full"/>
+        <then>
+            <antcall target="create-a-connector-resource" >
+                <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
+                <param name="jndiName" value="${whitebox-permissiondd}"/>
+            </antcall>
+        </then>
+        </if>
 
     </target>
 
