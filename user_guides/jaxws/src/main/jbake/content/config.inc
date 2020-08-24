@@ -259,46 +259,24 @@ environment variables:
 ----
 jaxws.home.ri=${webcontainer.home.ri}
 jaxws.lib.ri=${jaxws.home.ri}/modules
-
-jaxws.classes.ri=${jaxws.lib.ri}/webservices-api-osgi.jar:
-${jaxws.lib.ri}/jaxb-api-osgi.jar:
-${jaxws.lib.ri}/webservices-osgi.jar:
-${jaxws.lib.ri}/jaxb-osgi.jar:
-${jaxws.lib.ri}/gmbal.jar:
-${jaxws.lib.ri}/management-api.jar:
-${jaxws.lib.ri}/mimepull.jar
+jaxws.classes.ri=${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}
+${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}
+${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}
+${jaxws.lib.ri}/webservices-osgi.jar${pathsep}
+${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}
+${jaxws.lib.ri}/gmbal.jar${pathsep}
+${jaxws.lib.ri}/management-api.jar${pathsep}
+${jaxws.lib.ri}/mimepull.jar${pathsep}
+${jaxws.lib.ri}/ha-api.jar${pathsep}
+${jaxws.lib.ri}/webservices-api.jar${pathsep}
+${jaxws.lib.ri}/jakarta.activation.jar
 ----
 --
 +
 The `jaxws.classes.ri` settings if using the Apache Tomcat web container
-with the Standalone XML-WS 3.0 Compatible Implementation would be as follows:
-+
---
-[source,oac_no_warn]
-----
-jaxws.home.ri=${webcontainer.home.ri}
-jaxws.lib.ri=${jaxws.home.ri}/shared/lib
-endorsed.dirs.ri=${jaxws.home.ri}/common/endorsed
-jaxws.classes.ri=${endorsed.dirs.ri}/jaxws-api.jar:
-${endorsed.dirs.ri}/jaxb-api.jar:
-${jaxws.lib.ri}/FastInfoset.jar:${jaxws.lib.ri}/gmbal-api-only.jar:\
-${jaxws.lib.ri}/ha-api.jar:${jaxws.lib.ri}/jakarta.annotation-api.jar:\
-${jaxws.lib.ri}/jakarta.xml.soap-api.jar:${jaxws.lib.ri}/jaxb-core.jar:\
-${jaxws.lib.ri}/jaxb-impl.jar:${jaxws.lib.ri}/jaxb-jxc.jar:\
-${jaxws.lib.ri}/jaxb-xjc.jar:${jaxws.lib.ri}/jaxws-rt.jar:\
-${jaxws.lib.ri}/jaxwstck.jar:${jaxws.lib.ri}/jaxws-tools.jar:\
-${jaxws.lib.ri}/jsr181-api.jar:${jaxws.lib.ri}/mail.jar:\
-${jaxws.lib.ri}/management-api.jar:${jaxws.lib.ri}/mimepull.jar:\
-${jaxws.lib.ri}/policy.jar:${jaxws.lib.ri}/resolver.jar:\
-${jaxws.lib.ri}/saaj-impl.jar:${jaxws.lib.ri}/sdo-eclipselink-plugin.jar:\
-${jaxws.lib.ri}/stax2-api.jar:${jaxws.lib.ri}/stax-ex.jar:\
-${jaxws.lib.ri}/streambuffer.jar:${jaxws.lib.ri}/woodstox-core-asl.jar:
-----
---
-+
-  e.  Verify that the `tools.jar` property is set to the location of the
-  `tools.jar` file that is distributed with Java SE.
-  f.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
+with the Standalone XML-WS 3.0 Compatible Implementation should contain
+all classes copied to `${jaxws.home.ri}/shared/lib`.
+  e.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
   directory, host and port for the Vendor Implementation. +
   As an example, the `ts.jte` file contains the settings for the Jakarta EE 9
@@ -329,9 +307,9 @@ impl.ri.port=${webServerPort.2}
 ----
 --
 +
-  g.  Set the `webcontainer.home` property to the location where the web
+  f.  Set the `webcontainer.home` property to the location where the web
   container for the Vendor Implementation is installed.
-  h.  Set the `porting.ts.url.class.1` property to the porting
+  g.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
   The default setting for the XML-WS Compatible Implementation porting implementation is:
 +
@@ -342,15 +320,15 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
 ----
 --
 +
-  i.  Set the `user` and `password` properties to the user name and
+  h.  Set the `user` and `password` properties to the user name and
   password used for the basic authentication tests. +
   The default setting for both is `j2ee`.
-  j. Set the `authuser` and `authpassword` properties to the user name
+  i. Set the `authuser` and `authpassword` properties to the user name
   and password used for the basic authentication tests. +
   The default setting for both is `javajoe`.
-  k. Set the `http.server.supports.endpoint.publish` property based on
+  j. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
-  l. If using Java SE 8 or above, verify that the property
+  k. If using Java SE 8 or above, verify that the property
   `endorsed.dirs` is set to the location of the Compatible Implementation API jars for those
   technologies you wish to override. Java SE 8 contains an implementation
   of JAX-WS 2.2 which will conflict with XML-WS 3.0, therefore this
