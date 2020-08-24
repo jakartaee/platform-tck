@@ -37,20 +37,20 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 8 CI is running. +
+  Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 8 CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c. `impl.vi` to the Vendor implementation, which is "glassfish".
   d. `impl.vi.deploy.dir` to the Vendor implementation deployment directory,
-  which for the Jakarta EE 8 CI would be
+  which for the Jakarta EE {JakartaEEVersion} CI would be
   +{TechnologyHomeEnv}/domains/domain1/autodeploy+.
   e. `jsf.classes` to the Jakarta Server Faces API and implementation classes
   that are under test
   f. `jspservlet.classes` to the path to the Servlet and JSP API classes. +
   The ts.jte file includes examples that show how to set the classes properties
-  for GlassFish servers.
+  for Eclipse GlassFish servers.
   g. `report.dir` to the default directory in which JavaTest creates a test
   report for the most recent test run. +
   This property is a required property for the TCK Ant targets; it must
