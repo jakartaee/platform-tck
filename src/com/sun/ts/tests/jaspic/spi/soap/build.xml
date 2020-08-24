@@ -47,7 +47,7 @@
     <target name="-precompile" depends="packageendpoint, packageclient"/>
     
     <target name="packageendpoint" depends="generate_server, checkPlatformMode">
-        <ts.war archivename="${app.name}" descriptor="javaEE.web.xml">
+        <ts.war archivename="${app.name}" descriptor="jakartaEE.web.xml">
             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.xsd.files}"  prefix="WEB-INF/wsdl"/>
             <zipfileset dir="${src.dir}/${pkg.dir}" includes="${jaxws.runtime.xml}" prefix="WEB-INF"/>
             <zipfileset dir="${class.dir}" 
