@@ -173,7 +173,7 @@ ant -DpriorStatus="fail,error" runclient
 
 Note that multiple `priorStatus` values must be separated by commas.
 
-[[GCLRR]][[running-the-tck-against-the-ri]]
+[[GCLRR]][[running-the-tck-against-the-ci]]
 
 5.3 Running the TCK Against another CI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
