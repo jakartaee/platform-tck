@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the JAX-RS TCK.  Most references
-to JAX-RS have been parameterized to serve as a simple starting
+This text was originally from the {TechnologyShortName} TCK.  Most references
+to {TechnologyShortName} have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.
 ///////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ which may contain additional details specific for that implementation.
 
 The {TechnologyShortName} {TechnologyVersion} specification specifies
 how {TechnologyShortName} applications are to be published in a Java SE
-environment, JAX-WS endpoint, or Servlet–compliant Web container.
+environment, {TechnologyShortName} endpoint, or Servlet–compliant Web container.
 
 {TechnologyShortName} TCK test application classes that are to be
 published in a Java SE environment are located under
@@ -98,12 +98,12 @@ contains the following elements:
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>servlet_adaptor</servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.core.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -131,14 +131,14 @@ and has the values for the
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
         <servlet-class>
             org/glassfish/jersey/servlet/ServletContainer
         </servlet-class>
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-name>jakarta.ws.rs.core.Application</param-name>
             <param-value>com.sun.ts.tests.jaxrs.ee.rs.get.TSAppConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

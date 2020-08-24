@@ -19,8 +19,8 @@
 ///////////////////////////////////////////////////////////////////////
 NOTE TO WRITERS:
 The following sections should be customized for the technology.
-This text was originally from the JAX-RS TCK.  Most references
-to JAX-RS have been parameterized to serve as a simple starting
+This text was originally from the {TechnologyShortName} TCK.  Most references
+to {TechnologyShortName} have been parameterized to serve as a simple starting
 point for customization.  There are still many details that will
 need to be changed or removed.  The major sections 4.1, 4.2, and
 4.3 should be preserved.  If their titles are changed, the links
@@ -77,7 +77,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the {TechnologyShortName} {TechnologyVersion} API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to, for example the {TechnologyRI} CI. +
   The default setting for the `jaxrs_impl_lib` property is
@@ -254,7 +254,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the {TechnologyShortName} {TechnologyVersion} API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  If you are using {TechnologyRI}, set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to the {TechnologyRI} CI. +
   The default setting for the `jaxrs_impl_lib` property is
