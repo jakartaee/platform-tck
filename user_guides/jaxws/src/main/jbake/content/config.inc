@@ -287,7 +287,7 @@ all classes copied to `${jaxws.home.ri}/shared/lib`.
 ----
 webcontainer.home.ri=/sun/javaee6
 impl.ri.deploy.dir=${webcontainer.home.ri}/domains/domain1/autodeploy
-impl.ri=glassfish.xml
+impl.ri=glassfish
 impl.ri.host=${webServerHost.2}
 impl.ri.port=${webServerPort.2}
 ----
@@ -448,7 +448,7 @@ environment variables:
 [source,oac_no_warn]
 ----
 impl.ri.deploy.dir=${webcontainer.home.ri}/domains/domain1/autodeploy
-impl.ri=glassfish.xml
+impl.ri=glassfish
 impl.ri.host=${webServerHost.2}
 impl.ri.port=${webServerPort.2}
 ----
