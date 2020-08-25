@@ -1,10 +1,7 @@
-<!DOCTYPE faces-config
-          PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
-          "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2004, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2004, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +17,10 @@
 
 -->
 
-<faces-config>
+<faces-config xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
+    version="3.0">
 
     <factory>
         <faces-context-factory>
