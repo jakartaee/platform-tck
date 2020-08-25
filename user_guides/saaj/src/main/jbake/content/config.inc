@@ -10,10 +10,10 @@ at the top of config.adoc will need to be changed as well as well
 as toc.adoc.
 ///////////////////////////////////////////////////////////////////////
 
-[[GBFVU]][[configuring-your-environment-to-run-tck-with-the-reference-implementation]]
+[[GBFVU]][[configuring-your-environment-to-run-tck-with-the-compatible-implementation]]
 
 4.1 Configuring Your Environment to Run the TCK With a Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~s~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
 continue with the instructions in link:#GBFUY[Section 4.4, "Using the
