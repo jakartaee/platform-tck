@@ -42,7 +42,7 @@ cp ${TS_HOME}/lib/tsharness.jar ${TS_HOME}/lib/jaxwstck.jar \
 --
 +
 Edit `${CATALINA_HOME}/conf/catalina.properties` and set value of `shared.loader`
-property to `${catalina.base}/shared/lib`:
+property to `${catalina.base}/shared/lib/*.jar`:
 +
 --
 [source,oac_no_warn]
