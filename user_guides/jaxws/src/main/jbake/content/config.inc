@@ -71,7 +71,7 @@ file and set the following environment variables:
 [source,oac_no_warn]
 ----
 impl.vi.deploy.dir=${webcontainer.home}/domains/domain1/autodeploy
-impl.vi=glassfish.xml
+impl.vi=glassfish
 impl.vi.host=${webServerHost}
 impl.vi.port=${webServerPort}
 ----
