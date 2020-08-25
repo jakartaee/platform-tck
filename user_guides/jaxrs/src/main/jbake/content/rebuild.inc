@@ -95,9 +95,9 @@ contains the following elements:
 [source,oac_no_warn]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
+xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee \
 https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
@@ -128,9 +128,9 @@ and has the values for the
 [source,oac_no_warn]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" \
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" \
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee \
+xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee \
 https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
     <servlet>
         <servlet-name>CTSJAX-RSGET</servlet-name>
