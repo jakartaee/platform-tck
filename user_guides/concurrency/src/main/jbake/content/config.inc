@@ -88,12 +88,12 @@ ant config.vi
 ----
 +
 This target performs the following tasks:
-* Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
-* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
+  * Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
+  * Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
 into the application server's external library folder
-* Starts the application server
-* Creates users and the appropriate roles
-* Enables HTTP trace requests
+  * Starts the application server
+  * Creates users and the appropriate roles
+  * Enables HTTP trace requests
 
 4. Deploy the {TechnologyShortName} TCK tests to the Web server:
   * Change to the `<TS_HOME>/bin` directory.
