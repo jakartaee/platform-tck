@@ -63,6 +63,9 @@ link:install.html#GBFTP[3 Installation]
 link:config.html#GBFVV[4 Setup and Configuration]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+** link:config.html#GHGDH[4.1 Configuring Your Environment to Run the TCK With a Compatible Implementation]
+** link:config.html#GHGDH[4.2 Configuring Your Environment to Run the TCK With Your Concurreny Implementation]
+** link:config.html#GHGDH[4.3 Publishing the Test Applications]
 ** link:config.html#GHGDH[4.4 Custom Configuration Handlers]
 ** link:config.html#GBFWG[4.5 Custom Deployment Handlers]
 *** link:config.html#GBFVA[4.5.1 To Create a Custom Deployment Handler]

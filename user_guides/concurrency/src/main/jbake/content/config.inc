@@ -10,7 +10,7 @@ at the top of config.adoc will need to be changed as well as well
 as toc.adoc.
 ///////////////////////////////////////////////////////////////////////
 
-[[GBFVU]][[configuring-your-environment-to-run-tck-with-the-reference-implementation]]
+[[GBFVU]][[configuring-your-environment-to-run-tck-with-the-compatible-implementation]]
 
 4.1 Configuring Your Environment to Run the TCK With a Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,22 +47,22 @@ slashes as a path separator instead.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
-  Jakarta EE 9 CI is running. +
+  Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number of the host on
-  which Jakarta EE 9 CI is running. +
+  which Jakarta EE {JakartaEEVersion} CI is running. +
   The default setting is `8080`.
   c.  Set the `concurrency.classes` property to point to the {TechnologyRI} CI
   classes/JAR files. 
-  If you are using the Jakarta EE 9 CI, {TechnologyRI}, set this property to the following: +
+  If you are using the Jakarta EE {JakartaEEVersion} CI, {TechnologyRI}, set this property to the following: +
   `concurrency.classes=${glassfish.ri.classes}`
   d.  Set the `webcontainer.home` property to the installation directory of Jakarta EE
-  9 CI.
+  {JakartaEEVersion} CI.
 
   e. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and `impl.vi.port`
   properties to the supported web container, deploy directory, host and port for
   the {TechnologyShortName} CI.
-  The supported web container for the {TechnologyShortName} CI is the Jakarta EE 9 CI. The
+  The supported web container for the {TechnologyShortName} CI is the Jakarta EE {JakartaEEVersion} CI. The
   default settings for these properties are as follows: +
 +
 [source,oac_no_warn]
@@ -88,12 +88,12 @@ ant config.vi
 ----
 +
 This target performs the following tasks:
-* Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
-* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
+  * Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
+  * Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar`
 into the application server's external library folder
-* Starts the application server
-* Creates users and the appropriate roles
-* Enables HTTP trace requests
+  * Starts the application server
+  * Creates users and the appropriate roles
+  * Enables HTTP trace requests
 
 4. Deploy the {TechnologyShortName} TCK tests to the Web server:
   * Change to the `<TS_HOME>/bin` directory.
@@ -204,7 +204,7 @@ This target invokes the
 `<TS_HOME>/bin/xml/impl/<your-implementation>/config.vi.xml` script, 
 which configures the {TechnologyShortName} {TechnologyVersion} implementation server under test (the 
 server that was designated by the `impl.vi` setting in the `ts.jte` file). If you are using the 
-Jakarta EE 9 CI, {TechnologyRI} with the `impl.vi` property set to `glassfish`, this target copies 
+Jakarta EE {JakartaEEVersion} CI, {TechnologyRI} with the `impl.vi` property set to `glassfish`, this target copies 
 required TCK JAR files to the server and then starts the server. +
  +
 You can configure your implementation server manually or automatically. If 
@@ -227,23 +227,8 @@ to run the tests you just deployed.
 
 [[GHGDG]][[publishing-the-test-applications]]
 
-4.3 Custom Configuration Handlers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.3 Publishing the Test Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Configuration handlers are used to configure and unconfigure a {TechnologyShortName}
-{TechnologyVersion} implementation during the certification process.
-These are similar to deployment handlers but used for configuration.
-A configuration handler is an Ant build file that contains at least the required targets
-listed below:
-  * `config.vi` - to configure the vendor implementation
-  * `clean.vi` - to unconfigure the vendor implementation
+Not needed for the {TechnologyShortName} TCK.
 
-These targets are called from the `<TS_HOME>/bin/build.xml` file and call down into the
-implementation-specific configuration handlers.
-
-To provide your own configuration handler, create a config.vi.xml file with the
-necessary configuration steps for your implementation and place the file under the
-`<TS_HOME>/bin/xml/impl/<your_impl>` directory.
-
-For more information, see `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`, the
-configuration file for a Jakarta EE 9 CI, {TechnologyRI}.
