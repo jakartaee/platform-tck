@@ -11,7 +11,7 @@ for additional information.
 
 .  Install the Jakarta EE 9 Compatible Platform software which contains the JAX-WS 3.0
 Compatible Implementation or install the Standalone JAX-WS 3.0 Compatible Implementation
-software. +
+software.
 The Jakarta EE 9 Compatible Platform software contains the JAX-WS 3.0 Compatible
 Implementation and is used to validate your initial configuration and
 setup of the JAX-WS TCK 3.0, as well as to run the reverse tests which
@@ -25,24 +25,29 @@ If you use the Standalone JAX-WS 3.0 Compatible Implementation software with the
 web container, you need to copy the JAR files/classes from the
 standalone JAX-WS 3.0 Compatible Implementation software to the correct location under the
 Apache Tomcat web container. Assuming the Apache Tomcat web container is
-installed under `${tomcat.home}`, you would copy the JAR files/classes
-as follows:
+installed under `${CATALINA_HOME}`, JAX-WS 3.0 Compatible Implementation under `${JAXWS_HOME}`
+and JAX-WS TCK 3.0 under `${TS_HOME}`, you would copy the JAR files/classes as follows:
 +
 --
 [source,oac_no_warn]
 ----
-cp jaxws-api.jar jaxb-api.jar ${tomcat.home}/common/endorsed
+mkdir -p ${CATALINA_HOME}/shared/lib
 
-cp commonj.sdo.jar eclipselink.jar FastInfoset.jar gmbal-api-only.jar \
-    ha-api.jar jakarta.annotation-api.jar jakarta.persistence.jar \
-    jakarta.xml.soap-api.jar jaxb-core.jar jaxb-impl.jar jaxb-jxc.jar \
-    jaxb-xjc.jar jaxws-eclipselink-plugin.jar jaxws-rt.jar jaxwstck.jar \
-    jaxws-tools.jar jsr181-api.jar mail.jar management-api.jar mimepull.jar \
-    policy.jar resolver.jar saaj-impl.jar sdo-eclipselink-plugin.jar \
-    stax2-api.jar stax-ex.jar streambuffer.jar tsharness.jar \
-    woodstox-core-asl.jar ${tomcat.home}/shared/lib
+cp ${JAXWS_HOME}/lib/*.jar ${JAXWS_HOME}/lib/plugins/*.jar \
+   ${JAXWS_HOME}/extra/*.jar ${CATALINA_HOME}/shared/lib
 
-cp jaxwstck/lib/tsharness.jar jaxwstck/lib/jaxwstck.jar ${tomcat.home}/shared/lib
+cp ${TS_HOME}/lib/tsharness.jar ${TS_HOME}/lib/jaxwstck.jar \
+   ${CATALINA_HOME}/shared/lib
+----
+--
++
+Edit `${CATALINA_HOME}/conf/catalina.properties` and set value of `shared.loader`
+property to `${catalina.base}/shared/lib/*.jar`:
++
+--
+[source,oac_no_warn]
+----
+shared.loader=${catalina.base}/shared/lib/*.jar
 ----
 --
 +
