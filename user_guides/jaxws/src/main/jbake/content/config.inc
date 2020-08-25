@@ -38,33 +38,34 @@ slashes as a path separator instead.
 =======================================================================
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
-2.  If you use Jakarta EE 9 Compatible Platform, edit your `<TS_HOME>/bin/ts.jte`
+2.  If you use Jakarta EE {JakartaEEVersion} Compatible Platform, edit your
+ `<TS_HOME>/bin/ts.jte`
 file and set the following environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
-  server is running that is configured with the XML-WS Compatible Implementation. +
+  server is running that is configured with the {TechnologyShortName} Compatible Implementation. +
   The default setting is `localhost`.
   b.  Set the `webServerPort` property to the port number where the web
-  server is running that is configured with the XML-WS Compatible Implementation. +
+  server is running that is configured with the {TechnologyShortName} Compatible Implementation. +
   The default setting is `8000`.
-  c.  Set the `jaxws.home` property to the location where the XML-WS Compatible Implementation is
+  c.  Set the `jaxws.home` property to the location where the {TechnologyShortName} Compatible Implementation is
   installed. +
   The default setting is `${webcontainer.home}`. The value of this
   property must match the value of the `webcontainer.home` property that
   is set in step link:#BABBJEDF[g].
-  d.  Set the `jaxws.classes` property to point to the XML-WS Compatible Implementation
+  d.  Set the `jaxws.classes` property to point to the {TechnologyShortName} Compatible Implementation
   classes/jars. +
   Note that this property is already set and should not require any
   changes.
   e.  Set the
   `impl.vi, impl.vi.deploy.dir, impl.vi.host, and impl.vi.port` properties
   to the supported web container, deploy directory, host and port for the
-  XML-WS Compatible Implementation. +
-  The supported web container for the XML-WS Compatible Implementation is the Jakarta EE 9 Compatible Platform. So
+  {TechnologyShortName} Compatible Implementation. +
+  The supported web container for the {TechnologyShortName} Compatible Implementation is the Jakarta EE 9 Compatible Platform. So
   the default settings for these properties are as follows:
 +
 --
@@ -78,11 +79,11 @@ impl.vi.port=${webServerPort}
 --
 +
   f.  Set the `webcontainer.home` property to the location where the web
-  server is installed for the XML-WS Compatible Implementation. This will be where the Jakarta EE 9
+  server is installed for the {TechnologyShortName} Compatible Implementation. This will be where the Jakarta EE 9
   Compatible Implementation is installed.
   g.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
-  The default setting for the XML-WS Compatible Implementation porting implementation is:
+  The default setting for the {TechnologyShortName} Compatible Implementation porting implementation is:
 +
 --
 [source,oac_no_warn]
@@ -250,7 +251,7 @@ environment variables:
   d.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files. +
   As an example, the `ts.jte` file contains the property
-  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE 9
+  `jaxws.classes.ri`, which contains the classes/jar files that the Jakarta EE {JakartaEEVersion}
   Compatible Platform uses. The `jaxws.classes.ri` settings for the Jakarta EE
   {JakartaEEVersion} Compatible Platform web container are as follows:
 +
@@ -274,8 +275,8 @@ ${jaxws.lib.ri}/jakarta.activation.jar
 --
 +
 The `jaxws.classes.ri` settings if using the Apache Tomcat web container
-with the Standalone XML-WS 3.0 Compatible Implementation should contain
-all classes copied to `${jaxws.home.ri}/shared/lib`.
+with the Standalone {TechnologyShortName} {TechnologyVersion} Compatible
+Implementation should contain all classes copied to `${jaxws.home.ri}/shared/lib`.
   e.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
   directory, host and port for the Vendor Implementation. +
@@ -293,8 +294,9 @@ impl.ri.port=${webServerPort.2}
 ----
 --
 +
-The Compatible Implementation settings using the Apache Tomcat web container with the
-Standalone XML-WS 3.0 Compatible Implementation would be as follows:
+The Compatible Implementation settings using the Apache Tomcat web container with
+the Standalone {TechnologyShortName} {TechnologyVersion} Compatible Implementation
+would be as follows:
 +
 --
 [source,oac_no_warn]
@@ -311,7 +313,7 @@ impl.ri.port=${webServerPort.2}
   container for the Vendor Implementation is installed.
   g.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
-  The default setting for the XML-WS Compatible Implementation porting implementation is:
+  The default setting for the {TechnologyShortName} Compatible Implementation porting implementation is:
 +
 --
 [source,oac_no_warn]
@@ -328,27 +330,21 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   The default setting for both is `javajoe`.
   j. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
-  k. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs` is set to the location of the Compatible Implementation API jars for those
-  technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with XML-WS 3.0, therefore this
-  property must be set so that XML-WS 3.0 will be used during the building
-  of tests and during test execution.
 +
 3.  Edit the catalog file
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
 replacing the host and port settings of `systemId` with the value of
 your host and port setting where the WSDL is published.
 4.  Provide your own implementation of the porting package interface
-provided with the XML-WS TCK. +
+provided with the {TechnologyShortName} TCK. +
 The porting package interface, `TSURLInterface.java`, obtains URL
 strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
-available in the XML-WS TCK documentation bundle. +
+available in the {TechnologyShortName} TCK documentation bundle. +
 The `<TS_HOME>/bin/jaxws-url-props.dat` file contains the webservice
 endpoint and WSDL URLs that the TCK tests use when running against the
-XML-WS Compatible Implementation. In the porting package that the TCK uses, the URLs are
-returned as is since this is the form that the XML-WS Compatible Implementation expects. You
+{TechnologyShortName} Compatible Implementation. In the porting package that the TCK uses, the URLs are
+returned as is since this is the form that the {TechnologyShortName} Compatible Implementation expects. You
 may need an alternate form of these URLs in order to run the TCK tests
 in your environment. However, you MUST NOT modify the
 `jaxws-url-props.dat` file, but instead make any necessary changes in
@@ -358,17 +354,17 @@ appropriately for your environment.
 
 [[additional-tck-instructions]]
 
-4.3 Additional XML-WS TCK Instructions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.3 Additional {TechnologyShortName} TCK Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[GCLHF]][[configuring-your-environment-to-rebuild-and-run-the-jax-ws-tck-against-the-jax-ws-ri]]
 
-4.3.1 Configuring Your Environment to Rebuild and Run the XML-WS TCK Against the XML-WS Compatible Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.1 Configuring Your Environment to Rebuild and Run the {TechnologyShortName} TCK Against the {TechnologyShortName} Compatible Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section describes the steps needed to configure the XML-WS TCK so
+This section describes the steps needed to configure the {TechnologyShortName} TCK so
 that the tests can be rebuilt (using the Vendor Implementation toolset),
-and then deployed and run against the XML-WS Compatible Implementation.
+and then deployed and run against the {TechnologyShortName} Compatible Implementation.
 
 If you are not ready to proceed with this portion of the testing
 process, skip this section for now and proceed to
@@ -399,7 +395,7 @@ installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the XML-WS TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
   installed
   c.  `ANT_HOME` should be set in your environment.
 2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
@@ -411,9 +407,9 @@ environment variables:
   server for the Vendor Implementation is running. +
   The default setting is`8080`
   c.  Set the `webServerHost.2` property to the hostname where the web
-  server for the XML-WS Compatible Implementation is running.
+  server for the {TechnologyShortName} Compatible Implementation is running.
   d.  Set the `webServerPort.2` property to the port number where the web
-  server for the XML-WS Compatible Implementation is running.
+  server for the {TechnologyShortName} Compatible Implementation is running.
   e.  Set the `jaxws.home` property to the location where the Vendor
   Implementation is installed. +
   The default setting is `${webcontainer.home}`. The value of this
@@ -421,26 +417,26 @@ environment variables:
   is set in step link:#BABEGFEB[m].
   f.  Set the `jaxws.classes` property to point to the Vendor
   Implementation classes/JAR files.
-  g.  Set the `jaxws.home.ri` property to the location where the XML-WS Compatible Implementation
+  g.  Set the `jaxws.home.ri` property to the location where the {TechnologyShortName} Compatible Implementation
   is installed. +
   The default setting is `${webcontainer.home.ri}`. The value of this
   property must match the value of the `webcontainer.home.ri` property
   that is set in step link:#BABCAAFJ[n].
   h.  The `jaxws.classes.ri` property is already configured to point to
-  the XML-WS Compatible Implementation classes/JAR files. +
+  the {TechnologyShortName} Compatible Implementation classes/JAR files. +
   No changes are necessary for this property.
   i.  Set the `wsgen.ant.classname` property to the Vendor Implementation
-  class that mimics the XML-WS Compatible Implementation Ant task, which in turn calls the
+  class that mimics the {TechnologyShortName} Compatible Implementation Ant task, which in turn calls the
   `wsgen` Java-to-WSDL tool.
   j. Set the `wsimport.ant.classname` property to the Vendor
-  Implementation class that mimics the XML-WS Compatible Implementation Ant task, which in turn
+  Implementation class that mimics the {TechnologyShortName} Compatible Implementation Ant task, which in turn
   calls the `wsimport` WSDL-to-Java tool.
   k. Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
   directory, host and port used for the Vendor Implementation.
   l. Set the `impl.ri`, `impl.ri.deploy.dir`, `impl.ri.host`, and
   `impl.ri.port` properties to the supported web container, deploy
-  directory, host and port used for the XML-WS Reference Implementation. +
+  directory, host and port used for the {TechnologyShortName} Reference Implementation. +
   The supported web container for standalone web applications is the Java
   EE 8 Compatible Implementation. The default settings for these properties are as follows:
 +
@@ -457,10 +453,10 @@ impl.ri.port=${webServerPort.2}
   m. Set the `webcontainer.home` property to the location where the web
   container for the Vendor Implementation is installed.
   n. Set the `webcontainer.home.ri` property to the location where the web
-  container for the XML-WS Reference Implementation is installed.
+  container for the {TechnologyShortName} Reference Implementation is installed.
   o. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
-  The default setting points to the XML-WS Compatible Implementation porting implementation which
+  The default setting points to the {TechnologyShortName} Compatible Implementation porting implementation which
   is:
 +
 --
@@ -470,7 +466,7 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
 ----
 --
 +
-  p. Set the `porting.ts.url.class.2` property to the XML-WS Compatible Implementation porting
+  p. Set the `porting.ts.url.class.2` property to the {TechnologyShortName} Compatible Implementation porting
   implementation class that is used for obtaining URLs. +
   No changes are necessary for this property.
   q. Set the `user` and `password` properties to the user name and
@@ -481,18 +477,6 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   The default setting for both is `javajoe`.
   s. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
-  t. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs` is set to the location of the VI API jars for those
-  technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with XML-WS 3.0, therefore this
-  property must be set so that XML-WS 3.0 will be used during the building
-  of tests and during test execution.
-  u. If using Java SE 8 or above, verify that the property
-  `endorsed.dirs.ri` is set to the location of the Compatible Implementation API jars for those
-  technologies you wish to override. Java SE 8 contains an implementation
-  of JAX-WS 2.2 which will conflict with XML-WS 3.0, therefore this
-  property must be set so that XML-WS 3.0 will be used during the building
-  of tests and during test execution.
 +
 3.  Edit the catalog file
 `<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
@@ -503,15 +487,15 @@ your host and port setting where the WSDL is published.
 
 [[GCLIK]][[configuring-your-environment-to-simultaneously-run-the-jax-ws-tck-against-the-vi-and-the-jax-ws-ri]]
 
-4.3.2 Configuring Your Environment to Simultaneously Run the XML-WS TCK Against the VI and the XML-WS Compatible Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.2 Configuring Your Environment to Simultaneously Run the {TechnologyShortName} TCK Against the VI and the {TechnologyShortName} Compatible Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section describes the steps needed to configure the XML-WS TCK so
+This section describes the steps needed to configure the {TechnologyShortName} TCK so
 that all tests can be run; forward tests against the Vendor
-Implementation and reverse tests against the XML-WS Reference
+Implementation and reverse tests against the {TechnologyShortName} Reference
 Implementation.
 
-Since the XML-WS TCK needs to be tested against both the XML-WS
+Since the {TechnologyShortName} TCK needs to be tested against both the {TechnologyShortName}
 Reference Implementation and the Vendor Implementation, two separate Web
 servers need to be configured. Two individual Web servers are required,
 and the same steps, below, must be performed to configure each Web
@@ -522,10 +506,10 @@ this section and proceed to link:#GCFOI[Configuring and Starting Your
 Application Server or Servers], otherwise perform the steps described in
 the following sections:
 
-* link:#GCLHU[Configuring Your Environment to Run the XML-WS TCK Against
+* link:#GCLHU[Configuring Your Environment to Run the {TechnologyShortName} TCK Against
 the Vendor Implementation]
-* link:#GCLHF[Configuring Your Environment to Rebuild and Run the XML-WS
-TCK Against the XML-WS Compatible Implementation]
+* link:#GCLHF[Configuring Your Environment to Rebuild and Run the {TechnologyShortName}
+TCK Against the {TechnologyShortName} Compatible Implementation]
 
 
 [[GCFOI]][[configuring-and-starting-your-application-server-or-servers]]
@@ -542,7 +526,7 @@ server environments for the Compatible Implementation and VI.
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the XML-WS TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
   installed
   c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Vendor specific properties
@@ -560,11 +544,11 @@ ant config.vi
 
 [[GCFFB]][[to-configure-the-jax-ws-reference-implementation-as-your-ri-environment]]
 
-==== 4.3.3.2 Configure the provided XML-WS Compatible Implementation as your Compatible Implementation environment
+==== 4.3.3.2 Configure the provided {TechnologyShortName} Compatible Implementation as your Compatible Implementation environment
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the XML-WS TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
   installed
   c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Compatible Implementation specific properties have
@@ -581,17 +565,17 @@ ant config.ri
 
 [[GCLIN]][[deploying-the-jax-ws-tck-tests]]
 
-4.3.4 Deploying the XML-WS TCK Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.3.4 Deploying the {TechnologyShortName} TCK Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The XML-WS TCK provides an automatic way of deploying both the prebuilt
+The {TechnologyShortName} TCK provides an automatic way of deploying both the prebuilt
 and Vendor-built archives to the configured web container or container
 by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`) is
 written to be used with the Jakarta EE 9 Compatible Platform. If the Vendor chooses not to
 use Jakarta EE 9 Compatible Platform with their implementation, or chooses to rebuild the
-XML-WS TCK tests using some other method than the infrastructure
+{TechnologyShortName} TCK tests using some other method than the infrastructure
 provided, they should create their own version handler file to provide
 this functionality.
 
@@ -599,8 +583,8 @@ This section describes the various commands used for deploying the WAR
 files to the configured web container.
 
 * link:#GCLJG[Generic Deployment Command Scenarios]
-* link:#GCLIW[Deploying the XML-WS TCK Prebuilt Archives]
-* link:#GCLIL[Deploying the Rebuilt XML-WS TCK Tests Against the XML-WS
+* link:#GCLIW[Deploying the {TechnologyShortName} TCK Prebuilt Archives]
+* link:#GCLIL[Deploying the Rebuilt {TechnologyShortName} TCK Tests Against the {TechnologyShortName}
 Reference Implementation]
 
 [[GCLJG]][[generic-deployment-command-scenarios]]
@@ -675,32 +659,32 @@ The `-Dkeywords` option is supported by the `deploy`, `undeploy`,
 
 [[GCLIW]][[deploying-the-jax-ws-tck-prebuilt-archives]]
 
-==== 4.3.4.2 Deploying the XML-WS TCK Prebuilt Archives
+==== 4.3.4.2 Deploying the {TechnologyShortName} TCK Prebuilt Archives
 
-This section explains issues regarding the deployment of the XML-WS TCK
+This section explains issues regarding the deployment of the {TechnologyShortName} TCK
 prebuilt archives. Before conducting any deployment, ensure that your
 environment has been configured by following the instructions in either
-the link:#GBFVU[Configuring Your Environment to Run the XML-WS TCK
-Against the XML-WS Reference Implementation] or the
-link:#GCLHU[Configuring Your Environment to Run the XML-WS TCK Against
+the link:#GBFVU[Configuring Your Environment to Run the {TechnologyShortName} TCK
+Against the {TechnologyShortName} Reference Implementation] or the
+link:#GCLHU[Configuring Your Environment to Run the {TechnologyShortName} TCK Against
 the Vendor Implementation] sections.
 
-The `<TS_HOME>/dist` directory contains all the WAR files for the XML-WS
+The `<TS_HOME>/dist` directory contains all the WAR files for the {TechnologyShortName}
 TCK web service endpoint tests that have been compiled and generated
-using the XML-WS Reference Implementation and packaged for deployment on
+using the {TechnologyShortName} Reference Implementation and packaged for deployment on
 a Servlet-compliant web container using the standard Web Archive (WAR)
 format.
 
 These WAR files contain only portable artifacts for all the TCK web
-service endpoint tests, and are tailored to run against the XML-WS
+service endpoint tests, and are tailored to run against the {TechnologyShortName}
 Reference Implementation via the `web.xml` file in addition to a runtime
 file, `sun-jaxws.xml`. These WAR files allow you to deploy (without any
-additional setup or modification) against the XML-WS Reference
+additional setup or modification) against the {TechnologyShortName} Reference
 Implementation to test the various features and functionality of this
 implementation.
 
 A Vendor is required to deploy the prebuilt WAR files as is on their
-XML-WS implementation without any changes to the WAR archives with the
+{TechnologyShortName} implementation without any changes to the WAR archives with the
 exception of replacing and/or removing only the `web.xml` and the
 `sun-jaxws.xml` files.
 
@@ -711,16 +695,16 @@ link:#GCLJG[Generic Deployment Command Scenarios], and specify the
 
 [[GCLIL]][[deploying-the-rebuilt-jax-ws-tck-tests-against-the-jax-ws-reference-implementation]]
 
-==== 4.3.4.3 Deploying the Rebuilt XML-WS TCK Tests Against the XML-WS Reference Implementation
+==== 4.3.4.3 Deploying the Rebuilt {TechnologyShortName} TCK Tests Against the {TechnologyShortName} Reference Implementation
 
-This section describes how to deploy the Vendor rebuilt XML-WS TCK tests
+This section describes how to deploy the Vendor rebuilt {TechnologyShortName} TCK tests
 against the Vendor Implementation. Before conducting the deployment,
 ensure that you have followed the instructions in
-link:#GBFVU[Configuring Your Environment to Run the XML-WS TCK Against
-the XML-WS Reference Implementation].
+link:#GBFVU[Configuring Your Environment to Run the {TechnologyShortName} TCK Against
+the {TechnologyShortName} Reference Implementation].
 
 This deployment scenario assumes that the Vendor has rebuilt all the
-XML-WS TCK tests using the existing infrastructure, and that the WAR
+{TechnologyShortName} TCK tests using the existing infrastructure, and that the WAR
 files exist alongside the prebuilt war files in the `<TS_HOME>/dist`
 directory. The rebuilt WAR files will be prepended with the text
 `vi_built_`.
@@ -728,8 +712,8 @@ directory. The rebuilt WAR files will be prepended with the text
 If the Vendor chooses some other method of rebuilding the tests, they
 may still be able to use this deployment method as long as the WAR files
 are built correctly and are prepended with the text `vi_built_`. Refer
-to the link:rebuild.html#GCLIZ[Appendix B, "Rebuilding the XML-WS TCK
-Using the Vendor's Toolset"] to learn about rebuilding the XML-WS TCK
+to the link:rebuild.html#GCLIZ[Appendix B, "Rebuilding the {TechnologyShortName} TCK
+Using the Vendor's Toolset"] to learn about rebuilding the {TechnologyShortName} TCK
 tests.
 
 To deploy the tests, the Vendor should perform a deployment using either
