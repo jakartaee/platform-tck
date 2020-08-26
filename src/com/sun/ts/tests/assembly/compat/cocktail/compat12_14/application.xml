@@ -18,7 +18,6 @@
 -->
 
 <application version="9" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_9.xsd">
-  <description>Application description</description>
   <display-name>assembly_compat_cocktail_compat12_14</display-name>
   <module>
     <java>assembly_compat_cocktail_compat12_14_client.jar</java>

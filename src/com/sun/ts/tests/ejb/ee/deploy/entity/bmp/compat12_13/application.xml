@@ -19,7 +19,6 @@
 
 <application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_9.xsd">
   <display-name>ejb_depEbmp_compat12_13</display-name>
-  <description>Application description</description>
   <module>
     <ejb>ejb_depEbmp_compat12_13_ejb.jar</ejb>
   </module>

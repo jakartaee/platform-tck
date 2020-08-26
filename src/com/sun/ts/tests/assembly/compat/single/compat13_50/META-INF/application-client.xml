@@ -19,7 +19,6 @@
 
 <application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <display-name>assembly_compat_single_compat13_50_client</display-name>
-  <description>client for TS assembly compat single compat13_50 test</description>
   <ejb-ref>
     <ejb-ref-name>ejb/TestBean</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>

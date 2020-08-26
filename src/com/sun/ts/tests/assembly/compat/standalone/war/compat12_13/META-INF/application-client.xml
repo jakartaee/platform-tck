@@ -19,7 +19,6 @@
 
 <application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
   <display-name>assembly_compat_standalone_war_compat12_13_client</display-name>
-  <description>TS compat standalone compat12_13 war file test</description>
   <resource-ref>
     <res-ref-name>url/myURL</res-ref-name>
     <res-type>java.net.URL</res-type>

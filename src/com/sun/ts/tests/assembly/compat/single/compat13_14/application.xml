@@ -19,7 +19,6 @@
 
 <application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_9.xsd">
   <display-name>assembly_compat_single_compat13_14</display-name>
-  <description>Application description</description>
   <module>
     <java>assembly_compat_single_compat13_14_client.jar</java>
   </module>
