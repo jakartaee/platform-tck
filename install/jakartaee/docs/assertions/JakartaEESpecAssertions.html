@@ -1554,7 +1554,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:238"></a><font size="1PT">JavaEE:SPEC:238</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">
-                The JavaMail API must include javax.activation.DataContentHandlers 
+                The JavaMail API must include jakarta.activation.DataContentHandlers 
                 for the following MIME data types, corresponding to the Java 
                 programming language type indiated in table Java EE.6-1
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1565,7 +1565,7 @@ independent of authentication.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:239"></a><font size="1PT">JavaEE:SPEC:239</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="left" valign="center"><font size="1PT">
                 This specification requires that a JavaEE product provide only the 
                 DataContentHandlers for the JavaMail API. This includes requirement 
-                of a javax.activation.MimetypesFileTypeMap that supports the mapping 
+                of a jakarta.activation.MimetypesFileTypeMap that supports the mapping 
                 listed in Table EE.6.5. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2143,7 +2143,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:298"></a><font size="1PT">JavaEE:SPEC:298</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.3</font></TD><TD align="left" valign="center"><font size="1PT">
                    In particular, the temporary file directory made available through the 
-                ServletContext attribute javax.servlet.context.tempdir should be available 
+                ServletContext attribute jakarta.servlet.context.tempdir should be available 
                 to deployed applications. The security policy of the operational environment 
                 should grant the application server process access to the corresponding 
                 part of the file system.
@@ -2365,7 +2365,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:318"></a><font size="1PT">JavaEE:SPEC:318</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">23</font></TD><TD align="left" valign="center"><font size="1PT">
                 The application should either look up a BeanManager instance in JNDI under the name java:comp/BeanManager
-                , or request the injection of an object of type javax.enterprise.inject.spi.BeanManager via the Resource annotation.
+                , or request the injection of an object of type jakarta.enterprise.inject.spi.BeanManager via the Resource annotation.
                 If the latter, the authenticationType and shareable elements of the Resource annotation must not be specified.
 				@Resource BeanManager manager;
 				Per the CDI specification, a bean can also request the injection of a BeanManager using the Inject annotation.
