@@ -11784,7 +11784,7 @@ JavaDoc Assertion Detail</h2>
 		the value of the UIData. This value must either be be of type
 		DataModel, or a type that can be adapted into a DataModel. UIData will
 		automatically adapt the following types: Arrays java.util.List
-		java.sql.ResultSet javax.servlet.jsp.jstl.sql.Result All other types
+		java.sql.ResultSet jakarta.servlet.jsp.jstl.sql.Result All other types
 		will be adapted using the ScalarDataModel class, which will treat the
 		object as a single row of data. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -18563,7 +18563,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Adds
 		the cookie represented by the arguments to the response. Servlet: This
 		must be accomplished by calling the
-		javax.servlet.http.HttpServletResponse method addCookie(). The Cookie
+		jakarta.servlet.http.HttpServletResponse method addCookie(). The Cookie
 		argument must be constructed by passing the name and value parameters.
 		If the properties arugument is non-null and not empty, the Cookie
 		instance must be initialized as described below. Key in "values" Map
@@ -18607,7 +18607,7 @@ JavaDoc Assertion Detail</h2>
 		String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Add the
 		given name and value to the response header. Servlet:This must be
-		performed by calling the javax.servlet.http.HttpServletResponse
+		performed by calling the jakarta.servlet.http.HttpServletResponse
 		addHeader method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -18626,7 +18626,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT">
 		Dispatch a request to the specified resource to create output for this
 		response. Servlet: This must be accomplished by calling the
-		javax.servlet.ServletContext method getRequestDispatcher(path), and
+		jakarta.servlet.ServletContext method getRequestDispatcher(path), and
 		calling the forward() method on the resulting object. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -18708,7 +18708,7 @@ JavaDoc Assertion Detail</h2>
 		the input URL, after performing any rewriting needed to ensure that it
 		will correctly identify an addressable action in the current
 		application. Servlet: This must be the value returned by the
-		javax.servlet.http.HttpServletResponse method encodeURL(url). </font></TD>
+		jakarta.servlet.http.HttpServletResponse method encodeURL(url). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -18858,7 +18858,7 @@ JavaDoc Assertion Detail</h2>
 		the input URL, after performing any rewriting needed to ensure that it
 		will correctly identify an addressable resource in the current
 		application. Servlet: This must be the value returned by the
-		javax.servlet.http.HttpServletResponse method encodeURL(url). </font></TD>
+		jakarta.servlet.http.HttpServletResponse method encodeURL(url). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -18923,7 +18923,7 @@ JavaDoc Assertion Detail</h2>
 		PortletContext) as the one returned by calling getApplicationMap() on
 		the ExternalContext returned by the FacesContext during an actual
 		request. Servlet: This must be the set of attributes available via the
-		javax.servlet.ServletContext methods getAttribute(),
+		jakarta.servlet.ServletContext methods getAttribute(),
 		getAttributeNames(), removeAttribute(), and setAttribute(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -18942,7 +18942,7 @@ JavaDoc Assertion Detail</h2>
 		schemes, the returned value will match one of the following constants:
 		BASIC_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH, or FORM_AUTH. Servlet: This
 		must be the value returned by the
-		javax.servlet.http.HttpServletRequest method getAuthType(). </font></TD>
+		jakarta.servlet.http.HttpServletRequest method getAuthType(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -18962,7 +18962,7 @@ JavaDoc Assertion Detail</h2>
 		PortletContext) as the one returned when calling getContext() on the
 		ExternalContext returned by the FacesContext during an actual request.
 		Servlet: This must be the current application's
-		javax.servlet.ServletContext instance. </font></TD>
+		jakarta.servlet.ServletContext instance. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19011,7 +19011,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the value of the specified application initialization parameter (if
 		any). Servlet: This must be the result of the
-		javax.servlet.ServletContext method getInitParameter(name). It is
+		jakarta.servlet.ServletContext method getInitParameter(name). It is
 		valid to call this method during application startup or shutdown. If
 		called during application startup or shutdown, this method calls
 		through to the actual container context to return the init parameter
@@ -19055,7 +19055,7 @@ JavaDoc Assertion Detail</h2>
 		one returned by calling getInitParameterMap() on the ExternalContext
 		returned by the FacesContext during an actual request. Servlet: This
 		result must be as if it were synthesized by calling the
-		javax.servlet.ServletContext method getInitParameterNames, and putting
+		jakarta.servlet.ServletContext method getInitParameterNames, and putting
 		each configured parameter name/value pair into the result. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19078,7 +19078,7 @@ JavaDoc Assertion Detail</h2>
 		(ServletContext or PortletContext) as the one used when calling
 		getMimeType() on the ExternalContext returned by the FacesContext
 		during an actual request. Servlet: This must be the value returned by
-		the javax.servlet.ServletContext method getMimeType(). </font></TD>
+		the jakarta.servlet.ServletContext method getMimeType(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19093,7 +19093,7 @@ JavaDoc Assertion Detail</h2>
 		( String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		a String containing the real path for a given virtual path. Servlet:
-		This must be the value returned by the javax.servlet.ServletContext
+		This must be the value returned by the jakarta.servlet.ServletContext
 		method getRealPath(). The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -19111,7 +19111,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the login name of the user making the current request if any;
 		otherwise, return null. Servlet: This must be the value returned by
-		the javax.servlet.http.HttpServletRequest method getRemoteUser(). </font></TD>
+		the jakarta.servlet.http.HttpServletRequest method getRemoteUser(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19126,7 +19126,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the environment-specific object instance for the current request.
 		Servlet: This must be the current request's
-		javax.servlet.http.HttpServletRequest instance. </font></TD>
+		jakarta.servlet.http.HttpServletRequest instance. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19141,7 +19141,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the character encoding currently being used to interpret this request.
 		Servlet: This must return the value returned by the
-		javax.servlet.ServletRequest method getCharacterEncoding(). The
+		jakarta.servlet.ServletRequest method getCharacterEncoding(). The
 		default implementation throws UnsupportedOperationException and is
 		provided for the sole purpose of not breaking existing applications
 		that extend this class. </font></TD>
@@ -19175,7 +19175,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the MIME Content-Type for this request. If not available, return null.
 		Servlet: This must return the value returned by the
-		javax.servlet.ServletRequest method getContentType(). The default
+		jakarta.servlet.ServletRequest method getContentType(). The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -19193,7 +19193,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the portion of the request URI that identifies the web application
 		context for this request. Servlet: This must be the value returned by
-		the javax.servlet.http.HttpServletRequest method getContextPath(). </font></TD>
+		the jakarta.servlet.http.HttpServletRequest method getContextPath(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19208,11 +19208,11 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		an immutable Map whose keys are the set of cookie names included in
 		the current request, and whose values (of type
-		javax.servlet.http.Cookie) are the first (or only) cookie for each
+		jakarta.servlet.http.Cookie) are the first (or only) cookie for each
 		cookie name returned by the underlying request. The returned Map must
 		implement the entire contract for an unmodifiable map as described in
 		the JavaDocs for java.util.Map. Servlet: This must be the value
-		returned by the javax.servlet.http.HttpServletRequest method
+		returned by the jakarta.servlet.http.HttpServletRequest method
 		getCookies(), unless null was returned, in which case this must be a
 		zero-length array. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -19234,7 +19234,7 @@ JavaDoc Assertion Detail</h2>
 		contract for an unmodifiable map as described in the JavaDocs for
 		java.util.Map. In addition, key comparisons must be performed in a
 		case insensitive manner. Servlet: This must be the set of headers
-		available via the javax.servlet.http.HttpServletRequest methods
+		available via the jakarta.servlet.http.HttpServletRequest methods
 		getHeader() and getHeaderNames(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19255,7 +19255,7 @@ JavaDoc Assertion Detail</h2>
 		unmodifiable map as described in the JavaDocs for java.util.Map. In
 		addition, key comparisons must be performed in a case insensitive
 		manner. Servlet: This must be the set of headers available via the
-		javax.servlet.http.HttpServletRequest methods getHeaders() and
+		jakarta.servlet.http.HttpServletRequest methods getHeaders() and
 		getHeaderNames(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19270,7 +19270,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the preferred Locale in which the client will accept content. Servlet:
-		This must be the value returned by the javax.servlet.ServletRequest
+		This must be the value returned by the jakarta.servlet.ServletRequest
 		method getLocale(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19286,7 +19286,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		an Iterator over the preferred Locales specified in the request, in
 		decreasing order of preference. Servlet: This must be an Iterator over
-		the values returned by the javax.servlet.ServletRequest method
+		the values returned by the jakarta.servlet.ServletRequest method
 		getLocales(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19318,7 +19318,7 @@ JavaDoc Assertion Detail</h2>
 		removal. Any exception thrown by the PreDestroy annotated methods must
 		by caught and not rethrown. The exception may be logged. Servlet: This
 		must be the set of attributes available via the
-		javax.servlet.ServletRequest methods getAttribute(),
+		jakarta.servlet.ServletRequest methods getAttribute(),
 		getAttributeNames(), removeAttribute(), and setAttribute(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19338,7 +19338,7 @@ JavaDoc Assertion Detail</h2>
 		underlying request. The returned Map must implement the entire
 		contract for an unmodifiable map as described in the JavaDocs for
 		java.util.Map. Servlet: This must be the set of parameters available
-		via the javax.servlet.ServletRequest methods getParameter() and
+		via the jakarta.servlet.ServletRequest methods getParameter() and
 		getParameterNames(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19354,7 +19354,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		an Iterator over the names of all request parameters included in the
 		current request. Servlet: This must be an Iterator over the values
-		returned by the javax.servlet.ServletRequest method
+		returned by the jakarta.servlet.ServletRequest method
 		getParameterNames(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19374,7 +19374,7 @@ JavaDoc Assertion Detail</h2>
 		underlying request. The returned Map must implement the entire
 		contract for an unmodifiable map as described in the JavaDocs for
 		java.util.Map. Servlet: This must be the set of parameters available
-		via the javax.servlet.ServletRequest methods getParameterValues() and
+		via the jakarta.servlet.ServletRequest methods getParameterValues() and
 		getParameterNames(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19390,7 +19390,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the extra path information (if any) included in the request URI;
 		otherwise, return null. Servlet: This must be the value returned by
-		the javax.servlet.http.HttpServletRequest method getPathInfo(). </font></TD>
+		the jakarta.servlet.http.HttpServletRequest method getPathInfo(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19405,7 +19405,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		the name of the scheme used to make this request, for example, http,
 		https, or ftp. Servlet: This must be the value returned by the
-		javax.servlet.ServletRequest method getScheme(). The default
+		jakarta.servlet.ServletRequest method getScheme(). The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -19422,7 +19422,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		the host name of the server to which the request was sent. Servlet:
-		This must be the value returned by the javax.servlet.ServletRequest
+		This must be the value returned by the jakarta.servlet.ServletRequest
 		method getServerName(). The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -19439,7 +19439,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		the port number to which the request was sent. Servlet: This must be
-		the value returned by the javax.servlet.ServletRequest method
+		the value returned by the jakarta.servlet.ServletRequest method
 		getServerPort(). The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -19457,7 +19457,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the servlet path information (if any) included in the request URI;
 		otherwise, return null. Servlet: This must be the value returned by
-		the javax.servlet.http.HttpServletRequest method getServletPath(). </font></TD>
+		the jakarta.servlet.http.HttpServletRequest method getServletPath(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19478,7 +19478,7 @@ JavaDoc Assertion Detail</h2>
 		the same container context instance (ServletContext or PortletContext)
 		as the one used when calling getResource() on the ExternalContext
 		returned by the FacesContext during an actual request. Servlet: This
-		must be the value returned by the javax.servlet.ServletContext method
+		must be the value returned by the jakarta.servlet.ServletContext method
 		getResource(path). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19533,7 +19533,7 @@ JavaDoc Assertion Detail</h2>
 		(ServletContext or PortletContext) as the one used when calling
 		getResourceAsStream() on the ExternalContext returned by the
 		FacesContext during an actual request. Servlet: This must be the value
-		returned by the javax.servlet.ServletContext method
+		returned by the jakarta.servlet.ServletContext method
 		getResourceAsStream(path). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19572,7 +19572,7 @@ JavaDoc Assertion Detail</h2>
 		(ServletContext or PortletContext) as the one used when calling
 		getResourcePaths() on the ExternalContext returned by the FacesContext
 		during an actual request. Servlet: This must be the value returned by
-		the javax.servlet.ServletContext method getResourcePaths(path). </font></TD>
+		the jakarta.servlet.ServletContext method getResourcePaths(path). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19603,7 +19603,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the environment-specific object instance for the current response.
 		Servlet: This is the current request's
-		javax.servlet.http.HttpServletResponse instance. </font></TD>
+		jakarta.servlet.http.HttpServletResponse instance. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19617,7 +19617,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the buffer size for the current response. Servlet: This must be
-		performed by calling the javax.servlet.http.HttpServletResponse
+		performed by calling the jakarta.servlet.http.HttpServletResponse
 		getBufferSize method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -19635,7 +19635,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		the name of the character encoding (MIME charset) used for the body
 		sent in this response. Servlet: This must return the value returned by
-		the javax.servlet.ServletResponse method getCharacterEncoding(). The
+		the jakarta.servlet.ServletResponse method getCharacterEncoding(). The
 		default implementation throws UnsupportedOperationException and is
 		provided for the sole purpose of not breaking existing applications
 		that extend this class. </font></TD>
@@ -19653,7 +19653,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the MIME Content-Type for this response. If not available, return
 		null. Servlet: This must return the value returned by the
-		javax.servlet.ServletResponse method getContentType(). The default
+		jakarta.servlet.ServletResponse method getContentType(). The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -19671,7 +19671,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Returns
 		an OutputStream suitable for writing binary data to the user-agent.
 		Servlet: This must return the value returned by the
-		javax.servlet.ServletResponse method getOutputStream(). The default
+		jakarta.servlet.ServletResponse method getOutputStream(). The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -19705,7 +19705,7 @@ JavaDoc Assertion Detail</h2>
 		a Writer suitable for writing character data to the user-agent.
 
 		Servlet: This must return the value returned by the
-		javax.servlet.ServletResponse#getWriter. The default implementation
+		jakarta.servlet.ServletResponse#getWriter. The default implementation
 		throws UnsupportedOperationException and is provided for the sole
 		purpose of not breaking existing applications that extend this class.
 		</font></TD>
@@ -19742,7 +19742,7 @@ JavaDoc Assertion Detail</h2>
 		is false return any existing session instance associated with the
 		current request, or return null if there is no such session. Servlet:
 		This must return the result of calling getSession(create) on the
-		underlying javax.servlet.http.HttpServletRequest instance. </font></TD>
+		underlying jakarta.servlet.http.HttpServletRequest instance. </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
 		</font></TD>
@@ -19775,7 +19775,7 @@ JavaDoc Assertion Detail</h2>
 		removal. Any exception thrown by the PreDestroy annotated methods must
 		by caught and not rethrown. The exception may be logged. Servlet: This
 		must be the set of attributes available via the
-		javax.servlet.http.HttpServletSession methods getAttribute(),
+		jakarta.servlet.http.HttpServletSession methods getAttribute(),
 		getAttributeNames(), removeAttribute(), and setAttribute(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19791,7 +19791,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		the Principal object containing the name of the current authenticated
 		user, if any; otherwise, return null. Servlet: This must be the value
-		returned by the javax.servlet.http.HttpServletRequest method
+		returned by the jakarta.servlet.http.HttpServletRequest method
 		getUserPrincipal(). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19807,7 +19807,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT">
 		Invalidates this session then unbinds any objects bound to it.
 		Servlet: This must be the value returned by the
-		javax.servlet.http.HttpSession method invalidate(). The default
+		jakarta.servlet.http.HttpSession method invalidate(). The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -19824,7 +19824,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Check
 		if the current response has been committed. Servlet: This must be
-		performed by calling the javax.servlet.http.HttpServletResponse
+		performed by calling the jakarta.servlet.http.HttpServletResponse
 		isCommitted method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -19843,7 +19843,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Return
 		true if the currently authenticated user is included in the specified
 		role. Otherwise, return false. Servlet: This must be the value
-		returned by the javax.servlet.http.HttpServletRequest method
+		returned by the jakarta.servlet.http.HttpServletRequest method
 		isUserInRole(role). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19880,7 +19880,7 @@ JavaDoc Assertion Detail</h2>
 		same container context instance (ServletContext or PortletContext) as
 		the one used during a call to log() on the ExternalContext returned by
 		the FacesContext during an actual request. Servlet: This must be
-		performed by calling the javax.servlet.ServletContext method
+		performed by calling the jakarta.servlet.ServletContext method
 		log(String). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19918,7 +19918,7 @@ JavaDoc Assertion Detail</h2>
 		the same container context instance (ServletContext or PortletContext)
 		as the one used when calling log() on the ExternalContext returned by
 		the FacesContext during an actual request. Servlet: This must be
-		performed by calling the javax.servlet.ServletContext method
+		performed by calling the jakarta.servlet.ServletContext method
 		log(String,Throwable). </font></TD>
 		<TD align="center" valign="center"><font size="1PT">true</font></TD>
 		<TD align="center" valign="center"><font size="1PT"> <br>
@@ -19957,7 +19957,7 @@ JavaDoc Assertion Detail</h2>
 		request is an Ajax request by obtaining a PartialViewContext instance
 		from the FacesContext and calling PartialViewContext#isAjaxRequest().
 		Servlet: For non Ajax requests, this must be accomplished by calling
-		the javax.servlet.http.HttpServletResponse method sendRedirect(). For
+		the jakarta.servlet.http.HttpServletResponse method sendRedirect(). For
 		Ajax requests, the implementation must: Get a PartialResponseWriter
 		instance from the FacesContext. Call #setResponseContentType with
 		text/xml Call #setResponseCharacterEncoding with UTF-8 Call
@@ -20043,7 +20043,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Flushes
 		the buffered response content to the client. Servlet: This must be
-		performed by calling the javax.servlet.http.HttpServletResponse
+		performed by calling the jakarta.servlet.http.HttpServletResponse
 		flushBuffer method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20075,7 +20075,7 @@ JavaDoc Assertion Detail</h2>
 		</font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Resets
 		the current response. Servlet: This must be performed by calling the
-		javax.servlet.http.HttpServletResponse reset method. The default
+		jakarta.servlet.http.HttpServletResponse reset method. The default
 		implementation throws UnsupportedOperationException and is provided
 		for the sole purpose of not breaking existing applications that extend
 		this class. </font></TD>
@@ -20094,7 +20094,7 @@ JavaDoc Assertion Detail</h2>
 		String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Sends
 		an HTTP status code with message. Servlet: This must be performed by
-		calling the javax.servlet.http.HttpServletResponse sendError method.
+		calling the jakarta.servlet.http.HttpServletResponse sendError method.
 		The default implementation throws UnsupportedOperationException and is
 		provided for the sole purpose of not breaking existing applications
 		that extend this class. </font></TD>
@@ -20150,7 +20150,7 @@ JavaDoc Assertion Detail</h2>
 		request. Calling this method after the request has been accessed will
 		have no no effect, unless a Reader or Stream has been obtained from
 		the request, in which case an IllegalStateException is thrown.
-		Servlet: This must call through to the javax.servlet.ServletRequest
+		Servlet: This must call through to the jakarta.servlet.ServletRequest
 		method setCharacterEncoding(). The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20202,7 +20202,7 @@ JavaDoc Assertion Detail</h2>
 		( int ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Set the
 		buffer size for the current response. Servlet: This must be performed
-		by calling the javax.servlet.http.HttpServletResponse setBufferSize
+		by calling the jakarta.servlet.http.HttpServletResponse setBufferSize
 		method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20221,7 +20221,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Sets
 		the character encoding (MIME charset) of the response being sent to
 		the client, for example, to UTF-8. Servlet: This must call through to
-		the javax.servlet.ServletResponse method setCharacterEncoding(). The
+		the jakarta.servlet.ServletResponse method setCharacterEncoding(). The
 		default implementation throws UnsupportedOperationException and is
 		provided for the sole purpose of not breaking existing applications
 		that extend this class. </font></TD>
@@ -20239,7 +20239,7 @@ JavaDoc Assertion Detail</h2>
 		( int ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Set the
 		content length of the response. Servlet: This must be performed by
-		calling the javax.servlet.http.HttpServletResponse setContentLength
+		calling the jakarta.servlet.http.HttpServletResponse setContentLength
 		method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20258,7 +20258,7 @@ JavaDoc Assertion Detail</h2>
 		<TD align="left" valign="center"><font size="1PT"> Sets
 		the content type of the response being sent to the client, if the
 		response has not been committed yet. Servlet: This must call
-		setContentType() on the underlying javax.servlet.ServletResponse
+		setContentType() on the underlying jakarta.servlet.ServletResponse
 		instance. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20277,7 +20277,7 @@ JavaDoc Assertion Detail</h2>
 		String ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Set the
 		response header with the given name and value. Servlet:This must be
-		performed by calling the javax.servlet.http.HttpServletResponse
+		performed by calling the jakarta.servlet.http.HttpServletResponse
 		setHeader method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -20295,7 +20295,7 @@ JavaDoc Assertion Detail</h2>
 		( int ) </font></TD>
 		<TD align="left" valign="center"><font size="1PT"> Sets
 		the HTTP status code for the response. Servlet: This must be performed
-		by calling the javax.servlet.http.HttpServletResponse setStatus
+		by calling the jakarta.servlet.http.HttpServletResponse setStatus
 		method. The default implementation throws
 		UnsupportedOperationException and is provided for the sole purpose of
 		not breaking existing applications that extend this class. </font></TD>
@@ -34541,7 +34541,7 @@ JavaDoc Assertion Detail</h2>
 		specified (optional) content type, and character encoding.
 
 		Implementors are advised to consult the getCharacterEncoding() method
-		of class javax.servlet.ServletResponse to get the required value for
+		of class jakarta.servlet.ServletResponse to get the required value for
 		the characterEncoding for this method. Since the Writer for this
 		response will already have been obtained (due to it ultimately being
 		passed to this method), we know that the character encoding cannot
