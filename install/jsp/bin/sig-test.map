@@ -26,4 +26,4 @@
 ###
 
 # JSP 2.X 
-javax.servlet.jsp=2.3_se8
+jakarta.servlet.jsp=2.3_se8

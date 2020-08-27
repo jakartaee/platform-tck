@@ -26,4 +26,4 @@
 # parent package's signature is checked.
 ##
 
-javax.jms
+jakarta.jms

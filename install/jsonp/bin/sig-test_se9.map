@@ -32,9 +32,9 @@
 # with the following format:
 # <package>.sig_<technology_version>_<JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.json.sig_1.1_se8:
-#    javax.json.sig_1.1_se9:
-#      <package> = javax.json
+#    jakarta.json.sig_1.1_se8:
+#    jakarta.json.sig_1.1_se9:
+#      <package> = jakarta.json
 #      <technology_version> = 1.1  (for JSON-P) 
 #      <JavaSE_version_these_work_with> = se8 and se9
 #
@@ -46,4 +46,4 @@
 # be referenced when using JDK 9.  
 #
 ###############################################################
-javax.json=1.1_se9
+jakarta.json=1.1_se9

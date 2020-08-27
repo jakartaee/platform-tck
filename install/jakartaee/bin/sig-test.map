@@ -29,8 +29,8 @@
 # with the following format:
 # <package>.sig_<technology_version><JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.xml.soap.sig_1.3_se5_se6:
-#      <package> = javax.xml.soap
+#    jakarta.xml.soap.sig_1.3_se5_se6:
+#      <package> = jakarta.xml.soap
 #      <technology_version> = 1.3  (for SAAJ) 
 #      <JavaSE_version_these_work_with> = JDK 5 and JDK 6
 #
@@ -79,17 +79,17 @@
 # Note: Recording the signatures of a package includes all
 #       child packages.  The signature test tool looks for
 #       the best signature file to use when playing back
-#       signatures.  Meaning if we have a javax.servlet
-#       signature file and a javax.servlet.jsp signature file,
-#       the signature test tool will use the javax.servlet.jsp
-#       signature file to verify the javax.servlet.jsp package
-#       signatures even though the javax.servlet signature
-#       file contains the javax.servlet.jsp package signatures.
+#       signatures.  Meaning if we have a jakarta.servlet
+#       signature file and a jakarta.servlet.jsp signature file,
+#       the signature test tool will use the jakarta.servlet.jsp
+#       signature file to verify the jakarta.servlet.jsp package
+#       signatures even though the jakarta.servlet signature
+#       file contains the jakarta.servlet.jsp package signatures.
 #       The signatures are in both files (since the API Check
 #       tool records child package signatures and there does
 #       not seem to be a way to turn this feature off) but the
-#       javax.servlet.jsp signature file can vary independent
-#       of the javax.servlet signature file.
+#       jakarta.servlet.jsp signature file can vary independent
+#       of the jakarta.servlet signature file.
 #
 # Command used to record the JavaEE signatures in reflective mode
 #
@@ -107,28 +107,28 @@
 
 # EJB 3.1 
 jakarta.ejb=3.1_se6
-javax.interceptor=1.1_se6
+jakarta.interceptor=1.1_se6
 
 # Servlet 3.0 
-javax.servlet=3.0_se6
+jakarta.servlet=3.0_se6
 
 # JSP 2.3 
-javax.servlet.jsp=2.3_se6
+jakarta.servlet.jsp=2.3_se6
 
 # EL TCK
-javax.el=2.2_se6
+jakarta.el=2.2_se6
 
 # JSF (Faces) 
 jakarta.faces=2.0_se6
 
 # JSTL 1.2 
-javax.servlet.jsp.jstl=1.2_se6
+jakarta.servlet.jsp.jstl=1.2_se6
 
 # JMS 2.0 
-javax.jms=2.0_se6
+jakarta.jms=2.0_se6
 
 # JTA 1.1 
-javax.transaction=1.1_se6
+jakarta.transaction=1.1_se6
 
 # JavaMail 1.4 
 jakarta.mail=1.4_se6
@@ -137,7 +137,7 @@ jakarta.mail=1.4_se6
 jakarta.resource=1.6_se6
 
 # SAAJ 1.3 
-javax.xml.soap=1.3_se6
+jakarta.xml.soap=1.3_se6
 
 # JAXR 1.0 
 javax.xml.registry=1.0_se6
@@ -149,7 +149,7 @@ javax.management.j2ee=1.1_se6
 jakarta.security.jacc=1.2_se6
 
 # JAXB 
-javax.xml.bind=2.1_se6
+jakarta.xml.bind=2.1_se6
 
 
 # JAX-WS 
@@ -170,13 +170,13 @@ jakarta.annotation=1.2_se6
 
 # WSM (Web Svc Metadata) 2.0 
 # (This is JSR-181)
-javax.jws=2.0_se6
+jakarta.jws=2.0_se6
 
 # JASPIC (Java Authentication SPI for Containters - JSR-196)
 jakarta.security.auth.message=1.0_se6
 
 # JAX-RS 
 # (This is JSR-311)
-javax.ws.rs=1.1_se6
+jakarta.ws.rs=1.1_se6
 
 

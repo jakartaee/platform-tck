@@ -26,4 +26,4 @@
 # parent package's signature is checked.
 ##
 
-javax.enterprise.concurrent
+jakarta.enterprise.concurrent

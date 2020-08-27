@@ -24,6 +24,6 @@
 #
 ######################################################
 
-javax.transaction
+jakarta.transaction
 javax.transaction.xa
 
