@@ -35,7 +35,7 @@ java.util
 java.util.concurrent
 javax.activation
 jakarta.annotation
-jakarta.annotation.processing
+javax.annotation.processing
 jakarta.annotation.security
 jakarta.annotation.sql
 javax.batch.api
