@@ -63,7 +63,7 @@ environment variables:
 [source,oac_no_warn]
 ----
 websocket.api=${web.home}/modules/jakarta.websocket-api.jar \
-${pathsep}${web.home}/modules/javax.servlet-api.jar
+${pathsep}${web.home}/modules/jakarta.servlet-api.jar
 ----
 --
 +
