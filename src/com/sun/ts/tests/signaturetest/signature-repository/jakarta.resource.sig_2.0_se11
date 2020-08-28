@@ -547,8 +547,8 @@ CLSS public jakarta.resource.spi.work.HintsContext
 cons public <init>()
 fld protected java.lang.String description
 fld protected java.lang.String name
-fld public final static java.lang.String LONGRUNNING_HINT = "javax.resource.LongRunning"
-fld public final static java.lang.String NAME_HINT = "javax.resource.Name"
+fld public final static java.lang.String LONGRUNNING_HINT = "jakarta.resource.LongRunning"
+fld public final static java.lang.String NAME_HINT = "jakarta.resource.Name"
 intf jakarta.resource.spi.work.WorkContext
 meth public java.lang.String getDescription()
 meth public java.lang.String getName()

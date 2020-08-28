@@ -22,7 +22,7 @@
 PATHSEP=:
 CONCURRENCY_HOME=/sun/glassfish4/glassfish
 CONCURRENCY_LIB=${CONCURRENCY_HOME}/modules
-CONCURRENCY_CLASSES=$CONCURRENCY_LIB/javax.enterprise.concurrent-api.jar
+CONCURRENCY_CLASSES=$CONCURRENCY_LIB/jakarta.enterprise.concurrent-api.jar
 cd ../signature-repository
 ant -f ../record-build.xml -Drecorder.type=sigtest -Dsig.source=${CONCURRENCY_CLASSES}:$JAVA_HOME/jre/lib/rt.jar \
        -Dmap.file=$TS_HOME/install/concurrency/bin/sig-test.map record.sig.batch
