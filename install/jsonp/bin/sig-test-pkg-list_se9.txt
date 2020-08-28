@@ -26,6 +26,6 @@
 # parent package's signature is checked.
 ##
 
-javax.json
-javax.json.spi
-javax.json.stream
+jakarta.json
+jakarta.json.spi
+jakarta.json.stream

@@ -1,6 +1,5 @@
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
-# All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,5 +22,20 @@
 # parent package's signature is checked.
 ##
 
-jakarta.websocket
-jakarta.websocket.server
+java.io
+java.lang
+java.lang.Enum<{java.lang
+java.lang.annotation
+java.util
+jakarta.el
+jakarta.servlet
+jakarta.servlet.annotation
+jakarta.servlet.descriptor
+jakarta.servlet.http
+jakarta.servlet.jsp
+jakarta.servlet.jsp.el
+jakarta.servlet.jsp.jstl.core
+jakarta.servlet.jsp.jstl.fmt
+jakarta.servlet.jsp.jstl.sql
+jakarta.servlet.jsp.jstl.tlv
+jakarta.servlet.jsp.tagext

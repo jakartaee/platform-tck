@@ -28,8 +28,8 @@
 # with the following format:
 # <package>.sig_<technology_version><JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.xml.soap.sig_1.3_se9:
-#      <package> = javax.xml.soap
+#    jakarta.xml.soap.sig_1.3_se9:
+#      <package> = jakarta.xml.soap
 #      <technology_version> = 1.3  (for SAAJ) 
 #      <JavaSE_version_these_work_with> = JDK 9
 #
@@ -80,17 +80,17 @@
 # Note: Recording the signatures of a package includes all
 #       child packages.  The signature test tool looks for
 #       the best signature file to use when playing back
-#       signatures.  Meaning if we have a javax.servlet
-#       signature file and a javax.servlet.jsp signature file,
-#       the signature test tool will use the javax.servlet.jsp
-#       signature file to verify the javax.servlet.jsp package
-#       signatures even though the javax.servlet signature
-#       file contains the javax.servlet.jsp package signatures.
+#       signatures.  Meaning if we have a jakarta.servlet
+#       signature file and a jakarta.servlet.jsp signature file,
+#       the signature test tool will use the jakarta.servlet.jsp
+#       signature file to verify the jakarta.servlet.jsp package
+#       signatures even though the jakarta.servlet signature
+#       file contains the jakarta.servlet.jsp package signatures.
 #       The signatures are in both files (since the API Check
 #       tool records child package signatures and there does
 #       not seem to be a way to turn this feature off) but the
-#       javax.servlet.jsp signature file can vary independent
-#       of the javax.servlet signature file.
+#       jakarta.servlet.jsp signature file can vary independent
+#       of the jakarta.servlet signature file.
 #
 ###############################################################
 
@@ -100,34 +100,34 @@
 jakarta.ejb=3.2_se8
 
 # Interceptors 1.2  
-javax.interceptor=1.2_se8
+jakarta.interceptor=1.2_se8
 
 # Servlet 3.1 
 # (This is JSR-340)
-javax.servlet=3.1_se8
+jakarta.servlet=3.1_se8
 
 # JSP 2.3 
 # (This is JSR-245)
-javax.servlet.jsp=2.3_se8
+jakarta.servlet.jsp=2.3_se8
 
 # EL 3.0
 # (This is JSR-341)
-javax.el=3.0_se8
+jakarta.el=3.0_se8
 
 # JSF 2.3 (Faces) 
 # (This is JSR-344)
 jakarta.faces=2.3_se8
 
 # JSTL 1.2 
-javax.servlet.jsp.jstl=1.2_se8
+jakarta.servlet.jsp.jstl=1.2_se8
 
 # JMS 2.0 
 # (This is JSR-343)
-javax.jms=2.0_se8
+jakarta.jms=2.0_se8
 
 # JTA 1.2 
 # (This is JSR-907)
-javax.transaction=1.2_se8
+jakarta.transaction=1.2_se8
 
 # JavaMail 1.5 
 # (This is JSR-919)
@@ -163,11 +163,11 @@ jakarta.security.auth.message=1.1_se8
 
 # JAX-RS 2.0
 # (This is JSR-339)
-javax.ws.rs=2.0_se8
+jakarta.ws.rs=2.0_se8
 
 # Bean Validation 1.1
 # (This is JSR-349)
-javax.validation=1.1_se8
+jakarta.validation=1.1_se8
 
 
 # Managed Beans 1.0 - no API to test
@@ -184,21 +184,21 @@ jakarta.inject=1.0_se8
 
 # Contexts and Dependency Injection (CDI == JSR 299)  for Java EE 1.1
 # This also contains Concurrency (JSR 236) apis which are contained in
-# the packge of: javax.enterprise.concurrency
+# the packge of: jakarta.enterprise.concurrency
 # Note: the packages contained in this sigfile actually come from multiple JSRs
-javax.enterprise=1.1_se8
-javax.decorator=1.1_se8
+jakarta.enterprise=1.1_se8
+jakarta.decorator=1.1_se8
 
 
 # JSON-P 1.0
-javax.json=1.0_se8
+jakarta.json=1.0_se8
 
 
 # WebSocket 1.1
 # (This is JSR-356)
-javax.websocket=1.1_se8
+jakarta.websocket=1.1_se8
 
 
 # Batch 1.0 
 # (This is JSR-352)
-javax.batch=1.0_se8
+jakarta.batch=1.0_se8

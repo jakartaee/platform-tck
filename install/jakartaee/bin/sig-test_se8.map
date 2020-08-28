@@ -55,10 +55,7 @@
 #   JavaMail 1.6 (JSR-919)
 #   Connector 1.7 (JSR-322)
 #   Web Services 1.4 (JSR-109)
-#   JAXR 1.0   (JSR-093)
 #   JAX-RS 2.1   (JSR-370)
-#   JavaEE Management 1.1  (JSR-77)
-#   JavaEE Deployment 1.2 (JSR-88)
 #   JACC 1.5  (JSR-115)
 #   JASPIC 1.1  (JSR-196)
 #   JSTL 1.2   (JSR-52)
@@ -140,18 +137,6 @@ jakarta.mail=2.0_se8
 # Connector 2.0 
 # (This is JSR-322)
 jakarta.resource=2.0_se8
-
-# JAXR 1.0 
-# (This is JSR-093)
-#jakarta.xml.registry=1.0_se8
-
-# Java EE Management 1.1 
-# (This is JSR-077)
-#jakarta.management.j2ee=1.1_se8
-
-# Java EE Deployment 1.2 
-# (This is JSR-088)
-#jakarta.enterprise.deploy=1.2_se8
 
 # Authorization 2.0
 # (This is JSR-115)

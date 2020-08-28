@@ -21,6 +21,9 @@
 # sub-packages from being verified when their
 # parent package's signature is checked.
 ##
-jakarta.annotation
-jakarta.annotation.security
-jakarta.annotation.sql
+
+jakarta.servlet.jsp.jstl.core
+jakarta.servlet.jsp.jstl.fmt
+jakarta.servlet.jsp.jstl.sql
+jakarta.servlet.jsp.jstl.tlv
+jakarta.servlet.jsp.tagext
