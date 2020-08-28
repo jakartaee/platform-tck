@@ -21,6 +21,14 @@
 # sub-packages from being verified when their
 # parent package's signature is checked.
 ##
-jakarta.annotation
-jakarta.annotation.security
-jakarta.annotation.sql
+
+java.io
+java.lang
+java.lang.Enum<{java.lang
+java.lang.annotation
+java.security
+jakarta.interceptor
+jakarta.security.enterprise
+jakarta.security.enterprise.authentication.mechanism.http
+jakarta.security.enterprise.credential
+jakarta.security.enterprise.identitystore
