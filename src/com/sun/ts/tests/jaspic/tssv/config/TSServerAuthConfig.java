@@ -29,15 +29,6 @@ import javax.security.auth.Subject;
 import java.util.Map;
 import java.util.logging.Level;
 
-import jakarta.xml.soap.MimeHeaders;
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPEnvelope;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.SOAPPart;
-
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 
@@ -52,19 +43,19 @@ import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
  */
 public class TSServerAuthConfig
     implements jakarta.security.auth.message.config.ServerAuthConfig {
-  private static String messageLayer = null;
+  protected static String messageLayer = null;
 
-  private static String appContext = null;
+  protected static String appContext = null;
 
-  private static CallbackHandler handler = null;
+  protected static CallbackHandler handler = null;
 
-  private static TSLogger logger = TSLogger.getTSLogger(JASPICData.LOGGER_NAME);
+  protected static TSLogger logger = TSLogger.getTSLogger(JASPICData.LOGGER_NAME);
 
-  private static Map properties = null;
+  protected static Map properties = null;
 
-  private static Map authMandatoryMap;
+  protected static Map authMandatoryMap;
 
-  private TSServerAuthConfig(String layer, String applicationCtxt,
+  protected TSServerAuthConfig(String layer, String applicationCtxt,
       CallbackHandler cbkHandler, Map props) {
     messageLayer = layer;
     appContext = applicationCtxt;
@@ -136,11 +127,7 @@ public class TSServerAuthConfig
     logger.log(Level.INFO, "getAuthContextID called");
     String rval = null;
 
-    if (messageLayer.equals(JASPICData.LAYER_SOAP)) {
-
-      rval = getOpName((SOAPMessage) messageInfo.getRequestMessage());
-
-    } else if (messageLayer.equals(JASPICData.LAYER_SERVLET)) {
+    if (messageLayer.equals(JASPICData.LAYER_SERVLET)) {
       HttpServletRequest request = (HttpServletRequest) messageInfo
           .getRequestMessage();
       rval = request.getServletPath() + " " + request.getMethod();
@@ -260,69 +247,6 @@ public class TSServerAuthConfig
         logger.log(Level.INFO, msg);
       }
     }
-  }
-
-  private String getOpName(SOAPMessage message) {
-    if (message == null) {
-      return null;
-    }
-
-    String rvalue = null;
-
-    // first look for a SOAPAction header.
-    // this is what .net uses to identify the operation
-
-    MimeHeaders headers = message.getMimeHeaders();
-    if (headers != null) {
-      String[] actions = headers.getHeader("SOAPAction");
-      if (actions != null && actions.length > 0) {
-        rvalue = actions[0];
-        if (rvalue != null && rvalue.equals("\"\"")) {
-          rvalue = null;
-        }
-      }
-    }
-
-    // if that doesn't work then we default to trying the name
-    // of the first child element of the SOAP envelope.
-
-    if (rvalue == null) {
-      Name name = getName(message);
-      if (name != null) {
-        rvalue = name.getLocalName();
-      }
-    }
-
-    return rvalue;
-  }
-
-  private Name getName(SOAPMessage message) {
-    Name rvalue = null;
-    SOAPPart soap = message.getSOAPPart();
-    if (soap != null) {
-      try {
-        SOAPEnvelope envelope = soap.getEnvelope();
-        if (envelope != null) {
-          SOAPBody body = envelope.getBody();
-          if (body != null) {
-            Iterator it = body.getChildElements();
-            while (it.hasNext()) {
-              Object o = it.next();
-              if (o instanceof SOAPElement) {
-                rvalue = ((SOAPElement) o).getElementName();
-                break;
-              }
-            }
-          }
-        }
-      } catch (SOAPException se) {
-        if (logger.isLoggable(Level.FINE)) {
-          logger.log(Level.FINE, "WSS: Unable to get SOAP envelope", se);
-        }
-      }
-    }
-
-    return rvalue;
   }
 
   /**

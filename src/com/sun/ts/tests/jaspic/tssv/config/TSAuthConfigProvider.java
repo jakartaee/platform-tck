@@ -214,8 +214,16 @@ public class TSAuthConfigProvider
         logger.log(Level.INFO, msg);
       }
 
-      ServerAuthConfig serverAuthConfig = new TSServerAuthConfig(layer,
-          appContext, handler, properties, logger);
+      ServerAuthConfig serverAuthConfig = null;
+
+      if(JASPICData.LAYER_SOAP.equals(layer)) {
+          serverAuthConfig = new SOAPTSServerAuthConfig(layer,
+            appContext, handler, properties, logger);
+      } else {
+          serverAuthConfig = new TSServerAuthConfig(layer,
+            appContext, handler, properties, logger);
+      }
+
       serverAuthConfigMap.put(layer + appContext, serverAuthConfig);
       return serverAuthConfig;
     } catch (Exception e) {
