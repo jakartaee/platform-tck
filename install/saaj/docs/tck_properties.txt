@@ -120,7 +120,7 @@ Java 2 Platform, Standard Edition, Version 1.5
 
 // Begin API list
 %%API%%
-javax.xml.soap
+jakarta.xml.soap
 %%API%%
 // End API list
 

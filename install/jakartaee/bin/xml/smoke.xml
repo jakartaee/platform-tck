@@ -73,7 +73,7 @@
     com/sun/ts/tests/jsonp/api/jsongeneratortests,
     com/sun/ts/tests/concurrency/api/ManagedScheduledExecutorService,
     com/sun/ts/tests/jsp/spec/core_syntax/actions/usebean,
-    com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
+    com/sun/ts/tests/jsp/api/jakarta_servlet/jsp/tagext/bodytagsupport,
     com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext,
     com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest,
     com/sun/ts/tests/servlet/api/jakarta_servlet/servletresponse,
@@ -90,8 +90,8 @@
     com/sun/ts/tests/jstl/spec/sql/query,
     com/sun/ts/tests/jpa/core/basic,
     com/sun/ts/tests/jpa/core/entitytest/persist/basic,
-    com/sun/ts/tests/websocket/ee/javax/websocket/server/serverendpoint,
-    com/sun/ts/tests/websocket/ee/javax/websocket/session" />
+    com/sun/ts/tests/websocket/ee/jakarta/websocket/server/serverendpoint,
+    com/sun/ts/tests/websocket/ee/jakarta/websocket/session" />
 
 	<!--original test areas-->
 	<!--<property name="test.areas" value="
@@ -105,10 +105,10 @@
     com/sun/ts/tests/connector/localTx/connection,
     com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,
     com/sun/ts/tests/jsp/spec/core_syntax/actions/usebean,
-    com/sun/ts/tests/jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
-    com/sun/ts/tests/servlet/api/javax_servlet/servletcontext,
-    com/sun/ts/tests/servlet/api/javax_servlet_http/httpservletrequest,
-    com/sun/ts/tests/servlet/api/javax_servlet/servletresponse,
+    com/sun/ts/tests/jsp/api/jakarta_servlet/jsp/tagext/bodytagsupport,
+    com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext,
+    com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest,
+    com/sun/ts/tests/servlet/api/jakarta_servlet/servletresponse,
     com/sun/ts/tests/webservices12/ejb/annotations/WSEjbSOAPHandlersTest,
     com/sun/ts/tests/webservices12/ejb/annotations/WSEjbWebServiceProviderTest,
     com/sun/ts/tests/webservices12/servlet/WSMTOMSBAnnotationsTest,

@@ -361,14 +361,14 @@ authpassword=javajoe
 #                             Default to ${web.home}/modules/jsr311-api.jar
 #
 # @servlet.classes         -- The classes for the Servlet api's
-#                             Default to ${web.home}/modules/javax.servlet.jar
+#                             Default to ${web.home}/modules/jakarta.servlet.jar
 #
 # @servlet_adaptor         -- servlet adaptor class provided by vendor, 
 #                             used to package resource in .war file and
 #                             deploy resource classes in servlet container
 #                             Default to com/sun/jersey/spi/container/servlet/ServletContainer.class
 #
-# @impl.vi                 -- Name of JavaEE 6 implementation.  
+# @impl.vi                 -- Name of JakartaEE implementation.  
 #                             All relevant porting files are located under
 #                             $TS_HOME/bin/xml/impl/${impl.vi}/
 #                             Default to glassfish
@@ -407,8 +407,8 @@ webServerHost=localhost
 webServerPort=8080
 web.home=${javaee.home}
 web.modules=${web.home}/modules
-jaxrs_impl.classes=${web.modules}/jersey-client.jar:${web.modules}/jersey-common.jar:${web.modules}/jersey-server.jar:${web.modules}/jersey-container-servlet.jar:${web.modules}/jersey-container-servlet-core.jar:${web.modules}/osgi-resource-locator.jar:${web.modules}/javax.inject.jar:${web.modules}/guava.jar:${web.modules}/hk2-api.jar:${web.modules}/hk2-locator.jar:${web.modules}/hk2-utils.jar:${web.modules}/cglib.jar:${web.modules}/asm-all-repackaged.jar:${web.modules}/bean-validator.jar:${web.modules}/endorsed/jakarta.annotation-api.jar:${web.modules}/javax.json.jar
-jaxrs.classes=${web.modules}/javax.ws.rs-api.jar
+jaxrs_impl.classes=${web.modules}/jersey-client.jar:${web.modules}/jersey-common.jar:${web.modules}/jersey-server.jar:${web.modules}/jersey-container-servlet.jar:${web.modules}/jersey-container-servlet-core.jar:${web.modules}/osgi-resource-locator.jar:${web.modules}/jakarta.inject.jar:${web.modules}/guava.jar:${web.modules}/hk2-api.jar:${web.modules}/hk2-locator.jar:${web.modules}/hk2-utils.jar:${web.modules}/cglib.jar:${web.modules}/asm-all-repackaged.jar:${web.modules}/bean-validator.jar:${web.modules}/endorsed/jakarta.annotation-api.jar:${web.modules}/javax.json.jar
+jaxrs.classes=${web.modules}/jakarta.ws.rs-api.jar
 jersey.home=D:/CTS/CTS_JAXRS/jaxrstck/jersey
 jaxrs_impl_lib=${web.modules}/jersey-container-servlet-core.jar
 servlet_adaptor=org/glassfish/jersey/servlet/ServletContainer.class

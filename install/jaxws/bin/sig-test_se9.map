@@ -28,9 +28,9 @@
 # with the following format:
 # <package>.sig_<technology_version>_<JavaSE_version_these_work_with>
 # Given this format, the following example breaks down as follows:
-#    javax.xml.jaxws.sig_2.2_se5:
-#    javax.xml.jaxws.sig_2.2_se6:
-#    javax.xml.jaxws.sig_2.2_se7:
+#    jakarta.xml.jaxws.sig_2.2_se5:
+#    jakarta.xml.jaxws.sig_2.2_se6:
+#    jakarta.xml.jaxws.sig_2.2_se7:
 #      <package> = jakarta.xml.ws
 #      <technology_version> = 2.2  (for JAX-WS) 
 #      <JavaSE_version_these_work_with> = JDK 5, JDK 6 and JDK 7

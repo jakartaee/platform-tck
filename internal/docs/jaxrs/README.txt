@@ -45,25 +45,25 @@ Setup and Configuration of the JAX-RS TCK
    The values will have to be those that are pertinent to your environment 
    and configuration.
 
-   jaxrs_impl.classes=/ri/javax.ws.rs-ri-2.1/javax.ws.rs-api.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-client.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-common.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-server.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-container-servlet.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-container-servlet-core.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-media-jaxb.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-media-sse.jar:
-                      /ri/javax.ws.rs-ri-2.1/jersey-hk2.jar:
-                      /ri/javax.ws.rs-ri-2.1/osgi-resource-locator.jar:
-                      /ri/javax.ws.rs-ri-2.1/jakarta.inject.jar:
-                      /ri/javax.ws.rs-ri-2.1/guava.jar:
-                      /ri/javax.ws.rs-ri-2.1/hk2-api.jar:
-                      /ri/javax.ws.rs-ri-2.1/hk2-locator.jar:
-                      /ri/javax.ws.rs-ri-2.1/hk2-utils.jar:
-                      /ri/javax.ws.rs-ri-2.1/cglib.jar:
-                      /ri/javax.ws.rs-ri-2.1/asm-all-repackaged.jar:
-                      /ri/javax.ws.rs-ri-2.1/bean-validator.jar:
-                      /ri/javax.ws.rs-ri-2.1/endorsed/jakarta.annotation-api.jar
+   jaxrs_impl.classes=/ri/jakarta.ws.rs-ri-2.1/jakarta.ws.rs-api.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-client.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-common.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-server.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-container-servlet.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-container-servlet-core.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-media-jaxb.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-media-sse.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jersey-hk2.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/osgi-resource-locator.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/jakarta.inject.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/guava.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/hk2-api.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/hk2-locator.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/hk2-utils.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/cglib.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/asm-all-repackaged.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/bean-validator.jar:
+                      /ri/jakarta.ws.rs-ri-2.1/endorsed/jakarta.annotation-api.jar
 
 ------------------------------
 Executing the JAX-RS TCK Tests

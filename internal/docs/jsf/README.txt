@@ -51,12 +51,12 @@ Setup and Configuration of the JSF TCK
 	impl.deploy.timeout.multiplier=20
 	jsf.classes=${webServerHome}/modules/jakarta.faces.jar${pathsep} /
 	${webServerHome}/modules/weld-osgi-bundle.jar
-	jspservlet.classes=${webServerHome}/modules/javax.servlet.jsp.jar${pathsep} /
-	${webServerHome}/modules/javax.servlet.jsp.jstl.jar${pathsep} /
-	${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar${pathsep} /
-	${webServerHome}/modules/javax.servlet-api.jar${pathsep} /
-	${webServerHome}/modules/javax.el-api.jar${pathsep} /
-	${webServerHome}/modules/javax.servlet.jsp-api.jar
+	jspservlet.classes=${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep} /
+	${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar${pathsep} /
+	${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar${pathsep} /
+	${webServerHome}/modules/jakarta.servlet-api.jar${pathsep} /
+	${webServerHome}/modules/jakarta.el-api.jar${pathsep} /
+	${webServerHome}/modules/jakarta.servlet.jsp-api.jar
 
 
 ------------------------------
