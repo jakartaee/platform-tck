@@ -12,6 +12,6 @@ grant {
 /* Needed by TS Signature tests */
    permission java.lang.RuntimePermission "accessDeclaredMembers";
 
-/* Needed by WebSocket com.sun.ts.tests.websocket.ee.javax.websocket.containerprovider.metainf test */
+/* Needed by WebSocket com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.metainf test */
    permission java.lang.RuntimePermission "createClassLoader";
 };

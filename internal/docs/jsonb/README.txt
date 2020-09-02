@@ -22,7 +22,7 @@ and set up the following software components:
 
    mkdir /ri
    cd /ri
-   unzip <javax.json.bind-ri-1.0.zip>
+   unzip <jakarta.json.bind-ri-1.0.zip>
 
 3. Download and install the JSON-B TCK 1.0 software.
 
@@ -43,7 +43,7 @@ Setup and Configuration of the JSON-B TCK
 
 2. Edit the $TS_HOME/bin/ts.jte file and set the following properties:
 
-    jsonb.classes=/ri/javax.json.bind-ri-1.0/lib/yasson-1.0.jar
+    jsonb.classes=/ri/jakarta.json.bind-ri-1.0/lib/yasson-1.0.jar
 
     Add the path to the JSON-B 1.0 Reference Implementation jar
 

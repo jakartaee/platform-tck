@@ -11576,7 +11576,7 @@ entity object,
 				<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 					<id>EJB:SPEC:679.1</id>
 					<description>              When client's invocation was made over IIOP, the EJB server is
-              required to map javax.transactionTransactionRolledbackException
+              required to map jakarta.transaction.TransactionRolledbackException
               to TRANSACTION_ROLLEDBACK CORBA system exception.
             
 					</description>

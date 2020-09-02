@@ -124,7 +124,7 @@ do
              assert-gen-ctor-and-comment-exception-concurrency 'CONCURRENCY' "CONCURRENCY ${CURRENT_CONCURRENCYVERSION}" "Java API for Concurrency" "${CURRENT_CONCURRENCYVERSION}" \
              ${SRCDIR} \
              ${WORKDIR} \
-             javax.enterprise.concurrent
+             jakarta.enterprise.concurrent
 
             cd $STARTING_PWD
           ;;
