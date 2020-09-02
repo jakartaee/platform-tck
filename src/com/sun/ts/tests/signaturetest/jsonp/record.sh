@@ -21,7 +21,7 @@
 
 PATHSEP=:
 PWD=`pwd`
-JSONP_CLASSES=/files/jsonp/ri/lib/javax.json-1.0-SNAPSHOT.jar
+JSONP_CLASSES=/files/jsonp/ri/lib/jakarta.json-1.0-SNAPSHOT.jar
 cd ../signature-repository
 ant -f ../record-build.xml -Drecorder.type=sigtest -Dsig.source=${JSONP_CLASSES}:$JAVA_HOME/jre/lib/rt.jar \
        -Dmap.file=$TS_HOME/install/jsonp/bin/sig-test.map record.sig.batch

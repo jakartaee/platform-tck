@@ -19,8 +19,8 @@
     <!--  step1: Init numbers database tables to their initial values  -->
 	<step id="step1" next="step2" allow-start-if-complete="false">
 		<properties>
-		    <property name="javax.transaction.global.mode" value="false"/>
-		    <property name="javax.transaction.global.timeout" value="10"/>
+		    <property name="jakarta.transaction.global.mode" value="false"/>
+		    <property name="jakarta.transaction.global.timeout" value="10"/>
         </properties>
 		<chunk item-count="1"
 		 checkpoint-policy="item">
@@ -37,8 +37,8 @@
 <!--  step2: perform test -->
 	<step id="step2">
 		<properties>
-		    <property name="javax.transaction.global.mode" value="#{jobParameters['javax.transaction.global.mode']}"/>
-		    <property name="javax.transaction.global.timeout" value="#{jobParameters['javax.transaction.global.timeout']}"/>
+		    <property name="jakarta.transaction.global.mode" value="#{jobParameters['jakarta.transaction.global.mode']}"/>
+		    <property name="jakarta.transaction.global.timeout" value="#{jobParameters['jakarta.transaction.global.timeout']}"/>
         </properties>
         <listeners>
         	<listener ref="numbersRetryReadListener"/>

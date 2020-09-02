@@ -38,20 +38,20 @@ public class <your_test_class_name> extends SigTestEE {
     public  static final String JSP_VEHICLE        = "jsp";
     public  static final String APP_CLIENT_VEHICLE = "appclient";
 
-    private static final String[] ejbPackages     = {"jakarta.sql",
+    private static final String[] ejbPackages     = {"javax.sql",
 						     "jakarta.ejb",
 						     "jakarta.ejb.spi"};
-    private static final String[] servletPackages = {"jakarta.sql",
+    private static final String[] servletPackages = {"javax.sql",
 						     "jakarta.ejb",
 						     "jakarta.ejb.spi",
 						     "jakarta.servlet",
 						     "jakarta.servlet.http"};
-    private static final String[] jspPackages     = {"jakarta.sql",
+    private static final String[] jspPackages     = {"javax.sql",
 						     "jakarta.ejb",
 						     "jakarta.ejb.spi",
 						     "jakarta.servlet.jsp",
 						     "jakarta.servlet.jsp.tagext"};
-    private static final String[] appPackages     = {"jakarta.sql"};
+    private static final String[] appPackages     = {"javax.sql"};
 
 
     /***** Abstract Method Implementation *****/

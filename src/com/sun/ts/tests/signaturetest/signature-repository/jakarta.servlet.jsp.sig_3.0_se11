@@ -86,10 +86,10 @@ meth public abstract <%0 extends java.lang.Object> java.util.concurrent.Schedule
 meth public abstract java.util.concurrent.ScheduledFuture<?> schedule(java.lang.Runnable,jakarta.enterprise.concurrent.Trigger)
 
 CLSS public abstract interface jakarta.enterprise.concurrent.ManagedTask
-fld public final static java.lang.String IDENTITY_NAME = "javax.enterprise.concurrent.IDENTITY_NAME"
-fld public final static java.lang.String LONGRUNNING_HINT = "javax.enterprise.concurrent.LONGRUNNING_HINT"
+fld public final static java.lang.String IDENTITY_NAME = "jakarta.enterprise.concurrent.IDENTITY_NAME"
+fld public final static java.lang.String LONGRUNNING_HINT = "jakarta.enterprise.concurrent.LONGRUNNING_HINT"
 fld public final static java.lang.String SUSPEND = "SUSPEND"
-fld public final static java.lang.String TRANSACTION = "javax.enterprise.concurrent.TRANSACTION"
+fld public final static java.lang.String TRANSACTION = "jakarta.enterprise.concurrent.TRANSACTION"
 fld public final static java.lang.String USE_TRANSACTION_OF_EXECUTION_THREAD = "USE_TRANSACTION_OF_EXECUTION_THREAD"
 meth public abstract jakarta.enterprise.concurrent.ManagedTaskListener getManagedTaskListener()
 meth public abstract java.util.Map<java.lang.String,java.lang.String> getExecutionProperties()

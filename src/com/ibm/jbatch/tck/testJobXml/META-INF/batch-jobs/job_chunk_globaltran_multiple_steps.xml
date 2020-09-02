@@ -11,11 +11,11 @@
 <job id="job_chunk_globaltran" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
 	<properties>
 		<!--  This is irrelevant.  Only the step-level property matters. -->
-		<property name="javax.transaction.global.timeout" value="1" />
+		<property name="jakarta.transaction.global.timeout" value="1" />
 	</properties>
 	<step id="init_tables_step1" next="step2" allow-start-if-complete="false">
 		<properties>
-			<property name="javax.transaction.global.timeout" value="180" />
+			<property name="jakarta.transaction.global.timeout" value="180" />
 		</properties>
 		<chunk item-count="1">
 			<reader ref="inventoryInitReader" />
@@ -31,7 +31,7 @@
 	<step id="step2" next="init_tables_step2">
 	    <!--  Proves '0' means indefinite timeout (or at least that it's a long timeout). -->
 		<properties>
-			<property name="javax.transaction.global.timeout" value="0" />
+			<property name="jakarta.transaction.global.timeout" value="0" />
 		</properties>
 		<listeners>
 			<listener ref="inventoryStepListener" />
@@ -50,7 +50,7 @@
 	</step>
 	<step id="init_tables_step2" next="step3" allow-start-if-complete="false">
 		<properties>
-			<property name="javax.transaction.global.timeout" value="180" />
+			<property name="jakarta.transaction.global.timeout" value="180" />
 		</properties>
 		<chunk item-count="1">
 			<reader ref="inventoryInitReader" />
