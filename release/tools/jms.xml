@@ -46,7 +46,7 @@
           </copy>
 
 	  <copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
-		<fileset dir="${ts.home}/install/${deliverable.name.lower}/docs" includes="ReleaseNotes.html"/>
+		<fileset dir="${ts.home}/install/${deliverable.name.lower}/docs" includes="*ReleaseNotes*.html"/>
 	  </copy>
 
           <copy todir="${deliverable.bundle.dir}/lib">

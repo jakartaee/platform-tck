@@ -91,13 +91,8 @@
 					 includes="**/*"/>
 		</copy>
 		<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
-			<fileset dir="${ts.home}/install/${deliverable.name.lower}/docs"
-					 includes="*ReleaseNotes*.html"/>
+			<fileset dir="${ts.home}/install/${deliverable.name.lower}/docs"/>
 		</copy>
-                <copy todir="${deliverable.bundle.dir}/docs/assertions" includeEmptyDirs="no">
-                        <fileset dir="${ts.home}/internal/docs/websocket" includes="WebSocketJavadocAssertions.html" />
-                </copy>
-
                 <!-- NOTICE will be EPL or EFTL specific: TBD-->
                 <!--copy todir="${deliverable.bundle.dir}" includeEmptyDirs="no">
                         <fileset dir="${ts.home}" includes="NOTICE" />
