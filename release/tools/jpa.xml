@@ -143,7 +143,7 @@
         <!-- copy the ReleaseNotes -->
         <copy todir="${deliverable.bundle.dir}/..">
             <fileset dir="${ts.home}/install/${deliverable.dir}/docs"
-                     includes="*ReleaseNotes-2.2*.html"/>
+                     includes="*ReleaseNotes*.html"/>
         </copy>
         <antcall target="mvn"/>
         <!--
