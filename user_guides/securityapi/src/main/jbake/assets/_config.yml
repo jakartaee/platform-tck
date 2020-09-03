@@ -1,14 +1,15 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
-title: [tck_security_v1_0]
-description: [Oracle Java EE Security API 1.0 Technology Compatibility Kit User's Guide for Technology Licensees, Release 1.0]
+title: [tck_security_v2_0]
+description: [Oracle Jakarta Security 2.0 Technology Compatibility Kit User's Guide for Technology Licensees,
+              Release 2.0]
 
 # sidebar links url
 links:
-  source: https://github.com/javaee/tck_security_v1_0
-  download: https://github.com/javaee/tck_security_v1_0/releases
+  source: https://github.com/eclipse-ee4j/jakartaee-tck
+  download: https://jakarta.ee/specifications/security/2.0/
   #mailinglist: https://javaee.groups.io/g/tck_security_v1_0
   #javadocs:
-  docs: https://javaee.github.io/tck_security_v1_0
+  docs: https://jakarta.ee/specifications/security/2.0/apidocs/
   #faq:
 
