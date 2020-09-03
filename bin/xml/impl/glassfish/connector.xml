@@ -396,37 +396,6 @@
             <param name="poolName" value="cts-connector-pool-whitebox-multianno.rar"/>
             <param name="jndiName" value="${whitebox-multianno}"/>
         </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx.rar"/>
-            <param name="jndiName" value="${oldwhitebox-tx}"/>
-        </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx.rar"/>
-            <param name="jndiName" value="${oldwhitebox-notx}"/>
-        </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa.rar"/>
-            <param name="jndiName" value="${oldwhitebox-xa}"/>
-        </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-tx-param.rar"/>
-            <param name="jndiName" value="${oldwhitebox-tx-param}"/>
-        </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-notx-param.rar"/>
-            <param name="jndiName" value="${oldwhitebox-notx-param}"/>
-        </antcall>
-
-        <antcall target="create-a-connector-resource" >
-            <param name="poolName" value="cts-connector-pool-old-dd-whitebox-xa-param.rar"/>
-            <param name="jndiName" value="${oldwhitebox-xa-param}"/>
-        </antcall>
-
         <if>
           <contains string="${javaee.level}" substring="full"/>
         <then>
@@ -488,31 +457,6 @@
         <antcall target="delete-a-connector-resource" >
             <param name="jndiName" value="${whitebox-multianno}"/>
         </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-tx}"/>
-        </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-notx}"/>
-        </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-xa}"/>
-        </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-tx-param}"/>
-        </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-notx-param}"/>
-        </antcall>
-
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${oldwhitebox-xa-param}"/>
-        </antcall>
-
     </target>
 
 

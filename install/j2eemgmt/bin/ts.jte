@@ -280,15 +280,6 @@ whitebox-tx-param=java:comp/env/eis/whitebox-tx-param
 whitebox-notx-param=java:comp/env/eis/whitebox-notx-param
 whitebox-xa-param=java:comp/env/eis/whitebox-xa-param
 
-# JNDI name bindings for Connector 1.0 regression tests.
-
-oldwhitebox-tx=java:comp/env/eis/oldwhitebox-tx
-oldwhitebox-notx=java:comp/env/eis/oldwhitebox-notx
-oldwhitebox-xa=java:comp/env/eis/oldwhitebox-xa
-oldwhitebox-tx-param=java:comp/env/eis/oldwhitebox-tx-param
-oldwhitebox-notx-param=java:comp/env/eis/oldwhitebox-notx-param
-oldwhitebox-xa-param=java:comp/env/eis/oldwhitebox-xa-param
-
 # Resource adapter configuration values. You must modify these values
 # to plug your JDBC driver into the TS whitebox resource adapter.
 #

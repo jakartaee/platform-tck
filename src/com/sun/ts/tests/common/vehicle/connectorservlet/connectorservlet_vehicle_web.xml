@@ -102,40 +102,4 @@
     <res-auth>Container</res-auth>
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-tx</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Container</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-tx-param</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Application</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-notx</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Container</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-notx-param</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Application</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-xa</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Container</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
-  <resource-ref>
-    <res-ref-name>eis/oldwhitebox-xa-param</res-ref-name>
-    <res-type>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</res-type>
-    <res-auth>Application</res-auth>
-    <res-sharing-scope>Shareable</res-sharing-scope>
-  </resource-ref>
 </web-app>
