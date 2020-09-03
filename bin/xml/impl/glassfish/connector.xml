@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -105,14 +105,12 @@
             <fileset refid="anno_rar_file"/>
         </ts.glassfish.deploy>
 
+        <!--
+            Do not deploy permissiondd.rar in web-profile
+        -->
         <if>
-          <contains string="${javaee.level}" substring="full"/>
+          <contains string="${javaee.level}" substring="web"/>
         <then>
-            <fileset  id="archives"
-                  dir="${ts.home}/dist/"
-                  includes="com/sun/ts/tests/common/connector/whitebox/**/*.rar"/>
-        </then>
-        <else>
             <fileset  id="archives"
                   dir="${ts.home}/dist/"
                   includes="com/sun/ts/tests/common/connector/whitebox/*.rar,
@@ -120,6 +118,11 @@
                             com/sun/ts/tests/common/connector/whitebox/mdcomplete/*.rar,
                             com/sun/ts/tests/common/connector/whitebox/mixedmode/*.rar,
                             com/sun/ts/tests/common/connector/whitebox/multianno/*.rar"/>
+        </then>
+        <else>
+            <fileset  id="archives"
+                  dir="${ts.home}/dist/"
+                  includes="com/sun/ts/tests/common/connector/whitebox/**/*.rar"/>
        </else>
        </if>
 
@@ -244,13 +247,16 @@
         </antcall>
 
         <if>
-          <contains string="${javaee.level}" substring="full"/>
+          <contains string="${javaee.level}" substring="web"/>
         <then>
+            <echo>cts-connector-pool-whitebox-permissiondd connection pool is not created for web profile</echo>
+        </then>
+        <else>
             <antcall target="create-a-connection-pool" >
                 <param name="rarName" value="whitebox-permissiondd"/>
                 <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
             </antcall>
-        </then>
+        </else>
         </if>
 
     </target>
@@ -326,12 +332,15 @@
         </antcall>
 
         <if>
-          <contains string="${javaee.level}" substring="full"/>
+          <contains string="${javaee.level}" substring="web"/>
         <then>
+            <echo>cts-connector-pool-whitebox-permissiondd delete is not called for web-profile</echo>
+        </then>
+        <else>
             <antcall target="delete-connector-connection-pool" >
                 <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
             </antcall>
-        </then>
+        </else>
         </if>
 
     </target>
@@ -428,13 +437,16 @@
         </antcall>
 
         <if>
-          <contains string="${javaee.level}" substring="full"/>
+          <contains string="${javaee.level}" substring="web"/>
         <then>
+            <echo>create cts-connector-pool-whitebox-permissiondd is not called for web-profile</echo>
+        </then>
+        <else>
             <antcall target="create-a-connector-resource" >
                 <param name="poolName" value="cts-connector-pool-whitebox-permissiondd.rar"/>
                 <param name="jndiName" value="${whitebox-permissiondd}"/>
             </antcall>
-        </then>
+        </else>
         </if>
 
     </target>
@@ -469,9 +481,17 @@
             <param name="jndiName" value="${whitebox-anno_no_md}"/>
         </antcall>
 
-        <antcall target="delete-a-connector-resource" >
-            <param name="jndiName" value="${whitebox-permissiondd}"/>
-        </antcall>
+        <if>
+          <contains string="${javaee.level}" substring="web"/>
+        <then>
+            <echo>delete jndiName with value whitebox-permissiondd is not called for web-profile</echo>
+        </then>
+        <else>
+            <antcall target="delete-a-connector-resource" >
+                <param name="jndiName" value="${whitebox-permissiondd}"/>
+            </antcall>
+        </else>
+        </if>
 
         <antcall target="delete-a-connector-resource" >
             <param name="jndiName" value="${whitebox-ibanno_no_md}"/>
