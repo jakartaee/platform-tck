@@ -1,8 +1,8 @@
 
-### [Jakarta EE TCK - Build and Run Instructions](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Instructions-for-building-and-running-JakartaEE-TCK-bundle)
+### [Jakarta EE TCK - Build and Run Instructions](Instructions-for-building-and-running-JakartaEE-TCK-bundle)
 
-### [Contributors guide to Platform TCK](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Contributors-guide-to-Jakarta-EE-9-Platform-TCK)
+### [Contributors guide to Platform TCK](Contributors-guide-to-Jakarta-EE-9-Platform-TCK)
 
-### [Jakarta EE 9 TCK results](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-9-TCK-results)
+### [Jakarta EE 9 TCK results](Jakarta-EE-9-TCK-results)
 
-### [Questions + Answers](https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-9-Platform-TCK-Questions---Answers)
+### [Questions + Answers](Jakarta-EE-9-Platform-TCK-Questions---Answers)

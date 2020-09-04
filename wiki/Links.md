@@ -11,4 +11,4 @@
 [jakartaee-tck Jenkins instance configuration](https://github.com/eclipse-cbi/jiro/blob/master/instances/ee4j.jakartaee-tck/target/jenkins/configuration.yml)
 
 ## 
-[jakartaee-platform/wiki/JakartaEE9](https://github.com/eclipse-ee4j/jakartaee-platform/wiki/JakartaEE9)
+[jakartaee-platform/wiki/JakartaEE9](JakartaEE9)
