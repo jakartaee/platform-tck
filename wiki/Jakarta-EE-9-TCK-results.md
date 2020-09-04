@@ -84,6 +84,6 @@ https://download.eclipse.org/ee4j/glassfish/weekly/web-6.0.0-SNAPSHOT-2020-08-23
 CI Job: [jakartaee-tck/job/eftl-standalonetck-certification](https://ci.eclipse.org/jakartaee-tck/job/eftl-standalonetck-certification/?)
 | standalone TCK      | failure count |issue link(s) |
 | ----------- | ----------- | -------------- |
-| security api      | 5       | https://github.com/eclipse-ee4j/soteria/issues/280| 
+| security api      | 5       | https://github.com/eclipse-ee4j/soteria/issues/280 | 
 
 
