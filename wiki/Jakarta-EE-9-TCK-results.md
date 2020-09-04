@@ -61,6 +61,7 @@ https://download.eclipse.org/ee4j/glassfish/weekly/glassfish-6.0.0-SNAPSHOT-2020
 
 
 ### Web Profile TCK results 
+
 CI Job: [eftl-jakartaeetck-run-web-900/22/junit-reports-with-handlebars](https://ci.eclipse.org/jakartaee-tck/job/eftl-jakartaeetck-run-web-900/22/junit-reports-with-handlebars/testSuitesOverview.html)
 
 Glassfish Web Bundle used: 
