@@ -111,7 +111,7 @@ public class ResponseTests {
         srw.setResponse(null);
         passed = false;
         pw.println(
-            "Error: an IllegalArgumentException should have benn generated");
+            "Error: an IllegalArgumentException should have been generated");
       } catch (Throwable t) {
         if (t instanceof IllegalArgumentException) {
           passed = true;
@@ -877,7 +877,7 @@ public class ResponseTests {
         srw.setResponse(null);
         passed = false;
         pw.println(
-            "Error: an IllegalArgumentException should have benn generated");
+            "Error: an IllegalArgumentException should have been generated");
       } catch (Throwable t) {
         if (t instanceof IllegalArgumentException) {
           passed = true;
