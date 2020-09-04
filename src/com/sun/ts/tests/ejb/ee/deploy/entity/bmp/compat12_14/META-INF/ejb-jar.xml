@@ -31,7 +31,7 @@
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.entity.bmp.compat12_14.TestBeanEJB</ejb-class>
       <persistence-type>Bean</persistence-type>
       <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>False</reentrant>
+      <reentrant>false</reentrant>
       <resource-ref>
 	<description>description</description>
 	<res-ref-name>jdbc/DB1</res-ref-name>

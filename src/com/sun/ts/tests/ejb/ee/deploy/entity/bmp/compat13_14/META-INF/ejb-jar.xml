@@ -29,7 +29,7 @@
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.entity.bmp.compat13_14.TestBeanEJB</ejb-class>
       <persistence-type>Bean</persistence-type>
       <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>False</reentrant>
+      <reentrant>false</reentrant>
       <security-identity>
         <description></description>
         <use-caller-identity></use-caller-identity>

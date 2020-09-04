@@ -31,7 +31,7 @@
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.compat12_14.TestBeanEJB</ejb-class>
       <persistence-type>Container</persistence-type>
       <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>False</reentrant>
+      <reentrant>false</reentrant>
       <cmp-field>
 	<field-name>BRAND_NAME</field-name>
       </cmp-field>

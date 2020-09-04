@@ -29,7 +29,7 @@
       <ejb-class>com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.compat13_14.TestBeanEJB</ejb-class>
       <persistence-type>Container</persistence-type>
       <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>False</reentrant>
+      <reentrant>false</reentrant>
       <cmp-version>1.x</cmp-version>
       <cmp-field>
         <field-name>KEY_ID</field-name>
