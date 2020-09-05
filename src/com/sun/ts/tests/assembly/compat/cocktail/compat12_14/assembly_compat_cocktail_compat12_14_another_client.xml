@@ -18,7 +18,6 @@
 -->
 
 <application-client version="9" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
-  <description>TS Second application client for assembly compat_compat12_14 cocktail test (not run)</description>
   <display-name>assembly_compat_cocktail_compat12_14_another_client</display-name>
   <ejb-ref>
     <ejb-ref-name>ejb/Vision</ejb-ref-name>

@@ -537,16 +537,6 @@ whitebox-multianno=java:comp/env/eis/whitebox-multianno
 whitebox-mdcomplete=java:comp/env/eis/whitebox-mdcomplete
 whitebox-permissiondd=java:comp/env/eis/whitebox-permissiondd
 
-# JNDI name bindings for Connector 1.0 regression tests.
-oldwhitebox-tx=java:comp/env/eis/oldwhitebox-tx
-oldwhitebox-notx=java:comp/env/eis/oldwhitebox-notx
-oldwhitebox-xa=java:comp/env/eis/oldwhitebox-xa
-oldwhitebox-tx-param=java:comp/env/eis/oldwhitebox-tx-param
-oldwhitebox-notx-param=java:comp/env/eis/oldwhitebox-notx-param
-oldwhitebox-xa-param=java:comp/env/eis/oldwhitebox-xa-param
-
-
-
 #########################################################################
 ## The following properties must be set before running any security 
 ## related tests.  The properties user, password, authuser, authpassword,

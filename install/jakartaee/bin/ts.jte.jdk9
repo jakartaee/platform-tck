@@ -1719,14 +1719,6 @@ whitebox-embed-xa="__SYSTEM/resource/ejb_Tsr#whitebox-xa#com.sun.ts.tests.common
 tsrJndiName=java:comp/TransactionSynchronizationRegistry
 tsrHomeJndiName="java:global/ejb_Tsr/ejb_Tsr_ejb/Tsr"
 
-##JNDI name bindings for Connector 1.0 regression tests.
-oldwhitebox-tx=java:comp/env/eis/oldwhitebox-tx
-oldwhitebox-notx=java:comp/env/eis/oldwhitebox-notx
-oldwhitebox-xa=java:comp/env/eis/oldwhitebox-xa
-oldwhitebox-tx-param=java:comp/env/eis/oldwhitebox-tx-param
-oldwhitebox-notx-param=java:comp/env/eis/oldwhitebox-notx-param
-oldwhitebox-xa-param=java:comp/env/eis/oldwhitebox-xa-param
-
 ## JNDI name bindings for JDBC Connector.
 JDBCwhitebox-tx=java:comp/env/eis/JDBCwhitebox-tx
 JDBCwhitebox-notx=java:comp/env/eis/JDBCwhitebox-notx
