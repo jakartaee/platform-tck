@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -60,7 +60,7 @@ public class SOAPTSServerAuthConfig extends TSServerAuthConfig {
       logger = tsLogger;
     }
 
-    String str = "SOAPTSServerAuthConfig called for layer=" + layer
+    String str = "TSServerAuthConfig called for layer=" + layer
         + " : appContext=" + applicationCtxt;
     logger.log(Level.INFO, str);
   }
@@ -71,10 +71,22 @@ public class SOAPTSServerAuthConfig extends TSServerAuthConfig {
     String rval = null;
 
     if (messageLayer.equals(JASPICData.LAYER_SOAP)) {
+
       rval = getOpName((SOAPMessage) messageInfo.getRequestMessage());
-    } else {
+
+      String logMsg = "getAuthContextID() called for layer=" + messageLayer;
+      logMsg += " shows AuthContextId=" + rval;
+      logger.log(Level.INFO, logMsg);
+
+    } else if (messageLayer.equals(JASPICData.LAYER_SERVLET)) {
+      
       super.getAuthContextID(messageInfo);
-    }    
+
+    } else {
+
+      rval = null;
+
+    }   
 
     return rval;
   }
