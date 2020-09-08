@@ -215,7 +215,7 @@ public class PersistenceProvider
 
       puinfo.persistenceUnitRootUrl = url;
 
-      puinfo.persistenceXMLSchemaVersion = "2.1";
+      puinfo.persistenceXMLSchemaVersion = "3.0";
 
       // properties:
       Properties properties = new Properties();
