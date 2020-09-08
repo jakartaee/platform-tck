@@ -77,7 +77,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the Jakarta RESTful Web Services API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to the Jersey CI. +
   The default setting for the `jaxrs_impl_lib` property is
@@ -254,7 +254,7 @@ environment variables:
   d.  Set the `jaxrs.classes` property to point to the classes or JAR file
   for the Jakarta RESTful Web Services API. +
   The default setting for this property is
-  `${web.home}/modules/javax.ws.rs-api.jar`.
+  `${web.home}/modules/jakarta.ws.rs-api.jar`.
   e.  Set the `jaxrs_impl_lib` and `jaxrs_impl.classes` properties to
   point to the Jersey CI. +
   The default setting for the `jaxrs_impl_lib` property is

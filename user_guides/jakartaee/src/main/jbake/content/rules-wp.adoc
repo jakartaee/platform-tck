@@ -613,7 +613,7 @@ required for the Jakarta EE 9 Web Profile:
 * jakarta.servlet.jsp.jstl.tlv
 * jakarta.servlet.jsp.tagext
 * jakarta.transaction
-* jakarta.transaction.xa
+* javax.transaction.xa
 * jakarta.validation
 * jakarta.validation.bootstrap
 * jakarta.validation.constraints
