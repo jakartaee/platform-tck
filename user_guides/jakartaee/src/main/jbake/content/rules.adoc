@@ -686,6 +686,4 @@ required for Jakarta EE 9:
 * jakarta.ws.rs.core
 * jakarta.ws.rs.ext
 * jakarta.ws.rs.sse
-* javax.xml.registry
-* javax.xml.registry.infomodel
  
