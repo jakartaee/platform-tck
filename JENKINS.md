@@ -1,4 +1,5 @@
 # Jakarta EE TCK Jenkins jobs
+
 Jakarta EE TCK jobs uses the Cloud bees Jenkins Enterprise Server (CJE) hosted at [https://jenkins.eclipse.org/jakartaee-tck/](https://jenkins.eclipse.org/jakartaee-tck/) for the various build, release and run jobs. It uses the Jenkins pipeline setup based on the [Jenkinsfile](https://github.com/eclipse-ee4j/jakartaee-tck/blob/master/Jenkinsfile) checked into the Jakarta EE TCK Github repository for running all kinds of jobs. The pipeline job is parameterized, which can take in multiple inputs from the user or upstream jobs and execute the required build/run stages in the pipeline. Various upstream jobs are created in the CJE instance which in turn use this Jenkins pipeline in master branch to trigger various kinds of jobs by passing appropriate input parameters.
 
 There are 2 kinds of TCK bundles that gets created from the Jakarta EE TCK Github repository. They are 
