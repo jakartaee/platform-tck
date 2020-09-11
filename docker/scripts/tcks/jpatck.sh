@@ -30,8 +30,8 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/glassfish5/glassfish/modules/jakarta.persistence.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/glassfish5/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish5/glassfish/modules/javax.transaction-api.jar:$TCK_HOME/glassfish5/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/glassfish5/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
-sed -i "s#^jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/glassfish5/javadb/lib/derbyclient.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
+sed -i "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/glassfish6/glassfish/modules/jakarta.persistence.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/glassfish6/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish6/glassfish/modules/javax.transaction-api.jar:$TCK_HOME/glassfish6/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/glassfish6/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
+sed -i "s#^jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/glassfish6/javadb/lib/derbyclient.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
 sed -i "s#^jdbc\.db=.*#jdbc.db=derby#g" ts.jte
 sed -i "s#^jakarta.persistence.provider=.*#jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider#g" ts.jte
 sed -i "s#^jakarta.persistence.jdbc.driver=.*#jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver#g" ts.jte
@@ -46,8 +46,8 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jpatckwork#g" ts.jte
 mkdir $TCK_HOME/jpatckreport
 mkdir $TCK_HOME/jpatckwork
 
-cd $TCK_HOME/glassfish5/glassfish/bin
-./asadmin start-database --dbhome $TCK_HOME/glassfish5/glassfish/databases --dbport 1527 --jvmoptions "-Djava.security.manager -Djava.security.policy=$TS_HOME/bin/security.policy"
+cd $TCK_HOME/glassfish6/glassfish/bin
+./asadmin start-database --dbhome $TCK_HOME/glassfish6/glassfish/databases --dbport 1527 --jvmoptions "-Djava.security.manager -Djava.security.policy=$TS_HOME/bin/security.policy"
 
 cd $TS_HOME/bin
 ant -f initdb.xml

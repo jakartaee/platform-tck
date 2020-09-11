@@ -23,7 +23,7 @@ https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-TCK-Jenkins-jobs
 
 4. Request CTS team to run the CTS suites by tagging @anajosep and @bhatpmk
 
-5. Provide the names of the jars (under glassfish5/glassfish/modules) that were modified in this bundle.
+5. Provide the names of the jars (under glassfish6/glassfish/modules) that were modified in this bundle.
 
 6. If known, specify the test areas that needs to be run, if not leave it empty.
 

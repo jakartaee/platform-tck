@@ -40,9 +40,9 @@ fi
 unzip latest-glassfish.zip
 
 # Do we really need this ?
-chmod -R 777 $TCK_HOME/glassfish5
+chmod -R 777 $TCK_HOME/glassfish6
 
-export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed \
+export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http $ANT_OPTS"

@@ -200,7 +200,7 @@ javaee.level=full jaxr
 # @orb.port    The port number the vendor implementation is listening
 #              to for service requests.
 ########################################################################
-javaee.home=/scratch/BUILD_AREA/workspace/spider/glassfish5/glassfish/
+javaee.home=/scratch/BUILD_AREA/workspace/spider/glassfish6/glassfish/
 orb.host=localhost
 orb.port=3699
 
@@ -211,7 +211,7 @@ orb.port=3699
 # @orb.port       The port number the RI is listening to for service
 #                 requests.
 ########################################################################
-javaee.home.ri=/scratch/BUILD_AREA/workspace/spider/glassfish5/glassfish/
+javaee.home.ri=/scratch/BUILD_AREA/workspace/spider/glassfish6/glassfish/
 orb.host.ri=localhost
 orb.port.ri=3700
 

@@ -43,11 +43,11 @@
 #               are under test
 #
 # For an example of property settings one might use, assuming we are using
-# Glassfish (and assuming Glassfish is installed into the /sun/glassfish5/glassfish 
+# Glassfish (and assuming Glassfish is installed into the /sun/glassfish6/glassfish 
 # directory);  one might have the following property settings:
 #     webServerHost=localhost
 #     webServerPort=8001
-#     webServerHome=/sun/glassfish5/glassfish
+#     webServerHome=/sun/glassfish6/glassfish
 #     web.deployment.handler=glassfish.xml
 #     jta.classes=${webServerHome}/modules/jakarta.transaction.jar${pathsep}${webServerHome}/modules/jakarta.servlet-api.jar
 #     
