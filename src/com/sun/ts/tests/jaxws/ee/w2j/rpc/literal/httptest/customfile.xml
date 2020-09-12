@@ -17,7 +17,7 @@
 
 -->
 
-<bindings wsdlLocation="WSW2JRLHttpTestService.wsdl" xmlns="http://java.sun.com/xml/ns/jaxws">
+<bindings wsdlLocation="WSW2JRLHttpTestService.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="ns1:definitions" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest"/>

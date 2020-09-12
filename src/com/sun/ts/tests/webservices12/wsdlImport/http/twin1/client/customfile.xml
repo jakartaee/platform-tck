@@ -19,7 +19,7 @@
 
 <bindings wsdlLocation="svc1/Twin1HttpSvc1.wsdl"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
-     xmlns="http://java.sun.com/xml/ns/jaxws">    
+     xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.webservices12.wsdlImport.http.twin1.client"/>

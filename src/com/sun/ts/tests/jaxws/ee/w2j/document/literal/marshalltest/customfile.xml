@@ -17,7 +17,7 @@
 
 -->
 
-<bindings wsdlLocation="WSW2JDLMarshallTestService.wsdl" xmlns="http://java.sun.com/xml/ns/jaxws">
+<bindings wsdlLocation="WSW2JDLMarshallTestService.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest"/>

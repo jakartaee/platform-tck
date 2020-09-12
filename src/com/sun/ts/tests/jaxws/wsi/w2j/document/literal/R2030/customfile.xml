@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,8 @@
 
 -->
 
-<jaxws:bindings wsdlLocation="W2JDLR2030TestService.wsdl"  version="2.0"
-    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" 
+<jaxws:bindings wsdlLocation="W2JDLR2030TestService.wsdl"  version="3.0"
+    xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    

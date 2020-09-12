@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +18,7 @@
 -->
 
 <jaxws:bindings wsdlLocation="WSDLOWHandlerTestService.wsdl"
-    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" 
+    xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    
@@ -36,7 +36,7 @@ ervice"/>
 
    
     <jaxws:bindings>    
-        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+        <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
            <!-- ====================== -->
            <!-- service based handlers -->
            <!-- ====================== -->

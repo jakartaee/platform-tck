@@ -21,14 +21,14 @@
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:8000</id>
 			<description>
-Conformance Requirement (Standard binding declarations): The http://java.sun.com/xml/ns/jaxws namespace is reserved for standard JAX-WS binding declarations. Implementations MUST support all standard JAX-WS binding declarations. Implementation-specific binding declaration extensions MUST NOT use the http://java.sun.com/xml/ns/jaxws namespace.
+Conformance Requirement (Standard binding declarations): The https://jakarta.ee/xml/ns/jaxws namespace is reserved for standard JAX-WS binding declarations. Implementations MUST support all standard JAX-WS binding declarations. Implementation-specific binding declaration extensions MUST NOT use the https://jakarta.ee/xml/ns/jaxws namespace.
 			</description>
 			<location chapter = "8" section = "1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:8001</id>
 			<description>
-Conformance Requirement (Binding language extensibility): Implementations MUST ignore unknown elements and attributes appearing inside a binding declaration whose namespace name is not the one specified in the standard, i.e. http://java.sun.com/xml/ns/jaxws.
+Conformance Requirement (Binding language extensibility): Implementations MUST ignore unknown elements and attributes appearing inside a binding declaration whose namespace name is not the one specified in the standard, i.e. https://jakarta.ee/xml/ns/jaxws.
 			</description>
 			<location chapter = "8" section = "1"/>
 		</assertion>

@@ -18,7 +18,7 @@
 -->
 
 <jaxws:bindings wsdlLocation="WSRLOWHandlerTestService.wsdl"
-    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" 
+    xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    
@@ -36,7 +36,7 @@ ervice"/>
 
    
     <jaxws:bindings>    
-        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+        <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
            <!-- ====================== -->
            <!-- service based handlers -->
            <!-- ====================== -->

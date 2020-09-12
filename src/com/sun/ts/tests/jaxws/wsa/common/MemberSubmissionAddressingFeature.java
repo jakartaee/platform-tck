@@ -27,7 +27,7 @@ public class MemberSubmissionAddressingFeature extends WebServiceFeature {
   /**
    * Constant value identifying the MemberSubmissionAddressingFeature
    */
-  public static final String ID = "http://java.sun.com/xml/ns/jaxws/2004/08/addressing";
+  public static final String ID = "https://jakarta.ee/xml/ns/jaxws/2004/08/addressing";
 
   /**
    * Constant ID for the <code>required</code> feature parameter

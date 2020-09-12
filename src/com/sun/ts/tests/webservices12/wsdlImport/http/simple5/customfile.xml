@@ -17,7 +17,7 @@
 
 -->
 
-<bindings wsdlLocation="Simple5HttpSvc.wsdl" xmlns="http://java.sun.com/xml/ns/jaxws">
+<bindings wsdlLocation="Simple5HttpSvc.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.webservices12.wsdlImport.http.simple5"/>
