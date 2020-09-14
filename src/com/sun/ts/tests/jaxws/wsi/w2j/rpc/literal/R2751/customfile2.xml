@@ -17,11 +17,11 @@
 -->
 
 <jxb:bindings version="1.0"
-              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
               xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <jxb:bindings schemaLocation="W2JRLR2751TestDefs.xsd" node="/xs:schema">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
 	    <jxb:package name="com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751"/>
         </jxb:schemaBindings>
     </jxb:bindings>

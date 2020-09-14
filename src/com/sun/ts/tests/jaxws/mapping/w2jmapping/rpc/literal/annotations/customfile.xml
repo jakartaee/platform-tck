@@ -26,7 +26,7 @@
     <bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://w2jrlannotations.org/wsdl']"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
             <jxb:package name="com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.annotations"/>
         </jxb:schemaBindings>
     </bindings>

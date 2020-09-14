@@ -26,7 +26,7 @@
     <bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://example.com/']"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
             <jxb:package name="com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous"/>
         </jxb:schemaBindings>
     </bindings>

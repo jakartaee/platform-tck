@@ -17,7 +17,7 @@
 
 -->
 
-<bindings wsdlLocation="WSAW2JDLRequiredFalseTest.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+<bindings wsdlLocation="WSAW2JDLRequiredFalseTest.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb">
     <bindings node="wsdl:definitions">
         <package name="com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse"/>
     </bindings>

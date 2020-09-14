@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
     <bindings node="ns1:definitions/ns1:types/xs:schema[@targetNamespace='http://httptestservice.org/types']" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 	xmlns:ns1="http://schemas.xmlsoap.org/wsdl/">
-        <ns2:schemaBindings xmlns:ns2="http://java.sun.com/xml/ns/jaxb">
+        <ns2:schemaBindings xmlns:ns2="https://jakarta.ee/xml/ns/jaxb">
             <ns2:package name="com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest"/>
         </ns2:schemaBindings>
     </bindings>

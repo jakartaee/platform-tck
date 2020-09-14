@@ -20,7 +20,7 @@
     xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    
+    xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
     
     <jaxws:bindings node="wsdl:definitions">
         <jaxws:package name="com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2753"/>
