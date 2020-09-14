@@ -33,15 +33,15 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i "s#^build.level=.*#build.level=2#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish5/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
+sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed#g" ts.jte
+sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish6/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork#g" ts.jte
 
 mkdir $TCK_HOME/cajtckreport
 mkdir $TCK_HOME/cajtckwork
 
-cd $TCK_HOME/glassfish5/bin
+cd $TCK_HOME/glassfish6/bin
 ./asadmin start-domain
 
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest/caj

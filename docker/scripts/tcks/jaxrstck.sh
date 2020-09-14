@@ -32,7 +32,7 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrstckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrstckwork#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte

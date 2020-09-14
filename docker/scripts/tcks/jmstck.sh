@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ TS_HOME=$TCK_HOME/jmstck
 echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/glassfish5/mq#g" ts.jte
+sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/glassfish6/mq#g" ts.jte
 sed -i 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jmstckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jmstckwork#g" ts.jte

@@ -54,7 +54,7 @@ Reference Implementation.
 
 1. Start Security API 1.0 Reference Implementation:
 
-   cd /ri/glassfish5/glassfish/bin
+   cd /ri/glassfish6/glassfish/bin
    ./asadmin start-domain
 
 2. Config RI server and init LDAP:

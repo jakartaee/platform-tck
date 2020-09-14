@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^connector.home=.*#connector.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i "s#^connector.home=.*#connector.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
 sed -i "s#^orb.host=.*#orb.host=localhost#g" ts.jte
 sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/connectortckreport#g" ts.jte
@@ -39,7 +39,7 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/connectortckwork#g" ts.jte
 mkdir $TCK_HOME/connectortckreport
 mkdir $TCK_HOME/connectortckwork
 
-cd $TCK_HOME/glassfish5/bin
+cd $TCK_HOME/glassfish6/bin
 ./asadmin start-domain
 ./asadmin create-jvm-options -Djava.security.manager
 ./asadmin restart-domain

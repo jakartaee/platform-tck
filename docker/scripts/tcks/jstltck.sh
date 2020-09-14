@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,10 +30,10 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish6/glassfish#g" ts.jte
 sed -i 's#^webServerPort=.*#webServerPort=8080#g' ts.jte
 sed -i 's#^impl\.vi=.*#impl.vi=glassfish#g' ts.jte
-sed -i "s#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$TCK_HOME/glassfish5/glassfish/domains/domain1/autodeploy#g" ts.jte
+sed -i "s#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$TCK_HOME/glassfish6/glassfish/domains/domain1/autodeploy#g" ts.jte
 sed -i 's#^impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=20#g' ts.jte
 sed -i 's#^jdbc.classes=.*#jdbc.classes=\$\{webServerHome\}/../javadb/lib/derbyclient.jar#g' ts.jte
 sed -i 's#^webServerHost=.*#webServerHost=localhost#g' ts.jte
@@ -53,7 +53,7 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jstltckwork#g" ts.jte
 mkdir $TCK_HOME/jstltckreport
 mkdir $TCK_HOME/jstltckwork
 
-cd $TCK_HOME/glassfish5/glassfish/bin
+cd $TCK_HOME/glassfish6/glassfish/bin
 ./asadmin start-database
 ./asadmin start-domain
 

@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,8 +32,8 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 mkdir $TCK_HOME/ri
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
-sed -i "s#^webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/glassfish5/glassfish#g" ts.jte
+sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
+sed -i "s#^webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/glassfish6/glassfish#g" ts.jte
 sed -i 's#^webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
 sed -i 's#^webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
 sed -i 's#^wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
@@ -49,12 +49,12 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxwstckwork#g" ts.jte
 mkdir $TCK_HOME/jaxwstckreport
 mkdir $TCK_HOME/jaxwstckwork
 
-export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish5/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
+export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed -Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http,https"
 
 cd $TS_HOME/bin
 ant config.vi
 
-RI_DOMAIN_CONFIG_FILE=$TCK_HOME/ri/glassfish5/glassfish/domains/domain1/config/domain.xml
+RI_DOMAIN_CONFIG_FILE=$TCK_HOME/ri/glassfish6/glassfish/domains/domain1/config/domain.xml
 rm -rf $TCK_HOME/ri/*
 
 # TODO : Web Profile 
@@ -67,7 +67,7 @@ sed -i 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
 sed -i 's/8181/9181/g' $RI_DOMAIN_CONFIG_FILE
 
 cd $TS_HOME/bin
-cd $TCK_HOME/ri/glassfish5/glassfish/bin
+cd $TCK_HOME/ri/glassfish6/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.ri

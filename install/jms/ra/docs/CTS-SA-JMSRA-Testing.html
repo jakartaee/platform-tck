@@ -3,7 +3,7 @@
 <head>
 <!--
 
-    Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -83,13 +83,13 @@ h4 {  font-style: italic; color: #000099}
       </ol>
       <p>For example, you would set the following if running on Solaris or Linux:</p>
       <pre>% <strong>setenv JAVA_HOME /java8</strong>
-% <strong>setenv JAVAEE_HOME /glassfish5/glassfish</strong>
+% <strong>setenv JAVAEE_HOME /glassfish6/glassfish</strong>
 % <strong>setenv TS_HOME /javaeetck</strong>
 % <strong>setenv ANT_HOME /anthome</strong>
       </pre>
       <p>Or, if you are running on Windows you would set the following:</p>
       <pre>c:\&gt; <strong>set JAVA_HOME=C:\java</strong>
-c:\&gt; <strong>set JAVAEE_HOME=C:\glassfish5\glassfish</strong>
+c:\&gt; <strong>set JAVAEE_HOME=C:\glassfish6\glassfish</strong>
 c:\&gt; <strong>set TS_HOME=C:\javaeetck</strong>
 c:\&gt; <strong>set ANT_HOME=C:\apacheant</strong>
       </pre>
@@ -120,7 +120,7 @@ Jakarta Messaging Resource Adapter using the Jakarta EE 8 CI, Eclipse GlassFish 
       <p>Verify rest of <strong><code>ts.jte</code></strong> settings by consulting the CTS 8 Users Guide.</p>
       <p>Example settings if running on Solaris or Linux:</p>
 <pre>
-<strong>javaee.home=/glassfish5/glassfish</strong>
+<strong>javaee.home=/glassfish6/glassfish</strong>
 <strong>orb.host=localhost</strong>
 <strong>orb.port=3699</strong>
 <strong>test.sa.jmsra=true</strong>
@@ -129,7 +129,7 @@ Jakarta Messaging Resource Adapter using the Jakarta EE 8 CI, Eclipse GlassFish 
 <strong>jmsra.name=myjmsra</strong></pre>
     <p>Example settings if running on Windows:</p>
 <pre>
-<strong>javaee.home=c:/glassfish5/glassfish</strong>
+<strong>javaee.home=c:/glassfish6/glassfish</strong>
 <strong>orb.host=localhost</strong>
 <strong>orb.port=3699</strong>
 <strong>test.sa.jmsra=true</strong>
@@ -247,7 +247,7 @@ c:\&gt; <strong>ant -f xml\impl\glassfish\jmsra.xml restore-jmsmdbejbxml</strong
       <p>Verify the rest of your <strong><code>ts.jte</code></strong> settings by consulting the CTS 8 Users Guide.</p>
       <p>Example settings if running on Solaris or Linux:</p>
 <pre>
-<strong>javaee.home=/glassfish5/glassfish</strong>
+<strong>javaee.home=/glassfish6/glassfish</strong>
 <strong>orb.host=localhost</strong>
 <strong>orb.port=3699</strong>
 <strong>test.sa.jmsra=false</strong>
@@ -256,7 +256,7 @@ c:\&gt; <strong>ant -f xml\impl\glassfish\jmsra.xml restore-jmsmdbejbxml</strong
 <strong>jmsra.name=jmsra</strong></pre>
     <p>Example settings if running on Windows:</p>
 <pre>
-<strong>javaee.home=c:/glassfish5/glassfish</strong>
+<strong>javaee.home=c:/glassfish6/glassfish</strong>
 <strong>orb.host=localhost</strong>
 <strong>orb.port=3699</strong>
 <strong>test.sa.jmsra=false</strong>

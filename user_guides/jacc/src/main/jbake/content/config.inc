@@ -140,7 +140,7 @@ name in the `ts.jte` file.
 +
 * Deploys the {TechnologyShortName} Provider (from `<TS_HOME>/lib/tsprovider.jar`) to
 your server's library directory (for example using {TechnologyRI},
-`glassfish5/glassfish/lib`) where it can be picked up and loaded by the
+`glassfish6/glassfish/lib`) where it can be picked up and loaded by the
 server
 * Enables the Security manager with the `-Djava.security.manager` JVM
 option

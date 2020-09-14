@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,14 +34,14 @@ rm -f $TS_HOME/lib/jax-qname.jar
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web\.home=.*#web.home=$TCK_HOME/glassfish5/glassfish#g" ts.jte
+sed -i "s#^web\.home=.*#web.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/securityapitckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/securityapitckwork#g" ts.jte
 
 mkdir -p $TCK_HOME/securityapitckreport
 mkdir -p $TCK_HOME/securityapitckwork
 
-cd $TCK_HOME/glassfish5/bin
+cd $TCK_HOME/glassfish6/bin
 ./asadmin start-database
 
 cd $TS_HOME/bin
