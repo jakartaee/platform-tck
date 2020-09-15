@@ -19,9 +19,9 @@
 
 <webservices xmlns="https://jakarta.ee/xml/ns/jakartaee"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             version="1.2"
+             version="2.0"
 	     xmlns:wsdl="http://BasicAuthServiceTestService.org/wsdl"
-             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/javaee_web_services_1_2.xsd">
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/jakartaee_web_services_2_0.xsd">
   <webservice-description>
     <webservice-description-name>BasicAuthServiceTestService</webservice-description-name>
     <wsdl-file>WEB-INF/wsdl/BasicAuthServiceTestService.wsdl</wsdl-file>

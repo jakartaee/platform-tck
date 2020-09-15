@@ -16,7 +16,7 @@
 
 -->
 
-<jaxws:bindings wsdlLocation="W2JDLR2748TestService.wsdl"  version="2.0"
+<jaxws:bindings wsdlLocation="W2JDLR2748TestService.wsdl"  version="3.0"
     xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
