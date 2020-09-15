@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -107,20 +107,20 @@
   </message>
 
   <portType name="myW2JDLCustomizationEndpoint">
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
         <!-- rename the generated SEI from myW2JDLCustomizationEndpoint.java to W2JDLCustomizationEndpoint.java -->
         <jaxws:class name="W2JDLCustomizationEndpoint"/>
     </jaxws:bindings>
 
     <operation name="myhelloOperation">
-      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
            <!-- rename the generated java method name-->
            <jaxws:method name="helloOperation"/>
       </jaxws:bindings>
       <input message="tns:hello"/>
       <output message="tns:helloResponse"/>
       <fault name="MyFault" message="tns:MyFault">
-      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
         <!-- rename the Wrapper Exception from MyFault.java to W2JDLFault.java -->
         <jaxws:class name="W2JDLFault"/>
       </jaxws:bindings>
@@ -148,14 +148,14 @@
       <output message="tns:mode3Response"/>
     </operation>
     <operation name="WrapperElement1" >
-      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
           <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
       </jaxws:bindings>
       <input message="tns:WrapperElement1"/>
       <output message="tns:WrapperElement1Response"/>
     </operation>
     <operation name="WrapperElement2" >
-      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
           <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
       </jaxws:bindings>
       <input message="tns:WrapperElement2"/>
@@ -165,13 +165,13 @@
       <input message="tns:HeaderMessage"/>
       <output message="tns:HeaderMessageResponse"/>
       <fault name="AFault1" message="tns:AFault1">
-          <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
             <!-- rename the Wrapper Exception from AFault1.java to Fault1.java -->
             <jaxws:class name="Fault1"/>
           </jaxws:bindings>
       </fault>
       <fault name="AFault2" message="tns:AFault2">
-          <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
             <!-- rename the Wrapper Exception from AFault2.java to Fault2.java -->
             <jaxws:class name="Fault2"/>
           </jaxws:bindings>
@@ -276,7 +276,7 @@
     </operation>
   </binding>
   <service name="myW2JDLCustomization">
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
 
         <!-- rename the generated SI from MyW2JDLCustomization.java to W2JDLCustomization.java -->
         <jaxws:class name="W2JDLCustomization"/>

@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,11 +16,11 @@
 
 -->
 
-<jaxws:bindings wsdlLocation="RLHandlerService.wsdl"  version="2.0"
-    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" 
+<jaxws:bindings wsdlLocation="RLHandlerService.wsdl"  version="3.0"
+    xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:jxb="http://java.sun.com/xml/ns/jaxb">    
+    xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
     
     <jaxws:bindings node="wsdl:definitions">
         <jaxws:package name="com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient"/>        
@@ -28,13 +28,13 @@
     </jaxws:bindings>
 
     <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://rlhandlerservice.org/types']" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
             <jxb:package name="com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient"/>
         </jxb:schemaBindings>
     </jaxws:bindings>
    
     <jaxws:bindings>    
-        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+        <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
            <!-- ====================== -->
            <!-- service based handlers -->
            <!-- ====================== -->

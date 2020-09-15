@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,10 +18,10 @@
 -->
 
 <bindings wsdlLocation="MTOMTestService.wsdl"
-         xmlns="http://java.sun.com/xml/ns/jaxws" 
+         xmlns="https://jakarta.ee/xml/ns/jaxws"
          xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
          xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-         xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+         xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs"/>
@@ -30,7 +30,7 @@
     <bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://mtomservice.org/xsd']"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
             <jxb:package name="com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs"/>
         </jxb:schemaBindings>
     </bindings>

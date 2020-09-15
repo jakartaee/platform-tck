@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<bindings wsdlLocation="WSAW2JDLAnonymousTest.wsdl" xmlns="http://java.sun.com/xml/ns/jaxws">
+<bindings wsdlLocation="WSAW2JDLAnonymousTest.wsdl" xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous"/>
@@ -26,13 +26,13 @@
     <bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://example.com/']"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-        <jxb:schemaBindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+        <jxb:schemaBindings xmlns:jxb="https://jakarta.ee/xml/ns/jaxb">
             <jxb:package name="com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous"/>
         </jxb:schemaBindings>
     </bindings>
 
     <bindings>
-        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+        <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
             <handler-chain>
                 <handler>
                     <handler-name>ClientSOAPHandler</handler-name>

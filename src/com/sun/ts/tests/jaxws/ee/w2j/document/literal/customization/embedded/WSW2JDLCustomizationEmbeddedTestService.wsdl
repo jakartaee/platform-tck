@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@
   name="CustomizationEmbeddedTestService"
   targetNamespace="http://customizationembeddedtest.org/wsdl"
   xmlns="http://schemas.xmlsoap.org/wsdl/"
-  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -28,7 +28,7 @@
   xmlns:tns="http://customizationembeddedtest.org/wsdl">
 
 
-<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+<jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
     <jaxws:package name="com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded"/>
     <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
     <jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
@@ -160,7 +160,7 @@
 
   <portType name="HelloWorld">
     
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
 
         <!-- rename the generated SEI from HelloWorld.java to Hello.java -->
         <jaxws:class name="Hello"/>
@@ -170,7 +170,7 @@
 
     <operation name="HelloRequest"> 
 
-      <jaxws:bindings wsdlLocation="WSW2JDLCustomizationEmbeddedTestService.wsdl" xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings wsdlLocation="WSW2JDLCustomizationEmbeddedTestService.wsdl" xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
            <!-- rename the generated java method name-->
            <jaxws:method name="hello1"/>        
            <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
@@ -182,7 +182,7 @@
 
     <operation name="Hello2"> 
 
-      <jaxws:bindings wsdlLocation="WSW2JDLCustomizationEmbeddedTestService.wsdl" xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings wsdlLocation="WSW2JDLCustomizationEmbeddedTestService.wsdl" xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
            <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
            <jaxws:parameter part="wsdl:definitions/wsdl:message[@name='Hello2']/wsdl:part[@name='parameters']" childElementName="types:argument" name="helloArgument"/>
       </jaxws:bindings>
@@ -191,7 +191,7 @@
     </operation>
 
     <operation name="Hello3">
-      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+      <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
         <!-- rename the generated java method name-->
         <jaxws:method name="hello3"/>
         <jaxws:enableAsyncMapping>false</jaxws:enableAsyncMapping>
@@ -202,7 +202,7 @@
         <input message="tns:HelloRequest3"/>
         <output message="tns:HelloResponse3"/>
         <fault name="HelloFault" message="tns:HelloFaultMessage">
-          <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
             <jaxws:class name="com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.custom.pkg.HelloException"/>
           </jaxws:bindings>
       </fault>
@@ -261,12 +261,12 @@
   </binding>
 
   <service name="myService">
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
         <jaxws:class name="com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.custom.pkg.CustomizationEmbeddedTestService"/>        
     </jaxws:bindings>
 
     <port name="HelloPort" binding="tns:HelloBinding">
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+    <jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
         <jaxws:method name="getMyHelloPort"/>
         <jaxws:provider>false</jaxws:provider>
     </jaxws:bindings>

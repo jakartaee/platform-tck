@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
 
 <bindings wsdlLocation="nestedimportwsdl.wsdl"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
-     xmlns="http://java.sun.com/xml/ns/jaxws">    
+     xmlns="https://jakarta.ee/xml/ns/jaxws">
 
     <bindings node="wsdl:definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
         <package name="com.sun.ts.tests.webservices12.wsdlImport.http.nested4"/>
