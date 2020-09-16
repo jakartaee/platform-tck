@@ -187,6 +187,10 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxws" == "$tck" ]
   then
+    echo "########## Temporary JAXWS patch started ##########"
+    bash -xe ${WORKSPACE}/docker/build_jaxws-3.0.0.sh
+    echo "########## Temporary JAXWS patch applied ##########"
+
     sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/$GF_TOPLEVEL_DIR\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/$GF_TOPLEVEL_DIR\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/$tck/bin/ts.jte
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
     JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
