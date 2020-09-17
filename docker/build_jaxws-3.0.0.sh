@@ -33,7 +33,7 @@ if [ ! -d ${WORKSPACE}/jaxws_3.0.0 ]; then
   mkdir -p ${WORKSPACE}/jaxws_3.0.0
   cd ${WORKSPACE}/jaxws_3.0.0
   wget --progress=bar:force --no-cache "${JAXWS_RI_SNAPSHOT_URL}" -O jaxws-ri.zip && unzip -q jaxws-ri.zip
-  wget --progress=bar:force --no-cache "${JAXB_RI_URL}" -O jaxb-osgi.zip
+  wget --progress=bar:force --no-cache "${JAXB_RI_URL}" -O jaxb-osgi.jar
 fi
 
 cd ${JAXWS_RI_DIR}
@@ -58,4 +58,4 @@ rm -v ${GF_HOME}/glassfish6/glassfish/modules/webservices-osgi.jar
 cd ${JAXWS_RI_DIR}/ws-ri-gf
 jar cfm ${GF_HOME}/glassfish6/glassfish/modules/webservices-osgi.jar META-INF/MANIFEST.MF .
 
-cp -a ${WORKSPACE}/jaxws_3.0.0/jaxb-osgi.zip ${GF_HOME}/glassfish6/glassfish/modules/jaxb-osgi.zip
+cp -a ${WORKSPACE}/jaxws_3.0.0/jaxb-osgi.jar ${GF_HOME}/glassfish6/glassfish/modules/jaxb-osgi.jar
