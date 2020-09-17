@@ -1410,12 +1410,11 @@ sigTestClasspath=${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.
 ##   optional.tech.packages.to.ignore=javax.foo.pkg1,javax.bar.pkg2,com.blah.foo.pkg3
 ##
 ##  Additional notes:
-##    - If no packages are to be ignored, use "null". 
-##    - For EE 8 (RI) Full Platform use:
-##           optional.tech.packages.to.ignore=null 
+##    - always ignore the optional JAXB packages: 
+##           optional.tech.packages.to.ignore=jakarta.xml.bind 
 ##   
 #########################################################################
-optional.tech.packages.to.ignore=null
+optional.tech.packages.to.ignore=jakarta.xml.bind
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
