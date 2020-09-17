@@ -67,6 +67,10 @@ sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" t
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 sed -i "s#jsonb\.classes=.*#jsonb.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.bind-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.inject-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/yasson.jar#" ts.jte
 
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  echo "javaee.level=web"  >> ts.jte
+fi
+
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 

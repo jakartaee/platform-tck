@@ -80,6 +80,10 @@ sed -i "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  echo "javaee.level=web"  >> ts.jte
+fi
+
 echo "persistence.unit.name.2=JPATCK2" >> ts.jte
 echo "persistence.unit.name=CTS-EM" >> ts.jte
 echo "jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider" >> ts.jte

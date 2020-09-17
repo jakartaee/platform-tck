@@ -78,6 +78,10 @@ echo "impl.vi=glassfish" >> ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  echo "javaee.level=web"  >> ts.jte
+fi
+
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
