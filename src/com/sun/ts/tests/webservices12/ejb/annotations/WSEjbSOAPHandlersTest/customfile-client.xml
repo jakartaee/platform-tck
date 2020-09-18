@@ -23,7 +23,7 @@
     </bindings>
 
     <bindings>
-      <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+      <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
         <handler-chain>
           <handler>
 	    <handler-name>ClientHandler1</handler-name>
