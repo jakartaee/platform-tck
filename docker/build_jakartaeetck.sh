@@ -104,6 +104,9 @@ wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -q -o latest-glassfish.zip
 ls -l $GF_HOME/$GF_TOPLEVEL_DIR/glassfish/
 
+echo "########## Temporary JAXWS patch started ##########"
+bash -xe ${WORKSPACE}/docker/build_jaxws-3.0.0.sh
+echo "########## Temporary JAXWS patch applied ##########"
 
 if [ ! -z "$GF_VERSION_URL" ]; then
   wget --progress=bar:force --no-cache $GF_VERSION_URL -O glassfish.version
