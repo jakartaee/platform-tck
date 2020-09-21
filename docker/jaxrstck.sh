@@ -80,13 +80,22 @@ sed -i 's#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${web.home}/domains/domain
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
+if [ ! -z "$USER_KEYWORDS" ]; then
+    TCK_KEYWORDS="${USER_KEYWORDS}"
+elif [ ! -z "$KEYWORDS" ]; then
+    TCK_KEYWORDS="${KEYWORDS}"
+else
+    TCK_KEYWORDS="jaxrs"
+fi
+
+echo "KEYWORDS:${TCK_KEYWORDS}"
 cd $TS_HOME/bin
 ant config.vi
 cd $TS_HOME/bin
 ant deploy.all
 
 cd $TS_HOME/src/com/sun/ts/tests/
-ant runclient
+ant runclient -Dkeywords=\"${TCK_KEYWORDS}\"
 echo "Test run complete"
 
 JT_REPORT_DIR=$TCK_HOME/${TCK_NAME}report
