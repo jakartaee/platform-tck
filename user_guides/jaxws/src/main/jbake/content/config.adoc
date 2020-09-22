@@ -144,7 +144,7 @@ in your `<TS_HOME>/bin/ts.jte` file:
   container is installed (value of `${CATALINA_HOME}`).
   b.  Keep `jaxws.home` default value, which is `${webcontainer.home}`.
   c.  Set `jaxws.lib` value to the location where JAR files/classes were copied:
-  `${jaxws.home}/shared/lib`
+  `${CATALINA_HOME}/shared/lib`
   d.  Set the `jaxws.classes` to contain all libraries copied to `${jaxws.home}/shared/lib`
   directory. This shell script can generate proper value,
 +
@@ -166,7 +166,6 @@ done && echo
 which shall contain following list of `jaxws.classes`:
 +
 *  ${jaxws.lib}/FastInfoset.jar
-*  ${jaxws.lib}/commonj.sdo.jar
 *  ${jaxws.lib}/gmbal-api-only.jar
 *  ${jaxws.lib}/ha-api.jar
 *  ${jaxws.lib}/jakarta.activation.jar
@@ -180,19 +179,13 @@ which shall contain following list of `jaxws.classes`:
 *  ${jaxws.lib}/jaxb-impl.jar
 *  ${jaxws.lib}/jaxb-jxc.jar
 *  ${jaxws.lib}/jaxb-xjc.jar
-*  ${jaxws.lib}/jaxws-eclipselink-plugin.jar
 *  ${jaxws.lib}/jaxws-rt.jar
 *  ${jaxws.lib}/jaxws-tools.jar
 *  ${jaxws.lib}/jaxwstck.jar
 *  ${jaxws.lib}/management-api.jar
 *  ${jaxws.lib}/mimepull.jar
-*  ${jaxws.lib}/org.eclipse.persistence.asm.jar
-*  ${jaxws.lib}/org.eclipse.persistence.core.jar
-*  ${jaxws.lib}/org.eclipse.persistence.moxy.jar
-*  ${jaxws.lib}/org.eclipse.persistence.sdo.jar
 *  ${jaxws.lib}/resolver.jar
 *  ${jaxws.lib}/saaj-impl.jar
-*  ${jaxws.lib}/sdo-eclipselink-plugin.jar
 *  ${jaxws.lib}/stax-ex.jar
 *  ${jaxws.lib}/stax2-api.jar
 *  ${jaxws.lib}/streambuffer.jar
@@ -215,7 +208,7 @@ impl.vi=tomcat
   f.  Comment out `javaee.home` and all `s1as.` properties.
 
 4.  Edit the catalog file
-`<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog /META-INF/jax-ws-catalog.xml`,
+`<TS_HOME>/src/com/sun/ts/tests/jaxws/common/xml/catalog/META-INF/jax-ws-catalog.xml`,
 replacing the host and port settings of `systemId` with the value of
 your host and port setting where the WSDL is published.
 

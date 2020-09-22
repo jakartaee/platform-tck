@@ -33,8 +33,8 @@ and JAX-WS TCK 3.0 under `${TS_HOME}`, you would copy the JAR files/classes as f
 ----
 mkdir -p ${CATALINA_HOME}/shared/lib
 
-cp ${JAXWS_HOME}/lib/*.jar ${JAXWS_HOME}/lib/plugins/*.jar \
-   ${JAXWS_HOME}/extra/*.jar ${CATALINA_HOME}/shared/lib
+cp ${JAXWS_HOME}/lib/*.jar ${JAXWS_HOME}/extra/*.jar \
+   ${CATALINA_HOME}/shared/lib
 
 cp ${TS_HOME}/lib/tsharness.jar ${TS_HOME}/lib/jaxwstck.jar \
    ${CATALINA_HOME}/shared/lib
