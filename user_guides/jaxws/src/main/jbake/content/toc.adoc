@@ -63,6 +63,13 @@ link:install.html#GBFTP[3 Installation]
 link:config.html#GBFVV[4 Setup and Configuration]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+** link:config.html#GBFVU[4.1 Configuring Your Environment to Run the TCK Against the Compatible Implementation]
+** link:config.html#GCLHU[4.2 Configuring Your Environment to Repackage and Run the TCK Against the Vendor Implementation]
+** link:config.html#sthref9[4.3 Additional {TechnologyShortName} TCK Instructions]
+*** link:config.html#GCLHF[4.3.1 Configuring Your Environment to Rebuild and Run the {TechnologyShortName} TCK Against the {TechnologyShortName} Compatible Implementation]
+*** link:config.html#GCLIK[4.3.2 Configuring Your Environment to Simultaneously Run the {TechnologyShortName} TCK Against the VI and the {TechnologyShortName} Compatible Implementation]
+*** link:config.html#GCFOI[4.3.3 Configuring and Starting Your Application Server or Servers]
+*** link:config.html#GCLIN[4.3.4 Deploying the {TechnologyShortName} TCK Tests]
 ** link:config.html#GHGDH[4.4 Custom Configuration Handlers]
 ** link:config.html#GBFWG[4.5 Custom Deployment Handlers]
 *** link:config.html#GBFVA[4.5.1 To Create a Custom Deployment Handler]
