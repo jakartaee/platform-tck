@@ -120,7 +120,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 ###############################################################
 ts.run.classpath=${jaxrs_impl.classes}${pathsep}${jaxrs.classes}${pathsep}${servlet.classes}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/classes${pathsep}${jaxrs.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/classes${pathsep}${jaxrs.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
 
 apache.commons.classes=${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar
 local.classes=${ts.harness.classpath}${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${apache.commons.classes}
