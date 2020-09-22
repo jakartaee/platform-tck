@@ -80,26 +80,6 @@ public class JAXRSClient extends JAXRSCommonClient {
     setPropertyAndInvokeXml(method, new MediaType("application", "*+xml"));
   }
 
-  void setPropertyAndInvokeEncoded(String resourceMethod) throws Fault {
-    byte[] buffer = new byte[20];
-    java.util.zip.Deflater deflater = new Deflater();
-    deflater.setInput(resourceMethod.getBytes());
-    deflater.finish();
-    deflater.deflate(buffer);
-    String sBuffer = new String(buffer);
-
-    setProperty(Property.REQUEST_HEADERS,
-        "Transfer-Encoding: chunked, deflate");
-    setProperty(Property.REQUEST_HEADERS, "Content-Encoding: deflate");
-    setProperty(Property.REQUEST_HEADERS,
-        buildContentType(MediaType.WILDCARD_TYPE));
-    setProperty(Property.REQUEST_HEADERS, buildAccept(MediaType.WILDCARD_TYPE));
-    setProperty(Property.CONTENT, sBuffer);
-    setProperty(Property.REQUEST, buildRequest(Request.POST, resourceMethod));
-    setProperty(Property.STATUS_CODE, getStatusCode(Status.NOT_IMPLEMENTED));
-    invoke();
-  }
-
   /**
    * MediaType should either be an enum or have the values method It's neither
    * so this method uses reflection to acquire public static fields of given
@@ -264,22 +244,6 @@ public class JAXRSClient extends JAXRSCommonClient {
    */
   public void sourceProviderTest() throws Fault {
     setPropertyAndInvokeXml("source");
-  }
-
-  /*
-   * @testName: jaxbElementProviderTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:33; JAXRS:SPEC:33.8;
-   * 
-   * @test_Strategy: An implementation MUST include pre-packaged
-   * MessageBodyReader and MessageBodyWriter implementations for the following
-   * Java and media type combinations
-   * 
-   * jakarta.xml.bind.JAXBElement and application-supplied JAXB classes XML media
-   * types (text/xml, application/xml and application/*+xml)
-   */
-  public void jaxbElementProviderTest() throws Fault {
-    setPropertyAndInvokeXml("jaxb");
   }
 
   /*

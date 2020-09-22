@@ -30,7 +30,6 @@ import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.StreamingOutput;
-import jakarta.xml.bind.JAXBElement;
 import javax.xml.transform.Source;
 
 import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
@@ -143,12 +142,5 @@ public class Resource {
   public Response source(Source source) {
     MediaType media = headers.getMediaType();
     return Response.ok(source).type(media).build();
-  }
-
-  @Path("jaxb")
-  @POST
-  public Response jaxb(JAXBElement<String> jaxb) {
-    MediaType media = headers.getMediaType();
-    return Response.ok(jaxb).type(media).build();
   }
 }
