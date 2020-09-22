@@ -192,6 +192,23 @@ env.ts_win32.menu=true
 sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar
 
 ########################################################################
+## This property is used to support the odd side case when we have an
+## optional technology package that is used but should not be tested.
+##
+## This property (i.e. optional.tech.packages.to.ignore) must be a comma
+## separated list of packages that are NOT to be validated/tested when
+## during the sigtest utilities validation of Optional Technologies.
+## Example Usage:
+##   optional.tech.packages.to.ignore=javax.foo.pkg1,javax.bar.pkg2,com.blah.foo.pkg3
+##
+##  Additional notes:
+##    - always ignore the optional JAXB packages: 
+##           optional.tech.packages.to.ignore=jakarta.xml.bind 
+##   
+#########################################################################
+optional.tech.packages.to.ignore=jakarta.xml.bind
+
+########################################################################
 ## These properties are used by the Javatest harness.
 #
 # @harness.log.port   specifies the port that server components use
