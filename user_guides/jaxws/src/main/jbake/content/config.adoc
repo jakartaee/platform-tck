@@ -194,6 +194,8 @@ which shall contain following list of `jaxws.classes`:
 +
 separated by `${pathsep}`
 +
+`resolver.jar` should be required only on non-Oracle/non-OpenJDK based JDKs.
++
   e.  Set the `impl.vi` and `impl.vi.deploy.dir` properties to the supported
   web container and deploy directory for ApacheTomcat web container:
 +
@@ -416,8 +418,8 @@ path entries (`;` on Windows, `:` on UNIX/Linux).
 On Windows, you must escape any backslashes with an extra backslash in
 path separators used in any of the following properties, or use forward
 slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Platform
-installation is `C:\JavaEE9`, you must specify it as `C:\\JavaEE9` or
-`C:/JavaEE9`.
+installation is `C:\JakartaEE9`, you must specify it as `C:\\JakartaEE9` or
+`C:/JakartaEE9`.
 
 =======================================================================
 
@@ -466,8 +468,8 @@ environment variables:
   l. Set the `impl.ri`, `impl.ri.deploy.dir`, `impl.ri.host`, and
   `impl.ri.port` properties to the supported web container, deploy
   directory, host and port used for the {TechnologyShortName} Reference Implementation. +
-  The supported web container for standalone web applications is the Java
-  EE 8 Compatible Implementation. The default settings for these properties are as follows:
+  The supported web container for standalone web applications is the Jakarta
+  EE 9 Compatible Implementation. The default settings for these properties are as follows:
 +
 --
 [source,oac_no_warn]

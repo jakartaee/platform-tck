@@ -150,7 +150,7 @@ The following is a listing of classes built using the XML-WS Compatible Implemen
 --
 [source,oac_no_warn]
 ----
-$TS_HOME/tools/ant/bin/ant llc
+$ANT_HOME/bin/ant llc
 /var/tmp/jaxwstck/classes/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest
 -------------------------------------------------------------------------------
 total 60
@@ -174,7 +174,7 @@ This shows you the listing of archives built using the XML-WS Compatible Impleme
 --
 [source,oac_no_warn]
 ----
-$TS_HOME/tools/ant/bin/ant lld
+$ANT_HOME/bin/ant lld
 /var/tmp/jaxwstck/dist/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest
 -------------------------------------------------------------------------------
 total 286
@@ -202,7 +202,7 @@ This shows you the listing of classes (under
 --
 [source,oac_no_warn]
 ----
-$TS_HOME/tools/ant/bin/ant -Dbuild.vi=true llc
+$ANT_HOME/bin/ant -Dbuild.vi=true llc
 /var/tmp/jaxwstck/classes_vi_built/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest
 -------------------------------------------------------------------------------
 total 60
@@ -228,7 +228,7 @@ implementation are prepended with `vi_built_`.
 --
 [source,oac_no_warn]
 ----
-$TS_HOME/tools/ant/bin/ant lld
+$ANT_HOME/bin/ant lld
 /var/tmp/jaxwstck/dist/com/sun/ts/tests/jaxws/ee/w2j/document/literal/httptest
 -------------------------------------------------------------------------------
 total 286
