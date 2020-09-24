@@ -13,3 +13,7 @@
 ** `jakarta.xml.ws.spi.http`
 
 ** `jakarta.xml.ws.wsaddressing`
+
+** `jakarta.jws`
+
+** `jakarta.jws.soap`
