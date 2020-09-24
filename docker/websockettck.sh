@@ -72,6 +72,10 @@ sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}/#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}/#g" ts.jte
 
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  echo "javaee.level=web"  >> ts.jte
+fi
+
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar#g' ts.jte
 fi

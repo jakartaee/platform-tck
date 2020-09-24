@@ -77,6 +77,10 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   sed -i 's/javax.servlet-api.jar/jakarta.servlet-api.jar/g' ts.jte
 fi
 
+if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
+  echo "javaee.level=web"  >> ts.jte
+fi
+
 mkdir -p ${TCK_HOME}/${TCK_NAME}report/${TCK_NAME}
 mkdir -p ${TCK_HOME}/${TCK_NAME}work/${TCK_NAME}
 export JT_REPORT_DIR=${TCK_HOME}/${TCK_NAME}report
