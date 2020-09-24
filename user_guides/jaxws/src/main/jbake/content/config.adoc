@@ -416,8 +416,8 @@ path entries (`;` on Windows, `:` on UNIX/Linux).
 On Windows, you must escape any backslashes with an extra backslash in
 path separators used in any of the following properties, or use forward
 slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Platform
-installation is `C:\JavaEE8`, you must specify it as `C:\\JavaEE8` or
-`C:/JavaEE8`.
+installation is `C:\JavaEE9`, you must specify it as `C:\\JavaEE9` or
+`C:/JavaEE9`.
 
 =======================================================================
 

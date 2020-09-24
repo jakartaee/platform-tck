@@ -167,7 +167,7 @@ h4 {  font-style: italic; color: #000099}
         The online version of the JT Harness version 5.0 documentation is available <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation">here</a>.</p>
 
         <hr>
-        <h2><a name="install_config_tomcat8">Quick Steps to Configure Apache Tomcat 8 for Jakarta XML Web Services TCK</a></h2>
+        <h2><a name="install_config_tomcat10">Quick Steps to Configure Apache Tomcat 10 for Jakarta XML Web Services TCK</a></h2>
 
         <p>Follow the steps below to configure Apache Tomcat 10 for Jakarta XML Web Services TCK 3.0</p>
 
@@ -183,7 +183,7 @@ h4 {  font-style: italic; color: #000099}
               <li>cp /jaxws-ri/lib/*.jar /apache-tomcat-10.0.x/shared/lib</li>
               <li>cd /apache-tomcat-10.0.x/shared/lib; &nbsp; mv jaxws-api.jar jaxb-api.jar /apache-tomcat-10.0.x/endorsed</li>
               <li>cp /jaxwstck/lib/jaxwstck.jar /jaxwstck/lib/tsharness.jar /apache-tomcat-10.0.x/shared/lib</li>
-              <li>cd /jaxwstck/bin; &nbsp; mv ts.jte ts.jte.javaee8; &nbsp; cp ts.jte.tomcat.jdk18 ts.jte</li>
+              <li>cd /jaxwstck/bin; &nbsp; mv ts.jte ts.jte.javaee9; &nbsp; cp ts.jte.tomcat.jdk18 ts.jte</li>
               <li>Make sure endorsed.dirs, endorsed.dirs.ri properties in ts.jte file point to Apache Tomcat 10.0.x endorsed directory</li>
             </ul>
           </ul>
