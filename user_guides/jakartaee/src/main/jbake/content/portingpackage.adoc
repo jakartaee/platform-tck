@@ -25,14 +25,6 @@ Edition server environment. You also need to create a deployment plan
 for each deployable component (EAR, EJB JAR, WAR, and RAR files) in the
 test suite as defined by the Jakarta Platform, Enterprise Edition platform. 
 
-[NOTE]
-=======================================================================
-
-Vendors are required to intrepret the `ior-security-config` specified in
-the EJB runtime XML file and configure the EJB according to the
-specified values. For more information, see link:csiv2logs.html#GEXUI[The
-security-role-mapping Element].
-
 =======================================================================
 
 

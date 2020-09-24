@@ -1,7 +1,7 @@
 type=page
 status=published
 title=Common Applications Deployment
-next=csiv2logs.html
+next=jaspic-files.html
 prev=portingpackage.html
 ~~~~~~
 Common Applications Deployment
@@ -66,8 +66,6 @@ With Associated Common Applications
 |`interop/tx/entity` |`interop/tx/txEbean`
 
 |`interop/tx/webclient` |`interop/tx/txbean`
-
-|`tests/interop/csiv2` |`interop/csiv2/rionly`
 
 |`ejb/ee/pm/ejbql` |`ejb/ee/pm/ejbql/schema`
 
