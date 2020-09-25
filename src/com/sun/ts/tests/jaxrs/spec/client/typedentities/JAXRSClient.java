@@ -29,11 +29,9 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import jakarta.activation.DataSource;
-import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.StreamingOutput;
-import jakarta.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -227,34 +225,6 @@ public class JAXRSClient extends JaxrsCommonClient {
     standardReaderInvocation(MediaType.APPLICATION_ATOM_XML_TYPE);
     responseEntity = getResponse().readEntity(Source.class);
     assertFault(responseEntity != null, "Returned Entity is null!");
-  }
-
-  /*
-   * @testName: clientJaxbElementReaderTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:70;
-   * 
-   * @test_Strategy: See Section 4.2.4 for a list of entity providers that MUST
-   * be supported by all JAX-RS implementations
-   */
-  public void clientJaxbElementReaderTest() throws Fault {
-    GenericType<JAXBElement<String>> type = new GenericType<JAXBElement<String>>() {
-    };
-
-    standardReaderInvocation(MediaType.TEXT_XML_TYPE);
-    JAXBElement<?> responseEntity = getResponse().readEntity(type);
-    assertFault(responseEntity != null, "Returned Entity is null!");
-
-    standardReaderInvocation(MediaType.APPLICATION_XML_TYPE);
-    responseEntity = getResponse().readEntity(type);
-    assertFault(responseEntity != null, "Returned Entity is null!");
-
-    standardReaderInvocation(MediaType.APPLICATION_ATOM_XML_TYPE);
-    responseEntity = getResponse().readEntity(type);
-    assertFault(responseEntity != null, "Returned Entity is null!");
-
-    String s = responseEntity.getValue().toString();
-    assertFault(s.equals(entity), "Returned Entity", s, "is unexpected");
   }
 
   /*
