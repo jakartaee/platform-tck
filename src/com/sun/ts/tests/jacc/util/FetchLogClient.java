@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jacc.util;
 
 import jakarta.ejb.*;
-import javax.rmi.PortableRemoteObject;
 import java.rmi.*;
 import javax.naming.*;
 import java.net.*;

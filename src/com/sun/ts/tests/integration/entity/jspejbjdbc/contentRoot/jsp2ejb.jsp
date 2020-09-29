@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,6 @@
 
 <%@ page language="java" %>
 <%@ page import="javax.naming.*" %>
-<%@ page import="javax.rmi.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.sun.ts.tests.integration.entity.jspejbjdbc.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>

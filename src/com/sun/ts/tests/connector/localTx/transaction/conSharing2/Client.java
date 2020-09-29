@@ -27,7 +27,6 @@ import com.sun.ts.lib.harness.*;
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import javax.rmi.*;
 
 import com.sun.javatest.Status;
 
