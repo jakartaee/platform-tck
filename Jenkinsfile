@@ -128,10 +128,12 @@ spec:
   - name: jnlp
     env:
       - name: JNLP_PROTOCOL_OPTS
-        value: "-XshowSettings:vm -Xmx2048m -Dsun.zip.disableMemoryMapping=true -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=true"
+        value: "-XshowSettings:vm -Xmx1024m -Dsun.zip.disableMemoryMapping=true -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=true"
     resources:
       limits:
-        memory: "3Gi"
+        memory: "2.5Gi"
+      requests:
+        memory: "1.5Gi"
   - name: jakartaeetck-ci
     image: jakartaee/cts-base:0.2
     command:
@@ -140,11 +142,15 @@ spec:
     imagePullPolicy: Always
     env:
       - name: JAVA_TOOL_OPTIONS
-        value: -Xmx6G
+        value: -Xmx1G
     resources:
       limits:
-        memory: "10Gi"
-        cpu: "2.0"
+        memory: "6Gi"
+        cpu: "1.0"
+      requests:
+        cpu: "0.5"
+        memory: "4Gi"
+
   - name: james-mail
     image: jakartaee/cts-mailserver:0.1
     command:
