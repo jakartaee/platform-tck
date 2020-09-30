@@ -17,6 +17,7 @@
 package com.sun.ts.tests.jaxrs.spec.client.typedentitieswithxmlbinding;
 
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import javax.xml.namespace.QName;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.xml.bind.JAXBElement;
@@ -68,6 +69,23 @@ public class JAXRSClient extends JaxrsCommonClient {
     assertFault(s.equals(entity), "Returned Entity", s, "is unexpected");
   }
 
+  /*
+   * @testName: clientJaxbElementWriterTest
+   * 
+   * @assertion_ids: JAXRS:SPEC:70;
+   * 
+   * @test_Strategy: See Section 4.2.4 for a list of entity providers that MUST
+   * be supported by all JAX-RS implementations
+   */
+  public void clientJaxbElementWriterTest() throws Fault {
+    setProperty(Property.REQUEST_HEADERS,
+        buildContentType(MediaType.APPLICATION_XML_TYPE));
+    JAXBElement<String> element = new JAXBElement<String>(new QName(""),
+        String.class, entity);
+    standardWriterInvocation(element);
+  }
+
+
   // ///////////////////////////////////////////////////////////////////////
   // Helper methods
 
@@ -78,6 +96,14 @@ public class JAXRSClient extends JaxrsCommonClient {
     bufferEntity(true);
     invoke();
   }
+
+  protected void standardWriterInvocation(Object objectEntity) throws Fault {
+    setProperty(Property.REQUEST, buildRequest(Request.POST, "standardwriter"));
+    setRequestContentEntity(objectEntity);
+    setProperty(Property.SEARCH_STRING, entity);
+    invoke();
+  }
+
 
   protected <T> void toStringTest(Class<T> clazz) throws Fault {
     T responseEntity = getResponse().readEntity(clazz);
