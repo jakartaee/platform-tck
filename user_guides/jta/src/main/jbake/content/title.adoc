@@ -17,7 +17,7 @@ Technology Compatibility Kit User's Guide for {TechnologyFullName}
 
 Release {TechnologyVersion} for Jakarta EE
 
-September 2020
+October 2020
 
 [[sthref1]]
 
