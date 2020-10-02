@@ -1,1 +1,1 @@
-ValueExpression[#{foo}]
+#{foo}
