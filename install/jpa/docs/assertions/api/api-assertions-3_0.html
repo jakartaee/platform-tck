@@ -235,7 +235,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:JAVADOC:29"></a><font size="1PT">PERSISTENCE:JAVADOC:29</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.Entity.name<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">(Optional) The entity name. Defaults to the unqualified name of the entity class. This name is used to refer to the entity in queries. The name must not be a reserved literal in the Java Persistence query language.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+</font></TD><TD align="left" valign="center"><font size="1PT">(Optional) The entity name. Defaults to the unqualified name of the entity class. This name is used to refer to the entity in queries. The name must not be a reserved literal in the Jakarta Persistence query language.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -310,7 +310,7 @@
 	(
 		String
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of Query for executing a named query (in the Java Persistence query language or in native SQL).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of Query for executing a named query (in the Jakarta Persistence query language or in native SQL).</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -352,7 +352,7 @@
 	(
 		String
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of Query for executing a Java Persistence query language statement.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of Query for executing a Jakarta Persistence query language statement.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -935,7 +935,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:JAVADOC:124"></a><font size="1PT">PERSISTENCE:JAVADOC:124</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.NamedQuery.query<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">(Required) The query string in the Java Persistence query language.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+</font></TD><TD align="left" valign="center"><font size="1PT">(Required) The query string in the Jakarta Persistence query language.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1825,7 +1825,7 @@
 		String
 				,<br>Class
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of TypedQuery for executing a Java Persistence query language named query. The select list of the query must contain only a single item, which must be assignable to the type specified by the resultClass argument.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of TypedQuery for executing a Jakarta Persistence query language named query. The select list of the query must contain only a single item, which must be assignable to the type specified by the resultClass argument.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -1846,7 +1846,7 @@
 		String
 				,<br>Class
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of TypedQuery for executing a Java Persistence query language statement. The select list of the query must contain only a single item, which must be assignable to the type specified by the resultClass argument.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+	</font></TD><TD align="left" valign="center"><font size="1PT">Create an instance of TypedQuery for executing a Jakarta Persistence query language statement. The select list of the query must contain only a single item, which must be assignable to the type specified by the resultClass argument.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -2287,7 +2287,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:JAVADOC:382"></a><font size="1PT">PERSISTENCE:JAVADOC:382</font></TD><TD align="center" valign="center"><font size="1PT">Class</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.persistence.Parameter.getParameterType<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">Return the Java type of the parameter. Values bound to the parameter must be assignable to this type. This method is required to be supported for criteria queries only. Applications that use this method for Java Persistence query language queries and native queries will not be portable.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+</font></TD><TD align="left" valign="center"><font size="1PT">Return the Java type of the parameter. Values bound to the parameter must be assignable to this type. This method is required to be supported for criteria queries only. Applications that use this method for Jakarta Persistence query language queries and native queries will not be portable.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
