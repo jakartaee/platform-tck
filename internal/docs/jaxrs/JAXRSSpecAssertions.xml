@@ -162,11 +162,11 @@
             <chapter id="11" name="Environment">
                 <sections>
                     <section id="1" name="Servlet Container"/>
-                    <section id="2" name="Integration with Java EE Technologies"/>
+                    <section id="2" name="Integration with Jakarta EE Technologies"/>
                     <section id="2.1" name="Servlets"/>
                     <section id="2.2" name="Managed Beans"/>
                     <section id="2.3" name="Context and Dependency Injection (CDI)"/>
-                    <section id="2.4" name="Enterprise Java Beans (EJBs)"/>
+                    <section id="2.4" name="Enterprise Beans"/>
                     <section id="2.5" name="Bean Validation"/>
                     <section id="2.6" name="Java API for JSON Processing"/>
                     <section id="2.7" name="Java API for JSON Binding"/>

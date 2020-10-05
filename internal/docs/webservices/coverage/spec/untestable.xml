@@ -23,7 +23,7 @@
   <previous-id>0</previous-id>
   <technology>WS4EE</technology>
   <id>WS4EE</id>
-  <name>Web Services for Java EE</name>
+  <name>Web Services for Jakarta EE</name>
   <version>1.2</version>
   <location>
     <chapters />
@@ -538,17 +538,17 @@
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:9000</id>
-      <description>Authentication There are few authentication models to authenticate message senders that are adopted or proposed as standards. Form based login requires html processing capability so it is not included in this list. Web Services for Java EE product providers must support the following: BASIC-AUTH: Java EE servers support basic auth information in the HTTP header that carries the SOAP request. The Java EE server must be able to verify the user ID and password using the authentication mechanism specific to the server. Typically, user ID and password are authenticated against a user registry. To ensure confidentiality of the password information, the user ID and password are sent over an SSL connection (i.e., HTTPS). See the Servlet specification for details on how BASIC-AUTH must be supported by Java EE servers and how a HTTP Digest authentication can be optionally supported. Client container specification of authentication data is described by the Java EE specification section 3.4.4. The EJB and web containers must support deploy time configuration of credential information to use for Web services requests using BASIC-AUTH. The means for this is provider specific though it is typically handled using the generated static stub or dynamic proxy implementation. Symmetric HTTPS: Java EE servers currently support authentication through symmetric SSL, when both the requestor and the server can authenticate each other using digital certificates. For the HTTP clients (i.e., SOAP/HTTP), the model is based on the Servlet specification.</description>
+      <description>Authentication There are few authentication models to authenticate message senders that are adopted or proposed as standards. Form based login requires html processing capability so it is not included in this list. Web Services for Jakarta EE product providers must support the following: BASIC-AUTH: Jakarta EE servers support basic auth information in the HTTP header that carries the SOAP request. The Jakarta EE server must be able to verify the user ID and password using the authentication mechanism specific to the server. Typically, user ID and password are authenticated against a user registry. To ensure confidentiality of the password information, the user ID and password are sent over an SSL connection (i.e., HTTPS). See the Servlet specification for details on how BASIC-AUTH must be supported by Jakarta EE servers and how a HTTP Digest authentication can be optionally supported. Client container specification of authentication data is described by the Jakarta EE specification section 3.4.4. The EJB and web containers must support deploy time configuration of credential information to use for Web services requests using BASIC-AUTH. The means for this is provider specific though it is typically handled using the generated static stub or dynamic proxy implementation. Symmetric HTTPS: Jakarta EE servers currently support authentication through symmetric SSL, when both the requestor and the server can authenticate each other using digital certificates. For the HTTP clients (i.e., SOAP/HTTP), the model is based on the Servlet specification.</description>
       <location chapter="9" section="3.1" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:9001</id>
-      <description>Authorization Web Services for Java EE relies on the authorization support provided by the Java EE containers and is described in the Java EE specification section 3.5. JAX-RPC or JAX-WS Service Endpoint authorization must be defined using the http-method element value of POST.</description>
+      <description>Authorization Web Services for Jakarta EE relies on the authorization support provided by the Jakarta EE containers and is described in the Jakarta EE specification section 3.5. JAX-RPC or JAX-WS Service Endpoint authorization must be defined using the http-method element value of POST.</description>
       <location chapter="9" section="3.2" />
     </assertion>
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="false">
       <id>WS4EE:SPEC:9002</id>
-      <description>Integrity and Confidentiality A Web Services for Java EE server provider must support HTTPS for hop-by-hop confidentiality and integrity. The WSDL port address may use https: to specify the client requirements.</description>
+      <description>Integrity and Confidentiality A Web Services for Jakarta EE server provider must support HTTPS for hop-by-hop confidentiality and integrity. The WSDL port address may use https: to specify the client requirements.</description>
       <location chapter="9" section="3.3" />
     </assertion>
   </assertions>

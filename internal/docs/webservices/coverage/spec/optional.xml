@@ -23,7 +23,7 @@
   <previous-id>0</previous-id>
   <technology>WS4EE</technology>
   <id>WS4EE</id>
-  <name>Web Services for Java EE</name>
+  <name>Web Services for Jakarta EE</name>
   <version>1.2</version>
   <location>
     <chapters />

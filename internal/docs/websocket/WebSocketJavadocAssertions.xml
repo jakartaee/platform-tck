@@ -1495,7 +1495,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>153</id>
-      <description>Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated with the class level jakarta.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, java.net.URI) instead.</description>
+      <description>Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated with the class level jakarta.websocket.server.ServerEndpoint annotation. This method blocks until the connection is established, or throws an error if either the connection could not be made or there was a problem with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Jakarta EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, java.net.URI) instead.</description>
       <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="connectToServer" return-type="jakarta.websocket.Session">
@@ -1571,7 +1571,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>159</id>
-      <description>Connect the supplied programmatic client endpoint instance to its server with the given configuration. This method blocks until the connection is established, or throws an error if the connection could not be made. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, jakarta.websocket.ClientEndpointConfig, java.net.URI) instead.</description>
+      <description>Connect the supplied programmatic client endpoint instance to its server with the given configuration. This method blocks until the connection is established, or throws an error if the connection could not be made. If the developer uses this method to deploy the client endpoint, services like dependency injection that are supported, for example, when the implementation is part of the Jakarta EE platform may not be available. If the client endpoint uses dependency injection, use WebSocketContainer#connectToServer(java.lang.Class, jakarta.websocket.ClientEndpointConfig, java.net.URI) instead.</description>
       <package>jakarta.websocket</package>
       <class-interface>WebSocketContainer</class-interface>
       <method name="connectToServer" return-type="jakarta.websocket.Session">
@@ -1739,7 +1739,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>175</id>
-      <description>Return a reference to the HttpSession that the web socket handshake that started this conversation was part of, if the implementation is part of a Java EE web container.</description>
+      <description>Return a reference to the HttpSession that the web socket handshake that started this conversation was part of, if the implementation is part of a Jakarta EE web container.</description>
       <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="getHttpSession" return-type="java.lang.Object" />
@@ -1774,7 +1774,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>180</id>
-      <description>Checks whether the current user is in the given role. Roles and role membership can be defined using deployment descriptors of the containing WAR file, if running in a Java EE web container. If the user has not been authenticated, the method returns false.</description>
+      <description>Checks whether the current user is in the given role. Roles and role membership can be defined using deployment descriptors of the containing WAR file, if running in a Jakarta EE web container. If the user has not been authenticated, the method returns false.</description>
       <package>jakarta.websocket.server</package>
       <class-interface>HandshakeRequest</class-interface>
       <method name="isUserInRole" return-type="boolean">
@@ -2015,7 +2015,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>206</id>
-      <description>This method is called by the container each time a new client connects to the logical endpoint this configurator configures. Developers may override this method to control instantiation of endpoint instances in order to customize the initialization of the endpoint instance, or manage them in some other way. If the developer overrides this method, services like dependency injection that are otherwise supported, for example, when the implementation is part of the Java EE platform may not be available. The platform default implementation of this method returns a new endpoint instance per call, thereby ensuring that there is one endpoint instance per client, the default deployment cardinality.</description>
+      <description>This method is called by the container each time a new client connects to the logical endpoint this configurator configures. Developers may override this method to control instantiation of endpoint instances in order to customize the initialization of the endpoint instance, or manage them in some other way. If the developer overrides this method, services like dependency injection that are otherwise supported, for example, when the implementation is part of the Jakarta EE platform may not be available. The platform default implementation of this method returns a new endpoint instance per call, thereby ensuring that there is one endpoint instance per client, the default deployment cardinality.</description>
       <package>jakarta.websocket.server</package>
       <class-interface>ServerEndpointConfig.Configurator</class-interface>
       <method name="getEndpointInstance" return-type="java.lang.Object">

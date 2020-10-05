@@ -24,7 +24,7 @@
 	<previous-id>1</previous-id>
 	<technology>SecurityAPI</technology>
 	<id>Security API 1.0</id>
-	<name>Java EE Security API</name>
+	<name>Jakarta EE Security API</name>
 	<version>1.0</version>	
 	<location-names>
 		<chapters>

@@ -22,7 +22,7 @@
     <previous-id>118</previous-id>
     <technology>CONCURRENCY</technology>
     <id>CONCURRENCY</id>
-    <name>Concurrency Utilities for Java EE</name>
+    <name>Concurrency Utilities for Jakarta EE</name>
     <version>1.0</version>
     <location-names>
         <chapters>
@@ -31,7 +31,7 @@
                     <section id="1" name="Overview"/>
                     <section id="2" name="Goals of this specification"/>
                     <section id="3" name="Other Java Platform Specifications"/>
-                    <section id="4" name="Concurrency Utilities for Java EE Expert Group"/>
+                    <section id="4" name="Concurrency Utilities for Jakarta EE Expert Group"/>
                     <section id="5" name="Document Conventions"/>
                 </sections>
             </chapter>
@@ -42,7 +42,7 @@
                     <section id="3" name="Container Thread Context"/>
                     <section id="3.1" name="Contextual Invocation Points"/>
                     <section id="3.2" name="Contextual Objects and Tasks"/>
-                    <section id="4" name="Usage with Java EE Connector Architecture"/>
+                    <section id="4" name="Usage with Jakarta EE Connector Architecture"/>
                     <section id="5" name="Security"/>
                 </sections>
             </chapter>
@@ -52,7 +52,7 @@
                     <section id="1.1" name="Application Component Provider’s Responsibilities"/>
                     <section id="1.2" name="Application Assembler’s Responsibilities"/>
                     <section id="1.3" name="Deployer’s Responsibilities"/>
-                    <section id="1.4" name="Java EE Product Provider’s Responsibilities"/>
+                    <section id="1.4" name="Jakarta EE Product Provider’s Responsibilities"/>
                     <section id="1.5" name="System Administrator’s Responsibilities"/>
                     <section id="1.6" name="Lifecycle"/>
                     <section id="1.7" name="Quality of Service"/>
@@ -61,7 +61,7 @@
                     <section id="2.1" name="Application Component Provider’s Responsibilities"/>
                     <section id="2.2" name="Application Assembler’s Responsibilities"/>
                     <section id="2.3" name="Deployer’s Responsibilities"/>
-                    <section id="2.4" name="Java EE Product Provider’s Responsibilities"/>
+                    <section id="2.4" name="Jakarta EE Product Provider’s Responsibilities"/>
                     <section id="2.5" name="System Administrator’s Responsibilities"/>
                     <section id="2.6" name="Lifecycle"/>
                     <section id="2.7" name="Quality of Service"/>
@@ -70,13 +70,13 @@
                     <section id="3.1" name="Application Component Provider’s Responsibilities"/>
                     <section id="3.2" name="Application Assembler’s Responsibilities "/>
                     <section id="3.3" name="Deployer’s Responsibilities "/>
-                    <section id="3.4" name="Java EE Product Provider’s Responsibilities"/>
+                    <section id="3.4" name="Jakarta EE Product Provider’s Responsibilities"/>
                     <section id="3.5" name="Transaction Management."/>
                     <section id="4" name="ManagedThreadFactory "/>
                     <section id="4.1" name="Application Component Provider’s Responsibilities"/>
                     <section id="4.2" name="Application Assembler’s Responsibilities"/>
                     <section id="4.3" name="Deployer’s Responsibilities"/>
-                    <section id="4.4" name="Java EE Product Provider’s Responsibilities"/>
+                    <section id="4.4" name="Jakarta EE Product Provider’s Responsibilities"/>
                     <section id="4.5" name="System Administrator’s Responsibilities"/>
                     <section id="4.6" name="Transaction Management"/>
                 </sections>
@@ -87,7 +87,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:1</id>
             <description>By extending the java.util.concurrent API,
-                application servers and Java EE containers can become aware of the resources
+                application servers and Jakarta EE containers can become aware of the resources
                 that are used and provide the proper execution context for the asynchronous operations.
                 This is largely achieved by providing managed versions of the predominant
                 java.util.concurrent.ExecutorService interfaces.
@@ -103,7 +103,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:3</id>
-            <description>When using Java EE services from a non- container thread, the following behaviors are required:</description>
+            <description>When using Jakarta EE services from a non- container thread, the following behaviors are required:</description>
             <location chapter="2" section="3"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -163,7 +163,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:5</id>
             <description>Four new concurrency services (represented by four dark-gray rectangles) allow application components
-                and Java EE Standard Services to run asynchronous tasks without violating container contracts.
+                and Jakarta EE Standard Services to run asynchronous tasks without violating container contracts.
             </description>
             <location chapter="2" section="3"/>
         </assertion>
@@ -221,7 +221,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:8</id>
-            <description>This specification addresses the need for Java EE applications to run application business logic asynchronously using</description>
+            <description>This specification addresses the need for Jakarta EE applications to run application business logic asynchronously using</description>
             <location chapter="2" section="4"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -335,15 +335,15 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:15</id>
-            <description>Task instances will run as an extension of the Java EE container instance
-                that submitted the task as and may interact with Java EE resources
+            <description>Task instances will run as an extension of the Jakarta EE container instance
+                that submitted the task as and may interact with Jakarta EE resources
                 as defined in other sections of this specification.
             </description>
             <location chapter="3" section="1.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:16</id>
-            <description>Java EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the jakarta.enterprise.concurrent.ManagedTaskListener interface.</description>
+            <description>Jakarta EE Product Providers may include other contexts (e.g. Locale) that may be propagated to a task or a thread that invokes the callback methods in the jakarta.enterprise.concurrent.ManagedTaskListener interface.</description>
             <location chapter="3" section="1.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -375,7 +375,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:22</id>
-            <description>All tasks, when executed from the ManagedExecutorService, will run with the Java EE component
+            <description>All tasks, when executed from the ManagedExecutorService, will run with the Jakarta EE component
                 identity of the component that submitted the task.
             </description>
             <location chapter="3" section="1.6.1"/>
@@ -426,7 +426,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:26</id>
-            <description>When a ManagedExecutorService instance is being shutdown by the Java EE Product Provider:</description>
+            <description>When a ManagedExecutorService instance is being shutdown by the Jakarta EE Product Provider:</description>
             <location chapter="3" section="1.6.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -528,7 +528,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:35</id>
-            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction..</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Jakarta EE Product Provider is required to detect this error and abort the transaction..</description>
             <location chapter="3" section="1.8.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -689,7 +689,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:46</id>
-            <description>Java EE Product Providers may include other contexts that may be propagated to</description>
+            <description>Jakarta EE Product Providers may include other contexts that may be propagated to</description>
             <location chapter="3" section="2.4"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -716,7 +716,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:49</id>
-            <description>The Java EE Product Provider must provide a preconfigured, default ManagedScheduledExecutorService for use by application components under the JNDI name java:comp/DefaultManagedScheduledExecutorService.</description>
+            <description>The Jakarta EE Product Provider must provide a preconfigured, default ManagedScheduledExecutorService for use by application components under the JNDI name java:comp/DefaultManagedScheduledExecutorService.</description>
             <location chapter="3" section="2.4.3"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -805,7 +805,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:59</id>
-            <description>When a ManagedScheduledExecutorService instance is being shutdown by the Java EE Product Provider:</description>
+            <description>When a ManagedScheduledExecutorService instance is being shutdown by the Jakarta EE Product Provider:</description>
             <location chapter="3" section="2.6.1"/>
             <sub-assertions>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -907,7 +907,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:68</id>
-            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Jakarta EE Product Provider is required to detect this error and abort the transaction.</description>
             <location chapter="3" section="2.8.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -946,7 +946,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:75</id>
-            <description>The ContextService also allows non-Java EE service callbacks (such as JMS MessageListeners and JMX NotificationListeners) to run in the context of the listener registrant instead of the implementation provider's undefined thread context.</description>
+            <description>The ContextService also allows non-Jakarta EE service callbacks (such as JMS MessageListeners and JMX NotificationListeners) to run in the context of the listener registrant instead of the implementation provider's undefined thread context.</description>
             <location chapter="3" section="3"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -978,7 +978,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:77</id>
             <description>Contextual object proxies will run as an extension of the application
-                component instance that created the proxy as and may interact with Java EE container resources
+                component instance that created the proxy as and may interact with Jakarta EE container resources
             </description>
             <location chapter="3" section="3.1"/>
         </assertion>
@@ -996,7 +996,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:80</id>
-            <description>Java EE Product Providers may add any additional container contexts to the managed ContextService and provide the means for configuration of those contexts in any way so long as these contexts do not violate the required aspects of this specification.</description>
+            <description>Jakarta EE Product Providers may add any additional container contexts to the managed ContextService and provide the means for configuration of those contexts in any way so long as these contexts do not violate the required aspects of this specification.</description>
             <location chapter="3" section="3.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1033,7 +1033,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:84</id>
-            <description>The Java EE Produce Provider must provide a preconfigured, default ContextService for use by application
+            <description>The Jakarta EE Produce Provider must provide a preconfigured, default ContextService for use by application
                 components under the JNDI name java:comp/DefaultContextService.
             </description>
             <location chapter="3" section="3.4.3"/>
@@ -1103,7 +1103,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>CONCURRENCY:SPEC:91.4</id>
-                    <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+                    <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Jakarta EE Product Provider is required to detect this error and abort the transaction.</description>
                     <location chapter="3" section="3.5.1"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1154,7 +1154,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:93</id>
             <description>The jakarta.enterprise.concurrent.ManagedThreadFactory allows applications to create thread instances from a
-                Java EE Product Provider without creating new java.lang.Thread instances directly.
+                Jakarta EE Product Provider without creating new java.lang.Thread instances directly.
             </description>
             <location chapter="3" section="4"/>
         </assertion>
@@ -1165,7 +1165,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:95</id>
-            <description>Java EE Product Providers can provide custom Thread implementations to add management capabilities and
+            <description>Jakarta EE Product Providers can provide custom Thread implementations to add management capabilities and
                 container contextual information to the thread.
             </description>
             <location chapter="3" section="4"/>
@@ -1284,7 +1284,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:101</id>
-            <description>Java EE Product Providers may add any additional container contexts to the managed ManagedThreadFactory and provide the means for configuration of those contexts in any way so long as these contexts do not violate the required aspects of this specification.</description>
+            <description>Jakarta EE Product Providers may add any additional container contexts to the managed ManagedThreadFactory and provide the means for configuration of those contexts in any way so long as these contexts do not violate the required aspects of this specification.</description>
             <location chapter="3" section="4.4"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -1308,7 +1308,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:105</id>
-            <description>The Java EE Produce Provider must provide a preconfigured, default ManagedThreadFactory for use by
+            <description>The Jakarta EE Produce Provider must provide a preconfigured, default ManagedThreadFactory for use by
                 application components under the JNDI name java:comp/DefaultManagedThreadFactory.
             </description>
             <location chapter="3" section="4.4.3"/>
@@ -1353,7 +1353,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>CONCURRENCY:SPEC:112</id>
-            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Java EE Product Provider is required to detect this error and abort the transaction.</description>
+            <description>A task instance that starts a transaction using the jakarta.transaction.UserTransaction instance but fails to complete the transaction is an error. The Jakarta EE Product Provider is required to detect this error and abort the transaction.</description>
             <location chapter="3" section="4.6.1"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

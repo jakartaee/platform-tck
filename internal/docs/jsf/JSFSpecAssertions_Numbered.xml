@@ -6080,10 +6080,10 @@
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
     <id>JSF:SPEC:208</id>
     <description>
-        JSF implementations that are part of a Java EE technology compliant
+        JSF implementations that are part of a Jakarta EE technology compliant
         implementation are required to validate the application resource file 
         against the XML schema for structural correctness. The validation is not
-        required for JSF implementations that are not part of a Java EE 
+        required for JSF implementations that are not part of a Jakarta EE 
         technology-compliant implementation.
     </description>
     <location chapter="11" section="4.2"/>

@@ -3328,7 +3328,7 @@
                         <since>JAX-WS 2.1</since>
                         <comment>
                             <lead>Factory method to create a W3CEndpointReference.</lead>
-                            <detail>     This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Java EE application.  To do so the address property can be provided or this  method can automatically determine the address of   an endpoint that is published by the same Java EE application and is  identified by the serviceName and   portName propeties.  If the address is   null and the serviceName and   portName do not identify an endpoint published by the   same Java EE application, a  javax.lang.IllegalStateException MUST be thrown.</detail>
+                            <detail>     This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Jakarta EE application.  To do so the address property can be provided or this  method can automatically determine the address of   an endpoint that is published by the same Jakarta EE application and is  identified by the serviceName and   portName propeties.  If the address is   null and the serviceName and   portName do not identify an endpoint published by the   same Jakarta EE application, a  javax.lang.IllegalStateException MUST be thrown.</detail>
                         </comment>
                         <parameters>
                             <parameter name="address" package="java.lang" type="String">
@@ -3358,7 +3358,7 @@
                         <since>JAX-WS 2.2</since>
                         <comment>
                             <lead>Factory method to create a W3CEndpointReference.</lead>
-                            <detail>  Using this method, a W3CEndpointReference instance  can be created with extension elements, and attributes.  Provider implementations must override the default  implementation.     This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Java EE application.  To do so the address property can be provided or this  method can automatically determine the address of  an endpoint that is published by the same Java EE application and is  identified by the serviceName and  portName propeties.  If the address is  null and the serviceName and  portName do not identify an endpoint published by the  same Java EE application, a  javax.lang.IllegalStateException MUST be thrown.</detail>
+                            <detail>  Using this method, a W3CEndpointReference instance  can be created with extension elements, and attributes.  Provider implementations must override the default  implementation.     This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Jakarta EE application.  To do so the address property can be provided or this  method can automatically determine the address of  an endpoint that is published by the same Jakarta EE application and is  identified by the serviceName and  portName propeties.  If the address is  null and the serviceName and  portName do not identify an endpoint published by the  same Jakarta EE application, a  javax.lang.IllegalStateException MUST be thrown.</detail>
                         </comment>
                         <parameters>
                             <parameter name="address" package="java.lang" type="String">
@@ -3910,7 +3910,7 @@
                 <since>JAX-WS 2.1</since>
                 <comment>
                     <lead>This class is used to build W3CEndpointReference  instances.</lead>
-                    <detail> The intended use of this clsss is for  an application component, for example a factory component,  to create an W3CEndpointReference for a  web service endpoint published by the same   Java EE application. It can also be used to create  W3CEndpointReferences for an Java SE based  endpoint by providing the address property.    When creating a W3CEndpointReference for an  endpoint that is not published by the same Java EE application,  the address property MUST be specified.      When creating a W3CEndpointReference for an endpoint   published by the same Java EE application, the address  property MAY be null but then the serviceName  and endpointName MUST specify an endpoint published by  the same Java EE application.    When the wsdlDocumentLocation is specified it MUST refer  to a valid WSDL document and the serviceName and  endpointName (if specified) MUST match a service and port   in the WSDL document.</detail>
+                    <detail> The intended use of this clsss is for  an application component, for example a factory component,  to create an W3CEndpointReference for a  web service endpoint published by the same   Jakarta EE application. It can also be used to create  W3CEndpointReferences for an Java SE based  endpoint by providing the address property.    When creating a W3CEndpointReference for an  endpoint that is not published by the same Jakarta EE application,  the address property MUST be specified.      When creating a W3CEndpointReference for an endpoint   published by the same Jakarta EE application, the address  property MAY be null but then the serviceName  and endpointName MUST specify an endpoint published by  the same Jakarta EE application.    When the wsdlDocumentLocation is specified it MUST refer  to a valid WSDL document and the serviceName and  endpointName (if specified) MUST match a service and port   in the WSDL document.</detail>
                 </comment>
                 <constructors>
                     <constructor modifiers="public">
@@ -3923,7 +3923,7 @@
                     <method modifiers="public" name="address">
                         <comment>
                             <lead>Sets the address to the  W3CEndpointReference instance&apos;s  wsa:Address.</lead>
-                            <detail>    The address MUST be set to a non-null  value when building a W3CEndpointReference for a   web service endpoint that is not published by the same  Java EE application or when running on Java SE.</detail>
+                            <detail>    The address MUST be set to a non-null  value when building a W3CEndpointReference for a   web service endpoint that is not published by the same  Jakarta EE application or when running on Java SE.</detail>
                         </comment>
                         <parameters>
                             <parameter name="address" package="java.lang" type="String">
@@ -3955,7 +3955,7 @@
                         </comment>
                         <parameters>
                             <parameter name="serviceName" package="javax.xml.namespace" type="QName">
-                                <comment>The service name of the endpoint to be targeted       by the returned W3CEndpointReference.  This property       may also be used with the endpointName (portName)        property to lookup the address of a web service        endpoint that is published by the same Java EE application.</comment>
+                                <comment>The service name of the endpoint to be targeted       by the returned W3CEndpointReference.  This property       may also be used with the endpointName (portName)        property to lookup the address of a web service        endpoint that is published by the same Jakarta EE application.</comment>
                             </parameter>
                         </parameters>
                         <returns package="jakarta.xml.ws.wsaddressing" type="W3CEndpointReferenceBuilder">
@@ -3970,7 +3970,7 @@
                         </comment>
                         <parameters>
                             <parameter name="endpointName" package="javax.xml.namespace" type="QName">
-                                <comment>The name of the endpoint to be targeted       by the returned W3CEndpointReference. The        endpointName (portName) property may also be       used with the serviceName property to lookup        the address of a web service        endpoint published by the same Java EE application.</comment>
+                                <comment>The name of the endpoint to be targeted       by the returned W3CEndpointReference. The        endpointName (portName) property may also be       used with the serviceName property to lookup        the address of a web service        endpoint published by the same Jakarta EE application.</comment>
                             </parameter>
                         </parameters>
                         <returns package="jakarta.xml.ws.wsaddressing" type="W3CEndpointReferenceBuilder">
@@ -4051,7 +4051,7 @@
                     <method modifiers="public" name="build">
                         <comment>
                             <lead>Builds a W3CEndpointReference from the accumulated  properties set on this W3CEndpointReferenceBuilder  instance.</lead>
-                            <detail>    This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Java EE application.  This method can automatically determine the address of   an endpoint published by the same Java EE application that is identified by the   serviceName and   endpointName properties.  If the address is   null and the serviceName and   endpointName   do not identify an endpoint published by the same Java EE application, a   java.lang.IllegalStateException MUST be thrown.</detail>
+                            <detail>    This method can be used to create a W3CEndpointReference  for any endpoint by specifying the address property along  with any other desired properties.  This method  can also be used to create a W3CEndpointReference for  an endpoint that is published by the same Jakarta EE application.  This method can automatically determine the address of   an endpoint published by the same Jakarta EE application that is identified by the   serviceName and   endpointName properties.  If the address is   null and the serviceName and   endpointName   do not identify an endpoint published by the same Jakarta EE application, a   java.lang.IllegalStateException MUST be thrown.</detail>
                         </comment>
                         <returns package="jakarta.xml.ws.wsaddressing" type="W3CEndpointReference">
                             <comment>W3CEndpointReference from the accumulated  properties set on this W3CEndpointReferenceBuilder  instance. This method never returns null.</comment>

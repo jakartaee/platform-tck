@@ -1074,7 +1074,7 @@ href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/intern
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>WebSocket:SPEC:WSC-7.1.1-1</id>
-			<description>Websocket implementations part of the Java EE platform are required to support field, method, and constructor injection using the jakarta.inject.Inject annotation into all websocket endpoint classes, as well as the use of interceptors for these classes.</description>
+			<description>Websocket implementations part of the Jakarta EE platform are required to support field, method, and constructor injection using the jakarta.inject.Inject annotation into all websocket endpoint classes, as well as the use of interceptors for these classes.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>

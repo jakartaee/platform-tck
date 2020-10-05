@@ -58,7 +58,7 @@ Add support for Singleton EJB. The service provider implements the JAX-WS Web se
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:3005</id>
 <description>
-Support for Java EE profiles.
+Support for Jakarta EE profiles.
 The Java EE 6 platform specification introduces "profiles" to target specific class of applications.
 
 The Java EE 6 platform marks JAX-RPC as a proposed optional technology that may be pruned in a future release. Therefore, requirements in this specification related to JAX-RPC should also be considered proposed optional. Such requirements may be made optional in a future release of this specification.

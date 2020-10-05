@@ -371,7 +371,7 @@ The developer is responsible for packaging, either by containment or reference, 
 with JAX-WS when annotations are used), Service Endpoint Interface class (optional with JAX-WS), Service
 Implementation Bean class, and their dependent classes, JAX-WS generated portable artifacts, JAX-RPC
 mapping file (not required with JAX-WS and ignored if specified) along with a Web services deployment
-descriptor (not required with JAX-WS when annotations are used) in a Java EE module.
+descriptor (not required with JAX-WS when annotations are used) in a Jakarta EE module.
 </description>
 <location chapter="5" section="4" />
 </assertion>

@@ -24,8 +24,8 @@
         <previous-id>330</previous-id>
 	<technology>Connector</technology>
 	<id>Connector</id>
-	<name>Java EE Connector API</name>
-	<version>1.7</version>
+	<name>Jakarta EE Connector API</name>
+	<version>2.0</version>
 	<location-names>
 		<chapters>
 
@@ -190,8 +190,8 @@
 		<id>Connector:SPEC:200</id>
 		<description>
                     The complete set of application server requirements in this specification
-                    is required for a compliant Java EE Connectors Architecture 1.6 container 
-                    within an implementation of the Java EE Full Profile.
+                    is required for a compliant Jakarta EE Connectors Architecture container
+                    within an implementation of the Jakarta EE Full Profile.
                 </description>
 		<location chapter="3" section="5"/>
 		<comment>
@@ -206,8 +206,8 @@
 		<id>Connector:SPEC:201</id>
 		<description>
                     The minimum set, listed below, must be supported for a compliant 
-                    Java EE Connectors Architecture 1.6 container within an
-                    implementation of any subset of the Java EE Full Profile.
+                    Jakarta EE Connectors Architecture container within an
+                    implementation of any subset of the Jakarta EE Full Profile.
                     ....
                     Based on the availability of other dependent component specification
                     implementations, the following requirements must be satisfied by a 
@@ -1549,7 +1549,7 @@
                     - This should be testable by checking that MF.getEndpointClass() returns
                       the fully qualified path to the known MDB.
                     - Also, not required since MessageEndpointFactory is only required by 
-                      Java EE compliant app servers.
+                      Jakarta EE compliant app servers.
 		</comment>
     </assertion>
 
@@ -1567,7 +1567,7 @@
                     - Not testable because it is not possible to test for unique names in 
                       each/multiple app server instances (i.e. cluster).
                     - Also, not required since MessageEndpointFactory is only required by 
-                      Java EE compliant app servers.
+                      Jakarta EE compliant app servers.
                     - while not obvious from the description above, this is testing MEF.getActivationName().
 		</comment>
     </assertion>
@@ -2886,7 +2886,7 @@ recovery.</description>
                     Note 1: This assertion refers to the two resource definition nnotations of: 
                             @ConnectionFactoryDefinition and @AdministeredObjectDefinition.
                     Note 2:  we can test these annos in *some* containers such as 
-                            Java EE (full) profile and EE Web Profile but NOT all containers.  
+                            Jakarta EE (full) profile and EE Web Profile but NOT all containers.  
 		</comment>
     </assertion>
 
@@ -2904,7 +2904,7 @@ recovery.</description>
                       connection resource externally via some config (such as config.vi)
                     - Note that this is still NOT guaranteed to be supported in ALL 
                       standalone connector containers so can only be tested in things
-                      such as:  (full) Java EE profile, Web Profile, Servlet, etc.  
+                      such as:  (full) Jakarta EE profile, Web Profile, Servlet, etc.  
 		</comment>
     </assertion>
 
@@ -2925,7 +2925,7 @@ recovery.</description>
                       Also, we can test this for ours but can not validate it for all. 
                     - Note that this is still NOT guaranteed to be supported in ALL 
                       standalone connector containers so can only be tested in things
-                      such as:  (full) Java EE profile, Web Profile, Servlet, etc.  
+                      such as:  (full) Jakarta EE profile, Web Profile, Servlet, etc.  
 		</comment>
     </assertion>
 
@@ -2940,14 +2940,14 @@ recovery.</description>
 		<comment>
                     Note 1: This is referring to @AdministeredObjectDefinition annotation
                     Note 2: we can test these annos in *some* containers such as 
-                            Java EE (full) profile and EE Web Profile but NOT all containers.  
+                            Jakarta EE (full) profile and EE Web Profile but NOT all containers.  
                     Note 3: In a supported environment, we ought to be able to test this
                             by using the anno and verifying that the Aministered object 
                             exists and is accessible during deployment time with no
                             no other exgternal config (such as config.vi etc)
                     Note 4: This is still NOT guaranteed to be supported in ALL 
                             standalone connector containers so can only be tested in envs
-                            such as:  (full) Java EE profile, Web Profile, Servlet, etc.  
+                            such as:  (full) Jakarta EE profile, Web Profile, Servlet, etc.  
 		</comment>
     </assertion>
 
@@ -2967,7 +2967,7 @@ recovery.</description>
 		<comment>
                     - Note that this is still NOT guaranteed to be supported in ALL 
                       standalone connector containers so can only be tested in envs
-                      such as:  (full) Java EE profile, Web Profile, Servlet, etc.  
+                      such as:  (full) Jakarta EE profile, Web Profile, Servlet, etc.  
 		</comment>
     </assertion>
 
@@ -2983,7 +2983,7 @@ recovery.</description>
 		<comment>
                     - Note that this is still NOT guaranteed to be supported in ALL 
                       standalone connector containers so can only be tested in envs
-                      such as:  (full) Java EE profile, Web Profile, Servlet, etc.  
+                      such as:  (full) Jakarta EE profile, Web Profile, Servlet, etc.  
 		</comment>
     </assertion>
 

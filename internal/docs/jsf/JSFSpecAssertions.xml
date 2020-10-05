@@ -340,7 +340,7 @@
                     <section id="3" name="The Managed Bean Facility"/>
                     <section id="3.1" name="Managed Bean Configuration Example"/>
 					<section id="4" name="Managed Bean Annotations"/>
-					<section id="4.1" name="JSF Managed Classes and Java EE Annotations"/>
+					<section id="4.1" name="JSF Managed Classes and Jakarta EE Annotations"/>
 					<section id="4.2" name="Managed Bean Lifecycle Annotations"/>
                     <section id="5" name="How Faces Leverages the Unified EL"/>
                     <section id="5.1" name="ELContext"/>

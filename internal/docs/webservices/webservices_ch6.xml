@@ -93,7 +93,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6009</id>
 			<description>
-                   A JAX-WS Web Services for Java EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation.
+                   A JAX-WS Web Services for Jakarta EE provider is required to provide an implementation of HandlerResolver that returns the Handler Chain with Handlers specified in the deployment descriptor or the jakarta.jws.HandlerChain annotation.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -117,7 +117,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6012</id>
 			<description>
-                   A Web Services for Java EE provider is required to provide an implementation of MessageContext.
+                   A Web Services for Jakarta EE provider is required to provide an implementation of MessageContext.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>
@@ -125,7 +125,7 @@ to the message is made.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>WS4EE:SPEC:6013</id>
 			<description>
-                   A Web Services for Java EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and jakarta.xml.ws.handler.soap package.
+                   A Web Services for Jakarta EE provider is required to provide all the interfaces of the javax.xml.rpc.handler.soap and jakarta.xml.ws.handler.soap package.
 			</description>
 			<location chapter = "6" section = "2.2"/>
 		</assertion>

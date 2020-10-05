@@ -192,7 +192,7 @@
 					<section id = "7.3.2" name = "Exceptions"/>            
 					<section id = "7.3.3" name = "Message Order"/> 
 					<section id = "7.3.4" name = "Close, commit or rollback"/> 
-					<section id = "7.3.5" name = "Restritions on usage in Java EE"/> 
+					<section id = "7.3.5" name = "Restritions on usage in Jakarta EE"/> 
 					<section id = "7.3.6" name = "Message headers"/> 
 					<section id = "7.3.7" name = "Restrictions on threading"/> 
 					<section id = "7.3.8" name = "Use of CompletionListener by the JMS provider"/> 
@@ -256,11 +256,11 @@
 					<section id = "11.4" name = "JMS Application Server Interfaces"/>                                                 
 				</sections>    
 			</chapter>        
-			<chapter id = "12" name = "Use of JMS API in Java EE applications">   
+			<chapter id = "12" name = "Use of JMS API in Jakarta EE applications">   
 				<sections>    
 					<section id = "12.1" name = "Overview"/>
-					<section id = "12.2" name = "Restrictions on the use of JMS API in Java EE Web or EJB container"/>
-					<section id = "12.3" name = "Behavior of JMS sessions in Java EE Web or EJB container"/>
+					<section id = "12.2" name = "Restrictions on the use of JMS API in Jakarta EE Web or EJB container"/>
+					<section id = "12.3" name = "Behavior of JMS sessions in Jakarta EE Web or EJB container"/>
 					<section id = "12.4" name = "Injection of JMSContext objects"/>
 					<section id = "12.4.1" name = "Support for injection"/>
 					<section id = "12.4.2" name = "Container-managed and application-managed JMSContexts"/>
@@ -1572,7 +1572,7 @@ If the close method is called on the MessageProducer, Session, Connection or JMS
 		</assertion>  
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
 			<id>JMS:SPEC:275.4</id>         
-			<description>An asynchronous send is not permitted in a Java EE EJB or web container. If the application component violates this restriction the send method may throw a JMSException or JMSRuntimeException (depending on the method signature).</description>         
+			<description>An asynchronous send is not permitted in a Jakarta Enterprise Beans or web container. If the application component violates this restriction the send method may throw a JMSException or JMSRuntimeException (depending on the method signature).</description>
 			<location chapter = "7" section = "7.3.5"/>      
 		</assertion>  
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
@@ -1946,19 +1946,19 @@ When a durable subscription is created on a topic, the noLocal argument may be u
 		</assertion>   
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">         
 			<id>JMS:SPEC:263</id>         
-			<description>The Java Platform, Enterprise Edition (Java EE) Specification, v7 requires support for the JMS API as part of the full Java EE platform.
-The Java EE platform provides a number of additional features which are not available in the Java Platform Standard Edition (Java SE). These include the following: 1) Support for distributed transactions which are demarcated either programmatically, using methods on jakarta.transaction.UserTransaction, or automatically by the container. These are referred to in this specification as JTA transactions to distinguish them from JMS local transactions.  2) Support for JMS message-driven beans.  These features are defined in detail in other specifications including the Java EE 7 specification and the Enterprise JavaBeans 3.2 specification. However the use of the Java EE platform imposes restrictions on the way that the JMS API may be used by applications, and those restrictions are described here.  The JMS specification does not define how a Java EE container integrates with its JMS provider. Different Java EE containers may integrate with their JMS provider in different ways.  In the future, an integration point for JMS integration into J2EE platforms will be provided using the J2EE Connector Architecture.
+			<description>The Java Platform, Enterprise Edition (Java EE) Specification, v7 requires support for the JMS API as part of the full Jakarta EE platform.
+The Jakarta EE platform provides a number of additional features which are not available in the Java Platform Standard Edition (Java SE). These include the following: 1) Support for distributed transactions which are demarcated either programmatically, using methods on jakarta.transaction.UserTransaction, or automatically by the container. These are referred to in this specification as JTA transactions to distinguish them from JMS local transactions.  2) Support for JMS message-driven beans.  These features are defined in detail in other specifications including the Java EE 7 specification and the Enterprise JavaBeans 3.2 specification. However the use of the Jakarta EE platform imposes restrictions on the way that the JMS API may be used by applications, and those restrictions are described here.  The JMS specification does not define how a Jakarta EE container integrates with its JMS provider. Different Jakarta EE containers may integrate with their JMS provider in different ways.  In the future, an integration point for JMS integration into Jakarta platforms will be provided using the Jakarta Connector Architecture.
 </description>
 			<location chapter = "12" section = "12.1"/>      
 		</assertion>   
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
 			<id>JMS:SPEC:264</id>         
-			<description>JMS applications which run in the Java EE web or EJB container are subject to a number of restrictions in the way the JMS API may be used. These restrictions are necessary for the following reasons:
-1) In a Java EE web or EJB container, a JMS provider operates as a transactional resource manager which must participate in JTA transactions as defined in the Java EE platform specification. This overrides the behaviour of JMS sessions as defined elsewhere in the JMS specification. For more details see section 12.3 "Behaviour of JMS sessions in the Java EE web or EJB container".
-2) The Java EE web or EJB containers need to be able to manage the threads used to run applications.
-3) The Java EE web and EJB containers perform connection management which may include the pooling of JMS connections.
-The restrictions described in this section do not apply to the Java EE application client container.
-Applications running in the Java EE web and EJB containers must not attempt to create more than one active (not closed) Session object per connection.</description>
+			<description>JMS applications which run in the Jakarta EE web or Enterprise Beans container are subject to a number of restrictions in the way the JMS API may be used. These restrictions are necessary for the following reasons:
+1) In a Jakarta EE web or Enterprise Beans container, a JMS provider operates as a transactional resource manager which must participate in JTA transactions as defined in the Jakarta EE platform specification. This overrides the behaviour of JMS sessions as defined elsewhere in the JMS specification. For more details see section 12.3 "Behaviour of JMS sessions in the Jakarta EE web or Enterprise Beans container".
+2) The Jakarta EE web or Enterprise Beans containers need to be able to manage the threads used to run applications.
+3) The Jakarta EE web and Enterprise Beans containers perform connection management which may include the pooling of JMS connections.
+The restrictions described in this section do not apply to the Jakarta EE application client container.
+Applications running in the Jakarta EE web and Enterprise Beans containers must not attempt to create more than one active (not closed) Session object per connection.</description>
 			<location chapter = "12" section = "12.2"/>      
                         <sub-assertions>
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -1973,7 +1973,7 @@ Applications running in the Java EE web and EJB containers must not attempt to c
 		             </assertion>      
 		             <assertion required = "false" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:264.3</id>
-			          <description>The following methods are intended for use by the application server and their use by applications running in the Java EE web or EJB container may interfere with the container's ability to properly manage the threads used in the runtime environment. They must therefore not be called by applications running in the Java EE web or EJB container:
+			          <description>The following methods are intended for use by the application server and their use by applications running in the Jakarta EE web or EJB container may interfere with the container's ability to properly manage the threads used in the runtime environment. They must therefore not be called by applications running in the Jakarta EE web or Enterprise Beans container:
 1) jakarta.jms.Session method setMessageListener
 2) jakarta.jms.Session method getMessageListener
 3) jakarta.jms.Session method run
@@ -1984,16 +1984,16 @@ Applications running in the Java EE web and EJB containers must not attempt to c
 		             </assertion>      
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:264.4</id>
-			          <description>The following methods may interfere with the container's ability to properly manage the threads used in the runtime environment and must not be used by applications running in the Java EE web or EJB container:
+			          <description>The following methods may interfere with the container's ability to properly manage the threads used in the runtime environment and must not be used by applications running in the Jakarta EE web or Enterprise Beans container:
 1) jakarta.jms.MessageConsumer method setMessageListener
 2) jakarta.jms.MessageConsumer method getMessageListener
 3) jakarta.jms.JMSContext method setMessageListener
-4) jakarta.jms.JMSContext method getMessageListener This restriction means that applications running in the Java EE web or EJB container which need to receive messages asynchronously may only do so using message-driven beans.</description>
+4) jakarta.jms.JMSContext method getMessageListener This restriction means that applications running in the Jakarta EE web or Enterprise Beans container which need to receive messages asynchronously may only do so using message-driven beans.</description>
 			          <location chapter = "12" section = "12.2"/>
 		             </assertion>      
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:264.5</id>
-			          <description>The following methods may interfere with the container's management of connections and must not be used by applications running in the Java EE web or EJB container:
+			          <description>The following methods may interfere with the container's management of connections and must not be used by applications running in the Jakarta EE web or Enterprise Beans container:
 1) jakarta.jms.Connection method setClientID
 2) jakarta.jms.Connection method stop
 3) jakarta.jms.Connection method setExceptionListener
@@ -2001,44 +2001,44 @@ Applications running in the Java EE web and EJB containers must not attempt to c
 5) jakarta.jms.JMSContext method stop
 6) jakarta.jms.JMSContext method setExceptionListener
 Applications which need to use a specific client identifier must set it on the connection factory, as described in section 6.1.2 "Client Identifier"
-All the methods listed in this section may throw a jakarta.jms.JMSException (if allowed by the method) or a jakarta.jms.JMSRuntimeException (if not) when called by an application running in the Java EE web or EJB container. This is recommended but not required.</description>
+All the methods listed in this section may throw a jakarta.jms.JMSException (if allowed by the method) or a jakarta.jms.JMSRuntimeException (if not) when called by an application running in the Jakarta EE web or Enterprise Beans container. This is recommended but not required.</description>
 			          <location chapter = "12" section = "12.2"/>
 		             </assertion>      
                         </sub-assertions>
 		</assertion>   
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
 			<id>JMS:SPEC:265</id>         
-			<description>The behaviour of a JMS session in respect of transactions and message acknowledgement is different for applications which run in a Java EE web or EJB container than it is for applications which run in a normal Java SE environment or in the Java EE application client container.
+			<description>The behaviour of a JMS session in respect of transactions and message acknowledgement is different for applications which run in a Jakarta EE web or Enterprise Beans container than it is for applications which run in a normal Java SE environment or in the Jakarta EE application client container.
 These differences also apply to JMS messaging context objects, since these incorporate a JMS session.
-When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is an active JTA transaction in progress, then the session that is created will participate in the JTA transaction and will be committed or rolled back when the JTA transaction is committed or rolled back. Any session parameters that are specified when creating the session or messaging context are ignored. The use of local transactions or client acknowledgement is not permitted.
+When an application creates a JMS session or messaging context in a Jakarta EE web or Enterprise Beans container, and there is an active JTA transaction in progress, then the session that is created will participate in the JTA transaction and will be committed or rolled back when the JTA transaction is committed or rolled back. Any session parameters that are specified when creating the session or messaging context are ignored. The use of local transactions or client acknowledgement is not permitted.
 This applies irrespective of whether the JTA transaction is demarcated automatically by the container or programmatically using methods on jakarta.transaction.UserTransaction.
 The term "session parameters" here refers to the arguments that may be passed into a call to the createSession or createContext methods to specify whether the session should use a local transaction and, if the session is non-transacted, what the acknowledgement mode should be.
-When an application creates a JMS session or messaging context in a Java EE web or EJB container, and there is no active JTA transaction in progress, then the session that is created will be non-transacted and will be automatically-acknowledged. The use of local transactions or client acknowledgement is still not permitted. Parameters may be specified when creating the session or messaging context to specify whether the acknowledgement mode should be AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE. If any other session parameter values are specified they will be ignored and an acknowledgement mode of AUTO_ACKNOWLEDGE used.
-The use of local transactions or client acknowledgement is not permitted in a Java EE web or EJB container even if there is no active JTA transaction because this would require applications to be written differently depending on whether there was a JTA transaction or not.</description>
+When an application creates a JMS session or messaging context in a Jakarta EE web or Enterprise Beans container, and there is no active JTA transaction in progress, then the session that is created will be non-transacted and will be automatically-acknowledged. The use of local transactions or client acknowledgement is still not permitted. Parameters may be specified when creating the session or messaging context to specify whether the acknowledgement mode should be AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE. If any other session parameter values are specified they will be ignored and an acknowledgement mode of AUTO_ACKNOWLEDGE used.
+The use of local transactions or client acknowledgement is not permitted in a Jakarta EE web or Enterprise Beans container even if there is no active JTA transaction because this would require applications to be written differently depending on whether there was a JTA transaction or not.</description>
 			<location chapter = "12" section = "12.3"/>      
                         <sub-assertions>
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:265.1</id>
-			          <description>The JMS API provides the following methods to create a session which allow the session to be defined using either the two parameters transacted and acknowledgeMode or by the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then these parameters will be overridden as described above.
+			          <description>The JMS API provides the following methods to create a session which allow the session to be defined using either the two parameters transacted and acknowledgeMode or by the single parameter sessionMode. If these methods are called in a Jakarta EE web or Enterprise Beans container then these parameters will be overridden as described above.
 1) jakarta.jms.Connection method createSession(boolean transacted, int acknowledgeMode)
 2) jakarta.jms.QueueConnection method createQueueSession(boolean transacted, int acknowledgeMode)
 3) jakarta.jms.TopicConnection method createTopicSession(boolean transacted, int acknowledgeMode)
 4) jakarta.jms.Connection method createSession(int sessionMode)
-It is recommended that applications that run in the Java EE web or EJB container create a session using the following method which does not specify a parameter: jakarta.jms.Connection method createSession() </description>
+It is recommended that applications that run in the Jakarta EE web or Enterprise Beans container create a session using the following method which does not specify a parameter: jakarta.jms.Connection method createSession() </description>
 			          <location chapter = "12" section = "12.3"/>
 		             </assertion>      
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:265.2</id>
-			          <description>The JMS API provides the following methods to create a messaging context which allow the session to be defined using the single parameter sessionMode. If these methods are called in a Java EE web or EJB container then this parameter will be overridden as described above.
+			          <description>The JMS API provides the following methods to create a messaging context which allow the session to be defined using the single parameter sessionMode. If these methods are called in a Jakarta EE web or Enterprise Beans container then this parameter will be overridden as described above.
 1) jakarta.jms.ConnectionFactory method createContext(int sessionMode)
 2) jakarta.jms.ConnectionFactory method createContext(String userName, String password, int sessionMode)</description>
 			          <location chapter = "12" section = "12.3"/>
 		             </assertion>      
 		             <assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			          <id>JMS:SPEC:265.3</id>
-			          <description>The following method to create a messaging context from an existing messaging context is not permitted in a Java EE web or EJB container because it would create a second session on an existing connection, which is not permitted in a java EE web or EJB container.]
+			          <description>The following method to create a messaging context from an existing messaging context is not permitted in a Jakarta EE web or Enterprise Beans container because it would create a second session on an existing connection, which is not permitted in a java EE web or EJB container.]
 1) jakarta.jms.JMSContext method createContext(int sessionMode)
-It is recommended that applications that run in the Java EE web or EJb container creates a messaging context using one of the following methods which does do specify a sessionMode:
+It is recommended that applications that run in the Jakarta EE web or Enterprise Beans container creates a messaging context using one of the following methods which does do specify a sessionMode:
 1) jakarta.jms.ConnectionFactory method createContext() 
 2) jakarta.jms.ConnectionFactory method createContext(String username, String password)</description>
 			          <location chapter = "12" section = "12.3"/>
@@ -2139,8 +2139,8 @@ MDB activation properties. Message-driven beans are defined in the Enterprise Ja
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
 			<id>JMS:SPEC:277</id>         
 			<description>Support for injection.
-Injection of JMSContext objects is supported in those Java EE application classes which support dependency injection using CDI and for which CDI support has been enabled by means of a META_INF/beans.xml descriptor.
-Section EE.5.20 of the Java EE specification lists the application classes that support dependency injection using CDI.
+Injection of JMSContext objects is supported in those Jakarta EE application classes which support dependency injection using CDI and for which CDI support has been enabled by means of a META_INF/beans.xml descriptor.
+Section EE.5.20 of the Jakarta EE specification lists the application classes that support dependency injection using CDI.
 Section 12.1 of the CDI specification specifies how CDI support may be enabled for a particular application.</description>
 			<location chapter = "12" section = "12.4.1"/>      
 		</assertion>
@@ -2171,11 +2171,11 @@ The annotation jakarta.jms.JMSSessionMode may be used to specify the session mod
 @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
 private JMSContext context;
 The meaning and possible values of session mode are the same as for the ConnectionFactory method createContext(int sessionMode):
-In the Java EE application client container, session mode may be set to any of JMSContext.SESSION_TRANSACTED, JMSContext.CLIENT_ACKNOWLEDGE, JMSContext.AUTO_ACKNOWLEDGE or
+In the Jakarta EE application client container, session mode may be set to any of JMSContext.SESSION_TRANSACTED, JMSContext.CLIENT_ACKNOWLEDGE, JMSContext.AUTO_ACKNOWLEDGE or
 JMSContext.DUPS_OK_ACKNOWLEDGE. If no session mode is specified or the JMSSessionMode annotation is omitted a session mode of JMSContext.AUTO_ACKNOWLEDGE will be used.
-In a Java EE web or EJB container, when there is an active JTA transaction in progress, session mode is ignored and the JMSSessionMode annotation is unnecessary.
-In a Java EE web or EJB container, when there is no active JTA transaction in progress, session mode may be set to either of JMSContext.AUTO_ACKNOWLEDGE or JMSContext.DUPS_OK_ACKNOWLEDGE. If no session mode is specified or the JMSSessionMode annotation is omitted a session mode of JMSContext.AUTO_ACKNOWLEDGE will be used.
-For more information about the use of session mode when creating a messaging context, see section 12.3 "Behaviour of JMS sessions in the Java EE web or EJB container" and the API documentation for the ConnectionFactory method createContext(int sessionMode).</description>
+In a Jakarta EE web or Enterprise Beans container, when there is an active JTA transaction in progress, session mode is ignored and the JMSSessionMode annotation is unnecessary.
+In a Jakarta EE web or Enterprise Beans container, when there is no active JTA transaction in progress, session mode may be set to either of JMSContext.AUTO_ACKNOWLEDGE or JMSContext.DUPS_OK_ACKNOWLEDGE. If no session mode is specified or the JMSSessionMode annotation is omitted a session mode of JMSContext.AUTO_ACKNOWLEDGE will be used.
+For more information about the use of session mode when creating a messaging context, see section 12.3 "Behaviour of JMS sessions in the Jakarta EE web or Enterprise Beans container" and the API documentation for the ConnectionFactory method createContext(int sessionMode).</description>
 			<location chapter = "12" section = "12.4.3"/>      
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">         
@@ -2212,7 +2212,7 @@ O recover
 O setAutoStart
 O start
 O close
-These methods must throw a JMSRuntimeException if the JMSContext is injected. These restrictions do not apply when the JMSContext is managed by the application; though note that several of these methods are in any case prohibited in a Java EE web or EJB container.</description>
+These methods must throw a JMSRuntimeException if the JMSContext is injected. These restrictions do not apply when the JMSContext is managed by the application; though note that several of these methods are in any case prohibited in a Jakarta EE web or Enterprise Beans container.</description>
 			<location chapter = "12" section = "12.4.5"/>      
 		</assertion>
 	</assertions>   

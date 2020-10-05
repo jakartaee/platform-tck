@@ -23,7 +23,7 @@
 <previous-id>1</previous-id>
 <technology>Security</technology>
 <id>Security API 1.0</id>
-<name>Java EE Security API</name>
+<name>Jakarta EE Security API</name>
 <version>1.0</version>
 <assertions>
 <assertion required="true" impl-spec="false" status="active" testable="true">
