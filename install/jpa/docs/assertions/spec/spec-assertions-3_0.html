@@ -4671,8 +4671,8 @@
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1318"></a><font size="1PT">PERSISTENCE:SPEC:1318</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Entity listener classes in Jakarta EE environments support
                 dependency injection through the
                 Jakarta Contexts and
-                Dependency Injection API (JCDI) when the JCDI is enabled. An entity listener
-                class that makes use of JCDI injection may also define lifecycle
+                Dependency Injection API (CDI) when the CDI is enabled. An entity listener
+                class that makes use of CDI injection may also define lifecycle
                 callback methods annotated with the
                 PostConstruct and PreDestroy annotations. These methods will be
                 invoked after injection has
@@ -4684,7 +4684,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1452"></a><font size="1PT">PERSISTENCE:SPEC:1452</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The persistence provider is responsible for using the
-                JCDI SPI to create instances of the entity
+                CDI SPI to create instances of the entity
                 listener
                 class; to perform injection upon such instances; to invoke their
                 PostConstruct and PreDestroy
@@ -4696,13 +4696,13 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1453"></a><font size="1PT">PERSISTENCE:SPEC:1453</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">The persistence provider is only required to support
-                JCDI injection into entity listeners in
+                CDI injection into entity listeners in
                 Jakarta EE container
-                environments. If the JCDI is not enabled,
+                environments. If the CDI is not enabled,
                 the persistence provider must not invoke entity
-                listeners that depend upon JCDI injection.
+                listeners that depend upon CDI injection.
 
-                If the containing archive JCDI is not a bean archive,
+                If the containing archive CDI is not a bean archive,
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -4712,7 +4712,7 @@
                 supporting injection into entity listeners,
                 the persistence
                 provider must behave as if it carries out the following steps
-                involving the use of the JCDI SPI.
+                involving the use of the CDI SPI.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -4795,7 +4795,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1456"></a><font size="1PT">PERSISTENCE:SPEC:1456</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Persistence providers may optimize the steps above,
-                e.g. by avoiding calls to the actual JCDI
+                e.g. by avoiding calls to the actual CDI
                 SPI and
                 relying on container-specific interfaces instead, as long as the
                 outcome is the same.
@@ -4804,7 +4804,7 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">technology</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1457"></a><font size="1PT">PERSISTENCE:SPEC:1457</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Entity listeners that do not make use of JCDI injection
+<TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1457"></a><font size="1PT">PERSISTENCE:SPEC:1457</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Entity listeners that do not make use of CDI injection
                 are stateless. The lifecycle of such
                 entity listeners
                 is unspecified.
@@ -14670,7 +14670,7 @@
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="PERSISTENCE:SPEC:1875"></a><font size="1PT">PERSISTENCE:SPEC:1875</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT">
-                If JCDI is enabled, a BeanManager instance must be made
+                If CDI is enabled, a BeanManager instance must be made
                 available by the container. The container is responsible for
                 passing this BeanManager instance via the
                 map that is passed as an argument to the
