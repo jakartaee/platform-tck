@@ -66,7 +66,7 @@
 					<section id = "JAXM.3.1.2" name = "ProviderConnection and ProviderConnectionFactory"/>
 					<section id = "JAXM.3.1.3" name = "ProviderMetaData and JAXMException"/>
 					<section id = "JAXM.3.1.4" name = "Oneway and Request-Response Listeners"/>
-					<section id = "JAXM.3.2" name = "javax.xml.soap Package"/>
+					<section id = "JAXM.3.2" name = "jakarta.xml.soap Package"/>
 					<section id = "JAXM.3.2.1" name = "MessageFactory and SOAPMessage"/>
 					<section id = "JAXM.3.2.2" name = "SOAPPart and AttachmentPart"/>
 					<section id = "JAXM.3.2.3" name = "MimeHeader and MimeHeaders"/>

@@ -10342,7 +10342,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1093</id>
-      <description>Add the given name and value to the response header. Servlet:This must be performed by calling the javax.servlet.http.HttpServletResponse addHeader method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Add the given name and value to the response header. Servlet:This must be performed by calling the jakarta.servlet.http.HttpServletResponse addHeader method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="addResponseHeader" return-type="void">
@@ -10413,7 +10413,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1107</id>
-      <description>Return the input URL, after performing any rewriting needed to ensure that it will correctly identify an addressable resource in the current application. Servlet: This must be the value returned by the javax.servlet.http.HttpServletResponse method encodeURL(url).</description>
+      <description>Return the input URL, after performing any rewriting needed to ensure that it will correctly identify an addressable resource in the current application. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletResponse method encodeURL(url).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="encodeResourceURL" return-type="java.lang.String">
@@ -10443,21 +10443,21 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1110</id>
-      <description>Return a mutable Map representing the application scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of application scope attributes. Particularly the clear(), remove(), put(), putAll(), and get() operations must take the appropriate action on the underlying data structure. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. It is valid to call this method during application startup or shutdown. If called at startup or shutdown time, this method returns a Map that is backed by the same container context instance (ServletContext or PortletContext) as the one returned by calling getApplicationMap() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the set of attributes available via the javax.servlet.ServletContext methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
+      <description>Return a mutable Map representing the application scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of application scope attributes. Particularly the clear(), remove(), put(), putAll(), and get() operations must take the appropriate action on the underlying data structure. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. It is valid to call this method during application startup or shutdown. If called at startup or shutdown time, this method returns a Map that is backed by the same container context instance (ServletContext or PortletContext) as the one returned by calling getApplicationMap() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the set of attributes available via the jakarta.servlet.ServletContext methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getApplicationMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1111</id>
-      <description>Return the name of the authentication scheme used to authenticate the current user, if any; otherwise, return null. For standard authentication schemes, the returned value will match one of the following constants: BASIC_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH, or FORM_AUTH. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getAuthType().</description>
+      <description>Return the name of the authentication scheme used to authenticate the current user, if any; otherwise, return null. For standard authentication schemes, the returned value will match one of the following constants: BASIC_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH, or FORM_AUTH. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getAuthType().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getAuthType" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1112</id>
-      <description>Return the application environment object instance for the current appication. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this returns the same container context instance (ServletContext or PortletContext) as the one returned when calling getContext() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the current application's javax.servlet.ServletContext instance.</description>
+      <description>Return the application environment object instance for the current appication. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this returns the same container context instance (ServletContext or PortletContext) as the one returned when calling getContext() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the current application's jakarta.servlet.ServletContext instance.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getContext" return-type="java.lang.Object" />
@@ -10478,7 +10478,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1115</id>
-      <description>Return the value of the specified application initialization parameter (if any). Servlet: This must be the result of the javax.servlet.ServletContext method getInitParameter(name). It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the actual container context to return the init parameter value.</description>
+      <description>Return the value of the specified application initialization parameter (if any). Servlet: This must be the result of the jakarta.servlet.ServletContext method getInitParameter(name). It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the actual container context to return the init parameter value.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getInitParameter" return-type="java.lang.String">
@@ -10501,14 +10501,14 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1117</id>
-      <description>Return an immutable Map whose keys are the set of application initialization parameter names configured for this application, and whose values are the corresponding parameter values. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method returns a Map that is backed by the same container context instance (ServletContext or PortletContext) as the one returned by calling getInitParameterMap() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This result must be as if it were synthesized by calling the javax.servlet.ServletContext method getInitParameterNames, and putting each configured parameter name/value pair into the result.</description>
+      <description>Return an immutable Map whose keys are the set of application initialization parameter names configured for this application, and whose values are the corresponding parameter values. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method returns a Map that is backed by the same container context instance (ServletContext or PortletContext) as the one returned by calling getInitParameterMap() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This result must be as if it were synthesized by calling the jakarta.servlet.ServletContext method getInitParameterNames, and putting each configured parameter name/value pair into the result.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getInitParameterMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1118</id>
-      <description>Returns the MIME type of the specified file or null if the MIME type is not known. The MIME type is determined by the container. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getMimeType() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getMimeType() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the javax.servlet.ServletContext method getMimeType().</description>
+      <description>Returns the MIME type of the specified file or null if the MIME type is not known. The MIME type is determined by the container. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getMimeType() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getMimeType() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the jakarta.servlet.ServletContext method getMimeType().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getMimeType" return-type="java.lang.String">
@@ -10519,7 +10519,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1119</id>
-      <description>Returns a String containing the real path for a given virtual path. Servlet: This must be the value returned by the javax.servlet.ServletContext method getRealPath(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns a String containing the real path for a given virtual path. Servlet: This must be the value returned by the jakarta.servlet.ServletContext method getRealPath(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRealPath" return-type="java.lang.String">
@@ -10530,21 +10530,21 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1120</id>
-      <description>Return the login name of the user making the current request if any; otherwise, return null. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getRemoteUser().</description>
+      <description>Return the login name of the user making the current request if any; otherwise, return null. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getRemoteUser().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRemoteUser" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1121</id>
-      <description>Return the environment-specific object instance for the current request. Servlet: This must be the current request's javax.servlet.http.HttpServletRequest instance.</description>
+      <description>Return the environment-specific object instance for the current request. Servlet: This must be the current request's jakarta.servlet.http.HttpServletRequest instance.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequest" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1122</id>
-      <description>Return the character encoding currently being used to interpret this request. Servlet: This must return the value returned by the javax.servlet.ServletRequest method getCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Return the character encoding currently being used to interpret this request. Servlet: This must return the value returned by the jakarta.servlet.ServletRequest method getCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestCharacterEncoding" return-type="java.lang.String" />
@@ -10558,119 +10558,119 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1124</id>
-      <description>Return the MIME Content-Type for this request. If not available, return null. Servlet: This must return the value returned by the javax.servlet.ServletRequest method getContentType(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Return the MIME Content-Type for this request. If not available, return null. Servlet: This must return the value returned by the jakarta.servlet.ServletRequest method getContentType(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestContentType" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1125</id>
-      <description>Return the portion of the request URI that identifies the web application context for this request. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getContextPath().</description>
+      <description>Return the portion of the request URI that identifies the web application context for this request. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getContextPath().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestContextPath" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1126</id>
-      <description>Return an immutable Map whose keys are the set of cookie names included in the current request, and whose values (of type javax.servlet.http.Cookie) are the first (or only) cookie for each cookie name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getCookies(), unless null was returned, in which case this must be a zero-length array.</description>
+      <description>Return an immutable Map whose keys are the set of cookie names included in the current request, and whose values (of type jakarta.servlet.http.Cookie) are the first (or only) cookie for each cookie name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getCookies(), unless null was returned, in which case this must be a zero-length array.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestCookieMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1127</id>
-      <description>Return an immutable Map whose keys are the set of request header names included in the current request, and whose values (of type String) are the first (or only) value for each header name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. In addition, key comparisons must be performed in a case insensitive manner. Servlet: This must be the set of headers available via the javax.servlet.http.HttpServletRequest methods getHeader() and getHeaderNames().</description>
+      <description>Return an immutable Map whose keys are the set of request header names included in the current request, and whose values (of type String) are the first (or only) value for each header name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. In addition, key comparisons must be performed in a case insensitive manner. Servlet: This must be the set of headers available via the jakarta.servlet.http.HttpServletRequest methods getHeader() and getHeaderNames().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestHeaderMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1128</id>
-      <description>Return an immutable Map whose keys are the set of request header names included in the current request, and whose values (of type String[]) are all of the value for each header name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. In addition, key comparisons must be performed in a case insensitive manner. Servlet: This must be the set of headers available via the javax.servlet.http.HttpServletRequest methods getHeaders() and getHeaderNames().</description>
+      <description>Return an immutable Map whose keys are the set of request header names included in the current request, and whose values (of type String[]) are all of the value for each header name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. In addition, key comparisons must be performed in a case insensitive manner. Servlet: This must be the set of headers available via the jakarta.servlet.http.HttpServletRequest methods getHeaders() and getHeaderNames().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestHeaderValuesMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1129</id>
-      <description>Return the preferred Locale in which the client will accept content. Servlet: This must be the value returned by the javax.servlet.ServletRequest method getLocale().</description>
+      <description>Return the preferred Locale in which the client will accept content. Servlet: This must be the value returned by the jakarta.servlet.ServletRequest method getLocale().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestLocale" return-type="java.util.Locale" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1130</id>
-      <description>Return an Iterator over the preferred Locales specified in the request, in decreasing order of preference. Servlet: This must be an Iterator over the values returned by the javax.servlet.ServletRequest method getLocales().</description>
+      <description>Return an Iterator over the preferred Locales specified in the request, in decreasing order of preference. Servlet: This must be an Iterator over the values returned by the jakarta.servlet.ServletRequest method getLocales().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestLocales" return-type="java.util.Iterator" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1131</id>
-      <description>Return a mutable Map representing the request scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of request scope attributes. Particularly the clear(), remove(), put(), putAll(), and get() operations must take the appropriate action on the underlying data structure. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. Servlet: This must be the set of attributes available via the javax.servlet.ServletRequest methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
+      <description>Return a mutable Map representing the request scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of request scope attributes. Particularly the clear(), remove(), put(), putAll(), and get() operations must take the appropriate action on the underlying data structure. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. Servlet: This must be the set of attributes available via the jakarta.servlet.ServletRequest methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1132</id>
-      <description>Return an immutable Map whose keys are the set of request parameters names included in the current request, and whose values (of type String) are the first (or only) value for each parameter name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the set of parameters available via the javax.servlet.ServletRequest methods getParameter() and getParameterNames().</description>
+      <description>Return an immutable Map whose keys are the set of request parameters names included in the current request, and whose values (of type String) are the first (or only) value for each parameter name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the set of parameters available via the jakarta.servlet.ServletRequest methods getParameter() and getParameterNames().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestParameterMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1133</id>
-      <description>Return an Iterator over the names of all request parameters included in the current request. Servlet: This must be an Iterator over the values returned by the javax.servlet.ServletRequest method getParameterNames().</description>
+      <description>Return an Iterator over the names of all request parameters included in the current request. Servlet: This must be an Iterator over the values returned by the jakarta.servlet.ServletRequest method getParameterNames().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestParameterNames" return-type="java.util.Iterator" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1134</id>
-      <description>Return an immutable Map whose keys are the set of request parameters names included in the current request, and whose values (of type String[]) are all of the values for each parameter name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the set of parameters available via the javax.servlet.ServletRequest methods getParameterValues() and getParameterNames().</description>
+      <description>Return an immutable Map whose keys are the set of request parameters names included in the current request, and whose values (of type String[]) are all of the values for each parameter name returned by the underlying request. The returned Map must implement the entire contract for an unmodifiable map as described in the JavaDocs for java.util.Map. Servlet: This must be the set of parameters available via the jakarta.servlet.ServletRequest methods getParameterValues() and getParameterNames().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestParameterValuesMap" return-type="java.util.Map" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1135</id>
-      <description>Return the extra path information (if any) included in the request URI; otherwise, return null. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getPathInfo().</description>
+      <description>Return the extra path information (if any) included in the request URI; otherwise, return null. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getPathInfo().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestPathInfo" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1136</id>
-      <description>Returns the name of the scheme used to make this request, for example, http, https, or ftp. Servlet: This must be the value returned by the javax.servlet.ServletRequest method getScheme(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns the name of the scheme used to make this request, for example, http, https, or ftp. Servlet: This must be the value returned by the jakarta.servlet.ServletRequest method getScheme(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestScheme" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1137</id>
-      <description>Returns the host name of the server to which the request was sent. Servlet: This must be the value returned by the javax.servlet.ServletRequest method getServerName(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns the host name of the server to which the request was sent. Servlet: This must be the value returned by the jakarta.servlet.ServletRequest method getServerName(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestServerName" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1138</id>
-      <description>Returns the port number to which the request was sent. Servlet: This must be the value returned by the javax.servlet.ServletRequest method getServerPort(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns the port number to which the request was sent. Servlet: This must be the value returned by the jakarta.servlet.ServletRequest method getServerPort(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestServerPort" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1139</id>
-      <description>Return the servlet path information (if any) included in the request URI; otherwise, return null. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getServletPath().</description>
+      <description>Return the servlet path information (if any) included in the request URI; otherwise, return null. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getServletPath().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getRequestServletPath" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1140</id>
-      <description>Return a URL for the application resource mapped to the specified path, if it exists; otherwise, return null. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResource() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResource() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the javax.servlet.ServletContext method getResource(path).</description>
+      <description>Return a URL for the application resource mapped to the specified path, if it exists; otherwise, return null. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResource() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResource() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the jakarta.servlet.ServletContext method getResource(path).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResource" return-type="java.net.URL">
@@ -10705,7 +10705,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1143</id>
-      <description>Return an InputStream for an application resource mapped to the specified path, if it exists; otherwise, return null. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResourceAsStream() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResourceAsStream() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the javax.servlet.ServletContext method getResourceAsStream(path).</description>
+      <description>Return an InputStream for an application resource mapped to the specified path, if it exists; otherwise, return null. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResourceAsStream() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResourceAsStream() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the jakarta.servlet.ServletContext method getResourceAsStream(path).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResourceAsStream" return-type="java.io.InputStream">
@@ -10728,7 +10728,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1145</id>
-      <description>Return the Set of resource paths for all application resources whose resource path starts with the specified argument. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResourcePaths() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResourcePaths() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the javax.servlet.ServletContext method getResourcePaths(path).</description>
+      <description>Return the Set of resource paths for all application resources whose resource path starts with the specified argument. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this method calls through to the getResourcePaths() method on the same container context instance (ServletContext or PortletContext) as the one used when calling getResourcePaths() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be the value returned by the jakarta.servlet.ServletContext method getResourcePaths(path).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResourcePaths" return-type="java.util.Set">
@@ -10751,35 +10751,35 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1147</id>
-      <description>Return the environment-specific object instance for the current response. Servlet: This is the current request's javax.servlet.http.HttpServletResponse instance.</description>
+      <description>Return the environment-specific object instance for the current response. Servlet: This is the current request's jakarta.servlet.http.HttpServletResponse instance.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponse" return-type="java.lang.Object" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1148</id>
-      <description>Return the buffer size for the current response. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse getBufferSize method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Return the buffer size for the current response. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse getBufferSize method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponseBufferSize" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1149</id>
-      <description>Returns the name of the character encoding (MIME charset) used for the body sent in this response. Servlet: This must return the value returned by the javax.servlet.ServletResponse method getCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns the name of the character encoding (MIME charset) used for the body sent in this response. Servlet: This must return the value returned by the jakarta.servlet.ServletResponse method getCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponseCharacterEncoding" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1150</id>
-      <description>Return the MIME Content-Type for this response. If not available, return null. Servlet: This must return the value returned by the javax.servlet.ServletResponse method getContentType(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Return the MIME Content-Type for this response. If not available, return null. Servlet: This must return the value returned by the jakarta.servlet.ServletResponse method getContentType(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponseContentType" return-type="java.lang.String" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1151</id>
-      <description>Returns an OutputStream suitable for writing binary data to the user-agent. Servlet: This must return the value returned by the javax.servlet.ServletResponse method getOutputStream(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns an OutputStream suitable for writing binary data to the user-agent. Servlet: This must return the value returned by the jakarta.servlet.ServletResponse method getOutputStream(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponseOutputStream" return-type="java.io.OutputStream" />
@@ -10795,7 +10795,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1153</id>
-      <description>Returns a Writer suitable for writing character data to the user-agent. Servlet: This must return the value returned by the javax.servlet.ServletResponse#getWriter. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns a Writer suitable for writing character data to the user-agent. Servlet: This must return the value returned by the jakarta.servlet.ServletResponse#getWriter. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getResponseOutputWriter" return-type="java.io.Writer" />
@@ -10811,7 +10811,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1155</id>
-      <description>If the create parameter is true, create (if necessary) and return a session instance associated with the current request. If the create parameter is false return any existing session instance associated with the current request, or return null if there is no such session. Servlet: This must return the result of calling getSession(create) on the underlying javax.servlet.http.HttpServletRequest instance.</description>
+      <description>If the create parameter is true, create (if necessary) and return a session instance associated with the current request. If the create parameter is false return any existing session instance associated with the current request, or return null if there is no such session. Servlet: This must return the result of calling getSession(create) on the underlying jakarta.servlet.http.HttpServletRequest instance.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getSession" return-type="java.lang.Object">
@@ -10822,28 +10822,28 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1157</id>
-      <description>Return the Principal object containing the name of the current authenticated user, if any; otherwise, return null. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method getUserPrincipal().</description>
+      <description>Return the Principal object containing the name of the current authenticated user, if any; otherwise, return null. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method getUserPrincipal().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getUserPrincipal" return-type="java.security.Principal" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1158</id>
-      <description>Invalidates this session then unbinds any objects bound to it. Servlet: This must be the value returned by the javax.servlet.http.HttpSession method invalidate(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Invalidates this session then unbinds any objects bound to it. Servlet: This must be the value returned by the jakarta.servlet.http.HttpSession method invalidate(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="invalidateSession" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1159</id>
-      <description>Check if the current response has been committed. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse isCommitted method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Check if the current response has been committed. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse isCommitted method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="isResponseCommitted" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1160</id>
-      <description>Return true if the currently authenticated user is included in the specified role. Otherwise, return false. Servlet: This must be the value returned by the javax.servlet.http.HttpServletRequest method isUserInRole(role).</description>
+      <description>Return true if the currently authenticated user is included in the specified role. Otherwise, return false. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletRequest method isUserInRole(role).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="isUserInRole" return-type="boolean">
@@ -10866,7 +10866,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1162</id>
-      <description>Log the specified message to the application object. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this calls the log() method on the same container context instance (ServletContext or PortletContext) as the one used during a call to log() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be performed by calling the javax.servlet.ServletContext method log(String).</description>
+      <description>Log the specified message to the application object. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this calls the log() method on the same container context instance (ServletContext or PortletContext) as the one used during a call to log() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be performed by calling the jakarta.servlet.ServletContext method log(String).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="log" return-type="void">
@@ -10889,7 +10889,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1164</id>
-      <description>Log the specified message and exception to the application object. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this calls the log() method on the same container context instance (ServletContext or PortletContext) as the one used when calling log() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be performed by calling the javax.servlet.ServletContext method log(String,Throwable).</description>
+      <description>Log the specified message and exception to the application object. It is valid to call this method during application startup or shutdown. If called during application startup or shutdown, this calls the log() method on the same container context instance (ServletContext or PortletContext) as the one used when calling log() on the ExternalContext returned by the FacesContext during an actual request. Servlet: This must be performed by calling the jakarta.servlet.ServletContext method log(String,Throwable).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="log" return-type="void">
@@ -10914,7 +10914,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1166</id>
-      <description>Redirect a request to the specified URL, and cause the responseComplete() method to be called on the FacesContext instance for the current request. The implementation must determine if the request is an Ajax request by obtaining a PartialViewContext instance from the FacesContext and calling PartialViewContext#isAjaxRequest(). Servlet: For non Ajax requests, this must be accomplished by calling the javax.servlet.http.HttpServletResponse method sendRedirect(). For Ajax requests, the implementation must: Get a PartialResponseWriter instance from the FacesContext. Call #setResponseContentType with text/xml Call #setResponseCharacterEncoding with UTF-8 Call #addResponseHeader with Cache-Control, no-cache Call PartialResponseWriter#startDocument Call PartialResponseWriter#redirect with the url argument. Call PartialResponseWriter#endDocument</description>
+      <description>Redirect a request to the specified URL, and cause the responseComplete() method to be called on the FacesContext instance for the current request. The implementation must determine if the request is an Ajax request by obtaining a PartialViewContext instance from the FacesContext and calling PartialViewContext#isAjaxRequest(). Servlet: For non Ajax requests, this must be accomplished by calling the jakarta.servlet.http.HttpServletResponse method sendRedirect(). For Ajax requests, the implementation must: Get a PartialResponseWriter instance from the FacesContext. Call #setResponseContentType with text/xml Call #setResponseCharacterEncoding with UTF-8 Call #addResponseHeader with Cache-Control, no-cache Call PartialResponseWriter#startDocument Call PartialResponseWriter#redirect with the url argument. Call PartialResponseWriter#endDocument</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="redirect" return-type="void">
@@ -10973,7 +10973,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1171</id>
-      <description>Flushes the buffered response content to the client. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse flushBuffer method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Flushes the buffered response content to the client. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse flushBuffer method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="responseFlushBuffer" return-type="void" />
@@ -10989,14 +10989,14 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1173</id>
-      <description>Resets the current response. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse reset method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Resets the current response. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse reset method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="responseReset" return-type="void" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1174</id>
-      <description>Sends an HTTP status code with message. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse sendError method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Sends an HTTP status code with message. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse sendError method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="responseSendError" return-type="void">
@@ -11032,7 +11032,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1177</id>
-      <description>Overrides the name of the character encoding used in the body of this request. Calling this method after the request has been accessed will have no no effect, unless a Reader or Stream has been obtained from the request, in which case an IllegalStateException is thrown. Servlet: This must call through to the javax.servlet.ServletRequest method setCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Overrides the name of the character encoding used in the body of this request. Calling this method after the request has been accessed will have no no effect, unless a Reader or Stream has been obtained from the request, in which case an IllegalStateException is thrown. Servlet: This must call through to the jakarta.servlet.ServletRequest method setCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setRequestCharacterEncoding" return-type="void">
@@ -11066,7 +11066,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1180</id>
-      <description>Set the buffer size for the current response. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse setBufferSize method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Set the buffer size for the current response. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse setBufferSize method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseBufferSize" return-type="void">
@@ -11077,7 +11077,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1181</id>
-      <description>Sets the character encoding (MIME charset) of the response being sent to the client, for example, to UTF-8. Servlet: This must call through to the javax.servlet.ServletResponse method setCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Sets the character encoding (MIME charset) of the response being sent to the client, for example, to UTF-8. Servlet: This must call through to the jakarta.servlet.ServletResponse method setCharacterEncoding(). The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseCharacterEncoding" return-type="void">
@@ -11088,7 +11088,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1182</id>
-      <description>Set the content length of the response. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse setContentLength method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Set the content length of the response. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse setContentLength method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseContentLength" return-type="void">
@@ -11099,7 +11099,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1183</id>
-      <description>Sets the content type of the response being sent to the client, if the response has not been committed yet. Servlet: This must call setContentType() on the underlying javax.servlet.ServletResponse instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Sets the content type of the response being sent to the client, if the response has not been committed yet. Servlet: This must call setContentType() on the underlying jakarta.servlet.ServletResponse instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseContentType" return-type="void">
@@ -11110,7 +11110,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1184</id>
-      <description>Set the response header with the given name and value. Servlet:This must be performed by calling the javax.servlet.http.HttpServletResponse setHeader method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Set the response header with the given name and value. Servlet:This must be performed by calling the jakarta.servlet.http.HttpServletResponse setHeader method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseHeader" return-type="void">
@@ -11122,7 +11122,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1185</id>
-      <description>Sets the HTTP status code for the response. Servlet: This must be performed by calling the javax.servlet.http.HttpServletResponse setStatus method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Sets the HTTP status code for the response. Servlet: This must be performed by calling the jakarta.servlet.http.HttpServletResponse setStatus method. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setResponseStatus" return-type="void">
@@ -20013,7 +20013,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:2082</id>
-      <description>Use the provided Writer to create a new ResponseWriter instance for the specified (optional) content type, and character encoding. Implementors are advised to consult the getCharacterEncoding() method of class javax.servlet.ServletResponse to get the required value for the characterEncoding for this method. Since the Writer for this response will already have been obtained (due to it ultimately being passed to this method), we know that the character encoding cannot change during the rendering of the response.</description>
+      <description>Use the provided Writer to create a new ResponseWriter instance for the specified (optional) content type, and character encoding. Implementors are advised to consult the getCharacterEncoding() method of class jakarta.servlet.ServletResponse to get the required value for the characterEncoding for this method. Since the Writer for this response will already have been obtained (due to it ultimately being passed to this method), we know that the character encoding cannot change during the rendering of the response.</description>
       <package>jakarta.faces.render</package>
       <class-interface>RenderKit</class-interface>
       <method name="createResponseWriter" return-type="jakarta.faces.context.ResponseWriter">
@@ -24322,7 +24322,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1156</id>
-      <description>Return a mutable Map representing the session scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of session scope attributes. Particularly the clear(), remove(), put(), and get() operations must take the appropriate action on the underlying data structure. Accessing attributes via this Map must cause the creation of a session associated with the current request, if such a session does not already exist. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. Servlet: This must be the set of attributes available via the javax.servlet.http.HttpSession methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
+      <description>Return a mutable Map representing the session scope attributes for the current application. The returned Map must implement the entire contract for a modifiable map as described in the JavaDocs for java.util.Map. Modifications made in the Map must cause the corresponding changes in the set of session scope attributes. Particularly the clear(), remove(), put(), and get() operations must take the appropriate action on the underlying data structure. Accessing attributes via this Map must cause the creation of a session associated with the current request, if such a session does not already exist. For any of the Map methods that cause an element to be removed from the underlying data structure, the following action regarding managed-beans must be taken. If the element to be removed is a managed-bean, and it has one or more public no-argument void return methods annotated with jakarta.annotation.PreDestroy, each such method must be called before the element is removed from the underlying data structure. Elements that are not managed-beans, but do happen to have methods with that annotation must not have those methods called on removal. Any exception thrown by the PreDestroy annotated methods must by caught and not rethrown. The exception may be logged. Servlet: This must be the set of attributes available via the jakarta.servlet.http.HttpSession methods getAttribute(), getAttributeNames(), removeAttribute(), and setAttribute().</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getSessionMap" return-type="java.util.Map" />
@@ -25116,21 +25116,21 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:2582</id>
-      <description>Returns the maximum time interval, in seconds, that the servlet container will keep this session open between client accesses. After this interval, the servlet container will invalidate the session. The maximum time interval can be set with the #setSessionMaxInactiveInterval method. A return value of zero or less indicates that the session will never timeout. Servlet: This must return the result of calling getMaxInactiveInterval on the underlying javax.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns the maximum time interval, in seconds, that the servlet container will keep this session open between client accesses. After this interval, the servlet container will invalidate the session. The maximum time interval can be set with the #setSessionMaxInactiveInterval method. A return value of zero or less indicates that the session will never timeout. Servlet: This must return the result of calling getMaxInactiveInterval on the underlying jakarta.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="getSessionMaxInactiveInterval" return-type="int" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:2583</id>
-      <description>Returns a boolean indicating whether this request was made using a secure channel, such as HTTPS. Servlet: This must return the result of calling isSecure on the underlying javax.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Returns a boolean indicating whether this request was made using a secure channel, such as HTTPS. Servlet: This must return the result of calling isSecure on the underlying jakarta.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="isSecure" return-type="boolean" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:2584</id>
-      <description>Specifies the time, in seconds, between client requests before the servlet container will invalidate this session. An interval value of zero or less indicates that the session should never timeout. Servlet: This must call setMaxInactiveInterval on the underlying javax.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Specifies the time, in seconds, between client requests before the servlet container will invalidate this session. An interval value of zero or less indicates that the session should never timeout. Servlet: This must call setMaxInactiveInterval on the underlying jakarta.servlet.http.HttpServletRequest instance. The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="setSessionMaxInactiveInterval" return-type="void">
@@ -26352,7 +26352,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:672</id>
-      <description>Return the value of the UIData. This value must either be be of type DataModel, or a type that can be adapted into a DataModel. UIData will automatically adapt the following types: Arrays java.util.List java.sql.ResultSet javax.servlet.jsp.jstl.sql.Result java.util.Collection All other types will be adapted using the ScalarDataModel class, which will treat the object as a single row of data.</description>
+      <description>Return the value of the UIData. This value must either be be of type DataModel, or a type that can be adapted into a DataModel. UIData will automatically adapt the following types: Arrays java.util.List java.sql.ResultSet jakarta.servlet.jsp.jstl.sql.Result java.util.Collection All other types will be adapted using the ScalarDataModel class, which will treat the object as a single row of data.</description>
       <package>jakarta.faces.component</package>
       <class-interface>UIData</class-interface>
       <method name="getValue" return-type="java.lang.Object" />
@@ -27066,7 +27066,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1091</id>
-      <description>Adds the cookie represented by the arguments to the response. Servlet: This must be accomplished by calling the javax.servlet.http.HttpServletResponse method addCookie(). The Cookie argument must be constructed by passing the name and value parameters. If the properties arugument is non-null and not empty, the Cookie instance must be initialized as described below. Key in "values" Map Expected type of value. Name of setter method on Cookie instance to be set with the value from the Map. comment String setComment domain String setDomain maxAge Integer setMaxAge secure Boolean setSecure path String setPath httpOnly Boolean setHttpOnly The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
+      <description>Adds the cookie represented by the arguments to the response. Servlet: This must be accomplished by calling the jakarta.servlet.http.HttpServletResponse method addCookie(). The Cookie argument must be constructed by passing the name and value parameters. If the properties arugument is non-null and not empty, the Cookie instance must be initialized as described below. Key in "values" Map Expected type of value. Name of setter method on Cookie instance to be set with the value from the Map. comment String setComment domain String setDomain maxAge Integer setMaxAge secure Boolean setSecure path String setPath httpOnly Boolean setHttpOnly The default implementation throws UnsupportedOperationException and is provided for the sole purpose of not breaking existing applications that extend this class.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="addResponseCookie" return-type="void">
@@ -27403,7 +27403,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1094</id>
-      <description>Dispatch a request to the specified resource to create output for this response. Servlet: This must be accomplished by calling the javax.servlet.ServletContext method getRequestDispatcher(path), and calling the forward() method on the resulting object. If the call to getRequestDisatcher(path) returns null, send aServletResponse SC_NOT_FOUND error code.</description>
+      <description>Dispatch a request to the specified resource to create output for this response. Servlet: This must be accomplished by calling the jakarta.servlet.ServletContext method getRequestDispatcher(path), and calling the forward() method on the resulting object. If the call to getRequestDisatcher(path) returns null, send aServletResponse SC_NOT_FOUND error code.</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="dispatch" return-type="void">
@@ -27993,7 +27993,7 @@
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JSF:JAVADOC:1099</id>
-      <description>Return the input URL, after performing any rewriting needed to ensure that it will correctly identify an addressable action in the current application. Encoding the jakarta.faces.lifecycle.ClientWindow Call jakarta.faces.lifecycle.ClientWindow#isClientWindowRenderModeEnabled(jakarta.faces.context.FacesContext) . If the result is false take no further action and return the rewritten URL. If the result is true, call #getClientWindow(). If the result is non-null, call jakarta.faces.lifecycle.ClientWindow#getId() and append the id to the query string of the URL, making the necessary allowances for a pre-existing query string or no query-string. Call jakarta.faces.lifecycle.ClientWindow#getQueryURLParameters. If the result is non-null, for each parameter in the map, unconditionally add that parameter to the URL. The name of the query string parameter is given by the value of the constant jakarta.faces.render.ResponseStateManager#CLIENT_WINDOW_URL_PARAM. Servlet: This must be the value returned by the javax.servlet.http.HttpServletResponse method encodeURL(url).</description>
+      <description>Return the input URL, after performing any rewriting needed to ensure that it will correctly identify an addressable action in the current application. Encoding the jakarta.faces.lifecycle.ClientWindow Call jakarta.faces.lifecycle.ClientWindow#isClientWindowRenderModeEnabled(jakarta.faces.context.FacesContext) . If the result is false take no further action and return the rewritten URL. If the result is true, call #getClientWindow(). If the result is non-null, call jakarta.faces.lifecycle.ClientWindow#getId() and append the id to the query string of the URL, making the necessary allowances for a pre-existing query string or no query-string. Call jakarta.faces.lifecycle.ClientWindow#getQueryURLParameters. If the result is non-null, for each parameter in the map, unconditionally add that parameter to the URL. The name of the query string parameter is given by the value of the constant jakarta.faces.render.ResponseStateManager#CLIENT_WINDOW_URL_PARAM. Servlet: This must be the value returned by the jakarta.servlet.http.HttpServletResponse method encodeURL(url).</description>
       <package>jakarta.faces.context</package>
       <class-interface>ExternalContext</class-interface>
       <method name="encodeActionURL" return-type="java.lang.String">

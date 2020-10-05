@@ -597,7 +597,7 @@
             <id>__NUMBER__.1</id>
             <description>
                 If the current request is a ServletRequest, call the set() 
-                method of the javax.servlet.jsp.jstl.core.Config class, passing 
+                method of the jakarta.servlet.jsp.jstl.core.Config class, passing 
                 the current ServletRequest, the symbolic constant 
                 Config.FMT_LOCALE, and the locale property of the specfied 
                 UIViewRoot. This configures JSTL with the application’s

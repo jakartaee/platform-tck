@@ -98,7 +98,7 @@
                     <detail>  A &lt;code&gt;JAXMServlet&lt;/code&gt; object is notified of a message&apos;s arrival  using the HTTP-SOAP binding.   &lt;P&gt;  The &lt;code&gt;JAXMServlet&lt;/code&gt; class is a support/utility class and is  provided purely as a convenience.  It is not a mandatory component, and   there is no requirement that it be implemented or extended.  &lt;P&gt;  Note that when a component that receives messages extends  &lt;code&gt;JAXMServlet&lt;/code&gt;, it also needs to implement either a  &lt;code&gt;ReqRespListener&lt;/code&gt; object or a   &lt;code&gt;OnewayListener&lt;/code&gt; object,  depending on whether the component is written for a request-response  style of interaction or for a one-way (asynchronous) style of interaction.</detail>
                 </comment>
                 <fields>
-                    <field modifiers="protected" name="msgFactory" package="javax.xml.soap" type="MessageFactory">
+                    <field modifiers="protected" name="msgFactory" package="jakarta.xml.soap" type="MessageFactory">
                         <comment>
                             <lead>The &lt;code&gt;MessageFactory&lt;/code&gt; object that will be used internally  to create the &lt;code&gt;SOAPMessage&lt;/code&gt; object to be passed to the  method &lt;code&gt;onMessage&lt;/code&gt;.</lead>
                             <detail> This new message will contain the data  from the message that was posted to the servlet.  Using the   &lt;code&gt;MessageFactory&lt;/code&gt; object that is the value for this field   to create the new message ensures that the correct profile is used.</detail>
@@ -131,7 +131,7 @@
                             <detail>  A &lt;code&gt;MessageFactory&lt;/code&gt; object for a particular profile needs to  be set before a message is received in order for the message to be   successfully internalized.</detail>
                         </comment>
                         <parameters>
-                            <parameter name="msgFactory" package="javax.xml.soap" type="MessageFactory">
+                            <parameter name="msgFactory" package="jakarta.xml.soap" type="MessageFactory">
                                 <comment>the &lt;code&gt;MessageFactory&lt;/code&gt; object that will         be used to create the &lt;code&gt;SOAPMessage&lt;/code&gt; object that         will be used to internalize the message that was posted to          the servlet</comment>
                             </parameter>
                         </parameters>
@@ -146,7 +146,7 @@
                                 <comment>the &lt;code&gt;HttpServletRequest&lt;/code&gt; object that a         messaging provider sent to the servlet</comment>
                             </parameter>
                         </parameters>
-                        <returns package="javax.xml.soap" type="MimeHeaders">
+                        <returns package="jakarta.xml.soap" type="MimeHeaders">
                             <comment>a new &lt;code&gt;MimeHeaders&lt;/code&gt; object containing the headers          in the message sent to the servlet</comment>
                         </returns>
                     </method>
@@ -156,7 +156,7 @@
                             <see class="JAXMServlet" member="getHeaders" package="javax.xml.messaging"/>
                         </comment>
                         <parameters>
-                            <parameter name="headers" package="javax.xml.soap" type="MimeHeaders">
+                            <parameter name="headers" package="jakarta.xml.soap" type="MimeHeaders">
                                 <comment>the &lt;code&gt;MimeHeaders&lt;/code&gt; object containing the         the headers in the message sent to the servlet</comment>
                             </parameter>
                             <parameter name="res" type="HttpServletResponse">
@@ -187,7 +187,7 @@
                 </methods>
             </class>
             <class modifiers="public" name="JAXMException">
-                <extends name="SOAPException" package="javax.xml.soap"/>
+                <extends name="SOAPException" package="jakarta.xml.soap"/>
                 <superclasses>
                     <superclass name="Exception" package="java.lang"/>
                     <superclass name="Throwable" package="java.lang"/>
@@ -284,7 +284,7 @@
                     <detail>  In the request-response style of messaging, sending a request and receiving  the response are both done in a single operation. This means that the   client sending the request cannot do anything else until after it has  received the response.  &lt;P&gt;  From the standpoint of the  sender, a message is sent via the &lt;code&gt;SOAPConnection&lt;/code&gt; method  &lt;code&gt;call&lt;/code&gt; in a point-to-point fashion.  The method &lt;code&gt;call&lt;/code&gt;  blocks, waiting until it gets a  response message that it can return.    The sender may be a standalone client, or it may be deployed in a container.  &lt;P&gt;  The receiver, typically a service operating in a servlet, implements the   &lt;code&gt;ReqRespListener&lt;/code&gt; method &lt;code&gt;onMessage&lt;/code&gt; to specify  how to respond to the requests it receives. &lt;P&gt;  It is possible that a standalone client might use the method &lt;code&gt;call&lt;/code&gt;  to send a message that does not require a response.  For such cases,  the receiver must implement the method &lt;code&gt;onMessage&lt;/code&gt; such that   it returns a message whose only purpose is to unblock the   &lt;code&gt;call&lt;/code&gt; method.</detail>
                     <see class="JAXMServlet" package="javax.xml.messaging"/>
                     <see class="OnewayListener" package="javax.xml.messaging"/>
-                    <see class="SOAPConnection" member="call" package="javax.xml.soap"/>
+                    <see class="SOAPConnection" member="call" package="jakarta.xml.soap"/>
                 </comment>
                 <methods>
                     <method modifiers="public" name="onMessage">
@@ -293,11 +293,11 @@
                             <detail>    This method is invoked behind the scenes, typically by the  container (servlet or EJB container) after the messaging provider  delivers the message to the container.    It is expected that EJB Containers will deliver JAXM messages  to EJB components using message driven Beans that implement the  &lt;code&gt;javax.xml.messaging.ReqRespListener&lt;/code&gt; interface.</detail>
                         </comment>
                         <parameters>
-                            <parameter name="message" package="javax.xml.soap" type="SOAPMessage">
+                            <parameter name="message" package="jakarta.xml.soap" type="SOAPMessage">
                                 <comment>the &lt;code&gt;SOAPMessage&lt;/code&gt; object to be passed to this                 &lt;code&gt;ReqRespListener&lt;/code&gt; object</comment>
                             </parameter>
                         </parameters>
-                        <returns package="javax.xml.soap" type="SOAPMessage">
+                        <returns package="jakarta.xml.soap" type="SOAPMessage">
                             <comment>the response. If this is &lt;code&gt;null&lt;/code&gt;, then the          original message is treated as a &quot;oneway&quot; message.</comment>
                         </returns>
                     </method>
@@ -347,7 +347,7 @@
             <interface modifiers="public " name="ProviderConnection">
                 <comment>
                     <lead>A client&apos;s active connection to its messaging provider.</lead>
-                    <see class="SOAPConnection" package="javax.xml.soap"/>
+                    <see class="SOAPConnection" package="jakarta.xml.soap"/>
                     <see class="URLEndpoint" package="javax.xml.messaging"/>
                     <detail>  &lt;P&gt;  A &lt;code&gt;ProviderConnection&lt;/code&gt; object is created using a  &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; object, which is configured so that  the connections it creates will be to a particular messaging provider.  To create a connection, a client first needs to obtain an instance of  the &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; class that creates connections to  the desired messaging provider. The client then calls the  &lt;code&gt;createConnection&lt;/code&gt; method on it.  &lt;P&gt;  The information necessary to set up a &lt;code&gt;ProviderConnectionFactory&lt;/code&gt;  object that creates connections to a particular messaging provider is   supplied at deployment time.  Typically an instance of  &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; will be bound to a logical  name in a naming service. Later the client can do a lookup on the  logical name to retrieve an instance of the  &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; class that produces  connections to its messaging provider.  &lt;P&gt;  The following code fragment is an example of a client doing a lookup of  a &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; object and then using it to create  a connection.  The first two lines in this example use the   Java&lt;sup&gt;&lt;font size =-2&gt;TM&lt;/font&gt;&lt;/sup&gt; Naming and Directory  Interface (JNDI) to create a context, which is then used to do  the lookup.  The argument provided to the &lt;code&gt;lookup&lt;/code&gt; method  is the logical name that was previously associated with the  desired messaging provider. The &lt;code&gt;lookup&lt;/code&gt; method returns  a Java &lt;code&gt;Object&lt;/code&gt;, which needs to be cast to a  &lt;code&gt;ProviderConnectionFactory&lt;/code&gt; object before it can be used to create  a connection.  In the following code fragment, the resulting   &lt;code&gt;ProviderConnection&lt;/code&gt; object is a connection to the messaging provider  that is associated with the logical name &quot;ProviderXYZ&quot;.  &lt;PRE&gt;     Context ctx = new InitialContext();     ProviderConnectionFactory pcf = (ProviderConnectionFactory)ctx.lookup(&quot;ProviderXYZ&quot;);     ProviderConnection con = pcf.createConnection();  &lt;/PRE&gt;   &lt;P&gt;  After the client has obtained a connection to its messaging provider,  it can use that connection to create one or more   &lt;code&gt;MessageFactory&lt;/code&gt; objects, which can then be used to create  &lt;code&gt;SOAPMessage&lt;/code&gt; objects.  Messages are delivered to an endpoint using the &lt;code&gt;ProviderConnection&lt;/code&gt;  method &lt;code&gt;send&lt;/code&gt;.    &lt;P&gt;  The messaging provider maintains a list of &lt;code&gt;Endpoint&lt;/code&gt; objects,  which is established at deployment time as part of configuring   the messaging provider. When a client uses a messaging provider to send  messages, it can   send messages only to those parties represented by &lt;code&gt;Endpoint&lt;/code&gt;   objects in its messaging provider&apos;s list. This is true because the  messaging provider maps the URI for each &lt;code&gt;Endpoint&lt;/code&gt; object to  a URL.    &lt;P&gt;  Note that it is possible for a client to send a message without  using a messaging provider.  In this case, the client uses a  &lt;code&gt;SOAPConnection&lt;/code&gt; object   to send point-to-point messages via the method &lt;code&gt;call&lt;/code&gt;.  This method takes an &lt;code&gt;Endpoint&lt;/code&gt; object (actually a  &lt;code&gt;URLEndpoint&lt;/code&gt; object) that specifies the URL where the message  is to be sent.  See  and   for more information.  &lt;P&gt;  Typically, because clients have one messaging provider, they will do all   their messaging with a single &lt;code&gt;ProviderConnection&lt;/code&gt; object. It is   possible, however, for a sophisticated application to use multiple  connections.    &lt;P&gt;  Generally, a container is configured with a listener component at  deployment time using an implementation-specific mechanism.   A client running in such a container uses a &lt;code&gt;OnewayListener&lt;/code&gt;  object to receive messages asynchronously. In this scenario, messages are  sent via the &lt;code&gt;ProviderConnection&lt;/code&gt; method &lt;code&gt;send&lt;/code&gt;.  A client running in a container that wants to receive synchronous messages  uses a &lt;code&gt;ReqRespListener&lt;/code&gt; object. A &lt;code&gt;ReqRespListener&lt;/code&gt;  object receives messages sent via the &lt;code&gt;SOAPConnection&lt;/code&gt; method  &lt;code&gt;call&lt;/code&gt;.  &lt;P&gt;  Due to the authentication and communication setup done when a   &lt;code&gt;ProviderConnection&lt;/code&gt; object is created, it is a relatively heavy-weight   object. Therefore, a client should close its connection as soon as it is  done using it.  &lt;P&gt;  JAXM objects created using one &lt;code&gt;ProviderConnection&lt;/code&gt; object cannot be   used with a different &lt;code&gt;ProviderConnection&lt;/code&gt; object.</detail>
                 </comment>
@@ -384,7 +384,7 @@
                                 <comment>a string that represents a particular JAXM                 profile in use. An example of a JAXM profile is:                 &quot;ebxml&quot;.</comment>
                             </parameter>
                         </parameters>
-                        <returns package="javax.xml.soap" type="MessageFactory">
+                        <returns package="jakarta.xml.soap" type="MessageFactory">
                             <comment>a new &lt;code&gt;MessageFactory&lt;/code&gt; object that will create          &lt;code&gt;SOAPMessage&lt;/code&gt; objects for the given profile</comment>
                         </returns>
                         <throws>
@@ -397,7 +397,7 @@
                             <detail> No assumptions can be made regarding the ultimate  success or failure of message delivery at the time this method returns.</detail>
                         </comment>
                         <parameters>
-                            <parameter name="message" package="javax.xml.soap" type="SOAPMessage">
+                            <parameter name="message" package="jakarta.xml.soap" type="SOAPMessage">
                                 <comment>the &lt;code&gt;SOAPMessage&lt;/code&gt; object that is to be         sent asynchronously over this &lt;code&gt;ProviderConnection&lt;/code&gt; object</comment>
                             </parameter>
                         </parameters>
@@ -422,7 +422,7 @@
                             <detail>    This method is invoked behind the scenes, typically by the  container (servlet or EJB container) after the messaging provider  delivers the message to the container.    It is expected that EJB Containers will deliver JAXM messages  to EJB components using message driven Beans that implement the  &lt;code&gt;javax.xml.messaging.OnewayListener&lt;/code&gt; interface.</detail>
                         </comment>
                         <parameters>
-                            <parameter name="message" package="javax.xml.soap" type="SOAPMessage">
+                            <parameter name="message" package="jakarta.xml.soap" type="SOAPMessage">
                                 <comment>the &lt;code&gt;SOAPMessage&lt;/code&gt; object to be passed to this                 &lt;code&gt;OnewayListener&lt;/code&gt; object</comment>
                             </parameter>
                         </parameters>

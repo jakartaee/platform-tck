@@ -283,7 +283,7 @@ The full requirements for Singleton Session Bean are defined in the section 4.8 
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 <id>WS4EE:SPEC:53</id>
 <description> A JAX-RPC Service Endpoint
-			must implement javax.servlet.SingleThreadModel if single threaded
+			must implement jakarta.servlet.SingleThreadModel if single threaded
 			access is required by the component. A container must serialize
 			method requests for a Service Implementation Bean that implements the
 			SingleThreadModel interface.</description>
@@ -928,7 +928,7 @@ Service Implementations using a stateless or singleton session bean may use EJB 
 <id>WS4EE:SPEC:136</id>
 <description> With JAX-RPC a client developer may use
 			the following methods of the Service Interface if no WSDL definition
-			is specified in the client deployment descriptor: createCall(). With JAX-WS, a client developer may use the following methods of the Service class if no WSDL definition is specified in the client deployment descriptor: &lt;T&gt; Dispatch&lt;T&gt; createDispatch(javax.xml.namespace.QName portName, java.lang.Class&lt;T&gt; type, Service.Mode mode); Dispatch&lt;java.lang.Object&gt; createDispatch(javax.xml.namespace.QName portName, javax.xml.bind.JAXBContext context, Service.Mode mode); java.util.concurrent.Executor getExecutor(); void setExecutor(java.util.concurrent.Executor executor);</description>
+			is specified in the client deployment descriptor: createCall(). With JAX-WS, a client developer may use the following methods of the Service class if no WSDL definition is specified in the client deployment descriptor: &lt;T&gt; Dispatch&lt;T&gt; createDispatch(javax.xml.namespace.QName portName, java.lang.Class&lt;T&gt; type, Service.Mode mode); Dispatch&lt;java.lang.Object&gt; createDispatch(javax.xml.namespace.QName portName, jakarta.xml.bind.JAXBContext context, Service.Mode mode); java.util.concurrent.Executor getExecutor(); void setExecutor(java.util.concurrent.Executor executor);</description>
 <location chapter="4" section="2.3.6" />
 </assertion>
 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

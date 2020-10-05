@@ -178,7 +178,7 @@
             defined-by="technology" status="active" testable="true">
             <id>__NUMBER__.4</id>
             <description>
-                javax.servlet.jsp.jstl.sql.Result
+                jakarta.servlet.jsp.jstl.sql.Result
             </description>
             <location chapter="4" section="1.3.2"/>
         </assertion>
@@ -751,7 +751,7 @@
             <id>__NUMBER__.3</id>
             <description>
                 ResultDataModel -- Wrap an object of type 
-                javax.servlet.jsp.jstl.sql.Result (the query results 
+                jakarta.servlet.jsp.jstl.sql.Result (the query results 
                 from JSTL’s SQL tag library)
             </description>
             <location chapter="4" section="2.1.4"/>

@@ -151,7 +151,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id/>
-            <description>Custom actions that correspond to JSF UIComponent instances must subclass either jakarta.faces.webapp.UIComponentTag (see Section 10.2.6.3  UIComponentTag ) or jakarta.faces.webapp.UIComponentBodyTag (see Section 10.2.6.4  UIComponentBodyTag ), depending on whether the custom action needs to support javax.servlet.jsp.tagext.BodyTag functionality or not.</description>
+            <description>Custom actions that correspond to JSF UIComponent instances must subclass either jakarta.faces.webapp.UIComponentTag (see Section 10.2.6.3  UIComponentTag ) or jakarta.faces.webapp.UIComponentBodyTag (see Section 10.2.6.4  UIComponentBodyTag ), depending on whether the custom action needs to support jakarta.servlet.jsp.tagext.BodyTag functionality or not.</description>
             <keywords>
                 <keyword>application-role</keyword>
             </keywords>
@@ -215,7 +215,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id/>
-            <description>javax.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
+            <description>jakarta.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
             <keywords>
                 <keyword>application-role</keyword>
             </keywords>
@@ -265,7 +265,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id/>
-            <description>javax.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
+            <description>jakarta.servlet.* classes will typically be made available to all web applications using the shared class facilities of the servlet container. Therefore, these classes should not be included inside the web application archive.</description>
             <keywords>
                 <keyword>application-role</keyword>
             </keywords>

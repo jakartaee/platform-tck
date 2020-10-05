@@ -59,7 +59,7 @@ Setup and Configuration of the JAX-WS TCK
 
    FastInfoset.jar, jaxb-jxc.jar, policy.jar, gmbal-api-only.jar, jaxb-xjc.jar,
    resolver.jar, ha-api.jar, jaxws-rt.jar, saaj-impl.jar, jakarta.annotation-api.jar,
-   jaxws-tools.jar, stax-ex.jar, javax.xml.soap-api.jar, jsr181-api.jar,
+   jaxws-tools.jar, stax-ex.jar, jakarta.xml.soap-api.jar, jsr181-api.jar,
    stax2-api.jar, jaxb-core.jar, management-api.jar, streambuffer.jar,
    jaxb-impl.jar, mimepull.jar, woodstox-core-asl.jar
 

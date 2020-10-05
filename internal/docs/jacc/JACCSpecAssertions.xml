@@ -1380,8 +1380,8 @@ into a component, this handler must return a Subject containing the principals
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>98</id>
 			<description>All EJB containers must register a PolicyContextHandler whose getContext
-method returns a javax.xml.soap.SOAPMessage object when invoked with the
-key javax.xml.soap.SOAPMessage. If the request being processed by the
+method returns a jakarta.xml.soap.SOAPMessage object when invoked with the
+key jakarta.xml.soap.SOAPMessage. If the request being processed by the
 container arrived as a SOAP request at the ServiceEndpoint method interface, the
 container must return the SOAP message object when this handler is activated.
 Otherwise, this handler must return the value null.
@@ -1392,8 +1392,8 @@ Otherwise, this handler must return the value null.
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "false">
 			<id>99</id>
 			<description>All Servlet containers must register a PolicyContextHandler whose getContext
-method returns a javax.servlet.http.HttpServletRequest object when invoked with
-the key javax.servlet.http.HttpServletRequest. When this handler is activated,
+method returns a jakarta.servlet.http.HttpServletRequest object when invoked with
+the key jakarta.servlet.http.HttpServletRequest. When this handler is activated,
 the container must return the HttpServletRequest object corresponding to the
 component request being processed by the container.
 			</description>

@@ -31,14 +31,14 @@
 <description>
                             The error code to create the SystemException with
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="errorCode" type="public"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:2</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>SystemException</class-interface>
 <method name="SystemException" return-type="SystemException"/>
 </assertion>
@@ -47,7 +47,7 @@
 <description>
                             Create an SystemException with a given string.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>SystemException</class-interface>
 <method name="SystemException" return-type="SystemException">
 <parameters>
@@ -60,7 +60,7 @@
 <description>
                             Create an SystemException with a given error code.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>SystemException</class-interface>
 <method name="SystemException" return-type="SystemException">
 <parameters>
@@ -71,14 +71,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:5</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>RollbackException</class-interface>
 <method name="RollbackException" return-type="RollbackException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:6</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>RollbackException</class-interface>
 <method name="RollbackException" return-type="RollbackException">
 <parameters>
@@ -89,14 +89,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:7</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>NotSupportedException</class-interface>
 <method name="NotSupportedException" return-type="NotSupportedException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:8</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>NotSupportedException</class-interface>
 <method name="NotSupportedException" return-type="NotSupportedException">
 <parameters>
@@ -107,14 +107,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:9</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicMixedException</class-interface>
 <method name="HeuristicMixedException" return-type="HeuristicMixedException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:10</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicMixedException</class-interface>
 <method name="HeuristicMixedException" return-type="HeuristicMixedException">
 <parameters>
@@ -125,14 +125,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:11</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicCommitException</class-interface>
 <method name="HeuristicCommitException" return-type="HeuristicCommitException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:12</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicCommitException</class-interface>
 <method name="HeuristicCommitException" return-type="HeuristicCommitException">
 <parameters>
@@ -143,14 +143,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:13</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicRollbackException</class-interface>
 <method name="HeuristicRollbackException" return-type="HeuristicRollbackException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:14</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>HeuristicRollbackException</class-interface>
 <method name="HeuristicRollbackException" return-type="HeuristicRollbackException">
 <parameters>
@@ -161,14 +161,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:15</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionRolledbackException</class-interface>
 <method name="TransactionRolledbackException" return-type="TransactionRolledbackException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:16</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionRolledbackException</class-interface>
 <method name="TransactionRolledbackException" return-type="TransactionRolledbackException">
 <parameters>
@@ -179,14 +179,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:17</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionrequiredException</class-interface>
 <method name="TransactionrequiredException" return-type="TransactionRequiredException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:18</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionrequiredException</class-interface>
 <method name="TransactionrequiredException" return-type="TransactionRequiredException">
 <parameters>
@@ -197,14 +197,14 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:19</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>InvalidTransactionException</class-interface>
 <method name="InvalidTransactionException" return-type="InvalidTransactionException"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:20</id>
 <description/>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>InvalidTransactionException</class-interface>
 <method name="InvalidTransactionException" return-type="InvalidTransactionException">
 <parameters>
@@ -217,14 +217,14 @@
 <description>
                             Create a new transaction and associate it with the current thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="begin" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:22</id>
 <description>Thrown if the thread is already     associated with a transaction and the Transaction Manager      implementation does not support nested transactions.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="begin" return-type="void">
 <throw>jakarta.transaction.NotSupportedException</throw>
@@ -233,7 +233,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:23</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="begin" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -245,14 +245,14 @@
                             Complete the transaction associated with the current thread.
                              When this  method completes, the thread becomes associated with no transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:25</id>
 <description>Thrown to indicate that     the transaction has been rolled back rather than committed.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.RollbackException</throw>
@@ -261,7 +261,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:26</id>
 <description>Thrown to indicate that a heuristic      decision was made and that some relevant updates have been committed     while others have been rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicMixedException</throw>
@@ -270,7 +270,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:27</id>
 <description>Thrown to indicate that a      heuristic decision was made and that all relevant updates have been     rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicRollbackException</throw>
@@ -279,7 +279,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:28</id>
 <description>Thrown to indicate that the thread is     not allowed to commit the transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>java.lang.SecurityException</throw>
@@ -288,7 +288,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:29</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -297,7 +297,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:30</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -309,14 +309,14 @@
                             Roll back the transaction associated with the current thread.
                              When this  method completes, the thread becomes associated with no transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="rollback" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:32</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="rollback" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -325,7 +325,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:33</id>
 <description>Thrown to indicate that the thread is     not allowed to roll back the transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="rollback" return-type="void">
 <throw>java.lang.SecurityException</throw>
@@ -334,7 +334,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:34</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="rollback" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -345,14 +345,14 @@
 <description>
                             Modify the transaction associated with the current thread such that  the only possible outcome of the transaction is to roll back the  transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setRollbackOnly" return-type="void"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:36</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -361,7 +361,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:37</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -372,14 +372,14 @@
 <description>
                             Obtain the status of the transaction associated with the current thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="getStatus" return-type="int"/>
 </assertion>
 <assertion required="true" impl-spec="false" status="active" testable="false">
 <id>JTA:JAVADOC:39</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="getStatus" return-type="int">
 <throw>jakarta.transaction.SystemException</throw>
@@ -391,7 +391,7 @@
                             Modify the timeout value that is associated with the  transactions started by subsequent invocations of the begin method.
                                &lt;p&gt; If an application has not called this method, the transaction  service uses some default value for the transaction timeout.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setTransactionTimeout" return-type="void">
 <parameters>
@@ -402,7 +402,7 @@
 <assertion required="true" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:41</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>UserTransaction</class-interface>
 <method name="setTransactionTimeout" return-type="void">
 <parameters>
@@ -416,7 +416,7 @@
 <description>
                             This method is called by the transaction   manager prior to the start of the transaction completion process.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Synchronization</class-interface>
 <method name="beforeCompletion" return-type="void"/>
 </assertion>
@@ -425,7 +425,7 @@
 <description>
                             This method is called by the transaction   manager after the transaction is committed or rolled back.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Synchronization</class-interface>
 <method name="afterCompletion" return-type="void">
 <parameters>
@@ -438,14 +438,14 @@
 <description>
                             Create a new transaction and associate it with the current thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="begin" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:45</id>
 <description>Thrown if the thread is already     associated with a transaction and the Transaction Manager      implementation does not support nested transactions.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="begin" return-type="void">
 <throw>jakarta.transaction.NotSupportedException</throw>
@@ -454,7 +454,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:46</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="begin" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -466,14 +466,14 @@
                             Complete the transaction associated with the current thread.
                              When this  method completes, the thread becomes associated with no transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:48</id>
 <description>Thrown to indicate that     the transaction has been rolled back rather than committed.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.RollbackException</throw>
@@ -482,7 +482,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:49</id>
 <description>Thrown to indicate that a heuristic      decision was made and that some relevant updates have been committed     while others have been rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicMixedException</throw>
@@ -491,7 +491,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:50</id>
 <description>Thrown to indicate that a      heuristic decision was made and that some relevant updates have been     rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicRollbackException</throw>
@@ -500,7 +500,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:51</id>
 <description>Thrown to indicate that the thread is     not allowed to commit the transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>java.lang.SecurityException</throw>
@@ -509,7 +509,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:52</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -518,7 +518,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:53</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -529,14 +529,14 @@
 <description>
                             Obtain the status of the transaction associated with the current thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="getStatus" return-type="int"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:55</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="getStatus" return-type="int">
 <throw>jakarta.transaction.SystemException</throw>
@@ -547,14 +547,14 @@
 <description>
                             Get the transaction object that represents the transaction   context of the calling thread
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="getTransaction" return-type="jakarta.transaction.Transaction"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:57</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="getTransaction" return-type="jakarta.transaction.Transaction">
 <throw>jakarta.transaction.SystemException</throw>
@@ -566,7 +566,7 @@
                             Resume the transaction context association of the calling thread  with the transaction represented by the supplied Transaction object.
                                When this method returns, the calling thread is associated with the   transaction context specified.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
@@ -577,7 +577,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:59</id>
 <description>Thrown if the parameter      transaction object contains an invalid transaction</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
@@ -589,7 +589,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:60</id>
 <description>Thrown if the thread is already     associated with another transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
@@ -601,7 +601,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:61</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="resume" return-type="void">
 <parameters>
@@ -616,14 +616,14 @@
                             Roll back the transaction associated with the current thread.
                              When this  method completes, the thread becomes associated with no transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="rollback" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:63</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="rollback" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -632,7 +632,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:64</id>
 <description>Thrown to indicate that the thread is     not allowed to roll back the transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="rollback" return-type="void">
 <throw>java.lang.SecurityException</throw>
@@ -641,7 +641,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:65</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="rollback" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -652,14 +652,14 @@
 <description>
                             Modify the transaction associated with the current thread such that  the only possible outcome of the transaction is to roll back the  transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setRollbackOnly" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:67</id>
 <description>Thrown if the current thread is     not associated with a transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -668,7 +668,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:68</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -680,7 +680,7 @@
                             Modify the value of the timeout value that is associated with the  transactions started by the current thread with the begin method.
                                &lt;p&gt; If an application has not called this method, the transaction  service uses some default value for the transaction timeout.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setTransactionTimeout" return-type="void">
 <parameters>
@@ -691,7 +691,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:70</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="setTransactionTimeout" return-type="void">
 <parameters>
@@ -706,14 +706,14 @@
                             Suspend the transaction currently associated with the calling   thread and return a Transaction object that represents the   transaction context being suspended.
                              If the calling thread is   not associated with a transaction, the method returns a null   object reference. When this method returns, the calling thread   is associated with no transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="suspend" return-type="jakarta.transaction.Transaction"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:72</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>TransactionManager</class-interface>
 <method name="suspend" return-type="jakarta.transaction.Transaction">
 <throw>jakarta.transaction.SystemException</throw>
@@ -725,7 +725,7 @@
                             A transaction is associated with the target object and it is in the  active state.
                              An implementation returns this status after a  transaction has been started and prior to a Coordinator issuing  any prepares unless the transaction has been marked for rollback.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_ACTIVE" type="public static final"/>
 </assertion>
@@ -734,7 +734,7 @@
 <description>
                             A transaction is associated with the target object and it has been  marked for rollback, perhaps as a result of a setRollbackOnly operation.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_MARKED_ROLLBACK" type="public static final"/>
 </assertion>
@@ -744,7 +744,7 @@
                             A transaction is associated with the target object and it has been  prepared, i.e.
                              all subordinates have responded Vote.Commit. The  target object may be waiting for a superior's instruction as how  to proceed.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_PREPARED" type="public static final"/>
 </assertion>
@@ -754,7 +754,7 @@
                             A transaction is associated with the target object and it has been  committed.
                              It is likely that heuristics exists, otherwise the  transaction would have been destroyed and NoTransaction returned.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_COMMITTED" type="public static final"/>
 </assertion>
@@ -764,7 +764,7 @@
                             A transaction is associated with the target object and the outcome  has been determined as rollback.
                              It is likely that heuristics exist,  otherwise the transaction would have been destroyed and NoTransaction  returned.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_ROLLEDBACK" type="public static final"/>
 </assertion>
@@ -774,7 +774,7 @@
                             A transaction is associated with the target object but its  current status cannot be determined.
                              This is a transient condition  and a subsequent invocation will ultimately return a different status.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_UNKNOWN" type="public static final"/>
 </assertion>
@@ -784,7 +784,7 @@
                             No transaction is currently associated with the target object.
                              This  will occur after a transaction has completed.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_NO_TRANSACTION" type="public static final"/>
 </assertion>
@@ -794,7 +794,7 @@
                             A transaction is associated with the target object and it is in the  process of preparing.
                              An implementation returns this status if it  has started preparing, but has not yet completed the process, probably  because it is waiting for responses to prepare from one or more  Resources.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_PREPARING" type="public static final"/>
 </assertion>
@@ -804,7 +804,7 @@
                             A transaction is associated with the target object and it is in the  process of committing.
                              An implementation returns this status if it  has decided to commit, but has not yet completed the process, probably  because it is waiting for responses from one or more Resources.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_COMMITTING" type="public static final"/>
 </assertion>
@@ -814,7 +814,7 @@
                             A transaction is associated with the target object and it is in the  process of rolling back.
                              An implementation returns this status if  it has decided to rollback, but has not yet completed the process,  probably because it is waiting for responses from one or more  Resources.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>int</class-interface>
 <field name="STATUS_ROLLING_BACK" type="public static final"/>
 </assertion>
@@ -823,14 +823,14 @@
 <description>
                             Complete the transaction represented by this Transaction object
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:84</id>
 <description>Thrown to indicate that     the transaction has been rolled back rather than committed.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.RollbackException</throw>
@@ -839,7 +839,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:85</id>
 <description>Thrown to indicate that a heuristic      decision was made and that some relevant updates have been committed     while others have been rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicMixedException</throw>
@@ -848,7 +848,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:86</id>
 <description>Thrown to indicate that a      heuristic decision was made and that some relevant updates have been     rolled back.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.HeuristicRollbackException</throw>
@@ -857,7 +857,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:87</id>
 <description>Thrown to indicate that the thread is     not allowed to commit the transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
 <throw>java.lang.SecurityException</throw>
@@ -866,7 +866,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:88</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="commit" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -877,7 +877,7 @@
 <description>
                             Delist the resource specified from the current transaction   associated with the calling thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="delistResource" return-type="boolean">
 <parameters>
@@ -889,7 +889,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:90</id>
 <description>Thrown if the transaction in the      target object is inactive.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="delistResource" return-type="boolean">
 <parameters>
@@ -902,7 +902,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:91</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="delistResource" return-type="boolean">
 <parameters>
@@ -917,7 +917,7 @@
 <description>
                             Enlist the resource specified with the current transaction   context of the calling thread
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="enlistResource" return-type="boolean">
 <parameters>
@@ -928,7 +928,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:93</id>
 <description>Thrown to indicate that     the transaction has been marked for rollback only.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="enlistResource" return-type="boolean">
 <parameters>
@@ -940,7 +940,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:94</id>
 <description>Thrown if the transaction in the      target object is in prepared state or the transaction is inactive.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="enlistResource" return-type="boolean">
 <parameters>
@@ -952,7 +952,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:95</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="enlistResource" return-type="boolean">
 <parameters>
@@ -966,14 +966,14 @@
 <description>
                             Obtain the status of the transaction associated with the current thread.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="getStatus" return-type="int"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:97</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="getStatus" return-type="int">
 <throw>jakarta.transaction.SystemException</throw>
@@ -985,7 +985,7 @@
                             Register a synchronization object for the transaction currently  associated with the calling thread.
                              The transction manager invokes  the beforeCompletion method prior to starting the transaction   commit process. After the transaction is completed, the transaction  manager invokes the afterCompletion method.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
@@ -996,7 +996,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:99</id>
 <description>Thrown to indicate that     the transaction has been marked for rollback only.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
@@ -1008,7 +1008,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:100</id>
 <description>Thrown if the transaction in the      target object is in prepared state or the transaction is inactive.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
@@ -1020,7 +1020,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:101</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="registerSynchronization" return-type="void">
 <parameters>
@@ -1034,14 +1034,14 @@
 <description>
                             Rollback the transaction represented by this Transaction object.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="rollback" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:103</id>
 <description>Thrown if the transaction in the      target object is in prepared state or the transaction is inactive.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="rollback" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -1050,7 +1050,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:104</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="rollback" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>
@@ -1061,14 +1061,14 @@
 <description>
                             Modify the transaction associated with the current thread such that  the only possible outcome of the transaction is to roll back the  transaction.
                         </description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="setRollbackOnly" return-type="void"/>
 </assertion>
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:106</id>
 <description>Thrown if the current thread is     not associated with any transaction.</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>java.lang.IllegalStateException</throw>
@@ -1077,7 +1077,7 @@
 <assertion required="false" impl-spec="false" status="active" testable="true">
 <id>JTA:JAVADOC:107</id>
 <description>Thrown if the transaction manager      encounters an unexpected error condition</description>
-<package>javax.transaction</package>
+<package>jakarta.transaction</package>
 <class-interface>Transaction</class-interface>
 <method name="setRollbackOnly" return-type="void">
 <throw>jakarta.transaction.SystemException</throw>

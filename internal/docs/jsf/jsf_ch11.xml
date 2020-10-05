@@ -383,7 +383,7 @@
     <id>__NUMBER__</id>
     <description>
         UIComponentELTag is an implementation of 
-        javax.servlet.jsp.tagext.BodyTag, and must be the base class for any JSP
+        jakarta.servlet.jsp.tagext.BodyTag, and must be the base class for any JSP
         custom action that corresponds to a JSF UIComponent.
     </description>
     <location chapter="11" section="2.6.3"/>

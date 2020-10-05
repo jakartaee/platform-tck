@@ -919,7 +919,7 @@
       <description>Gets the embedded SOAPFault instance.</description>
       <package>jakarta.xml.ws.soap</package>
       <class-interface>SOAPFaultException</class-interface>
-      <method name="getFault" return-type="javax.xml.soap.javax.xml.soap.SOAPFault" />
+      <method name="getFault" return-type="jakarta.xml.soap.SOAPFault" />
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>JAXWS:JAVADOC:113</id>

@@ -133,7 +133,7 @@
 <class-interface>JAXMServlet</class-interface>
 <method name="setMessageFactory" return-type="void">
 <parameters>
-<parameter>javax.xml.soap.MessageFactory</parameter>
+<parameter>jakarta.xml.soap.MessageFactory</parameter>
 </parameters>
 </method>
 </assertion>
@@ -258,9 +258,9 @@
                         </description>
 <package>javax.xml.messaging</package>
 <class-interface>ReqRespListener</class-interface>
-<method name="onMessage" return-type="javax.xml.soap.SOAPMessage">
+<method name="onMessage" return-type="jakarta.xml.soap.SOAPMessage">
 <parameters>
-<parameter>javax.xml.soap.SOAPMessage</parameter>
+<parameter>jakarta.xml.soap.SOAPMessage</parameter>
 </parameters>
 </method>
 </assertion>
@@ -347,7 +347,7 @@
                         </description>
 <package>javax.xml.messaging</package>
 <class-interface>ProviderConnection</class-interface>
-<method name="createMessageFactory" return-type="javax.xml.soap.MessageFactory">
+<method name="createMessageFactory" return-type="jakarta.xml.soap.MessageFactory">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -358,7 +358,7 @@
 <description>if the JAXM infrastructure encounters                           an error, for example, if the endpoint                           that is being used is not compatible                           with the specified profile</description>
 <package>javax.xml.messaging</package>
 <class-interface>ProviderConnection</class-interface>
-<method name="createMessageFactory" return-type="javax.xml.soap.MessageFactory">
+<method name="createMessageFactory" return-type="jakarta.xml.soap.MessageFactory">
 <parameters>
 <parameter>java.lang.String</parameter>
 </parameters>
@@ -375,7 +375,7 @@
 <class-interface>ProviderConnection</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.xml.soap.SOAPMessage</parameter>
+<parameter>jakarta.xml.soap.SOAPMessage</parameter>
 </parameters>
 </method>
 </assertion>
@@ -386,7 +386,7 @@
 <class-interface>ProviderConnection</class-interface>
 <method name="send" return-type="void">
 <parameters>
-<parameter>javax.xml.soap.SOAPMessage</parameter>
+<parameter>jakarta.xml.soap.SOAPMessage</parameter>
 </parameters>
 <throw>javax.xml.messaging.JAXMException</throw>
 </method>
@@ -401,7 +401,7 @@
 <class-interface>OnewayListener</class-interface>
 <method name="onMessage" return-type="void">
 <parameters>
-<parameter>javax.xml.soap.SOAPMessage</parameter>
+<parameter>jakarta.xml.soap.SOAPMessage</parameter>
 </parameters>
 </method>
 </assertion>

@@ -64,7 +64,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
 			<id>SAAJ:SPEC:2</id>
-			<description>The javax.xml.soap package provides the primary abstraction for SOAP messages with MIME attachments. Attachments may be entire XML documents, XML fragments, or any other content with a valid MIME type. In addition, this package provides a simple client-side view of a request-response style of interaction with a SOAP service.</description>
+			<description>The jakarta.xml.soap package provides the primary abstraction for SOAP messages with MIME attachments. Attachments may be entire XML documents, XML fragments, or any other content with a valid MIME type. In addition, this package provides a simple client-side view of a request-response style of interaction with a SOAP service.</description>
 			<location chapter = "1" section = "1"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
@@ -84,7 +84,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">
 			<id>SAAJ:SPEC:6</id>
-			<description>A SOAPMessage object may contain zero or more AttachmentPart objects. Each AttachmentPart object in turn contains application specific content and corresponding MIME headers. A SAAJ implementation must support the following MIME types (text/plain, multipart/*, text/xml, application/xml). Additional MIME types may be supported using the javax.activation.DataHandler class and the Java Activation Framework.</description>
+			<description>A SOAPMessage object may contain zero or more AttachmentPart objects. Each AttachmentPart object in turn contains application specific content and corresponding MIME headers. A SAAJ implementation must support the following MIME types (text/plain, multipart/*, text/xml, application/xml). Additional MIME types may be supported using the jakarta.activation.DataHandler class and the Java Activation Framework.</description>
 			<location chapter = "1" section = "1.2"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "true" defined-by = "technology" status = "active" testable = "true">

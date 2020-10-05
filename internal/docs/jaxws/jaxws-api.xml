@@ -308,14 +308,14 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with objects of  the client&apos;s choosing.</lead>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source, javax.xml.soap.SOAPMessage  and javax.activation.DataSource, depending on  the binding in use.</comment>
+                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source, jakarta.xml.soap.SOAPMessage  and jakarta.activation.DataSource, depending on  the binding in use.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the client will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the client will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>
@@ -330,7 +330,7 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with objects of  the client&apos;s choosing.</lead>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
@@ -338,7 +338,7 @@
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and javax.xml.soap.SOAPMessage.</comment>
+                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and jakarta.xml.soap.SOAPMessage.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the client will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the client will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>
@@ -357,7 +357,7 @@
                             <lead>Creates a Dispatch instance for use with objects of  the client&apos;s choosing.</lead>
                             <detail> If there  are any reference parameters in the   endpointReference, then those reference  parameters MUST appear as SOAP headers, indicating them to be  reference parameters, on all messages sent to the endpoint.  The endpointReference&apos;s address MUST be used  for invocations on the endpoint.  In the implementation of this method, the JAX-WS  runtime system takes the responsibility of selecting a protocol  binding (and a port) and configuring the dispatch accordingly from  the WSDL associated with this Service instance or  from the metadata from the endpointReference.  If this Service instance has a WSDL and   the endpointReference  also has a WSDL in its metadata, then the WSDL from this instance MUST be used.  If this Service instance does not have a WSDL and  the endpointReference does have a WSDL, then the   WSDL from the endpointReference MAY be used.       An implementation MUST be able to retrieve the portName from the  endpointReference metadata.    This method behaves the same as calling    dispatch = service.createDispatch(portName, type, mode, features);    where the portName is retrieved from the   WSDL or EndpointReference metadata.</detail>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
@@ -365,7 +365,7 @@
                                 <comment>The EndpointReference  for the target service endpoint that will be invoked by the  returned Dispatch object.</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used to messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and javax.xml.soap.SOAPMessage.</comment>
+                                <comment>The class of object used to messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and jakarta.xml.soap.SOAPMessage.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the client will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the client will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>
@@ -1538,7 +1538,7 @@
                     <lead>Service endpoints may implement the Provider   interface as a dynamic alternative to an SEI.</lead>
                     <detail>    Implementations are required to support Provider,   Provider and   Provider, depending on the binding   in use and the service mode.    The ServiceMode annotation can be used to control whether   the Provider instance will receive entire protocol messages   or just message payloads.</detail>
                     <see class="Source" package="javax.xml.transform"/>
-                    <see class="SOAPMessage" package="javax.xml.soap"/>
+                    <see class="SOAPMessage" package="jakarta.xml.soap"/>
                     <see class="ServiceMode" package="jakarta.xml.ws"/>
                 </comment>
                 <methods>
@@ -2085,19 +2085,19 @@
                     <field modifiers="public static final" name="SERVLET_REQUEST" package="java.lang" type="String">
                         <comment>
                             <lead>Standard property: servlet request object.</lead>
-                            <detail>  Type: javax.servlet.http.HttpServletRequest</detail>
+                            <detail>  Type: jakarta.servlet.http.HttpServletRequest</detail>
                         </comment>
                     </field>
                     <field modifiers="public static final" name="SERVLET_RESPONSE" package="java.lang" type="String">
                         <comment>
                             <lead>Standard property: servlet response object.</lead>
-                            <detail>  Type: javax.servlet.http.HttpServletResponse</detail>
+                            <detail>  Type: jakarta.servlet.http.HttpServletResponse</detail>
                         </comment>
                     </field>
                     <field modifiers="public static final" name="SERVLET_CONTEXT" package="java.lang" type="String">
                         <comment>
                             <lead>Standard property: servlet context object.</lead>
-                            <detail>  Type: javax.servlet.ServletContext</detail>
+                            <detail>  Type: jakarta.servlet.ServletContext</detail>
                         </comment>
                     </field>
                     <field modifiers="public static final" name="QUERY_STRING" package="java.lang" type="String">
@@ -2254,8 +2254,8 @@
                 <since>JAX-WS 2.0</since>
                 <comment>
                     <lead>The interface SOAPMessageContext    provides access to the SOAP message for either RPC request or    response.</lead>
-                    <detail> The javax.xml.soap.SOAPMessage specifies   the standard Java API for the representation of a SOAP 1.1 message   with attachments.</detail>
-                    <see class="SOAPMessage" package="javax.xml.soap"/>
+                    <detail> The jakarta.xml.soap.SOAPMessage specifies   the standard Java API for the representation of a SOAP 1.1 message   with attachments.</detail>
+                    <see class="SOAPMessage" package="jakarta.xml.soap"/>
                 </comment>
                 <methods>
                     <method modifiers="public" name="getMessage">
@@ -2263,7 +2263,7 @@
                             <lead>Gets the SOAPMessage from this message context.</lead>
                             <detail> Modifications   to the returned SOAPMessage change the message in-place, there   is no need to susequently call setMessage.</detail>
                         </comment>
-                        <returns package="javax.xml.soap" type="SOAPMessage">
+                        <returns package="jakarta.xml.soap" type="SOAPMessage">
                             <comment>Returns the SOAPMessage; returns null if no            SOAPMessage is present in this message context</comment>
                         </returns>
                     </method>
@@ -2272,7 +2272,7 @@
                             <lead>Sets the SOAPMessage in this message context</lead>
                         </comment>
                         <parameters>
-                            <parameter name="message" package="javax.xml.soap" type="SOAPMessage">
+                            <parameter name="message" package="jakarta.xml.soap" type="SOAPMessage">
                                 <comment>SOAP message</comment>
                             </parameter>
                         </parameters>
@@ -2401,8 +2401,8 @@
                 <since>JAX-WS 2.0</since>
                 <comment>
                     <lead>The SOAPFaultException exception represents a   SOAP 1.1 or 1.2 fault.</lead>
-                    <detail>    A SOAPFaultException wraps a SAAJ SOAPFault   that manages the SOAP-specific representation of faults.   The createFault method of   javax.xml.soap.SOAPFactory may be used to create an instance   of javax.xml.soap.SOAPFault for use with the   constructor. SOAPBinding contains an accessor for the   SOAPFactory used by the binding instance.    Note that the value of getFault is the only part of the   exception used when searializing a SOAP fault.    Refer to the SOAP specification for a complete   description of SOAP faults.</detail>
-                    <see class="SOAPFault" package="javax.xml.soap"/>
+                    <detail>    A SOAPFaultException wraps a SAAJ SOAPFault   that manages the SOAP-specific representation of faults.   The createFault method of   jakarta.xml.soap.SOAPFactory may be used to create an instance   of jakarta.xml.soap.SOAPFault for use with the   constructor. SOAPBinding contains an accessor for the   SOAPFactory used by the binding instance.    Note that the value of getFault is the only part of the   exception used when searializing a SOAP fault.    Refer to the SOAP specification for a complete   description of SOAP faults.</detail>
+                    <see class="SOAPFault" package="jakarta.xml.soap"/>
                     <see class="SOAPBinding" member="getSOAPFactory" package="jakarta.xml.ws.soap"/>
                     <see class="ProtocolException" package="jakarta.xml.ws"/>
                 </comment>
@@ -2410,10 +2410,10 @@
                     <constructor modifiers="public">
                         <comment>
                             <lead>Constructor for SOAPFaultException</lead>
-                            <see class="SOAPFactory" member="createFault" package="javax.xml.soap"/>
+                            <see class="SOAPFactory" member="createFault" package="jakarta.xml.soap"/>
                         </comment>
                         <parameters>
-                            <parameter name="fault" package="javax.xml.soap" type="SOAPFault">
+                            <parameter name="fault" package="jakarta.xml.soap" type="SOAPFault">
                                 <comment>SOAPFault representing the fault</comment>
                             </parameter>
                         </parameters>
@@ -2424,8 +2424,8 @@
                         <comment>
                             <lead>Gets the embedded SOAPFault instance.</lead>
                         </comment>
-                        <returns package="javax.xml.soap" type="SOAPFault">
-                            <comment>javax.xml.soap.SOAPFault SOAP           fault element</comment>
+                        <returns package="jakarta.xml.soap" type="SOAPFault">
+                            <comment>jakarta.xml.soap.SOAPFault SOAP           fault element</comment>
                         </returns>
                     </method>
                 </methods>
@@ -2725,7 +2725,7 @@
                         <comment>
                             <lead>Gets the SAAJ SOAPFactory instance used by this SOAP binding.</lead>
                         </comment>
-                        <returns package="javax.xml.soap" type="SOAPFactory">
+                        <returns package="jakarta.xml.soap" type="SOAPFactory">
                             <comment>SOAPFactory instance used by this SOAP binding.</comment>
                         </returns>
                     </method>
@@ -2733,7 +2733,7 @@
                         <comment>
                             <lead>Gets the SAAJ MessageFactory instance used by this SOAP binding.</lead>
                         </comment>
-                        <returns package="javax.xml.soap" type="MessageFactory">
+                        <returns package="jakarta.xml.soap" type="MessageFactory">
                             <comment>MessageFactory instance used by this SOAP binding.</comment>
                         </returns>
                     </method>
@@ -2972,14 +2972,14 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with objects of  the user&apos;s choosing.</lead>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                         </comment>
                         <parameters>
                             <parameter name="portName" package="javax.xml.namespace" type="QName">
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and javax.xml.soap.SOAPMessage.</comment>
+                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and jakarta.xml.soap.SOAPMessage.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the user will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the user will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>
@@ -2994,7 +2994,7 @@
                         <comment>
                             <lead>Creates a Dispatch instance for use with objects of  the user&apos;s choosing.</lead>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
@@ -3002,7 +3002,7 @@
                                 <comment>Qualified name for the target service endpoint</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and javax.xml.soap.SOAPMessage.</comment>
+                                <comment>The class of object used for messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and jakarta.xml.soap.SOAPMessage.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the user will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the user will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>
@@ -3021,7 +3021,7 @@
                             <lead>Creates a Dispatch instance for use with objects of  the user&apos;s choosing.</lead>
                             <detail> If there  are any reference parameters in the   endpointReference, then those reference  parameters MUST appear as SOAP headers, indicating them to be  reference parameters, on all messages sent to the endpoint.  The endpointReference&apos;s address MUST be used  for invocations on the endpoint.  In the implementation of this method, the JAX-WS  runtime system takes the responsibility of selecting a protocol  binding (and a port) and configuring the dispatch accordingly from  the WSDL associated with this Service instance or  from the metadata from the endpointReference.  If this Service instance has a WSDL and   the endpointReference  also has a WSDL in its metadata, then the WSDL from this instance MUST be used.  If this Service instance does not have a WSDL and  the endpointReference does have a WSDL, then the   WSDL from the endpointReference MAY be used.   An implementation MUST be able to retrieve the portName from the  endpointReference metadata.      This method behaves the same as calling    dispatch = service.createDispatch(portName, type, mode, features);    where the portName is retrieved from the   WSDL or EndpointReference metadata.</detail>
                             <see class="Source" package="javax.xml.transform"/>
-                            <see class="SOAPMessage" package="javax.xml.soap"/>
+                            <see class="SOAPMessage" package="jakarta.xml.soap"/>
                             <see class="WebServiceFeature" package="jakarta.xml.ws"/>
                         </comment>
                         <parameters>
@@ -3029,7 +3029,7 @@
                                 <comment>The EndpointReference  for the target service endpoint that will be invoked by the  returned Dispatch object.</comment>
                             </parameter>
                             <parameter name="type" package="java.lang" type="Class">
-                                <comment>The class of object used to messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and javax.xml.soap.SOAPMessage.</comment>
+                                <comment>The class of object used to messages or message  payloads. Implementations are required to support  javax.xml.transform.Source and jakarta.xml.soap.SOAPMessage.</comment>
                             </parameter>
                             <parameter name="mode" package="jakarta.xml.ws.Service" type="Service.Mode">
                                 <comment>Controls whether the created dispatch instance is message  or payload oriented, i.e. whether the user will work with complete  protocol messages or message payloads. E.g. when using the SOAP  protocol, this parameter controls whether the user will work with  SOAP messages or the contents of a SOAP body. Mode MUST be MESSAGE  when type is SOAPMessage.</comment>

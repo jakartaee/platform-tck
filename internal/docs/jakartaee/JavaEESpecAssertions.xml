@@ -3632,7 +3632,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:238</id>
             <description>
-                The JavaMail API must include javax.activation.DataContentHandlers 
+                The JavaMail API must include jakarta.activation.DataContentHandlers 
                 for the following MIME data types, corresponding to the Java 
                 programming language type indiated in table Java EE.6-1
             </description>
@@ -3644,7 +3644,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
             <description>
                 This specification requires that a JavaEE product provide only the 
                 DataContentHandlers for the JavaMail API. This includes requirement 
-                of a javax.activation.MimetypesFileTypeMap that supports the mapping 
+                of a jakarta.activation.MimetypesFileTypeMap that supports the mapping 
                 listed in Table EE.6.5. 
             </description>
             <location chapter = "6" section = "9"/>
@@ -4897,7 +4897,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
             <id>JavaEE:SPEC:298</id>
             <description>
                    In particular, the temporary file directory made available through the 
-                ServletContext attribute javax.servlet.context.tempdir should be available 
+                ServletContext attribute jakarta.servlet.context.tempdir should be available 
                 to deployed applications. The security policy of the operational environment 
                 should grant the application server process access to the corresponding 
                 part of the file system.
@@ -4909,7 +4909,7 @@ In addition, it must be possible to pass a reference to an RMI-IIOP-based enterp
             </description>
             <location chapter = "6" section = "2.2.3"/>
             <comment> 
-                "SHOULD" be available...  - javax.servlet.context.tempdir may NOT 
+                "SHOULD" be available...  - jakarta.servlet.context.tempdir may NOT 
                  be available to servlet so cant test.
             </comment>
         </assertion>

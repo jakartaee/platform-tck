@@ -715,7 +715,7 @@
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
                     <id>JAXRS:SPEC:33.6</id>
-                    <description>javax.activation.DataSource All media types (*/*).</description>
+                    <description>jakarta.activation.DataSource All media types (*/*).</description>
                     <location chapter="4" section="2.4"/>
                 </assertion>
                 <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
@@ -884,12 +884,12 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>JAXRS:SPEC:56</id>
-            <description>(deploy with Servlet container)If no Application subclass is present the added servlet MUST be named: javax.ws.rs.core.Application, and all root resource classes and providers packaged in the web application MUST be included in the published JAX-RS application. The application MUST be packaged with a web.xml that speciﬁes a servlet mapping for the added servlet.</description>
+            <description>(deploy with Servlet container)If no Application subclass is present the added servlet MUST be named: jakarta.ws.rs.core.Application, and all root resource classes and providers packaged in the web application MUST be included in the published JAX-RS application. The application MUST be packaged with a web.xml that speciﬁes a servlet mapping for the added servlet.</description>
             <location chapter="2" section="3.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>JAXRS:SPEC:57</id>
-            <description>(deploy with Servlet container)If an Application subclass is present and there is already a servlet deﬁned that has a servlet initialization parameter named: javax.ws.rs.Application, whose value is the fully qualiﬁed name of the Application subclass then no new servlet should be added by the JAX-RS implementation’s ContainerInitializer since the application is already being handled by an existing servlet.</description>
+            <description>(deploy with Servlet container)If an Application subclass is present and there is already a servlet deﬁned that has a servlet initialization parameter named: jakarta.ws.rs.Application, whose value is the fully qualiﬁed name of the Application subclass then no new servlet should be added by the JAX-RS implementation’s ContainerInitializer since the application is already being handled by an existing servlet.</description>
             <location chapter="2" section="3.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
@@ -904,7 +904,7 @@
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="platform" status="active" testable="true">
             <id>JAXRS:SPEC:60</id>
-            <description>(deploy with Servlet container)If not using the Servlet 3 framework pluggability mechanism (e.g. in a pre-Servet 3.0 container), the servlet-class or filter-class element of the web.xml descriptor SHOULD name the JAX-RS implementation-supplied servlet or ﬁlter class respectively. The Application subclass SHOULD be identiﬁed using an init-param with a param-name of javax.ws.rs.Application.</description>
+            <description>(deploy with Servlet container)If not using the Servlet 3 framework pluggability mechanism (e.g. in a pre-Servet 3.0 container), the servlet-class or filter-class element of the web.xml descriptor SHOULD name the JAX-RS implementation-supplied servlet or ﬁlter class respectively. The Application subclass SHOULD be identiﬁed using an init-param with a param-name of jakarta.ws.rs.Application.</description>
             <location chapter="2" section="3.2"/>
         </assertion>
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">

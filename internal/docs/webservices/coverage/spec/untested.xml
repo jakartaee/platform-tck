@@ -181,7 +181,7 @@
     <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
       <id>WS4EE:SPEC:53</id>
       <description>A JAX-RPC Service Endpoint
-			must implement javax.servlet.SingleThreadModel if single threaded
+			must implement jakarta.servlet.SingleThreadModel if single threaded
 			access is required by the component. A container must serialize
 			method requests for a Service Implementation Bean that implements the
 			SingleThreadModel interface.</description>

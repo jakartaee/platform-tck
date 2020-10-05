@@ -645,32 +645,32 @@
 			status="active" testable="true">
 			<id>JSP:SPEC:12</id>
 			<description>The 'request' implicit object is an instance of
-				javax.servlet.ServletRequest; if the protocol used is HTTP, then the
+				jakarta.servlet.ServletRequest; if the protocol used is HTTP, then the
 				request object is an instance of
-				javax.servlet.http.HttpServletRequest (request scope).</description>
+				jakarta.servlet.http.HttpServletRequest (request scope).</description>
 			<location chapter="1" section="8.3" />
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>JSP:SPEC:13</id>
 			<description>The 'response' implicit object is an instance of
-				javax.servlet.ServletResponse; if the protocol used is HTTP, then
+				jakarta.servlet.ServletResponse; if the protocol used is HTTP, then
 				the response object is an instance of
-				javax.servlet.http.HttpServletResponse (page scope)</description>
+				jakarta.servlet.http.HttpServletResponse (page scope)</description>
 			<location chapter="1" section="8.3" />
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>JSP:SPEC:14</id>
 			<description>The 'pageContext' implicit object is an instance of
-				javax.servlet.jsp.PageContext (page scope).</description>
+				jakarta.servlet.jsp.PageContext (page scope).</description>
 			<location chapter="1" section="8.3" />
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>JSP:SPEC:15</id>
 			<description>The 'session' implicit object is an instance of
-				javax.servlet.http.HttpSession and is only valid for HTTP protocols
+				jakarta.servlet.http.HttpSession and is only valid for HTTP protocols
 				(session scope).</description>
 			<location chapter="1" section="8.3" />
 		</assertion>
@@ -678,7 +678,7 @@
 			status="active" testable="true">
 			<id>JSP:SPEC:16</id>
 			<description>The 'application' implicit object is an instance of
-				javax.servlet.ServletContext (same object as that returned from
+				jakarta.servlet.ServletContext (same object as that returned from
 				getServletConfig().getContext(); application scope).</description>
 			<location chapter="1" section="8.3" />
 		</assertion>
@@ -837,16 +837,16 @@
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>JSP:SPEC:35</id>
-			<description>Packages java.lang.*, javax.servlet.*,
-				javax.servlet.jsp.*, javax.servlet.http.* are imported implicitly by
+			<description>Packages java.lang.*, jakarta.servlet.*,
+				jakarta.servlet.jsp.*, jakarta.servlet.http.* are imported implicitly by
 				the JSP container. [DefaultImports]</description>
 			<location chapter="1" section="10.1" />
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>JSP:SPEC:267</id>
-			<description>No packages other than java.lang.*, javax.servlet.*,
-				javax.servlet.jsp.*, javax.servlet.http.* may be implicitly
+			<description>No packages other than java.lang.*, jakarta.servlet.*,
+				jakarta.servlet.jsp.*, jakarta.servlet.http.* may be implicitly
 				imported. [NoOtherPackagesImplicitlyImported]</description>
 			<location chapter="" section="" />
 		</assertion>
@@ -987,7 +987,7 @@
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.1</id>
-					<description>javax.servlet.jsp.jspException - throw Throwable
+					<description>jakarta.servlet.jsp.jspException - throw Throwable
 						object of the offending exception (for backwards compatibility
 						with JSP 1.2)</description>
 					<location chapter="1" section="4.3" />
@@ -995,49 +995,49 @@
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.2</id>
-					<description>javax.servlet.error.exception - as per the Servlet
+					<description>jakarta.servlet.error.exception - as per the Servlet
 						specification.</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.3</id>
-					<description>javax.servlet.error.status_code - as per the Servlet
+					<description>jakarta.servlet.error.status_code - as per the Servlet
 						specification</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.4</id>
-					<description>javax.servlet.error.exception_type - as per the
+					<description>jakarta.servlet.error.exception_type - as per the
 						Servlet specification.</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.5</id>
-					<description>javax.servlet.error.message - as per the Servlet
+					<description>jakarta.servlet.error.message - as per the Servlet
 						specification.</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.6</id>
-					<description>javax.servlet.error.request_uri - as per the Servlet
+					<description>jakarta.servlet.error.request_uri - as per the Servlet
 						specification.</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.7</id>
-					<description>javax.servlet.error.servlet_name - as per the Servlet
+					<description>jakarta.servlet.error.servlet_name - as per the Servlet
 						specification.</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>JSP:SPEC:50.8</id>
-					<description>An instance of javax.servlet.jsp.ErrorData must be
+					<description>An instance of jakarta.servlet.jsp.ErrorData must be
 						provided to the error page via PageContext.getErrorData().</description>
 					<location chapter="1" section="4.3" />
 				</assertion>
@@ -4177,7 +4177,7 @@
 					status="active" testable="true">
 					<id>JSP:SPEC:168.4</id>
 					<description>For custom action (both Classic and Simple) attribute
-						types of type javax.servlet.jsp.tagext.JspFragment, the container
+						types of type jakarta.servlet.jsp.tagext.JspFragment, the container
 						must create a JspFragment out of the body of the
 						&lt;jsp:attribute> action and pass it to the tag handler.</description>
 					<location chapter="5" section="10" />
@@ -4186,7 +4186,7 @@
 					status="active" testable="true">
 					<id>JSP:SPEC:168.5</id>
 					<description>A translation error will occur if the attribute type
-						is javax.servlet.jsp.tagext.JspFragment, and the body of the
+						is jakarta.servlet.jsp.tagext.JspFragment, and the body of the
 						&lt;jsp:attribute> action is not scriptless.</description>
 					<location chapter="5" section="10" />
 				</assertion>
@@ -4331,7 +4331,7 @@
 							status="removed" testable="true">
 							<id>JSP:SPEC:170.1.1</id>
 							<description>The value of this attribute must evaluate to an
-								instance of javax.servlet.jsp.tagext.JspFragment, otherwise a
+								instance of jakarta.servlet.jsp.tagext.JspFragment, otherwise a
 								JspException must result.</description>
 							<location chapter="5" section="11" />
 						</assertion>
@@ -4945,7 +4945,7 @@
 					status="active" testable="true">
 					<id>JSP:SPEC:178.16</id>
 					<description>The default import list for a JSP page is java.lang.*,
-						javax.servlet.*, javax.servlet.jsp.*, javax.servlet.http.*</description>
+						jakarta.servlet.*, jakarta.servlet.jsp.*, jakarta.servlet.http.*</description>
 					<location chapter="1" section="10.1" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
@@ -5085,7 +5085,7 @@
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.1</id>
-							<description>javax.servlet.jsp.jspException - throw Throwable
+							<description>jakarta.servlet.jsp.jspException - throw Throwable
 								object of the offending exception (for backwards compatibility
 								with JSP 1.2)</description>
 							<location chapter="1" section="4.3" />
@@ -5093,49 +5093,49 @@
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.2</id>
-							<description>javax.servlet.error.exception - as per the Servlet
+							<description>jakarta.servlet.error.exception - as per the Servlet
 								specification.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.3</id>
-							<description>javax.servlet.error.status_code - as per the Servlet
+							<description>jakarta.servlet.error.status_code - as per the Servlet
 								specification</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.4</id>
-							<description>javax.servlet.error.exception_type - as per the
+							<description>jakarta.servlet.error.exception_type - as per the
 								Servlet specification.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.5</id>
-							<description>javax.servlet.error.message - as per the Servlet
+							<description>jakarta.servlet.error.message - as per the Servlet
 								specification.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.6</id>
-							<description>javax.servlet.error.request_uri - as per the Servlet
+							<description>jakarta.servlet.error.request_uri - as per the Servlet
 								specification.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.7</id>
-							<description>javax.servlet.error.servlet_name - as per the
+							<description>jakarta.servlet.error.servlet_name - as per the
 								Servlet specification.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:178.31.8</id>
-							<description>An instance of javax.servlet.jsp.ErrorData must be
+							<description>An instance of jakarta.servlet.jsp.ErrorData must be
 								provided to the error page.</description>
 							<location chapter="1" section="4.3" />
 						</assertion>
@@ -5670,7 +5670,7 @@
 			status="active" testable="true">
 			<id>JSP:SPEC:302</id>
 			<description> Tag handlers which implement interfaces
-				javax.servlet.jsp.tagext.Tag and javax.servlet.jsp.tagext.SimpleTag
+				jakarta.servlet.jsp.tagext.Tag and jakarta.servlet.jsp.tagext.SimpleTag
 				may be annotated for injection. [TagHandlerResourceInjection]</description>
 			<location chapter="7" section="1.11" />
 		</assertion>
@@ -6109,7 +6109,7 @@
 			<description>If &lt;jsp:forward> is used within a tag file, the
 				generated tag handler must stop processing upon the return of
 				RequestDispatcher.forward() and throw a
-				javax.servlet.jsp.SkipPageException</description>
+				jakarta.servlet.jsp.SkipPageException</description>
 			<location chapter="8" section="3" />
 			<comment>Package seems goofy. Since SkipPageException is for use with
 				SimpleTagHandlers, shouldn't this be in the tagext package?</comment>
@@ -6513,14 +6513,14 @@
 							status="active" testable="true">
 							<id>JSP:SPEC:229.7.1</id>
 							<description>If 'true', the generated tag handler must implement
-								the javax.servlet.jsp.tagext.DynamicAttributes interface.</description>
+								the jakarta.servlet.jsp.tagext.DynamicAttributes interface.</description>
 							<location chapter="8" section="5.1" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
 							status="active" testable="true">
 							<id>JSP:SPEC:229.7.2</id>
 							<description>If 'false' the generated tag handler will not
-								implement the javax.servlet.jsp.tagext.DynamicAttributes
+								implement the jakarta.servlet.jsp.tagext.DynamicAttributes
 								interface.</description>
 							<location chapter="8" section="5.1" />
 						</assertion>
@@ -6708,7 +6708,7 @@
 							status="active" testable="true">
 							<id>JSP:SPEC:229.19.1</id>
 							<description>The default import list for a tag is java.lang.*,
-								javax.servlet.*, javax.servlet.jsp.*, javax.servlet.http.*</description>
+								jakarta.servlet.*, jakarta.servlet.jsp.*, jakarta.servlet.http.*</description>
 							<location chapter="1" section="10.1" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
@@ -6950,7 +6950,7 @@
 							status="active" testable="true">
 							<id>JSP:SPEC:230.4.1</id>
 							<description>If 'true', the type of the attribute is fixed to
-								javax.servlet.jsp.tagext.JspFragment.</description>
+								jakarta.servlet.jsp.tagext.JspFragment.</description>
 							<location chapter="8" section="5.2" />
 						</assertion>
 						<assertion required="true" impl-spec="false" defined-by="technology"
@@ -7502,7 +7502,7 @@
 									defined-by="technology" status="active" testable="true">
 									<id>JSP:SPEC:232.1.7.1</id>
 									<description>If 'true', the generated tag handler must
-										implement the javax.servlet.jsp.tagext.DynamicAttributes
+										implement the jakarta.servlet.jsp.tagext.DynamicAttributes
 										interface.</description>
 									<location chapter="8" section="5.1" />
 								</assertion>
@@ -7510,7 +7510,7 @@
 									defined-by="technology" status="active" testable="true">
 									<id>JSP:SPEC:232.1.7.2</id>
 									<description>If 'false' the generated tag handler will not
-										implement the javax.servlet.jsp.tagext.DynamicAttributes
+										implement the jakarta.servlet.jsp.tagext.DynamicAttributes
 										interface.</description>
 									<location chapter="8" section="5.1" />
 								</assertion>
@@ -7701,7 +7701,7 @@
 									defined-by="technology" status="active" testable="true">
 									<id>JSP:SPEC:232.1.19.1</id>
 									<description>The default import list for a tag is java.lang.*,
-										javax.servlet.*, javax.servlet.jsp.*, javax.servlet.http.*</description>
+										jakarta.servlet.*, jakarta.servlet.jsp.*, jakarta.servlet.http.*</description>
 									<location chapter="1" section="10.1" />
 								</assertion>
 							</sub-assertions>
@@ -7892,7 +7892,7 @@
 									defined-by="technology" status="active" testable="true">
 									<id>JSP:SPEC:232.2.4.1</id>
 									<description>If 'true', the type of the attribute is fixed to
-										javax.servlet.jsp.tagext.JspFragment and a translation error
+										jakarta.servlet.jsp.tagext.JspFragment and a translation error
 										will occur if the 'type' attribute is specified.</description>
 									<location chapter="8" section="5.2" />
 								</assertion>
@@ -8227,7 +8227,7 @@
 				scripting element.</description>
 			<location chapter="10" section="1.1.1" />
 			<comment>Reference 10.2.4 -- All methods in defined by the
-				javax.servlet.Servlet interface are declared final.</comment>
+				jakarta.servlet.Servlet interface are declared final.</comment>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
@@ -8288,7 +8288,7 @@
 						&lt;ServletResponseSubType>) throws IOException, ServletException
 						-- NOTE: The request/response subtype indicates that the request
 						and response object provided must implement the
-						javax.servlet.ServletRequest and javax.servlet.ServletResponse
+						jakarta.servlet.ServletRequest and jakarta.servlet.ServletResponse
 						interfaces respectively.</description>
 					<location chapter="10" section="2.1" />
 					<sub-assertions>
@@ -8309,8 +8309,8 @@
 			<id>JSP:SPEC:243</id>
 			<description>JSP containers that conform to this specification (in
 				both JSP page implementation classes, and JSP container runtime)
-				must implement the javax.servlet.ServletRequest and
-				javax.servlet.ServletResponse interfaces.</description>
+				must implement the jakarta.servlet.ServletRequest and
+				jakarta.servlet.ServletResponse interfaces.</description>
 			<location chapter="10" section="2.1" />
 			<comment>XXX Sent request for clarification on this one</comment>
 		</assertion>

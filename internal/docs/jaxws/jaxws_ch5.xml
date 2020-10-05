@@ -21,7 +21,7 @@
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>JAXWS:SPEC:5000</id>
 			<description>
-Conformance (Provider support required): An implementation MUST support Provider&lt;Source&gt; in payload mode with all the predefined bindings. It MUST also support Provider&lt;SOAPMessage&gt; in message mode in conjunction with the predefined SOAP bindings and Provider&lt;javax.activation.DataSource@gt; in message mode in conjunction with the predefined HTTP binding. In payload mode, to send a response with no payload, an empty Source payload
+Conformance (Provider support required): An implementation MUST support Provider&lt;Source&gt; in payload mode with all the predefined bindings. It MUST also support Provider&lt;SOAPMessage&gt; in message mode in conjunction with the predefined SOAP bindings and Provider&lt;jakarta.activation.DataSource@gt; in message mode in conjunction with the predefined HTTP binding. In payload mode, to send a response with no payload, an empty Source payload
 can be used in payload mode. An empty source can be constructed using zero-argument default constructors of DOMSource, SAXSource, StreamSource. 
 			</description>
 			<location chapter = "5" section = "1"/>

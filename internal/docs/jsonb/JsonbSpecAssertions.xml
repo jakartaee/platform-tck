@@ -91,13 +91,13 @@ href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/intern
 			<chapter id="4" name="Customizing Mapping">
 				<sections>
 					<section id="4.1" name="Customizing Property Names"/>
-          <section id="4.1.1" name="javax.json.bind.annotation.JsonbTransient"/>
-          <section id="4.1.2" name="javax.json.bind.annotation.JsonbProperty"/>
-          <section id="4.1.3" name="javax.json.bind.config.PropertyNamingStrategy"/>
+          <section id="4.1.1" name="jakarta.json.bind.annotation.JsonbTransient"/>
+          <section id="4.1.2" name="jakarta.json.bind.annotation.JsonbProperty"/>
+          <section id="4.1.3" name="jakarta.json.bind.config.PropertyNamingStrategy"/>
           <section id="4.1.4" name="Property names resolution"/>
 					<section id="4.2" name="Customizing Property Order"/>
 					<section id="4.3" name="Customizing Null Handling"/>
-          <section id="4.3.1" name="javax.json.bind.annotation.JsonbNillable"/>
+          <section id="4.3.1" name="jakarta.json.bind.annotation.JsonbNillable"/>
           <section id="4.3.2" name="Global null handling configuration"/>
 					<section id="4.4" name="I-JSON support"/>
           <section id="4.4.1" name="Strict date serialization"/>
@@ -1528,13 +1528,13 @@ In case 1, the most specific parameter type MUST be given concrete parameter typ
 			<id>JSONB:SPEC:JSB-3.20-1</id>
 			<description>JSON Binding implementations MUST support binding of the following JSON Processing types.
 
-javax.json.JsonObject
-javax.json.JsonArray
-javax.json.JsonStructure
-javax.json.JsonValue
-javax.json.JsonPointer
-javax.json.JsonString
-javax.json.JsonNumber
+jakarta.json.JsonObject
+jakarta.json.JsonArray
+jakarta.json.JsonStructure
+jakarta.json.JsonValue
+jakarta.json.JsonPointer
+jakarta.json.JsonString
+jakarta.json.JsonNumber
 			</description>
 			<keywords>
 				<keyword></keyword>
@@ -1547,7 +1547,7 @@ javax.json.JsonNumber
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-3.20-2</id>
-			<description>Marshalling of supported javax.json.* objects/interfaces/fields MUST have the same result as marshalling these objects with javax.json.JsonWriter.</description>
+			<description>Marshalling of supported jakarta.json.* objects/interfaces/fields MUST have the same result as marshalling these objects with jakarta.json.JsonWriter.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1559,7 +1559,7 @@ javax.json.JsonNumber
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-3.20-3</id>
-			<description>Deserialization into supported javax.json.* objects/interfaces/fields MUST have the same result as unmarshalling into such objects with javax.json.JsonReader.</description>
+			<description>Deserialization into supported jakarta.json.* objects/interfaces/fields MUST have the same result as unmarshalling into such objects with jakarta.json.JsonReader.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1571,7 +1571,7 @@ javax.json.JsonNumber
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.1-1</id>
-			<description>JSON Binding implementations MUST NOT serialize fields, JavaBean properties or types annotated with javax.json.bind.annotation.JsonbTransient.</description>
+			<description>JSON Binding implementations MUST NOT serialize fields, JavaBean properties or types annotated with jakarta.json.bind.annotation.JsonbTransient.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1596,7 +1596,7 @@ javax.json.JsonNumber
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.2-1</id>
 			<description>To provide custom name for given field (or JavaBean property),
-javax.json.bind.annotation.JsonbProperty may be used. JsonbProperty annotation may be specified on
+jakarta.json.bind.annotation.JsonbProperty may be used. JsonbProperty annotation may be specified on
 field, getter or setter method. If specified on field, custom name is used both for serialization and
 deserialization.</description>
 			<keywords>
@@ -1610,7 +1610,7 @@ deserialization.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.2-2</id>
-			<description>If javax.json.bind.annotation.JsonbProperty is specified on getter method, it is used
+			<description>If jakarta.json.bind.annotation.JsonbProperty is specified on getter method, it is used
 only for serialization.</description>
 			<keywords>
 				<keyword></keyword>
@@ -1623,7 +1623,7 @@ only for serialization.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.2-3</id>
-			<description>If javax.json.bind.annotation.JsonbProperty is specified on setter method, it is used only for deserialization.</description>
+			<description>If jakarta.json.bind.annotation.JsonbProperty is specified on setter method, it is used only for deserialization.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1635,7 +1635,7 @@ only for serialization.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.2-4</id>
-			<description>It is possible to specify different values for getter and setter method for javax.json.bind.annotation.JsonbProperty annotation. In such case the different custom name will be used for serialization and deserialization.</description>
+			<description>It is possible to specify different values for getter and setter method for jakarta.json.bind.annotation.JsonbProperty annotation. In such case the different custom name will be used for serialization and deserialization.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1647,7 +1647,7 @@ only for serialization.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.1.3-1</id>
-			<description>The way to set custom property naming strategy is to use javax.json.bin.JsonbConfig::withPropertyNamingStrategy method.</description>
+			<description>The way to set custom property naming strategy is to use jakarta.json.bin.JsonbConfig::withPropertyNamingStrategy method.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1672,7 +1672,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.2</id>
-			<description>The way to set custom property order strategy is to use javax.json.bin.JsonbConfig::withPropertyOrderStrategy method.</description>
+			<description>The way to set custom property order strategy is to use jakarta.json.bin.JsonbConfig::withPropertyOrderStrategy method.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1684,7 +1684,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.2-2</id>
-			<description>To customize the order of serialized properties only for one specific type, JSON Binding provides javax.json.bind.annotation.JsonbPropertyOrder annotation. Order specified by JsonbPropertyOrder annotation overrides order specified by PropertyOrderStrategy.</description>
+			<description>To customize the order of serialized properties only for one specific type, JSON Binding provides jakarta.json.bind.annotation.JsonbPropertyOrder annotation. Order specified by JsonbPropertyOrder annotation overrides order specified by PropertyOrderStrategy.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1708,7 +1708,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.3.1-1</id>
-			<description>When given object (type or package) is annotated with javax.json.bind.annotation.JsonbNillable annotation, the result of null value will be presence of associated property in JSON document with explicit null value.</description>
+			<description>When given object (type or package) is annotated with jakarta.json.bind.annotation.JsonbNillable annotation, the result of null value will be presence of associated property in JSON document with explicit null value.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1720,7 +1720,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.3.1-2</id>
-			<description>The same behavior as JsonbNillable, but only at field, parameter and method (JavaBean property) level is provided by javax.json.bind.annotation.JsonbProperty annotation with its nillable parameter</description>
+			<description>The same behavior as JsonbNillable, but only at field, parameter and method (JavaBean property) level is provided by jakarta.json.bind.annotation.JsonbProperty annotation with its nillable parameter</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1744,7 +1744,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.3.2-1</id>
-			<description>The way to enforce serialization of null values, is to call method javax.json.bind.JsonbConfig::withNullValues with parameter true. The way to skip serialization of null values is to call method javax.json.bind.JsonbConfig::withNullValues with parameter false.</description>
+			<description>The way to enforce serialization of null values, is to call method jakarta.json.bind.JsonbConfig::withNullValues with parameter true. The way to skip serialization of null values is to call method jakarta.json.bind.JsonbConfig::withNullValues with parameter false.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1852,7 +1852,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.6-1</id>
-			<description>To customize scope and field access strategy as specified in section 3.7.1, it is possible to specify javax.json.bind.annotation.JsonbVisibility annotation or to override default behavior globally calling JsonbConfig::withPropertyVisibilityStrategy method with given custom property visibility strategy.</description>
+			<description>To customize scope and field access strategy as specified in section 3.7.1, it is possible to specify jakarta.json.bind.annotation.JsonbVisibility annotation or to override default behavior globally calling JsonbConfig::withPropertyVisibilityStrategy method with given custom property visibility strategy.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1900,7 +1900,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.7.2-1</id>
-			<description>Serializer is a class implementing javax.json.bind.serializers.JsonbSerializer interface. It is used to serialize the type it’s registered on (Original). On marshalling of Original type JSONB calls JsonbSerializer::serialize method. This method has to contain a custom code to serialize Original type using provided JsonpGenerator.Deserializer is a class implementing javax.json.bind.serializers.JsonbDeserializer interface. It is used to deserialize the type it’s registered on (Original). On deserialization of Original type JSONB calls JsonbDeserializer::deserialize method. This method has to contain a custom code to deserialize Original type using provided JsonpParser. There are two ways how to register JsonbSerializer/JsonbDeserializer:Using JsonbConfig::withSerializers/ JsonbConfig::withDeserializers method;</description>
+			<description>Serializer is a class implementing jakarta.json.bind.serializers.JsonbSerializer interface. It is used to serialize the type it’s registered on (Original). On marshalling of Original type JSONB calls JsonbSerializer::serialize method. This method has to contain a custom code to serialize Original type using provided JsonpGenerator.Deserializer is a class implementing jakarta.json.bind.serializers.JsonbDeserializer interface. It is used to deserialize the type it’s registered on (Original). On deserialization of Original type JSONB calls JsonbDeserializer::deserialize method. This method has to contain a custom code to deserialize Original type using provided JsonpParser. There are two ways how to register JsonbSerializer/JsonbDeserializer:Using JsonbConfig::withSerializers/ JsonbConfig::withDeserializers method;</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1960,7 +1960,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.8-3</id>
-			<description>Default date format and default locale can be customized globally using javax.json.bind.JsonbConfig::withDateFormat and javax.json.bind.JsonbConfig::withLocale methods.</description>
+			<description>Default date format and default locale can be customized globally using jakarta.json.bind.JsonbConfig::withDateFormat and jakarta.json.bind.JsonbConfig::withLocale methods.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -1996,7 +1996,7 @@ can be found in 3.19.</description>
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>JSONB:SPEC:JSB-4.10-1</id>
-			<description>The way to set custom binary data handling strategy is to use javax.json.bin.JsonbConfig::withBinaryDataStrategy method.</description>
+			<description>The way to set custom binary data handling strategy is to use jakarta.json.bin.JsonbConfig::withBinaryDataStrategy method.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
