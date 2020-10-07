@@ -1848,7 +1848,7 @@
             <description> The MessageInfo argument used in any call made by the message processing runtime to
                 secureRequest, validateResponse, validateRequest, or secureResponse must have been initialized such that
                 the non-null objects returned by the getRequestMessage and getResponseMessage methods of the MessageInfo
-                are an instanceof javax.xml.soap.SOAPMessage.
+                are an instance of jakarta.xml.soap.SOAPMessage.
 
             </description>
             <keywords>
@@ -1859,7 +1859,7 @@
         <assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
             <id>JASPIC:SPEC:113</id>
             <description> The getSupportedMessageTypes method of all authentication modules integrated for use with this
-                profile, must include javax.xml.soap.SOAPMessage.class in its return value.
+                profile, must include jakarta.xml.soap.SOAPMessage class in its return value.
 
             </description>
             <keywords>
@@ -2102,7 +2102,7 @@
             <id>JASPIC:SPEC:132</id>
             <description> When a corresponding call is made to validateResponse, it must be made with the same
                 messageInfo and clientSubject arguments used in the corresponding call to secureRequest, and it must
-                have been initiialized by the runtime such that its getResponseMessage method will return the SOAP
+                have been initialized by the runtime such that its getResponseMessage method will return the SOAP
                 response message being processed by the runtime.
 
             </description>
@@ -2116,7 +2116,7 @@
             <description> This profile requires that the message processing runtime establish the following key-value
                 pairs within the Map of the MessageInfo passed in the calls to secureRequest and validateResponse Key=
                 jakarta.xml.ws.wsdl.service
-                Value= qualified service name, represented as a javax.xml.namespace.QName..
+                Value= qualified service name, represented as a javax.xml.namespace.QName.
 
             </description>
             <keywords>
@@ -2874,8 +2874,8 @@
             <id>JASPIC:SPEC:191</id>
             <description> The MessageInfo argument used in any call made by the message processing runtime to
                 validateRequest or secureResponse must have been initialized such that the non-null objects returned by
-                the getRequestMessage and getResponseMessage methods of the AuthParam are an instanceof
-                javax.jmx.Message.
+                the getRequestMessage and getResponseMessage methods of the AuthParam are an instance of
+                jakarta.jms.Message.
 
             </description>
             <keywords>
