@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -268,17 +268,4 @@ public class URLClient extends AbstractUrlClient {
     invoke();
   }
 
-  /*
-   * @testName: eLJspVersionTest
-   * 
-   * @assertion_ids: JSP:SPEC:271
-   * 
-   * @test_Strategy: [EvaluationOf#{expr}] Verify that an expression using the
-   * #{} syntax is processed as a string literal when the jsp-version element
-   * specified in the TLD has a value of less than 2.1.
-   */
-  public void eLJspVersionTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "ELJspVersionTest");
-    invoke();
-  }
 }
