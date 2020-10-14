@@ -29,7 +29,7 @@ def generateCTSStage(job) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image('jakartaee/cts-mailserver:0.1').withRun("--network=\"host\"") {
+                    docker.image('jakartaee/cts-mailserver:0.1').inside("--network host"){
                         sh """
                            cd /root 
                            /root/startup.sh | tee /root/mailserver.log &
@@ -38,7 +38,7 @@ def generateCTSStage(job) {
                            echo "Mail server setup complete"
                          """
                     }
-                    docker.image('jakartaee/cts-base:0.2').withRun("--network=\"host\"")  {
+                    docker.image('jakartaee/cts-base:0.2').inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -56,7 +56,7 @@ def generateCTSStage(job) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image('jakartaee/cts-base:0.2') {
+                    docker.image('jakartaee/cts-base:0.2').inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -81,7 +81,7 @@ def generateStandaloneTCKStage(job) {
     return {
         node('jakartaee-tck') {
             stage("${job}") {
-                docker.image('jakartaee/cts-base:0.2') {
+                docker.image('jakartaee/cts-base:0.2').inside("--network host") {
                     checkout scm
                     unstash 'standalone-bundles'
                     sh """
@@ -103,7 +103,7 @@ pipeline {
         timeout(time: 15, unit: 'HOURS')
     }
     agent {
-        label 'jakartaee-tck'
+        label 'master'
     }
     parameters {
         string(name: 'GF_BUNDLE_URL',
@@ -156,6 +156,7 @@ pipeline {
                 docker {
                     image 'jakartaee/cts-base:0.2'
                     label 'jakartaee-tck'
+                    args '--network host'
                 }
             }
             when {
@@ -196,6 +197,7 @@ pipeline {
                 docker {
                     image 'jakartaee/cts-base:0.2'
                     label 'jakartaee-tck'
+                    args '--network host'
                 }
             }
             steps {
