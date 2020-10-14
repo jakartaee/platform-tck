@@ -155,6 +155,7 @@ pipeline {
             agent {
                 docker {
                     image 'jakartaee/cts-base:0.2'
+                    label 'jakartaee-tck'
                 }
             }
             when {
@@ -194,6 +195,7 @@ pipeline {
             agent {
                 docker {
                     image 'jakartaee/cts-base:0.2'
+                    label 'jakartaee-tck'
                 }
             }
             steps {
