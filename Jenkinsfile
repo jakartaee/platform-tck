@@ -27,7 +27,7 @@ def parallelCTSSuitesMap = cts_suites.collectEntries {
 def generateCTSStage(job) {
     if (job == "javamail" || job == "samples" || job == "servlet" || job == "ejb") {
         return {
-            node(label) {
+            node('jakartaee-tck') {
                 stage("${job}") {
                     docker.image('jakartaee/cts-mailserver:0.1')withRun("-p 1025:1025 -p 1143:1143") {
                         sh """
@@ -54,7 +54,7 @@ def generateCTSStage(job) {
         }
     } else {
         return {
-            node(label) {
+            node('jakartaee-tck') {
                 stage("${job}") {
                     docker.image('jakartaee/cts-base:0.2') {
                         unstash 'jakartaeetck-bundles'
@@ -79,7 +79,7 @@ def parallelStandaloneTCKMap = tcks.collectEntries {
 
 def generateStandaloneTCKStage(job) {
     return {
-        node(label) {
+        node('jakartaee-tck') {
             stage("${job}") {
                 docker.image('jakartaee/cts-base:0.2') {
                     checkout scm
