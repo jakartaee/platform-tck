@@ -299,10 +299,14 @@ fi
 if [ ! -z "$KEYWORDS" ];then
   if [ ! -z "$USER_KEYWORDS" ]; then
     KEYWORDS="${KEYWORDS}${USER_KEYWORDS}"
+  else
+  	KEYWORDS="${KEYWORDS}&all"
   fi
 else
   if [ ! -z "$USER_KEYWORDS" ]; then
     KEYWORDS="${USER_KEYWORDS}"
+   else
+   	KEYWORDS="all"
   fi
 fi
 
