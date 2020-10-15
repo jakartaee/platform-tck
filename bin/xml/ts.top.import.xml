@@ -416,7 +416,7 @@
         <property name="prior.status" value="pass,fail,error,notRun"/>
     </target>
     
-    <!-- for default run, pass "!rmi_iiop&!corba" to disable RMI-IIOP/CORBA -->
+    <!-- for non-glassfish default run, we set keywords as "!rmi_iiop&!corba" to disable RMI-IIOP/CORBA -->
     <target name="set.keywords">
         <if>
             <or>
@@ -426,7 +426,7 @@
                 <equals arg1="${keywords}" arg2=""/> 
             </or>
             <then>
-                <var name="keywords" value="!rmi_iiop&amp;!corba"/>
+                <var name="keywords" value="!rmiiiop&amp;!corba"/>
             </then>
         </if> 
         <echo message="keywords are set to:  ${keywords}"/>
