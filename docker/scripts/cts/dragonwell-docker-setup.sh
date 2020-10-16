@@ -21,4 +21,4 @@ echo "Download and install JDK8 ..."
 rm -rf ./jdk1.8.0_171
 wget http://ci.dragonwell-jdk.io/job/build-scripts/job/openjdk8-pipeline/51/artifact/target/linux/x64/dragonwell/OpenJDK8U-jdk_x64_linux_dragonwell_dragonwell-8.4.4_jdk8u262-b11.tar.gz
 tar xf OpenJDK8U-jdk_x64_linux_dragonwell_dragonwell-8.4.4_jdk8u262-b11.tar.gz
-mv .jdk8u262-b11/ ./jdk1.8.0_171
+mv ./jdk8u262-b11/ ./jdk1.8.0_171
