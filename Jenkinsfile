@@ -19,6 +19,7 @@ default_tcks = ["caj", "concurrency", "connector", "el", "jacc", "jaspic", "jaxr
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
 def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : default_tcks
+def jdk_impl_image = params.JDK_IMPL == "DRAGONWELL" ? "dragonwell/cts-base:0.1" : "jakartaee/cts-base:0.2"
 
 def parallelCTSSuitesMap = cts_suites.collectEntries {
     ["${it}": generateCTSStage(it)]
@@ -29,7 +30,7 @@ def generateCTSStage(job) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image('jakartaee/cts-mailserver:0.1').inside("--network host"){
+                    docker.image(jdk_impl_image).inside("--network host"){
                         sh """
                            cd /root 
                            /root/startup.sh | tee /root/mailserver.log &
@@ -38,7 +39,7 @@ def generateCTSStage(job) {
                            echo "Mail server setup complete"
                          """
                     }
-                    docker.image('jakartaee/cts-base:0.2').inside("--network host"){
+                    docker.image(jdk_impl_image).inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -56,7 +57,7 @@ def generateCTSStage(job) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image('jakartaee/cts-base:0.2').inside("--network host"){
+                    docker.image(jdk_impl_image).inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -81,7 +82,7 @@ def generateStandaloneTCKStage(job) {
     return {
         node('jakartaee-tck') {
             stage("${job}") {
-                docker.image('jakartaee/cts-base:0.2').inside("--network host") {
+                docker.image(jdk_impl_image).inside("--network host") {
                     checkout scm
                     unstash 'standalone-bundles'
                     sh """
@@ -106,6 +107,9 @@ pipeline {
         label 'master'
     }
     parameters {
+        choice(name: 'JDK_IMPL', choices: 'DRAGONWELL\nADOPT',
+                defaultValue: 'DRAGONWELL',
+                description: 'Run Dragonwell or AdoptOpenjdk JDK Impl')
         string(name: 'GF_BUNDLE_URL',
                 defaultValue: '',
                 description: 'URL required for downloading GlassFish Full/Web profile bundle')
@@ -154,7 +158,7 @@ pipeline {
         stage('jakartaeetck-build') {
             agent {
                 docker {
-                    image 'jakartaee/cts-base:0.2'
+                    image 'jdk_impl_image'
                     label 'jakartaee-tck'
                     args '--network host'
                 }
@@ -195,7 +199,7 @@ pipeline {
             }
             agent {
                 docker {
-                    image 'jakartaee/cts-base:0.2'
+                    image 'jdk_impl_image'
                     label 'jakartaee-tck'
                     args '--network host'
                 }
