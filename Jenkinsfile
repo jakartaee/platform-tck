@@ -22,15 +22,15 @@ def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : def
 def jdk_impl_image = params.JDK_IMPL == "DRAGONWELL" ? "dragonwell/cts-base:0.1" : "jakartaee/cts-base:0.2"
 
 def parallelCTSSuitesMap = cts_suites.collectEntries {
-    ["${it}": generateCTSStage(it)]
+    ["${it}": generateCTSStage(it, jdk_impl_image)]
 }
 
-def generateCTSStage(job) {
+def generateCTSStage(job, image) {
     if (job == "javamail" || job == "samples" || job == "servlet" || job == "ejb") {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image(jdk_impl_image).inside("--network host"){
+                    docker.image(image).inside("--network host"){
                         sh """
                            cd /root 
                            /root/startup.sh | tee /root/mailserver.log &
@@ -39,7 +39,7 @@ def generateCTSStage(job) {
                            echo "Mail server setup complete"
                          """
                     }
-                    docker.image(jdk_impl_image).inside("--network host"){
+                    docker.image(image).inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -57,7 +57,7 @@ def generateCTSStage(job) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image(jdk_impl_image).inside("--network host"){
+                    docker.image(${jdk_impl_image}).inside("--network host"){
                         unstash 'jakartaeetck-bundles'
                         sh """
                             env
@@ -75,14 +75,14 @@ def generateCTSStage(job) {
 }
 
 def parallelStandaloneTCKMap = tcks.collectEntries {
-    ["${it}": generateStandaloneTCKStage(it)]
+    ["${it}": generateStandaloneTCKStage(it, jdk_impl_image)]
 }
 
-def generateStandaloneTCKStage(job) {
+def generateStandaloneTCKStage(job, image) {
     return {
         node('jakartaee-tck') {
             stage("${job}") {
-                docker.image(jdk_impl_image).inside("--network host") {
+                docker.image(image).inside("--network host") {
                     checkout scm
                     unstash 'standalone-bundles'
                     sh """
@@ -157,7 +157,7 @@ pipeline {
         stage('jakartaeetck-build') {
             agent {
                 docker {
-                    image 'jdk_impl_image'
+                    image jdk_impl_image
                     label 'jakartaee-tck'
                     args '--network host'
                 }
@@ -198,7 +198,7 @@ pipeline {
             }
             agent {
                 docker {
-                    image 'jdk_impl_image'
+                    image jdk_impl_image
                     label 'jakartaee-tck'
                     args '--network host'
                 }
