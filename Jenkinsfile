@@ -30,7 +30,7 @@ def generateCTSStage(job, image) {
         return {
             node('jakartaee-tck') {
                 stage("${job}") {
-                    docker.image(image).inside("--network host"){
+                    docker.image("jakartaee/cts-mailserver:0.1").inside("--network host"){
                         sh """
                            cd /root 
                            /root/startup.sh | tee /root/mailserver.log &
