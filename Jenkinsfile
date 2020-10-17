@@ -108,7 +108,6 @@ pipeline {
     }
     parameters {
         choice(name: 'JDK_IMPL', choices: 'DRAGONWELL\nADOPT',
-                defaultValue: 'DRAGONWELL',
                 description: 'Run Dragonwell or AdoptOpenjdk JDK Impl')
         string(name: 'GF_BUNDLE_URL',
                 defaultValue: '',
