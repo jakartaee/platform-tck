@@ -19,8 +19,10 @@ cd $CTS_HOME
 
 echo "Download and install JDK8 ..."
 rm -rf /opt/jdk1.8.0_171
+rm -rf /opt/jdk1.8.0_191
 cd /opt/
 wget http://ci.dragonwell-jdk.io/job/build-scripts/job/openjdk8-pipeline/51/artifact/target/linux/x64/dragonwell/OpenJDK8U-jdk_x64_linux_dragonwell_dragonwell-8.4.4_jdk8u262-b11.tar.gz
 tar xf OpenJDK8U-jdk_x64_linux_dragonwell_dragonwell-8.4.4_jdk8u262-b11.tar.gz
 cd -
-mv /opt/jdk8u262-b11/ /opt/jdk1.8.0_171
+cp /opt/jdk8u262-b11/ /opt/jdk1.8.0_191
+cp /opt/jdk8u262-b11/ /opt/jdk1.8.0_171
