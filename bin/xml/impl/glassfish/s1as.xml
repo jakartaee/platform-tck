@@ -1183,7 +1183,7 @@
                                        samples, webservices12, assembly, ejb, jacc,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
                                        jws, signaturetest, xa, integration,
-                                       jsf, rmiiiop, 
+                                       jsf, 
                                        jsp, saaj"/>
     
     <!-- timeout is specified in seconds, default is 3 minutes -->

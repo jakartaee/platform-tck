@@ -784,8 +784,6 @@
             <sysproperty key="ORB_PORT" value="${orb.port}" />
             <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}" />
             <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}" />
-            <sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}" />
-            <sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}" />
             <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
             <sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
             <sysproperty key="com.sun.aas.configRoot" value="${javaee.home}/config"/>

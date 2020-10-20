@@ -506,16 +506,6 @@ extension.dir=${s1as.domain}/lib/ext
 instance.listenerName=orb-listener-1
 
 ###############################################################
-## Settings for RMIIIOP EE STANDALONE Tests that use the
-## standalone RMIIIOPServer.
-#
-# @rmiiiop.http.server.host - RMI server hostname
-# @rmiiiop.http.server.port - RMI server port
-###############################################################
-rmiiiop.http.server.host=${orb.host}
-rmiiiop.http.server.port=10000
-
-###############################################################
 # @tz - your local timezone. For valid values, consult your
 #       Operating System documentation.
 ###############################################################
@@ -2038,15 +2028,6 @@ jstl.db.password=${password1}
 ###############################################################
 command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
         $testExecuteClass $testExecuteArgs
-
-#######################################################################
-## These properties are needed for the RMIIIOP EE STANDALONE tests which
-## use the standalone RMIIIOPServer. RMIIIOP_HTTP_SERVER_HOST is the host
-## where the standalone RMIIIOPServer is running. RMIIIOP_HTTP_SERVER_PORT
-## is the HTTP port that the standalone RMIIIOPServer is listening on.
-########################################################################
-rmiiiopHttpServerHost=${rmiiiop.http.server.host}
-rmiiiopHttpServerPort=${rmiiiop.http.server.port}
 
 ###############################################################
 ## These properties are used for the JDBC specific tests,

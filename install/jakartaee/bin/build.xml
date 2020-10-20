@@ -44,7 +44,6 @@
                   com/sun/ts/tests/jstl,
                   com/sun/ts/tests/appclient,
                   com/sun/ts/tests/javamail,
-                  com/sun/ts/tests/rmiiiop,
                   com/sun/ts/tests/assembly,
                   com/sun/ts/tests/jta,
                   com/sun/ts/tests/samples,
@@ -123,13 +122,7 @@
                        property="temp.test.exclude.java.files"/>
 -->
 
-		<property name="rmiiiop.stub.dir" 
-                  value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
-		<elementappend original="${rmiiiop.stub.dir}" suffix="**/*.java" property="rmiiiop.stub.java.file"/>
-
 		<echo message="Test Dirs:${all.test.dir}"/>
-
-		<ts.javac includes="${rmiiiop.stub.java.file}" failonerror="false"/>
 
 		<dosubdirs srcdir="${ts.home}/src" includes="${all.test.dir}" todo="build"
                    excludes="com/sun/ts/tests/jpa/se, com/sun/ts/tests/jpa/jpa22/se,
@@ -165,26 +158,6 @@
 		<!-- create the needed sun-acc.xml for the RI appclient -->
 		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="config.cts"/>
 		<javatest.gui/>
-	</target>
-
-	<target name="start.rmiiiop.server">
-		<java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes" 
-              classpath="${ts.run.classpath}:${class.dir}">
-			<sysproperty key="java.security.policy"
-                         value="${bin.dir}/java.policy"/>
-			<arg line="-v"/>
-			<arg line="-p ${rmiiiop.http.server.port}"/>
-		</java>
-	</target>
-
-	<target name="start.rmiiiop.server.no.spawn">
-		<java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" failonerror="yes" 
-              classpath="${ts.run.classpath}:${class.dir}">
-			<sysproperty key="java.security.policy"
-                         value="${bin.dir}/java.policy"/>
-			<arg line="-v"/>
-			<arg line="-p ${rmiiiop.http.server.port}"/>
-		</java>
 	</target>
 
 	<target name="start.auto.deployment.server" depends="init">

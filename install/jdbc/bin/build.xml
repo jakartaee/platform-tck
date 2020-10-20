@@ -24,7 +24,7 @@
     
     <target name="usage">
         <echo message="If you run ant in $${bin.dir}, use the following targets:"/>
-        <echo message="build.all build.all.tests build.all.smoke clean.all initdb start.rmiiiop.server start.sunri.porting.server start.sunri.porting.server13 ts.version usage"/>
+        <echo message="build.all build.all.tests build.all.smoke clean.all initdb start.sunri.porting.server start.sunri.porting.server13 ts.version usage"/>
         <echo message="-"/>
         <echo message="If you run ant in a test directory, use the following targets:"/>
         <echo message="build clean runclient usage ld lld lc llc"/>
@@ -64,20 +64,16 @@
         com/sun/ts/tests/jsp,
         com/sun/ts/tests/appclient,
         com/sun/ts/tests/javamail,
-        com/sun/ts/tests/rmiiiop,
         com/sun/ts/tests/assembly,
         com/sun/ts/tests/jta,
         com/sun/ts/tests/samples"/>
 
       <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
 
-      <property name="rmiiiop.stub.dir" 
-                value="org/omg/stub/com/sun/ts/tests/rmiiiop" />
-
       <echo message="Compiling:${all.java.file}"/>
       <javac fork="true" srcdir="${ts.home}/src" 
             destdir="${class.dir}" 
-            includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
+            includes="${all.java.file}"
             memoryInitialSize="100m"
             memoryMaximumSize="200m"
             debug="on" 
@@ -268,16 +264,6 @@
       <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
       <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
       <sysproperty key="deliverable.class" value="${deliverable.class}" />
-    </java>
-  </target>
-
-  <target name="start.rmiiiop.server">
-    <java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes" 
-      classpath="${ts.classpath}:${class.dir}">
-      <sysproperty key="java.security.policy"
-                   value="${bin.dir}/java.policy"/>
-      <arg line="-v"/>
-      <arg line="-p ${rmiiiop.http.server.port}"/>
     </java>
   </target>
 

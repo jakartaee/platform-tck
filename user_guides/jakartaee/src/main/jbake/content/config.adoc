@@ -681,7 +681,6 @@ This section includes the following topics:
 * link:#GEXPB[Jakarta Servlet Test Setup]
 * link:#CBDDGJFC[Jakarta WebSocket Test Setup]
 * link:#GEXON[JDBC Test Setup]
-* link:#GEXQQ[Standalone RMI/IIOP Server Test Setup]
 * link:#GEXOT[Jakarta Mail Test Setup]
 * link:#GEXPU[Jakarta XML Registry Test Setup]
 * link:#GJKPO[Jakarta RESTful Web Services Test Setup]
@@ -963,46 +962,9 @@ apply to Windows XP/2000.
 =======================================================================
 
 
-[[GEXQQ]][[standalone-rmiiiop-server-test-setup]]
-
-5.4.7 Standalone RMI/IIOP Server Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The standalone RMI/IIOP server testing verifies that Jakarta Platform,
-Enterprise Edition application components can access and communicate
-with an external RMI/IIOP server application.
-
-The `start.rmiiiop.server` Ant target uses the `ts.classpath` property
-setting from the `ts.jte` file when starting the standalone RMI/IIOP
-server application. The standalone RMI/IIOP server application must
-start up using the ORB that comes with the Jakarta Platform, Enterprise
-Edition CI.
-
-Make sure that `ts.classpath` property contains the Jakarta Platform,
-Enterprise Edition CI JAR files and classes and that the following
-properties have been set in the `ts.jte` file:
-
-[source,oac_no_warn]
-----
-rmi.http.server.host=[hostname]
-rmi.http.server.port=[port-number]
-----
-
-The `rmi.http.server.host` and `rmi.http.server.port` properties must be
-set to the host and port where the standalone RMI/IIOP http server is
-running. The default values for these properties are `localhost` and
-`10000`, respectively.
-
-To start the standalone RMI/IIOP server, execute the following command:
-
-[source,oac_no_warn]
-----
-ant start.rmiiiop.server
-----
-
 [[GEXOT]][[jakarta-mail-test-setup]]
 
-5.4.8 Jakarta Mail Test Setup
+5.4.7 Jakarta Mail Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Complete the following tasks before you run the Jakarta Mail tests:
@@ -1041,7 +1003,7 @@ ant populateMailbox
 
 [[GJKPO]][[jakarta-restful-web-services-test-setup]]
 
-5.4.9 Jakarta RESTful Web Services Test Setup
+5.4.8 Jakarta RESTful Web Services Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section explains how to set up the test environment to run the
