@@ -25,7 +25,7 @@
     <target name="build.all" depends="build.all.jars,build.all.tests"/>
 
     <target name="build.all.tests" >
-      <property name="all.test.dir" value="signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, javamail, rmiiiop, assembly, jta, samples"/>
+      <property name="all.test.dir" value="signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, javamail, assembly, jta, samples"/>
       <elementappend original="${all.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="all.java.file"/>
 
       <echo message="Compiling:${all.java.file}"/>
@@ -183,8 +183,6 @@
 		<sysproperty key="LOCAL_CLASSES_RI" value="${local.classes.ri}" />
         <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}" />
         <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}" />
-		<sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}" />
-		<sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}" />
 		<sysproperty key="TZ" value="${tz}" />
 		<sysproperty key="deliverable.class" value="${deliverable.class}" />
 		<sysproperty key="java.endorsed.dirs" value="${java.endorsed.dirs}" />
@@ -226,8 +224,6 @@
 		<sysproperty key="LOCAL_CLASSES_RI" value="${local.classes.ri}" />
         <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}" />
         <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}" />
-		<sysproperty key="rmiiiop_http_server_host" value="${rmiiiop.http.server.host}" />
-		<sysproperty key="rmiiiop_http_server_port" value="${rmiiiop.http.server.port}" />
 		<sysproperty key="TZ" value="${tz}" />
 		<sysproperty key="deliverable.class" value="${deliverable.class}" />
         <sysproperty key="java.endorsed.dirs" value="${java.endorsed.dirs}" />
@@ -276,22 +272,6 @@
       <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
       <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
       <sysproperty key="deliverable.class" value="${deliverable.class}" />
-    </java>
-  </target>
-
-  <target name="start.rmiiiop.server">
-    <java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes" 
-      classpath="${ts.classpath}:${class.dir}">
-      <sysproperty key="java.security.policy"
-                   value="${bin.dir}/java.policy"/>
-      <sysproperty key="org.omg.CORBA.ORBClass" 
-                   value="com.sun.corba.se.internal.POA.POAORB"/>
-      <sysproperty key="org.omg.CORBA.ORBSingletonClass"
-                   value="com.sun.corba.se.internal.corba.ORBSingleton"/>
-      <sysproperty key="javax.rmi.CORBA.UtilClass"
-                   value="com.sun.corba.se.internal.POA.ShutdownUtilDelegate"/>
-      <arg line="-v"/>
-      <arg line="-p ${rmiiiop.http.server.port}"/>
     </java>
   </target>
 

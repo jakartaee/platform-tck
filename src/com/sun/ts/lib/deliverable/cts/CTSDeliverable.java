@@ -80,15 +80,6 @@ public class CTSDeliverable extends AbstractDeliverable {
     htTSValidVehicles.put("tests_jaxp_extension_com.service_eetest.vehicles",
         new String[] { "appclient" });
 
-    // rmiiiop/ee tests
-    htTSValidVehicles.put("tests_rmiiiop_ee.service_eetest.vehicles",
-        new String[] { "ejb", "servlet", "jsp", "appclient" });
-
-    // interop/rmiiiop/marshaltests
-    htTSValidVehicles.put(
-        "tests_interop_rmiiiop_marshaltests.service_eetest.vehicles",
-        new String[] { "ejb", "servlet", "jsp", "appclient" });
-
     // interop/naming/cosnamingNoSSL
     htTSValidVehicles.put(
         "tests_interop_naming_cosnamingNoSSL.service_eetest.vehicles",

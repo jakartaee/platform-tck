@@ -117,7 +117,6 @@
         <echo message=" jakartaee-signaturetest [overrides]"/>
         <echo message=" jakartaee-web      [overrides]"/>
         <echo message=" jakartaee-xa       [overrides]"/>
-        <echo message=" jakartaee-rmiiiop  [overrides]"/>
         <echo message=" jakartaee-jpa      [overrides]"/>
         <echo message=" jakartaee-security [overrides]"/>
         <echo message=" jakartaee-saaj     [overrides]"/>
@@ -735,12 +734,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-rmiiiop" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-RMIIIOP"/>
-        <property name="test.areas" value="rmiiiop"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
     <target name="jakartaee-saaj" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-SAAJ"/>
         <property name="test.areas" value="saaj"/>
@@ -883,7 +876,6 @@
             jsp,
             jstl,
             jta,
-            rmiiiop,          
             servlet,
             websocket,
             samples,

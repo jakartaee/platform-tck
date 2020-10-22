@@ -395,15 +395,6 @@ transport_protocol=smtp
 mailFrom=
 mailHost=
 
-#######################################################################
-#These properties are needed for the RMIIIOP EE STANDALONE tests which
-#use the standalone RMIIIOPServer. RMIIIOP_HTTP_SERVER_HOST is the host
-#where the standalone RMIIIOPServer is running. RMIIIOP_HTTP_SERVER_PORT
-#is the HTTP port that the standalone RMIIIOPServer is listening on.
-########################################################################
-rmiiiopHttpServerHost=${rmiiiop.http.server.host}
-rmiiiopHttpServerPort=${rmiiiop.http.server.port}
-
 ###############################################################
 #These properties are needed for signaturetest.
 ###############################################################
