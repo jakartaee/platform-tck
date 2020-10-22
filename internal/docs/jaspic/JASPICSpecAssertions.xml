@@ -1848,7 +1848,7 @@
             <description> The MessageInfo argument used in any call made by the message processing runtime to
                 secureRequest, validateResponse, validateRequest, or secureResponse must have been initialized such that
                 the non-null objects returned by the getRequestMessage and getResponseMessage methods of the MessageInfo
-                are an instanceof jakarta.xml.soap.SOAPMessage.
+                are an instance of jakarta.xml.soap.SOAPMessage.
 
             </description>
             <keywords>
