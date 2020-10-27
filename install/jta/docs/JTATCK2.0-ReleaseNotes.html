@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+ <title>Release Notes for JTA Technology Compatibility Kit Version 2.0</title>
+ <!--
+
+     Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+
+     This program and the accompanying materials are made available under the
+     terms of the Eclipse Public License v. 2.0, which is available at
+     http://www.eclipse.org/legal/epl-2.0.
+
+     This Source Code may also be made available under the following Secondary
+     Licenses when the conditions for such availability set forth in the
+     Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+     version 2 with the GNU Classpath Exception, which is available at
+     https://www.gnu.org/software/classpath/license.html.
+
+     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+ <style type="text/css">
+<!--
+body {  background-color: #ffffdd; color: #000000}
+pre {  background-color: #eeeeee; color: #000099}
+code {  color: #000099}
+h1 {  color: #000099}
+h2 {  color: #000099}
+h3 {  color: #000099; text-decoration: underline}
+h4 {  font-style: italic; color: #000099}
+.tabletitle {  font-style: italic; color: #ffffcc; font-size: small; font-variant: small-caps}
+.subtitle {  font-style: italic; color: #ffffcc; font-variant: small-caps}
+.emphasize  {  font-style: italic; color: #000099}
+.step  { font-weight: bold}
+-->
+</style>
+</head>
+<body vlink="#840084" text="#000000" link="#0000ff" bgcolor="#ffffdd" alink="#0000ff">
+
+<div align="center">
+<h1>JTA Technology Compatibility Kit<br>
+<em class="emphasize">Release Notes, October-2020</em></h1>
+</div>
+
+<hr>
+<h2>Java Transaction API (JTA) 2.0 Support</h2>
+<p>The following types are no longer part of the JTA 2.0 API, but
+continue to be part of the javax.transaction.xa package provided by Java
+ SE as it was in JTA 1.3 API version: </p>
+<ul>
+	<li>javax.transaction.xa.XAException</li>
+	<li>javax.transaction.xa.XAResource</li>
+	<li>javax.transaction.xa.Xid</li>
+</ul>
+<p>The Signature tests in JTA 2.0 will use <code><ts_home>/bin/sig-test_se8.map</ts_home></code> file (run in JDK8) and validate the fact that these classes are not part of the JTA 2.0 API jar. </p>
+
+<hr>
+<h2>Kit Contents</h2>
+<p> The JTA, Version 2.0 Technology Compatibility Kit (TCK) includes the following items:</p>
+<ul>
+	<li><bold>JT Harness documentation</bold>: Refer to the <a href="https://wiki.openjdk.java.net/display/CodeTools/Documentation" target="_blank">JT Harness documentation</a> for latest documents.</li>
+	<li><bold>JTA TCK Signature and API tests</bold>:
+	<ul><li><bold>API tests</bold> that verify that all public APIs are supported and/or defined as specified in the JTA Version 2.0 implementation under test.</li>
+	<li>A <bold>Signature test</bold> that checks that all public APIs are supported and/or defined as specified in the JTA Version 2.0 implementation under test. </li>
+	</ul></li>
+</ul>
+
+<hr>
+<h2>Platform Notes</h2>
+<p>The JTA TCK tests have been built and tested with the JakartaEE 9 Compatible Implementation (<a href="https://github.com/eclipse-ee4j/glassfish/" target="_blank">GlassFish 6.0</a>)
+ Application Server running on the Java platforms.
+ If you are using a different Web server, you will need to make
+adjustments to the procedures outlined in the JTA 2.0 TCK User's Guide.</p>
+<p>The JTA TCK tests have been validated on the following platforms:</p>
+<ul>
+      <li>CentOS Linux 7</li>
+</ul>
+
+<hr>
+<h2>Installing, Setting Up, and Running the JTA TCK</h2>
+<p>Refer to the JTA 2.0 TCK User's Guide for complete instructions on installing, setting up, and running the JTA TCK.</p>
+
+<hr>
+<h2>Attributions</h2>
+<blockquote>
+<p>The JTA 2.0 test suite includes software developed by the Apache Software Foundation (<a href="http://www.apache.org/">http://www.apache.org/</a>), the dom4j Project (<a href="http://sourceforge.net/projects/dom4j/">http://sourceforge.net/projects/dom4j/</a>), and the JDOM<small><sup>TM</sup></small> Project (<a href="http://www.jdom.org/">http://www.jdom.org/</a>). The Apache Ant Contrib project is located at <a href="http://ant-contrib.sourceforge.net/">http://ant-contrib.sourceforge.net/</a>.</p>
+</blockquote>
+
+<hr size="3">
+<small>Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.</small>
+
+
+</body></html>
