@@ -1304,7 +1304,6 @@ command.testExecuteAppClient2= \
         -DwebServerPort.2=${webServerPort.2} \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
-        -Dcom.sun.enterprise.iiop.security.interceptorFactory=com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory \
         -Djava.ext.dirs=${RI_JAVA_HOME}/lib/ext${pathsep}${RI_JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
         -Dcom.sun.aas.configRoot=${javaee.home.ri}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home.ri}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/ri.sun-acc.xml,client=jar=$testExecuteArgs

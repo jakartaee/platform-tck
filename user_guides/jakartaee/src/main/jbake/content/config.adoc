@@ -1014,7 +1014,7 @@ as well.
 
 [[GJYCL]][[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-the-jakarta-ee-8-ci]]
 
-5.4.9.1 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE 9 CI
+5.4.8.1 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE 9 CI
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment
@@ -1037,7 +1037,7 @@ directory contains packaging instructions.
 
 [[GJYBC]][[to-package-war-files-for-deployment-on-the-jakarta-ee-8-ci]]
 
-5.4.9.2 To Package WAR files for Deployment on the Jakarta EE 9 CI
+5.4.8.2 To Package WAR files for Deployment on the Jakarta EE 9 CI
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta EE 9 CTS test suite does not come with prebuilt test WAR files
@@ -1059,7 +1059,7 @@ the Jakarta EE 9 CI.
 
 [[GJYBR]][[to-configure-your-environment-to-run-the-jakarta-restful-web-services-tests-against-a-vendor-implementation]]
 
-5.4.9.3 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
+5.4.8.3 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against a Vendor Implementation
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Complete the following steps to configure your test environment to run
@@ -1093,7 +1093,7 @@ The default setting for this property is `jersey`.
 
 [[GJYDD]][[to-repackage-war-files-for-deployment-on-the-vendor-implementation]]
 
-5.4.9.4 To Repackage WAR files for Deployment on the Vendor Implementation
+5.4.8.4 To Repackage WAR files for Deployment on the Vendor Implementation
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 To run the Jakarta RESTful Web Services tests against a vendor's implementation in a Jakarta EE
@@ -1220,7 +1220,7 @@ the VI's servlet class name and repackages the tests.
 
 [[GEXOF]][[jakarta-connector-test-setup]]
 
-5.4.10 Jakarta Connector Test Setup
+5.4.9 Jakarta Connector Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta Connector tests verify that a Jakarta EE 9 server correctly implements
@@ -1241,7 +1241,7 @@ tests.
 
 [[GJVGT]][[extension-libraries]]
 
-5.4.10.1 Extension Libraries
+5.4.9.1 Extension Libraries
 ++++++++++++++++++++++++++++
 
 The following Connector files are deployed as part of the `config.vi`
@@ -1300,7 +1300,7 @@ requirements that are listed in section 20.3 in the specification.
 
 [[GJVGO]][[connector-resource-adapters-and-classloading]]
 
-5.4.10.2 Connector Resource Adapters and Classloading
+5.4.9.2 Connector Resource Adapters and Classloading
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Jakarta EE 9 CTS has scenarios in which multiple standalone RAR files that
@@ -1320,7 +1320,7 @@ type inconsistency issues.
 
 [[GJVHD]][[use-case-problem-scenario]]
 
-5.4.10.3 Use Case Problem Scenario
+5.4.9.3 Use Case Problem Scenario
 ++++++++++++++++++++++++++++++++++
 
 Assume that RAR1 and RAR2 are standalone RAR files that are referred to
@@ -1363,7 +1363,7 @@ copied.
 
 [[GJVHK]][[required-porting-package]]
 
-5.4.10.4 Required Porting Package
+5.4.9.4 Required Porting Package
 +++++++++++++++++++++++++++++++++
 
 The Jakarta EE 9 CTS test suite treats the `whitebox.jar` dependency as an
@@ -1391,7 +1391,7 @@ portable manner.
 
 [[GJVHH]][[creating-security-mappings-for-the-connector-rar-files]]
 
-5.4.10.5 Creating Security Mappings for the Connector RAR Files
+5.4.9.5 Creating Security Mappings for the Connector RAR Files
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The Ant target `create.security.eis.mappings` in the
@@ -1424,7 +1424,7 @@ would be required in the connector runtime:
 
 [[GJVGX]][[creating-required-server-side-jvm-options]]
 
-5.4.10.6 Creating Required Server-Side JVM Options
+5.4.9.6 Creating Required Server-Side JVM Options
 ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Create the required JVM options that enable user information to be set
@@ -1446,7 +1446,7 @@ server under test:
 
 [[GEXPV]][[xa-test-setup]]
 
-5.4.11 XA Test Setup
+5.4.10 XA Test Setup
 ^^^^^^^^^^^^^^^^^^^^
 
 The XA Test setup requires that the `ejb_Tsr.ear` file be deployed as
@@ -1567,7 +1567,7 @@ files.
 
 [[GKKOJ]][[jakarta-enterprise-beans-3.2-test-setup]]
 
-5.4.12 Jakarta Enterprise Beans 4.0 Test Setup
+5.4.11 Jakarta Enterprise Beans 4.0 Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section explains special configuration that needs to be completed
@@ -1590,7 +1590,7 @@ support.
 
 [[GJYBW]][[to-configure-the-test-environment-to-run-the-jakarta-enterprise-beans-4.0-datasource-tests]]
 
-5.4.12.1 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
+5.4.11.1 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 DataSource Tests
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The EJB 3.2 DataSource tests under the following `tests/ejb30`
@@ -1625,7 +1625,7 @@ testing.
 
 [[GJYCF]][[to-configure-the-test-environment-to-run-the-jakarta-enterprise-beans-4.0-stateful-timeout-tests]]
 
-5.4.12.2 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Stateful Timeout Tests
+5.4.11.2 To Configure the Test Environment to Run the Jakarta Enterprise Beans 4.0 Stateful Timeout Tests
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta Enterprise Beans 4.0 Stateful Timeout Tests in the following test directories
@@ -1650,7 +1650,7 @@ implementation strategy in the target server.
 
 [[GEXOX]][[jakarta-enterprise-beans-timer-test-setup]]
 
-5.4.13 Jakarta Enterprise Beans Timer Test Setup
+5.4.12 Jakarta Enterprise Beans Timer Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Set the following properties in the `ts.jte` file to configure the Jakarta Enterprise Beans
@@ -1698,7 +1698,7 @@ CI as the VI].
 
 [[GEXQB]][[entity-bean-container-managed-persistence-test-setup-for-jakarta-enterprise-beans-v-1.1]]
 
-5.4.14 Entity Bean Container-Managed Persistence Test Setup for Jakarta Enterprise Beans V 1.1
+5.4.13 Entity Bean Container-Managed Persistence Test Setup for Jakarta Enterprise Beans V 1.1
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Your Jakarta Platform, Enterprise Edition implementation should map the
@@ -1753,7 +1753,7 @@ link:ejbql-schema.html#GFKQT[SQL Statements for CMP 1.1 Finders].
 
 [[GEXOL]][[jakarta-persistence-api-test-setup]]
 
-5.4.15 Jakarta Persistence API Test Setup
+5.4.14 Jakarta Persistence API Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta Persistence API tests exercise the requirements as defined in
@@ -1772,7 +1772,7 @@ regarding entity managers.
 
 [[GJKPA]][[to-configure-the-test-environment-to-run-the-jakarta-persistence-pluggability-tests]]
 
-5.4.15.1 To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests
+5.4.14.1 To Configure the Test Environment to Run the Jakarta Persistence Pluggability Tests
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta Persistence Pluggability tests under the
@@ -1793,7 +1793,7 @@ the `src/com/sun/ts/tests/jpa` directory.
 
 [[sthref19]][[enabling-second-level-caching-support]]
 
-5.4.15.2 Enabling Second Level Caching Support
+5.4.14.2 Enabling Second Level Caching Support
 ++++++++++++++++++++++++++++++++++++++++++++++
 
 Jakarta Persistence supports the use of a second-level cache by the
@@ -1807,7 +1807,7 @@ support second level caching, set the value to false.
 
 [[GEXOW]][[persistence-test-vehicles]]
 
-5.4.15.3 Persistence Test Vehicles
+5.4.14.3 Persistence Test Vehicles
 ++++++++++++++++++++++++++++++++++
 
 The persistence tests are run in a variety of "vehicles" from which the
@@ -1859,7 +1859,7 @@ configure a non-transactional resource with the logical name
 
 [[GEXPY]][[generatedvalue-annotation]]
 
-5.4.15.4 GeneratedValue Annotation
+5.4.14.4 GeneratedValue Annotation
 ++++++++++++++++++++++++++++++++++
 
 The Jakarta Persistence API Specification also defines the requirements for
@@ -1902,7 +1902,7 @@ entity managers, which correspond to a `non-jta-data-source`
 
 [[GEXPT]][[jakarta-messaging-test-setup]]
 
-5.4.16 Jakarta Messaging Test Setup
+5.4.15 Jakarta Messaging Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section explains how to set up and configure the Jakarta EE 9 CTS test
@@ -1920,7 +1920,7 @@ The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
 
 [[sthref20]][[to-configure-a-slow-running-system]]
 
-5.4.16.1 To Configure a Slow Running System
+5.4.15.1 To Configure a Slow Running System
 +++++++++++++++++++++++++++++++++++++++++++
 
 Make sure that the following property has been set in the `ts.jte` file:
@@ -1938,7 +1938,7 @@ that you should be, you need to increase the value of this parameter.
 
 [[sthref21]][[to-test-your-jakarta-messaging-resource-adapter]]
 
-5.4.16.2 To Test Your Jakarta Messaging Resource Adapter
+5.4.15.2 To Test Your Jakarta Messaging Resource Adapter
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 If your implementation supports Jakarta Messaging as a Resource Adapter, you must set
@@ -1961,7 +1961,7 @@ This rebuilds the tests under
 
 [[sthref22]][[to-create-jakarta-messaging-administered-objects]]
 
-5.4.16.3 To Create Jakarta Messaging Administered Objects
+5.4.15.3 To Create Jakarta Messaging Administered Objects
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 If you do not have an API to create Jakarta Messaging Administered objects, and you
@@ -2138,81 +2138,9 @@ in the `ts.jte` file.
 =======================================================================
 
 
-[[GEXQR]][[transaction-interoperability-testing]]
-
-5.4.17 Transaction Interoperability Testing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Using two Jakarta Platform, Enterprise Edition server implementations, you
-can test up to four transaction interoperability configurations.
-However, note that you only need to test and pass configurations that
-your Jakarta Platform, Enterprise Edition server supports.
-link:#GEXOC[Table 5-1] shows these configurations.
-
-[[sthref23]][[GEXOC]]
-
-===== Table 5-1 Transaction Interoperability Testing Configurations
-
-[width="80%",cols="34%,33%,33%",options="header",]
-|=======================================================================
-|Configuration |Transaction Interoperability Setting for a Jakarta
-Platform, Enterprise Edition Vendor Implementation |Transaction
-Interoperability Setting for the Jakarta Platform, Enterprise Edition CI
-|1 |ON |OFF
-
-|2 |ON |ON
-
-|3 |OFF |OFF
-
-|4 |OFF |ON
-|=======================================================================
-
-
-Modify the interoperability settings for transaction interoperability
-according to what you need to test:
-
-* If your implementation supports transaction interoperability, you must
-test configurations #1 and #2.
-
-* If your implementation does not support transaction interoperability,
-you must test configurations #3 and #4.
-
-The `ts.jte` file has the following transaction interoperability
-properties:
-
-[source,oac_no_warn]
-----
-EJBServer1TxInteropEnabled=[false | true]
-EJBServer2TxInteropEnabled=[false | true]
-----
-
-To run the required test configurations described in link:#GEXOC[Table
-5-1], use the following commands to change the Jakarta Platform, Enterprise
-Edition SDK settings as necessary.
-
-* To set the Jakarta Platform, Enterprise Edition CI Transaction
-Interoperability setting to `False`: 
-+
-[source,oac_no_warn]
-----
-cd <TS_HOME>/bin
-ant disable.ri.tx.interop
-----
-+
-* To set the Jakarta Platform, Enterprise Edition CI Transaction
-Interoperability setting to `True`: 
-+
-[source,oac_no_warn]
-----
-ant enable.ri.tx.interop
-----
-+
-The default Jakarta Platform, Enterprise Edition CI Transaction
-Interoperability setting is `True`.
-
 [[GKWVB]][[jakarta-authentication-service-test-setup]]
 
-5.4.18 Jakarta Authentication Service Test Setup
+5.4.16 Jakarta Authentication Service Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Jakarta Authentication Service for Containers (Authentication)
@@ -2336,7 +2264,7 @@ implementation may be left in an uncertain state.
 
 [[GEYBI]][[jakarta-authorization-test-setup]]
 
-5.4.19 Jakarta Authorization Test Setup
+5.4.17 Jakarta Authorization Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To comply with Jakarta EE 9 requirements, Jakarta Authorization must be supported in both
@@ -2404,7 +2332,7 @@ tests again.
 
 [[sthref24]][[jakarta-batch-test-setup]]
 
-5.4.20 Jakarta Batch Test Setup
+5.4.18 Jakarta Batch Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta Batch tests, which are located under the
@@ -2442,7 +2370,7 @@ All the Batch TCK material can be found here:
 
 [[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
 
-5.4.21 WSDL: Webservice Test and Runtime Notes
+5.4.19 WSDL: Webservice Test and Runtime Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In addition to the WSDL elements described later in this section, the
@@ -2487,7 +2415,7 @@ specified in the `<wsdl-publish-location>` tag.
 
 [[GEYAJ]][[wsdl-ts.jte-properties]]
 
-5.4.21.1 WSDL ts.jte Properties
+5.4.19.1 WSDL ts.jte Properties
 +++++++++++++++++++++++++++++++
 
 For file URL publishing, the CTS defines two properties in the `ts.jte`
@@ -2562,14 +2490,14 @@ Edition implementation used as the interop test machine. See
 
 [[GEYCO]][[webservice-endpoint-wsdl-elements]]
 
-5.4.21.2 Webservice Endpoint WSDL Elements
+5.4.19.2 Webservice Endpoint WSDL Elements
 ++++++++++++++++++++++++++++++++++++++++++
 
 The following are the webservice endpoint WSDL elements:
 
 [[GEYMW]][[setting-endpoint-address]]
 
-5.4.21.2.1 Setting Endpoint Address
+5.4.19.2.1 Setting Endpoint Address
 
 [source,oac_no_warn]
 ----
@@ -2634,7 +2562,7 @@ http://localhost:8000/GoogleServletContext/GoogleSearch
 
 [[GEYLR]][[jakarta-enterprise-beans-endpoint-security]]
 
-5.4.21.2.2 Jakarta Enterprise Beans Endpoint Security
+5.4.19.2.2 Jakarta Enterprise Beans Endpoint Security
 
 [source,oac_no_warn]
 ----
@@ -2665,7 +2593,7 @@ For example:
 
 [[GEYNB]][[transport-guarantee]]
 
-5.4.21.2.3 Transport Guarantee
+5.4.19.2.3 Transport Guarantee
 
 [source,oac_no_warn]
 ----
@@ -2684,7 +2612,7 @@ the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 
 [[GEYMY]][[publishing-final-wsdl-during-deployment]]
 
-5.4.21.2.4 Publishing Final WSDL During Deployment
+5.4.19.2.4 Publishing Final WSDL During Deployment
 
 * URL publishing: no extra information required. +
 The final WSDL document for each webservice endpoint is always published
@@ -2738,7 +2666,7 @@ a file URL; for example:
 
 [[GEYLF]][[webservice-client-wsdl-elements]]
 
-5.4.21.3 Webservice Client WSDL Elements
+5.4.19.3 Webservice Client WSDL Elements
 ++++++++++++++++++++++++++++++++++++++++
 
 In the CTS for file publishing, the directory in which to publish the
@@ -2784,7 +2712,7 @@ document, which in this case would be
 
 [[GEYLV]][[resolving-container-managed-ports]]
 
-5.4.21.3.1 Resolving Container-Managed Ports
+5.4.19.3.1 Resolving Container-Managed Ports
 
 [source,oac_no_warn]
 ----
@@ -2812,7 +2740,7 @@ Interface is mapped. Only required for each `port-component-ref` in the
 
 [[GEYMN]][[setting-stub-properties]]
 
-5.4.21.3.2 Setting Stub Properties
+5.4.19.3.2 Setting Stub Properties
 
 * Setting Logging property (Implementation-specific): +
 Name: `com.sun.enterprise.webservice.client.transport.log` +
@@ -2875,7 +2803,7 @@ matches a webservice's `wsdl-publish-location` could be:
 
 [[CEGCHDEA]][[jakarta-security-api-test-setup]]
 
-5.4.22 Jakarta Security API Test Setup
+5.4.20 Jakarta Security API Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Complete the following steps before you run the Jakarta Security API tests:
@@ -2961,14 +2889,14 @@ init.ldap.
 
 [[GEYNX]][[signature-test-setup]]
 
-5.4.23 Signature Test Setup
+5.4.21 Signature Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The signature test setup includes the following:
 
 [[GEYPN]][[sigtestclasspath-property]]
 
-5.4.23.1 sigTestClasspath Property
+5.4.21.1 sigTestClasspath Property
 ++++++++++++++++++++++++++++++++++
 
 Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
@@ -2992,7 +2920,7 @@ running against the Jakarta Platform, Enterprise Edition CI
 
 [[GEYOS]][[additional-signature-test-information]]
 
-5.4.23.2 Additional Signature Test Information
+5.4.21.2 Additional Signature Test Information
 ++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta EE 9 CTS signature tests perform verifications in two different
@@ -3021,7 +2949,7 @@ additional debugging information.
 
 [[GJLGQ]][[backend-database-setup]]
 
-5.4.24 Backend Database Setup
+5.4.22 Backend Database Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following sections address special backend database setup
@@ -3032,7 +2960,7 @@ considerations:
 
 [[GJLIB]][[setup-considerations-for-mysql]]
 
-5.4.24.1 Setup Considerations for MySQL
+5.4.22.1 Setup Considerations for MySQL
 +++++++++++++++++++++++++++++++++++++++
 
 The Jakarta Persistence API (formerly JPA) tests require delimited identifiers for
@@ -3048,7 +2976,7 @@ sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QU
 
 [[GJLHU]][[setup-considerations-for-ms-sql-server]]
 
-5.4.24.2 Setup Considerations for MS SQL Server
+5.4.22.2 Setup Considerations for MS SQL Server
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 If your database already exists and if you use a case-sensitive
