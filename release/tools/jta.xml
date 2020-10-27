@@ -31,6 +31,7 @@
         <mkdir dir="${deliverable.bundle.dir}/dist"/>
         <mkdir dir="${deliverable.bundle.dir}/lib/dtds"/>
         <mkdir dir="${deliverable.bundle.dir}/src"/>
+	<mkdir dir="${deliverable.bundle.dir}/docs"/>
         <mkdir dir="${deliverable.bundle.dir}/src/com/sun/ts/lib/porting"/>
     </target>
 
@@ -46,6 +47,10 @@
         <copy todir="${deliverable.bundle.dir}/bin" includeEmptyDirs="no">
             <fileset dir="${ts.home}/install/${deliverable.name.lower}/bin"
                      includes="**/*"/>
+        </copy>
+
+	<copy todir="${deliverable.bundle.dir}/docs" includeEmptyDirs="no">
+                <fileset dir="${ts.home}/install/${deliverable.name.lower}/docs" includes="*ReleaseNotes*.html"/>
         </copy>
 
         <copy file="${common.bin.dir}/xml/impl/glassfish/deploy.xml" todir="${deliverable.bundle.dir}/bin/xml/impl/glassfish"/>
