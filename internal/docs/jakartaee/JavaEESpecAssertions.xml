@@ -420,19 +420,6 @@
             <comment>Covered by all cts tests using db.</comment>
         </assertion>
 
-        <assertion required = "true" impl-spec = "false" 
-                   defined-by = "platform" status = "active" testable = "true">
-            <id>JavaEE:SPEC:1</id>
-            <description> 
-                Java EE application clients are required to be able to define 
-                their own CORBA services directly, using the RMI-IIOP APIs.
-            </description>      
-            <keywords>
-                <keyword>RMI-IIOP</keyword>      
-            </keywords>      
-            <location chapter = "2" section = "6.4"/>    
-        </assertion>
-
         <assertion required = "false" impl-spec = "false" 
                    defined-by = "platform" status = "active" testable = "true">
             <id>JavaEE:SPEC:10004</id>
@@ -447,21 +434,6 @@
             </keywords>      
             <location chapter = "2" section = "6.4"/>    
             <comment>Tested but this is 1.4 assertion. Use of narrow() is no longer required for ejb 3.0.</comment>
-        </assertion>
-
-        <assertion required = "true" impl-spec = "false" 
-                   defined-by = "platform" status = "active" testable = "true">
-            <id>JavaEE:SPEC:10005</id>
-            <description>        
-                Java EE products must be capable of exporting enterprise beans 
-                using the IIOP protocol, and accessing enterprise beans using
-                the IIOP protocol, as specified in the EJB spec.
-            </description>      
-            <keywords>
-                <keyword>EJB</keyword>      
-            </keywords>      
-            <location chapter = "2" section = "6.4"/>    
-            <comment>Covered and tested in EJB.</comment>
         </assertion>
 
         <assertion required = "true" impl-spec = "false" 
@@ -3050,14 +3022,6 @@ independent of authentication.
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" 
                    status = "active" testable = "true">
-            <id>JavaEE:SPEC:285</id>
-            <description>
-Java EE applications need to use an instance of org.omg.CORBA.ORB to perform many Java IDL and RMI-IIOP operations. The default ORB returned by a call to ORB.init(new String[0], null) must be usable for such purposes; an application need not be aware of the implementation classes used for the ORB and RMI-IIOP support.
-            </description>
-            <location chapter = "6" section = "2.4.3"/>
-        </assertion>
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
             <id>JavaEE:SPEC:286</id>
             <description>
 In addition, for performance reasons it is often advantageous to share an ORB instance among components in an application. To support such usage, all web, enterprise bean, and application client containers are required to provide an ORB instance in the JNDI namespace under the name java:comp/ORB.
@@ -3149,41 +3113,6 @@ In addition, for performance reasons it is often advantageous to share an ORB in
             <location chapter = "6" section = "2.4.3"/>
         </assertion>
 
-        <assertion required = "true" impl-spec = "true" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:10126</id>
-            <description>
-                Java EE applications need to use an instance of org.omg.CORBA.ORB 
-                to perform many Java IDL and RMI-IIOP operations. The default ORB 
-                returned by a call to ORB.init(new String[0], null) must be usable 
-                for such purposes; an application need not be aware of the implementation 
-                classes used for the ORB and RMI-IIOP support.n
-            </description>
-            <keywords>
-                <keyword>Java IDL</keyword>      
-                <keyword>IIOP</keyword>      
-                <keyword>ORB</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.3"/>
-        </assertion>
-
-        <assertion required = "true" impl-spec = "true" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:10127</id>
-            <description>
-                it is often advantageous to share an ORB instance among components 
-                in an application. To support such usage, all web, enterprise bean, 
-                and application client containers are required to provide an ORB 
-                instance in the JNDI namespace under the name java:comp/ORB.
-            </description>
-            <keywords>
-                <keyword>Java IDL</keyword>      
-                <keyword>IIOP</keyword>      
-                <keyword>ORB</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.3"/>
-        </assertion>
-
         <assertion required = "true" impl-spec = "false" defined-by = "platform" 
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:197</id>
@@ -3202,66 +3131,6 @@ In addition, for performance reasons it is often advantageous to share an ORB in
             <description>
                 Any enterprise bean (or by extension, all enterprise
                 beans) can be made accessible using RMI-IIOP.
-            </description>      
-            <keywords>
-                <keyword>RMI</keyword>
-                <keyword>IIOP</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.5"/>
-        </assertion>
-
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:10071</id>
-            <description>
-                The RMI-IIOP specification describes how portable Stub and Tie 
-                classes can be created. To be portable to all implementations 
-                that use a CORBA Portable Object Adapter (POA), the Tie classes 
-                must extend the org.omg.PortableServer.Servant class. This is 
-                typically done by using the -poa option to the rmic command. A 
-                Java EE product must provide support for these portable Stub and 
-                Tie classes, typically using the required CORBA POA.
-            </description>      
-            <keywords>
-                <keyword>RMI-IIOP</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.5"/>
-        </assertion>
-
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:10072</id>
-            <description>
-                A Java EE application that defines or uses RMI-IIOP objects other 
-                than enterprise beans must include such portable Stub and Tie classes 
-                in the application package. Stub and Tie objects for enterprise beans, 
-                however, must not be included with the application: they will be generated, 
-                if needed, by the Java EE product at deployment time or at run time.
-            </description>      
-            <keywords>
-                <keyword>RMI-IIOP</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.5"/>
-        </assertion>
-
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:199</id>
-            <description>
-                A COSNaming JNDI service provider must be available through the
-                web, EJB, and application client containers.
-            </description>      
-            <keywords>
-                <keyword>JNDI</keyword>      
-            </keywords>      
-            <location chapter = "6" section = "2.4.6"/>
-        </assertion>
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:200</id>
-            <description>
-                All Java EE application component types can be clients of RMI-IIOP
-                objects.
             </description>      
             <keywords>
                 <keyword>RMI</keyword>
@@ -3364,56 +3233,6 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 protocol for the invocation of enterprise beans.
             </description>
             <location chapter = "6" section = "3"/>
-        </assertion>
-        <assertion required = "false" impl-spec = "true" defined-by = "platform" 
-                   status = "active" testable = "false">
-            <id>JavaEE:SPEC:206</id>
-            <description>
-                A Java EE product may support multiple object systems (for example, RMI-IIOP and RMI-JRMP).
-            </description>
-            <location chapter = "6" section = "3"/>
-        </assertion>
-        <assertion required = "true" impl-spec = "true" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:287</id>
-            <description>
-However, when an enterprise bean is using the RMI-IIOP protocol, it must be possible to pass object references for RMI-IIOP or Java IDL objects as arguments to methods on such an enterprise bean, and to return such object references as return values of a method on such an enterprise bean.
-            </description>
-            <location chapter = "6" section = "3"/>
-        </assertion>
-        <assertion required = "true" impl-spec = "true" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:288</id>
-            <description>
-In addition, it must be possible to pass a reference to an RMI-IIOP-based enterprise bean s Home or Remote interface to a method on an RMI-IIOP or Java IDL object, or to return such an enterprise bean object reference as a return value from such an RMI-IIOP or Java IDL object.
-            </description>
-            <location chapter = "6" section = "3"/>
-        </assertion>
-        <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                   status = "active" testable = "true">
-            <id>JavaEE:SPEC:207</id>
-            <description>
-                When an enterprise bean is using the RMI-IIOP protocol, it must be 
-                possible to pass object references for RMI-IIOP or JavaIDL objects 
-                as arguments to methods on such an enterprise bean, and to return 
-                such object references as return values of a method on such an 
-                enterprise bean.
-            </description>
-            <location chapter = "6" section = "3"/>
-            <sub-assertions>
-                <assertion required = "true" impl-spec = "false" defined-by = "platform" 
-                           status = "active" testable = "true">
-                    <id>JavaEE:SPEC:207.1</id>
-                    <description>
-                        In addition, it must be possible to pass a reference to an 
-                        RMI-IIOP-based enterprise bean's Home or Remote interface to 
-                        a method on an RMI-IIOP or JavaIDL object, or to return such 
-                        an enterprise bean object reference as a return value from such 
-                        an RMI-IIOP or JavaIDL object.
-                    </description>
-                    <location chapter = "6" section = "3"/>
-                </assertion>
-            </sub-assertions>
         </assertion>
         <assertion required = "true" impl-spec = "false" defined-by = "platform" 
                    status = "active" testable = "true">
