@@ -171,28 +171,43 @@ public abstract class WebValidatorBase implements ValidationStrategy {
       return true;
     }
 
-    // test status code not null, compare with that of the response
-    if (sCode.charAt(0) != '!') {
-      if (!sCode.equals(resCode)) {
-        TestUtil.logErr("[WebValidatorBase] Unexpected Status Code "
-            + "recieved from server.  Expected '" + sCode + "' received '"
-            + resCode + "'");
-        return false;
-      }
+    /*
+     * Take sCode as a comma separated list of status codes.
+     *
+     * If prefixed by "!" the response status code must not match any in the list.
+     *
+     * Otherwise matching any in the list is accepted.
+     */
 
-      TestUtil.logTrace("[WebValidatorBase] Expected Status Code '" + sCode
-          + "' found in response line!");
+    boolean exclusions = sCode.charAt(0) == '!';
+    String[] sCodes = exclusions ? sCode.substring(1).split(",") : sCode.split(",");
+
+    if (exclusions) {
+        for (String current : sCodes) {
+            if (current.equals(resCode)) {
+                TestUtil.logErr("[WebValidatorBase] Unexpected Status Code "
+                    + "recieved from server.  Expected any value except '" + sCode
+                    + "', received '" + resCode + "'");
+                return false;
+            }
+        }
     } else {
-      sCode = sCode.substring(1);
-      if (sCode.equals(resCode)) {
-        TestUtil.logErr("[WebValidatorBase] Unexpected Status Code "
-            + "recieved from server.  Expected any value except '" + sCode
-            + "', received '" + resCode + "'");
-        return false;
-      }
+        boolean found = false;
+        for (String current : sCodes) {
+            if (current.equals(resCode)) {
+                TestUtil.logTrace("[WebValidatorBase] Expected Status Code '" + current
+                        + "' found in response line!");
+                found = true;
+                break;
+            }
+        }
 
-      TestUtil.logTrace("[WebValidatorBase] Status Code '" + sCode
-          + "' not found in response line!");
+        if (!found) {
+            TestUtil.logTrace("[WebValidatorBase] Status Code '" + sCode
+                      + "' not found in response line!");
+
+            return false;
+        }
     }
 
     return true;
