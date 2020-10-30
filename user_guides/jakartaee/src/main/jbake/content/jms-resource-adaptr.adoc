@@ -12,12 +12,12 @@ G Testing a Standalone Jakarta Messaging Resource Adapter
 ---------------------------------------------------------
 
 This appendix explains how to set up and configure a Jakarta EE 9 CI and
-Jakarta EE 9 CTS so a standalone Jakarta Messaging resource adapter can be tested.
+Jakarta EE 9 Platform TCK so a standalone Jakarta Messaging resource adapter can be tested.
 
 This appendix covers the following topics:
 
 * link:#CJGGIEEJ[Setting Up Your Environment]
-* link:#CJGDJCEC[Configuring Jakarta EE 9 CTS]
+* link:#CJGDJCEC[Configuring Jakarta EE 9 Platform TCK]
 * link:#CJGFCJBA[Configuring a Jakarta EE 9 CI for the Standalone Jakarta Messaging
 Resource Adapter]
 * link:#CJGEBECH[Modifying the Runtime Deployment Descriptors for the
@@ -25,7 +25,7 @@ Jakarta Messaging MDB and Resource Adapter Tests]
 * link:#CJGFHCBJ[Running the Jakarta Messaging Tests From the Command Line]
 * link:#CJGCJGIH[Restoring the Runtime Deployment Descriptors for the
 Jakarta Messaging MDB and Resource Adapter Tests]
-* link:#CJGCDGIG[Reconfiguring Jakarta EE 9 CI for Jakarta EE 9 CTS After
+* link:#CJGCDGIG[Reconfiguring Jakarta EE 9 CI for Jakarta EE 9 Platform TCK After
 Testing the Standalone Jakarta Messaging Resource Adapter]
 
 [[CJGGIEEJ]][[g.1-setting-up-your-environment]]
@@ -39,7 +39,7 @@ components:
 
 * Java SE 8 software
 * Jakarta EE 9 CI software such as Eclipse GlassFish 6.0
-* Jakarta EE 9 CTS software
+* Jakarta EE 9 Platform TCK software
 
 Complete the following steps to set up Eclipse GlassFish 6.0 in your environment:
 
@@ -48,7 +48,7 @@ Complete the following steps to set up Eclipse GlassFish 6.0 in your environment
 installed
 * JAVAEE_HOME to the directory where the Jakarta EE 9 CI (Eclipse GlassFish 6.0) software has been
 installed
-* TS_HOME to the directory where the Jakarta EE 9 CTS software has been
+* TS_HOME to the directory where the Jakarta EE 9 Platform TCK software has been
 installed
 2.  Update your PATH environment variable to include the following
 directories: JAVA_HOME/bin, JAVAEE_HOME/bin, TS_HOME/bin, and
@@ -56,7 +56,7 @@ ANT_HOME/bin.
 
 [[CJGDJCEC]][[g.2-configuring-java-ee-8-cts]]
 
-G.2 Configuring Jakarta EE 9 CTS
+G.2 Configuring Jakarta EE 9 Platform TCK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `ts.jte` file includes properties that must be set for testing a
@@ -170,7 +170,7 @@ G.6 Restoring the Runtime Deployment Descriptors for the Jakarta Messaging MDB a
 
 After you run the Jakarta Messaging tests against your standalone Jakarta Messaging Resource
 Adapter, you need to restore the Jakarta Messaging MDB and Resource Adapter tests.
-Jakarta EE 9 CTS provides an Ant task that handles the restoration. Invoke
+Jakarta EE 9 Platform TCK provides an Ant task that handles the restoration. Invoke
 the following Ant task to restore the Jakarta Messaging MDB and Resource Adapter
 `glassfish-ejb-jar` runtime deployment descriptor XML files to their
 previous state:
@@ -186,12 +186,12 @@ deployment descriptor XML files appropriate for your environment.
 
 [[CJGCDGIG]][[g.7-reconfiguring-jakarta-ee-8-CI-for-jakarta-ee-8-cts-after-testing-the-standalone-jakarta-messaging-resource-adapter]]
 
-G.7 Reconfiguring Jakarta EE 9 CI for Jakarta EE 9 CTS After Testing the Standalone Jakarta Messaging Resource Adapter
+G.7 Reconfiguring Jakarta EE 9 CI for Jakarta EE 9 Platform TCK After Testing the Standalone Jakarta Messaging Resource Adapter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After you finish testing the standalone Jakarta Messaging Resource Adapter, you need
 to reconfigure the Jakarta EE 9 CI before you can continue testing with
-Jakarta EE 9 CTS:
+Jakarta EE 9 Platform TCK:
 
 .  Change to the `TS_HOME/bin` directory.
 .  Invoke the `clean.vi` Ant target: +
@@ -208,7 +208,7 @@ number
 * Reset the `jmsra.name` property to `jmsra` to refer to the Jakarta Messaging
 Resource Adapter for the Jakarta EE 9 CI
 .  From the TS_HOME/bin directory, invoke the config.vi Ant task to
-reconfigure the Jakarta EE 9 CI for Jakarta EE 9 CTS: +
+reconfigure the Jakarta EE 9 CI for Jakarta EE 9 Platform TCK: +
 `ant config.vi`
 
 

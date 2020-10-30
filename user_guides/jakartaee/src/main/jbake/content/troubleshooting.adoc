@@ -16,9 +16,9 @@ This chapter explains how to debug test failures that you could
 encounter as you run the Jakarta Platform, Enterprise Edition Compatibility
 Test Suite.
 
-[[GFAUR]][[common-cts-problems-and-resolutions]]
+[[GFAUR]][[common-tck-problems-and-resolutions]]
 
-9.1 Common CTS Problems and Resolutions
+9.1 Common TCK Problems and Resolutions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section lists common problems that you may encounter as you run the
@@ -27,7 +27,7 @@ the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0. It also prop
 for the problems, where applicable.
 
 * Problem: +
-The following exception may occur when a Jakarta EE 9 CTS test tries to
+The following exception may occur when a Jakarta EE 9 Platform TCK test tries to
 write a very long tracelog: +
 [source,oac_no_warn]
 ----

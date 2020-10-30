@@ -35,7 +35,7 @@ example, the context root for the archive `web-client.war` defaults to
 `web-client`.
 
 This covers the mapping for all servlet-based web services endpoints and
-clients under the Jakarta EE 9 CTS test trees 
+clients under the Jakarta EE 9 Platform TCK test trees 
 Jakarta XML Web Services (`jaxws`),
 Jakarta Web Services Metadata (`jws`),
 webservices, webservices12, webservices13].

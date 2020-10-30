@@ -12,7 +12,7 @@ Setup and Configuration
 5 Setup and Configuration
 -------------------------
 
-This chapter describes how to set up the Jakarta EE 9 CTS test suite and
+This chapter describes how to set up the Jakarta EE 9 Platform TCK test suite and
 configure it to work with your test environment. It is recommended that
 you first set up the testing environment using the Jakarta EE 9 CI and then
 with your Jakarta EE 9 server.
@@ -49,14 +49,14 @@ The instructions in this section and in link:#GEWWA[Section 5.3.3,
 configuration process for the Solaris, Microsoft Windows, and Linux
 platforms.
 
-All CTS test configuration procedures are based on running the Ant
+All TCK test configuration procedures are based on running the Ant
 scripts against a set of build targets. The primary location of any
 configuration settings you are likely to make is the
 `<TS_HOME>/bin/ts.jte` environment file. You may also want to modify the
 `javaee_vi.xml` and `initdb.xml` Ant configuration files and the
 vendor-specific SQL files. These two files contain predefined Ant
 targets that are implemented such that they automatically configure the
-Jakarta EE 9 CI and its associated database in order to pass the CTS. A
+Jakarta EE 9 CI and its associated database in order to pass the TCK. A
 Implementer may choose to implement these targets to work with their server
 environment to perform the steps described in link:#GEWWA[Section 5.3.3,
 "Configuring Your Application Server as the VI."]
@@ -65,7 +65,7 @@ environment to perform the steps described in link:#GEWWA[Section 5.3.3,
 [NOTE]
 =======================================================================
 
-Ant targets are available at all levels of the CTS source tree that
+Ant targets are available at all levels of the TCK source tree that
 allow you to execute a wide variety of test scenarios and
 configurations.
 
@@ -86,7 +86,7 @@ backslashes (`\`) for Windows.
 platform to be tested for certification.
 2.  Implement the porting package APIs. +
 Some functionality in the Jakarta EE 9 platform is not completely specified
-by an API. To handle this situation, the Jakarta EE 9 CTS test suite
+by an API. To handle this situation, the Jakarta EE 9 Platform TCK test suite
 defines a set of interfaces in the `com.sun.cts.porting` package, which
 serve to abstract any implementation-specific code. You must create your
 own implementations of the porting package interfaces to work with your
@@ -98,18 +98,18 @@ directory.
 3.  Set up the Jakarta Platform, Enterprise Edition Compatible
 Implementation (CI) server. +
 See link:#GEWUI[Section 5.3.2, "Configuring the Jakarta EE 9 CI as the
-VI,"] for a list of the modifications that must be made to run CTS
+VI,"] for a list of the modifications that must be made to run TCK
 against the Jakarta EE 9 CI.
 4.  Set up the vendor's Jakarta EE 9 server implementation (VI). +
 See link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as
-the VI,"] for a list of the modifications that must be made to run CTS
+the VI,"] for a list of the modifications that must be made to run TCK
 against the vendor's Jakarta EE 9 server.
 5.  Validate your configuration. +
 Run the sample tests provided. If the tests pass, your basic
 configuration is valid. See link:using.html#GFACS[Section 7.3,
 "Validating Your Test Configuration,"] for information about using
 JavaTest to run the sample tests.
-6.  Run the CTS tests. +
+6.  Run the TCK tests. +
 See link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for information
 about Starting JavaTest and running tests.
 
@@ -119,7 +119,7 @@ about Starting JavaTest and running tests.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section describes how to configure the Jakarta EE 9 server under test.
-You can run the CTS tests against the Jakarta EE 9 CI or your own Jakarta
+You can run the TCK tests against the Jakarta EE 9 CI or your own Jakarta
 Platform, Enterprise Edition server. When performing interoperability
 (interop) tests or web service-based tests, you will be running two Jakarta
 EE 9 CI servers, one of which must be a Jakarta EE 9 CI using, or configured to
@@ -131,8 +131,8 @@ they are used here:
 
 * Compatible Implementation (CI): Jakarta EE 9 CI, for example, Eclipse GlassFish 6.0
 * Vendor Implemention (VI): Jakarta EE 9 implementation from a vendor other
-than Eclipse; typically, the goal of running the CTS is to certify a Jakarta
-EE 9 VI; in some cases, for purposes of familiarizing yourself with CTS,
+than Eclipse; typically, the goal of running the TCK is to certify a Jakarta
+EE 9 VI; in some cases, for purposes of familiarizing yourself with TCK,
 you may choose to run the Jakarta EE 9 CI as the VI
 * Bundled Derby: Apache Derby database bundled with the Jakarta EE 9 CI, Eclipse GlassFish 6.0
 
@@ -142,7 +142,7 @@ you may choose to run the Jakarta EE 9 CI as the VI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are three general scenarios for configuring Jakarta EE 9 servers for
-Jakarta EE 9 CTS testing (Note: in the following images, Java EE refers to Jakarta EE. 
+Jakarta EE 9 Platform TCK testing (Note: in the following images, Java EE refers to Jakarta EE. 
 RI should be replaced with CI for Compatible Implementation):
 
 * Configure the Jakarta EE 9 CI as the server under test +
@@ -150,7 +150,7 @@ image:img/serverpath-ri.png["CI as Server Under Test"]
 
 Use the Jakarta EE 9 CI as the Jakarta EE 9 VI; you may want to do this as a
 sanity check to make sure you are comfortable with using the Jakarta EE 9
-CTS against a known standard CI with certified sample applications
+Platform TCK against a known standard CI with certified sample applications
 before proceeding with tests against your Jakarta EE 9 VI. See
 link:#GEWUI[Section 5.3.2, "Configuring the Jakarta EE 9 CI as the VI,"]
 for instructions.
@@ -158,7 +158,7 @@ for instructions.
 * Configure your Jakarta EE 9 VI as Server Under Test +
 image:img/serverpath-vi.png["VI as Server Under Test"]
 
-This is the primary goal of using the Jakarta EE 9 CTS; you will eventually
+This is the primary goal of using the Jakarta EE 9 Platform TCK; you will eventually
 need to configure the Jakarta EE 9 implementation you want to certify. See
 link:#GEWWA[Section 5.3.3, "Configuring Your Application Server as the
 VI,"] for instructions.
@@ -172,7 +172,7 @@ VI running a database of your choice with JDBC 4.1-compliant drivers.
 The second server must be the Jakarta EE 9 CI using the bundled Java DB
 database. 
 
-In terms of the Jakarta EE 9 CTS, all CTS configuration settings are made
+In terms of the Jakarta EE 9 Platform TCK, all configuration settings are made
 in the `<TS_HOME>/bin/ts.jte` file. When configuring a Jakarta EE 9 server,
 the important thing is to make sure that the settings you use for your
 server match those in the `ts.jte` file.
@@ -186,10 +186,10 @@ These configuration scenarios are described in the following sections.
 
 To configure the Jakarta EE 9 CI as the server under test (that is, to use
 the Jakarta EE 9 CI as the VI) follow the steps listed below. In this
-scenario, the goal is simply to test the Jakarta EE 9 CI against the CTS
-for the purposes of familiarizing yourself with CTS test procedures. You
+scenario, the goal is simply to test the Jakarta EE 9 CI against the TCK
+for the purposes of familiarizing yourself with TCK test procedures. You
 may also want to refer to the Quick Start guides included with the Jakarta
-EE 9 CTS for similar instructions.
+EE 9 Platform TCK for similar instructions.
 
 . Set server properties in your `<TS_HOME>/bin/ts.jte` file to suit
 your test environment. +
@@ -413,10 +413,10 @@ The `<TS_HOME>/bin` directory contains the following `.dat` files:
 * `jws-url-props.dat`
 * `webservices12-url-props.dat` 
 +
-These files contain the webservice endpoint and WSDL URLs that the CTS
+These files contain the webservice endpoint and WSDL URLs that the TCK
 tests use when running against the CI. In the porting package used by
-the CTS, the URLs are returned as is since this is the form that the CI
-expects. You may need an alternate form of these URLs to run the CTS
+the TCK, the URLs are returned as is since this is the form that the CI
+expects. You may need an alternate form of these URLs to run the TCK
 tests in your environment. However, you MUST NOT modify the existing
 `.dat` files, but instead make any necessary changes in your own porting
 implementation class to transform the URLs appropriately for your
@@ -426,7 +426,7 @@ environment.
 
 .  Start your database.
 
-.  Initialize your database for CTS tests.
+.  Initialize your database for TCK tests.
 
 ..  If you choose to not implement the `javaee_vi.xml` targets, execute
 the following command to specify the appropriate DML file: +
@@ -466,14 +466,14 @@ initialization targets.
 
 ..  Set up database users and passwords that are used for JDBC
 connections. +
-The Jakarta EE 9 CTS requires several user names, passwords, and
+The Jakarta EE 9 Platform TCK requires several user names, passwords, and
 user-to-role mappings. These need to match those set in your `ts.jte`
 file. By default, `user1`, `user2`, `user3, password1`, `password2`, and
 `password3` are set to `cts1`.
 
 ..  [[BABBHFAI]] Set up users and passwords for your Jakarta Platform, Enterprise Edition
 server. +
-For the purpose of running the CTS test suite, these should be set as
+For the purpose of running the TCK test suite, these should be set as
 follows: 
 +
 [width="100%",cols="33%,33%,34%",options="header",]
@@ -532,13 +532,13 @@ server.  +
 Certificates are located `<TS_HOME>/bin/certificates`. Use the
 certificate that suits your environment.
 
-..  `cts_cert`: For importing the CTS client certificate into a
+..  `cts_cert`: For importing the TCK client certificate into a
 `truststore`
 
-..  `clientcert.jks`: Used by the Java SE 8 runtime to identify the CTS
+..  `clientcert.jks`: Used by the Java SE 8 runtime to identify the TCK
 client's identity
 
-..  `clientcert.p12`: Contains CTS client certificate in `pkcs12` format
+..  `clientcert.p12`: Contains TCK client certificate in `pkcs12` format
 
 .. Append the file `<TS_HOME>/bin/server_policy.append` to the Java
 policy file or files on your Jakarta EE 9 server. +
@@ -654,7 +654,7 @@ back to their original values:
 5.4 Modifying Environment Settings for Specific Technology Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before you can run any of the technology-specific Jakarta EE 9 CTS tests,
+Before you can run any of the technology-specific Jakarta EE 9 Platform TCK tests,
 you must supply certain information that JavaTest needs to run the tests
 in your particular environment. This information exists in the
 `<TS_HOME>/bin/ts.jte` environment file. This file contains sets of
@@ -762,15 +762,15 @@ will write temporary files.
 5.4.2 Windows-Specific Properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When configuring the Jakarta EE 9 CTS for the Windows environment, set the
+When configuring the Jakarta EE 9 Platform TCK for the Windows environment, set the
 following properties in `<TS_HOME>/bin/ts.jte`:
 
 * `pathsep` to semicolon (pathsep=`;`)
 
-* `s1as.applicationRoot` to the drive on which you have installed CTS
+* `s1as.applicationRoot` to the drive on which you have installed Platform TCK
 (for example, `s1as.applicationRoot=C:`) +
 When installing in the Windows environment, the Jakarta Platform,
-Enterprise Edition CI, JDK, and CTS should all be installed on the same
+Enterprise Edition CI, JDK, and Platform TCK should all be installed on the same
 drive. If you must install these components on different drives, also
 change the `ri.applicationRoot` property in addition to the `pathsep`
 and `s1as.applicationRoot` properties; for example: +
@@ -783,7 +783,7 @@ ri.applicationRoot=C:
 [NOTE]
 =======================================================================
 
-When configuring the CI and CTS for the Windows environment, never
+When configuring the CI and Platform TCK for the Windows environment, never
 specify drive letters in any path properties in `ts.jte`.
 
 =======================================================================
@@ -930,7 +930,7 @@ properties.
 
 The SSL related tests under
 `/ts/javaeetck/src/com/sun/ts/tests/websocket/platform/jakarta/websocket/server/handshakerequest/authenticatedssl/`
-use self signed certificate bundled with the CTS bundle. These
+use self signed certificate bundled with the Platform TCK bundle. These
 certificates are generated with localhost as the hostname and would work
 only when orb.host value is set to localhost in ts.jte. If the server's
 hostname is used instead of the localhost, the tests in this suite might
@@ -1040,7 +1040,7 @@ directory contains packaging instructions.
 5.4.8.2 To Package WAR files for Deployment on the Jakarta EE 9 CI
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The Jakarta EE 9 CTS test suite does not come with prebuilt test WAR files
+The Jakarta EE 9 Platform TCK test suite does not come with prebuilt test WAR files
 for deployment on Jakarta EE 9 CI. The test suite includes a command to
 generate the test WAR files that will be deployed on the Jakarta EE 9 CI.
 The WAR files are Jersey-specific, with Jersey's servlet class and
@@ -1106,10 +1106,10 @@ VI-specific Servlet class will be included instead of the Jakarta EE 9
 CI-specific Servlet class.
 
 All resource and application class files are already compiled. The
-Vendor needs to package these files. Jakarta EE 9 CTS makes this task
+Vendor needs to package these files. Jakarta EE 9 Platform TCK makes this task
 easier by including template WAR files that contain all of the necessary
 files except for the VI-specific servlet adaptor class. The Jakarta EE 9
-CTS also provides a tool to help with the repackaging task.
+Platform TCK also provides a tool to help with the repackaging task.
 
 Each test that has a Jakarta RESTful Web Services resource class to publish comes with a
 template deployment descriptor file. For example, the file
@@ -1176,7 +1176,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 </web-app>
 ----
 
-The Jakarta EE 9 CTS test suite provides a tool,
+The Jakarta EE 9 Platform TCK test suite provides a tool,
 `${ts.home}/bin/xml/impl/glassfish/jersey.xml`, for the Jakarta EE 9 CI
 that you can use as a model to help you create your own VI-specific Web
 test application.
@@ -1279,8 +1279,8 @@ extension library. The `whitebox.jar` file is a Shared Library that must
 be deployed as a separate entity that all the Jakarta Connector RAR files
 access. This extension library is needed to address classloading issues.
 
-The RAR files that are used with Jakarta EE 9 CTS test suite differ from
-those that were used in earlier test suites. Jakarta EE 9 CTS no longer
+The RAR files that are used with Jakarta EE 9 Platform TCK test suite differ from
+those that were used in earlier test suites. Jakarta EE 9 Platform TCK no longer
 bundles the same common classes into every RAR file. Duplicate common
 classes have been removed and now exist in the `whitebox.jar` file, an
 Installed Library that is deployed and is made available before any
@@ -1303,7 +1303,7 @@ requirements that are listed in section 20.3 in the specification.
 5.4.9.2 Connector Resource Adapters and Classloading
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Jakarta EE 9 CTS has scenarios in which multiple standalone RAR files that
+Jakarta EE 9 Platform TCK has scenarios in which multiple standalone RAR files that
 use the same shared library (for example, `whitebox.jar`) are referenced
 from an application component.
 
@@ -1366,7 +1366,7 @@ copied.
 5.4.9.4 Required Porting Package
 +++++++++++++++++++++++++++++++++
 
-The Jakarta EE 9 CTS test suite treats the `whitebox.jar` dependency as an
+The Jakarta EE 9 Platform TCK treats the `whitebox.jar` dependency as an
 Installed Library dependency instead of bundling the dependency (or
 dependencies) with every RAR file. Each RAR file now contains a
 reference to the `whitebox.jar` file through its Manifest files
@@ -1527,7 +1527,7 @@ asadmin  create-jdbc-resource --connectionpoolid cts-derby-XA-pool \
 ----
 +
 If two or more JDBC resource elements point to the same connection pool
-element, they use the same pool connection at runtime. Jakarta EE 9 CTS
+element, they use the same pool connection at runtime. Jakarta EE 9 Platform TCK
 does reuse the same connection pool ID for testing the Jakarta EE 9 CI Eclipse GlassFish 6.0.
 
 .  Make sure that the following EIS and RAR files have been deployed
@@ -1669,7 +1669,7 @@ interval timers. The default setting and recommended minimum value is
 for results from the `ejbTimeout()` method. The default setting and
 recommended minimum value is `60000` milliseconds.
 
-Jakarta EE 9 CTS does not have a property that you can set to configure the
+Jakarta EE 9 Platform TCK does not have a property that you can set to configure the
 date for date timers.
 
 The timer tests use the specific `jndi-name` jdbc`/DBTimer` for the
@@ -1703,7 +1703,7 @@ CI as the VI].
 
 Your Jakarta Platform, Enterprise Edition implementation should map the
 following instance variables to a backend datastore. These are needed to
-run the CTS entity bean container-managed persistence (cmp1.1) tests.
+run the Platform TCK entity bean container-managed persistence (cmp1.1) tests.
 
 The Jakarta Platform, Enterprise Edition CI creates the table used by
 container-managed persistence by appending `"Table"` to the bean name.
@@ -1784,7 +1784,7 @@ stubbed-out legacy JPA 2.1 implementation, which is located in the
 `src/com/sun/ts/jpa/common/pluggibility/altprovider` directory.
 
 In Java EE 7 CTS, the Persistence API pluggability tests required
-special setup to run. This is no longer the case, since Jakarta EE 9 CTS
+special setup to run. This is no longer the case, since Jakarta EE 9 Platform TCK
 now enables the pluggability tests to be executed automatically along
 with all the other Persistence tests. The Jakarta Persistence tests have a new
 directory structure. In Java EE 7 CTS, the tests were in the
@@ -1798,7 +1798,7 @@ the `src/com/sun/ts/tests/jpa` directory.
 
 Jakarta Persistence supports the use of a second-level cache by the
 persistence provider. The `ts.jte` file provides a property that
-controls the CTS test suite's use of the second-level cache.
+controls the Platform TCK test suite's use of the second-level cache.
 
 The `persistence.second.level.caching.supported` property is used to
 determine if the persistence provider supports the use of a second-level
@@ -1874,7 +1874,7 @@ supports the use of SEQUENCE. If it does not, this property should be
 set to false so the test is not run. The default value is true.
 
 If the database under test is not one of the databases defined and
-supported by CTS, the user will need to create an entry similar to the
+supported by Platform TCK, the user will need to create an entry similar to the
 one listed in link:#GEXOO[Example 5-1].
 
 [[GEXOO]]
@@ -1905,7 +1905,7 @@ entity managers, which correspond to a `non-jta-data-source`
 5.4.15 Jakarta Messaging Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section explains how to set up and configure the Jakarta EE 9 CTS test
+This section explains how to set up and configure the Jakarta EE 9 Platform TCK
 suite before running the Jakarta Messaging tests.
 
 
@@ -1913,7 +1913,7 @@ suite before running the Jakarta Messaging tests.
 =======================================================================
 
 The client-specified values for `JMSDeliveryMode`, `JMSExpiration`, and
-`JMSPriority` must not be overridden when running the CTS Jakarta Messaging tests.
+`JMSPriority` must not be overridden when running the Platform TCK Jakarta Messaging tests.
 
 =======================================================================
 
@@ -2145,7 +2145,7 @@ in the `ts.jte` file.
 
 Jakarta Authentication Service for Containers (Authentication)
 1.1 tests are security tests. The Jakarta Authentication Servlet (jaspicservlet) profile is the only
-required profile for Jakarta EE 9 CTS. There are other optional profile
+required profile for Jakarta EE 9 Platform TCK. There are other optional profile
 tests, such as SOAP, but you are not required to run these for
 certification.
 
@@ -2923,7 +2923,7 @@ running against the Jakarta Platform, Enterprise Edition CI
 5.4.21.2 Additional Signature Test Information
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-The Jakarta EE 9 CTS signature tests perform verifications in two different
+The Jakarta EE 9 Platform TCK signature tests perform verifications in two different
 modes: static and reflection. The test results list which SPEC API signature
 tests pass or fail, and the mode (static or reflection) for that test.
 
@@ -3079,7 +3079,7 @@ Edition server.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the JavaTest harness GUI to modify general test settings and
-to quickly get started with the default CTS test environment. After
+to quickly get started with the default Platform TCK test environment. After
 familiarizing yourself with these basic configuration settings, you will
 probably want to continue with the instructions in link:#GEXPP[Modifying
 Environment Settings for Specific Technology Tests].
@@ -3139,7 +3139,7 @@ proceed with running the test.
 5.5.2 The Configuration Interview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To configure the JavaTest harness to run the Jakarta EE 9 CTS tests,
+To configure the JavaTest harness to run the Jakarta EE 9 Platform TCK tests,
 complete the following steps. Note that you only need to complete these
 steps the first time you start the JavaTest harness. After you complete
 these steps, you can either run all or a subset of the tests, as

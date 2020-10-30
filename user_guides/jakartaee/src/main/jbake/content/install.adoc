@@ -12,9 +12,9 @@ Installation
 4 Installation
 --------------
 
-This chapter explains how to install the Jakarta EE 9 CTS software and
+This chapter explains how to install the Jakarta EE 9 Platform TCK software and
 perform a sample test run to verify your installation and familiarize
-yourself with the CTS. Installation instructions are provided for Eclipse
+yourself with the Platform TCK. Installation instructions are provided for Eclipse
 GlassFish 6.0, a Compatible Implementation (CI) of Jakarta EE. If you are using
 another compatible implementation, refer to instructions provided with that
 implementation.
@@ -26,7 +26,7 @@ Configuration,"] for instructions on configuring your test environment.
 This chapter covers the following topics:
 
 * link:#GEVGN[Installing the Jakarta EE 9 Compatible Implementation]
-* link:#GEVHP[Installing the Jakarta EE 9 CTS]
+* link:#GEVHP[Installing the Jakarta EE 9 Platform TCK]
 * link:#GEVGZ[Verifying Your Installation (Optional)]
 
 [[GEVGN]][[installing-the-jakarta-ee-8-compatible-implementation]]
@@ -59,12 +59,12 @@ EE 9 CI.
 <JAVAEE_HOME>/bin/asadmin start-domain
 ----
 
-[[GEVHP]][[installing-the-jakarta-ee-8-cts]]
+[[GEVHP]][[installing-the-jakarta-ee-9-platform-TCK]]
 
-4.2 Installing the Jakarta EE 9 CTS
+4.2 Installing the Jakarta EE 9 Platform TCK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Complete the following procedure to install the Jakarta EE 9 CTS on a
+Complete the following procedure to install the Jakarta EE 9 Platform TCK on a
 system running the Solaris, Linux, or Windows operating system.
 
 
@@ -72,34 +72,34 @@ system running the Solaris, Linux, or Windows operating system.
 =======================================================================
 
 When installing in the Windows environment, the Jakarta EE 9 CI, Java SE 8
-JDK, and CTS should be installed on the same drive. If you must install
+JDK, and TCK should be installed on the same drive. If you must install
 these components on different drives, be sure to change the
 `ri.applicationRoot` and `s1as.applicationRoot` properties as needed in
-the `<TS_HOME>/bin/ts.jte` CTS configuration file. See
+the `<TS_HOME>/bin/ts.jte` TCK configuration file. See
 link:config.html#GEXOS[Section 5.4.2, "Windows-Specific Properties,"] for
 more information.
 
 =======================================================================
 
 
-.  Copy or download the CTS 8 software.
+.  Copy or download the Platform TCK 9 software.
 .  Change to the directory in which you want to install the Jakarta EE 9
 CTS software and use the `unzip` command to extract the bundle: 
 +
 [source,oac_no_warn]
 ----
 cd install_directory
-unzip javaeetck-nnn.zip
+unzip jakartaee.zip
 ----
 +
-This creates the `javaeetck` directory. The
+This creates the `jakartaeetck` directory. The
 install_directory`/javaeetck` directory will be `TS_HOME`.
 .  Set the `TS_HOME` environment variable to point to the `javaeetck`
 directory.
 
 After you complete the installation, follow the directions in
 link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"] to set up
-and configure the Jakarta EE 9 CTS test suite.
+and configure the Jakarta EE 9 Platform TCK test suite.
 
 [[GEVGZ]][[verifying-your-installation-optional]]
 
@@ -107,7 +107,7 @@ and configure the Jakarta EE 9 CTS test suite.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This procedure is optional. After installing the Jakarta EE 9 CI and Java
-EE 9 CTS, you may want to verify your installation by running the CTS
+EE 9 Platform TCK, you may want to verify your installation by running the TCK
 samples against the Jakarta EE 9 CI. See link:config.html#GBFVV[Chapter 5,
 "Setup and Configuration,"] for complete configuration instructions.
 
@@ -124,7 +124,7 @@ orb.host=localhost // the name of the machine running the Jakarta EE 9 CI
 orb.host.ri=localhost // the name of the machine running the Jakarta EE 9 CI
 ----
 +
-.  Use these commands to run the Jakarta EE 9 CTS sample tests: 
+.  Use these commands to run the Jakarta EE 9 Platform TCK sample tests: 
 +
 [source,oac_no_warn]
 ----
