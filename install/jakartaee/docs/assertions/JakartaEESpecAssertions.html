@@ -52,7 +52,7 @@
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:16"></a><font size="1PT">JavaEE:SPEC:16</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">3.6.1</font></TD><TD align="left" valign="center"><font size="1PT"> 
                 The source of security attributes may vary across implementations of the
-                Java EE platform. Security attributes may be transmitted in the calling principal's
+                Jakarta EE platform. Security attributes may be transmitted in the calling principal's
                 credential or in the security context. In other cases, security attributes may be
                 retrieved from a trusted third party, such as a directory service or a security
                 service.
@@ -61,9 +61,9 @@
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:19"></a><font size="1PT">JavaEE:SPEC:19</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT"> .The Java EE Product Provider must meet the following requirements concerning user
+<TD align="center" valign="center"><a name="JavaEE:SPEC:19"></a><font size="1PT">JavaEE:SPEC:19</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT"> .The Jakarta EE Product Provider must meet the following requirements concerning user
 authentication.
-All Java EE web servers must maintain a login session for each web user. It must be
+All Jakarta EE web servers must maintain a login session for each web user. It must be
 possible for a login session to span more than one application, allowing a user to log
 in once and access multiple applications. The required login session support is
 described in the servlet specification. This requirement of a session for each web
@@ -81,7 +81,7 @@ resources.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:21"></a><font size="1PT">JavaEE:SPEC:21</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT"> All Java EE products are required to support three login mechanisms: HTTP basic
+<TD align="center" valign="center"><a name="JavaEE:SPEC:21"></a><font size="1PT">JavaEE:SPEC:21</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT"> All Jakarta EE products are required to support three login mechanisms: HTTP basic
 authentication, SSL mutual authentication, and form-based login. An application is
 not required to use any of these mechanisms, but they are required to be available
 for any application's use.
@@ -90,7 +90,7 @@ for any application's use.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:22"></a><font size="1PT">JavaEE:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2.1</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products are required to support HTTP basic authentication (RFC2068).
+<TD align="center" valign="center"><a name="JavaEE:SPEC:22"></a><font size="1PT">JavaEE:SPEC:22</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2.1</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products are required to support HTTP basic authentication (RFC2068).
 Platform Providers are also required to support basic authentication over SSL.
  
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -101,7 +101,7 @@ Platform Providers are also required to support basic authentication over SSL.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:23"></a><font size="1PT">JavaEE:SPEC:23</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2.2</font></TD><TD align="left" valign="center"><font size="1PT"> SSL Mutual Authentication
 SSL 3.0 and the means to perform mutual (client and server) certificate based
 authentication are required by this specification.
-All Java EE products must support the following cipher suites to ensure
+All Jakarta EE products must support the following cipher suites to ensure
 interoperable authentication with clients:
  TLS_RSA_WITH_RC4_128_MD5
  SSL_RSA_WITH_RC4_128_MD5
@@ -117,7 +117,7 @@ interoperable authentication with clients:
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:24"></a><font size="1PT">JavaEE:SPEC:24</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.2.3</font></TD><TD align="left" valign="center"><font size="1PT">  Form Based Login
-The web application deployment descriptor contains an element that causes a Java EE
+The web application deployment descriptor contains an element that causes a Jakarta EE
 product to associate an HTML form resource (perhaps dynamically generated) with
 the web application. If the Deployer chooses this form of authentication (over HTTP
 basic, or SSL certificate based authentication), this form must be used as the user
@@ -133,15 +133,15 @@ are described in the servlet specification.
 not authenticated themselves to the container. This is the common mode of access to
 web resources on the Internet.
 A web container reports that no user has been authenticated by returning null
-from the HttpServletRequest method getUserPrincipal. This is different than
-the corresponding result for EJB containers. The EJB specification requires that
-the EJBContext method getCallerPrincipal always return a valid Principal
-object. The method can never return null.
+from the SecurityContext method getCallerPrincipal or the HttpServletRequest method 
+getUserPrincipal. This is different than the result of the EJBContext method getCallerPrincipal. 
+The Jakarta Enterprise Beans specification requires that the EJBContext 
+method getCallerPrincipal always return a valid Principal object. The method can never return null.
 Components running in a web container must be able to call enterprise beans
 even when no user has been authenticated in the web container. When a call is
 made in such a case from a component in a web container to an enterprise bean, a
-Java EE product must provide a principal for use in the call.
-A Java EE product may provide a principal for use by unauthenticated callers
+Jakarta EE product must provide a principal for use in the call.
+A Jakarta EE product may provide a principal for use by unauthenticated callers
 using many approaches, including, but not limited to:
  Always use a single distinguished principal.
  Use a different distinguished principal per server, or per session, or per application.
@@ -174,19 +174,19 @@ manager and are subject to the security permissions defined in EE.6.2, "Java 2
 Platform, Standard Edition (J2SE) Requirements". Although this specification does not
 define the relationship between the operating system identity associated with a
 running application client and the authenticated user identity, support for single
-signon requires that the Java EE product be able to relate these identities
+signon requires that the Jakarta EE product be able to relate these identities
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:27"></a><font size="1PT">JavaEE:SPEC:27</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">4.5</font></TD><TD align="left" valign="center"><font size="1PT"> A Product Provider must support both of the following:
-1. Configured Identity.A Java EE container must be able to authenticate for access
+1. Configured Identity.A Jakarta EE container must be able to authenticate for access
 to the resource using a principal and authentication data specified by a Deployer
 at deployment time.The authentication must not depend in any way on data
 provided by the application components. Providing for the confidential storage
 of the authentication information is the responsibility of the Product Provider.
-2. Programmatic Authentication. The  Java EE product must provide for specification
+2. Programmatic Authentication. The  Jakarta EE product must provide for specification
 of the principal and authentication data for a resource by the application
 component at runtime using appropriate APIs. The application may obtain the
 principal and authentication data through a variety of mechanisms, including
@@ -226,14 +226,14 @@ credentials associated with the initiating principal to the Kerberos credentials
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:29"></a><font size="1PT">JavaEE:SPEC:29</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.1</font></TD><TD align="left" valign="center"><font size="1PT">Code Authorization
-A  Java EE product may restrict the use of certain J2SE classes and methods to secure
+A  Jakarta EE product may restrict the use of certain Java SE classes and methods to secure
 and insure proper operation of the system. The minimum set of permissions that a
- Java EE product is required to grant to a  Java EE application is defined in
-Section  Java EE.6.2, Java 2 Platform, Standard Edition (J2SE) Requirements. All
- Java EE products must be capable of deploying application components with exactly
+ Jakarta EE product is required to grant to a  Jakarta EE application is defined in
+Section  Jakarta EE.6.2, Java 2 Platform, Standard Edition (J2SE) Requirements. All
+ Jakarta EE products must be capable of deploying application components with exactly
 these permissions.
-A  Java EE Product Provider may choose to enable selective access to resources
-using the Java 2 protection model. The mechanism used is  Java EE product
+A  Jakarta EE Product Provider may choose to enable selective access to resources
+using the Java 2 protection model. The mechanism used is  Jakarta EE product
 dependent.
  
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -242,18 +242,18 @@ dependent.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:30"></a><font size="1PT">JavaEE:SPEC:30</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.2</font></TD><TD align="left" valign="center"><font size="1PT"> Caller Authorization
-A  Java EE product must enforce the access control rules specified at deployment time
-(see Section  Java EE.3.6, Deployment Requirements) and more fully described in
-the EJB and servlet specifications.
+A  Jakarta EE product must enforce the access control rules specified at deployment time
+(see Section Deployment Requirements) and more fully described in
+the Jakarta Enterprise Beans and Servlet specifications.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:31"></a><font size="1PT">JavaEE:SPEC:31</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT"> Propagated Caller Identities.
-It must be possible to configure a  Java EE product so that a propagated caller identity is
+It must be possible to configure a  Jakarta EE product so that a propagated caller identity is
 used in all authorization decisions. With this configuration, for all calls to all
-enterprise beans from a single application within a single  Java EE product, the
+enterprise beans from a single application within a single  Jakarta EE product, the
 principal name returned by the EJBContext method getCallerPrincipal must be
 the same as that returned by the first enterprise bean in the call chain. If the first
 enterprise bean in the call chain is called by a servlet or JSP page, the principal
@@ -265,14 +265,14 @@ be possible to configure enterprise beans to be callable by such components.)
 Note that this does not require delegation of credentials, only identification of
 the caller. A single principal must be the principal used in authorization decisions
 for access to all enterprise beans in the call chain. The requirements in this section
-apply only when a  Java EE product has been configured to propagate caller identity 
+apply only when a  Jakarta EE product has been configured to propagate caller identity 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:32"></a><font size="1PT">JavaEE:SPEC:32</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">5.4</font></TD><TD align="left" valign="center"><font size="1PT"> Run As Identities
- Java EE products must also support the Run As capability that allows the Application
+ Jakarta EE products must also support the Run As capability that allows the Application
 Component Provider and the Deployer to specify an identity under which an
 enterprise bean or web component must run. In this case it is the Run As identity
 that is propagated to subsequent components, rather than the original caller identity.
@@ -281,16 +281,16 @@ that is propagated to subsequent components, rather than the original caller ide
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:33"></a><font size="1PT">JavaEE:SPEC:33</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT"> All Java EE products must implement the access control semantics described in the
+<TD align="center" valign="center"><a name="JavaEE:SPEC:33"></a><font size="1PT">JavaEE:SPEC:33</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT"> All Jakarta EE products must implement the access control semantics described in the
 EJB, JSP, and servlet specifications, and provide a means of mapping the
-deployment descriptor security roles to the actual roles exposed by a  Java EE product
+deployment descriptor security roles to the actual roles exposed by a  Jakarta EE product
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:34"></a><font size="1PT">JavaEE:SPEC:34</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT"> While most Java EE products will allow the Deployer to customize the role
-mappings and change the assignment of roles to methods, all  Java EE products must
+<TD align="center" valign="center"><a name="JavaEE:SPEC:34"></a><font size="1PT">JavaEE:SPEC:34</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT"> While most Jakarta EE products will allow the Deployer to customize the role
+mappings and change the assignment of roles to methods, all  Jakarta EE products must
 support the ability to deploy applications and components using exactly the
 mappings and assignments specified in their deployment descriptors.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -298,7 +298,7 @@ mappings and assignments specified in their deployment descriptors.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:35"></a><font size="1PT">JavaEE:SPEC:35</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">As described in the EJB specification and the servlet specification, a Java EE
+<TD align="center" valign="center"><a name="JavaEE:SPEC:35"></a><font size="1PT">JavaEE:SPEC:35</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">As described in the Jakarta Enterprise Beans specification and the servlet specification, a Jakarta EE
 product must provide a deployment tool or tools capable of assigning the security
 roles in deployment descriptors to the entities that are used to determine role
 membership at authorization time.
@@ -345,7 +345,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:45"></a><font size="1PT">JavaEE:SPEC:45</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">The Java EE platform must provide an object implementing the jakarta.transaction.UserTransaction interface to all web components.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:45"></a><font size="1PT">JavaEE:SPEC:45</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">The Jakarta EE platform must provide an object implementing the jakarta.transaction.UserTransaction interface to all web components.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -355,22 +355,22 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:47"></a><font size="1PT">JavaEE:SPEC:47</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component invokes an enterprise bean from a thread associated with a JTA transaction, the Java EE platform must propagate the transaction context with the enterprise bean invocation. Whether the target enterprise bean will be invoked in this transaction context or not is determined by the rules defined in the EJB specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:47"></a><font size="1PT">JavaEE:SPEC:47</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component invokes an enterprise bean from a thread associated with a JTA transaction, the Jakarta EE platform must propagate the transaction context with the enterprise bean invocation. Whether the target enterprise bean will be invoked in this transaction context or not is determined by the rules defined in the Jakarta Enterprise Beans specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:47.1"></a><font size="1PT">JavaEE:SPEC:47.1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">This transaction propagation requirement applies only to invocations of enterprise beans in the same Java EE product instance as the invoking component.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:47.1"></a><font size="1PT">JavaEE:SPEC:47.1</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">This transaction propagation requirement applies only to invocations of enterprise beans in the same Jakarta EE product instance as the invoking component.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:49"></a><font size="1PT">JavaEE:SPEC:49</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component accesses a transactional resource manager from a thread associated with a JTA transaction, the Java EE platform must ensure that the re-source access is included as part of the JTA transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:49"></a><font size="1PT">JavaEE:SPEC:49</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component accesses a transactional resource manager from a thread associated with a JTA transaction, the Jakarta EE platform must ensure that the re-source access is included as part of the JTA transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:50"></a><font size="1PT">JavaEE:SPEC:50</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component creates a thread, the Java EE platform must ensure that the newly created thread is not associated with any JTA transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:50"></a><font size="1PT">JavaEE:SPEC:50</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.1.1</font></TD><TD align="left" valign="center"><font size="1PT">If a web component creates a thread, the Jakarta EE platform must ensure that the newly created thread is not associated with any JTA transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -400,7 +400,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:65"></a><font size="1PT">JavaEE:SPEC:65</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">The Product Provider must provide support for transactions as defined in the EJB specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:65"></a><font size="1PT">JavaEE:SPEC:65</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">The Product Provider must provide support for transactions as defined in the Jakarta Enterprise Beans specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -415,7 +415,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:68"></a><font size="1PT">JavaEE:SPEC:68</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">A Java EE product must support a JDBC technology database as a transactional resource manager. The platform must enable transactional JDBC API acess from web components and enterprise beans.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:68"></a><font size="1PT">JavaEE:SPEC:68</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">A Jakarta EE product must support a JDBC technology database as a transactional resource manager. The platform must enable transactional JDBC API acess from web components and enterprise beans.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -425,12 +425,12 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:70"></a><font size="1PT">JavaEE:SPEC:70</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">A Java EE product must provide a transaction manager that is capable of coordinating two-phase commit operations across multiple XA-capable JDBC databases.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:70"></a><font size="1PT">JavaEE:SPEC:70</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT">A Jakarta EE product must provide a transaction manager that is capable of coordinating two-phase commit operations across multiple XA-capable JDBC databases.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:71"></a><font size="1PT">JavaEE:SPEC:71</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT"> If a JDBC driver supports the Java Transaction API's XA interfaces(in the javax.transaction.xa package), then the Java EE product must be capable of using the XA interfaces provided by the JDBC driver to accomplish two-phase commit operations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:71"></a><font size="1PT">JavaEE:SPEC:71</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.7</font></TD><TD align="left" valign="center"><font size="1PT"> If a JDBC driver supports the Java Transaction API's XA interfaces(in the javax.transaction.xa package), then the Jakarta EE product must be capable of using the XA interfaces provided by the JDBC driver to accomplish two-phase commit operations.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -440,7 +440,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:73"></a><font size="1PT">JavaEE:SPEC:73</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.9</font></TD><TD align="left" valign="center"><font size="1PT">A Java EJava EE product must suport resource adapters that use XATransaction mode as transactional resource managers. The platform must enable transactional access to the resource adapter from servlets, JSP pages, and enterprise beans</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:73"></a><font size="1PT">JavaEE:SPEC:73</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">2.9</font></TD><TD align="left" valign="center"><font size="1PT">A Java EJakarta EE product must suport resource adapters that use XATransaction mode as transactional resource managers. The platform must enable transactional access to the resource adapter from servlets, JSP pages, and enterprise beans</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -450,17 +450,17 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:75"></a><font size="1PT">JavaEE:SPEC:75</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The Product Provider is not required to implement any particular protocol for transaction interportibility across multiple Java EE products. Java EE compatibility requires neither interportability among identical Java EE products from the same Product Provider, nor among heterogeneous Java EE products from multiple Product Providers.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:75"></a><font size="1PT">JavaEE:SPEC:75</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">The Product Provider is not required to implement any particular protocol for transaction interportibility across multiple Jakarta EE products. Jakarta EE compatibility requires neither interportability among identical Jakarta EE products from the same Product Provider, nor among heterogeneous Jakarta EE products from multiple Product Providers.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:76"></a><font size="1PT">JavaEE:SPEC:76</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products are required to support the javax.transaction.xa.XAResource interface, as specified in the Connector specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:76"></a><font size="1PT">JavaEE:SPEC:76</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products are required to support the javax.transaction.xa.XAResource interface, as specified in the Connector specification.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:77"></a><font size="1PT">JavaEE:SPEC:77</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products are required to support the javax.transaction.xa.XAResource interface, for performing two-phase commit operations on JDBC drivers that support the JTA XA APIs. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:77"></a><font size="1PT">JavaEE:SPEC:77</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products are required to support the javax.transaction.xa.XAResource interface, for performing two-phase commit operations on JDBC drivers that support the JTA XA APIs. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -475,7 +475,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:80"></a><font size="1PT">JavaEE:SPEC:80</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">Containers may choose to provide local transaction optimisation, but are not required to do so. Local Transaction optimization must be transparent to a Java EE application.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:80"></a><font size="1PT">JavaEE:SPEC:80</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">Containers may choose to provide local transaction optimisation, but are not required to do so. Local Transaction optimization must be transparent to a Jakarta EE application.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
@@ -490,37 +490,37 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:84"></a><font size="1PT">JavaEE:SPEC:84</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Java EE application components may use the optional deployment descriptor element res-sharing-scope to indicate whether a connection to a resource manager is shareable or unshareable. Containers must assume connections to be shareable if no deployment hint is provided. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:84"></a><font size="1PT">JavaEE:SPEC:84</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Jakarta EE application components may use the optional deployment descriptor element res-sharing-scope to indicate whether a connection to a resource manager is shareable or unshareable. Containers must assume connections to be shareable if no deployment hint is provided. </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:85"></a><font size="1PT">JavaEE:SPEC:85</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Java EE application components may cache connection objects and reuse them across multiple transaction. Containers that provide connection sharing must transaparently switch such cached connection objects (at dispatch time) to point to an appropriate shared connection with the correct transaction scope. Refer to the Connector specification for detailed description of connection sharing.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:85"></a><font size="1PT">JavaEE:SPEC:85</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">Jakarta EE application components may cache connection objects and reuse them across multiple transaction. Containers that provide connection sharing must transaparently switch such cached connection objects (at dispatch time) to point to an appropriate shared connection with the correct transaction scope. Refer to the Connector specification for detailed description of connection sharing.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:86"></a><font size="1PT">JavaEE:SPEC:86</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the deployer configures a non-XA capable JDBC resource manager in a transaction, then a Java EE Product Provider may restrict all JDBC resource manager in a transaction to that non-XA-capable JDBC resource manager. Otherwise a Java EE Product Provider must support use of multiple XA-capable JDBC resource managers within a transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:86"></a><font size="1PT">JavaEE:SPEC:86</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">If the deployer configures a non-XA capable JDBC resource manager in a transaction, then a Jakarta EE Product Provider may restrict all JDBC resource manager in a transaction to that non-XA-capable JDBC resource manager. Otherwise a Jakarta EE Product Provider must support use of multiple XA-capable JDBC resource managers within a transaction.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:87"></a><font size="1PT">JavaEE:SPEC:87</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">A Java EE Product Provider may restrict the security configuration of all JDBC connections within a transaction to a single user identity.   A Java EE Product Provider is not required to support transactions where more than one JDBC identity is used. Specifically, this means that transactions that require the use of more than one JDBC security identity (as can explicitly be done via component provided user name and password) may not be portable.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:87"></a><font size="1PT">JavaEE:SPEC:87</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">A Jakarta EE Product Provider may restrict the security configuration of all JDBC connections within a transaction to a single user identity.   A Jakarta EE Product Provider is not required to support transactions where more than one JDBC identity is used. Specifically, this means that transactions that require the use of more than one JDBC security identity (as can explicitly be done via component provided user name and password) may not be portable.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:88"></a><font size="1PT">JavaEE:SPEC:88</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">A Java EE Product Provider may make restrictions resulting in a transaction being restricted to a single JMS resource manager and user identity.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:88"></a><font size="1PT">JavaEE:SPEC:88</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">A Jakarta EE Product Provider may make restrictions resulting in a transaction being restricted to a single JMS resource manager and user identity.</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:89"></a><font size="1PT">JavaEE:SPEC:89</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">When both a JDBC resource manager and JMS resource manager are used in the same transaction, A Java EE Product Provider may restrict both to a pairing that allows their combination to deliver the full transactional semantics required by the application, and may restrict the security identity of both to a single identity. To fully support such usage, portable applications that wish to include JDCB and JMS access in a single global transaction must not mark the corresponding transactional resources as "un sharable" </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:89"></a><font size="1PT">JavaEE:SPEC:89</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">When both a JDBC resource manager and JMS resource manager are used in the same transaction, A Jakarta EE Product Provider may restrict both to a pairing that allows their combination to deliver the full transactional semantics required by the application, and may restrict the security identity of both to a single identity. To fully support such usage, portable applications that wish to include JDCB and JMS access in a single global transaction must not mark the corresponding transactional resources as "un sharable" </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:90"></a><font size="1PT">JavaEE:SPEC:90</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">A Java EE product must support the use of multiple XA-capable resource adapters in a single transaction. To support such a scenario, full two-phase commit support is required.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:90"></a><font size="1PT">JavaEE:SPEC:90</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">A Jakarta EE product must support the use of multiple XA-capable resource adapters in a single transaction. To support such a scenario, full two-phase commit support is required.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
@@ -577,7 +577,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:97"></a><font size="1PT">JavaEE:SPEC:97</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">1.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                Java EE application clients, enterprise beans, and web components
+                Jakarta EE application clients, enterprise beans, and web components
                 are required to have access to a JNDI naming environment.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -705,7 +705,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:113"></a><font size="1PT">JavaEE:SPEC:113</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">  
-                The Java EE Product Provider must provide a deployment tool that
+                The Jakarta EE Product Provider must provide a deployment tool that
                 allows the Deployer to set and modify the values of the
                 application component's environment entries.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -714,7 +714,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:114"></a><font size="1PT">JavaEE:SPEC:114</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">  
-                The Java EE Product Provider must implement the java:comp/env
+                The Jakarta EE Product Provider must implement the java:comp/env
                 environment naming context, and provide it to the application
                 component instances at runtime. The naming context must include
                 all the environment entries declared by the Application Component
@@ -726,7 +726,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:115"></a><font size="1PT">JavaEE:SPEC:115</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                The environment naming context implemented by the Java EE Product
+                The environment naming context implemented by the Jakarta EE Product
                 Provider must allow the Deployer to create subcontexts if they
                 are needed by an application component.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -747,8 +747,8 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:117"></a><font size="1PT">JavaEE:SPEC:117</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.1.2</font></TD><TD align="left" valign="center"><font size="1PT">  
-                An EJB reference is scoped to the application component whose
-                declaration contains the ejb-ref element. This means that the EJB
+                An Jakarta Enterprise Beans reference is scoped to the application component whose
+                declaration contains the ejb-ref element. This means that the Jakarta Enterprise Beans
                 reference is not accessible from other application components at
                 runtime, and that other application components may define ejb-ref
                 elements with the same ejb-ref-name without causing a name
@@ -759,9 +759,9 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:118"></a><font size="1PT">JavaEE:SPEC:118</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE Product Provider must support deployment of application
+                The Jakarta EE Product Provider must support deployment of application
                 using ejb-link elements to reference target enterprise beans
-                that can be in any ejb-jar file in the same Java EE application as the
+                that can be in any ejb-jar file in the same Jakarta EE application as the
                 referencing application component.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -769,7 +769,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:119"></a><font size="1PT">JavaEE:SPEC:119</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                The Java EE Product Provider must support deployment of applications
+                The Jakarta EE Product Provider must support deployment of applications
                 packaging multiple beans with the same ejb-name (but packaged in
                 distinct ejb-jar's) and using ejb-link elements following the
                 ejb-jar-path#ejb-name syntax. In this manner, multiple beans with
@@ -781,9 +781,9 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:120"></a><font size="1PT">JavaEE:SPEC:120</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">5.4</font></TD><TD align="left" valign="center"><font size="1PT">     
-                At the minimum, the deployment tools provided by the Java EE Product
+                At the minimum, the deployment tools provided by the Jakarta EE Product
                 Provider must be able to preserve the application assembly
-                information in the ejb-link elements by binding an EJB reference
+                information in the ejb-link elements by binding an Jakarta Enterprise Beans reference
                 to the home interface of the specified target enterprise bean.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -791,9 +791,9 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:121"></a><font size="1PT">JavaEE:SPEC:121</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">8.4</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                At the minimum, the deployment tools provided by the Java EE Product
+                At the minimum, the deployment tools provided by the Jakarta EE Product
                 Provider must be able to inform the Deployer of any unresolved
-                EJB references, and allow him or her to resolve an EJB reference
+                Jakarta Enterprise Beans references, and allow him or her to resolve an Jakarta Enterprise Beans reference
                 by binding it to a specified compatible target enterprise bean.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -851,7 +851,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:127"></a><font size="1PT">JavaEE:SPEC:127</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">6.3</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                The Java EE Product Provider is responsible for providing the
+                The Jakarta EE Product Provider is responsible for providing the
                 implementation of the resource manager connection factory classes
                 that are required by this specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -934,7 +934,7 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:135"></a><font size="1PT">JavaEE:SPEC:135</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">8.2</font></TD><TD align="left" valign="center"><font size="1PT"> 
                 To avoid the need to rename message destinations to have unique
-                names within an entire Java EE application, the Application
+                names within an entire Jakarta EE application, the Application
                 Assembler may use the following syntax in the
                 message-destination-link element of the referencing application
                 component. The Application Assembler specifies the path name of
@@ -950,10 +950,10 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:136"></a><font size="1PT">JavaEE:SPEC:136</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">8.4</font></TD><TD align="left" valign="center"><font size="1PT">          
-                The Java EE Product Provider must provide the deployment tools that
+                The Jakarta EE Product Provider must provide the deployment tools that
                 allow the Deployer to perform the tasks described in subsection
-                5.8.3 of the Java EE platform spec.
-                The deployment tools provided by the Java EE Product
+                5.8.3 of the Jakarta EE platform spec.
+                The deployment tools provided by the Jakarta EE Product
                 Provider must be able to process the information supplied in the
                 message-destination-ref elements in the deployment descriptor.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -962,7 +962,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:137"></a><font size="1PT">JavaEE:SPEC:137</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">9.2</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                The Java EE Product Provider is responsible for providing an
+                The Jakarta EE Product Provider is responsible for providing an
                 appropriate UserTransaction object as required by this
                 specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -993,7 +993,7 @@ independent of authentication.
                 The containers provide all application components with at least the
                 Java Platform, Standard Edition, v8 (Java SE) APIs.
                 Containers may provide newer versions of the Java SE platform, provided they
-                meet all the Java EE platform requirements.
+                meet all the Jakarta EE platform requirements.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1008,18 +1008,18 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:162"></a><font size="1PT">JavaEE:SPEC:162</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">1.2</font></TD><TD align="left" valign="center"><font size="1PT"> 
                 All classes and interfaces required by the specifications for APIs must be
-                provided by the Java EE containers. In some cases, a Java EE product is not required to
+                provided by the Jakarta EE containers. In some cases, a Jakarta EE product is not required to
                 provide objects that implement interfaces intended to be implemented by an
                 application server, nevertheless, the definitions of such interfaces must be
-                included in the Java EE platform.
+                included in the Jakarta EE platform.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:163"></a><font size="1PT">JavaEE:SPEC:163</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT"> The JavaEE security permissions set
-                is a required part of the JavaEE API contract. To ensure the integrity of JavaEE
-                containers, all JavaEE containers must install a security manager and must prevent
+                is a required part of the Jakarta EE API contract. To ensure the integrity of Jakarta EE
+                containers, all Jakarta EE containers must install a security manager and must prevent
                 applications from replacing or overriding the security manager.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1027,22 +1027,22 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:164"></a><font size="1PT">JavaEE:SPEC:164</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The JavaEE security permissions set defines the minimum set of permissions that
-                application components can expect. All JavaEE products must be capable of
+                The Jakarta EE security permissions set defines the minimum set of permissions that
+                application components can expect. All Jakarta EE products must be capable of
                 deploying application components that require the set of permissions described
                 here. The Product Provider must ensure that the application components do not use
-                functions that conflict with the JavaEE security permission set.
+                functions that conflict with the Jakarta EE security permission set.
 
                 The exact set of security permissions for application components in use at a
                 particular installation is a matter of policy outside the scope of this specification.
-                Some JavaEE products will allow the set of permissions available to a component to
+                Some Jakarta EE products will allow the set of permissions available to a component to
                 be configurable, providing some components with more or fewer permissions than
                 those described here. A future version of this specification will allow these
                 security requirements to be specified in the deployment descriptor for application
                 components. At the present time, application components that need permissions
                 not in this minimal set should describe their requirements in their documentation.
 
-                Table JavaEE.6-2 lists the JavaEE security permissions set. This is the typical set of
+                Table JavaEE.6-2 lists the Jakarta EE security permissions set. This is the typical set of
                 permissions that components of each type should expect to have.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1075,8 +1075,8 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:174"></a><font size="1PT">JavaEE:SPEC:174</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.3.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE specification does require that a database be available 
-                and accessible from a Java EE product through the JDBC API. Such a 
+                The Jakarta EE specification does require that a database be available 
+                and accessible from a Jakarta EE product through the JDBC API. Such a 
                 Database must be accessible from web components, enterprise beans, 
                 and application clients, but need not be accesssible from applets.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1085,7 +1085,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:176"></a><font size="1PT">JavaEE:SPEC:176</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.3.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE platform must be able to supply a DataSource that does 
+                The Jakarta EE platform must be able to supply a DataSource that does 
                 not require the application to supply any authentication information 
                 when obtaining a database connection.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1242,7 +1242,7 @@ independent of authentication.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:196"></a><font size="1PT">JavaEE:SPEC:196</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.2</font></TD><TD align="left" valign="center"><font size="1PT">
                 The connection pooling and distributed transaction features are intended 
                 for use by JDBC drivers to coordinate with an application server. 
-                Java EE products are not required to support the application server 
+                Jakarta EE products are not required to support the application server 
                 facilities described by these APIs.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1250,7 +1250,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:197"></a><font size="1PT">JavaEE:SPEC:197</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.4</font></TD><TD align="left" valign="center"><font size="1PT">
-                All JavaEE application component types can be clients of RMI objects.
+                All Jakarta EE application component types can be clients of RMI objects.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -1265,7 +1265,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:201"></a><font size="1PT">JavaEE:SPEC:201</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.7</font></TD><TD align="left" valign="center"><font size="1PT">
-                This specification requires that Java EE containers provide a per
+                This specification requires that Jakarta EE containers provide a per
                 thread context class loader for the use of system or library
                 classes in dynamicly loading classes provided by the application.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1274,7 +1274,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:202"></a><font size="1PT">JavaEE:SPEC:202</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.7</font></TD><TD align="left" valign="center"><font size="1PT">
-                The EJB specification requires that all EJB client containers
+                The Jakarta Enterprise Beans specification requires that all Jakarta Enterprise Beans client containers
                 provide a per thread context class loader for dynamically loading
                 system value classes.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1283,23 +1283,23 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:203"></a><font size="1PT">JavaEE:SPEC:203</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                All containers that support EJB clients must be capable of using 
-                the EJB interoperability protocol to invoke enterprise beans.
+                All containers that support Jakarta Enterprise Beans clients must be capable of using 
+                the Jakarta Enterprise Beans interoperability protocol to invoke enterprise beans.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:204"></a><font size="1PT">JavaEE:SPEC:204</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                All EJB containers must support the invocation of enterprise beans using 
-                the EJB interoperability protocol.
+                All Jakarta Enterprise Beans containers must support the invocation of enterprise beans using 
+                the Jakarta Enterprise Beans interoperability protocol.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:205"></a><font size="1PT">JavaEE:SPEC:205</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE product may support protocols other than the EJB interoperability 
+                A Jakarta EE product may support protocols other than the Jakarta Enterprise Beans interoperability 
                 protocol for the invocation of enterprise beans.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1307,7 +1307,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:209"></a><font size="1PT">JavaEE:SPEC:209</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">
-                The EJB container and the web container are both required to support 
+                The Jakarta Enterprise Beans container and the web container are both required to support 
                 access to local enterprise beans.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1321,7 +1321,7 @@ independent of authentication.
                 jakarta.ejb.EJBLocalHome, jakarta.transaction.UserTransaction, a 
                 javax.naming.Context object for the java:comp/env context, or another 
                 type supported by the container, is passed to the setAttribute or 
-                putValue methods of an HttpSession object corresponding to a Java EE 
+                putValue methods of an HttpSession object corresponding to a Jakarta EE 
                 distributable session.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1338,7 +1338,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:214"></a><font size="1PT">JavaEE:SPEC:214</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java Message Service provider must be included in a Java EE product. 
+                A Java Message Service provider must be included in a Jakarta EE product. 
                 The JMS implementation must provide support for both JMS point-to-point 
                 and publish/ subscribe messaging, and thus must make those facilities 
                 available using the ConnectionFactory and Destination APIs.
@@ -1349,7 +1349,7 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:215"></a><font size="1PT">JavaEE:SPEC:215</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
                 The JMS specification defines several interfaces intended for integration 
-                with an application server. A Java EE product need not provide objects that 
+                with an application server. A Jakarta EE product need not provide objects that 
                 implement these interfaces, and portable J2EE applications must not use the
                 following interfaces: jakarta.jms.ServerSession; jakarta.jms.ServerSessionPool; 
                 jakarta.jms.ConnectionConsumer; all jakarta.jms.XA interfaces
@@ -1361,7 +1361,7 @@ independent of authentication.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:216"></a><font size="1PT">JavaEE:SPEC:216</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
                 The following methods may only be used by application components 
                 executing in the application client container:
-                A Java EE container may throw a JMSException (if allowed by the method) 
+                A Jakarta EE container may throw a JMSException (if allowed by the method) 
                 if the application component violates these restrictions.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1426,7 +1426,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:228"></a><font size="1PT">JavaEE:SPEC:228</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                Application components in the web and EJB containers must not attempt to 
+                Application components in the web and Jakarta Enterprise Beans containers must not attempt to 
                 create more than one active (not closed) Session object per connection. 
                 An attempt to use the Connection object's createSession method when an 
                 active Session object exists for that connection should be prohibited by 
@@ -1447,7 +1447,7 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:232"></a><font size="1PT">JavaEE:SPEC:232</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="left" valign="center"><font size="1PT">
                 Support for transaction facilities other than those provided by 
-                JTA may be provided transparently to the application by a Java EE product.
+                JTA may be provided transparently to the application by a Jakarta EE product.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -1456,7 +1456,7 @@ independent of authentication.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:234"></a><font size="1PT">JavaEE:SPEC:234</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">
                 A JavaMail API Session object should be considered a resource factory, as 
                 described in section EE.5.6, "Resource Manager Connection Factory 
-                References." This Specification requires that Java EE platform support 
+                References." This Specification requires that Jakarta EE platform support 
                 jakarta.mail.Session objects as resource factories, as described in that section.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1464,7 +1464,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:235"></a><font size="1PT">JavaEE:SPEC:235</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE platform requires that a message transport be provided that 
+                The Jakarta EE platform requires that a message transport be provided that 
                 is capable of handling addresses of type jakarta.mail.internet.InternetAddress 
                 and messages of type jakarta.mail.internet.MimeMessage. The default message 
                 transport must be properly configured to send such messages using the send 
@@ -1485,7 +1485,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:237"></a><font size="1PT">JavaEE:SPEC:237</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">
-                This specification does not require that a Java EE product support 
+                This specification does not require that a Jakarta EE product support 
                 any message store protocols.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1493,41 +1493,41 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:238"></a><font size="1PT">JavaEE:SPEC:238</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="left" valign="center"><font size="1PT">
-                The JavaMail API must include jakarta.activation.DataContentHandlers 
+                The Mail API must include jakarta.activation.DataContentHandlers 
                 for the following MIME data types, corresponding to the Java 
-                programming language type indiated in table Java EE.6-1
+                programming language type indiated in Table 7. Jakarta Mail API MIME Data Type to Java Type Mappings
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:239"></a><font size="1PT">JavaEE:SPEC:239</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="left" valign="center"><font size="1PT">
-                This specification requires that a JavaEE product provide only the 
-                DataContentHandlers for the JavaMail API. This includes requirement 
+                This specification requires that a JakartaEE product provide only the 
+                DataContentHandlers for the Mail API. This includes requirement 
                 of a jakarta.activation.MimetypesFileTypeMap that supports the mapping 
-                listed in Table EE.6.5. 
+                listed in Table 7. Jakarta Mail API MIME Data Type to Java Type Mappings. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:240"></a><font size="1PT">JavaEE:SPEC:240</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products, in addition to meeting the JAXP conformance requirements, must provide at least one SAX 2 parser, at least one DOM 2 parser, and at least one XSLT transform engine.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:240"></a><font size="1PT">JavaEE:SPEC:240</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products, in addition to meeting the JAXP conformance requirements, must provide at least one SAX 2 parser, at least one DOM 2 parser, and at least one XSLT transform engine.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:241"></a><font size="1PT">JavaEE:SPEC:241</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products must provide a SAX parser or parsers that support all combinations of validation modes (using either DTD or XML Schemas) and namespace support.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:241"></a><font size="1PT">JavaEE:SPEC:241</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products must provide a SAX parser or parsers that support all combinations of validation modes (using either DTD or XML Schemas) and namespace support.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:242"></a><font size="1PT">JavaEE:SPEC:242</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Java EE products must provide a DOM parser or parsers that support all combinations of validation modes (using either DTDs or XML Schemas) and namespace support.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+<TD align="center" valign="center"><a name="JavaEE:SPEC:242"></a><font size="1PT">JavaEE:SPEC:242</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">All Jakarta EE products must provide a DOM parser or parsers that support all combinations of validation modes (using either DTDs or XML Schemas) and namespace support.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:243"></a><font size="1PT">JavaEE:SPEC:243</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="left" valign="center"><font size="1PT">
-                All EJB containers and all web containers must support the full set of Connector APIs.
+                All Jakarta Enterprise Beans containers and all web containers must support the full set of Connector APIs.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -1551,7 +1551,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:246"></a><font size="1PT">JavaEE:SPEC:246</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">11</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE deployment tools must support deployment of Resource 
+                The Jakarta EE deployment tools must support deployment of Resource 
                 Adapters, as defined in the Connector specification, and must 
                 support the deployment of applications that use Resource Adapters.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1559,20 +1559,8 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:247"></a><font size="1PT">JavaEE:SPEC:247</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE platform must support the deployment and access of JAX-RPC-based 
-                Web Services and Clients using all the supported deployment models as 
-                outlined in the EJB and Servlet specifications. The support for message 
-                handlers that can process message requests and responses and custom 
-                serializers and deserializers for handling custom data types must also 
-                be supported.
-            </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
-<br>
-</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
-</TR>
-<TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:248"></a><font size="1PT">JavaEE:SPEC:248</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE web container must be capable of advertising its HTTP
+                A Jakarta EE web container must be capable of advertising its HTTP
                 services on the standard HTTP port, port 80.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1580,7 +1568,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:249"></a><font size="1PT">JavaEE:SPEC:249</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE web container must be capable of advertising its HTTPS
+                A Jakarta EE web container must be capable of advertising its HTTPS
                 service on the standard HTTPS port, port 443.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1588,7 +1576,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:250"></a><font size="1PT">JavaEE:SPEC:250</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">          
-                All JavaEE products must provide a name service that meets the
+                All Jakarta EE products must provide a name service that meets the
                 requirements of the Interoperable Naming Service specification.
                 In addition, it must be possible to use the JavaIDL COSNaming API
                 to access the INS name service.
@@ -1599,14 +1587,14 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:251"></a><font size="1PT">JavaEE:SPEC:251</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">          
                 It must be possible to use the JavaIDL COSNaming API to access
-                the INS name service provided by a Java EE product.
+                the INS name service provided by a Jakarta EE product.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:252"></a><font size="1PT">JavaEE:SPEC:252</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.3</font></TD><TD align="left" valign="center"><font size="1PT">          
-                This specification requires the JavaEE platform to support the JRMP
+                This specification requires the Jakarta EE platform to support the JRMP
                 protocol, which is the Java technology-specific Remote Method
                 Invocation (RMI) protocol.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1615,16 +1603,16 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:253"></a><font size="1PT">JavaEE:SPEC:253</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">1.1</font></TD><TD align="left" valign="center"><font size="1PT">          
-                An individual Java EE module can be deployed as a stand-alone Java EE
+                An individual Jakarta EE module can be deployed as a stand-alone Jakarta EE
                 module without an application level deployment descriptor and
-                represents a valid Java EE application. 
+                represents a valid Jakarta EE application. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:254"></a><font size="1PT">JavaEE:SPEC:254</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">          
-                Java EE products are required to support the use of bundled and
+                Jakarta EE products are required to support the use of bundled and
                 installed optional packages as specified in the Extension
                 Mechanism Architecture and Optional Package Versioning
                 specifications.
@@ -1637,8 +1625,8 @@ independent of authentication.
                 A JAR format file (such as a .jar file, .war file, or .rar file)
                 can reference a .jar file by naming the referenced .jar file in a
                 Class-Path header in the referencing JAR file's Manifest
-                file. The Java EE deployment tools must process all such referenced
-                files when processing a Java EE module. The deployment tool must
+                file. The Jakarta EE deployment tools must process all such referenced
+                files when processing a Jakarta EE module. The deployment tool must
                 install the .jar files in a way that preserves the relative
                 references between the files. All referenced .jar files must
                 appear in the logical class path of the referencing JAR files at
@@ -1649,7 +1637,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:256"></a><font size="1PT">JavaEE:SPEC:256</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">          
-                When a Java EE deployment tool process a JAR file referenced by Java EE
+                When a Jakarta EE deployment tool process a JAR file referenced by Jakarta EE
                 module, any deployment descriptors in referenced .jar files must be
                 ignored when processing the referencing .jar file.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1665,7 +1653,7 @@ independent of authentication.
           application to bundle exactly the version of an optional package
           it requires without being influenced by any installed optional
           packages. Note that if the optional package is also a required
-          component of the Java EE platform version on which the application
+          component of the Jakarta EE platform version on which the application
           is being deployed, the platform version may take precedence.
         
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1689,7 +1677,7 @@ independent of authentication.
 <TD align="center" valign="center"><a name="JavaEE:SPEC:259"></a><font size="1PT">JavaEE:SPEC:259</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">2.2</font></TD><TD align="left" valign="center"><font size="1PT">          
                 JAR format files of all types may contain an Extension-List
                 attribute in their Manifest file, indicating a dependency on an
-                installed optional package. The Java EE platform specification
+                installed optional package. The Jakarta EE platform specification
                 requires support for such attributes for all component types and
                 corresponding JAR format files. The deployment tool is required
                 to check such dependency information and reject the deployment of
@@ -1714,23 +1702,23 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:261"></a><font size="1PT">JavaEE:SPEC:261</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">          
-                A JavaEE product provider must support the deployment of a
-                stand-alone JavaEE modules.
+                A Jakarta EE product provider must support the deployment of a
+                stand-alone Jakarta EE modules.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:262"></a><font size="1PT">JavaEE:SPEC:262</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">          
-                A JavaEE product provider must support the deployment of a JavaEE
-                applications, consisting of one or more Java EE modules.
+                A Jakarta EE product provider must support the deployment of a Jakarta EE
+                applications, consisting of one or more Jakarta EE modules.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:263"></a><font size="1PT">JavaEE:SPEC:263</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                A Java EE product provider must support the deployment of
+                A Jakarta EE product provider must support the deployment of
                 class libraries packaged as .jar files according to the Extension
                 Mechanism Architecture. These class libraries then become
                 installed optional packages.
@@ -1740,7 +1728,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:264"></a><font size="1PT">JavaEE:SPEC:264</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-                Whatever the unit of deployment, a Java EE deployment tool must be
+                Whatever the unit of deployment, a Jakarta EE deployment tool must be
                 able to deploy the application such that the Java classes in the
                 application are in a separate namespace from classes in other
                 Java applications.
@@ -1750,7 +1738,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:265"></a><font size="1PT">JavaEE:SPEC:265</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-                In all cases, the deployment of a Java EE application must be
+                In all cases, the deployment of a Jakarta EE application must be
                 complete before the container delivers requests to any of the
                 application's components. When an application is started, the
                 container must deliver requests to enterprise bean components
@@ -1763,10 +1751,10 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:266"></a><font size="1PT">JavaEE:SPEC:266</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                When deploying a stand-alone JavaEE module the deployment tool must
-                deploy all of the components listed in the JavaEE module deployment
+                When deploying a stand-alone Jakarta EE module the deployment tool must
+                deploy all of the components listed in the Jakarta EE module deployment
                 descriptor according to the deployment requirements of the
-                respective JavaEE component specification. If the module is a type
+                respective Jakarta EE component specification. If the module is a type
                 that contains JAR format files (for example, Web and Connector
                 modules), all classes in .jar files within the module referenced
                 from other JAR files within the module using the Class-Path
@@ -1779,7 +1767,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:267"></a><font size="1PT">JavaEE:SPEC:267</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          When deploying a stand-alone Java EE module the deployment tool must
+<TD align="center" valign="center"><a name="JavaEE:SPEC:267"></a><font size="1PT">JavaEE:SPEC:267</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          When deploying a stand-alone Jakarta EE module the deployment tool must
           allow the Deployer to configure the container to reflect the
           values of all the properties declared by the deployment
           descriptor element for each component.
@@ -1789,7 +1777,7 @@ independent of authentication.
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
-<TD align="center" valign="center"><a name="JavaEE:SPEC:268"></a><font size="1PT">JavaEE:SPEC:268</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          When deploying a stand-alone Java EE module the deployment tool must
+<TD align="center" valign="center"><a name="JavaEE:SPEC:268"></a><font size="1PT">JavaEE:SPEC:268</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          When deploying a stand-alone Jakarta EE module the deployment tool must
           allow the Deployer to deploy the same module multiple times, as
           multiple independent applications, possibly with different
           configurations. For example, the enterprise beans in an ejb-jar
@@ -1802,7 +1790,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:269"></a><font size="1PT">JavaEE:SPEC:269</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                When deploying a Java EE Application the deployment tool must allow
+                When deploying a Jakarta EE Application the deployment tool must allow
                 the Deployer to configure the container to reflect the values of
                 all the properties declared by the deployment descriptor element
                 for each component.
@@ -1812,8 +1800,8 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:270"></a><font size="1PT">JavaEE:SPEC:270</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                When deploying a Java EE Application the deployment tool must allow
-                the Deployer to deploy the same Java EE application multiple times,
+                When deploying a Jakarta EE Application the deployment tool must allow
+                the Deployer to deploy the same Jakarta EE application multiple times,
                 as multiple independent applications, possibly with different
                 configurations. For example, the enterprise beans in an ejb-jar
                 file might be deployed multiple times under different JNDI names
@@ -1825,7 +1813,7 @@ independent of authentication.
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:271"></a><font size="1PT">JavaEE:SPEC:271</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
                 When presenting security role descriptions to the Deployer, the
-                deployment tool must use the descriptions in the Java EE application
+                deployment tool must use the descriptions in the Jakarta EE application
                 deployment descriptor rather than the descriptions in any module
                 deployment descriptors for security roles with the same name.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1837,7 +1825,7 @@ independent of authentication.
                 When deploying an optional package, the deployment tool must
                 record the extension name and version information from the
                 manifest file of the optional package JAR file. The deployment
-                tool must make the optional package available to other Java EE
+                tool must make the optional package available to other Jakarta EE
                 deployment units that request it according to the version
                 matching rules described in the Optional Package Versioning
                 specification.
@@ -1864,8 +1852,8 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:275"></a><font size="1PT">JavaEE:SPEC:275</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">
-                The deployment tools for Java EE containers must validate the
-                deployment descriptors against the Java EE deployment descriptor
+                The deployment tools for Jakarta EE containers must validate the
+                deployment descriptors against the Jakarta EE deployment descriptor
                 schemas and other vendorspecific schemas.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1906,7 +1894,7 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:279"></a><font size="1PT">JavaEE:SPEC:279</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="left" valign="center"><font size="1PT">
-                In a Java EE deployment descriptor, the content of the XML elements
+                In a Jakarta EE deployment descriptor, the content of the XML elements
                 is in general case sensitive.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1914,9 +1902,9 @@ independent of authentication.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:281"></a><font size="1PT">JavaEE:SPEC:281</font></TD><TD align="center" valign="center"><font size="1PT">10</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE authentication requirements for application clients are 
-                the same as for other Java EE components, and the same authentication 
-                techniques may be used as for other Java EE application components.
+                The Jakarta EE authentication requirements for application clients are 
+                the same as for other Jakarta EE components, and the same authentication 
+                techniques may be used as for other Jakarta EE application components.
 
                 No authentication is necessary when accessing unprotected web resources.
                 When accessing protected web resources, the usual varieties of authentication
@@ -1924,9 +1912,9 @@ independent of authentication.
                 HTTP Login Form authentication. Lazy authentication may be used.
 
                 Authentication is required when accessing protected enterprise beans. The
-                authentication mechanisms for enterprise beans include those required in the EJB
-                specification for enterprise bean interoperability. Lazy authentication may be
-                used.
+                authentication mechanisms for enterprise beans include those required in the 
+                Jakarta Enterprise Beans specification for enterprise bean interoperability. 
+                Lazy authentication may be used.
  
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -1938,7 +1926,7 @@ independent of authentication.
                 container must provide an appropriate user interface. In addition, an application
                 client may provide a class that implements the
                 javax.security.auth.callback.CallbackHandler interface and specify the class
-                name in its deployment descriptor (see Section EE .10.7, Java EE  Application
+                name in its deployment descriptor (see Section EE .10.7, Jakarta EE  Application
                 Client XML Schemas for details). The Deployer may override the callback
                 handler specified by the application and use of the container's default
                 authentication user interface instead.
@@ -1976,7 +1964,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:289"></a><font size="1PT">JavaEE:SPEC:289</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                Every Java EE product must be capable of running with a Java security 
+                Every Jakarta EE product must be capable of running with a Java security 
                 manager that enforces Java security permissions and that prevents 
                 application components from performing operations for which they have 
                 not been provided the required permissions.
@@ -1986,8 +1974,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:290"></a><font size="1PT">JavaEE:SPEC:290</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE product may allow application components to run without a 
-                security manager, but every Java EE product must be capable of running 
+                A Jakarta EE product may allow application components to run without a 
+                security manager, but every Jakarta EE product must be capable of running 
                 application components with a security manager that enforces security 
                 permissions...
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -1996,7 +1984,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:291"></a><font size="1PT">JavaEE:SPEC:291</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                every Java EE product must be capable of running with a configuration 
+                every Jakarta EE product must be capable of running with a configuration 
                 that provides application components the permissions defined in Table EE.6-2.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2004,7 +1992,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:292"></a><font size="1PT">JavaEE:SPEC:292</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                All Java EE products must allow the set of permissions available to application 
+                All Jakarta EE products must allow the set of permissions available to application 
                 components in a module to be configurable, providing application components 
                 in some modules with different permissions than those described in Table EE.6-2
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2023,7 +2011,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:294"></a><font size="1PT">JavaEE:SPEC:294</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
                 If security permissions are declared that conflict with the policy of the 
-                product installation, the Java EE product must fail deployment of the 
+                product installation, the Jakarta EE product must fail deployment of the 
                 application module. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2032,7 +2020,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:295"></a><font size="1PT">JavaEE:SPEC:295</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
                 If an application module does not contain a declaration of required 
-                security permissions and deployment otherwise succeeds, the Java EE 
+                security permissions and deployment otherwise succeeds, the Jakarta EE 
                 product must grant the application components the permissions established 
                 by the security policy of the installation.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2041,7 +2029,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:296"></a><font size="1PT">JavaEE:SPEC:296</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE product must ensure that the system administrator for the 
+                The Jakarta EE product must ensure that the system administrator for the 
                 installation be able to define the security policy for the installation 
                 to include the permissions in Table EE.6-2.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2050,10 +2038,10 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:297"></a><font size="1PT">JavaEE:SPEC:297</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                Every Java EE product must be capable of running with a Java security manager 
+                Every Jakarta EE product must be capable of running with a Java security manager 
                 and with an installation policy that does not grant the permissions described 
-                in Table EE.6-3 to Web and EJB components. That environment must otherwise 
-                fully support the requirements of this specification.
+                in Table EE.6-3 to Web and Jakarta Enterprise Beans components. That environment must  
+                otherwise fully support the requirements of this specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -2065,7 +2053,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 to deployed applications. The security policy of the operational environment 
                 should grant the application server process access to the corresponding 
                 part of the file system.
-                   The Java EE Product must be capable of using the security manager to enforce 
+                   The Jakarta EE Product must be capable of using the security manager to enforce 
                 that an application only has access to the part of the filesystem namespace 
                 named by the javax.security.context.tempdir attribute, and that that part 
                 of the filesystem namespace is separate from the corresponding filesystem 
@@ -2086,9 +2074,9 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:300"></a><font size="1PT">JavaEE:SPEC:300</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.2.5</font></TD><TD align="left" valign="center"><font size="1PT">
-                Table EE.6-3 lists the Java permissions that a Java EE product must be capable 
-                of restricting when running a Web or EJB application component. If the Target 
-                field is empty, a Java EE product must be capable of deploying application 
+                Table EE.6-3 lists the Java permissions that a Jakarta EE product must be capable 
+                of restricting when running a Web or Jakarta Enterprise Beans application component. If the Target 
+                field is empty, a Jakarta EE product must be capable of deploying application 
                 modules such that no instances of that permission are granted to the components 
                 in the application module.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2129,11 +2117,11 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 Permission declarations must be stored in META-INF/permissions.xml file 
                 within an EJB, web, or application client archive in order for them to 
                 be located and subsequently processed by the deployment machinery of the 
-                Java EE Product.
+                Jakarta EE Product.
                 Permission declarations must be stored in META-INF/permissions.xml file 
                 within an EJB, web, application client, or resource adapter archive in 
                 order for them to be located and subsequently processed by the deployment 
-                machinery of the Java EE Product.
+                machinery of the Jakarta EE Product.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2143,7 +2131,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 The syntax for a password alias is the following: 
                     ${ALIAS=token}
                 
-                The Java EE Platform Provider is responsible for resolving the token 
+                The Jakarta EE Platform Provider is responsible for resolving the token 
                 and passing the clear text password as required at runtime. 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2162,7 +2150,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:307"></a><font size="1PT">JavaEE:SPEC:307</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">19.2.1</font></TD><TD align="left" valign="center"><font size="1PT">
                 (This assertion is relative to Resource Definitions) 
-                The Deployer and Java EE Product Provider must not alter the 
+                The Deployer and Jakarta EE Product Provider must not alter the 
                 specified JNDI name.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2172,7 +2160,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TD align="center" valign="center"><a name="JavaEE:SPEC:308"></a><font size="1PT">JavaEE:SPEC:308</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">19.2.2</font></TD><TD align="left" valign="center"><font size="1PT">
                 (This assertion is relative to Resource Definitions) 
                 If the resource has not been otherwise provisioned and if automatic 
-                provisioning of resources is supported, the Java EE Product Provider 
+                provisioning of resources is supported, the Jakarta EE Product Provider 
                 is responsible for provisioning the resource. If the requested resource 
                 cannot be provisioned, the application must fail to deploy.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2197,9 +2185,9 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 (This assertion is relative to Resource Definitions) 
                 All resource definition annotations and XML elements support the use 
                 of property elements (elements named &ldquo;properties&rdquo; or &ldquo;property&rdquo;). A 
-                Java EE Product Provider is permitted to reject a deployment if a 
+                Jakarta EE Product Provider is permitted to reject a deployment if a 
                 property that it recognizes has a value that it does not support. A 
-                Java EE Product Provider must not reject a deployment on the basis of 
+                Jakarta EE Product Provider must not reject a deployment on the basis of 
                 a property that it does not recognize.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2207,7 +2195,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:311"></a><font size="1PT">JavaEE:SPEC:311</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="left" valign="center"><font size="1PT">
-               The Java EE Platform requires that a Java EE Product Provider provide 
+               The Jakarta EE Platform requires that a Jakarta EE Product Provider provide 
                a JMS provider in the operational environment (see Section EE.2.7.8, 
                &ldquo;JavaTM Message Service (JMS)&rdquo;) . 
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2216,10 +2204,10 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:312"></a><font size="1PT">JavaEE:SPEC:312</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="left" valign="center"><font size="1PT">
-                   The Java EE Product Provider must also provide a preconfigured, 
+                   The Jakarta EE Product Provider must also provide a preconfigured, 
                 JMS ConnectionFactory for use by the application in accessing this 
                 JMS provider.
-                   The Java EE Product Provider must make the default JMS connection 
+                   The Jakarta EE Product Provider must make the default JMS connection 
                 factory accessible to the application under the JNDI name 
                 java:comp/DefaultJMSConnectionFactory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2228,10 +2216,10 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:313"></a><font size="1PT">JavaEE:SPEC:313</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="left" valign="center"><font size="1PT">
-                   The Java EE Product Provider must also provide a preconfigured, 
+                   The Jakarta EE Product Provider must also provide a preconfigured, 
                 JMS ConnectionFactory for use by the application in accessing this 
                 JMS provider.
-                   The Java EE Product Provider must make the default JMS connection 
+                   The Jakarta EE Product Provider must make the default JMS connection 
                 factory accessible to the application under the JNDI name 
                 java:comp/DefaultJMSConnectionFactory.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2250,7 +2238,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:315"></a><font size="1PT">JavaEE:SPEC:315</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">21</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE Platform requires that a Java EE Product Provider provide
+                The Jakarta EE Platform requires that a Jakarta EE Product Provider provide
                 a preconfigured default managed executor service, a preconfigured default
                 managed scheduled executor service, a preconfigured default managed thread factory,
                 and a preconfigured default context service for use by the application.
@@ -2260,8 +2248,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:316"></a><font size="1PT">JavaEE:SPEC:316</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">21</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE Product Provider must make the default Concurrency Utilities
-                for Java EE objects accessible to the application under the following JNDI names:
+                The Jakarta EE Product Provider must make the default Concurrency Utilities
+                for Jakarta EE objects accessible to the application under the following JNDI names:
 				&bull;java:comp/ DefaultManagedExecutorService for the preconfigured managed executor service
 				&bull;java:comp/DefaultManagedScheduledExecutorService for the preconfigured managed scheduled executor service
 				&bull;java:comp/DefaultManagedThreadFactory for the preconfigured managed thread factory
@@ -2273,7 +2261,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:317"></a><font size="1PT">JavaEE:SPEC:317</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">22</font></TD><TD align="left" valign="center"><font size="1PT">
                 An instance of a named Managed Bean can be obtained by looking up its name in JNDI using the same naming scheme
-                used for EJB components:
+                used for Jakarta Enterprise Beans components:
 				java:app/&lt;module-name&gt;/&lt;bean-name&gt;
 				java:module/&lt;bean-name&gt;
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2298,7 +2286,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 Containers must support injection points annotated with the jakarta.inject.Inject annotation only to the extent dictated by CDI.
 				Per the CDI specification, dependency injection is supported on managed beans. There are currently three ways for a class to
 				become a managed bean:
-				1.Being an EJB session bean component.
+				1.Being an Jakarta Enterprise Beans session bean component.
 				2.Being annotated with the ManagedBean annotation.
 				3.Satisfying the conditions described in the CDI specification.
 				Classes that satisfy at least one of these conditions will be eligible for full dependency injection support
@@ -2309,7 +2297,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:320"></a><font size="1PT">JavaEE:SPEC:320</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                The following technologies are required to be present in all Java EE profiles:
+                The following technologies are required to be present in all Jakarta EE profiles:
                 Resource and component lifecycle annotations defined by the Common Annotations specification
 				(Resource, Resources, PostConstruct, PreDestroy)
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2318,7 +2306,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:321"></a><font size="1PT">JavaEE:SPEC:321</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                The following functionality is required to be supported in all Java EE profiles:
+                The following functionality is required to be supported in all Jakarta EE profiles:
 				JNDI java: naming context (see Section EE.5.2, JNDI Naming Context)
 				Java Transaction API (JTA)
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2327,8 +2315,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:322"></a><font size="1PT">JavaEE:SPEC:322</font></TD><TD align="center" valign="center"><font size="1PT">9</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="left" valign="center"><font size="1PT">
-                Full Java EE platform products are required to support the technologies
-				listed in section EE.9.7 (Full Java EE Product Requirements)
+                Full Jakarta EE platform products are required to support the technologies
+				listed in section EE.9.7 (Full Jakarta EE Product Requirements)
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2389,16 +2377,16 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10004"></a><font size="1PT">JavaEE:SPEC:10004</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">6.4</font></TD><TD align="left" valign="center"><font size="1PT">        
-                Java EE apps are required to use the RMI-IIOP APIs, specifically
+                Jakarta EE apps are required to use the RMI-IIOP APIs, specifically
                 the narrow method of javax.rmi.PortableRemoteObject, when accessing
-                Enterprise JavaBeans components, as described in the EJB spec.
+                Enterprise JavaBeans components, as described in the Jakarta Enterprise Beans spec.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10006"></a><font size="1PT">JavaEE:SPEC:10006</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">6.7</font></TD><TD align="left" valign="center"><font size="1PT">        
-                The Java Persisence API is required to be supported in Java EE.
+                The Java Persisence API is required to be supported in Jakarta EE.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -2414,8 +2402,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10010"></a><font size="1PT">JavaEE:SPEC:10010</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">11.4</font></TD><TD align="left" valign="center"><font size="1PT">        
-                The Java EE Product Provider is required to provide a deployment 
-                tool that interprets the Java EE deployment descriptors and class 
+                The Jakarta EE Product Provider is required to provide a deployment 
+                tool that interprets the Jakarta EE deployment descriptors and class 
                 file annotations and allows the Deployer to map the application 
                 components requirements to the capabilities of a specific Java 
                 EE product and environment.
@@ -2475,11 +2463,11 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10017"></a><font size="1PT">JavaEE:SPEC:10017</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">5.1.3</font></TD><TD align="left" valign="center"><font size="1PT">        
-                Regarding the Declaration of EJB References,
-                Although the EJB reference is an entry in the application 
+                Regarding the Declaration of Jakarta Enterprise Beans References,
+                Although the Jakarta Enterprise Beans reference is an entry in the application 
                 components environment, the Application Component Provider 
                 must not use a env-entry element to declare it. Instead, 
-                the Application Component Provider must declare all the EJB 
+                the Application Component Provider must declare all the Jakarta Enterprise Beans 
                 references using either annotations on the application 
                 components code or the ejb-ref or ejblocal- ref elements 
                 of the deployment descriptor.
@@ -2493,7 +2481,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 requirements that the referencing application component has for 
                 the referenced enterprise bean. The ejb-ref element contains a 
                 description element and the ejb-ref-name, ejb-ref-type, home, 
-                and remote elements. The ejb-ref-name element specifies the EJB 
+                and remote elements. The ejb-ref-name element specifies the Jakarta Enterprise Beans 
                 reference name. Its value is the environment entry name used in 
                 the application component code. The ejb-reftype element specifies 
                 the expected type of the enterprise bean. Its value must be either 
@@ -2504,7 +2492,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10019"></a><font size="1PT">JavaEE:SPEC:10019</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">        
-                The Deployer must ensure that all the declared EJB references 
+                The Deployer must ensure that all the declared Jakarta Enterprise Beans references 
                 are bound to the homes or instances of enterprise beans that 
                 exist in the operational environment. The Deployer may use, 
                 for example, the JNDI LinkRef mechanism to create a symbolic 
@@ -2516,20 +2504,20 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10020"></a><font size="1PT">JavaEE:SPEC:10020</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">5.3</font></TD><TD align="left" valign="center"><font size="1PT">        
                 The Deployer must ensure that the target enterprise bean 
-                is type-compatible with the types declared for the EJB 
+                is type-compatible with the types declared for the Jakarta Enterprise Beans 
                 reference. This means that the target enterprise bean 
                 must be of the type indicated in the ejb-ref-type element 
-                or specified via the EJB annotation, and that the home and 
+                or specified via the Jakarta Enterprise Beans annotation, and that the home and 
                 remote interfaces of the target enterprise bean must be 
                 Java type-compatible with the home and remote interfaces 
-                declared in the EJB reference (if specified).
+                declared in the Jakarta Enterprise Beans reference (if specified).
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10021"></a><font size="1PT">JavaEE:SPEC:10021</font></TD><TD align="center" valign="center"><font size="1PT">2</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">        
-                The Java EE platform requires a database, accessible through 
+                The Jakarta EE platform requires a database, accessible through 
                 the JDBC API, for the storage of business data.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2548,10 +2536,10 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10023"></a><font size="1PT">JavaEE:SPEC:10023</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">5.4</font></TD><TD align="left" valign="center"><font size="1PT">          
-                At the minimum, the deployment tools provided by the Java EE Product
+                At the minimum, the deployment tools provided by the Jakarta EE Product
                 Provider must be able to preserve the application assembly
                 information in annotations or in the ejb-link elements by 
-                binding an EJB reference to the home interface of the specified 
+                binding an Jakarta Enterprise Beans reference to the home interface of the specified 
                 target enterprise bean.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2900,7 +2888,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10067"></a><font size="1PT">JavaEE:SPEC:10067</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE product must support deploying and using a JDBC driver 
+                A Jakarta EE product must support deploying and using a JDBC driver 
                 that has been written and packaged as a resource adapter using 
                 the Connector architecture.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2909,9 +2897,9 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10068"></a><font size="1PT">JavaEE:SPEC:10068</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.3</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE product must provide support for a CORBA Portable Object 
+                A Jakarta EE product must provide support for a CORBA Portable Object 
                 Adapter (POA) to support portable stub, skeleton, and tie classes. 
-                A Java EE application that defines or uses CORBA objects other 
+                A Jakarta EE application that defines or uses CORBA objects other 
                 than enterprise beans must include such portable stub, skeleton, 
                 and tie classes in the application package.
             </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2920,7 +2908,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10073"></a><font size="1PT">JavaEE:SPEC:10073</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.6</font></TD><TD align="left" valign="center"><font size="1PT">
-                A Java EE product must be able to make the following types of objects 
+                A Jakarta EE product must be able to make the following types of objects 
                 available in the applications JNDI namespace: 
                     EJBHome objects, EJBLocalHome objects, JTA UserTransaction objects, 
                     JDBC API DataSource objects, JMS ConnectionFactory and Destination 
@@ -2934,7 +2922,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10074"></a><font size="1PT">JavaEE:SPEC:10074</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">2.4.6</font></TD><TD align="left" valign="center"><font size="1PT">
-                The JNDI implementation in a Java EE product must be capable of 
+                The JNDI implementation in a Jakarta EE product must be capable of 
                 supporting all of these uses in a single application component 
                 using a single JNDI InitialContext.  ("these uses" refers to using
                 the following:
@@ -2950,8 +2938,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10078"></a><font size="1PT">JavaEE:SPEC:10078</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">13</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Web Services for Java EE specification describes the deployment 
-                of JAX-WS-based services and clients. The EJB and servlet specifications 
+                The Web Services for Jakarta EE specification describes the deployment 
+                of JAX-WS-based services and clients. The Jakarta Enterprise Beans and servlet specifications 
                 also describe aspects of such deployment. It must be possible to 
                 deploy JAX-WS-based applications using any of these deployment models.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2960,7 +2948,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10084"></a><font size="1PT">JavaEE:SPEC:10084</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">20</font></TD><TD align="left" valign="center"><font size="1PT">
-                All Java EE products are required to be able to include such information in 
+                All Jakarta EE products are required to be able to include such information in 
                 class files that are generated from JSP pages.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2978,15 +2966,15 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10088"></a><font size="1PT">JavaEE:SPEC:10088</font></TD><TD align="center" valign="center"><font size="1PT">6</font></TD><TD align="center" valign="center"><font size="1PT">25</font></TD><TD align="left" valign="center"><font size="1PT">
-                All Java EE application client containers, web containers, and 
-                EJB containers are required to support the StAX API.
+                All Jakarta EE application client containers, web containers, and 
+                Jakarta Enterprise Beans containers are required to support the StAX API.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10090"></a><font size="1PT">JavaEE:SPEC:10090</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.1</font></TD><TD align="left" valign="center"><font size="1PT">
-                The Java EE platform requires support for the following Internet protocols:
+                The Jakarta EE platform requires support for the following Internet protocols:
                     - TCP/IP protocol family
                     - HTTP 1.1
                     - SSL 3.0, TLS 1.0
@@ -3011,7 +2999,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10092.1"></a><font size="1PT">JavaEE:SPEC:10092.1</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">
-                        While not directly supported by Java EE APIs, Java EE web 
+                        While not directly supported by Jakarta EE APIs, Jakarta EE web 
                         clients must be able to display HTML 3.2 documents.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3019,15 +3007,15 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10092.1"></a><font size="1PT">JavaEE:SPEC:10092.1</font></TD><TD align="center" valign="center"><font size="1PT">7</font></TD><TD align="center" valign="center"><font size="1PT">2.4</font></TD><TD align="left" valign="center"><font size="1PT">
-                        The Java EE platform must support GIF, JPEG, and PNG images.
+                        The Jakarta EE platform must support GIF, JPEG, and PNG images.
                     </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10095"></a><font size="1PT">JavaEE:SPEC:10095</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">1.2</font></TD><TD align="left" valign="center"><font size="1PT">          
-                Deployment of a portable Java EE application must be possible 
-                using only the application deployment descriptor and the Java EE
+                Deployment of a portable Jakarta EE application must be possible 
+                using only the application deployment descriptor and the Jakarta EE
                 modules (and their dependent libraries) and descriptors listed in it.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3035,10 +3023,10 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10096"></a><font size="1PT">JavaEE:SPEC:10096</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">1.3</font></TD><TD align="left" valign="center"><font size="1PT">          
-                Each Java EE module listed in the application deployment descriptor 
+                Each Jakarta EE module listed in the application deployment descriptor 
                 (or discovered using the default rules described below) must be 
                 deployed according to the requirements of the specification for 
-                the respective Java EE module type.
+                the respective Jakarta EE module type.
                 (additionally)
                 Each module listed must be installed in the appropriate container 
                 type and the environment properties of each module must be set 
@@ -3050,7 +3038,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10097"></a><font size="1PT">JavaEE:SPEC:10097</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">3.1</font></TD><TD align="left" valign="center"><font size="1PT">          
-                The deployment descriptors for the Java EE modules must be 
+                The deployment descriptors for the Jakarta EE modules must be 
                 edited to link internally satisfied dependencies and eliminate 
                 any redundant security role names.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -3059,16 +3047,16 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10098"></a><font size="1PT">JavaEE:SPEC:10098</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">          
-                After the application is created, Java EE modules may be added 
+                After the application is created, Jakarta EE modules may be added 
                 or removed before deployment. When adding or removing a module 
                 the following steps must be performed:
                    - Decide on a location in the application pkg for the new module.
-                   - Copy the new JavaEE modules to the desired location in the app package.
+                   - Copy the new Jakarta EE modules to the desired location in the app package.
                    - Edit the deployment descriptors to link dependencies which are
-                     internally satisfied by the Java EE modules included in the app.
-                   - Edit the Java EE application deployment descriptor to meet the
-                     content requirements of the Java EE platform and the validity 
-                     requirements of the Java EE:application XML DTD or schema.
+                     internally satisfied by the Jakarta EE modules included in the app.
+                   - Edit the Jakarta EE application deployment descriptor to meet the
+                     content requirements of the Jakarta EE platform and the validity 
+                     requirements of the Jakarta EE:application XML DTD or schema.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3094,7 +3082,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10101"></a><font size="1PT">JavaEE:SPEC:10101</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          
                 If the deployment descriptor is absent, or is present and is 
-                a Java EE 5 version descriptor and the full attribute is not 
+                a Jakarta EE 5 version descriptor and the full attribute is not 
                 set to true, the deployment tool must examine all the class 
                 files in the application package.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -3103,8 +3091,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10102"></a><font size="1PT">JavaEE:SPEC:10102</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.1</font></TD><TD align="left" valign="center"><font size="1PT">          
-                When deploying a stand-alone Java EE Module, The deployment tool 
-                must first read the Java EE module deployment descriptor if 
+                When deploying a stand-alone Jakarta EE Module, The deployment tool 
+                must first read the Jakarta EE module deployment descriptor if 
                 present in the package.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3112,17 +3100,17 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10103"></a><font size="1PT">JavaEE:SPEC:10103</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                For deploying a JavaEE app, the deployment tool must first read the
-                Java EE application deployment descriptor from the application .ear file
+                For deploying a Jakarta EE app, the deployment tool must first read the
+                Jakarta EE application deployment descriptor from the application .ear file
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10104"></a><font size="1PT">JavaEE:SPEC:10104</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
-                The deployment tool must open each of the Java EE modules 
-                listed in the Java EE application deployment descriptor or 
-                discovered using the rules above and read the Java EE module 
+                The deployment tool must open each of the Jakarta EE modules 
+                listed in the Jakarta EE application deployment descriptor or 
+                discovered using the rules above and read the Jakarta EE module 
                 deployment descriptor,
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3131,7 +3119,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10105"></a><font size="1PT">JavaEE:SPEC:10105</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4.2</font></TD><TD align="left" valign="center"><font size="1PT">
                 If the module deployment descriptor is absent, or is present 
-                and is a Java EE 5 version descriptor and the full attribute 
+                and is a Jakarta EE 5 version descriptor and the full attribute 
                 is not set to true, the deployment tool must examine all the 
                 class files in the application package.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -3152,7 +3140,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 by each module deployment descriptor, or marked via annotations 
                 and discovered as described in the previous requirement, into 
                 the appropriate container according to the deployment requirements 
-                of the respective Java EE component specification.
+                of the respective Jakarta EE component specification.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD>
@@ -3192,7 +3180,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10111"></a><font size="1PT">JavaEE:SPEC:10111</font></TD><TD align="center" valign="center"><font size="1PT">12</font></TD><TD align="center" valign="center"><font size="1PT">1</font></TD><TD align="left" valign="center"><font size="1PT"> 
-                A Java EE product is required to support portable applications 
+                A Jakarta EE product is required to support portable applications 
                 written to previous versions of the platform.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3201,9 +3189,9 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10117"></a><font size="1PT">JavaEE:SPEC:10117</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3</font></TD><TD align="left" valign="center"><font size="1PT">          
                 The Application Component Provider refers to the homes of enterprise beans
-                using logical names called EJB references. The Deployer binds the EJB
-                references to the enterprise beans' homes in the targer operational 
-                environment.
+                using logical names called Jakarta Enterprise Beans references. The Deployer 
+                binds the Jakarta Enterprise Beans references to the enterprise beans' homes 
+                in the targer operational environment.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3211,8 +3199,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10118"></a><font size="1PT">JavaEE:SPEC:10118</font></TD><TD align="center" valign="center"><font size="1PT">5</font></TD><TD align="center" valign="center"><font size="1PT">3.2</font></TD><TD align="left" valign="center"><font size="1PT">  
                 The Application Assembler can use the ejb-link element
-                in the deployment descriptor to link an EJB reference to a 
-                target enterprise bean.
+                in the deployment descriptor to link an Jakarta Enterprise Beans 
+                reference to a target enterprise bean.
             </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">false</font></TD><TD align="center" valign="center"><font size="1PT">platform</font></TD><TD align="center" valign="center"><font size="1PT">active</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -3249,8 +3237,8 @@ In addition, for performance reasons it is often advantageous to share an ORB in
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="JavaEE:SPEC:10265"></a><font size="1PT">JavaEE:SPEC:10265</font></TD><TD align="center" valign="center"><font size="1PT">8</font></TD><TD align="center" valign="center"><font size="1PT">4</font></TD><TD align="left" valign="center"><font size="1PT">          
-                The deployment tools for Java EE containers must validate the deployment
-                descriptors against the Java EE deployment descriptor schemas or DTDs that
+                The deployment tools for Jakarta EE containers must validate the deployment
+                descriptors against the Jakarta EE deployment descriptor schemas or DTDs that
                 correspond to the deployment descriptors being processed. The appropriate
                 schema or DTD is chosen by analyzing the deployment descriptor to determine
                 which version it claims to conform to. Validation errors must cause an error to be
