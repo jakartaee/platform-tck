@@ -24,4 +24,11 @@
 # BUG id 19793504
 #
 com/sun/ts/tests/servlet/api/jakarta_servlet/servletrequest30/URLClient.java#asyncStartedTest3
+
+#
+# Excluding this test until we can merge https://github.com/eclipse-ee4j/jakartaee-tck/pull/558
+# TODO: In the next release after Jakarta EE 9 (perhaps Jakarta EE 9.1 or 10) the pull request will be merged and this exclude removed.
+com/sun/ts/tests/servlet/spec/security/secbasic/Client.java#test7
+com/sun/ts/tests/servlet/spec/security/secbasic/Client.java#test7_anno
+
 #
