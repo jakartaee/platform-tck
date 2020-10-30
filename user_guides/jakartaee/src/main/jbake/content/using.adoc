@@ -605,13 +605,9 @@ components; components without an asterisk are not required by EJB Lite.
 
 |Remote asyncrhonous session bean |`ejb_remote_async_optional`
 
-|RMI-IIOP Interoperability |`ejb_rmi_interop_optional`
-
 |EJB Embeddable Container |`ejb_embeddable_optional`
 |=======================================================================
 
-
-TODO: These are pruned. Remove this?
 
 Support for the following features has been made optional in this
 release:
@@ -620,7 +616,6 @@ release:
 Container-Managed Persistence and Bean-Managed Persistence
 * Client View of an EJB 2.1 and earlier Entity Bean
 * EJB QL: Query Language for Container-Managed Persistence Query Methods
-* Jakarta Registries (formerly JAXR) 1.0
 
 [[sthref43]][[to-use-keywords-to-run-tests-in-selected-vehicles]]
 
