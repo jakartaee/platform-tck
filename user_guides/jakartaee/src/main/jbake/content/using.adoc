@@ -12,13 +12,13 @@ Executing Tests
 7 Executing Tests
 -----------------
 
-The Jakarta EE 9 CTS uses the JavaTest harness to execute the tests in the
+The Jakarta EE 9 platform TCK uses the JavaTest harness to execute the tests in the
 test suite. For detailed instructions that explain how to run and use
 JavaTest, see the JavaTest User's Guide and Reference.
 
 This chapter includes the following topics:
 
-* link:#GFADX[Jakarta EE 9 CTS Operating Assumptions]
+* link:#GFADX[Jakarta EE 9 platform TCK Operating Assumptions]
 * link:#GBFUZ[Starting JavaTest]
 * link:#GFACS[Validating Your Test Configuration]
 * link:#GBFWM[Running a Subset of the Tests]
@@ -39,7 +39,7 @@ respectively.
 
 [[GFADX]][[jakarta-ee-8-cts-operating-assumptions]]
 
-7.1 Jakarta EE 9 CTS Operating Assumptions
+7.1 Jakarta EE 9 platform TCK Operating Assumptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following are assumed in this chapter:
@@ -50,7 +50,7 @@ for configuring the Jakarta EE CI, Eclipse GlassFish 6.0. If you are using anoth
 product's setup and configuration documentation.
 * Java SE 8 software is correctly installed and configured on the host
 machine.
-* Jakarta EE 9 CTS is installed and configured as described in this guide.
+* Jakarta EE 9 platform TCK is installed and configured as described in this guide.
 * Implementations of the technologies to be tested are properly
 installed and configured.
 
@@ -59,7 +59,7 @@ installed and configured.
 7.2 Starting JavaTest
 ~~~~~~~~~~~~~~~~~~~~~
 
-There are two general ways to run Jakarta EE 9 CTS using the JavaTest
+There are two general ways to run Jakarta EE 9 platform TCK using the JavaTest
 harness software:
 
 * Through the JavaTest GUI
@@ -78,7 +78,7 @@ server configurations, and for running tests in batch mode.
 =======================================================================
 
 The `build.xml` file in `<TS_HOME>/bin` contains the various Ant 
-targets for the Jakarta EE 9 CTS test suite
+targets for the Jakarta EE 9 platform TCK test suite
 
 =======================================================================
 
@@ -89,7 +89,7 @@ targets for the Jakarta EE 9 CTS test suite
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1.  Set the `TS_HOME` environment variable to the directory in which the
-Jakarta EE 9 CTS is installed.
+Jakarta EE 9 platform TCK is installed.
 2.  Change to the `<TS_HOME>/bin` directory.
 3.  Ensure that the `ts.jte` file contains information relevant to your
 setup. +
@@ -142,7 +142,7 @@ directions must pass.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1.  Set the `TS_HOME` environment variable to the directory in which
-Jakarta EE 9 CTS was installed.
+Jakarta EE 9 platform TCK was installed.
 2.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
 3.  Ensure that the `ts.jte` file contains information relevant to your
 setup. +
@@ -157,9 +157,9 @@ This runs all tests in the current directory and any subdirectories.
 
 [[GCMCU]]
 
-===== Example 7-1 Running the Jakarta EE 9 CTS Signature Tests
+===== Example 7-1 Running the Jakarta EE 9 platform TCK Signature Tests
 
-To run the Jakarta EE 9 CTS signature tests, enter the following commands:
+To run the Jakarta EE 9 platform TCK signature tests, enter the following commands:
 
 [source,oac_no_warn]
 ----

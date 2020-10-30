@@ -112,7 +112,7 @@ permitted to exit the VM (for example, by using the `System.exit` call).
 11.2 Porting Package APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sections describe the API in the Jakarta EE 9 CTS porting
+The following sections describe the API in the Jakarta EE 9 platform TCK porting
 package. The implementation classes used with the Jakarta Platform,
 Enterprise Edition CI are located in the
 `<TS_HOME>/src/com/sun/ts/lib/implementation/sun/javaee` directory. You

@@ -1,7 +1,7 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [cts_javaee_v8_0]
-description: [Eclipse Jakarta EE Platform, Compatibility Test Suite User's Guide for Technology Implementers, Release 8]
+description: [Eclipse Jakarta EE Platform, Compatibility Test Suite User's Guide for Technology Implementers, Release 9]
 
 # sidebar links url
 links:
