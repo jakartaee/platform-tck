@@ -2924,19 +2924,94 @@ running against the Jakarta Platform, Enterprise Edition CI
 ++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta EE 9 Platform TCK signature tests perform verifications in two different
-modes: static and reflection. The test results list which signature
+modes: static and reflection. The test results list which SPEC API signature
 tests pass or fail, and the mode (static or reflection) for that test.
+
+Any signature test failure means one of two things, either you have not yet
+corrected the `sigTestClasspath` or the respective SPEC API  jar in your Jakarta EE
+implementation needs a modification to exactly match the Jakarta EE 9 Platform SPEC API.
+Your implementation SPEC API jars cannot contain additional public methods/fields,
+nor can it be missing any expected public methods/fields.
+
 As a troubleshooting aid when failures occur, consider the following:
 
 * All static mode tests fail: +
-The likely cause is that the `sigTestClasspath` needs modification. When
-running on Windows, be sure to use semicolons (`;`) for `CLASSPATH`
-separators.
+Verify that the `sigTestClasspath` is using correct  SPEC API file names.
+When running on Windows, be sure to use semicolons (`;`) for `CLASSPATH` separators.
 
 * For all other signature test failures: +
 Check the report output from the test to determine which tests failed
 and why.
 
+For example, some failures from an actual `JavaEESigTest_signatureTest_from_servlet.jtr` failure:
+`
+SVR: ********** Status Report 'jakarta.servlet.jsp.jstl.core' **********
+
+SVR: SignatureTest report
+Base version: 2.0_se8
+Tested version: 2.0_se8
+Check mode: src [throws normalized]
+Constant checking: on
+
+Missing Fields
+--------------
+
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE = "jakarta.servlet.jsp.jstl.fmt.fallbackLocale"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALE = "jakarta.servlet.jsp.jstl.fmt.locale"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT = "jakarta.servlet.jsp.jstl.fmt.localizationContext"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE = "jakarta.servlet.jsp.jstl.fmt.timeZone"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE = "jakarta.servlet.jsp.jstl.sql.dataSource"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS = "jakarta.servlet.jsp.jstl.sql.maxRows"
+
+Added Fields
+------------
+
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_FALLBACK_LOCALE = "javax.servlet.jsp.jstl.fmt.fallbackLocale"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALE = "javax.servlet.jsp.jstl.fmt.locale"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_LOCALIZATION_CONTEXT = "javax.servlet.jsp.jstl.fmt.localizationContext"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.FMT_TIME_ZONE = "javax.servlet.jsp.jstl.fmt.timeZone"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.SQL_DATA_SOURCE = "javax.servlet.jsp.jstl.sql.dataSource"
+jakarta.servlet.jsp.jstl.core.Config:   field public final static java.lang.String jakarta.servlet.jsp.jstl.core.Config.SQL_MAX_ROWS = "javax.servlet.jsp.jstl.sql.maxRows"
+
+SVR: ********** Package 'jakarta.servlet.jsp.jstl.core' - FAILED (STATIC MODE) **********
+`
+
+The failure above is a little strange, isn't it?  Why are there missing fields?  Why are there added fields?
+The failure means that the `jakarta.servlet.jsp.jstl.core.Config` class needs to be updated to assign the correct values to the indicated constant fields.  
+Basically, instead of setting `Config.FMT_FALLBACK_LOCALE = "javax.servlet.jsp.jstl.fmt.fallbackLocale"`,  you should set `Config.FMT_FALLBACK_LOCALE = "jakarta.servlet.jsp.jstl.fmt.fallbackLocale"`
+The same correction is needed for the other identified fields as well.
+
+Another example only with methods is:
+
+`
+SVR: ********** Status Report 'jakarta.el' **********
+
+SVR: SignatureTest report
+Base version: 4.0_se8
+Tested version: 4.0_se8
+Check mode: src [throws normalized]
+Constant checking: on
+
+Missing Methods
+---------------
+
+jakarta.el.ELContext:                   method public java.lang.Object jakarta.el.ELContext.getContext(java.lang.Class<?>)
+jakarta.el.ELContext:                   method public void jakarta.el.ELContext.putContext(java.lang.Class<?>,java.lang.Object)
+jakarta.el.StandardELContext:           method public java.lang.Object jakarta.el.StandardELContext.getContext(java.lang.Class<?>)
+jakarta.el.StandardELContext:           method public void jakarta.el.StandardELContext.putContext(java.lang.Class<?>,java.lang.Object)
+
+Added Methods
+-------------
+
+jakarta.el.ELContext:                   method public java.lang.Object jakarta.el.ELContext.getContext(java.lang.Class)
+jakarta.el.ELContext:                   method public void jakarta.el.ELContext.putContext(java.lang.Class,java.lang.Object)
+jakarta.el.StandardELContext:           method public java.lang.Object jakarta.el.StandardELContext.getContext(java.lang.Class)
+jakarta.el.StandardELContext:           method public void jakarta.el.StandardELContext.putContext(java.lang.Class,java.lang.Object)
+`
+
+The failure above is a little strange, isn't it?  Why are there missing  methods?  Why are there added methods?
+The failure means that the `java.lang.Object jakarta.el.ELContext.getContext(java.lang.Class)` method needs a signature change 
+from `getContext(Class key)` to `getContext(Class<?> key)`.  The same correction is needed for the other identified methods as well.
 
 [NOTE]
 =======================================================================
