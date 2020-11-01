@@ -113,7 +113,7 @@ JavaTest to run the sample tests.
 See link:using.html#GBFWO[Chapter 7, "Executing Tests,"] for information
 about Starting JavaTest and running tests.
 
-[[GEWTQ]][[configuring-a-java-ee-8-server]]
+[[GEWTQ]][[configuring-a-jakarta-ee-9-server]]
 
 5.3 Configuring a Jakarta EE 9 Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -649,7 +649,7 @@ back to their original values:
 
 . Continue on to link:using.html#GBFWO[Chapter 7, "Executing Tests"].
 
-[[GEXMH]][[configuring-a-jakarta-platform-enterprise-edition-ci-and-vi-for-interoprebuildable-tests]]
+[[GEXPP]][[modifying-environment-settings-for-specific-technology-tests]]
 
 5.4 Modifying Environment Settings for Specific Technology Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -684,7 +684,6 @@ This section includes the following topics:
 * link:#GEXOT[Jakarta Mail Test Setup]
 * link:#GEXPU[Jakarta XML Registry Test Setup]
 * link:#GJKPO[Jakarta RESTful Web Services Test Setup]
-* link:#GEXQP[Deployment Test Setup]
 * link:#GEXOF[Jakarta Connector Test Setup]
 * link:#GEXPV[XA Test Setup]
 * link:#GKKOJ[Jakarta Enterprise Beans 4.0 Test Setup]
@@ -747,10 +746,7 @@ to the Jakarta Platform, Enterprise Edition CI-specific classes. To run the
 interoperability tests, do not modify the `.2` set. These properties
 should always point to the Jakarta Platform, Enterprise Edition CI classes.
 Modify the `.1` set to point to implementations that work in your
-specific Jakarta Platform, Enterprise Edition environment. See
-link:#GEXMH[Configuring a Jakarta Platform, Enterprise Edition CI and VI
-for Interop/Rebuildable Tests] for additional information about setting
-these properties.
+specific Jakarta Platform, Enterprise Edition environment.
 
 * The `-Dcts.tmp` option for the `testExecute` and
 `testExecuteAppClient` commands in the `ts.jte` file have been set. This
@@ -2738,34 +2734,11 @@ Interface is mapped. Only required for each `port-component-ref` in the
 </service-ref>
 ----
 
-[[GEYMN]][[setting-stub-properties]]
+[[GEYOG]][[overriding-wsdl]]
 
-5.4.19.3.2 Setting Stub Properties
+===== 5.4.19.3.2 Overriding WSDL
 
-* Setting Logging property (Implementation-specific): +
-Name: `com.sun.enterprise.webservice.client.transport.log` +
-Value: a `file` URL +
-This is useful for debugging. When set, all soap/http requests and
-responses made through the associated stub will be logged to a file. 
-+
 [source,oac_no_warn]
-----
-<module-name>appclient.jar</module-name>
-<service-ref>
-    <service-ref-name>service/GoogleSearch</service-ref-name>
-    <port-info>
-        <service-endpoint-interface>google.GoogleSearchPort
-        </service-endpoint-interface>
-        <wsdl-port>
-            <namespaceURI>urn:GoogleSearch</namespaceURI>
-            <localpart>GoogleSearchPort</localpart>
-        </wsdl-port>
-        <stub-property>
-            <name>com.sun.enterprise.webservice.client.transport.log</name>
-            <value>file:/tmp/jaxrpc.log</value>
-        </stub-property>
-    </port-info>
-</service-ref>
 ----
 element : wsdl-override
 ----
@@ -2778,7 +2751,7 @@ cases, it must point to a valid URL of a full WSDL document. Some
 examples are shown below.
 
 * To use the final WSDL generated upon deployment of the EJB endpoint
-shown above: 
+shown above:
 +
 [source,oac_no_warn]
 ----
@@ -2790,7 +2763,7 @@ shown above:
 ----
 +
 * An alternate way to do the same thing by means of a file URL that
-matches a webservice's `wsdl-publish-location` could be: 
+matches a webservice's `wsdl-publish-location` could be:
 +
 [source,oac_no_warn]
 ----

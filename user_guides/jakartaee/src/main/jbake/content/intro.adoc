@@ -187,8 +187,6 @@ following required and optional Jakarta EE 9 technologies:
 * Jakarta XML Binding 3.0 (optional)
 
 
-=======================================================================
-
 [[BHCGFHDI]][[jakarta-ee-9-web-profile-technologies-tested-with-jakarta-ee-9-platform-tck]]
 
 1.2.2 Jakarta EE 9 Web Profile Technologies Tested With Jakarta EE 9 Platform TCK
