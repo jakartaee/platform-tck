@@ -25,8 +25,6 @@ Edition server environment. You also need to create a deployment plan
 for each deployable component (EAR, EJB JAR, WAR, and RAR files) in the
 test suite as defined by the Jakarta Platform, Enterprise Edition platform. 
 
-=======================================================================
-
 
 [[GFASD]][[overview]]
 
@@ -123,14 +121,14 @@ Detailed API documentation for the porting package interfaces is
 available in the `<TS_HOME>/docs/api` directory. The API included in
 this section are:
 
-* link:#GFASM[TSDeploymentInterface2]
+* link:#GFASM[TSDeploymentInterface2 is removed]
 * link:#GKLJO[Ant-Based Deployment Interface]
 * link:#GFASI[TSJMSAdminInterface]
 * link:#GFATH[TSLoginContextInterface]
 * link:#GFATO[TSURLInterface]
 * link:#GFASJ[TSHttpsURLConnectionInterface]
 
-[[GFASM]][[tsdeploymentinterface2]]
+[[GFASM]][[tsdeploymentinterface2-is-removed]]
 
 11.2.1 TSDeploymentInterface2 is removed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -141,8 +139,6 @@ The interface `TSDeploymentInterface`,
 which uses only the standard Deployment APIs defined by the Jakarta
 Platform, Enterprise Edition platform. The following properties are
 still in the `ts.jte` file to reflect this and should not be changed:
-
-----
 
 [[GKLJO]][[ant-based-deployment-interface]]
 
