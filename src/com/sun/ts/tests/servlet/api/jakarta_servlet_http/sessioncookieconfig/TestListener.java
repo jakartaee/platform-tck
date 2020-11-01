@@ -47,48 +47,48 @@ public class TestListener implements ServletContextListener {
     scf.setSecure(isSecure);
 
     if (!scf.getComment().equals(comment.toString())) {
-      comment.append("|getCommentFAILED-expecting-" + comment + "-got-"
+      comment.append("|getComment-FAILED-expecting-" + comment + "-got-"
           + scf.getComment());
       scf.setComment(comment.toString());
     }
 
     if (!scf.getPath().equals(path)) {
       comment
-          .append("|getPathFAILED-expecting-" + path + "-got-" + scf.getPath());
+          .append("|getPath-FAILED-expecting-" + path + "-got-" + scf.getPath());
       scf.setComment(comment.toString());
     }
 
     if (!scf.isSecure()) {
       comment.append(
-          "|isSecureFAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
+          "|isSecure-FAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
       scf.setComment(comment.toString());
     }
     if (scf.isHttpOnly()) {
-      comment.append("|isHttpOnlyFAILED-expecting-" + httpOnly + "-got-"
+      comment.append("|isHttpOnly-FAILED-expecting-" + httpOnly + "-got-"
           + scf.isHttpOnly());
       scf.setComment(comment.toString());
     }
     if (!scf.getDomain().equals(domain.toString())) {
       comment.append(
-          "|getDomainFAILED-expecting-" + domain + "-got-" + scf.getDomain());
+          "|getDomain-FAILED-expecting-" + domain + "-got-" + scf.getDomain());
       scf.setComment(comment.toString());
     }
 
     if (scf.getMaxAge() != maxage) {
       comment.append(
-          "|getMaxAgeFAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
+          "|getMaxAge-FAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
       scf.setComment(comment.toString());
     }
 
     if (scf.getName() != null) {
-      comment.append("|getNameFAILED-expecting-null-got-" + scf.getName());
+      comment.append("|getName-FAILED-expecting-null-got-" + scf.getName());
       scf.setComment(comment.toString());
     }
 
     scf.setName(name);
     if (!scf.getName().equals(name)) {
       comment
-          .append("|getNameFAILED-expecting-" + name + "-got-" + scf.getName());
+          .append("|getName-FAILED-expecting-" + name + "-got-" + scf.getName());
       scf.setComment(comment.toString());
     }
   }

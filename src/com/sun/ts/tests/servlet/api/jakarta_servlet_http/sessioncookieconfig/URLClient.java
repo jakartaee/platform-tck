@@ -76,6 +76,7 @@ public class URLClient extends AbstractUrlClient {
         "Set-Cookie:" + "TCK_Cookie_Name=" + "##Expires="
             + "##Path=/servlet_jsh_sessioncookieconfig_web/TestServlet"
             + "##Secure");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
