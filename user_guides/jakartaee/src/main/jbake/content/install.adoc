@@ -14,7 +14,7 @@ Installation
 
 This chapter explains how to install the Jakarta EE 9 Platform TCK software and
 perform a sample test run to verify your installation and familiarize
-yourself with the Platform TCK. Installation instructions are provided for Eclipse
+yourself with the TCK. Installation instructions are provided for Eclipse
 GlassFish 6.0, a Compatible Implementation (CI) of Jakarta EE. If you are using
 another compatible implementation, refer to instructions provided with that
 implementation.
@@ -59,10 +59,10 @@ EE 9 CI.
 <JAVAEE_HOME>/bin/asadmin start-domain
 ----
 
-[[GEVHP]][[installing-the-jakarta-ee-9-platform-TCK]]
+[[GEVHP]][[installing-the-jakarta-ee-9-platform-tck]]
 
 4.2 Installing the Jakarta EE 9 Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Complete the following procedure to install the Jakarta EE 9 Platform TCK on a
 system running the Solaris, Linux, or Windows operating system.
@@ -82,18 +82,18 @@ more information.
 =======================================================================
 
 
-.  Copy or download the Platform TCK 9 software.
+.  Copy or download the TCK 9 software.
 .  Change to the directory in which you want to install the Jakarta EE 9
-CTS software and use the `unzip` command to extract the bundle: 
+TCK software and use the `unzip` command to extract the bundle: 
 +
 [source,oac_no_warn]
 ----
 cd install_directory
-unzip jakartaee.zip
+unzip jakartaeetck-nnn.zip
 ----
 +
 This creates the `jakartaeetck` directory. The
-install_directory`/javaeetck` directory will be `TS_HOME`.
+install_directory`/jakartaeetck` directory will be `TS_HOME`.
 .  Set the `TS_HOME` environment variable to point to the `javaeetck`
 directory.
 
@@ -106,8 +106,8 @@ and configure the Jakarta EE 9 Platform TCK test suite.
 4.3 Verifying Your Installation (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This procedure is optional. After installing the Jakarta EE 9 CI and Java
-EE 9 Platform TCK, you may want to verify your installation by running the TCK
+This procedure is optional. After installing the Jakarta EE 9 CI and Jakarta
+EE 9 TCK, you may want to verify your installation by running the TCK
 samples against the Jakarta EE 9 CI. See link:config.html#GBFVV[Chapter 5,
 "Setup and Configuration,"] for complete configuration instructions.
 

@@ -1,10 +1,10 @@
 type=page
 status=published
-title=Jakarta EE Platform, Enterprise Edition 9 Compatibility Test Suite User's Guide, Release 9 for Jakarta EE
+title=Jakarta EE Platform, Enterprise Edition 9 Test Compatibility Kit User's Guide, Release 9 for Jakarta EE
 next=title.html
 ~~~~~~
-Jakarta EE Platform, Enterprise Edition 9 Compatibility Test Suite User's Guide, Release 9 for Jakarta EE
-=========================================================================================================
+Jakarta EE Platform, Enterprise Edition 9 Test Compatibility Kit User's Guide, Release 9 for Jakarta EE
+=======================================================================================================
 
 [[contents]]
 Contents

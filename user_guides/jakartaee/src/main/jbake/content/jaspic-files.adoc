@@ -7,9 +7,9 @@ prev=commonappdeploy.html
 Jakarta Authentication  Technology Notes and Files
 ==================================================
 
-[[GLAEQ]][[c-jakarta-authentication-technology-notes-and-files]]
+[[GLAEQ]][[b-jakarta-authentication-technology-notes-and-files]]
 
-C Jakarta Authentication Technology Notes and Files
+B Jakarta Authentication Technology Notes and Files
 ---------------------------------------------------
 
 The Jakarta Authentication (formerly jaspic) technology tests are used to verify the compatibility of an
@@ -25,16 +25,16 @@ run the Jakarta Authentication tests. After running the Jakarta Authentication t
 `ant disable.jaspic` command to restore the Jakarta EE 9 CI to the state it
 was in before you configured it for running the Jakarta Authentication tests. This is
 required because Jakarta Authentication replaces some of the Jakarta EE 9 CI's default
-system security components with CTS security components. If this change
+system security components with TCK security components. If this change
 is not reverted after the tests have been run, the CI's system security
-could be left in a partially working state. The CTS security
+could be left in a partially working state. The TCK security
 `AuthConfigFactory` and `AuthConfigProvider`(s) are designed for
 compatibility testing, not the functional completeness that one expects
 from the Jakarta EE 9 CI.
 
-[[GLAFO]][[c.1-jakarta-authentication-1.1-technology-overview]]
+[[GLAFO]][[b.1-jakarta-authentication-1.1-technology-overview]]
 
-C.1 Jakarta Authentication 1.1 Technology Overview
+B.1 Jakarta Authentication 1.1 Technology Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Jakarta Authentication 1.1 specification defines a service provider
@@ -98,29 +98,29 @@ contains the Jakarta Authentication log file processor, which writes output to t
 `TSSVLog.txt` file. The `TSSVLog.txt` file is put into the location
 defined by the `log.file.location` property in the `ts.jte` file.
 
-[[GLAFE]][[c.2-jakarta-authentication-tssv-files]]
+[[GLAFE]][[b.2-jakarta-authentication-tssv-files]]
 
-C.2 Jakarta Authentication TSSV Files
+B.2 Jakarta Authentication TSSV Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following sections describe the `tssv.jar`,
 `ProviderConfiguration.xml`, and `provider-configuration.dtd` files that
 are used by the Jakarta Authentication TCK tests.
 
-[[GLAGR]][[c.2.1-tssv.jar-file]]
+[[GLAGR]][[b.2.1-tssv.jar-file]]
 
-C.2.1 tssv.jar file
+B.2.1 tssv.jar file
 ^^^^^^^^^^^^^^^^^^^
 
 The `tssv.jar` file contains classes necessary for populating your
-implementation with a CTS AuthConfigFactory (ACF) as well as information
-used to register CTS providers. The tssv.jar file contains the class
+implementation with a TCK AuthConfigFactory (ACF) as well as information
+used to register TCK providers. The tssv.jar file contains the class
 files for the Test Suite SPI Verifier. The `tssv.jar` file classes need
 to be loaded by your implementation's runtime during startup.
 
-[[GLADE]][[c.2.2-providerconfiguration.xml-file]]
+[[GLADE]][[b.2.2-providerconfiguration.xml-file]]
 
-C.2.2 ProviderConfiguration.xml file
+B.2.2 ProviderConfiguration.xml file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The format of the `ProviderConfiguration.xml` file is a test
@@ -159,9 +159,9 @@ done by setting the `traceflag` property in the `ts.jte` file and the
 application context identifier information should appear in the debug
 output.
 
-[[GLAFZ]][[c.2.3-provider-configuration.dtd-file]]
+[[GLAFZ]][[b.2.3-provider-configuration.dtd-file]]
 
-C.2.3 provider-configuration.dtd file
+B.2.3 provider-configuration.dtd file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `provider-configuration.dtd` file is a DTD file that resides in the

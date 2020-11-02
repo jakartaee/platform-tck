@@ -7,14 +7,14 @@ prev=jaspic-files.html
 Configuring Your Backend Database
 =================================
 
-[[GFAVUb]][[d-configuring-your-backend-database]]
+[[GFAVUb]][[c-configuring-your-backend-database]]
 
-D Configuring Your Backend Database
+C Configuring Your Backend Database
 -----------------------------------
 
 This appendix explains how to configure a backend database to use with a
 Jakarta Platform, Enterprise Edition server being tested against the Jakarta
-EE 9 Platform TCK.
+EE 9 TCK.
 
 The topics included in this appendix are as follows:
 
@@ -24,13 +24,13 @@ The topics included in this appendix are as follows:
 * link:#GFKOC[Database DDL and DML Files]
 * link:#GFKND[CMP Table Creation]
 
-[[GFKNA]][[d.1-overview]]
+[[GFKNA]][[c.1-overview]]
 
-D.1 Overview
+C.1 Overview
 ~~~~~~~~~~~~
 
 All Jakarta Platform, Enterprise Edition servers tested against the Jakarta EE
-9 Platform TCK must be configured with a database and JDBC 4.1-compliant drivers.
+9 TCK must be configured with a database and JDBC 4.1-compliant drivers.
 Note that the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0 includes the Apache Derby
 database.
 
@@ -50,8 +50,8 @@ required by the TCK.
 The database configuration process comprises four general steps:
 
 1.  Set database-related properties in the `<TS_HOME>/bin/ts.jte` file.
-2.  Configure your Jakarta Platform server
-implementation for your database and for Platform TCK.
+2.  Configure your Jakarta Platform, Enterprise Edition server
+implementation for your database and for TCK.
 3.  Start your database.
 4.  Run the `init.`<database> Ant target to initialize your database for
 TCK.
@@ -62,9 +62,9 @@ link:config.html#GEWTQ[Configuring a Jakarta EE 9 Server]. The final step,
 initializing your database for TCK by running `init.<`database> target,
 is explained more in the next section.
 
-[[GFKNR]][[d.2-the-init.database-ant-target]]
+[[GFKNR]][[c.2-the-init.database-ant-target]]
 
-D.2 The init.<database> Ant Target
+C.2 The init.<database> Ant Target
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before your Jakarta Platform, Enterprise Edition server database can be
@@ -99,9 +99,9 @@ backend for a specific database; for example, OracleInet/Oracle Inet
 driver; OracleDD/Oracle DataDirect driver. These targets are configured
 in the `<TS_HOME>/xml/initdb.xml` file.
 
-[[GFKMW]][[d.3-database-properties-in-ts.jte]]
+[[GFKMW]][[c.3-database-properties-in-ts.jte]]
 
-D.3 Database Properties in ts.jte
+C.3 Database Properties in ts.jte
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Listed below are the names and descriptions for the database properties
@@ -198,9 +198,9 @@ Apache Derby.
 |=======================================================================
 
 
-[[GFKOC]][[d.4-database-ddl-and-dml-files]]
+[[GFKOC]][[c.4-database-ddl-and-dml-files]]
 
-D.4 Database DDL and DML Files
+C.4 Database DDL and DML Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For each supported database type, the Jakarta EE 9 Platform TCK includes a set of
@@ -266,9 +266,9 @@ After updating `initdb.xml`, you invoke the new target with:
 ant -f <TS_HOME>/bin/xml/initdb.xml init.databasename
 ----
 
-[[GFKND]][[d.5-cmp-table-creation]]
+[[GFKND]][[c.5-cmp-table-creation]]
 
-D.5 CMP Table Creation
+C.5 CMP Table Creation
 ~~~~~~~~~~~~~~~~~~~~~~
 
 If the application server under test does not provide an option to

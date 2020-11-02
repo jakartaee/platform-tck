@@ -22,7 +22,7 @@ Test Suite.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section lists common problems that you may encounter as you run the
-Jakarta Platform, Enterprise Edition Compatibility Test Suite software on
+Jakarta Platform, Enterprise Edition Test Compatibility Kit software on
 the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.0. It also proposes resolutions
 for the problems, where applicable.
 

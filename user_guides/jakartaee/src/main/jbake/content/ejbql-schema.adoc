@@ -7,9 +7,9 @@ prev=database-config.html
 EJBQL Schema
 ============
 
-[[GFAVUc]][[e-ejbql-schema]]
+[[GFAVUc]][[d-ejbql-schema]]
 
-E EJBQL Schema
+D EJBQL Schema
 --------------
 
 The Jakarta Enterprise Beans, EJB-QL tests perform queries against a CMP 2.0 abstract persistence
@@ -25,9 +25,9 @@ This appendix includes information about the following topics:
 * link:#GFKSI[Persistence Schema Relationships]
 * link:#GFKQT[SQL Statements for CMP 1.1 Finders]
 
-[[GFKSI]][[e.1-persistence-schema-relationships]]
+[[GFKSI]][[d.1-persistence-schema-relationships]]
 
-E.1 Persistence Schema Relationships
+D.1 Persistence Schema Relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The figure, link:#GFKUU[Figure E-1], below, contains detailed
@@ -186,9 +186,9 @@ CustomerLocal customer;(cmr)
 |================================
 
 
-[[GFKQT]][[e.2-sql-statements-for-cmp-1.1-finders]]
+[[GFKQT]][[d.2-sql-statements-for-cmp-1.1-finders]]
 
-E.2 SQL Statements for CMP 1.1 Finders
+D.2 SQL Statements for CMP 1.1 Finders
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Listed below are the SQL statements used for CMP 1.1 finders in:
@@ -198,9 +198,9 @@ Listed below are the SQL statements used for CMP 1.1 finders in:
 * `ejb/ee/bb/entity/cmp/complexpktest`
 * `ejb/ee/tx/txECMPbean`
 
-[[GFKSD]][[e.2.1-ejbeebbentitycmpclientviewtest-interopejbentitycmpclientviewtest]]
+[[GFKSD]][[d.2.1-ejbeebbentitycmpclientviewtest-interopejbentitycmpclientviewtest]]
 
-E.2.1 ejb/ee/bb/entity/cmp/clientviewtest, interop/ejb/entity/cmp/clientviewtest
+D.2.1 ejb/ee/bb/entity/cmp/clientviewtest, interop/ejb/entity/cmp/clientviewtest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 [source,oac_no_warn]
@@ -219,9 +219,9 @@ E.2.1 ejb/ee/bb/entity/cmp/clientviewtest, interop/ejb/entity/cmp/clientviewtest
 <sql>SELECT "KEY_ID" FROM "TestBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
 ----
 
-[[GFKQU]][[e.2.2-ejbeebbentitycmpcomplexpktest]]
+[[GFKQU]][[d.2.2-ejbeebbentitycmpcomplexpktest]]
 
-E.2.2 ejb/ee/bb/entity/cmp/complexpktest
+D.2.2 ejb/ee/bb/entity/cmp/complexpktest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 [source,oac_no_warn]
@@ -234,9 +234,9 @@ E.2.2 ejb/ee/bb/entity/cmp/complexpktest
 <sql>SELECT  "BRAND_NAME", "ID" FROM "TestBeanEJBTable" WHERE "BRAND_NAME" = ?1</sql>
 ----
 
-[[GFKSB]][[e.2.3-ejbeetxtxecmpbean]]
+[[GFKSB]][[d.2.3-ejbeetxtxecmpbean]]
 
-E.2.3 ejb/ee/tx/txECMPbean
+D.2.3 ejb/ee/tx/txECMPbean
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 [source,oac_no_warn]

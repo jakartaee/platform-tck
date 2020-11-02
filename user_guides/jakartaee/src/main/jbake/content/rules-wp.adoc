@@ -443,7 +443,7 @@ Compatibility Kits (TCKs):
 * Jakarta Dependency Injection 2.0 
 * Jakarta Bean Validation 3.0
 
-In addition to the compatibility rules outlined in this CTS User's
+In addition to the compatibility rules outlined in this TCK User's
 Guide, Jakarta EE 9 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
@@ -468,7 +468,7 @@ source code that does not conform to the Java Language Specification
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE Version 9 TCK (AKA CTS) as it relates to their implementation.  Implementor
+Jakarta EE Version 9 TCK as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
