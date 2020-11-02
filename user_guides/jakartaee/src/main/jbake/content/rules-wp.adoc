@@ -429,7 +429,7 @@ programmatic behavior of the Runtime in the absence of that comment.
 EE-WP20 Compatibility testing for the Jakarta EE 9 Web Profile consists of
 running the tests for the technologies defined in
 link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 9 Web Profile
-Technologies Tested With Jakarta EE 9 Platform TCK."] If optional technologies
+Technologies Tested With Jakarta EE 9 CTS."] If optional technologies
 defined in the Jakarta EE 9 Web Profile platform are implemented in
 addition to the required Jakarta EE 9 Web Profile technologies,
 corresponding tests within this TCK for those additional technologies
