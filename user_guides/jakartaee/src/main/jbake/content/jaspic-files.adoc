@@ -25,9 +25,9 @@ run the Jakarta Authentication tests. After running the Jakarta Authentication t
 `ant disable.jaspic` command to restore the Jakarta EE 9 CI to the state it
 was in before you configured it for running the Jakarta Authentication tests. This is
 required because Jakarta Authentication replaces some of the Jakarta EE 9 CI's default
-system security components with CTS security components. If this change
+system security components with TCK security components. If this change
 is not reverted after the tests have been run, the CI's system security
-could be left in a partially working state. The CTS security
+could be left in a partially working state. The TCK security
 `AuthConfigFactory` and `AuthConfigProvider`(s) are designed for
 compatibility testing, not the functional completeness that one expects
 from the Jakarta EE 9 CI.
@@ -42,7 +42,7 @@ interface (SPI) by which authentication providers implementing message
 authentication mechanisms can be integrated in client and server message
 processing runtimes (or containers).
 
-Jakarta EE 9 CTS uses a Test Suite SPI Verifier (TSSV) to verify whether
+Jakarta EE 9 Platform TCK uses a Test Suite SPI Verifier (TSSV) to verify whether
 the vendor's message processing runtimes invoke the right SPI in the
 right order.
 
@@ -78,7 +78,7 @@ as follows:
 [NOTE]
 =======================================================================
 
-For the Jakarta EE 9 CTS, we register more than one provider in vendor's
+For the Jakarta EE 9 Platform TCK, we register more than one provider in vendor's
 message processing runtime.
 
 =======================================================================
@@ -113,8 +113,8 @@ B.2.1 tssv.jar file
 ^^^^^^^^^^^^^^^^^^^
 
 The `tssv.jar` file contains classes necessary for populating your
-implementation with a CTS AuthConfigFactory (ACF) as well as information
-used to register CTS providers. The tssv.jar file contains the class
+implementation with a TCK AuthConfigFactory (ACF) as well as information
+used to register TCK providers. The tssv.jar file contains the class
 files for the Test Suite SPI Verifier. The `tssv.jar` file classes need
 to be loaded by your implementation's runtime during startup.
 

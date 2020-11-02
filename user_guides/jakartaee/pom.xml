@@ -28,7 +28,7 @@
     <artifactId>cts_javaee</artifactId>
     <packaging>pom</packaging>
     <version>9.0.0</version>
-    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition Compatibility Test Suite User's Guide, Release 9</name>
+    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition Test Compatibility Kit User's Guide, Release 9</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
