@@ -12,7 +12,7 @@ Setup and Configuration for Testing with the Jakarta EE 9 Web Profile
 6 Setup and Configuration for Testing with the Jakarta EE 9 Web Profile
 -----------------------------------------------------------------------
 
-This chapter describes how to configure the Jakarta EE 9 CTS test suite to
+This chapter describes how to configure the Jakarta EE 9 Platform TCK test suite to
 work with your Jakarta EE 9 Web Profile test environment. It is recommended
 that you first set up the testing environment using the Jakarta EE 9 Web
 Profile CI and then with your Jakarta EE 9 Web Profile server.
@@ -32,10 +32,10 @@ Windows, and Linux platforms.
 6.1.1 To Run Tests Against a Jakarta EE 9 Web Profile Implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9 CTS is the Technology Compatibility Kit (TCK) for the Jakarta
+The Jakarta EE 9 Platform TCK is the Technology Compatibility Kit (TCK) for the Jakarta
 Platform, Enterprise Edition as well as the Jakarta EE 9 Web Profile.
 Implementations of the full Jakarta Platform, Enterprise Edition must pass
-all of the tests as defined by Jakarta EE 9 CTS Rules in
+all of the tests as defined by Jakarta EE 9 Platform TCK Rules in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
 Edition 9 Certification"].
 
@@ -44,7 +44,7 @@ verify requirements defined by the Jakarta EE 9 Web Profile Specification.
 These tests are defined by the Rules in link:rules-wp.html#GJJPZ[Chapter
 3, "Procedure for Jakarta Platform, Enterprise Edition 9 Web Profile
 Certification"]. These requirements are a subset of the tests contained
-in the Jakarta EE 9 CTS test suite. The test suite provides a mechanism
+in the Jakarta EE 9 Platform TCK test suite. The test suite provides a mechanism
 whereby only those tests for the Jakarta EE 9 Web Profile will be run. The
 following steps explain how to use this mechanism.
 
