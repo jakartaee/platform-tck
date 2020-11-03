@@ -42,7 +42,6 @@ public class TestListener implements ServletContextListener {
     scf.setComment(comment.toString());
     scf.setDomain(domain);
     scf.setHttpOnly(httpOnly);
-    scf.setMaxAge(maxage);
     scf.setPath(path);
     scf.setSecure(isSecure);
 
@@ -74,6 +73,12 @@ public class TestListener implements ServletContextListener {
       scf.setComment(comment.toString());
     }
 
+    if (scf.getMaxAge() != -1) {
+      comment.append("|getMaxAge-FAILED-expecting-(-1)-got-" + scf.getMaxAge());
+      scf.setComment(comment.toString());
+    }
+
+    scf.setMaxAge(maxage);
     if (scf.getMaxAge() != maxage) {
       comment.append(
           "|getMaxAge-FAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
