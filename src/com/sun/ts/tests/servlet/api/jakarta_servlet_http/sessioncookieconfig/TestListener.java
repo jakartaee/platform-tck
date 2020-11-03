@@ -80,8 +80,8 @@ public class TestListener implements ServletContextListener {
       scf.setComment(comment.toString());
     }
 
-    if (scf.getName() != null) {
-      comment.append("|getName-FAILED-expecting-null-got-" + scf.getName());
+    if (scf.getName() != null && !"JSESSIONID".equals(scf.getName()) {
+      comment.append("|getName-FAILED-expecting-null-or-JSESSIONID-got-" + scf.getName());
       scf.setComment(comment.toString());
     }
 
