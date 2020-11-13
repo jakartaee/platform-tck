@@ -102,8 +102,6 @@ pipeline {
         durabilityHint('PERFORMANCE_OPTIMIZED')
         buildDiscarder(logRotator(numToKeepStr: '15', artifactDaysToKeepStr: '15'))
     }
-    agent {
-        label 'master'
     }
     parameters {
         choice(name: 'JDK_IMPL', choices: 'DRAGONWELL\nADOPT',

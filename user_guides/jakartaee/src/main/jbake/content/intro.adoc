@@ -13,17 +13,17 @@ Introduction
 --------------
 
 This document provides instructions for installing, configuring, and
-running the Jakarta Platform, Enterprise Edition 9 Compatibility Test Suite
-(Jakarta EE 9 CTS).
+running the Jakarta Platform, Enterprise Edition 9 Test Compatibility Kit
+(Jakarta EE 9 Platform TCK).
 
 This chapter includes the following topics:
 
 * link:#GBFTK[Compatibility Testing]
-* link:#GEUYK[About Jakarta EE 9 CTS]
+* link:#GEUYK[About Jakarta EE 9 Platform TCK]
 * link:#GEVAD[Hardware Requirements]
 * link:#GEVBB[Software Requirements]
-* link:#GEVCL[Additional Jakarta EE 9 CTS Requirements]
-* link:#GBFQW[Getting Started With the Jakarta EE 9 CTS Test Suite]
+* link:#GEVCL[Additional Jakarta EE 9 Platform TCK Requirements]
+* link:#GBFQW[Getting Started With the Jakarta EE 9 Platform TCK Test Suite]
 
 [[GBFTK]][[compatibility-testing]]
 
@@ -74,29 +74,29 @@ level playing field for all Jakarta Platform ports.
 
 Compatibility criteria for all technology implementations are embodied
 in the Compatibility Rules that apply to a specified technology. The
-Jakarta EE 9 CTS tests for adherence to these Rules as described in
+Jakarta EE 9 Platform TCK tests for adherence to these Rules as described in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
 Edition 9 Certification,"] for Jakarta EE 9 and
 link:rules-wp.html#GJJPZ[Chapter 3, "Procedure for Jakarta Platform,
 Enterprise Edition 9 Web Profile Certification,"] for Jakarta EE 9 Web
 Profile.
 
-[[GBFPW]][[cts-overview]]
+[[GBFPW]][[tck-overview]]
 
-1.1.3 CTS Overview
+1.1.3 TCK Overview
 ^^^^^^^^^^^^^^^^^^
 
-A Jakarta EE 9 CTS is a set of tools and tests used to verify that a
+A Jakarta EE 9 Platform TCK is a set of tools and tests used to verify that a
 Implementer's implementation of Jakarta EE 9 technology conforms to the
-applicable specification. All tests in the CTS are based on the written
-specifications for the Jakarta Platform. The CTS tests compatibility of a
+applicable specification. All tests in the TCK are based on the written
+specifications for the Jakarta Platform. The TCK tests compatibility of a
 Implementer's implementation of a technology to the applicable
 specification of the technology. Compatibility testing is a means of
 ensuring correctness, completeness, and consistency across all
 implementations developed by technology Implementers.
 
-The set of tests included with the Jakarta EE 9 CTS is called the test
-suite. All tests in the CTS test suite are self-checking, but some tests
+The set of tests included with the Jakarta EE 9 Platform TCK is called the test
+suite. All tests in the TCK test suite are self-checking, but some tests
 may require tester interaction. Most tests return either a Pass or Fail
 status. For a given platform to be certified, all of the required tests
 must pass. The definition of required tests may change from platform to
@@ -104,7 +104,7 @@ platform.
 
 The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
-List for the Jakarta EE 9 CTS. The definition of required tests will change
+List for the Jakarta EE 9 Platform TCK. The definition of required tests will change
 over time. See link:#GEUYQ[Section 1.2.5, "Exclude Lists,"] for more
 information.
 
@@ -128,26 +128,26 @@ direction of the responsible specification project committer group:
 For further information about the JESP program, go to Jakarta EE
 Specification Process community page (https://jakarta.ee/specifications).
 
-[[GEUYK]][[about-jakarta-ee-8-cts]]
+[[GEUYK]][[about-jakarta-ee-9-platform-tck]]
 
-1.2 About Jakarta EE 9 CTS
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.2 About Jakarta EE 9 Platform TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jakarta EE 9 CTS is a portable, configurable, automated test suite for
+Jakarta EE 9 Platform TCK is a portable, configurable, automated test suite for
 verifying the compliance of a Implementer's implementation of the Jakarta EE 9
-technologies. Jakarta EE 9 CTS includes version 5.0 of the JavaTest
+technologies. Jakarta EE 9 Platform TCK includes version 5.0 of the JavaTest
 harness.
 
-For documentation on the test harness used for running the Jakarta EE 9 CTS
+For documentation on the test harness used for running the Jakarta EE 9 Platform TCK
 test suite, see
 `https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
-[[sthref4]][[jakarta-ee-8-technologies-tested-with-jakarta-ee-8-cts]]
+[[sthref4]][[jakarta-ee-9-technologies-tested-with-jakarta-ee-9-platform-tck]]
 
-1.2.1 Jakarta EE 9 Technologies Tested with Jakarta EE 9 CTS
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.1 Jakarta EE 9 Technologies Tested with Jakarta EE 9 Platform TCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9 CTS test suite includes compatibility tests for the
+The Jakarta EE 9 Platform TCK test suite includes compatibility tests for the
 following required and optional Jakarta EE 9 technologies:
 
 * Jakarta Enterprise Beans 4.0 +
@@ -187,14 +187,12 @@ following required and optional Jakarta EE 9 technologies:
 * Jakarta XML Binding 3.0 (optional)
 
 
-=======================================================================
+[[BHCGFHDI]][[jakarta-ee-9-web-profile-technologies-tested-with-jakarta-ee-9-platform-tck]]
 
-[[BHCGFHDI]][[jakarta-ee-8-web-profile-technologies-tested-with-jakarta-ee-8-cts]]
+1.2.2 Jakarta EE 9 Web Profile Technologies Tested With Jakarta EE 9 Platform TCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.2.2 Jakarta EE 9 Web Profile Technologies Tested With Jakarta EE 9 CTS
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Jakarta EE 9 CTS test suite can also be used to test compatibility for
+The Jakarta EE 9 Platform TCK test suite can also be used to test compatibility for
 the following required Jakarta EE 9 Web Profile technologies:
 
 * Jakarta Servlet 5.0
@@ -219,12 +217,12 @@ the following required Jakarta EE 9 Web Profile technologies:
 * Jakarta Authentication 2.0, Servlet Container Profile
 * Jakarta Debugging Support for Other Languages 2.0
 
-[[GEUZS]][[cts-tests]]
+[[GEUZS]][[tck-tests]]
 
-1.2.3 CTS Tests
+1.2.3 TCK Tests
 ^^^^^^^^^^^^^^^
 
-The Jakarta EE 9 CTS contains API tests and enterprise edition tests, which
+The Jakarta EE 9 Platform TCK contains API tests and enterprise edition tests, which
 are tests that start in the Jakarta EE 9 platform and use the underlying
 enterprise service or services as specified. For example, a JDBC
 enterprise edition test connects to a database, uses SQL commands and
@@ -255,11 +253,11 @@ Certification."] These chapters explain the certification process and
 provides a definitive list of certification rules for Jakarta EE 9 and Jakarta
 EE 9 Web Profile implementations.
 * Next, take a look at the test assertions in the Assertion List, which
-you can find in the Jakarta EE 9 CTS documentation bundle. The assertions
+you can find in the Jakarta EE 9 Platform TCK documentation bundle. The assertions
 explain what each test is testing. When you run the tests with the
 JavaTest GUI, the assertion being tested as part of the test description
 of the currently selected test is displayed.
-* Third, install and configure the Jakarta EE 9 CTS software and the Jakarta
+* Third, install and configure the Jakarta EE 9 Platform TCK software and the Jakarta
 EE 9 CI or Jakarta EE 9 Web Profile CI and run the tests as described in
 this guide. This will familiarize you with the testing process.
 * Finally, set up and run the test suite with your own Jakarta EE 9 or Jakarta
@@ -283,7 +281,7 @@ with backslashes (`\`) for Windows.
 1.2.4 JavaTest Harness
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The JavaTest harness version 4.4.1 is a set of tools designed to run and
+The JavaTest harness version 5.0 is a set of tools designed to run and
 manage test suites on different Java platforms. The JavaTest harness can
 be described as both a Java application and a set of compatibility
 testing tools. It can run tests on different kinds of Java platforms and
@@ -306,8 +304,8 @@ To run tests using the JavaTest harness, you specify which tests in the
 test suite to run, how to run them, and where to put the results as
 described in link:using.html#GBFWO[Chapter 7, "Executing Tests."]
 
-The tests that make up the CTS are precompiled and indexed within the
-CTS test directory structure. When a test run is started, the JavaTest
+The tests that make up the TCK are precompiled and indexed within the
+TCK test directory structure. When a test run is started, the JavaTest
 harness scans through the set of tests that are located under the
 directories that have been selected. While scanning, the JavaTest
 harness selects the appropriate tests according to any matches with the
@@ -318,22 +316,22 @@ filters you are using and queues them up for execution.
 1.2.5 Exclude Lists
 ^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9 CTS includes an Exclude List contained in a `.jtx` file.
+The Jakarta EE 9 Platform TCK includes an Exclude List contained in a `.jtx` file.
 This is a list of test file URLs that identify tests which do not have
-to be run for the specific version of the CTS being used. Whenever tests
+to be run for the specific version of the TCK being used. Whenever tests
 are run, the JavaTest harness automatically excludes any test on the
 Exclude List from being executed.
 
 A implementor is not required to pass or run any test on the Exclude List.
 The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the Jakarta
-EE 9 CTS.
+EE 9 TCK.
 
 
 [NOTE]
 =======================================================================
 
 Always make sure you are using an up-to-date copy of the Exclude List
-before running the Jakarta EE 9 CTS test suite to verify your
+before running the Jakarta EE 9 Platform TCK test suite to verify your
 implementation.
 
 =======================================================================
@@ -376,7 +374,7 @@ Edition Version 8 TCK Test Appeals Steps."]
 1.2.6 Apache Ant
 ^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9 CI, Jakarta EE 9 Web Profile CI, and Jakarta EE 9 CTS require
+The Jakarta EE 9 CI, Jakarta EE 9 Web Profile CI, and Jakarta EE 9 Platform TCK require
 implementations of Apache Ant 1.9.7 from the Apache Ant Project
 (`http://ant.apache.org/`). Apache Ant is a free, open-source,
 Java-based build tool, similar in some ways to the make tool, but more
@@ -384,18 +382,18 @@ flexible, cross-platform compatible, and centered around XML-based
 configuration files.
 
 Ant is invoked in the Jakarta EE 9 CI, Jakarta EE 9 Web Profile CI, and Jakarta
-EE 9 CTS in conjunction with various XML files containing Ant targets.
+EE 9 TCK in conjunction with various XML files containing Ant targets.
 These Ant targets provide a convenient way to automate various
-configuration tasks for Jakarta EE 9 CTS. For example, the initial
-configuration of the Jakarta EE 9 CI or Jakarta EE 9 Web Profile CI for CTS is
+configuration tasks for Jakarta EE 9 Platform TCK. For example, the initial
+configuration of the Jakarta EE 9 CI or Jakarta EE 9 Web Profile CI for TCK is
 done by means of the `config.vi` Ant target.
 
 The Ant configuration targets are there for your convenience. When
 configuring your Jakarta EE 9 or Jakarta EE 9 Web Profile implementation for
-the Jakarta EE 9 CTS, you can either set up your environment to use the Ant
+the Jakarta EE 9 Platform TCK, you can either set up your environment to use the Ant
 tools, or you can perform some or all of your configuration procedures
-manually. Jakarta EE 9 CTS includes the Ant Contrib package, and the tasks
-included with Ant Contrib are used within the CTS build files. See
+manually. Jakarta EE 9 Platform TCK includes the Ant Contrib package, and the tasks
+included with Ant Contrib are used within the TCK build files. See
 `http://ant-contrib.sourceforge.net/` for more information about Ant
 Contrib.
 
@@ -426,7 +424,7 @@ is available on the Apache Ant Project license page at
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following section lists the hardware requirements for the Jakarta EE 9
-CTS software, using the Jakarta EE 9 CI or Jakarta EE 9 Web Profile CI.
+TCK software, using the Jakarta EE 9 CI or Jakarta EE 9 Web Profile CI.
 Hardware requirements for other compatible implementations will vary.
 
 All systems should meet the following recommended hardware requirements:
@@ -443,7 +441,7 @@ repository, and the database
 1.4 Software Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can run the Jakarta EE 9 CTS software on platforms running the
+You can run the Jakarta EE 9 Platform TCK software on platforms running the
 Linux software that meet the following software requirements:
 
 * Operating Systems:
@@ -460,10 +458,10 @@ Linux software that meet the following software requirements:
 
 ** Apache Derby
 
-[[GEVCL]][[additional-java-ee-8-cts-requirements]]
+[[GEVCL]][[additional-jakarta-ee-9-platform-tck-requirements]]
 
-1.5 Additional Jakarta EE 9 CTS Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.5 Additional Jakarta EE 9 Platform TCK Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to the instructions and requirements described in this
 document, all Jakarta EE 9 and Jakarta EE 9 Web Profile implementations must
@@ -482,22 +480,22 @@ see the specification at `https://jakarta.ee/specifications/dependency-injection
 For more information about the Jakarta Bean Validation technology, see the
 specification at `https://jakarta.ee/specifications/bean-validation/3.0/`
 
-[[GBFQW]][[getting-started-with-the-java-ee-8-cts-test-suite]]
+[[GBFQW]][[getting-started-with-the-jakarta-ee-9-platform-tck-test-suite]]
 
-1.6 Getting Started With the Jakarta EE 9 CTS Test Suite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.6 Getting Started With the Jakarta EE 9 Platform TCK Test Suite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Installing, configuring, and using the Jakarta EE 9 CTS involves the
+Installing, configuring, and using the Jakarta EE 9 Platform TCK involves the
 following general steps:
 
 1.  Download, install, and configure a Jakarta EE 9 CI or Jakarta EE 9 Web
 Profile CI. For example Eclipse GlassFish 6.0.
-2.  Download and install the Jakarta EE 9 CTS package.
+2.  Download and install the Jakarta EE 9 Platform TCK package.
 3.  Configure your database to work with your CI.
-4.  Configure CTS to work with your database and CI.
-5.  Run the CTS tests.
+4.  Configure TCK to work with your database and CI.
+5.  Run the TCK tests.
 
 The remainder of this guide explains these steps in detail. If you just
-want to get started quickly with the Jakarta EE 9 CTS using the most basic
+want to get started quickly with the Jakarta EE 9 Platform TCK using the most basic
 test configuration, refer to link:install.html#GBFTP[Chapter 4,
 "Installation."]

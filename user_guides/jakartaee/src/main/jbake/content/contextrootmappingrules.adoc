@@ -7,9 +7,9 @@ prev=ejbql-schema.html
 Context Root Mapping Rules for Web Services Tests
 =================================================
 
-[[GJJWH]][[f-context-root-mapping-rules-for-web-services-tests]]
+[[GJJWH]][[e-context-root-mapping-rules-for-web-services-tests]]
 
-F Context Root Mapping Rules for Web Services Tests
+E Context Root Mapping Rules for Web Services Tests
 ---------------------------------------------------
 
 The context root mapping rules that are described in this appendix apply
@@ -21,9 +21,9 @@ This appendix covers the following topics:
 * link:#GJJWR[Servlet-Based Web Service Endpoint Context Root Mapping]
 * link:#GJJWG[Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping]
 
-[[GJJWR]][[f.1-servlet-based-web-service-endpoint-context-root-mapping]]
+[[GJJWR]][[e.1-servlet-based-web-service-endpoint-context-root-mapping]]
 
-F.1 Servlet-Based Web Service Endpoint Context Root Mapping
+E.1 Servlet-Based Web Service Endpoint Context Root Mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section describes the context root mapping for servlet-based web
@@ -35,7 +35,7 @@ example, the context root for the archive `web-client.war` defaults to
 `web-client`.
 
 This covers the mapping for all servlet-based web services endpoints and
-clients under the Jakarta EE 9 CTS test trees 
+clients under the Jakarta EE 9 Platform TCK test trees 
 Jakarta XML Web Services (`jaxws`),
 Jakarta Web Services Metadata (`jws`),
 webservices, webservices12, webservices13].
@@ -83,9 +83,9 @@ The directory listing is as follows:
 For Web archives, the context root mapping becomes the base name of the
 Web archive file minus the extension.
 
-[[GJJWG]][[f.2-jakarta-enterprise-bean-based-web-service-endpoint-context-root-mapping]]
+[[GJJWG]][[e.2-jakarta-enterprise-bean-based-web-service-endpoint-context-root-mapping]]
 
-F.2 Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping
+E.2 Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section describes the context root mapping for Jakarta Enterprise Bean-based web

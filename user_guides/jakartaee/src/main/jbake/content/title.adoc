@@ -1,22 +1,22 @@
 type=page
 status=published
-title=Jakarta EE Platform, Enterprise Edition 9 Compatibility Test Suite User's Guide, Release 9 for Jakarta EE
+title=Jakarta EE Platform, Enterprise Edition 9 Test Compatibility Kit User's Guide, Release 9 for Jakarta EE
 next=TCKpreface.html
 prev=toc.html
 ~~~~~~
-Jakarta EE Platform, Enterprise Edition 9 Compatibility Test Suite User's Guide, Release 9 for Jakarta EE
-=========================================================================================================
+Jakarta EE Platform, Enterprise Edition 9 Test Compatibility Kit User's Guide, Release 9 for Jakarta EE
+=======================================================================================================
 
 [[oracle]] 
 Eclipse Foundation™
 -------------------
 
-Jakarta Platform, Enterprise Edition 9 Compatibility Test Suite User's
+Jakarta Platform, Enterprise Edition 9 Test Compatibility Kit User's
 Guide
 
 Release 9 for Jakarta EE
 
-September, 2020
+November, 2020
 
 Provides detailed instructions for obtaining, installing, configuring,
 and using the Eclipse Jakarta, Enterprise Edition 9 Compatibility Test
@@ -26,7 +26,7 @@ Suite for the Full Profile and the Web Profile.
 
 '''''
 
-Jakarta Platform, Enterprise Edition 9 Compatibility Test Suite User's
+Jakarta Platform, Enterprise Edition 9 Test Compatibility Kit User's
 Guide, Release 9 for Jakarta EE
 
 Copyright © 2013, 2020 Oracle and/or its affiliates. All rights reserved.

@@ -416,7 +416,7 @@
         <property name="prior.status" value="pass,fail,error,notRun"/>
     </target>
     
-    <!-- for default run, pass "!rmi_iiop&!corba" to disable RMI-IIOP/CORBA -->
+    <!-- for default run, we pass "all" keyword -->
     <target name="set.keywords">
         <if>
             <or>
@@ -426,7 +426,7 @@
                 <equals arg1="${keywords}" arg2=""/> 
             </or>
             <then>
-                <var name="keywords" value="!rmi_iiop&amp;!corba"/>
+                <var name="keywords" value="all"/>
             </then>
         </if> 
         <echo message="keywords are set to:  ${keywords}"/>
@@ -784,8 +784,6 @@
             <sysproperty key="ORB_PORT" value="${orb.port}" />
             <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}" />
             <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}" />
-            <sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}" />
-            <sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}" />
             <sysproperty key="com.sun.enterprise.home" value="${javaee.home.ri}"/>
             <sysproperty key="com.sun.aas.installRoot" value="${javaee.home.ri}"/>
             <sysproperty key="com.sun.aas.configRoot" value="${javaee.home}/config"/>

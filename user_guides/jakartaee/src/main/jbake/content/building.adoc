@@ -39,12 +39,12 @@ This chapter includes the following topics:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Complete the following steps to set up your environment to build,
-deploy, and run the CTS tests using Ant. The following example is for
+deploy, and run the TCK tests using Ant. The following example is for
 the Solaris platform:
 
 1.  Set the following environment variables in your shell environment to
 use the build infrastructure that comes with the TCK:
-* `TS_HOME` to the directory in which the Jakarta EE 9 CTS software is
+* `TS_HOME` to the directory in which the Jakarta EE 9 Platform TCK software is
 installed.
 * `TS_HOME/bin` to your `PATH` in your command shell.
 * C Shell: +
@@ -79,7 +79,7 @@ build infrastructure
 10.2 Building the Tests
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-To build the Jakarta EE 9 CTS tests using Ant, complete the following
+To build the Jakarta EE 9 Platform TCK tests using Ant, complete the following
 steps:
 
 1.  To build a single test directory, type the following: +
@@ -118,7 +118,7 @@ ant pc
 10.3 Running the Tests
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To run the Jakarta EE 9 CTS tests using Ant, use one of the following
+To run the Jakarta EE 9 Platform TCK tests using Ant, use one of the following
 procedures.
 
 [[GFAOW]][[to-run-a-single-test-directory]]
@@ -222,20 +222,20 @@ HelloHome.class
 10.5 Debugging Service Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Jakarta EE 9 CTS service tests test the compatibility of the Jakarta
+The Jakarta EE 9 Platform TCK service tests test the compatibility of the Jakarta
 Platform, Enterprise Edition Service APIs: Jakarta Mail, JDBC, Jakarta Messaging, Jakarta Transactions,
-Jakarta XML Web Services, Jakarta Web Services Metadata, Jakarta Annotations, and RMI over IIOP. The test suite contains sets of
-tests that the JavaTest harness, in conjunction with the Jakarta EE 9 CTS
+Jakarta XML Web Services, Jakarta Web Services Metadata, Jakarta Annotations. The test suite contains sets of
+tests that the JavaTest harness, in conjunction with the Jakarta EE 9 Platform TCK
 harness extensions, runs from different Jakarta Platform, Enterprise
 Edition containers (Jakarta Enterprise Beans, Jakarta Server Pages, Jakarta Servlet, and application
 client). The test suite wraps each of these tests inside generic
-components, called vehicles. Each Jakarta EE 9 CTS service test has been
+components, called vehicles. Each Jakarta EE 9 Platform TCK service test has been
 set up to run in a default set of vehicles. Each technology's
 specification determines this set. When run as part of the certification
 process, all service API tests must pass in their default vehicle set.
 
 Refer to the `<TS_HOME>/src/vehicle.properties` file to for a list the
-default vehicle sets for the Jakarta EE 9 CTS service API tests.
+default vehicle sets for the Jakarta EE 9 Platform TCK service API tests.
 
 To help you debug service API tests, the test suite provides a mechanism
 that allows for fine-grained control over which tests you can run in
@@ -243,7 +243,7 @@ specific vehicles. When you override the default vehicle set for a
 particular set of service tests, the new set of vehicles must be a
 subset of the valid vehicle set for that set of tests. If the new set is
 not a subset of the default set, the test suite will use the default
-set. link:#GFATI[Example 10-1] illustrates this mechanism.
+set. 
 
 
 [NOTE]
@@ -260,33 +260,9 @@ certification, you must run using the default set of vehicles.
 10.5.1 Examples
 ^^^^^^^^^^^^^^^
 
-[[GFATI]]
-
-===== Example 10-1 Running RMI/IIOP Enterprise Edition Tests
-
-To run the RMI/IIOP enterprise edition tests in the application client
-vehicle only, set the following system property in the
-`<TS_HOME>/bin/build.xml` file for the Ant `gui` or `runclient` targets:
-
-[source,oac_no_warn]
-----
-<sysproperty key="tests_rmiiiop_ee.service_eetest.vehicles" 
-  value="appclient"/>
-----
-
-This property overrides the default vehicle set for all tests under the
-specified directory (and in every subdirectory of that directory). Note
-that the first part of the property name matches the tests directory
-structure as it appears under `<TS_HOME>` (with the underscore character
-(`_`) replacing any file separator, such as the slash character (`/`) or
-the backslash character (`\`).
-
-Before you run the test or tests, you should temporarily rename the file
-`<TS_HOME>/src/testsuite.jtd`.
-
 [[GFATY]]
 
-===== Example 10-2 Restricting the JDBC Test Run
+===== Example 10-1 Restricting the JDBC Test Run
 
 To restrict the JDBC test run to the servlet and Jakarta Server Pages vehicles only, set
 the following system property in the `<TS_HOME>/bin/build.xml` file for
@@ -302,7 +278,7 @@ Before you run the test or tests, you should temporarily rename the file
 `<TS_HOME>/src/testsuite.jtd`.
 
 Note that you must remove these properties before you run the Jakarta EE 9
-CTS test suite for certification.
+TCK test suite for certification.
 
 [[GFARW]][[obtaining-additional-debugging-information]]
 
