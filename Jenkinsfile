@@ -19,7 +19,7 @@ default_tcks = ["caj", "concurrency", "connector", "el", "jacc", "jaspic", "jaxr
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
 def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : default_tcks
-def jdk_impl_image = params.JDK_IMPL == "DRAGONWELL" ? "dragonwell/cts-base:0.4" : "jakartaee/cts-base:0.2"
+def jdk_impl_image = params.JDK_IMPL == "DRAGONWELL" ? "dragonwell/cts-base:0.4" : "jakartaee/cts-base:0.2" 
 
 def parallelCTSSuitesMap = cts_suites.collectEntries {
     ["${it}": generateCTSStage(it, jdk_impl_image)]
