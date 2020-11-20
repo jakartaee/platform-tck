@@ -63,7 +63,7 @@
         com/sun/ts/tests/servlet,
         com/sun/ts/tests/jsp,
         com/sun/ts/tests/appclient,
-        com/sun/ts/tests/javamail,
+        com/sun/ts/tests/mail,
         com/sun/ts/tests/assembly,
         com/sun/ts/tests/jta,
         com/sun/ts/tests/samples"/>

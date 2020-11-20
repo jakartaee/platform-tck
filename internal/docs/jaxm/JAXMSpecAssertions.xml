@@ -40,8 +40,8 @@
 					<section id = "JAXM.1.2" name = "Scope"/>
 					<section id = "JAXM.1.3" name = "Interoperability"/>
 					<section id = "JAXM.1.4" name = "SOAP Packaging Model"/>
-					<section id = "JAXM.1.5" name = "JAXM, JMS, JavaMail"/>
-					<section id = "JAXM.1.5" name = "JAXM, JMS, JavaMail"/>
+					<section id = "JAXM.1.5" name = "JAXM, JMS, Mail"/>
+					<section id = "JAXM.1.5" name = "JAXM, JMS, Mail"/>
 				</sections>
 			</chapter>
 			<chapter id = "2" name = "Infrastructure">

@@ -296,7 +296,7 @@
   </target>
 
   <!-- APIs that are required by EE 5 spec but are missing assertion artifacts: -->
-  <!-- JavaMail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
+  <!-- Mail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
   <!-- must test these), JSP Debugging (may be included with jsp area,          -->
   <!-- not sure), stax. We also need to clean up webservices, the EE 5 spec     -->
   <!-- lists webservices 1.2, JAX-WS 2.0 and Web Services Metadata (not sure    -->

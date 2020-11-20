@@ -51,7 +51,7 @@
     com/sun/ts/tests/samples/jdbc/ee/testConn,
     com/sun/ts/tests/integration/entity/jspejbjdbc,
     com/sun/ts/tests/integration/entity/servletejbjdbc,
-    com/sun/ts/tests/javamail/ee/multipart,
+    com/sun/ts/tests/mail/ee/multipart,
     com/sun/ts/tests/ejb/ee/sec/stateful/secpropagation,
     com/sun/ts/tests/connector/localTx/connection,
     com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,

@@ -52,7 +52,7 @@
 #   Expression Language 3.0 (EL, JSR-341) 
 #   JMS 2.0
 #   JTA 1.2 (JSR-907)
-#   JavaMail 1.5
+#   Mail 1.5
 #   Connector 1.7
 #   Web Services 1.4 (JSR-109)
 #   JAXR 1.0   (JSR-093)
@@ -129,7 +129,7 @@ jakarta.jms=2.0_se8
 # (This is JSR-907)
 jakarta.transaction=1.2_se8
 
-# JavaMail 1.5 
+# Mail 1.5 
 # (This is JSR-919)
 jakarta.mail=1.5_se8
 

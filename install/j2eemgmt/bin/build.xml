@@ -25,7 +25,7 @@
     <target name="build.all" depends="build.all.jars,build.all.tests"/>
 
     <target name="build.all.tests" >
-      <property name="all.test.dir" value="signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, javamail, assembly, jta, samples"/>
+      <property name="all.test.dir" value="signaturetest, interop, integration, ejb, common, jdbc, connector, jms, xa, servlet, jsp, appclient, mail, assembly, jta, samples"/>
       <elementappend original="${all.test.dir}" prefix="com/sun/ts/tests" suffix="**/*.java" property="all.java.file"/>
 
       <echo message="Compiling:${all.java.file}"/>

@@ -107,7 +107,7 @@
         <echo message=" smoke  	      [overrides]"/>
         <echo message=" jakartaee-appclient [overrides]"/>
         <echo message=" jakartaee-assembly  [overrides]"/>
-        <echo message=" jakartaee-javamail  [overrides]"/>
+        <echo message=" jakartaee-mail  [overrides]"/>
         <echo message=" jakartaee-jdbc     [overrides]"/>
         <echo message=" jakartaee-jta      [overrides]"/>
         <echo message=" jakartaee-jstl     [overrides]"/>
@@ -640,9 +640,9 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jakartaee-javamail" depends="has.override, no.override">
+    <target name="jakartaee-mail" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-JAVAMAIL"/>
-        <property name="test.areas" value="javamail"/>
+        <property name="test.areas" value="mail"/>
         <antcall target="${the.target}"/>
     </target>
     
@@ -766,7 +766,7 @@
             samples/jdbc/ee/testConn,
             integration/entity/jspejbjdbc,
             integration/entity/servletejbjdbc,
-            javamail/ee/multipart,
+            mail/ee/multipart,
             jta/ee/usertransaction/commit,
             ejb/ee/sec/stateful/secpropagation,
             ejb/ee/sec/stateful/common,
@@ -866,7 +866,7 @@
             ejb,
             integration,
             jacc,
-            javamail,
+            mail,
             jaxp,
             jdbc,
             jms,

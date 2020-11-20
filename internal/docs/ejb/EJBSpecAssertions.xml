@@ -15020,7 +15020,7 @@ factory references.
 		<assertion required="true" impl-spec="true" defined-by="technology" status="active" testable="true">
 			<id>EJB:SPEC:885</id>
 			<description>          An EJB 2.1 Container must make the "sending mail" part of the
-          JavaMail 1.2 API available to the enterprise bean instances at
+          Mail 1.2 API available to the enterprise bean instances at
           runtime.
         
 			</description>

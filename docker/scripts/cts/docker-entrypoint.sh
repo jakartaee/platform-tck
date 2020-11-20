@@ -138,7 +138,7 @@ sed -i 's#mailHost=.*#mailHost=172.17.0.2#g' ts.jte
 
 sed -i 's/mailuser1=.*/mailuser1=user01@james.local/g' ts.jte
 sed -i 's/mailFrom=.*/mailFrom=user01@james.local/g' ts.jte
-sed -i 's/javamail.password=.*/javamail.password=1234/g' ts.jte
+sed -i 's/mail.password=.*/mail.password=1234/g' ts.jte
 
 sed -i 's/s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte

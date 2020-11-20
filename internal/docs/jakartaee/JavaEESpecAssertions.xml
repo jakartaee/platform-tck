@@ -269,7 +269,7 @@
                     <section id = "6" name = "Expression Language (EL) 3.0 Requirements"/>
                     <section id = "7" name = "Java Message Service (JMS) 2.0 Requirements"/>
                     <section id = "8" name = "Java Transaction API (JTA) 1.2 Requirements"/>
-                    <section id = "9" name = "JavaMail 1.6 Requirements"/>
+                    <section id = "9" name = "Mail 1.6 Requirements"/>
                     <section id = "10" name = "JavaEE Connector Architecture 1.7 Requirements"/>
                     <section id = "11" name = "Web Services for Java EE 1.4 Requirements"/>
                     <section id = "12" name = "Java API for XML-based RPC (JAX-RPC) 1.1 Requirements (Optional)"/>
@@ -366,7 +366,7 @@
                     <section id = "2" name = "Java Authorization Service Provider Contract for Containers"/>
                     <section id = "3" name = "Java Transaction API"/>
                     <section id = "4" name = "Java Persistence"/>
-                    <section id = "5" name = "JavaMail"/>
+                    <section id = "5" name = "Mail"/>
                 </sections>
             </chapter>
             <chapter id = "12" name = "Compatibility and Migration">
@@ -1970,14 +1970,14 @@ independent of authentication.
             <description>    
                 The Application Component Provider must use the jakarta.mail.Session 
                 resource manager connection factory type for obtaining 
-                JavaMail API connections.
+                Mail API connections.
             </description>    
             <keywords>
                 <keyword>Deployment</keyword>
-                <keyword>JavaMail</keyword>      
+                <keyword>Mail</keyword>      
             </keywords>      
             <location chapter = "5" section = "6.1.4"/>
-            <comment>Tested throughout javamail testcases.</comment>
+            <comment>Tested throughout mail testcases.</comment>
         </assertion>
 
         <assertion required = "true" impl-spec = "false" defined-by = "platform" 
@@ -3147,7 +3147,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 available in the applications JNDI namespace: 
                     EJBHome objects, EJBLocalHome objects, JTA UserTransaction objects, 
                     JDBC API DataSource objects, JMS ConnectionFactory and Destination 
-                    objects, JavaMail Session objects, URL objects, resource manager 
+                    objects, Mail Session objects, URL objects, resource manager 
                     ConnectionFactory objects (as specified in the Connector specification), 
                     ORB objects, EntityManager objects, and other Java language objects 
                     as described in Chapter EE.5,  Resources, Naming, and Injection. 
@@ -3168,7 +3168,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                 the following:
                     EJBHome objects, EJBLocalHome objects, JTA UserTransaction objects, 
                     JDBC API DataSource objects, JMS ConnectionFactory and Destination 
-                    objects, JavaMail Session objects, URL objects, resource manager 
+                    objects, Mail Session objects, URL objects, resource manager 
                     ConnectionFactory objects (as specified in the Connector specification), 
                     ORB objects, EntityManager objects, and other Java language objects 
                     as described in Chapter EE.5,  Resources, Naming, and Injection.
@@ -3408,7 +3408,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:234</id>
             <description>
-                A JavaMail API Session object should be considered a resource factory, as 
+                A Mail API Session object should be considered a resource factory, as 
                 described in section EE.5.6, "Resource Manager Connection Factory 
                 References." This Specification requires that Java EE platform support 
                 jakarta.mail.Session objects as resource factories, as described in that section.
@@ -3451,7 +3451,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
                    status = "active" testable = "true">
             <id>JavaEE:SPEC:238</id>
             <description>
-                The JavaMail API must include javax.activation.DataContentHandlers 
+                The Mail API must include javax.activation.DataContentHandlers 
                 for the following MIME data types, corresponding to the Java 
                 programming language type indiated in table Java EE.6-1
             </description>
@@ -3462,7 +3462,7 @@ In addition, for performance reasons it is often advantageous to share an ORB in
             <id>JavaEE:SPEC:239</id>
             <description>
                 This specification requires that a JavaEE product provide only the 
-                DataContentHandlers for the JavaMail API. This includes requirement 
+                DataContentHandlers for the Mail API. This includes requirement 
                 of a javax.activation.MimetypesFileTypeMap that supports the mapping 
                 listed in Table EE.6.5. 
             </description>

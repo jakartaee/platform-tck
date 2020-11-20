@@ -79,7 +79,7 @@
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
   <property name="srcdirs"  value="appclient,ejb,integration,jacc,jsf,jstl,assembly,
                               ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
-                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
+                              javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,mail,servlet,
                               webservices13,websocket,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
  
   <taskdef resource="net/sf/antcontrib/antlib.xml"
@@ -302,7 +302,7 @@
   </target>
 
   <!-- APIs that are required by EE 6 spec but are missing assertion artifacts: -->
-  <!-- JavaMail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
+  <!-- Mail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
   <!-- must test these), JSP Debugging (may be included with jsp area,          -->
   <!-- not sure), stax. We also need to clean up webservices, the EE 5 spec     -->
   <!-- lists webservices 1.2, JAX-WS 2.0 and Web Services Metadata (not sure    -->
@@ -629,13 +629,13 @@
     </antcall>
   </target>
 
-  <target name="javamail">
+  <target name="mail">
     <antcall target="calculate.coverage">
       <param name="api.coverage.dir"  value="${coverage.base.dir}/TBD/api"/>
       <param name="spec.coverage.dir" value="${coverage.base.dir}/TBD/spec"/>
       <param name="api.assertions"    value="${ts.docs.dir}/TBD"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/TBD"/>
-      <param name="test.src.dir"      value="/javamail"/>
+      <param name="test.src.dir"      value="/mail"/>
     </antcall>
   </target>
 

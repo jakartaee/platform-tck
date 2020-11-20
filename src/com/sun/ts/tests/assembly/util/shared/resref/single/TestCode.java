@@ -69,7 +69,7 @@ public class TestCode {
   /*
    * Hard coded values used to send mail.
    */
-  protected static final String mailer = "JavaMailer";
+  protected static final String mailer = "Mailer";
 
   protected static final String subject = "Test message";
 

@@ -52,7 +52,7 @@
 #   Expression Language 3.0 (EL, JSR-341) 
 #   JMS 2.0 (JSR-343)
 #   JTA 1.2 (JSR-907)
-#   JavaMail 1.6 (JSR-919)
+#   Mail 1.6 (JSR-919)
 #   Connector 1.7 (JSR-322)
 #   Web Services 1.4 (JSR-109)
 #   JAX-RS 2.1   (JSR-370)

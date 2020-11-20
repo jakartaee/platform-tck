@@ -119,7 +119,7 @@ javaee.home=<JAVAEE_HOME>
 javaee.home.ri=<JAVAEE_HOME>
 mailHost=<mail-server-host> // the name of an accessible SMTP server
 mailuser1=firstname.lastname@xyz.com // a valid email address
-javamail.password=password // password for mailuser1
+mail.password=password // password for mailuser1
 orb.host=localhost // the name of the machine running the Jakarta EE 9 CI
 orb.host.ri=localhost // the name of the machine running the Jakarta EE 9 CI
 ----

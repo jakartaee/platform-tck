@@ -169,7 +169,7 @@
 					<section id = "5" name = "Java Server Pages (JSP) 1.3 Requirements"/>
 					<section id = "6" name = "Java Message Service (JMS) 1.1 Requirements"/>
 					<section id = "7" name = "Java Transaction API (JTA) 1.0 Requirements"/>
-					<section id = "8" name = "JavaMail 1.3 Requirements"/>
+					<section id = "8" name = "Mail 1.3 Requirements"/>
 					<section id = "9" name = "JavaBeans Activation Framework 1.0 Requirements"/>
 					<section id = "10" name = "Java API for XML Parsing (JAXP) 1.2 Requirements"/>
 					<section id = "11" name = "J2EE Connector Architecture 1.5 Requirements"/>
@@ -1857,7 +1857,7 @@ he application component violates this restriction.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:234</id>
-			<description>A JavaMail API Session object should be considered a resource factory, as described in section J2EE.5.4, "Resource Manager Connection Factory References." This Specification requires that J2EE platform support jakarta.mail.Session objects as resource factories, as described in that section.</description>
+			<description>A Mail API Session object should be considered a resource factory, as described in section J2EE.5.4, "Resource Manager Connection Factory References." This Specification requires that J2EE platform support jakarta.mail.Session objects as resource factories, as described in that section.</description>
 			<location chapter = "6" section = "8"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
@@ -1877,12 +1877,12 @@ he application component violates this restriction.
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:238</id>
-			<description>The JavaMail API must include javax.activation.DataContentHandlers for the following MIME data types, corresponding to the Java programming language type indiated in table J2EE.6-1</description>
+			<description>The Mail API must include javax.activation.DataContentHandlers for the following MIME data types, corresponding to the Java programming language type indiated in table J2EE.6-1</description>
 			<location chapter = "6" section = "8"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">
 			<id>J2EE:SPEC:239</id>
-			<description>This specification requires that a J2EE product provide only the DataContentHandlers for the JavaMail API. This includes requirement of a javax.activation.MimetypesFileTypeMap that supports the mapping listed in Table J2EE.6.5. </description>
+			<description>This specification requires that a J2EE product provide only the DataContentHandlers for the Mail API. This includes requirement of a javax.activation.MimetypesFileTypeMap that supports the mapping listed in Table J2EE.6.5. </description>
 			<location chapter = "6" section = "9"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "platform" status = "active" testable = "true">

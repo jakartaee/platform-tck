@@ -972,7 +972,7 @@ Complete the following tasks before you run the Jakarta Mail tests:
 mailuser1=[user@domain]
 mailFrom=[user@domain]
 mailHost=mailserver
-javamail.password=password
+mail.password=password
 ----
 +
 * Set the `mailuser1` property to a valid mail address. Mail messages
@@ -985,7 +985,7 @@ that the Jakarta Mail tests generate will be sent.
 * Set the `mailHost` property to the address of a valid mail server
 where the mail will be sent.
 
-* Set the `javamail.password` property to the password for `mailuser1`.
+* Set the `mail.password` property to the password for `mailuser1`.
 
 .  Populate your IMAP server with sample messages. +
 Change to the `<TS_HOME>/bin` directory and execute the Ant target

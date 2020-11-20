@@ -52,7 +52,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, reference it using @Resource on a field
    * of the Servlet and check that the resource is injected and has the expected
@@ -74,7 +74,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, reference it using @Resource on a field
    * of the Servlet and check that the resource is injected and has the expected
@@ -96,7 +96,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, reference it using @Resource on a field
    * of the Servlet and check that the resource is injected and has the expected
@@ -118,7 +118,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, reference it using @Resource on a field
    * of the Servlet and check that the resource is injected and has the expected
@@ -140,7 +140,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8010
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same web module and check that the resource is found and has
@@ -159,7 +159,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8002
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same web module and check that the resource is found and has
@@ -178,7 +178,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8003
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same web module and check that the resource is found and has
@@ -197,7 +197,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8004
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same application and check that the resource is found and
@@ -216,7 +216,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8005
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet and check that the resource is found and has the expected property
@@ -235,7 +235,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same web module and check that the resource is found and has
@@ -254,7 +254,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a different
    * Servlet in the same web module and check that the resource is found and has
@@ -273,7 +273,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a CDI bean, look it up using JNDI from a Servlet
    * and check that the resource is found and has the expected property
@@ -292,7 +292,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8002
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
    * the same web module and check that the resource is found and has the
@@ -311,7 +311,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8003
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
    * the same web module and check that the resource is found and has the
@@ -330,7 +330,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
    * the same application and check that the resource is found and has the
@@ -349,7 +349,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8005
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean
    * and check that the resource is found and has the expected property
@@ -369,7 +369,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JavaEE:SPEC:8002, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
    * JavaEE:SPEC:8012, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
@@ -388,7 +388,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JavaEE:SPEC:8003, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
    * JavaEE:SPEC:8012, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
@@ -407,7 +407,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JavaEE:SPEC:8004, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
    * JavaEE:SPEC:8012, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
@@ -426,7 +426,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JavaEE:SPEC:8005, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
    * JavaEE:SPEC:8012, JavaEE:SPEC:8014
    * 
-   * @test_Strategy: Declare a JavaMail Session resource using
+   * @test_Strategy: Declare a Mail Session resource using
    * 
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.

@@ -176,8 +176,8 @@
         <echo message="copy.cts.jars" />
         <echo message="add.cts.users" />
         <echo message="drop.cts.users" />
-        <echo message="add.javamail.resources" />
-        <echo message="drop.javamail.resources" />
+        <echo message="add.mail.resources" />
+        <echo message="drop.mail.resources" />
         <echo message="add.custom.resource" />
         <echo message="drop.custom.resource" />
         <echo message="add.jvm.options" />
@@ -269,7 +269,7 @@
        cts.  Note this does not remove the JMS resources.
     -->
     <target name="clean.s1as" 
-           depends= "drop.cts.users, drop.javamail.resources, drop.jdbc.resources, drop.jdbc.pools, 
+           depends= "drop.cts.users, drop.mail.resources, drop.jdbc.resources, drop.jdbc.pools, 
                     drop.jvm.options, drop.classpathsuffix, drop.certs, 
                     drop.ssl.client.config, unconfig.jpa, delete.provider.jar, drop.custom.resource" />
 
@@ -286,7 +286,7 @@
     -->
     <target name="config.s1as" 
            depends= "start.appserver, change.applicationRoot, copy.provider.jar, config.jpa, 
-                    add.cts.users, add.javamail.resources, add.jdbc.pools, 
+                    add.cts.users, add.mail.resources, add.jdbc.pools, 
                     add.jdbc.resources,  drop.jvm.options, add.jvm.options, add.classpathsuffix,  
                     set.http.ports, set.orbport, create.asadmin.bat, concat.security, add.cert, 
                     add.custom.resource, enable.trace" />
@@ -947,31 +947,31 @@
      </target>
 
      <!--
-       add.javamail.resources configures the javamail JNDI resources 
+       add.mail.resources configures the mail JNDI resources 
        required by cts.
      -->
-     <target name="add.javamail.resources" depends="configPlatform">
+     <target name="add.mail.resources" depends="configPlatform">
          <antcall target="create-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>
 	
 	 <target name="populateMailbox">
-	     <ant antfile="${src.dir}/com/sun/ts/tests/javamail/ee/util/build.xml" target="populateMailbox"/>
+	     <ant antfile="${src.dir}/com/sun/ts/tests/mail/ee/util/build.xml" target="populateMailbox"/>
 	 </target>
 
      <!--
-       drop.javamail.resources removes the javamail JNDI resources 
+       drop.mail.resources removes the mail JNDI resources 
        required by cts.
      -->
-     <target name="drop.javamail.resources" depends="configPlatform">
+     <target name="drop.mail.resources" depends="configPlatform">
          <antcall target="delete-mail-resource" >
           <param name="jndiName" value=" mail/Session"/>
          </antcall>
      </target>
 	
     <target name="clearMailbox">
-    	<ant antfile="${src.dir}/com/sun/ts/tests/javamail/ee/util/build.xml" target="clearMailbox"/>
+    	<ant antfile="${src.dir}/com/sun/ts/tests/mail/ee/util/build.xml" target="clearMailbox"/>
     </target>
 
      <!--
@@ -1181,7 +1181,7 @@
     <property name="buffering.enabled" value="false"/>
     <property name="test.areas" value="appclient, connector, jaxws, jstl,
                                        samples, webservices12, assembly, ejb, jacc,
-                                       jdbc, jta, servlet, ejb30, javamail, jms,
+                                       jdbc, jta, servlet, ejb30, mail, jms,
                                        jws, signaturetest, xa, integration,
                                        jsf, 
                                        jsp, saaj"/>

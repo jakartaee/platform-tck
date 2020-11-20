@@ -66,7 +66,7 @@
 					<section id = "18.1.1" name = "resourceAdapters"/>
 					<section id = "19" name = "ResourceAdapter extends J2EEManagedObject"/>
 					<section id = "20" name = "J2EEResource extends J2EEManagedObject"/>
-					<section id = "21" name = "JavaMailResource"/>
+					<section id = "21" name = "MailResource"/>
 					<section id = "22" name = "JCAResource extends J2EEResource"/>
 					<section id = "22.1" name = "Attribute Detail"/>
 					<section id = "22.1.1" name = "connectionFactories"/>
@@ -228,7 +228,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>J2EEMgmt:SPEC:28</id>
-			<description>For each JavaMail resource associated with this server, there must be one JavaMailResource OBJECT_NAME in the resources list that identifies it.</description>
+			<description>For each Mail resource associated with this server, there must be one MailResource OBJECT_NAME in the resources list that identifies it.</description>
 			<location chapter = "3" section = "3.1.2"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
@@ -418,7 +418,7 @@
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">
 			<id>J2EEMgmt:SPEC:66</id>
-			<description>JavaMailResource extends J2EEResource.  Identifies a JavaMail resource.  For each JavaMail resource available to a server there must be one managed object that implements the JavaMail model.</description>
+			<description>MailResource extends J2EEResource.  Identifies a Mail resource.  For each Mail resource available to a server there must be one managed object that implements the Mail model.</description>
 			<location chapter = "3" section = "21"/>
 		</assertion>
 		<assertion required = "true" impl-spec = "false" defined-by = "technology" status = "active" testable = "true">

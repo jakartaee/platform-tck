@@ -36,5 +36,5 @@ find_8    = ${line.separator}ri.wsimport.jvmargs=
 replace_8 = ${line.separator}ri.wsimport.jvmargs=
 find_9    = ${line.separator}mailFrom=
 replace_9 = ${line.separator}mailFrom=
-find_10   = ${line.separator}javamail.password=
-replace_10= ${line.separator}javamail.password=
+find_10   = ${line.separator}mail.password=
+replace_10= ${line.separator}mail.password=
