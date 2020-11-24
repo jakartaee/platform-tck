@@ -69,17 +69,28 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
    exit 0
 fi
 
+ if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  cp $BASEDIR/install/jakartaee/bin/ts.jte.jdk11 $BASEDIR/install/jakartaee/bin/ts.jte
+  export ANT_OPTS="-Xmx2G \
+                 -Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+		 -DenableExternalEntityProcessing=true \
+                 -Djavax.xml.accessExternalDTD=file,http"
+else
+  export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
+                 -Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+		 -DenableExternalEntityProcessing=true \
+                 -Djavax.xml.accessExternalDTD=file,http"
+fi
+
 which ant
 ant -version
 
 which java
 java -version
-
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${GF_HOME}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
-                 -Djavax.xml.accessExternalSchema=all \
-		 -DenableExternalEntityProcessing=true \
-                 -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
 sed -e "s#^javaee.home=.*#javaee.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish#g" \
@@ -118,8 +129,11 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all
-
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all
+else
+  ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin build.all
+fi
 
 echo "########## Trunk.Sanitize.JTE ##########"
 # Sanitize the ts.jte file based on the values in release/tools/jte.props.sanitize
