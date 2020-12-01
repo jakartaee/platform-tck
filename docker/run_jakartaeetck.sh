@@ -15,6 +15,7 @@
 # https://www.gnu.org/software/classpath/license.html.
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
 if [[ $1 = *'_'* ]]; then
   test_suite=`echo "$1" | cut -f1 -d_`
   vehicle_name=`echo "$1" | cut -f2 -d_`
@@ -37,10 +38,45 @@ if [ -z "${CTS_HOME}" ]; then
 fi
 export TS_HOME=${CTS_HOME}/jakartaeetck/
 
+if [ -z "${GF_RI_TOPLEVEL_DIR}" ]; then
+    echo "Using glassfish6 for GF_RI_TOPLEVEL_DIR"
+    export GF_RI_TOPLEVEL_DIR=glassfish6
+fi
+
+if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
+    echo "Using glassfish6 for GF_VI_TOPLEVEL_DIR"
+    export GF_VI_TOPLEVEL_DIR=glassfish6
+fi
+
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  cp $TS_HOME/bin/ts.jte.jdk11 $TS_HOME/bin/ts.jte
+  export JAVA_HOME=${JDK11_HOME}
+  export PATH=$JAVA_HOME/bin:$PATH
+  export ANT_OPTS="-Xmx2G \
+                 -Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+		 -DenableExternalEntityProcessing=true \
+                 -Djavax.xml.accessExternalDTD=file,http"
+  export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+     -Djavax.xml.accessExternalDTD=file,http"
+
+else
+  export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/modules/endorsed \
+                 -Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+		 -DenableExternalEntityProcessing=true \
+                 -Djavax.xml.accessExternalDTD=file,http"
+  export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
+                 -Djavax.xml.accessExternalStylesheet=all \
+                 -Djavax.xml.accessExternalSchema=all \
+     -Djavax.xml.accessExternalDTD=file,http"
+
+fi
+
 if [ -z "${RI_JAVA_HOME}" ]; then
   export RI_JAVA_HOME=$JAVA_HOME
 fi
-
 
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
@@ -117,12 +153,6 @@ printf  "
 ******************************************************
 
 "
-
-if [ -z "${GF_RI_TOPLEVEL_DIR}" ]; then
-    echo "Using glassfish6 for GF_RI_TOPLEVEL_DIR"
-    export GF_RI_TOPLEVEL_DIR=glassfish6
-fi
-
 
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 6"
@@ -229,11 +259,6 @@ if [ -z "${GF_VI_BUNDLE_URL}" ]; then
     export GF_VI_BUNDLE_URL=$GF_BUNDLE_URL
 fi
 
-if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
-    echo "Using glassfish6 for GF_VI_TOPLEVEL_DIR"
-    export GF_VI_TOPLEVEL_DIR=glassfish6
-fi
-
 wget --progress=bar:force --no-cache $GF_VI_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish-vi.zip
 
 rm -Rf ${CTS_HOME}/vi
@@ -275,11 +300,6 @@ done
 ##### installVI.sh ends here #####
 
 ##### configVI.sh starts here #####
-
-export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
--Djavax.xml.accessExternalStylesheet=all \
--Djavax.xml.accessExternalSchema=all \
--Djavax.xml.accessExternalDTD=file,http"
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
   KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile|connector_web_profile"
@@ -501,3 +521,4 @@ else
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-junitreports.tar.gz
 fi
 tar zcvf ${WORKSPACE}/${JUNIT_REPORT_FILE_NAME} ${WORKSPACE}/results/junitreports/
+
