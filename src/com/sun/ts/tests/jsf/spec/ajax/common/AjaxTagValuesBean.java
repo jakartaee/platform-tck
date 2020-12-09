@@ -19,10 +19,11 @@
  */
 package com.sun.ts.tests.jsf.spec.ajax.common;
 
-import jakarta.faces.event.ActionEvent;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.Arrays;
+
+import jakarta.faces.event.ActionEvent;
 
 public class AjaxTagValuesBean {
 

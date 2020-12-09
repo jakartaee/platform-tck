@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.lite.async.stateless.metadata;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.lite.async.common.metadata.BeanClassLevel3BeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.metadata.PlainInterfaceTypeLevelIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
 
 /**
  * The purpose of this bean is to verify the superclasses of a bean class can

@@ -29,6 +29,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.component.UIViewRoot;
@@ -40,9 +43,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public final class TestServlet extends HttpTCKServlet {
 

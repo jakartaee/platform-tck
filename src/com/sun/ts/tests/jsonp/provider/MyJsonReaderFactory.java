@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.json.*;
-import java.io.*;
+import java.io.InputStream;
+import java.io.Reader;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.Map;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.JsonReader;
+import jakarta.json.JsonReaderFactory;
 
 /*
  * MyJsonReaderFactory is a Json Test ReaderFactory used by the pluggability tests

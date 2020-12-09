@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.annotated;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
+
+import jakarta.ejb.EJB;
 
 public class Client
     extends com.sun.ts.tests.ejb30.lite.tx.cm.common.ClientBase {

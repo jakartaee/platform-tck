@@ -22,10 +22,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface TestBean2 extends EJBObject {
   public String ping(String s) throws RemoteException;

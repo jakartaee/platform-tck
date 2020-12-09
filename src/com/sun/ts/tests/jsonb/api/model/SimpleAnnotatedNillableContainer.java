@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
-import jakarta.json.bind.annotation.JsonbNillable;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbNillable;
 
 @JsonbNillable
 public class SimpleAnnotatedNillableContainer implements TypeContainer<Object> {

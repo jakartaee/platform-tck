@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.servlet.spec.rdspecialchar;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class IncludedServlet extends GenericServlet {
 

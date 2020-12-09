@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Hashtable;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import jakarta.ejb.EJBObject;
 
 public interface Helper extends EJBObject {
   public void setData(Hashtable d) throws RemoteException;

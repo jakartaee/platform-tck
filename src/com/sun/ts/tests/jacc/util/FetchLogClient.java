@@ -20,22 +20,22 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import javax.naming.*;
-import java.net.*;
-import java.io.*;
-import java.util.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jacc.provider.TSLogger;
-import com.sun.ts.tests.jacc.provider.TSLogRecord;
 import com.sun.ts.tests.jacc.provider.TSXMLFormatter;
 
 public class FetchLogClient extends EETest {

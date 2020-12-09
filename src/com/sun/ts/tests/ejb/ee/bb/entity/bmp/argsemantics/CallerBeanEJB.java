@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.argsemantics;
 
 import java.util.Properties;
+
 import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 import com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics.TestLogic;
 

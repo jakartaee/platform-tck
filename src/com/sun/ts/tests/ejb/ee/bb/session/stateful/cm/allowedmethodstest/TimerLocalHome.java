@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import jakarta.ejb.*;
-import java.util.Properties;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface TimerLocalHome extends EJBLocalHome {
   public TimerLocal create() throws CreateException;

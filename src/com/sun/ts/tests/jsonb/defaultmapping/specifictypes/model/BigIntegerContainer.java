@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.specifictypes.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.math.BigInteger;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class BigIntegerContainer implements TypeContainer<BigInteger> {
   private BigInteger instance;

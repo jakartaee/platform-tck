@@ -16,6 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.attribute;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -23,7 +25,6 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

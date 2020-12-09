@@ -28,10 +28,10 @@ import java.net.URL;
 import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.J2WRLSharedClient;
 
 public class Client extends ServiceEETest {
   /**

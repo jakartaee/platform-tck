@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.web;
 
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.SERVLET_NAME;
+
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
-import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
 
 public class Client extends com.sun.ts.tests.ejb30.tx.common.web.ClientBase {
   public static final String CONTEXT_ROOT = "/tx_stateless_web_web";

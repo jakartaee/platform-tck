@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.webinflib;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;

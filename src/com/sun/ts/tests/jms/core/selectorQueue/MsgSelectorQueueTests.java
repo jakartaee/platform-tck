@@ -19,15 +19,23 @@
  */
 package com.sun.ts.tests.jms.core.selectorQueue;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
-import com.sun.ts.tests.jms.common.*;
-import java.io.*;
-import java.util.*;
 import com.sun.javatest.Status;
-import jakarta.jms.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.InvalidSelectorException;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.TemporaryQueue;
 
 public class MsgSelectorQueueTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.ee.selectorQueue.MsgSelectorQueueTests";

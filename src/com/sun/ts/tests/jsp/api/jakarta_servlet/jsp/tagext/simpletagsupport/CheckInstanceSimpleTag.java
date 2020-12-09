@@ -20,15 +20,17 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspContext;
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.JspWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.servlet.jsp.JspContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class CheckInstanceSimpleTag extends SimpleTagSupport {
   public CheckInstanceSimpleTag() {

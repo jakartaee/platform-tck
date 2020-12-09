@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+import java.util.List;
 import java.util.Properties;
+
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A test client for callback methods. Note that since callback methods cannot

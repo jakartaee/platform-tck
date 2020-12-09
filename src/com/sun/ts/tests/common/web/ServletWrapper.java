@@ -20,16 +20,17 @@
 
 package com.sun.ts.tests.common.web;
 
-import java.util.Properties;
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.common.web.WebUtil;
 
 /**
  * Provide a testing framework for a Servlet test.

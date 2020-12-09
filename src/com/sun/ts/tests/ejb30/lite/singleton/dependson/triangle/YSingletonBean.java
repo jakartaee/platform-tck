@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
+import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
+
 import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
-
-import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
 
 @Singleton
 @DependsOn("ZSingletonBean")

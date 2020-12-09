@@ -20,10 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.covariant;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.Data;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBTransactionRequiredException;
 import jakarta.servlet.ServletException;

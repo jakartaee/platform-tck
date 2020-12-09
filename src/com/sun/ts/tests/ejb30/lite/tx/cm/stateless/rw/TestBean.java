@@ -19,13 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.rw;
 
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)

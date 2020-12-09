@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.descriptor;
 
-import jakarta.ejb.EJB;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeTestIF;
+import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // @EJB(name="twoTestBeanHome")

@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter;
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
 
 import jakarta.json.bind.annotation.JsonbTypeAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnimalShelterInjectedAdapter {
   @JsonbTypeAdapter(InjectedListAdapter.class)

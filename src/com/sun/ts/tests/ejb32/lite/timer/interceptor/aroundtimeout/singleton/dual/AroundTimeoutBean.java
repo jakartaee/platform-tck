@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.Interceptors;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 @Singleton
 public class AroundTimeoutBean extends TimerBeanBaseWithoutTimeOutMethod {

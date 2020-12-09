@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.web.standalone;
 
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jpa.ee.util.AbstractUrlClient;
-
-import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
 

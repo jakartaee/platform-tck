@@ -20,17 +20,14 @@
 
 package com.sun.ts.tests.integration.entity.jspejbjdbc;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 
 //***************************************************************************
 // An N-Tier end-to-end test scenario to demonstrate/validate J2EE technology

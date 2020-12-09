@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
-import java.util.*;
-import jakarta.resource.spi.*;
-import jakarta.resource.spi.ResourceAdapter;
-import com.sun.ts.tests.common.connector.util.*;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-import jakarta.validation.constraints.*;
-import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.resource.spi.Activation;
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.InvalidPropertyException;
+import jakarta.resource.spi.ResourceAdapter;
 import jakarta.resource.spi.ResourceAdapterAssociation;
 
 /*

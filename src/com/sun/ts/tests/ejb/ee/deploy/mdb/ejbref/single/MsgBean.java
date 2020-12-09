@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.single;
 
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jms.common.JmsUtil;
-import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 
 public class MsgBean extends MDBWrapper {
 

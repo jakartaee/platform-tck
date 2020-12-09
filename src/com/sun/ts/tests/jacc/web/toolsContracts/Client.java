@@ -17,20 +17,16 @@
 package com.sun.ts.tests.jacc.web.toolsContracts;
 
 import java.security.Permissions;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jacc.util.LogFileProcessor;
+
 import jakarta.security.jacc.WebResourcePermission;
 import jakarta.security.jacc.WebRoleRefPermission;
 import jakarta.security.jacc.WebUserDataPermission;
-
-import java.util.Properties;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.harness.ServiceEETest;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jacc.util.LogFileProcessor;
-import com.sun.ts.tests.jacc.util.LogRecordEntry;
 
 // CAUTION: *** The expected permissions constructed for various permissions
 //           such as WebResourcePermission, WebRoleRefPermission,

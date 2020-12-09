@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import jakarta.annotation.Resource;
 import org.omg.CORBA.ORB;
+
+import jakarta.annotation.Resource;
 
 abstract public class InterceptorBaseBase {
   protected static final String NOT_INJECTED = "NOT_INJECTED";

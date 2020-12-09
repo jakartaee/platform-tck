@@ -16,8 +16,7 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.*;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.transaction.xa.Xid;
 
 public class XidImpl implements Xid {
 

@@ -16,9 +16,17 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyclass;
 
-import jakarta.persistence.*;
 import java.util.Map;
 import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MapKeyClass;
+import jakarta.persistence.MapKeyJoinColumn;
+import jakarta.persistence.MapKeyJoinColumns;
 
 @Entity
 public class Student implements java.io.Serializable {

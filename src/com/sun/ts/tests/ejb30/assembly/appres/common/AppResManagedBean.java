@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
+import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 
 @ManagedBean("test-managed-bean")
 public class AppResManagedBean extends AppResBeanBase {

@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBeanNoTxEJB implements SessionBean {
   private SessionContext sctx = null;

@@ -21,9 +21,11 @@
 package com.sun.ts.tests.common.ejb.calleebeans;
 
 import java.util.Properties;
-import jakarta.ejb.CreateException;
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
+
+import jakarta.ejb.CreateException;
 
 public abstract class CMP20CalleeEJB extends CMP20Wrapper {
 

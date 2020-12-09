@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface ALocalHome extends EJBLocalHome {
   public ALocal createA(String whoAmI) throws CreateException;

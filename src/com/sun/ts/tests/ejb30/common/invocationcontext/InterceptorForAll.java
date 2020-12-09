@@ -20,10 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.invocationcontext;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.logging.Level;
-import jakarta.interceptor.InvocationContext;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 public class InterceptorForAll {
 

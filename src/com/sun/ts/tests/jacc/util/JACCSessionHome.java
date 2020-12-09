@@ -23,10 +23,10 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface JACCSessionHome extends EJBHome {
   JACCSession create(String arg1, int arg2, long arg3)

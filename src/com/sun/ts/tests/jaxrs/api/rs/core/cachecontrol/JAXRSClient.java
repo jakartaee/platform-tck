@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import jakarta.ws.rs.core.CacheControl;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.CacheControl;
 
 /*
  * @class.setup_props: webServerHost;

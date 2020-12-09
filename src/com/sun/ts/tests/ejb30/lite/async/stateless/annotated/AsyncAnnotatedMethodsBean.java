@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.lite.async.stateless.annotated;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncAnnotatedMethodsBeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncAnnotatedMethodsIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
 
 @Stateless
 @Local({ AsyncAnnotatedMethodsIF.class })

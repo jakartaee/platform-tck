@@ -23,11 +23,11 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 
 import java.util.List;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 
 @EJBs({
     @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class) })

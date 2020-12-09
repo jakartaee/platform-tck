@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import org.w3c.dom.*;
-import java.io.*;
+import java.io.Serializable;
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class RecordEntry implements Serializable {
 

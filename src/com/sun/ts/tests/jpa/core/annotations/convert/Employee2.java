@@ -16,7 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 /*
  * Employee as mapped superclass, which can be concrete or abstract.

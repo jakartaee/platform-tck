@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
-import jakarta.ejb.*;
+import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface BMPExternalHome extends EJBHome {
 

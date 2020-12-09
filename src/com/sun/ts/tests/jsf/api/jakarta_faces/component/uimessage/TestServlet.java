@@ -19,11 +19,12 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.uimessage;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIMessage;

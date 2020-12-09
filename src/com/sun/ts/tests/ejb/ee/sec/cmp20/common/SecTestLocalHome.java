@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
-import java.util.Collection;
 
 public interface SecTestLocalHome extends EJBLocalHome {
   public SecTestLocal create(int id, String brandName, float price)

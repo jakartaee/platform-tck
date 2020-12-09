@@ -21,10 +21,10 @@ package com.sun.ts.tests.jsonp.api.jsoncoding;
 
 import java.util.Properties;
 
-import jakarta.json.Json;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
+
+import jakarta.json.Json;
 
 public class Client extends ServiceEETest {
   private static final long serialVersionUID = 11L;

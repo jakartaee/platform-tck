@@ -16,23 +16,24 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.mdb;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 import java.util.Properties;
-import java.util.ArrayList;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
-import jakarta.jms.*;
-import jakarta.transaction.*;
-import javax.naming.*;
 import jakarta.inject.Inject;
-import jakarta.annotation.Resource;
-import jakarta.annotation.PostConstruct;
-
-import com.sun.ts.tests.jms.common.*;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.Queue;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 @Stateful(name = "CDITestsMDBClntBean")
 @Remote({ EjbClientIF.class })

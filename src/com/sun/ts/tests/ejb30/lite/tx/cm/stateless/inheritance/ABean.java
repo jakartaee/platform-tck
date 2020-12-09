@@ -21,6 +21,7 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.inheritance;
 
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.ABeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
+
 import jakarta.ejb.Stateless;
 
 @Stateless()

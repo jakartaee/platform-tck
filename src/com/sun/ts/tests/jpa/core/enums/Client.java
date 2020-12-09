@@ -20,11 +20,35 @@
 
 package com.sun.ts.tests.jpa.core.enums;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.CacheRetrieveMode;
+import jakarta.persistence.CacheStoreMode;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.FlushModeType;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.LockModeType;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.PersistenceContextType;
+import jakarta.persistence.PessimisticLockScope;
+import jakarta.persistence.Query;
+import jakarta.persistence.SharedCacheMode;
+import jakarta.persistence.SynchronizationType;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.ValidationMode;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.metamodel.Attribute.PersistentAttributeType;
 import jakarta.persistence.metamodel.Bindable.BindableType;
@@ -32,10 +56,6 @@ import jakarta.persistence.metamodel.PluralAttribute.CollectionType;
 import jakarta.persistence.metamodel.Type.PersistenceType;
 import jakarta.persistence.spi.LoadState;
 import jakarta.persistence.spi.PersistenceUnitTransactionType;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
   public Client() {

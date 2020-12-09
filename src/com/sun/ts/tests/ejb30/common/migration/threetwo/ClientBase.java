@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import java.util.Properties;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;

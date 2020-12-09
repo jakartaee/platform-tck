@@ -19,6 +19,7 @@ package com.sun.ts.tests.websocket.common.stringbean;
 
 import java.io.IOException;
 import java.io.Writer;
+
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder.TextStream;
 import jakarta.websocket.EndpointConfig;

@@ -20,15 +20,18 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import com.sun.ts.tests.common.connector.util.*;
 import java.util.Timer;
-import jakarta.resource.spi.XATerminator;
+
 import javax.transaction.xa.Xid;
-import jakarta.resource.spi.UnavailableException;
-import jakarta.transaction.TransactionSynchronizationRegistry;
+
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.UnavailableException;
+import jakarta.resource.spi.XATerminator;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 
 public class TestBootstrapContext {
 

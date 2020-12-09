@@ -24,9 +24,12 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.*;
-import java.util.Hashtable;
 import java.util.Enumeration;
+import java.util.Hashtable;
+
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
 
 /**
  * Class representing one Global Transaction.

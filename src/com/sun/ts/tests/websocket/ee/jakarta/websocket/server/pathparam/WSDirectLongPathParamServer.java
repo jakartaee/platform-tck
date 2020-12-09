@@ -19,6 +19,8 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.pathparam;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -26,8 +28,6 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint(value = "/{param1}")
 public class WSDirectLongPathParamServer {

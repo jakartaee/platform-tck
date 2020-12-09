@@ -20,14 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import jakarta.jms.*;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.ParentMsgBean;
+
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.TextMessage;
 
 public class TestBeanMDB extends ParentMsgBean {
 

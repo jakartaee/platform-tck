@@ -19,13 +19,13 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.factoryfinder.webinf;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 

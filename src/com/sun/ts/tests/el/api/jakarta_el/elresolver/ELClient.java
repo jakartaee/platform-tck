@@ -23,13 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.elresolver;
 
 import java.util.Properties;
 
-import jakarta.el.ArrayELResolver;
-import jakarta.el.BeanELResolver;
-import jakarta.el.CompositeELResolver;
-import jakarta.el.ELContext;
-import jakarta.el.ELManager;
-import jakarta.el.ELResolver;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -37,6 +30,13 @@ import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BarELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
+
+import jakarta.el.ArrayELResolver;
+import jakarta.el.BeanELResolver;
+import jakarta.el.CompositeELResolver;
+import jakarta.el.ELContext;
+import jakarta.el.ELManager;
+import jakarta.el.ELResolver;
 
 public class ELClient extends ServiceEETest {
 

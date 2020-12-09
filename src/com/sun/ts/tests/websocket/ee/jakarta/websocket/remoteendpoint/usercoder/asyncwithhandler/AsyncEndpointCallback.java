@@ -17,14 +17,14 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.asyncwithhandler;
 
+import com.sun.ts.tests.websocket.common.client.EndpointCallback;
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
+import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.EndpointCallback;
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
-import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
 
 public class AsyncEndpointCallback extends EndpointCallback {
   protected Entity entity;

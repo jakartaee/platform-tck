@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface CMP11External extends EJBObject {
 

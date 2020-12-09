@@ -16,8 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
-import jakarta.persistence.*;
 import java.util.Map;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.MapKeyEnumerated;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "DEPARTMENT")

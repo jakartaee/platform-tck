@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
-import com.sun.ts.lib.util.WebUtil;
-import com.sun.ts.lib.util.TestUtil;
+import java.net.InetAddress;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
-import java.util.Properties;
-import java.net.InetAddress;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.WebUtil;
 
 public class Client extends EETest {
   // Configurable constants:

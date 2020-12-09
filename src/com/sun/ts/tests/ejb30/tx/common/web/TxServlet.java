@@ -20,8 +20,23 @@
 
 package com.sun.ts.tests.ejb30.tx.common.web;
 
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.interServletTxPropagation;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.interServletTxPropagation2;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmt;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtMandatory;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtNever;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtRequiresNew;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmt;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtMandatory;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtNever;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtRequiresNew;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.testname;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sun.ts.tests.servlet.common.util.Data;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
@@ -32,10 +47,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
-import com.sun.ts.tests.ejb30.tx.common.web.LocalIF;
-import com.sun.ts.tests.ejb30.tx.common.web.RemoteIF;
-import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
-import com.sun.ts.tests.servlet.common.util.Data;
 
 public class TxServlet extends HttpServlet {
   @Resource(name = "ut")

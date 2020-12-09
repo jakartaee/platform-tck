@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.ArrayList;
 import java.util.Vector;
+
 import javax.naming.NamingException;
+
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 /**
  * Multiple threads performing lookup of EJB and DataSource, and each thread has

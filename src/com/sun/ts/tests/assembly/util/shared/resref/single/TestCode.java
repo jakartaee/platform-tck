@@ -20,31 +20,27 @@
 
 package com.sun.ts.tests.assembly.util.shared.resref.single;
 
-import java.io.Serializable;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.Date;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.activation.DataHandler;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.mail.internet.InternetAddress;
-
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.activation.DataHandler;
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.TopicConnectionFactory;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 public class TestCode {
 

@@ -20,16 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.pkey;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import javax.naming.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
+import javax.naming.NamingException;
 
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public abstract class CompoundBeanEJB implements EntityBean {
 

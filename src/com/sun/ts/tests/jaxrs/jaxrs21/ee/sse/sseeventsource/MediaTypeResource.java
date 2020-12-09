@@ -16,6 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.sseeventsource;
 
+import javax.xml.namespace.QName;
+
+import com.sun.ts.tests.jaxrs.common.impl.JaxbKeyValueBean;
+import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
+import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -25,11 +31,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxrs.common.impl.JaxbKeyValueBean;
-import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
-import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
 
 @Path("media")
 public class MediaTypeResource {

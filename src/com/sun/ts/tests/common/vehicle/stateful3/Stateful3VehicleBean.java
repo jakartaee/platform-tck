@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.common.vehicle.stateful3;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
 
@@ -29,8 +31,11 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import jakarta.persistence.*;
-import java.util.Properties;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceUnit;
 
 @Stateful(name = "Stateful3VehicleBean")
 @Remote({ Stateful3VehicleIF.class })

@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.busiface;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
+
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.Stateful;

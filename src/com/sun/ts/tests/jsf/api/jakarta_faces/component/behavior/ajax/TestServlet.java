@@ -27,6 +27,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common.BaseBehaviorTestServlet;
+import com.sun.ts.tests.jsf.common.beans.AlbumBean;
+import com.sun.ts.tests.jsf.common.listener.TCKBehaviorListener;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
 import jakarta.faces.component.UICommand;
@@ -40,11 +45,6 @@ import jakarta.faces.event.AjaxBehaviorListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common.BaseBehaviorTestServlet;
-import com.sun.ts.tests.jsf.common.beans.AlbumBean;
-import com.sun.ts.tests.jsf.common.listener.TCKBehaviorListener;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseBehaviorTestServlet {
 

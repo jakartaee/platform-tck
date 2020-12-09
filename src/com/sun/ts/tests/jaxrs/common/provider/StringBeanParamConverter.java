@@ -18,8 +18,6 @@ package com.sun.ts.tests.jaxrs.common.provider;
 
 import jakarta.ws.rs.ext.ParamConverter;
 
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-
 public class StringBeanParamConverter implements ParamConverter<StringBean> {
 
   public static final String VALUE = "Converted value: ";

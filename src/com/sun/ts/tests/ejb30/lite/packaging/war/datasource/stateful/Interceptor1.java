@@ -23,14 +23,15 @@ import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSo
 
 import java.sql.Connection;
 
+import javax.sql.DataSource;
+
+import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-import javax.sql.DataSource;
-
-import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;
 
 @DataSourceDefinition(name = "java:module/env/moduleds", description = "override with <data-source> in ejb-jar.xml", className = "jdbc.ClientDataSource", portNumber = 8080, serverName = "x", databaseName = "x", user = "x", password = "x",
 

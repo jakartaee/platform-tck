@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.resref.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class TestBeanEJB extends CMP11Wrapper {
 

@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.common.vehicle.puservlet;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 
 public class PUServletVehicleRunner extends WebVehicleRunner {
   protected Status run() {

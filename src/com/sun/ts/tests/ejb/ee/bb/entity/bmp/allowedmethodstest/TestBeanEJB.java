@@ -20,15 +20,31 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import java.rmi.*;
-import java.sql.*;
+import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.FinderException;
+import jakarta.ejb.RemoveException;
+import jakarta.ejb.TimedObject;
 
 public class TestBeanEJB implements EntityBean, TimedObject {
   private EntityContext ectx = null;

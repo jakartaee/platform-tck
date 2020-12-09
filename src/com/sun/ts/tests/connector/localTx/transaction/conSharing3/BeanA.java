@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing3;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Vector;
+
+import jakarta.ejb.EJBObject;
 
 public interface BeanA extends EJBObject {
   // Database methods

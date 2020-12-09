@@ -20,12 +20,22 @@
  */
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.sessionexception;
 
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-import com.sun.ts.tests.websocket.common.util.MessageValidator;
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import jakarta.websocket.*;
+
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+import com.sun.ts.tests.websocket.common.util.MessageValidator;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
+import jakarta.websocket.SessionException;
+import jakarta.websocket.WebSocketContainer;
 
 public class WSClient extends WebSocketCommonClient {
 

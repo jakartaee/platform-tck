@@ -20,12 +20,12 @@ package com.sun.ts.tests.websocket.negdep.onmessage.srv.textbigdecimal;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {

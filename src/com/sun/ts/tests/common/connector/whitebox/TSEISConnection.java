@@ -24,10 +24,10 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.Vector;
 import java.util.Hashtable;
+import java.util.Vector;
+
 import jakarta.resource.spi.ConnectionEvent;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class TSEISConnection implements TSConnection {
 

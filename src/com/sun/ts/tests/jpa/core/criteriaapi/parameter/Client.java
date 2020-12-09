@@ -16,14 +16,24 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.parameter;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.SetupMethod;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.*;
-
-import java.util.*;
+import jakarta.persistence.Parameter;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.ParameterExpression;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 public class Client extends PMClientBase {
 

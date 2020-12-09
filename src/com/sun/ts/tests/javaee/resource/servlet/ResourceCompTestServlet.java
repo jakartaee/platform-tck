@@ -16,17 +16,16 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import java.io.IOException;
 
+import jakarta.annotation.Resource;
+import jakarta.mail.MailSessionDefinition;
+import jakarta.mail.Session;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.mail.Session;
-import jakarta.mail.MailSessionDefinition;
-import jakarta.annotation.Resource;
-import java.io.IOException;
 
 @MailSessionDefinition(name = "java:comp/env/ResourceCompTestServlet_MailSession", properties = {
     "test=ResourceCompTestServlet_MailSession" })

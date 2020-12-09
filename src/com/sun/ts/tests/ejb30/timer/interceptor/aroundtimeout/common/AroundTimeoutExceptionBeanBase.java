@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 
 public class AroundTimeoutExceptionBeanBase
     extends TimerBeanBaseWithoutTimeOutMethod implements AroundTimeoutIF {

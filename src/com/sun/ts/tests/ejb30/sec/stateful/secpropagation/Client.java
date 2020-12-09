@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.sec.stateful.secpropagation;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
-import java.util.Properties;
-import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.sec.stateful.common.Test;
-import jakarta.ejb.EJBException;
+
 import jakarta.ejb.EJB;
 
 public class Client extends EETest {

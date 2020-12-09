@@ -21,15 +21,15 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.nodecoder;
 
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
+import com.sun.ts.tests.websocket.negdep.StringHolder;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
-import com.sun.ts.tests.websocket.negdep.StringHolder;
 
 /**
  * There is no tell whether @OnMessage on this endpoint is accepting binary or

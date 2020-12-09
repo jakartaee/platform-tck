@@ -19,17 +19,33 @@
  */
 package com.sun.ts.tests.servlet.api.common.request;
 
-import com.sun.ts.tests.servlet.common.util.Data;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Vector;
+
+import com.sun.ts.tests.servlet.common.util.Data;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletRequestWrapper;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class RequestTests {
 

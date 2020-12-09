@@ -23,15 +23,15 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.event.postputflashvalueevent;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.application.Application;
 import jakarta.faces.event.PostPutFlashValueEvent;
 import jakarta.faces.event.SystemEvent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseSystemEventTestServlet {
   private static final String FLASH_KEY = "key";

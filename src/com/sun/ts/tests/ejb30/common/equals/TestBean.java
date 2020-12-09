@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.ejb30.common.equals;
 
+import javax.naming.NamingException;
+
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import javax.naming.NamingException;
 
 @Stateless(name = "test-bean")
 @Remote

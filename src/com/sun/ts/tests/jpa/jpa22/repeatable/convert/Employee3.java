@@ -16,7 +16,9 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass()
 public abstract class Employee3 {

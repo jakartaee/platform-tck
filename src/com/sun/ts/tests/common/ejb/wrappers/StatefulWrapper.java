@@ -21,12 +21,14 @@
 package com.sun.ts.tests.common.ejb.wrappers;
 
 import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
-import jakarta.ejb.CreateException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 
 /**
  * Stateful wrapper that provide the bean life cycle methods for a Stateful

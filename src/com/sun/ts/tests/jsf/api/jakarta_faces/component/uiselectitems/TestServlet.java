@@ -19,21 +19,22 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.uiselectitems;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Vector;
+
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UISelectItems;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Vector;
 
 public class TestServlet extends BaseComponentTestServlet {
 

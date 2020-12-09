@@ -21,15 +21,16 @@
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-import jakarta.interceptor.Interceptors;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 //annotations to be ignored
 @Stateless(name = "StatelessRemoteCalculatorBean")

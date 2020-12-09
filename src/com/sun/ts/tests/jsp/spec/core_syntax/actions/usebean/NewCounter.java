@@ -57,8 +57,8 @@
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.usebean;
 
 import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class NewCounter extends Counter implements java.io.Serializable {
 

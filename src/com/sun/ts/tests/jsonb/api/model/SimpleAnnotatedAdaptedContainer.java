@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
-import jakarta.json.bind.annotation.JsonbTypeAdapter;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbTypeAdapter;
 
 public class SimpleAnnotatedAdaptedContainer
     implements TypeContainer<SimpleContainer> {

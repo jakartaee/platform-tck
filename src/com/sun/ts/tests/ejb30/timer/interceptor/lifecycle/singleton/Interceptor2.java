@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.lifecycle.singleton;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 public class Interceptor2 extends InterceptorBase {
   @SuppressWarnings("unused")

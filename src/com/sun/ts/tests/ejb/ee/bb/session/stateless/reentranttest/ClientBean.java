@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.reentranttest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface ClientBean extends EJBObject {
   public boolean loopBackSameBeanLocal() throws RemoteException;

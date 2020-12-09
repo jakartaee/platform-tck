@@ -20,7 +20,7 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-import java.io.*;
+
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 

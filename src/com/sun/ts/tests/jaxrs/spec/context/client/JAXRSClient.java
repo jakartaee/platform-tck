@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.spec.context.client;
 
+import static com.sun.ts.tests.jaxrs.spec.context.server.StringBeanEntityProviderWithInjectables.notInjected;
+
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 import com.sun.ts.tests.jaxrs.spec.context.server.StringBeanEntityProviderWithInjectables;
-
-import static com.sun.ts.tests.jaxrs.spec.context.server.StringBeanEntityProviderWithInjectables.*;
 
 /*
  * @class.setup_props: webServerHost;

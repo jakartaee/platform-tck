@@ -25,13 +25,6 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.EJBTransactionRequiredException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF;
 import com.sun.ts.tests.ejb30.common.generics.LocalIntGreetingIF;
 import com.sun.ts.tests.ejb30.common.generics.LocalParameterizedIF;
@@ -40,6 +33,13 @@ import com.sun.ts.tests.ejb30.common.generics.RemoteParameterizedIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBTransactionRequiredException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
   @EJB(name = "remoteIntGreetingBean")

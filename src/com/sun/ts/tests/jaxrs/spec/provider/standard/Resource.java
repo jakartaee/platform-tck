@@ -20,6 +20,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Reader;
 
+import javax.xml.transform.Source;
+
+import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
+
 import jakarta.activation.DataSource;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -30,9 +34,6 @@ import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.StreamingOutput;
-import javax.xml.transform.Source;
-
-import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
 
 @Path("resource")
 public class Resource {

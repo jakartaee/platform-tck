@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.reentranttest;
 
-import java.util.Properties;
-
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
   public void ping();

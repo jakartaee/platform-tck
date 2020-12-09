@@ -16,7 +16,17 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityResult;
+import jakarta.persistence.Id;
+import jakarta.persistence.LockModeType;
+import jakarta.persistence.NamedNativeQueries;
+import jakarta.persistence.NamedNativeQuery;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SqlResultSetMapping;
+import jakarta.persistence.Table;
 
 @NamedNativeQueries({
     @NamedNativeQuery(name = "findAllSQLCoffees2", query = "select \"ID\", \"BRANDNAME\", \"PRICE\" from \"COFFEE\"", resultClass = com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee.class),

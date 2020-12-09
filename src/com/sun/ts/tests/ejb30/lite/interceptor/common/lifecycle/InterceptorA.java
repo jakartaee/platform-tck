@@ -18,10 +18,10 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.interceptor.AroundConstruct;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public class InterceptorA extends Interceptor9 {
 

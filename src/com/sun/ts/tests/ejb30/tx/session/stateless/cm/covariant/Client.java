@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 

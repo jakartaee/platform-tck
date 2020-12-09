@@ -38,12 +38,12 @@ import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSync
 import java.util.Arrays;
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.NoSuchEJBException;
-
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 
 @EJB(name = "ejb/rollbackBean", beanInterface = RollbackBean.class, beanName = "RollbackBean")
 public class Client extends EJBLiteClientBase {

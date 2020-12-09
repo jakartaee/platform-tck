@@ -16,17 +16,15 @@
 
 package com.sun.ts.tests.ejb30.webservice.wscontext;
 
-import jakarta.jws.WebService;
-import jakarta.jws.WebMethod;
-import jakarta.ejb.Stateless;
+import java.security.Principal;
+
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
-import jakarta.interceptor.Interceptors;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.handler.MessageContext;
-import java.security.Principal;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless

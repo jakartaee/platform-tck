@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface DepartmentHome extends EJBHome {
   public Department create(Integer id, String name)

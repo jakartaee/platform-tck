@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.common.connector.util;
 
-import java.util.Vector;
-
 public interface TSMessageListenerInterface {
 
   public void onMessage(String message) throws AppException;

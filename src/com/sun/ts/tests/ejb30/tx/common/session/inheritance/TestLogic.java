@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EJBTransactionRequiredException;
 import jakarta.transaction.Status;

@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DynamicAttributeSetterMethodTag extends SimpleTagSupport {
 

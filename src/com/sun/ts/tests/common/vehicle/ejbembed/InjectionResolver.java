@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import jakarta.ejb.embeddable.EJBContainer;
-
-import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF;
 
 /**
  * Since JavaEE annotations are not required in ejb embeddable usage, this class

@@ -21,10 +21,10 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.postconstructviewmapevent;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseComponentSystemEventTestServlet;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.event.ComponentSystemEvent;
-
 import jakarta.faces.event.PostConstructViewMapEvent;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {

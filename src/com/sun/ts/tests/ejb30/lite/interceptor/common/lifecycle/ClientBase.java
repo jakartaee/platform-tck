@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import java.util.List;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 public class ClientBase extends EJBLiteClientBase {
 

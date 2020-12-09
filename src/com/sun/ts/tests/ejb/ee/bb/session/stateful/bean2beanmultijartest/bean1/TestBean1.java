@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface TestBean1 extends EJBObject {
   public boolean callOtherBeanTest() throws RemoteException;

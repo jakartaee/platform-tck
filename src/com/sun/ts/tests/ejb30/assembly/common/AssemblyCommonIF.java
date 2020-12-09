@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.net.URL;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface AssemblyCommonIF {
   public static final String RESOURCE_NAME = "foo.txt";

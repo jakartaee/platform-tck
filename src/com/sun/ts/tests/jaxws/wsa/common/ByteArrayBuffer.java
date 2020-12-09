@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jaxws.wsa.common;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jaspic.spi.soap;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 

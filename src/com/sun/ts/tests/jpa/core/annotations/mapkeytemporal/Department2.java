@@ -16,9 +16,18 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeytemporal;
 
-import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Map;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapKeyClass;
+import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.MapKeyTemporal;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "DEPARTMENT2")

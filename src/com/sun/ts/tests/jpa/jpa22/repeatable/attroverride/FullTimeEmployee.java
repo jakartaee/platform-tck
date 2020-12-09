@@ -16,9 +16,17 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /*
  * FullTimeEmployee entity extends an MappedSuperClass while overriding

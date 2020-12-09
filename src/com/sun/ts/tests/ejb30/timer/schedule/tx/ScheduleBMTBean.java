@@ -19,9 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.tx;
 
+import java.util.logging.Level;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-import java.util.logging.Level;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;

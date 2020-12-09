@@ -16,7 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.entityManagerFactory;
 
-import java.math.BigInteger;
 import jakarta.annotation.Generated;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;

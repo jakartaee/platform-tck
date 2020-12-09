@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.allowedmethodstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
   public TestBeanLocal create(Properties p, Helper ref, int cofID,

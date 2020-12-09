@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import jakarta.ws.rs.core.GenericType;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.GenericType;
 
 /*
  * @class.setup_props: webServerHost;

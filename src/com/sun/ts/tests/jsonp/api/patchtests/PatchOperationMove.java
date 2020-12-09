@@ -16,8 +16,47 @@
 
 package com.sun.ts.tests.jsonp.api.patchtests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_OBJ_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_PATH;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createBoolArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createBoolArray2R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObjectMoveValue;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArray;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createIntArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createIntArray2R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createObjectArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createObjectArray2R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleBoolArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleBoolArray5R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleIntArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleIntArray5R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectArray5R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleStringArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleStringArray5R;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray1;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray2R;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
@@ -26,9 +65,6 @@ import jakarta.json.JsonPatch;
 import jakarta.json.JsonPatchBuilder;
 import jakarta.json.JsonPointer;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

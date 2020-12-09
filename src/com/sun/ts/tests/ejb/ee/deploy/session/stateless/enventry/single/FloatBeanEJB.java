@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class FloatBeanEJB extends StatelessWrapper {
 

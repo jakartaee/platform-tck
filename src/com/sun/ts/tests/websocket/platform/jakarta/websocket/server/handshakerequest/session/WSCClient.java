@@ -17,10 +17,10 @@
 
 package com.sun.ts.tests.websocket.platform.jakarta.websocket.server.handshakerequest.session;
 
-import jakarta.websocket.ClientEndpointConfig;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.impl.ClientConfigurator;
+
+import jakarta.websocket.ClientEndpointConfig;
 
 /*
  * The tests here are not guaranteed to pass in standalone TCK, hence put 

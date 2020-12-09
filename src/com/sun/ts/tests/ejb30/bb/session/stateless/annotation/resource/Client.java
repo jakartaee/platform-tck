@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
-import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
-import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
+import javax.naming.NamingException;
+
+import org.omg.CORBA.ORB;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
+import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
-import javax.naming.NamingException;
-import org.omg.CORBA.ORB;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
 

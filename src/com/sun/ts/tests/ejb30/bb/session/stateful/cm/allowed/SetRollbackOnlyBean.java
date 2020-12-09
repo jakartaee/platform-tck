@@ -21,8 +21,10 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
 import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 import com.sun.ts.tests.ejb30.common.allowed.MySessionSynchronization;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;

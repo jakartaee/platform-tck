@@ -16,10 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.OneToMany;
 
 @IdClass(com.sun.ts.tests.jpa.core.override.joincolumn.CubiclePK.class)
 @Entity

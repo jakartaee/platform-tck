@@ -21,8 +21,9 @@
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface JTATestHome extends EJBHome {
   JTATest create(java.util.Properties p)

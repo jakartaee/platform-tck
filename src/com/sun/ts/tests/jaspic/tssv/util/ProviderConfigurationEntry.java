@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaspic.tssv.util;
 
+import java.io.Serializable;
+import java.util.Properties;
+
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.io.Serializable;
-import java.util.Properties;
 
 /**
  *

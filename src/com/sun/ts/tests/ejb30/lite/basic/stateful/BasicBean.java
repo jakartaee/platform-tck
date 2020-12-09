@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.lite.basic.stateful;
 
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
+
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
 
 @Stateful
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)

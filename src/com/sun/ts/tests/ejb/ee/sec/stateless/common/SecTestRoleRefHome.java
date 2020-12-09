@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
-import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface SecTestRoleRefHome extends EJBHome {
   SecTestRoleRef create() throws RemoteException, CreateException;

@@ -25,12 +25,12 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.logging.Filter;
-import java.util.logging.LogManager;
-import java.util.logging.Handler;
 import java.util.logging.FileHandler;
+import java.util.logging.Filter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * TSLogger is the custom Logger which extends java.util.Logger

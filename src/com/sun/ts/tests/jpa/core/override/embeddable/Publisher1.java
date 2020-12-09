@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
-import java.io.Serializable;
 
 @Embeddable
 public class Publisher1 implements Serializable {

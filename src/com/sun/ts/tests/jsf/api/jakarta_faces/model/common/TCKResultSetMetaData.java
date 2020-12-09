@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 
 public class TCKResultSetMetaData implements ResultSetMetaData {

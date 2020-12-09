@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 /**
  * singleton EJBs are used in many other test directories. This directory covers

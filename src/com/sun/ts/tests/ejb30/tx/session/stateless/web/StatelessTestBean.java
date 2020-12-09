@@ -20,17 +20,14 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.web;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
 import com.sun.ts.tests.ejb30.tx.common.web.LocalIF;
 import com.sun.ts.tests.ejb30.tx.common.web.RemoteIF;
 
 import jakarta.annotation.Resource;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 

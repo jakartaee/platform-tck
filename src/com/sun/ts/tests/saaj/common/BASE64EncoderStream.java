@@ -16,7 +16,9 @@
 
 package com.sun.ts.tests.saaj.common;
 
-import java.io.*;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * This class implements a BASE64 Encoder. It is implemented as a

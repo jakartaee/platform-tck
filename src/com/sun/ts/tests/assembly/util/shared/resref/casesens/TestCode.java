@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.assembly.util.shared.resref.casesens;
 
-import java.util.Properties;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.TopicConnectionFactory;
-import jakarta.jms.QueueConnection;
-import jakarta.jms.TopicConnection;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnection;
+import jakarta.jms.TopicConnectionFactory;
 
 public class TestCode {
 

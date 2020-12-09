@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jsf.spec.view.viewhandler;
 
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Formatter;
+
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
-import java.io.IOException;
 
 public class URLClient extends BaseHtmlUnitClient {
 

@@ -16,15 +16,13 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
+import java.lang.reflect.Method;
 import java.util.logging.Level;
 
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
-import jakarta.interceptor.AroundConstruct;
-import java.lang.reflect.Method;
-
-import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.interceptor.AroundConstruct;
+import jakarta.interceptor.InvocationContext;
 
 public class Interceptor10 extends InterceptorBase {
 

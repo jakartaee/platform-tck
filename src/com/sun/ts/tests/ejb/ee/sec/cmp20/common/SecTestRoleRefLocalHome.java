@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.CreateException;
-import java.util.Collection;
+import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface SecTestRoleRefLocalHome extends EJBLocalHome {

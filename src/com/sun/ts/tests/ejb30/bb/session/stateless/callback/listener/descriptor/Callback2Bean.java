@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor;
 
+import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
+import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import jakarta.annotation.Resource;
-
-import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 
 @Stateless(name = "Callback2Bean")
 @Remote({ Callback2IF.class })

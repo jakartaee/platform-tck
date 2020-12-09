@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 
 public class NotNullOrOneStringBeanValidator
     implements ConstraintValidator<NotNullOrOne, StringBean> {

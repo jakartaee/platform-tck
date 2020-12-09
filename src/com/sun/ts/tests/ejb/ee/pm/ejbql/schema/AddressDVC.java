@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.*;
+import java.util.Collection;
 
 // Dependent Value Class
 

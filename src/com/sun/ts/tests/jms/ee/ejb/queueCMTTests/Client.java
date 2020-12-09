@@ -19,17 +19,17 @@
  */
 package com.sun.ts.tests.jms.ee.ejb.queueCMTTests;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import jakarta.jms.*;
-import java.io.*;
-import jakarta.ejb.EJB;
 import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+import com.sun.ts.tests.jms.commonee.Tests;
+
+import jakarta.ejb.EJB;
+import jakarta.jms.DeliveryMode;
+import jakarta.jms.Queue;
 
 public class Client extends EETest {
 

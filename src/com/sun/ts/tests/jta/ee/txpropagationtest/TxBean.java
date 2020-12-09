@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jta.ee.txpropagationtest;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
+import java.util.Vector;
+
+import jakarta.ejb.EJBObject;
 
 public interface TxBean extends EJBObject {
   public void dbConnect(String tName) throws RemoteException;

@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class ShortBeanEJB extends StatefulWrapper {
 

@@ -22,10 +22,11 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.busiface;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "SerializableLocalBean")
 public class SerializableLocalBean extends BusinessLocal1Base

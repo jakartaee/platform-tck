@@ -19,19 +19,19 @@
  */
 package com.sun.ts.tests.jsf.spec.navigation;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.context.FacesContext;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.application.ViewHandler;
-import jakarta.faces.application.NavigationHandler;
-import jakarta.faces.context.FacesContext;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public final class TestServlet extends HttpTCKServlet {
 

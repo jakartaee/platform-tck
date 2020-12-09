@@ -21,9 +21,10 @@
 package com.sun.ts.tests.jsf.spec.flows.basicmethodcall.beans;
 
 import java.io.Serializable;
+
 import jakarta.enterprise.inject.Produces;
-import jakarta.faces.flow.builder.FlowBuilder;
 import jakarta.faces.flow.Flow;
+import jakarta.faces.flow.builder.FlowBuilder;
 import jakarta.faces.flow.builder.FlowBuilderParameter;
 import jakarta.faces.flow.builder.FlowDefinition;
 

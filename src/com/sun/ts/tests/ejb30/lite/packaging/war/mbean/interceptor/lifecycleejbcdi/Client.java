@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycleejb
 
 import java.util.List;
 
-import jakarta.inject.Inject;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.inject.Inject;
 
 /**
  * This test directory contains an empty beans.xml that will be packaged in WAR

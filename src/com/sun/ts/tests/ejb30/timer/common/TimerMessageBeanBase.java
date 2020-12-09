@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.ejb30.timer.common;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.TimerService;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenContext;
+import jakarta.ejb.TimerService;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 abstract public class TimerMessageBeanBase {
   public static final String test1 = "test1";

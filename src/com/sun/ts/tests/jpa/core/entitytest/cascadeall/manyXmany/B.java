@@ -20,10 +20,17 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXmany;
 
+import java.util.Collection;
+
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.persistence.*;
-import java.util.Collection;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "BEJB_MXM_BI_BTOB")

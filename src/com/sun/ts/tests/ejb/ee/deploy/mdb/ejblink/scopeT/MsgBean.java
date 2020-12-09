@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.scopeT;
 
 import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 

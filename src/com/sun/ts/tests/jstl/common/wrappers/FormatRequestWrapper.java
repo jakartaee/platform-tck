@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jstl.common.wrappers;
 
-import jakarta.servlet.http.HttpServletRequestWrapper;
-import jakarta.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 
 public class FormatRequestWrapper extends HttpServletRequestWrapper {
 

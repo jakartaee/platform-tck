@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.ejb30.misc.moduleName.twowars;
 
+import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFail;
-import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
 import java.io.IOException;
+
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
+import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -32,10 +36,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
-import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends TestServletBase {

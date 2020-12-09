@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 import com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport.ContainerInteractionTag;
 
 import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.tagext.BodyTag;
 import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.BodyTag;
 
 public class BodyContainerInteractionTag extends ContainerInteractionTag
     implements BodyTag {

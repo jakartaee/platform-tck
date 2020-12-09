@@ -20,17 +20,19 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar;
 
+import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;
+import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.annotation.Resource;
+import jakarta.jms.Topic;
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
-import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;
-import jakarta.jms.Topic;
 
 public class TestServlet extends GenericServlet {
 

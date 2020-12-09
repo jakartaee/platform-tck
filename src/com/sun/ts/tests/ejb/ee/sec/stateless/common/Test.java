@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface Test extends EJBObject {
   public void initLogging(java.util.Properties p)

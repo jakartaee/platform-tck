@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.busiface;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
+
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
 
 @Stateless(name = "SessionBeanLocalBean")
 public class SessionBeanLocalBean extends SessionBeanLocalBeanBase

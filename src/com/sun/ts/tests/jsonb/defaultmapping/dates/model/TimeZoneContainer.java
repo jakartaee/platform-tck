@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.TimeZone;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class TimeZoneContainer implements TypeContainer<TimeZone> {
   private TimeZone instance;

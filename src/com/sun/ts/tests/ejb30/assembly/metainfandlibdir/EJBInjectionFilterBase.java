@@ -20,20 +20,22 @@
 
 package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.ejb.EJB;
-import jakarta.annotation.PostConstruct;
 
 public class EJBInjectionFilterBase implements Filter {
   private boolean postConstructCalled;

@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
 
 public abstract class DataModelURLClient extends AbstractUrlClient {

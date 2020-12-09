@@ -24,10 +24,10 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import java.util.List;
 import java.util.logging.Level;
 
-import jakarta.ejb.ConcurrentAccessException;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.ConcurrentAccessException;
 
 abstract public class StatefulConcurrencyClientBase extends EJBLiteClientBase {
 

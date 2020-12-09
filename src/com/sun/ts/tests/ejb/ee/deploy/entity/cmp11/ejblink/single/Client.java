@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejblink.single;
 
 import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.dao.DAOFactory;
 

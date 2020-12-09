@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcon
 import java.io.IOException;
 import java.io.OutputStream;
 
-import jakarta.ws.rs.WebApplicationException;
-import jakarta.ws.rs.core.MultivaluedMap;
-import jakarta.ws.rs.ext.WriterInterceptorContext;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 import com.sun.ts.tests.jaxrs.common.impl.ReplacingOutputStream;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.ext.WriterInterceptorContext;
 
 public class InterceptorBodyOne
     extends TemplateInterceptorBody<WriterInterceptorContext> {

@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.ejb30.bb.async.stateful.annotated;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsRemoteIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
 
 @Stateful
 @Local({ AsyncAnnotatedMethodsIF.class })

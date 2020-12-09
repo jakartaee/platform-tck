@@ -20,18 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.listenerintf.implementing.externalizable;
 
+import jakarta.annotation.Resource;
+import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.messaging.Constants;
-import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import jakarta.ejb.MessageDriven;
-import jakarta.ejb.ActivationConfigProperty;
 import jakarta.jms.MessageListener;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 
 //This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element

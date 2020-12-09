@@ -16,8 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeycolumn;
 
-import jakarta.persistence.*;
 import java.util.Map;
+
+import jakarta.persistence.Cacheable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 /*
  * Department

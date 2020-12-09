@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 
-import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
-import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.rmi.RemoteException;
 
 public interface Remove2IF extends java.rmi.Remote {

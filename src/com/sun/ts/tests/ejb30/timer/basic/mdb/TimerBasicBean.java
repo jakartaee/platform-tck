@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.MessageDriven;
 import jakarta.jms.MessageListener;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 //This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element

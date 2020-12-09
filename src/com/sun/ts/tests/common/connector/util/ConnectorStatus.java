@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.common.connector.util;
 
-import com.sun.ts.lib.util.TestUtil;
 import java.util.Vector;
 
 /**

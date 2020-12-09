@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txbeanLocal;
 
-import java.rmi.*;
-import jakarta.ejb.*;
-import java.util.Properties;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface TxBeanHome extends EJBLocalHome {
   public TxBean create() throws CreateException;

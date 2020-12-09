@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.io.Serializable;
 
 @Entity
 public class RetailOrder1 implements Serializable {

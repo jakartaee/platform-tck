@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.delete;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface BeanLocal extends EJBLocalObject {
   // Business Methods for A CMP Fields

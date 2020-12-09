@@ -19,12 +19,12 @@ package com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.readerinterceptorco
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.ReaderInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 public class InterceptorTwoBody
     extends TemplateInterceptorBody<ReaderInterceptorContext> {

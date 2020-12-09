@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
+import java.util.ArrayList;
+
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
-import java.util.ArrayList;
 
 public final class CreateSRListener implements ServletRequestListener {
 

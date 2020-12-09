@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.contextPropagate_servlet;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
   private String host = null;

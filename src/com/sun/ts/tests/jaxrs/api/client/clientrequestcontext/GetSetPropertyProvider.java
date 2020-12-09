@@ -18,10 +18,10 @@ package com.sun.ts.tests.jaxrs.api.client.clientrequestcontext;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+
 import jakarta.ws.rs.client.ClientRequestContext;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.lib.harness.EETest.Fault;
 
 public class GetSetPropertyProvider extends ContextProvider {
   private AtomicInteger counter;

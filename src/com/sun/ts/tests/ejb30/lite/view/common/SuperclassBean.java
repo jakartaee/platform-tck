@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.common;
 
+import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
-
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 
 /**
  * This bean class may be extended by other bean classes, Stateless, Stateful,

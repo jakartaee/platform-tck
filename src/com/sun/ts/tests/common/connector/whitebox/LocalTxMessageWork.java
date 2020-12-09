@@ -24,19 +24,17 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
-import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.AppException;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 
 import jakarta.resource.ResourceException;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.endpoint.MessageEndpoint;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkContextProvider;
 
 public class LocalTxMessageWork implements Work, WorkContextProvider {

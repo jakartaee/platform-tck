@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.servlet3.rs.applicationpath;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
-import java.util.Set;
-import java.util.HashSet;
 
 @ApplicationPath("ApplicationPath%21")
 public class TSAppConfig extends Application {

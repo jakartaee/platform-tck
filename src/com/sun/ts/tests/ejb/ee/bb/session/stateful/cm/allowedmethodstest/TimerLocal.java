@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.util.Hashtable;
+import jakarta.ejb.EJBLocalObject;
+import jakarta.ejb.TimerHandle;
 
 public interface TimerLocal extends EJBLocalObject {
   public TimerHandle startTimer(long duration, String info);

@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.integration.session.jspejbjdbc;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import com.sun.ts.tests.integration.util.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.integration.util.DBSupport;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
-import java.util.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TellerBean implements SessionBean {
 

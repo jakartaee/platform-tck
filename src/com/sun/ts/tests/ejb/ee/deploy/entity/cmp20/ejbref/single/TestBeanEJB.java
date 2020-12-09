@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejbref.single;
 
 import java.util.Properties;
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
+
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class TestBeanEJB extends CMP20Wrapper {
 

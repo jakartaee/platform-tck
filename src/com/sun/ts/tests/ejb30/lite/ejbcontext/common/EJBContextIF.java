@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.List;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface EJBContextIF {
 

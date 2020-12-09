@@ -16,8 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex5b;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
+
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 
 /**
  *

@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import javax.transaction.xa.XAException;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
-import jakarta.resource.spi.XATerminator;
-import com.sun.ts.tests.common.connector.util.*;
-import javax.transaction.xa.XAException;
 
 public class LocalTxMessageListener implements WorkListener {
 

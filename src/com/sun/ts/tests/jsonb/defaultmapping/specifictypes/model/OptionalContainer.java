@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.specifictypes.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Optional;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class OptionalContainer implements TypeContainer<Optional<String>> {
   private Optional<String> instance;

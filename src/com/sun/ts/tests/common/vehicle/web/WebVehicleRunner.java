@@ -20,15 +20,19 @@
 
 package com.sun.ts.tests.common.vehicle.web;
 
-import java.io.*;
-import java.util.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
 
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.common.vehicle.*;
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class WebVehicleRunner implements VehicleRunnable {
 

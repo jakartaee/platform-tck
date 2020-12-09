@@ -16,14 +16,28 @@
 
 package com.sun.ts.tests.jpa.core.query.language;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.*;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.SetupMethod;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.schema30.Country;
+import com.sun.ts.tests.jpa.common.schema30.Customer;
+import com.sun.ts.tests.jpa.common.schema30.Department;
+import com.sun.ts.tests.jpa.common.schema30.LineItem;
+import com.sun.ts.tests.jpa.common.schema30.Order;
+import com.sun.ts.tests.jpa.common.schema30.Product;
+import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
+import com.sun.ts.tests.jpa.common.schema30.Util;
 
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
-import java.sql.Date;
-import java.util.*;
 
 public class Client extends Util {
 

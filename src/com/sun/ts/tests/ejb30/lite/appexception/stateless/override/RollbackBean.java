@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.lite.appexception.stateless.override;
 
+import com.sun.ts.tests.ejb30.common.appexception.RollbackIF;
+import com.sun.ts.tests.ejb30.common.appexception.RollbackOverrideBeanBase;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-
-import com.sun.ts.tests.ejb30.common.appexception.RollbackIF;
-import com.sun.ts.tests.ejb30.common.appexception.RollbackOverrideBeanBase;
 
 @Stateless
 @Local({ RollbackIF.class })

@@ -23,13 +23,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.NoMoreTimeoutsException;
-import jakarta.ejb.NoSuchObjectLocalException;
-import jakarta.ejb.ScheduleExpression;
-import jakarta.ejb.Timer;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -39,6 +32,13 @@ import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.NoMoreTimeoutsException;
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Timer;
 
 /**
  * Some tests use 2100 as a test calendar: January February Su Mo Tu We Th Fr Sa

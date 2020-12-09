@@ -21,16 +21,12 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.pkey;
 
 import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
-import com.sun.ts.tests.common.dao.coffee.variants.StringPKCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.LongPKCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.CompoundPKCoffeeDAO;
-import com.sun.javatest.Status;
 
 public class Client extends EETest {
 

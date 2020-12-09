@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.casesens;
 
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+
 import com.sun.ts.tests.assembly.util.shared.resref.casesens.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 

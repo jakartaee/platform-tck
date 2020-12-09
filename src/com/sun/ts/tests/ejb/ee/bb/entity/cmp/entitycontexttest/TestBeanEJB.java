@@ -20,17 +20,22 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.entitycontexttest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
-import java.io.*;
 import java.security.Principal;
-import jakarta.transaction.*;
-import javax.naming.*;
-import java.sql.*;
+import java.util.Properties;
+
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
+import jakarta.transaction.UserTransaction;
 
 public class TestBeanEJB implements EntityBean {
   // Expected property names

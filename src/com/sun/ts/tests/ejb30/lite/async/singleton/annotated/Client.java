@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.async.singleton.annotated;
 
 import java.util.concurrent.ExecutionException;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends
     com.sun.ts.tests.ejb30.lite.async.common.annotated.AnnotatedClientBase {

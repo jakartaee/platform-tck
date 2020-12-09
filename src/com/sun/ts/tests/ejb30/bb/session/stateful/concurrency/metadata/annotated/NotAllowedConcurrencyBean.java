@@ -22,14 +22,14 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotate
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
 
 @Stateful(mappedName = "stateful-concurrency-metada-annotated-NotAllowedConcurrencyBean")
 @Local(StatefulConcurrencyIF.class)

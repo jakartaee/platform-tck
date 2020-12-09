@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.common.vehicle.wsejb;
 
-import java.io.*;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import jakarta.ejb.*;
-import java.util.*;
-import com.sun.ts.lib.util.*;
+
 import com.sun.ts.lib.harness.RemoteStatus;
+
+import jakarta.ejb.EJBObject;
 
 public interface WSEJBVehicleRemote extends EJBObject {
   public RemoteStatus runTest() throws RemoteException;

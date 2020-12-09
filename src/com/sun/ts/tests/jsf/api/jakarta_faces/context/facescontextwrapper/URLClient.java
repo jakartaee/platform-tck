@@ -19,11 +19,10 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.context.facescontextwrapper;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
-
 import java.io.PrintWriter;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
 
 public final class URLClient extends AbstractUrlClient {
 

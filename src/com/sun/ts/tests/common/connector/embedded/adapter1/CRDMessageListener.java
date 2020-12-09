@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
+import javax.transaction.xa.XAException;
+
+import com.sun.ts.tests.common.connector.whitebox.Debug;
+import com.sun.ts.tests.common.connector.whitebox.XidImpl;
+
 import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
-import jakarta.resource.spi.XATerminator;
-import com.sun.ts.tests.common.connector.util.*;
-import com.sun.ts.tests.common.connector.whitebox.Debug;
-import javax.transaction.xa.Xid;
-import javax.transaction.xa.XAException;
-import com.sun.ts.tests.common.connector.whitebox.XidImpl;
 
 public class CRDMessageListener implements WorkListener {
 

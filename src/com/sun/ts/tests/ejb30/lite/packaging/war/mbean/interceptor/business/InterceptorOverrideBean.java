@@ -21,17 +21,17 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
 
 @ManagedBean
 @ExcludeDefaultInterceptors

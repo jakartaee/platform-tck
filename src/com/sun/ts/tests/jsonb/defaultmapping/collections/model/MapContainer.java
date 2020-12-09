@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Map;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class MapContainer implements TypeContainer<Map<String, String>> {
   private Map<String, String> instance;

@@ -21,7 +21,7 @@
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
 import java.util.Properties;
-import com.sun.ts.lib.harness.EETest;
+
 import com.sun.ts.lib.harness.RemoteStatus;
 
 public interface EJB3ShareIF {

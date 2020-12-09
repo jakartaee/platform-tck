@@ -23,8 +23,12 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import java.util.logging.*;
-import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Filter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * TSLogger is the custom Logger which extends java.util.Logger

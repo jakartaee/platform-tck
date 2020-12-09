@@ -21,9 +21,10 @@
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.descriptor;
 
 import com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ActivationConfigBeanBase;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;

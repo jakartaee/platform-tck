@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
-import jakarta.ejb.Remote;
 import java.util.Properties;
+
+import jakarta.ejb.Remote;
 
 @Remote
 public interface MDB_SNDQ_Test {

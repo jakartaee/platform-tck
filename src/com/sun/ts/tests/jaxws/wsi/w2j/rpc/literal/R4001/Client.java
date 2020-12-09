@@ -23,15 +23,14 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4001;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 
-import com.sun.ts.lib.harness.*;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 

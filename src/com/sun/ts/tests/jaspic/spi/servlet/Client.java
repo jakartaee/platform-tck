@@ -16,31 +16,30 @@
 
 package com.sun.ts.tests.jaspic.spi.servlet;
 
-import java.util.Properties;
-import java.io.InputStream;
-import java.io.File;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.BASE64Encoder;
 import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.tests.jaspic.util.LogFileProcessor;
+import com.sun.ts.lib.util.BASE64Encoder;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
 import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
+import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
+import com.sun.ts.tests.jaspic.util.LogFileProcessor;
 
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
-
-import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
-import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
 
 /**
  * This class will be used to perform simple servlet invocations. The servlet

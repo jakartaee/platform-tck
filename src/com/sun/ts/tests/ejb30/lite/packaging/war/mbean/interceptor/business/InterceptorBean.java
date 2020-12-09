@@ -21,11 +21,6 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
 import java.util.logging.Level;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.Interceptors;
-import jakarta.interceptor.InvocationContext;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor2;
@@ -35,6 +30,11 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 @ManagedBean
 @Interceptors({ Interceptor2.class, Interceptor1.class, Interceptor3.class,

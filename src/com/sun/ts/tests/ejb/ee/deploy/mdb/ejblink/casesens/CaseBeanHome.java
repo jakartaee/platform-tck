@@ -20,8 +20,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.casesens;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface CaseBeanHome extends EJBHome {
   public CaseBean create() throws RemoteException, CreateException;

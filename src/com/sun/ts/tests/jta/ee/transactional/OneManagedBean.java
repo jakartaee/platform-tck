@@ -16,22 +16,20 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import jakarta.annotation.Resource;
-import jakarta.transaction.SystemException;
-import jakarta.transaction.Transactional;
-import jakarta.transaction.UserTransaction;
-import jakarta.transaction.Transactional.TxType;
-import jakarta.annotation.Priority;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import jakarta.annotation.Priority;
+import jakarta.annotation.Resource;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.InterceptionType;
-import jakarta.enterprise.util.AnnotationLiteral;
-import jakarta.enterprise.inject.Any;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
+import jakarta.transaction.UserTransaction;
 
 @OneManagedQualifier
 public class OneManagedBean {

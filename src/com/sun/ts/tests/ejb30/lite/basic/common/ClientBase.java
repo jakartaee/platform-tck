@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   protected static final String appName = null;

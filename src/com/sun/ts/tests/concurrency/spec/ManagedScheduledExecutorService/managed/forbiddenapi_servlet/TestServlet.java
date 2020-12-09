@@ -17,18 +17,16 @@
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.managed.forbiddenapi_servlet;
 
 import java.io.PrintWriter;
-import java.io.IOException;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
+import java.util.concurrent.TimeUnit;
+
+import com.sun.ts.tests.concurrency.common.ConcurrencyTestUtils;
+import com.sun.ts.tests.concurrency.common.counter.CounterServlet;
+import com.sun.ts.tests.concurrency.common.counter.StaticCounter;
+
+import jakarta.enterprise.concurrent.ManagedScheduledExecutorService;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import com.sun.ts.tests.concurrency.common.*;
-import com.sun.ts.tests.concurrency.common.counter.*;
-import jakarta.enterprise.concurrent.*;
-import java.util.concurrent.*;
-import java.util.*;
 
 @WebServlet("/testServlet")
 public class TestServlet extends CounterServlet {

@@ -22,7 +22,6 @@
 
 package com.sun.ts.tests.jws.webmethod.webmethod1.server;
 
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/DefaultWebMethodWebServiceService.wsdl")

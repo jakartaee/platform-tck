@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.el.common.util;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
   int customerID;

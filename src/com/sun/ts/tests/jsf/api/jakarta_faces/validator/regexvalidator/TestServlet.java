@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.context.FacesContext;
@@ -33,9 +36,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorTestServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseValidatorTestServlet {
 

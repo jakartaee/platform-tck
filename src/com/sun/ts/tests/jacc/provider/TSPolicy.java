@@ -23,14 +23,23 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import java.security.*;
-import jakarta.security.jacc.*;
-import java.net.URL;
-import java.net.URI;
-import java.util.logging.*;
 import java.io.File;
+import java.security.CodeSource;
+import java.security.Permission;
+import java.security.PermissionCollection;
+import java.security.ProtectionDomain;
 import java.util.StringTokenizer;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+
 import com.sun.ts.lib.util.sec.security.provider.PolicyFile;
+
+import jakarta.security.jacc.EJBMethodPermission;
+import jakarta.security.jacc.EJBRoleRefPermission;
+import jakarta.security.jacc.PolicyContext;
+import jakarta.security.jacc.WebResourcePermission;
+import jakarta.security.jacc.WebRoleRefPermission;
+import jakarta.security.jacc.WebUserDataPermission;
 
 /**
  * This is a delegating Policy Implementation class which delegates the

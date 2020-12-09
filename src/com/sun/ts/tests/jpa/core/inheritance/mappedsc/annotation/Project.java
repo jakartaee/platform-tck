@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.mappedsc.annotation;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.math.BigDecimal;
 
 /*
  * Project

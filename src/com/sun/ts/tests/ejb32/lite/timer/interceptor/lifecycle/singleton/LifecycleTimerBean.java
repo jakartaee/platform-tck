@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 @Singleton
 // Interceptor1 is also configured as the default interceptor

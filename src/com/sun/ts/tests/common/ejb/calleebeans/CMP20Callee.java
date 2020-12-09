@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface CMP20Callee extends EJBObject {

@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import javax.naming.NamingException;
 
 abstract public class BBeanBase extends TxBeanBase {
 

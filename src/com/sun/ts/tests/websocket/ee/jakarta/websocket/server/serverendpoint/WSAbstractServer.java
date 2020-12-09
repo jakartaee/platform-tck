@@ -22,13 +22,13 @@ import static com.sun.ts.tests.websocket.common.util.StringUtil.objectsToString;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class WSAbstractServer {
 

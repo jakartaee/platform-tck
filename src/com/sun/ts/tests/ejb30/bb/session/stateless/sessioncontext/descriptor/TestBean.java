@@ -27,9 +27,10 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF;
+
 import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionContext;
 import jakarta.ejb.EJB;
+import jakarta.ejb.SessionContext;
 
 //@Stateless(name="TestBean")
 //@Remote({TestIF.class})

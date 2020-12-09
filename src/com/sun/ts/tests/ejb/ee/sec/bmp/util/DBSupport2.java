@@ -20,15 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.sec.bmp.util;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Properties;
 
-import java.util.*;
-import javax.naming.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
 
 public class DBSupport2 implements java.io.Serializable {

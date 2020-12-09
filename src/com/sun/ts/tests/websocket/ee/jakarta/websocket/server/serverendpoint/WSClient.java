@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 
-import jakarta.websocket.server.ServerEndpointConfig.Configurator;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryEncoder;
@@ -28,6 +26,8 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
+
+import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 /*
  * @class.setup_props: webServerHost;

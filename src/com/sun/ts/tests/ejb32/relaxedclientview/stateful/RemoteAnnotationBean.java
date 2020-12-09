@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.stateful;
 
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface1;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
+
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
 
 @Remote
 @Stateful

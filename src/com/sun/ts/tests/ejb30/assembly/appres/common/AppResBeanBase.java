@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
-import jakarta.annotation.PreDestroy;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.PreDestroy;
 
 public class AppResBeanBase implements AppResCommonIF {
   protected StringBuilder postConstructRecords = new StringBuilder();

@@ -36,8 +36,6 @@ import jakarta.el.MethodNotFoundException;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class ResolverTest {
   private static final String NL = System.getProperty("line.separator", "\n");
 

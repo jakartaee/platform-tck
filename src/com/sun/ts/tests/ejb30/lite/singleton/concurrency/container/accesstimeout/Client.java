@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeou
 import java.util.Properties;
 import java.util.Vector;
 
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.ejb.ConcurrentAccessException;
 import jakarta.ejb.ConcurrentAccessTimeoutException;
 import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
 public class Client extends EJBLiteClientBase {
   private static final int NUM_OF_THREADS = 100;

@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejblink.single;
 
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
+
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class TestBeanEJB extends CMP11Wrapper {
 

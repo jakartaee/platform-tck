@@ -19,7 +19,6 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common;
 
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
 
 public abstract class BaseBehaviorClient extends AbstractUrlClient {

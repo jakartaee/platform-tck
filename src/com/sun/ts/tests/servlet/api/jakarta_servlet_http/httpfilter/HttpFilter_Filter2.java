@@ -63,13 +63,13 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpfilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpFilter;
-
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 
 public final class HttpFilter_Filter2 extends HttpFilter {
 

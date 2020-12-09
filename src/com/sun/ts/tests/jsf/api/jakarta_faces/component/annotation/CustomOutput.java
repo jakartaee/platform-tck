@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.annotation;
 
-import jakarta.faces.application.ResourceDependencies;
 import jakarta.faces.application.ResourceDependency;
 import jakarta.faces.component.UIOutput;
 import jakarta.faces.event.AbortProcessingException;
-import jakarta.faces.event.PostAddToViewEvent;
 import jakarta.faces.event.ComponentSystemEvent;
 import jakarta.faces.event.ComponentSystemEventListener;
 import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 @ListenerFor(systemEventClass = PostAddToViewEvent.class, sourceClass = CustomOutput.class)
 @ResourceDependency(name = "#{'hello.js'}", library = "test", target = "#{'body'}")

@@ -16,16 +16,16 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.beanparam.matrix.plain;
 
+import com.sun.ts.tests.jaxrs.ee.rs.Constants;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamTest;
+import com.sun.ts.tests.jaxrs.ee.rs.beanparam.matrix.bean.MatrixBeanParamEntity;
+
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
-import com.sun.ts.tests.jaxrs.ee.rs.Constants;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamTest;
-import com.sun.ts.tests.jaxrs.ee.rs.beanparam.matrix.bean.MatrixBeanParamEntity;
 
 @Path(value = "resource")
 public class Resource extends ParamTest {

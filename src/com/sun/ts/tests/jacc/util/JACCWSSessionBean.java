@@ -24,6 +24,7 @@
 package com.sun.ts.tests.jacc.util;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 

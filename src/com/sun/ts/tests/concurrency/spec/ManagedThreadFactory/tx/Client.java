@@ -27,12 +27,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import jakarta.annotation.Resource;
 import javax.sql.DataSource;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.annotation.Resource;
 
 public class Client extends EETest {
 

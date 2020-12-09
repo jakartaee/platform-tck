@@ -16,17 +16,19 @@
 
 package com.sun.ts.tests.common.vehicle.ejbliteshare;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.BASE64Encoder;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import static com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.TEST_PASSED;
+
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
-import java.io.IOException;
 import java.util.logging.Logger;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.BASE64Encoder;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class EJBLiteSecuredWebVehicleRunner implements VehicleRunnable {
   private final static Logger logger = Logger

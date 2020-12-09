@@ -24,13 +24,14 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.GenericServlet;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.RequestDispatcher;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Simple Servlet-based error page that displays error related req attributes.

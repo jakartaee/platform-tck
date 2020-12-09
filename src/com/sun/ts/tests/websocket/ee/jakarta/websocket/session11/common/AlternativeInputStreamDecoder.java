@@ -21,11 +21,11 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder;
 import jakarta.websocket.EndpointConfig;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class AlternativeInputStreamDecoder
     implements Decoder.Binary<InputStream> {

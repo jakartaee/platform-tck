@@ -24,13 +24,12 @@ package com.sun.ts.tests.el.api.jakarta_el.functionmapper;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-import jakarta.el.FunctionMapper;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
-import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.FunctionMapper;
 
 public class ELClient extends ServiceEETest {
 

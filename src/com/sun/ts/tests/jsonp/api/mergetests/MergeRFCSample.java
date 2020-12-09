@@ -16,11 +16,14 @@
 
 package com.sun.ts.tests.jsonp.api.mergetests;
 
+import static com.sun.ts.tests.jsonp.api.common.MergeRFCObject.createRFCPatchObject;
+import static com.sun.ts.tests.jsonp.api.common.MergeRFCObject.createRFCSourceObject;
+import static com.sun.ts.tests.jsonp.api.common.MergeRFCObject.createRFCTargetObject;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import jakarta.json.JsonObject;
 
-import static com.sun.ts.tests.jsonp.api.common.MergeRFCObject.*;
+import jakarta.json.JsonObject;
 
 // $Id$
 /**

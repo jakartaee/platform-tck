@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.resref.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class TestBeanEJB extends CMP20Wrapper {
 

@@ -16,16 +16,16 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.webrw;
 
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TestBean;
+import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TestBean;
-import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean;
 
 /**
  * The difference between webrw and rw test directories is, in webrw directory,

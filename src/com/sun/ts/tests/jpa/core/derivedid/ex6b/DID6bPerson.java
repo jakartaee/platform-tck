@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex6b;
 
+import java.io.Serializable;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import java.io.Serializable;
 
 /**
  *

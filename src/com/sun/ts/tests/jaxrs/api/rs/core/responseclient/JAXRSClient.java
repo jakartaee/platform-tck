@@ -29,6 +29,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.core.CacheControl;
 import jakarta.ws.rs.core.Cookie;
 import jakarta.ws.rs.core.EntityTag;
@@ -44,12 +50,6 @@ import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.core.Response.StatusType;
 import jakarta.ws.rs.core.Variant;
 import jakarta.ws.rs.ext.RuntimeDelegate;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 public class JAXRSClient extends JAXRSCommonClient {
 

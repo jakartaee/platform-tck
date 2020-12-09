@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface FloatBeanHome extends EJBHome {
   public FloatBean create() throws RemoteException, CreateException;

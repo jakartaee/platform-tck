@@ -26,16 +26,16 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFa
 
 import java.io.IOException;
 
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
+import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
-import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 @WebServlet(urlPatterns = "/TestServlet2", loadOnStartup = 1)
 public class TestServlet2 extends TestServletBase {

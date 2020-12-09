@@ -22,19 +22,15 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.view.statemanagementstrategy;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.faces.FactoryFinder;
-import jakarta.faces.application.Application;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.render.RenderKitFactory;
 import jakarta.faces.view.StateManagementStrategy;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.view.common.TCKViewRoot;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
   private static final String JSP_VIEWID = "/root.jsp";

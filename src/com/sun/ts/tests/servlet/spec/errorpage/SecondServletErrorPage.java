@@ -21,6 +21,9 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.servlet.common.util.Data;
 
 import jakarta.servlet.RequestDispatcher;
@@ -28,8 +31,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Simple Servlet-based error page that displays error related req attributes.

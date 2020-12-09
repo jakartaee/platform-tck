@@ -25,12 +25,11 @@ import java.util.Properties;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.sun.ts.lib.harness.*;
-
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.*;
+import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.J2WRLSharedClient;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SchemaConstants;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;

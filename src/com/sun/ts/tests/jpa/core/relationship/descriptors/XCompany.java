@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import java.util.Collection;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XCompany

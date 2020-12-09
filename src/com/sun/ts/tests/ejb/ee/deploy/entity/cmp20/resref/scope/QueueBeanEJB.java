@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.resref.scope;
 
-import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class QueueBeanEJB extends CMP20Wrapper {
 

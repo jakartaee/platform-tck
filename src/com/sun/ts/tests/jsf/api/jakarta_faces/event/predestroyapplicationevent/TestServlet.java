@@ -27,7 +27,6 @@ import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestSe
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import jakarta.faces.application.Application;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PreDestroyApplicationEvent;
 import jakarta.faces.event.SystemEvent;
 import jakarta.servlet.ServletException;

@@ -22,17 +22,18 @@
 
 package com.sun.ts.tests.jws.handlerchain.server;
 
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.xml.namespace.QName;
-import jakarta.xml.ws.handler.*;
-import jakarta.xml.ws.handler.soap.*;
-import jakarta.xml.soap.SOAPMessage;
-import java.util.*;
 
-import com.sun.ts.tests.jws.common.Handler_Util;
 import com.sun.ts.tests.jws.common.Constants;
+import com.sun.ts.tests.jws.common.Handler_Util;
+
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public final class LogHandler_Interface
     implements SOAPHandler<SOAPMessageContext> {

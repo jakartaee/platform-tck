@@ -20,15 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import jakarta.ejb.CreateException;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import java.rmi.RemoteException;
 import java.util.Properties;
-import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
-import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_CLIENT;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;

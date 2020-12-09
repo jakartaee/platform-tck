@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.Remote;
 
 @Remote

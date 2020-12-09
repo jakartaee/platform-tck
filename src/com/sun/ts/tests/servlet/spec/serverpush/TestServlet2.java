@@ -17,15 +17,15 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Locale;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.PushBuilder;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Locale;
 
 public class TestServlet2 extends HttpServlet {
 

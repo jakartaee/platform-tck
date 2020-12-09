@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.business.descriptor;
 
 import java.util.List;
 
-import jakarta.interceptor.InvocationContext;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
+import jakarta.interceptor.InvocationContext;
 
 //@Singleton
 //@ExcludeDefaultInterceptors

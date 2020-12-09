@@ -16,24 +16,14 @@
 
 package com.sun.ts.tests.servlet.spec.security.annotations;
 
-import com.sun.ts.lib.porting.TSHttpsURLConnection;
+import java.io.PrintWriter;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.WebUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import com.sun.javatest.Status;
-
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.annotation.Resource;
-
-import java.util.Properties;
-import java.net.InetAddress;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.URL;
 
 /*
  *

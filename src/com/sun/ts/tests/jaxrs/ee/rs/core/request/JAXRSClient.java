@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.core.request;
 
-import jakarta.ws.rs.core.Response.Status;
-
 import org.apache.commons.httpclient.Header;
 
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Response.Status;
 
 public class JAXRSClient extends JAXRSCommonClient {
 

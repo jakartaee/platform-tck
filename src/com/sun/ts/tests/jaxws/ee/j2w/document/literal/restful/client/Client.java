@@ -19,31 +19,23 @@
  */
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.client;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.javatest.Status;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
-
-import org.w3c.dom.Node;
-
-import java.net.URL;
-import java.net.HttpURLConnection;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.stream.StreamResult;
+import java.io.InputStream;
 import java.util.Properties;
 
-import com.sun.ts.tests.jaxws.common.*;
-import com.sun.ts.tests.jaxws.sharedclients.HttpClient;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
-import javax.naming.InitialContext;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.sharedclients.HttpClient;
 
 public class Client extends ServiceEETest {
 

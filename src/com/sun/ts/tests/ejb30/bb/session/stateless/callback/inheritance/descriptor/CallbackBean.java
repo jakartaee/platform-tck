@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
+import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorH;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * A bean that overrides and thus disables all lifecycle callback methods in its

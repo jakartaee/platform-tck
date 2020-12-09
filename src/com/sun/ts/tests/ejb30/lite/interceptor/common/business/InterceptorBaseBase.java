@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 abstract public class InterceptorBaseBase {
   // we cannot use a getSimpleName() method, since it will always return the

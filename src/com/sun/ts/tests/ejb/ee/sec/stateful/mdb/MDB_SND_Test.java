@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBException;
+
+import jakarta.ejb.EJBObject;
 
 public interface MDB_SND_Test extends EJBObject {
 

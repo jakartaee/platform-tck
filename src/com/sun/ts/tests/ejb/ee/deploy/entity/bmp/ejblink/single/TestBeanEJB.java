@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejblink.single;
 
 import java.util.Properties;
-import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
+
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
-import com.sun.ts.tests.assembly.util.refbean.*;
+import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TestBeanEJB extends BMPWrapper {
 

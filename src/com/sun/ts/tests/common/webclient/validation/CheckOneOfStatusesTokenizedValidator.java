@@ -18,8 +18,6 @@ package com.sun.ts.tests.common.webclient.validation;
 
 import java.io.IOException;
 
-import com.sun.ts.tests.common.webclient.validation.TokenizedValidator;
-
 /**
  * Sometimes it is not clear what result one should get, there might be more two
  * or more possibilities. This strategy checks the response contains at least

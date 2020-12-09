@@ -21,12 +21,12 @@ package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
 import java.util.Properties;
 
+import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
-
-import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
 
 public class Client extends
     com.sun.ts.tests.ejb30.timer.interceptor.business.common.ClientBase {

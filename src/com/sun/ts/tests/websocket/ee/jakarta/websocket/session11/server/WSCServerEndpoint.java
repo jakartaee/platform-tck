@@ -24,15 +24,15 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.PongMessage;
-import jakarta.websocket.Session;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringList;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
+
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.PongMessage;
+import jakarta.websocket.Session;
 
 public class WSCServerEndpoint extends Endpoint {
   public WSCServerEndpoint(TypeEnum typeEnum) {

@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.concurrency.api.common;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
 
 public class CommonTasks {
 

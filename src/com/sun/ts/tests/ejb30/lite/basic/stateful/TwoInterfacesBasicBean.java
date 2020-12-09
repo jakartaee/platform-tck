@@ -22,13 +22,13 @@ package com.sun.ts.tests.ejb30.lite.basic.stateful;
 
 import java.util.concurrent.TimeUnit;
 
-import jakarta.ejb.AccessTimeout;
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic2IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
+
+import jakarta.ejb.AccessTimeout;
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateful;
 
 @Stateful
 @Local({ Basic1IF.class, Basic2IF.class })

@@ -20,12 +20,8 @@
 
 package com.sun.ts.tests.signaturetest.jacc;
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Properties;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.*;
+import com.sun.ts.tests.signaturetest.SigTestEE;
 
 /*
  * This class is a simple example of a signature test that extends the

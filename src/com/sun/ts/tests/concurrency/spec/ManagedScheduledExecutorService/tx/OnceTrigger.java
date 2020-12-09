@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.tx;
 
-import java.util.*;
-import jakarta.enterprise.concurrent.*;
+import java.util.Date;
+
+import jakarta.enterprise.concurrent.LastExecution;
+import jakarta.enterprise.concurrent.Trigger;
 
 public class OnceTrigger implements Trigger {
   public Date getNextRunTime(LastExecution lastExecutionInfo,

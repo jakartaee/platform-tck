@@ -24,9 +24,10 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagadapter;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 /**
  * SimpleTag instance to validate the that this SimpleTag is passed to the

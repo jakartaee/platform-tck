@@ -20,35 +20,39 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
+import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
+import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
+
+import java.net.URL;
+
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.omg.CORBA.ORB;
+
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import java.net.URL;
+
+import jakarta.annotation.Resource;
 import jakarta.annotation.Resource.AuthenticationType;
 import jakarta.annotation.Resources;
 import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TimerService;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.TopicConnectionFactory;
 import jakarta.jms.ConnectionFactory;
-import jakarta.mail.Session;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import jakarta.transaction.UserTransaction;
-import jakarta.jms.Queue;
-import jakarta.jms.Topic;
-import org.omg.CORBA.ORB;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TIMER_SERVICE_JNDI_NAME;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
-import jakarta.ejb.TimerService;
 import jakarta.jms.Destination;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.mail.Session;
 import jakarta.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.UserTransaction;
 
 @Stateless(name = "ResourceTypeBean")
 @Remote({ ResourceIF.class })

@@ -17,8 +17,8 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.io.File;
-import java.util.logging.XMLFormatter;
 import java.util.logging.Handler;
+import java.util.logging.XMLFormatter;
 
 /**
  *

@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class AttributeTag extends TagSupport {
   private static final String NL = System.getProperty("line.separator", "\n");

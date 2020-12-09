@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.servlet.ee.platform.deploy.enventry.single;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
 import com.sun.ts.tests.common.web.ServletWrapper;
-
-import java.util.Properties;
 
 /** Servlet test driver */
 public class ServletTest extends ServletWrapper {

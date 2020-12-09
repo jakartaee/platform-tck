@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.resref.scope;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class TopicBeanEJB extends CMP11Wrapper {
 

@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.common.ejb.dba;
 
-import java.util.Properties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
 import javax.sql.DataSource;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 

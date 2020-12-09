@@ -22,9 +22,8 @@ package com.sun.ts.tests.jsp.spec.tagext.resource.httplistener;
 
 import java.io.PrintWriter;
 
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import com.sun.ts.tests.servlet.common.util.Data;
 import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {
 

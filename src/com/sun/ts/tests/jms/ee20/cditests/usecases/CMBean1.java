@@ -16,18 +16,29 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 import java.util.Properties;
-import java.util.ArrayList;
-import jakarta.jms.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.naming.*;
-import jakarta.inject.Inject;
-import jakarta.annotation.Resource;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.inject.Inject;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless(name = "CDIUseCasesCMBEAN1")

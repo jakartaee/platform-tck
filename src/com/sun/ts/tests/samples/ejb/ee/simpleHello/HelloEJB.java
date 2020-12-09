@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.samples.ejb.ee.simpleHello;
 
-import jakarta.ejb.*;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class HelloEJB implements SessionBean {
   private SessionContext context;

@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.secrunaspropagation;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.ejb30.sec.stateless.common.Test;
-import com.sun.ts.tests.ejb30.sec.stateless.common.SecTest;
-import com.sun.ts.tests.ejb30.sec.stateless.common.SecTestRoleRef;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EETest {
   @EJB(beanName = "TestEJB")

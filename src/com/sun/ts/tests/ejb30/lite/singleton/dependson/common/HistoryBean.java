@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.common;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 

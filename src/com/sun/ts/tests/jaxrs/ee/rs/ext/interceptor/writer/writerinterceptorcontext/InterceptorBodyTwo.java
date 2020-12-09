@@ -18,10 +18,10 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcon
 
 import java.io.IOException;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.WriterInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 
 public class InterceptorBodyTwo
     extends TemplateInterceptorBody<WriterInterceptorContext> {

@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
+import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.SERVER_MSG;
+
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.SERVER_MSG;
 
 public class CommonBase implements CommonIF {
   public void passByReferenceTest(String[] args) {

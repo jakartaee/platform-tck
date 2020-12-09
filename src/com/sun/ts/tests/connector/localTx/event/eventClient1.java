@@ -21,15 +21,16 @@
 package com.sun.ts.tests.connector.localTx.event;
 
 import java.io.Serializable;
-import java.util.Vector;
 import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.connector.util.DBSupport;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.tests.connector.util.DBSupport;
 
 public class eventClient1 extends ServiceEETest implements Serializable {
 

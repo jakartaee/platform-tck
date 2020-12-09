@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb30.misc.getresource.warejb;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import static com.sun.ts.tests.servlet.common.util.Data.FAILED;
-import static com.sun.ts.tests.servlet.common.util.Data.PASSED;
 
 public class Client extends AbstractUrlClient {
   public static final String CONTEXT_ROOT = "/misc_getresource_warejb_web";

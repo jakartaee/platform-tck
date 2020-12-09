@@ -18,17 +18,11 @@ package com.sun.ts.tests.securityapi.securitycontext.ejb;
 
 import static jakarta.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.security.enterprise.AuthenticationException;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
-import jakarta.security.enterprise.credential.CallerOnlyCredential;
-import jakarta.security.enterprise.credential.Credential;
-import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
 import jakarta.security.enterprise.identitystore.IdentityStoreHandler;
 import jakarta.servlet.http.HttpServletRequest;

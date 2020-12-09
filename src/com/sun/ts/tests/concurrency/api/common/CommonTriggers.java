@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.concurrency.api.common;
 
-import java.util.*;
-import jakarta.enterprise.concurrent.*;
+import java.util.Date;
+
+import jakarta.enterprise.concurrent.LastExecution;
+import jakarta.enterprise.concurrent.Trigger;
 
 public class CommonTriggers {
 

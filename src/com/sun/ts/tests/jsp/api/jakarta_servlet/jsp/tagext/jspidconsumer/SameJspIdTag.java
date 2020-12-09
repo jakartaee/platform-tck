@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import jakarta.servlet.jsp.JspWriter;
+
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspIdConsumer;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
 
 public class SameJspIdTag extends SimpleTagSupport implements JspIdConsumer {
 

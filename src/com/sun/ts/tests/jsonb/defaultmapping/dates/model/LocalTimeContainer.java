@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.LocalTime;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class LocalTimeContainer implements TypeContainer<LocalTime> {
   private LocalTime instance;

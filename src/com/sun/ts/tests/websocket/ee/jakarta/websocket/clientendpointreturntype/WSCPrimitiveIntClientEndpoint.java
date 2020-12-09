@@ -17,6 +17,8 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointreturntype;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -25,8 +27,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 
 @ClientEndpoint
 public class WSCPrimitiveIntClientEndpoint

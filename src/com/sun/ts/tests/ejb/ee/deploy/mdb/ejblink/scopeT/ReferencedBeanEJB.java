@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.scopeT;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class ReferencedBeanEJB extends StatelessWrapper {
 

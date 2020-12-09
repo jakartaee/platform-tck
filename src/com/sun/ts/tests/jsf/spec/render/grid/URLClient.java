@@ -20,23 +20,23 @@
 package com.sun.ts.tests.jsf.spec.render.grid;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Formatter;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlTable;
-import com.gargoylesoftware.htmlunit.html.HtmlTableHeader;
-import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
-import com.gargoylesoftware.htmlunit.html.HtmlTableHeaderCell;
-import com.gargoylesoftware.htmlunit.html.HtmlTableBody;
-import com.gargoylesoftware.htmlunit.html.HtmlTableFooter;
-import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
 import com.gargoylesoftware.htmlunit.html.HtmlCaption;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlTable;
+import com.gargoylesoftware.htmlunit.html.HtmlTableBody;
+import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
+import com.gargoylesoftware.htmlunit.html.HtmlTableFooter;
+import com.gargoylesoftware.htmlunit.html.HtmlTableHeader;
+import com.gargoylesoftware.htmlunit.html.HtmlTableHeaderCell;
+import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.util.ArrayList;
 
 public class URLClient extends BaseHtmlUnitClient {
 

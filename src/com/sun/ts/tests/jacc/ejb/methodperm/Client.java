@@ -17,24 +17,20 @@
 package com.sun.ts.tests.jacc.ejb.methodperm;
 
 import java.security.Permissions;
-import jakarta.security.jacc.EJBMethodPermission;
-import jakarta.security.jacc.EJBRoleRefPermission;
-
-import java.util.Properties;
-import java.util.Iterator;
-import java.util.StringTokenizer;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import com.sun.ts.tests.jacc.util.LogRecordEntry;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
+import java.util.Properties;
+import java.util.StringTokenizer;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jacc.util.LogFileProcessor;
 import com.sun.ts.tests.jacc.util.LogRecordEntry;
+
+import jakarta.security.jacc.EJBMethodPermission;
+import jakarta.security.jacc.EJBRoleRefPermission;
 
 // CAUTION: *** The expected permissions constructed for various permissions
 //           such as WebResourcePermission, WebRoleRefPermission,

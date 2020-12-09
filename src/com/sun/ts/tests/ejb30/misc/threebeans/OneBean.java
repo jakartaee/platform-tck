@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 @Stateless
 @Local(OneLocalIF.class)

@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
-import java.lang.String;
-
 public interface SecTest {
   public String getCallerPrincipalName();
 }

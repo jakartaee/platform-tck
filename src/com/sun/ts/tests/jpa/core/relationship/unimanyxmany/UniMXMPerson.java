@@ -16,9 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.relationship.unimanyxmany;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 /**
  *

@@ -16,25 +16,21 @@
 
 package com.sun.ts.tests.connector.resourceDefs.ejb;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.HttpMethodConstraint;
-import jakarta.servlet.annotation.HttpConstraint;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.annotation.security.DeclareRoles;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-
-import jakarta.resource.cci.Connection;
-import jakarta.resource.spi.TransactionSupport;
-
 import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /*
  * In order for these tests to pass, we must have whitebox-tx.rar configured & deployed.

@@ -22,12 +22,12 @@ package com.sun.ts.tests.jsf.spec.render.common;
 
 import java.util.Map;
 
-import jakarta.faces.event.ActionListener;
-import jakarta.faces.event.ActionEvent;
-import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class SimpleActionListener implements ActionListener {

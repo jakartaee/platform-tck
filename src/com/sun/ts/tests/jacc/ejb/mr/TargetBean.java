@@ -16,25 +16,19 @@
 
 package com.sun.ts.tests.jacc.ejb.mr;
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.annotation.security.RolesAllowed;
-import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.DenyAll;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.Resource;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.EJBs;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Remote;
 
 @Stateless(name = "TargetBean")
 // @Remote({Target.class})

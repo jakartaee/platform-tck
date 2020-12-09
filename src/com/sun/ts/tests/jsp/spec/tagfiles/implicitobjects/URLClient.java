@@ -21,8 +21,8 @@
 package com.sun.ts.tests.jsp.spec.tagfiles.implicitobjects;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {

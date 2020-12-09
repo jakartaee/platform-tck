@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
+import java.util.Iterator;
+
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.lifecycle.LifecycleFactory;
 import jakarta.faces.render.RenderKit;
 import jakarta.faces.render.RenderKitFactory;
-
-import java.util.Iterator;
 
 /**
  * <p>

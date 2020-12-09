@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -34,8 +35,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.sun.ts.lib.harness.EETest;
-
-import java.io.Serializable;
 
 public class DescriptionClient implements Serializable {
 

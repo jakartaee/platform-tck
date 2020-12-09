@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.util.utiltests;
 
-import java.util.*;
+import java.util.ListResourceBundle;
 
 public class LocalStrings extends ListResourceBundle {
   public Object[][] getContents() {

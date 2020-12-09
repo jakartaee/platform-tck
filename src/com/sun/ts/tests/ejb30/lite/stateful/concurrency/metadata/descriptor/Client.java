@@ -23,11 +23,11 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.defaultConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanNoInterface;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 
 @EJBs({
     @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyBeanBase.class),

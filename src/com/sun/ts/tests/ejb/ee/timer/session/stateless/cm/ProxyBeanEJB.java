@@ -24,12 +24,12 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.cm;
 
-import com.sun.ts.tests.ejb.ee.timer.common.*;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.TSLoginContext;
-import jakarta.ejb.*;
-import java.io.Serializable;
+import com.sun.ts.tests.ejb.ee.timer.common.TimerImpl;
+
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.TimerHandle;
 
 public class ProxyBeanEJB extends StatefulWrapper {
 

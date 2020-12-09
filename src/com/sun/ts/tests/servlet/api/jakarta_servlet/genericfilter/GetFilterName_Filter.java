@@ -63,14 +63,13 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.GenericFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 
 public final class GetFilterName_Filter extends GenericFilter {
 

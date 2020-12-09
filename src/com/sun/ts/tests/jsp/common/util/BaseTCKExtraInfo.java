@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
-import jakarta.servlet.jsp.tagext.TagData;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 
 public abstract class BaseTCKExtraInfo extends TagExtraInfo {
 

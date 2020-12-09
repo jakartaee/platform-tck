@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.ejb30.assembly.librarydirectory.defaultname;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.EAR_LIB_JAR_NAME;
 import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.RESOURCE_NAME;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import com.sun.ts.tests.ejb30.assembly.common.Util;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 

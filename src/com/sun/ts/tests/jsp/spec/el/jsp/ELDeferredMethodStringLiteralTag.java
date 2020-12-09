@@ -16,13 +16,15 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
 import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
 
 public class ELDeferredMethodStringLiteralTag extends SimpleTagSupport {
   private static final String NL = System.getProperty("line.separator", "\n");

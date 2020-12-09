@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
 import java.util.Collection;
 
-import jakarta.ejb.TimedObject;
-import jakarta.ejb.Timer;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.Timer;
 
 abstract public class SharingTimerBeanBase
     extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {

@@ -20,13 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.webaccesstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import javax.naming.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public abstract class AEJB implements EntityBean {
 

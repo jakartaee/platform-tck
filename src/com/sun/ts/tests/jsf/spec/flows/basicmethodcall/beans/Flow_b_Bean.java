@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.flows.basicmethodcall.beans;
 
-import jakarta.faces.flow.FlowScoped;
 import java.io.Serializable;
 
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.flow.FlowScoped;
 import jakarta.inject.Named;
 
 @Named

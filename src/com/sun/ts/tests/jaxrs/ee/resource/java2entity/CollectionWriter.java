@@ -25,14 +25,14 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.ts.tests.jaxrs.common.AbstractMessageBodyRW;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.AbstractMessageBodyRW;
 
 /**
  * If isWritable arguments are passed according to the spec, writes OK,

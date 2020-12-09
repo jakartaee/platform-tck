@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TestBeanEJB extends BMPWrapper {
 

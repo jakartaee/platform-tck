@@ -24,13 +24,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
+import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalDeserializer;
+
 import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;
 import jakarta.json.bind.serializer.JsonbDeserializer;
 import jakarta.json.stream.JsonParser;
-
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalDeserializer;
 
 public class AnimalListDeserializerInjected
     implements JsonbDeserializer<List<Animal>> {

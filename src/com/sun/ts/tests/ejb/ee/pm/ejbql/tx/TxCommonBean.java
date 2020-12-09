@@ -19,10 +19,9 @@
  */
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 /**
  * The TxCommonBean is an entity EJB. Most of the business methods of the

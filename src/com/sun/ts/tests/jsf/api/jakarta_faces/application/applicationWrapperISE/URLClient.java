@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.application.applicationWrapperISE;
 
+import java.io.PrintWriter;
+import java.net.URL;
+
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
-import java.net.URL;
 
 public final class URLClient extends AbstractUrlClient {
 

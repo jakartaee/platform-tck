@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
 @WebService(portName = "HeaderTestPort", serviceName = "HeaderTestService", targetNamespace = "http://headertestservice.org/HeaderTestService.wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLHeaderTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest.HeaderTest")

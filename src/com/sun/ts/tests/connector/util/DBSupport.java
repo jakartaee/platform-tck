@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.connector.util;
 
-import com.sun.ts.lib.util.*;
-import java.util.*;
-import com.sun.ts.tests.common.connector.whitebox.*;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
 /* 
  * This class serves as a Database access utility for the Connector tests. 

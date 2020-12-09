@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.bm;
 
+import java.util.Properties;
+
 import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.TimerHandle;
-import java.util.Properties;
 
 public interface TestBeanLocal extends EJBLocalObject {
   public TimerHandle initializeTimerHandle(int timerType, int timeoutAction);

@@ -16,18 +16,10 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.Map;
-import java.util.Vector;
-import jakarta.resource.spi.ResourceAdapter;
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
-import jakarta.resource.spi.work.WorkException;
-import com.sun.ts.tests.common.connector.util.*;
-import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.ActivationSpec;
 
 /*
  * This class is used to assist with testing of work context notifications

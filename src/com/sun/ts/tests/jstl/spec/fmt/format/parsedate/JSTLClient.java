@@ -20,14 +20,9 @@
 
 package com.sun.ts.tests.jstl.spec.fmt.format.parsedate;
 
-import java.util.Locale;
-import java.util.GregorianCalendar;
-import java.util.Date;
-import java.util.TimeZone;
-import java.text.DateFormat;
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
 public class JSTLClient extends AbstractUrlClient {

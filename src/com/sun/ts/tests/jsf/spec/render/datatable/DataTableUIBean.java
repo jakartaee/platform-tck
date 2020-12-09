@@ -20,8 +20,8 @@
 package com.sun.ts.tests.jsf.spec.render.datatable;
 
 import jakarta.faces.application.Application;
-import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.faces.component.html.HtmlColumn;
+import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.context.FacesContext;
 

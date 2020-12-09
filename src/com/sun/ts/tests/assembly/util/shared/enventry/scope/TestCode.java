@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.assembly.util.shared.enventry.scope;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class TestCode {
 

@@ -16,8 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Hardware implements Serializable {

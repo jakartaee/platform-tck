@@ -17,6 +17,7 @@
 package com.sun.ts.tests.jpa.common.schema30;
 
 import java.sql.Date;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;

@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.singleton;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.ClientBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
 

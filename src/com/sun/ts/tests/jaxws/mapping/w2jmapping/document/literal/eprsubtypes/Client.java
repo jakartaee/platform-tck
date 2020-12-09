@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.eprsubtypes;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.lang.reflect.Method;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import java.util.Properties;
-import java.lang.reflect.Method;
+import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 
 public class Client extends ServiceEETest {
 

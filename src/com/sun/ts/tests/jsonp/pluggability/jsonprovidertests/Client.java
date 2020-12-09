@@ -19,28 +19,37 @@
  */
 package com.sun.ts.tests.jsonp.pluggability.jsonprovidertests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import jakarta.json.*;
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.*;
-import java.io.*;
-import java.nio.charset.Charset;
-
-import com.sun.javatest.Status;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 
-import com.sun.ts.tests.jsonp.common.*;
-import com.sun.ts.tests.jsonp.provider.MyJsonProvider;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
 import com.sun.ts.tests.jsonp.provider.MyJsonGenerator;
+import com.sun.ts.tests.jsonp.provider.MyJsonProvider;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonBuilderFactory;
+import jakarta.json.JsonException;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonReaderFactory;
+import jakarta.json.JsonWriter;
+import jakarta.json.JsonWriterFactory;
+import jakarta.json.spi.JsonProvider;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGeneratorFactory;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParserFactory;
 
 public class Client extends ServiceEETest {
   private static final String MY_JSONPROVIDER_CLASS = "com.sun.ts.tests.jsonp.provider.MyJsonProvider";

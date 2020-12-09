@@ -21,17 +21,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
+import com.sun.ts.tests.websocket.common.impl.ExtensionParameterImpl;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.common.util.StringUtil;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Extension;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
-import com.sun.ts.tests.websocket.common.impl.ExtensionParameterImpl;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 /*
  * The comparison is to be made here, as the Extension.Parameters are not sorted

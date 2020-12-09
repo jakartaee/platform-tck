@@ -27,13 +27,13 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.lite.async.common.AsyncClientBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 abstract public class AnnotatedClientBase extends AsyncClientBase {
   protected int num1 = 10;

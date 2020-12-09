@@ -20,18 +20,29 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.saaj.common.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
-import jakarta.servlet.http.*;
-import jakarta.servlet.*;
-import jakarta.xml.soap.*;
-import javax.xml.namespace.*;
-import jakarta.activation.DataHandler;
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import javax.xml.namespace.QName;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.SOAP_Util;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPBodyElement;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPEnvelope;
+import jakarta.xml.soap.SOAPHeader;
+import jakarta.xml.soap.SOAPHeaderElement;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 public class SOAPConstantsTestServlet extends HttpServlet {
   private String EXP_DEFAULT_SOAP_PROTOCOL = "SOAP 1.1 Protocol";

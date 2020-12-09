@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.delete;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 public class BDVC implements java.io.Serializable {
 
   private String id;

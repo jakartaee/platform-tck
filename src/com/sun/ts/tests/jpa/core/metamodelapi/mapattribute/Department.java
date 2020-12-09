@@ -16,8 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.mapattribute;
 
-import jakarta.persistence.*;
 import java.util.Map;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 /*
  * Department

@@ -17,10 +17,10 @@
 
 package com.sun.ts.tests.common.jspservletsec;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
-
-import java.util.Properties;
 
 public class SecBasicClient extends BaseUrlClient {
 

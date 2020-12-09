@@ -16,9 +16,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
-import javax.transaction.xa.*;
-import jakarta.resource.spi.*;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 
 public class IBAnnoMessageXAResource1 implements XAResource {

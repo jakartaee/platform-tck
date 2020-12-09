@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class NoInterfaceAppExceptionBean extends AppExceptionBeanBase {

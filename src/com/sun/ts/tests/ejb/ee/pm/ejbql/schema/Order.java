@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface Order extends EJBObject {
   // Business Methods for A CMP Fields

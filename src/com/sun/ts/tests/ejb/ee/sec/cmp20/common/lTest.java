@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface lTest extends EJBObject {
   public boolean IsCallerB1(String caller) throws RemoteException;

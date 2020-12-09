@@ -16,11 +16,16 @@
 
 package com.sun.ts.tests.jsonp.api.mergetests;
 
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectMoveStr;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import jakarta.json.JsonObject;
 
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
+import jakarta.json.JsonObject;
 
 // $Id$
 /**

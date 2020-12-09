@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.ConverterException;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.component.UIComponent;
 
 public class TCKConverter implements Converter {
 

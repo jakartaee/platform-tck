@@ -61,12 +61,12 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributelistener40;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 
 public class TestServlet extends GenericTCKServlet {
 

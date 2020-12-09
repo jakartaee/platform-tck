@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.appclient.deploy.ejblink.path;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface ReferencedBean2 extends EJBObject {

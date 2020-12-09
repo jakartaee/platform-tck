@@ -16,14 +16,39 @@
 
 package com.sun.ts.tests.jsonp.api.jsonparsertests;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jsonp.api.common.TestResult;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BDC_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BIN_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DBL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.LNG_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArray;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.jsonData;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.toJsonValue;
+
 import java.io.StringReader;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
@@ -31,9 +56,6 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonStructure;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

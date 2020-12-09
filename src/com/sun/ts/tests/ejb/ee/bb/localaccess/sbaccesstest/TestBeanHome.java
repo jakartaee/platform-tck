@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.sbaccesstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create(Properties p) throws RemoteException, CreateException;

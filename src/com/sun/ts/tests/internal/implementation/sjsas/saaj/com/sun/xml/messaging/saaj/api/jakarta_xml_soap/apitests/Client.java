@@ -20,28 +20,14 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.api.jakarta_xml_soap.apitests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.net.*;
-import java.util.*;
-import java.rmi.*;
-
-import com.sun.org.apache.xerces.internal.dom.*;
-import org.w3c.dom.*;
-
-import javax.xml.transform.stream.*;
-import jakarta.xml.soap.*;
-import jakarta.activation.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 
-// Import implementation specific classes to test
-import com.sun.xml.messaging.saaj.soap.MySOAPMessageImpl;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPHeader;
 
 public class Client extends EETest {
   private Properties props = null;

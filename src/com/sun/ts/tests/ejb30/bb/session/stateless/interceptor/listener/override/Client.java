@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.overrid
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
-
 import com.sun.ts.tests.ejb30.common.interceptor.ClientBase;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

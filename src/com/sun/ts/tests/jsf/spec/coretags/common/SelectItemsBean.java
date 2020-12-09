@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.coretags.common;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.faces.model.SelectItem;
 
 public class SelectItemsBean {

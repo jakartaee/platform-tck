@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
+import java.sql.Date;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.sql.Date;
-import java.util.Properties;
 
 /*
  * @since 2.2

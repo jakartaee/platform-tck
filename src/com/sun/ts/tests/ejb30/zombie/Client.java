@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.zombie;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import java.util.Properties;
 
 public class Client extends EETest {
 

@@ -20,17 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.bm.allowed;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.util.Properties;
-import jakarta.interceptor.AroundInvoke;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
-import jakarta.interceptor.Interceptors;
-import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
@@ -38,6 +37,9 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 import jakarta.transaction.Status;
 
 @Stateful(name = "AllowedBean")

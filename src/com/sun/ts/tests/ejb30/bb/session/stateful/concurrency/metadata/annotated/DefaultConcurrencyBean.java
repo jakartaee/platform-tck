@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
 
 @Stateful(mappedName = "stateful-concurrency-metada-annotated-DefaultConcurrencyBean")
 @Local(StatefulConcurrencyIF.class)

@@ -20,18 +20,17 @@
 
 package com.sun.ts.tests.jdbc.ee.dateTime.dateTime2;
 
-import java.io.*;
-import java.util.*;
-import java.sql.*;
-import javax.sql.*;
+import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Properties;
+import java.util.TimeZone;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.rmi.RemoteException;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jdbc.ee.common.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
 
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;

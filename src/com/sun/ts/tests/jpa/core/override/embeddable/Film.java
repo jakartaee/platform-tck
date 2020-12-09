@@ -16,8 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
-import jakarta.persistence.Embeddable;
 import java.io.Serializable;
+
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Film implements Serializable {

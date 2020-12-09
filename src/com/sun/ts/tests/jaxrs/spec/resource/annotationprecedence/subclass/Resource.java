@@ -16,6 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.subclass;
 
+import com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.ResourceInterface;
+import com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.SuperClass;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.MatrixParam;
@@ -23,9 +26,6 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
-import com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.ResourceInterface;
-import com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.SuperClass;
 
 @Path("resource")
 public class Resource extends SuperClass implements ResourceInterface {

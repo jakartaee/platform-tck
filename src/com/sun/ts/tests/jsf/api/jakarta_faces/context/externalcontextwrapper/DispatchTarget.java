@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.context.externalcontextwrapper;
 
+import java.io.IOException;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import java.io.IOException;
 
 public class DispatchTarget extends HttpServlet {
 

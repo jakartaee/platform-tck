@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.common;
 
-import java.util.Properties;
-import java.lang.String;
-
 public interface SecTestRoleRef {
   public boolean EjbSecRoleRefScope(String role);
 

@@ -16,9 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /*
  * FullTimeEmployee entity extends an MappedSuperClass while overriding

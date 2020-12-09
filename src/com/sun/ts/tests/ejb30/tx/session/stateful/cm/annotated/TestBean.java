@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateful.cm.annotated;
 
+import java.util.logging.Level;
+
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxIF;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestIF;
-import java.util.logging.Level;
+
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;

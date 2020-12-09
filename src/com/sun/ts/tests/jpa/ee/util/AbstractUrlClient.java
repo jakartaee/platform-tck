@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jpa.ee.util;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * Base client for Servlet tests.

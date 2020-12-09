@@ -21,8 +21,11 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import java.util.logging.*;
-import java.util.*;
+import java.util.ResourceBundle;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.XMLFormatter;
 
 /**
  * TSXMLFormatter formats TSLogRecord in XML format.

@@ -16,17 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.entityTransaction;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
-import jakarta.persistence.metamodel.Metamodel;
-import java.io.FileInputStream;
-import java.util.*;
+import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 

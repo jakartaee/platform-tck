@@ -19,12 +19,12 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.server;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class WSCCloseServerEndpoint extends Endpoint
     implements jakarta.websocket.MessageHandler.Whole<String> {

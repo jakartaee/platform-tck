@@ -16,23 +16,19 @@
 
 package com.sun.ts.tests.javamail.ee.getMessageContent;
 
-import java.util.*;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.javatest.Status;
-
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome;
-
-import java.io.Serializable;
-
-import jakarta.mail.*;
-
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+
+import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
 
 public class getMessageContent_Test extends ServiceEETest {
 

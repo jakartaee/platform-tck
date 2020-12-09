@@ -21,8 +21,9 @@
 package com.sun.ts.tests.connector.deployment;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface DeploymentHome extends EJBHome {
   Deployment create(java.util.Properties p)

@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.method.sec.style2;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {

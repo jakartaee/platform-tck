@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.scope;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface ReferencedBean extends EJBObject {

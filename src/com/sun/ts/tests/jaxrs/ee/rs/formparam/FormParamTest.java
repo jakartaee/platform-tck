@@ -20,6 +20,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.Encoded;
@@ -28,12 +34,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 
 @Path(value = "/FormParamTest/")
 public class FormParamTest {

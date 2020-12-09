@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.lite.async.stateful.annotated;
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Asynchronous;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncBeanBase;
+
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.Stateful;
 
 @Stateful
 public class AsyncBean extends AsyncBeanBase {

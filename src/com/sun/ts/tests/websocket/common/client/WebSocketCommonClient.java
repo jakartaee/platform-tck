@@ -28,12 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.ClientEndpointConfig.Configurator;
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.Session;
-import jakarta.websocket.WebSocketContainer;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.BASE64Encoder;
@@ -41,6 +35,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.TestFailureException;
 import com.sun.ts.tests.common.webclient.validation.CheckOneOfStatusesTokenizedValidator;
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint.ClientEndpointData;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 /**
  * The common client that contains common methods

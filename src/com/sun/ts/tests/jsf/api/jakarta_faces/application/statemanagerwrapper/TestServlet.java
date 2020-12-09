@@ -25,6 +25,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Locale;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.application.StateManager;
 import jakarta.faces.application.StateManagerWrapper;
@@ -40,9 +43,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
 

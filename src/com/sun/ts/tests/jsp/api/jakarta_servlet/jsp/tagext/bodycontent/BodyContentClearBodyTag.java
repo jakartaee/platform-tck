@@ -22,10 +22,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
-import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.JspException;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 public class BodyContentClearBodyTag extends BodyTagSupport {
 

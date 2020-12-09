@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer;
 
-import jakarta.json.bind.serializer.JsonbSerializer;
-import jakarta.json.bind.serializer.SerializationContext;
-import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
 
-import java.util.List;
+import jakarta.json.bind.serializer.JsonbSerializer;
+import jakarta.json.bind.serializer.SerializationContext;
+import jakarta.json.stream.JsonGenerator;
 
 public class AnimalListSerializer implements JsonbSerializer<List<Animal>> {
   private AnimalSerializer animalSerializer = new AnimalSerializer();

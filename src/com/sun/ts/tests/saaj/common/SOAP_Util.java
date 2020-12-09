@@ -20,15 +20,28 @@
 
 package com.sun.ts.tests.saaj.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Properties;
 
-import java.util.*;
+import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.xml.soap.*;
-import java.io.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPConnection;
+import jakarta.xml.soap.SOAPConnectionFactory;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.SOAPMessage;
 
 public final class SOAP_Util {
   public static final String SOAP11 = "soap11";

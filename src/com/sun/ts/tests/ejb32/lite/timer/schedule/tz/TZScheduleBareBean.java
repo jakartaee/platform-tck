@@ -26,12 +26,16 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.logging.Level;
 
-import jakarta.ejb.*;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
 
 @Stateless
 public class TZScheduleBareBean extends TimerBeanBaseWithoutTimeOutMethod {

@@ -19,25 +19,23 @@
  */
 package com.sun.ts.tests.jsonp.api.jsonparserfactorytests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.util.Map;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
-import java.util.Properties;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.ArrayList;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
+import com.sun.ts.tests.jsonp.common.MyBufferedInputStream;
 
-import jakarta.json.stream.JsonParser.Event.*;
-
-import com.sun.ts.tests.jsonp.common.*;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonException;
+import jakarta.json.JsonObject;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParserFactory;
 
 public class Client extends ServiceEETest {
   public static void main(String[] args) {

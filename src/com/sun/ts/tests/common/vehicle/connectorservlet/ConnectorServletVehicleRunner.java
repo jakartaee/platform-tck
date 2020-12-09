@@ -16,9 +16,8 @@
 
 package com.sun.ts.tests.common.vehicle.connectorservlet;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
 
 /*
  *  This is the class that is different for each vehicle.

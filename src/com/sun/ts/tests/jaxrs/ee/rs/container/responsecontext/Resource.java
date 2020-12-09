@@ -23,6 +23,10 @@ import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanWithAnnotation;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -37,10 +41,6 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.RuntimeDelegate;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanWithAnnotation;
 
 @Path("resource")
 public class Resource {

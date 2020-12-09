@@ -23,14 +23,14 @@
  */
 package com.sun.ts.tests.jdbc.ee.common;
 
-import java.io.*;
-import java.util.*;
-import java.sql.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-
 import java.rmi.RemoteException;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * The csSchema class creates the database and procedures using Sun's J2EE

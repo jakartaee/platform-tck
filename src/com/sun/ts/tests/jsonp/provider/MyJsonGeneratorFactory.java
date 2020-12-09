@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import java.io.*;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.Map;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGeneratorFactory;
 
 /*
  * MyJsonGeneratorFactory is a Json Test GeneratorFactory used by the pluggability tests

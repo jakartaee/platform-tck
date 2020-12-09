@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.common.webclient.handler;
 
-import org.apache.commons.httpclient.Header;
-
 import java.util.StringTokenizer;
+
+import org.apache.commons.httpclient.Header;
 
 import com.sun.ts.lib.util.TestUtil;
 

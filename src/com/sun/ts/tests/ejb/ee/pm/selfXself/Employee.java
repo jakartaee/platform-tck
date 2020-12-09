@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-import java.util.*;
-import java.rmi.*;
-import jakarta.ejb.*;
+import jakarta.ejb.EJBObject;
 
 public interface Employee extends EJBObject {
   // Business Methods for CMP Fields

@@ -23,11 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.methodinfo;
 
 import java.util.Properties;
 
-import jakarta.el.ELContext;
-import jakarta.el.ExpressionFactory;
-import jakarta.el.MethodExpression;
-import jakarta.el.MethodInfo;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -35,6 +30,11 @@ import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ResolverType;
+
+import jakarta.el.ELContext;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodInfo;
 
 public class ELClient extends ServiceEETest {
 

@@ -20,6 +20,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -28,9 +31,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 
 @ClientEndpoint
 public class WSCCloseClientEndpoint extends AnnotatedClientEndpoint<String> {

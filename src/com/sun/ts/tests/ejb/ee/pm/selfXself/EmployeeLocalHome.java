@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import jakarta.ejb.*;
-import java.util.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface EmployeeLocalHome extends EJBLocalHome {
   public EmployeeLocal create(Integer id, String firstName, String lastName,

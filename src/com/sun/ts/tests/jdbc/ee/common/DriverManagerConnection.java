@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.jdbc.ee.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 
 public class DriverManagerConnection extends ServiceEETest
     implements JDBCTestConnectionManager {

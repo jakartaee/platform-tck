@@ -16,8 +16,9 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 import java.nio.ByteBuffer;
+
+import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class ByteBufferClientEndpoint extends ClientEndpoint<ByteBuffer> {
 

@@ -20,6 +20,7 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpupgradehandler;
 
 import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

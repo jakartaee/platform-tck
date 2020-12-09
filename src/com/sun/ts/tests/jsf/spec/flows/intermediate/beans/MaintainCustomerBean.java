@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.flows.intermediate.beans;
 
 import java.io.Serializable;
 import java.util.Map;
+
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.flow.FlowHandler;
 

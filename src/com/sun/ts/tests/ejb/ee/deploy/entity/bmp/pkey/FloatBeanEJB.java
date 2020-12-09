@@ -21,6 +21,15 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.pkey;
 
 import java.util.Properties;
+
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.dao.DAOException;
+import com.sun.ts.tests.common.dao.DAOFactory;
+import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
@@ -28,12 +37,6 @@ import jakarta.ejb.EntityContext;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.NoSuchEntityException;
 import jakarta.ejb.RemoveException;
-import javax.naming.NamingException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.common.dao.DAOException;
-import com.sun.ts.tests.common.dao.DAOFactory;
-import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
 
 public class FloatBeanEJB implements EntityBean {
 

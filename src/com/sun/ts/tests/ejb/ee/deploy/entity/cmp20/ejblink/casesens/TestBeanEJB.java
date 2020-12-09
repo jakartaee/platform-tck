@@ -20,11 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejblink.casesens;
 
-import java.util.Properties;
-import java.sql.SQLException;
-import jakarta.ejb.EJBException;
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 

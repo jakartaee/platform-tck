@@ -22,6 +22,12 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.application.applicationWrapperISE
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
+
 import jakarta.el.ELResolver;
 import jakarta.faces.application.Application;
 import jakarta.faces.application.ApplicationWrapper;
@@ -32,12 +38,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
 
 public class TestServlet extends HttpTCKServlet {
 

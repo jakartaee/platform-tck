@@ -16,12 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.temporal;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.time.LocalDate;
-import java.util.*;
 
 public class Client extends PMClientBase {
 

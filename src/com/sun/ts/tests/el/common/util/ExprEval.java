@@ -28,6 +28,9 @@ import java.math.RoundingMode;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
+
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -36,9 +39,6 @@ import jakarta.el.MethodExpression;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.el.ValueExpression;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 
 public final class ExprEval {
 

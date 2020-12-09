@@ -21,13 +21,13 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import com.sun.ts.tests.jaxrs.common.AbstractMessageBodyRW;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.AbstractMessageBodyRW;
 
 /**
  * This class is used by

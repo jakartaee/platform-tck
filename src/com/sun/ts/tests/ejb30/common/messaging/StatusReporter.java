@@ -21,8 +21,15 @@
 package com.sun.ts.tests.ejb30.common.messaging;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.jms.*;
-import com.sun.ts.tests.jms.common.JmsUtil;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 public class StatusReporter implements Constants {
   private static StatusReporter reporter = new StatusReporter();

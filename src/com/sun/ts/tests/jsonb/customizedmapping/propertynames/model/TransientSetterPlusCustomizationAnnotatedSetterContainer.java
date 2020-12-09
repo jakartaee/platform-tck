@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.propertynames.model;
 
+import com.sun.ts.tests.jsonb.TypeContainer;
+
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.json.bind.annotation.JsonbTransient;
-
-import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class TransientSetterPlusCustomizationAnnotatedSetterContainer
     implements TypeContainer<String> {

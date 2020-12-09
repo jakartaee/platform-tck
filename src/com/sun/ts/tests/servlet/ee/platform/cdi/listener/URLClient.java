@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 

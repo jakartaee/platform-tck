@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.contextPropagate_servlet;
 
-import jakarta.enterprise.concurrent.ContextService;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import jakarta.enterprise.concurrent.ContextService;
 
 public class Util {
 

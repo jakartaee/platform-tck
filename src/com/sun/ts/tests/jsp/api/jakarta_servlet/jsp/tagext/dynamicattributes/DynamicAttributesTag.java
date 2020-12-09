@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.dynamicattributes;
 
+import java.io.IOException;
+
+import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.JspException;
-import java.io.IOException;
 
 public class DynamicAttributesTag extends TagSupport
     implements DynamicAttributes {

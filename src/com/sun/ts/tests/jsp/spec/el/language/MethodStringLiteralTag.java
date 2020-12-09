@@ -16,12 +16,15 @@
 
 package com.sun.ts.tests.jsp.spec.el.language;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import jakarta.el.MethodExpression;
+
 import jakarta.el.ELContext;
-import jakarta.servlet.jsp.*;
-import jakarta.servlet.jsp.tagext.*;
-import java.io.*;
+import jakarta.el.MethodExpression;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class MethodStringLiteralTag extends SimpleTagSupport {
 

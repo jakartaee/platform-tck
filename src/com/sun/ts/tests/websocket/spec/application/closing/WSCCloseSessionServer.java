@@ -19,14 +19,14 @@ package com.sun.ts.tests.websocket.spec.application.closing;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint(value = "/closesession")
 public class WSCCloseSessionServer {

@@ -17,7 +17,6 @@
 package com.sun.ts.tests.securityapi.ham.customform.base;
 
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -27,9 +26,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.WebUtil;
 import com.sun.ts.tests.securityapi.common.client.BaseHtmlUnitClient;
 
 public class Client extends BaseHtmlUnitClient {

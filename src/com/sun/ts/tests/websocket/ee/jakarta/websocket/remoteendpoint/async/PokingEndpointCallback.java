@@ -19,11 +19,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
 import java.io.IOException;
 
-import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.Session;
-
 import com.sun.ts.tests.websocket.common.client.SendMessageCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
+
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.Session;
 
 public class PokingEndpointCallback extends SendMessageCallback {
 

@@ -20,13 +20,8 @@
 
 package com.sun.ts.tests.jms.ee20.ra.common.messaging;
 
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jms.commonee.Client;
 import jakarta.jms.JMSException;
 import jakarta.jms.MessageProducer;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Session;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;

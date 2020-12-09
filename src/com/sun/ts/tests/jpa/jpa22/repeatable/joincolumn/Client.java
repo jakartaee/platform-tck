@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.joincolumn;
 
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.List;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

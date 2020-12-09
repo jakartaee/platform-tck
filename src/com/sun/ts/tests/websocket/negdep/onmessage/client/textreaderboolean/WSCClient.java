@@ -17,10 +17,10 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.textreaderboolean;
 
-import jakarta.websocket.DeploymentException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
+
+import jakarta.websocket.DeploymentException;
 
 /*
  * @class.setup_props: webServerHost;

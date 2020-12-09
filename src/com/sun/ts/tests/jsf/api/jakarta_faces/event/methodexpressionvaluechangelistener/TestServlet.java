@@ -25,21 +25,16 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIInput;
-import jakarta.faces.component.UIViewRoot;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.MethodExpressionValueChangeListener;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
 

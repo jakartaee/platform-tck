@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest;
 
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
+
 import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "CatalogTestService", targetNamespace = "http://catalogtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLCatalogTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.Hello")

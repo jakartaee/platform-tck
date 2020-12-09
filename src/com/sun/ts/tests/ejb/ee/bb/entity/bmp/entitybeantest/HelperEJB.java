@@ -20,16 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.entitybeantest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import com.sun.ts.tests.common.dao.DAOException;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.CoffeeBean;
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class HelperEJB implements SessionBean {
 

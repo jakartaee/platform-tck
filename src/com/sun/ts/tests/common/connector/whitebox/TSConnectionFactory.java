@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.*;
-import jakarta.resource.*;
-import com.sun.ts.tests.common.connector.util.*;
+import java.io.Serializable;
+
+import jakarta.resource.Referenceable;
 
 public interface TSConnectionFactory extends Referenceable, Serializable {
 

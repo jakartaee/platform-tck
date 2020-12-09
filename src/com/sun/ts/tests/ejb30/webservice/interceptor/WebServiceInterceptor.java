@@ -16,14 +16,13 @@
 
 package com.sun.ts.tests.ejb30.webservice.interceptor;
 
-import jakarta.interceptor.InvocationContext;
-import jakarta.interceptor.AroundInvoke;
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.Set;
-import java.util.Iterator;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 /**
  * A business method interceptor for EJB based WebService.

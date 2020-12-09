@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.jstl.core.Config;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import java.io.IOException;
 
 /**
  * Simple tag to interrogate the PageContext for attributes in a specific scope.

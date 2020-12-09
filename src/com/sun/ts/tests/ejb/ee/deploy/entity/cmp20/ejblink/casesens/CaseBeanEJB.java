@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejblink.casesens;
 
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CaseBeanEJB extends CMP20Wrapper {
 

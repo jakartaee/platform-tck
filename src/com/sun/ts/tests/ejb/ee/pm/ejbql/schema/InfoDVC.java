@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.*;
-
 // Dependent Value Class
 
 public class InfoDVC implements java.io.Serializable {

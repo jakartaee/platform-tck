@@ -20,10 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 import java.util.LinkedList;
 import java.util.List;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Encoder;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.InitDestroyBinaryDecoder;
@@ -39,6 +35,10 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstBina
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstTextDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondBinaryDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondTextDecoder;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
 
 /*
  * @class.setup_props: webServerHost;

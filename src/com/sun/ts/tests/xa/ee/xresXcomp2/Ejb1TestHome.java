@@ -25,8 +25,9 @@
 package com.sun.ts.tests.xa.ee.xresXcomp2;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface Ejb1TestHome extends EJBHome {
   Ejb1Test create(java.util.Properties p)

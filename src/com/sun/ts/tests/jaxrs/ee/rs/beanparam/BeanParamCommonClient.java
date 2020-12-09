@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.beanparam;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 import com.sun.ts.tests.jaxrs.ee.rs.Constants;
 import com.sun.ts.tests.jaxrs.ee.rs.JaxrsParamClient;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamTest;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @since 2.0.1

@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.common.dao;
 
-import java.util.Properties;
-
 /**
  * DAO Exception wrapping back-end specific exceptions.
  */

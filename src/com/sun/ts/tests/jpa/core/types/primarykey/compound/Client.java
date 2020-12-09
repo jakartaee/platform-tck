@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

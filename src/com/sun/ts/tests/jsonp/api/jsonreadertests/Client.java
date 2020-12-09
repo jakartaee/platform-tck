@@ -16,15 +16,33 @@
 
 package com.sun.ts.tests.jsonp.api.jsonreadertests;
 
+import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import com.sun.ts.tests.jsonp.common.*;
-import java.io.*;
-import java.util.*;
-import jakarta.json.*;
-import jakarta.json.stream.*;
+import com.sun.ts.tests.jsonp.common.JSONP_Data;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
+import com.sun.ts.tests.jsonp.common.MyBufferedInputStream;
+import com.sun.ts.tests.jsonp.common.MyBufferedReader;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonException;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonStructure;
+import jakarta.json.JsonValue;
+import jakarta.json.JsonWriter;
+import jakarta.json.stream.JsonParsingException;
 
 // $Id$
 public class Client extends ServiceEETest {

@@ -21,13 +21,13 @@ package com.sun.ts.tests.ejb30.lite.async.singleton.annotated;
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Asynchronous;
-import jakarta.ejb.Local;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncBeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
+
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.Local;
+import jakarta.ejb.Singleton;
 
 @Singleton
 @Local({ Async2IF.class, AsyncIF.class })

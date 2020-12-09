@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class TheatreCompany1 implements Serializable {

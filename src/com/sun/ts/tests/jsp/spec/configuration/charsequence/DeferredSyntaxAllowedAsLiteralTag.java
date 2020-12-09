@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.jsp.spec.configuration.charsequence;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
+
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class DeferredSyntaxAllowedAsLiteralTag extends SimpleTagSupport {
 

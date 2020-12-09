@@ -19,8 +19,9 @@
  */
 package com.sun.ts.tests.signaturetest;
 
-import java.util.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SigTestResult implements Serializable {
 

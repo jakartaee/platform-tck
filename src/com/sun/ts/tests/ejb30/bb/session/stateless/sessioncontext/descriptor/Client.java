@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor;
 
-import com.sun.ts.tests.ejb30.common.sessioncontext.ClientBase;
+import java.rmi.RemoteException;
+
 import com.sun.javatest.Status;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
+import com.sun.ts.tests.ejb30.common.sessioncontext.ClientBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TestIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF;
-import jakarta.ejb.EJB;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
-import java.rmi.RemoteException;
+import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteIF;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // @EJB(name="sessionContextBean")

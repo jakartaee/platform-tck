@@ -20,15 +20,15 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.AsyncResult;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
-
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 
 public class AsyncBeanBase implements AsyncIF {
   private boolean errorOccurredInInstance = false;

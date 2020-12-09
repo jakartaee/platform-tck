@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
-import jakarta.json.bind.config.PropertyVisibilityStrategy;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import jakarta.json.bind.config.PropertyVisibilityStrategy;
 
 public class SimplePropertyVisibilityStrategy
     implements PropertyVisibilityStrategy {

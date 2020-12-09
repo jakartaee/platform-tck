@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.validationexceptionmapper;
 
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

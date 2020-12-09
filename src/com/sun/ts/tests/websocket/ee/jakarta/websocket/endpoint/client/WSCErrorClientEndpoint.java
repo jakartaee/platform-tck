@@ -17,13 +17,13 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.client;
 
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 
 public class WSCErrorClientEndpoint extends StringClientEndpoint {
   private static final String EXCEPTION = "TCK test throwable";

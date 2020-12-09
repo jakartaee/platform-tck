@@ -25,8 +25,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;

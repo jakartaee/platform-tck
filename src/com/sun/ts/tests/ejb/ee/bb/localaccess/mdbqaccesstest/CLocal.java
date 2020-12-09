@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface CLocal extends EJBLocalObject {
   public String whoAmI();

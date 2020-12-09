@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXone.uni.btob;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 public class ADVC implements java.io.Serializable {
 
   private String id;

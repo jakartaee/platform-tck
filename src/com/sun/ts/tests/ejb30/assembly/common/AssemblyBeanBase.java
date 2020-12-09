@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
+import java.net.URL;
+
+import javax.naming.NamingException;
+
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.net.URL;
-import javax.naming.NamingException;
 
 abstract public class AssemblyBeanBase
     implements AssemblyRemoteIF, AssemblyLocalIF {

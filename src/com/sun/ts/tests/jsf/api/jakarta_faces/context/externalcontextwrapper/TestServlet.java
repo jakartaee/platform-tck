@@ -19,22 +19,34 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.context.externalcontextwrapper;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.ExternalContextWrapper;
 import jakarta.faces.context.FacesContext;
-import jakarta.servlet.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Cookie;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.InputStream;
-import java.util.*;
 
 public final class TestServlet extends HttpTCKServlet {
 

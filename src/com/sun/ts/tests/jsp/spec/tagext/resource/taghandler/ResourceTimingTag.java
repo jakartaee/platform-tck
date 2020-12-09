@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 import jakarta.annotation.Resource;
-
-import jakarta.jms.Queue;
 import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ResourceTimingTag extends TagSupport {
 

@@ -23,8 +23,8 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import java.rmi.RemoteException;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface JACCWSSession extends Remote {
   public String hello(String str) throws RemoteException;

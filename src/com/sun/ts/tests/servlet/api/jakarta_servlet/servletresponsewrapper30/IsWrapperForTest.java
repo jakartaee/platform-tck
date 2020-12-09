@@ -17,13 +17,13 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper30;
 
 import java.io.IOException;
+
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.ServletResponseWrapper;
-import jakarta.servlet.ServletResponse;
 
 public class IsWrapperForTest extends GenericServlet {
 

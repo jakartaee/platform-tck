@@ -19,15 +19,15 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 
 import java.io.IOException;
 
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.Session;
-import jakarta.websocket.server.ServerEndpoint;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
+
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/encoded", encoders = {
     StringBeanTextStreamEncoder.class, StringBeanBinaryEncoder.class,

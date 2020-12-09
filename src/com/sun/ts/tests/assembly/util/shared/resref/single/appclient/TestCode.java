@@ -16,23 +16,18 @@
 
 package com.sun.ts.tests.assembly.util.shared.resref.single.appclient;
 
-import java.io.Serializable;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.Date;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.TopicConnectionFactory;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
 
 public class TestCode {
 

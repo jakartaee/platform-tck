@@ -22,7 +22,6 @@
 package com.sun.ts.tests.jws.webresult.webresult3.server;
 
 import com.sun.ts.tests.jws.common.Employee;
-import com.sun.ts.tests.jws.common.Name;
 import com.sun.ts.tests.jws.common.NameException;
 
 import jakarta.jws.WebMethod;

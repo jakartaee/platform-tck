@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxone;
 
+import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  *

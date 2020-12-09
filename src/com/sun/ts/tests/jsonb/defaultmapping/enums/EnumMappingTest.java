@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.enums;
 
+import static com.sun.ts.tests.jsonb.MappingTester.combine;
+
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonb.MappingTester;
 import com.sun.ts.tests.jsonb.defaultmapping.enums.model.EnumContainer;
 import com.sun.ts.tests.jsonb.defaultmapping.enums.model.EnumContainer.Enumeration;
-
-import java.util.Properties;
-
-import static com.sun.ts.tests.jsonb.MappingTester.combine;
 
 /**
  * @test

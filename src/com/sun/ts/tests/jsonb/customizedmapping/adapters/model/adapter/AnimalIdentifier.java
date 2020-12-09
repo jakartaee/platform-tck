@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter;
 
-import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
-import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Cat;
-import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Dog;
-
 import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
 import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
 import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
+
+import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
+import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Cat;
+import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Dog;
 
 public class AnimalIdentifier {
   public AnimalJson.TYPE getType(Animal animal) {

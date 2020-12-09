@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.appclient.annotation;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -28,7 +30,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
-import java.util.Properties;
 
 public class Client extends EETest {
 

@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.attribute;
 
+import java.util.Collection;
+import java.util.Vector;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Collection;
-import java.util.Vector;
 
 @Entity
 @Table(name = "PURCHASE_ORDER")

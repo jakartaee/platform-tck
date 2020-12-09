@@ -19,14 +19,19 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.readlistener;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class URLClient extends AbstractUrlClient {
 

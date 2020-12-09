@@ -19,16 +19,27 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.messageproducertests;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
-import java.io.*;
 import java.util.Properties;
-import java.util.ArrayList;
-import java.util.Enumeration;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.InvalidTextMessageTestImpl;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.Connection;
+import jakarta.jms.DeliveryMode;
+import jakarta.jms.Destination;
+import jakarta.jms.InvalidDestinationException;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.MessageFormatException;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 public class Client extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core20.messageproducertests.Client";

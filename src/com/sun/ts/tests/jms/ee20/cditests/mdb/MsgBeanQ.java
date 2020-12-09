@@ -19,24 +19,22 @@
  */
 package com.sun.ts.tests.jms.ee20.cditests.mdb;
 
-import java.io.Serializable;
 import java.util.Properties;
-import jakarta.ejb.EJBException;
+
+import com.sun.ts.lib.util.TSNamingContext;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
-import javax.naming.*;
-import jakarta.jms.*;
-import java.sql.*;
-import java.util.Enumeration;
-import java.util.Properties;
-import javax.sql.*;
 import jakarta.inject.Inject;
-import jakarta.annotation.Resource;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 public class MsgBeanQ implements MessageDrivenBean, MessageListener {
   private static final long serialVersionUID = 1L;

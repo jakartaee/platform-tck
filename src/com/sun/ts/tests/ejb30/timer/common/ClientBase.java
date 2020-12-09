@@ -19,12 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.timer.common;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.ejb.EJB;
 
 public class ClientBase extends EJBLiteClientBase {

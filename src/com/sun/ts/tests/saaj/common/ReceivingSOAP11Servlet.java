@@ -20,14 +20,27 @@
 
 package com.sun.ts.tests.saaj.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.StringTokenizer;
 
-import jakarta.xml.soap.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import java.io.*;
-import java.util.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.AttachmentPart;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.MimeHeader;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.SOAPConnection;
+import jakarta.xml.soap.SOAPMessage;
 
 public class ReceivingSOAP11Servlet extends HttpServlet {
   private SOAPConnection con = null;

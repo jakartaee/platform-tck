@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 
 import jakarta.ejb.EJBLocalObject;
-import java.rmi.RemoteException;
 
 public interface SecTestLocal extends EJBLocalObject {
   public boolean IsCaller(String caller);

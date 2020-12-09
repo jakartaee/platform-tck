@@ -19,11 +19,11 @@ package com.sun.ts.tests.ejb32.lite.timer.timerconfig;
 import java.util.Collection;
 import java.util.Date;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
+
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 
 /**
  * This interface is extracted from TimerConfigBean and its superclasses. It

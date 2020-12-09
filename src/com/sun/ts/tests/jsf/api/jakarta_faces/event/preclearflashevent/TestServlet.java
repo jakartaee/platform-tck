@@ -23,10 +23,10 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.event.preclearflashevent;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
+
 import jakarta.faces.event.PreClearFlashEvent;
 import jakarta.faces.event.SystemEvent;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
 
 public class TestServlet extends BaseSystemEventTestServlet {
   private Map<String, Object> keys = new HashMap<String, Object>();

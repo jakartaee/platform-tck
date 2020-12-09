@@ -20,19 +20,24 @@
 
 package com.sun.ts.tests.ejb30.tx.common.web;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.Data;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.FOO_SERVLET_PATH;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.TX_SERVLET_PATH;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.newThreadNoTx;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.NotSupportedException;
-import static jakarta.transaction.Status.*;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;

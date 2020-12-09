@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.tx.mdb.required.annotated;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
 import jakarta.annotation.Resource;
-import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.jms.MessageListener;

@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejbref.scope;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.dao.DAOFactory;
 
 public class Client extends EETest {

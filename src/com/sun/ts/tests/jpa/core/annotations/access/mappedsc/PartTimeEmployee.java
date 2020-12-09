@@ -16,8 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.mappedsc;
 
-import jakarta.persistence.*;
 import java.sql.Date;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /*
  * PartTimeEmployee entity extends an MappedSuperClass while overriding

@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.uni.btob;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface BLocalHome extends EJBLocalHome {
   public BLocal create(String id, String name, int value)

@@ -19,7 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.rw;
 
-import java.util.logging.Level;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -27,13 +30,6 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import jakarta.persistence.Cache;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)

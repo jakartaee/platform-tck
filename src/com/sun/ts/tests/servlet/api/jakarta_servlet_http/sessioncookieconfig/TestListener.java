@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.sessioncookieconfig;
 
-import jakarta.servlet.SessionCookieConfig;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.SessionCookieConfig;
 
 public class TestListener implements ServletContextListener {
 

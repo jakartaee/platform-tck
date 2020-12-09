@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import jakarta.ejb.*;
-import java.util.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface CreditCardLocalHome extends EJBLocalHome {
   public CreditCardLocal create(String id, String number, String type,

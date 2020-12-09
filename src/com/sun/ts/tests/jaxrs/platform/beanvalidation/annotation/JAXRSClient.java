@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

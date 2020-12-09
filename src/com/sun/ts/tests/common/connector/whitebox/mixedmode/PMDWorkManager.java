@@ -16,13 +16,14 @@
 
 package com.sun.ts.tests.common.connector.whitebox.mixedmode;
 
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.spi.work.WorkException;
+import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.WorkImpl;
 import com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl;
-import com.sun.ts.tests.common.connector.whitebox.Debug;
+
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
 
 public class PMDWorkManager {
   private BootstrapContext bsc = null;

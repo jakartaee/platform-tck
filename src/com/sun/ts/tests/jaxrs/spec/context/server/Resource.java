@@ -18,6 +18,8 @@ package com.sun.ts.tests.jaxrs.spec.context.server;
 
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -30,8 +32,6 @@ import jakarta.ws.rs.core.Request;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.Providers;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 
 @Path("resource")
 public class Resource {

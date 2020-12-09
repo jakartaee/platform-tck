@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.core.cookie;
 
-import jakarta.ws.rs.core.Cookie;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Cookie;
 
 /*
  * @class.setup_props: webServerHost;

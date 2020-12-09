@@ -19,14 +19,24 @@
  */
 package com.sun.ts.tests.jms.core.exceptiontests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
-import jakarta.jms.*;
-import java.io.*;
-import java.util.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.InvalidClientIDException;
+import jakarta.jms.InvalidDestinationException;
+import jakarta.jms.InvalidSelectorException;
+import jakarta.jms.JMSException;
+import jakarta.jms.JMSSecurityException;
+import jakarta.jms.MessageEOFException;
+import jakarta.jms.MessageFormatException;
+import jakarta.jms.MessageNotReadableException;
+import jakarta.jms.MessageNotWriteableException;
+import jakarta.jms.ResourceAllocationException;
+import jakarta.jms.TransactionInProgressException;
+import jakarta.jms.TransactionRolledBackException;
 
 public class ExceptionTest extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.exceptiontests.ExceptionTest";

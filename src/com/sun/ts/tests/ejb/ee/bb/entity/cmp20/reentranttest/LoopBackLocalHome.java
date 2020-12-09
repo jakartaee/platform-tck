@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface LoopBackLocalHome extends EJBLocalHome {
   public LoopBackLocal create(TestBeanLocal r) throws CreateException;

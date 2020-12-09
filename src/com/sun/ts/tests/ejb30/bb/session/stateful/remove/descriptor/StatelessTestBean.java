@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.descriptor;
 
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
+import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
+import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.NoSuchEJBException;
 import jakarta.ejb.SessionContext;

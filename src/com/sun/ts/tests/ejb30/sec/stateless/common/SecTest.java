@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.common;
 
-import java.lang.String;
-
 public interface SecTest {
   public void initLogging(java.util.Properties p);
 

@@ -24,14 +24,15 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.servlet.api.common.response.ResponseTestServlet;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.ServletResponseWrapper;
-import jakarta.servlet.ServletConfig;
-import java.io.IOException;
 
 public class TestServlet extends ResponseTestServlet {
 

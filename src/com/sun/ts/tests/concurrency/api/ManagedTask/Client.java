@@ -19,13 +19,15 @@ package com.sun.ts.tests.concurrency.api.ManagedTask;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import jakarta.enterprise.concurrent.ManagedExecutors;
-import jakarta.enterprise.concurrent.ManagedTask;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.concurrency.api.common.RunnableTask;
 import com.sun.ts.tests.concurrency.api.common.managedTaskListener.ManagedTaskListenerImpl;
+
+import jakarta.enterprise.concurrent.ManagedExecutors;
+import jakarta.enterprise.concurrent.ManagedTask;
 
 public class Client extends ServiceEETest implements java.io.Serializable {
 

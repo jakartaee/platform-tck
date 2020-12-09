@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /*
  * This servlet will be used by test18.  The output from this servlet will

@@ -19,12 +19,12 @@ package com.sun.ts.tests.jaxrs.ee.rs.core.application;
 import java.io.IOException;
 import java.util.Map;
 
-import jakarta.ws.rs.core.Application;
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

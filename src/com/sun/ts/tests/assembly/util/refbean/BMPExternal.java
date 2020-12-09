@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface BMPExternal extends EJBObject {

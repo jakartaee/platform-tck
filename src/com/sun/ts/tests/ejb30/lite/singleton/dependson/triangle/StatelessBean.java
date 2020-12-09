@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
+
+import jakarta.ejb.Stateless;
 
 @Stateless
 public class StatelessBean extends BeanBase {

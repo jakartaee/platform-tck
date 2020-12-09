@@ -19,15 +19,14 @@
  */
 package com.sun.ts.tests.jsf.spec.templating.remove;
 
-import com.gargoylesoftware.htmlunit.html.HtmlLabel;
 import java.io.PrintWriter;
+import java.util.Formatter;
 
+import com.gargoylesoftware.htmlunit.html.HtmlLabel;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
-import java.util.Formatter;
 
 public class URLClient extends BaseHtmlUnitClient {
 

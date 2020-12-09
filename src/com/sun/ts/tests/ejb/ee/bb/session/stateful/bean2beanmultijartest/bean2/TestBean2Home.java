@@ -22,9 +22,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBean2Home extends EJBHome {
   public TestBean2 create(Properties p) throws RemoteException, CreateException;

@@ -22,6 +22,9 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.event.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.event.ComponentSystemEvent;
 import jakarta.faces.event.ComponentSystemEventListener;
@@ -29,9 +32,6 @@ import jakarta.faces.event.FacesListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 /**
  * This class mirrors "jakarta.faces.event.ComponentSystemEvent"

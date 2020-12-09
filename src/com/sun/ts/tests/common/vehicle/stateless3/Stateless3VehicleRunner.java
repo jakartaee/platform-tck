@@ -21,10 +21,10 @@
 package com.sun.ts.tests.common.vehicle.stateless3;
 
 import java.util.Properties;
-import com.sun.ts.lib.harness.EETest;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class Stateless3VehicleRunner implements VehicleRunnable {

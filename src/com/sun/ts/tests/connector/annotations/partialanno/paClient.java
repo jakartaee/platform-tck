@@ -16,17 +16,17 @@
 
 package com.sun.ts.tests.connector.annotations.partialanno;
 
-import java.io.*;
-import java.util.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.io.Serializable;
+import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.connector.util.DBSupport;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-import com.sun.ts.tests.common.connector.util.*;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.tests.connector.util.DBSupport;
 
 /*
  * These are the tests that are used to validate behavior

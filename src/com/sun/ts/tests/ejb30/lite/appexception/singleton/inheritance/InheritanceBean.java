@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.inheritance;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceBeanBase;
 import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceIF;
+
+import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

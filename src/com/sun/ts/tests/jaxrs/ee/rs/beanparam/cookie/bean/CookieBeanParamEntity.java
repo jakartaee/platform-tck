@@ -20,16 +20,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
-import jakarta.ws.rs.BeanParam;
-import jakarta.ws.rs.CookieParam;
-import jakarta.ws.rs.DefaultValue;
-
 import com.sun.ts.tests.jaxrs.ee.rs.Constants;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
+
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.CookieParam;
+import jakarta.ws.rs.DefaultValue;
 
 public class CookieBeanParamEntity {
   @DefaultValue(Constants.DEFAULT_VALUE)

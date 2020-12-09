@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.descriptor.stateless;
 
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Timer;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
+
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timer;
 
 /**
  * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout)

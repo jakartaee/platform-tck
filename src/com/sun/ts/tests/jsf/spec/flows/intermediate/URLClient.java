@@ -20,8 +20,6 @@
 package com.sun.ts.tests.jsf.spec.flows.intermediate;
 
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;

@@ -20,17 +20,20 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.saaj.common.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
-import jakarta.servlet.http.*;
-import jakarta.servlet.*;
-import jakarta.xml.soap.*;
-import jakarta.activation.DataHandler;
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.SOAP_Util;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.SOAPConnection;
+import jakarta.xml.soap.SOAPConnectionFactory;
 
 public class SOAPConnectionFactoryTestServlet extends HttpServlet {
   private String hostname = "localhost";

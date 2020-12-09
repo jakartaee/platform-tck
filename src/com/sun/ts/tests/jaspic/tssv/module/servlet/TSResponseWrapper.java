@@ -18,11 +18,11 @@ package com.sun.ts.tests.jaspic.tssv.module.servlet;
 
 import java.util.logging.Level;
 
-import jakarta.servlet.http.HttpServletResponseWrapper;
-import jakarta.servlet.http.HttpServletResponse;
-
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 public class TSResponseWrapper extends HttpServletResponseWrapper {
   private TSLogger logger = null;

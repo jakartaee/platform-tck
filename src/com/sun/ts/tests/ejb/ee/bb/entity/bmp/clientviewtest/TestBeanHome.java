@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.clientviewtest;
 
-import jakarta.ejb.*;
-import java.util.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create(Properties p, boolean newTable, int cofID,

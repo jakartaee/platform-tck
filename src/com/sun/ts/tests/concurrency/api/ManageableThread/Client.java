@@ -16,16 +16,18 @@
 
 package com.sun.ts.tests.concurrency.api.ManageableThread;
 
+import java.io.Serializable;
+import java.util.Properties;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.enterprise.concurrent.ManageableThread;
 import jakarta.enterprise.concurrent.ManagedThreadFactory;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import java.io.Serializable;
-import java.util.Properties;
 
 public class Client extends ServiceEETest implements Serializable {
 

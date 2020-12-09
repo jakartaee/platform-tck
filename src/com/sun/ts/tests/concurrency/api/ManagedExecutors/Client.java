@@ -23,21 +23,23 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import jakarta.enterprise.concurrent.ManagedExecutorService;
-import jakarta.enterprise.concurrent.ManagedExecutors;
-import jakarta.enterprise.concurrent.ManagedTask;
-import jakarta.enterprise.concurrent.ManagedThreadFactory;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.concurrency.api.common.CallableTask;
 import com.sun.ts.tests.concurrency.api.common.RunnableTask;
+import com.sun.ts.tests.concurrency.api.common.Util;
 import com.sun.ts.tests.concurrency.api.common.managedTaskListener.ListenerEvent;
 import com.sun.ts.tests.concurrency.api.common.managedTaskListener.ManagedTaskListenerImpl;
-import com.sun.ts.tests.concurrency.api.common.Util;
+
+import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.enterprise.concurrent.ManagedExecutors;
+import jakarta.enterprise.concurrent.ManagedTask;
+import jakarta.enterprise.concurrent.ManagedThreadFactory;
 
 public class Client extends ServiceEETest implements java.io.Serializable {
 

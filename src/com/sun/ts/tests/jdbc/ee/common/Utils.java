@@ -23,15 +23,11 @@
  */
 package com.sun.ts.tests.jdbc.ee.common;
 
-import java.io.*;
-import java.util.*;
-import java.sql.*;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.FpUtils;
-
-import java.rmi.RemoteException;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * The Utils class is used to hold common methods that can be used by various

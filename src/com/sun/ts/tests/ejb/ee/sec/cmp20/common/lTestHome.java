@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 
 public interface lTestHome extends EJBHome {

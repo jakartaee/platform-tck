@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jpa.common;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
 
 public class DriverManagerConnection {
 

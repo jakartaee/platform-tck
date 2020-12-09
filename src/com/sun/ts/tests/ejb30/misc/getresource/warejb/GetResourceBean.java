@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb30.misc.getresource.warejb;
 
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceIF;
+
+import jakarta.ejb.Stateless;
 
 @Stateless()
 public class GetResourceBean extends GetResourceDelegateForEJB

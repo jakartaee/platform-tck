@@ -20,22 +20,20 @@
 
 package com.sun.ts.tests.common.webclient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.HttpState;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
-import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 import com.sun.ts.tests.common.webclient.validation.ValidationFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.StringTokenizer;
-
-import org.apache.commons.httpclient.HttpState;
-import org.apache.commons.httpclient.Header;
-// used to force the class to be compiled
-import com.sun.ts.tests.common.webclient.validation.TokenizedValidator;
+import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 
 /**
  * A TestCase implementation for HTTP-based testing. This allows the user to set

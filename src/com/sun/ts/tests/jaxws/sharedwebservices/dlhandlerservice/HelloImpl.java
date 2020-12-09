@@ -20,32 +20,26 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import com.sun.ts.tests.jaxws.common.*;
-
-import jakarta.xml.ws.*;
-import jakarta.xml.ws.handler.*;
-import jakarta.xml.ws.handler.soap.*;
-
-import jakarta.xml.ws.WebServiceException;
-
-import java.io.*;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-import jakarta.xml.ws.handler.MessageContext;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
+
 import jakarta.activation.DataHandler;
-import java.util.Properties;
+import jakarta.annotation.Resource;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.annotation.Resource;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello")
 

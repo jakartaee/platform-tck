@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.casesens;
 
-import java.util.Properties;
-import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class CaseBeanEJB extends StatefulWrapper {
 

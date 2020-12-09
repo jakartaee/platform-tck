@@ -16,37 +16,36 @@
 
 package com.sun.ts.tests.jaspic.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.SequenceInputStream;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.sun.ts.tests.jaspic.util.LogRecordEntry;
 import com.sun.ts.lib.util.TestUtil;
 
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.ObjectOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.SequenceInputStream;
-import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.Vector;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.StringTokenizer;
-import java.util.Enumeration;
 
 /**
  *

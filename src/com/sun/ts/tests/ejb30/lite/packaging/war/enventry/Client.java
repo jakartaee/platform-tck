@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
 
 /**
  * env-entry declared in all web.xml and ejb-jar.xml. Verify that env-entry

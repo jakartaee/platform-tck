@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.jdbc.ee.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public interface JDBCTestConnectionManager {
   public Connection getConnection(Properties p)

@@ -20,14 +20,16 @@
 
 package com.sun.ts.tests.ejb30.common.ejblink;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.ejb.EJB;
+
 import javax.naming.NamingException;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJB;
 
 abstract public class ClientBase extends EETest implements Constants {
 

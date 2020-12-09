@@ -22,31 +22,23 @@
 
 package com.sun.ts.tests.jws.oneway.client;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.net.URL;
+import java.util.Properties;
 
-import java.io.*;
-import java.net.*;
-import java.rmi.*;
-import java.util.*;
-
-import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
-
-import com.sun.javatest.Status;
-
-import com.sun.ts.tests.jws.common.*;
-
-import javax.naming.InitialContext;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jws.common.JWS_Util;
+import com.sun.ts.tests.jws.common.XMLUtils;
+import com.sun.ts.tests.jws.oneway.server.OnewayWebService;
 
 public class Client extends ServiceEETest {
 

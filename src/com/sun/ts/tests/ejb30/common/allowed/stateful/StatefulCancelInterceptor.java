@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
 import com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.SessionContext;
 import jakarta.interceptor.AroundInvoke;
 

@@ -16,18 +16,20 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.enterprise.concurrent.ContextService;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import jakarta.transaction.Transaction;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.enterprise.concurrent.ContextService;
+import jakarta.transaction.Transaction;
 
 public class Util {
 

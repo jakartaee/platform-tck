@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 

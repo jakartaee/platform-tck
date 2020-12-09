@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import jakarta.ejb.CreateException;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import java.rmi.RemoteException;
 import java.util.Properties;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.CreateException;
 
 /*
  * Client accesses TwoTestBean, which calls MigrationBean through its adapted

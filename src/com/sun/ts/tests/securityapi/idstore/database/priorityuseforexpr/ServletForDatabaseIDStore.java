@@ -16,29 +16,18 @@
 
 package com.sun.ts.tests.securityapi.idstore.database.priorityuseforexpr;
 
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+
+import com.sun.ts.tests.securityapi.idstore.common.PlaintextPasswordHash;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import com.sun.ts.tests.securityapi.idstore.common.PlaintextPasswordHash;
+import jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.annotation.sql.DataSourceDefinition;
 
 /**
  * The datasource defined in *_web.xml

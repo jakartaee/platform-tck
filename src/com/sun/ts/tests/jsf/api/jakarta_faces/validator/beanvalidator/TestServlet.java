@@ -23,19 +23,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
-import jakarta.faces.component.StateHolder;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIOutput;
+import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.validator.BeanValidator;
 import jakarta.faces.validator.Validator;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorTestServlet;
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseValidatorTestServlet {
 

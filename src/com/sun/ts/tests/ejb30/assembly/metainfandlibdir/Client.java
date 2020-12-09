@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import static com.sun.ts.tests.servlet.common.util.Data.FAILED;
-import static com.sun.ts.tests.servlet.common.util.Data.PASSED;
 
 public class Client extends AbstractUrlClient {
   public static final String CONTEXT_ROOT = "/ejb3_assembly_metainfandlibdir";

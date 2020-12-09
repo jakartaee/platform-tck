@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import java.util.ArrayList;
+
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
 public interface AroundInvokeIF {
   public void remove(); // for sfsb only

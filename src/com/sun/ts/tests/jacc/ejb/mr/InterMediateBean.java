@@ -16,24 +16,24 @@
 
 package com.sun.ts.tests.jacc.ejb.mr;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.annotation.security.RunAs;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBAccessException;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.EJBs;
-import jakarta.ejb.EJB;
-import jakarta.annotation.Resource;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.EJBAccessException;
-import jakarta.ejb.Remote;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "InterMediateBean")
 // @Remote({InterMediate.class})

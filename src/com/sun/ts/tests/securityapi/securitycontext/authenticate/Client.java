@@ -16,14 +16,12 @@
 
 package com.sun.ts.tests.securityapi.securitycontext.authenticate;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
-
 import java.io.PrintWriter;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.BaseUrlClient;
 
 public class Client extends BaseUrlClient {
 

@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.common.vehicle.wsservlet;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 
 public class WSServletVehicleRunner extends WebVehicleRunner {
   protected Status run() {

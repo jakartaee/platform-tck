@@ -20,12 +20,18 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.*;
-import jakarta.resource.*;
-import jakarta.resource.spi.*;
-import javax.naming.Reference;
-import com.sun.ts.tests.common.connector.util.*;
+import java.io.Serializable;
 import java.util.Vector;
+
+import javax.naming.Reference;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.Referenceable;
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.ConnectionManager;
+import jakarta.resource.spi.ConnectionRequestInfo;
+import jakarta.resource.spi.ManagedConnectionFactory;
 
 public class TSEISDataSource
     implements TSDataSource, Serializable, Referenceable {

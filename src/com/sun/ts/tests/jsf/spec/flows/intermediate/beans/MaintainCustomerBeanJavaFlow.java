@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.jsf.spec.flows.intermediate.beans;
 
-import jakarta.inject.Named;
-
 import jakarta.faces.flow.FlowScoped;
+import jakarta.inject.Named;
 
 @Named(value = "maintainCustomerBeanJava")
 @FlowScoped(value = "maintain-customer-record-java")

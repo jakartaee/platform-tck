@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.common;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 public class Interceptor2 extends InterceptorBase {
   @SuppressWarnings("unused")

@@ -20,34 +20,27 @@
 
 package com.sun.xml.messaging.saaj.client.p2p.http.handler;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.PasswordAuthentication;
-import java.util.*;
-import java.rmi.*;
+import java.util.Properties;
 
-import com.sun.org.apache.xerces.internal.dom.*;
-import org.w3c.dom.*;
-
-import javax.xml.transform.stream.*;
-import jakarta.xml.soap.*;
-import jakarta.activation.*;
-
-import sun.net.*;
-import sun.net.www.*;
-import sun.net.www.http.*;
+import org.apache.http.impl.io.EmptyInputStream;
 
 import com.sun.javatest.Status;
-
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 // Import implementation specific classes to test
 import com.sun.xml.messaging.saaj.client.p2p.http.handler.*;
+
+import sun.net.www.http.HttpClient;
+import sun.net.www.protocol.http.AuthenticationInfo;
 
 public class AbstractClient extends EETest {
   private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/client/p2p/http/handler/handlertests";

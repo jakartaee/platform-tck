@@ -19,9 +19,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
 import java.nio.ByteBuffer;
 
-import jakarta.websocket.MessageHandler;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
+
+import jakarta.websocket.MessageHandler;
 
 public class ByteBufferMessageHandler
     implements MessageHandler.Whole<ByteBuffer> {

@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.WebServiceException;
-import com.sun.ts.lib.util.*;
 
 public class ServerSOAPHandler extends WsaBaseSOAPHandler {
   protected void checkInboundAction(SOAPMessageContext context, String oper,

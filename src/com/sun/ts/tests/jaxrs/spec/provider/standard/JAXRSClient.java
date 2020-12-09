@@ -21,12 +21,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.zip.Deflater;
-
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response.Status;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

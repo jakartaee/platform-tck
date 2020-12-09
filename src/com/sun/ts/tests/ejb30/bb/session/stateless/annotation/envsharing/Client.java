@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing;
 
+import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
+
+import jakarta.ejb.EJB;
 
 /**
  * The tested requirements are in Java EE Platform Specification section

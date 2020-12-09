@@ -16,8 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
-import jakarta.persistence.*;
 import java.sql.Timestamp;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "A_BASIC")

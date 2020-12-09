@@ -20,14 +20,25 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
+import java.sql.Date;
+import java.util.List;
+import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.*;
+import com.sun.ts.tests.jpa.common.schema30.CreditCard;
+import com.sun.ts.tests.jpa.common.schema30.Customer;
+import com.sun.ts.tests.jpa.common.schema30.Order;
+import com.sun.ts.tests.jpa.common.schema30.Product;
+import com.sun.ts.tests.jpa.common.schema30.Spouse;
+import com.sun.ts.tests.jpa.common.schema30.Util;
 
-import jakarta.persistence.*;
-import java.sql.Date;
-import java.util.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.FlushModeType;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class Client extends Util {
 

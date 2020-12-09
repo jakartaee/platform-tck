@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.extended;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
-import java.util.Properties;
 
 public class Client extends EETest {
 

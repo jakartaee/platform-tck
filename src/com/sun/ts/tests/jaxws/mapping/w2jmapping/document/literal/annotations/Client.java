@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import java.util.Properties;
-
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.AnnotationUtils;
 
 public class Client extends ServiceEETest {

@@ -21,6 +21,7 @@ package com.sun.ts.tests.ejb30.lite.ejbcontext.stateless;
 
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

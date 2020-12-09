@@ -20,9 +20,16 @@
 
 package com.sun.ts.tests.jpa.core.relationship.annotations;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 /*
  * Project

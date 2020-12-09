@@ -20,18 +20,17 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
-import com.sun.ts.tests.ejb30.common.allowed.NoTxAllowedIF;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import java.util.Properties;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.allowed.ClientBase;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
-
+import com.sun.ts.tests.ejb30.common.allowed.NoTxAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 

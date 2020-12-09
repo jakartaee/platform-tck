@@ -16,6 +16,8 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.client.syncinvoker;
 
+import com.sun.ts.tests.jaxrs.common.impl.TRACE;
+
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HEAD;
@@ -25,8 +27,6 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.impl.TRACE;
 
 @Path("resource")
 public class Resource {

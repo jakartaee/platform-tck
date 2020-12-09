@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.statelessclient;
 
-import java.util.Properties;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.ClientBase;
-import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.CLIENT_MSG;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

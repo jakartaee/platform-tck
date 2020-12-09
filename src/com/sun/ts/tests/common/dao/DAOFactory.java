@@ -21,12 +21,13 @@
 package com.sun.ts.tests.common.dao;
 
 import java.util.Properties;
+
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.TxCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.StringPKCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.LongPKCoffeeDAO;
-import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPKCoffeeDAO;
+import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
+import com.sun.ts.tests.common.dao.coffee.variants.LongPKCoffeeDAO;
+import com.sun.ts.tests.common.dao.coffee.variants.StringPKCoffeeDAO;
 
 /**
  * 

@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.pathparam.locator;
 
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
+import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
+
 import jakarta.ws.rs.Encoded;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
-import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
 
 @Path("resource")
 public class LocatorResource extends MiddleResource {

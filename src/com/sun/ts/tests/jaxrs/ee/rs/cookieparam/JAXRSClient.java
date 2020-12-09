@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.jaxrs.ee.rs.cookieparam;
 
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 import com.sun.ts.tests.jaxrs.ee.rs.JaxrsParamClient;
+
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

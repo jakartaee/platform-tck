@@ -20,10 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal;
 
-import java.rmi.*;
-import java.util.*;
-import java.sql.*;
-import jakarta.ejb.*;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.DuplicateKeyException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface TxEPMBeanHome extends EJBLocalHome {
 

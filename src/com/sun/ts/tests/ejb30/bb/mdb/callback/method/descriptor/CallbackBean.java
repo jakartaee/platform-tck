@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.callback.method.descriptor;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.messaging.Constants;
-import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import jakarta.ejb.MessageDriven;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

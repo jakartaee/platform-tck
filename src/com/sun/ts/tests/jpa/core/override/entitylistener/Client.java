@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

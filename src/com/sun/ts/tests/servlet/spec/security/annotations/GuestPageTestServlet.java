@@ -19,19 +19,19 @@
  */
 package com.sun.ts.tests.servlet.spec.security.annotations;
 
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.annotation.WebServlet;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.HttpMethodConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.ServletSecurity.*;
+import jakarta.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /*
  * Using annotations, this servlet declares roles and then deny's all as a 

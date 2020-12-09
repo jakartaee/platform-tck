@@ -20,19 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.handletest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
 import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb.ee.bb.common.EJBHandleObjectInputStream;
+
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.Handle;
+import jakarta.ejb.HomeHandle;
 
 public class Client extends EETest {
   private static final String testName = "HandleTest";

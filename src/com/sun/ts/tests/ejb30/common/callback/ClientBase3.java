@@ -20,10 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+import org.omg.CORBA.ORB;
+
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import org.omg.CORBA.ORB;
 
 /**
  * the direct superclass of Client classes that test application client

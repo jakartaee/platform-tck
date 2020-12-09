@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.ejb.*;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class CheckedMethodEJB extends StatelessWrapper {
 

@@ -21,10 +21,10 @@
 package com.sun.ts.tests.servlet.spec.security.secform;
 
 import java.io.PrintWriter;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.common.jspservletsec.secformClient;
-
-import java.util.Properties;
 
 /*
  * This  class uses the SecformClient to do most of its actual testing.

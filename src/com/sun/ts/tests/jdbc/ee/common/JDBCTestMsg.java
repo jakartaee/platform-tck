@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jdbc.ee.common;
 
-import java.io.*;
-import java.util.*;
-import java.net.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
-import java.sql.*;
-import javax.sql.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * JDBCTestMsg class is used to logging messages from the tests

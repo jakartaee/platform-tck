@@ -20,10 +20,6 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext;
 
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.Data;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +29,10 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
+
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+import com.sun.ts.tests.servlet.common.util.Data;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;

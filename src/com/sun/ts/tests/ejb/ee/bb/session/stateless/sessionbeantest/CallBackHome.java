@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.sessionbeantest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface CallBackHome extends EJBHome {
   public CallBack create() throws RemoteException, CreateException;

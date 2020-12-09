@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface LineItem extends EJBObject {
 

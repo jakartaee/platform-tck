@@ -16,17 +16,36 @@
 
 package com.sun.ts.tests.jsonp.api.jsonobjecttests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_OBJ_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_OBJ_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObjectWithObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithStr;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.ObjectBuilder;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

@@ -20,6 +20,10 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.resource_local;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -31,10 +35,11 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import jakarta.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
+import jakarta.persistence.RollbackException;
 
 @Stateless(name = "Stateless3Bean")
 @Remote({ Stateless3IF.class })

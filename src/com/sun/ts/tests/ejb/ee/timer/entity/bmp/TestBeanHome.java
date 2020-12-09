@@ -21,10 +21,11 @@
 package com.sun.ts.tests.ejb.ee.timer.entity.bmp;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create(Properties props, int id, String coffeName,

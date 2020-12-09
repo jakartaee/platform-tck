@@ -24,14 +24,13 @@
 
 package com.sun.ts.tests.servlet.spec.servletresponse;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class HttpTestServlet extends HttpServlet {
 

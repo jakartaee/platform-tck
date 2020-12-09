@@ -22,13 +22,13 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taglibraryinfo;
 
 import java.util.Arrays;
 
+import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
 import jakarta.servlet.jsp.tagext.FunctionInfo;
 import jakarta.servlet.jsp.tagext.TagFileInfo;
 import jakarta.servlet.jsp.tagext.TagInfo;
 import jakarta.servlet.jsp.tagext.TagLibraryInfo;
-
-import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 /**
  * A TagExtraInfo implementation to validate the methods of

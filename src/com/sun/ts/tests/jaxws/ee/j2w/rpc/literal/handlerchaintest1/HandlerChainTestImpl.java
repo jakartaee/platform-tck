@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest1;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.HandlerChain;
 
 @HandlerChain(name = "", file = "server-handler.xml")

@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex1b;
 
+import java.io.Serializable;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
-import java.io.Serializable;
 
 /**
  *

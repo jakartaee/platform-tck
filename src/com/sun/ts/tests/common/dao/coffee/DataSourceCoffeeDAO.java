@@ -20,14 +20,17 @@
 
 package com.sun.ts.tests.common.dao.coffee;
 
-import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jakarta.ejb.CreateException;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOException;
 import com.sun.ts.tests.common.dao.DataSourceDAO;
+
+import jakarta.ejb.CreateException;
 
 /**
  * DAO Object for table using the "coffee" DB schema:

@@ -16,14 +16,15 @@
 
 package com.sun.ts.tests.concurrency.common.counter;
 
-import java.io.PrintWriter;
 import java.io.IOException;
-import jakarta.servlet.ServletConfig;
+import java.io.PrintWriter;
+
+import com.sun.ts.tests.concurrency.common.ConcurrencyTestUtils;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.sun.ts.tests.concurrency.common.*;
 
 public class CounterServlet extends HttpServlet {
 

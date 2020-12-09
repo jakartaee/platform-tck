@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.pm.cm.TxR_Diamond;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface BeanA extends EJBObject {

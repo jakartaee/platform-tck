@@ -20,15 +20,24 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import java.rmi.*;
-import java.sql.*;
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Properties;
+
+import javax.naming.Context;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
+import jakarta.ejb.TimedObject;
 
 public abstract class TestBeanEJB implements EntityBean, TimedObject {
   private EntityContext ectx = null;

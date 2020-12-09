@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaspic.tssv.util;
 
-import jakarta.security.auth.message.MessageInfo;
 import java.util.Map;
-import java.lang.Object;
+
+import jakarta.security.auth.message.MessageInfo;
 
 /**
  *

@@ -19,12 +19,13 @@
  */
 package com.sun.ts.tests.jsf.spec.appconfigresources.absolute_ordering;
 
+import java.io.PrintWriter;
+import java.util.Formatter;
+
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.io.PrintWriter;
-import java.util.Formatter;
 
 public class URLClient extends BaseHtmlUnitClient {
 

@@ -19,13 +19,13 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.common.util.StringUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 @ServerEndpoint(value = "/subprotocol", subprotocols = {
     StringUtil.WEBSOCKET_SUBPROTOCOLS_0,

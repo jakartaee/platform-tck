@@ -19,6 +19,9 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.actionevent;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -27,14 +30,11 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ActionListener;
 import jakarta.faces.event.FacesListener;
-import jakarta.faces.event.ValueChangeListener;
 import jakarta.faces.event.ValueChangeEvent;
+import jakarta.faces.event.ValueChangeListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
 

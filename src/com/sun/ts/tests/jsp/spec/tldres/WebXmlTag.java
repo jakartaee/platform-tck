@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.tldres;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class WebXmlTag extends TagSupport {
 

@@ -21,13 +21,13 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import jakarta.ws.rs.client.ClientRequestContext;
-import jakarta.ws.rs.core.MultivaluedMap;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxrs.api.client.clientrequestcontext.ContextProvider;
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 import com.sun.ts.tests.jaxrs.common.impl.ReplacingOutputStream;
+
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 /*
  * @class.setup_props: webServerHost;

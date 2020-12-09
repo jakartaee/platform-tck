@@ -24,15 +24,15 @@ package com.sun.ts.tests.el.api.jakarta_el.mapelresolver;
 import java.util.HashMap;
 import java.util.Properties;
 
-import jakarta.el.ELContext;
-import jakarta.el.MapELResolver;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.MapELResolver;
 
 public class ELClient extends ServiceEETest {
 

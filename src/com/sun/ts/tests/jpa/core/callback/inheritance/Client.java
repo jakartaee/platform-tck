@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jpa.core.callback.inheritance;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
 import jakarta.persistence.Query;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.List;
-import java.util.Arrays;
 
 public class Client extends EntityCallbackClientBase {
   private PricedPartProduct p1;

@@ -19,6 +19,10 @@
  */
 package com.sun.ts.tests.common.vehicle.pmservlet;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TSNamingContext;
@@ -28,10 +32,12 @@ import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
 import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceContexts;
+import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.UserTransaction;
 
 @PersistenceContexts({

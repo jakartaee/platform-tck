@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.platform.container.asyncejb;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

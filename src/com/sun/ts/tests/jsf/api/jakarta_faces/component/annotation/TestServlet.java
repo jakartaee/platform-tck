@@ -19,14 +19,15 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.annotation;
 
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.application.Application;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;

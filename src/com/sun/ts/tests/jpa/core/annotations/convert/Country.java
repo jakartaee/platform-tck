@@ -16,7 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 @Access(AccessType.FIELD)

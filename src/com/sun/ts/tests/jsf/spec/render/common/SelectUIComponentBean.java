@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UISelectItem;
+import jakarta.faces.context.FacesContext;
 
 public class SelectUIComponentBean {
 

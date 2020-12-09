@@ -16,23 +16,22 @@
 
 package com.sun.ts.tests.ejb30.sec.permsxml;
 
+import java.io.FilePermission;
+import java.net.SocketPermission;
+import java.security.AccessControlException;
+import java.security.AccessController;
+import java.security.Permission;
+import java.security.PrivilegedExceptionAction;
+import java.security.SecurityPermission;
+import java.util.Properties;
+import java.util.PropertyPermission;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
 
-import java.util.Properties;
-import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
 import jakarta.annotation.Resource;
-
-import java.security.AccessController;
-import java.security.PrivilegedExceptionAction;
-import java.security.AccessControlException;
-import java.security.Permission;
-import java.security.SecurityPermission;
-import java.io.FilePermission;
-import java.util.PropertyPermission;
-import java.net.SocketPermission;
-import java.lang.RuntimePermission;
+import jakarta.ejb.EJB;
 
 public class Client extends EETest {
 

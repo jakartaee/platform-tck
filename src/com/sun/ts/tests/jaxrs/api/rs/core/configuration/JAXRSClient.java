@@ -19,6 +19,12 @@ package com.sun.ts.tests.jaxrs.api.rs.core.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.CallableProvider;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.SingleCheckAssertable;
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.RuntimeType;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -26,12 +32,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Configurable;
 import jakarta.ws.rs.core.Configuration;
 import jakarta.ws.rs.ext.MessageBodyReader;
-
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.CallableProvider;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.SingleCheckAssertable;
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

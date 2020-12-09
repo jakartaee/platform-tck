@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.spec.inheritance;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 public class JAXRSClient extends JAXRSCommonClient {
 

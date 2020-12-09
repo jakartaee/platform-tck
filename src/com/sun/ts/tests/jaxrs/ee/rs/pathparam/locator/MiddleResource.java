@@ -20,12 +20,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import jakarta.ws.rs.POST;
-
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 import com.sun.ts.tests.jaxrs.ee.rs.pathparam.PathParamTest;
+
+import jakarta.ws.rs.POST;
 
 public class MiddleResource extends PathParamTest {
 

@@ -20,13 +20,13 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
+import com.sun.ts.tests.jaxrs.jaxrs21.ee.client.executor.ExecutorServiceChecker;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
-import com.sun.ts.tests.jaxrs.jaxrs21.ee.client.executor.ExecutorServiceChecker;
 
 /*
  * @class.setup_props: webServerHost;

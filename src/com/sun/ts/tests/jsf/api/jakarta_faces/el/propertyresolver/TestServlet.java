@@ -20,28 +20,27 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.el.propertyresolver;
 
+import java.beans.Beans;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
+
+import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.TestBean;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.TestBean;
 
+import jakarta.faces.el.PropertyNotFoundException;
+import jakarta.faces.el.PropertyResolver;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.el.PropertyResolver;
-import jakarta.faces.el.PropertyNotFoundException;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Vector;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Map;
-import java.util.HashMap;
-import java.beans.Beans;
-import java.math.BigDecimal;
 
 public final class TestServlet extends HttpTCKServlet {
 

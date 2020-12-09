@@ -17,26 +17,21 @@
 package com.sun.ts.tests.jta.ee.transactional;
 
 import java.util.Arrays;
-import java.util.Properties;
-import java.util.logging.Level;
 import java.util.List;
-
-import jakarta.annotation.Resource;
-import java.io.Serializable;
-import jakarta.interceptor.Interceptor;
-
-import com.sun.ts.lib.harness.ServiceEETest;
-
-import jakarta.transaction.UserTransaction;
-import jakarta.transaction.SystemException;
-import jakarta.transaction.Status;
-import jakarta.transaction.TransactionalException;
-import jakarta.transaction.TransactionRequiredException;
-import jakarta.transaction.InvalidTransactionException;
-import jakarta.inject.Inject;
-import jakarta.enterprise.context.ContextNotActiveException;
+import java.util.logging.Level;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.ContextNotActiveException;
+import jakarta.inject.Inject;
+import jakarta.interceptor.Interceptor;
+import jakarta.transaction.InvalidTransactionException;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.TransactionRequiredException;
+import jakarta.transaction.TransactionalException;
+import jakarta.transaction.UserTransaction;
 
 public class Client extends EJBLiteClientBase {
   private static StringBuilder callRecords = new StringBuilder();

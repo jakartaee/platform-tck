@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import java.util.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 

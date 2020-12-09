@@ -18,10 +18,10 @@ package com.sun.ts.tests.jaxrs.ee.rs.beanparam.bean;
 
 import jakarta.ws.rs.CookieParam;
 import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.MatrixParam;
 import jakarta.ws.rs.HeaderParam;
-import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.MatrixParam;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
 
 public class InnerBeanParamEntity {
   @CookieParam("innerCookie")

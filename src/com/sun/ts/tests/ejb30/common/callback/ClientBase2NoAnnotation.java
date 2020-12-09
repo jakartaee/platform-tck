@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.omg.CORBA.ORB;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 abstract public class ClientBase2NoAnnotation extends ClientBase {
   // @Resource

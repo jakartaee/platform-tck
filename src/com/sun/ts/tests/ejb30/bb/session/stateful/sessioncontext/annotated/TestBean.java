@@ -28,13 +28,14 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJB;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "TestBean")
 @Remote({ TestIF.class })

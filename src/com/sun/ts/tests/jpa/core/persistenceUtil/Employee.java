@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.persistenceUtil;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.sql.Date;
 
 @Entity
 @Table(name = "EMPLOYEE")

@@ -21,14 +21,14 @@ package com.sun.ts.tests.ejb30.lite.tx.bm.singleton.rw;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
 
 @Singleton
 public class TxBean extends RWTxBeanBase {

@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jdbc.ee.common;
 
-import java.io.*;
-import java.util.*;
-import java.sql.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-
 import java.rmi.RemoteException;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * The fnSchema class creates the database using Sun's J2EE Reference

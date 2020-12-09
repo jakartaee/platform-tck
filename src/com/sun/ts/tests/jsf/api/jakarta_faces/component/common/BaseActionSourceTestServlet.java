@@ -25,6 +25,8 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.ActionSource;
 import jakarta.faces.el.MethodBinding;
 import jakarta.faces.event.AbortProcessingException;
@@ -35,8 +37,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 /**
  * <p>

@@ -20,18 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.entitycontexttest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import java.rmi.*;
-import com.sun.ts.tests.common.dao.DAOFactory;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.dao.DAOFactory;
 
 //*****************************************************************************
 //EntityContext test for entity bean access to it's runtime container context

@@ -20,18 +20,18 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
+import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
+import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateful;
-import jakarta.annotation.Resource;
-import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Remove;
 //@todo
 //import jakarta.ejb.Init;
-
-import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
+import jakarta.interceptor.Interceptors;
 
 @Stateful(name = "CallbackBean")
 @Remote({ CallbackIF.class })

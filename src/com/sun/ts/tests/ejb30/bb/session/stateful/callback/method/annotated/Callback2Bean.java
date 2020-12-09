@@ -20,20 +20,20 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.method.annotated;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.Remote;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.Stateful;
+import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
+import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJBContext;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
-import jakarta.annotation.Resource;
+import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
-
-import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "Callback2Bean")
 @Remote({ Callback2IF.class })

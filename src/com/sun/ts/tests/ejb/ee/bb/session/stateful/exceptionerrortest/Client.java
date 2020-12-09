@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.exceptionerrortest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.NoSuchObjectException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
 
 public class Client extends EETest {
   private static final String testName = "ExceptionlogErrorTest";

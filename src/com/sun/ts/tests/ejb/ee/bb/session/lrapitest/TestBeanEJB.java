@@ -20,13 +20,20 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
 import javax.rmi.PortableRemoteObject;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.RemoveException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBeanEJB implements SessionBean {
   private SessionContext sctx = null;

@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateless.bm.TxM_Exceptions;
 
-import com.sun.ts.lib.util.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
-import jakarta.ejb.*;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public boolean test1() throws RemoteException;

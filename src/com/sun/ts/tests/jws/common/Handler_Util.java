@@ -20,20 +20,22 @@
 
 package com.sun.ts.tests.jws.common;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+import javax.xml.transform.Source;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.SOAPMessage;
-import javax.xml.transform.Source;
 import jakarta.xml.ws.Binding;
 import jakarta.xml.ws.LogicalMessage;
 import jakarta.xml.ws.handler.Handler;
 import jakarta.xml.ws.handler.LogicalMessageContext;
 import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
 
 public final class Handler_Util {
 

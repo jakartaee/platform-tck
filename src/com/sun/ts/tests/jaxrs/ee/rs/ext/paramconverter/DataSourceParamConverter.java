@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.ext.paramconverter;
 
+import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
+
 import jakarta.activation.DataSource;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.ext.ParamConverter;
-
-import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
 
 public class DataSourceParamConverter implements ParamConverter<DataSource> {
 

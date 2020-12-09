@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestHome extends EJBHome {
   Test create() throws RemoteException, CreateException;

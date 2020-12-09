@@ -21,10 +21,11 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejbref.scope;
 
 import java.util.Properties;
-import jakarta.ejb.EJBException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
+
+import jakarta.ejb.EJBException;
 
 public abstract class ReferencingBeanEJB extends CMP20Wrapper {
 

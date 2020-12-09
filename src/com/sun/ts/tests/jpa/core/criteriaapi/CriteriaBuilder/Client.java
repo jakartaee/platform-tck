@@ -16,24 +16,59 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaBuilder;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.tests.jpa.common.schema30.*;
-import com.sun.ts.tests.jpa.common.schema30.Order;
-
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.*;
-import jakarta.persistence.criteria.CriteriaBuilder.Trimspec;
-import jakarta.persistence.metamodel.Bindable;
-import jakarta.persistence.metamodel.EmbeddableType;
-import jakarta.persistence.metamodel.EntityType;
-import jakarta.persistence.metamodel.Metamodel;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
+import com.sun.ts.lib.harness.SetupMethod;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.schema30.Address;
+import com.sun.ts.tests.jpa.common.schema30.Alias;
+import com.sun.ts.tests.jpa.common.schema30.Customer;
+import com.sun.ts.tests.jpa.common.schema30.Customer_;
+import com.sun.ts.tests.jpa.common.schema30.HardwareProduct;
+import com.sun.ts.tests.jpa.common.schema30.LineItem;
+import com.sun.ts.tests.jpa.common.schema30.Order;
+import com.sun.ts.tests.jpa.common.schema30.Order_;
+import com.sun.ts.tests.jpa.common.schema30.Product;
+import com.sun.ts.tests.jpa.common.schema30.ShelfLife;
+import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
+import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct_;
+import com.sun.ts.tests.jpa.common.schema30.Spouse;
+import com.sun.ts.tests.jpa.common.schema30.Trim;
+import com.sun.ts.tests.jpa.common.schema30.Util;
+
+import jakarta.persistence.Query;
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CollectionJoin;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaBuilder.Trimspec;
+import jakarta.persistence.criteria.CriteriaDelete;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.ParameterExpression;
+import jakarta.persistence.criteria.Path;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Selection;
+import jakarta.persistence.criteria.Subquery;
+import jakarta.persistence.metamodel.Bindable;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends Util {
 

@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.common.webclient;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import java.util.Enumeration;
 import java.util.Properties;
+
 import org.apache.commons.httpclient.HttpState;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 /**
  * <PRE>

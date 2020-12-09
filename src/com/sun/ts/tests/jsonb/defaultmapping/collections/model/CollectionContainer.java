@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Collection;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class CollectionContainer implements TypeContainer<Collection<String>> {
   private Collection<String> instance;

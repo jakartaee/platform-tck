@@ -19,14 +19,14 @@ package com.sun.ts.tests.jaxrs.platform.beanvalidation.constraintviolationexcept
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
 import com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation.ConstraintDeclarationResource;
 import com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation.ConstraintDefinitionResource;
 import com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation.NotShortNorFiveEntityProvider;
 import com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation.Resource;
 import com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation.ValidateExecutableResource;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

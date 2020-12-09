@@ -20,18 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.pm.bm.Tx_Multi;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import java.rmi.*;
-import com.sun.ts.tests.ejb.ee.tx.txEPMbean.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.TxEPMBean;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.TxEPMBeanHome;
 
 public class Client extends EETest {
 

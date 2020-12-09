@@ -21,10 +21,10 @@
 package com.sun.ts.tests.servlet.spec.security.secbasic;
 
 import java.io.PrintWriter;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.common.jspservletsec.SecBasicClient;
-
-import java.util.Properties;
 
 /*
  * This  class uses the SecBasicClient to do most of its actual testing.  

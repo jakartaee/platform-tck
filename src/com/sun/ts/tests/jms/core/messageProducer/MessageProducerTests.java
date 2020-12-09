@@ -19,14 +19,19 @@
  */
 package com.sun.ts.tests.jms.core.messageProducer;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import java.util.Properties;
-import java.io.*;
-import jakarta.jms.*;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.DeliveryMode;
+import jakarta.jms.Message;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 public class MessageProducerTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.messageProducer.MessageProducerTests";

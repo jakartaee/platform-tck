@@ -31,17 +31,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
-import jakarta.faces.FactoryFinder;
 import jakarta.faces.FacesException;
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.Application;
 import jakarta.faces.component.ContextCallback;
+import jakarta.faces.component.NamingContainer;
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
@@ -52,10 +57,17 @@ import jakarta.faces.component.UIOutput;
 import jakarta.faces.component.UIPanel;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.component.visit.VisitCallback;
+import jakarta.faces.component.visit.VisitContext;
 import jakarta.faces.component.visit.VisitHint;
 import jakarta.faces.component.visit.VisitResult;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ComponentSystemEventListener;
+import jakarta.faces.event.FacesEvent;
+import jakarta.faces.event.FacesListener;
+import jakarta.faces.event.SystemEvent;
 import jakarta.faces.render.RenderKit;
 import jakarta.faces.render.RenderKitFactory;
 import jakarta.faces.render.Renderer;
@@ -63,18 +75,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import java.util.HashSet;
-import jakarta.faces.application.Application;
-import jakarta.faces.component.NamingContainer;
-import jakarta.faces.component.visit.VisitContext;
-import jakarta.faces.context.ResponseWriter;
-import jakarta.faces.event.AbortProcessingException;
-import jakarta.faces.event.ComponentSystemEventListener;
-import jakarta.faces.event.FacesEvent;
-import jakarta.faces.event.FacesListener;
-import jakarta.faces.event.SystemEvent;
 
 /**
  * <p>

@@ -20,7 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.factoryfinderrelease;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -28,9 +30,6 @@ import jakarta.faces.FactoryFinder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
   public void getFactoriesISETest(HttpServletRequest request,

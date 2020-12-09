@@ -20,11 +20,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.client;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 
 public class WSCCloseClientEndpoint extends StringClientEndpoint {
   boolean onCloseCalled = false;

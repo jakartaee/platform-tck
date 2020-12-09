@@ -19,8 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.concurrent.TimeUnit;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;

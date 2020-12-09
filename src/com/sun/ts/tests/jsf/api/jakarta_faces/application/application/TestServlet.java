@@ -30,6 +30,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.sun.ts.tests.jsf.common.beans.TestBean;
+import com.sun.ts.tests.jsf.common.behavior.TCKBehavior;
+import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
+import com.sun.ts.tests.jsf.common.listener.TCKActionListener;
+import com.sun.ts.tests.jsf.common.listener.TCKELContextListener;
+import com.sun.ts.tests.jsf.common.listener.TCKSystemEventListener;
+import com.sun.ts.tests.jsf.common.navigation.TCKNavigationHandler;
+import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
+import com.sun.ts.tests.jsf.common.resourcehandler.TCKResourceHandler;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
+
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELContextListener;
@@ -43,9 +57,12 @@ import jakarta.faces.application.Resource;
 import jakarta.faces.application.ResourceHandler;
 import jakarta.faces.application.StateManager;
 import jakarta.faces.application.ViewHandler;
+import jakarta.faces.component.ContextCallback;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.search.SearchExpressionContext;
+import jakarta.faces.component.search.SearchExpressionHandler;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.BooleanConverter;
 import jakarta.faces.el.MethodBinding;
@@ -66,30 +83,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspFactory;
-
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.behavior.TCKBehavior;
-import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
-import com.sun.ts.tests.jsf.common.listener.TCKActionListener;
-import com.sun.ts.tests.jsf.common.listener.TCKELContextListener;
-import com.sun.ts.tests.jsf.common.listener.TCKSystemEventListener;
-import com.sun.ts.tests.jsf.common.navigation.TCKNavigationHandler;
-import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
-import com.sun.ts.tests.jsf.common.resourcehandler.TCKResourceHandler;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
-import java.util.Set;
-import jakarta.faces.FactoryFinder;
-import jakarta.faces.component.ContextCallback;
-import jakarta.faces.component.search.SearchExpressionContext;
-import jakarta.faces.component.search.SearchExpressionContextFactory;
-import jakarta.faces.component.search.SearchExpressionHandler;
-import jakarta.faces.component.search.SearchExpressionHint;
-import jakarta.faces.component.search.SearchKeywordContext;
-import jakarta.faces.component.search.SearchKeywordResolver;
-import jakarta.faces.component.visit.VisitHint;
 
 public class TestServlet extends HttpTCKServlet {
 

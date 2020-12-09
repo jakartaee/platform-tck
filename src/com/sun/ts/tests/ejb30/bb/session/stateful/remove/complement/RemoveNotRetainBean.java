@@ -24,9 +24,10 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainI
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.CreateException;
-import jakarta.ejb.Remove;
 import jakarta.ejb.Init;
+import jakarta.ejb.Remove;
 
 //@Stateful(name="RemoveNotRetainBean")
 //@Remote({RemoveNotRetainIF.class})

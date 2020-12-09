@@ -20,13 +20,7 @@
 
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.EJBHome;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
 /**
  * The TwoBeanClient class tests a client calling a bean which 
@@ -36,6 +30,9 @@ import com.sun.ts.lib.harness.*;
  */
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
 
 public class TwoBeanClient extends EETest {
 

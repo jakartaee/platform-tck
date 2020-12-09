@@ -23,6 +23,7 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TestLogic;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 

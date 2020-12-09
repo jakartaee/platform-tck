@@ -20,22 +20,31 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.pagedata;
 
-import org.xml.sax.SAXException;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.servlet.jsp.tagext.PageData;
 import jakarta.servlet.jsp.tagext.TagLibraryValidator;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
-import jakarta.servlet.jsp.tagext.PageData;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
-import java.util.*;
-
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 /**
  * Validate the PageData object provided to a configured TagLibraryValidator.

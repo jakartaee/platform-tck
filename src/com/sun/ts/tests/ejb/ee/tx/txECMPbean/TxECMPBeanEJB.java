@@ -19,15 +19,20 @@
  */
 package com.sun.ts.tests.ejb.ee.tx.txECMPbean;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.Properties;
 
-import java.util.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
-import jakarta.ejb.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.DuplicateKeyException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public class TxECMPBeanEJB implements EntityBean {
 

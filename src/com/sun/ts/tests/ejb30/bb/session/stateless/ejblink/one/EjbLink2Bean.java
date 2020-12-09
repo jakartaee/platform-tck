@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one;
 
+import javax.naming.NamingException;
+
+import com.sun.ts.tests.ejb30.common.ejblink.Constants;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
-import com.sun.ts.tests.ejb30.common.ejblink.Constants;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
-import javax.naming.NamingException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 
 @Stateless(name = "EjbLink2Bean")
 @Remote({ EjbLinkIF.class })

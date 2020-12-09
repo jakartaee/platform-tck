@@ -16,12 +16,17 @@
 
 package com.sun.ts.tests.jpa.ee.entityManager;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.SynchronizationType;
+import jakarta.persistence.TransactionRequiredException;
 
 public class Client extends PMClientBase {
 

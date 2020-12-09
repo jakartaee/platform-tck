@@ -20,6 +20,7 @@
 package com.sun.ts.tests.jms.core20.appclient.jmsconsumertests;
 
 import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 

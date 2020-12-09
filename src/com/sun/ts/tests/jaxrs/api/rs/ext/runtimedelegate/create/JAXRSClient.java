@@ -18,6 +18,9 @@ package com.sun.ts.tests.jaxrs.api.rs.ext.runtimedelegate.create;
 
 import java.util.HashSet;
 
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.CacheControl;
 import jakarta.ws.rs.core.Cookie;
@@ -29,9 +32,6 @@ import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.Variant.VariantListBuilder;
 import jakarta.ws.rs.ext.RuntimeDelegate;
 import jakarta.ws.rs.ext.RuntimeDelegate.HeaderDelegate;
-
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

@@ -24,7 +24,6 @@ import java.util.Map;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.securityapi.common.client.BaseHtmlUnitClient;
 

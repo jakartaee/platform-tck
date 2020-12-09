@@ -20,12 +20,7 @@
 
 package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 
-import java.sql.Connection;
 import java.util.Properties;
-
-import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.annotation.sql.DataSourceDefinitions;
-import jakarta.ejb.EJB;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
@@ -33,6 +28,10 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinitions;
+import jakarta.ejb.EJB;
 
 @DataSourceDefinitions({
     @DataSourceDefinition(name = "java:global/datasource/twojars/appclient/globalds", description = "override it with <data-source> in application-client.xml", className = "@className@", portNumber = 8080, serverName = "@serverName@", databaseName = "@databaseName@", user = "@user@", password = "@password@", transactional = true) })

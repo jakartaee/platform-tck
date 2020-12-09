@@ -20,16 +20,16 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.TreeSet;
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
 import com.sun.ts.tests.jaxrs.common.AbstractMessageBodyRW;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 import com.sun.ts.tests.jaxrs.ee.rs.formparam.FormParamTest;
+
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class MiddleResource {
 

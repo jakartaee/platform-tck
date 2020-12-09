@@ -24,6 +24,7 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyBeanBase;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyInterceptor;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
+
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;

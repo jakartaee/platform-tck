@@ -16,21 +16,19 @@
 
 package com.sun.ts.tests.ejb30.sec.permsxml;
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.ejb.Stateful;
-import jakarta.ejb.Remote;
-
+import java.io.FilePermission;
+import java.net.SocketPermission;
+import java.security.AccessControlException;
 import java.security.AccessController;
 import java.security.Permission;
 import java.security.PrivilegedExceptionAction;
-import java.security.AccessControlException;
 import java.security.SecurityPermission;
-import java.io.FilePermission;
 import java.util.PropertyPermission;
-import java.net.SocketPermission;
-import java.lang.RuntimePermission;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "PermDDTestEJB")
 @Remote({ PermDDTestIF.class })

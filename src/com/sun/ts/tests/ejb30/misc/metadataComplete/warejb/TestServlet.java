@@ -20,21 +20,25 @@
 
 package com.sun.ts.tests.ejb30.misc.metadataComplete.warejb;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.naming.NamingException;
+
+import org.omg.CORBA.ORB;
+
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.annotation.Resource;
 import jakarta.annotation.Resources;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
-import javax.naming.NamingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.omg.CORBA.ORB;
 
 @Resources({ @Resource(name = "typeLevelOrbNotInjected", type = ORB.class) })
 @EJBs({

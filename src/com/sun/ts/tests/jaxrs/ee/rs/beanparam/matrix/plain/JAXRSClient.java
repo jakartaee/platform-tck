@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.beanparam.matrix.plain;
 
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.ee.rs.Constants;
 import com.sun.ts.tests.jaxrs.ee.rs.beanparam.BeanParamCommonClient;
+
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

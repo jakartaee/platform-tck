@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
+import java.util.Collection;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import java.util.Collection;
 
 /*
  * Company

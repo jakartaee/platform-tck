@@ -22,19 +22,21 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import jakarta.security.jacc.*;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Collection;
+import java.security.Permission;
+import java.security.PermissionCollection;
 import java.util.Date;
-import java.security.*;
-import javax.security.auth.Subject;
-import java.io.*;
-import java.lang.StringBuffer;
-import java.util.logging.*;
-import java.util.Map;
+import java.util.Enumeration;
 import java.util.Vector;
+import java.util.logging.Level;
+
+import jakarta.security.jacc.EJBMethodPermission;
+import jakarta.security.jacc.EJBRoleRefPermission;
+import jakarta.security.jacc.PolicyConfiguration;
+import jakarta.security.jacc.PolicyConfigurationFactory;
+import jakarta.security.jacc.PolicyContextException;
+import jakarta.security.jacc.WebResourcePermission;
+import jakarta.security.jacc.WebRoleRefPermission;
+import jakarta.security.jacc.WebUserDataPermission;
 
 /**
  * Jacc PolicyConfiguration delegates the policy configuration tasks to vendor's

@@ -33,7 +33,9 @@
 
 package com.sun.ts.tests.jsonp.util;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 public class StringUTFConverter {
 

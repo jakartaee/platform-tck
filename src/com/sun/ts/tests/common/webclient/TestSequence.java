@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.common.webclient;
 
-import com.sun.ts.lib.util.TestUtil;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * This class represents a logic sequence for executing a series of test cases

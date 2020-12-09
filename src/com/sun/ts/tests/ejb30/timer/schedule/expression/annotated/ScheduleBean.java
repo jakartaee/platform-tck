@@ -31,14 +31,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-import jakarta.ejb.ScheduleExpression;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Timeout;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerConfig;
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType;
@@ -46,6 +38,14 @@ import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 
 @Stateless
 public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {

@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
+import java.util.Collection;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.util.Collection;
 
 /*
  * Department

@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.ResourceException;
-import jakarta.resource.spi.*;
-import com.sun.ts.tests.common.connector.util.*;
+import jakarta.resource.spi.EISSystemException;
+import jakarta.resource.spi.LocalTransaction;
 
 public class LocalTransactionImpl implements LocalTransaction {
 

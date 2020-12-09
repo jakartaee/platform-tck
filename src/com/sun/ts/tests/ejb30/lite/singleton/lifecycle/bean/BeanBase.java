@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;

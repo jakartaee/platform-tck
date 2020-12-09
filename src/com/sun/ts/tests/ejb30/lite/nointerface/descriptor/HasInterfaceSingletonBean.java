@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase;
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.HasInterface;
+
+import jakarta.ejb.EJB;
 
 public class HasInterfaceSingletonBean extends BeanBase
     implements HasInterface {

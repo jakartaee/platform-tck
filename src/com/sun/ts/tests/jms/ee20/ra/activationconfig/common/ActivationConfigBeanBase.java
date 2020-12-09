@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.common;
 
-import com.sun.ts.tests.jms.ee20.ra.common.messaging.TLogger;
-import com.sun.ts.tests.jms.ee20.ra.common.messaging.StatusReporter;
-import jakarta.annotation.Resource;
-import jakarta.jms.MessageListener;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.TEST_NUMBER_KEY;
+
+import com.sun.ts.tests.jms.ee20.ra.common.messaging.StatusReporter;
+import com.sun.ts.tests.jms.ee20.ra.common.messaging.TLogger;
+
+import jakarta.annotation.Resource;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * This class must not implement jakarta.jms.MessageListener interface. A subclass

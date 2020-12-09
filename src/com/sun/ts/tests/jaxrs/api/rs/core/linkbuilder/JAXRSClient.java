@@ -22,15 +22,15 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.Map;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.core.Link;
 import jakarta.ws.rs.core.Link.Builder;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.UriBuilderException;
 import jakarta.ws.rs.ext.RuntimeDelegate;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 /*
  * @class.setup_props: webServerHost;

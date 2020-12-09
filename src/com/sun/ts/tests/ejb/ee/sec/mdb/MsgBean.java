@@ -20,22 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.sec.mdb;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
-import java.io.Serializable;
-import java.util.*;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.MessageDrivenBean;
-import jakarta.ejb.MessageDrivenContext;
-import javax.naming.*;
-import jakarta.jms.*;
-import java.security.*;
-import java.sql.*;
-import javax.sql.*;
-import jakarta.transaction.UserTransaction;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.security.Principal;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsUtil;
+import com.sun.ts.tests.jms.commonee.ParentMsgBeanNoTx;
+
+import jakarta.jms.Message;
+import jakarta.jms.QueueSession;
 
 public class MsgBean extends ParentMsgBeanNoTx {
 

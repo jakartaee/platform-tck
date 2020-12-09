@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.annotations.id;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "DATATYPES3")

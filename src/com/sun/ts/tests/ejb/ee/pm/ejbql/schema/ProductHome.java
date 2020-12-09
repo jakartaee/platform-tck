@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface ProductHome extends EJBHome {
   public Product create(String id, String name, double price, int quantity,

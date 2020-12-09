@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.lib.util.*;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.xml.namespace.QName;
-import jakarta.xml.ws.Service;
-import jakarta.xml.ws.WebServiceFeature;
 import java.net.URL;
+
+import javax.xml.namespace.QName;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import jakarta.xml.ws.WebServiceFeature;
 
 public class StubContext {
 

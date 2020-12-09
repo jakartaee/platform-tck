@@ -19,15 +19,29 @@
  */
 package com.sun.ts.tests.jms.core.closedQueueConnection;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
-import java.io.*;
-import java.util.Properties;
 import java.util.ArrayList;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+import com.sun.ts.tests.jms.common.MessageTestImpl;
+
+import jakarta.jms.BytesMessage;
+import jakarta.jms.ConnectionMetaData;
+import jakarta.jms.MapMessage;
+import jakarta.jms.Message;
+import jakarta.jms.ObjectMessage;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.StreamMessage;
+import jakarta.jms.TemporaryQueue;
+import jakarta.jms.TextMessage;
 
 /**
  * JMS TS tests. Testing method calls on closed QueueConnection objects.

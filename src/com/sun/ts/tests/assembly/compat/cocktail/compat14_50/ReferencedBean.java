@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.assembly.compat.cocktail.compat14_50;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface ReferencedBean extends EJBObject {

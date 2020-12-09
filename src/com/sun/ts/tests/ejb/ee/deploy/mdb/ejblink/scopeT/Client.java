@@ -21,9 +21,11 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.scopeT;
 
 import java.util.Properties;
-import jakarta.jms.Topic;
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.Topic;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 

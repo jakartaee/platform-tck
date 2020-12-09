@@ -20,11 +20,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 import java.io.IOException;
 import java.io.Reader;
 
-import jakarta.websocket.DecodeException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
+
+import jakarta.websocket.DecodeException;
 
 public class ThrowingTextStreamDecoder extends StringBeanTextStreamDecoder {
 

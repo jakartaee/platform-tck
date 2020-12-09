@@ -16,13 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.sql.Timestamp;
-import java.util.*;
 
 public class Client extends PMClientBase {
 

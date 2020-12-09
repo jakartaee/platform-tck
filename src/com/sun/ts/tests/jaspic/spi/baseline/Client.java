@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaspic.spi.baseline;
 
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaspic.spi.common.CommonTests;
 import java.util.Properties;
-import java.io.Serializable;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaspic.spi.common.CommonTests;
 
 /**
  * These tests are to be run for the case of no Profile - where there is NO

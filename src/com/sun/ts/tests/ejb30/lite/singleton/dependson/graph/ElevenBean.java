@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.graph;
 
+import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
+
 import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
-
-import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
 
 @Startup
 @Singleton

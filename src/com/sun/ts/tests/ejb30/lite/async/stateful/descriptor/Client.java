@@ -19,14 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.stateful.descriptor;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.Descriptor2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorBean;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorClientBase;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorIF;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.TimeoutDescriptorBeanBase;
+
+import jakarta.ejb.EJB;
 
 @EJB(name = "timeoutDescriptorBean", beanInterface = TimeoutDescriptorBean.class, beanName = "TimeoutDescriptorBean")
 public class Client extends DescriptorClientBase {

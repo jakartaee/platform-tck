@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import java.util.Properties;
-
 public interface SessionContextAllowedLocalIF extends SessionContextAllowedIF {
 
 }

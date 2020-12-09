@@ -18,8 +18,8 @@ package com.sun.ts.tests.jaxrs.api.rs.ext.runtimedelegate;
 
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Link.Builder;
-import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
+import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.Variant.VariantListBuilder;
 import jakarta.ws.rs.ext.RuntimeDelegate;
 

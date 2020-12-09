@@ -16,7 +16,12 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "B_EMBEDDABLE")

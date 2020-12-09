@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
 import com.sun.ts.tests.ejb30.common.allowed.NoTxAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;

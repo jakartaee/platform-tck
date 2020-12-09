@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.core.response;
 
-import jakarta.ws.rs.core.Application;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
 import com.sun.ts.tests.jaxrs.common.provider.StringBeanHeaderDelegate;
 
-import java.util.Set;
-import java.util.HashSet;
+import jakarta.ws.rs.core.Application;
 
 /**
  *

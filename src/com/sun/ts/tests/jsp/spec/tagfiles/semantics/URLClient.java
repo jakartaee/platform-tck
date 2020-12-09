@@ -21,12 +21,9 @@
 package com.sun.ts.tests.jsp.spec.tagfiles.semantics;
 
 import java.io.PrintWriter;
-import com.sun.ts.lib.harness.EETest.Fault;
+
 import com.sun.javatest.Status;
-
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
-import java.rmi.UnexpectedException;
 
 public class URLClient extends AbstractUrlClient {
   /**

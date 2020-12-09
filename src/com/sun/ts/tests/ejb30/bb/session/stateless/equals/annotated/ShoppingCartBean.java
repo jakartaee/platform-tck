@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.equals.annotated;
 
+import com.sun.ts.tests.ejb30.common.equals.LocalShoppingCartIF;
+import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-import com.sun.ts.tests.ejb30.common.equals.CartIF;
-import com.sun.ts.tests.ejb30.common.equals.LocalCartIF;
-import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
-import com.sun.ts.tests.ejb30.common.equals.LocalShoppingCartIF;
+import jakarta.ejb.Stateless;
 
 @Stateless(name = "shopping-cart-bean")
 @Remote({ ShoppingCartIF.class })

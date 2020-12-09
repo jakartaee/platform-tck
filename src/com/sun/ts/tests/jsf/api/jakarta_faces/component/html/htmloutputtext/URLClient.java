@@ -25,6 +25,10 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+
 public class URLClient
     extends com.sun.ts.tests.jsf.api.jakarta_faces.component.uioutput.URLClient {
 

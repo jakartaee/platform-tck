@@ -16,11 +16,13 @@
 
 package com.sun.ts.tests.jsonp.api.mergetests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
 
 // $Id$
 /**

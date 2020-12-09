@@ -19,14 +19,14 @@ package com.sun.ts.tests.jaxrs.api.rs.notauthorizedexception;
 import java.io.IOException;
 import java.util.List;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.NotAuthorizedException;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 /*
  * @class.setup_props: webServerHost;

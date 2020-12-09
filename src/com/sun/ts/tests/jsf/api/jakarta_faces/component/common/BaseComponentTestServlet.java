@@ -21,8 +21,8 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 
 public abstract class BaseComponentTestServlet
     extends BaseActionSource2TestServlet {

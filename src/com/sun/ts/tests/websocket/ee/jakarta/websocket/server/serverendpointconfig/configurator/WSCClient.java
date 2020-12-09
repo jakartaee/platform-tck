@@ -20,12 +20,12 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.Extension;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Extension;
 
 /*
  * @class.setup_props: webServerHost;

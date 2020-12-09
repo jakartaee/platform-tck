@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import java.util.List;
 
 @Entity
 public class Student implements java.io.Serializable {

@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.resref.scope;
 
-import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class QueueBeanEJB extends StatefulWrapper {
 

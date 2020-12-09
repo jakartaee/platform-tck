@@ -23,8 +23,6 @@ package com.sun.ts.tests.el.common.util;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import jakarta.el.MethodNotFoundException;
-
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 

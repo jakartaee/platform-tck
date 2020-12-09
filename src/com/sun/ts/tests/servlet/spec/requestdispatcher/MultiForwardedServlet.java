@@ -19,13 +19,15 @@
  */
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.RequestDispatcher;
 
 public class MultiForwardedServlet extends GenericTCKServlet {
 

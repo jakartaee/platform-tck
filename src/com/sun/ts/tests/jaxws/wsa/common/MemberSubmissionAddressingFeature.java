@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.jaxws.wsa.common;
 
-import jakarta.xml.ws.soap.AddressingFeature;
 import jakarta.xml.ws.WebServiceFeature;
 
 public class MemberSubmissionAddressingFeature extends WebServiceFeature {
