@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface FastPathHome extends EJBHome {
   public FastPath create() throws RemoteException, CreateException;

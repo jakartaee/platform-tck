@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 

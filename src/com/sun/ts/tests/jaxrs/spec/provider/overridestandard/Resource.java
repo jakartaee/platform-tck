@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Reader;
 
+import javax.xml.transform.Source;
+
 import jakarta.activation.DataSource;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -28,7 +30,6 @@ import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.core.StreamingOutput;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.transform.Source;
 
 @Path("resource")
 public class Resource {

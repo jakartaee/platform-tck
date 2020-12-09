@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface CheckedMethodHome extends EJBHome {
   public CheckedMethod create() throws RemoteException, CreateException;

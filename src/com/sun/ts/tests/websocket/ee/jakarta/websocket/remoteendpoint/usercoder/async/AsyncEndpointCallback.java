@@ -19,12 +19,12 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder
 
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.websocket.common.client.EndpointCallback;
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.EndpointCallback;
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
 
 public class AsyncEndpointCallback extends EndpointCallback {
   protected Entity entity;

@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.sessionbeantest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class CallBackEJB implements SessionBean {
   private boolean ejbCreateFlag = false;

@@ -16,17 +16,19 @@
 
 package com.sun.ts.tests.common.connector.whitebox.annotated;
 
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import jakarta.resource.spi.work.WorkCompletedException;
-import jakarta.resource.spi.work.WorkRejectedException;
-import jakarta.resource.spi.work.WorkException;
-import jakarta.resource.spi.work.TransactionContext;
-import com.sun.ts.tests.common.connector.util.*;
 import javax.transaction.xa.Xid;
-import jakarta.resource.spi.work.ExecutionContext;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.NestedWorkXid;
+
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkCompletedException;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.resource.spi.work.WorkRejectedException;
 
 public class NestedWorkXid1 implements Work {
 

@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.misc.moduleName.conflict;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class ModuleBean extends AppResBeanBase implements AppResCommonIF {

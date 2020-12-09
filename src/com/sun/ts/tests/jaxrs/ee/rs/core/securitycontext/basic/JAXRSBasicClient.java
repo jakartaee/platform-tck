@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.core.securitycontext.basic;
 
-import jakarta.ws.rs.core.Response;
-
 import com.sun.ts.tests.jaxrs.ee.rs.core.securitycontext.TestServlet;
 import com.sun.ts.tests.jaxrs.ee.rs.core.securitycontext.TestServlet.Scheme;
+
+import jakarta.ws.rs.core.Response;
 
 /*
  * @class.setup_props: webServerHost;

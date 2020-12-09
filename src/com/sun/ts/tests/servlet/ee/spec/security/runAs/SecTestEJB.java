@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
 import jakarta.annotation.Resource;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.SessionContext;
-import jakarta.annotation.security.RolesAllowed;
 
 @Stateless(name = "SecTestEJB")
 @Remote({ SecTest.class })

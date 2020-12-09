@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar;
 
-import com.sun.javatest.Status;
-import jakarta.annotation.Resource;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import java.net.URL;
+
+import com.sun.javatest.Status;
+
+import jakarta.annotation.Resource;
 
 public class Client
     extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClientBase {

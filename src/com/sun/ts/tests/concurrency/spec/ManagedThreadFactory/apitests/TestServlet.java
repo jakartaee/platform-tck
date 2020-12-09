@@ -16,20 +16,21 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedThreadFactory.apitests;
 
-import java.io.PrintWriter;
 import java.io.IOException;
-import jakarta.servlet.ServletConfig;
+import java.io.PrintWriter;
+
+import javax.naming.InitialContext;
+
+import com.sun.ts.tests.concurrency.api.common.Util;
+
+import jakarta.annotation.Resource;
+import jakarta.enterprise.concurrent.ManageableThread;
+import jakarta.enterprise.concurrent.ManagedThreadFactory;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import com.sun.ts.tests.concurrency.api.common.*;
-import jakarta.annotation.Resource;
-import jakarta.enterprise.concurrent.*;
-import java.util.concurrent.*;
-import javax.naming.*;
-import com.sun.ts.lib.util.TestUtil;
 
 @WebServlet("/testServlet")
 public class TestServlet extends HttpServlet {

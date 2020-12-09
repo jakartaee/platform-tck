@@ -24,7 +24,6 @@ import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jsf.api.jakarta_faces.validator.common.BaseValidatorClient;
 
 public class URLClient extends BaseValidatorClient {

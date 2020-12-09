@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
-import com.sun.ts.lib.deliverable.cts.resource.Dog;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.annotation.Resource;
+
 import javax.naming.NamingException;
-import org.omg.CORBA.ORB;
+
+import com.sun.ts.lib.deliverable.cts.resource.Dog;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;

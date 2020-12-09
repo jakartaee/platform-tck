@@ -16,13 +16,10 @@
 
 package com.sun.ts.tests.common.vehicle.customvehicle;
 
-import java.io.*;
-import java.util.*;
-import java.net.*;
+import java.util.Properties;
 
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.common.vehicle.*;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 /**
  * This class is to be modified and rebuilt by any vendor needing to build their

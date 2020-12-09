@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.TransactionManagement;

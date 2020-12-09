@@ -20,16 +20,13 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import java.io.IOException;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.tagext.JspTag;
-import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspFragment;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ClassicJspFragmentGetJspContext extends TagSupport {
 

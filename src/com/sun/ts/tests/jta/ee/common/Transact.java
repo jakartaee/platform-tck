@@ -20,14 +20,10 @@
 
 package com.sun.ts.tests.jta.ee.common;
 
-// JTA Specific Packages.
-import jakarta.transaction.TransactionManager;
-import jakarta.transaction.Status;
-
+import com.sun.ts.lib.harness.ServiceEETest;
 // TS Specific Utils
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 interface TransactionStatus {
   public static final String[] transStatusArray = { "STATUS_ACTIVE",

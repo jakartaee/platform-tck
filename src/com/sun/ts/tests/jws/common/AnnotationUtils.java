@@ -23,6 +23,9 @@
 
 package com.sun.ts.tests.jws.common;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jws.WebMethod;
@@ -33,8 +36,6 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.WebEndpoint;
 import jakarta.xml.ws.WebFault;
 import jakarta.xml.ws.WebServiceClient;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
 public class AnnotationUtils {
 

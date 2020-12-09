@@ -16,14 +16,21 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.namedstoredprocedurequery;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.StoredProcedureQuery;
 
 public class Client extends PMClientBase {
   private static final long serialVersionUID = 22L;

@@ -17,13 +17,13 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointreturntype;
 
-import jakarta.websocket.CloseReason;
-import jakarta.websocket.Session;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.ByteBufferClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.Session;
 
 /*
  * @class.setup_props: webServerHost;

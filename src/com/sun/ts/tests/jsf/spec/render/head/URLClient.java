@@ -19,16 +19,16 @@
  */
 package com.sun.ts.tests.jsf.spec.render.head;
 
-import com.gargoylesoftware.htmlunit.html.HtmlHead;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.TreeMap;
 
+import com.gargoylesoftware.htmlunit.html.HtmlHead;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.util.ArrayList;
-import java.util.List;
 
 public class URLClient extends BaseHtmlUnitClient {
 

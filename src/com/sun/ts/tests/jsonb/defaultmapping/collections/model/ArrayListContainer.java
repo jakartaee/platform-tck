@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.ArrayList;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class ArrayListContainer implements TypeContainer<ArrayList<String>> {
   private ArrayList<String> instance;

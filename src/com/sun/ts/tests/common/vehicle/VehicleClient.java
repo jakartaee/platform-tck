@@ -21,7 +21,6 @@
 package com.sun.ts.tests.common.vehicle;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.harness.ServiceEETest;
 
 /**

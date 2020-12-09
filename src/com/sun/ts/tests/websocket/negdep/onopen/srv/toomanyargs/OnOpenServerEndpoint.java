@@ -19,13 +19,13 @@ package com.sun.ts.tests.websocket.negdep.onopen.srv.toomanyargs;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/invalid")
 public class OnOpenServerEndpoint {

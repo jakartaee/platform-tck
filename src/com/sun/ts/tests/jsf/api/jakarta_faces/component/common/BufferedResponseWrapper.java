@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
-import java.io.StringWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
-import jakarta.servlet.http.HttpServletResponseWrapper;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 public class BufferedResponseWrapper extends HttpServletResponseWrapper {
 

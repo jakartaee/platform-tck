@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics;
 
 import java.util.Properties;
+
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics.TestLogic;
 

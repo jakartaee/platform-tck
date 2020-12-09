@@ -20,8 +20,9 @@
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
 import com.sun.ts.lib.util.TestUtil;
-import jakarta.jms.JMSException;
+
 import jakarta.jms.ExceptionListener;
+import jakarta.jms.JMSException;
 
 public class MyExceptionListener implements ExceptionListener {
 

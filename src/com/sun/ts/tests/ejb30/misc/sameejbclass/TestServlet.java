@@ -23,16 +23,16 @@ package com.sun.ts.tests.ejb30.misc.sameejbclass;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.lib.deliverable.cts.resource.Dog;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.Data;
+
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.lib.deliverable.cts.resource.Dog;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.Data;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {

@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
-import jakarta.jws.WebService;
 import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless

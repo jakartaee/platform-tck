@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.equals.descriptor;
 
-import jakarta.ejb.SessionContext;
 import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

@@ -20,9 +20,13 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.*;
-import jakarta.resource.spi.*;
 import java.io.Serializable;
+
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.ConnectionManager;
+import jakarta.resource.spi.ConnectionRequestInfo;
+import jakarta.resource.spi.ManagedConnection;
+import jakarta.resource.spi.ManagedConnectionFactory;
 
 /**
  * The default ConnectionManager implementation for the non-managed scenario

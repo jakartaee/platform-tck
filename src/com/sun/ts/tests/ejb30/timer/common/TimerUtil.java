@@ -36,12 +36,12 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TimerService;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public final class TimerUtil {
   private TimerUtil() {

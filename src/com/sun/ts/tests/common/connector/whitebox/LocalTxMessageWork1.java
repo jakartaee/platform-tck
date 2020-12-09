@@ -21,14 +21,16 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import java.lang.reflect.Method;
+
+import com.sun.ts.tests.common.connector.util.AppException;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.endpoint.MessageEndpoint;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.work.Work;
-import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
-import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-import com.sun.ts.tests.common.connector.util.AppException;
-import jakarta.resource.ResourceException;
 
 public class LocalTxMessageWork1 implements Work {
 

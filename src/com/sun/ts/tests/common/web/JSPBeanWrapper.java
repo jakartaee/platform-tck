@@ -21,9 +21,11 @@
 package com.sun.ts.tests.common.web;
 
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import com.sun.ts.lib.util.TSNamingContext;
 
 /**
  *

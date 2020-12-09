@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+
+import jakarta.ejb.EJB;
 
 abstract public class AsyncClientBase extends EJBLiteClientBase {
 

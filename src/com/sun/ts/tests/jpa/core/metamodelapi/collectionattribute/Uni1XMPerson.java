@@ -16,9 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.collectionattribute;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 /**
  *

@@ -20,17 +20,17 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.selectitem;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.model.SelectItem;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.model.SelectItem;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
 

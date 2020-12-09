@@ -20,6 +20,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 import java.io.InputStream;
 import java.io.Reader;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -28,10 +32,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
 
 @ClientEndpoint
 public class AnnotatedThrowingClient extends AnnotatedClientEndpoint<String> {

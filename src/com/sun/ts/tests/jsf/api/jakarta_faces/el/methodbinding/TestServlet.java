@@ -20,21 +20,21 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.el.methodbinding;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.sun.ts.tests.jsf.common.beans.TestBean;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.common.beans.TestBean;
 
+import jakarta.faces.application.Application;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.el.EvaluationException;
+import jakarta.faces.el.MethodBinding;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.application.Application;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.el.EvaluationException;
-import jakarta.faces.context.FacesContext;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
 

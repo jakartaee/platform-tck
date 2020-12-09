@@ -20,10 +20,6 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import jakarta.interceptor.InvocationContext;
-
 /**
  * An interceptor that does not contain any lifecycle methods. Its superclass
  * contains lifecycle methods, and also overrides/disables lifecycle methods in

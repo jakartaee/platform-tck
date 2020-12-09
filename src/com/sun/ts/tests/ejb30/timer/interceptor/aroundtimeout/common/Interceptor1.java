@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public class Interceptor1 extends InterceptorBase {
   private static final String simpleName = "Interceptor1";

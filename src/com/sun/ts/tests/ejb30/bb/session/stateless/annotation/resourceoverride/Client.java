@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride;
 
+import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceNoop;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
+
 import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
 
 public class Client extends ClientBase {
   @EJB(beanName = "ResourceSetterBean")

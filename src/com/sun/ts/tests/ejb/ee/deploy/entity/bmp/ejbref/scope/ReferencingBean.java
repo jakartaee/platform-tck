@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejbref.scope;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
-import jakarta.ejb.EJBException;
 
 public interface ReferencingBean extends EJBObject {
 

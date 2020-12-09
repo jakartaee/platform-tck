@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 import jakarta.ejb.TimedObject;
 
 //@Stateless(name="TimedObjectLocalBean")

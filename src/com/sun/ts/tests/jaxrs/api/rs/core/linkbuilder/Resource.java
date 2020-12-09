@@ -16,6 +16,8 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.core.linkbuilder;
 
+import com.sun.ts.tests.jaxrs.common.impl.TRACE;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -23,8 +25,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
-import com.sun.ts.tests.jaxrs.common.impl.TRACE;
 
 @Path("resource")
 public class Resource {

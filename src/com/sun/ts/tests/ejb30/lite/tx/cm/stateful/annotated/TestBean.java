@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.annotated;
 
+import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
+
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-
-import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
 
 @Stateful
 @TransactionManagement(TransactionManagementType.BEAN)

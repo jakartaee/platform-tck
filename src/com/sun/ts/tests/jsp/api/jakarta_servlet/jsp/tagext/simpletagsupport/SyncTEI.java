@@ -26,9 +26,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
+import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.VariableInfo;
-import jakarta.servlet.jsp.tagext.TagData;
 
 /**
  * Simple TEI to export AT_BEGIN and AT_END variables.

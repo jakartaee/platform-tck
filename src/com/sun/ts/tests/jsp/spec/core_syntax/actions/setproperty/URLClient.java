@@ -21,10 +21,8 @@
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 
 import java.io.PrintWriter;
-import com.sun.ts.lib.harness.EETest.Fault;
 
 import com.sun.javatest.Status;
-
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {

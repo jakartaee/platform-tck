@@ -20,8 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.delete;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface BeanHome extends EJBHome {
   public Bean create(String id, String name, int value, ADVC a1, BDVC b1,

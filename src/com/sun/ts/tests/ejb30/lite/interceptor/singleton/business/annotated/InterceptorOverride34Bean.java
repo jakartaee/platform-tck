@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.business.annotated;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeDefaultInterceptors;

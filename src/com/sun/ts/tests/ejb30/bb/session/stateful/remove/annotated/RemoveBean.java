@@ -28,17 +28,18 @@ import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
+
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import jakarta.ejb.CreateException;
+import jakarta.ejb.Init;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalHome;
-import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Remote;
 import jakarta.ejb.RemoteHome;
-import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "RemoveBean")
 @Remote({ RemoveIF.class, Remove2IF.class })

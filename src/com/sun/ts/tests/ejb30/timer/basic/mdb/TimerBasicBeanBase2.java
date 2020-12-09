@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
-import jakarta.ejb.Timeout;
-import jakarta.ejb.Timer;
-import jakarta.jms.Message;
-import jakarta.jms.MessageListener;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceTest;
 import com.sun.ts.tests.ejb30.timer.common.MethodDispatcher;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerMessageBeanBase;
+
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 abstract public class TimerBasicBeanBase2 extends TimerMessageBeanBase
     implements MessageListener {

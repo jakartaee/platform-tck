@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.scope;
 
-import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
+import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class QueueBeanEJB extends BMPWrapper {
 

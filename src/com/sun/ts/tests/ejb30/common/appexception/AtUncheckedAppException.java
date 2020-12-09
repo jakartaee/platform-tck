@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.common.appexception;
 
 import java.io.Serializable;
+
 import jakarta.ejb.ApplicationException;
 
 @ApplicationException()

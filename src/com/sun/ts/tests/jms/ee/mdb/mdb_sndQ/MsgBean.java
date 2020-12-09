@@ -20,16 +20,28 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
-import java.io.Serializable;
-import jakarta.ejb.*;
-import javax.naming.*;
-import jakarta.jms.*;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsUtil;
+
+import jakarta.ejb.EJBException;
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Destination;
+import jakarta.jms.MapMessage;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.ObjectMessage;
+import jakarta.jms.Session;
+import jakarta.jms.StreamMessage;
+import jakarta.jms.TextMessage;
 
 public class MsgBean implements MessageDrivenBean, MessageListener {
 

@@ -21,11 +21,11 @@
 package com.sun.ts.tests.appclient.deploy.resref.scope;
 
 import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
-import com.sun.javatest.Status;
 
 /** This client is never run by the TS harness */
 public class TopicClient extends EETest {

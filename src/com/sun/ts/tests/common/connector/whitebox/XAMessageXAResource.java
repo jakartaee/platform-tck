@@ -20,8 +20,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.*;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.XAResource;
+import javax.transaction.xa.Xid;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 public class XAMessageXAResource implements XAResource {
 

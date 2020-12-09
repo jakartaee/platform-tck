@@ -20,6 +20,9 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.html.htmlselectmanycheckbox;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValueChangeListener;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -30,15 +33,12 @@ import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.component.html.HtmlSelectManyCheckbox;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.el.MethodBinding;
-import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.ValueChangeEvent;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public final class TestServlet extends
     com.sun.ts.tests.jsf.api.jakarta_faces.component.uiselectmany.TestServlet {

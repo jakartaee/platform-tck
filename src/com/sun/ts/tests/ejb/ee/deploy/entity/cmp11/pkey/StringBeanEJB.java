@@ -20,16 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.io.Serializable;
-import java.io.IOException;
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import java.sql.*;
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public class StringBeanEJB implements EntityBean {
 

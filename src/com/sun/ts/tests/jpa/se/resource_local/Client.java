@@ -20,16 +20,21 @@
 
 package com.sun.ts.tests.jpa.se.resource_local;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
+import jakarta.persistence.RollbackException;
+import jakarta.persistence.SynchronizationType;
 
 public class Client extends PMClientBase {
 

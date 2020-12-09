@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.Instant;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class InstantContainer implements TypeContainer<Instant> {
   private Instant instance;

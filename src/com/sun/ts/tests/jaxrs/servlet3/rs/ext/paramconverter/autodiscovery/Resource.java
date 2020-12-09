@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.servlet3.rs.ext.paramconverter.autodiscovery;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 
 @Path("resource")
 public class Resource {

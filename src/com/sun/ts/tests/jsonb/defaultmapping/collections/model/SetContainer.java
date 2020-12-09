@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Set;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class SetContainer implements TypeContainer<Set<String>> {
   private Set<String> instance;

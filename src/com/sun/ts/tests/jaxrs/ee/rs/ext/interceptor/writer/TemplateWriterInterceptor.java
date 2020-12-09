@@ -21,12 +21,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InterceptorCallbackMethods;
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.WriterInterceptor;
 import jakarta.ws.rs.ext.WriterInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InterceptorCallbackMethods;
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 
 /**
  * This class is a superclass for any interceptor @Provider. Any such provider

@@ -16,14 +16,19 @@
 
 package com.sun.ts.tests.javamail.ee.fetchprofile;
 
-import java.util.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
-import com.sun.javatest.Status;
-
 import java.io.Serializable;
-import jakarta.mail.*;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+
+import jakarta.mail.FetchProfile;
+import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
 
 public class fetchprofile_Test extends ServiceEETest implements Serializable {
 

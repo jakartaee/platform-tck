@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.tagext.Tag;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Simple tag to verify TagSupport.findAncestorWithClass().

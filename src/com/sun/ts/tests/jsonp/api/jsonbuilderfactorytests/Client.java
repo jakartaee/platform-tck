@@ -19,13 +19,18 @@
  */
 package com.sun.ts.tests.jsonp.api.jsonbuilderfactorytests;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jsonp.api.common.TestResult;
-import com.sun.ts.tests.jsonp.common.*;
 import java.util.Map;
 import java.util.Properties;
-import jakarta.json.*;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jsonp.api.common.TestResult;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonBuilderFactory;
+import jakarta.json.JsonObject;
 
 public class Client extends ServiceEETest {
   public static void main(String[] args) {

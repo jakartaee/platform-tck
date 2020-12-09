@@ -16,20 +16,12 @@
 
 package com.sun.ts.tests.jacc.ejb.methodperm;
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
+import java.security.AccessControlException;
+
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.Stateful;
 import jakarta.ejb.Remote;
-
-import java.security.Permission;
-import java.security.PrivilegedExceptionAction;
-import java.security.AccessControlException;
-import java.security.SecurityPermission;
-import java.io.FilePermission;
-import java.util.PropertyPermission;
-import java.net.SocketPermission;
-import java.lang.RuntimePermission;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "jacc_ejb_methodperm_MethodPermBean")
 @Remote({ MethodPermInterface.class })

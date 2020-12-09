@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import java.io.PrintWriter;
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {

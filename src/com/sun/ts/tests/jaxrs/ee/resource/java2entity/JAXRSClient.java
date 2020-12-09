@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.ee.resource.java2entity;
 
-import jakarta.ws.rs.core.Response;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Response;
 
 /*
  * @class.setup_props: webServerHost;

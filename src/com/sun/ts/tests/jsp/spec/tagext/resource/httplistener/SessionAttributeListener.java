@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.httplistener;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpSessionBindingEvent;
-import jakarta.servlet.http.HttpSessionAttributeListener;
+import javax.sql.DataSource;
 
 import jakarta.annotation.Resource;
-
-import javax.sql.DataSource;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.TopicConnectionFactory;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
-import jakarta.mail.Session;
-import java.net.URL;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
 
 public final class SessionAttributeListener
     implements HttpSessionAttributeListener {

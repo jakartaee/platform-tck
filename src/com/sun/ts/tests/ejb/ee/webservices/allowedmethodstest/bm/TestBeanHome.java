@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.webservices.allowedmethodstest.bm;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.Properties;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create() throws RemoteException, CreateException;

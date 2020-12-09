@@ -19,11 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.xa;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-import java.util.Calendar;
-import java.util.Date;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

@@ -16,18 +16,19 @@
 
 package com.sun.ts.tests.jaspic.spi.common;
 
-import java.util.*;
 import java.io.PrintWriter;
-import java.io.Serializable;
-
-import jakarta.security.auth.message.config.AuthConfigFactory;
-import jakarta.security.auth.message.config.AuthConfigProvider;
-import jakarta.security.auth.message.config.RegistrationListener;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
 import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderStandalone;
 import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
 
 /**
  * This contains generic methods/tests which are expected to be used by tests in

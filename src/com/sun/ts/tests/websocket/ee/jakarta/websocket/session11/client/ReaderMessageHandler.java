@@ -20,10 +20,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 import java.io.IOException;
 import java.io.Reader;
 
-import jakarta.websocket.MessageHandler;
-
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
+
+import jakarta.websocket.MessageHandler;
 
 public class ReaderMessageHandler implements MessageHandler.Whole<Reader> {
   ClientEndpoint<String> endpoint;

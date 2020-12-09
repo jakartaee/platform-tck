@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.argsemantics;
 
-import java.util.Properties;
-import java.util.Collection;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
+
 import jakarta.ejb.CreateException;
-import jakarta.ejb.DuplicateKeyException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 
 public interface CallerBeanHome extends EJBHome {

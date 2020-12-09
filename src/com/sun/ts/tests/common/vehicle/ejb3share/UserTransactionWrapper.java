@@ -25,9 +25,9 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
-import jakarta.transaction.Status;
 
 final public class UserTransactionWrapper implements EntityTransaction {
   private UserTransaction delegate;

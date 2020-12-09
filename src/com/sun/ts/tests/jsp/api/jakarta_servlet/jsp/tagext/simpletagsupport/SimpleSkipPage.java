@@ -24,12 +24,13 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import jakarta.servlet.jsp.SkipPageException;
 import jakarta.servlet.jsp.JspException;
-import java.io.IOException;
+import jakarta.servlet.jsp.SkipPageException;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class SimpleSkipPage extends SimpleTagSupport {
 

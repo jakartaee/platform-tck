@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.LinkedHashMap;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class LinkedHashMapContainer
     implements TypeContainer<LinkedHashMap<String, String>> {

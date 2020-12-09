@@ -16,10 +16,23 @@
 
 package com.sun.ts.tests.jpa.core.types.property;
 
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.sun.ts.tests.jpa.core.types.common.Grade;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 
 /*
  * Customer

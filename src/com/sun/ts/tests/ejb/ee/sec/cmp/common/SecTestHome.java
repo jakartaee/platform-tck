@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
-import jakarta.ejb.FinderException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface SecTestHome extends EJBHome {
   public SecTest create(Properties p, boolean newTable, int cofID,

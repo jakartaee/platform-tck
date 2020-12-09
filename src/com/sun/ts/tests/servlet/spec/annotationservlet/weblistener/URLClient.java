@@ -20,8 +20,9 @@
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
 import java.io.PrintWriter;
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+
 import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {
 

@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.stateful.annotated;
 
-import jakarta.ejb.Asynchronous;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
+
+import jakarta.ejb.Asynchronous;
 
 @Asynchronous
 public interface StatefulAsync2IF extends Async2IF {

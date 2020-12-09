@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.entitybeantest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class HelperEJB implements SessionBean {
   private SessionContext sctx = null;

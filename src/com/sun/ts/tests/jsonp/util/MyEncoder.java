@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jsonp.util;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 /*
  * Used to generate an encoded file preceded by N null characters.

@@ -16,6 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.client.syncinvoker;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
+
 import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.client.Client;
@@ -27,10 +31,6 @@ import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
 
 /*
  * @class.setup_props: webServerHost;

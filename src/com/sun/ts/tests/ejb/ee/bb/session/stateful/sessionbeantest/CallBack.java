@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface CallBack extends EJBObject {
   public void reset() throws RemoteException;

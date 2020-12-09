@@ -16,6 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -25,9 +29,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

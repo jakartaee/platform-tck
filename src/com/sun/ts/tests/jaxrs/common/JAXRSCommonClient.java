@@ -27,9 +27,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpState;
 
@@ -42,6 +39,9 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.validation.CheckOneOfStatusesTokenizedValidator;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 /**
  * 

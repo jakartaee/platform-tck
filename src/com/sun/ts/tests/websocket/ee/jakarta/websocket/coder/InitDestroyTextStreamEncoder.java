@@ -20,11 +20,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 import java.io.IOException;
 import java.io.Writer;
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.EndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
+
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyTextStreamEncoder extends StringBeanTextStreamEncoder {
   @Override

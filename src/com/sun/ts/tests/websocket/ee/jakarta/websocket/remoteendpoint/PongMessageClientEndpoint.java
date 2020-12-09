@@ -17,13 +17,13 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint;
 
+import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class PongMessageClientEndpoint extends BinaryAndTextClientEndpoint {
   @Override

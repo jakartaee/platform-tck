@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.ee.common.B;
@@ -31,7 +33,6 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
-import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
 @Remote({ Stateful3IF.class })

@@ -24,6 +24,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Future;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.TestFailureException;
+import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.common.webclient.http.HttpResponse;
+import com.sun.ts.tests.common.webclient.validation.ValidationFactory;
+import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -33,14 +41,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Request;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.webclient.TestFailureException;
-import com.sun.ts.tests.common.webclient.WebTestCase;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
-import com.sun.ts.tests.common.webclient.http.HttpResponse;
-import com.sun.ts.tests.common.webclient.validation.ValidationFactory;
-import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 
 /**
  * Replaces WebTestCase to be used with JAXRS client instead of apache client

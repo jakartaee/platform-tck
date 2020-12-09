@@ -19,15 +19,16 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.factoryfinder.altfacesconfig;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.FactoryTCKServlet;
+
 import jakarta.faces.FactoryFinder;
+import jakarta.faces.context.FacesContextFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.faces.context.FacesContextFactory;
 
 public class TestServlet extends FactoryTCKServlet {
 

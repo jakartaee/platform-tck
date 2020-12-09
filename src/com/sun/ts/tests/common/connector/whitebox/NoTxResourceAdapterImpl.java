@@ -20,18 +20,22 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.*;
-import java.util.Vector;
-import jakarta.resource.spi.ResourceAdapter;
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.ResourceAdapterInternalException;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import com.sun.ts.tests.common.connector.util.*;
-import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.ActivationSpec;
-import javax.transaction.xa.XAResource;
+import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Vector;
+
+import javax.transaction.xa.XAResource;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.ResourceAdapterInternalException;
+import jakarta.resource.spi.endpoint.MessageEndpointFactory;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkManager;
 
 public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
   // IMPORTANT: for compliance, if you add non-transient member data

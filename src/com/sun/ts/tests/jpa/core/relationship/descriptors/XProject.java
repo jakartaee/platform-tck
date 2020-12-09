@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import java.math.BigDecimal;
 import java.util.Collection;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XProject

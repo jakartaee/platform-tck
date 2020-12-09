@@ -19,9 +19,12 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Enumeration;
+
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.annotation.WebInitParam;
+
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -30,9 +33,8 @@ import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Enumeration;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
 
 @WebFilter(filterName = "filter2", dispatcherTypes = {
     DispatcherType.FORWARD }, servletNames = { "servlet1" }, value = {

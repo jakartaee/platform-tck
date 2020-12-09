@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.connector.deployment;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 
 public class DeploymentClient extends EETest {
   // Naming specific member variables

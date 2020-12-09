@@ -16,11 +16,13 @@
 
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.RemoteStatus;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.ejb.SessionContext;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

@@ -20,14 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 
+import java.io.Serializable;
+
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import java.io.Serializable;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.Remove;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;

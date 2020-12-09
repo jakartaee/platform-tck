@@ -16,15 +16,15 @@
 
 package com.sun.ts.tests.servlet.spec.security.denyUncovered;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import java.io.*;
-
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.HttpConstraint;
-
-import com.sun.ts.lib.util.*;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /*
  * This servlet will be used to assist in testing the deny-uncovered-http-methods

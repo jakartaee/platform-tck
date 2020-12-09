@@ -17,10 +17,10 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
-import jakarta.websocket.DecodeException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
+
+import jakarta.websocket.DecodeException;
 
 public class ThrowingTextDecoder extends StringBeanTextDecoder {
   public static final String ERR_MSG = "TCK coder exception for test";

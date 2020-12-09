@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jacc.ejb.mr;
 
-import java.lang.String;
-
 public interface Target {
   public void initLogging(java.util.Properties p);
 

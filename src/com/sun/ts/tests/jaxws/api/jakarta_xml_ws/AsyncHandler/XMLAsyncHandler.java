@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.AsyncHandler;
 
-import com.sun.ts.lib.util.*;
+import javax.xml.transform.Source;
+
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.ws.AsyncHandler;
 import jakarta.xml.ws.Response;
-import javax.xml.transform.Source;
 
 public class XMLAsyncHandler implements AsyncHandler<Source> {
   private boolean dataReady = false;

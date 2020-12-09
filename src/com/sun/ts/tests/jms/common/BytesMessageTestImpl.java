@@ -20,8 +20,22 @@
 
 package com.sun.ts.tests.jms.common;
 
-import java.io.*;
-import jakarta.jms.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
+
+import jakarta.jms.BytesMessage;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageEOFException;
+import jakarta.jms.MessageFormatException;
+import jakarta.jms.MessageNotReadableException;
+import jakarta.jms.MessageNotWriteableException;
 
 /**
  * Class Declaration.

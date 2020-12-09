@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface IntegerBeanHome extends EJBHome {
   public IntegerBean create() throws RemoteException, CreateException;

@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import jakarta.ejb.SessionContext;
+
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 

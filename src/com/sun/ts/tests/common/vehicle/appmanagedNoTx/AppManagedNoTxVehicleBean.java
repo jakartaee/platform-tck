@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.common.vehicle.appmanagedNoTx;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper;
 
@@ -32,7 +34,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
-import java.util.Properties;
 
 @Stateful(name = "AppManagedNoTxVehicleBean")
 @Remote({ AppManagedNoTxVehicleIF.class })

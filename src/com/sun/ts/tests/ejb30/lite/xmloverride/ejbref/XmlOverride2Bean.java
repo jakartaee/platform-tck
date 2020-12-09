@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.xmloverride.ejbref;
 
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
+import jakarta.ejb.Stateless;
 
 @Stateless
 public class XmlOverride2Bean implements NumberIF {

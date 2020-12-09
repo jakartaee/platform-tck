@@ -16,17 +16,23 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.all;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.DriverManagerConnection;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import jakarta.persistence.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.DriverManagerConnection;
+import com.sun.ts.tests.jpa.common.PMClientBase;
+
+import jakarta.persistence.Cache;
+import jakarta.persistence.CacheRetrieveMode;
+import jakarta.persistence.CacheStoreMode;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 

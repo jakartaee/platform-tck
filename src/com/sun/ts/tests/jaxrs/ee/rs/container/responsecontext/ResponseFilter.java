@@ -29,6 +29,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanWithAnnotation;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.core.EntityTag;
 import jakarta.ws.rs.core.Link;
@@ -40,9 +43,6 @@ import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.core.Response.Status.Family;
 import jakarta.ws.rs.core.Response.StatusType;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanWithAnnotation;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 @Provider
 @Priority(500)

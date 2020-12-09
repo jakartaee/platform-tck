@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.lookup.common;
 import static com.sun.ts.tests.ejb30.lite.lookup.common.LookupIF.LOOKUP2_BEAN;
 import static com.sun.ts.tests.ejb30.lite.lookup.common.LookupIF.LOOKUP_BEAN;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   private StringBuilder postConstructRecords = new StringBuilder();

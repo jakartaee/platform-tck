@@ -22,6 +22,8 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import javax.xml.namespace.QName;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.WebApplicationException;
@@ -31,7 +33,6 @@ import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Provider;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
 
 @Provider
 @Produces(MediaType.APPLICATION_XML)

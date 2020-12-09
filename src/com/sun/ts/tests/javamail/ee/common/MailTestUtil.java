@@ -16,13 +16,20 @@
 
 package com.sun.ts.tests.javamail.ee.common;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.util.Properties;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.MimeMessage;
-import com.sun.javatest.*;
+import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.mail.Authenticator;
+import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
 
 /**
  * This class declares common fields and defines utility methods for parsing

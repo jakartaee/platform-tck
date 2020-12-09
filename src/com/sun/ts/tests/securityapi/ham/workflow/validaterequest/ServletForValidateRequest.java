@@ -19,7 +19,6 @@ package com.sun.ts.tests.securityapi.ham.workflow.validaterequest;
 import java.io.IOException;
 
 import jakarta.annotation.security.DeclareRoles;
-import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.ServletSecurity;

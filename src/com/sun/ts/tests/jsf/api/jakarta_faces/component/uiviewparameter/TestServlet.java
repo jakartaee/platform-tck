@@ -22,20 +22,17 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.uiviewparameter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.faces.component.EditableValueHolder;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIViewParameter;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.event.ValueChangeEvent;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseComponentTestServlet {
 

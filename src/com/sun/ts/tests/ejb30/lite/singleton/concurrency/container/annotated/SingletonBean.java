@@ -19,13 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated;
 
+import java.util.LinkedList;
+
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.BeanBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-import java.util.LinkedList;
+
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
-import jakarta.interceptor.Interceptors;
 
 /**
  * This class is similar to ../bm/SingletonBean. But the latter uses java

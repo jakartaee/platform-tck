@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
   public TestBeanLocal create(Properties p, int id, String brandName,

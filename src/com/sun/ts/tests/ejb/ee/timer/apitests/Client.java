@@ -20,16 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
   private static final String testName = "apiTimerTests";

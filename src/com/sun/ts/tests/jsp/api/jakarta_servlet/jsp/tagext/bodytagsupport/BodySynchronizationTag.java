@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
-import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.JspException;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.BodyContent;
 
 public class BodySynchronizationTag extends BodyContainerInteractionTag {
 

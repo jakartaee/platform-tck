@@ -19,6 +19,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -28,9 +31,6 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ClientEndpoint
 public class WSPongMessageAndSessionClientEndpoint

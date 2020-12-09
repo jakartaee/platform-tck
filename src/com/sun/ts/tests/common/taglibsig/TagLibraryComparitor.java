@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.common.taglibsig;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.sun.ts.tests.common.taglibsig.validation.ValidationConfiguration;
 import com.sun.ts.tests.common.taglibsig.validation.Validator;
 import com.sun.ts.tests.common.taglibsig.validation.ValidatorFactory;
-
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Provides the ability to compare two TagLibraryDescriptor objects and return

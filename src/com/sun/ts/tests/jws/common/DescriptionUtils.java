@@ -16,9 +16,18 @@
 
 package com.sun.ts.tests.jws.common;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jws.common.DescriptionConstants;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -27,17 +36,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.FactoryConfigurationError;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 
 public class DescriptionUtils implements DescriptionConstants, SOAPConstants,
     SchemaConstants, WSIConstants {

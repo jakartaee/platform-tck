@@ -24,12 +24,12 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.Interceptors;
-
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 
 abstract public class BeanBase extends ComponentBase {
 

@@ -18,10 +18,10 @@ package com.sun.ts.tests.ejb.ee.bb.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
-import java.io.ObjectInputStream;
 
 // This class overrides the resolveClass() and resolveProxyClass() methods  of ObjectInputStream
 public class EJBHandleObjectInputStream extends ObjectInputStream {

@@ -19,14 +19,16 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.servlet.common.util.StaticLog;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
 
 public final class CreateFilter implements Filter {
 

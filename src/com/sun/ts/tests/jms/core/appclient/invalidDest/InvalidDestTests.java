@@ -19,15 +19,17 @@
  */
 package com.sun.ts.tests.jms.core.appclient.invalidDest;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
-import jakarta.jms.*;
-import java.io.*;
-import java.util.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.Connection;
+import jakarta.jms.InvalidDestinationException;
+import jakarta.jms.Session;
+import jakarta.jms.Topic;
 
 public class InvalidDestTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.appclient.invalidDest.InvalidDestTests";

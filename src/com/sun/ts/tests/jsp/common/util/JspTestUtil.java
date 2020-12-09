@@ -20,18 +20,30 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.tagext.*;
 import jakarta.servlet.jsp.el.ELException;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
-import java.io.IOException;
-import java.util.*;
+import jakarta.servlet.jsp.tagext.BodyTag;
+import jakarta.servlet.jsp.tagext.IterationTag;
+import jakarta.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.tagext.ValidationMessage;
 
 /**
  * JSP TCK Utility class.

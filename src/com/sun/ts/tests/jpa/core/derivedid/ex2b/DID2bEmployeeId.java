@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex2b;
 
-import jakarta.persistence.Embeddable;
-
 /**
  *
  * @author Raja Perumal

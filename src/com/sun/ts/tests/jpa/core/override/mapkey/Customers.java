@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
 
 @Entity
 public class Customers implements Serializable {

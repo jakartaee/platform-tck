@@ -20,19 +20,20 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.servlet.jsp.el.ExpressionEvaluator;
-import jakarta.servlet.jsp.el.VariableResolver;
-import jakarta.servlet.Servlet;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Enumeration;
+
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.el.ExpressionEvaluator;
+import jakarta.servlet.jsp.el.VariableResolver;
 
 /**
  * Simple class to validate release is called on the PageContext object provide

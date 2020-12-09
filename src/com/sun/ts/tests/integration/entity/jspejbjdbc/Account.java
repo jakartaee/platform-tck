@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.integration.entity.jspejbjdbc;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.Properties;
+import jakarta.ejb.EJBObject;
 
 public interface Account extends EJBObject {
   public double balance() throws RemoteException;

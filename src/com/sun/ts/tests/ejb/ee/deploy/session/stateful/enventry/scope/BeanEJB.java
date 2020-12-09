@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.scope;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class BeanEJB extends StatefulWrapper {
 

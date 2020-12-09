@@ -20,16 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txbeanLocal;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+import java.util.Vector;
 
-import java.util.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TxBeanEJB implements SessionBean {
 

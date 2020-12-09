@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jpa.core.relationship.annotations;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Vector;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 

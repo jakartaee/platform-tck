@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import org.omg.CORBA.ORB;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 /**
  * the direct superclass of Client classes that test application client

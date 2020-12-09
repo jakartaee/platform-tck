@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.noattrremotelocal;
 
+import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
+import com.sun.ts.tests.ejb30.common.busiface.ClientBase;
 import com.sun.ts.tests.ejb30.common.busiface.TestIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
 
-import com.sun.ts.tests.ejb30.common.busiface.ClientBase;
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   @EJB

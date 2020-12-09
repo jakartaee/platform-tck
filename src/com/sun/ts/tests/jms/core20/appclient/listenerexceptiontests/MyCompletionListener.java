@@ -19,9 +19,15 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
-import com.sun.ts.lib.util.TestUtil;
-import jakarta.jms.*;
 import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.CompletionListener;
+import jakarta.jms.Connection;
+import jakarta.jms.Message;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 public class MyCompletionListener implements CompletionListener {
 

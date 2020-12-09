@@ -16,12 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.entityManagerFactoryCloseExceptions;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.EntityManagerFactory;
 
 public class Client extends PMClientBase {
 

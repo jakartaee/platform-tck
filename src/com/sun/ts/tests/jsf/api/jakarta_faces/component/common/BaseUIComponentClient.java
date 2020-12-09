@@ -22,6 +22,10 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
 
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+
 public abstract class BaseUIComponentClient extends AbstractUrlClient {
 
   /*

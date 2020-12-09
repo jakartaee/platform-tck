@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
+import javax.naming.NamingException;
+
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import javax.naming.NamingException;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 abstract public class TxBeanBase implements TxCommonIF {

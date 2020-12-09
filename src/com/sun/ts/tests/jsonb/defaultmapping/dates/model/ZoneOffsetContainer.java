@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.ZoneOffset;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class ZoneOffsetContainer implements TypeContainer<ZoneOffset> {
   private ZoneOffset instance;

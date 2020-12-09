@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import jakarta.json.spi.JsonProvider;
-import java.io.*;
+import java.io.OutputStream;
+import java.io.Writer;
 import java.nio.charset.Charset;
-import java.util.*;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonStructure;
+import jakarta.json.JsonWriter;
 
 /*
  * MyJsonWriter is a Json Test Writer used by the pluggability tests

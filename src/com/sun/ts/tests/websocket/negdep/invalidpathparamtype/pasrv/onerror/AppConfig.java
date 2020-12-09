@@ -20,10 +20,10 @@ package com.sun.ts.tests.websocket.negdep.invalidpathparamtype.pasrv.onerror;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
 
 public class AppConfig
     implements jakarta.websocket.server.ServerApplicationConfig {

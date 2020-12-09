@@ -21,12 +21,13 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 /**
  * A callback listerner for stateful session beans. Callback methods may throw

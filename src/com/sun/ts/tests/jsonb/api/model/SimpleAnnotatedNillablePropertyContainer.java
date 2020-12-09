@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
-import jakarta.json.bind.annotation.JsonbProperty;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbProperty;
 
 public class SimpleAnnotatedNillablePropertyContainer
     implements TypeContainer<Object> {

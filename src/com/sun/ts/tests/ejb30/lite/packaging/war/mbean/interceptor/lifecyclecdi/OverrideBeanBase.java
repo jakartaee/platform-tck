@@ -21,12 +21,12 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdi
 
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.HistorySingletonBean;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.HistorySingletonBean;
 
 public class OverrideBeanBase {
   private static final String simpleName = "OverrideBeanBase";

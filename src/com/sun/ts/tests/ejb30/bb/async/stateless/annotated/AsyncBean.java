@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb30.bb.async.stateless.annotated;
 
+import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
+
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
 
 @Stateless
 @Asynchronous

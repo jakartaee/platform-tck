@@ -59,10 +59,10 @@
 
 package com.sun.ts.tests.common.webclient.handler;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HeaderElement;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * <PRE>

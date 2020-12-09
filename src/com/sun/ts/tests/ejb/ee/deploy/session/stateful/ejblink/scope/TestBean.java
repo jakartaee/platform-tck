@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.scope;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
-import jakarta.ejb.EJBException;
 
 public interface TestBean extends EJBObject {
 

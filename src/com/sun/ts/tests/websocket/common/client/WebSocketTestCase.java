@@ -23,15 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.ClientEndpointConfig.Configurator;
-import jakarta.websocket.CloseReason;
-import jakarta.websocket.ContainerProvider;
-import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.HandshakeResponse;
-import jakarta.websocket.Session;
-import jakarta.websocket.WebSocketContainer;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.TestFailureException;
 import com.sun.ts.tests.common.webclient.WebTestCase;
@@ -41,6 +32,15 @@ import com.sun.ts.tests.common.webclient.validation.ValidationFactory;
 import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint.ClientEndpointData;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Property;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.HandshakeResponse;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 /**
  * <p>

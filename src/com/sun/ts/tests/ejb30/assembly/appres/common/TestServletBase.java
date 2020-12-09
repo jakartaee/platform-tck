@@ -23,13 +23,13 @@ package com.sun.ts.tests.ejb30.assembly.appres.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServletBase extends HttpTCKServlet {
   protected StringBuilder postConstructRecords;

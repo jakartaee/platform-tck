@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter;
 
-import jakarta.servlet.ServletResponseWrapper;
-import jakarta.servlet.ServletResponse;
 import java.io.PrintWriter;
+
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.ServletResponseWrapper;
 
 public class CTSResponseWrapper extends ServletResponseWrapper {
 

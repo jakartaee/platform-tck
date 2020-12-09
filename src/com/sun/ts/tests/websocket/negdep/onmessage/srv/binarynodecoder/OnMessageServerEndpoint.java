@@ -19,13 +19,13 @@ package com.sun.ts.tests.websocket.negdep.onmessage.srv.binarynodecoder;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.negdep.StringHolder;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.negdep.StringHolder;
 
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {

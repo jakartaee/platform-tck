@@ -25,7 +25,7 @@ import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.ClientBase3NoAnnotation;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.annotation.PostConstruct;
+
 import jakarta.ejb.EJB;
 
 /**

@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb30.bb.async.singleton.descriptor;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorClientBase;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.TimeoutDescriptorBeanBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends DescriptorClientBase {
   @EJB(beanName = "TimeoutDescriptorBean")

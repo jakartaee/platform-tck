@@ -16,15 +16,16 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.el.implicitobjelresolver;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import com.sun.ts.tests.jsp.common.util.JspResolverTest;
-import jakarta.el.ELContext;
-import jakarta.servlet.jsp.el.ImplicitObjectELResolver;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
+
+import com.sun.ts.tests.jsp.common.util.JspResolverTest;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.el.ImplicitObjectELResolver;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class ImplicitObjELResolverTag extends SimpleTagSupport {
 

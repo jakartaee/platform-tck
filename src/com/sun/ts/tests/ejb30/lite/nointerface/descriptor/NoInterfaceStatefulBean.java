@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
-import jakarta.annotation.PreDestroy;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase;
+
+import jakarta.annotation.PreDestroy;
 
 public class NoInterfaceStatefulBean extends BeanBase {
 

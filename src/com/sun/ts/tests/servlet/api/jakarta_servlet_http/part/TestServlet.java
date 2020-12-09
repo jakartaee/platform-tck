@@ -19,9 +19,15 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.part;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Collection;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;

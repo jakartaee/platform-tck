@@ -22,12 +22,12 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.annotation.PreDestroy;
-import jakarta.annotation.Resource;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 
 public class Client extends
     com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.ClientBase {

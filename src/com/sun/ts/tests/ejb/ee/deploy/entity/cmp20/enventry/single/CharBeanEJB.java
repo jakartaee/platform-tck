@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.single;
 
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CharBeanEJB extends CMP20Wrapper {
 

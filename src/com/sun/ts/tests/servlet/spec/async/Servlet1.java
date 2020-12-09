@@ -16,16 +16,17 @@
 
 package com.sun.ts.tests.servlet.spec.async;
 
-import jakarta.servlet.AsyncContext;
-import jakarta.servlet.GenericServlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import jakarta.servlet.AsyncContext;
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 public class Servlet1 extends GenericServlet {
   private static final String TEST_HEADER = "testname";

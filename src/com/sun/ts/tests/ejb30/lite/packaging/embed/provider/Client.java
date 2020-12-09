@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.ejb.embeddable.EJBContainer;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.embeddable.EJBContainer;
 
 public final class Client extends EJBLiteClientBase {
   private Map<String, Object> containerInitProps = new HashMap<String, Object>();

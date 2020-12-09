@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex1a;
 
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.List;
-import java.util.Properties;
 
 /**
  * @author Raja Perumal

@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
-import jakarta.ejb.Stateful;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.lite.view.common.SuperclassBeanBase;
+
+import jakarta.ejb.Stateful;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateful
 @ExcludeDefaultInterceptors

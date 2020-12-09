@@ -21,10 +21,10 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.prerendercomponentevent;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseComponentSystemEventTestServlet;
+
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.event.ComponentSystemEvent;
-
 import jakarta.faces.event.PreRenderComponentEvent;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {

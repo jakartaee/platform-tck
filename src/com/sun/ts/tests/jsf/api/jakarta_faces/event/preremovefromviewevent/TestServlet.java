@@ -28,12 +28,9 @@ import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIInput;
 import jakarta.faces.event.ComponentSystemEvent;
-import jakarta.faces.event.PostRestoreStateEvent;
-import jakarta.faces.event.SystemEventListener;
-
 import jakarta.faces.event.PreRemoveFromViewEvent;
+import jakarta.faces.event.SystemEventListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import com.sun.ts.tests.jsonp.api.common.TestFail;
-import com.sun.ts.lib.harness.EETest.Fault;
 import java.util.LinkedList;
+
+import com.sun.ts.lib.harness.EETest.Fault;
 
 /**
  * Tests result record.

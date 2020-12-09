@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.util.Properties;
-
 public interface SetRollbackOnlyIF {
   void remove();
 

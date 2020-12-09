@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "COFFEEEJBLITE")

@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jpa.core.annotations.orderby;
 
 import jakarta.persistence.Embeddable;
-import java.math.BigInteger;
 
 @Embeddable
 public class ZipCode implements java.io.Serializable {

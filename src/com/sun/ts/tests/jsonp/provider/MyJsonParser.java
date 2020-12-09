@@ -20,17 +20,14 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import jakarta.json.spi.JsonProvider;
-import java.io.*;
+import java.io.InputStream;
+import java.io.Reader;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.util.*;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.stream.JsonLocation;
+import jakarta.json.stream.JsonParser;
 
 /*
  * MyJsonParser is a Json Test Parser used by the pluggability tests

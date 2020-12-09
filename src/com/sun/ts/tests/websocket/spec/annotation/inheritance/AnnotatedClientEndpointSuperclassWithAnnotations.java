@@ -17,6 +17,9 @@
 
 package com.sun.ts.tests.websocket.spec.annotation.inheritance;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnClose;
@@ -24,9 +27,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 
 public class AnnotatedClientEndpointSuperclassWithAnnotations
     extends AnnotatedClientEndpoint<String> {

@@ -16,17 +16,19 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.resourcebundleelresolver;
 
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.ResourceBundle;
+import java.util.StringTokenizer;
+
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
 import jakarta.el.ELContext;
 import jakarta.el.ResourceBundleELResolver;
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
-import java.util.ResourceBundle;
-import java.util.Enumeration;
-import java.util.StringTokenizer;
 
 public class ResourceBundleELResolverTag extends SimpleTagSupport {
 

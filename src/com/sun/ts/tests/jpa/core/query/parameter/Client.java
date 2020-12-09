@@ -16,14 +16,20 @@
 
 package com.sun.ts.tests.jpa.core.query.parameter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.Parameter;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
   protected final Employee empRef[] = new Employee[5];

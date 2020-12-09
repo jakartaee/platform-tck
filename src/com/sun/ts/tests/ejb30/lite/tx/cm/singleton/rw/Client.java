@@ -19,10 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.rw;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+
 import jakarta.ejb.EJB;
-import java.util.Properties;
 
 public class Client extends RWClientBase {
 

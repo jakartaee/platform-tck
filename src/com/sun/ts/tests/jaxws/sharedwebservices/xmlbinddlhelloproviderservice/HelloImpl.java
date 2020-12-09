@@ -20,17 +20,17 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.xmlbinddlhelloproviderservice;
 
-import jakarta.xml.ws.*;
+import java.io.StringReader;
+
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
-import java.io.StringReader;
-import java.io.OutputStream;
-import java.io.InputStream;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.ws.http.HTTPBinding;
 
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.Provider;
+import jakarta.xml.ws.ServiceMode;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceProvider;
+import jakarta.xml.ws.http.HTTPBinding;
 
 @WebServiceProvider
 @BindingType(value = HTTPBinding.HTTP_BINDING)

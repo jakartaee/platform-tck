@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.single;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface IntegerBean extends EJBObject {

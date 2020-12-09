@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejblink.casesens;
 
-import java.util.Properties;
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
 

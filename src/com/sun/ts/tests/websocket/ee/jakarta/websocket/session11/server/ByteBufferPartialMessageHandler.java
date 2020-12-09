@@ -20,10 +20,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class ByteBufferPartialMessageHandler
     implements MessageHandler.Partial<ByteBuffer> {

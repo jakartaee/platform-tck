@@ -24,13 +24,13 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.ts.tests.common.webclient.Util;
-
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpMethodBase;
 import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.HttpVersion;
+
+import com.sun.ts.tests.common.webclient.Util;
 
 /**
  * This class represents an HTTP response from the server.

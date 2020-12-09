@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.equals.descriptor;
 
+import java.util.Properties;
+
+import javax.naming.NamingException;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.tests.ejb30.common.equals.Comparator;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.equals.ClientBase;
-import com.sun.ts.tests.ejb30.common.equals.Comparator;
-import java.util.Properties;
-import javax.naming.NamingException;
 
 public class Client extends EETest {
   protected static final boolean CLIENT_LOG_IF_OK = true;

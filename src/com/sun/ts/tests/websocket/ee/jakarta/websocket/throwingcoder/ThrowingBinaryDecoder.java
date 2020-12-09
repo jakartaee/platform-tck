@@ -19,10 +19,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
 import java.nio.ByteBuffer;
 
-import jakarta.websocket.DecodeException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
+
+import jakarta.websocket.DecodeException;
 
 public class ThrowingBinaryDecoder extends StringBeanBinaryDecoder {
 

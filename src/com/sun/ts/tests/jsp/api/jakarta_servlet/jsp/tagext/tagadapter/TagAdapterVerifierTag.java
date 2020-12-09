@@ -24,14 +24,15 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagadapter;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.tagext.Tag;
 import jakarta.servlet.jsp.tagext.TagAdapter;
-import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.JspException;
-import java.io.IOException;
 
 /**
  * Simple tag to verify adpated SimpleTag instance is provided though a call to

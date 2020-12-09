@@ -23,11 +23,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
 
 @Stateless(name = "AcceptBean")
 @Remote({ AcceptIF.class })

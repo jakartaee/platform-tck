@@ -21,11 +21,12 @@ package com.sun.ts.tests.ejb30.lite.naming.context;
 
 import java.util.Map;
 
-import jakarta.ejb.Singleton;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class TestBean {

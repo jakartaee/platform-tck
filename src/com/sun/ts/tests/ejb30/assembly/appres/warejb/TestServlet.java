@@ -22,15 +22,15 @@ package com.sun.ts.tests.ejb30.assembly.appres.warejb;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
+import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase2;
+import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
-import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase2;
-import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends TestServletBase2 {

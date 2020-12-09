@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
+
 import jakarta.ejb.EJB;
 
 public class Client

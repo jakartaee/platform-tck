@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.webservices.allowedmethodstest.cm;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.util.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
 }

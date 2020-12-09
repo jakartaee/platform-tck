@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.HasInterface;
+
+import jakarta.ejb.EJB;
 
 public class Client
     extends com.sun.ts.tests.ejb30.lite.nointerface.annotated.ClientBase {

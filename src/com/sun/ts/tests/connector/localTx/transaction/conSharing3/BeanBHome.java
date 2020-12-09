@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing3;
 
-import java.rmi.*;
-import jakarta.ejb.*;
-import java.util.Properties;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface BeanBHome extends EJBHome {
   public BeanB create() throws RemoteException, CreateException;

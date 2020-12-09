@@ -18,19 +18,15 @@ package com.sun.ts.tests.securityapi.securitycontext.ejb;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.Password;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

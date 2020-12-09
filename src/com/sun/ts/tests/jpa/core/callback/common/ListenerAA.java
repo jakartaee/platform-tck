@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import jakarta.persistence.*;
+import jakarta.persistence.PostLoad;
 
 public class ListenerAA extends ListenerBase {
 

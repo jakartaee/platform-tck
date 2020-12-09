@@ -20,14 +20,18 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.*;
-import javax.security.auth.Subject;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import jakarta.resource.spi.security.PasswordCredential;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.security.auth.Subject;
+
 import jakarta.resource.ResourceException;
+import jakarta.resource.spi.ConnectionRequestInfo;
+import jakarta.resource.spi.ManagedConnectionFactory;
 import jakarta.resource.spi.SecurityException;
-import jakarta.resource.spi.*;
+import jakarta.resource.spi.security.PasswordCredential;
 
 public class Util {
   static public PasswordCredential getPasswordCredential(

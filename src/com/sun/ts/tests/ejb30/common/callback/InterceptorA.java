@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+import org.omg.CORBA.ORB;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-import org.omg.CORBA.ORB;
 
 /**
  * A callback listerner for stateless session beans. It uses ejb* for method

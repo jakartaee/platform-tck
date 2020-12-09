@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.descriptor;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
+import jakarta.ejb.EJB;
 
 /**
  * These tests are the same as ../annotated except that: 1. interceptor binding,

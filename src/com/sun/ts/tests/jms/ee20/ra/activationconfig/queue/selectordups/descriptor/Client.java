@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.queue.selectordups.descriptor;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends
     com.sun.ts.tests.jms.ee20.ra.activationconfig.common.QueueClientBase {

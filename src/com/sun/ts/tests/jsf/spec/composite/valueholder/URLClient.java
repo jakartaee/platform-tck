@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.jsf.spec.composite.valueholder;
 
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Formatter;
 
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;

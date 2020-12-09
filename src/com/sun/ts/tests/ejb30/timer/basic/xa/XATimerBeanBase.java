@@ -22,16 +22,16 @@ package com.sun.ts.tests.ejb30.timer.basic.xa;
 import java.util.Date;
 import java.util.logging.Level;
 
-import jakarta.ejb.Timer;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PersistenceException;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.Timer;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 
 abstract public class XATimerBeanBase extends TimerBeanBase {
   @PersistenceContext(unitName = "ejblite-pu")

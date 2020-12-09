@@ -24,6 +24,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKConverter;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValidator;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValueChangeListener;
+import com.sun.ts.tests.jsf.common.beans.TestBean;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
+import jakarta.el.ValueExpression;
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.application.Application;
 import jakarta.faces.application.FacesMessage;
@@ -44,14 +52,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKConverter;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValidator;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValueChangeListener;
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import jakarta.el.ValueExpression;
 
 public class TestServlet extends BaseComponentTestServlet {
 

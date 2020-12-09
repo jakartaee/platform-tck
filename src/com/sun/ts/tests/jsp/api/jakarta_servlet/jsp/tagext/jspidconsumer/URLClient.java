@@ -21,9 +21,7 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
 import java.io.PrintWriter;
-import java.io.IOException;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 

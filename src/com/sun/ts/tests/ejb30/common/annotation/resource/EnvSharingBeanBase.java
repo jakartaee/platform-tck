@@ -20,25 +20,27 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.PREFIX;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.ejb.EJBContext;
-import jakarta.jms.ConnectionFactory;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.TopicConnectionFactory;
-import jakarta.mail.Session;
+
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.PREFIX;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_TRANSACTION_JNDI_NAME;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
-import jakarta.jms.Queue;
-import jakarta.jms.Topic;
-import jakarta.transaction.UserTransaction;
+
 import org.omg.CORBA.ORB;
+
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.mail.Session;
+import jakarta.transaction.UserTransaction;
 
 abstract public class EnvSharingBeanBase extends ResourceBeanBase
     implements ResourceIF {

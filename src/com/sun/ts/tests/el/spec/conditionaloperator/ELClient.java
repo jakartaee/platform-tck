@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.el.spec.conditionaloperator;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.tests.el.common.util.ExprEval;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
-
-import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 

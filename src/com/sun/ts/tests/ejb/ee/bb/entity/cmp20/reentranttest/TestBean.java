@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.Properties;
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public void ping() throws RemoteException;

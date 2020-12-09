@@ -20,17 +20,27 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.*;
-import jakarta.resource.spi.*;
-import jakarta.resource.spi.security.PasswordCredential;
-import jakarta.resource.spi.IllegalStateException;
-import jakarta.resource.spi.SecurityException;
-import jakarta.resource.NotSupportedException;
-import javax.transaction.xa.XAResource;
-import java.io.*;
-import java.util.*;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.security.auth.Subject;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.transaction.xa.XAResource;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.NotSupportedException;
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.ConnectionEventListener;
+import jakarta.resource.spi.ConnectionRequestInfo;
+import jakarta.resource.spi.IllegalStateException;
+import jakarta.resource.spi.LocalTransaction;
+import jakarta.resource.spi.ManagedConnection;
+import jakarta.resource.spi.ManagedConnectionFactory;
+import jakarta.resource.spi.ManagedConnectionMetaData;
+import jakarta.resource.spi.SecurityException;
+import jakarta.resource.spi.security.PasswordCredential;
 
 public class TSManagedConnection implements ManagedConnection {
 

@@ -20,7 +20,9 @@
 
 package com.sun.ts.tests.servlet.spec.listenerorder;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.ServletRequestListener;
 
 public class ServletRequestListener2 implements ServletRequestListener {
 

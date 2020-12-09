@@ -19,7 +19,6 @@ package com.sun.ts.tests.securityapi.ham.sam.obtainbean;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.security.enterprise.AuthenticationException;
 import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.auth.message.AuthException;
 import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
 import jakarta.servlet.http.HttpServletRequest;

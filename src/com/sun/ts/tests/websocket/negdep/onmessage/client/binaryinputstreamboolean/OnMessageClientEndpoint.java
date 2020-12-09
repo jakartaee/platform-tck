@@ -20,14 +20,14 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.binaryinputstreambool
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
 
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {

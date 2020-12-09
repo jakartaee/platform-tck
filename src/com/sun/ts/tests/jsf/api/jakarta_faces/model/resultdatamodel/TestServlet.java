@@ -20,6 +20,11 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.resultdatamodel;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
 import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.TCKResult;
 import com.sun.ts.tests.jsf.common.beans.TestBean;
@@ -32,11 +37,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.jstl.sql.Result;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestServlet extends BaseModelTestServlet {
 

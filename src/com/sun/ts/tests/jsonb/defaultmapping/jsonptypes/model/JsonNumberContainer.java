@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.jsonptypes.model;
 
-import jakarta.json.JsonNumber;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.JsonNumber;
 
 public class JsonNumberContainer implements TypeContainer<JsonNumber> {
   private JsonNumber instance;

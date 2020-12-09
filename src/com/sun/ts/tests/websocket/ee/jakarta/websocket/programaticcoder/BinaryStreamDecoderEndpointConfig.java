@@ -22,12 +22,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.InitDestroyBinaryStreamDecoder;
+
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.InitDestroyBinaryStreamDecoder;
 
 public class BinaryStreamDecoderEndpointConfig implements ServerEndpointConfig {
 

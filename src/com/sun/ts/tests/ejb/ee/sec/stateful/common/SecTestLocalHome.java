@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.common;
 
-import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface SecTestLocalHome extends EJBLocalHome {
   SecTestLocal create(java.util.Properties p) throws CreateException;

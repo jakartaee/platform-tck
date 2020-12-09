@@ -19,12 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.xmloverride.resource;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import jakarta.annotation.Resource;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.Resource;
 
 public class Client extends EJBLiteClientBase {
   @Resource(name = "unmappedEnvEntry")

@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.annotations.assocoverride;
 
-import jakarta.persistence.*;
 import java.sql.Date;
+
+import jakarta.persistence.AssociationOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 
 /*
  * PartTimeEmployee entity extends an MappedSuperClass while overriding

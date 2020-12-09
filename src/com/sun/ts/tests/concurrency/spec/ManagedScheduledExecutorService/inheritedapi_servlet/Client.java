@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.inheritedapi_servlet;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
-import java.util.*;
-import java.net.*;
-import com.sun.ts.tests.concurrency.common.*;
+import com.sun.ts.tests.concurrency.common.ConcurrencyTestUtils;
 
 public class Client extends EETest {
 

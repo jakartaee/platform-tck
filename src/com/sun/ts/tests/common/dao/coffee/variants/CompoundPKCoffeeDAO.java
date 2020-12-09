@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.common.dao.coffee.variants;
 
-import java.util.Properties;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import jakarta.ejb.CreateException;
 import com.sun.ts.tests.common.dao.DAO;
 import com.sun.ts.tests.common.dao.DAOException;
+
+import jakarta.ejb.CreateException;
 
 /**
  * DAO Object for table using a variant of the "coffee" DB schema with a

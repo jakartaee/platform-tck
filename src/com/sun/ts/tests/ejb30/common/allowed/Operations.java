@@ -20,11 +20,14 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
+import java.util.Properties;
+
+import javax.naming.InitialContext;
+
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.util.Properties;
+
 import jakarta.ejb.SessionContext;
-import javax.naming.InitialContext;
 import jakarta.transaction.UserTransaction;
 
 public class Operations implements Constants {

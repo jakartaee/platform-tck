@@ -21,10 +21,10 @@
 package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
 
 public class ManagedPropertyBean implements Serializable {
 

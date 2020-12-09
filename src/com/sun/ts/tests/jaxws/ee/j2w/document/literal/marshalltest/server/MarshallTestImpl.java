@@ -20,18 +20,12 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jaxws.common.*;
-
-import java.io.ByteArrayInputStream;
-
-import jakarta.xml.ws.WebServiceException;
-
-import java.util.*;
-
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Calendar;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Data;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 

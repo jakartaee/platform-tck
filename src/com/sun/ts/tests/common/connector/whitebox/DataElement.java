@@ -24,7 +24,7 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.*;
+import javax.transaction.xa.Xid;
 
 /**
  * A DataElement in the Enterprise Information System(TSeis).

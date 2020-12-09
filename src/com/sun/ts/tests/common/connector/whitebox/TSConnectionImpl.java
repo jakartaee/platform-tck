@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.Vector;
 import java.util.Hashtable;
-import com.sun.ts.tests.common.connector.util.*;
+import java.util.Vector;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 public class TSConnectionImpl implements TSConnection {
 

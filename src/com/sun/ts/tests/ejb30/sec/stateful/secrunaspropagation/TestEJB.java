@@ -20,28 +20,27 @@
 
 package com.sun.ts.tests.ejb30.sec.stateful.secrunaspropagation;
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.annotation.security.RolesAllowed;
-import jakarta.annotation.security.RunAs;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.EJBs;
-import jakarta.ejb.EJB;
-import jakarta.annotation.Resource;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Remove;
 import java.util.Properties;
-import com.sun.ts.tests.ejb30.sec.stateful.common.Test;
+
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTest;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTestRoleRef;
+import com.sun.ts.tests.ejb30.sec.stateful.common.Test;
+
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.annotation.security.RunAs;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "TestEJB")
 @Remote({ Test.class })

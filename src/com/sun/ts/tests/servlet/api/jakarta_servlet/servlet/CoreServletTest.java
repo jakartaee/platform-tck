@@ -58,12 +58,13 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
+import java.io.IOException;
+
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
 
 public abstract class CoreServletTest implements Servlet {
 

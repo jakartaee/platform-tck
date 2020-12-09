@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R1124;
 
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.sharedclients.simpleclient.*;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-import com.sun.javatest.Status;
-
-import java.util.Properties;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
-import com.sun.ts.lib.harness.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.sharedclients.simpleclient.SimpleTestClient;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 

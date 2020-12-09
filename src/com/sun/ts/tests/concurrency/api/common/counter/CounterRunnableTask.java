@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.concurrency.api.common.counter;
 
-import javax.naming.*;
+import javax.naming.InitialContext;
 
 public class CounterRunnableTask implements Runnable {
 

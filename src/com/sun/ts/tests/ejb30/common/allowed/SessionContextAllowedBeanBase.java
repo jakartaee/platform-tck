@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.common.allowed;
 
 import java.util.Properties;
+
 import jakarta.ejb.SessionContext;
 
 public abstract class SessionContextAllowedBeanBase

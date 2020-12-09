@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import java.util.Iterator;
+
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+
 import jakarta.el.ELContext;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.servlet.jsp.el.ImplicitObjectELResolver;

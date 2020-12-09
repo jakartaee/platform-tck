@@ -22,14 +22,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.common.util.StringUtil;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 public class WSCSubprotocolServer extends Endpoint
     implements MessageHandler.Whole<String> {

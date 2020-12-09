@@ -19,26 +19,25 @@
  */
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import jakarta.jms.Queue;
-import jakarta.jms.QueueBrowser;
-import jakarta.jms.QueueSession;
-import jakarta.jms.QueueSender;
-import jakarta.jms.QueueReceiver;
-import jakarta.jms.QueueConnection;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.JMSException;
-import jakarta.jms.TextMessage;
-import jakarta.jms.Message;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
+import java.util.Enumeration;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.RemoteLoggingInitException;
-
-import java.util.Properties;
-import java.util.Enumeration;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.TextMessage;
 
 public class MDB_SND_TestEJB implements SessionBean {
   private SessionContext sessionContext;

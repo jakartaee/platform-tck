@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.api.client.clientbuilder;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.core.Configuration;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

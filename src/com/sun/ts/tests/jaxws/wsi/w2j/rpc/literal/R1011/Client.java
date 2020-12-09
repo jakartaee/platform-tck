@@ -32,10 +32,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-
-import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 

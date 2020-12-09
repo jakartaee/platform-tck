@@ -16,13 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapKey;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class TheatreCompany implements Serializable {

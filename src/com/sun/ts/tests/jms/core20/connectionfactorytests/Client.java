@@ -19,16 +19,24 @@
  */
 package com.sun.ts.tests.jms.core20.connectionfactorytests;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
-import java.io.*;
-import java.util.Properties;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSRuntimeException;
+import jakarta.jms.JMSSecurityException;
+import jakarta.jms.JMSSecurityRuntimeException;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TopicConnection;
+import jakarta.jms.TopicConnectionFactory;
 
 public class Client extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core20.connectionfactorytests.Client";

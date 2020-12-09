@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.platform.ejbsingleton;
 
+import jakarta.ejb.Singleton;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
-import jakarta.ejb.Singleton;
 
 @Singleton
 public class SingletonResource {

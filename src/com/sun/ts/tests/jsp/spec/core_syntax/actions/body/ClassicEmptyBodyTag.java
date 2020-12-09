@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
-import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import jakarta.servlet.jsp.tagext.DynamicAttributes;
 
 public class ClassicEmptyBodyTag extends BodyTagSupport
     implements DynamicAttributes {

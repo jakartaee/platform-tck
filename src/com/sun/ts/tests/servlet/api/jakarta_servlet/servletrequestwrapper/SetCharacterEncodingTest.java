@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper;
 
-import jakarta.servlet.GenericServlet;
+import java.io.IOException;
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletRequestWrapper;
-import java.io.IOException;
-import java.io.PrintWriter;
+import jakarta.servlet.ServletResponse;
 
 public class SetCharacterEncodingTest extends SetCharacterEncodingTestWrapper {
 

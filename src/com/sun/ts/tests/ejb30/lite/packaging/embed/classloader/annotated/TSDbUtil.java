@@ -18,8 +18,9 @@ package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+
 import com.sun.ts.lib.util.TestUtil;
 
 public class TSDbUtil {

@@ -22,6 +22,10 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -29,10 +33,6 @@ import jakarta.websocket.PongMessage;
 import jakarta.websocket.RemoteEndpoint.Basic;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint(value = "/server", encoders = { StringBeanTextEncoder.class,
     ThrowingEncoder.class })

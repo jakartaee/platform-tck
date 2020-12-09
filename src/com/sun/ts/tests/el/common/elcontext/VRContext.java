@@ -20,13 +20,12 @@
  */
 package com.sun.ts.tests.el.common.elcontext;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.api.jakarta_el.valueexpression.Worker;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
-
-import java.util.Properties;
 
 import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;

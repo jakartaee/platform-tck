@@ -19,13 +19,20 @@
  */
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
+import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
+import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
+import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.lookupNames;
+import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.postConstruct0;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.lookupNames;
-import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.postConstruct0;
-import java.util.ArrayList;
-import java.util.List;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -33,10 +40,6 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-import javax.naming.Context;
-
-import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
-import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 
 abstract public class EJBContextBeanBase implements EJBContextIF {
   private EJBContext ejbContextFromDescriptorInjection;

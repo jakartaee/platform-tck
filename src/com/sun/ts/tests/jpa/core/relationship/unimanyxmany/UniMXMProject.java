@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.relationship.unimanyxmany;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.io.Serializable;
 
 /**
  *

@@ -16,18 +16,16 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext40;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Set;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.SessionTrackingMode;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class TestServlet2 extends HttpServlet {
   @Override

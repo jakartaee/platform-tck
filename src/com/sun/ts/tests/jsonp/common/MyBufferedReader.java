@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsonp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 
-import java.io.*;
+import com.sun.ts.lib.util.TestUtil;
 
 // A wrapper class to BufferedReader class used to inject IOException errors
 // when the throwIOException instance variable is set. All methods delegate

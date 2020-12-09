@@ -19,11 +19,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
 import java.nio.ByteBuffer;
 
-import jakarta.websocket.DecodeException;
-import jakarta.websocket.EndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
+
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyBinaryDecoder extends StringBeanBinaryDecoder {
   @Override

@@ -24,18 +24,18 @@ import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.AFTER_BEGIN_C
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.BEFORE_COMPLETION;
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean.BEFORE_COMPLETION_COFFEE_ID;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
 
 @Stateful
 @TransactionManagement(TransactionManagementType.BEAN)

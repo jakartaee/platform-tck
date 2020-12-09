@@ -22,7 +22,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagvariableinfo;
 
 import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
 
-import jakarta.servlet.jsp.tagext.*;
+import jakarta.servlet.jsp.tagext.TagData;
+import jakarta.servlet.jsp.tagext.TagVariableInfo;
+import jakarta.servlet.jsp.tagext.VariableInfo;
 
 /**
  * A TagExtraInfo implementation to validate the methods of

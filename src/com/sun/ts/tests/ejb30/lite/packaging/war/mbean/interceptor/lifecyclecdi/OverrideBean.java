@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdi;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 @ManagedBean("OverrideBean")
 public class OverrideBean extends OverrideBeanBase {

@@ -20,6 +20,12 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import com.sun.ts.tests.jaxrs.ee.rs.core.application.ApplicationServlet;
+import com.sun.ts.tests.jaxrs.ee.rs.ext.contextresolver.EnumProvider;
+import com.sun.ts.tests.jaxrs.ee.rs.ext.exceptionmapper.AnyExceptionExceptionMapper;
+import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.EntityAnnotation;
+import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.ReadableWritableEntity;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -34,12 +40,6 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Providers;
-
-import com.sun.ts.tests.jaxrs.ee.rs.core.application.ApplicationServlet;
-import com.sun.ts.tests.jaxrs.ee.rs.ext.contextresolver.EnumProvider;
-import com.sun.ts.tests.jaxrs.ee.rs.ext.exceptionmapper.AnyExceptionExceptionMapper;
-import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.EntityAnnotation;
-import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.ReadableWritableEntity;
 
 @Path("ProvidersServlet")
 public class ProvidersServlet extends ApplicationServlet {

@@ -20,15 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.security.secbasic;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.rmi.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.tests.common.jspservletsec.*;
+import com.sun.ts.tests.common.jspservletsec.SecBasicClient;
 
 public class Client extends SecBasicClient {
   // Shared test variables:

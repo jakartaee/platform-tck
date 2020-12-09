@@ -20,13 +20,23 @@
 
 package com.sun.ts.tests.ejb30.tx.common.web;
 
-import java.io.PrintWriter;
-
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.LOOP_COUNT;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.interServletTxPropagation;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.interServletTxPropagation2;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.newThreadNoTx;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmt;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtMandatory;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtNever;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletLocalCmtRequiresNew;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmt;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtMandatory;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtNever;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletRemoteCmtRequiresNew;
+import static com.sun.ts.tests.ejb30.tx.common.web.Constants.servletTxTerminate;
 import static com.sun.ts.tests.servlet.common.util.Data.FAILED;
 import static com.sun.ts.tests.servlet.common.util.Data.PASSED;
-import com.sun.javatest.Status;
-import static com.sun.ts.tests.ejb30.tx.common.web.Constants.*;
+
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 abstract public class ClientBase extends AbstractUrlClient {
 

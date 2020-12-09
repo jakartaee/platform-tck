@@ -21,10 +21,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
 
 public class LinkedListHashSetMessageHandler
     implements MessageHandler.Whole<LinkedList<HashSet<String>>> {

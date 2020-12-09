@@ -20,19 +20,18 @@
 
 package com.sun.ts.tests.el.spec.literal;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.el.common.util.ExprEval;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-
 import java.util.Properties;
 import java.util.Set;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ExprEval;
 
 public class ELClient extends ServiceEETest {
 

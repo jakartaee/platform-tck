@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaxrs.platform.managedbean;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
-
-import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
 
 @ManagedBean("application")
 public class TSAppConfig extends Application {

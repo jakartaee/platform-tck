@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.assembly.altDD;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface PainterBean extends EJBObject {

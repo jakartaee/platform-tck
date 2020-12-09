@@ -19,13 +19,15 @@
  */
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.ejb.EJBs;
+
 import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -16,11 +16,18 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.filter;
 
-import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
 import java.io.IOException;
+
+import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
+
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
-import jakarta.servlet.*;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 
 @WebFilter(urlPatterns = "/*")

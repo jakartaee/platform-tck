@@ -21,18 +21,19 @@
 package com.sun.ts.tests.ejb30.bb.mdb.interceptor.method.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
+import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
-import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
-import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-import jakarta.ejb.MessageDrivenContext;
-import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;

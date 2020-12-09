@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb30.lite.view.equals;
 
+import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 
 @Stateful
 @LocalBean

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.generics;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;

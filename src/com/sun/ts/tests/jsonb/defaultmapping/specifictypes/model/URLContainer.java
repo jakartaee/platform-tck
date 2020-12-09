@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.specifictypes.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.net.URL;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class URLContainer implements TypeContainer<URL> {
   private URL instance;

@@ -19,15 +19,6 @@
  */
 package com.sun.ts.tests.jms.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.rmi.RemoteException;
-import java.util.*;
-import com.sun.javatest.Status;
-import jakarta.jms.*;
-
 /**
  * Monitor class for asynchronous examples. Producer signals end of message
  * stream; listener calls allDone() to notify consumer that the signal has

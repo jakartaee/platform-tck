@@ -20,6 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.CallableProvider;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.SingleCheckAssertable;
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.ClientRequestFilter;
@@ -32,12 +38,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
-
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.CallableProvider;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.SingleCheckAssertable;
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

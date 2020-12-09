@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.common;
 
+import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
-
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 
 /**
  * BusinessLocalIF1 does not automatically become the business interface of the

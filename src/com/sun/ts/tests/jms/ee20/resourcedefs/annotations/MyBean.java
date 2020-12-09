@@ -16,7 +16,10 @@
 
 package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
-import jakarta.jms.*;
+import jakarta.jms.JMSConnectionFactoryDefinition;
+import jakarta.jms.JMSConnectionFactoryDefinitions;
+import jakarta.jms.JMSDestinationDefinition;
+import jakarta.jms.JMSDestinationDefinitions;
 
 //-------------------------------------
 // JMS Destination Resource Definitions

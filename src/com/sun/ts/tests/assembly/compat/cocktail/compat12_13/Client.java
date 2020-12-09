@@ -21,11 +21,11 @@
 package com.sun.ts.tests.assembly.compat.cocktail.compat12_13;
 
 import java.util.Properties;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.assembly.util.refbean.*;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
 

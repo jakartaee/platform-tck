@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.argsemantics;
 
-import java.util.Properties;
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface CallerBean extends EJBObject {
 

@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.common.stringbean;
 
 import java.nio.ByteBuffer;
+
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder.Binary;
 import jakarta.websocket.EndpointConfig;

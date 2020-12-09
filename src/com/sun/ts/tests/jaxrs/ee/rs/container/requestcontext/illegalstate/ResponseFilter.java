@@ -18,11 +18,11 @@ package com.sun.ts.tests.jaxrs.ee.rs.container.requestcontext.illegalstate;
 
 import java.io.ByteArrayInputStream;
 
+import com.sun.ts.tests.jaxrs.common.impl.SecurityContextImpl;
+
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.impl.SecurityContextImpl;
 
 @Provider
 public class ResponseFilter extends ResponseTemplateFilter {

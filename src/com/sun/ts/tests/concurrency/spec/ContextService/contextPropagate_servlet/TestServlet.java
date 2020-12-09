@@ -16,6 +16,10 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.contextPropagate_servlet;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import com.sun.ts.lib.util.BASE64Decoder;
 
 import jakarta.servlet.ServletException;
@@ -23,9 +27,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {

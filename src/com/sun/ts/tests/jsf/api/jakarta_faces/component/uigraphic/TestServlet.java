@@ -23,6 +23,12 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.uigraphic;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BufferedResponseWrapper;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
+import jakarta.el.ExpressionFactory;
+import jakarta.el.ValueExpression;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIGraphic;
@@ -30,12 +36,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.el.ValueExpression;
-import jakarta.el.ExpressionFactory;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BufferedResponseWrapper;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseComponentTestServlet {
 

@@ -19,6 +19,10 @@ package com.sun.ts.tests.jaxrs.platform.container.completioncallback;
 import java.io.IOException;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
+import com.sun.ts.tests.jaxrs.platform.container.asyncresponse.Resource;
+
 import jakarta.ws.rs.client.AsyncInvoker;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -27,10 +31,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
-import com.sun.ts.tests.jaxrs.platform.container.asyncresponse.Resource;
 
 /*
  * @class.setup_props: webServerHost;

@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
-import java.util.Properties;
 
 public interface SecTestHome extends EJBHome {
   public SecTest create(int cofID, String cofName, float cofPrice)

@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.trycatchfinally;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ThrowTag extends TagSupport {
 

@@ -16,10 +16,12 @@
 
 package com.sun.ts.tests.servlet.spec.servletcontext;
 
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;

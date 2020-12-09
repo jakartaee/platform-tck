@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidironexmany;
 
+import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.Properties;
-import java.util.Vector;
 
 /**
  * @author Raja Perumal

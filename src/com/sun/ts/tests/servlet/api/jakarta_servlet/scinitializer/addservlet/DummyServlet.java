@@ -21,7 +21,12 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addservlet;
 
 import java.io.IOException;
-import jakarta.servlet.*;
+
+import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 public abstract class DummyServlet extends GenericServlet {
 

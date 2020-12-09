@@ -20,11 +20,6 @@
 
 package com.sun.ts.tests.jsonp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-
 public final class JSONP_Data {
 
   public static final String unicodeControlCharsEscaped = "\\u0000\\u0001\\u0002\\u0003\\u0004\\u0005\\u0006\\u0007\\u0008\\u0009"

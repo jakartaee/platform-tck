@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.xa;
 
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
+
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)

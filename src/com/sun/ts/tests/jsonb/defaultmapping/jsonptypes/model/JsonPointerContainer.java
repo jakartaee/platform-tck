@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.jsonptypes.model;
 
-import jakarta.json.JsonPointer;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.JsonPointer;
 
 public class JsonPointerContainer implements TypeContainer<JsonPointer> {
   private JsonPointer instance;

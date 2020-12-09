@@ -20,21 +20,24 @@
 
 package com.sun.ts.tests.jdbc.ee.callStmt.callStmt21;
 
-import java.io.*;
-import java.util.*;
-import java.math.*;
+import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
-import java.sql.*;
-import javax.sql.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.rmi.RemoteException;
+import javax.sql.DataSource;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jdbc.ee.common.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
+import com.sun.ts.tests.jdbc.ee.common.DriverManagerConnection;
+import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
+import com.sun.ts.tests.jdbc.ee.common.Utils;
+import com.sun.ts.tests.jdbc.ee.common.csSchema;
+import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;

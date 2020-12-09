@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
+import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.VariableInfo;
-import jakarta.servlet.jsp.tagext.TagData;
 
 public class SyncTEI extends TagExtraInfo {
 

@@ -21,7 +21,9 @@
 package com.sun.ts.tests.jms.common;
 
 import java.io.Serializable;
-import jakarta.jms.*;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.ObjectMessage;
 
 /**
  * Class Declaration.

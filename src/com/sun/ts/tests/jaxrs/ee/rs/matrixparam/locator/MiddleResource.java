@@ -20,14 +20,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
-import jakarta.ws.rs.POST;
-
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 import com.sun.ts.tests.jaxrs.ee.rs.matrixparam.MatrixParamTest;
+
+import jakarta.ws.rs.POST;
 
 public class MiddleResource extends MatrixParamTest {
 

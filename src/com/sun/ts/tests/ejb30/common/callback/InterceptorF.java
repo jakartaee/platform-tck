@@ -22,10 +22,7 @@ package com.sun.ts.tests.ejb30.common.callback;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.annotation.Resource;
-import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-import org.omg.CORBA.ORB;
 
 public class InterceptorF extends InterceptorE {
   public InterceptorF() {

@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
+
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 
 @Singleton
 @ExcludeDefaultInterceptors

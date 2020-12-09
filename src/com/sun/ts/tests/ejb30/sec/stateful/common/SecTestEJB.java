@@ -20,21 +20,20 @@
 
 package com.sun.ts.tests.ejb30.sec.stateful.common;
 
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.Stateful;
-import jakarta.ejb.Remote;
+import jakarta.annotation.Resource;
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.security.RolesAllowed;
-import jakarta.annotation.security.DenyAll;
-import jakarta.annotation.Resource;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "SecTestEJB")
 @Remote({ SecTest.class })

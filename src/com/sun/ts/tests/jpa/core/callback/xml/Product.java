@@ -23,7 +23,9 @@ package com.sun.ts.tests.jpa.core.callback.xml;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Table(name = "PRODUCT_TABLE")
 public class Product extends CallbackStatusImpl

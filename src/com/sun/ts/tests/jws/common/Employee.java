@@ -23,12 +23,6 @@
 
 package com.sun.ts.tests.jws.common;
 
-import com.sun.ts.tests.jws.common.*;
-import com.sun.ts.tests.jws.common.Address;
-import com.sun.ts.tests.jws.common.AddressException;
-import com.sun.ts.tests.jws.common.Department;
-import com.sun.ts.tests.jws.common.DepartmentException;
-
 public class Employee {
 
   private Name name;

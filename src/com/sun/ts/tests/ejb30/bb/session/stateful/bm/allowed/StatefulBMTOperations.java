@@ -20,16 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.bm.allowed;
 
-import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
-import jakarta.ejb.SessionContext;
+
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
-import com.sun.ts.tests.ejb30.common.allowed.Operations;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.TimerHandle;
+import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
+
+import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
 
 public class StatefulBMTOperations extends StatefulOperations

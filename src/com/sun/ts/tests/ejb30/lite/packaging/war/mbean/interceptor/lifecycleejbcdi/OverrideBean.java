@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycleejbcdi;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 @Stateless(name = "OverrideBean")
 public class OverrideBean extends OverrideBeanBase {

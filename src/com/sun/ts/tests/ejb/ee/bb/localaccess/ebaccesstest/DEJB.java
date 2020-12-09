@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.ebaccesstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.TestUtil;
 
-import java.util.*;
-import javax.naming.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class DEJB implements SessionBean {
 

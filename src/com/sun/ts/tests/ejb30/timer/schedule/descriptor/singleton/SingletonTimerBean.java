@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.timer.schedule.descriptor.singleton;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+
+import jakarta.ejb.Singleton;
 
 /**
  * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout)

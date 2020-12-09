@@ -19,9 +19,17 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
-import com.sun.ts.lib.util.TestUtil;
-import jakarta.jms.*;
 import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.Connection;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 public class MyMessageListener implements MessageListener {
 

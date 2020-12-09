@@ -19,11 +19,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 
 import java.lang.annotation.Annotation;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint(value = "/countone", configurator = CountingConfigurator.class)
 public class WSCountConfiguratorInstancesFirstServer {

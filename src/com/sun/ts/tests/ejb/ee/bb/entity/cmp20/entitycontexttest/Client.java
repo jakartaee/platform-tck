@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+
 import jakarta.ejb.CreateException;
 
 //*****************************************************************************

@@ -20,28 +20,23 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.util.utiltests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.io.PushbackReader;
+import java.io.StringReader;
+import java.util.Base64;
+import java.util.Properties;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.net.*;
-import java.util.*;
-import java.rmi.*;
-
-import com.sun.org.apache.xerces.internal.dom.*;
-import org.w3c.dom.*;
-
-import javax.xml.transform.stream.*;
-import jakarta.xml.soap.*;
-import jakarta.activation.*;
+import org.apache.commons.io.input.TeeInputStream;
 
 import com.sun.javatest.Status;
-
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 // Import implementation specific classes to test
 import com.sun.xml.messaging.saaj.util.*;
+
+import jakarta.xml.soap.MimeHeaders;
 
 public class Client extends EETest {
   private Properties props = null;

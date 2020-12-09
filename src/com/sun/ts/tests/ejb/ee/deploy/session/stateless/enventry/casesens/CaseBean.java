@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.casesens;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface CaseBean extends EJBObject {

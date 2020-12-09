@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated;
 
+import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 
 @Stateless()
 @Remote({ CallbackIF.class })

@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.manyXmany;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 

@@ -19,11 +19,11 @@ package com.sun.ts.tests.websocket.common.client;
 
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 /**
  * Receive any of ByteBuffer (binary) and String (Text) messages, the client

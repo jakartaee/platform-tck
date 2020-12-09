@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.assembly.compat.standalone.jar.compat12_14;
 
-import java.util.Properties;
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public void initLogging(Properties p) throws RemoteException;

@@ -24,8 +24,16 @@ import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import jakarta.ejb.*;
-import jakarta.persistence.*;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceUnit;
 
 @Stateless(name = "Stateless3VehicleBean")
 @PersistenceContext(name = "STATELESS3EM", unitName = "CTS-EM")

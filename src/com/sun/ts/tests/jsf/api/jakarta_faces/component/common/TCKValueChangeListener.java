@@ -22,7 +22,6 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.ValueChangeListener;
 

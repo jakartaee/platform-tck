@@ -19,12 +19,12 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.containerreader.interceptor
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
-
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 @Path("resource")
 public class Resource {

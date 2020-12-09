@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.el.propertynotfoundexception;
 
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.BaseELExceptionTestServlet;
 
+import jakarta.faces.el.PropertyNotFoundException;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
-import jakarta.faces.el.EvaluationException;
-import jakarta.faces.el.PropertyNotFoundException;
 
 public final class TestServlet extends BaseELExceptionTestServlet {
 

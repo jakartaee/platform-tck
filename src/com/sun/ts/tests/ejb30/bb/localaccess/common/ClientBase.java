@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
 import java.util.Properties;
+
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.ejb.EJB;
 
 public abstract class ClientBase extends EETest implements Constants {
   protected Properties props;

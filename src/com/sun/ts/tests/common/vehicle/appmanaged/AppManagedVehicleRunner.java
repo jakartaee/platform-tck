@@ -21,9 +21,10 @@
 package com.sun.ts.tests.common.vehicle.appmanaged;
 
 import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class AppManagedVehicleRunner implements VehicleRunnable {

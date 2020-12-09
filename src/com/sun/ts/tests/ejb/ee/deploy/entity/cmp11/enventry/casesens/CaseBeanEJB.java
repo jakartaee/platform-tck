@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.casesens;
 
-import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.casesens.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class CaseBeanEJB extends CMP11Wrapper {
 

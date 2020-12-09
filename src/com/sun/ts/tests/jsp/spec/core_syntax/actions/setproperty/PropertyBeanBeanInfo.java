@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 
-import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 import java.util.Arrays;
 

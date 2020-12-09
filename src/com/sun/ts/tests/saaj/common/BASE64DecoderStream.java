@@ -16,7 +16,9 @@
 
 package com.sun.ts.tests.saaj.common;
 
-import java.io.*;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * This class implements a BASE64 Decoder. It is implemented as a

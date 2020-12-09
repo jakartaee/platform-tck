@@ -19,14 +19,14 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.textbigdecimal;
 
 import java.math.BigDecimal;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {

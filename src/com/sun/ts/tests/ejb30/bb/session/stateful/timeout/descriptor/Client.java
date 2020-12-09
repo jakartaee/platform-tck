@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor;
 
+import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.ClientBase;
+import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
+import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutRemoteIF;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
-
-import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
-import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.ClientBase;
-import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutRemoteIF;
 
 /**
  * Verifies @StatefulTimeout with no-interface, local business interface and

@@ -25,6 +25,9 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -34,9 +37,6 @@ import jakarta.faces.lifecycle.LifecycleFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
 

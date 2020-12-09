@@ -20,12 +20,19 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.jaxws.common.*;
+import javax.xml.namespace.QName;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.Constants;
+import com.sun.ts.tests.jaxws.common.HandlerTracker;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.LogicalHandlerBase;
+
+import jakarta.xml.soap.Name;
+import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.ws.handler.LogicalMessageContext;
 import jakarta.xml.ws.soap.SOAPFaultException;
-import javax.xml.namespace.QName;
-import jakarta.xml.soap.*;
 
 public class ServerLogicalHandler6 extends LogicalHandlerBase {
 

@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
-
 abstract public class ABeanBase extends TxBeanBase {
 
   public ABeanBase() {

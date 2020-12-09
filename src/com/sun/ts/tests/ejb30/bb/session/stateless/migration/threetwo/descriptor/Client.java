@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.migration.threetwo.descriptor;
 
-import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
-import jakarta.ejb.EJB;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.migration.threetwo.ClientBase;
+import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
 
 public class Client extends ClientBase {
   // @EJB

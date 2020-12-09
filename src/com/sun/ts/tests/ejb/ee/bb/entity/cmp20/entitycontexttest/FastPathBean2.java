@@ -20,11 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import com.sun.ts.lib.util.TestUtil;
-import jakarta.ejb.*;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.rmi.PortableRemoteObject;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class FastPathBean2 implements SessionBean {
   private SessionContext sctx = null;

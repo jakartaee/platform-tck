@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.generics.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.List;
 import java.util.Queue;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class MultipleBoundsContainer<T extends List & Queue>
     implements TypeContainer<List<T>> {

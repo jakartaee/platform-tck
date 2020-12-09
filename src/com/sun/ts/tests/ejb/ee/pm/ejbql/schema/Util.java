@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Collection;
+import java.util.Iterator;
 
-import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
+import javax.rmi.PortableRemoteObject;
+
+import com.sun.ts.lib.util.TestUtil;
 
 public class Util {
   private static boolean debug = false;

@@ -20,32 +20,18 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest.*;
-
-import java.io.*;
-import java.net.*;
-import java.rmi.*;
-import java.util.*;
-
-import jakarta.xml.ws.*;
-import jakarta.xml.soap.*;
-
-import java.util.Properties;
-
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.util.Properties;
 
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-
-import com.sun.ts.tests.jaxws.common.*;
-
-import javax.naming.InitialContext;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 public class Client extends ServiceEETest {
 

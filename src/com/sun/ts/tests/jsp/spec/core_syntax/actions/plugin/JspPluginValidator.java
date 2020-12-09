@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin;
 
-import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
-import com.sun.ts.tests.common.webclient.WebTestCase;
-import com.sun.ts.lib.util.TestUtil;
-
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.io.IOException;
+import java.util.List;
+import java.util.StringTokenizer;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 
 /**
  * This validator will, loosely, validate the generated output of a jsp:plugin

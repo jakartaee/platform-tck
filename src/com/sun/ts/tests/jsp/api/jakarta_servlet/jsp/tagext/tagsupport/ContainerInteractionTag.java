@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ContainerInteractionTag extends TagSupport {
 

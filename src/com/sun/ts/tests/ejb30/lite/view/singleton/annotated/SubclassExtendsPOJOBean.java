@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
-import jakarta.ejb.Singleton;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.lite.view.common.SuperclassBeanBase;
+
+import jakarta.ejb.Singleton;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Singleton
 @ExcludeDefaultInterceptors

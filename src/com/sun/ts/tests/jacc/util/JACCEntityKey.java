@@ -23,9 +23,6 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import java.lang.Long;
-import java.lang.Integer;
-
 public class JACCEntityKey implements java.io.Serializable {
   public String arg1;
 

@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
+import org.omg.CORBA.ORB;
+
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
-import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_CLIENT;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
-import org.omg.CORBA.ORB;
 
 abstract public class TestBeanBase implements TestIF {
   abstract protected SessionContext getSessionContext();

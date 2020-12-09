@@ -16,20 +16,21 @@
 
 package com.sun.ts.tests.jaspic.tssv.config;
 
-import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
-import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
-import jakarta.security.auth.message.config.AuthConfigFactory;
-import jakarta.security.auth.message.config.ServerAuthConfig;
-import jakarta.security.auth.message.AuthException;
-import javax.security.auth.callback.CallbackHandler;
-import jakarta.security.auth.message.config.ClientAuthConfig;
-
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
+import javax.security.auth.callback.CallbackHandler;
+
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
+import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
+import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
+
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.config.AuthConfigFactory;
+import jakarta.security.auth.message.config.ClientAuthConfig;
+import jakarta.security.auth.message.config.ServerAuthConfig;
 
 /**
  * This class is an implementation of the AuthConfigProvider for use by the

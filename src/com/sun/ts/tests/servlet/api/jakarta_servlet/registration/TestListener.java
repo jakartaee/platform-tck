@@ -19,23 +19,23 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.registration;
 
-import java.io.*;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import jakarta.servlet.Filter;
+
 import jakarta.servlet.DispatcherType;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletRegistration;
+import jakarta.servlet.Filter;
 import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.Registration;
 import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRegistration;
 
 public class TestListener implements ServletContextListener {
 

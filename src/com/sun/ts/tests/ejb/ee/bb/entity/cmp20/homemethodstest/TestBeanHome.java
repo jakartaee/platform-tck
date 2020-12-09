@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.homemethodstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create(int id, String first, String middle, String last,

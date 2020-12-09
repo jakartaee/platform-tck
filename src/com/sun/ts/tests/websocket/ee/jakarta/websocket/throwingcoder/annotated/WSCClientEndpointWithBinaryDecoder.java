@@ -17,6 +17,12 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingBinaryDecoder;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -25,12 +31,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingBinaryDecoder;
 
 @ClientEndpoint(decoders = ThrowingBinaryDecoder.class)
 public class WSCClientEndpointWithBinaryDecoder

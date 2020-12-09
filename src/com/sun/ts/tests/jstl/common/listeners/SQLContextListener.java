@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jstl.common.listeners;
 
-import javax.sql.DataSource;
-import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContext;
-import java.util.Properties;
-import java.util.Enumeration;
 import java.io.IOException;
-import com.sun.ts.tests.jstl.common.wrappers.TckDataSourceWrapper;
+import java.util.Enumeration;
+import java.util.Properties;
+
 import com.sun.ts.tests.jstl.common.JstlTckConstants;
+
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 
 /**
  * SQLContextListner.<br>

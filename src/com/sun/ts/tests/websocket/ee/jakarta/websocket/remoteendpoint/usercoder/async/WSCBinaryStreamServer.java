@@ -20,12 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.Session;
-import jakarta.websocket.server.ServerEndpoint;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderBool;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderByte;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderChar;
@@ -34,6 +28,12 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderInt;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderLong;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryStreamCoderShort;
+
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/binarystream", encoders = {
     BinaryStreamCoderBool.class, BinaryStreamCoderByte.class,

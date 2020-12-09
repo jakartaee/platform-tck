@@ -21,11 +21,12 @@
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.queue.selectorauto.annotated;
 
 import com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ActivationConfigBeanBase;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
 import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;

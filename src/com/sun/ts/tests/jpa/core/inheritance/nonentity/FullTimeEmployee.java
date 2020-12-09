@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import java.sql.Date;
 
 /*
  * FullTimeEmployee

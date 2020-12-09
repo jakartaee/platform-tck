@@ -23,19 +23,19 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.sql.Connection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import jakarta.ejb.embeddable.EJBContainer;
-
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
-import com.sun.ts.lib.util.TestUtil;
-import java.util.concurrent.CopyOnWriteArrayList;
+
+import jakarta.ejb.embeddable.EJBContainer;
 
 public class Client extends EJBLiteClientBase {
   private Map<String, Object> containerInitProps = new HashMap<String, Object>();

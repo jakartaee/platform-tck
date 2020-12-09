@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.equals;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
 

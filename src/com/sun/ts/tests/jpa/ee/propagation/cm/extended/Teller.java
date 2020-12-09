@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.extended;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.jpa.ee.common.Account;
 import com.sun.ts.tests.jpa.ee.common.B;
-
-import java.util.Properties;
 
 public interface Teller {
   public double balance(final int acct);

@@ -20,18 +20,21 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Collection;
 import java.util.Iterator;
-import jakarta.ejb.EJBContext;
-import jakarta.interceptor.InvocationContext;
-import jakarta.ejb.SessionContext;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerService;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerService;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 public class CancelInterceptor {
   private static CancelInterceptor instance = new CancelInterceptor();

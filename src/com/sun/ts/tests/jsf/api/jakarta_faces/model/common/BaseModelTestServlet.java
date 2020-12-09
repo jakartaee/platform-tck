@@ -20,6 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
@@ -30,10 +34,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 public abstract class BaseModelTestServlet extends HttpTCKServlet {
 

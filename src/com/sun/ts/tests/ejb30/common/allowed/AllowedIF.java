@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface AllowedIF extends NoTxAllowedIF {
   Properties business();

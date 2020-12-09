@@ -23,10 +23,11 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import jakarta.security.jacc.*;
-import java.util.logging.*;
-import java.util.*;
-//import com.sun.ts.lib.porting.TSPolicyConfiguration;
+import java.util.logging.Level;
+
+import jakarta.security.jacc.PolicyConfiguration;
+import jakarta.security.jacc.PolicyConfigurationFactory;
+import jakarta.security.jacc.PolicyContextException;
 
 /**
  * JACC PolicyConfigurationFactory This is a delegating

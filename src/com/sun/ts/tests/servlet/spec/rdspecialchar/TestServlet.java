@@ -20,22 +20,15 @@
 
 package com.sun.ts.tests.servlet.spec.rdspecialchar;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletRequestWrapper;
-import jakarta.servlet.http.HttpServletResponseWrapper;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class TestServlet extends HttpTCKServlet {
 

@@ -23,10 +23,8 @@ import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
 
-import jakarta.annotation.Resource;
-import jakarta.enterprise.concurrent.*;
+import jakarta.enterprise.concurrent.ManagedThreadFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

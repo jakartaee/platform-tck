@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.rmi.RemoteException;
+import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface OrderHome extends EJBHome {
   public Order create(String id, Customer customer)

@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.jsonp.api.patchtests;
 
-import com.sun.ts.tests.jsonp.api.common.TestResult;
 import com.sun.ts.tests.jsonp.api.common.JsonPTest;
+import com.sun.ts.tests.jsonp.api.common.TestResult;
+
+import jakarta.json.JsonPatch;
 
 // $Id$
 /*

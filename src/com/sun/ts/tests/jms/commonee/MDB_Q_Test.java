@@ -19,8 +19,9 @@
  */
 package com.sun.ts.tests.jms.commonee;
 
-import jakarta.ejb.Remote;
 import java.util.Properties;
+
+import jakarta.ejb.Remote;
 
 @Remote
 public interface MDB_Q_Test {

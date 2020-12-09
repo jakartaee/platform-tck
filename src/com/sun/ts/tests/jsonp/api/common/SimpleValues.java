@@ -16,10 +16,12 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import com.sun.ts.lib.util.TestUtil;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;

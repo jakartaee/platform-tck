@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.Properties;
+import jakarta.ejb.EJBObject;
 
 public interface TestBeanTx extends EJBObject {
   public void syncTest(boolean b) throws RemoteException;

@@ -20,28 +20,43 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.soap.soaptests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.awt.datatransfer.DataFlavor;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.Properties;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.net.*;
-import java.util.*;
-import java.rmi.*;
+import javax.xml.transform.stream.StreamSource;
 
-import com.sun.org.apache.xerces.internal.dom.*;
-import org.w3c.dom.*;
-
-import javax.xml.transform.stream.*;
-import jakarta.xml.soap.*;
-import jakarta.activation.*;
+import org.w3c.dom.Attr;
+import org.w3c.dom.CDATASection;
+import org.w3c.dom.Comment;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.DocumentType;
+import org.w3c.dom.Element;
+import org.w3c.dom.EntityReference;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.ProcessingInstruction;
 
 import com.sun.javatest.Status;
-
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 // Import implementation specific classes to test
 import com.sun.xml.messaging.saaj.soap.*;
+
+import jakarta.activation.FileDataSource;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.SOAPEnvelope;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 public class Client extends EETest {
   private Properties props = null;

@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.util.Properties;
-import java.util.Collection;
 import java.rmi.RemoteException;
-import jakarta.ejb.*;
+import java.util.Collection;
+import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface CMP20ExternalHome extends EJBHome {
   public CMP20External create(Properties props, int id, String brandName,

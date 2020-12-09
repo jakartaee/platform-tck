@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 public class GetPreviousOutTestTag extends BodyTagSupport {
 

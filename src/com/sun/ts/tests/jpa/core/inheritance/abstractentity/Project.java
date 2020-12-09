@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import java.math.BigDecimal;
 
 /*
  * Project

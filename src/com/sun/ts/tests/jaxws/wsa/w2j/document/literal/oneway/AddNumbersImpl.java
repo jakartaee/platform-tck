@@ -19,12 +19,9 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
 
 import jakarta.jws.WebService;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
 
 /**
  * @author JAX-WSA Development Team

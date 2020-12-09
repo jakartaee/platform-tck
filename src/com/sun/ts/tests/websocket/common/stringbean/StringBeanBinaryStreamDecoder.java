@@ -17,9 +17,11 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 import java.io.IOException;
 import java.io.InputStream;
+
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder.BinaryStream;
 import jakarta.websocket.EndpointConfig;

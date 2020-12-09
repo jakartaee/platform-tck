@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.containerwriter.writerinter
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InputStreamReaderProvider;
 import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcontext.ProceedExceptionMapper;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcontext.WriterInterceptorOne;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcontext.WriterInterceptorTwo;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

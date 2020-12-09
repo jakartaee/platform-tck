@@ -16,16 +16,6 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.contextPropagate_servlet;
 
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.BASE64Encoder;
-import com.sun.ts.lib.util.TestUtil;
-
-import javax.naming.NamingException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -33,6 +23,18 @@ import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
+
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.BASE64Encoder;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/ProxyCreatorServlet")
 public class ProxyCreatorServlet extends HttpServlet {

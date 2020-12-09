@@ -16,12 +16,29 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import java.io.*;
-import java.util.*;
-import jakarta.json.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.Map;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonBuilderFactory;
+import jakarta.json.JsonException;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonPatchBuilder;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonReaderFactory;
+import jakarta.json.JsonWriter;
+import jakarta.json.JsonWriterFactory;
 import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.*;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGeneratorFactory;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParserFactory;
 
 // $Id$
 /*

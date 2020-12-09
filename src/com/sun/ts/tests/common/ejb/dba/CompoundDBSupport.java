@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.common.ejb.dba;
 
-import java.util.Properties;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jakarta.ejb.CreateException;
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
 
 /**
  * DB Support object for DB table using whose primary key is an 'float'.

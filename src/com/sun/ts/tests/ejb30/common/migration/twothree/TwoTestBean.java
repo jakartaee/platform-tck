@@ -20,15 +20,18 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.rmi.RemoteException;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TwoTestBean implements SessionBean {
   public static final String TWO_LOCAL_SHORT = "ejb/twolocal";

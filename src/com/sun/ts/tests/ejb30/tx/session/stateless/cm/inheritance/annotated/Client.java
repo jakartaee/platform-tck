@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated;
 
-import com.sun.ts.tests.ejb30.tx.common.session.inheritance.ClientBase;
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.tests.ejb30.tx.common.session.inheritance.ClientBase;
 
 public class Client extends ClientBase {
   protected String CONTEXT_ROOT = "/tx_stateless_inheritance_annotated_web";

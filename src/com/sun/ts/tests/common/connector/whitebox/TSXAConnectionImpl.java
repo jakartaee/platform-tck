@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import com.sun.ts.tests.common.connector.util.*;
 import javax.transaction.xa.XAResource;
-import jakarta.resource.spi.*;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.ConnectionEventListener;
 
 public class TSXAConnectionImpl implements TSXAConnection {
 

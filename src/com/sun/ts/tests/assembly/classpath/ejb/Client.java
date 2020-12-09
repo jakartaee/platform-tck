@@ -22,10 +22,9 @@ package com.sun.ts.tests.assembly.classpath.ejb;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 
 public class Client extends EETest {
 

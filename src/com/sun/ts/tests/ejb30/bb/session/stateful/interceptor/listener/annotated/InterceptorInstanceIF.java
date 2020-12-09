@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+
 import jakarta.ejb.Remote;
 
 @Remote()

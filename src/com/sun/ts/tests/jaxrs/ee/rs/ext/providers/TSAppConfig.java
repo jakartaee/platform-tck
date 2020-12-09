@@ -19,8 +19,6 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.providers;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.ee.rs.core.application.ApplicationHolderSingleton;
 import com.sun.ts.tests.jaxrs.ee.rs.core.application.ApplicationServlet;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.contextresolver.EnumContextResolver;
@@ -31,6 +29,8 @@ import com.sun.ts.tests.jaxrs.ee.rs.ext.exceptionmapper.IOExceptionExceptionMapp
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.EntityMessageReader;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.EntityMessageWriter;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.ReadableWritableEntity;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

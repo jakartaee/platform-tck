@@ -19,13 +19,15 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
+import java.util.logging.Level;
+
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor4;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor8;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-import java.util.logging.Level;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;

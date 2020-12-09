@@ -16,11 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.elementcollection;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "AEC")

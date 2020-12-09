@@ -22,6 +22,10 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import java.util.logging.Level;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
@@ -32,10 +36,6 @@ import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 /**
  * A test bean superclass for ejb lite where only local ejb refs are used. It

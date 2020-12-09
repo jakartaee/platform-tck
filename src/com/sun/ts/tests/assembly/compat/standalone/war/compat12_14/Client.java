@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.assembly.compat.standalone.war.compat12_14;
 
-import java.util.Properties;
 import java.net.URL;
 import java.net.URLConnection;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
 

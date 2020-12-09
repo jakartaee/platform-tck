@@ -20,11 +20,16 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 /*
  * Project

@@ -21,9 +21,11 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejblink.scope;
 
 import java.util.Properties;
-import jakarta.ejb.EJBException;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+
+import jakarta.ejb.EJBException;
 
 public class TestBeanEJB extends StatelessWrapper {
 

@@ -58,12 +58,13 @@
 
 package com.sun.ts.tests.servlet.spec.dir_struct;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class ClassFileTestServlet extends GenericServlet {
 

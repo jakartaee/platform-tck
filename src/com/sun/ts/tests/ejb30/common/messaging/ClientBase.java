@@ -20,29 +20,29 @@
 
 package com.sun.ts.tests.ejb30.common.messaging;
 
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.jms.commonee.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.Properties;
-import java.util.Stack;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.jms.commonee.Client;
+
 import jakarta.jms.JMSException;
+import jakarta.jms.Message;
 import jakarta.jms.MessageProducer;
 import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.Session;
-import jakarta.jms.TextMessage;
 import jakarta.jms.QueueBrowser;
-import java.util.Enumeration;
-import jakarta.jms.Message;
+import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.QueueReceiver;
 import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 abstract public class ClientBase extends Client implements Constants {
   private String currentTestName;

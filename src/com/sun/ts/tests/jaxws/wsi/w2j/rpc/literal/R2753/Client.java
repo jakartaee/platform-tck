@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2753;
 
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-import com.sun.javatest.Status;
-
-import java.util.Properties;
 
 public class Client extends ServiceEETest implements WSIConstants {
 

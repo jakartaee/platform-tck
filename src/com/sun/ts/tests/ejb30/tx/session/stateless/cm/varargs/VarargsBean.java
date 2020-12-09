@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
+
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;

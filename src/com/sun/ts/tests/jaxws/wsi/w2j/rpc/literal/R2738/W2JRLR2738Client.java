@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738;
 
-import jakarta.xml.ws.Holder;
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+
+import jakarta.xml.ws.Holder;
 
 public class W2JRLR2738Client extends SOAPClient {
 

@@ -16,8 +16,7 @@
 
 package com.sun.ts.tests.concurrency.common.counter;
 
-import javax.naming.*;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
 
 public class CounterCallableTask implements Callable {
 

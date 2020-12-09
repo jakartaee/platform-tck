@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
   public void ping();

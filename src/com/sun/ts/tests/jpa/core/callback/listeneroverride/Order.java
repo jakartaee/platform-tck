@@ -20,13 +20,22 @@
 
 package com.sun.ts.tests.jpa.core.callback.listeneroverride;
 
+import java.util.Collection;
+
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerB;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerC;
 
-import jakarta.persistence.*;
-import java.util.Collection;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ORDER_TABLE")

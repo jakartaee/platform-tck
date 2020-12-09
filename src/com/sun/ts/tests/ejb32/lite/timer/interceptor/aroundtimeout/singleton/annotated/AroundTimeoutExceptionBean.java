@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutExceptionBeanBase;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class AroundTimeoutExceptionBean extends AroundTimeoutExceptionBeanBase {

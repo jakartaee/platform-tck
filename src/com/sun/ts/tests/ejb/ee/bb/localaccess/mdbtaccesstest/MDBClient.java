@@ -20,20 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbtaccesstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import jakarta.jms.Topic;
-import jakarta.jms.TopicPublisher;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.Client;
+
 import jakarta.jms.Message;
 import jakarta.jms.QueueReceiver;
-import com.sun.javatest.Status;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicPublisher;
 
 public class MDBClient extends Client {
   private String generateSQL;

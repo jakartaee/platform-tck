@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+
 import jakarta.annotation.PostConstruct;
 
 public class CallbackBeanSuper extends CallbackBeanSuperSuper

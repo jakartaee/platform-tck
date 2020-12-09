@@ -16,15 +16,10 @@
 
 package com.sun.ts.tests.securityapi.idstore.common;
 
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import com.sun.ts.lib.harness.EETest.Fault;
-
-import java.util.Properties;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
 
 public class BaseIDStoreClient extends BaseUrlClient {
 

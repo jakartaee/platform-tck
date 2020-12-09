@@ -20,9 +20,14 @@
 
 package com.sun.ts.tests.integration.sec.propagation;
 
-import jakarta.ejb.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class Bean1EJB implements SessionBean {
 

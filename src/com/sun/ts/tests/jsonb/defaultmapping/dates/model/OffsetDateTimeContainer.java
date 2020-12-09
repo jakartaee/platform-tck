@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.OffsetDateTime;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class OffsetDateTimeContainer implements TypeContainer<OffsetDateTime> {
   private OffsetDateTime instance;

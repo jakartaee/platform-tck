@@ -16,27 +16,22 @@
 
 package com.sun.ts.tests.common.connector.whitebox.permissiondd;
 
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.spi.work.WorkException;
-import jakarta.resource.spi.work.TransactionContext;
-import jakarta.resource.spi.XATerminator;
-import jakarta.resource.spi.work.SecurityContext;
-import com.sun.ts.tests.common.connector.util.*;
-import com.sun.ts.tests.common.connector.whitebox.Debug;
+import java.io.FilePermission;
+import java.net.SocketPermission;
+import java.security.AccessControlException;
+import java.security.AccessController;
+import java.security.Permission;
+import java.security.PrivilegedExceptionAction;
+import java.util.PropertyPermission;
+
 import javax.transaction.xa.Xid;
 
-import java.security.AccessController;
-import java.security.AccessControlException;
-import java.security.PrivilegedExceptionAction;
-import java.security.Permission;
-import jakarta.xml.ws.WebServicePermission;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.whitebox.Debug;
 
-import java.io.*;
-import java.util.PropertyPermission;
-import java.net.SocketPermission;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.xml.ws.WebServicePermission;
 
 public class PermissionDDWorkManager {
   private BootstrapContext bsc = null;

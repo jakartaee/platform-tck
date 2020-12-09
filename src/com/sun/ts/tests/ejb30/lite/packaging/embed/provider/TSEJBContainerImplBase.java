@@ -19,8 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
-import jakarta.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
+
+import jakarta.ejb.embeddable.EJBContainer;
 
 public class TSEJBContainerImplBase extends EJBContainer {
 

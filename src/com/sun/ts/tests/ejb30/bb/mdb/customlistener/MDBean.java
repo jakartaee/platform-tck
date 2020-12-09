@@ -16,23 +16,23 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.customlistener;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
-import jakarta.ejb.MessageDriven;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
-import jakarta.interceptor.Interceptors;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * If a Message Listener Interface(MLI) is bundled into a standalone .rar file,

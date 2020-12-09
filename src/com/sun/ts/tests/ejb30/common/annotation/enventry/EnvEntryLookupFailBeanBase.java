@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.enventry;
 
+import static com.sun.ts.tests.ejb30.common.annotation.enventry.Constants.PREFIX;
+
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import javax.naming.NamingException;
-import static com.sun.ts.tests.ejb30.common.annotation.enventry.Constants.PREFIX;
 
 abstract public class EnvEntryLookupFailBeanBase extends EnvEntryBeanBase
     implements EnvEntryIF {

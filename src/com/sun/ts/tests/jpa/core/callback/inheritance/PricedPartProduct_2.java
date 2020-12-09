@@ -23,7 +23,11 @@ package com.sun.ts.tests.jpa.core.callback.inheritance;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 /**
  * All callbacks are defined in entity superclass. The super class of this

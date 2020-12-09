@@ -21,11 +21,10 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.casesens;
 
 import java.util.Properties;
-import jakarta.ejb.EJBHome;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.harness.EETest;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 
 public class Client extends EETest {
 

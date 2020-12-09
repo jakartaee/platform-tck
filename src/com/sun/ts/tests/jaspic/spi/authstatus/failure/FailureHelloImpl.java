@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jaspic.spi.authstatus.failure;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService(name = "FailureHello", serviceName = "FailureHelloService")
 public class FailureHelloImpl {

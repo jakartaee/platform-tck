@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.bm.allowed;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
-import java.util.Properties;
 import com.sun.ts.tests.ejb30.common.allowed.ClientBase;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
-
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase implements Constants {

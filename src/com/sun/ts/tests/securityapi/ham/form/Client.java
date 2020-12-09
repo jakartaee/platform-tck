@@ -16,17 +16,20 @@
 
 package com.sun.ts.tests.securityapi.ham.form;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.harness.EETest.Fault;
-
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.WebUtil.Response;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.WebUtil;
 
 public class Client extends EETest {
   // Configurable constants:

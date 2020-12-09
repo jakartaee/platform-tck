@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.common.taglibsig.validation;
 
-import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
 
 /**
  * Performs validation of TagLibraryDescriptor <code>&lt;uri&gt;</code>

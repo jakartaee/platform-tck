@@ -23,17 +23,18 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
 import javax.naming.NamingException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @EJBs({
     @EJB(name = "noMethodStatefulRemote", beanName = "NoMethodStatefulBean", beanInterface = NoMethodRemoteIF.class, description = "remote ejb3 stateful session bean with no business methods"),

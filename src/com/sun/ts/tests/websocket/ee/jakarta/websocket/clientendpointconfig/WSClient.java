@@ -20,10 +20,6 @@
  */
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointconfig;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.websocket.common.TCKExtension;
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-import com.sun.ts.tests.websocket.common.util.MessageValidator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
@@ -34,7 +30,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import jakarta.websocket.*;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.websocket.common.TCKExtension;
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+import com.sun.ts.tests.websocket.common.util.MessageValidator;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.Extension;
+import jakarta.websocket.HandshakeResponse;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 
 public class WSClient extends WebSocketCommonClient {
 

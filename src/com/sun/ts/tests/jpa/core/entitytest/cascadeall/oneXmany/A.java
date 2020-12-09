@@ -20,12 +20,18 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.cascadeall.oneXmany;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")

@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
-import jakarta.transaction.UserTransaction;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import jakarta.transaction.UserTransaction;
 
 public class TestTxWork implements TestWorkInterface, Serializable {
 

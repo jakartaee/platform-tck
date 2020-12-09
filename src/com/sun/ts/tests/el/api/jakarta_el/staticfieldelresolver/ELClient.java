@@ -21,30 +21,21 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.staticfieldelresolver;
 
-import java.beans.FeatureDescriptor;
-import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Properties;
-
-import jakarta.el.ArrayELResolver;
-import jakarta.el.BeanELResolver;
-import jakarta.el.ELClass;
-import jakarta.el.ELContext;
-import jakarta.el.ELManager;
-import jakarta.el.ELResolver;
-import jakarta.el.ListELResolver;
-import jakarta.el.MapELResolver;
-import jakarta.el.PropertyNotFoundException;
-import jakarta.el.PropertyNotWritableException;
-import jakarta.el.StaticFieldELResolver;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELClass;
+import jakarta.el.ELContext;
+import jakarta.el.ELManager;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.StaticFieldELResolver;
 
 public class ELClient extends ServiceEETest {
 

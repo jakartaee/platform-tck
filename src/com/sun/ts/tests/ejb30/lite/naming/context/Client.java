@@ -23,12 +23,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
   @EJB(beanName = "TestBean", name = "sub/TestBean")

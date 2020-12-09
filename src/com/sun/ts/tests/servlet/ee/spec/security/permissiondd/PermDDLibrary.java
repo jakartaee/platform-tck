@@ -16,18 +16,16 @@
 
 package com.sun.ts.tests.servlet.ee.spec.security.permissiondd;
 
-import java.security.AccessController;
-import java.security.AccessControlException;
-import java.security.PrivilegedExceptionAction;
-import java.security.Permission;
-
 import java.io.FilePermission;
-import java.util.PropertyPermission;
 import java.net.SocketPermission;
-import java.lang.RuntimePermission;
+import java.security.AccessControlException;
+import java.security.AccessController;
+import java.security.Permission;
+import java.security.PrivilegedExceptionAction;
 import java.security.SecurityPermission;
+import java.util.PropertyPermission;
 
-import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * 

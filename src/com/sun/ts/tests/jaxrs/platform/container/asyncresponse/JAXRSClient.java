@@ -23,6 +23,10 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.client.AsyncInvoker;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -32,10 +36,6 @@ import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 /*
  * @class.setup_props: webServerHost;

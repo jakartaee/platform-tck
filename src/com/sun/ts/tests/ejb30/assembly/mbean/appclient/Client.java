@@ -22,15 +22,15 @@ package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
 import java.util.Properties;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
 
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();

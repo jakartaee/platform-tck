@@ -16,13 +16,14 @@
 
 package com.sun.ts.tests.jaxrs.spec.provider.standardhaspriority;
 
+import javax.xml.namespace.QName;
+
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedHashMap;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

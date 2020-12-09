@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.jsp.JspException;
-import java.net.URL;
-import java.net.MalformedURLException;
 
 public class GetLocalUrlTag extends jakarta.servlet.jsp.tagext.TagSupport {
 

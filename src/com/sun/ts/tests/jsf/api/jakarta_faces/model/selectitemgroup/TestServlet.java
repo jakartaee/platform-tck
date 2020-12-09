@@ -20,18 +20,18 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.selectitemgroup;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.model.SelectItemGroup;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.model.SelectItemGroup;
-import jakarta.faces.model.SelectItem;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
 
 public class TestServlet
     extends com.sun.ts.tests.jsf.api.jakarta_faces.model.selectitem.TestServlet {

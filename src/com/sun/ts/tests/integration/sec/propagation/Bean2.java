@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.integration.sec.propagation;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface Bean2 extends EJBObject {
   public String getCallerPrincipalName() throws RemoteException;

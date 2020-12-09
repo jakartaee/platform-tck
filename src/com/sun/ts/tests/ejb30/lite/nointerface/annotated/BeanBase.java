@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
 import java.util.Arrays;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.SessionContext;
-
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 
 abstract public class BeanBase {
   @Resource

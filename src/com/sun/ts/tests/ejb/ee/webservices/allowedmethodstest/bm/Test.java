@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.webservices.allowedmethodstest.bm;
 
-import java.rmi.*;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface Test extends Remote {
   public boolean businessMethod() throws RemoteException;

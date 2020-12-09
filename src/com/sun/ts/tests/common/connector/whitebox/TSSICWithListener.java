@@ -16,8 +16,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.work.WorkContextLifecycleListener;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.work.WorkContextLifecycleListener;
 
 /*
  * This class is used to assist with testing of work context notifications

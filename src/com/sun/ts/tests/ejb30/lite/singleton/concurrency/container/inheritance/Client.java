@@ -21,6 +21,7 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

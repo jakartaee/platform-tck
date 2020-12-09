@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.common;
 
-import java.lang.String;
-
 public interface Test {
   public void initLogging(java.util.Properties p);
 

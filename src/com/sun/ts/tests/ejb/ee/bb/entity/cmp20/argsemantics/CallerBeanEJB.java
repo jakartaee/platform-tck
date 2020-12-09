@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.argsemantics;
 
 import java.util.Properties;
+
 import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 import com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics.TestLogic;
 

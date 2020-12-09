@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import java.io.IOException;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;

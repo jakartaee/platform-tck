@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.numberformat.model;
 
-import jakarta.json.bind.annotation.JsonbNumberFormat;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbNumberFormat;
 
 @JsonbNumberFormat(value = "###,###.##")
 public class TypeCustomizedFieldOverriddenDoubleContainer

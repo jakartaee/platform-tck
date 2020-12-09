@@ -32,6 +32,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.sun.ts.tests.jaxrs.common.impl.SecurityContextImpl;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.container.PreMatching;
 import jakarta.ws.rs.core.Cookie;
@@ -41,8 +43,6 @@ import jakarta.ws.rs.core.Request;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.impl.SecurityContextImpl;
 
 /**
  * The methods are called here by reflection from the superclass

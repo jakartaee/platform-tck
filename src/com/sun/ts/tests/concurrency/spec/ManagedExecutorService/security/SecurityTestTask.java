@@ -16,8 +16,9 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedExecutorService.security;
 
-import javax.naming.*;
 import java.util.concurrent.Callable;
+
+import javax.naming.InitialContext;
 
 public class SecurityTestTask implements Callable {
 

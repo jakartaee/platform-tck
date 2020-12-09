@@ -20,20 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.entitycontexttest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
-import java.io.*;
 import java.security.Principal;
-import jakarta.transaction.*;
-import javax.naming.*;
+import java.util.Properties;
+
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOException;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.CoffeeBean;
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.FinderException;
+import jakarta.ejb.RemoveException;
+import jakarta.transaction.UserTransaction;
 
 public class TestBeanEJB implements EntityBean {
   // Cached instance state

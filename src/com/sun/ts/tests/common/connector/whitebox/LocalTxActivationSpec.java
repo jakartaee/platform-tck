@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.ActivationSpec;
 import jakarta.resource.spi.ResourceAdapter;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class LocalTxActivationSpec
     implements ActivationSpec, java.io.Serializable {

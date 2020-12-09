@@ -19,14 +19,16 @@
  */
 package com.sun.ts.tests.jms.core.closedTopicSubscriber;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import jakarta.jms.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.Message;
+import jakarta.jms.Topic;
 
 public class ClosedTopicSubscriberTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.closedTopicSubscriber.ClosedTopicSubscriberTests";

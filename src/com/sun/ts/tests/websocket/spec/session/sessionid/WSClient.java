@@ -25,6 +25,9 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.ContainerProvider;
@@ -33,9 +36,6 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
-
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class WSClient extends WebSocketCommonClient {
 

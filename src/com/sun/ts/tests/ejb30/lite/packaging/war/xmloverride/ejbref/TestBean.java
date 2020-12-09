@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref;
 
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
+import jakarta.ejb.Stateless;
 
 @Stateless
 public class TestBean {

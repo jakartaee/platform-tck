@@ -19,11 +19,11 @@ package com.sun.ts.tests.jaxrs.api.rs.core.newcookie;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.ws.rs.core.Cookie;
-import jakarta.ws.rs.core.NewCookie;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Cookie;
+import jakarta.ws.rs.core.NewCookie;
 
 /*
  * @class.setup_props: webServerHost;

@@ -20,11 +20,11 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import jakarta.ws.rs.core.MultivaluedMap;
-
 import org.apache.commons.httpclient.Header;
 
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
+
+import jakarta.ws.rs.core.MultivaluedMap;
 
 public class ApacheResponseAdapter extends HttpResponse {
 

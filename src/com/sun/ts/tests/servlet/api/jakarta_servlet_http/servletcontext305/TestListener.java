@@ -20,9 +20,10 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext305;
 
 import java.util.EventListener;
+
 import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 
 public class TestListener implements ServletContextListener {

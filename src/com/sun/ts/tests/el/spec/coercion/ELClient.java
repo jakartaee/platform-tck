@@ -21,23 +21,21 @@
 
 package com.sun.ts.tests.el.spec.coercion;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.Time;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.el.ELException;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Date;
-import java.sql.Time;
-import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 

@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.common.vehicle;
 
-import java.util.*;
-import com.sun.javatest.*;
-import com.sun.ts.tests.common.vehicle.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.util.TestUtil;
 
 public final class VehicleRunnerFactory {
   private static VehicleRunnable ejbRunner;

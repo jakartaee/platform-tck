@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 public class Constants {
 
   // Standard namespace URI's

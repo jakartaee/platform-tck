@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.stateful.annotated;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionLocalIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateful;
 
 @Stateful
 @Local({ AppExceptionLocalIF.class, AppExceptionIF.class })

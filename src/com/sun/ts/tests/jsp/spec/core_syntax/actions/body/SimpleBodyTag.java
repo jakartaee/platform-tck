@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import jakarta.servlet.jsp.tagext.JspFragment;
-import jakarta.servlet.jsp.tagext.DynamicAttributes;
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import jakarta.servlet.jsp.tagext.JspFragment;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class SimpleBodyTag extends SimpleTagSupport
     implements DynamicAttributes {

@@ -19,11 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 
 public class RWTestBeanBase0 {
   protected CoffeeEJBLite[] postConstructCoffees = new CoffeeEJBLite[2];

@@ -28,12 +28,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.simpleclient.*;
+import com.sun.ts.tests.jaxws.sharedclients.simpleclient.SimpleTestClient;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
-import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest implements DescriptionConstants {
   /**

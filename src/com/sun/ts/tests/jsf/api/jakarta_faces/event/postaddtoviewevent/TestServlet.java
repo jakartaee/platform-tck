@@ -23,6 +23,10 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.event.postaddtoviewevent;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseComponentSystemEventTestServlet;
+import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.TestSystemEventListener;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.event.ComponentSystemEvent;
@@ -31,10 +35,6 @@ import jakarta.faces.event.SystemEventListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseComponentSystemEventTestServlet;
-import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.TestSystemEventListener;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseComponentSystemEventTestServlet {
 

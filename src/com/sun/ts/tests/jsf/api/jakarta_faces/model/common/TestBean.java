@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
-import jakarta.faces.component.UIInput;
-import jakarta.faces.component.UIComponent;
-
-import java.util.Collection;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
 
 public class TestBean extends Object {
 

@@ -19,6 +19,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
 import java.io.InputStream;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.AlternativeInputStreamDecoder;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -26,10 +30,6 @@ import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.AlternativeInputStreamDecoder;
 
 @ClientEndpoint(decoders = { AlternativeInputStreamDecoder.class })
 public class AnnotatedBinaryClient extends AnnotatedClientEndpoint<String> {

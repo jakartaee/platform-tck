@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jaspic.util;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import java.io.Serializable;
 
 public class LogRecordEntry implements Serializable {
 

@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate;
 
-import com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate.CallbackBean0;
-import jakarta.ejb.MessageDriven;
 import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.MessageDriven;
 import jakarta.jms.MessageListener;
 
 @MessageDriven(activationConfig = {

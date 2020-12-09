@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.HashMap;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class HashMapContainer
     implements TypeContainer<HashMap<String, String>> {

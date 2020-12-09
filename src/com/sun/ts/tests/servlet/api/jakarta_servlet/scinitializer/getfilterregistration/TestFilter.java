@@ -20,7 +20,13 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getfilterregistration;
 
 import java.io.IOException;
-import jakarta.servlet.*;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 public final class TestFilter implements Filter {
 

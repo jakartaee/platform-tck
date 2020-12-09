@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.sessionbeantest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public void ping() throws RemoteException;

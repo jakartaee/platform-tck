@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.common.web;
 
-import java.util.Properties;
-import java.util.Enumeration;
 import java.lang.reflect.Method;
+import java.util.Enumeration;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
 
 /**
  * Factorize code used by JSP and Servlets.

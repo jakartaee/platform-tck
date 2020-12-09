@@ -18,6 +18,8 @@ package com.sun.ts.tests.jaxrs.spec.provider.standardwithjaxrsclient;
 
 import java.math.BigDecimal;
 
+import javax.xml.transform.Source;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -25,7 +27,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response;
-import javax.xml.transform.Source;
 
 @Path("resource")
 public class Resource {

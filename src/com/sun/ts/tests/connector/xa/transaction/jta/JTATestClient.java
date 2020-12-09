@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
 
 public class JTATestClient extends EETest {
   // Naming specific member variables

@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import jakarta.ejb.EJBContext;
-
 abstract public class Callback2BeanBase extends SharedCallbackBeanBase
     implements Callback2IF, java.io.Serializable {
   protected boolean postConstructOrPreDestroyCalled;

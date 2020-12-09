@@ -20,15 +20,17 @@
 
 package com.sun.ts.tests.common.vehicle.ejb;
 
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.*;
-import java.io.*;
-import java.net.*;
-import java.rmi.Remote;
-import jakarta.ejb.*;
-import java.util.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class EJBVehicle implements SessionBean {
   private EETest testObj;

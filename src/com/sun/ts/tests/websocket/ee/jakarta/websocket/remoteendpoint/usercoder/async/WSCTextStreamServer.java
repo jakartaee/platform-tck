@@ -20,12 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.Session;
-import jakarta.websocket.server.ServerEndpoint;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderBool;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderByte;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderChar;
@@ -34,6 +28,12 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderInt;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderLong;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextStreamCoderShort;
+
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/textstream", encoders = { TextStreamCoderBool.class,
     TextStreamCoderByte.class, TextStreamCoderChar.class,

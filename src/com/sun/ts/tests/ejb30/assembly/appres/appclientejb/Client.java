@@ -30,13 +30,7 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
 import java.util.Properties;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.jms.Queue;
 import javax.sql.DataSource;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
@@ -45,6 +39,13 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.jms.Queue;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();

@@ -21,16 +21,16 @@
 
 package com.sun.ts.tests.el.spec.operatorprecedence;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.tests.el.common.util.ExprEval;
-import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
+import com.sun.ts.tests.el.common.util.ExprEval;
 
-import java.util.Properties;
-import jakarta.el.ExpressionFactory;
 import jakarta.el.ELException;
+import jakarta.el.ExpressionFactory;
 
 public class ELClient extends ServiceEETest {
 

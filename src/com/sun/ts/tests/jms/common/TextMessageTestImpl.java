@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jms.common;
 
-import jakarta.jms.*;
+import jakarta.jms.JMSException;
+import jakarta.jms.TextMessage;
 
 public class TextMessageTestImpl extends MessageTestImpl
     implements TextMessage {

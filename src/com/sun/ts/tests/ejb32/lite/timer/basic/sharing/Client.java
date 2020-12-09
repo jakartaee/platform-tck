@@ -21,14 +21,14 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Vector;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.Timer;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.Timer;
 
 public class Client extends ClientBase {
   private static final int THREAD_COUNT = 100;

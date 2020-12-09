@@ -20,26 +20,18 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.annotated;
 
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF;
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
-import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.Local;
-import jakarta.ejb.LocalHome;
-import jakarta.ejb.Remote;
-import jakarta.ejb.RemoteHome;
-import jakarta.ejb.Init;
-import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.Init;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 
 @Stateful(name = "RemoveNotRetainBean")
 @Remote({ RemoveNotRetainIF.class })

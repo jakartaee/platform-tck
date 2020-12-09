@@ -20,13 +20,6 @@
 
 package com.sun.ts.tests.common.dao.coffee;
 
-import java.util.Properties;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import jakarta.ejb.CreateException;
-import com.sun.ts.lib.util.TestUtil;
-
 /**
  * DB Support object for DB table using whose primary key is an 'int'.
  */

@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.common.vehicle;
 
-import java.util.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.javatest.*;
 
 public class EmptyVehicleRunner implements VehicleRunnable {
 

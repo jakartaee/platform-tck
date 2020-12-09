@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.spec.resource.annotationprecedence.subclass;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

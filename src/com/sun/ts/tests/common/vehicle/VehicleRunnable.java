@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.common.vehicle;
 
-import java.util.*;
-import com.sun.javatest.*;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 
 public interface VehicleRunnable {
   public Status run(String[] argv, Properties p);

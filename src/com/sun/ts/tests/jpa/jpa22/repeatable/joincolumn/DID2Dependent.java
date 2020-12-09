@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.joincolumn;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @IdClass(DID2DependentId.class)

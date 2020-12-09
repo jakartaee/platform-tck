@@ -20,8 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import jakarta.ejb.*;
-import java.util.*;
+import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface CustomerLocalHome extends EJBLocalHome {
   public CustomerLocal create(String id, String name, AddressDVC home,

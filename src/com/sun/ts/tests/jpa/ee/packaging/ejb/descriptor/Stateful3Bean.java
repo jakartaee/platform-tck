@@ -20,16 +20,22 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.annotation.Resource;
-import jakarta.ejb.*;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
 @Remote({ Stateful3IF.class })

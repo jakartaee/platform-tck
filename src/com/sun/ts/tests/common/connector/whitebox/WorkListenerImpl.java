@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class WorkListenerImpl implements WorkListener {
   private String uidStr = null;

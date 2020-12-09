@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.assembly.compat.single.compat12_14;
 
-import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {

@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.integration.session.jspejbjdbc;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.Properties;
+import jakarta.ejb.EJBObject;
 
 public interface Teller extends EJBObject {
   public void transfer(int from, int to, double amt) throws RemoteException;

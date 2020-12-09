@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement;
 
-import jakarta.ejb.EJB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.ClientBase;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF;
@@ -29,6 +27,8 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // @EJB(name="removeBean")

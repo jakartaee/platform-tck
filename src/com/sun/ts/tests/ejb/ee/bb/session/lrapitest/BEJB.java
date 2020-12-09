@@ -20,13 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import javax.naming.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBLocalObject;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class BEJB implements SessionBean {
 

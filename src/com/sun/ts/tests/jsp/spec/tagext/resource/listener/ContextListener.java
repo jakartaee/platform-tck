@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.listener;
 
+import javax.sql.DataSource;
+
+import jakarta.annotation.Resource;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-
-import jakarta.annotation.Resource;
-
-import javax.sql.DataSource;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.TopicConnectionFactory;
-import jakarta.jms.ConnectionFactory;
-import jakarta.jms.Queue;
-import jakarta.jms.Topic;
-import jakarta.mail.Session;
-import java.net.URL;
 
 public final class ContextListener implements ServletContextListener {
 

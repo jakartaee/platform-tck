@@ -19,13 +19,6 @@
  */
 package com.sun.ts.tests.ejb30.assembly.appres.warmbean;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF;
@@ -35,6 +28,13 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)

@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import jakarta.annotation.Resource;
-import jakarta.transaction.UserTransaction;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.Resource;
+import jakarta.transaction.UserTransaction;
 
 /**
  * .war packaging of EJB classes are used in many other test directories. This

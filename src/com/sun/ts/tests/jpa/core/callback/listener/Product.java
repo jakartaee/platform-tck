@@ -25,7 +25,11 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerB;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerC;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_TABLE")

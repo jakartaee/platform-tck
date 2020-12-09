@@ -20,11 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class LoopBackEJB implements SessionBean {
   private SessionContext sctx = null;

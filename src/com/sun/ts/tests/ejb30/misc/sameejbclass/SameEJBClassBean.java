@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb30.misc.sameejbclass;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 
 //@Stateless
 public class SameEJBClassBean implements SameEJBClassIF {

@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.beanparam.plain;
 
+import com.sun.ts.tests.jaxrs.ee.rs.beanparam.bean.BeanParamEntity;
+
 import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
-
-import com.sun.ts.tests.jaxrs.ee.rs.beanparam.bean.BeanParamEntity;
 
 @Path("resource")
 public class Resource {

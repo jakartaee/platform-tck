@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.common.helper;
 
-import javax.naming.InitialContext;
 import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 public class ServiceLocator {

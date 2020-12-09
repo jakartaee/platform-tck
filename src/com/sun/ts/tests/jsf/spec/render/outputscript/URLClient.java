@@ -21,12 +21,12 @@ package com.sun.ts.tests.jsf.spec.render.outputscript;
 
 import java.io.PrintWriter;
 import java.util.Formatter;
+import java.util.List;
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlScript;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.util.List;
 
 public class URLClient extends BaseHtmlUnitClient {
 

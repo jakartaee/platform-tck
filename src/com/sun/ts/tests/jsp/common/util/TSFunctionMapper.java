@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import jakarta.servlet.jsp.el.FunctionMapper;
 import java.lang.reflect.Method;
+
+import jakarta.servlet.jsp.el.FunctionMapper;
 
 /**
  * Simple Function mapper.

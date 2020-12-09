@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Collection;
 import java.util.Properties;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;

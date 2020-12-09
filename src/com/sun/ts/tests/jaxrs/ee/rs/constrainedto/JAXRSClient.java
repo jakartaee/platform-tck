@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.constrainedto;
 
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

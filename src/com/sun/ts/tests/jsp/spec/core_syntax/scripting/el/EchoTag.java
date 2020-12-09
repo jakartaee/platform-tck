@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
-import jakarta.servlet.jsp.tagext.BodyTagSupport;
-import jakarta.servlet.jsp.tagext.BodyContent;
-import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 public class EchoTag extends BodyTagSupport {
 

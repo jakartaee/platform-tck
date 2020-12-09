@@ -21,6 +21,7 @@
 package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
 import java.io.Serializable;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 

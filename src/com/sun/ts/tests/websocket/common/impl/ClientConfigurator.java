@@ -23,11 +23,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import jakarta.websocket.HandshakeResponse;
-import jakarta.websocket.ClientEndpointConfig.Configurator;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
+
+import jakarta.websocket.ClientEndpointConfig.Configurator;
+import jakarta.websocket.HandshakeResponse;
 
 public class ClientConfigurator extends Configurator {
 

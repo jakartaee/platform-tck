@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.mappedsc;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.math.BigDecimal;
 
 /*
  * Project

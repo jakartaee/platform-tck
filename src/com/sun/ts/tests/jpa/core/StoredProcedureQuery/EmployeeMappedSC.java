@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.StoredProcedureQuery;
 
-import jakarta.persistence.*;
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.NamedStoredProcedureQueries;
+import jakarta.persistence.NamedStoredProcedureQuery;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.QueryHint;
+import jakarta.persistence.StoredProcedureParameter;
 
 /*
  * Employee

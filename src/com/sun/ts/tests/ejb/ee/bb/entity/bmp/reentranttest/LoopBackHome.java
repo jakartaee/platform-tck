@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.reentranttest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface LoopBackHome extends EJBHome {
   public LoopBack create(TestBean r) throws RemoteException, CreateException;

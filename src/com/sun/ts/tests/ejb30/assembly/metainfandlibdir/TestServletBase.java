@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
+import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.RESOURCE_NAME;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF;
-import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.RESOURCE_NAME;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
-import com.sun.ts.tests.ejb30.assembly.common.ConcurrentLookup;
 import com.sun.ts.tests.ejb30.assembly.common.Util;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -20,13 +20,13 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import jakarta.websocket.CloseReason;
-import jakarta.websocket.Session;
-
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 import com.sun.ts.tests.websocket.common.client.SendMessageCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.impl.StringPongMessage;
+
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.Session;
 
 /*
  * @class.setup_props: webServerHost;

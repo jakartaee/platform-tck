@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 
 //@Stateless(name="StatelessDefaultLocalBean")
 @Stateless

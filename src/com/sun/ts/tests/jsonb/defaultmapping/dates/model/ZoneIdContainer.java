@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.ZoneId;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class ZoneIdContainer implements TypeContainer<ZoneId> {
   private ZoneId instance;

@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jsf.spec.navigation;
 
-import jakarta.faces.application.ViewHandler;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.component.UIViewRoot;
-import jakarta.faces.FacesException;
-
-import java.util.Locale;
 import java.io.IOException;
+import java.util.Locale;
+
+import jakarta.faces.FacesException;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
 
 public class TestViewHandler extends ViewHandler {
 

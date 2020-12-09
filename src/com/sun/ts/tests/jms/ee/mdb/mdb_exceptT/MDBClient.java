@@ -19,15 +19,12 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_exceptT;
 
-import java.io.*;
 import java.util.Properties;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.Client;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
+
 import com.sun.javatest.Status;
+import com.sun.ts.tests.jms.commonee.Client;
+
+import jakarta.jms.Topic;
 
 public class MDBClient extends Client {
 

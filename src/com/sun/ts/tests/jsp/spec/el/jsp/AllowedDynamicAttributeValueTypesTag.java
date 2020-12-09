@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.JspException;
-import jakarta.el.ValueExpression;
-import jakarta.el.MethodExpression;
 import java.io.IOException;
+
+import jakarta.el.MethodExpression;
+import jakarta.el.ValueExpression;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class AllowedDynamicAttributeValueTypesTag extends TagSupport {
 

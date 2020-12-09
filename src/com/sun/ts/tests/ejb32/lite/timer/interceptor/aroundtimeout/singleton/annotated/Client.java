@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.ClientBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 public class Client extends ClientBase {
 

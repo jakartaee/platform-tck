@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.cm;
 
 import java.rmi.RemoteException;
-import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface ProxyBean extends EJBObject {

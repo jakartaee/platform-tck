@@ -20,22 +20,46 @@
 
 package com.sun.ts.tests.jsonp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-import java.io.*;
-import java.net.*;
-import java.lang.reflect.*;
-import java.nio.charset.Charset;
-
-import java.math.BigInteger;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import jakarta.json.stream.JsonParser.Event.*;
-import jakarta.json.JsonValue.ValueType.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonNumber;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
+import jakarta.json.JsonWriter;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonLocation;
+import jakarta.json.stream.JsonParser;
 
 public final class JSONP_Util {
 

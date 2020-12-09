@@ -21,9 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.twojars;
 
 import com.sun.javatest.Status;
-import jakarta.annotation.Resource;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 
 public class Client
     extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClientBase {

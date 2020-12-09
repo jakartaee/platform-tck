@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.core.configurable;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Configurable;
-
-import com.sun.ts.lib.harness.EETest.Fault;
 
 public abstract class SingleCheckAssertable extends Assertable {
 

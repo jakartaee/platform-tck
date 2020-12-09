@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateful.cm.annotated;
 
-import com.sun.ts.tests.ejb30.tx.common.session.cm.ClientBase;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.ejb30.tx.common.session.cm.TestIF;
-import jakarta.ejb.EJB;
+import com.sun.ts.tests.ejb30.tx.common.session.cm.ClientBase;
 
 public class Client extends ClientBase {
 

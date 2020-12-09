@@ -16,13 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OrderBy;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Consumer implements Serializable {

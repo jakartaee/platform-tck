@@ -20,9 +20,11 @@
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
 import java.util.List;
-import jakarta.ejb.EJBContext;
+
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
+import jakarta.ejb.EJBContext;
 
 public class Util {
   static String[] lookupNames = { "java:comp/EJBContext",

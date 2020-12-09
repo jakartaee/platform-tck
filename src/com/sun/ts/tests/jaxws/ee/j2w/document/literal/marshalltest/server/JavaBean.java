@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Calendar;
 
 public class JavaBean implements java.io.Serializable {
 

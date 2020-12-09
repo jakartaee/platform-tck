@@ -20,11 +20,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverapplication
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverapplicationconfig.WSOtherUsedServer;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.server.ServerApplicationConfig;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverapplicationconfig.WSOtherUsedServer;
 
 public class OtherAppConfig implements ServerApplicationConfig {
 

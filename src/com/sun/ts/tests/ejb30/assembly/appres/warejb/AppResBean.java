@@ -19,6 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.assembly.appres.warejb;
 
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF;
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
+import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
+import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
+import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -27,13 +34,6 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResLocalIF;
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
-import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
-import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
-import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)

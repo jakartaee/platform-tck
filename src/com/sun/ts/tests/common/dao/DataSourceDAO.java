@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.common.dao;
 
-import java.util.Properties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import javax.sql.DataSource;
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 

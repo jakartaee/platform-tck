@@ -23,9 +23,9 @@ package com.sun.ts.tests.common.web;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * Facade class to ease client access to a TS test deployed in the Web

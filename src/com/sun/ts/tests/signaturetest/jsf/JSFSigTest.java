@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.signaturetest.jsf;
 
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
-
-import java.io.PrintWriter;
 
 /*
  * This class is a simple example of a signature test that extends the

@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.scope;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface QueueBeanHome extends EJBHome {
 

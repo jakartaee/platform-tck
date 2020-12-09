@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.resref.single;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {

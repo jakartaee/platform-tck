@@ -22,17 +22,17 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.core.MultivaluedMap;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.lib.util.BASE64Encoder;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.TestFailureException;
 import com.sun.ts.tests.common.webclient.validation.CheckOneOfStatusesTokenizedValidator;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 import com.sun.ts.tests.jaxrs.common.client.JaxrsWebTestCase.Execution;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 public class JaxrsCommonClient extends JAXRSCommonClient {
 

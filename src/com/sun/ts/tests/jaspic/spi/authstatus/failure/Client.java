@@ -16,20 +16,21 @@
 
 package com.sun.ts.tests.jaspic.spi.authstatus.failure;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaspic.util.LogFileProcessor;
-import com.sun.ts.tests.jaspic.util.WebServiceUtils;
 import java.net.URL;
+import java.util.Map;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
 
-import jakarta.xml.ws.WebServiceRef;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaspic.util.LogFileProcessor;
+import com.sun.ts.tests.jaspic.util.WebServiceUtils;
+
 import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.ProtocolException;
-import java.util.Properties;
-import java.util.Map;
+import jakarta.xml.ws.WebServiceRef;
 
 /**
  *

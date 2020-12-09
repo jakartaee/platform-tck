@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.statetest;
 
-import jakarta.ejb.*;
 import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface Counter extends EJBObject {
   public int decrement() throws RemoteException, InvalidTransactionException;

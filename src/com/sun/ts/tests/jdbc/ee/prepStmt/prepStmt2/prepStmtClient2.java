@@ -20,21 +20,33 @@
 
 package com.sun.ts.tests.jdbc.ee.prepStmt.prepStmt2;
 
-import java.io.*;
-import java.util.*;
-import java.math.*;
-import java.sql.*;
-import javax.sql.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import javax.sql.DataSource;
 
-import java.rmi.RemoteException;
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jdbc.ee.common.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;
+import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
+import com.sun.ts.tests.jdbc.ee.common.DriverManagerConnection;
+import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
+import com.sun.ts.tests.jdbc.ee.common.csSchema;
+import com.sun.ts.tests.jdbc.ee.common.dbSchema;
+import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 
 /**
  * The prepStmtClient2 class tests methods of DatabaseMetaData interface using

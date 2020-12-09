@@ -19,10 +19,9 @@
  */
 package com.sun.ts.tests.jms.commonee;
 
-import com.sun.ts.lib.util.*;
+import java.util.Properties;
 
 import jakarta.ejb.Remote;
-import java.util.Properties;
 
 @Remote
 public interface TestsT {

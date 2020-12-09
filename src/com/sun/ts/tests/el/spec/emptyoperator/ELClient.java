@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.el.spec.emptyoperator;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.el.common.util.ExprEval;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.el.common.util.NameValuePair;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ExprEval;
+import com.sun.ts.tests.el.common.util.NameValuePair;
 
 public class ELClient extends ServiceEETest {
 

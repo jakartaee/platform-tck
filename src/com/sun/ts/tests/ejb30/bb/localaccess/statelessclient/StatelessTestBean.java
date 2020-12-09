@@ -24,17 +24,16 @@ import com.sun.ts.tests.ejb30.bb.localaccess.common.DefaultLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.LocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulDefaultLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulLocalIF;
+import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
+import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBs;
 import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Remove;
-import jakarta.annotation.Resource;
-import static com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.SERVER_MSG;
-import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
-import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
 import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

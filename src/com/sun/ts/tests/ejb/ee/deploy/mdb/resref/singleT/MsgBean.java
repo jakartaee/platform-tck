@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.resref.singleT;
 
 import java.util.Properties;
-import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 
 public class MsgBean extends MDBWrapper {
 

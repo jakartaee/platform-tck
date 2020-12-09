@@ -20,19 +20,12 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.*;
-
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
 import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
-import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
-import com.sun.ts.tests.jaxws.wsa.common.MapException;
-import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+
 import jakarta.xml.soap.SOAPException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ServerSOAPHandler extends WsaBaseSOAPHandler {
   String testName = null;

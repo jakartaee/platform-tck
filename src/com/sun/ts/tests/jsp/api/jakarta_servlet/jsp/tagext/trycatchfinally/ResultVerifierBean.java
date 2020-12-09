@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.trycatchfinally;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import jakarta.servlet.jsp.PageContext;
-import java.util.List;
-import java.util.Arrays;
 
 public class ResultVerifierBean {
 

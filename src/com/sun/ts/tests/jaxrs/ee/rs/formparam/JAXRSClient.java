@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.formparam;
 
+import com.sun.ts.tests.jaxrs.ee.rs.JaxrsParamClient;
+
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response.Status;
-
-import com.sun.ts.tests.jaxrs.ee.rs.JaxrsParamClient;
 
 /*
  * @class.setup_props: webServerHost;

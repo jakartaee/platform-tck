@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.time.Duration;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class DurationContainer implements TypeContainer<Duration> {
   private Duration instance;

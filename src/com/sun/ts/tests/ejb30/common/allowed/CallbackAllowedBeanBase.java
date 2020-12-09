@@ -20,12 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import jakarta.annotation.Resource;
 import java.util.Properties;
-import jakarta.annotation.PostConstruct;
+
 import jakarta.ejb.SessionContext;
-import jakarta.ejb.Timeout;
-import jakarta.ejb.TransactionAttribute;
 
 public abstract class CallbackAllowedBeanBase
     implements CallbackAllowedIF, CallbackAllowedLocalIF {

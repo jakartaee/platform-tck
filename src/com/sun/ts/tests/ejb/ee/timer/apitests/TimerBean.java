@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
-import com.sun.ts.lib.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.EJBObject;
 
 public interface TimerBean extends EJBObject {
   public boolean test1() throws RemoteException;

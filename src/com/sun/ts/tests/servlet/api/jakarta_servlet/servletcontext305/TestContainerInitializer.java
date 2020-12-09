@@ -19,18 +19,18 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext305;
 
-import java.io.*;
 import java.util.EnumSet;
 import java.util.EventListener;
 import java.util.Set;
-import jakarta.servlet.Filter;
+
 import jakarta.servlet.DispatcherType;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletRegistration;
+import jakarta.servlet.Filter;
 import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletContainerInitializer;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRegistration;
 
 public class TestContainerInitializer implements ServletContainerInitializer {
 

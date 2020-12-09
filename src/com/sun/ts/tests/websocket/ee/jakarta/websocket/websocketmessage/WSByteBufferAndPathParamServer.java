@@ -17,9 +17,11 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;

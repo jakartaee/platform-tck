@@ -20,12 +20,17 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.*;
 
 public class Client extends PMClientBase {
 

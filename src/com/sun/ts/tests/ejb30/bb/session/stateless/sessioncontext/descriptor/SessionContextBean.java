@@ -20,20 +20,9 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-import jakarta.ejb.LocalHome;
-import jakarta.ejb.RemoteHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
-import com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
+
+import jakarta.ejb.SessionContext;
 
 //@Stateless(name="SessionContextBean")
 //@Remote({Three1IF.class, Three2IF.class})

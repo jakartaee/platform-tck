@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter;
 
+import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
+import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
+import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
+
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Cat;
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Dog;
 
 import jakarta.json.bind.adapter.JsonbAdapter;
-
-import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
-import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
-import static com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
 
 public class AnimalAdapter implements JsonbAdapter<Animal, AnimalJson> {
   @Override

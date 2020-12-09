@@ -29,6 +29,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.ClientRequestContext;
@@ -48,12 +54,6 @@ import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.core.Response.Status.Family;
 import jakarta.ws.rs.core.Response.StatusType;
 import jakarta.ws.rs.ext.RuntimeDelegate;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 /*
  * @class.setup_props: webServerHost;

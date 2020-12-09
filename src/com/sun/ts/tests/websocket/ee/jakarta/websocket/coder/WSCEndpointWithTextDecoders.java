@@ -17,6 +17,10 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -25,10 +29,6 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
 
 @ClientEndpoint(decoders = { WillDecodeFirstTextDecoder.class,
     WillDecodeSecondTextDecoder.class })

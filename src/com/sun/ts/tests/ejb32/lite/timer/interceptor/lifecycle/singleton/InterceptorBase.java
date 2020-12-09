@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.TimerService;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 public class InterceptorBase {
   @Resource

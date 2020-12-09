@@ -16,15 +16,16 @@
 
 package com.sun.ts.tests.servlet.spec.async;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class Servlet8 extends GenericServlet {
   private static final String filter_name = "Filter8";

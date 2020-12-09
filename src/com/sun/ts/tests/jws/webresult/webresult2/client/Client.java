@@ -23,26 +23,27 @@
 
 package com.sun.ts.tests.jws.webresult.webresult2.client;
 
-import com.sun.ts.tests.jws.common.WsdlUtils;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.tests.jws.common.DescriptionConstants;
-import com.sun.ts.tests.jws.common.DescriptionUtils;
-import com.sun.ts.tests.jws.common.JWS_Util;
-import com.sun.ts.tests.jws.common.SchemaConstants;
+import java.net.URL;
+import java.util.Properties;
+
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.net.URL;
-import java.util.Properties;
-import java.io.File;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jws.common.DescriptionConstants;
+import com.sun.ts.tests.jws.common.DescriptionUtils;
+import com.sun.ts.tests.jws.common.JWS_Util;
+import com.sun.ts.tests.jws.common.SchemaConstants;
+import com.sun.ts.tests.jws.common.WsdlUtils;
 
 /**
  * @test

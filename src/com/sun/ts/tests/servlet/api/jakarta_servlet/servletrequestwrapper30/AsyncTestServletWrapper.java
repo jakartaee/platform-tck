@@ -17,7 +17,12 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper30;
 
 import java.io.IOException;
-import jakarta.servlet.*;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletRequestWrapper;
+import jakarta.servlet.ServletResponse;
 
 public class AsyncTestServletWrapper extends
     com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.AsyncTestServlet {

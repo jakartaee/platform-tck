@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.method.descriptor;
 
+import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
+import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
+import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
-import jakarta.annotation.Resource;
-import jakarta.ejb.Remove;
-import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 @Stateful(name = "SessionBeanCallbackBean")
 @Remote({ CallbackIF.class })

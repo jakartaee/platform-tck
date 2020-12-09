@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.queryparam.sub;
 
-import jakarta.ws.rs.core.Application;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.sun.ts.tests.jaxrs.ee.rs.RuntimeExceptionMapper;
 import com.sun.ts.tests.jaxrs.ee.rs.WebApplicationExceptionMapper;
 
-import java.util.Set;
-import java.util.HashSet;
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

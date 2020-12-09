@@ -16,10 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class RetailOrder implements Serializable {

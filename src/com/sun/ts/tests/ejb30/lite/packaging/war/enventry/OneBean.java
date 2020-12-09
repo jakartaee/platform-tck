@@ -19,13 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
 
+import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.Interceptors;
-import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)

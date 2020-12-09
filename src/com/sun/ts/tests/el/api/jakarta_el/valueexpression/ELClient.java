@@ -21,13 +21,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import jakarta.el.ELContext;
-import jakarta.el.ELResolver;
-import jakarta.el.ExpressionFactory;
-import jakarta.el.PropertyNotFoundException;
-import jakarta.el.ValueExpression;
-import jakarta.el.ValueReference;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -36,6 +29,13 @@ import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.elcontext.VRContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.ELResolver;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.ValueExpression;
+import jakarta.el.ValueReference;
 
 public class ELClient extends ServiceEETest {
   private Hashtable<Class<?>, Object> testValueTable;

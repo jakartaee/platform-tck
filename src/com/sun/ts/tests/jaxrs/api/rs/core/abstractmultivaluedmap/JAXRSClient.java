@@ -25,10 +25,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.AbstractMultivaluedMap;
 import jakarta.ws.rs.core.MultivaluedHashMap;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

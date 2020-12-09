@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.rw;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends RWClientBase {
 

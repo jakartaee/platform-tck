@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jstl.common.filters;
 
-import org.xml.sax.helpers.XMLFilterImpl;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
+import org.xml.sax.helpers.XMLFilterImpl;
 
 public class SimpleXmlFilter extends XMLFilterImpl {
 

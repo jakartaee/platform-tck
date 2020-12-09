@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated;
 
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClassLevelAnnotatedAccessTimeoutBeanBase;
+
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateful;
 
 /**
  * All @AccessTimeout metadata are specified in superclass (either class-level

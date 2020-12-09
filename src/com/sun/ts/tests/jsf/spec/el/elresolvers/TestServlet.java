@@ -32,6 +32,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_de;
+import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_en;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.PropertyNotWritableException;
@@ -44,11 +49,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspFactory;
 import jakarta.servlet.jsp.PageContext;
-
-import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_de;
-import com.sun.ts.tests.jsf.common.resourcebundle.SimpleResourceBundle_en;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public final class TestServlet extends HttpTCKServlet {
 

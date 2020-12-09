@@ -16,10 +16,15 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import com.sun.ts.lib.util.TestUtil;
+import static com.sun.ts.tests.jsonp.common.JSONP_Util.toStringJsonArray;
+import static com.sun.ts.tests.jsonp.common.JSONP_Util.toStringJsonObject;
+
 import java.io.StringReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonNumber;
@@ -27,9 +32,6 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.common.JSONP_Util.toStringJsonArray;
-import static com.sun.ts.tests.jsonp.common.JSONP_Util.toStringJsonObject;
 
 // $Id$
 /**

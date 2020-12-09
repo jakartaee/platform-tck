@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.oneXmany;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityExistsException;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Vector;
 
 public class Client extends PMClientBase {
 

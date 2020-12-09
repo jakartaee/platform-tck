@@ -28,6 +28,11 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeSet;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxrs.api.rs.core.responseclient.VerificationResult;
+import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Invocation;
@@ -41,11 +46,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Variant;
 import jakarta.ws.rs.ext.RuntimeDelegate;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxrs.api.rs.core.responseclient.VerificationResult;
-import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 public class BuilderClient
     extends com.sun.ts.tests.jaxrs.api.rs.core.responseclient.JAXRSClient {

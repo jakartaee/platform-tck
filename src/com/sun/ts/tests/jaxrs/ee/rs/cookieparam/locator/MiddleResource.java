@@ -20,15 +20,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.core.Response;
-
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingExceptionGivenByName;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityThrowingWebApplicationException;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithConstructor;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithFromString;
 import com.sun.ts.tests.jaxrs.ee.rs.ParamEntityWithValueOf;
 import com.sun.ts.tests.jaxrs.ee.rs.cookieparam.CookieParamTest;
+
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.core.Response;
 
 public class MiddleResource extends CookieParamTest {
 

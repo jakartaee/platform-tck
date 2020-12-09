@@ -23,7 +23,8 @@
 
 package com.sun.ts.tests.jacc.provider;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 
 /**
  * TSLogRecord is the custom LogRecord which has one additional logging field

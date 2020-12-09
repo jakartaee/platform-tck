@@ -21,6 +21,7 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.ExcludeDefaultInterceptors;

@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
+import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
+
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
-
-import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
 
 @Startup
 @Singleton

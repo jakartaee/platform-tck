@@ -19,16 +19,18 @@
  */
 package com.sun.ts.tests.ejb30.lite.ejbcontext.stateless;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import static com.sun.ts.tests.ejb30.lite.ejbcontext.common.Util.postConstruct1;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContext2IF;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
-import jakarta.ejb.Local;
 import jakarta.ejb.EJBContext;
+import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 

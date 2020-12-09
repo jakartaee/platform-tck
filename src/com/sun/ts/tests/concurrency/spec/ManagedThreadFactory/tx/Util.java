@@ -17,25 +17,25 @@
 package com.sun.ts.tests.concurrency.spec.ManagedThreadFactory.tx;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import jakarta.enterprise.concurrent.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.DriverManager;
-import java.util.Properties;
-import java.util.Enumeration;
-import java.util.Set;
 
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.enterprise.concurrent.ManagedThreadFactory;
 
 public class Util {
 

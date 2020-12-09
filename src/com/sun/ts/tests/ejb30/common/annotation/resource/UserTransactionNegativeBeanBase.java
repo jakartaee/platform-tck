@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
+import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_TRANSACTION_JNDI_NAME;
+
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_TRANSACTION_JNDI_NAME;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
 
 abstract public class UserTransactionNegativeBeanBase
     implements UserTransactionNegativeIF {

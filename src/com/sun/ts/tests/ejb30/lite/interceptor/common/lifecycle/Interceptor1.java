@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 //TODO Make some interceptors (e.g., 1, 5, 7) pure java classes without interceptor-
 //related annotations.  They will be declared as interceptors in descriptors.

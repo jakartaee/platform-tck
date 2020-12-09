@@ -21,10 +21,12 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.singleT;
 
 import java.util.Properties;
-import jakarta.jms.Topic;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOFactory;
-import com.sun.javatest.Status;
+
+import jakarta.jms.Topic;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 

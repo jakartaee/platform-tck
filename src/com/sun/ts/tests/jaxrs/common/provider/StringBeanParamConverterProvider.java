@@ -23,8 +23,6 @@ import jakarta.ws.rs.ext.ParamConverter;
 import jakarta.ws.rs.ext.ParamConverterProvider;
 import jakarta.ws.rs.ext.Provider;
 
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-
 @Provider
 public class StringBeanParamConverterProvider
     implements ParamConverterProvider {

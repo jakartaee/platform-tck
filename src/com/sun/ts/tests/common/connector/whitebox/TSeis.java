@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import com.sun.ts.lib.util.TestUtil;
-import java.util.Vector;
-import java.util.Hashtable;
 import java.util.Enumeration;
-import com.sun.ts.tests.common.connector.util.*;
-import javax.transaction.xa.*;
+import java.util.Hashtable;
+import java.util.Vector;
+
+import javax.transaction.xa.Xid;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 public class TSeis {
 

@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.TreeSet;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class TreeSetContainer implements TypeContainer<TreeSet<String>> {
   private TreeSet<String> instance;

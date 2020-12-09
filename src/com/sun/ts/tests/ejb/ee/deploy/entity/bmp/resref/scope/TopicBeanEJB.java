@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.scope;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
+import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TopicBeanEJB extends BMPWrapper {
 

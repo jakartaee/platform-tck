@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.common;
 
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 abstract public class BusinessTimerBeanBase extends TimerBeanBase {
   @SuppressWarnings("unused")

@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 
-import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import jakarta.ejb.Remove;
+import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 
 /**
  * A stateful base calculator session bean class that implements

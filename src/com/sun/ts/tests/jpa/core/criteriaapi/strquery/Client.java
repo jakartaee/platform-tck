@@ -16,19 +16,38 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.strquery;
 
+import java.sql.Date;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.*;
+import com.sun.ts.tests.jpa.common.schema30.Address;
+import com.sun.ts.tests.jpa.common.schema30.Alias;
+import com.sun.ts.tests.jpa.common.schema30.CreditCard;
+import com.sun.ts.tests.jpa.common.schema30.Customer;
+import com.sun.ts.tests.jpa.common.schema30.LineItem;
 import com.sun.ts.tests.jpa.common.schema30.Order;
+import com.sun.ts.tests.jpa.common.schema30.Phone;
+import com.sun.ts.tests.jpa.common.schema30.Product;
+import com.sun.ts.tests.jpa.common.schema30.Spouse;
+import com.sun.ts.tests.jpa.common.schema30.Util;
 
-import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.*;
-
-import java.sql.Date;
-import java.util.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Fetch;
+import jakarta.persistence.criteria.From;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
+import jakarta.persistence.metamodel.Attribute;
 
 /**
  * @author Sarada Kommalapati

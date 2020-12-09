@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface LineItemLocal extends EJBLocalObject {
 

@@ -25,6 +25,10 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseUIComponentClient;
 
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+
 public class URLClient extends BaseUIComponentClient {
 
   private static final String CONTEXT_ROOT = "/jsf_comp_viewroot_web";

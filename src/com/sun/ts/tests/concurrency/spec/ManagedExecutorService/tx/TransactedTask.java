@@ -18,9 +18,10 @@ package com.sun.ts.tests.concurrency.spec.ManagedExecutorService.tx;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.transaction.UserTransaction;
 
 public class TransactedTask implements Runnable {
   private final boolean isCommit;

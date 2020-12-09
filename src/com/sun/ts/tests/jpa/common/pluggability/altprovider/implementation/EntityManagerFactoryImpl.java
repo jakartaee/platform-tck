@@ -16,11 +16,16 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import jakarta.persistence.*;
+import java.util.Map;
+
+import jakarta.persistence.Cache;
+import jakarta.persistence.EntityGraph;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceUnitUtil;
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.spi.PersistenceUnitInfo;
-import java.util.Map;
 
 public class EntityManagerFactoryImpl
     implements jakarta.persistence.EntityManagerFactory {

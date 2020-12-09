@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspwriter;
 
+import java.util.List;
+
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.common.webclient.validation.TokenizedValidator;
-import com.sun.ts.lib.util.TestUtil;
-
-import java.util.List;
 
 /**
  * This validator will, loosely, validate the generated output of a jsp:plugin

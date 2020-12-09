@@ -16,25 +16,14 @@
 
 package com.sun.ts.tests.connector.resourceDefs.ejb;
 
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 
 import jakarta.ejb.Stateless;
-
-import java.security.AccessController;
-import java.security.AccessControlException;
-
-import jakarta.resource.ConnectionFactoryDefinitions;
 import jakarta.resource.ConnectionFactoryDefinition;
-import jakarta.resource.spi.TransactionSupport.TransactionSupportLevel;
+import jakarta.resource.ConnectionFactoryDefinitions;
 import jakarta.resource.spi.TransactionSupport;
-import jakarta.resource.ConnectionFactoryDefinition;
-import jakarta.resource.ConnectionFactoryDefinitions;
-import jakarta.resource.cci.Connection;
-import jakarta.resource.cci.ConnectionFactory;
-
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-import com.sun.ts.lib.util.TSNamingContext;
 
 /**
  * This is the impl for a stateless ejb.

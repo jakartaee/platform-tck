@@ -19,14 +19,23 @@
  */
 package com.sun.ts.tests.jms.core.selectorTopic;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jms.common.*;
-import java.io.*;
-import java.util.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import jakarta.jms.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Session;
+import jakarta.jms.TemporaryTopic;
+import jakarta.jms.TextMessage;
+import jakarta.jms.TopicConnection;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.jms.TopicPublisher;
+import jakarta.jms.TopicSession;
+import jakarta.jms.TopicSubscriber;
 
 public class MsgSelectorTopicTests extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core.selectorTopic.MsgSelectorTopicTests";

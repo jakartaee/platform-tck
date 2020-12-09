@@ -18,9 +18,9 @@ package com.sun.ts.tests.jaxrs.api.rs.processingexception;
 
 import java.io.IOException;
 
-import jakarta.ws.rs.ProcessingException;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.ProcessingException;
 
 /*
  * @class.setup_props: webServerHost;

@@ -19,15 +19,15 @@
  */
 package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
 
 @ManagedBean
 public class TwoManagedBean extends AppResBeanBase {

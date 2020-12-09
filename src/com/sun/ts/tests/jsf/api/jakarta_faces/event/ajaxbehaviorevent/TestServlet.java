@@ -20,6 +20,7 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.ajaxbehaviorevent;
 
 import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseBehaviorEventTestServlet;
+
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.behavior.AjaxBehavior;

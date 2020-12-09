@@ -20,17 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.common;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
 import jakarta.annotation.Resource;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.messaging.Constants;
-import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
+import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDriven;
-import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.MessageDrivenContext;
 import jakarta.jms.MessageListener;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 
 /**
  * This bean must not implement jakarta.jms.MessageListener, since it has been

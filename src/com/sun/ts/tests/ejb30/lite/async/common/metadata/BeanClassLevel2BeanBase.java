@@ -25,11 +25,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+
 import jakarta.ejb.AsyncResult;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 
 @Asynchronous
 abstract public class BeanClassLevel2BeanBase extends BeanClassLevel1BeanBase {

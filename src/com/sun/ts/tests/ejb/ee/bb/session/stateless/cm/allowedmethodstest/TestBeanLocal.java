@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.cm.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
+import java.util.Hashtable;
+import java.util.Properties;
 
-import jakarta.ejb.*;
-import java.util.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
   public Hashtable getResults();

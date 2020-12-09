@@ -24,13 +24,13 @@ package com.sun.ts.tests.el.spec.collectionoperators;
 import java.lang.reflect.Array;
 import java.util.Properties;
 
-import jakarta.el.ELProcessor;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.DataBase;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELProcessor;
 
 public class ELClient extends ServiceEETest {
 

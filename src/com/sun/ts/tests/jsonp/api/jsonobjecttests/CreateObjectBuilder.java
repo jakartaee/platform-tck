@@ -16,17 +16,24 @@
 
 package com.sun.ts.tests.jsonp.api.jsonobjecttests;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jsonp.api.common.TestResult;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_NAME;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithStr;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

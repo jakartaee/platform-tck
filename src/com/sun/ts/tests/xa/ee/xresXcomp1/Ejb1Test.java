@@ -24,10 +24,11 @@
 
 package com.sun.ts.tests.xa.ee.xresXcomp1;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBException;
-import java.util.*;
+import java.util.Properties;
+import java.util.Vector;
+
+import jakarta.ejb.EJBObject;
 
 public interface Ejb1Test extends EJBObject {
   public void dbConnect(String tName) throws RemoteException;

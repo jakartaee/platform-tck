@@ -21,11 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.ClientBase3;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 

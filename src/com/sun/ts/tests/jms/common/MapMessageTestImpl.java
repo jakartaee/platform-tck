@@ -20,9 +20,14 @@
 
 package com.sun.ts.tests.jms.common;
 
-import java.util.*;
-import java.io.*;
-import jakarta.jms.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Vector;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.MapMessage;
+import jakarta.jms.MessageFormatException;
+import jakarta.jms.MessageNotWriteableException;
 
 /**
  * Class Declaration.

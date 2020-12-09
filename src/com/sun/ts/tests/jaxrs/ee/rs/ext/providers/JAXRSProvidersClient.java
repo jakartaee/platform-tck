@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.ext.providers;
 
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.ee.rs.ext.contextresolver.EnumProvider;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.ReadableWritableEntity;
+
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

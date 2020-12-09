@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb.ee.timer.entity.cmp20;
 
 import java.rmi.RemoteException;
-import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {

@@ -21,13 +21,13 @@ package com.sun.ts.tests.ejb30.lite.async.stateless.annotated;
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Asynchronous;
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncBeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
+
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
 
 @Stateless
 @Local({ Async2IF.class, AsyncIF.class })

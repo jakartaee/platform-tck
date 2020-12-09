@@ -22,11 +22,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.busiface;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
 import jakarta.ejb.SessionSynchronization;
 import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
 
 @Stateful(name = "SessionSynchronizationLocalBean")
 public class SessionSynchronizationLocalBean extends BusinessLocal1Base

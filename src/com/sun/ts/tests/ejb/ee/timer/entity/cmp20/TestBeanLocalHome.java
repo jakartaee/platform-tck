@@ -24,10 +24,11 @@
 
 package com.sun.ts.tests.ejb.ee.timer.entity.cmp20;
 
-import jakarta.ejb.EJBLocalHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
   public TestBeanLocal create(Properties props, int id, String brandName,

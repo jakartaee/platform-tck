@@ -18,12 +18,12 @@ package com.sun.ts.tests.jaxrs.ee.rs.core.securitycontext;
 
 import java.util.Properties;
 
-import jakarta.ws.rs.core.Response;
-
 import org.apache.commons.httpclient.Header;
 
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Response;
 
 /*
  * @class.setup_props: webServerHost;

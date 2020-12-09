@@ -20,16 +20,26 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bm.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest.*;
+import java.rmi.RemoteException;
+import java.util.Hashtable;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import jakarta.transaction.*;
-import java.rmi.*;
-import java.sql.*;
+import javax.naming.Context;
+import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest.TimerLocal;
+import com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest.TimerLocalHome;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TimerHandle;
+import jakarta.transaction.Status;
+import jakarta.transaction.UserTransaction;
 
 public class TestBeanEJB implements SessionBean {
   private SessionContext sctx = null;

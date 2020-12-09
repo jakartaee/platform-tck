@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.txnonpersistent;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.TimerConfig;
-
 import com.sun.ts.tests.ejb32.lite.timer.schedule.tx.ClientBase;
 import com.sun.ts.tests.ejb32.lite.timer.schedule.tx.ScheduleTxBeanBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.TimerConfig;
 
 public class Client extends ClientBase {
 

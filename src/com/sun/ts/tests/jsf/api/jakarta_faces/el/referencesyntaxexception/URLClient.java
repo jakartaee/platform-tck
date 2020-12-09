@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.el.referencesyntaxexception;
 
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
-
-import java.io.PrintWriter;
 
 public final class URLClient extends AbstractUrlClient {
 

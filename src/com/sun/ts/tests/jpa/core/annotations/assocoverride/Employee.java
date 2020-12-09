@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.annotations.assocoverride;
 
+import java.sql.Date;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
-import java.sql.Date;
 
 /*
  * Employee as mapped superclass.

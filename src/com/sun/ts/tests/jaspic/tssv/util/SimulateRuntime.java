@@ -17,25 +17,22 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.security.auth.Subject;
+import javax.security.auth.callback.CallbackHandler;
+
+import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
+
+import jakarta.security.auth.message.MessageInfo;
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.ClientAuthConfig;
+import jakarta.security.auth.message.config.ClientAuthContext;
 import jakarta.security.auth.message.config.RegistrationListener;
 import jakarta.security.auth.message.config.ServerAuthConfig;
 import jakarta.security.auth.message.config.ServerAuthContext;
-import jakarta.security.auth.message.config.ClientAuthConfig;
-import jakarta.security.auth.message.config.ClientAuthContext;
-import jakarta.security.auth.message.MessageInfo;
-import javax.security.auth.callback.CallbackHandler;
-
-import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory;
-import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
-
-import java.util.Map;
-import java.util.HashMap;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 /**
  *

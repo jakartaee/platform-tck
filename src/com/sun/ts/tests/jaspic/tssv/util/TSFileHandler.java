@@ -21,10 +21,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.LogRecord;
 import java.util.logging.StreamHandler;
-import java.util.logging.LogManager;
-import java.util.logging.Level;
 
 /**
  * Simple file Handler based on java.util.logging.FileHandler

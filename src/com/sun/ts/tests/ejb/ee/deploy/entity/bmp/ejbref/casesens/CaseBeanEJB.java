@@ -19,8 +19,8 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejbref.casesens;
 
-import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
+import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class CaseBeanEJB extends BMPWrapper {
 

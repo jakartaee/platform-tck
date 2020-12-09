@@ -21,14 +21,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Configuration;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
 
 /*
  * @class.setup_props: webServerHost;

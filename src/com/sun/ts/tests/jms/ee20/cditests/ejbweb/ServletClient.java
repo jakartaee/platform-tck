@@ -16,23 +16,33 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jms.common.*;
-
-import java.io.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.WebServlet;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
-import java.util.ArrayList;
-import jakarta.transaction.*;
-import javax.naming.*;
-import jakarta.jms.*;
-import jakarta.inject.Inject;
+
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.annotation.Resource;
-import jakarta.enterprise.inject.*;
+import jakarta.inject.Inject;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.IllegalStateRuntimeException;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSPasswordCredential;
+import jakarta.jms.JMSSessionMode;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ServletClient extends HttpServlet {
   private static final long serialVersionUID = 1L;

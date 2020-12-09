@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.collections.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Queue;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class QueueContainer implements TypeContainer<Queue<String>> {
   private Queue<String> instance;

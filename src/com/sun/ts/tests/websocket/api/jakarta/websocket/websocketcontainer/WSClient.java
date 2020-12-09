@@ -20,13 +20,15 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.websocketcontainer;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.Extension;
 import jakarta.websocket.Extension.Parameter;

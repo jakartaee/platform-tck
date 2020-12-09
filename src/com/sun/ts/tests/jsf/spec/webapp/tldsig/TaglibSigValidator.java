@@ -21,14 +21,14 @@ package com.sun.ts.tests.jsf.spec.webapp.tldsig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
+import jakarta.servlet.jsp.tagext.FunctionInfo;
+import jakarta.servlet.jsp.tagext.TagAttributeInfo;
 import jakarta.servlet.jsp.tagext.TagInfo;
 import jakarta.servlet.jsp.tagext.TagLibraryInfo;
-import jakarta.servlet.jsp.tagext.TagAttributeInfo;
-import jakarta.servlet.jsp.tagext.FunctionInfo;
 
 public class TaglibSigValidator {
 

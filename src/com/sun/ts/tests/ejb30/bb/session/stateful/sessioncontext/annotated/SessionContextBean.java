@@ -21,24 +21,23 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
-import jakarta.ejb.Init;
-import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-import jakarta.ejb.LocalHome;
-import jakarta.ejb.RemoteHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
+import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
+import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
+import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.Init;
+import jakarta.ejb.Local;
+import jakarta.ejb.LocalHome;
+import jakarta.ejb.Remote;
+import jakarta.ejb.RemoteHome;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

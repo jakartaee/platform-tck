@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.timer.schedule.txnonpersistent;
 
 import com.sun.ts.tests.ejb30.timer.schedule.tx.ScheduleTxBeanBase;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.TimerConfig;
 

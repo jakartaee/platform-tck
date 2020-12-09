@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.generics.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.List;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class WildcardContainer implements TypeContainer<List<?>> {
   protected List<?> instance;

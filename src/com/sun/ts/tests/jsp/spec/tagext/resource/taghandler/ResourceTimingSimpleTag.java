@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.annotation.Resource;
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
-
-import jakarta.annotation.Resource;
-
-import jakarta.jms.Queue;
-import jakarta.jms.JMSException;
 
 public class ResourceTimingSimpleTag extends SimpleTagSupport {
 

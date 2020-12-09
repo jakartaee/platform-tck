@@ -19,14 +19,13 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndQ;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.EJB;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.EJB;
 
 /**
  * The MDBClient class invokes a test session bean, which will send messages to

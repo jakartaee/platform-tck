@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.util.Properties;
 
-import java.sql.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public class SecTestEJB implements EntityBean {
 

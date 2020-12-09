@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface BLocal extends EJBLocalObject {
   // Business Methods

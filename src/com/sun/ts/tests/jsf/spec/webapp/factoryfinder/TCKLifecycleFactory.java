@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import jakarta.faces.context.FacesContextFactory;
+import java.util.Iterator;
+
 import jakarta.faces.lifecycle.Lifecycle;
 import jakarta.faces.lifecycle.LifecycleFactory;
-
-import java.util.Iterator;
 
 public class TCKLifecycleFactory extends LifecycleFactory {
 

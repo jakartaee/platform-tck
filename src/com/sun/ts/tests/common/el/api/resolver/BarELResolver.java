@@ -17,11 +17,12 @@
 
 package com.sun.ts.tests.common.el.api.resolver;
 
+import java.util.Iterator;
+
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
 import jakarta.el.PropertyNotWritableException;
-import java.util.Iterator;
 
 public class BarELResolver extends ELResolver {
 

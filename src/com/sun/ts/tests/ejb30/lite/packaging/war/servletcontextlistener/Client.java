@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
+
+import jakarta.annotation.PostConstruct;
 
 public class Client extends EJBLiteClientBase {
   private List<Basic1IF> beans = new ArrayList<Basic1IF>();

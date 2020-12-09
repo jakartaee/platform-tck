@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.descripto
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
+
+import jakarta.ejb.Stateful;
 
 @Stateful
 public class BeanClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase

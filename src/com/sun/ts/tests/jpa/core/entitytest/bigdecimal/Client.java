@@ -16,10 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.bigdecimal;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -27,6 +23,10 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 

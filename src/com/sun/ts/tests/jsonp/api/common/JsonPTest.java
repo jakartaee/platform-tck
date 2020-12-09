@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonp.api.patchtests.PatchTests;
-import java.util.Properties;
 
 // $Id$
 /**

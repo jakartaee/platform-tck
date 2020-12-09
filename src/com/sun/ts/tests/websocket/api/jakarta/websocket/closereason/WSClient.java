@@ -20,10 +20,12 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.closereason;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 import java.io.PrintWriter;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.CloseReason.CloseCode;
 import jakarta.websocket.CloseReason.CloseCodes;

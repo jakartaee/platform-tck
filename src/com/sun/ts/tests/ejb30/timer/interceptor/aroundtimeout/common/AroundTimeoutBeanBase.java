@@ -22,14 +22,14 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated.InvocationContextMethodsBean;
+
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated.InvocationContextMethodsBean;
 
 public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod
     implements AroundTimeoutIF {

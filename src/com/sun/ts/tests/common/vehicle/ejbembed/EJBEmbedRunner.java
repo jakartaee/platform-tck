@@ -29,13 +29,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import jakarta.ejb.embeddable.EJBContainer;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF;
 import com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus;
+
+import jakarta.ejb.embeddable.EJBContainer;
 
 public class EJBEmbedRunner implements VehicleRunnable {
 

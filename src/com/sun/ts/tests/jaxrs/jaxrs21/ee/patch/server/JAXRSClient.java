@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.ee.patch.server;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

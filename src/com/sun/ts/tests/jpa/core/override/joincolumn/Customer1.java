@@ -16,10 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer1 implements Serializable {

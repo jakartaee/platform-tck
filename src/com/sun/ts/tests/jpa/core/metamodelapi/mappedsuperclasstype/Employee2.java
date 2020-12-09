@@ -16,9 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.mappedsuperclasstype;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 
 @MappedSuperclass()
 public abstract class Employee2 implements Serializable {

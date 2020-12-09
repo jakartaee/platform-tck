@@ -25,15 +25,16 @@ import static jakarta.transaction.Status.STATUS_ACTIVE;
 import static jakarta.transaction.Status.STATUS_MARKED_ROLLBACK;
 import static jakarta.transaction.Status.STATUS_UNKNOWN;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.EJBTransactionRolledbackException;
 import javax.naming.NamingException;
-import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.EJBTransactionRolledbackException;
+import jakarta.transaction.UserTransaction;
 
 public abstract class TestBeanBase implements TestBeanIF {
   // abstract protected LocalIF getStatelessLocalBean();

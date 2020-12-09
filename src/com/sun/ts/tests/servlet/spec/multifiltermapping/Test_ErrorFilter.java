@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.servlet.spec.multifiltermapping;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public final class Test_ErrorFilter implements Filter {
 

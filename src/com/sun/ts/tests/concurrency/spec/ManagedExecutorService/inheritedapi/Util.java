@@ -20,12 +20,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import jakarta.enterprise.concurrent.ManagedExecutorService;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.enterprise.concurrent.ManagedExecutorService;
 
 public class Util {
 

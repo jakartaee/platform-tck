@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.connector.deployment;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface Deployment extends EJBObject {
   boolean testRarInEar() throws RemoteException;

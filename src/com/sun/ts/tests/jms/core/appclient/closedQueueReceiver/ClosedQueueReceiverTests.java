@@ -19,14 +19,16 @@
  */
 package com.sun.ts.tests.jms.core.appclient.closedQueueReceiver;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 public class ClosedQueueReceiverTests extends ServiceEETest {
   private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueReceiver.ClosedQueueReceiverTests";

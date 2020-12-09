@@ -16,17 +16,20 @@
 
 package com.sun.ts.tests.jpa.core.EntityGraph;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
+import jakarta.persistence.AttributeNode;
+import jakarta.persistence.EntityGraph;
 import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
-import java.util.*;
 
 public class Client extends PMClientBase {
 

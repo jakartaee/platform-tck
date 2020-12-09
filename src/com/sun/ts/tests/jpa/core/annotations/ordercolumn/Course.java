@@ -16,8 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderColumn;
 
 @Entity
 public class Course implements java.io.Serializable {

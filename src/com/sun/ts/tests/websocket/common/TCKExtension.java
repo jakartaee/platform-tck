@@ -20,8 +20,8 @@ package com.sun.ts.tests.websocket.common;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import jakarta.websocket.Extension;
-import jakarta.websocket.Extension.Parameter;
 
 public class TCKExtension implements Extension {
 

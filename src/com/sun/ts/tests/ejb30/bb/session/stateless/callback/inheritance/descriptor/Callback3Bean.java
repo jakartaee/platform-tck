@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
-import com.sun.ts.tests.ejb30.common.callback.InterceptorE;
+import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorG;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.interceptor.Interceptors;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
+import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "Callback3Bean")
 @Remote({ Callback2IF.class })

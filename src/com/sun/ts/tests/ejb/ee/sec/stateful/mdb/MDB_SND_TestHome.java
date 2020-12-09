@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface MDB_SND_TestHome extends EJBHome {
   MDB_SND_Test create(java.util.Properties p)

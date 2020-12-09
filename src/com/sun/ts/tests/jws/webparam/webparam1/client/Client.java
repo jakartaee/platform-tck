@@ -22,27 +22,27 @@
 
 package com.sun.ts.tests.jws.webparam.webparam1.client;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jws.common.JWS_Util;
-import com.sun.ts.tests.jws.common.XMLUtils;
-import com.sun.ts.tests.jws.common.WsdlUtils;
-
 import java.net.URL;
 import java.util.Properties;
 
-import javax.naming.InitialContext;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import jakarta.xml.ws.Holder;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jws.common.JWS_Util;
+import com.sun.ts.tests.jws.common.WsdlUtils;
+import com.sun.ts.tests.jws.common.XMLUtils;
+
+import jakarta.xml.ws.Holder;
 
 /**
  * @test

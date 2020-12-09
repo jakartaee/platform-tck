@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 

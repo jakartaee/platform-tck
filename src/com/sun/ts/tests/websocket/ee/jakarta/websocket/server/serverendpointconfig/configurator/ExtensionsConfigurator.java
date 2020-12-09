@@ -19,10 +19,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 
 import java.util.List;
 
+import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
+
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
-
-import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
 
 public class ExtensionsConfigurator extends Configurator {
 

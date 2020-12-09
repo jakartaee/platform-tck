@@ -21,10 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.interceptor.InvocationContext;
 import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 /**
  * A callback listerner for mdb beans. Callback methods may throw

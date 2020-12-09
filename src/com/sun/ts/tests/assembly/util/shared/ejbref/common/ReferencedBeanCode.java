@@ -19,9 +19,10 @@
  */
 package com.sun.ts.tests.assembly.util.shared.ejbref.common;
 
-import jakarta.ejb.EJBException;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.EJBException;
 
 public class ReferencedBeanCode {
   public static final String envEntryName = "java:comp/env/myName";

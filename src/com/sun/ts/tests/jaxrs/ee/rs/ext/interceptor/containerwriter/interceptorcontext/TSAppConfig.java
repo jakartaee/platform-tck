@@ -19,11 +19,11 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.containerwriter.interceptor
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InputStreamReaderProvider;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.interceptorcontext.WriterInterceptorOne;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.interceptorcontext.WriterInterceptorTwo;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

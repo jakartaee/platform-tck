@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.MultivaluedHashMap;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

@@ -21,6 +21,7 @@
 package com.sun.ts.tests.common.webclient.log;
 
 import org.apache.commons.logging.impl.SimpleLog;
+
 import com.sun.ts.lib.util.TestUtil;
 
 public class WebLog extends SimpleLog {

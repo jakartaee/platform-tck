@@ -57,14 +57,15 @@
 package com.sun.ts.tests.jsp.spec.core_syntax.directives.page;
 
 import java.io.IOException;
+
 import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.jsp.HttpJspPage;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.HttpJspPage;
 
 public abstract class SuperPage extends HttpServlet implements HttpJspPage {
   private ServletConfig config;

@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.descriptor;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 // @ExcludeDefaultInterceptors Specified in ejb-jar.xml

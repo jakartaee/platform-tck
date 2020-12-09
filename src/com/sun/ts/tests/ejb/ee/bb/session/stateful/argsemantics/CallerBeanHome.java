@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface CallerBeanHome extends EJBHome {
 

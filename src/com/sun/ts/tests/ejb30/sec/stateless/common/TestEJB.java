@@ -23,19 +23,18 @@ package com.sun.ts.tests.ejb30.sec.stateless.common;
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.Resource;
 import jakarta.annotation.security.RolesAllowed;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBs;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.EJBs;
-import jakarta.ejb.EJB;
-import jakarta.annotation.Resource;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 // Set JNDI name
 @Stateless(name = "TestEJB")

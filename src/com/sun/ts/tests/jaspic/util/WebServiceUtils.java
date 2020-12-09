@@ -16,10 +16,12 @@
 
 package com.sun.ts.tests.jaspic.util;
 
-import com.sun.ts.lib.util.TestUtil;
 import java.lang.reflect.Constructor;
 import java.net.URL;
+
 import javax.xml.namespace.QName;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  *

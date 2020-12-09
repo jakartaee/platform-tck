@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport;
 
-import jakarta.servlet.jsp.tagext.Tag;
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.PageContext;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.io.IOException;
+import jakarta.servlet.jsp.PageContext;
+import jakarta.servlet.jsp.tagext.Tag;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Tag to verify that the JSP implementation object properly initialized any

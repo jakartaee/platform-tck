@@ -21,10 +21,11 @@
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface FlagStoreHome extends EJBHome {
   public FlagStore create(Properties props, int id, String brandName,

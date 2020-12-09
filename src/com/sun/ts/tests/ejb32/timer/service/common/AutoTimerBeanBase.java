@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb32.timer.service.common;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
+
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Schedules;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 
 public class AutoTimerBeanBase extends TimerBeanBase implements TimerIF {
 

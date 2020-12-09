@@ -17,8 +17,8 @@
 package com.sun.ts.tests.jsp.common.client;
 
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 /**
  * Base client for JSP tests.

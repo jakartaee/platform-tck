@@ -23,14 +23,14 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 
 @WebListener
 public class TestServletContextListener implements ServletContextListener {

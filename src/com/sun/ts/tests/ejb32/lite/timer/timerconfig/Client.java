@@ -20,15 +20,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.ScheduleExpression;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerConfig;
-
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
 
 public class Client extends ClientBase {
 

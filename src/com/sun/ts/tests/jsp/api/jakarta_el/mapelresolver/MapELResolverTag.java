@@ -16,15 +16,17 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.mapelresolver;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
 import jakarta.el.ELContext;
 import jakarta.el.MapELResolver;
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.util.HashMap;
-import java.io.IOException;
 
 public class MapELResolverTag extends SimpleTagSupport {
 

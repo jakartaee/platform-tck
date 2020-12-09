@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.misc.getresource.common;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,6 +27,9 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class GetResourceTest {
   public static final String NON_EXISTING_RESOURCE = "nbmvzpoqacfkol91267bm.txt";

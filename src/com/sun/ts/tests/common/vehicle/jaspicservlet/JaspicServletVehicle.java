@@ -16,16 +16,23 @@
 
 package com.sun.ts.tests.common.vehicle.jaspicservlet;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
-import java.io.*;
-import java.sql.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import java.util.*;
-import java.rmi.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class JaspicServletVehicle extends HttpServlet {
   protected Properties properties = null;

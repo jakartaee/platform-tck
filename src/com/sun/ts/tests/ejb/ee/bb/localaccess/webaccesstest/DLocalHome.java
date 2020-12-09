@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.webaccesstest;
 
-import jakarta.ejb.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface DLocalHome extends EJBLocalHome {
   public DLocal create() throws CreateException;

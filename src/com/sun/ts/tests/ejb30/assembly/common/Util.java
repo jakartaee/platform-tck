@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
+import java.net.URL;
+
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.net.URL;
 
 public class Util {
 

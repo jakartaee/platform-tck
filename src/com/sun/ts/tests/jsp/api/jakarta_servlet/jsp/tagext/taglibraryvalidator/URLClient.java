@@ -25,7 +25,7 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taglibraryvalidator;
 
 import java.io.PrintWriter;
-import com.sun.ts.lib.harness.EETest.Fault;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 

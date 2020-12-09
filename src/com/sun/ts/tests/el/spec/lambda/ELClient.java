@@ -28,13 +28,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import jakarta.el.ELProcessor;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
+
+import jakarta.el.ELProcessor;
 
 public class ELClient extends ServiceEETest {
 

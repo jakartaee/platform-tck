@@ -16,14 +16,13 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import java.util.*;
-import jakarta.resource.spi.*;
-import jakarta.resource.spi.ActivationSpec;
-import jakarta.resource.spi.ResourceAdapter;
-import com.sun.ts.tests.common.connector.util.*;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-import jakarta.validation.constraints.*;
-import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.resource.spi.Activation;
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.ConfigProperty;
+import jakarta.resource.spi.InvalidPropertyException;
+import jakarta.resource.spi.ResourceAdapter;
 
 /*
  * In this ActivationSpec, we set a listener of WorkListener.

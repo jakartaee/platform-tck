@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagattributeinfo;
 
+import java.util.Arrays;
+
 import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import jakarta.servlet.jsp.tagext.TagAttributeInfo;
-import java.util.Arrays;
 
 /**
  * A TagExtraInfo implementation to validate the methods of

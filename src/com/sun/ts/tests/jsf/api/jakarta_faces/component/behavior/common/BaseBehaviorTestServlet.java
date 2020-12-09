@@ -22,19 +22,15 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIOutput;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.behavior.BehaviorBase;
 import jakarta.faces.event.BehaviorEvent;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public abstract class BaseBehaviorTestServlet
     extends ClientBehaviorBaseTestServlet {

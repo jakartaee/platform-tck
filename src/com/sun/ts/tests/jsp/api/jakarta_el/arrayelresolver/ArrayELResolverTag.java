@@ -16,14 +16,16 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.arrayelresolver;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import jakarta.el.ELContext;
+
 import jakarta.el.ArrayELResolver;
-import jakarta.servlet.jsp.JspWriter;
+import jakarta.el.ELContext;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
-import java.io.IOException;
 
 public class ArrayELResolverTag extends SimpleTagSupport {
 

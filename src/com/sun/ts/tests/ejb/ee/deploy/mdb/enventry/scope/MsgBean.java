@@ -21,9 +21,10 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.scope;
 
 import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
+import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 
 public class MsgBean extends MDBWrapper {
 

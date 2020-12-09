@@ -16,8 +16,20 @@
 
 package com.sun.ts.tests.jsonp.api.jsonbuilderfactorytests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createBoolArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createIntArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createObjectArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray2;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -25,9 +37,6 @@ import jakarta.json.JsonBuilderFactory;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

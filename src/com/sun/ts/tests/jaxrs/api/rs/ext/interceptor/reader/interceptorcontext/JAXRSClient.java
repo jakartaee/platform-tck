@@ -22,17 +22,17 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.annotation.Annotation;
 
-import jakarta.ws.rs.WebApplicationException;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.ContextOperation;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InputStreamReaderProvider;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.ReaderClient;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

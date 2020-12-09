@@ -21,12 +21,11 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejblink.scope;
 
 import java.util.Properties;
-import java.sql.SQLException;
-import javax.naming.NamingException;
-import jakarta.ejb.EJBException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
+
+import jakarta.ejb.EJBException;
 
 public class TestBeanEJB extends BMPWrapper {
 

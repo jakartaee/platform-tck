@@ -16,13 +16,15 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedExecutorService.security;
 
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
-import java.util.*;
-import java.net.*;
-import com.sun.ts.tests.concurrency.api.common.*;
+import com.sun.ts.tests.concurrency.api.common.Util;
 
 public class Client extends EETest {
   private static final String urlString = "/SecurityTest_web/testServlet";

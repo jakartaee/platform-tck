@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.WorkException;
-import com.sun.ts.tests.common.connector.util.*;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.work.DistributableWork;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
 
 public class DistributedWorkImpl implements DistributableWork {
 

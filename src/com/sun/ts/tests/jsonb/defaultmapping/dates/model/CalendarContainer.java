@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsonb.defaultmapping.dates.model;
 
-import com.sun.ts.tests.jsonb.TypeContainer;
-
 import java.util.Calendar;
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class CalendarContainer implements TypeContainer<Calendar> {
   private Calendar instance;

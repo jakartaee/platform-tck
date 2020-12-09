@@ -16,23 +16,23 @@
 
 package com.sun.ts.tests.jaspic.util;
 
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.TSURL;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.util.Properties;
+import java.net.URL;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
-import java.net.URL;
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  *

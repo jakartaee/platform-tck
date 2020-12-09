@@ -16,14 +16,13 @@
 
 package com.sun.ts.tests.concurrency.api.SkippedException;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.enterprise.concurrent.SkippedException;
-import java.lang.String;
-import java.lang.Throwable;
-import java.util.Properties;
 
 public class Client extends ServiceEETest implements java.io.Serializable {
 

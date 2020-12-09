@@ -22,11 +22,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventry;
 
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
 import jakarta.annotation.Resources;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

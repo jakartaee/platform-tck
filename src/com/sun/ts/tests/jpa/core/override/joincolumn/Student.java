@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "STUDENT_2")

@@ -19,14 +19,14 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextDecoder;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextStreamEncoder;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextDecoder;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextStreamEncoder;
 
 @ServerEndpoint(value = "/returningtextstreamencoder", encoders = {
     ThrowingTextStreamEncoder.class })

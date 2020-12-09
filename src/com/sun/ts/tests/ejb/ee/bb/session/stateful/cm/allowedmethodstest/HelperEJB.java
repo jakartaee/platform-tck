@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Hashtable;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class HelperEJB implements SessionBean {
   private SessionContext sctx = null;

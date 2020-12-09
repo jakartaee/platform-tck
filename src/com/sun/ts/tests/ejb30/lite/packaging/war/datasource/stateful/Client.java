@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.stateful;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
   @EJB

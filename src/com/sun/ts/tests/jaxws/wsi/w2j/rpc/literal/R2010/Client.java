@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2010;
 
+import java.math.BigInteger;
 import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import java.math.BigInteger;
-import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest {
   /**

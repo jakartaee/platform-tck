@@ -21,11 +21,11 @@ package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   // cannot inject here since the the beanInterface cannot be inferred from

@@ -20,12 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.clientviewtest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBeanEJB implements SessionBean {
   private SessionContext sctx = null;

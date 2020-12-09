@@ -16,14 +16,17 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.methodinfo;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import java.io.IOException;
+
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
 import jakarta.el.MethodInfo;
-import jakarta.el.ELContext;
-import jakarta.servlet.jsp.*;
-import jakarta.servlet.jsp.tagext.*;
-import java.io.*;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class MethodInfoTag extends SimpleTagSupport {
 

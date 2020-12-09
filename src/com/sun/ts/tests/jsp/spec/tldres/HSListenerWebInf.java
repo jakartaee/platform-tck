@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.jsp.spec.tldres;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
-import jakarta.servlet.http.HttpSession;
 
 public final class HSListenerWebInf implements HttpSessionListener {
   public void sessionCreated(HttpSessionEvent event) {

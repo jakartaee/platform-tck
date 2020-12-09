@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.platform.ejbstateless;
 
+import jakarta.ejb.Stateless;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
-import jakarta.ejb.Stateless;
 
 @Stateless
 public class StatelessResource {

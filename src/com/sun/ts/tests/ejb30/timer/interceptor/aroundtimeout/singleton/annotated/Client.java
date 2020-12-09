@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated;
 
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
-
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 
 public class Client extends
     com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.ClientBase {

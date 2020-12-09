@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.soap.SOAPBinding;
 
 @WebService(portName = "AddressingEndpointPort", serviceName = "AddressingService", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)

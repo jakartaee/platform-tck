@@ -20,16 +20,16 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sun.ts.tests.websocket.common.impl.StringPongMessage;
+import com.sun.ts.tests.websocket.common.io.StringInputStream;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.impl.StringPongMessage;
-import com.sun.ts.tests.websocket.common.io.StringInputStream;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
 
 @ServerEndpoint("/exception")
 public class WSCAnnotatedMixedServerEndpoint {

@@ -22,8 +22,6 @@ package com.sun.ts.tests.ejb30.lite.view.common;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
@@ -31,6 +29,8 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.busiface.Constants;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 public class ClientBase extends EJBLiteClientBase {
   protected static final String[] args = { Constants.VALUE };

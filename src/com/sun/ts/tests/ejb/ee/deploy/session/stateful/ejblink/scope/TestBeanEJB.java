@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.scope;
 
-import jakarta.ejb.EJBException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
+
+import jakarta.ejb.EJBException;
 
 public class TestBeanEJB extends StatefulWrapper {
 

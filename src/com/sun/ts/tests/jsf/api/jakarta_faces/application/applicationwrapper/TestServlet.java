@@ -30,6 +30,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.sun.ts.tests.jsf.common.beans.TestBean;
+import com.sun.ts.tests.jsf.common.behavior.TCKBehavior;
+import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
+import com.sun.ts.tests.jsf.common.listener.TCKActionListener;
+import com.sun.ts.tests.jsf.common.listener.TCKELContextListener;
+import com.sun.ts.tests.jsf.common.listener.TCKSystemEventListener;
+import com.sun.ts.tests.jsf.common.navigation.TCKNavigationHandler;
+import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
+import com.sun.ts.tests.jsf.common.resourcehandler.TCKResourceHandler;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
+
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELContextListener;
@@ -66,20 +80,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspFactory;
-
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.behavior.TCKBehavior;
-import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
-import com.sun.ts.tests.jsf.common.listener.TCKActionListener;
-import com.sun.ts.tests.jsf.common.listener.TCKELContextListener;
-import com.sun.ts.tests.jsf.common.listener.TCKSystemEventListener;
-import com.sun.ts.tests.jsf.common.navigation.TCKNavigationHandler;
-import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
-import com.sun.ts.tests.jsf.common.resourcehandler.TCKResourceHandler;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.statemanager.TCKStateManager;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.common.viewhandler.TCKViewHandler;
 
 public class TestServlet extends HttpTCKServlet {
 

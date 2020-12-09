@@ -21,6 +21,7 @@
 package com.sun.ts.tests.servlet.spec.servletmapping;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 

@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice;
 
-import jakarta.xml.ws.WebServiceException;
-
 import jakarta.jws.WebService;
 
 @WebService(portName = "J2WRLSharedEndpointPort", serviceName = "J2WRLShared", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpoint")

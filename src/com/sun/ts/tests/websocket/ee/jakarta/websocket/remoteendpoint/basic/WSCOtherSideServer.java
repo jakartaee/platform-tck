@@ -20,13 +20,13 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.basic;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint("/client")
 public class WSCOtherSideServer {

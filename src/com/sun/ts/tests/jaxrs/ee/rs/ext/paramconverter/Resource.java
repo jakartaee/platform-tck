@@ -18,6 +18,8 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.paramconverter;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
 import jakarta.activation.DataSource;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.CookieParam;
@@ -31,8 +33,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 
 @Path("resource")
 public class Resource {

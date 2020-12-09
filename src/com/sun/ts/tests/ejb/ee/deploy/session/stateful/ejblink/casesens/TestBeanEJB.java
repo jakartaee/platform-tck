@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.casesens;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 

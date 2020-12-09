@@ -16,16 +16,27 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.util;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.SequenceInputStream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
-import java.util.*;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  *

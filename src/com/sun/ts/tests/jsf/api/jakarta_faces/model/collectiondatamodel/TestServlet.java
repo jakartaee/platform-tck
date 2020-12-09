@@ -26,16 +26,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
+import com.sun.ts.tests.jsf.common.beans.TestBean;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.model.CollectionDataModel;
 import jakarta.faces.model.DataModel;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
-import com.sun.ts.tests.jsf.common.beans.TestBean;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseModelTestServlet {
 

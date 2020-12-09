@@ -23,7 +23,13 @@ package com.sun.ts.tests.jpa.core.callback.inheritance;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 
-import jakarta.persistence.*;
+import jakarta.persistence.PostLoad;
+import jakarta.persistence.PostPersist;
+import jakarta.persistence.PostRemove;
+import jakarta.persistence.PostUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
+import jakarta.persistence.PreUpdate;
 
 /**
  * None of the callbacks will be called, since subclass entities all have their

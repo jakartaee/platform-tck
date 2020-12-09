@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.jms.ee20.ra.common.messaging;
 
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jms.commonee.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +27,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
-import java.util.Stack;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.Client;
+
 import jakarta.jms.JMSException;
 import jakarta.jms.MessageProducer;
 import jakarta.jms.Queue;

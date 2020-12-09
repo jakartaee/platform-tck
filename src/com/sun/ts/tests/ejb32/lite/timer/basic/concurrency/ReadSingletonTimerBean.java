@@ -16,7 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
-import jakarta.ejb.*;
+import jakarta.ejb.ConcurrencyManagement;
+import jakarta.ejb.ConcurrencyManagementType;
+import jakarta.ejb.Lock;
+import jakarta.ejb.LockType;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)

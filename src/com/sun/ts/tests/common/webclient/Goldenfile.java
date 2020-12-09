@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.common.webclient;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * A representation of a Goldenfile that may be used by a particular test case.

@@ -20,20 +20,20 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
-import com.sun.ts.lib.util.*;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
-import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
-import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
-import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+
+import jakarta.xml.soap.SOAPException;
 import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.ws.handler.MessageContext.Scope;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.soap.*;
-import java.util.*;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ClientSOAPHandler extends WsaBaseSOAPHandler {
   String testName = null;

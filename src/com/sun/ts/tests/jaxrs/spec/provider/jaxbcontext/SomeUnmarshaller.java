@@ -26,14 +26,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.PropertyException;
-import jakarta.xml.bind.Unmarshaller;
-import jakarta.xml.bind.UnmarshallerHandler;
-import jakarta.xml.bind.ValidationEventHandler;
-import jakarta.xml.bind.annotation.adapters.XmlAdapter;
-import jakarta.xml.bind.attachment.AttachmentUnmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamReader;
@@ -42,6 +34,15 @@ import javax.xml.validation.Schema;
 
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
+
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.PropertyException;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.UnmarshallerHandler;
+import jakarta.xml.bind.ValidationEventHandler;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.attachment.AttachmentUnmarshaller;
 
 @SuppressWarnings("rawtypes")
 public class SomeUnmarshaller implements Unmarshaller {

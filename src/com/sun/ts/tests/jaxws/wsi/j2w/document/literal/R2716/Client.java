@@ -24,13 +24,11 @@ import java.util.Properties;
 
 import org.w3c.dom.Document;
 
-import com.sun.ts.lib.harness.*;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.doclitclient.*;
+import com.sun.ts.tests.jaxws.sharedclients.doclitclient.J2WDLSharedClient;
 import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
 
 public class Client extends ServiceEETest {

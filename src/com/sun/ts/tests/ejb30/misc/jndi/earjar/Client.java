@@ -24,17 +24,17 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 import java.util.Properties;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 /**
  * This client tests java:global, java:app, java:module namespaces for an

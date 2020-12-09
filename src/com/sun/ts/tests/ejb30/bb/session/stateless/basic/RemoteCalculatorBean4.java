@@ -21,8 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-import jakarta.annotation.Resource;
-import org.omg.CORBA.ORB;
 
 /**
  * This bean is similar to RemoteCalculatorBean2, and is added here to see

@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-import jakarta.interceptor.Interceptors;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorJ;
+
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
+import jakarta.interceptor.Interceptors;
 
 /**
  * A bean that does not contain any lifecycle methods. Its superclass contains

@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.jsonp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 import jakarta.json.stream.JsonLocation;
 
 public class MyJsonLocation implements JsonLocation {

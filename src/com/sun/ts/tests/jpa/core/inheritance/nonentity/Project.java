@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.math.BigDecimal;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import java.math.BigDecimal;
 
 /*
  * Project

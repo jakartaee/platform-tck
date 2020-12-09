@@ -19,17 +19,17 @@
  */
 package com.sun.ts.tests.jsf.spec.coretags.selectitems;
 
-import com.gargoylesoftware.htmlunit.html.HtmlOption;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 
+import com.gargoylesoftware.htmlunit.html.HtmlOption;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.util.ArrayList;
 
 public class URLClient extends BaseHtmlUnitClient {
 

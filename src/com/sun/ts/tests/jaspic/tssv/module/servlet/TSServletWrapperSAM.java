@@ -16,29 +16,25 @@
 
 package com.sun.ts.tests.jaspic.tssv.module.servlet;
 
+import java.security.Principal;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Iterator;
-import java.security.Principal;
+import java.util.logging.Level;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
-import jakarta.security.auth.message.MessagePolicy;
-import jakarta.security.auth.message.AuthStatus;
-import jakarta.security.auth.message.AuthException;
-import jakarta.security.auth.message.MessageInfo;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
 
-import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 import com.sun.ts.tests.jaspic.tssv.util.ServerCallbackSupport;
-import com.sun.ts.tests.jaspic.tssv.util.CommonCallbackSupport;
-import com.sun.ts.tests.jaspic.tssv.util.SimplePrincipal;
+import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 
-import java.util.logging.Level;
-
-import jakarta.servlet.http.HttpServletResponseWrapper;
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TSServletWrapperSAM
     implements jakarta.security.auth.message.module.ServerAuthModule {

@@ -22,6 +22,9 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.container.ResourceContext;
 import jakarta.ws.rs.core.Application;
@@ -35,9 +38,6 @@ import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.Provider;
 import jakarta.ws.rs.ext.Providers;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
 
 @Provider
 public class StringBeanEntityProviderWithInjectables

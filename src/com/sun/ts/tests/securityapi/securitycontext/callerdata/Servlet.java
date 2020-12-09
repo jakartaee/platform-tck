@@ -17,11 +17,9 @@
 package com.sun.ts.tests.securityapi.securitycontext.callerdata;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
-import jakarta.security.enterprise.CallerPrincipal;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import jakarta.servlet.ServletException;

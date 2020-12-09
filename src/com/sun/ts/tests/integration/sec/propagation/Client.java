@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.integration.sec.propagation;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.rmi.*;
+import java.net.InetAddress;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.WebUtil;
 
 public class Client extends EETest {
   // Configurable constants:

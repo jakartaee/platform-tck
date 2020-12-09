@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
 
 import jakarta.jws.WebService;
 

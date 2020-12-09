@@ -16,18 +16,16 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jms.common.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
-import jakarta.jms.*;
-import javax.naming.InitialContext;
-import java.net.*;
-import java.util.Properties;
-import java.util.Iterator;
 
 public class Client extends EETest {
   // The webserver defaults (overidden by harness properties)

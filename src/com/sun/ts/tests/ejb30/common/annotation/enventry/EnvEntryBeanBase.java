@@ -20,11 +20,14 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.enventry;
 
+import static com.sun.ts.tests.ejb30.common.annotation.enventry.Constants.PREFIX;
+
+import javax.naming.NamingException;
+
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.EJBContext;
-import javax.naming.NamingException;
-import static com.sun.ts.tests.ejb30.common.annotation.enventry.Constants.PREFIX;
 
 abstract public class EnvEntryBeanBase implements EnvEntryIF {
   abstract protected EJBContext getEJBContext();

@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.Resource;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
+import jakarta.annotation.Resource;
 
 public class Client
     extends com.sun.ts.tests.ejb30.lite.interceptor.common.business.ClientBase {

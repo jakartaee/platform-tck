@@ -18,16 +18,17 @@ package com.sun.ts.tests.jaspic.tssv.module.soap;
 
 import java.util.Map;
 import java.util.logging.Level;
+
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
+import javax.xml.namespace.QName;
 
-import jakarta.security.auth.message.MessagePolicy;
+import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
+
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.AuthStatus;
 import jakarta.security.auth.message.MessageInfo;
-
-import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
-import javax.xml.namespace.QName;
+import jakarta.security.auth.message.MessagePolicy;
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.SOAPBody;
 import jakarta.xml.soap.SOAPEnvelope;

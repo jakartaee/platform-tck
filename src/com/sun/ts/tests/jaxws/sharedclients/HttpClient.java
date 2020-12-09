@@ -25,16 +25,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.nio.charset.Charset;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
-
-import java.io.Serializable;
 
 public class HttpClient implements Serializable {
 

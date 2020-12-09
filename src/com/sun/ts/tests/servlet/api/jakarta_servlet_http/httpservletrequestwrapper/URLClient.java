@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequestwrapper;
 
+import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.api.common.request.HttpRequestClient;
-import java.io.PrintWriter;
 
 public class URLClient extends HttpRequestClient {
 

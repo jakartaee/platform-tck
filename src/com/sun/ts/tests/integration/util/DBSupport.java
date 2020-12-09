@@ -20,14 +20,16 @@
 
 package com.sun.ts.tests.integration.util;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
-import java.util.*;
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class DBSupport implements java.io.Serializable {
 

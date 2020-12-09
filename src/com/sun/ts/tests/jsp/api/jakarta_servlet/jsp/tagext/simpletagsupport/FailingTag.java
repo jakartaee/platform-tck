@@ -24,10 +24,12 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.JspException;
 import java.io.IOException;
+
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class FailingTag extends TagSupport {
 

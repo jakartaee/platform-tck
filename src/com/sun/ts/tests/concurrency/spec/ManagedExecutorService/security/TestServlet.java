@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.concurrency.api.common.Util;
+
 import jakarta.annotation.Resource;
 import jakarta.enterprise.concurrent.ManagedExecutorService;
 import jakarta.servlet.ServletException;
@@ -27,8 +29,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.concurrency.api.common.Util;
 
 @WebServlet("/testServlet")
 public class TestServlet extends HttpServlet {

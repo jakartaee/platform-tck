@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.common.vehicle.ejb;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.javatest.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.vehicle.*;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class EJBVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {

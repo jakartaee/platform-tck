@@ -19,15 +19,17 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.servlet.common.util.StaticLog;
+
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import jakarta.servlet.DispatcherType;
 import jakarta.servlet.annotation.WebFilter;
 
 @WebFilter(dispatcherTypes = DispatcherType.REQUEST, urlPatterns = {

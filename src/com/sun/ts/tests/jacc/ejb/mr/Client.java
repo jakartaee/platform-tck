@@ -16,17 +16,15 @@
 
 package com.sun.ts.tests.jacc.ejb.mr;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSLoginContext;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.util.Properties;
-import com.sun.javatest.Status;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.EJB;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
   @EJB(beanName = "InterMediateBean")

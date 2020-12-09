@@ -24,14 +24,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import jakarta.annotation.Resource;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.initorder.common.InitOrderRemoteIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
+import jakarta.annotation.Resource;
 
 public class Client extends EETest {
   @Resource(lookup = "java:app/AppName")

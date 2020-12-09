@@ -20,8 +20,8 @@
 package com.sun.ts.tests.jsf.spec.webapp.tldsig;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.jsp.tagext.TagData;

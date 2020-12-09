@@ -18,10 +18,10 @@ package com.sun.ts.tests.jaxrs.api.rs.bindingpriority;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.client.ClientRequestContext;
-
-import com.sun.ts.lib.harness.EETest.Fault;
 
 @Priority(Integer.MIN_VALUE)
 // the lower the number the higher the priority

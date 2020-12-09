@@ -21,9 +21,10 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.descriptor;
 
 import com.sun.ts.tests.ejb30.common.migration.twothree.MigrationBeanBase;
+import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;
+
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;
 
 //meta data declared in descriptor
 //@Stateless(name="MigrationBean")

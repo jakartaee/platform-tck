@@ -20,9 +20,12 @@
 
 package com.sun.ts.tests.integration.entity.servletejbjdbc;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface AccountHome extends EJBHome {
   Account create(int account, double balance, boolean newtable,

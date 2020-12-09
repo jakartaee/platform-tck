@@ -19,13 +19,13 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class WSCBinaryEncoderServer extends Endpoint
     implements MessageHandler.Whole<String> {

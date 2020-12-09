@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "NOENTITYLISTENER_TABLE")

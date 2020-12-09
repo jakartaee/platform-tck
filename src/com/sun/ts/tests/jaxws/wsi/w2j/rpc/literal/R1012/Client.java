@@ -27,12 +27,11 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
+import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-
-import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest
     implements SOAPConstants, WSIConstants, SOAPRequests {

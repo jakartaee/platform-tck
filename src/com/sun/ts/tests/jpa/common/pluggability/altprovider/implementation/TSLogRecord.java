@@ -24,7 +24,8 @@ package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 
 /**
  * TSLogRecord is the custom LogRecord which has one additional logging field

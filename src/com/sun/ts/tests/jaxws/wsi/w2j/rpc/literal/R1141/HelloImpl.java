@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
 
 import jakarta.jws.WebService;
 

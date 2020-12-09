@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.bean;
 
-import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
 import java.util.LinkedList;
+
+import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
+
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;

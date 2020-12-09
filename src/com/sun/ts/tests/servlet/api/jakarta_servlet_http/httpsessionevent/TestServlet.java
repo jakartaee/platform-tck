@@ -58,6 +58,10 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionevent;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
@@ -67,9 +71,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 

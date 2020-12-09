@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 
+import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.AfterBegin;
 import jakarta.ejb.AfterCompletion;
@@ -30,8 +32,6 @@ import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
-
-import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 
 /**
  * The purpose of this bean is to verify various ways to roll back the

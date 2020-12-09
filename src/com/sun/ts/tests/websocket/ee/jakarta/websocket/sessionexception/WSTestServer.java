@@ -23,6 +23,7 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.sessionexception;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;

@@ -16,13 +16,10 @@
 
 package com.sun.ts.tests.jpa.common;
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
-import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
-
-import jakarta.persistence.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -30,7 +27,28 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
+import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
+
+import jakarta.persistence.Cache;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
 
 abstract public class PMClientBase extends ServiceEETest
     implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {

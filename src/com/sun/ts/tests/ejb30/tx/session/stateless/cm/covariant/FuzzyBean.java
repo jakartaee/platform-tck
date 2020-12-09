@@ -23,6 +23,7 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyBeanBase;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyLocalIF;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyRemoteIF;
+
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;

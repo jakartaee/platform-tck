@@ -24,9 +24,14 @@
 
 package com.sun.ts.tests.connector.mdb;
 
-import jakarta.ejb.*;
-import javax.naming.*;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.naming.Context;
+
+import com.sun.ts.tests.common.connector.util.AppException;
+import com.sun.ts.tests.common.connector.util.SysException;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.ejb.MessageDrivenBean;
+import jakarta.ejb.MessageDrivenContext;
 
 /**
  * The MessageBean class is a message-driven bean. It implements the

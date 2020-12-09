@@ -17,22 +17,15 @@
 package com.sun.ts.tests.securityapi.idstore.database.hashalgorithmparam;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
-import jakarta.annotation.sql.DataSourceDefinition;
 
 /**
  * The datasource defined in *_web.xml

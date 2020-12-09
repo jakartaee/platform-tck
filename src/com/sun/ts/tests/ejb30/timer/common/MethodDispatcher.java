@@ -20,10 +20,12 @@
 
 package com.sun.ts.tests.ejb30.timer.common;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
+
 import jakarta.ejb.Timer;
 import jakarta.jms.Message;
 import jakarta.jms.Queue;

@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class ZSingletonBean extends BeanBase {

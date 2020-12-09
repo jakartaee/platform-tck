@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Variant;
-
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 /**
  * @class.setup_props: webServerHost; webServerPort; ts_home;

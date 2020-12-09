@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jstl.common.client;
 
-import java.util.Properties;
 import java.util.Enumeration;
-import com.sun.ts.tests.jstl.common.JstlTckConstants;
+import java.util.Properties;
+
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.jstl.common.JstlTckConstants;
 
 public class CompatAbstractUrlClient extends BaseUrlClient
     implements JstlTckConstants {

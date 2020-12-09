@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.NoSuchEJBException;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.NoSuchEJBException;
 
 public class Client extends
     com.sun.ts.tests.ejb30.lite.async.common.annotated.AnnotatedClientBase {

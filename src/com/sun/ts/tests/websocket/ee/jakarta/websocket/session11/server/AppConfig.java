@@ -22,11 +22,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.server.ServerApplicationConfig;
-import jakarta.websocket.server.ServerEndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
@@ -34,6 +29,11 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.LinkedListHashSetTextDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringListTextDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
+
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.server.ServerApplicationConfig;
+import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig implements ServerApplicationConfig {
 

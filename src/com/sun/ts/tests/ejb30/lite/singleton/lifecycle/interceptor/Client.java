@@ -19,10 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import java.util.Vector;
 import java.util.logging.Level;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 

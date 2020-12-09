@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.lookup.descriptor;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupBeanPlainBase;
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupIF;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class LookupBean extends LookupBeanPlainBase implements LookupIF {

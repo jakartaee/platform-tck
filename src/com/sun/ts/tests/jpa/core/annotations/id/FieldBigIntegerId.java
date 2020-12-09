@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.annotations.id;
 
+import java.math.BigInteger;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.math.BigInteger;
 
 @Entity
 @Table(name = "DATATYPES3")

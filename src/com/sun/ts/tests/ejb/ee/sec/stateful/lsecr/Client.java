@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.lsecr;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.javatest.Status;
+import java.util.Properties;
 
-import com.sun.ts.tests.ejb.ee.sec.stateful.common.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.tests.ejb.ee.sec.stateful.common.lTest;
+import com.sun.ts.tests.ejb.ee.sec.stateful.common.lTestHome;
 
 public class Client extends EETest {
 

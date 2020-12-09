@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.embeddabletype;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "COLTAB")

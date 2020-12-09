@@ -25,19 +25,19 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanHelper;
 import com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {

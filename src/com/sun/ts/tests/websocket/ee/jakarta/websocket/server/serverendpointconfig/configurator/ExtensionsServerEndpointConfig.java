@@ -22,13 +22,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
+import com.sun.ts.tests.websocket.common.impl.ExtensionParameterImpl;
+
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.common.impl.ExtensionImpl;
-import com.sun.ts.tests.websocket.common.impl.ExtensionParameterImpl;
 
 public class ExtensionsServerEndpointConfig implements ServerEndpointConfig {
 

@@ -22,10 +22,11 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.noattrremotelocal;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.Local;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 
 @Local
 @Stateless(name = "SerializableLocalBean")

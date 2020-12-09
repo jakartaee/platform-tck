@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor;
 
-import jakarta.ejb.Remove;
-import jakarta.ejb.Init;
-import jakarta.ejb.SessionContext;
-import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
+
+import jakarta.ejb.Init;
+import jakarta.ejb.Remove;
+import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

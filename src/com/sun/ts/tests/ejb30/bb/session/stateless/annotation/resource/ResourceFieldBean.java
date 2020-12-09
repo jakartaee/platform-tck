@@ -20,28 +20,32 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
+import java.net.URL;
+
+import javax.sql.DataSource;
+
+import org.omg.CORBA.ORB;
+
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-import java.net.URL;
+
+import jakarta.annotation.Resource;
 import jakarta.annotation.Resource.AuthenticationType;
 import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TimerService;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Destination;
-import jakarta.jms.TopicConnectionFactory;
-import javax.sql.DataSource;
-import jakarta.transaction.UserTransaction;
 import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 import jakarta.transaction.TransactionSynchronizationRegistry;
-import org.omg.CORBA.ORB;
+import jakarta.transaction.UserTransaction;
 
 @Stateless(name = "ResourceFieldBean")
 @Remote({ ResourceIF.class })

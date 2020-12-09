@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.resource.webappexception.nomapper;
 
-import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 @Path(value = "resource")
 public class Resource {

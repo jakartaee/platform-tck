@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxone;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *

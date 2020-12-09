@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.ext.runtimedelegate;
 
-import jakarta.ws.rs.ext.RuntimeDelegate;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.ext.RuntimeDelegate;
 
 /*
  * @class.setup_props: webServerHost;

@@ -20,17 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.statetest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import java.rmi.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 
 //***************************************************************************
 //State test to validate state is not maintained in a stateless session bean.

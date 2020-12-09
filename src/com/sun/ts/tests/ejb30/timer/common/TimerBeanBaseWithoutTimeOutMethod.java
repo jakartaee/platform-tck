@@ -26,6 +26,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
@@ -35,8 +37,6 @@ import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TimerService;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 /**
  * Since most bean classes have no business interface, all public methods in

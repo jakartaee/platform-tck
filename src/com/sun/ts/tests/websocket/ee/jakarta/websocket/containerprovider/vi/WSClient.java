@@ -17,10 +17,10 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.vi;
 
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.WebSocketContainer;
-
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

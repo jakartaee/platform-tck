@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import jakarta.faces.application.ApplicationFactory;
 import jakarta.faces.application.Application;
-import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.application.ApplicationFactory;
 
 /**
  * <p>
