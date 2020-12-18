@@ -19,9 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.graph;
 
+import java.util.List;
+
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.HistoryBean;
-import java.util.List;
+
 import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {

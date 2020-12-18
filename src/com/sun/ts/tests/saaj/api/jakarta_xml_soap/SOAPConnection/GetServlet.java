@@ -20,20 +20,26 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnection;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.saaj.common.*;
-
-import jakarta.xml.soap.*;
-
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.Iterator;
+
+import com.sun.ts.tests.saaj.common.SOAP_Util;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.MimeHeader;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPEnvelope;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 public class GetServlet extends HttpServlet {
   protected MessageFactory msgFactory = null;

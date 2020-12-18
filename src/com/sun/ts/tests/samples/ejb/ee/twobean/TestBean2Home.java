@@ -20,8 +20,10 @@
 
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBean2Home extends EJBHome {
   public TestBean2 create() throws RemoteException, CreateException;

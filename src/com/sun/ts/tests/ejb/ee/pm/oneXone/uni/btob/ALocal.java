@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXone.uni.btob;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface ALocal extends EJBLocalObject {
   // Business Methods for ALocal CMP Fields

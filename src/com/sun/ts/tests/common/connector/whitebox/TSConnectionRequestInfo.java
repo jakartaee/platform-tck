@@ -21,7 +21,6 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import jakarta.resource.spi.ConnectionRequestInfo;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class TSConnectionRequestInfo implements ConnectionRequestInfo {
 

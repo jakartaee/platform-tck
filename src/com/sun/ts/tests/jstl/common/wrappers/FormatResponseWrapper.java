@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jstl.common.wrappers;
 
-import jakarta.servlet.http.HttpServletResponseWrapper;
-import jakarta.servlet.http.HttpServletResponse;
 import java.util.Locale;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 /*
  * This is a simple HttpResposneWrapper to "log" calls

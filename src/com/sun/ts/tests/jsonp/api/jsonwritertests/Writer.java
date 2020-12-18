@@ -16,23 +16,35 @@
 
 package com.sun.ts.tests.jsonp.api.jsonwritertests;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jsonp.api.common.JsonValueType;
-import com.sun.ts.tests.jsonp.api.common.SimpleValues;
-import com.sun.ts.tests.jsonp.api.common.TestResult;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BDC_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BIN_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DBL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DEF_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.LNG_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithStr;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jsonp.api.common.JsonValueType;
+import com.sun.ts.tests.jsonp.api.common.SimpleValues;
+import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonException;
 import jakarta.json.JsonValue;
 import jakarta.json.JsonWriter;
 import jakarta.json.stream.JsonParser;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

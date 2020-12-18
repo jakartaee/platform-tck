@@ -20,15 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
+import javax.rmi.PortableRemoteObject;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
   public static final int EMPLOYEEREF = 1;

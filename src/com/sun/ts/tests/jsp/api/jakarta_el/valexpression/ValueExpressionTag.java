@@ -16,13 +16,16 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.valexpression;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import java.io.IOException;
+
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
-import jakarta.servlet.jsp.*;
-import jakarta.servlet.jsp.tagext.*;
-import java.io.IOException;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class ValueExpressionTag extends SimpleTagSupport {
 

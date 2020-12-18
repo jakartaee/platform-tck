@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
-import jakarta.xml.ws.handler.MessageContext;
-import javax.xml.namespace.QName;
 import java.util.Set;
+
+import javax.xml.namespace.QName;
+
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public abstract class HTTPSOAPHandler
     implements SOAPHandler<SOAPMessageContext> {

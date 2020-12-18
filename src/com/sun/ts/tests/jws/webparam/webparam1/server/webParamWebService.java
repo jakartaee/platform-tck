@@ -22,17 +22,16 @@
 
 package com.sun.ts.tests.jws.webparam.webparam1.server;
 
+import com.sun.ts.tests.jws.common.Address;
+import com.sun.ts.tests.jws.common.Employee;
+import com.sun.ts.tests.jws.common.Name;
+import com.sun.ts.tests.jws.common.NameException;
+
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
-
 import jakarta.xml.ws.Holder;
-
-import com.sun.ts.tests.jws.common.Employee;
-import com.sun.ts.tests.jws.common.Name;
-import com.sun.ts.tests.jws.common.NameException;
-import com.sun.ts.tests.jws.common.Address;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebParamWebServiceService.wsdl")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.BARE)

@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
-import jakarta.annotation.PreDestroy;
 import java.io.Serializable;
+
+import jakarta.annotation.PreDestroy;
 
 public class RuntimeExceptionPreDestroyBean implements Serializable {
 

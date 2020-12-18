@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.*;
-import jakarta.resource.spi.ConnectionEventListener;
+import java.util.Vector;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.ConnectionEvent;
-import java.util.*;
-import com.sun.ts.tests.common.connector.util.*;
+import jakarta.resource.spi.ConnectionEventListener;
+import jakarta.resource.spi.ManagedConnection;
 
 public class TSConnectionEventListener implements ConnectionEventListener {
 

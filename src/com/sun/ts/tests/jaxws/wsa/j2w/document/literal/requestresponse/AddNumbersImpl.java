@@ -19,18 +19,14 @@
  */
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
 
-import jakarta.jws.WebService;
-import jakarta.jws.WebParam;
 import jakarta.jws.HandlerChain;
-import jakarta.xml.ws.soap.Addressing;
+import jakarta.jws.WebParam;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.Holder;
-
-import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
+import jakarta.xml.ws.soap.Addressing;
 
 @WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
 @HandlerChain(file = "server-handler.xml")

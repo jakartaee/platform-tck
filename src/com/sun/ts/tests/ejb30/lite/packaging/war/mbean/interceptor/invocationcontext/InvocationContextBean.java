@@ -19,13 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.invocationcontext;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
-
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextTestImpl;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 @ManagedBean("InvocationContextBean")
 public class InvocationContextBean extends InvocationContextBase

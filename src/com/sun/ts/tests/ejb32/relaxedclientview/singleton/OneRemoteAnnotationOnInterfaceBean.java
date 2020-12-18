@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.singleton;
 
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
-import com.sun.ts.tests.ejb32.relaxedclientview.common.RemoteAnnotationInterface1;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
+import com.sun.ts.tests.ejb32.relaxedclientview.common.RemoteAnnotationInterface1;
+
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class OneRemoteAnnotationOnInterfaceBean extends BaseBean

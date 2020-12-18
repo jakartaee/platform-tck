@@ -20,17 +20,19 @@
 
 package com.sun.ts.tests.integration.session.servletejbjdbc;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Properties;
 
-import java.io.*;
-import java.sql.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import com.sun.ts.tests.integration.session.servletejbjdbc.*;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ServletTest extends HttpServlet {
 

@@ -22,11 +22,12 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import javax.xml.transform.Source;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.transform.Source;
 
 public class ProviderWalker {
 

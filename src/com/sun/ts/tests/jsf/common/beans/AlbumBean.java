@@ -23,6 +23,7 @@ package com.sun.ts.tests.jsf.common.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.faces.event.ActionEvent;
 
 public class AlbumBean implements Serializable {

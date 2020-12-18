@@ -21,12 +21,12 @@ package com.sun.ts.tests.ejb30.misc.moduleName.appclientejb;
 
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.annotation.PostConstruct;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
 
 @ManagedBean("ModuleMBean")
 public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {

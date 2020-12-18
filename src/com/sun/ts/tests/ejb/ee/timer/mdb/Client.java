@@ -20,20 +20,24 @@
 
 package com.sun.ts.tests.ejb.ee.timer.mdb;
 
-import com.sun.ts.tests.ejb.ee.timer.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.Properties;
 import java.util.Enumeration;
-import jakarta.ejb.*;
-import javax.rmi.*;
-import jakarta.jms.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jms.common.JmsUtil;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb.ee.timer.common.TimerImpl;
+
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 public class Client extends EETest {
 

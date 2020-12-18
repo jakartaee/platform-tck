@@ -21,9 +21,10 @@
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.queue.selectorauto.descriptor;
 
 import com.sun.ts.tests.jms.ee20.ra.activationconfig.common.ActivationConfigBeanBase;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;

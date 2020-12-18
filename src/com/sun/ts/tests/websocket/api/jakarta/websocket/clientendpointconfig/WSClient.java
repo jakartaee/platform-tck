@@ -20,14 +20,24 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.clientendpointconfig;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.common.TCKExtension;
-import java.io.PrintWriter;
-import java.util.*;
+
+import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.ClientEndpointConfig.Configurator;
-import jakarta.websocket.*;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Extension;
+import jakarta.websocket.HandshakeResponse;
 
 public class WSClient extends ServiceEETest {
 

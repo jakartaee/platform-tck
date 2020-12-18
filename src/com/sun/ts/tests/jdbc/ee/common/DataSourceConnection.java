@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,16 @@
 
 package com.sun.ts.tests.jdbc.ee.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Properties;
 
-import java.sql.*;
-import javax.sql.*;
-import java.util.*;
+import javax.sql.DataSource;
+
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
 
 public class DataSourceConnection extends ServiceEETest
     implements JDBCTestConnectionManager {

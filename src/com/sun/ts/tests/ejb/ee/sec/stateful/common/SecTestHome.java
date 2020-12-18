@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.common;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface SecTestHome extends EJBHome {
   SecTest create(java.util.Properties p)

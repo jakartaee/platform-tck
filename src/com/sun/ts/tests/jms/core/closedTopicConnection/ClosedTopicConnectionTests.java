@@ -19,14 +19,28 @@
  */
 package com.sun.ts.tests.jms.core.closedTopicConnection;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsTool;
+import com.sun.ts.tests.jms.common.MessageTestImpl;
+
+import jakarta.jms.BytesMessage;
+import jakarta.jms.ConnectionMetaData;
+import jakarta.jms.MapMessage;
+import jakarta.jms.Message;
+import jakarta.jms.ObjectMessage;
+import jakarta.jms.Session;
+import jakarta.jms.StreamMessage;
+import jakarta.jms.TemporaryTopic;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicPublisher;
+import jakarta.jms.TopicSession;
+import jakarta.jms.TopicSubscriber;
 
 /**
  * JMS product tests. Testing method calls on closed TopicConnection objects.

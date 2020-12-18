@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import jakarta.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * TypeCheckTag.java Simple tag to validate exported variable types.

@@ -23,6 +23,7 @@ package com.sun.ts.tests.ejb30.lite.view.stateless.annotated;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 

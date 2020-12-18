@@ -22,14 +22,12 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.TestUtil;
 
-import java.sql.*;
-import javax.naming.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 public abstract class SecTestRoleRefEJB implements EntityBean {
 

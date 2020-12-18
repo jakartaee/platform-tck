@@ -20,13 +20,6 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspWriter;
-import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.http.Cookie;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +28,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
 
 /**
  * Tag implementation to perform validation of the implicit objects provided by

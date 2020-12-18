@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
+import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-
-import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 
 abstract public class TestServletBase2 extends TestServletBase {
   @Resource(name = "java:app/env/myString")

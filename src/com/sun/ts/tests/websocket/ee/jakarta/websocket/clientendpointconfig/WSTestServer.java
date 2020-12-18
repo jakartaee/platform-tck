@@ -20,11 +20,21 @@
  */
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointconfig;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
-import jakarta.websocket.*;
+
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.Extension;
+import jakarta.websocket.OnClose;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/TCKTestServer")

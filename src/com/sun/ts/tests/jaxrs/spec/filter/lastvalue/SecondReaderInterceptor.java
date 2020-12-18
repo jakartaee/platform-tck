@@ -20,14 +20,14 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.sun.ts.tests.jaxrs.spec.filter.interceptor.Resource;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.ReaderInterceptor;
 import jakarta.ws.rs.ext.ReaderInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.spec.filter.interceptor.Resource;
 
 @Priority(200)
 public class SecondReaderInterceptor implements ReaderInterceptor {

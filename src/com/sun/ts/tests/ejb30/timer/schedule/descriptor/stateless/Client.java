@@ -28,12 +28,12 @@ import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutPar
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.timer.common.ClientBase;
+import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
-
-import com.sun.ts.tests.ejb30.timer.common.ClientBase;
-import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
 
 public class Client extends ClientBase {
 

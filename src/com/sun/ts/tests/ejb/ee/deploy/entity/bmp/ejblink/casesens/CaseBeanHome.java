@@ -19,10 +19,11 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejblink.casesens;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 
 public interface CaseBeanHome extends EJBHome {

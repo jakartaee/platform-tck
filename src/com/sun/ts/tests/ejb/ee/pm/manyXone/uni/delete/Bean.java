@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXone.uni.delete;
 
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBObject;
 
 public interface Bean extends EJBObject {
   // Business Methods for Bean CMP Fields

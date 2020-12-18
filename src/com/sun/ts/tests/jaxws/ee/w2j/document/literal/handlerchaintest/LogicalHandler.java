@@ -20,21 +20,14 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.StringReader;
 
-import jakarta.xml.soap.*;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.*;
-import jakarta.xml.ws.handler.*;
-import javax.xml.namespace.QName;
+import javax.xml.transform.stream.StreamSource;
 
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.common.Constants;
-import java.io.StringReader;
-import javax.xml.transform.stream.StreamSource;
-import jakarta.xml.bind.JAXBContext;
+
+import jakarta.xml.ws.handler.LogicalMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
 
 public class LogicalHandler
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {

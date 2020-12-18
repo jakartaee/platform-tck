@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.singlethreadmodel;
 
+import java.io.IOException;
+
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.SingleThreadModel;
-import java.io.IOException;
 
 /**
  * A test for SingleThreadModel interface. The SingleThreadModel interface

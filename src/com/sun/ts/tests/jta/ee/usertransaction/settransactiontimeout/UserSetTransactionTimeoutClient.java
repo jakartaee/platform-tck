@@ -20,23 +20,19 @@
 
 package com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout;
 
+import java.io.Serializable;
 // General Java Package Imports
 import java.util.Properties;
-import java.io.Serializable;
 
+import com.sun.ts.lib.harness.ServiceEETest;
 // Common Utilities
 import com.sun.ts.tests.jta.ee.common.Transact;
 
-// TS Specific Utils
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-// Test Specific Imports.
-import jakarta.transaction.UserTransaction;
+import jakarta.transaction.RollbackException;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
-import jakarta.transaction.RollbackException;
+// Test Specific Imports.
+import jakarta.transaction.UserTransaction;
 
 /**
  * The UserSetTransactionTimeoutClient class tests setTransactionTimeout()

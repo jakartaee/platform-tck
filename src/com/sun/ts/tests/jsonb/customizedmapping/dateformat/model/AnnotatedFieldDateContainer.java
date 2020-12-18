@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsonb.customizedmapping.dateformat.model;
 
 import java.util.Date;
 
-import jakarta.json.bind.annotation.JsonbDateFormat;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbDateFormat;
 
 public class AnnotatedFieldDateContainer implements TypeContainer<Date> {
   @JsonbDateFormat(value = "E DD MMM yyyy HH:mm:ss z", locale = "de")

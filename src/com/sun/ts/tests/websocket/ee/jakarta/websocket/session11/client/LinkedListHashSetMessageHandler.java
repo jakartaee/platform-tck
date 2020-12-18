@@ -20,9 +20,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import jakarta.websocket.MessageHandler;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+
+import jakarta.websocket.MessageHandler;
 
 public class LinkedListHashSetMessageHandler
     implements MessageHandler.Whole<LinkedList<HashSet<String>>> {

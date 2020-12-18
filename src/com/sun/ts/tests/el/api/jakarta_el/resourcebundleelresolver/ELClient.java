@@ -27,15 +27,15 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import jakarta.el.ELContext;
-import jakarta.el.ResourceBundleELResolver;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.ResourceBundleELResolver;
 
 public class ELClient extends ServiceEETest {
 

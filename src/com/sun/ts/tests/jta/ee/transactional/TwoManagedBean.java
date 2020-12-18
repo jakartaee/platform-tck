@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import jakarta.enterprise.inject.Default;
-
 @TwoManagedQualifier
 public class TwoManagedBean extends OneManagedBean {
 

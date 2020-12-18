@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.application.Application;
 import jakarta.faces.event.PostConstructCustomScopeEvent;
 import jakarta.faces.event.ScopeContext;
@@ -31,9 +34,6 @@ import jakarta.faces.event.SystemEvent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.event.common.BaseSystemEventTestServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseSystemEventTestServlet {
   private static final String SCOPE_NAME = "tckScope";

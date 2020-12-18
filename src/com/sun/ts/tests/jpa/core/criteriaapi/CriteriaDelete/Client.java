@@ -16,14 +16,25 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaDelete;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.*;
+import com.sun.ts.tests.jpa.common.schema30.Product;
+import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
+import com.sun.ts.tests.jpa.common.schema30.Util;
 
 import jakarta.persistence.Query;
-import jakarta.persistence.criteria.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaDelete;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
-import java.util.*;
 
 public class Client extends Util {
 

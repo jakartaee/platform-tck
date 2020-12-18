@@ -20,9 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.bmp.cm.Tx_Multi;
 
-import com.sun.ts.lib.util.*;
-import java.rmi.*;
-import jakarta.ejb.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface S1TestBean extends EJBObject {
   public boolean doTest1(Integer pkey, String tName, int i)

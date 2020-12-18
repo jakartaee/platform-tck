@@ -26,10 +26,10 @@ package com.sun.ts.tests.jsp.common.tags.tck;
 
 import java.io.IOException;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.JspFragment;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Simple tag that accepts a single string attribute. This tag generates no

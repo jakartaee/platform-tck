@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,6 +23,18 @@
 
 package com.sun.ts.tests.jws.webparam.webparam2.client;
 
+import java.net.URL;
+import java.util.Properties;
+
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.porting.TSURL;
@@ -33,17 +45,6 @@ import com.sun.ts.tests.jws.common.DescriptionUtils;
 import com.sun.ts.tests.jws.common.JWS_Util;
 import com.sun.ts.tests.jws.common.SchemaConstants;
 import com.sun.ts.tests.jws.common.WsdlUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.net.URL;
-import java.util.Properties;
-import java.io.File;
 
 /**
  * @test

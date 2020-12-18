@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.assembly.altDD;
 
-import jakarta.ejb.EJBException;
-
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+
+import jakarta.ejb.EJBException;
 
 public class PainterBeanEJB extends StatelessWrapper {
 

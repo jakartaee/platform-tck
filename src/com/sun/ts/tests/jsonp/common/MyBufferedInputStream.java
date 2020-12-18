@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsonp.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-import java.io.*;
+import com.sun.ts.lib.util.TestUtil;
 
 // A wrapper class to BufferedInputStream class used to inject IOException errors
 // when the throwIOException instance variable is set. All methods delegate

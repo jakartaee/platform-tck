@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.pkey;
 
-import java.util.Properties;
-import java.util.Collection;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
+import java.util.Collection;
+import java.util.Properties;
 
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface CompoundBeanHome extends EJBHome {
 

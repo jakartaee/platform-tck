@@ -20,19 +20,19 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.datamodelevent;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.model.ArrayDataModel;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.DataModelEvent;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.model.DataModel;
-import jakarta.faces.model.ArrayDataModel;
-import jakarta.faces.model.DataModelEvent;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
   /**

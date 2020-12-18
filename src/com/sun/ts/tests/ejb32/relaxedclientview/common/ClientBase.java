@@ -16,16 +16,14 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
-import java.util.*;
-import jakarta.ejb.EJB;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import java.util.Properties;
 
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb32.relaxedclientview.common.HelperSingleton;
-import com.sun.javatest.Status;
+
+import jakarta.ejb.EJB;
 
 public class ClientBase extends EETest implements TestConstants {
 

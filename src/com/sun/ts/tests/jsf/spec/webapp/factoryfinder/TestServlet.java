@@ -19,21 +19,21 @@
  */
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.ApplicationFactory;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.faces.render.RenderKitFactory;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.FactoryFinder;
-import jakarta.faces.render.RenderKitFactory;
-import jakarta.faces.lifecycle.LifecycleFactory;
-import jakarta.faces.context.FacesContextFactory;
-import jakarta.faces.application.ApplicationFactory;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public final class TestServlet extends HttpTCKServlet {
 

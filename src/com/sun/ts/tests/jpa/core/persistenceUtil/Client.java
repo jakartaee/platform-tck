@@ -16,12 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.persistenceUtil;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceUtil;
 
 public class Client extends PMClientBase {
 

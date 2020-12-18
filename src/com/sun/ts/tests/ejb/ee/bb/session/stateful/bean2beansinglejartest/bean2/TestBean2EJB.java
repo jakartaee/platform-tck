@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beansinglejartest.bean2;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBean2EJB implements SessionBean {
   private static final String PINGMSG = "ping from bean2";

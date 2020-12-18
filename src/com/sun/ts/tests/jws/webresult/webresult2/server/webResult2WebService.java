@@ -23,12 +23,11 @@ package com.sun.ts.tests.jws.webresult.webresult2.server;
 
 import com.sun.ts.tests.jws.common.Employee;
 import com.sun.ts.tests.jws.common.Name;
-import com.sun.ts.tests.jws.common.NameException;
 
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
-import jakarta.jws.WebParam;
 import jakarta.jws.soap.SOAPBinding;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebResult2WebServiceService.wsdl")

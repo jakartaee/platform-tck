@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InterceptorCallbackMethods;
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.ReaderInterceptor;
 import jakarta.ws.rs.ext.ReaderInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InterceptorCallbackMethods;
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 
 /**
  * This class is a superclass for any interceptor @Provider. Any such provider

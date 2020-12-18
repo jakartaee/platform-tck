@@ -19,12 +19,14 @@
  */
 package com.sun.ts.tests.jsonp.api.jsonvaluetests;
 
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-import com.sun.ts.tests.jsonp.common.*;
-import java.util.*;
-import jakarta.json.*;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
+
+import jakarta.json.JsonValue;
 
 public class Client extends ServiceEETest {
 

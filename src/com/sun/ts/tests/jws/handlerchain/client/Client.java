@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,16 +23,17 @@
 
 package com.sun.ts.tests.jws.handlerchain.client;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jws.common.JWS_Util;
-
 import java.net.URL;
 import java.util.Properties;
 
 import javax.xml.namespace.QName;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jws.common.JWS_Util;
+import com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebServiceInterface;
 
 public class Client extends ServiceEETest {
 

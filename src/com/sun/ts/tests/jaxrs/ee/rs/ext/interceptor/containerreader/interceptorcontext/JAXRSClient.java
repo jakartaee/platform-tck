@@ -23,9 +23,6 @@ import java.io.Reader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.ContextOperation;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.InputStreamReaderProvider;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
@@ -33,6 +30,9 @@ import com.sun.ts.tests.jaxrs.common.client.TextCaser;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.containerreader.ReaderClient;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.interceptorcontext.WriterInterceptorOne;
+
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

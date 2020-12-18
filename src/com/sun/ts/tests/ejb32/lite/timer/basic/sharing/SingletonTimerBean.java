@@ -16,12 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import jakarta.ejb.*;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.Singleton;
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.CONTAINER)

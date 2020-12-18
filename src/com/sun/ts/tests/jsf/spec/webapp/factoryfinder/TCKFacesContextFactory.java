@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.webapp.factoryfinder;
 
-import jakarta.faces.application.ApplicationFactory;
-import jakarta.faces.context.FacesContextFactory;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.lifecycle.Lifecycle;
 import jakarta.faces.FacesException;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.Lifecycle;
 
 public class TCKFacesContextFactory extends FacesContextFactory {
 

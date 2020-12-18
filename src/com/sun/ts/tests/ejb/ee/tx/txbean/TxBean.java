@@ -20,11 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txbean;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
+import java.util.Vector;
+
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
 
 /**
  * <P>

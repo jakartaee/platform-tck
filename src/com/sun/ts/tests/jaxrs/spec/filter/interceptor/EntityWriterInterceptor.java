@@ -18,13 +18,13 @@ package com.sun.ts.tests.jaxrs.spec.filter.interceptor;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.jaxrs.common.impl.ReplacingOutputStream;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.Provider;
 import jakarta.ws.rs.ext.WriterInterceptor;
 import jakarta.ws.rs.ext.WriterInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.common.impl.ReplacingOutputStream;
 
 @Provider
 public class EntityWriterInterceptor implements WriterInterceptor {

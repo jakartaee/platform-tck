@@ -23,8 +23,8 @@
 package com.sun.ts.tests.jws.handlerchain.server;
 
 import jakarta.jws.HandlerChain;
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService()
 @HandlerChain(file = "HandlerChainWebServiceInterface_handler.xml")

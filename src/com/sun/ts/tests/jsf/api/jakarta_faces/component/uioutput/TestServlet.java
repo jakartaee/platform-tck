@@ -27,10 +27,10 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIOutput;
 import jakarta.faces.event.AbortProcessingException;
-import jakarta.faces.event.PostAddToViewEvent;
 import jakarta.faces.event.ComponentSystemEvent;
 import jakarta.faces.event.ComponentSystemEventListener;
 import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.PostAddToViewEvent;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 

@@ -18,13 +18,13 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.tx;
 
 import java.util.List;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 
 /**
  * These tests make use of UserTransaction, and therefore all the hosting

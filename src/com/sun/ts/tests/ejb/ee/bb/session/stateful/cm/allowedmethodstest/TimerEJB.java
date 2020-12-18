@@ -20,15 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Collection;
+import java.util.Iterator;
 
-import java.util.*;
-import jakarta.ejb.*;
-import javax.naming.*;
-import jakarta.transaction.*;
-import java.rmi.*;
-import java.sql.*;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.TimerHandle;
 
 public class TimerEJB implements SessionBean, TimedObject {
   private SessionContext sctx = null;

@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycmptest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create(int id, String brandName, float price, byte[] b)

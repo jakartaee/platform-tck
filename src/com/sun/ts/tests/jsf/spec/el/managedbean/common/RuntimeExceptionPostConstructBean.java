@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
-import jakarta.annotation.PostConstruct;
 import java.io.Serializable;
+
+import jakarta.annotation.PostConstruct;
 
 public class RuntimeExceptionPostConstructBean implements Serializable {
 

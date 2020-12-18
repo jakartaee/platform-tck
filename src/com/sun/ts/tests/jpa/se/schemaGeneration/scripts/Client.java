@@ -23,14 +23,19 @@
  */
 package com.sun.ts.tests.jpa.se.schemaGeneration.scripts;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.io.*;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

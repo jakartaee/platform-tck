@@ -22,17 +22,17 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.RemoteEndpoint.Async;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
-
-import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ServerEndpoint(value = "/throwing", encoders = { ThrowingBinaryCoder.class,
     ThrowingTextCoder.class, StringBeanTextEncoder.class,

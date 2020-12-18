@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
 import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_CLIENT;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.SessionContext;
 
 abstract public class AcceptBeanBase implements AcceptLocalIF, AcceptIF {

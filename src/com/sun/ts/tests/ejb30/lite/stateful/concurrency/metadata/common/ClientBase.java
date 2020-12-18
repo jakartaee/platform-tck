@@ -30,11 +30,11 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanRemote;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyClientBase;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 
 @EJBs({
     @EJB(name = containerConcurrencyBeanLocal, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyIF.class),

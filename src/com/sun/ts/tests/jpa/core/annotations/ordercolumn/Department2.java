@@ -16,8 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderColumn;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "DEPARTMENT")

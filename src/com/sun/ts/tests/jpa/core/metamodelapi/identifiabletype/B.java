@@ -16,10 +16,20 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.identifiabletype;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.persistence.*;
-import java.util.*;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass()
 public abstract class B implements java.io.Serializable {

@@ -16,16 +16,11 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.searchscopeexpr;
 
-import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
-import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.SUBTREE;
-import static jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope.ONE_LEVEL;
-
-import com.sun.ts.tests.securityapi.idstore.common.ConfigBean;
-
 import java.io.IOException;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

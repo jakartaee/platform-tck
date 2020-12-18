@@ -21,18 +21,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import jakarta.el.ELContext;
-import jakarta.el.ELException;
-import jakarta.el.LambdaExpression;
-import jakarta.el.StandardELContext;
-import jakarta.el.ExpressionFactory;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.LambdaExpression;
+import jakarta.el.StandardELContext;
 
 public class ELClient extends ServiceEETest {
   private Properties testProps;

@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.singleton;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface1;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Singleton;
 
 @Local
 @Singleton

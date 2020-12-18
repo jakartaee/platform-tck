@@ -25,6 +25,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspTagException;
 import jakarta.servlet.jsp.PageContext;
@@ -32,7 +34,6 @@ import jakarta.servlet.jsp.jstl.sql.Result;
 import jakarta.servlet.jsp.jstl.sql.ResultSupport;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
 import jakarta.servlet.jsp.tagext.TryCatchFinally;
-import javax.sql.DataSource;
 
 /**
  * <p>

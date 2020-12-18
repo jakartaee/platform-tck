@@ -16,10 +16,21 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.spi.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.spi.LoadState;
+import jakarta.persistence.spi.PersistenceProviderResolver;
+import jakarta.persistence.spi.PersistenceProviderResolverHolder;
+import jakarta.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.spi.PersistenceUnitTransactionType;
+import jakarta.persistence.spi.ProviderUtil;
 
 public class PersistenceProvider
     implements jakarta.persistence.spi.PersistenceProvider,

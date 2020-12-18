@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.lifecycle.singleton;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 abstract public class LifecycleTimerBeanBase extends TimerBeanBase {
   @SuppressWarnings("unused")

@@ -21,14 +21,17 @@
 package com.sun.ts.tests.common.ejb.wrappers;
 
 import java.util.Properties;
+
 import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.CreateException;
 import jakarta.ejb.RemoveException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
 
 public abstract class CMP20Wrapper implements EntityBean {
 

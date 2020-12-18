@@ -16,22 +16,24 @@
 
 package com.sun.ts.tests.jpa.se.pluggability.contracts.resource_local;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
-import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerImpl;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
+import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerImpl;
+import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.SharedCacheMode;
 import jakarta.persistence.ValidationMode;
 import jakarta.persistence.spi.PersistenceUnitInfo;
 import jakarta.persistence.spi.PersistenceUnitTransactionType;
-
-import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
-
-import java.net.URL;
-import java.util.*;
 
 public class Client extends PMClientBase {
   private static final long serialVersionUID = 1L;

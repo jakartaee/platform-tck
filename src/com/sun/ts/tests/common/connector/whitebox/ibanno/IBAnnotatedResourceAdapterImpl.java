@@ -18,19 +18,29 @@ package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
 import java.lang.reflect.Method;
 
-import jakarta.resource.spi.*;
-import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import jakarta.resource.spi.work.TransactionContext;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.ResourceException;
 import javax.transaction.xa.XAResource;
-import jakarta.resource.spi.security.PasswordCredential;
-import com.sun.ts.tests.common.connector.util.*;
-import com.sun.ts.tests.common.connector.whitebox.XidImpl;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.Util;
+import com.sun.ts.tests.common.connector.whitebox.XidImpl;
+
+import jakarta.resource.ResourceException;
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.AuthenticationMechanism;
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.ConfigProperty;
+import jakarta.resource.spi.Connector;
+import jakarta.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.ResourceAdapterInternalException;
+import jakarta.resource.spi.SecurityPermission;
+import jakarta.resource.spi.TransactionSupport;
+import jakarta.resource.spi.endpoint.MessageEndpointFactory;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkManager;
 
 /**
  * This is a sample resource adapter that will use no ra.xml info. This RA is

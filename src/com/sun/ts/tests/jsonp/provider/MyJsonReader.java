@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.io.InputStream;
+import java.io.Reader;
 
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import jakarta.json.spi.JsonProvider;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.util.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonStructure;
 
 /*
  * MyJsonReader is a Json Test Reader used by the pluggability tests

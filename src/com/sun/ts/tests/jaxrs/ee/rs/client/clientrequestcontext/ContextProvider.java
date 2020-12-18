@@ -18,11 +18,11 @@ package com.sun.ts.tests.jaxrs.ee.rs.client.clientrequestcontext;
 
 import java.io.IOException;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+
 import jakarta.ws.rs.client.ClientRequestContext;
 import jakarta.ws.rs.client.ClientRequestFilter;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.lib.harness.EETest.Fault;
 
 @Provider
 public class ContextProvider implements ClientRequestFilter {

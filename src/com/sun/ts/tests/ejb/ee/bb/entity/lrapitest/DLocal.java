@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface DLocal extends EJBLocalObject {
   public String whoAmILocal();

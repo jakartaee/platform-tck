@@ -20,22 +20,13 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.HashSet;
-import java.util.Set;
+import java.lang.reflect.Method;
 
 import jakarta.annotation.Resource;
-
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
-
-import java.lang.reflect.*;
-
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
 
 @WebService(portName = "HttpTestPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
 public class HttpTestImpl implements HttpTest {

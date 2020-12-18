@@ -25,12 +25,12 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFa
 
 import java.util.Properties;
 
-import jakarta.ejb.EJB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();

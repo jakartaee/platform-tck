@@ -16,12 +16,19 @@
 
 package com.sun.ts.tests.jpa.core.nestedembedding;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "BNE_1XM_BI_BTOB")

@@ -16,6 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.sseeventsource;
 
+import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.OutboundSSEEventImpl;
+import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -28,9 +31,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.sse.OutboundSseEvent;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
-
-import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.OutboundSSEEventImpl;
-import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
 
 @Path("su")
 public class ServiceUnavailableResource {

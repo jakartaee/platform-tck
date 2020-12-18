@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.signaturetest;
 
-import java.io.PrintWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;

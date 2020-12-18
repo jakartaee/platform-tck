@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,17 +19,17 @@
  */
 package com.sun.ts.tests.signaturetest;
 
-import java.io.PrintWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.io.Serializable;
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import com.sun.ts.lib.util.TestUtil;
+import java.util.LinkedList;
+import java.util.List;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
 
 public final class ApiCheckDriver extends SignatureTestDriver
     implements Serializable {

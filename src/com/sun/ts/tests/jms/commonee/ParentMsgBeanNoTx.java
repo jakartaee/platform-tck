@@ -20,22 +20,24 @@
 
 package com.sun.ts.tests.jms.commonee;
 
-import com.sun.ts.tests.jms.common.*;
-import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.ejb.EJBException;
-import jakarta.ejb.EJBHome;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
-import javax.naming.*;
-import jakarta.jms.*;
-import java.security.*;
-import java.sql.*;
-import javax.sql.*;
-import jakarta.transaction.UserTransaction;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 public class ParentMsgBeanNoTx implements MessageDrivenBean, MessageListener {
 

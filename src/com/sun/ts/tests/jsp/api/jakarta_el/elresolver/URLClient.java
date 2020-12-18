@@ -21,13 +21,9 @@
 package com.sun.ts.tests.jsp.api.jakarta_el.elresolver;
 
 import java.io.PrintWriter;
-import com.sun.ts.lib.harness.EETest.Fault;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
-// This class is called into from the jsp.  Importing it here
-// forces ant to compile it and package it in the archive.
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 
 public class URLClient extends AbstractUrlClient {
 

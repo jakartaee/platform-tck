@@ -21,14 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
-import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
+
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
 import jakarta.annotation.Resource;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionContext;
 
 //@Stateless(name="RemoteCalculatorBean5",
 //        description="a simple stateless session bean without component-defining annotations")

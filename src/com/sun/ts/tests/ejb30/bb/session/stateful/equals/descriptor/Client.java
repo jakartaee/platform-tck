@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.equals.descriptor;
 
+import java.util.Properties;
+
+import javax.naming.NamingException;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.tests.ejb30.common.equals.Comparator;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.equals.Comparator;
-import java.util.Properties;
-import javax.naming.NamingException;
 
 public class Client extends EETest {
   protected static final boolean CLIENT_LOG_IF_OK = true;

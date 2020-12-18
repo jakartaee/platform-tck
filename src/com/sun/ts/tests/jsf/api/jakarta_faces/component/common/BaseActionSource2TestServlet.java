@@ -22,6 +22,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.faces.component.ActionSource2;
@@ -31,8 +33,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspFactory;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public abstract class BaseActionSource2TestServlet
     extends BaseActionSourceTestServlet {

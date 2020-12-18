@@ -21,9 +21,9 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest1;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.api.common.request.HttpRequestClient;
-import com.sun.ts.tests.servlet.common.util.Data;
 
 public class URLClient extends HttpRequestClient {
 

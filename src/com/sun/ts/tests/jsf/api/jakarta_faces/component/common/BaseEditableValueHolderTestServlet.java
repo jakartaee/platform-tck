@@ -23,6 +23,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.EditableValueHolder;
 import jakarta.faces.component.ValueHolder;
 import jakarta.faces.convert.Converter;
@@ -36,8 +38,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public abstract class BaseEditableValueHolderTestServlet
     extends BaseValueHolderTestServlet {

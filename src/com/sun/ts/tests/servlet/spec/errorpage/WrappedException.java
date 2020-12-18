@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage;
 
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class WrappedException extends HttpServlet {
 

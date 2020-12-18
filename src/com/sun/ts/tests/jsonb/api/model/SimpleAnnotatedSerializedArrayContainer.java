@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
+import com.sun.ts.tests.jsonb.TypeContainer;
+
 import jakarta.json.bind.annotation.JsonbTypeDeserializer;
 import jakarta.json.bind.annotation.JsonbTypeSerializer;
-
-import com.sun.ts.tests.jsonb.TypeContainer;
 
 public class SimpleAnnotatedSerializedArrayContainer
     implements TypeContainer<SimpleContainer[]> {

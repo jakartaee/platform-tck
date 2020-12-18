@@ -21,15 +21,9 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
-import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
-import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 
 //@Stateless(name="BusinessBean")
 //@Remote({BusinessIF1.class, BusinessIF2.class})

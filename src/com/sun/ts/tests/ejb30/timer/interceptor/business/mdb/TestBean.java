@@ -19,6 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
+import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
@@ -26,8 +28,6 @@ import jakarta.ejb.Singleton;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
-
-import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
 
 @Singleton
 @ExcludeDefaultInterceptors

@@ -25,14 +25,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-import jakarta.json.bind.JsonbConfig;
-import jakarta.json.bind.adapter.JsonbAdapter;
-import jakarta.json.bind.config.BinaryDataStrategy;
-import jakarta.json.bind.config.PropertyNamingStrategy;
-import jakarta.json.bind.config.PropertyOrderStrategy;
-import jakarta.json.bind.serializer.JsonbDeserializer;
-import jakarta.json.bind.serializer.JsonbSerializer;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
@@ -44,6 +36,14 @@ import com.sun.ts.tests.jsonb.api.model.SimpleIntegerSerializer;
 import com.sun.ts.tests.jsonb.api.model.SimplePropertyNamingStrategy;
 import com.sun.ts.tests.jsonb.api.model.SimplePropertyVisibilityStrategy;
 import com.sun.ts.tests.jsonb.api.model.SimpleStringAdapter;
+
+import jakarta.json.bind.JsonbConfig;
+import jakarta.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.config.BinaryDataStrategy;
+import jakarta.json.bind.config.PropertyNamingStrategy;
+import jakarta.json.bind.config.PropertyOrderStrategy;
+import jakarta.json.bind.serializer.JsonbDeserializer;
+import jakarta.json.bind.serializer.JsonbSerializer;
 
 /**
  * @test

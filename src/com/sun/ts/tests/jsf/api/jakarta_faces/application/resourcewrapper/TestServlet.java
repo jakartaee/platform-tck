@@ -23,19 +23,18 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.application.resourcewrapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-
-import jakarta.faces.application.Resource;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import java.util.Map;
+import jakarta.faces.application.Resource;
 import jakarta.faces.application.ResourceHandler;
 import jakarta.faces.application.ResourceWrapper;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
 

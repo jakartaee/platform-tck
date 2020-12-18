@@ -22,10 +22,11 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
 
 public class CallbackBeanSuperSuper extends CallbackBeanBase
     implements CallbackIF {

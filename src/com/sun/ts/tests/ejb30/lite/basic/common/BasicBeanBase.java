@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -27,8 +29,6 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
 import jakarta.ejb.SessionContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 abstract public class BasicBeanBase implements Basic1IF {
 

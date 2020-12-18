@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.ts.tests.connector.util.DBSupport;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
+import java.util.Vector;
+
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.tests.connector.util.DBSupport;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class JTATestEJB implements SessionBean {
   private TSNamingContext context;

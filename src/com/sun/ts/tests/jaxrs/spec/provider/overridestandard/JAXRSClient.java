@@ -18,9 +18,9 @@ package com.sun.ts.tests.jaxrs.spec.provider.overridestandard;
 
 import java.util.zip.Deflater;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

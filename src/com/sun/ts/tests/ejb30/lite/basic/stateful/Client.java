@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.basic.stateful;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.ClientBase;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

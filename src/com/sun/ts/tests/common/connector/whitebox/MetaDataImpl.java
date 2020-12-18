@@ -21,8 +21,9 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import jakarta.resource.ResourceException;
+import jakarta.resource.spi.EISSystemException;
 import jakarta.resource.spi.IllegalStateException;
-import jakarta.resource.spi.*;
+import jakarta.resource.spi.ManagedConnectionMetaData;
 import jakarta.resource.spi.security.PasswordCredential;
 
 public class MetaDataImpl implements ManagedConnectionMetaData {

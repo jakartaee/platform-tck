@@ -20,19 +20,17 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_rec;
 
-import java.io.*;
 import java.util.Properties;
-import jakarta.ejb.EJB;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 
 /**
  * The MDBClient class invokes a test bean to send each type of 
  * jms message to a message driven bean for a queue and a topic 
  */
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.EJB;
 
 public class MDBClient extends EETest {
 

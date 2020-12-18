@@ -25,6 +25,15 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
 
+import javax.xml.namespace.QName;
+import javax.xml.transform.Source;
+
+import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
+import com.sun.ts.tests.jaxrs.common.impl.StringSource;
+import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.activation.DataSource;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -39,14 +48,6 @@ import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-
-import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
-import com.sun.ts.tests.jaxrs.common.impl.StringSource;
-import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 @Path("resource")
 public class Resource {

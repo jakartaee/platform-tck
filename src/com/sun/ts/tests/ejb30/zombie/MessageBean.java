@@ -20,23 +20,19 @@
 
 package com.sun.ts.tests.ejb30.zombie;
 
-import jakarta.ejb.EJBContext;
-import jakarta.ejb.MessageDrivenContext;
-import jakarta.annotation.Resource;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.messaging.Constants;
-import jakarta.ejb.MessageDriven;
-import jakarta.ejb.ActivationConfigProperty;
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
-import jakarta.ejb.TransactionManagement;
-import jakarta.ejb.TransactionManagementType;
-import jakarta.jms.Message;
-import jakarta.jms.MessageListener;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.ActivationConfigProperty;
+import jakarta.ejb.EJBContext;
+import jakarta.ejb.MessageDriven;
+import jakarta.ejb.MessageDrivenContext;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.jms.MessageListener;
 
 //This MDB implements jakarta.jms.MessageListener interface, so no need to
 //use annotation element messageListenerInterface, nor descritpor element

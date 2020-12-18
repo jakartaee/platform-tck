@@ -18,12 +18,12 @@ package com.sun.ts.tests.ejb30.bb.async.stateless.annotated;
 
 import java.util.concurrent.ExecutionException;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.Async2RemoteIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncRemoteIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends
     com.sun.ts.tests.ejb30.bb.async.common.annotated.AnnotatedClientBase {

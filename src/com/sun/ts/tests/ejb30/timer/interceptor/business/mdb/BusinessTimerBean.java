@@ -19,6 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
+import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor2;
+import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
@@ -29,13 +36,6 @@ import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
-import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor2;
-import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3;
 
 @MessageDriven
 @Interceptors({ Interceptor2.class })

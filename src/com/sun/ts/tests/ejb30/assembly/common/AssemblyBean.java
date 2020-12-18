@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.assembly.common;
 
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;

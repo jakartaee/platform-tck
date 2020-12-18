@@ -16,37 +16,34 @@
 
 package com.sun.ts.tests.jaspic.spi.soap;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
-import com.sun.ts.tests.jaspic.util.LogFileProcessor;
-import com.sun.ts.tests.jaspic.util.WebServiceUtils;
-import java.lang.reflect.Constructor;
-import javax.naming.InitialContext;
-import javax.xml.namespace.QName;
-
-import jakarta.xml.ws.WebServiceRef;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.ProtocolException;
-import java.util.Properties;
-import java.util.Map;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.xml.namespace.QName;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaspic.spi.common.CommonTests;
+import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory;
+import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
+import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
+import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
+import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
+import com.sun.ts.tests.jaspic.util.LogFileProcessor;
+import com.sun.ts.tests.jaspic.util.WebServiceUtils;
+
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
-
-import com.sun.ts.tests.jaspic.tssv.config.TSRegistrationListener;
-import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor.DTDResolver;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
-import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory;
-import com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactoryForStandalone;
-import com.sun.ts.tests.jaspic.spi.common.*;
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.WebServiceRef;
 
 /**
  *

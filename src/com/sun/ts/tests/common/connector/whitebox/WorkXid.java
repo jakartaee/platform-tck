@@ -21,7 +21,6 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import jakarta.resource.spi.work.Work;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class WorkXid implements Work {
 

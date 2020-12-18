@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
+import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
-
-import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
 
 @ManagedBean("InterceptorOverride34Bean")
 @ExcludeDefaultInterceptors

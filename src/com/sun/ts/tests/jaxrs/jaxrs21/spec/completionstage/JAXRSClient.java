@@ -18,11 +18,11 @@ package com.sun.ts.tests.jaxrs.jaxrs21.spec.completionstage;
 
 import java.util.concurrent.Future;
 
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.core.Response;
-
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 import com.sun.ts.tests.jaxrs.common.client.JdkLoggingFilter;
+
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.Response;
 
 /*
  * @class.setup_props: webServerHost;

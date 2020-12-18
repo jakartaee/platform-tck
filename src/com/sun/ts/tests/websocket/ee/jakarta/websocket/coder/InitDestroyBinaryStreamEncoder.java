@@ -20,11 +20,11 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.EndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncoder;
+
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyBinaryStreamEncoder
     extends StringBeanBinaryStreamEncoder {

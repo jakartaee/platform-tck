@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,18 @@
 package com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics;
 
 import java.util.Properties;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.calleebeans.*;
+import com.sun.ts.tests.common.ejb.calleebeans.CMP20Callee;
+import com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeHome;
+import com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocal;
+import com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocalHome;
+import com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument;
+import com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee;
+import com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome;
+import com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal;
+import com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocalHome;
 
 public class TestLogic {
 

@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.sec.stateless.common;
 
-import jakarta.ejb.*;
-
 public interface lTest {
   public void initLogging(java.util.Properties p);
 

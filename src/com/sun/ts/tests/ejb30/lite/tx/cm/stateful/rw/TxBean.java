@@ -22,6 +22,11 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.AfterBegin;
@@ -30,11 +35,6 @@ import jakarta.ejb.BeforeCompletion;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
 
 @Stateful
 public class TxBean extends RWTxBeanBase {

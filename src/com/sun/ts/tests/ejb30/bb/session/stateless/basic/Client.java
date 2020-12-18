@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import java.util.Properties;
-import jakarta.annotation.PostConstruct;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 
-import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import javax.naming.NamingException;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.annotation.PostConstruct;
 
 public class Client extends EETest {
   private static int postConstructCallsCount;

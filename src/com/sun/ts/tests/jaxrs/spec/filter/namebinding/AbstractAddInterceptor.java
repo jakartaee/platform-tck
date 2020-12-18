@@ -20,13 +20,13 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.ext.ReaderInterceptor;
 import jakarta.ws.rs.ext.ReaderInterceptorContext;
 import jakarta.ws.rs.ext.WriterInterceptor;
 import jakarta.ws.rs.ext.WriterInterceptorContext;
-
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 public abstract class AbstractAddInterceptor
     implements ReaderInterceptor, WriterInterceptor {

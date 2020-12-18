@@ -20,30 +20,28 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.render.renderkitfactory;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.context.ResponseStream;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.RenderKit;
+import jakarta.faces.render.RenderKitFactory;
+import jakarta.faces.render.Renderer;
+import jakarta.faces.render.ResponseStateManager;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.render.RenderKitFactory;
-import jakarta.faces.render.RenderKit;
-import jakarta.faces.render.Renderer;
-import jakarta.faces.render.ResponseStateManager;
-import jakarta.faces.FactoryFinder;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.context.ResponseStream;
-import jakarta.faces.context.ResponseWriter;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
 
 public class TestServlet extends HttpTCKServlet {
 

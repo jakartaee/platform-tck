@@ -20,8 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.*;
-import jakarta.ejb.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface SpouseLocal extends EJBLocalObject {
   // CMP fields

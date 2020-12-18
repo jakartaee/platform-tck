@@ -19,6 +19,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.common.util.StringUtil;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Extension;
 import jakarta.websocket.OnError;
@@ -27,9 +30,6 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 @ServerEndpoint(value = "/annotated/configurator", configurator = ServerEndpointConfigConfigurator.class)
 public class WSAnnotatedConfiguratorServer {

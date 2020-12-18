@@ -19,10 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import java.util.Arrays;
 import java.util.logging.Level;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
 

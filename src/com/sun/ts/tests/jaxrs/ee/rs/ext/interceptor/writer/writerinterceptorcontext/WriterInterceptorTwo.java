@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcontext;
 
+import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.TemplateWriterInterceptor;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.TemplateWriterInterceptor;
 
 @Provider
 @Priority(200)

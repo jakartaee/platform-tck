@@ -19,10 +19,10 @@ package com.sun.ts.tests.jaxrs.ee.rs.formparam.locator;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.ee.rs.RuntimeExceptionMapper;
 import com.sun.ts.tests.jaxrs.ee.rs.WebApplicationExceptionMapper;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
 

@@ -22,13 +22,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstBinaryDecoder;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondBinaryDecoder;
+
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstBinaryDecoder;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondBinaryDecoder;
 
 public class WillDecodeBinaryDecoderEndpointConfig
     implements ServerEndpointConfig {

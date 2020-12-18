@@ -20,14 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.pm.cm.TxR_Exceptions;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.ejb.ee.tx.txEPMbean.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-import java.util.*;
-import java.rmi.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.AppException;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.TxEPMBean;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.TxEPMBeanEJB;
+import com.sun.ts.tests.ejb.ee.tx.txEPMbean.TxEPMBeanHome;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBeanEJB implements SessionBean {
 

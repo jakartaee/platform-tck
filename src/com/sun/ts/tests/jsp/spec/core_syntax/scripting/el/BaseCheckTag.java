@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.util.List;
-import java.util.ArrayList;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Base class to perform validation of the JSP 2.0 expression language. This

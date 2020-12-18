@@ -16,9 +16,12 @@
 
 package com.sun.ts.tests.concurrency.api.LastExecution;
 
-import java.util.*;
-import jakarta.enterprise.concurrent.*;
+import java.util.Date;
+
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.enterprise.concurrent.LastExecution;
+import jakarta.enterprise.concurrent.Trigger;
 
 /**
  * A trigger that driven by test logic. This trigger is used for test the logic

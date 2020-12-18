@@ -24,10 +24,10 @@ package com.sun.ts.tests.el.common.util;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import jakarta.el.ELProcessor;
-
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.el.ELProcessor;
 
 public class Validator {
   private static Validator instance = null;

@@ -19,11 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.business.annotated;
 
+import java.util.List;
+
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-import java.util.List;
+
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeClassInterceptors;

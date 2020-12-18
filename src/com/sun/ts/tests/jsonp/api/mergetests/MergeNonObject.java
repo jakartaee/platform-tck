@@ -16,14 +16,27 @@
 
 package com.sun.ts.tests.jsonp.api.mergetests;
 
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createBoolArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createIntArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectWithStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray1;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.toJsonValue;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

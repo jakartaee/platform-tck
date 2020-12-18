@@ -20,13 +20,17 @@
 
 package com.sun.ts.tests.jpa.core.callback.xml;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
 import jakarta.persistence.Query;
-import java.util.*;
 
 public class Client extends EntityCallbackClientBase {
 

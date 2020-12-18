@@ -16,23 +16,21 @@
 
 package com.sun.ts.tests.jaspic.spi.servlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
+import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Properties;
-import java.util.Enumeration;
-
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.HttpMethodConstraint;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.annotation.security.DeclareRoles;
-
-import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
-import com.sun.ts.tests.jaspic.tssv.util.IdUtil;
 
 @DeclareRoles({ "Administrator", "Manager", "Employee" })
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {

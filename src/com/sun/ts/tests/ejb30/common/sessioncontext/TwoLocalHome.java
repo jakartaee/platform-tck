@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TwoLocalHome extends EJBLocalHome {
   public TwoLocalIF create() throws CreateException, TestFailedException;

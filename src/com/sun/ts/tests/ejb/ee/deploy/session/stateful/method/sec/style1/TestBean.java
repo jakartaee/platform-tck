@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.method.sec.style1;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {

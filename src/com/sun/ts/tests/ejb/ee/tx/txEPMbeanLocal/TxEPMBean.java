@@ -19,10 +19,9 @@
  */
 package com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.ts.lib.util.*;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBLocalObject;
+import jakarta.ejb.RemoveException;
 
 /**
  * The TxEPMBean is an entity EJB. Most of the business methods of the TxEPMBean

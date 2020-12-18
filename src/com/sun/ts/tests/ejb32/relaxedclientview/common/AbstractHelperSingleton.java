@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
-import jakarta.ejb.EJB;
 import javax.naming.InitialContext;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJB;
 
 public class AbstractHelperSingleton implements HelperSingleton, TestConstants {
 

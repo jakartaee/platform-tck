@@ -19,9 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.Timer;

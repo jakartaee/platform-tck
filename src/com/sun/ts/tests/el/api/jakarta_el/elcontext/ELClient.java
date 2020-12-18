@@ -25,14 +25,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-import jakarta.el.ELContext;
-import jakarta.el.ELManager;
-import jakarta.el.EvaluationListener;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.ELManager;
+import jakarta.el.EvaluationListener;
 
 public class ELClient extends ServiceEETest {
 

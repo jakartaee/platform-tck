@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.readerinterceptorcontext;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.TemplateReaderInterceptor;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.TemplateReaderInterceptor;
 
 @Provider
 @Priority(200)

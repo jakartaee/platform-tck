@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.annotated;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 
 @EJBs({
     @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),

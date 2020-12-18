@@ -16,8 +16,14 @@
 
 package com.sun.ts.tests.jpa.jpa22.query.stream;
 
-import jakarta.persistence.*;
 import java.util.Collection;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 /*
  * Department

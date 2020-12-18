@@ -16,8 +16,15 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
-import jakarta.persistence.*;
 import java.sql.Date;
+
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToOne;
 
 /*
  * Employee as mapped superclass, which can be concrete or abstract.

@@ -21,6 +21,8 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
@@ -28,8 +30,6 @@ import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 abstract public class InterceptorBaseBase {
   // we cannot use a getSimpleName() method, since it will always return the

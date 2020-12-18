@@ -20,9 +20,15 @@
 
 package com.sun.ts.tests.jms.common;
 
-import jakarta.jms.*;
-import java.util.*;
-import com.sun.ts.lib.util.*;
+import java.util.Enumeration;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.TextMessage;
 
 /**
  * JmsUtil is a final tool class that will provide support for common code for

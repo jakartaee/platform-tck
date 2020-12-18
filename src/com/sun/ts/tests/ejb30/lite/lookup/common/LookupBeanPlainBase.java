@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.lookup.common;
 
-import jakarta.ejb.SessionContext;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.ejb.SessionContext;
 
 public class LookupBeanPlainBase implements LookupIF {
 

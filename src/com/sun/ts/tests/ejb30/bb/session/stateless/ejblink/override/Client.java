@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override;
 
-import com.sun.ts.tests.ejb30.common.ejblink.ClientBase;
 import com.sun.javatest.Status;
+import com.sun.ts.tests.ejb30.common.ejblink.ClientBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
+
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {

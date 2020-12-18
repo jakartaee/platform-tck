@@ -21,10 +21,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import jakarta.ejb.Asynchronous;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.Asynchronous;
 
 public class AsyncAnnotatedMethodsBeanBase implements AsyncAnnotatedMethodsIF {
 

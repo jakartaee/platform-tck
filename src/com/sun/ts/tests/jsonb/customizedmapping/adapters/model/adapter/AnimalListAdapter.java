@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jsonb.customizedmapping.adapters.model.adapter;
 
-import jakarta.json.bind.adapter.JsonbAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sun.ts.tests.jsonb.customizedmapping.adapters.model.Animal;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.json.bind.adapter.JsonbAdapter;
 
 public class AnimalListAdapter
     implements JsonbAdapter<List<Animal>, List<AnimalJson>> {

@@ -18,16 +18,16 @@ package com.sun.ts.tests.ejb30.bb.async.stateless.annotated;
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Asynchronous;
-import jakarta.ejb.Local;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.Async2RemoteIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncRemoteIF;
+
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
 
 @Stateless
 @Local({ Async2IF.class, AsyncIF.class })

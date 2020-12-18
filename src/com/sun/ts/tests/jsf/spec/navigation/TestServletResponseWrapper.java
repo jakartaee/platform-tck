@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jsf.spec.navigation;
 
-import jakarta.servlet.http.HttpServletResponseWrapper;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 public class TestServletResponseWrapper extends HttpServletResponseWrapper {
 

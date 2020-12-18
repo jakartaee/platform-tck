@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.stateless;
 
+import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
 
 @Stateless
 public class BasicBean extends BasicBeanBase {

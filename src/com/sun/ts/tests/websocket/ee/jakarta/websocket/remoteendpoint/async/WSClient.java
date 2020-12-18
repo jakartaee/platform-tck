@@ -20,10 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 import java.util.LinkedList;
 import java.util.List;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.Encoder;
-import jakarta.websocket.RemoteEndpoint.Async;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
@@ -34,6 +30,10 @@ import com.sun.ts.tests.websocket.common.impl.StringPongMessage;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.PongMessageClientEndpoint;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.RemoteEndpoint.Async;
 
 /*
  * @class.setup_props: webServerHost;

@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -33,9 +36,6 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 
 public class Interceptor1 {
   @Resource

@@ -21,8 +21,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.casesens;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create() throws RemoteException, CreateException;

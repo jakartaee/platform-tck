@@ -20,19 +20,23 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.*;
+import java.io.Serializable;
+import java.lang.reflect.Method;
+
+import javax.transaction.xa.XAResource;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
+
+import jakarta.resource.spi.ActivationSpec;
+import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.ResourceAdapter;
 import jakarta.resource.spi.ResourceAdapterInternalException;
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.spi.work.DistributableWorkManager;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
-import jakarta.resource.spi.ActivationSpec;
-import javax.transaction.xa.XAResource;
-import java.lang.reflect.Method;
-import com.sun.ts.tests.common.connector.util.*;
+import jakarta.resource.spi.work.DistributableWorkManager;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.Work;
+import jakarta.resource.spi.work.WorkManager;
 
 public class LocalTxResourceAdapterImpl
     implements ResourceAdapter, Serializable {

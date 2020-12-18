@@ -19,9 +19,9 @@ package com.sun.ts.tests.jaxrs.spec.returntype;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.EntityMessageWriter;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
   public java.util.Set<java.lang.Class<?>> getClasses() {

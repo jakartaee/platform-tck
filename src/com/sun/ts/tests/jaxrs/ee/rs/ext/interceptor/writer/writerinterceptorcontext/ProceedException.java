@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcontext;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 
 public class ProceedException extends WebApplicationException {
 

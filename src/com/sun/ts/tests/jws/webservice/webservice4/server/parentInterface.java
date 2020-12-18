@@ -21,7 +21,6 @@
  */
 package com.sun.ts.tests.jws.webservice.webservice4.server;
 
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
 @WebService(targetNamespace = "http://bea/jsr181/tck/portType")

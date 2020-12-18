@@ -20,8 +20,9 @@
 package com.sun.ts.tests.appclient.deploy.compat12_14;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create() throws RemoteException, CreateException;

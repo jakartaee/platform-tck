@@ -23,13 +23,13 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFail;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {

@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulAllowedBeanBase;
+
 import jakarta.ejb.SessionSynchronization;
 
 public class AllowedBeanSessionSynchronizationBase

@@ -21,13 +21,13 @@
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
 import java.util.Properties;
-import jakarta.ejb.EJBHome;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * The MDBClient class invokes a test session bean, which will ask and the

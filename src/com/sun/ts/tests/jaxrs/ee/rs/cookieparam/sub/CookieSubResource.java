@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.cookieparam.sub;
 
-import jakarta.ws.rs.Path;
-
 import com.sun.ts.tests.jaxrs.ee.rs.cookieparam.CookieParamTest;
+
+import jakarta.ws.rs.Path;
 
 @Path("Resource")
 public class CookieSubResource extends CookieParamTest {

@@ -24,6 +24,10 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashSet;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common.TCKClientBehaviorContext;
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
 import jakarta.faces.component.behavior.ClientBehaviorContext;
@@ -33,10 +37,6 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.behavior.common.TCKClientBehaviorContext;
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
 

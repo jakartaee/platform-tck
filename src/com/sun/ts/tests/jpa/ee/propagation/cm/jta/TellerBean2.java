@@ -20,6 +20,9 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.jta;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.ee.common.Account;
 
@@ -31,8 +34,6 @@ import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceContextType;
-import java.util.Iterator;
-import java.util.List;
 
 @Stateful(name = "TellerBean2")
 @Local({ Teller.class })

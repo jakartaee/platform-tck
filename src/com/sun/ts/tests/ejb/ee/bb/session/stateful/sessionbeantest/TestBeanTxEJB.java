@@ -20,16 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
+import java.sql.SQLException;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb.ee.bb.session.util.DBSupport;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.sql.*;
-import javax.sql.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.SessionSynchronization;
 
 public class TestBeanTxEJB implements SessionBean, SessionSynchronization {
   private SessionContext sctx = null;

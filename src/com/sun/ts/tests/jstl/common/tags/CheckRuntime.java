@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Simple tag to check the J2SE runtime.

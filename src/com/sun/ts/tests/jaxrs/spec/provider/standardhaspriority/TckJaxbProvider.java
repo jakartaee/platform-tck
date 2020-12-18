@@ -22,13 +22,14 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import javax.xml.namespace.QName;
+
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
 
 public class TckJaxbProvider extends AbstractProvider
     implements MessageBodyReader<JAXBElement<String>>,

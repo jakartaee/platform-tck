@@ -19,10 +19,12 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
-import com.sun.ts.lib.util.TestUtil;
-import jakarta.jms.Message;
-import jakarta.jms.CompletionListener;
 import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.CompletionListener;
+import jakarta.jms.Message;
 
 public class MyCompletionListener implements CompletionListener {
 

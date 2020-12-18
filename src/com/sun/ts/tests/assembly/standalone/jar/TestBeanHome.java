@@ -21,8 +21,9 @@
 package com.sun.ts.tests.assembly.standalone.jar;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
 

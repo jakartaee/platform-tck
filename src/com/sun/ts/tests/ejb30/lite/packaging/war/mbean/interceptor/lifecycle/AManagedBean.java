@@ -19,11 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PreDestroy;
 
 @ManagedBean("AManagedBean")
 public class AManagedBean {

@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface CLocal extends EJBLocalObject {
   // Business Methods for CLocal CMP Fields

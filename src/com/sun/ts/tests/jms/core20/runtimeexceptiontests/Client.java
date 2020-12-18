@@ -19,14 +19,11 @@
  */
 package com.sun.ts.tests.jms.core20.runtimeexceptiontests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
-import jakarta.jms.*;
-import java.io.*;
-import java.util.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends ServiceEETest {
   private static final String testName = "com.sun.ts.tests.jms.core20.runtimeexceptiontests.Client";

@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface TwoRemoteIF extends EJBObject {
   public String from2RemoteClient() throws RemoteException;

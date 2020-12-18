@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.EETest;
-import com.sun.javatest.Status;
-
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBException;
 
 /**

@@ -19,23 +19,23 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
+
+import com.sun.ts.tests.jsf.common.beans.TestBean;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.common.beans.TestBean;
 
 import jakarta.faces.component.StateHolder;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIOutput;
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Serializable;
 
 /**
  * <p>

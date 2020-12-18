@@ -26,6 +26,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.common.beans.AlbumBean;
+import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.faces.component.UICommand;
@@ -42,11 +47,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspFactory;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.common.beans.AlbumBean;
-import com.sun.ts.tests.jsf.common.event.TCKSystemEvent;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public final class TestServlet extends BaseComponentTestServlet {
 

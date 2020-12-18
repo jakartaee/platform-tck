@@ -20,18 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import java.rmi.*;
-import com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1.TestBean1;
+import com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1.TestBean1Home;
 
 public class Client extends EETest {
   private static final String testName = "Bean2BeanMultiJarTest";

@@ -20,11 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestEJB implements SessionBean {
 

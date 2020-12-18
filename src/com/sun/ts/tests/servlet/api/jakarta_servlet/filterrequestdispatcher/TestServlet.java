@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
 
 public class TestServlet extends GenericTCKServlet {
 

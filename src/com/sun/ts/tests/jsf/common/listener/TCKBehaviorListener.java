@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsf.common.listener;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.event.AjaxBehaviorListener;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public final class TCKBehaviorListener implements AjaxBehaviorListener {
   private String id = null;

@@ -21,16 +21,17 @@
 
 package com.sun.ts.tests.el.spec.language;
 
+import java.util.Hashtable;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.spec.Book;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.ResolverType;
+
 import jakarta.el.ELException;
-import java.util.Hashtable;
-import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 

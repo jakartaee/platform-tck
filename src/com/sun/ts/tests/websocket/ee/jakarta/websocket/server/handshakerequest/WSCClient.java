@@ -17,12 +17,12 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.HandshakeResponse;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.impl.ClientConfigurator;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.HandshakeResponse;
 
 /*
  * @class.setup_props: webServerHost;

@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.sbaccesstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface ALocalHome extends EJBLocalHome {
   public ALocal createA(int id, String name, int value) throws CreateException;

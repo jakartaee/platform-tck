@@ -19,18 +19,19 @@
  */
 package com.sun.ts.tests.ejb30.lite.enventry.common;
 
-import java.util.concurrent.TimeUnit;
+import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
+import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-import jakarta.ejb.SessionContext;
+import java.util.concurrent.TimeUnit;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
-import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
-import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 
 abstract public class EnvEntryBeanBase {
   @Resource

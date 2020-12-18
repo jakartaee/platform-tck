@@ -26,11 +26,12 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.busiface.TestBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.TestIF;
-import jakarta.ejb.EJB;
-import jakarta.ejb.SessionContext;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 
 //TestIF is not annotated.  Since this bean implements a single interface,
 //we can use @Remote() to speicify its remote business interface.

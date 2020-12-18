@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.model.scalardatamodel;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.DataModelURLClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.DataModelURLClient;
 
 public final class URLClient extends DataModelURLClient {
 

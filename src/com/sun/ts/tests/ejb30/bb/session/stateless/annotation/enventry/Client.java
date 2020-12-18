@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventry;
 
+import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
+
 import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
 
 public class Client extends ClientBase {
   @EJB(beanName = "EnvEntrySetterBean")

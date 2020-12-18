@@ -19,14 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
+import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
+
 import jakarta.annotation.ManagedBean;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
-import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
 
 @ManagedBean
 @ExcludeDefaultInterceptors

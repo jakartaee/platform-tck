@@ -20,22 +20,22 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.listdatamodel;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
 import com.sun.ts.tests.jsf.common.beans.TestBean;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.api.jakarta_faces.model.common.BaseModelTestServlet;
 
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.ListDataModel;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.faces.model.DataModel;
-import jakarta.faces.model.ListDataModel;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
 
 public class TestServlet extends BaseModelTestServlet {
 

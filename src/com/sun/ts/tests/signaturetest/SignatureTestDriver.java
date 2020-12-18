@@ -18,12 +18,13 @@
 package com.sun.ts.tests.signaturetest;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.Enumeration;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Properties;
+
 import com.sun.ts.lib.util.TestUtil;
 
 /**

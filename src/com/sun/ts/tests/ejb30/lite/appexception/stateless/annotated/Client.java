@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.stateless.annotated;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
+
+import jakarta.ejb.EJB;
 
 public class Client
     extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {

@@ -20,31 +20,31 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.application.viewhandlerwrapper;
 
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
-import jakarta.faces.application.Application;
-import jakarta.faces.application.ViewHandler;
-import jakarta.faces.application.ViewHandlerWrapper;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.context.FacesContextFactory;
-import jakarta.faces.lifecycle.LifecycleFactory;
-import jakarta.faces.lifecycle.Lifecycle;
-import jakarta.faces.FactoryFinder;
-import jakarta.faces.component.UIViewRoot;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
 import java.util.Enumeration;
+import java.util.Locale;
+
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
+import jakarta.faces.FactoryFinder;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.ViewHandler;
+import jakarta.faces.application.ViewHandlerWrapper;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.FacesContextFactory;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
 
 public final class TestServlet extends HttpTCKServlet {
 

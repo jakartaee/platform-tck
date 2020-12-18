@@ -22,9 +22,6 @@ package com.sun.ts.tests.ejb30.lite.appexception.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
@@ -38,6 +35,9 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   @EJB(description = "It should map to <ejb-ref>/<description> xml element.", beanName = "AppExceptionBean")

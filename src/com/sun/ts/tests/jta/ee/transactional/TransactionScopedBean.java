@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import jakarta.transaction.TransactionScoped;
-import jakarta.enterprise.inject.spi.PassivationCapable;
 import java.io.Serializable;
+
+import jakarta.enterprise.inject.spi.PassivationCapable;
+import jakarta.transaction.TransactionScoped;
 
 @TransactionScoped
 public class TransactionScopedBean implements PassivationCapable, Serializable {

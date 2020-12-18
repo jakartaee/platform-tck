@@ -16,15 +16,6 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
-import jakarta.annotation.Resource;
-import jakarta.enterprise.concurrent.ContextService;
-import jakarta.enterprise.concurrent.ManagedTask;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.transaction.UserTransaction;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -35,6 +26,16 @@ import java.sql.PreparedStatement;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+
+import jakarta.annotation.Resource;
+import jakarta.enterprise.concurrent.ContextService;
+import jakarta.enterprise.concurrent.ManagedTask;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.UserTransaction;
 
 @WebServlet("/TxServlet")
 public class TxServlet extends HttpServlet {

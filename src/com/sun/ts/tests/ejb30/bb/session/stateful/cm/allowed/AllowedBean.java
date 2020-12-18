@@ -20,21 +20,23 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
-import java.util.Properties;
-import jakarta.interceptor.AroundInvoke;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
-import jakarta.interceptor.Interceptors;
-import jakarta.interceptor.InvocationContext;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptors;
+import jakarta.interceptor.InvocationContext;
 
 @Stateful(name = "AllowedBean")
 @Remote({ AllowedIF.class })

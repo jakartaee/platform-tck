@@ -19,10 +19,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringList;
+
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringList;
 
 public class StringListWholeMessageHandler
     implements MessageHandler.Whole<StringList> {

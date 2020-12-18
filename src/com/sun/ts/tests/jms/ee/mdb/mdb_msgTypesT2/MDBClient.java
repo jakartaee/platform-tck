@@ -19,18 +19,14 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_msgTypesT2;
 
-import java.io.*;
-import java.util.*;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.MDB_T_Test;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
+import jakarta.ejb.EJB;
 
 public class MDBClient extends EETest {
 

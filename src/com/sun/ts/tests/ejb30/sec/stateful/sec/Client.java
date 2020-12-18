@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.sec.stateful.sec;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
-import java.util.Properties;
-import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTest;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTestRoleRef;
-import jakarta.ejb.EJBException;
+
 import jakarta.ejb.EJB;
 // EJBException is used in  line number 95 and 300 to satisfy compiler
 // the right exception is jakarta.ejb.EJBAccessException

@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionLocalIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Singleton;
 
 @Singleton
 @Local({ AppExceptionLocalIF.class, AppExceptionIF.class })

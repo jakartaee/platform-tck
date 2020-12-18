@@ -21,8 +21,9 @@
 package com.sun.ts.tests.samples.ejb.ee.simpleHello;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface HelloHome extends EJBHome {
   Hello create(String str, java.util.Properties p)

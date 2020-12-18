@@ -19,11 +19,17 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getservletregistration;
 
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.*;
+
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 public class TestServlet extends GenericTCKServlet {
 

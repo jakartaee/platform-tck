@@ -20,22 +20,24 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.cm.allowed;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import java.util.Properties;
-import jakarta.annotation.Resource;
-import jakarta.interceptor.Interceptors;
-import jakarta.ejb.Local;
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timeout;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "CallbackAllowedBean")
 @Remote({ CallbackAllowedIF.class })

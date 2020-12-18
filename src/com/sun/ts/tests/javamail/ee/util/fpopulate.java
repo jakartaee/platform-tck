@@ -16,13 +16,21 @@
 
 package com.sun.ts.tests.javamail.ee.util;
 
-import java.io.*;
-
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+
+import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
+import jakarta.mail.URLName;
+import jakarta.mail.internet.MimeMessage;
 
 /*
  * Copy folder hierarchies between files and a Store. This is a useful 

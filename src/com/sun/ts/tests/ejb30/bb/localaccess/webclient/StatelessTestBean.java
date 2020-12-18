@@ -20,14 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.webclient;
 
+import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
+import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
-import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
 
 @Stateless
 @Remote(TestBeanIF.class)

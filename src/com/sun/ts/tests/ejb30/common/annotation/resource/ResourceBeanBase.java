@@ -28,6 +28,16 @@ import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_T
 
 import java.net.URL;
 
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.omg.CORBA.ORB;
+
+import com.sun.ts.lib.deliverable.cts.resource.Dog;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.TimerService;
 import jakarta.jms.ConnectionFactory;
@@ -40,17 +50,8 @@ import jakarta.jms.Topic;
 import jakarta.jms.TopicConnection;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.mail.Session;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import jakarta.transaction.TransactionSynchronizationRegistry;
 import jakarta.transaction.UserTransaction;
-
-import org.omg.CORBA.ORB;
-
-import com.sun.ts.lib.deliverable.cts.resource.Dog;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 abstract public class ResourceBeanBase implements ResourceIF {
   abstract protected EJBContext getEJBContext();

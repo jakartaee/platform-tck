@@ -25,13 +25,14 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import jakarta.enterprise.concurrent.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.enterprise.concurrent.ManagedScheduledExecutorService;
 
 public class Util {
 

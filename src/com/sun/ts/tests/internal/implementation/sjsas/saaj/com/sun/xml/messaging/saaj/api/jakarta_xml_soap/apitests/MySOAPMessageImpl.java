@@ -20,16 +20,28 @@
 
 package com.sun.xml.messaging.saaj.soap;
 
-import jakarta.xml.soap.*;
-import jakarta.mail.internet.*;
-import jakarta.activation.DataHandler;
-import jakarta.activation.DataSource;
-import javax.xml.transform.*;
-import javax.xml.transform.stream.*;
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
+import java.util.Vector;
+
+import javax.xml.transform.stream.StreamSource;
+
 import com.sun.xml.messaging.saaj.soap.*;
 import com.sun.xml.messaging.saaj.util.*;
+
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
+import jakarta.mail.internet.ContentType;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.internet.ParameterList;
+import jakarta.xml.soap.AttachmentPart;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 public class MySOAPMessageImpl extends SOAPMessage {
   private MimeHeaders headers;

@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R1003;
 
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.sharedclients.faultclient.*;
-import com.sun.javatest.Status;
-
-import jakarta.xml.ws.soap.SOAPFaultException;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.sharedclients.faultclient.FaultTestClient;
+
+import jakarta.xml.ws.soap.SOAPFaultException;
 
 public class Client extends ServiceEETest {
 

@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb30.misc.xmloverride.ejbref;
 
+import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
+import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
-import com.sun.ts.tests.ejb30.common.lite.NumberIF;
 
 @Stateless
 @Remote(NumberIF.class)

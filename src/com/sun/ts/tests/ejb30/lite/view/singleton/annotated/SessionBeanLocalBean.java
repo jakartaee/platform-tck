@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
+import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
 
 // Singleton is not allowed to implement jakarta.ejb.SessionBean interface.
 // The easiest fix is to change it to Stateless.

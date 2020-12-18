@@ -16,11 +16,14 @@
 
 package com.sun.ts.tests.concurrency.spec.ManagedScheduledExecutorService.managed.forbiddenapi;
 
+import java.util.concurrent.TimeUnit;
+
+import javax.naming.InitialContext;
+
+import com.sun.ts.tests.concurrency.api.common.Util;
+
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.concurrent.*;
-import java.util.concurrent.*;
-import javax.naming.*;
-import com.sun.ts.tests.concurrency.api.common.*;
+import jakarta.enterprise.concurrent.ManagedScheduledExecutorService;
 
 @Stateless
 public class TestEjb implements TestEjbRemote {

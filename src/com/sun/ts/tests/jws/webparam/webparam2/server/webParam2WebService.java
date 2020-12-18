@@ -23,8 +23,8 @@
 package com.sun.ts.tests.jws.webparam.webparam2.server;
 
 import com.sun.ts.tests.jws.common.Address;
-import com.sun.ts.tests.jws.common.Name;
 import com.sun.ts.tests.jws.common.Employee;
+import com.sun.ts.tests.jws.common.Name;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;

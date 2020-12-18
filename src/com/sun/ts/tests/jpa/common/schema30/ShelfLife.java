@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.common.schema30;
 
+import java.sql.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Embeddable;
-import java.sql.Date;
 
 /*
  * ShelfLife 

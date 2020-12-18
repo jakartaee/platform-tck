@@ -17,16 +17,16 @@
 package com.sun.ts.tests.javaee.resource.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.mail.Session;
-import jakarta.annotation.Resource;
-import jakarta.inject.Inject;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+
+import jakarta.annotation.Resource;
+import jakarta.inject.Inject;
+import jakarta.mail.Session;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = { "/TestServlet/*" })
 public class TestServlet extends HttpTCKServlet {

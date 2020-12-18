@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing;
 
+import java.net.URL;
+
 import com.sun.ts.tests.ejb30.common.annotation.resource.EnvSharingBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-import java.net.URL;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

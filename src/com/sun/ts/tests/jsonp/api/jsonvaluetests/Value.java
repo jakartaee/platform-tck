@@ -16,14 +16,38 @@
 
 package com.sun.ts.tests.jsonp.api.jsonvaluetests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.valueToString;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BDC_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BIN_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.DBL_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.LNG_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createCompoundObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArray;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArrayWithStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleBoolArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleIntArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectBool;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectInt;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectObject;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectStr;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleStringArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.toJsonValue;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

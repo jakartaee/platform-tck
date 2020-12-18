@@ -21,6 +21,7 @@
 package com.sun.ts.tests.jsf.spec.templating.common;
 
 import java.io.Serializable;
+
 import jakarta.faces.component.UIOutput;
 
 public class NameBean implements Serializable {

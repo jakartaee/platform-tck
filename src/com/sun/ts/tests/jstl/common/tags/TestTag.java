@@ -21,9 +21,10 @@
 package com.sun.ts.tests.jstl.common.tags;
 
 import java.io.IOException;
-import jakarta.servlet.jsp.tagext.TagSupport;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * TestTag.java Simple tag to write the start, or header, as well as the end, or

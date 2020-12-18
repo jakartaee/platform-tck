@@ -19,15 +19,15 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webservletapi;
 
-import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletRegistration;
+
 import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.annotation.WebListener;
 
 @WebListener("")

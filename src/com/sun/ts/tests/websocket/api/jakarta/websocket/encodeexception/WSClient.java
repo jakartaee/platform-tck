@@ -20,12 +20,14 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.encodeexception;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.websocket.EncodeException;
 
 public class WSClient extends ServiceEETest {

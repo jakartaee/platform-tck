@@ -21,6 +21,7 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.singleton.common.SingletonInterceptorBase;
+
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorBase extends SingletonInterceptorBase {

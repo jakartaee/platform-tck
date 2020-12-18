@@ -17,15 +17,18 @@
 package com.sun.ts.tests.jaspic.spi.common;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Properties;
+
+import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
 
 import jakarta.security.auth.message.config.AuthConfigFactory;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
-
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
-import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
 
 /**
  *

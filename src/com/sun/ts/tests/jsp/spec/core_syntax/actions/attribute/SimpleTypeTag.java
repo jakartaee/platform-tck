@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
-import java.io.IOException;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 public class SimpleTypeTag extends SimpleTagSupport {
   private static final String FAIL_MSG = "Test FAILED.";

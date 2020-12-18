@@ -19,9 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.common;
 
+import java.util.logging.Level;
+
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.singleton.common.SingletonInterceptorBase;
-import java.util.logging.Level;
+
 import jakarta.interceptor.InvocationContext;
 
 abstract public class InterceptorBase extends SingletonInterceptorBase {

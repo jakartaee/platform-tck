@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
-import java.util.Collection;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 
 public interface CMP20CalleeHome extends EJBHome {

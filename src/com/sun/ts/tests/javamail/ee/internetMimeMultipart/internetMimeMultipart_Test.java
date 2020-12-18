@@ -16,22 +16,26 @@
 
 package com.sun.ts.tests.javamail.ee.internetMimeMultipart;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringBufferInputStream;
+import java.util.Properties;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 
 import jakarta.activation.DataSource;
 import jakarta.activation.FileDataSource;
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
-
-import java.io.Serializable;
-
-import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 public class internetMimeMultipart_Test extends ServiceEETest {
 

@@ -21,14 +21,14 @@ package com.sun.ts.tests.ejb30.misc.jndi.earjar;
 
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
 import com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class TestBean implements TestIF {

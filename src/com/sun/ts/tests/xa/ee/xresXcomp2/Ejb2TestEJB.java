@@ -23,19 +23,23 @@
  */
 package com.sun.ts.tests.xa.ee.xresXcomp2;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 //import jakarta.jms.*;
 //import java.rmi.*; 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
-
-import java.sql.*;
-import javax.sql.*;
-import jakarta.ejb.*;
-import java.util.*;
-
-import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class Ejb2TestEJB implements SessionBean {
   // testProps represent the test specific properties passed in

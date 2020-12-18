@@ -24,14 +24,14 @@
 
 package com.sun.ts.tests.signaturetest.caj;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Properties;
 import java.io.PrintWriter;
-import com.sun.ts.lib.harness.EETest.Fault;
+import java.util.ArrayList;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.*;
+import com.sun.ts.tests.signaturetest.SigTest;
+import com.sun.ts.tests.signaturetest.SignatureTestDriver;
+import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
 
 /*
  * This class is a simple example of a signature test that extends the

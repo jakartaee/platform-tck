@@ -23,18 +23,19 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
+import javax.sql.DataSource;
+
+import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.SessionContext;
 import jakarta.jms.JMSException;
 import jakarta.jms.Queue;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import jakarta.transaction.UserTransaction;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-
-import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public class AppResTest {
   private AppResTest() {

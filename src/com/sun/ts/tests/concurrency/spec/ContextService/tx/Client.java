@@ -16,12 +16,6 @@
 
 package com.sun.ts.tests.concurrency.spec.ContextService.tx;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.annotation.Resource;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -32,6 +26,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.annotation.Resource;
 
 public class Client extends EETest {
 

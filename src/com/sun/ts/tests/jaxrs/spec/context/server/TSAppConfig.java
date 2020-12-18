@@ -20,6 +20,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
+
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.container.ResourceContext;
 import jakarta.ws.rs.core.Application;
@@ -29,8 +31,6 @@ import jakarta.ws.rs.core.Request;
 import jakarta.ws.rs.core.SecurityContext;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.Providers;
-
-import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
 
 public class TSAppConfig extends Application {
 

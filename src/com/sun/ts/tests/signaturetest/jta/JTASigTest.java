@@ -23,8 +23,6 @@ package com.sun.ts.tests.signaturetest.jta;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTestEE;
 
-import java.io.PrintWriter;
-
 /*
  * This class is a simple example of a signature test that extends the
  * SigTest framework class.  This signature test is run outside of the

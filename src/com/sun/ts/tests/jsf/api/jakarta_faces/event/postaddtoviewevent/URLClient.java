@@ -20,6 +20,7 @@
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.postaddtoviewevent;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.AbstractUrlClient;
 

@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.scope;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface Bean extends EJBObject {

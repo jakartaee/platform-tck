@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,15 +19,14 @@
  */
 package com.sun.ts.tests.jsf.spec.templating.remove;
 
-import com.gargoylesoftware.htmlunit.html.HtmlLabel;
 import java.io.PrintWriter;
+import java.util.Formatter;
 
+import com.gargoylesoftware.htmlunit.html.HtmlLabel;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-
-import java.util.Formatter;
 
 public class URLClient extends BaseHtmlUnitClient {
 

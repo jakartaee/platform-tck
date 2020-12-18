@@ -20,20 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueSender;
-import jakarta.jms.QueueReceiver;
-import jakarta.jms.Message;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.Client;
+
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSender;
 
 public class MDBClient extends Client {
   private Queue queueS = null;

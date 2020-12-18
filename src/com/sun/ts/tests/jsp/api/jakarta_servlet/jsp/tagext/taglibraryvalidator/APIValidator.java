@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taglibraryvalidator;
 
+import java.util.Map;
+
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
+import jakarta.servlet.jsp.tagext.PageData;
 import jakarta.servlet.jsp.tagext.TagLibraryValidator;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
-import jakarta.servlet.jsp.tagext.PageData;
-import java.util.Map;
-import java.util.Arrays;
 
 public class APIValidator extends TagLibraryValidator {
 

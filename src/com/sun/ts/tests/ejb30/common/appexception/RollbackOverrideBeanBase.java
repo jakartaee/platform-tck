@@ -19,8 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.common.appexception;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import static jakarta.transaction.Status.STATUS_ACTIVE;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 /**
  * A bean base class for tests in appexception/override/ directory, where the

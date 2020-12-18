@@ -19,10 +19,11 @@
  */
 package com.sun.ts.tests.ejb.ee.tx.txEbean;
 
-import java.rmi.*;
-import java.util.*;
-import jakarta.ejb.*;
-import com.sun.ts.lib.util.*;
+import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.RemoveException;
 
 /**
  * <P>

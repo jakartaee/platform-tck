@@ -23,11 +23,11 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
-import java.util.Collection;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 
 public interface JACCEntityHome extends EJBHome {
 

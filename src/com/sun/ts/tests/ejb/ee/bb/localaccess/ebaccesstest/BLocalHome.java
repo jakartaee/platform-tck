@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.ebaccesstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface BLocalHome extends EJBLocalHome {
   public BLocal createB() throws CreateException;

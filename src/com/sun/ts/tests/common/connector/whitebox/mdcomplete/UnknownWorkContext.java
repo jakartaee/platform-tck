@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.common.connector.whitebox.mdcomplete;
 
-import jakarta.resource.spi.work.WorkContext;
 import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.WorkContext;
 
 /**
  * This class is to be used to test assertion Connector:SPEC:214. The server

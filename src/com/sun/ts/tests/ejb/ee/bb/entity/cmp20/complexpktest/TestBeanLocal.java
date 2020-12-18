@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
-import com.sun.ts.lib.util.*;
+import java.util.Collection;
 
-import jakarta.ejb.*;
-import java.util.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
   // Business Methods for TestBean CMP Fields

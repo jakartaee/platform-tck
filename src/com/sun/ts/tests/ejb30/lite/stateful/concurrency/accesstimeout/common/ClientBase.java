@@ -31,9 +31,9 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 
 import java.util.List;
 
-import jakarta.ejb.ConcurrentAccessTimeoutException;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyClientBase;
+
+import jakarta.ejb.ConcurrentAccessTimeoutException;
 
 abstract public class ClientBase extends StatefulConcurrencyClientBase {
 

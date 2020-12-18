@@ -20,15 +20,12 @@
 package com.sun.ts.tests.ejb.ee.sec.mdb;
 
 import java.util.Properties;
-import jakarta.ejb.EJBHome;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.Queue;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.commonee.Client;
+
+import jakarta.jms.Queue;
 
 public class MDBClient extends Client {
 

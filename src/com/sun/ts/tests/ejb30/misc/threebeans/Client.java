@@ -21,13 +21,13 @@ package com.sun.ts.tests.ejb30.misc.threebeans;
 
 import java.util.Properties;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 
 public class Client extends EETest {
 

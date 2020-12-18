@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,6 @@
  */
 
 package com.sun.ts.tests.jws.common;
-
-import com.sun.ts.tests.jws.common.*;
-import com.sun.ts.tests.jws.common.Address;
-import com.sun.ts.tests.jws.common.AddressException;
-import com.sun.ts.tests.jws.common.Department;
-import com.sun.ts.tests.jws.common.DepartmentException;
 
 public class Employee {
 

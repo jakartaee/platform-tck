@@ -21,9 +21,11 @@
 package com.sun.ts.tests.common.ejb.calleebeans;
 
 import java.util.Properties;
-import jakarta.ejb.CreateException;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
+
+import jakarta.ejb.CreateException;
 
 public class StatefulCalleeEJB extends StatefulWrapper {
 

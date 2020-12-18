@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.signaturetest.connector;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;

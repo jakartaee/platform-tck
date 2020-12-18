@@ -16,15 +16,17 @@
 
 package com.sun.ts.tests.concurrency.common;
 
-import java.util.*;
-import java.net.*;
-import java.util.concurrent.*;
-import jakarta.enterprise.concurrent.*;
-import javax.naming.*;
-import com.sun.ts.lib.harness.EETest.Fault;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
+import java.util.concurrent.Future;
+
+import javax.naming.InitialContext;
+
+import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.lib.porting.*;
+
+import jakarta.enterprise.concurrent.ManagedScheduledExecutorService;
 
 public class ConcurrencyTestUtils {
 

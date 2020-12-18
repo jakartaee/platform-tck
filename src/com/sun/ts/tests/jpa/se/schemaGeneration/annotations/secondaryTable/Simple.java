@@ -16,7 +16,18 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.secondaryTable;
 
-import jakarta.persistence.*;
+import jakarta.persistence.ConstraintMode;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE")

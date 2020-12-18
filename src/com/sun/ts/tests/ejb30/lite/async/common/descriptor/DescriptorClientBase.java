@@ -19,11 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common.descriptor;
 
+import static com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorIF.EXCEPTION_MESSAGE;
+
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
-
-import static com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorIF.EXCEPTION_MESSAGE;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
 abstract public class DescriptorClientBase extends EJBLiteClientBase {
 

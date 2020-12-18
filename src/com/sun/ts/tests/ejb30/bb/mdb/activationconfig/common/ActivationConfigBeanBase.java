@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-import jakarta.annotation.Resource;
-import jakarta.jms.MessageListener;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
+
+import jakarta.annotation.Resource;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
 
 /**
  * This class must not implement jakarta.jms.MessageListener interface. A subclass

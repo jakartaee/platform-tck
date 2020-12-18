@@ -23,6 +23,7 @@ package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
+
 import jakarta.ejb.Singleton;
 
 @Singleton

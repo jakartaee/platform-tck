@@ -16,26 +16,23 @@
 
 package com.sun.ts.tests.jaspic.tssv.module.soap;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.Iterator;
-import java.util.Set;
 import java.security.Principal;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+
 import javax.security.auth.Subject;
-import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
 
-import jakarta.security.auth.message.MessagePolicy;
-import jakarta.security.auth.message.AuthStatus;
-import jakarta.security.auth.message.AuthException;
-import jakarta.security.auth.message.MessageInfo;
-
-import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
-import com.sun.ts.tests.jaspic.tssv.util.ServerCallbackSupport;
 import com.sun.ts.tests.jaspic.tssv.util.CommonCallbackSupport;
-import javax.xml.namespace.QName;
+import com.sun.ts.tests.jaspic.tssv.util.ServerCallbackSupport;
+import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
+
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.AuthStatus;
+import jakarta.security.auth.message.MessageInfo;
+import jakarta.security.auth.message.MessagePolicy;
 
 /**
  *

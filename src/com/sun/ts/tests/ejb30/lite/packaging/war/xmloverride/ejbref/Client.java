@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
   @EJB

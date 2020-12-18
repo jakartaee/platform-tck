@@ -20,30 +20,17 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
 
-import com.sun.ts.tests.jaxws.common.*;
-
-import jakarta.xml.ws.*;
-import jakarta.xml.ws.handler.*;
-import jakarta.xml.ws.handler.soap.*;
-
-import jakarta.xml.ws.WebServiceException;
-
-import java.io.*;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.List;
-import java.util.Vector;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.activation.DataHandler;
-import java.util.Properties;
+import jakarta.annotation.Resource;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.annotation.Resource;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://rlhandlerservice.org/wsdl", serviceName = "RLHandlerService", wsdlLocation = "WEB-INF/wsdl/RLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.Hello")
 

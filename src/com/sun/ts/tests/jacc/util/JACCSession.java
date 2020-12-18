@@ -23,8 +23,9 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import jakarta.ejb.*;
 import java.rmi.RemoteException;
+
+import jakarta.ejb.EJBObject;
 
 public interface JACCSession extends EJBObject {
 

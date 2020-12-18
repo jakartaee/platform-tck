@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,14 +16,11 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.invalidcallernameattr;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.securityapi.idstore.common.BaseIDStoreClient;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
-
 import java.io.PrintWriter;
 import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.securityapi.idstore.common.BaseIDStoreClient;
 
 public class Client extends BaseIDStoreClient {
 

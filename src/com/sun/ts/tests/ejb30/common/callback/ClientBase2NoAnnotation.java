@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.omg.CORBA.ORB;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 abstract public class ClientBase2NoAnnotation extends ClientBase {
   // @Resource

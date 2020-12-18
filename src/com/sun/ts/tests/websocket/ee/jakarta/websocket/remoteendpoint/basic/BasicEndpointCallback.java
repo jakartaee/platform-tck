@@ -17,12 +17,12 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.basic;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.tests.websocket.common.client.EndpointCallback;
+
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint.Basic;
 import jakarta.websocket.Session;
-
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 
 public abstract class BasicEndpointCallback extends EndpointCallback {
   @Override

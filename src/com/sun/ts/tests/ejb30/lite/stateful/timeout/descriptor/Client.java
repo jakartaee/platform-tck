@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 
 @EJBs({
     @EJB(name = ClientBase.minus1TimeoutBeanLocalName, beanName = "Minus1TimeoutBean", beanInterface = StatefulTimeoutIF.class),

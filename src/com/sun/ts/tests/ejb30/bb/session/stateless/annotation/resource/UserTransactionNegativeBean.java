@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
+
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;

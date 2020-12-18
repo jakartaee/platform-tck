@@ -20,9 +20,13 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.el.valuebinding;
 
+import java.beans.Beans;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.TestBean;
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
-import com.sun.ts.tests.jsf.api.jakarta_faces.el.common.TestBean;
 
 import jakarta.faces.el.PropertyNotFoundException;
 import jakarta.faces.el.ValueBinding;
@@ -30,15 +34,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.beans.Beans;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
 public final class TestServlet extends HttpTCKServlet {
 

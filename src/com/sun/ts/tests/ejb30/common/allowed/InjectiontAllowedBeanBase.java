@@ -20,12 +20,16 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import static com.sun.ts.tests.ejb30.common.allowed.Constants.EJBContextLookupName;
+
 import java.util.Properties;
-import jakarta.ejb.SessionContext;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import static com.sun.ts.tests.ejb30.common.allowed.Constants.EJBContextLookupName;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.ejb.SessionContext;
 
 public abstract class InjectiontAllowedBeanBase
     extends SessionContextAllowedBeanBase

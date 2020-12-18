@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.common.vehicle.wsejb;
 
-import java.io.*;
-import java.net.*;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import jakarta.ejb.*;
-import java.util.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface WSEJBVehicleHome extends EJBHome {
   public WSEJBVehicleRemote create(String[] args, Properties p)

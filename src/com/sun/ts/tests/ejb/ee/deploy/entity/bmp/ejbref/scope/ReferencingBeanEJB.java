@@ -21,10 +21,11 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejbref.scope;
 
 import java.util.Properties;
-import jakarta.ejb.EJBException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
+
+import jakarta.ejb.EJBException;
 
 public class ReferencingBeanEJB extends BMPWrapper {
 

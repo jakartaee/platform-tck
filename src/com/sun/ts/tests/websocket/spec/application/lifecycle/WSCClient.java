@@ -21,12 +21,12 @@ import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
 import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
-
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 
 /*
  * The tests here are not guaranteed to pass in standalone TCK, hence put 

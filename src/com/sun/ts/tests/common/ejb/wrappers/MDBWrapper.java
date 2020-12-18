@@ -21,25 +21,25 @@
 package com.sun.ts.tests.common.ejb.wrappers;
 
 import java.lang.reflect.Method;
-import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsUtil;
+
 import jakarta.ejb.EJBException;
-import jakarta.ejb.EJBHome;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.QueueConnection;
-import jakarta.jms.QueueSession;
-import jakarta.jms.QueueSender;
-import jakarta.jms.Queue;
-import jakarta.jms.MessageListener;
-import jakarta.jms.Message;
-import jakarta.jms.TextMessage;
 import jakarta.jms.JMSException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.jms.common.JmsUtil;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnection;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.QueueSender;
+import jakarta.jms.QueueSession;
+import jakarta.jms.TextMessage;
 
 /**
  * Life cyle and test invocation methods for MDB. Actual test methods are

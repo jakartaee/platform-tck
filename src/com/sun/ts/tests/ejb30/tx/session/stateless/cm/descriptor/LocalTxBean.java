@@ -23,6 +23,7 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxIF;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;

@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb.ee.timer.helper;
 
 import java.rmi.RemoteException;
 import java.util.Properties;
+
 import jakarta.ejb.EJBObject;
 
 public interface CheckedMethod extends EJBObject {

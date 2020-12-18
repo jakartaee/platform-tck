@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface DLocalHome extends EJBLocalHome {
   public DLocal create() throws CreateException;

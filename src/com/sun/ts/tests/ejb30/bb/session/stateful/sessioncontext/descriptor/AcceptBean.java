@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor;
 
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
+
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;

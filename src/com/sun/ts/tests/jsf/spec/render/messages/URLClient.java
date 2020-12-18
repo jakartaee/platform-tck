@@ -19,23 +19,24 @@
  */
 package com.sun.ts.tests.jsf.spec.render.messages;
 
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Formatter;
-import java.util.TreeMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
 import java.util.TreeSet;
+
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlListItem;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableDataCell;
 import com.gargoylesoftware.htmlunit.html.HtmlUnorderedList;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsf.common.client.BaseHtmlUnitClient;
-import java.util.ArrayList;
-import java.util.List;
 
 public class URLClient extends BaseHtmlUnitClient {
 

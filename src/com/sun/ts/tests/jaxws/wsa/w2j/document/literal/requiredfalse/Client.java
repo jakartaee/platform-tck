@@ -20,29 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPException;
-
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-
-import com.sun.ts.tests.jaxws.common.*;
-
 import java.net.URL;
-
-import jakarta.xml.ws.*;
-import jakarta.xml.soap.*;
-
 import java.util.Properties;
 
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-
-import javax.naming.InitialContext;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 public class Client extends ServiceEETest {
 

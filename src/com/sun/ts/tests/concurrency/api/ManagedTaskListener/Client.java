@@ -20,15 +20,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
-import jakarta.enterprise.concurrent.ManagedExecutorService;
-import jakarta.enterprise.concurrent.ManagedExecutors;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.concurrency.api.common.Util;
 import com.sun.ts.tests.concurrency.api.common.managedTaskListener.ListenerEvent;
 import com.sun.ts.tests.concurrency.api.common.managedTaskListener.ManagedTaskListenerImpl;
+
+import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.enterprise.concurrent.ManagedExecutors;
 
 public class Client extends ServiceEETest implements java.io.Serializable {
 

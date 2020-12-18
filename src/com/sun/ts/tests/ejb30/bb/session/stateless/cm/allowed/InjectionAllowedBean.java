@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.cm.allowed;
 
 import com.sun.ts.tests.ejb30.common.allowed.InjectiontAllowedBeanBase;
-import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedLocalIF;
-import java.util.Properties;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;

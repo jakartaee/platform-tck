@@ -20,8 +20,9 @@
 package com.sun.ts.tests.assembly.compat.cocktail.compat14_50;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface ReferencedBeanHome extends EJBHome {
 

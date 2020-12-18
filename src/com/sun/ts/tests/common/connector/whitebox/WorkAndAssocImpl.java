@@ -16,15 +16,14 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import com.sun.ts.tests.common.connector.util.*;
+import java.util.Vector;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 import jakarta.resource.ResourceException;
-import jakarta.resource.spi.work.WorkException;
-import jakarta.resource.spi.ResourceAdapterAssociation;
 import jakarta.resource.spi.ResourceAdapter;
+import jakarta.resource.spi.ResourceAdapterAssociation;
 import jakarta.resource.spi.work.WorkManager;
-
-import java.util.Vector;
 
 /*
  * This class is used to assist in testing with assertion Connector:SPEC:245.

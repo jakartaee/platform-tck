@@ -16,14 +16,19 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import jakarta.persistence.metamodel.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
 import java.util.Set;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
+
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.EmbeddableType;
+import jakarta.persistence.metamodel.EntityType;
+import jakarta.persistence.metamodel.ManagedType;
+import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends PMClientBase {
 

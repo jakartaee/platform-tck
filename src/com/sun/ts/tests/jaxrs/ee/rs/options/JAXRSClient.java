@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.options;
 
-import jakarta.ws.rs.core.Response.Status;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.Response.Status;
 
 /*
  * @class.setup_props: webServerHost;

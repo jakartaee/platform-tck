@@ -21,10 +21,10 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.singlethreadmodel;
 
 import java.io.PrintWriter;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-
-import java.util.Properties;
 
 public class URLClient extends AbstractUrlClient {
 

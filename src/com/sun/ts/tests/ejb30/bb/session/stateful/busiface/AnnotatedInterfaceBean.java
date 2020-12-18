@@ -25,9 +25,10 @@ import com.sun.ts.tests.ejb30.common.busiface.AnnotatedBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "AnnotatedInterfaceBean")

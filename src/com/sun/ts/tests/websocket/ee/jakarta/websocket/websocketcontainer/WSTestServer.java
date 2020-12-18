@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketcontainer;
 
 import java.io.IOException;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;

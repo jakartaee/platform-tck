@@ -19,13 +19,14 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
+import java.io.IOException;
+
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
 
 public class HttpTestServlet extends HttpTCKServlet {
 

@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.containerreader.readerinterceptorcontext;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.readerinterceptorcontext.ExceptionThrowingStringBean;
+
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.readerinterceptorcontext.ExceptionThrowingStringBean;
 
 @Path("resource")
 public class Resource {

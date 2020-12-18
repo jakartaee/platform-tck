@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.security.Principal;
-import javax.security.auth.Subject;
 
 /**
  *

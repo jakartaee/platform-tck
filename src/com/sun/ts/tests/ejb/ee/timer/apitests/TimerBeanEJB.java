@@ -20,11 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Properties;
 
-import java.util.*;
-import jakarta.ejb.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.NoSuchObjectLocalException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.TimedObject;
 
 public class TimerBeanEJB implements SessionBean, TimedObject {
   private SessionContext sctx = null;

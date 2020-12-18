@@ -21,21 +21,23 @@
 package com.sun.ts.tests.common.ejb.wrappers;
 
 import java.util.Properties;
-import jakarta.ejb.EntityBean;
-import jakarta.ejb.EntityContext;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.RemoveException;
-import jakarta.ejb.FinderException;
-import jakarta.ejb.NoSuchEntityException;
+
 import javax.naming.NamingException;
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOException;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.CoffeeBean;
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.FinderException;
+import jakarta.ejb.NoSuchEntityException;
+import jakarta.ejb.RemoveException;
 
 /**
  * BMP wrapper that provide the bean life cycle methods for a BMP bean. This

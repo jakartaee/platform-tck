@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
+import java.io.IOException;
+
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
 
 public class ForwardTestServlet extends GenericServlet {
 

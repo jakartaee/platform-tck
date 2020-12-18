@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,24 +16,21 @@
 
 package com.sun.ts.tests.jacc.web.containerContracts;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.BASE64Encoder;
-import com.sun.ts.lib.porting.TSHttpsURLConnection;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.harness.ServiceEETest;
-
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSHttpsURLConnection;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.BASE64Encoder;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jacc.util.LogFileProcessor;
 
 public class Client extends ServiceEETest {

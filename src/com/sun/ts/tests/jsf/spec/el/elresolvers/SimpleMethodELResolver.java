@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jsf.spec.el.elresolvers;
 
-import java.util.Iterator;
-import java.util.HashSet;
-import java.util.Set;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 import java.beans.FeatureDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import jakarta.el.ELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
+import jakarta.el.ELResolver;
 
 /**
  * <p>

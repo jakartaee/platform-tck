@@ -21,9 +21,6 @@ import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 
-import jakarta.websocket.ClientEndpointConfig;
-import jakarta.websocket.Decoder;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.impl.StringPingMessage;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
@@ -35,6 +32,9 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.Alternat
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.LinkedListHashSetTextDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringListTextDecoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
+
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.Decoder;
 
 /*
  * @class.setup_props: webServerHost;

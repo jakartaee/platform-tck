@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin;
 
-import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
-import com.sun.ts.tests.common.webclient.WebTestCase;
-import com.sun.ts.lib.util.TestUtil;
-
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.io.IOException;
+import java.util.List;
+import java.util.StringTokenizer;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.WebTestCase;
+import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 
 /**
  * This validator will, loosely, validate the generated output of a jsp:plugin

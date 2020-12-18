@@ -20,36 +20,25 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
-
-import java.io.*;
-import java.net.*;
-import java.rmi.*;
-import java.util.*;
-
 import java.awt.Image;
-import jakarta.xml.ws.*;
-import jakarta.xml.ws.soap.SOAPBinding;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.soap.MTOMFeature;
-import javax.xml.namespace.QName;
+import java.net.URL;
+import java.util.Properties;
 
-import jakarta.activation.DataHandler;
+import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import java.util.Properties;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.AttachmentHelper;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import com.sun.ts.tests.jaxws.common.*;
-
-import javax.naming.InitialContext;
+import jakarta.activation.DataHandler;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.WebServiceFeature;
+import jakarta.xml.ws.soap.MTOMFeature;
 
 public class Client extends ServiceEETest {
 

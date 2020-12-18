@@ -20,10 +20,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 import java.io.IOException;
 import java.io.InputStream;
 
-import jakarta.websocket.DecodeException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
+
+import jakarta.websocket.DecodeException;
 
 public class ThrowingIOBinaryStreamDecoder
     extends StringBeanBinaryStreamDecoder {

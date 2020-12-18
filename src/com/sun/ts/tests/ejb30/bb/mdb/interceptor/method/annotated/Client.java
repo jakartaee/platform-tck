@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.bb.mdb.interceptor.method.annotated;
 
 import com.sun.javatest.Status;
+
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;

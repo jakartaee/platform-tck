@@ -18,11 +18,16 @@ package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
 import java.util.logging.Level;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.*;
-import jakarta.transaction.UserTransaction;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.transaction.UserTransaction;
 
 @Stateless()
 @Local

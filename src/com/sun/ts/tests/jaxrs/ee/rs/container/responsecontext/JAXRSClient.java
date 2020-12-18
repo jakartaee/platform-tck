@@ -19,15 +19,15 @@ package com.sun.ts.tests.jaxrs.ee.rs.container.responsecontext;
 import java.io.ByteArrayInputStream;
 import java.util.Locale;
 
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+import com.sun.ts.tests.jaxrs.common.client.TextCaser;
+
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
-
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-import com.sun.ts.tests.jaxrs.common.client.TextCaser;
 
 /*
  * @class.setup_props: webServerHost;

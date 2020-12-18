@@ -20,8 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import com.sun.ts.lib.util.*;
-import jakarta.ejb.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.RemoveException;
 
 // Lightweight Entity Bean
 

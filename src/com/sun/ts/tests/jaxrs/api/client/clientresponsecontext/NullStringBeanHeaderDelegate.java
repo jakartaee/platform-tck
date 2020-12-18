@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.api.client.clientresponsecontext;
 
-import jakarta.ws.rs.ext.RuntimeDelegate.HeaderDelegate;
-
 import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
+import jakarta.ws.rs.ext.RuntimeDelegate.HeaderDelegate;
 
 /**
  * Header Delegate for getHeaderStringIsEmptyTest

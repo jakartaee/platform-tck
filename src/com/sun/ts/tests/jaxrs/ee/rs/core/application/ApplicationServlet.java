@@ -19,13 +19,13 @@ package com.sun.ts.tests.jaxrs.ee.rs.core.application;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 @Path("ApplicationTest")
 public class ApplicationServlet {

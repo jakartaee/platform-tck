@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
+import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
+import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-
-import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 
 public class Callback2BeanSuperSuper extends Callback2BeanBase
     implements Callback2IF {

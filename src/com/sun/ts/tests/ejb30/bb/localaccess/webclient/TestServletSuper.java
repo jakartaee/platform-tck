@@ -22,6 +22,13 @@ package com.sun.ts.tests.ejb30.bb.localaccess.webclient;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.ts.tests.ejb30.bb.localaccess.common.Constants;
+import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.Data;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -30,13 +37,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.tests.ejb30.bb.localaccess.common.Constants;
-import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.Data;
 
 public class TestServletSuper extends HttpTCKServlet {
   protected Object getInjectedFieldInSubclass() {

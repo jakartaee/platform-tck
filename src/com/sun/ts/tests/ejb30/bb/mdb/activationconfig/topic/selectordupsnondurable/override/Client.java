@@ -21,11 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.override;
 
 import com.sun.javatest.Status;
-import jakarta.annotation.Resource;
-import jakarta.jms.Queue;
-import jakarta.jms.QueueConnectionFactory;
-import jakarta.jms.Topic;
-import jakarta.jms.TopicConnectionFactory;
 
 public class Client extends
     com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.TopicClientBase {

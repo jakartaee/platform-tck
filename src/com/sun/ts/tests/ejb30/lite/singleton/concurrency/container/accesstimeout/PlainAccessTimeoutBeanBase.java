@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 /**
  * This class does not specify any @AccessTimeout metadata. Its subclass can

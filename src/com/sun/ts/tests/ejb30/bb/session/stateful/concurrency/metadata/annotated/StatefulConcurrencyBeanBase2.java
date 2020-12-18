@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotate
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.AsyncResult;
-import jakarta.ejb.Asynchronous;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+
+import jakarta.ejb.AsyncResult;
+import jakarta.ejb.Asynchronous;
 
 @Asynchronous
 public class StatefulConcurrencyBeanBase2 implements StatefulConcurrencyIF {

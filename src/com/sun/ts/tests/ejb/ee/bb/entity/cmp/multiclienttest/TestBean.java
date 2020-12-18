@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.multiclienttest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
-import java.sql.SQLException;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public float getPrice() throws RemoteException;

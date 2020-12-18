@@ -1,7 +1,8 @@
-/* ====================================================================
+/*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000 The Apache Software Foundation.  All rights
  * Copyright (c) 2000 The Apache Software Foundation.  All rights
  * reserved.
  *
@@ -60,9 +61,10 @@
 package com.sun.ts.tests.common.webclient;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import com.sun.ts.lib.util.BASE64Encoder;
 
 public class Util {

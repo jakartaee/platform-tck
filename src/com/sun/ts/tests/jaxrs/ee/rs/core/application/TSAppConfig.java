@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.core.application;
 
-import jakarta.ws.rs.core.Application;
-
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.HashSet;
 import java.util.TreeMap;
+
+import jakarta.ws.rs.core.Application;
 
 public class TSAppConfig extends Application {
   static final String[] KEYS = { "key1", "key2" };

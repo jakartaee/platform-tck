@@ -21,8 +21,8 @@
 package com.sun.ts.tests.jstl.compat.onedotzero;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jstl.common.client.CompatAbstractUrlClient;
 
 public class JSTLClient extends CompatAbstractUrlClient {

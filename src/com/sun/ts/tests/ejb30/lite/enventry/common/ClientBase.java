@@ -19,16 +19,16 @@
  */
 package com.sun.ts.tests.ejb30.lite.enventry.common;
 
-import java.util.concurrent.TimeUnit;
+import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
-import jakarta.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 
-import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
+import jakarta.annotation.PostConstruct;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   protected EnvEntryBeanBase envEntryBean; // injected in subclass

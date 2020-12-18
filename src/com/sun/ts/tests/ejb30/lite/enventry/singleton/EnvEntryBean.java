@@ -21,12 +21,12 @@ package com.sun.ts.tests.ejb30.lite.enventry.singleton;
 
 import java.util.concurrent.TimeUnit;
 
-import jakarta.annotation.Resource;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.lite.enventry.common.EnvEntryBeanBase;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.Singleton;
 
 @Singleton
 @SuppressWarnings({ "unused", "unchecked" })

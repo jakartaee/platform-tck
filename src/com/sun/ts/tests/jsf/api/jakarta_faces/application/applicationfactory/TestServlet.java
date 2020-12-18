@@ -26,6 +26,9 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ELContextListener;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -54,9 +57,6 @@ import jakarta.faces.validator.Validator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends HttpTCKServlet {
 

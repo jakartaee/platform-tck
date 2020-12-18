@@ -58,12 +58,13 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper;
 
+import java.io.IOException;
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.ServletConfig;
-import java.io.IOException;
 
 public class TestServlet
     extends com.sun.ts.tests.servlet.api.common.request.RequestTestServlet {

@@ -16,22 +16,23 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.stateless;
 
-import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.*;
+import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.AUTO_TIMER_SUFFIX;
 import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.EmptyParamTimeoutBean;
 import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.NoParamTimeoutBean;
+import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.PROGRAMMATIC_TIMER_SUFFIX;
 import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.WithParamTimeoutBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.ejb30.timer.common.ClientBase;
+import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
+import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
-
-import com.sun.ts.tests.ejb30.timer.common.ClientBase;
-import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
 
 public class Client extends ClientBase {
 

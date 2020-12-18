@@ -27,14 +27,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.timer.common.ClientBase;
+
 import jakarta.ejb.EJB;
+import jakarta.ejb.NoSuchObjectLocalException;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerHandle;
-import jakarta.ejb.NoSuchObjectLocalException;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 
 public class Client extends ClientBase {
 

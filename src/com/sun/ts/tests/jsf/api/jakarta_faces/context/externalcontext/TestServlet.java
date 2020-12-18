@@ -32,6 +32,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.context.ExternalContext;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -42,9 +45,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public final class TestServlet extends HttpTCKServlet {
 

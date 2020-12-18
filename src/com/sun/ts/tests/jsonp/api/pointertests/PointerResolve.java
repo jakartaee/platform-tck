@@ -16,18 +16,73 @@
 
 package com.sun.ts.tests.jsonp.api.pointertests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_KEY10;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_KEY10_ENC;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_KEY_WHOLE;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR1;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR10;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR11_ENC;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR1_ITEM1;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR1_ITEM2;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR2;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR3;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR3_ENC;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR4;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR5;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR6;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR7;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR8;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_PTR9;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL1;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL10;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL11;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL1_ITEM1;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL1_ITEM2;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL2;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL3;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL4;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL5;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL6;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL7;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL8;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.RFC_VAL9;
+import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.createRFC6901Object;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_FALSE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.BOOL_TRUE;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE_1;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE_2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE_3;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE_4;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.INT_VALUE_5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE_1;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE_2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE_3;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE_4;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.OBJ_VALUE_5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE_1;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE_2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE_3;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE_4;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.STR_VALUE_5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createBoolArray2;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createEmptyArray;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleBoolArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleIntArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleStringArray5;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createStringArray;
+import static com.sun.ts.tests.jsonp.api.common.SimpleValues.toJsonValue;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonPointer;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
-import static com.sun.ts.tests.jsonp.api.common.PointerRFCObject.*;
-import static com.sun.ts.tests.jsonp.api.common.SimpleValues.*;
 
 // $Id$
 /**

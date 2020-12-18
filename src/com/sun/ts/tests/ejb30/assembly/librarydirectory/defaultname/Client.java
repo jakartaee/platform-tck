@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.ejb30.assembly.librarydirectory.defaultname;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.EAR_LIB_JAR_NAME;
 import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.RESOURCE_NAME;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import com.sun.ts.tests.ejb30.assembly.common.Util;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 

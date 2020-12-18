@@ -20,15 +20,17 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import java.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-import jakarta.ejb.NoSuchEJBException;
+import java.util.Properties;
+
 import javax.naming.NamingException;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
+import jakarta.ejb.NoSuchEJBException;
 
 public class Client extends EETest {
   private static final String refName = "java:comp/env/ejb/RemoteCalculatorBean";

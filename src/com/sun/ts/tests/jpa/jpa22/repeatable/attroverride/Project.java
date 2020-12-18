@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.math.BigDecimal;
 
 /*
  * Project

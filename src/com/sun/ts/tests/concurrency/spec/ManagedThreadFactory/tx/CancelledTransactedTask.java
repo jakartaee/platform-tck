@@ -18,9 +18,10 @@ package com.sun.ts.tests.concurrency.spec.ManagedThreadFactory.tx;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import jakarta.transaction.UserTransaction;
 
 import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.transaction.UserTransaction;
 
 public class CancelledTransactedTask implements Runnable {
   private volatile boolean runFlag;

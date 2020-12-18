@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
 import java.util.Hashtable;
+
+import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
   public Hashtable getResults();

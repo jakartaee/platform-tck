@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.Collection;
 import java.util.Iterator;
-import jakarta.ejb.EJBException;
+
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+
 import jakarta.annotation.Resource;
+import jakarta.ejb.EJBException;
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;

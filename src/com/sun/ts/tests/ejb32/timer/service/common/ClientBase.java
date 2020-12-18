@@ -19,14 +19,14 @@ package com.sun.ts.tests.ejb32.timer.service.common;
 import java.util.Calendar;
 import java.util.Collection;
 
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
-
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 
 abstract public class ClientBase extends EJBLiteClientBase {
   private static final long ONE_HOUR_MILLIS = 60 * 60 * 1000;

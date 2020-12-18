@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.delete;
 
-import jakarta.ws.rs.core.Application;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.ws.rs.core.Application;
 
 /**
  *

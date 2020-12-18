@@ -19,17 +19,19 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.xa;
 
-import java.io.*;
 import java.util.Properties;
-import jakarta.ejb.EJBHome;
 
-import com.sun.ts.tests.jms.common.*;
-import com.sun.ts.tests.jms.commonee.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import jakarta.jms.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jms.common.JmsUtil;
+import com.sun.ts.tests.jms.commonee.Client;
+
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueReceiver;
+import jakarta.jms.QueueSession;
+import jakarta.jms.Topic;
 
 public class MDBClient extends Client {
 

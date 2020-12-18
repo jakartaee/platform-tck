@@ -16,7 +16,10 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.version;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE")

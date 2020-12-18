@@ -20,14 +20,18 @@
 
 package com.sun.ts.tests.integration.entity.servletejbjdbc;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import com.sun.ts.tests.integration.util.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.integration.util.DBSupport;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.FinderException;
+import jakarta.ejb.RemoveException;
 
 public class AccountBean implements EntityBean {
 

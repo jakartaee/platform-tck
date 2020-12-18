@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb32.timer.service.common;
 
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 
 /**
  * no timers associated with this stateful bean, but its inclusion should not

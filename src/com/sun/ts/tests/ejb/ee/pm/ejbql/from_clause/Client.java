@@ -20,20 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.from_clause;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
+import java.util.Collection;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.AliasHome;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.Customer;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.CustomerHome;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.OrderHome;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.ProductHome;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.Schema;
+import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.Util;
 
 public class Client extends EETest {
   private CustomerHome customerHome = null;

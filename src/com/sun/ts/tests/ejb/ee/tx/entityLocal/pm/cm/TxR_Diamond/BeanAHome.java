@@ -22,8 +22,9 @@ package com.sun.ts.tests.ejb.ee.tx.entityLocal.pm.cm.TxR_Diamond;
 
 import java.rmi.RemoteException;
 import java.util.Properties;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface BeanAHome extends EJBHome {
   public BeanA create() throws RemoteException, CreateException;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,15 +23,12 @@ package com.sun.ts.tests.common.webclient.http;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.webclient.Util;
-
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpConnection;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
@@ -40,10 +37,11 @@ import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.protocol.DefaultProtocolSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
-import org.apache.commons.httpclient.protocol.SSLProtocolSocketFactory;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-// this import is used to force this class to get compiled
-import com.sun.ts.tests.common.webclient.log.WebLog;
+import org.apache.commons.httpclient.protocol.SSLProtocolSocketFactory;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.Util;
 
 /**
  * Represents an HTTP client Request

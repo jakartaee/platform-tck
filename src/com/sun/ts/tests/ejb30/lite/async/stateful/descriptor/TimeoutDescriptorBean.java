@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.stateful.descriptor;
 
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.TimeoutDescriptorBeanBase;
+
+import jakarta.ejb.Stateful;
 
 @Stateful
 public class TimeoutDescriptorBean extends TimeoutDescriptorBeanBase {

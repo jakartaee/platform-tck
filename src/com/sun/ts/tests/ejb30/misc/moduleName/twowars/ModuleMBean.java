@@ -19,10 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.misc.moduleName.twowars;
 
-import jakarta.annotation.ManagedBean;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
+
+import jakarta.annotation.ManagedBean;
 
 @ManagedBean("ModuleMBean")
 public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {

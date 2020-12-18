@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
-import jakarta.faces.el.ValueBinding;
-import jakarta.faces.el.PropertyNotFoundException;
-import jakarta.faces.el.EvaluationException;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.component.StateHolder;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.el.EvaluationException;
+import jakarta.faces.el.PropertyNotFoundException;
+import jakarta.faces.el.ValueBinding;
 
 public class TCKValueBinding extends ValueBinding implements StateHolder {
 

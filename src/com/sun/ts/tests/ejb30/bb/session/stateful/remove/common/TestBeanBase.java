@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 
+import java.rmi.RemoteException;
+
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF;
-import java.rmi.RemoteException;
+
 import jakarta.ejb.CreateException;
 import jakarta.ejb.NoSuchEJBException;
 import jakarta.ejb.NoSuchObjectLocalException;

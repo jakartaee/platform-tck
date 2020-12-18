@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import jakarta.ws.rs.core.GenericEntity;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.GenericEntity;
 
 public class JAXRSClient extends JAXRSCommonClient {
 

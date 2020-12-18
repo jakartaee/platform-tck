@@ -19,14 +19,14 @@
  */
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import jakarta.faces.lifecycle.Lifecycle;
-import jakarta.faces.lifecycle.LifecycleFactory;
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.event.PhaseListener;
+import jakarta.faces.lifecycle.Lifecycle;
+import jakarta.faces.lifecycle.LifecycleFactory;
 
 public class OrderingBean {
 

@@ -21,23 +21,24 @@ package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 
 import java.util.Properties;
 
+import javax.naming.InitialContext;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+
 import jakarta.annotation.Resource;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.EJB;
+import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSConnectionFactoryDefinition;
 import jakarta.jms.JMSDestinationDefinition;
-import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
-import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
-import javax.naming.InitialContext;
-import jakarta.persistence.PersistenceUnit;
+import jakarta.mail.Session;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
 import jakarta.xml.ws.WebServiceRef;
-
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.javatest.Status;
 
 @MailSessionDefinition(name = "java:comp/myMailSession", host = "smtp.gmail.com", transportProtocol = "smtps", properties = {
     "mail.debug=true" })

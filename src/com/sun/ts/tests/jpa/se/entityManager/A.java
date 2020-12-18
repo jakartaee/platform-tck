@@ -16,15 +16,22 @@
 
 package com.sun.ts.tests.jpa.se.entityManager;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Cacheable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "A_BASIC")

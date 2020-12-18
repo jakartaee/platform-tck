@@ -17,9 +17,9 @@
 
 package com.sun.ts.tests.websocket.spec.configuration.urimatching;
 
-import jakarta.websocket.DeploymentException;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
+import jakarta.websocket.DeploymentException;
 
 /*
  * @class.setup_props: webServerHost;

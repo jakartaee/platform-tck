@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jsonp.api.jsonarraytests;
 
+import static com.sun.ts.tests.jsonp.api.common.JsonAssert.assertEquals;
+
+import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonValue;
-
-import static com.sun.ts.tests.jsonp.api.common.JsonAssert.*;
 
 // $Id$
 /**

@@ -19,18 +19,17 @@
  */
 package com.sun.ts.tests.jsonp.api.exceptiontests;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import jakarta.json.*;
-import jakarta.json.stream.*;
-import java.io.*;
-
-import com.sun.javatest.Status;
 import java.util.Properties;
 
-import com.sun.ts.tests.jsonp.common.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.tests.jsonp.common.JSONP_Util;
+import com.sun.ts.tests.jsonp.common.MyJsonLocation;
+
+import jakarta.json.JsonException;
+import jakarta.json.stream.JsonGenerationException;
+import jakarta.json.stream.JsonLocation;
+import jakarta.json.stream.JsonParsingException;
 
 public class Client extends ServiceEETest {
   public static void main(String[] args) {

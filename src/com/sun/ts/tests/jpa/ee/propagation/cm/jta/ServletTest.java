@@ -20,29 +20,29 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.jta;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.ee.common.Account;
-import com.sun.ts.tests.jpa.ee.util.HttpTCKServlet;
 import com.sun.ts.tests.jpa.ee.util.Data;
-
-import java.io.StringWriter;
-import java.io.PrintWriter;
-
-import jakarta.persistence.*;
+import com.sun.ts.tests.jpa.ee.util.HttpTCKServlet;
 
 import jakarta.ejb.EJB;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceContexts;
+import jakarta.persistence.TransactionRequiredException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
-import java.io.IOException;
-import java.lang.String;
-import java.util.Map;
-import java.util.HashMap;
 
 @PersistenceContexts({
     @PersistenceContext(name = "persistence/cmpropagation", unitName = "CTS-JTA-UNIT"),

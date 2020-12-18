@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,16 +20,17 @@
 
 package com.sun.ts.tests.connector.xa.lifecycle;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Properties;
+import java.util.Vector;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.connector.util.DBSupport;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.tests.connector.util.DBSupport;
 
 public class lifecycleClient1 extends ServiceEETest implements Serializable {
 

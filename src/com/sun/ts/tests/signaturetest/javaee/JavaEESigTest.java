@@ -16,12 +16,22 @@
 
 package com.sun.ts.tests.signaturetest.javaee;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.SigTestEE;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.signaturetest.SigTestEE;
 
 /**
  * The JavaEESigTest class provides signature tests for the Java EE TCK. This

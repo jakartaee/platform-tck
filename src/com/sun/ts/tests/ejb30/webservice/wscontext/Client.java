@@ -16,18 +16,17 @@
 
 package com.sun.ts.tests.ejb30.webservice.wscontext;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
-
-import jakarta.xml.ws.WebServiceRef;
-import jakarta.xml.ws.BindingProvider;
-import java.lang.Exception;
-import jakarta.xml.ws.WebServiceException;
-import java.util.Properties;
 import java.util.Map;
-import java.net.URL;
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.WebServiceRef;
 
 /**
  *

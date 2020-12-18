@@ -20,14 +20,14 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.client.ClientRequestContext;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
 
 public class SetEntityProvider extends ContextProvider {
   private AtomicInteger counter;

@@ -22,13 +22,13 @@ package com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated;
 
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
+import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;
+
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.StatefulTimeout;
-
-import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
-import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;
 
 @Stateful
 @StatefulTimeout(value = 0, unit = TimeUnit.DAYS)

@@ -20,6 +20,9 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 import java.io.IOException;
 import java.util.List;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import com.sun.ts.tests.websocket.common.util.StringUtil;
+
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Endpoint;
@@ -28,9 +31,6 @@ import jakarta.websocket.Extension;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpointConfig;
-
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-import com.sun.ts.tests.websocket.common.util.StringUtil;
 
 public class WSCommonServer extends Endpoint
     implements MessageHandler.Whole<String> {

@@ -23,16 +23,17 @@ import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSo
 
 import java.sql.Connection;
 
+import javax.sql.DataSource;
+
+import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;
+import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
-import javax.sql.DataSource;
-
-import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;
-import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
 
 @Stateful
 @Local(DataSourceIF.class)

@@ -18,12 +18,12 @@ package com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.ws.rs.client.ClientRequestContext;
 import jakarta.ws.rs.client.ClientRequestFilter;
 import jakarta.ws.rs.core.Response;
-
-import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /**
  * Client with given ContextOperation enum, so that an enum name is passed as a

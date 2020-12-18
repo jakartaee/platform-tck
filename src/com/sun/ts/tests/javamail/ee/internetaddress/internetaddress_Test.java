@@ -19,17 +19,19 @@
  */
 package com.sun.ts.tests.javamail.ee.internetaddress;
 
-import java.util.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
-import com.sun.javatest.Status;
-
 import java.io.Serializable;
+import java.util.Properties;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+
+import jakarta.mail.Session;
+import jakarta.mail.internet.ContentType;
+import jakarta.mail.internet.HeaderTokenizer;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.ParameterList;
 
 public class internetaddress_Test extends ServiceEETest
     implements Serializable {

@@ -21,21 +21,20 @@
 
 package com.sun.ts.tests.el.spec.mapper;
 
+import java.util.Properties;
+
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
 import com.sun.ts.tests.el.common.util.ExprEval;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-
+import jakarta.el.ELException;
+import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
 import jakarta.el.VariableMapper;
-import jakarta.el.ExpressionFactory;
-import jakarta.el.ELException;
-
-import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 

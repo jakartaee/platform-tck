@@ -21,19 +21,20 @@ package com.sun.ts.tests.jms.ee20.cditests.ejbweb;
 
 import java.io.Serializable;
 import java.util.Properties;
-import javax.naming.*;
-import jakarta.jms.*;
-import java.util.Enumeration;
-import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import jakarta.annotation.ManagedBean;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.jms.common.*;
-import jakarta.inject.*;
-import jakarta.enterprise.inject.*;
-import jakarta.enterprise.context.*;
+import jakarta.inject.Inject;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.Queue;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
 
 @ManagedBean(value = "mybean")
 public class MyManagedBean implements Serializable {

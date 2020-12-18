@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
-import jakarta.servlet.jsp.JspException;
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import jakarta.servlet.jsp.JspException;
 
 /**
  * Tag implementation to validate type coercions for the JSP 2.0 expression

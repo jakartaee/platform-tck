@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
-import jakarta.ejb.EJBException;
-import jakarta.ejb.NoSuchEJBException;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
+
+import jakarta.ejb.EJBException;
+import jakarta.ejb.NoSuchEJBException;
 
 /**
  * no interface view EJBs are used in many other test directories. This

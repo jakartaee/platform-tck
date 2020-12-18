@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 

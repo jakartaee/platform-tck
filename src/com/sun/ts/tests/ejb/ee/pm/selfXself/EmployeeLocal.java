@@ -20,10 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import com.sun.ts.lib.util.*;
-
-import java.util.*;
-import jakarta.ejb.*;
+import jakarta.ejb.EJBLocalObject;
 
 public interface EmployeeLocal extends EJBLocalObject {
   // Business Methods for CMP Fields

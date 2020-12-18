@@ -19,8 +19,10 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import java.io.IOException;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.AsyncListener;
 import jakarta.servlet.ServletException;

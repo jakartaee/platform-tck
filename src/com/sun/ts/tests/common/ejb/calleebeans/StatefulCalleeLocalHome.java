@@ -21,9 +21,9 @@
 package com.sun.ts.tests.common.ejb.calleebeans;
 
 import java.util.Properties;
-import jakarta.ejb.EJBLocalHome;
+
 import jakarta.ejb.CreateException;
-import jakarta.ejb.FinderException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface StatefulCalleeLocalHome extends EJBLocalHome {
 

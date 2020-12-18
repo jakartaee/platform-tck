@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.integration.entity.jspejbjdbc;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 import java.util.Properties;
-import java.rmi.RemoteException;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class AccessJSPBean {
 

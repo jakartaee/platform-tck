@@ -21,10 +21,10 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
 import java.util.logging.Level;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public class CoffeeUtil {
   private CoffeeUtil() {

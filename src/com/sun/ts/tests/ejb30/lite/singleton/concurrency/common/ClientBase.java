@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.common;
 
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-import jakarta.ejb.EJB;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
 public class ClientBase extends EJBLiteClientBase {
   protected final int NUM_OF_THREADS = 100;

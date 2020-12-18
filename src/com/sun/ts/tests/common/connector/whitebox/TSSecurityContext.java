@@ -16,19 +16,21 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.work.SecurityContext;
-import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.Subject;
 import java.security.Principal;
-import jakarta.security.auth.message.callback.CallerPrincipalCallback;
-import jakarta.security.auth.message.callback.PasswordValidationCallback;
-import jakarta.security.auth.message.callback.GroupPrincipalCallback;
-import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
-import com.sun.ts.tests.common.connector.util.*;
+import java.util.List;
+
+import javax.security.auth.Subject;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.work.SecurityContext;
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
 
 /*
  * This is used to facilitate testing of the SecurityContext class.

@@ -24,16 +24,11 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.bmp.bm.TxR_Diamond;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
 
 public class Client extends EETest {
 

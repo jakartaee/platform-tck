@@ -2,7 +2,7 @@
 * 
 * The Apache Software License, Version 1.1
 *
-* Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+* Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
 * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
 * reserved.
 *
@@ -54,11 +54,12 @@
 * <http://www.apache.org/>.
 *
 */
+
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.usebean;
 
 import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class NewCounter extends Counter implements java.io.Serializable {
 

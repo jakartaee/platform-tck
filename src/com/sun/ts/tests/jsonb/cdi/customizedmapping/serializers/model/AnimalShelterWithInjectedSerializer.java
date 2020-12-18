@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected;
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalListSerializer;
 
 import jakarta.json.bind.annotation.JsonbTypeDeserializer;
 import jakarta.json.bind.annotation.JsonbTypeSerializer;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnimalShelterWithInjectedSerializer {
   @JsonbTypeSerializer(AnimalListSerializer.class)

@@ -16,25 +16,24 @@
 
 package com.sun.ts.tests.connector.resourceDefs.ejb;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import jakarta.resource.AdministeredObjectDefinition;
-import jakarta.resource.AdministeredObjectDefinitions;
-
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.HttpMethodConstraint;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.annotation.security.DeclareRoles;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /*
  * This is testing AdministeredObjectDefinition in the different environment 

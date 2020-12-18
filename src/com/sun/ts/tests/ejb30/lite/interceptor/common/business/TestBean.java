@@ -19,6 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
@@ -26,10 +30,6 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 
 @Singleton
 @ExcludeDefaultInterceptors

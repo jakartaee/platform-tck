@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.busifacedd;
 
+import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
-import com.sun.ts.tests.ejb30.common.busiface.TestIF;
-import jakarta.ejb.EJB;
-import com.sun.javatest.Status;
-
 import com.sun.ts.tests.ejb30.common.busiface.ClientBase;
+import com.sun.ts.tests.ejb30.common.busiface.TestIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   @EJB

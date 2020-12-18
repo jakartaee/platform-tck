@@ -17,9 +17,9 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import jakarta.websocket.MessageHandler;
-
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
+
+import jakarta.websocket.MessageHandler;
 
 public class StringPartialMessageHandler
     implements MessageHandler.Partial<String> {

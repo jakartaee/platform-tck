@@ -19,11 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.stateless.annotated;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
+
+import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
+import jakarta.ejb.Stateless;
 
 @Stateless
 @LocalBean

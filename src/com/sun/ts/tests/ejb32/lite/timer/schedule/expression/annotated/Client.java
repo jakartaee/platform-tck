@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.annotated;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   @EJB(beanName = "ScheduleBean")

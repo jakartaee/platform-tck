@@ -16,6 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
@@ -25,9 +29,6 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 public class Client extends PMClientBase {
 

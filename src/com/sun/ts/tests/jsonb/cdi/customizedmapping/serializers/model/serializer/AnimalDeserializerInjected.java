@@ -20,6 +20,12 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
+import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.CAT;
+import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.DOG;
+import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.GENERIC;
+
+import java.lang.reflect.Type;
+
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder;
 
@@ -27,9 +33,6 @@ import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;
 import jakarta.json.bind.serializer.JsonbDeserializer;
 import jakarta.json.stream.JsonParser;
-import java.lang.reflect.Type;
-
-import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.*;
 
 public class AnimalDeserializerInjected implements JsonbDeserializer<Animal> {
   @Inject

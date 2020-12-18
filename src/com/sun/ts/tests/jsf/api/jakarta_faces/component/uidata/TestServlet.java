@@ -26,8 +26,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValidator;
+import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValueChangeListener;
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.el.ELContext;
-import jakarta.el.ELResolver;
 import jakarta.el.ValueExpression;
 import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
@@ -60,12 +64,6 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseComponentTestServlet;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValidator;
-import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.TCKValueChangeListener;
-import com.sun.ts.tests.jsf.common.resolver.TCKELResolver;
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class TestServlet extends BaseComponentTestServlet {
 

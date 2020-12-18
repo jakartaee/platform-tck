@@ -20,12 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.statetest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import java.util.Properties;
 
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.SessionSynchronization;
 
 public class CounterEJB implements SessionBean, SessionSynchronization {
   // State variables

@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.bmp.bm.Tx_Multi;
 
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
-import jakarta.ejb.*;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TestBeanHome extends EJBHome {
   public TestBean create() throws RemoteException, CreateException;

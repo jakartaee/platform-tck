@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.api.client.clientresponsecontext;
 
-import jakarta.ws.rs.ext.RuntimeDelegate;
-
 import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 import com.sun.ts.tests.jaxrs.common.provider.StringBeanRuntimeDelegate;
+
+import jakarta.ws.rs.ext.RuntimeDelegate;
 
 /**
  * Runtime Delegate for getHeaderStringIsEmptyTest

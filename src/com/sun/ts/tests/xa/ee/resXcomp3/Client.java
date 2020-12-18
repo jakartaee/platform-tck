@@ -23,16 +23,15 @@
  */
 package com.sun.ts.tests.xa.ee.resXcomp3;
 
-import java.io.*;
-import java.util.*;
-import jakarta.transaction.*;
-import javax.transaction.xa.XAException;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.io.Serializable;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.transaction.UserTransaction;
 
 public class Client extends ServiceEETest implements Serializable {
   private TSNamingContext nctx = null;

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
-import jakarta.ejb.Remote;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.Remote;
 
 @Remote
 public interface HelperSingleton {

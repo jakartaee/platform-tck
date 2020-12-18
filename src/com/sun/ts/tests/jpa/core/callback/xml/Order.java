@@ -20,11 +20,17 @@
 
 package com.sun.ts.tests.jpa.core.callback.xml;
 
+import java.util.Collection;
+
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 
-import jakarta.persistence.*;
-import java.util.Collection;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 public class Order extends CallbackStatusImpl
     implements java.io.Serializable, CallbackStatusIF {

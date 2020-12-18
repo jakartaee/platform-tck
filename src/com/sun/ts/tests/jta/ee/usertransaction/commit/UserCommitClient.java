@@ -20,26 +20,21 @@
 
 package com.sun.ts.tests.jta.ee.usertransaction.commit;
 
+import java.io.Serializable;
 // General Java Package Imports
 import java.util.Properties;
-import java.io.Serializable;
 
+import com.sun.ts.lib.harness.ServiceEETest;
 // Common Utilities
 import com.sun.ts.tests.jta.ee.common.Transact;
 
-// TS Specific Utils
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-// Test Specific Imports.
-import jakarta.transaction.Status;
-import jakarta.transaction.UserTransaction;
-import jakarta.transaction.SystemException;
-import jakarta.transaction.NotSupportedException;
-import jakarta.transaction.RollbackException;
 import jakarta.transaction.HeuristicMixedException;
 import jakarta.transaction.HeuristicRollbackException;
+import jakarta.transaction.RollbackException;
+// Test Specific Imports.
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 
 /**
  * The UserCommitClient class tests commit() method of UserTransaction interface

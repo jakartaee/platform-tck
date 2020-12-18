@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.jta.ee.txpropagationtest;
 
-import java.rmi.*;
-import jakarta.ejb.*;
+import java.rmi.RemoteException;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface TxBeanHome extends EJBHome {
   public TxBean create(Properties p) throws RemoteException, CreateException;

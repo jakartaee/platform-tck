@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.HintsContext;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.spi.work.WorkException;
-import jakarta.resource.spi.work.WorkCompletedException;
-import jakarta.resource.spi.work.WorkRejectedException;
-import com.sun.ts.tests.common.connector.util.*;
 import javax.transaction.xa.Xid;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.XATerminator;
-import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.HintsContext;
 import jakarta.resource.spi.work.SecurityContext;
+import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.WorkCompletedException;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
+import jakarta.resource.spi.work.WorkRejectedException;
 
 public class TestWorkManager {
 

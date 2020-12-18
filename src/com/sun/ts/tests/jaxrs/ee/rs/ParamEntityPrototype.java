@@ -17,6 +17,8 @@
 package com.sun.ts.tests.jaxrs.ee.rs;
 
 import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.MatrixParam;
 
 /**
  * This class is to be used with {Any}Param#value

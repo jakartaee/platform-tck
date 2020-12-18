@@ -22,9 +22,9 @@ package com.sun.ts.tests.jsonb.customizedmapping.dateformat.model;
 
 import java.util.Date;
 
-import jakarta.json.bind.annotation.JsonbDateFormat;
-
 import com.sun.ts.tests.jsonb.TypeContainer;
+
+import jakarta.json.bind.annotation.JsonbDateFormat;
 
 public class AnnotatedAccessorsDateContainer implements TypeContainer<Date> {
   private Date instance;

@@ -24,8 +24,8 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.cm;
 
-import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
   public TestBeanLocal create() throws CreateException;

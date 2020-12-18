@@ -19,17 +19,23 @@
  */
 package com.sun.ts.tests.javamail.ee.multipart;
 
-import java.util.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
-import com.sun.javatest.Status;
-
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Properties;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
+
+import jakarta.mail.Message;
+import jakarta.mail.Multipart;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 public class multipart_Test extends ServiceEETest implements Serializable {
   static String msgText1 = "This is a message body.\nHere's line two.";

@@ -21,16 +21,16 @@ package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 
 import java.sql.Connection;
 
-import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.annotation.sql.DataSourceDefinitions;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Singleton;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
+
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.annotation.sql.DataSourceDefinitions;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Singleton;
 
 @Singleton
 @Remote(AppResRemoteIF.class)

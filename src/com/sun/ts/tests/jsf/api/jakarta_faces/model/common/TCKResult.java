@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jsf.api.jakarta_faces.model.common;
 
-import jakarta.faces.FacesException;
-import jakarta.servlet.jsp.jstl.sql.Result;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import jakarta.faces.FacesException;
+import jakarta.servlet.jsp.jstl.sql.Result;
 
 /**
  * <p>

@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.work.WorkManager;
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkException;
-import com.sun.ts.tests.common.connector.util.*;
+import jakarta.resource.spi.work.WorkManager;
 
 public class WorkImpl implements Work {
   protected WorkManager wm;

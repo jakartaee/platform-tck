@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.single;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface FloatBean extends EJBObject {

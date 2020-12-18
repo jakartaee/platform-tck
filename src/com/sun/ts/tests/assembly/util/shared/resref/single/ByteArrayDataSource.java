@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.assembly.util.shared.resref.single;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.util.*;
-import com.sun.javatest.Status;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 
-import jakarta.mail.*;
-import jakarta.activation.*;
-import jakarta.mail.internet.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.activation.DataSource;
 
 class ByteArrayDataSource implements DataSource {
   private byte[] data;

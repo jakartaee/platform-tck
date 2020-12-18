@@ -21,9 +21,10 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.ejb30.common.callback.ClientBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
+import com.sun.ts.tests.ejb30.common.callback.ClientBase;
+
 import jakarta.ejb.EJB;
 
 /**

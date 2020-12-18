@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.equals.annotated;
 
+import com.sun.ts.tests.ejb30.common.equals.LocalShoppingCartIF;
+import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
+
+import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
-import jakarta.ejb.Stateful;
 import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
-import com.sun.ts.tests.ejb30.common.equals.LocalShoppingCartIF;
+import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 

@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
-import jakarta.ejb.EJB;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
+import jakarta.ejb.EJB;
 
 public class Client extends
     com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.ClientBase {

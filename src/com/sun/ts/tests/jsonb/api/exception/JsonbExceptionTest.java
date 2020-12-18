@@ -22,11 +22,11 @@ package com.sun.ts.tests.jsonb.api.exception;
 
 import java.util.Properties;
 
-import jakarta.json.bind.JsonbException;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
+
+import jakarta.json.bind.JsonbException;
 
 /**
  * @test

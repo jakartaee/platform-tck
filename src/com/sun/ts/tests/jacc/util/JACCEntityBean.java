@@ -23,14 +23,16 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import jakarta.ejb.EntityBean;
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EntityContext;
-import jakarta.ejb.EJBException;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.TestUtil;
 import java.rmi.RemoteException;
 import java.security.Principal;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityBean;
+import jakarta.ejb.EntityContext;
 
 public abstract class JACCEntityBean implements EntityBean {
 

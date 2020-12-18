@@ -23,6 +23,14 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 
+import javax.xml.namespace.QName;
+
+import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
+import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
+import com.sun.ts.tests.jaxrs.common.impl.StringSource;
+import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
+import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -31,13 +39,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseEventSink;
 import jakarta.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
-import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
-import com.sun.ts.tests.jaxrs.common.impl.StringSource;
-import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
-import com.sun.ts.tests.jaxrs.jaxrs21.ee.sse.SSEMessage;
 
 /**
  * Defined in Spec., Section 4.2.4

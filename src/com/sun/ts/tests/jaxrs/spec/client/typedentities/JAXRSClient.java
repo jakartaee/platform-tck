@@ -28,11 +28,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import jakarta.activation.DataSource;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.MultivaluedMap;
-import jakarta.ws.rs.core.StreamingOutput;
-import javax.xml.namespace.QName;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
@@ -41,6 +36,11 @@ import com.sun.ts.tests.jaxrs.common.impl.SinglevaluedMap;
 import com.sun.ts.tests.jaxrs.common.impl.StringDataSource;
 import com.sun.ts.tests.jaxrs.common.impl.StringStreamingOutput;
 import com.sun.ts.tests.jaxrs.ee.rs.ext.messagebodyreaderwriter.ReadableWritableEntity;
+
+import jakarta.activation.DataSource;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.StreamingOutput;
 
 /*
  * @class.setup_props: webServerHost;

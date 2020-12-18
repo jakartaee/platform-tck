@@ -17,11 +17,11 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.PongMessage;
-
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
+
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.PongMessage;
 
 public class PongMessageHandler implements MessageHandler.Whole<PongMessage> {
 

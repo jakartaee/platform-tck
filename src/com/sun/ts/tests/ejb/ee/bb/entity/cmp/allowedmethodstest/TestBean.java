@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
+import java.rmi.RemoteException;
 import java.util.Hashtable;
+
+import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
   public Hashtable getResults() throws RemoteException;

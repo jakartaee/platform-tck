@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
-import jakarta.interceptor.InvocationContext;
 import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 
 /**
  * A business method interceptor for session beans. Only one AroundInvoke method

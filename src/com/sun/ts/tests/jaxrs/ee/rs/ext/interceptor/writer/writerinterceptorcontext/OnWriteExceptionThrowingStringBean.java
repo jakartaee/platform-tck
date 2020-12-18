@@ -18,10 +18,10 @@ package com.sun.ts.tests.jaxrs.ee.rs.ext.interceptor.writer.writerinterceptorcon
 
 import java.io.IOException;
 
-import jakarta.ws.rs.WebApplicationException;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
+import jakarta.ws.rs.WebApplicationException;
 
 public class OnWriteExceptionThrowingStringBean extends StringBean {
 

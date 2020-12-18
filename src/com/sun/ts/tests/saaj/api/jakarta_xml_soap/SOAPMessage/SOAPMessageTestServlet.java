@@ -20,20 +20,40 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPMessage;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.tests.saaj.common.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.Properties;
 
-import jakarta.servlet.http.*;
-import jakarta.servlet.*;
-import jakarta.xml.soap.*;
-import javax.xml.namespace.*;
-import javax.xml.transform.stream.*;
-import java.awt.Image;
+import javax.xml.namespace.QName;
+import javax.xml.transform.stream.StreamSource;
+
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.SOAP_Util;
+
 import jakarta.activation.DataHandler;
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.soap.AttachmentPart;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.MimeHeaders;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPBodyElement;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPEnvelope;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPHeader;
+import jakarta.xml.soap.SOAPHeaderElement;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 public class SOAPMessageTestServlet extends HttpServlet {
   private static final String cntxroot = "/SOAPMessage_web";

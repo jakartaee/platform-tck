@@ -19,6 +19,10 @@ package com.sun.ts.tests.jaxrs.ee.rs.core.configuration;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
+import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
+import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
+
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -29,10 +33,6 @@ import jakarta.ws.rs.core.Configuration;
 import jakarta.ws.rs.core.Feature;
 import jakarta.ws.rs.core.FeatureContext;
 import jakarta.ws.rs.core.MediaType;
-
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Assertable;
-import com.sun.ts.tests.jaxrs.api.rs.core.configurable.Registrar;
-import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
 
 /*
  * @class.setup_props: webServerHost;

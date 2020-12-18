@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.threelevels.descriptor;
 
+import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
+import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
-import jakarta.annotation.Resource;
-
-import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateless(name = "Callback3Bean")
 @Remote({ Callback2IF.class })

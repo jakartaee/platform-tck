@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class ForwardedServlet extends GenericTCKServlet {
 

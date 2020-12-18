@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestBeanBase;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.TwoRemoteHome;
-import jakarta.ejb.SessionContext;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
+
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
+import jakarta.ejb.SessionContext;
 
 //@Stateless(name="ThreeTestBean")
 //@Remote(ThreeTestIF.class)

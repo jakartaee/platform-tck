@@ -20,7 +20,9 @@
 
 package com.sun.ts.tests.jms.common;
 
-import jakarta.jms.*;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageFormatException;
+import jakarta.jms.TextMessage;
 
 public class InvalidTextMessageTestImpl extends MessageTestImpl
     implements TextMessage {

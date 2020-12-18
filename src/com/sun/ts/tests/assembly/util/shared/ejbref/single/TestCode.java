@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,9 +22,28 @@ package com.sun.ts.tests.assembly.util.shared.ejbref.single;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.assembly.util.refbean.*;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.assembly.util.refbean.BMPExternal;
+import com.sun.ts.tests.assembly.util.refbean.BMPExternalHome;
+import com.sun.ts.tests.assembly.util.refbean.BMPInternal;
+import com.sun.ts.tests.assembly.util.refbean.BMPInternalHome;
+import com.sun.ts.tests.assembly.util.refbean.CMP11External;
+import com.sun.ts.tests.assembly.util.refbean.CMP11ExternalHome;
+import com.sun.ts.tests.assembly.util.refbean.CMP11Internal;
+import com.sun.ts.tests.assembly.util.refbean.CMP11InternalHome;
+import com.sun.ts.tests.assembly.util.refbean.CMP20External;
+import com.sun.ts.tests.assembly.util.refbean.CMP20ExternalHome;
+import com.sun.ts.tests.assembly.util.refbean.CMP20Internal;
+import com.sun.ts.tests.assembly.util.refbean.CMP20InternalHome;
+import com.sun.ts.tests.assembly.util.refbean.StatefulExternal;
+import com.sun.ts.tests.assembly.util.refbean.StatefulExternalHome;
+import com.sun.ts.tests.assembly.util.refbean.StatefulInternal;
+import com.sun.ts.tests.assembly.util.refbean.StatefulInternalHome;
+import com.sun.ts.tests.assembly.util.refbean.StatelessExternal;
+import com.sun.ts.tests.assembly.util.refbean.StatelessExternalHome;
+import com.sun.ts.tests.assembly.util.refbean.StatelessInternal;
+import com.sun.ts.tests.assembly.util.refbean.StatelessInternalHome;
 
 public class TestCode {
 

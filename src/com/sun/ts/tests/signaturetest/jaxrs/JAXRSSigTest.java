@@ -20,11 +20,11 @@
 package com.sun.ts.tests.signaturetest.jaxrs;
 
 import java.io.PrintWriter;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.*;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.signaturetest.SigTestEE;
 
 /*
  * This class is a simple example of a signature test that extends the

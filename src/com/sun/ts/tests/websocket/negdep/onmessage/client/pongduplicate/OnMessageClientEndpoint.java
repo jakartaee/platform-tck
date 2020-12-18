@@ -17,6 +17,9 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.pongduplicate;
 
+import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
@@ -24,9 +27,6 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {

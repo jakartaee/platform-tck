@@ -21,11 +21,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.sun.ts.tests.ejb30.bb.async.common.AsyncClientBase;
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
-
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-import com.sun.ts.tests.ejb30.bb.async.common.AsyncClientBase;
 
 /**
  * These tests verify various ways of specifying @Asynchronous on interfaces and

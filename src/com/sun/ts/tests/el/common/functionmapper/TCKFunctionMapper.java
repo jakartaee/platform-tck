@@ -21,11 +21,12 @@
 
 package com.sun.ts.tests.el.common.functionmapper;
 
-import com.sun.ts.lib.util.TestUtil;
 import java.lang.reflect.Method;
-import jakarta.el.FunctionMapper;
-
 import java.util.HashMap;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.el.FunctionMapper;
 
 /* A simple implementation of FunctionMapper that maps only
    a single function to Integer.valueOf(String).

@@ -22,13 +22,13 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.ann
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
+
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
 
 /**
  * All @AccessTimeout metadata are specified in bean class itself at method

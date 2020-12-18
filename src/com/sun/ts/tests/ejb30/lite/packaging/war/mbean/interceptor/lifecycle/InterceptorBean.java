@@ -21,10 +21,6 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
 import java.util.logging.Level;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.annotation.PostConstruct;
-import jakarta.interceptor.Interceptors;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor2;
@@ -34,6 +30,10 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor8;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
+
+import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.interceptor.Interceptors;
 
 //2, 1 & 3 are prepended here to replace default interceptors.  In other
 //test directories (e.g., lite/interceptor/singleton/lifecycle/annotated,

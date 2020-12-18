@@ -20,12 +20,14 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing3;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import java.util.*;
-import java.rmi.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestBeanEJB implements SessionBean {
 

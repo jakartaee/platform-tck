@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
+
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;

@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
 import jakarta.resource.spi.work.Work;
-import com.sun.ts.tests.common.connector.util.*;
 
 public class ScheduleWork implements Work {
 

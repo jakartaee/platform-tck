@@ -32,13 +32,12 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
+
 import jakarta.ejb.ConcurrentAccessException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
 
 @EJBs({
     @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),

@@ -20,8 +20,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejblink.scope;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface ReferencedBeanHome extends EJBHome {
 

@@ -20,9 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.sbaccesstest;
 
-import jakarta.ejb.*;
-import java.rmi.*;
 import java.util.Properties;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBLocalHome;
+import jakarta.ejb.FinderException;
 
 public interface CLocalHome extends EJBLocalHome {
   public CLocal createC(Properties p, int cofID, String cofName, float cofPrice)

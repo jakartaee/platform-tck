@@ -26,13 +26,13 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase;
+
 import jakarta.ejb.ConcurrentAccessException;
 import jakarta.ejb.ConcurrentAccessTimeoutException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
-
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase;
 
 @EJBs({
     @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanRemote, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutRemoteIF.class),

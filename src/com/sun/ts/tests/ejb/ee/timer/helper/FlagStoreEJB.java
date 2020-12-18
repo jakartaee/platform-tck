@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
-import com.sun.ts.tests.ejb.ee.timer.common.*;
-import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.ejb.*;
 import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
+
+import jakarta.ejb.CreateException;
 
 public abstract class FlagStoreEJB extends CMP20Wrapper {
 

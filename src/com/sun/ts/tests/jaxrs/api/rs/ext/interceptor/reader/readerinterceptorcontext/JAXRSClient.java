@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.readerinterceptorcontext;
 
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
-
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.TemplateInterceptorBody;
 import com.sun.ts.tests.jaxrs.api.rs.ext.interceptor.reader.ReaderClient;
 import com.sun.ts.tests.jaxrs.common.client.TextCaser;
 import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 /*
  * @class.setup_props: webServerHost;

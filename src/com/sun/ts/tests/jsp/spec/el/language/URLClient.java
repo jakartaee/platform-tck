@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,13 +21,9 @@
 package com.sun.ts.tests.jsp.spec.el.language;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
-// these imports are invoked in jsps; declared here only to force 
-// compilation so classes will be included in packaging
-import com.sun.ts.tests.common.el.spec.Book;
-import com.sun.ts.tests.jsp.common.tags.tck.SetTag;
 
 public class URLClient extends AbstractUrlClient {
 

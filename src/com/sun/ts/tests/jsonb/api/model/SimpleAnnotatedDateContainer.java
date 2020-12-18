@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.jsonb.api.model;
 
+import java.util.Date;
+
 import com.sun.ts.tests.jsonb.TypeContainer;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
-import java.util.Date;
 
 public class SimpleAnnotatedDateContainer implements TypeContainer<Date> {
   @JsonbDateFormat(value = "EEE, dd MMM yyyy", locale = "de")

@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.ejb30.webservice.interceptor;
 
-import jakarta.jws.WebService;
-import jakarta.jws.WebMethod;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
+import jakarta.jws.WebService;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless

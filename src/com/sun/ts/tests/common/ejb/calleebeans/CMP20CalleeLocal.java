@@ -21,6 +21,7 @@
 package com.sun.ts.tests.common.ejb.calleebeans;
 
 import java.util.Properties;
+
 import jakarta.ejb.EJBLocalObject;
 
 public interface CMP20CalleeLocal extends EJBLocalObject {

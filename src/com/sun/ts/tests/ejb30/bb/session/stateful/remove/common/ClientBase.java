@@ -20,20 +20,21 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 
+import java.rmi.NoSuchObjectException;
+import java.rmi.RemoteException;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.rmi.NoSuchObjectException;
-import jakarta.ejb.CreateException;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.EETest.Fault;
-import java.rmi.RemoteException;
-import java.util.Properties;
-import jakarta.ejb.Handle;
-import jakarta.ejb.NoSuchEJBException;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.Handle;
+import jakarta.ejb.NoSuchEJBException;
 import jakarta.ejb.RemoveException;
 
 abstract public class ClientBase extends EETest {

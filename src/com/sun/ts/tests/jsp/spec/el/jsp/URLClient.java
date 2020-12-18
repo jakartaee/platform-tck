@@ -21,13 +21,9 @@
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
 import java.io.PrintWriter;
+
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
-// these imports are invoked in jsps; declared here only to force 
-// compilation so classes will be included in packaging
-import com.sun.ts.tests.common.el.spec.Book;
-import com.sun.ts.tests.jsp.common.tags.tck.SetTag;
 
 public class URLClient extends AbstractUrlClient {
 

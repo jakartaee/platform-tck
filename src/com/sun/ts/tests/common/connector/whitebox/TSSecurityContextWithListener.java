@@ -16,8 +16,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import jakarta.resource.spi.work.WorkContextLifecycleListener;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+
+import jakarta.resource.spi.work.WorkContextLifecycleListener;
 
 public class TSSecurityContextWithListener extends TSSecurityContext
     implements WorkContextLifecycleListener {

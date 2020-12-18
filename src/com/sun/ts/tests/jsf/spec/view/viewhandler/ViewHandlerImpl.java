@@ -19,13 +19,13 @@
  */
 package com.sun.ts.tests.jsf.spec.view.viewhandler;
 
+import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
+
 import jakarta.faces.FacesException;
 import jakarta.faces.application.ViewHandler;
 import jakarta.faces.application.ViewHandlerWrapper;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
-
-import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
 public class ViewHandlerImpl extends ViewHandlerWrapper {
 

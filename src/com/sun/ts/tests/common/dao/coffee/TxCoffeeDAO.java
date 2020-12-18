@@ -20,11 +20,6 @@
 
 package com.sun.ts.tests.common.dao.coffee;
 
-import java.util.Properties;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import jakarta.ejb.CreateException;
-
 /**
  * DAO Object for table using the "coffee" DB schema:
  *

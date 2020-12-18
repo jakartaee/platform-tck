@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
 
 import jakarta.jws.WebService;
 

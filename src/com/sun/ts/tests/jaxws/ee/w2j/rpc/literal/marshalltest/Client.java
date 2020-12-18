@@ -20,35 +20,26 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.*;
-
-import java.io.*;
-import java.net.*;
-import java.rmi.*;
-import java.util.*;
-
-import jakarta.xml.ws.*;
-import jakarta.xml.soap.*;
-
-import java.util.Properties;
-import java.util.GregorianCalendar;
-import java.util.Calendar;
-
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 
+import javax.xml.datatype.Duration;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.JAXWS_Data;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest;
 
-import com.sun.ts.tests.jaxws.common.*;
-
-import javax.naming.InitialContext;
-
-import javax.xml.datatype.*;
+import jakarta.xml.ws.WebServiceException;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

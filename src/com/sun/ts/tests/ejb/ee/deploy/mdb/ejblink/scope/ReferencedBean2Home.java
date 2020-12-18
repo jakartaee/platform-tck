@@ -20,8 +20,9 @@
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.scope;
 
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
 public interface ReferencedBean2Home extends EJBHome {
 

@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TxBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TxIF;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;

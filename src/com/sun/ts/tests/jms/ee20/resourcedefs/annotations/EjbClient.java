@@ -16,25 +16,31 @@
 
 package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
 import java.util.Properties;
-import java.util.ArrayList;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
-import jakarta.jms.*;
-import jakarta.transaction.*;
-import javax.naming.*;
-import jakarta.inject.Inject;
-import jakarta.annotation.Resource;
-import jakarta.annotation.PostConstruct;
-
-import com.sun.ts.tests.jms.common.*;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSConnectionFactoryDefinition;
+import jakarta.jms.JMSConnectionFactoryDefinitions;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSDestinationDefinition;
+import jakarta.jms.JMSDestinationDefinitions;
+import jakarta.jms.JMSProducer;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.TextMessage;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 
 //-------------------------------------
 // JMS Destination Resource Definitions

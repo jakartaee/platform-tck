@@ -19,11 +19,12 @@
  */
 package com.sun.ts.tests.jsf.api.jakarta_faces.event.common;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.jsf.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.behavior.Behavior;
 import jakarta.faces.event.BehaviorEvent;

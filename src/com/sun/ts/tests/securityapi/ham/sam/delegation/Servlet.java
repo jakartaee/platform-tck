@@ -17,7 +17,6 @@
 package com.sun.ts.tests.securityapi.ham.sam.delegation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;

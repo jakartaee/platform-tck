@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
+import com.sun.ts.tests.jaxrs.common.provider.StringBean;
+
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
-
-import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 
 @Path("resource/definition")
 public class ConstraintDefinitionResource {

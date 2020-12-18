@@ -23,6 +23,8 @@ package com.sun.ts.tests.ejb30.timer.common;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.MESSAGE_TIME_TO_LIVE;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.Queue;
@@ -32,8 +34,6 @@ import jakarta.jms.QueueSender;
 import jakarta.jms.QueueSession;
 import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 
 public class MessageSenderBean {
 

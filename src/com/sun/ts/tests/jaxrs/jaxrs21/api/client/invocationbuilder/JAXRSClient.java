@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.api.client.invocationbuilder;
 
-import jakarta.ws.rs.client.ClientBuilder;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.client.ClientBuilder;
 
 /*
  * @class.setup_props: webServerHost;

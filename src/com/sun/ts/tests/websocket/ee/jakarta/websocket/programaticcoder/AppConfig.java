@@ -20,13 +20,13 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.server.ServerApplicationConfig;
-import jakarta.websocket.server.ServerEndpointConfig;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCLoggerServer;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCSimpleBinaryEchoServer;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCSimpleEchoServer;
+
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.server.ServerApplicationConfig;
+import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig implements ServerApplicationConfig {
 

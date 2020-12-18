@@ -20,15 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessioncontexttest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import jakarta.ejb.*;
-import java.rmi.*;
-import java.util.*;
-import java.io.*;
 import java.security.Principal;
-import jakarta.transaction.*;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EJBObject;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
+import jakarta.transaction.UserTransaction;
 
 public class TestBeanEJB implements SessionBean {
   // Expected property names

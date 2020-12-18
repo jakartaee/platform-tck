@@ -21,6 +21,7 @@
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejblink.casesens;
 
 import java.rmi.RemoteException;
+
 import jakarta.ejb.EJBObject;
 
 public interface CaseBean extends EJBObject {

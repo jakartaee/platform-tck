@@ -20,10 +20,11 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.util.Properties;
 import java.rmi.RemoteException;
-import jakarta.ejb.EJBHome;
+import java.util.Properties;
+
 import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 
 public interface CMP11InternalHome extends EJBHome {

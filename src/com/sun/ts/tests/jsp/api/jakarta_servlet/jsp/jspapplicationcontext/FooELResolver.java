@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspapplicationcontext;
 
+import java.util.Iterator;
+
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
-import java.util.Iterator;
 
 public class FooELResolver extends ELResolver {
   public Object getValue(ELContext context, Object base, Object property)

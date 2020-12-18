@@ -24,12 +24,12 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 
 import java.util.Properties;
 
-import jakarta.ejb.EJB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
+
+import jakarta.ejb.EJB;
 
 /**
  * Similar tests are also at ejb30/lite/xmloverride/ejbref. This test dir tests

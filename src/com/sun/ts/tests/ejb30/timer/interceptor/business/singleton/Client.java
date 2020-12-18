@@ -20,6 +20,7 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.business.singleton;
 
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
+
 import jakarta.ejb.EJB;
 
 public class Client extends

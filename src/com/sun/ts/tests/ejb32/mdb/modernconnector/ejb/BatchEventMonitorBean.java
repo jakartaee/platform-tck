@@ -16,14 +16,14 @@
 
 package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
+import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor;
+import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener;
+
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.interceptor.Interceptors;
-
-import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor;
-import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener;
 
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "category", propertyValue = "batch") })

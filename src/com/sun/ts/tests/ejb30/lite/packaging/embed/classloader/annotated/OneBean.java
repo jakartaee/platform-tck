@@ -19,10 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
-import jakarta.ejb.Singleton;
-import jakarta.annotation.PreDestroy;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import java.sql.Connection;
+
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.annotation.PreDestroy;
+import jakarta.ejb.Singleton;
 
 @Singleton
 public class OneBean extends BeanBase implements LocalIF {

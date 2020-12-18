@@ -17,13 +17,13 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.pasrv.nomoreendpoints;
 
+import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
+
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.websocket.server.ServerContainer;
-
-import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
 
 @WebListener
 public class TestListener implements ServletContextListener {

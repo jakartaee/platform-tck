@@ -19,10 +19,11 @@
  */
 package com.sun.ts.tests.jsf.spec.resource.common.util;
 
-import java.io.PrintWriter;
-import jakarta.faces.application.Resource;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.StringWriter;
+
+import jakarta.faces.application.Resource;
 import jakarta.faces.application.ResourceHandler;
 
 public class ResourceChecker {

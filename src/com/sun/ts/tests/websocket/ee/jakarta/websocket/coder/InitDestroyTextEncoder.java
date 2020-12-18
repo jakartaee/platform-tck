@@ -17,11 +17,11 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.EndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
+
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyTextEncoder extends StringBeanTextEncoder {
   @Override

@@ -16,20 +16,21 @@
 
 package com.sun.ts.tests.servlet.spec.security.clientcertanno;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.cert.X509Certificate;
+
+import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.HttpMethodConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
+import jakarta.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
+import jakarta.servlet.annotation.ServletSecurity.TransportGuarantee;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.annotation.ServletSecurity;
-import jakarta.servlet.annotation.ServletSecurity.*;
-import jakarta.servlet.annotation.HttpMethodConstraint;
-import jakarta.servlet.annotation.HttpConstraint;
 
 /*
  * There are security annotations being used now which shoudl eliminate the 

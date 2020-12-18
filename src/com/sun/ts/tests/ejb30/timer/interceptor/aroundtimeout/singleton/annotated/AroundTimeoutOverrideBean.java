@@ -19,16 +19,16 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated;
 
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutBeanBase;
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor3;
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4;
+import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
+
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
-
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutBeanBase;
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4;
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor3;
-import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
 
 @Singleton
 @Interceptors({ Interceptor4.class, Interceptor3.class })

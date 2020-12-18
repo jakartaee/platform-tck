@@ -23,15 +23,15 @@ import static com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Arou
 
 import java.util.logging.Level;
 
-import jakarta.ejb.EJB;
-import jakarta.ejb.Timer;
-import jakarta.interceptor.AroundTimeout;
-import jakarta.interceptor.InvocationContext;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.timer.common.TimeoutStatusBean;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+
+import jakarta.ejb.EJB;
+import jakarta.ejb.Timer;
+import jakarta.interceptor.AroundTimeout;
+import jakarta.interceptor.InvocationContext;
 
 //all EJBs need to declare at least one interceptor that extends InterceptorBase to make @EJB
 //injection work in this class.

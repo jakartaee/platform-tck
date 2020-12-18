@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Converts;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /*
  * FullTimeEmployee entity extends an MappedSuperClass while overriding

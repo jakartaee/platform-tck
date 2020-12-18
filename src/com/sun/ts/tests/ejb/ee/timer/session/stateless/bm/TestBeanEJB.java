@@ -20,16 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.bm;
 
-import com.sun.ts.tests.ejb.ee.timer.common.*;
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
-import com.sun.ts.lib.util.*;
-
-import java.util.Properties;
 import java.io.Serializable;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import jakarta.jms.QueueConnectionFactory;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import com.sun.ts.tests.ejb.ee.timer.common.TimerImpl;
+import com.sun.ts.tests.ejb.ee.timer.common.TimerInfo;
+
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerHandle;
+import jakarta.ejb.TimerService;
 import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.transaction.UserTransaction;
 
 public class TestBeanEJB extends StatelessWrapper implements TimedObject {
 

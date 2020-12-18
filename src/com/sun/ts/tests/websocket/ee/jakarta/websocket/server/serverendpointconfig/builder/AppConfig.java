@@ -23,13 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Encoder;
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.Extension;
-import jakarta.websocket.server.ServerApplicationConfig;
-import jakarta.websocket.server.ServerEndpointConfig;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
@@ -39,6 +32,13 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig.ServerEndpointConfigConfigurator;
+
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.Extension;
+import jakarta.websocket.server.ServerApplicationConfig;
+import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig implements ServerApplicationConfig {
   static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };

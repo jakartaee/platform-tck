@@ -22,10 +22,10 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.noattrremotelocal;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
 
 @Local
 @Stateless(name = "SessionBeanLocalBean")

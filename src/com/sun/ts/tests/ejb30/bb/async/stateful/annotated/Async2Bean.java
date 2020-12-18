@@ -16,12 +16,12 @@
 
 package com.sun.ts.tests.ejb30.bb.async.stateful.annotated;
 
+import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
+import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncIF;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-
-import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
-import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncIF;
 
 @Stateful
 @Local({ StatefulAsync2IF.class, StatefulAsyncIF.class })

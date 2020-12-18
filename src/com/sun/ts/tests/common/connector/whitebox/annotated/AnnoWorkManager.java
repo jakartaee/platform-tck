@@ -16,21 +16,21 @@
 
 package com.sun.ts.tests.common.connector.whitebox.annotated;
 
-import jakarta.resource.spi.BootstrapContext;
-import jakarta.resource.spi.work.WorkManager;
-import jakarta.resource.spi.work.Work;
-import jakarta.resource.spi.work.ExecutionContext;
-import jakarta.resource.spi.work.WorkException;
-import jakarta.resource.spi.work.TransactionContext;
-import jakarta.resource.spi.XATerminator;
-import jakarta.resource.spi.work.SecurityContext;
-import com.sun.ts.tests.common.connector.util.*;
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.Xid;
+
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.WorkImpl;
 import com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl;
 import com.sun.ts.tests.common.connector.whitebox.XidImpl;
-import javax.transaction.xa.Xid;
-import javax.transaction.xa.XAException;
+
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.XATerminator;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.TransactionContext;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
 
 public class AnnoWorkManager {
   private BootstrapContext bsc = null;

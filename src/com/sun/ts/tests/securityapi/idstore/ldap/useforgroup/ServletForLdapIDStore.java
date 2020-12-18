@@ -16,26 +16,16 @@
 
 package com.sun.ts.tests.securityapi.idstore.ldap.useforgroup;
 
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
-import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import jakarta.annotation.security.DeclareRoles;
+import jakarta.security.enterprise.identitystore.IdentityStore.ValidationType;
 import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
-import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition.LdapSearchScope;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.HttpConstraint;
-import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.annotation.sql.DataSourceDefinition;
 
 @LdapIdentityStoreDefinition(
     url = "ldap://localhost:11389/", 

@@ -23,15 +23,15 @@ package com.sun.ts.tests.el.api.jakarta_el.variablemapper;
 
 import java.util.Properties;
 
-import jakarta.el.ExpressionFactory;
-import jakarta.el.ValueExpression;
-import jakarta.el.VariableMapper;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+
+import jakarta.el.ExpressionFactory;
+import jakarta.el.ValueExpression;
+import jakarta.el.VariableMapper;
 
 public class ELClient extends ServiceEETest {
 

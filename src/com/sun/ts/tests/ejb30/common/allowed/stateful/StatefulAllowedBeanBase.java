@@ -20,11 +20,13 @@
 
 package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
+import java.util.Properties;
+
 import com.sun.ts.tests.ejb30.common.allowed.AllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
-import java.util.Properties;
+
 import jakarta.ejb.SessionContext;
 
 public class StatefulAllowedBeanBase extends AllowedBeanBase

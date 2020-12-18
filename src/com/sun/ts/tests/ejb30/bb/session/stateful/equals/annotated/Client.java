@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.equals.annotated;
 
-import jakarta.ejb.EJB;
 import javax.naming.NamingException;
 
 import com.sun.javatest.Status;
@@ -31,6 +30,8 @@ import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // testBean is injected into ClientBase

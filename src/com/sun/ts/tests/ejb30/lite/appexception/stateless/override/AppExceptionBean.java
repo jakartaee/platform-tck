@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.stateless.override;
 
-import jakarta.ejb.Local;
-import jakarta.ejb.Stateless;
-
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionLocalIF;
+
+import jakarta.ejb.Local;
+import jakarta.ejb.Stateless;
 
 @Stateless
 @Local({ AppExceptionLocalIF.class, AppExceptionIF.class })

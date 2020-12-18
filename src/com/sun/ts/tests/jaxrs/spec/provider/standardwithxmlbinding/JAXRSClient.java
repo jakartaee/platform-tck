@@ -17,6 +17,7 @@
 package com.sun.ts.tests.jaxrs.spec.provider.standardwithxmlbinding;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import jakarta.ws.rs.core.MediaType;
 
 /*

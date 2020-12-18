@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.jaxrs.ee.rs.get;
 
-import jakarta.ws.rs.core.MediaType;
-
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
+import jakarta.ws.rs.core.MediaType;
 
 /*
  * @class.setup_props: webServerHost;

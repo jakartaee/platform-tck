@@ -20,8 +20,9 @@
 package com.sun.ts.tests.jms.core20.appclient.jmscontextqueuetests;
 
 import com.sun.ts.lib.util.TestUtil;
-import jakarta.jms.*;
-import java.util.ArrayList;
+
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
 
 public class MyMessageListener2 implements MessageListener {
 

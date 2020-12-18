@@ -21,17 +21,18 @@
 package com.sun.ts.tests.common.ejb.wrappers;
 
 import java.util.Properties;
-import java.io.Serializable;
-import java.io.IOException;
+
 import javax.naming.NamingException;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.CreateException;
 import jakarta.ejb.RemoveException;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.RemoteLoggingInitException;
 
 /**
  * CMP 1.1 wrapper that provide the bean life cycle methods for a CMP 1.1 bean.

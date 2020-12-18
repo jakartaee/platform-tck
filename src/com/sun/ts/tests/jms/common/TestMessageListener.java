@@ -19,14 +19,13 @@
  */
 package com.sun.ts.tests.jms.common;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.io.*;
-import java.rmi.RemoteException;
-import java.util.*;
-import com.sun.javatest.Status;
-import jakarta.jms.*;
+import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.jms.Message;
+import jakarta.jms.MessageConsumer;
+import jakarta.jms.TextMessage;
 
 /**
  * Message Listener implementation for JMS testing

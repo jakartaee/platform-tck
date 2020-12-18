@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,21 +20,25 @@
 
 package com.sun.ts.tests.jdbc.ee.connection.connection1;
 
-import java.io.*;
-import java.util.*;
-import java.math.*;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 
-import java.sql.*;
-import javax.sql.*;
-
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.rmi.RemoteException;
+import javax.sql.DataSource;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.jdbc.ee.common.*;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TSNamingContextInterface;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
+import com.sun.ts.tests.jdbc.ee.common.DriverManagerConnection;
+import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
+import com.sun.ts.tests.jdbc.ee.common.dbSchema;
+import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 
 // Merant DataSource class
 //import com.merant.sequelink.jdbcx.datasource.*;

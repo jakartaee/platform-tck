@@ -20,10 +20,10 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 import java.io.IOException;
 import java.io.Writer;
 
-import jakarta.websocket.EncodeException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
+
+import jakarta.websocket.EncodeException;
 
 public class ThrowingIOTextStreamEncoder extends StringBeanTextStreamEncoder {
 

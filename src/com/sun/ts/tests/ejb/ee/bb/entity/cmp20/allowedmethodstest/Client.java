@@ -23,18 +23,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
+import java.rmi.RemoteException;
+import java.util.Hashtable;
+import java.util.Properties;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSLoginContext;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
 
 public class Client extends EETest {
   private static final String testName = "AllowedmethodsTest";

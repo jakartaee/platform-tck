@@ -19,12 +19,6 @@
  */
 package com.sun.ts.tests.ejb30.common.appexception;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import java.util.HashMap;
-import java.util.Map;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.transaction.UserTransaction;
 import static jakarta.transaction.Status.STATUS_ACTIVE;
 import static jakarta.transaction.Status.STATUS_COMMITTED;
 import static jakarta.transaction.Status.STATUS_COMMITTING;
@@ -35,6 +29,15 @@ import static jakarta.transaction.Status.STATUS_PREPARING;
 import static jakarta.transaction.Status.STATUS_ROLLEDBACK;
 import static jakarta.transaction.Status.STATUS_ROLLING_BACK;
 import static jakarta.transaction.Status.STATUS_UNKNOWN;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.transaction.UserTransaction;
 
 public class RollbackBeanBase implements RollbackIF {
   @EJB(beanName = "AppExceptionBean", description = "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")

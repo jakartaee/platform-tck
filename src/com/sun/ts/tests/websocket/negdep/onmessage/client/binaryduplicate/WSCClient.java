@@ -19,10 +19,10 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.binaryduplicate;
 
 import java.nio.ByteBuffer;
 
-import jakarta.websocket.DeploymentException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
+
+import jakarta.websocket.DeploymentException;
 
 /*
  * @class.setup_props: webServerHost;

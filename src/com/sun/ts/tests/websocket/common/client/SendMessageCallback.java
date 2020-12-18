@@ -17,20 +17,20 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-import static com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.logTrace;
 import static com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.logMsg;
+import static com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.logTrace;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
+import com.sun.ts.tests.websocket.common.impl.StringPingMessage;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
-
-import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
-import com.sun.ts.tests.websocket.common.impl.StringPingMessage;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 /**
  * The default {@link EndpointCallback} that is used in tests. This callback

@@ -24,21 +24,14 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupByShortN
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import jakarta.ejb.EJB;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
 
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import jakarta.annotation.PreDestroy;
-import java.util.concurrent.CopyOnWriteArrayList;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 
 abstract public class BeanBase implements LocalIF {
 

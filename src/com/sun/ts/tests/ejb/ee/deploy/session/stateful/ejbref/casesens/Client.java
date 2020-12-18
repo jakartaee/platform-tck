@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.casesens;
 
-import java.io.*;
-import java.util.*;
-import jakarta.ejb.EJBHome;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TSNamingContextInterface;
 
 public class Client extends EETest {
 

@@ -23,11 +23,11 @@
 
 package com.sun.ts.tests.jacc.util;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.security.Principal;
+
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
-import java.security.Principal;
 
 public class JACCSessionBean implements SessionBean {
 

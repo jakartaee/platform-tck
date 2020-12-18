@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server;
 
 import jakarta.jws.WebService;
-import jakarta.jws.WebMethod;
 
 @WebService
 public class TestImplBaseBase {

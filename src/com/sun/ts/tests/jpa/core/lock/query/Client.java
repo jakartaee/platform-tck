@@ -16,15 +16,19 @@
 
 package com.sun.ts.tests.jpa.core.lock.query;
 
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Properties;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.sql.Date;
-import java.util.Collection;
-import java.util.List;
-import java.util.Properties;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
+import jakarta.persistence.Query;
+import jakarta.persistence.TransactionRequiredException;
+import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
 

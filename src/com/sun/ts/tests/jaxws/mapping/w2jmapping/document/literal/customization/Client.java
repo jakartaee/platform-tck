@@ -20,21 +20,20 @@
 
 package com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.customization;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import java.lang.reflect.*;
-import java.lang.annotation.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.Properties;
+
 import javax.xml.namespace.QName;
-import jakarta.xml.ws.WebServiceFeature;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import java.util.Properties;
-
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.AnnotationUtils;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import jakarta.xml.ws.WebServiceFeature;
 
 public class Client extends ServiceEETest {
   private static final String PKG = "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.customization.";

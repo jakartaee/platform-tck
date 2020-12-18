@@ -23,11 +23,12 @@ import static com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest.getAppJNDI
 import static com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest.getGlobalJNDIName;
 import static com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest.getModuleJNDIName;
 
-import jakarta.ejb.EJBContext;
 import javax.naming.Context;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+
+import jakarta.ejb.EJBContext;
 
 public class BasicBeanHelper {
   private static int x = -2;

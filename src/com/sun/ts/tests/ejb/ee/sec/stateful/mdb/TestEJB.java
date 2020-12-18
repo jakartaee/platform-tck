@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.SessionBean;
+import jakarta.ejb.SessionContext;
 
 public class TestEJB implements SessionBean {
 

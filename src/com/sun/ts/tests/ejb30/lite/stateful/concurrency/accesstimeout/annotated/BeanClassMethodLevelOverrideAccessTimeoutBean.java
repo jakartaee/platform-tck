@@ -24,11 +24,11 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.com
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.ejb.AccessTimeout;
-import jakarta.ejb.Stateful;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
+
+import jakarta.ejb.AccessTimeout;
+import jakarta.ejb.Stateful;
 
 /**
  * All @AccessTimeout metadata are specified in bean class itself at method

@@ -16,23 +16,19 @@
 
 package com.sun.ts.tests.connector.resourceDefs.servlet;
 
-import java.io.*;
-import java.util.Properties;
-import java.util.Collection;
-import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
+import java.util.Properties;
 
-import jakarta.resource.cci.Connection;
-import jakarta.resource.cci.ConnectionFactory;
-import javax.naming.InitialContext;
-import com.sun.ts.tests.connector.util.DBSupport;
-import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.BASE64Encoder;
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * This class will be used to perform simple servlet invocations. The servlet

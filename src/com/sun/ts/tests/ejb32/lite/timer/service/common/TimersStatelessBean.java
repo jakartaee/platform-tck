@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.service.common;
 
+import com.sun.ts.tests.ejb32.timer.service.common.TimerIF;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
-
-import com.sun.ts.tests.ejb32.timer.service.common.TimerIF;
 
 @Stateless
 @Local(TimerIF.class)

@@ -21,12 +21,12 @@ import java.nio.ByteBuffer;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import jakarta.websocket.CloseReason;
-import jakarta.websocket.Session;
-
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 import com.sun.ts.tests.websocket.common.client.SendMessageCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
+
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.Session;
 
 /*
  * @class.setup_props: webServerHost;

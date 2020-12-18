@@ -16,25 +16,26 @@
 
 package com.sun.ts.tests.jaspic.tssv.config;
 
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.Hashtable;
 import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
-import java.util.Enumeration;
-
-import jakarta.security.auth.message.config.RegistrationListener;
-import jakarta.security.auth.message.config.AuthConfigProvider;
+import java.util.logging.Level;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
+import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
+import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
 import com.sun.ts.tests.jaspic.tssv.util.TSLogger;
 import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationXMLFileProcessor;
-import com.sun.ts.tests.jaspic.tssv.util.ProviderConfigurationEntry;
-import com.sun.ts.tests.jaspic.tssv.util.TSFileHandler;
+
+import jakarta.security.auth.message.AuthException;
+import jakarta.security.auth.message.config.AuthConfigProvider;
+import jakarta.security.auth.message.config.RegistrationListener;
 
 /**
  *

@@ -20,11 +20,15 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import jakarta.ejb.*;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
+
+import jakarta.ejb.Singleton;
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
 
 @Singleton
 public class TimerConfigBean extends TimerBeanBaseWithoutTimeOutMethod

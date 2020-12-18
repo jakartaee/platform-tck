@@ -16,8 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.annotations.convert;
 
-import jakarta.persistence.Converter;
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class SalaryConverter implements AttributeConverter<String, Float> {

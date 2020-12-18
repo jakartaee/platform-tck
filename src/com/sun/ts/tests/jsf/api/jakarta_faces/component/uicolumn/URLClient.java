@@ -21,13 +21,13 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.uicolumn;
 
 import java.io.PrintWriter;
 
-import jakarta.faces.component.NamingContainer;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIViewRoot;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jsf.api.jakarta_faces.component.common.BaseUIComponentClient;
+
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
 
 public class URLClient extends BaseUIComponentClient {
 

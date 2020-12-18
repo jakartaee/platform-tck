@@ -22,9 +22,9 @@ package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common;
 
 import java.util.concurrent.Future;
 
-import jakarta.ejb.AsyncResult;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+
+import jakarta.ejb.AsyncResult;
 
 public class PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
 

@@ -20,14 +20,15 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class IncludedServlet extends GenericServlet {
 
