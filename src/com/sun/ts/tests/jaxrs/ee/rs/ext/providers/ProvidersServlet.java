@@ -104,7 +104,7 @@ public class ProvidersServlet extends ApplicationServlet {
     ExceptionMapper<RuntimeException> em = providers
         .getExceptionMapper(RuntimeException.class);
     Status status = Status.NOT_ACCEPTABLE;
-    if (em != null && em.getClass() == AnyExceptionExceptionMapper.class)
+    if (em != null && AnyExceptionExceptionMapper.class.isInstance(em))
       status = Status.OK;
     // This serverError() is to get ResponseBuilder with status != OK
     return Response.serverError().status(status).build();
