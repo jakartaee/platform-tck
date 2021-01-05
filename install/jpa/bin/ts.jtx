@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,21 +15,17 @@
 #
 
 #
-# Bug ID:  17503702
 #
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_standalone
 
 #
-# Bug ID:  17483472
 #
 com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_standalone
 
 #
-# Bug ID:  27377289
 #
 com/sun/ts/tests/jpa/se/schemaGeneration/annotations/tableGenerator/Client.java#tableGeneratorTest_from_standalone
 
 #
-# Bug ID:  27377406
 #
 com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_standalone
