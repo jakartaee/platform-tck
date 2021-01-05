@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -21,7 +21,6 @@
 #
 # Servlet 5.0 TCK Exclude List
 #
-# BUG id 19793504
 #
 com/sun/ts/tests/servlet/api/jakarta_servlet/servletrequest30/URLClient.java#asyncStartedTest3
 

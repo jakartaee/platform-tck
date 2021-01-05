@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,6 @@
 ################
 
 #
-# Bug ID: 19815625
 #
 com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpupgradehandler/URLClient.java#upgradeTest
 
@@ -36,12 +35,10 @@ com/sun/ts/tests/servlet/spec/security/secbasic/Client.java#test7_anno
 ################
 
 #
-# Bug ID: 18117763
 #
 com/sun/ts/tests/jsf/spec/render/messages/URLClient.java#messagesRenderEncodeTest
 
 #
-# Bug ID: 21033845
 #
 com/sun/ts/tests/jsf/spec/flows/multipagewebinf/URLClient.java#facesFlowWebInfEntryExitTest
 com/sun/ts/tests/jsf/spec/flows/multipagewebinf/URLClient.java#facesFlowWebInfScopeTest
@@ -51,7 +48,6 @@ com/sun/ts/tests/jsf/spec/flows/multipagewebinf/URLClient.java#facesFlowWebInfSc
 ################
 
 #
-# Bug ID: 27645077
 #
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteTest_from_standalone
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithCallbackStringWhileServerWaitTest_from_standalone
@@ -112,12 +108,10 @@ com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWi
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithStringClassWhileServerWaitTest_from_standalone
 
 #
-# Bug ID: 27869044
 #
 com/sun/ts/tests/jaxrs/jaxrs21/ee/sse/sseeventsource/JAXRSClient.java#connectionLostForDefault500msTest_from_standalone
 
 #
-# Bug ID: 27941277
 #
 com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildNoArgsThrowsUriBuilderExceptionTest_from_servlet
 com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildObjectsThrowsUriBuilderExceptionTest_from_servlet
@@ -128,7 +122,6 @@ com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildRelativized
 ################
 
 #
-# Bug ID: 17503702
 #
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_appmanaged
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_appmanagedNoTx
@@ -138,7 +131,6 @@ com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredS
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateless3
 
 #
-# Bug ID: 17483472
 #
 com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_appmanaged
 com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_appmanagedNoTx
@@ -148,7 +140,6 @@ com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFa
 com/sun/ts/tests/jpa/core/entityManagerFactory/Client.java#createEntityManagerFactoryStringTest_from_stateless3
 
 #
-# Bug ID: 27377406
 #
 com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_appmanaged
 com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_appmanagedNoTx
@@ -158,7 +149,6 @@ com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReferenc
 com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_stateless3
 
 #
-# Bug ID: 27961853
 #
 com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollectionTest_from_pmservlet
 com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollectionTest_from_stateless3
@@ -170,7 +160,6 @@ com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollecti
 ################
 
 #
-# Bug ID: 27961884
 #
 com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_appclient
 com/sun/ts/tests/jsonb/customizedmapping/visibility/VisibilityCustomizationTest.java#testCustomVisibilityConfig_from_ejb
@@ -215,7 +204,6 @@ com/sun/ts/tests/jsonb/defaultmapping/collections/CollectionsMappingTest.java#te
 ################
 
 #
-# Tests excluded for challenges 253074 and 250907
 #
 com/sun/ts/tests/securityapi/idstore/noidstore/Client.java#testIdentityStoreValidate_noIDStore
 com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM
