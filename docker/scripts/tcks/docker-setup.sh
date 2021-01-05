@@ -40,16 +40,3 @@ tar -zxf jdk-8u171-linux-x64.tar.gz
 echo "Download and install Apache Ant v 1.9.7 ..."
 wget https://<apachehost>/apache-ant-1.9.7-bin.tar.gz
 tar -zxf apache-ant-1.9.7-bin.tar.gz
-
-echo "Download Java Web Services Developer Pack 1.3 and JDK 1.5 required for that ..."
-if [ "$JWSDP_BUNDLE" == "dummy" ];then
-  wget http://<host>/jwsdp-1.3.tar
-else
-  wget $JWSDP_BUNDLE -O jwsdp-1.3.tar
-fi
-
-if [ "$JDK_FOR_JWSDP" == "dummy" ];then
-  wget http://<jdkhost>/jdk1.5.0_22.tar
-else
-  wget $JDK_FOR_JWSDP -O jdk1.5.0_22.tar
-fi

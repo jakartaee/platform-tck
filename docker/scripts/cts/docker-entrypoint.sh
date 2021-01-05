@@ -202,11 +202,6 @@ $CTS_HOME/ri/glassfish6/glassfish/bin/asadmin --user admin --passwordfile admin-
 $CTS_HOME/ri/glassfish6/glassfish/bin/asadmin --user admin --passwordfile admin-password.txt -p $PORT start-domain
 ### restartRI.sh ends here #####
 
-echo "Starting Java Web Services Developer Pack ..."
-cd $JWSDP_HOME/jwsdp-1.3/bin
-./startup.sh &
-echo "Java Web Services Developer Pack started ..."
-
 ### ctsStartStandardDeploymentServer.sh starts here #####
 
 cd $TS_HOME/bin;

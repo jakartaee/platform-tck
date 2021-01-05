@@ -71,19 +71,6 @@ if [ -z "$IMAP_PORT" ]; then
 fi
 ##################################################
 
-# Set JWSDP install dir and UDDI Registry server url 
-# required for JAXR tests if not set.
-if [ -z "$UDDI_REGISTRY_URL" ]; then
-  export UDDI_REGISTRY_URL="http://localhost:8080/RegistryServer/"
-fi
-
-if [ -z "$JWSDP_HOME" ]; then
-  export  JWSDP_HOME="/opt/jwsdp-1.3"
-fi
-
-##################################################
-
-
 
 printf  "
 ******************************************************
