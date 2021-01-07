@@ -164,8 +164,8 @@ public class WSClient extends WebSocketCommonClient {
 
         @Override
         public void onMessage(String message) {
-          messageLatch.countDown();
           receivedMessageString.append(message);
+          messageLatch.countDown();
         }
       });
     }
