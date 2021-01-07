@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -1774,8 +1774,8 @@ public class WSClient extends WebSocketCommonClient {
 
         @Override
         public void onMessage(String message) {
-          messageLatch.countDown();
           receivedMessageString.append(message);
+          messageLatch.countDown();
         }
       });
 
@@ -1823,9 +1823,9 @@ public class WSClient extends WebSocketCommonClient {
   public final static class TCKBasicStringEndpoint extends Endpoint {
 
     public void onMessage(String message) {
-      messageLatch.countDown();
       receivedMessageString.append("========First TextMessageHander received=")
           .append(message);
+      messageLatch.countDown();
     }
 
     @Override
@@ -1909,8 +1909,8 @@ public class WSClient extends WebSocketCommonClient {
 
         @Override
         public void onMessage(String message) {
-          messageLatch.countDown();
           receivedMessageString.append(message);
+          messageLatch.countDown();
         }
       });
     }
@@ -1930,8 +1930,8 @@ public class WSClient extends WebSocketCommonClient {
 
         @Override
         public void onMessage(String message) {
-          messageLatch.countDown();
           receivedMessageString.append(message);
+          messageLatch.countDown();
         }
       });
 

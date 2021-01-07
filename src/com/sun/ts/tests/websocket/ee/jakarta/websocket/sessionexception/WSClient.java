@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -164,8 +164,8 @@ public class WSClient extends WebSocketCommonClient {
 
         @Override
         public void onMessage(String message) {
-          messageLatch.countDown();
           receivedMessageString.append(message);
+          messageLatch.countDown();
         }
       });
     }
