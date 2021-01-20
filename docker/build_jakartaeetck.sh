@@ -97,6 +97,9 @@ mkdir -p $JAKARTA_JARS/endorsed
 
 mvn -f $BASEDIR/docker/pom.xml dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
 
+#TODO : security jar is required to compile SunRILoginContext.java, look for alternative way to remove this dependency
+wget --progress=bar:force --no-cache https://repo1.maven.org/maven2/org/glassfish/security/security/3.1.1/security-3.1.1.jar -O ${JAKARTA_JARS}/modules/security.jar
+
 ls $JAKARTA_JARS/modules/
 
 echo "########## Trunk.Clean.Build.Libs ##########"
