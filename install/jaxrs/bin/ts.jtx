@@ -77,3 +77,9 @@ com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWi
 #
 #
 com/sun/ts/tests/jaxrs/jaxrs21/ee/sse/sseeventsource/JAXRSClient.java#connectionLostForDefault500msTest_from_standalone
+
+#
+# In response to accepted Platform TCK challenge jaxrs-api/issues/937, exclude the following test:
+#    com/sun/ts/tests/jaxrs/ee/rs/ext/providers/JAXRSProvidersClient.java#isRegisteredRuntimeExceptionExceptionMapperTest
+com/sun/ts/tests/jaxrs/ee/rs/ext/providers/JAXRSProvidersClient.java#isRegisteredRuntimeExceptionExceptionMapperTest_from_standalone
+
