@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,7 +68,7 @@ import com.sun.ts.tests.signaturetest.SigTestEE;
  *
  *
  * The incomplete list of OPTIONAL/ADDITIONAL technologies which could be tested
- * along with the web profile are: jms javamail connector jaspic jacc
+ * along with the web profile are: jms jakartamail connector jaspic jacc
  * jaxrs - optional technology in EE 7 jaxr - optional technology
  * in EE 7
  *
@@ -83,7 +83,7 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final String JAVAEE_WEB_KEYWORD = "javaee_web_profile";
 
-  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail"
+  public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd jakartamail"
       + " cdi di beanval persistence jaxb saaj jaxws connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
@@ -93,7 +93,7 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final ArrayList<String> KEYWORD_WEB_FULL_OPTIONAL_TECHS = new ArrayList<String>(
       Arrays.asList("batch", "connector",
-          "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
+          "jaxws", "jaxb", "jms", "jakartamail", "jacc", "jaspic",
           "wsmd"));
 
   enum Containers {
@@ -123,7 +123,7 @@ public class JavaEESigTest extends SigTestEE {
     APPCLIENT_MAP.put("caj", new String[] { "jakarta.annotation",
         "jakarta.annotation.security", "jakarta.annotation.sql" });
     APPCLIENT_MAP.put("jms", new String[] { "jakarta.jms" });
-    APPCLIENT_MAP.put("javamail",
+    APPCLIENT_MAP.put("jakartamail",
         new String[] { "jakarta.mail", "jakarta.mail.event", "jakarta.mail.internet",
             "jakarta.mail.search", "jakarta.mail.util" });
     APPCLIENT_MAP.put("persistence",

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -301,7 +301,7 @@
   </target>
 
   <!-- APIs that are required by EE 5 spec but are missing assertion artifacts: -->
-  <!-- JavaMail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
+  <!-- JakartaMail, JAF, connector, JAXB, Common Annotations (sorta, each area     -->
   <!-- must test these), JSP Debugging (may be included with jsp area,          -->
   <!-- not sure), stax. We also need to clean up webservices, the EE 5 spec     -->
   <!-- lists webservices 1.2, JAX-WS 2.0 and Web Services Metadata (not sure    -->

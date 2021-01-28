@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -64,7 +64,7 @@
     com/sun/ts/tests/samples/jdbc/ee/testConn,
     com/sun/ts/tests/integration/entity/jspejbjdbc,
     com/sun/ts/tests/integration/entity/servletejbjdbc,
-    com/sun/ts/tests/javamail/ee/multipart,
+    com/sun/ts/tests/jakartamail/ee/multipart,
     com/sun/ts/tests/connector/localTx/connection,
     com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,
     com/sun/ts/tests/jms/core20/appclient/jmscontextqueuetests,
@@ -100,7 +100,7 @@
     com/sun/ts/tests/samples/jdbc/ee/testConn,
     com/sun/ts/tests/integration/entity/jspejbjdbc,
     com/sun/ts/tests/integration/entity/servletejbjdbc,
-    com/sun/ts/tests/javamail/ee/multipart,
+    com/sun/ts/tests/jakartamail/ee/multipart,
     com/sun/ts/tests/ejb/ee/sec/stateful/secpropagation,
     com/sun/ts/tests/connector/localTx/connection,
     com/sun/ts/tests/jms/ee/mdb/mdb_sndToQueue,

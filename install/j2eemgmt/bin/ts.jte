@@ -385,7 +385,7 @@ securedWebServicePort.2=7000
 login=default
 
 ###############################################################
-#These properties are needed for javamail tests.  
+#These properties are needed for jakartamail tests.  
 #mailuser1 must be set to a valid email address where test mails 
 #will be sent to. 
 #transport_protocol must be set to a valid protocol, i.e, smtp.

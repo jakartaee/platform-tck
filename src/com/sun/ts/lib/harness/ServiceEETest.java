@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ import java.net.*;
 
 /**
  * This abstract class must be extended by all clients of tests of J2EE service
- * apis; for example, JDBC, RMI-IIOP, JavaMail, JMS, etc. When a service test is
+ * apis; for example, JDBC, RMI-IIOP, JakartaMail, JMS, etc. When a service test is
  * encountered by the JavaTest Client, the instance is passed to a J2EE server
  * component and run from that remote location. Using this model to develop
  * tests allows the same test to be run from different locations within the

@@ -13,9 +13,9 @@ By default, the image will contain the Java Web Services Developer Pack (JWSDP)
 bundle and JDK by supplying the values for JWSDP_BUNDLE and JDK_FOR_JWSDP in
 build.sh.
 
-Setup JavaMail Server
+Setup JakartaMail Server
 -------------------------
-There are tests in tests/samples and tests/javamail which require a JavaMail
+There are tests in tests/samples and tests/jakartamail which require a JakartaMail
 Server. The docker scripts in the current form expect you to run the Apache 
 James image, in the same machine, with IMAP port 143 and SMTP port 25.
 

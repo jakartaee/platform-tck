@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ def parallelCTSSuitesMap = cts_suites.collectEntries {
 }
 
 def generateCTSStage(job) {
-  if( job == "javamail" || job == "samples" || job == "servlet" || job == "ejb" ) {
+  if( job == "jakartamail" || job == "samples" || job == "servlet" || job == "ejb" ) {
     return {
       podTemplate(label: env.label) {
         node(label) {
@@ -190,7 +190,7 @@ spec:
            description: 'Database to be used for running CTS. Currently only JavaDB is supported.' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
            description: 'Run the full EE compliance testsuite or a standalone tck' )
-    string(name: 'test_suites', defaultValue: 'concurrency connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc jaspic javaee javamail jaxrs jbatch jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsf jsonb jsonp jsp jstl jta jws samples securityapi servlet signaturetest/javaee webservices12 webservices13 websocket xa',
+    string(name: 'test_suites', defaultValue: 'concurrency connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc jaspic javaee jakartamail jaxrs jbatch jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsf jsonb jsonp jsp jstl jta jws samples securityapi servlet signaturetest/javaee webservices12 webservices13 websocket xa',
            description: 'Space separated list of Test suites to run') 
     string(name: 'standalone_tcks', defaultValue: 'caj concurrency connector el jacc jaspic jaxrs jaxws jms jpa jsf jsp jsonb jsonp jstl jta saaj securityapi servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 

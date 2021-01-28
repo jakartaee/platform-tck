@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,7 @@ import java.io.*;
 
 /**
  * This abstract class must be extended by all API clients of tests of J2EE
- * service apis; for example, JDBC, RMI-IIOP, JavaMail, JMS, etc. This allows us
+ * service apis; for example, JDBC, RMI-IIOP, JakartaMail, JMS, etc. This allows us
  * to bundle a number of API tests into a single J2EE component and reduces the
  * number of such components that have to be deployed.
  * 

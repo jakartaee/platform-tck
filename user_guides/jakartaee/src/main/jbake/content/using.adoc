@@ -542,7 +542,7 @@ Subsets
 |Jakarta Connectors |`connector_web_profile`
 |Jakarta Authorization (formerly JACC) |`jacc_web_profile`
 |Jakarta Authentication (formerly JASPIC) |`jaspic_web_profile`
-|Jakarta Mail (formerly JavaMail) |`javamail_web_profile`
+|Jakarta Mail (formerly JavaMail) |`jakartamail_web_profile`
 |Jakarta Registries (formerly JAXR) |`jaxr_web_profile`
 |Jakarta Messaging(formerly JMS) |`jms_web_profile`
 |XA |`xa_web_profile`

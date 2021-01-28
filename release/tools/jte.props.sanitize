@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,5 +36,5 @@ find_8    = ${line.separator}ri.wsimport.jvmargs=
 replace_8 = ${line.separator}ri.wsimport.jvmargs=
 find_9    = ${line.separator}mailFrom=
 replace_9 = ${line.separator}mailFrom=
-find_10   = ${line.separator}javamail.password=
-replace_10= ${line.separator}javamail.password=
+find_10   = ${line.separator}jakartamail.password=
+replace_10= ${line.separator}jakartamail.password=

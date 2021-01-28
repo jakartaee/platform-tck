@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
-# Copyright (c) 2019, 2020 Payara Foundation and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2021 Payara Foundation and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -302,7 +302,7 @@ done
 ##### configVI.sh starts here #####
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
-  KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile|connector_web_profile"
+  KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|jakartamail_web_profile|connector_web_profile"
 fi
 
 if [ -z "${vehicle}" ];then
@@ -344,7 +344,7 @@ sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
 sed -i "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
 sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
 sed -i "s/^mailFrom=.*/mailFrom=${MAIL_FROM}/g" ts.jte
-sed -i "s/^javamail.password=.*/javamail.password=${MAIL_PASSWORD}/g" ts.jte
+sed -i "s/^jakartamail.password=.*/jakartamail.password=${MAIL_PASSWORD}/g" ts.jte
 sed -i "s/^smtp.port=.*/smtp.port=${SMTP_PORT}/g" ts.jte
 sed -i "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
 
@@ -370,7 +370,7 @@ sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\
 sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
-  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy jacc jaspic wsmd/g" ts.jte
+  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb jakartamail javaeedeploy jacc jaspic wsmd/g" ts.jte
 fi
 
 sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
@@ -412,14 +412,14 @@ ant config.vi.javadb
 ##### configVI.sh ends here #####
 
 ### populateMailbox for suites using mail server - Start ###
-if [[ $test_suite == "javamail" || $test_suite == "samples" || $test_suite == "servlet" ]]; then
+if [[ $test_suite == "jakartamail" || $test_suite == "samples" || $test_suite == "servlet" ]]; then
   ESCAPED_MAIL_USER=`echo ${MAIL_USER} | sed -e 's/@/%40/g'`
   cd  ${TS_HOME}/bin
   ant -DdestinationURL="imap://${ESCAPED_MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}:${IMAP_PORT}" populateMailbox
 fi
-### populateMailbox for javamail suite - End ###
+### populateMailbox for jakartamail suite - End ###
 
-if [[ $test_suite == javamail* || $test_suite == samples* || $test_suite == servlet* || $test_suite == appclient* || $test_suite == ejb* || $test_suite == jsp* ]]; then
+if [[ $test_suite == jakartamail* || $test_suite == samples* || $test_suite == servlet* || $test_suite == appclient* || $test_suite == ejb* || $test_suite == jsp* ]]; then
   ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Ddeployment.resource.validation=false
 fi
 

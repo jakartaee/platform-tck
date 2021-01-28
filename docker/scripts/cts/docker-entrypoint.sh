@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -138,7 +138,7 @@ sed -i 's#mailHost=.*#mailHost=172.17.0.2#g' ts.jte
 
 sed -i 's/mailuser1=.*/mailuser1=user01@james.local/g' ts.jte
 sed -i 's/mailFrom=.*/mailFrom=user01@james.local/g' ts.jte
-sed -i 's/javamail.password=.*/javamail.password=1234/g' ts.jte
+sed -i 's/jakartamail.password=.*/jakartamail.password=1234/g' ts.jte
 
 sed -i 's/s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
 sed -i 's/ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
