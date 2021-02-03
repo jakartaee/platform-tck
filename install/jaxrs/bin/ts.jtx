@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,7 +15,6 @@
 #
 
 #
-# Bug# 27645077
 #
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteTest_from_standalone
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#deleteWithCallbackStringWhileServerWaitTest_from_standalone
@@ -76,6 +75,5 @@ com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWi
 com/sun/ts/tests/jaxrs/jaxrs21/ee/client/executor/async/JAXRSClient.java#traceWithStringClassWhileServerWaitTest_from_standalone
 
 #
-# Bug ID: 27869044
 #
 com/sun/ts/tests/jaxrs/jaxrs21/ee/sse/sseeventsource/JAXRSClient.java#connectionLostForDefault500msTest_from_standalone
