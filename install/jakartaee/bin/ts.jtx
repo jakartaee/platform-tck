@@ -135,6 +135,11 @@ com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildNoArgsThrow
 com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildObjectsThrowsUriBuilderExceptionTest_from_servlet
 com/sun/ts/tests/jaxrs/api/rs/core/linkbuilder/JAXRSClient.java#buildRelativizedThrowsUriBuilderExceptionTest_from_servlet
 
+#
+# In response to accepted Platform TCK challenge jaxrs-api/issues/937, exclude the following test:
+#    com/sun/ts/tests/jaxrs/ee/rs/ext/providers/JAXRSProvidersClient.java#isRegisteredRuntimeExceptionExceptionMapperTest
+com/sun/ts/tests/jaxrs/ee/rs/ext/providers/JAXRSProvidersClient.java#isRegisteredRuntimeExceptionExceptionMapperTest_from_standalone
+
 ################
 # JPA
 ################
