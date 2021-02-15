@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,35 +23,34 @@
 
     <property name="platform.folder" value="com/sun/ts/tests/jaxrs/platform/**"/>
     <property name="platform21.folder" value="com/sun/ts/tests/jaxrs/jaxrs21/platform/**"/>
-    <property name="servlet3.folder" value="com/sun/ts/tests/jaxrs/servlet3/**"/>
 
-    <!-- For TCK, exclude servlet3 and platform dependencies, e.g. to run on servlet 2.5 container only
+    <!-- For TCK, exclude platform dependencies
          For JAXRS CTS, no need to exclude anything, to run e.g. on Glassfish -->
     <condition property="exclude.classes" value="">
         <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
     </condition>
-    <condition property="exclude.classes" value="${platform.folder}/*.class, ${servlet3.folder}/*.class, ${platform21.folder}/*.class">
+    <condition property="exclude.classes" value="${platform.folder}/*.class, ${platform21.folder}/*.class">
         <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
     </condition>
     
     <condition property="exclude.sunwebxml" value="">
         <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
     </condition>
-    <condition property="exclude.sunwebxml" value="${platform.folder}/*.sun-web.xml, ${servlet3.folder}/*.sun-web.xml, ${platform21.folder}/*.sun-web.xml">
+    <condition property="exclude.sunwebxml" value="${platform.folder}/*.sun-web.xml, ${platform21.folder}/*.sun-web.xml">
         <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
     </condition>
     
     <condition property="exclude.src" value="">
         <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
     </condition>
-    <condition property="exclude.src" value="${platform.folder}/*, ${servlet3.folder}/*, ${platform21.folder}/*">
+    <condition property="exclude.src" value="${platform.folder}/*, ${platform21.folder}/*">
         <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
     </condition>
     
     <condition property="exclude.wars" value="">
         <contains string="${test.areas}" substring="jaxrs" casesensitive="false"/>
     </condition>
-    <condition property="exclude.wars" value="${platform.folder}/*.war, ${servlet3.folder}/*.war, ${platform21.folder}/*.war">
+    <condition property="exclude.wars" value="${platform.folder}/*.war, ${platform21.folder}/*.war">
         <not><contains string="${test.areas}" substring="jaxrs" casesensitive="false"/></not>
     </condition>
 
