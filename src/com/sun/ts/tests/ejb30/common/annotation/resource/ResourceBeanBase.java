@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,6 +31,7 @@ import java.net.URL;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.sun.ts.tests.ejb30.common.system.Exclude;
 import org.omg.CORBA.ORB;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
@@ -403,6 +404,11 @@ abstract public class ResourceBeanBase implements ResourceIF {
   }
 
   public void testOrb() throws TestFailedException {
+    if (Exclude.ignoreCorba()) {
+      TLogger.logMsg("Corba testing is disabled, ignore " + this.getClass().getName() + ".#testOrb use of Corba");
+      return;
+    }
+    
     ORB orb1 = getOrb();
     verify(orb1, "getOrb()");
     orb1 = null;

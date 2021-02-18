@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,6 +29,7 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import com.sun.ts.tests.ejb30.common.system.Exclude;
 
 abstract public class ClientBase extends EETest {
   protected Properties props;
@@ -49,7 +50,7 @@ abstract public class ClientBase extends EETest {
   protected String getCustomeResourceName() {
     return null;
   }
-
+  
   /*
    * @class.setup_props:
    */
@@ -323,6 +324,11 @@ abstract public class ClientBase extends EETest {
    *
    */
   public void orbTest() throws Fault {
+    if (Exclude.ignoreCorba()) {
+      TLogger.logMsg("Corba testing is disabled, ignore " + this.getClass().getName() + ".#orbTest use of Corba");
+      return;
+    }
+    
     try {
       getResourceFieldBean().testOrb();
       getResourceSetterBean().testOrb();

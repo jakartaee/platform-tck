@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,6 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
 import javax.naming.NamingException;
 
+import com.sun.ts.tests.ejb30.common.system.Exclude;
 import org.omg.CORBA.ORB;
 
 import com.sun.javatest.Status;
@@ -94,6 +95,10 @@ public class Client extends ClientBase {
    *
    */
   public void clientOrbTest() throws Fault {
+    if (Exclude.ignoreCorba()) {
+      TLogger.logMsg("Corba testing is disabled, ignore " + this.getClass().getName() + ".#clientOrbTest use of Corba");
+      return;
+    }
     if (orb == null) {
       throw new Fault("orb is not injected");
     } else {

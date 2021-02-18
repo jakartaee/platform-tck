@@ -347,6 +347,11 @@ not a given set of tests is run - the `javaee.level` property in the
 javaee.level Property"]) and keywords (see link:#BCGHGJIC[Section 7.5.2,
 "Using Keywords to Create Groups and Subsets of Tests"]).
 
+If the (optional) Corba technology is not provided, you can exclude 
+the subset of tests that use Corba via the `ExcludeCorba` system property 
+setting in your ts.jte (e.g. add to `command.testExecute` + `testExecuteEjbEmbed` + 
+your application server command line options.    
+
 [[BCGBAHFF]][[setting-the-javaee.level-property]]
 
 7.5.1 Setting the javaee.level Property
