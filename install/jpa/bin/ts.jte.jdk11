@@ -123,7 +123,7 @@ persistence.second.level.caching.supported=true
 #                    Java Persistence and Java SE classes.
 #########################################################################
 sigTestClasspath=${jpa.classes}${pathsep}\
-                 ${JAVA_HOME}/lib/rt.jar${pathsep}\
+                 ${JAVA_HOME}/lib/modules${pathsep}\
                  ${JAVA_HOME}/../Classes/classes.jar
 
 ###############################################################
