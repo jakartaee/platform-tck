@@ -241,7 +241,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 # The sigTestClasspath specify the location of websocket implementation 
 # classes that used for signature test
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${websocket.classes}${pathsep}${websocket.api}
+sigTestClasspath=${websocket.classes}${pathsep}${websocket.api}${pathsep}${java.home}/lib/modules
 
 ##########################################################################
 ## Deliverables wanting ts.* packaging tasks to add extension list

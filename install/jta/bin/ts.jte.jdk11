@@ -99,7 +99,7 @@ extension.dir=${webServerHome}/domains/domain1/lib/ext
 #
 ########################################################################
 sigTestClasspath=${jta.classes}${pathsep}\
-                 ${JAVA_HOME}/lib/rt.jar
+                 ${java.home}/lib/modules
 
 ########################################################################
 #These properties must be set to tell the Javatest harness the

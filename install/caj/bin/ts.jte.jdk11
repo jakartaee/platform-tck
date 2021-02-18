@@ -200,7 +200,7 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${local.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+sigTestClasspath=${local.classes}${pathsep}${java.home}/lib/modules
 
 ###############################################################
 ## This command allows the test clients to be run in

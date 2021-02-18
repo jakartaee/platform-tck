@@ -118,7 +118,7 @@ javatest.timeout.factor=2.0
 #                     ${java.home}/jre/lib/rt.jar
 #
 ########################################################################
-sigTestClasspath=${jsf.classes}${pathsep}${jspservlet.classes}${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar
+sigTestClasspath=${jsf.classes}${pathsep}${jspservlet.classes}${pathsep}${java.home}/lib/modules
 
 ########################################################################
 #These properties must be set to tell the Javatest harness the

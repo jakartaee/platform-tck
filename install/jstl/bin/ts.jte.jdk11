@@ -181,7 +181,7 @@ javatest.timeout.factor=1.0
 #   sigTestClasspath=${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}${java.home}/lib/rt.jar
 #
 ########################################################
-sigTestClasspath=${ts.home}/classes${pathsep}${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar
+sigTestClasspath=${ts.home}/classes${pathsep}${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}${java.home}/lib/modules
 
 ########################################################
 #  Common environment for both ts_unix and ts_win32
