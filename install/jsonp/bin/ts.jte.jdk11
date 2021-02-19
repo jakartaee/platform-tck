@@ -123,7 +123,7 @@ porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jsonp.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+sigTestClasspath=${jsonp.classes}${pathsep}${java.home}/lib/modules
 
 ########################################################################
 # These properties are used by the harness.  "harness.log.port"

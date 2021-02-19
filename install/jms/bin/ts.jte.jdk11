@@ -79,7 +79,7 @@ tools.jar=${jdk.home}/lib/tools.jar
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unix).
 #############################################################################
-sigTestClasspath=${jms.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+sigTestClasspath=${jms.classes}${pathsep}${java.home}/lib/modules
 
 ############################################################################
 # These properties are used by the harness.  "harness.log.port"

@@ -69,7 +69,7 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 #       sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
 #
 ########################################################
-sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
+sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
 
 
 ########################################################
