@@ -1078,14 +1078,14 @@ javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakar
 
 javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar
 
-ts.run.classpath.ri=${javaee.classes.ri}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar
+ts.run.classpath.ri=${javaee.classes.ri}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
-ts.run.classpath=${pathsep}${javaee.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${jdbc.db.classes}
+ts.run.classpath=${pathsep}${javaee.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${jdbc.db.classes}${pathsep}${ts.home}/lib/glassfishporting.jar
 
-ts.harness.classpath=${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-core.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ri.modules}/admin-cli.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${ri.modules}/jakarta.activation-api.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-core.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ri.modules}/admin-cli.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ri.modules}/jakarta.activation-api.jar
 
 #classpath used for building CTS tests only (DO NOT MODIFY)
-ts.classpath=${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.run.classpath.ri}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/htmlunit-2.15.jar${pathsep}${ts.home}/lib/htmlunit-core-js-2.15.jar${pathsep}${ts.home}/lib/unboundid-ldapsdk.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/xml-apis-1.4.01.jar${pathsep}${ts.home}/lib/http.jar
+ts.classpath=${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.run.classpath.ri}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/htmlunit-2.15.jar${pathsep}${ts.home}/lib/htmlunit-core-js-2.15.jar${pathsep}${ts.home}/lib/unboundid-ldapsdk.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/xml-apis-1.4.01.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 #classpath used for building cts.jar (DO NOT MODIFY)
 ts.lib.classpath=${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.harness.classpath}
 
@@ -1182,7 +1182,7 @@ command.testExecuteAppClient= \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
-        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
+        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
         TZ=${tz} \
         ${JAVA_HOME}/bin/java \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader  \
@@ -1247,6 +1247,7 @@ command.testExecuteAppClient= \
 command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.home}/lib/tsharness.jar${pathsep}\
         ${ts.home}/lib/cts.jar${pathsep}\
+	${pathsep}${ts.home}/lib/glassfishporting.jar\
         ${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}\
         ${jdbc.db.classes}${pathsep}\
         ${javaee.home}/lib/embedded/glassfish-embedded-static-shell.jar \
@@ -1274,7 +1275,7 @@ command.testExecuteAppClient2= \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home.ri}/nativelib" \
-        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
+        APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
         ${RI_JAVA_HOME}/bin/java \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
