@@ -278,12 +278,12 @@ connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/jakarta.security.
 
 connector.classes=${ts.home}/classes${pathsep}${connector.classes.1}
 
-ts.run.classpath=${connector.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/cts.jar
+ts.run.classpath=${connector.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
-ts.harness.classpath=${ts.home}/classes${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/cts.jar
+ts.harness.classpath=${ts.home}/classes${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
 #classpath used for building CTS tests only (DO NOT MODIFY)
-ts.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.0.jar${pathsep}${ts.home}/lib/commons-logging-1.0.4.jar${pathsep}${ts.home}/lib/htmlunit-1.7.jar${pathsep}${ts.home}/lib/cts.jar
+ts.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/connector.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.0.jar${pathsep}${ts.home}/lib/commons-logging-1.0.4.jar${pathsep}${ts.home}/lib/htmlunit-1.7.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
 #classpath used for building connector.jar (DO NOT MODIFY)
 ts.lib.classpath=${ts.harness.classpath}

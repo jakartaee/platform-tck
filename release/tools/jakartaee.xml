@@ -199,6 +199,7 @@
             <fileset dir="${ts.home}/lib"
                 includes="jaxb-*.jar,
                             cts.jar,
+			    glassfishporting.jar,
                             dbprocedures.jar,
                             jpa_alternate_provider.jar,
                             tsprovider.jar,
