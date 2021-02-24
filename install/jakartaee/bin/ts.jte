@@ -1247,7 +1247,7 @@ command.testExecuteAppClient= \
 command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.home}/lib/tsharness.jar${pathsep}\
         ${ts.home}/lib/cts.jar${pathsep}\
-	${pathsep}${ts.home}/lib/glassfishporting.jar\
+	${ts.home}/lib/glassfishporting.jar${pathsep}\
         ${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}\
         ${jdbc.db.classes}${pathsep}\
         ${javaee.home}/lib/embedded/glassfish-embedded-static-shell.jar \
