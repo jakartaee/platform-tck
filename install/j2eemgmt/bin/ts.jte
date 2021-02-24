@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -202,7 +202,7 @@ sun.porting_server.port=2002
 
 #Porting class names for Vendor J2EE Implementation #1
 porting.ts.deploy.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIDeployment
-porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
+porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.GlassFishLoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.ctsHttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection
@@ -210,7 +210,7 @@ porting.ts.ctsHttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javae
 
 #Porting class names for Sun RI J2EE Implementation #2 (must be Sun's RI)
 porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIDeploymentSeparateVM
-porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
+porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.GlassFishLoginContext
 porting.ts.url.class.2=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.ctsHttpsURLConnection.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -109,7 +109,6 @@
                             ${lib.pkg.dir}/deliverable/jacc/**,
                             ${provider.dir}/**,
                             ${lib.pkg.dir}/implementation/sun/javaee/SunRIHttpsURLConnection.java,
-                            ${lib.pkg.dir}/implementation/sun/javaee/SunRILoginContext.java,
                             ${lib.pkg.dir}/implementation/sun/common/SunRIURL.java">
             <classpath>
                 <pathelement path="${ts.lib.classpath}" />
@@ -124,7 +123,6 @@
             <include name="${lib.pkg.dir}/deliverable/tck/*.class"/>
             <include name="${lib.pkg.dir}/deliverable/jacc/*"/>
             <include name="${lib.pkg.dir}/implementation/sun/javaee/SunRIHttpsURLConnection.class"/>
-            <include name="${lib.pkg.dir}/implementation/sun/javaee/SunRILoginContext.class"/>
             <include name="${lib.pkg.dir}/implementation/sun/common/SunRIURL.class"/>
         </ts.lib.jar>
         <echo message="The TCK specific library jar, 'jacctck.jar', has been built."/>
