@@ -1609,13 +1609,13 @@ porting.ts.deploy.class.2=com.sun.ts.lib.implementation.sun.javaee.glassfish.Aut
 # @porting.ts.HttpsURLConnection.class.2  RI of
 #    com.sun.ts.lib.porting.TSHttpsURLConnectionInterface
 ###############################################################
-porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
+porting.ts.login.class.1=com.sun.ts.lib.implementation.sun.javaee.GlassFishLoginContext
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.HttpsURLConnection.class.1=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection
 
 ##Porting class names for Sun RI Java EE Implementation #2 (must be Sun's RI)
-porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRILoginContext
+porting.ts.login.class.2=com.sun.ts.lib.implementation.sun.javaee.GlassFishLoginContext
 porting.ts.url.class.2=com.sun.ts.lib.implementation.sun.common.SunRIURL
 porting.ts.jms.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIJMSAdmin
 porting.ts.HttpsURLConnection.class.2=com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection
