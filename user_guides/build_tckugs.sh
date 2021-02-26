@@ -20,7 +20,7 @@ if [ -z "$M2_HOME" ]; then
 fi
 
 if [ -z "$JAVA_HOME" ]; then
-  export JAVA_HOME=/opt/jdk1.8.0_171
+  export JAVA_HOME=/opt/jdk-11.0.10
 fi
 
 export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
