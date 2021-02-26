@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,9 +51,6 @@ unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
 
-cd $TCK_HOME/$GF_TOPLEVEL_DIR/bin
-./asadmin start-domain
-
 cd $TS_HOME/bin
 if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
   export JAVA_HOME=${JDK11_HOME}
@@ -63,6 +60,11 @@ fi
 
 which java
 java -version
+
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/bin
+./asadmin start-domain
+
+cd $TS_HOME/bin
 
 webServerHome=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish
 
