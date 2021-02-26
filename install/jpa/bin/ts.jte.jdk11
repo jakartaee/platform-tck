@@ -117,14 +117,21 @@ persistence.second.level.caching.supported=true
 ###################################################################
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your
 #                    Java Persistence and Java SE classes.
 #########################################################################
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
 sigTestClasspath=${jpa.classes}${pathsep}\
-                 ${JAVA_HOME}/lib/modules${pathsep}\
-                 ${JAVA_HOME}/../Classes/classes.jar
+                 ${jimage.dir}/java.base${pathsep}\
+                 ${jimage.dir}/java.rmi${pathsep}\
+                 ${jimage.dir}/java.sql${pathsep}\
+                 ${jimage.dir}/java.naming
 
 ###############################################################
 ## Users must set this property when running on Windows.  The

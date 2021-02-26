@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,6 @@ import java.io.PrintWriter;
 import java.util.Properties;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.Jdk9SigTestDriver;
 import com.sun.ts.tests.signaturetest.SigTestEE;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
@@ -123,13 +122,8 @@ public class SAAJSigTest extends SigTestEE {
    * define which sig driver we will use
    */
   protected SignatureTestDriver getSigTestDriver() {
-    String version = (String) System.getProperties().get("java.version");
-    if (version.startsWith("9"))
-      driver = new Jdk9SigTestDriver();
-    if (driver == null) {
-      driver = SignatureTestDriverFactory
-          .getInstance(SignatureTestDriverFactory.SIG_TEST);
-    }
+    driver = SignatureTestDriverFactory
+        .getInstance(SignatureTestDriverFactory.SIG_TEST);
 
     return driver;
 

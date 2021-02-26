@@ -53,6 +53,10 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 
 ########################################################
 #
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -66,10 +70,12 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 #       sigTestClasspath=${el.classes}${pathsep}${java.home}/jre/lib/rt.jar
 # 
 #       Solaris/Linux/Windows/MacOs Java 9:
-#       sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
+#       sigTestClasspath=${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 #
 ########################################################
-sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################

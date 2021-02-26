@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,6 +20,10 @@
  */
 
 package com.sun.ts.tests.signaturetest;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -52,12 +56,7 @@ public abstract class SigTest extends EETest {
   protected SignatureTestDriver getSigTestDriver() {
 
     if (driver == null) {
-      String version = (String) System.getProperties().get("java.version");
-      if (version.startsWith("9") || version.startsWith("11"))
-        driver = new Jdk9SigTestDriver();
-      if (driver == null) {
-        driver = SignatureTestDriverFactory.getInstance(SignatureTestDriverFactory.SIG_TEST);
-      }    
+      driver = SignatureTestDriverFactory.getInstance(SignatureTestDriverFactory.SIG_TEST);
     }
 
     return driver;
@@ -208,12 +207,44 @@ public abstract class SigTest extends EETest {
     String packageFile = getPackageFile();
     String testClasspath = testInfo.getTestClasspath();
     String optionalPkgToIgnore = testInfo.getOptionalTechPackagesToIgnore();
+    String jimageDir = testInfo.getJImageDir();
 
     // unlisted optional technology packages are packages for optional
     // technologies that were not specified by the user. We want to
     // ensure there are no full or partial implementations of an
     // optional technology which were not declared.
     ArrayList<String> unlistedTechnologyPkgs = getUnlistedOptionalPackages();
+
+    // If testing with Java 11, extract the JDK's modules so they can be used
+    // on the testcase's classpath.
+    Properties sysProps = System.getProperties();
+    String version = (String) sysProps.get("java.version");
+    if (version.startsWith("11")) {
+      File f = new File(jimageDir);
+      f.mkdirs();
+
+      String javaHome = (String) sysProps.get("java.home");
+      TestUtil.logMsg("Executing JImage");
+
+      try {
+        ProcessBuilder pb = new ProcessBuilder(javaHome + "/bin/jimage", "extract", "--dir=" + jimageDir, javaHome + "/lib/modules");
+        TestUtil.logMsg(javaHome + "/bin/jimage extract --dir=" + jimageDir + " " + javaHome + "/lib/modules");
+        pb.redirectErrorStream(true);
+        Process proc = pb.start();
+        BufferedReader out = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+        String line = null;
+        while ((line = out.readLine()) != null) {
+          TestUtil.logMsg(line);
+        }
+
+        int rc = proc.waitFor();
+        TestUtil.logMsg("JImage RC = " + rc);
+        out.close();
+      } catch (Exception e) {
+        TestUtil.logMsg("Exception while executing JImage!  Some tests may fail.");
+        e.printStackTrace();
+      }
+    }
 
     try {
       results = getSigTestDriver().executeSigTest(packageFile, mapFile,

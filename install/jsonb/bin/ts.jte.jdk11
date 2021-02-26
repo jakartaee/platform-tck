@@ -116,6 +116,10 @@ if.existing.work.report.dirs=append
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -123,7 +127,9 @@ porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jsonb.classes}${pathsep}${java.home}/lib/modules
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jsonb.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 # These properties are used by the harness.  "harness.log.port"

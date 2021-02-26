@@ -181,10 +181,15 @@ env.ts_unix.menu=true
 env.ts_win32.menu=true
 
 ##########################################################################
-# The sigTestClasspath specify the location of securityapi implementation 
-# classes that used for signature test
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+# @sigTestClasspath: This property specifies the location of securityapi
+#                    implementation classes used for the signature test
 ##########################################################################
-sigTestClasspath=${securityapi.classes}${pathsep}${java.home}/lib/modules
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${securityapi.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
