@@ -69,7 +69,6 @@ sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
 sed -i 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
 sed -i "s#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/autodeploy#g" ts.jte
 sed -i 's#impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=20#g' ts.jte
-sed -i 's#jdbc.classes=.*#jdbc.classes=\$\{webServerHome\}/../javadb/lib/derbyclient.jar#g' ts.jte
 sed -i 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
 sed -i 's#jstl\.db\.name=.*#jstl.db.name=derbyDB#g' ts.jte
 sed -i 's#jstl\.db\.server=.*#jstl.db.server=localhost#g' ts.jte

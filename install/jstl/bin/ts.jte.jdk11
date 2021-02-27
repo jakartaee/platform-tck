@@ -112,7 +112,7 @@ jstl.db.password=cts1
 #    				${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 #
 ########################################################
-jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar
+jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar${pathsep}${webServerHome}/../javadb/lib/derbyshared.jar.jar${pathsep}${webServerHome}/../javadb/lib/derbytools.jar
 jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar${pathsep}${webServerHome}/modules/jakarta.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar
 jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar
 
