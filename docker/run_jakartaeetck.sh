@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
-# Copyright (c) 2019, 2020 Payara Foundation and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2021 Payara Foundation and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -47,6 +47,9 @@ if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
     echo "Using glassfish6 for GF_VI_TOPLEVEL_DIR"
     export GF_VI_TOPLEVEL_DIR=glassfish6
 fi
+
+export JDK8_HOME=${JDK_HOME}
+
 
 if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
   cp $TS_HOME/bin/ts.jte.jdk11 $TS_HOME/bin/ts.jte
@@ -499,6 +502,10 @@ else
 fi
 
 fi
+
+#revert to JDK8_HOME post completion of tests
+#https://bugs.eclipse.org/bugs/show_bug.cgi?id=570751
+export JAVA_HOME=${JDK8_HOME}
 
 export HOST=`hostname -f`
 echo "1 ${TEST_SUITE} ${HOST}" > ${CTS_HOME}/args.txt
