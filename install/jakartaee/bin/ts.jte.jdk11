@@ -478,7 +478,7 @@ s1as.se.jmsServer=imqbroker
 #       app server's extension directory.  The CTS config.vi
 #       target will copy the CTS library jars to this location.
 ###############################################################
-extension.dir=${s1as.domain}/lib/ext
+extension.dir=${s1as.domain}/lib
 
 ###############################################################
 # @instance.listenerName - Default value for the iiop listener

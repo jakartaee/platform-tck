@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -283,3 +283,11 @@ admin.pass.file=/tmp/ripassword
 jndi.fs.dir=/tmp/ri_admin_objects
 jndi.factory.initial="java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory"
 jndi.provider.url="java.naming.provider.url=file:///${jndi.fs.dir}"
+
+###############################################################
+# @extension.dir - The extension directory of RI. 
+# The CTS config.vi target will copy the CTS library 
+# jars to this location, used only for RI.
+###############################################################
+extension.dir=${glassfish.home}/domains/domain1/lib/
+

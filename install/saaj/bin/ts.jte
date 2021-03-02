@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -289,3 +289,9 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 ######################################################################
 tslib.name=saajtck
 
+###############################################################
+# @extension.dir - The extension directory of RI. 
+# The CTS config.vi target will copy the CTS library 
+# jars to this location, used only for RI.
+###############################################################
+extension.dir=${webcontainer.home}/domains/domain1/lib/ext

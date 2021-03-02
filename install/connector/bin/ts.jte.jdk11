@@ -690,5 +690,9 @@ deliverable.class=com.sun.ts.lib.deliverable.connector.StandaloneDeliverable
 ###########################################################################
 tools.jar=${jdk.home}/lib/tools.jar
 
-
-
+###############################################################
+# @extension.dir - The extension directory of RI. 
+# The CTS config.vi target will copy the CTS library 
+# jars to this location, used only for RI.
+###############################################################
+extension.dir=${connector.domain}/lib
