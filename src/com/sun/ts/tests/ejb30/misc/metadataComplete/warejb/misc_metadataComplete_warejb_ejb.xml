@@ -58,16 +58,6 @@
             <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
             <session-type>Stateless</session-type>
             <transaction-type>Container</transaction-type>
-            <resource-ref>
-                <res-ref-name>orb</res-ref-name>
-                <res-type>org.omg.CORBA.ORB</res-type>
-                <res-auth>Container</res-auth>
-                <res-sharing-scope>Shareable</res-sharing-scope>
-                <injection-target>
-                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
-                    <injection-target-name>orb</injection-target-name>
-                </injection-target>
-            </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
                 <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
@@ -92,16 +82,6 @@
             <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
             <session-type>Stateless</session-type>
             <transaction-type>Container</transaction-type>
-            <resource-ref>
-                <res-ref-name>orb</res-ref-name>
-                <res-type>org.omg.CORBA.ORB</res-type>
-                <res-auth>Container</res-auth>
-                <res-sharing-scope>Shareable</res-sharing-scope>
-                <injection-target>
-                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
-                    <injection-target-name>orb</injection-target-name>
-                </injection-target>
-            </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
                 <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>
@@ -127,16 +107,6 @@
             <ejb-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</ejb-class>
             <session-type>Stateless</session-type>
             <transaction-type>Container</transaction-type>
-            <resource-ref>
-                <res-ref-name>orb</res-ref-name>
-                <res-type>org.omg.CORBA.ORB</res-type>
-                <res-auth>Container</res-auth>
-                <res-sharing-scope>Shareable</res-sharing-scope>
-                <injection-target>
-                    <injection-target-class>com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars.StatelessAnnotationUsedRemoteCalculatorBean</injection-target-class>
-                    <injection-target-name>orb</injection-target-name>
-                </injection-target>
-            </resource-ref>
             <resource-env-ref>
                 <resource-env-ref-name>sessionContext</resource-env-ref-name>
                 <resource-env-ref-type>jakarta.ejb.SessionContext</resource-env-ref-type>

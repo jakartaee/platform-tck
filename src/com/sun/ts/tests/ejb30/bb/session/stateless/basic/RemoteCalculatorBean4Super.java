@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,24 +20,22 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-
 import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
 
 abstract public class RemoteCalculatorBean4Super extends BaseRemoteCalculator
     implements RemoteCalculator {
 
   @Resource
-  private ORB orb;
+  private SessionContext sctx;
 
   @Override
   public int remoteAdd(int a, int b) {
     int retValue;
     retValue = super.remoteAdd(a, b);
-    return retValue + (orb == null ? 0 : orb.toString().length());
-  }
-
+    return retValue + (sctx == null ? 0 : sctx.toString().length());
+    }
+  
 }

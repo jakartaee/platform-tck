@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,9 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
-import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 
@@ -39,9 +36,6 @@ abstract public class TestBeanBase implements TestIF {
   abstract protected TwoLocalIF getTwoLocal() throws TestFailedException;
 
   abstract protected AcceptLocalIF getAcceptLocalBean();
-
-  @Resource(name = "null")
-  private ORB orb;
 
   public void getBusinessObjectLocal1() throws TestFailedException {
     ThreeLocal1IF local = getLocal1();

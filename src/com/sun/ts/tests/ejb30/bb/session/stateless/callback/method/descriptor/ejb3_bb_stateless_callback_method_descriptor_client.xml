@@ -18,22 +18,6 @@
 -->
 
 <application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="9" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd">
-   <resource-ref>
-        <res-ref-name>orbInClientBase2</res-ref-name>
-        <res-type>org.omg.CORBA.ORB</res-type>
-        <injection-target>
-            <injection-target-class>com.sun.ts.tests.ejb30.common.callback.ClientBase2NoAnnotation</injection-target-class>
-            <injection-target-name>orbInClientBase2</injection-target-name>
-        </injection-target>
-    </resource-ref>
-    <resource-ref>
-        <res-ref-name>orbInClientBase3</res-ref-name>
-        <res-type>org.omg.CORBA.ORB</res-type>
-        <injection-target>
-            <injection-target-class>com.sun.ts.tests.ejb30.common.callback.ClientBase3NoAnnotation</injection-target-class>
-            <injection-target-name>orbInClientBase3</injection-target-name>
-        </injection-target>
-    </resource-ref>
     <post-construct>
         <lifecycle-callback-class>com.sun.ts.tests.ejb30.common.callback.ClientBase2NoAnnotation</lifecycle-callback-class>
         <lifecycle-callback-method>postConstructInBase2NoAnnotation</lifecycle-callback-method>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,15 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
 
 import java.net.URL;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
@@ -71,7 +68,6 @@ import jakarta.transaction.UserTransaction;
     @Resource(name = "connectionFactoryT", type = ConnectionFactory.class),
     @Resource(name = "queue", type = Queue.class),
     @Resource(name = "topic", type = Topic.class),
-    @Resource(name = "myOrb", type = ORB.class, description = "corba orb", shareable = false),
     @Resource(name = "myTransactionSynchronizationRegistry", type = TransactionSynchronizationRegistry.class, description = "TransactionSynchronizationRegistry type-level injection"),
     @Resource(name = "myTimerService", type = TimerService.class, description = "TimerService type-level injection"),
     @Resource(name = "dog", type = Dog.class, description = "a custom resouce") })
@@ -131,10 +127,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
   protected String getQueueName() {
     return "queue";
-  }
-
-  protected String getOrbName() {
-    return "myOrb";
   }
 
   protected String getTransactionSynchronizationRegistryName() {
@@ -215,14 +207,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
     return (UserTransaction) getEJBContext().lookup(getUserTransactionName());
   }
 
-  protected ORB getOrb() {
-    try {
-      return (ORB) ServiceLocator.lookup(ORB_JNDI_NAME);
-    } catch (NamingException e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
 
   protected TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
     try {

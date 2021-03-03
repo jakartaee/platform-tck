@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,14 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride;
 
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
-
 import java.net.URL;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
@@ -63,8 +59,7 @@ import jakarta.transaction.UserTransaction;
     @Resource(name = "connectionFactoryQ", type = ConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
     @Resource(name = "connectionFactoryT", type = ConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
     @Resource(name = "queue", type = Queue.class, description = "<resource-env-ref>"),
-    @Resource(name = "topic", type = Topic.class, description = "<resource-env-ref>"),
-    @Resource(name = "myOrb", type = ORB.class, description = "corba orb", shareable = false) })
+    @Resource(name = "topic", type = Topic.class, description = "<resource-env-ref>") })
 
 public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
@@ -113,10 +108,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
   protected String getQueueName() {
     return "queue";
-  }
-
-  protected String getOrbName() {
-    return "myOrb";
   }
 
   public ResourceTypeBean() {
@@ -175,15 +166,6 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
   protected jakarta.transaction.UserTransaction getUserTransaction() {
     return getEJBContext().getUserTransaction();
-  }
-
-  protected ORB getOrb() {
-    try {
-      return (ORB) ServiceLocator.lookup(ORB_JNDI_NAME);
-    } catch (NamingException e) {
-      e.printStackTrace();
-    }
-    return null;
   }
 
 }

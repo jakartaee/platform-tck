@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import org.omg.CORBA.ORB;
-
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 
 /**
  * the direct superclass of Client classes that test application client
@@ -33,8 +28,6 @@ import jakarta.annotation.Resource;
  * stateless/callback/method/annotated/Client.
  */
 abstract public class ClientBase3 extends ClientBase2 {
-  @Resource
-  private static ORB orbInClientBase3;
 
   public ClientBase3() {
   }
@@ -42,13 +35,6 @@ abstract public class ClientBase3 extends ClientBase2 {
   @PostConstruct
   private static void postConstructInBase3() {
     addPostConstructCall(BASE3);
-    // check injected fields
-    if (orbInClientBase3 != null) {
-      addInjectedField(orbInClientBase3);
-    } else {
-      TLogger.log("WARNING: ClientBase3.orbInClientBase3 has not been "
-          + "initialized when checking inside ClientBase3.postConstructInBase3()");
-    }
   }
 
 }

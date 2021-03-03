@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,11 +20,8 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import org.omg.CORBA.ORB;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.annotation.Resource;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
@@ -34,16 +31,13 @@ import jakarta.interceptor.InvocationContext;
  * throws list, though not necessary.
  */
 public class InterceptorA extends InterceptorBase {
-  @Resource()
-  private ORB orb;
 
   public InterceptorA() {
     super();
   }
 
   public String getInjectedLocation() {
-    String result = (orb == null) ? NOT_INJECTED : "A";
-    return result;
+    return NOT_INJECTED;
   }
 
   @Override
