@@ -471,7 +471,7 @@ env.ts_win32.menu=true
 #########################################################################
 jimage.dir=${ts.home}/tmp/jdk-bundles
 
-sigTestClasspath=${jaspic.home}/modules/jakarta.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
+sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"

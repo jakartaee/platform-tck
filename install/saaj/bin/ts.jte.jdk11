@@ -274,7 +274,7 @@ env.ts_win32.menu=true
 #########################################################################
 jimage.dir=${ts.home}/tmp/jdk-bundles
 
-sigTestClasspath=${local.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
+sigTestClasspath=${local.classes}${pathsep}${webcontainer.home}/modules/webservices-api-osgi.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ###############################################################
 ## This command allows the test clients to be run in

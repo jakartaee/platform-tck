@@ -77,7 +77,6 @@ sed -i 's#jstl\.db\.url=.*#jstl.db.url=jdbc:derby://\$\{jstl.db.server\}:\$\{jst
 sed -i 's#jstl\.db\.driver=.*#jstl.db.driver=org.apache.derby.jdbc.ClientDriver#g' ts.jte
 sed -i 's#jstl\.db\.user=.*#jstl.db.user=cts1#g' ts.jte
 sed -i 's#jstl\.db\.password=.*#jstl.db.password=cts1#g' ts.jte
-sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{ts.home\}/classes:\$\{jstl.classes\}:\$\{jspservlet.classes\}:\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
 sed -i 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/jakarta.servlet-api.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp-api.jar:\$\{webServerHome\}/modules/jakarta.el.jar:\$\{webServerHome\}/modules/jakarta.el-api.jar#g' ts.jte
 sed -i 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl-api.jar#g' ts.jte
 
