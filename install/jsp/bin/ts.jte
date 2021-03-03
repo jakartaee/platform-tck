@@ -105,7 +105,7 @@ jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 #   sigTestClasspath=${jspservlet.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
 #
 ########################################################################
-sigTestClasspath=${jspservlet.classes}${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.7.0/Classes/classes.jar
+sigTestClasspath=${jspservlet.classes}${pathsep}${el.classes}${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.7.0/Classes/classes.jar
 
 
 ########################################################################

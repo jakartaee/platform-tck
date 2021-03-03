@@ -105,7 +105,7 @@ jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 ########################################################################
 jimage.dir=${ts.home}/tmp/jdk-bundles
 
-sigTestClasspath=${jspservlet.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
+sigTestClasspath=${jspservlet.classes}${pathsep}${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################
