@@ -233,7 +233,6 @@ public abstract class SigTestEE extends ServiceEETest {
     String packageFile = getPackageFile();
     String testClasspath = testInfo.getTestClasspath();
     String optionalPkgToIgnore = testInfo.getOptionalTechPackagesToIgnore();
-    String jimageDir = testInfo.getJImageDir();
 
     // unlisted optional packages are technology packages for those optional
     // technologies (e.g. jsr-88) that might not have been specified by the
@@ -242,11 +241,12 @@ public abstract class SigTestEE extends ServiceEETest {
     // optional technology which were not declared
     ArrayList<String> unlistedTechnologyPkgs = getUnlistedOptionalPackages();
 
-    // If testing with Java 11, extract the JDK's modules so they can be used
+    // If testing with Java 9+, extract the JDK's modules so they can be used
     // on the testcase's classpath.
     Properties sysProps = System.getProperties();
     String version = (String) sysProps.get("java.version");
-    if (version.startsWith("11")) {
+    if (!version.startsWith("1.")) {
+      String jimageDir = testInfo.getJImageDir();
       File f = new File(jimageDir);
       f.mkdirs();
 

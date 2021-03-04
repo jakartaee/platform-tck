@@ -207,7 +207,6 @@ public abstract class SigTest extends EETest {
     String packageFile = getPackageFile();
     String testClasspath = testInfo.getTestClasspath();
     String optionalPkgToIgnore = testInfo.getOptionalTechPackagesToIgnore();
-    String jimageDir = testInfo.getJImageDir();
 
     // unlisted optional technology packages are packages for optional
     // technologies that were not specified by the user. We want to
@@ -215,11 +214,12 @@ public abstract class SigTest extends EETest {
     // optional technology which were not declared.
     ArrayList<String> unlistedTechnologyPkgs = getUnlistedOptionalPackages();
 
-    // If testing with Java 11, extract the JDK's modules so they can be used
+    // If testing with Java 9+, extract the JDK's modules so they can be used
     // on the testcase's classpath.
     Properties sysProps = System.getProperties();
     String version = (String) sysProps.get("java.version");
-    if (version.startsWith("11")) {
+    if (!version.startsWith("1.")) {
+      String jimageDir = testInfo.getJImageDir();
       File f = new File(jimageDir);
       f.mkdirs();
 
