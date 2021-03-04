@@ -232,7 +232,10 @@ public class TSScript extends com.sun.javatest.Script {
       TestUtil
           .logHarness("keywords (to be passed to tests) set to:  " + keywords);
       pTestProps.put("current.keywords", keywords);
-      pTestProps.put("jimage.dir", propMgr.getProperty("jimage.dir"));
+      String version = (String)System.getProperties().get("java.version");
+      if (!version.startsWith("1.")) {
+        pTestProps.put("jimage.dir", propMgr.getProperty("jimage.dir"));
+      }
 
       // so we know what kind of test this is
       String finderType = td.getParameter("finder");
