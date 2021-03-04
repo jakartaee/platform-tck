@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -400,8 +400,8 @@
     </target>
 
     <target name="copy.tck.jars">
-        <copy file="${ts.home}/lib/jmstck.jar" tofile="${glassfish.home}/domains/domain1/lib/ext/jmstck.jar" overwrite="yes" />
-        <copy file="${ts.home}/lib/tsharness.jar" tofile="${glassfish.home}/domains/domain1/lib/ext/tsharness.jar" overwrite="yes" />
+        <copy file="${ts.home}/lib/jmstck.jar" tofile="${extension.dir}/jmstck.jar" overwrite="yes" />
+        <copy file="${ts.home}/lib/tsharness.jar" tofile="${extension.dir}/tsharness.jar" overwrite="yes" />
     </target>
 
     <target name="copy.jmsra.jarfile">
@@ -442,8 +442,8 @@
     </target>
 
     <target name="delete.tck.jars">
-       <delete file="${glassfish.home}/domains/domain1/lib/ext/jmstck.jar" quiet="true"/>
-       <delete file="${glassfish.home}/domains/domain1/lib/ext/tsharness.jar" quiet="true"/>
+       <delete file="${extension.dir}/jmstck.jar" quiet="true"/>
+       <delete file="${extension.dir}/tsharness.jar" quiet="true"/>
     </target>
 
     <target name="add.users" >

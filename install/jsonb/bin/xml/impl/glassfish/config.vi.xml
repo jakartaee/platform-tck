@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -132,13 +132,13 @@
     </target>
 
     <target name="copy.tck.jars">
-        <copy file="${ts.home}/lib/jsonbtck.jar" tofile="${web.home}/domains/domain1/lib/ext/jsonbtck.jar" overwrite="yes" />
-        <copy file="${ts.home}/lib/tsharness.jar" tofile="${web.home}/domains/domain1/lib/ext/tsharness.jar" overwrite="yes" />
+        <copy file="${ts.home}/lib/jsonbtck.jar" tofile="${extension.dir}/jsonbtck.jar" overwrite="yes" />
+        <copy file="${ts.home}/lib/tsharness.jar" tofile="${extension.dir}/tsharness.jar" overwrite="yes" />
     </target>
 
     <target name="delete.tck.jars">
-       <delete file="${web.home}/domains/domain1/lib/ext/jsonbtck.jar" quiet="true"/>
-       <delete file="${web.home}/domains/domain1/lib/ext/tsharness.jar" quiet="true"/>
+       <delete file="${extension.dir}/jsonbtck.jar" quiet="true"/>
+       <delete file="${extension.dir}/tsharness.jar" quiet="true"/>
     </target>
 
 </project>

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -412,3 +412,11 @@ jaxrs.classes=${web.modules}/jakarta.ws.rs-api.jar
 jersey.home=D:/CTS/CTS_JAXRS/jaxrstck/jersey
 jaxrs_impl_lib=${web.modules}/jersey-container-servlet-core.jar
 servlet_adaptor=org/glassfish/jersey/servlet/ServletContainer.class
+
+
+###############################################################
+# @extension.dir - The extension directory of RI. 
+# The CTS config.vi target will copy the CTS library 
+# jars to this location, used only for RI.
+###############################################################
+extension.dir=${web.home}/domains/domain1/lib/ext
