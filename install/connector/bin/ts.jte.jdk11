@@ -354,6 +354,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -361,7 +364,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${ri.lib}/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${java.home}/lib/modules
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${ri.lib}/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################

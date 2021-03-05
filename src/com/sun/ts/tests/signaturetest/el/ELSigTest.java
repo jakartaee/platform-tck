@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -24,7 +24,6 @@ package com.sun.ts.tests.signaturetest.el;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.Jdk9SigTestDriver;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
@@ -113,13 +112,8 @@ public class ELSigTest extends SigTest {
    */
   @Override
   protected SignatureTestDriver getSigTestDriver() {
-    String version = (String) System.getProperties().get("java.version");
-    if (version.startsWith("9") || version.startsWith("11"))
-      driver = new Jdk9SigTestDriver();
-    if (driver == null) {
-      driver = SignatureTestDriverFactory
-          .getInstance(SignatureTestDriverFactory.SIG_TEST);
-    }
+    driver = SignatureTestDriverFactory
+        .getInstance(SignatureTestDriverFactory.SIG_TEST);
 
     return driver;
 

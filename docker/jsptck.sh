@@ -70,7 +70,6 @@ sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
 sed -i "s#^impl\.vi=.*#impl.vi=glassfish#g" ts.jte
 sed -i 's#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy#' ts.jte
 sed -i "s#^impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=30#g" ts.jte
-sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{ts.home\}/classes\$\{pathsep\}\$\{jstl.classes\}\$\{pathsep\}\$\{jspservlet.classes\}\$\{pathsep\}\$\{el.classes\}\$\{pathsep\}\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
 sed -i 's#^jspservlet\.classes=.*#jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar#g' ts.jte
 sed -i 's#^jstl\.classes=.*#jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar#g' ts.jte
 sed -i 's#^el\.classes=.*#el.classes=${webServerHome}/modules/jakarta.el.jar${pathsep}${webServerHome}/modules/jakarta.el-api.jar#g' ts.jte

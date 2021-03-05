@@ -90,6 +90,10 @@ extension.dir=${webServerHome}/domains/domain1/lib/ext
 
 ########################################################################
 #
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -98,8 +102,13 @@ extension.dir=${webServerHome}/domains/domain1/lib/ext
 #                    (';' windows, ':' Unixes).
 #
 ########################################################################
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
 sigTestClasspath=${jta.classes}${pathsep}\
-                 ${java.home}/lib/modules
+                 ${jimage.dir}/java.base${pathsep}\
+                 ${jimage.dir}/java.rmi${pathsep}\
+                 ${jimage.dir}/java.sql${pathsep}\
+                 ${jimage.dir}/java.naming
 
 ########################################################################
 #These properties must be set to tell the Javatest harness the

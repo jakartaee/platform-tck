@@ -458,6 +458,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecuteAppClient2=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -466,7 +469,9 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #                    Note that on mac, classes.jar is used instead of rt.jar.
 #########################################################################
-sigTestClasspath=${jaspic.home}/modules/jakarta.security.auth.message-api.jar:${jaspic.home}/modules/security.jar:${java.home}/lib/modules:${JAVA_HOME}/../Classes/classes.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
