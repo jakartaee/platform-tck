@@ -309,6 +309,13 @@ authpassword=javajoe
 ###############################################################
 securedWebServicePort=
 
+###############################################################################
+# @client.cert.test.jdk.tls.client.protocols JDK 11 in TLSv1.3 does not support
+#                        Post-Handshake Authentication, so TLSv1.2 must be used
+#                        for client-cert authentication to work.
+###############################################################################
+client.cert.test.jdk.tls.client.protocols=TLSv1.2
+
 ###################################################################
 ###################################################################
 ###################################################################

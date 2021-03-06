@@ -1795,6 +1795,13 @@ nobodyuser=guest
 securedWebServicePort=1044
 securedWebServicePort.2=1045
 
+###############################################################################
+# @client.cert.test.jdk.tls.client.protocols JDK 11 in TLSv1.3 does not support
+#                        Post-Handshake Authentication, so TLSv1.2 must be used
+#                        for client-cert authentication to work.
+###############################################################################
+client.cert.test.jdk.tls.client.protocols=TLSv1.2
+
 ###############################################################
 # @login This property must be set to run appclient security
 #        tests

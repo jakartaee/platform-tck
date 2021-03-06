@@ -43,6 +43,8 @@ public class Client extends EETest {
   private String hostname = null;
 
   private int portnum = 0;
+  
+  private String tlsVersion;
 
   private String pageBase = "/clientcertanno_web";
 
@@ -87,9 +89,15 @@ public class Client extends EETest {
     // Read relevant properties:
     hostname = p.getProperty(webHostProp);
     portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
+    tlsVersion = p.getProperty("client.cert.test.jdk.tls.client.protocols");
 
     TestUtil.logMsg(
         "securedWebServicePort =" + p.getProperty("securedWebServicePort"));
+    
+    if (tlsVersion != null) {
+        TestUtil.logMsg(
+            "client.cert.test.jdk.tls.client.protocols =" + tlsVersion);
+    }
 
   }
 
@@ -128,6 +136,10 @@ public class Client extends EETest {
     String testName = "clientCertTest";
     String url = ctsurl.getURLString("https", hostname, portnum,
         pageBase + authorizedPage);
+    
+    if (tlsVersion != null) {
+        System.setProperty("jdk.tls.client.protocols", tlsVersion);
+    }
 
     try {
       URL newURL = new URL(url);
