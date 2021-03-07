@@ -122,17 +122,17 @@ ant config.vi
 +
 The `config.vi` Ant task performs several actions, including:
 +
-* Sets the following JACC JVM options: +
+* Sets the following Jakarta Authorization JVM options: +
 [source,oac_no_warn]
 ----
 -Djakarta.security.jacc.policy.provider=
         com.sun.ts.tests.jacc.provider.TSPolicy
 -Dvendor.jakarta.security.jacc.policy.provider=
-        com.sun.enterprise.security.provider.PolicyWrapper
+        com.sun.enterprise.security.jacc.provider.SimplePolicyProvider
 -Djakarta.security.jacc.PolicyConfigurationFactory.provider=
         com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl
 -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=
-        com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl
+        com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory
 -Dlog.file.location=${log.file.location}
 ----
 Note that the `log.file.location` comes from the property of the same

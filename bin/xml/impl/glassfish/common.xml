@@ -1411,7 +1411,7 @@
 
     <!--
        This target was created because we have tools, namely the runcts ant task,
-       that would like to be able to add the JVM options for JACC but not call
+       that would like to be able to add the JVM options for Jakarta Authorization but not call
        server restart.  This was due to techical glitches when restarting the server
        from a spawned process in the task.
     -->
@@ -1421,7 +1421,7 @@
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyProvider"/>
          </antcall>
 
          <antcall target="create-jvm-options" >
@@ -1429,7 +1429,7 @@
          </antcall>
 
          <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory "/>
          </antcall>
 
          <antcall target="create-one-jvm-option" >
@@ -1448,7 +1448,7 @@
 
     <!--
        This target was created because we have tools, namely the runcts ant task,
-       that would like to be able to remove the JVM options for JACC but not call
+       that would like to be able to remove the JVM options for Jakarta Authorization but not call
        server restart.  This was due to techical glitches when restarting the server
        from a spawned process in the task.
     -->
@@ -1458,7 +1458,7 @@
          </antcall>
         
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.provider.PolicyWrapper"/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyProvider"/>
          </antcall>
 
          <antcall target="delete-jvm-options" >
@@ -1466,7 +1466,7 @@
          </antcall>
 
          <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.provider.PolicyConfigurationFactoryImpl "/>
+          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory "/>
          </antcall>
 
          <antcall target="delete-one-jvm-option" >
