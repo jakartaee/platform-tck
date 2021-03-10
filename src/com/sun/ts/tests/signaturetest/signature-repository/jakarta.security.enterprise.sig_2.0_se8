@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.interceptor.InterceptorBinding
  anno 0 java.lang.annotation.Documented()
@@ -11,10 +8,10 @@ CLSS public abstract interface !annotation jakarta.interceptor.InterceptorBindin
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.security.enterprise.AuthenticationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.security.GeneralSecurityException
 hfds serialVersionUID
 
@@ -28,7 +25,7 @@ meth public static jakarta.security.enterprise.AuthenticationStatus[] values()
 supr java.lang.Enum<jakarta.security.enterprise.AuthenticationStatus>
 
 CLSS public jakarta.security.enterprise.CallerPrincipal
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.security.Principal
 meth public java.lang.String getName()
 supr java.lang.Object
@@ -42,7 +39,7 @@ meth public abstract jakarta.security.enterprise.AuthenticationStatus authentica
 meth public abstract java.security.Principal getCallerPrincipal()
 
 CLSS public jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters
-cons public <init>()
+cons public init()
 meth public boolean isNewAuthentication()
 meth public boolean isRememberMe()
 meth public jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters credential(jakarta.security.enterprise.credential.Credential)
@@ -67,7 +64,7 @@ CLSS public abstract interface !annotation jakarta.security.enterprise.authentic
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String realmName() value= ""
+meth public abstract !hasdefault java.lang.String realmName()
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -113,7 +110,7 @@ meth public abstract void setRequest(jakarta.servlet.http.HttpServletRequest)
 meth public abstract void setResponse(jakarta.servlet.http.HttpServletResponse)
 
 CLSS public jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContextWrapper
-cons public <init>(jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext)
+cons public init(jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext)
 intf jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext
 meth public boolean isAuthenticationRequest()
 meth public boolean isProtected()
@@ -149,10 +146,10 @@ CLSS public abstract interface !annotation jakarta.security.enterprise.authentic
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean useForwardToLogin() value= true
-meth public abstract !hasdefault java.lang.String errorPage() value= "/login-error"
-meth public abstract !hasdefault java.lang.String loginPage() value= "/login"
-meth public abstract !hasdefault java.lang.String useForwardToLoginExpression() value= ""
+meth public abstract !hasdefault boolean useForwardToLogin()
+meth public abstract !hasdefault java.lang.String errorPage()
+meth public abstract !hasdefault java.lang.String loginPage()
+meth public abstract !hasdefault java.lang.String useForwardToLoginExpression()
 
 CLSS public abstract interface !annotation jakarta.security.enterprise.authentication.mechanism.http.RememberMe
  anno 0 jakarta.interceptor.InterceptorBinding()
@@ -160,18 +157,18 @@ CLSS public abstract interface !annotation jakarta.security.enterprise.authentic
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean cookieHttpOnly() value= true
-meth public abstract !hasdefault boolean cookieSecureOnly() value= true
-meth public abstract !hasdefault boolean isRememberMe() value= true
-meth public abstract !hasdefault int cookieMaxAgeSeconds() value= 86400
-meth public abstract !hasdefault java.lang.String cookieHttpOnlyExpression() value= ""
-meth public abstract !hasdefault java.lang.String cookieMaxAgeSecondsExpression() value= ""
-meth public abstract !hasdefault java.lang.String cookieName() value= "JREMEMBERMEID"
-meth public abstract !hasdefault java.lang.String cookieSecureOnlyExpression() value= ""
-meth public abstract !hasdefault java.lang.String isRememberMeExpression() value= ""
+meth public abstract !hasdefault boolean cookieHttpOnly()
+meth public abstract !hasdefault boolean cookieSecureOnly()
+meth public abstract !hasdefault boolean isRememberMe()
+meth public abstract !hasdefault int cookieMaxAgeSeconds()
+meth public abstract !hasdefault java.lang.String cookieHttpOnlyExpression()
+meth public abstract !hasdefault java.lang.String cookieMaxAgeSecondsExpression()
+meth public abstract !hasdefault java.lang.String cookieName()
+meth public abstract !hasdefault java.lang.String cookieSecureOnlyExpression()
+meth public abstract !hasdefault java.lang.String isRememberMeExpression()
 
 CLSS public abstract jakarta.security.enterprise.credential.AbstractClearableCredential
-cons public <init>()
+cons public init()
 intf jakarta.security.enterprise.credential.Credential
 meth protected abstract void clearCredential()
 meth protected final void setCleared()
@@ -181,11 +178,11 @@ supr java.lang.Object
 hfds cleared
 
 CLSS public jakarta.security.enterprise.credential.BasicAuthenticationCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr jakarta.security.enterprise.credential.UsernamePasswordCredential
 
 CLSS public jakarta.security.enterprise.credential.CallerOnlyCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf jakarta.security.enterprise.credential.Credential
 meth public java.lang.String getCaller()
 supr java.lang.Object
@@ -197,8 +194,8 @@ meth public boolean isValid()
 meth public void clear()
 
 CLSS public jakarta.security.enterprise.credential.Password
-cons public <init>(char[])
-cons public <init>(java.lang.String)
+cons public init(char[])
+cons public init(java.lang.String)
 meth public boolean compareTo(java.lang.String)
 meth public char[] getValue()
 meth public void clear()
@@ -206,15 +203,15 @@ supr java.lang.Object
 hfds EMPTY_VALUE,value
 
 CLSS public jakarta.security.enterprise.credential.RememberMeCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf jakarta.security.enterprise.credential.Credential
 meth public java.lang.String getToken()
 supr java.lang.Object
 hfds token
 
 CLSS public jakarta.security.enterprise.credential.UsernamePasswordCredential
-cons public <init>(java.lang.String,jakarta.security.enterprise.credential.Password)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,jakarta.security.enterprise.credential.Password)
+cons public init(java.lang.String,java.lang.String)
 meth public boolean compareTo(java.lang.String,java.lang.String)
 meth public jakarta.security.enterprise.credential.Password getPassword()
 meth public java.lang.String getCaller()
@@ -224,12 +221,12 @@ supr jakarta.security.enterprise.credential.AbstractClearableCredential
 hfds caller,password
 
 CLSS public jakarta.security.enterprise.identitystore.CredentialValidationResult
-cons public <init>(jakarta.security.enterprise.CallerPrincipal)
-cons public <init>(jakarta.security.enterprise.CallerPrincipal,java.util.Set<java.lang.String>)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.security.enterprise.CallerPrincipal,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
-cons public <init>(java.lang.String,java.util.Set<java.lang.String>)
+cons public init(jakarta.security.enterprise.CallerPrincipal)
+cons public init(jakarta.security.enterprise.CallerPrincipal,java.util.Set<java.lang.String>)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.security.enterprise.CallerPrincipal,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
+cons public init(java.lang.String,java.util.Set<java.lang.String>)
 fld public final static jakarta.security.enterprise.identitystore.CredentialValidationResult INVALID_RESULT
 fld public final static jakarta.security.enterprise.identitystore.CredentialValidationResult NOT_VALIDATED_RESULT
 innr public final static !enum Status
@@ -255,15 +252,15 @@ CLSS public abstract interface !annotation jakarta.security.enterprise.identitys
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int priority() value= 70
-meth public abstract !hasdefault jakarta.security.enterprise.identitystore.IdentityStore$ValidationType[] useFor() value= [VALIDATE,PROVIDE_GROUPS]
-meth public abstract !hasdefault java.lang.Class<? extends jakarta.security.enterprise.identitystore.PasswordHash> hashAlgorithm() value= class jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash
-meth public abstract !hasdefault java.lang.String callerQuery() value= ""
-meth public abstract !hasdefault java.lang.String dataSourceLookup() value= "java:comp/DefaultDataSource"
-meth public abstract !hasdefault java.lang.String groupsQuery() value= ""
-meth public abstract !hasdefault java.lang.String priorityExpression() value= ""
-meth public abstract !hasdefault java.lang.String useForExpression() value= ""
-meth public abstract !hasdefault java.lang.String[] hashAlgorithmParameters() value= []
+meth public abstract !hasdefault int priority()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.IdentityStore$ValidationType[] useFor()
+meth public abstract !hasdefault java.lang.Class<? extends jakarta.security.enterprise.identitystore.PasswordHash> hashAlgorithm()
+meth public abstract !hasdefault java.lang.String callerQuery()
+meth public abstract !hasdefault java.lang.String dataSourceLookup()
+meth public abstract !hasdefault java.lang.String groupsQuery()
+meth public abstract !hasdefault java.lang.String priorityExpression()
+meth public abstract !hasdefault java.lang.String useForExpression()
+meth public abstract !hasdefault java.lang.String[] hashAlgorithmParameters()
 
 CLSS public abstract interface jakarta.security.enterprise.identitystore.IdentityStore
 fld public final static java.util.Set<jakarta.security.enterprise.identitystore.IdentityStore$ValidationType> DEFAULT_VALIDATION_TYPES
@@ -285,8 +282,8 @@ CLSS public abstract interface jakarta.security.enterprise.identitystore.Identit
 meth public abstract jakarta.security.enterprise.identitystore.CredentialValidationResult validate(jakarta.security.enterprise.credential.Credential)
 
 CLSS public jakarta.security.enterprise.identitystore.IdentityStorePermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr java.security.BasicPermission
 hfds serialVersionUID
 
@@ -295,30 +292,30 @@ CLSS public abstract interface !annotation jakarta.security.enterprise.identitys
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public final static !enum LdapSearchScope
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int maxResults() value= 1000
-meth public abstract !hasdefault int priority() value= 80
-meth public abstract !hasdefault int readTimeout() value= 0
-meth public abstract !hasdefault jakarta.security.enterprise.identitystore.IdentityStore$ValidationType[] useFor() value= [VALIDATE,PROVIDE_GROUPS]
-meth public abstract !hasdefault jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition$LdapSearchScope callerSearchScope() value= SUBTREE
-meth public abstract !hasdefault jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition$LdapSearchScope groupSearchScope() value= SUBTREE
-meth public abstract !hasdefault java.lang.String bindDn() value= ""
-meth public abstract !hasdefault java.lang.String bindDnPassword() value= ""
-meth public abstract !hasdefault java.lang.String callerBaseDn() value= ""
-meth public abstract !hasdefault java.lang.String callerNameAttribute() value= "uid"
-meth public abstract !hasdefault java.lang.String callerSearchBase() value= ""
-meth public abstract !hasdefault java.lang.String callerSearchFilter() value= ""
-meth public abstract !hasdefault java.lang.String callerSearchScopeExpression() value= ""
-meth public abstract !hasdefault java.lang.String groupMemberAttribute() value= "member"
-meth public abstract !hasdefault java.lang.String groupMemberOfAttribute() value= "memberOf"
-meth public abstract !hasdefault java.lang.String groupNameAttribute() value= "cn"
-meth public abstract !hasdefault java.lang.String groupSearchBase() value= ""
-meth public abstract !hasdefault java.lang.String groupSearchFilter() value= ""
-meth public abstract !hasdefault java.lang.String groupSearchScopeExpression() value= ""
-meth public abstract !hasdefault java.lang.String maxResultsExpression() value= ""
-meth public abstract !hasdefault java.lang.String priorityExpression() value= ""
-meth public abstract !hasdefault java.lang.String readTimeoutExpression() value= ""
-meth public abstract !hasdefault java.lang.String url() value= ""
-meth public abstract !hasdefault java.lang.String useForExpression() value= ""
+meth public abstract !hasdefault int maxResults()
+meth public abstract !hasdefault int priority()
+meth public abstract !hasdefault int readTimeout()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.IdentityStore$ValidationType[] useFor()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition$LdapSearchScope callerSearchScope()
+meth public abstract !hasdefault jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition$LdapSearchScope groupSearchScope()
+meth public abstract !hasdefault java.lang.String bindDn()
+meth public abstract !hasdefault java.lang.String bindDnPassword()
+meth public abstract !hasdefault java.lang.String callerBaseDn()
+meth public abstract !hasdefault java.lang.String callerNameAttribute()
+meth public abstract !hasdefault java.lang.String callerSearchBase()
+meth public abstract !hasdefault java.lang.String callerSearchFilter()
+meth public abstract !hasdefault java.lang.String callerSearchScopeExpression()
+meth public abstract !hasdefault java.lang.String groupMemberAttribute()
+meth public abstract !hasdefault java.lang.String groupMemberOfAttribute()
+meth public abstract !hasdefault java.lang.String groupNameAttribute()
+meth public abstract !hasdefault java.lang.String groupSearchBase()
+meth public abstract !hasdefault java.lang.String groupSearchFilter()
+meth public abstract !hasdefault java.lang.String groupSearchScopeExpression()
+meth public abstract !hasdefault java.lang.String maxResultsExpression()
+meth public abstract !hasdefault java.lang.String priorityExpression()
+meth public abstract !hasdefault java.lang.String readTimeoutExpression()
+meth public abstract !hasdefault java.lang.String url()
+meth public abstract !hasdefault java.lang.String useForExpression()
 
 CLSS public final static !enum jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition$LdapSearchScope
  outer jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition
@@ -347,7 +344,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -364,16 +361,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -387,11 +384,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -443,8 +440,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
 CLSS public abstract java.security.BasicPermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
@@ -455,10 +452,10 @@ supr java.security.Permission
 hfds exitVM,path,serialVersionUID,wildcard
 
 CLSS public java.security.GeneralSecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -466,7 +463,7 @@ CLSS public abstract interface java.security.Guard
 meth public abstract void checkGuard(java.lang.Object)
 
 CLSS public abstract java.security.Permission
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.io.Serializable
 intf java.security.Guard
 meth public abstract boolean equals(java.lang.Object)

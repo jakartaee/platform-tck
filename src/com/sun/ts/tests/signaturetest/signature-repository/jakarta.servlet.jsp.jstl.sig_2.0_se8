@@ -1,11 +1,8 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract jakarta.el.Expression
-cons public <init>()
+cons public init()
 intf java.io.Serializable
 meth public abstract boolean equals(java.lang.Object)
 meth public abstract boolean isLiteralText()
@@ -15,7 +12,7 @@ supr java.lang.Object
 hfds serialVersionUID
 
 CLSS public abstract jakarta.el.ValueExpression
-cons public <init>()
+cons public init()
 meth public abstract boolean isReadOnly(jakarta.el.ELContext)
 meth public abstract java.lang.Class<?> getExpectedType()
 meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext)
@@ -26,7 +23,7 @@ supr jakarta.el.Expression
 hfds serialVersionUID
 
 CLSS public abstract jakarta.servlet.jsp.jstl.core.ConditionalTagSupport
-cons public <init>()
+cons public init()
 meth protected abstract boolean condition() throws jakarta.servlet.jsp.JspTagException
 meth public int doStartTag() throws jakarta.servlet.jsp.JspException
 meth public void release()
@@ -36,7 +33,7 @@ supr jakarta.servlet.jsp.tagext.TagSupport
 hfds result,scope,var
 
 CLSS public jakarta.servlet.jsp.jstl.core.Config
-cons public <init>()
+cons public init()
 fld public final static java.lang.String FMT_FALLBACK_LOCALE = "jakarta.servlet.jsp.jstl.fmt.fallbackLocale"
 fld public final static java.lang.String FMT_LOCALE = "jakarta.servlet.jsp.jstl.fmt.locale"
 fld public final static java.lang.String FMT_LOCALIZATION_CONTEXT = "jakarta.servlet.jsp.jstl.fmt.localizationContext"
@@ -60,7 +57,7 @@ supr java.lang.Object
 hfds APPLICATION_SCOPE_SUFFIX,PAGE_SCOPE_SUFFIX,REQUEST_SCOPE_SUFFIX,SESSION_SCOPE_SUFFIX
 
 CLSS public final jakarta.servlet.jsp.jstl.core.IndexedValueExpression
-cons public <init>(jakarta.el.ValueExpression,int)
+cons public init(jakarta.el.ValueExpression,int)
 fld protected final jakarta.el.ValueExpression orig
 fld protected final java.lang.Integer i
 meth public boolean equals(java.lang.Object)
@@ -76,7 +73,7 @@ supr jakarta.el.ValueExpression
 hfds serialVersionUID
 
 CLSS public final jakarta.servlet.jsp.jstl.core.IteratedExpression
-cons public <init>(jakarta.el.ValueExpression,java.lang.String)
+cons public init(jakarta.el.ValueExpression,java.lang.String)
 fld protected final jakarta.el.ValueExpression orig
 fld protected final java.lang.String delims
 meth public jakarta.el.ValueExpression getValueExpression()
@@ -85,7 +82,7 @@ supr java.lang.Object
 hfds base,index,iter,serialVersionUID
 
 CLSS public final jakarta.servlet.jsp.jstl.core.IteratedValueExpression
-cons public <init>(jakarta.servlet.jsp.jstl.core.IteratedExpression,int)
+cons public init(jakarta.servlet.jsp.jstl.core.IteratedExpression,int)
 fld protected final int i
 fld protected final jakarta.servlet.jsp.jstl.core.IteratedExpression iteratedExpression
 meth public boolean equals(java.lang.Object)
@@ -116,7 +113,7 @@ meth public abstract java.lang.Integer getStep()
 meth public abstract java.lang.Object getCurrent()
 
 CLSS public abstract jakarta.servlet.jsp.jstl.core.LoopTagSupport
-cons public <init>()
+cons public init()
 fld protected boolean beginSpecified
 fld protected boolean endSpecified
 fld protected boolean stepSpecified
@@ -149,7 +146,7 @@ supr jakarta.servlet.jsp.tagext.TagSupport
 hfds count,index,item,iteratedExpression,last,oldMappedValue,status
 
 CLSS public jakarta.servlet.jsp.jstl.fmt.LocaleSupport
-cons public <init>()
+cons public init()
 meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String)
 meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.Object[])
 meth public static java.lang.String getLocalizedMessage(jakarta.servlet.jsp.PageContext,java.lang.String,java.lang.Object[],java.lang.String)
@@ -158,9 +155,9 @@ supr java.lang.Object
 hfds EMPTY_LOCALE,HYPHEN,REQUEST_CHAR_SET,UNDEFINED_KEY,UNDERSCORE
 
 CLSS public jakarta.servlet.jsp.jstl.fmt.LocalizationContext
-cons public <init>()
-cons public <init>(java.util.ResourceBundle)
-cons public <init>(java.util.ResourceBundle,java.util.Locale)
+cons public init()
+cons public init(java.util.ResourceBundle)
+cons public init(java.util.ResourceBundle,java.util.Locale)
 meth public java.util.Locale getLocale()
 meth public java.util.ResourceBundle getResourceBundle()
 supr java.lang.Object
@@ -174,7 +171,7 @@ meth public abstract java.lang.String[] getColumnNames()
 meth public abstract java.util.SortedMap[] getRows()
 
 CLSS public jakarta.servlet.jsp.jstl.sql.ResultSupport
-cons public <init>()
+cons public init()
 meth public static jakarta.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet)
 meth public static jakarta.servlet.jsp.jstl.sql.Result toResult(java.sql.ResultSet,int)
 supr java.lang.Object
@@ -183,7 +180,7 @@ CLSS public abstract interface jakarta.servlet.jsp.jstl.sql.SQLExecutionTag
 meth public abstract void addSQLParameter(java.lang.Object)
 
 CLSS public jakarta.servlet.jsp.jstl.tlv.PermittedTaglibsTLV
-cons public <init>()
+cons public init()
 meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public void release()
 supr jakarta.servlet.jsp.tagext.TagLibraryValidator
@@ -191,7 +188,7 @@ hfds JSP_ROOT_NAME,JSP_ROOT_QN,JSP_ROOT_URI,PERMITTED_TAGLIBS_PARAM,failed,permi
 hcls PermittedTaglibsHandler
 
 CLSS public jakarta.servlet.jsp.jstl.tlv.ScriptFreeTLV
-cons public <init>()
+cons public init()
 meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public void setInitParameters(java.util.Map<java.lang.String,java.lang.Object>)
 supr jakarta.servlet.jsp.tagext.TagLibraryValidator
@@ -219,7 +216,7 @@ meth public abstract void setPageContext(jakarta.servlet.jsp.PageContext)
 meth public abstract void setParent(jakarta.servlet.jsp.tagext.Tag)
 
 CLSS public abstract jakarta.servlet.jsp.tagext.TagLibraryValidator
-cons public <init>()
+cons public init()
 meth public jakarta.servlet.jsp.tagext.ValidationMessage[] validate(java.lang.String,java.lang.String,jakarta.servlet.jsp.tagext.PageData)
 meth public java.util.Map<java.lang.String,java.lang.Object> getInitParameters()
 meth public void release()
@@ -228,7 +225,7 @@ supr java.lang.Object
 hfds initParameters
 
 CLSS public jakarta.servlet.jsp.tagext.TagSupport
-cons public <init>()
+cons public init()
 fld protected jakarta.servlet.jsp.PageContext pageContext
 fld protected java.lang.String id
 intf jakarta.servlet.jsp.tagext.IterationTag
@@ -257,7 +254,7 @@ meth public abstract void doFinally()
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)

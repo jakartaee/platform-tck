@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -45,26 +45,7 @@ public abstract class SignatureTestDriver {
    */
   public String getPackageFileImpl(String binDir) {
 
-    String thePkgListFile;
-
-    if (isJavaSEVersion("1.5")) {
-      // we have JavaSE5 so use that map file
-      thePkgListFile = "sig-test-pkg-list_se5.txt";
-    } else if (isJavaSEVersion("1.6")) {
-      thePkgListFile = "sig-test-pkg-list_se6.txt";
-    } else if (isJavaSEVersion("1.7")) {
-      thePkgListFile = "sig-test-pkg-list_se7.txt";
-    } else if (isJavaSEVersion("1.8")) {
-      thePkgListFile = "sig-test-pkg-list_se8.txt";
-    } else if (isJavaSEVersion("9")) {
-      thePkgListFile = "sig-test-pkg-list_se9.txt";
-    } else if (isJavaSEVersion("11")) {
-      thePkgListFile = "sig-test-pkg-list_se11.txt";
-    } else {
-      // we didn't properly identify the java se version being used so
-      // we will try to use the sig-test-pkg-list.txt file.
-      thePkgListFile = "sig-test-pkg-list.txt";
-    }
+    String thePkgListFile = "sig-test-pkg-list_se8.txt";
 
     TestUtil.logMsg(
         "Using the following as the SigTest Package file: " + thePkgListFile);
@@ -98,26 +79,7 @@ public abstract class SignatureTestDriver {
    */
   public String getMapFileImpl(String binDir) {
 
-    String theMapFile;
-
-    if (isJavaSEVersion("1.5")) {
-      // we have JavaSE5 so use that map file
-      theMapFile = "sig-test_se5.map";
-    } else if (isJavaSEVersion("1.6")) {
-      theMapFile = "sig-test_se6.map";
-    } else if (isJavaSEVersion("1.7")) {
-      theMapFile = "sig-test_se7.map";
-    } else if (isJavaSEVersion("1.8")) {
-      theMapFile = "sig-test_se8.map";
-    } else if (isJavaSEVersion("9")) {
-      theMapFile = "sig-test_se9.map";
-    } else if (isJavaSEVersion("11")) {
-      theMapFile = "sig-test_se11.map";
-    } else {
-      // we didn't properly identify the java se version being used so
-      // we will try to use the sig-test.map file.
-      theMapFile = "sig-test.map";
-    }
+    String  theMapFile = "sig-test_se8.map";
 
     TestUtil
         .logMsg("Using the following as the sig-Test map file: " + theMapFile);

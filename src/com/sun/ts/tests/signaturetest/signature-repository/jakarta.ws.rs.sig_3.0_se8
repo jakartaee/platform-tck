@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 3.0_se8
-
-# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.ws.rs.ApplicationPath
  anno 0 java.lang.annotation.Documented()
@@ -12,14 +9,14 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public jakarta.ws.rs.BadRequestException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -30,18 +27,18 @@ CLSS public abstract interface !annotation jakarta.ws.rs.BeanParam
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.ws.rs.ClientErrorException
-cons public <init>(int)
-cons public <init>(int,java.lang.Throwable)
-cons public <init>(jakarta.ws.rs.core.Response$Status)
-cons public <init>(jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,int,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(int)
+cons public init(int,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response$Status)
+cons public init(jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,int,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
 supr jakarta.ws.rs.WebApplicationException
 hfds serialVersionUID
 
@@ -58,7 +55,7 @@ CLSS public abstract interface !annotation jakarta.ws.rs.Consumes
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String[] value() value= ["*/*"]
+meth public abstract !hasdefault java.lang.String[] value()
 
 CLSS public abstract interface !annotation jakarta.ws.rs.CookieParam
  anno 0 java.lang.annotation.Documented()
@@ -88,14 +85,14 @@ CLSS public abstract interface !annotation jakarta.ws.rs.Encoded
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.ws.rs.ForbiddenException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -142,14 +139,14 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public jakarta.ws.rs.InternalServerErrorException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ServerErrorException
 hfds serialVersionUID
 
@@ -167,63 +164,63 @@ CLSS public abstract interface !annotation jakarta.ws.rs.NameBinding
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.ws.rs.NotAcceptableException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public jakarta.ws.rs.NotAllowedException
-cons public !varargs <init>(java.lang.String,java.lang.String,java.lang.String[])
-cons public !varargs <init>(java.lang.String,java.lang.String[])
-cons public !varargs <init>(java.lang.String,java.lang.Throwable,java.lang.String[])
-cons public !varargs <init>(java.lang.Throwable,java.lang.String[])
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public !varargs init(java.lang.String,java.lang.String,java.lang.String[])
+cons public !varargs init(java.lang.String,java.lang.String[])
+cons public !varargs init(java.lang.String,java.lang.Throwable,java.lang.String[])
+cons public !varargs init(java.lang.Throwable,java.lang.String[])
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public jakarta.ws.rs.NotAuthorizedException
-cons public !varargs <init>(java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.String,java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.String,java.lang.Throwable,java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.Throwable,java.lang.Object,java.lang.Object[])
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public !varargs init(java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.String,java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.String,java.lang.Throwable,java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.Throwable,java.lang.Object,java.lang.Object[])
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
 meth public java.util.List<java.lang.Object> getChallenges()
 supr jakarta.ws.rs.ClientErrorException
 hfds challenges,serialVersionUID
 
 CLSS public jakarta.ws.rs.NotFoundException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public jakarta.ws.rs.NotSupportedException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -278,9 +275,9 @@ fld public final static int USER = 5000
 supr java.lang.Object
 
 CLSS public jakarta.ws.rs.ProcessingException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
@@ -290,7 +287,7 @@ CLSS public abstract interface !annotation jakarta.ws.rs.Produces
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String[] value() value= ["*/*"]
+meth public abstract !hasdefault java.lang.String[] value()
 
 CLSS public abstract interface !annotation jakarta.ws.rs.QueryParam
  anno 0 java.lang.annotation.Documented()
@@ -300,12 +297,12 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public jakarta.ws.rs.RedirectionException
-cons public <init>(int,java.net.URI)
-cons public <init>(jakarta.ws.rs.core.Response$Status,java.net.URI)
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,int,java.net.URI)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status,java.net.URI)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(int,java.net.URI)
+cons public init(jakarta.ws.rs.core.Response$Status,java.net.URI)
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,int,java.net.URI)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status,java.net.URI)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
 meth public java.net.URI getLocation()
 supr jakarta.ws.rs.WebApplicationException
 hfds serialVersionUID
@@ -318,58 +315,58 @@ meth public static jakarta.ws.rs.RuntimeType[] values()
 supr java.lang.Enum<jakarta.ws.rs.RuntimeType>
 
 CLSS public jakarta.ws.rs.ServerErrorException
-cons public <init>(int)
-cons public <init>(int,java.lang.Throwable)
-cons public <init>(jakarta.ws.rs.core.Response$Status)
-cons public <init>(jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,int,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(int)
+cons public init(int,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response$Status)
+cons public init(jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,int,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
 supr jakarta.ws.rs.WebApplicationException
 hfds serialVersionUID
 
 CLSS public jakarta.ws.rs.ServiceUnavailableException
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Long)
-cons public <init>(java.lang.Long,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Long)
-cons public <init>(java.lang.String,java.lang.Long,java.lang.Throwable)
-cons public <init>(java.lang.String,java.util.Date)
-cons public <init>(java.lang.String,java.util.Date,java.lang.Throwable)
-cons public <init>(java.util.Date)
-cons public <init>(java.util.Date,java.lang.Throwable)
+cons public init()
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Long)
+cons public init(java.lang.Long,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Long)
+cons public init(java.lang.String,java.lang.Long,java.lang.Throwable)
+cons public init(java.lang.String,java.util.Date)
+cons public init(java.lang.String,java.util.Date,java.lang.Throwable)
+cons public init(java.util.Date)
+cons public init(java.util.Date,java.lang.Throwable)
 meth public boolean hasRetryAfter()
 meth public java.util.Date getRetryTime(java.util.Date)
 supr jakarta.ws.rs.ServerErrorException
 hfds serialVersionUID
 
 CLSS public jakarta.ws.rs.WebApplicationException
-cons public <init>()
-cons public <init>(int)
-cons public <init>(jakarta.ws.rs.core.Response$Status)
-cons public <init>(jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,int)
-cons public <init>(java.lang.String,java.lang.Throwable,jakarta.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,java.lang.Throwable,jakarta.ws.rs.core.Response)
-cons public <init>(java.lang.Throwable)
-cons public <init>(java.lang.Throwable,int)
-cons public <init>(java.lang.Throwable,jakarta.ws.rs.core.Response$Status)
-cons public <init>(java.lang.Throwable,jakarta.ws.rs.core.Response)
+cons public init()
+cons public init(int)
+cons public init(jakarta.ws.rs.core.Response$Status)
+cons public init(jakarta.ws.rs.core.Response)
+cons public init(java.lang.String)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response$Status)
+cons public init(java.lang.String,jakarta.ws.rs.core.Response)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,int)
+cons public init(java.lang.String,java.lang.Throwable,jakarta.ws.rs.core.Response$Status)
+cons public init(java.lang.String,java.lang.Throwable,jakarta.ws.rs.core.Response)
+cons public init(java.lang.Throwable)
+cons public init(java.lang.Throwable,int)
+cons public init(java.lang.Throwable,jakarta.ws.rs.core.Response$Status)
+cons public init(java.lang.Throwable,jakarta.ws.rs.core.Response)
 meth public jakarta.ws.rs.core.Response getResponse()
 supr java.lang.RuntimeException
 hfds response,serialVersionUID
@@ -422,7 +419,7 @@ meth public abstract javax.net.ssl.SSLContext getSslContext()
 meth public abstract void close()
 
 CLSS public abstract jakarta.ws.rs.client.ClientBuilder
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_DEFAULT_CLIENT_BUILDER_PROPERTY = "jakarta.ws.rs.client.ClientBuilder"
 intf jakarta.ws.rs.core.Configurable<jakarta.ws.rs.client.ClientBuilder>
 meth public abstract jakarta.ws.rs.client.Client build()
@@ -595,9 +592,9 @@ meth public abstract void completed({jakarta.ws.rs.client.InvocationCallback%0})
 meth public abstract void failed(java.lang.Throwable)
 
 CLSS public jakarta.ws.rs.client.ResponseProcessingException
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.String)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.String,java.lang.Throwable)
-cons public <init>(jakarta.ws.rs.core.Response,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response,java.lang.String)
+cons public init(jakarta.ws.rs.core.Response,java.lang.String,java.lang.Throwable)
+cons public init(jakarta.ws.rs.core.Response,java.lang.Throwable)
 meth public jakarta.ws.rs.core.Response getResponse()
 supr jakarta.ws.rs.ProcessingException
 hfds response,serialVersionUID
@@ -791,7 +788,7 @@ CLSS public abstract interface jakarta.ws.rs.container.TimeoutHandler
 meth public abstract void handleTimeout(jakarta.ws.rs.container.AsyncResponse)
 
 CLSS public abstract jakarta.ws.rs.core.AbstractMultivaluedMap<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons public <init>(java.util.Map<{jakarta.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{jakarta.ws.rs.core.AbstractMultivaluedMap%1}>>)
+cons public init(java.util.Map<{jakarta.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{jakarta.ws.rs.core.AbstractMultivaluedMap%1}>>)
 fld protected final java.util.Map<{jakarta.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{jakarta.ws.rs.core.AbstractMultivaluedMap%1}>> store
 intf jakarta.ws.rs.core.MultivaluedMap<{jakarta.ws.rs.core.AbstractMultivaluedMap%0},{jakarta.ws.rs.core.AbstractMultivaluedMap%1}>
 intf java.io.Serializable
@@ -823,14 +820,14 @@ meth public void putAll(java.util.Map<? extends {jakarta.ws.rs.core.AbstractMult
 supr java.lang.Object
 
 CLSS public jakarta.ws.rs.core.Application
-cons public <init>()
+cons public init()
 meth public java.util.Map<java.lang.String,java.lang.Object> getProperties()
 meth public java.util.Set<java.lang.Class<?>> getClasses()
 meth public java.util.Set<java.lang.Object> getSingletons()
 supr java.lang.Object
 
 CLSS public jakarta.ws.rs.core.CacheControl
-cons public <init>()
+cons public init()
 meth public boolean equals(java.lang.Object)
 meth public boolean isMustRevalidate()
 meth public boolean isNoCache()
@@ -891,9 +888,9 @@ CLSS public abstract interface !annotation jakarta.ws.rs.core.Context
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.ws.rs.core.Cookie
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int)
 fld public final static int DEFAULT_VERSION = 1
 meth public boolean equals(java.lang.Object)
 meth public int getVersion()
@@ -910,8 +907,8 @@ supr java.lang.Object
 hfds HEADER_DELEGATE,domain,name,path,value,version
 
 CLSS public jakarta.ws.rs.core.EntityTag
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,boolean)
+cons public init(java.lang.String)
+cons public init(java.lang.String,boolean)
 meth public boolean equals(java.lang.Object)
 meth public boolean isWeak()
 meth public int hashCode()
@@ -930,17 +927,17 @@ CLSS public abstract interface jakarta.ws.rs.core.FeatureContext
 intf jakarta.ws.rs.core.Configurable<jakarta.ws.rs.core.FeatureContext>
 
 CLSS public jakarta.ws.rs.core.Form
-cons public <init>()
-cons public <init>(jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String>)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init()
+cons public init(jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String>)
+cons public init(java.lang.String,java.lang.String)
 meth public jakarta.ws.rs.core.Form param(java.lang.String,java.lang.String)
 meth public jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String> asMap()
 supr java.lang.Object
 hfds parameters
 
 CLSS public jakarta.ws.rs.core.GenericEntity<%0 extends java.lang.Object>
-cons protected <init>({jakarta.ws.rs.core.GenericEntity%0})
-cons public <init>({jakarta.ws.rs.core.GenericEntity%0},java.lang.reflect.Type)
+cons protected init({jakarta.ws.rs.core.GenericEntity%0})
+cons public init({jakarta.ws.rs.core.GenericEntity%0},java.lang.reflect.Type)
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getRawType()
 meth public final java.lang.reflect.Type getType()
@@ -951,8 +948,8 @@ supr java.lang.Object
 hfds entity,rawType,type
 
 CLSS public jakarta.ws.rs.core.GenericType<%0 extends java.lang.Object>
-cons protected <init>()
-cons public <init>(java.lang.reflect.Type)
+cons protected init()
+cons public init(java.lang.reflect.Type)
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getRawType()
 meth public final java.lang.reflect.Type getType()
@@ -1007,7 +1004,7 @@ meth public abstract java.util.Locale getLanguage()
 meth public abstract java.util.Map<java.lang.String,jakarta.ws.rs.core.Cookie> getCookies()
 
 CLSS public abstract jakarta.ws.rs.core.Link
-cons public <init>()
+cons public init()
 fld public final static java.lang.String REL = "rel"
 fld public final static java.lang.String TITLE = "title"
 fld public final static java.lang.String TYPE = "type"
@@ -1050,16 +1047,16 @@ meth public abstract jakarta.ws.rs.core.Link$Builder uriBuilder(jakarta.ws.rs.co
 
 CLSS public static jakarta.ws.rs.core.Link$JaxbAdapter
  outer jakarta.ws.rs.core.Link
-cons public <init>()
+cons public init()
 meth public jakarta.ws.rs.core.Link unmarshal(jakarta.ws.rs.core.Link$JaxbLink)
 meth public jakarta.ws.rs.core.Link$JaxbLink marshal(jakarta.ws.rs.core.Link)
 supr jakarta.xml.bind.annotation.adapters.XmlAdapter<jakarta.ws.rs.core.Link$JaxbLink,jakarta.ws.rs.core.Link>
 
 CLSS public static jakarta.ws.rs.core.Link$JaxbLink
  outer jakarta.ws.rs.core.Link
-cons public <init>()
-cons public <init>(java.net.URI)
-cons public <init>(java.net.URI,java.util.Map<javax.xml.namespace.QName,java.lang.Object>)
+cons public init()
+cons public init(java.net.URI)
+cons public init(java.net.URI,java.util.Map<javax.xml.namespace.QName,java.lang.Object>)
 meth public boolean equals(java.lang.Object)
 meth public int hashCode()
 meth public java.net.URI getUri()
@@ -1068,10 +1065,10 @@ supr java.lang.Object
 hfds params,uri
 
 CLSS public jakarta.ws.rs.core.MediaType
-cons public <init>()
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+cons public init()
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
 fld public final static jakarta.ws.rs.core.MediaType APPLICATION_ATOM_XML_TYPE
 fld public final static jakarta.ws.rs.core.MediaType APPLICATION_FORM_URLENCODED_TYPE
 fld public final static jakarta.ws.rs.core.MediaType APPLICATION_JSON_PATCH_JSON_TYPE
@@ -1117,11 +1114,11 @@ supr java.lang.Object
 hfds hash,parameters,subtype,type
 
 CLSS public jakarta.ws.rs.core.MultivaluedHashMap<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons public <init>()
-cons public <init>(int)
-cons public <init>(int,float)
-cons public <init>(jakarta.ws.rs.core.MultivaluedMap<? extends {jakarta.ws.rs.core.MultivaluedHashMap%0},? extends {jakarta.ws.rs.core.MultivaluedHashMap%1}>)
-cons public <init>(java.util.Map<? extends {jakarta.ws.rs.core.MultivaluedHashMap%0},? extends {jakarta.ws.rs.core.MultivaluedHashMap%1}>)
+cons public init()
+cons public init(int)
+cons public init(int,float)
+cons public init(jakarta.ws.rs.core.MultivaluedMap<? extends {jakarta.ws.rs.core.MultivaluedHashMap%0},? extends {jakarta.ws.rs.core.MultivaluedHashMap%1}>)
+cons public init(java.util.Map<? extends {jakarta.ws.rs.core.MultivaluedHashMap%0},? extends {jakarta.ws.rs.core.MultivaluedHashMap%1}>)
 intf java.io.Serializable
 supr jakarta.ws.rs.core.AbstractMultivaluedMap<{jakarta.ws.rs.core.MultivaluedHashMap%0},{jakarta.ws.rs.core.MultivaluedHashMap%1}>
 hfds serialVersionUID
@@ -1137,14 +1134,14 @@ meth public abstract void putSingle({jakarta.ws.rs.core.MultivaluedMap%0},{jakar
 meth public abstract {jakarta.ws.rs.core.MultivaluedMap%1} getFirst({jakarta.ws.rs.core.MultivaluedMap%0})
 
 CLSS public jakarta.ws.rs.core.NewCookie
-cons public <init>(jakarta.ws.rs.core.Cookie)
-cons public <init>(jakarta.ws.rs.core.Cookie,java.lang.String,int,boolean)
-cons public <init>(jakarta.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)
+cons public init(jakarta.ws.rs.core.Cookie)
+cons public init(jakarta.ws.rs.core.Cookie,java.lang.String,int,boolean)
+cons public init(jakarta.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)
 fld public final static int DEFAULT_MAX_AGE = -1
 meth public boolean equals(java.lang.Object)
 meth public boolean isHttpOnly()
@@ -1162,9 +1159,9 @@ supr jakarta.ws.rs.core.Cookie
 hfds comment,delegate,expiry,httpOnly,maxAge,secure
 
 CLSS public jakarta.ws.rs.core.NoContentException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.io.IOException
 hfds serialVersionUID
 
@@ -1181,7 +1178,7 @@ meth public abstract jakarta.ws.rs.core.Variant selectVariant(java.util.List<jak
 meth public abstract java.lang.String getMethod()
 
 CLSS public abstract jakarta.ws.rs.core.Response
-cons protected <init>()
+cons protected init()
 innr public abstract interface static StatusType
 innr public abstract static ResponseBuilder
 innr public final static !enum Status
@@ -1238,7 +1235,7 @@ supr java.lang.Object
 
 CLSS public abstract static jakarta.ws.rs.core.Response$ResponseBuilder
  outer jakarta.ws.rs.core.Response
-cons protected <init>()
+cons protected init()
 meth protected static jakarta.ws.rs.core.Response$ResponseBuilder newInstance()
 meth public abstract !varargs jakarta.ws.rs.core.Response$ResponseBuilder allow(java.lang.String[])
 meth public abstract !varargs jakarta.ws.rs.core.Response$ResponseBuilder cookie(jakarta.ws.rs.core.NewCookie[])
@@ -1361,7 +1358,7 @@ CLSS public abstract interface jakarta.ws.rs.core.StreamingOutput
 meth public abstract void write(java.io.OutputStream) throws java.io.IOException
 
 CLSS public abstract jakarta.ws.rs.core.UriBuilder
-cons protected <init>()
+cons protected init()
 meth public abstract !varargs jakarta.ws.rs.core.UriBuilder matrixParam(java.lang.String,java.lang.Object[])
 meth public abstract !varargs jakarta.ws.rs.core.UriBuilder queryParam(java.lang.String,java.lang.Object[])
 meth public abstract !varargs jakarta.ws.rs.core.UriBuilder replaceMatrixParam(java.lang.String,java.lang.Object[])
@@ -1406,10 +1403,10 @@ meth public static jakarta.ws.rs.core.UriBuilder newInstance()
 supr java.lang.Object
 
 CLSS public jakarta.ws.rs.core.UriBuilderException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
@@ -1435,10 +1432,10 @@ meth public abstract java.util.List<java.lang.String> getMatchedURIs()
 meth public abstract java.util.List<java.lang.String> getMatchedURIs(boolean)
 
 CLSS public jakarta.ws.rs.core.Variant
-cons public <init>(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String)
-cons public <init>(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(jakarta.ws.rs.core.MediaType,java.util.Locale,java.lang.String)
+cons public init(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String)
+cons public init(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String)
+cons public init(jakarta.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+cons public init(jakarta.ws.rs.core.MediaType,java.util.Locale,java.lang.String)
 innr public abstract static VariantListBuilder
 meth public !varargs static jakarta.ws.rs.core.Variant$VariantListBuilder encodings(java.lang.String[])
 meth public !varargs static jakarta.ws.rs.core.Variant$VariantListBuilder languages(java.util.Locale[])
@@ -1455,7 +1452,7 @@ hfds encoding,language,mediaType
 
 CLSS public abstract static jakarta.ws.rs.core.Variant$VariantListBuilder
  outer jakarta.ws.rs.core.Variant
-cons protected <init>()
+cons protected init()
 meth public abstract !varargs jakarta.ws.rs.core.Variant$VariantListBuilder encodings(java.lang.String[])
 meth public abstract !varargs jakarta.ws.rs.core.Variant$VariantListBuilder languages(java.util.Locale[])
 meth public abstract !varargs jakarta.ws.rs.core.Variant$VariantListBuilder mediaTypes(jakarta.ws.rs.core.MediaType[])
@@ -1531,7 +1528,7 @@ meth public abstract java.lang.Object proceed() throws java.io.IOException
 meth public abstract void setInputStream(java.io.InputStream)
 
 CLSS public abstract jakarta.ws.rs.ext.RuntimeDelegate
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_RUNTIME_DELEGATE_PROPERTY = "jakarta.ws.rs.ext.RuntimeDelegate"
 innr public abstract interface static HeaderDelegate
 meth public abstract <%0 extends java.lang.Object> jakarta.ws.rs.ext.RuntimeDelegate$HeaderDelegate<{%%0}> createHeaderDelegate(java.lang.Class<{%%0}>)
@@ -1633,7 +1630,7 @@ meth public void close()
 
 CLSS public abstract static jakarta.ws.rs.sse.SseEventSource$Builder
  outer jakarta.ws.rs.sse.SseEventSource
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_DEFAULT_SSE_BUILDER_PROPERTY = "jakarta.ws.rs.sse.SseEventSource.Builder"
 meth protected abstract jakarta.ws.rs.sse.SseEventSource$Builder target(jakarta.ws.rs.client.WebTarget)
 meth public abstract jakarta.ws.rs.sse.SseEventSource build()
@@ -1641,16 +1638,16 @@ meth public abstract jakarta.ws.rs.sse.SseEventSource$Builder reconnectingEvery(
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.bind.annotation.adapters.XmlAdapter<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons protected <init>()
+cons protected init()
 meth public abstract {jakarta.xml.bind.annotation.adapters.XmlAdapter%0} marshal({jakarta.xml.bind.annotation.adapters.XmlAdapter%1}) throws java.lang.Exception
 meth public abstract {jakarta.xml.bind.annotation.adapters.XmlAdapter%1} unmarshal({jakarta.xml.bind.annotation.adapters.XmlAdapter%0}) throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public java.io.IOException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -1663,7 +1660,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -1680,16 +1677,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -1703,20 +1700,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)

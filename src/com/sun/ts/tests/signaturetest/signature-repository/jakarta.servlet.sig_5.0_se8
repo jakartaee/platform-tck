@@ -1,9 +1,5 @@
-#Signature file v4.3
-#Version 5.0_se8
-
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
-# All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface jakarta.servlet.AsyncContext
 fld public final static java.lang.String ASYNC_CONTEXT_PATH = "jakarta.servlet.async.context_path"
@@ -27,10 +23,10 @@ meth public abstract void setTimeout(long)
 meth public abstract void start(java.lang.Runnable)
 
 CLSS public jakarta.servlet.AsyncEvent
-cons public <init>(jakarta.servlet.AsyncContext)
-cons public <init>(jakarta.servlet.AsyncContext,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
-cons public <init>(jakarta.servlet.AsyncContext,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,java.lang.Throwable)
-cons public <init>(jakarta.servlet.AsyncContext,java.lang.Throwable)
+cons public init(jakarta.servlet.AsyncContext)
+cons public init(jakarta.servlet.AsyncContext,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
+cons public init(jakarta.servlet.AsyncContext,jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,java.lang.Throwable)
+cons public init(jakarta.servlet.AsyncContext,java.lang.Throwable)
 meth public jakarta.servlet.AsyncContext getAsyncContext()
 meth public jakarta.servlet.ServletRequest getSuppliedRequest()
 meth public jakarta.servlet.ServletResponse getSuppliedResponse()
@@ -83,7 +79,7 @@ intf jakarta.servlet.FilterRegistration
 intf jakarta.servlet.Registration$Dynamic
 
 CLSS public abstract jakarta.servlet.GenericFilter
-cons public <init>()
+cons public init()
 intf jakarta.servlet.Filter
 intf jakarta.servlet.FilterConfig
 intf java.io.Serializable
@@ -98,7 +94,7 @@ supr java.lang.Object
 hfds LSTRING_FILE,config,lStrings,serialVersionUID
 
 CLSS public abstract jakarta.servlet.GenericServlet
-cons public <init>()
+cons public init()
 intf jakarta.servlet.Servlet
 intf jakarta.servlet.ServletConfig
 intf java.io.Serializable
@@ -118,10 +114,10 @@ supr java.lang.Object
 hfds LSTRING_FILE,config,lStrings,serialVersionUID
 
 CLSS public jakarta.servlet.HttpConstraintElement
-cons public !varargs <init>(jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic,jakarta.servlet.annotation.ServletSecurity$TransportGuarantee,java.lang.String[])
-cons public !varargs <init>(jakarta.servlet.annotation.ServletSecurity$TransportGuarantee,java.lang.String[])
-cons public <init>()
-cons public <init>(jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic)
+cons public !varargs init(jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic,jakarta.servlet.annotation.ServletSecurity$TransportGuarantee,java.lang.String[])
+cons public !varargs init(jakarta.servlet.annotation.ServletSecurity$TransportGuarantee,java.lang.String[])
+cons public init()
+cons public init(jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic)
 meth public jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic getEmptyRoleSemantic()
 meth public jakarta.servlet.annotation.ServletSecurity$TransportGuarantee getTransportGuarantee()
 meth public java.lang.String[] getRolesAllowed()
@@ -129,16 +125,16 @@ supr java.lang.Object
 hfds emptyRoleSemantic,rolesAllowed,transportGuarantee
 
 CLSS public jakarta.servlet.HttpMethodConstraintElement
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,jakarta.servlet.HttpConstraintElement)
+cons public init(java.lang.String)
+cons public init(java.lang.String,jakarta.servlet.HttpConstraintElement)
 meth public java.lang.String getMethodName()
 supr jakarta.servlet.HttpConstraintElement
 hfds methodName
 
 CLSS public jakarta.servlet.MultipartConfigElement
-cons public <init>(jakarta.servlet.annotation.MultipartConfig)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,long,long,int)
+cons public init(jakarta.servlet.annotation.MultipartConfig)
+cons public init(java.lang.String)
+cons public init(java.lang.String,long,long,int)
 meth public int getFileSizeThreshold()
 meth public java.lang.String getLocation()
 meth public long getMaxFileSize()
@@ -272,7 +268,7 @@ meth public abstract void setSessionTimeout(int)
 meth public abstract void setSessionTrackingModes(java.util.Set<jakarta.servlet.SessionTrackingMode>)
 
 CLSS public jakarta.servlet.ServletContextAttributeEvent
-cons public <init>(jakarta.servlet.ServletContext,java.lang.String,java.lang.Object)
+cons public init(jakarta.servlet.ServletContext,java.lang.String,java.lang.Object)
 meth public java.lang.Object getValue()
 meth public java.lang.String getName()
 supr jakarta.servlet.ServletContextEvent
@@ -285,7 +281,7 @@ meth public void attributeRemoved(jakarta.servlet.ServletContextAttributeEvent)
 meth public void attributeReplaced(jakarta.servlet.ServletContextAttributeEvent)
 
 CLSS public jakarta.servlet.ServletContextEvent
-cons public <init>(jakarta.servlet.ServletContext)
+cons public init(jakarta.servlet.ServletContext)
 meth public jakarta.servlet.ServletContext getServletContext()
 supr java.util.EventObject
 hfds serialVersionUID
@@ -296,16 +292,16 @@ meth public void contextDestroyed(jakarta.servlet.ServletContextEvent)
 meth public void contextInitialized(jakarta.servlet.ServletContextEvent)
 
 CLSS public jakarta.servlet.ServletException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.lang.Throwable getRootCause()
 supr java.lang.Exception
 hfds rootCause,serialVersionUID
 
 CLSS public abstract jakarta.servlet.ServletInputStream
-cons protected <init>()
+cons protected init()
 meth public abstract boolean isFinished()
 meth public abstract boolean isReady()
 meth public abstract void setReadListener(jakarta.servlet.ReadListener)
@@ -313,7 +309,7 @@ meth public int readLine(byte[],int,int) throws java.io.IOException
 supr java.io.InputStream
 
 CLSS public abstract jakarta.servlet.ServletOutputStream
-cons protected <init>()
+cons protected init()
 meth public abstract boolean isReady()
 meth public abstract void setWriteListener(jakarta.servlet.WriteListener)
 meth public void print(boolean) throws java.io.IOException
@@ -391,7 +387,7 @@ meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
 
 CLSS public jakarta.servlet.ServletRequestAttributeEvent
-cons public <init>(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
+cons public init(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
 meth public java.lang.Object getValue()
 meth public java.lang.String getName()
 supr jakarta.servlet.ServletRequestEvent
@@ -404,7 +400,7 @@ meth public void attributeRemoved(jakarta.servlet.ServletRequestAttributeEvent)
 meth public void attributeReplaced(jakarta.servlet.ServletRequestAttributeEvent)
 
 CLSS public jakarta.servlet.ServletRequestEvent
-cons public <init>(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest)
+cons public init(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest)
 meth public jakarta.servlet.ServletContext getServletContext()
 meth public jakarta.servlet.ServletRequest getServletRequest()
 supr java.util.EventObject
@@ -416,7 +412,7 @@ meth public void requestDestroyed(jakarta.servlet.ServletRequestEvent)
 meth public void requestInitialized(jakarta.servlet.ServletRequestEvent)
 
 CLSS public jakarta.servlet.ServletRequestWrapper
-cons public <init>(jakarta.servlet.ServletRequest)
+cons public init(jakarta.servlet.ServletRequest)
 intf jakarta.servlet.ServletRequest
 meth public boolean isAsyncStarted()
 meth public boolean isAsyncSupported()
@@ -482,7 +478,7 @@ meth public abstract void setContentType(java.lang.String)
 meth public abstract void setLocale(java.util.Locale)
 
 CLSS public jakarta.servlet.ServletResponseWrapper
-cons public <init>(jakarta.servlet.ServletResponse)
+cons public init(jakarta.servlet.ServletResponse)
 intf jakarta.servlet.ServletResponse
 meth public boolean isCommitted()
 meth public boolean isWrapperFor(jakarta.servlet.ServletResponse)
@@ -508,11 +504,11 @@ supr java.lang.Object
 hfds response
 
 CLSS public jakarta.servlet.ServletSecurityElement
-cons public <init>()
-cons public <init>(jakarta.servlet.HttpConstraintElement)
-cons public <init>(jakarta.servlet.HttpConstraintElement,java.util.Collection<jakarta.servlet.HttpMethodConstraintElement>)
-cons public <init>(jakarta.servlet.annotation.ServletSecurity)
-cons public <init>(java.util.Collection<jakarta.servlet.HttpMethodConstraintElement>)
+cons public init()
+cons public init(jakarta.servlet.HttpConstraintElement)
+cons public init(jakarta.servlet.HttpConstraintElement,java.util.Collection<jakarta.servlet.HttpMethodConstraintElement>)
+cons public init(jakarta.servlet.annotation.ServletSecurity)
+cons public init(java.util.Collection<jakarta.servlet.HttpMethodConstraintElement>)
 meth public java.util.Collection<jakarta.servlet.HttpMethodConstraintElement> getHttpMethodConstraints()
 meth public java.util.Collection<java.lang.String> getMethodNames()
 supr jakarta.servlet.HttpConstraintElement
@@ -546,12 +542,12 @@ CLSS public abstract interface jakarta.servlet.SingleThreadModel
  anno 0 java.lang.Deprecated()
 
 CLSS public jakarta.servlet.UnavailableException
-cons public <init>(int,jakarta.servlet.Servlet,java.lang.String)
+cons public init(int,jakarta.servlet.Servlet,java.lang.String)
  anno 0 java.lang.Deprecated()
-cons public <init>(jakarta.servlet.Servlet,java.lang.String)
+cons public init(jakarta.servlet.Servlet,java.lang.String)
  anno 0 java.lang.Deprecated()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,int)
+cons public init(java.lang.String)
+cons public init(java.lang.String,int)
 meth public boolean isPermanent()
 meth public int getUnavailableSeconds()
 meth public jakarta.servlet.Servlet getServlet()
@@ -574,27 +570,27 @@ CLSS public abstract interface !annotation jakarta.servlet.annotation.HttpConstr
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic value() value= PERMIT
-meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$TransportGuarantee transportGuarantee() value= NONE
-meth public abstract !hasdefault java.lang.String[] rolesAllowed() value= []
+meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic value()
+meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$TransportGuarantee transportGuarantee()
+meth public abstract !hasdefault java.lang.String[] rolesAllowed()
 
 CLSS public abstract interface !annotation jakarta.servlet.annotation.HttpMethodConstraint
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic emptyRoleSemantic() value= PERMIT
-meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$TransportGuarantee transportGuarantee() value= NONE
-meth public abstract !hasdefault java.lang.String[] rolesAllowed() value= []
+meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic emptyRoleSemantic()
+meth public abstract !hasdefault jakarta.servlet.annotation.ServletSecurity$TransportGuarantee transportGuarantee()
+meth public abstract !hasdefault java.lang.String[] rolesAllowed()
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.servlet.annotation.MultipartConfig
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int fileSizeThreshold() value= 0
-meth public abstract !hasdefault java.lang.String location() value= ""
-meth public abstract !hasdefault long maxFileSize() value= -1
-meth public abstract !hasdefault long maxRequestSize() value= -1
+meth public abstract !hasdefault int fileSizeThreshold()
+meth public abstract !hasdefault java.lang.String location()
+meth public abstract !hasdefault long maxFileSize()
+meth public abstract !hasdefault long maxRequestSize()
 
 CLSS public abstract interface !annotation jakarta.servlet.annotation.ServletSecurity
  anno 0 java.lang.annotation.Documented()
@@ -604,8 +600,8 @@ CLSS public abstract interface !annotation jakarta.servlet.annotation.ServletSec
 innr public final static !enum EmptyRoleSemantic
 innr public final static !enum TransportGuarantee
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.servlet.annotation.HttpConstraint value() value= anno 0 jakarta.servlet.annotation.HttpConstraint(jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic value=PERMIT, jakarta.servlet.annotation.ServletSecurity$TransportGuarantee transportGuarantee=NONE, java.lang.String[] rolesAllowed=[])
-meth public abstract !hasdefault jakarta.servlet.annotation.HttpMethodConstraint[] httpMethodConstraints() value= []
+meth public abstract !hasdefault jakarta.servlet.annotation.HttpConstraint value()
+meth public abstract !hasdefault jakarta.servlet.annotation.HttpMethodConstraint[] httpMethodConstraints()
 
 CLSS public final static !enum jakarta.servlet.annotation.ServletSecurity$EmptyRoleSemantic
  outer jakarta.servlet.annotation.ServletSecurity
@@ -628,24 +624,24 @@ CLSS public abstract interface !annotation jakarta.servlet.annotation.WebFilter
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean asyncSupported() value= false
-meth public abstract !hasdefault jakarta.servlet.DispatcherType[] dispatcherTypes() value= [REQUEST]
-meth public abstract !hasdefault jakarta.servlet.annotation.WebInitParam[] initParams() value= []
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String displayName() value= ""
-meth public abstract !hasdefault java.lang.String filterName() value= ""
-meth public abstract !hasdefault java.lang.String largeIcon() value= ""
-meth public abstract !hasdefault java.lang.String smallIcon() value= ""
-meth public abstract !hasdefault java.lang.String[] servletNames() value= []
-meth public abstract !hasdefault java.lang.String[] urlPatterns() value= []
-meth public abstract !hasdefault java.lang.String[] value() value= []
+meth public abstract !hasdefault boolean asyncSupported()
+meth public abstract !hasdefault jakarta.servlet.DispatcherType[] dispatcherTypes()
+meth public abstract !hasdefault jakarta.servlet.annotation.WebInitParam[] initParams()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String displayName()
+meth public abstract !hasdefault java.lang.String filterName()
+meth public abstract !hasdefault java.lang.String largeIcon()
+meth public abstract !hasdefault java.lang.String smallIcon()
+meth public abstract !hasdefault java.lang.String[] servletNames()
+meth public abstract !hasdefault java.lang.String[] urlPatterns()
+meth public abstract !hasdefault java.lang.String[] value()
 
 CLSS public abstract interface !annotation jakarta.servlet.annotation.WebInitParam
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String description() value= ""
+meth public abstract !hasdefault java.lang.String description()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String value()
 
@@ -654,23 +650,23 @@ CLSS public abstract interface !annotation jakarta.servlet.annotation.WebListene
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.servlet.annotation.WebServlet
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean asyncSupported() value= false
-meth public abstract !hasdefault int loadOnStartup() value= -1
-meth public abstract !hasdefault jakarta.servlet.annotation.WebInitParam[] initParams() value= []
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String displayName() value= ""
-meth public abstract !hasdefault java.lang.String largeIcon() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String smallIcon() value= ""
-meth public abstract !hasdefault java.lang.String[] urlPatterns() value= []
-meth public abstract !hasdefault java.lang.String[] value() value= []
+meth public abstract !hasdefault boolean asyncSupported()
+meth public abstract !hasdefault int loadOnStartup()
+meth public abstract !hasdefault jakarta.servlet.annotation.WebInitParam[] initParams()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String displayName()
+meth public abstract !hasdefault java.lang.String largeIcon()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String smallIcon()
+meth public abstract !hasdefault java.lang.String[] urlPatterns()
+meth public abstract !hasdefault java.lang.String[] value()
 
 CLSS public abstract interface jakarta.servlet.descriptor.JspConfigDescriptor
 meth public abstract java.util.Collection<jakarta.servlet.descriptor.JspPropertyGroupDescriptor> getJspPropertyGroups()
@@ -695,7 +691,7 @@ meth public abstract java.lang.String getTaglibLocation()
 meth public abstract java.lang.String getTaglibURI()
 
 CLSS public jakarta.servlet.http.Cookie
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 intf java.lang.Cloneable
 meth public boolean getSecure()
@@ -720,14 +716,14 @@ supr java.lang.Object
 hfds LSTRING_FILE,TSPECIALS,comment,domain,isHttpOnly,lStrings,maxAge,name,path,secure,serialVersionUID,value,version
 
 CLSS public abstract jakarta.servlet.http.HttpFilter
-cons public <init>()
+cons public init()
 meth protected void doFilter(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse,jakarta.servlet.FilterChain) throws jakarta.servlet.ServletException,java.io.IOException
 meth public void doFilter(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse,jakarta.servlet.FilterChain) throws jakarta.servlet.ServletException,java.io.IOException
 supr jakarta.servlet.GenericFilter
 hfds serialVersionUID
 
 CLSS public abstract jakarta.servlet.http.HttpServlet
-cons public <init>()
+cons public init()
 meth protected long getLastModified(jakarta.servlet.http.HttpServletRequest)
 meth protected void doDelete(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doGet(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
@@ -792,7 +788,7 @@ meth public jakarta.servlet.http.PushBuilder newPushBuilder()
 meth public java.util.Map<java.lang.String,java.lang.String> getTrailerFields()
 
 CLSS public jakarta.servlet.http.HttpServletRequestWrapper
-cons public <init>(jakarta.servlet.http.HttpServletRequest)
+cons public init(jakarta.servlet.http.HttpServletRequest)
 intf jakarta.servlet.http.HttpServletRequest
 meth public <%0 extends jakarta.servlet.http.HttpUpgradeHandler> {%%0} upgrade(java.lang.Class<{%%0}>) throws jakarta.servlet.ServletException,java.io.IOException
 meth public boolean authenticate(jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
@@ -904,7 +900,7 @@ meth public java.util.function.Supplier<java.util.Map<java.lang.String,java.lang
 meth public void setTrailerFields(java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>>)
 
 CLSS public jakarta.servlet.http.HttpServletResponseWrapper
-cons public <init>(jakarta.servlet.http.HttpServletResponse)
+cons public init(jakarta.servlet.http.HttpServletResponse)
 intf jakarta.servlet.http.HttpServletResponse
 meth public boolean containsHeader(java.lang.String)
 meth public int getStatus()
@@ -970,9 +966,8 @@ meth public void attributeRemoved(jakarta.servlet.http.HttpSessionBindingEvent)
 meth public void attributeReplaced(jakarta.servlet.http.HttpSessionBindingEvent)
 
 CLSS public jakarta.servlet.http.HttpSessionBindingEvent
-cons public <init>(jakarta.servlet.http.HttpSession,java.lang.String)
-cons public <init>(jakarta.servlet.http.HttpSession,java.lang.String,java.lang.Object)
-meth public jakarta.servlet.http.HttpSession getSession()
+cons public init(jakarta.servlet.http.HttpSession,java.lang.String)
+cons public init(jakarta.servlet.http.HttpSession,java.lang.String,java.lang.Object)
 meth public java.lang.Object getValue()
 meth public java.lang.String getName()
 supr jakarta.servlet.http.HttpSessionEvent
@@ -991,7 +986,7 @@ meth public abstract java.util.Enumeration<java.lang.String> getIds()
  anno 0 java.lang.Deprecated()
 
 CLSS public jakarta.servlet.http.HttpSessionEvent
-cons public <init>(jakarta.servlet.http.HttpSession)
+cons public init(jakarta.servlet.http.HttpSession)
 meth public jakarta.servlet.http.HttpSession getSession()
 supr java.util.EventObject
 hfds serialVersionUID
@@ -1011,7 +1006,7 @@ meth public abstract void init(jakarta.servlet.http.WebConnection)
 
 CLSS public jakarta.servlet.http.HttpUtils
  anno 0 java.lang.Deprecated()
-cons public <init>()
+cons public init()
 meth public static java.lang.StringBuffer getRequestURL(jakarta.servlet.http.HttpServletRequest)
 meth public static java.util.Hashtable<java.lang.String,java.lang.String[]> parsePostData(int,jakarta.servlet.ServletInputStream)
 meth public static java.util.Hashtable<java.lang.String,java.lang.String[]> parseQueryString(java.lang.String)
@@ -1069,7 +1064,7 @@ CLSS public abstract interface java.io.Flushable
 meth public abstract void flush() throws java.io.IOException
 
 CLSS public abstract java.io.InputStream
-cons public <init>()
+cons public init()
 intf java.io.Closeable
 meth public abstract int read() throws java.io.IOException
 meth public boolean markSupported()
@@ -1084,7 +1079,7 @@ supr java.lang.Object
 hfds MAX_SKIP_BUFFER_SIZE
 
 CLSS public abstract java.io.OutputStream
-cons public <init>()
+cons public init()
 intf java.io.Closeable
 intf java.io.Flushable
 meth public abstract void write(int) throws java.io.IOException
@@ -1111,7 +1106,7 @@ CLSS public abstract interface !annotation java.lang.Deprecated
 intf java.lang.annotation.Annotation
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -1128,16 +1123,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -1151,11 +1146,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -1209,7 +1204,7 @@ meth public abstract java.lang.annotation.ElementType[] value()
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 fld protected java.lang.Object source
 intf java.io.Serializable
 meth public java.lang.Object getSource()

@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.inject.Inject
  anno 0 java.lang.annotation.Documented()
@@ -15,7 +12,7 @@ CLSS public abstract interface !annotation jakarta.inject.Named
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface jakarta.inject.Provider<%0 extends java.lang.Object>
 meth public abstract {jakarta.inject.Provider%0} get()

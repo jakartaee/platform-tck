@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -44,7 +44,7 @@ public class SigTestDriver extends SignatureTestDriver {
   private static final String API_VERSION_FLAG = "-ApiVersion";
 
   private static final String EXCLUDE_FLAG = "-Exclude";
-
+  
   private static final String STATIC_FLAG = "-Static";
 
   private static final String CHECKVALUE_FLAG = "-CheckValue"; // only valid w/
@@ -58,7 +58,30 @@ public class SigTestDriver extends SignatureTestDriver {
   private static final String DEBUG_FLAG = "-Debug";
 
   private static final String FORMATPLAIN_FLAG = "-FormatPlain";
+  
+  private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
+  private static String[] excludeJdkClasses = {
+          "java.util.Map",
+          "java.lang.Object",
+          "java.io.ByteArrayInputStream",
+          "java.io.InputStream",
+          "java.lang.Deprecated",
+          "java.io.Writer",
+          "java.io.OutputStream",
+          "java.util.List",
+          "java.util.Collection",
+          "java.lang.instrument.IllegalClassFormatException",
+          "javax.transaction.xa.XAException",
+          "java.lang.annotation.Repeatable",
+          "java.lang.InterruptedException",
+          "java.lang.CloneNotSupportedException",
+          "java.lang.Throwable",
+          "jakarta.resource.spi.SecurityException",
+          "java.lang.Thread",
+          "java.lang.Enum"
+  };
+          
   // ---------------------------------------- Methods from SignatureTestDriver
 
   @Override
@@ -122,6 +145,12 @@ public class SigTestDriver extends SignatureTestDriver {
       command.add(subPackages[i]);
     }
 
+    for(String jdkClassName:excludeJdkClasses) {
+      command.add(EXCLUDE_JDK_CLASS_FLAG);
+      command.add(jdkClassName);
+    }
+    
+            
     command.add(API_VERSION_FLAG);
     command.add(info.getVersion());
 
