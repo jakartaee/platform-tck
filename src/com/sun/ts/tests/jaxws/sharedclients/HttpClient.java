@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,15 +25,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.nio.charset.Charset;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
+
+import java.io.Serializable;
 
 public class HttpClient implements Serializable {
 

@@ -658,7 +658,7 @@
         <sequential>
           <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
             <then><if><istrue value="${build.vi}"/><then><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
-            <else><property name="do.wsimport.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+            <else><property name="do.wsimport.jvmarg" value=""/></else>
           </if>                                                           		             
            <setup_target_dirs/>
            <echo message="wsdlFile=${wsdl.file}"/>
@@ -766,7 +766,7 @@
         <sequential>
           <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
             <then><if><istrue value="${build.vi}"/><then><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsimport.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
-            <else><property name="do.wsimport.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+            <else><property name="do.wsimport.jvmarg" value=""/></else>
           </if> 
            <setup_target_dirs/>
            <echo message="wsdlFile=${wsdl.file}"/>
@@ -876,7 +876,7 @@
         <sequential>
           <if><or><equals arg1="${ant.java.version}" arg2="1.8"/><equals arg1="${ant.java.version}" arg2="1.7"/></or>
             <then><if><istrue value="${build.vi}"/><then><property name="do.wsgen.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs}"/></then><else><property name="do.wsgen.jvmarg" value="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/></else></if></then>
-            <else><property name="do.wsgen.jvmarg" value="-XaddExports:java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED"/></else>
+            <else><property name="do.wsgen.jvmarg" value=""/></else>
           </if>
            <setup_target_dirs/>
            <echo message="wsdlFile=${wsdl.file}"/>

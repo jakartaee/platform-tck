@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+import com.sun.ts.lib.harness.EETest;
 
 public class W2JRLR2751Client extends SOAPClient {
 

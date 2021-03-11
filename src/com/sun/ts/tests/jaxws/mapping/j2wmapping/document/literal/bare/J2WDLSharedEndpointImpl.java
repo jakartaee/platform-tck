@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.bare;
 
+import jakarta.xml.ws.WebServiceException;
+
 import jakarta.jws.WebService;
 
 @WebService(name = "J2WDLSharedEndpoint", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl")

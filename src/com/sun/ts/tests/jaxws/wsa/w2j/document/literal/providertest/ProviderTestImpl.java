@@ -20,23 +20,18 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest;
 
+import jakarta.xml.ws.*;
 import java.io.ByteArrayInputStream;
-
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
 
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.Provider;
-import jakarta.xml.ws.RespectBinding;
-import jakarta.xml.ws.ServiceMode;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceProvider;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;
+import jakarta.xml.ws.RespectBinding;
+
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 @WebServiceProvider(serviceName = "ProviderTestService", portName = "ProviderTestPort", targetNamespace = "http://providertestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/ProviderTestService.wsdl")
 @BindingType(value = "http://schemas.xmlsoap.org/wsdl/soap/http")

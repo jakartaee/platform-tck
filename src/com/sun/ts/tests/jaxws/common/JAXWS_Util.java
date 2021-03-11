@@ -20,61 +20,38 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.net.ServerSocket;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NameClassPair;
-import javax.naming.NamingEnumeration;
-import javax.naming.NamingException;
+import java.util.*;
+import java.lang.reflect.*;
+import java.net.*;
+
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.sax.SAXSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import jakarta.xml.soap.*;
+import java.io.*;
+import javax.naming.*;
 
 import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.xml.sax.*;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamSource;
 
-import com.sun.ts.lib.util.TestUtil;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.Result;
 
-import jakarta.xml.soap.MessageFactory;
-import jakarta.xml.soap.SOAPConstants;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.SOAPFault;
+import java.lang.reflect.*;
+
 import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.WebServiceFeature;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public final class JAXWS_Util {
   public static final String SOAP11 = "soap11";

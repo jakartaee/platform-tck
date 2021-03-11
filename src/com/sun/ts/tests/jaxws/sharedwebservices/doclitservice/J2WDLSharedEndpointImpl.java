@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclitservice;
 
+import jakarta.xml.ws.WebServiceException;
+
 import jakarta.jws.WebService;
 
 @WebService(portName = "J2WDLSharedEndpointPort", targetNamespace = "http://doclitservice.org/wsdl", serviceName = "J2WDLShared", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpoint")

@@ -20,22 +20,19 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
-import java.io.StringReader;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
 
-import javax.xml.namespace.QName;
-import javax.xml.transform.stream.StreamSource;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.tests.jaxws.common.HandlerTracker;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.common.LogicalHandlerBase;
-
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.ws.handler.LogicalMessageContext;
 import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
+
+import java.io.StringReader;
+import javax.xml.transform.stream.StreamSource;
 
 public class ServerLogicalHandler4 extends LogicalHandlerBase {
   private static final String NAMESPACEURI = "http://dlhandlerservice.org/wsdl";

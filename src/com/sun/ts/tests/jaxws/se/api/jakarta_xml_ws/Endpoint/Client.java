@@ -20,40 +20,30 @@
 
 package com.sun.ts.tests.jaxws.se.api.jakarta_xml_ws.Endpoint;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
-import javax.xml.namespace.QName;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.sharedclients.HttpClient;
+
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.sharedclients.HttpClient;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+import java.nio.charset.Charset;
 
-import jakarta.xml.ws.Binding;
-import jakarta.xml.ws.Endpoint;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import javax.xml.namespace.QName;
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+
+import com.sun.javatest.Status;
 
 public class Client extends ServiceEETest {
 

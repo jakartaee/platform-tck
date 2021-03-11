@@ -20,6 +20,14 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest;
 
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
+import javax.xml.transform.stream.*;
+import javax.xml.transform.*;
+import java.net.*;
+import java.awt.*;
+
 import jakarta.jws.WebService;
 
 @WebService(portName = "SwaRefTestPort", serviceName = "WSIDLSwaRefTestService", targetNamespace = "http://SwaRefTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")

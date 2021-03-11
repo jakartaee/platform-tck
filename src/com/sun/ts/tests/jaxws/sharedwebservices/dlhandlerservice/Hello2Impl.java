@@ -20,17 +20,22 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
-import javax.xml.namespace.QName;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+import jakarta.xml.ws.WebServiceException;
+
+import jakarta.xml.ws.soap.SOAPFaultException;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.Detail;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
 
 import jakarta.jws.WebService;
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.SOAPFault;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.SOAPFaultException;
+
+import com.sun.ts.tests.jaxws.common.*;
+import java.util.Properties;
 
 @WebService(portName = "Hello2Port", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello2")
 

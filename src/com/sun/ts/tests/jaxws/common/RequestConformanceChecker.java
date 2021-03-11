@@ -20,23 +20,18 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
 
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPHeaderElement;
-import jakarta.xml.soap.Text;
-import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.*;
+import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.sun.ts.tests.jaxws.common.Handler_Util;
 
 public abstract class RequestConformanceChecker
     implements SOAPHandler<SOAPMessageContext>, WSIConstants {

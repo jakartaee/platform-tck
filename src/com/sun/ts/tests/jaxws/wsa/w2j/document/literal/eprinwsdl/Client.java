@@ -20,29 +20,37 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl;
 
-import java.io.ByteArrayOutputStream;
-import java.net.URL;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import java.io.*;
+import java.net.*;
+import java.rmi.*;
+import java.util.*;
+
+import java.awt.Image;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.soap.AddressingFeature;
 import javax.xml.namespace.QName;
+
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Element;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.common.XMLUtils;
 import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
 
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.WebServiceFeature;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import java.util.Properties;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+
+import com.sun.javatest.Status;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

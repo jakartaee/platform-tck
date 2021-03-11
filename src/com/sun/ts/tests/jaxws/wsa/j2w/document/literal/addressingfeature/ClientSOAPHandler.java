@@ -20,12 +20,31 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature;
 
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
+import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
+import com.sun.ts.tests.jaxws.wsa.common.MapException;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
 import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
-
-import jakarta.xml.soap.SOAPException;
+import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
+import java.util.Iterator;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.soap.SOAPHeader;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.Text;
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 
 public class ClientSOAPHandler extends WsaBaseSOAPHandler {
   String testName = null;

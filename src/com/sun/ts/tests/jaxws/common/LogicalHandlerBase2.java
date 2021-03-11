@@ -20,12 +20,25 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import jakarta.annotation.PostConstruct;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.List;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.LogicalMessage;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+
+import jakarta.activation.DataHandler;
+
 import jakarta.annotation.PreDestroy;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
+import jakarta.annotation.PostConstruct;
+
+import com.sun.ts.tests.jaxws.common.Handler_Util;
 
 public class LogicalHandlerBase2
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {

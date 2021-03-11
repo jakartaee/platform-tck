@@ -20,19 +20,24 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_wsaddressing.W3CEndpointReference;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.namespace.QName;
-import javax.xml.transform.stream.StreamResult;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
 
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import javax.xml.namespace.QName;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
 
 public class Client extends ServiceEETest {
 

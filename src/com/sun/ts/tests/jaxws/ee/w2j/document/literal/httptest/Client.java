@@ -20,26 +20,23 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.httptest;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

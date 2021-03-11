@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomtest;
 
-import java.awt.Image;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.*;
 import jakarta.xml.ws.soap.SOAPBinding;
+import java.awt.Image;
 
 public class MTOMClientTwo extends SOAPClient {
 

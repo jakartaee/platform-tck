@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import com.sun.ts.lib.util.TestUtil;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 
-import jakarta.xml.ws.handler.Handler;
+import java.util.*;
 
 public final class HandlerTracker {
 

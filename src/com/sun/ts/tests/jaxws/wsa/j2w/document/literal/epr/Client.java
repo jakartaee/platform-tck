@@ -20,36 +20,39 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.io.*;
+import java.net.*;
+import java.rmi.*;
+import java.util.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 import java.util.Properties;
-
+import java.math.BigInteger;
+import java.math.BigDecimal;
 import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.common.XMLUtils;
-import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
-
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceFeature;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 import jakarta.xml.ws.soap.AddressingFeature;
 import jakarta.xml.ws.soap.SOAPFaultException;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBElement;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.namespace.QName;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

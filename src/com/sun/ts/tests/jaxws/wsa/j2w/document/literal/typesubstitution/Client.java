@@ -20,18 +20,26 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import com.sun.ts.tests.jaxws.common.*;
+
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
+
 import java.util.Properties;
+import java.util.List;
+import java.util.Iterator;
 
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

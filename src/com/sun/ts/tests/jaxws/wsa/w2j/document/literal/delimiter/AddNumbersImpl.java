@@ -20,6 +20,10 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
 import jakarta.jws.WebService;
 
 @WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "urn:example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLDelimiterTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersPortType")

@@ -20,7 +20,15 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.WebServiceException;
+
+import jakarta.xml.soap.*;
+
+import java.util.*;
 
 import jakarta.jws.WebService;
 

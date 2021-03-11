@@ -20,20 +20,29 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.LogicalMessage;
+
+import jakarta.xml.ws.WebServiceException;
+
 import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.dom.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.InputStream;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
 
-import org.w3c.dom.Node;
-
-import com.sun.ts.tests.jaxws.common.Constants;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.Constants;
 
-import jakarta.xml.ws.LogicalMessage;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
+import org.w3c.dom.Node;
 
 public class ServerLogicalHandler
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {

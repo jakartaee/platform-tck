@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import jakarta.annotation.Resource;
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import java.security.Principal;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.WebServiceContext;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSHelloSecureService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello")
 

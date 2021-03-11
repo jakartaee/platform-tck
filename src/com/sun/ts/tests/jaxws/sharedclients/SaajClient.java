@@ -20,21 +20,23 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
-import java.nio.charset.Charset;
-
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.MimeHeaders;
 import jakarta.xml.soap.SOAPConnectionFactory;
 import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
+import java.nio.charset.Charset;
+
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import java.io.Serializable;
 
 public class SaajClient implements Serializable {
 

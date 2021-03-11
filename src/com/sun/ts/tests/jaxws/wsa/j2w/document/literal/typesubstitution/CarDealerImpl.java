@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.jws.WebService;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tests the type substitution.

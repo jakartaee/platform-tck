@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jaxws.wsa.common;
 
 import javax.xml.namespace.QName;
-
 import jakarta.xml.soap.SOAPConstants;
 
 public interface W3CAddressingConstants {

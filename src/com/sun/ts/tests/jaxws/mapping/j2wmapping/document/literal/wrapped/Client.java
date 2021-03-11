@@ -20,33 +20,37 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.util.*;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.AnnotationUtils;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.tests.jaxws.sharedclients.DescriptionClient;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SchemaConstants;
-import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
+import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlMimeType;
-import jakarta.xml.bind.annotation.XmlType;
+import java.lang.annotation.Annotation;
+import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.adapters.HexBinaryAdapter;
+import jakarta.activation.DataHandler;
+
+import com.sun.ts.tests.jaxws.common.*;
 
 public class Client extends ServiceEETest
     implements DescriptionConstants, SOAPConstants, SchemaConstants {

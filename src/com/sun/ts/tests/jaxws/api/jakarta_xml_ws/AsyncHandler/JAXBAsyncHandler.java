@@ -20,8 +20,9 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.AsyncHandler;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
 
+import com.sun.ts.lib.util.*;
 import jakarta.xml.ws.AsyncHandler;
 import jakarta.xml.ws.Response;
 

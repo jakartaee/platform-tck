@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
+import jakarta.xml.ws.WebServiceException;
+
 import jakarta.jws.WebService;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;

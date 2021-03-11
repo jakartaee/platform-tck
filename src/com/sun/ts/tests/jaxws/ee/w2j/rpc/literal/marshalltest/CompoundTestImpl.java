@@ -20,6 +20,15 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.Name;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.SOAPException;
+
 import jakarta.jws.WebService;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort3", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.CompoundTest")

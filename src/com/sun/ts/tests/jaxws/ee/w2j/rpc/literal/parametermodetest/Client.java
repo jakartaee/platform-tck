@@ -20,25 +20,33 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URL;
-import java.util.List;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
+import java.io.*;
+import java.net.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
+
+import java.util.Properties;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.DatatypeConfigurationException;
+
+import java.math.BigInteger;
+import java.math.BigDecimal;
+import jakarta.xml.ws.Holder;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Data;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import jakarta.xml.ws.Holder;
+import com.sun.ts.tests.jaxws.common.*;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

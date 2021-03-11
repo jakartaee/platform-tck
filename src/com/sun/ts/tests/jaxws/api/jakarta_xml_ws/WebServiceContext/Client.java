@@ -20,16 +20,26 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.WebServiceContext;
 
-import java.net.URL;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import com.sun.ts.tests.jaxws.common.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import com.sun.ts.tests.jaxws.sharedclients.hellosecureclient.*;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

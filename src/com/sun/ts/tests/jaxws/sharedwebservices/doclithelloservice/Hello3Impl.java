@@ -20,7 +20,12 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 

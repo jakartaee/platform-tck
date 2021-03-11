@@ -20,16 +20,24 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.action;
 
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.io.*;
+import java.net.*;
+import java.rmi.*;
+import java.util.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 import java.util.Properties;
-
+import java.math.BigInteger;
+import java.math.BigDecimal;
 import javax.xml.namespace.QName;
-
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

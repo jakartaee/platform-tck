@@ -20,8 +20,7 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.httptest;
 
-import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
-
+import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
 @WebService(portName = "HelloPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLHttpTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.httptest.Hello")

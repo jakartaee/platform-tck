@@ -23,21 +23,21 @@ package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R2301;
 import java.util.Iterator;
 import java.util.Properties;
 
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPMessage;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.J2WRLSharedClient;
+import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.*;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
-
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPMessage;
+import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest implements DescriptionConstants {
   /**

@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1027;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
+import com.sun.ts.lib.harness.EETest;
 
 public class W2JRLR1027Client extends SOAPClient {
   public W2JRLR1027Client(String webServerHost, int port, int mode)

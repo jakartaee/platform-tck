@@ -20,17 +20,30 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import javax.xml.transform.Source;
+import jakarta.xml.bind.JAXBContext;
 import javax.xml.namespace.QName;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.annotation.PostConstruct;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Map;
+import java.util.List;
+import java.util.Iterator;
+import jakarta.activation.DataHandler;
+
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 public class SOAPHandlerBase2
     implements jakarta.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {

@@ -20,34 +20,33 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.Service;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.javatest.Status;
 
-import javax.naming.InitialContext;
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import java.math.BigInteger;
+import java.math.BigDecimal;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
 import javax.xml.namespace.QName;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.EndpointReference;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+
 import javax.xml.transform.Source;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
+import javax.naming.InitialContext;
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceFeature;
-import jakarta.xml.ws.handler.Handler;
-import jakarta.xml.ws.handler.HandlerResolver;
-import jakarta.xml.ws.handler.PortInfo;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.soap.MTOMFeature;
-import jakarta.xml.ws.soap.SOAPBinding;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

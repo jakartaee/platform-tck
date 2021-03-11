@@ -20,14 +20,23 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Data;
-import com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import java.io.ByteArrayInputStream;
+
+import jakarta.xml.ws.WebServiceException;
+
+import java.util.*;
+
+import java.math.BigInteger;
+import java.math.BigDecimal;
+import javax.xml.namespace.QName;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.WebServiceException;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort1", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.MarshallTest")
 public class MarshallTestImpl implements MarshallTest {

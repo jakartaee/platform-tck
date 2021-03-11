@@ -20,18 +20,21 @@
 
 package com.sun.ts.tests.jaxws.wsa.common;
 
-import javax.xml.namespace.QName;
-import javax.xml.transform.dom.DOMResult;
+import com.sun.ts.lib.util.*;
 
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.XMLUtils;
 
 import jakarta.xml.ws.EndpointReference;
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.namespace.QName;
+
+import com.sun.ts.tests.jaxws.wsa.common.DOMUtil;
+import com.sun.ts.tests.jaxws.wsa.common.XmlUtil;
+import com.sun.ts.tests.jaxws.common.XMLUtils;
+import com.sun.ts.tests.jaxws.wsa.common.MemberSubmissionEndpointReference;
 
 public class EprUtil {
   private static final String FAILED = "FAILED";

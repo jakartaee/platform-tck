@@ -19,6 +19,10 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
 import jakarta.jws.WebService;
 
 @WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLReferenceParamsTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.refps.AddNumbersPortType")

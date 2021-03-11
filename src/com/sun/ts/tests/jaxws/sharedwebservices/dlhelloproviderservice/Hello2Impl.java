@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice;
 
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
 
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.Provider;
-import jakarta.xml.ws.ServiceMode;
-import jakarta.xml.ws.WebServiceProvider;
+import java.util.Iterator;
+
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 /*
  * Provider<SOAPMessage> - req/res a SOAPMessage in Message Mode

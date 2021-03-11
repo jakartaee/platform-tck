@@ -20,28 +20,24 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_http.HTTPBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.javatest.Status;
+
+import com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.*;
 
 import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
+import javax.naming.InitialContext;
+import java.net.*;
+import java.util.*;
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.ws.Binding;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.EndpointReference;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.handler.Handler;
-import jakarta.xml.ws.http.HTTPBinding;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.http.*;
+import javax.xml.transform.Source;
+import jakarta.xml.ws.handler.*;
 
 public class Client extends ServiceEETest {
   // need to create jaxbContext

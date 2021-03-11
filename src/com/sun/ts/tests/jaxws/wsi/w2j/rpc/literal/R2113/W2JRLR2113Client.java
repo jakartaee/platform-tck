@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113;
 
-import com.sun.javatest.util.StringArray;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
+import com.sun.ts.lib.harness.EETest;
 
 public class W2JRLR2113Client extends SOAPClient {
   public W2JRLR2113Client(String webServerHost, int port, int mode)

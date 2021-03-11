@@ -20,20 +20,29 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations;
 
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import java.util.Properties;
+import java.util.StringTokenizer;
+
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.tests.jaxws.sharedclients.DescriptionClient;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
-import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
+import com.sun.ts.tests.jaxws.wsi.j2w.NamespaceAttributeVerifier;
+
+import com.sun.ts.tests.jaxws.common.*;
 
 public class Client extends ServiceEETest
     implements DescriptionConstants, SOAPConstants {

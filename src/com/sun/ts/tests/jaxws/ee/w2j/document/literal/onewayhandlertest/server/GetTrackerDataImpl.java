@@ -20,12 +20,19 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.HandlerTracker;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import java.util.Properties;
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+
+import jakarta.xml.ws.WebServiceException;
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.WebServiceException;
 
 @WebService(portName = "GetTrackerDataPort", targetNamespace = "http://dlowhandlertestservice.org/wsdl", serviceName = "DLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSDLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.GetTrackerData")
 

@@ -20,26 +20,30 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.Response;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
-import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.*;
+
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import javax.xml.namespace.QName;
+import javax.naming.InitialContext;
 
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.Response;
-import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.bind.JAXBException;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamSource;
 
 public class Client extends ServiceEETest {
   // need to create jaxbContext

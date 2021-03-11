@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsa.common;
 
-import javax.xml.namespace.QName;
-
 import jakarta.xml.ws.WebServiceException;
+import javax.xml.namespace.QName;
 
 public class MissingAddressingHeaderException extends WebServiceException {
   QName name;

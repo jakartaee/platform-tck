@@ -19,13 +19,17 @@
  */
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature;
 
-import jakarta.jws.HandlerChain;
-import jakarta.jws.WebParam;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
 import jakarta.jws.WebService;
+import jakarta.jws.WebParam;
+import jakarta.jws.HandlerChain;
 import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
-import jakarta.xml.ws.soap.SOAPBinding;
 
 @WebService(name = "AddressingFeatureTest4", portName = "AddressingFeatureTest4Port", targetNamespace = "http://addressingfeatureservice.org/wsdl", serviceName = "AddressingFeatureTest4Service")
 

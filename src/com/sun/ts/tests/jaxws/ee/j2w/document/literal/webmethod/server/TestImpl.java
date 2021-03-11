@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server;
 
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 
 @WebService(name = "Test", serviceName = "TestService", targetNamespace = "http://test.org/wsdl")
 public class TestImpl extends TestImplBase {

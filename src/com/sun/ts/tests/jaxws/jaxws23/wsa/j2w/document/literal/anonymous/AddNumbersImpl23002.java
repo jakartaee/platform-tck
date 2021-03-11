@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous;
 
-import jakarta.jws.HandlerChain;
+import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
-import jakarta.jws.WebService;
+import jakarta.jws.HandlerChain;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.AddressingFeature;

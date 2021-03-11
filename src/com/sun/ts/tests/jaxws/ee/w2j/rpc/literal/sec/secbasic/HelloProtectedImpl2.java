@@ -20,6 +20,11 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import jakarta.xml.ws.WebServiceException;
+
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;

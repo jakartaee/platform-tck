@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,24 +20,14 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import java.util.*;
+import java.math.*;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.TimeZone;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
-
-import com.sun.ts.lib.util.TestUtil;
+import javax.xml.datatype.*;
 
 public final class JAXWS_Data {
 

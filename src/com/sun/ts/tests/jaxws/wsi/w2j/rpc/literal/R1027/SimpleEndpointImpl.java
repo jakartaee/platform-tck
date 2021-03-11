@@ -20,8 +20,7 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1027;
 
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
-
+import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
 @WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR1027TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1027.SimpleEndpoint")

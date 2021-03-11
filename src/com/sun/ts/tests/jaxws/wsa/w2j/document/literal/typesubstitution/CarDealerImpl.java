@@ -23,10 +23,6 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.Car;
-import com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.Ford;
-import com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.Toyota;
-
 @jakarta.jws.WebService(portName = "CarDealerPort", serviceName = "CarDealerService", targetNamespace = "http://typesubstitution/wsdl", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLTypeSubstitutionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealer")
 public class CarDealerImpl {
   public List<Car> getSedans() {

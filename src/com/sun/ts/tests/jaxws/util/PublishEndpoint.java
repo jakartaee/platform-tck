@@ -20,23 +20,18 @@
 
 package com.sun.ts.tests.jaxws.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Vector;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import jakarta.xml.ws.Endpoint;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
-
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-import jakarta.xml.ws.Endpoint;
 
 public class PublishEndpoint {
 

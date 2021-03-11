@@ -20,18 +20,17 @@
 
 package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R1010;
 
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.sharedclients.simpleclient.*;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
+import com.sun.javatest.Status;
+
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPElement;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.sharedclients.simpleclient.SimpleTestClient;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
+import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 

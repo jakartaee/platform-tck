@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+import com.sun.ts.lib.harness.EETest;
 
 public class AddNumbersClient1 extends SOAPClient {
 

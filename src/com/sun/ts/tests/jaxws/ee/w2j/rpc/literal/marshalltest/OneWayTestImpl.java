@@ -20,7 +20,17 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.*;
+
+import jakarta.xml.ws.WebServiceException;
+
+import jakarta.xml.soap.*;
+
+import java.util.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 

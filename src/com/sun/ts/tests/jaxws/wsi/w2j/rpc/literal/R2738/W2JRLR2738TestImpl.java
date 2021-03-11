@@ -19,9 +19,10 @@
  */
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738;
 
-import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
+
 import jakarta.xml.ws.WebServiceException;
+import jakarta.jws.WebService;
 
 @WebService(portName = "W2JRLR2738TestPort", serviceName = "W2JRLR2738TestService", targetNamespace = "http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2738TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738.W2JRLR2738Test")
 

@@ -19,12 +19,16 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.RespectBinding;
-import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.soap.Addressing;
+import jakarta.xml.ws.RespectBinding;
 
 @WebService(portName = "RespectBindingFeatureTest3Port", serviceName = "RespectBindingFeatureTestService", targetNamespace = "http://respectbindingfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTest3")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)

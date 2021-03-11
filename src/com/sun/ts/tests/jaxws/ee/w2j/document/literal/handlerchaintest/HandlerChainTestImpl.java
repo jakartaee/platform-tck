@@ -20,21 +20,16 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest;
 
+import jakarta.xml.ws.*;
 import java.io.StringReader;
-
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
 
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
 import jakarta.jws.HandlerChain;
-import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.Provider;
-import jakarta.xml.ws.ServiceMode;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceProvider;
 
 @HandlerChain(name = "", file = "server-handler.xml")
 @WebServiceProvider(serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", targetNamespace = "http://handlerchaintestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JHandlerChainTestService.wsdl")

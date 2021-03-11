@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2010;
 
-import java.math.BigInteger;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+
+import java.math.BigInteger;
 
 public class W2JRLR2010Client extends SOAPClient {
   public W2JRLR2010Client(String webServerHost, int webServerPort, int mode)

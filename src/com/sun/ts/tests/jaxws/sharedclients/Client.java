@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import java.io.Serializable;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import java.io.Serializable;
 
 public abstract class Client implements Serializable {
   private static final String DEFAULT_SCHEME = "http";

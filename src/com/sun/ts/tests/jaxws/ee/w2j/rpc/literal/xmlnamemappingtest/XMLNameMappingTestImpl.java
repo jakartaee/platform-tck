@@ -20,6 +20,12 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import java.rmi.*;
+
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;

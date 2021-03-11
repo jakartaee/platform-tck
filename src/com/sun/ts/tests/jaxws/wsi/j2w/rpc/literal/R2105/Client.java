@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,20 +24,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.J2WRLSharedClient;
+import com.sun.ts.tests.jaxws.sharedclients.rpclitclient.*;
 import com.sun.ts.tests.jaxws.wsi.constants.DescriptionConstants;
 import com.sun.ts.tests.jaxws.wsi.constants.SchemaConstants;
 import com.sun.ts.tests.jaxws.wsi.utils.DescriptionUtils;
+import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest
     implements DescriptionConstants, SchemaConstants {

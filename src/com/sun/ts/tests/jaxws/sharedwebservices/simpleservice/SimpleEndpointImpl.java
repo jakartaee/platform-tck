@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
+import jakarta.xml.ws.WebServiceException;
+
 @jakarta.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl", serviceName = "SimpleTest", portName = "SimpleEndpointPort", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
   public String helloWorld() {

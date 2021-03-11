@@ -20,28 +20,38 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.EndpointReference;
 
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
 import java.text.MessageFormat;
-import java.util.Properties;
 
-import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
-
-import org.w3c.dom.Node;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
-
-import jakarta.xml.ws.Binding;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.Dispatch;
 import jakarta.xml.ws.EndpointReference;
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.ws.soap.*;
+import javax.xml.namespace.QName;
+import jakarta.xml.ws.handler.*;
+
+import javax.naming.InitialContext;
+
+import javax.xml.transform.dom.*;
+import org.w3c.dom.Node;
 
 public class Client extends ServiceEETest {
 

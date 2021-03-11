@@ -20,20 +20,20 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server;
 
-import javax.xml.namespace.QName;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.tests.jaxws.common.HandlerTracker;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
-
-import jakarta.xml.soap.Name;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.HandlerTracker;
+import javax.xml.namespace.QName;
 import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.SOAPFault;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.Name;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ServerSOAPHandler2 extends SOAPHandlerBase2 {
   private static final String WHICHHANDLERTYPE = "Server";

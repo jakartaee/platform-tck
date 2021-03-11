@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external;
 
 import com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.custom.pkg.CustomizationExternalTestException;
-import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
 
 import jakarta.jws.WebService;
 

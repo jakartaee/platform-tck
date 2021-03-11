@@ -24,23 +24,17 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2739;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxws.common.Constants;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.Constants;
 
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPEnvelope;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPHeaderElement;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.*;
+
+import java.util.Set;
+import java.util.HashSet;
 
 public class R2739Handler implements SOAPHandler<SOAPMessageContext> {
 

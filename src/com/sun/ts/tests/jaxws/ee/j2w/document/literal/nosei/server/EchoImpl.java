@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.nosei.server;
 
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
 
 @WebService(name = "Echo", serviceName = "EchoService", targetNamespace = "http://echo.org/wsdl")
 public class EchoImpl {

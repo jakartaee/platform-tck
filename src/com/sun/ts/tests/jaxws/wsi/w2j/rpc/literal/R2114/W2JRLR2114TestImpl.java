@@ -19,8 +19,7 @@
  */
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2114;
 
-import com.sun.ts.lib.util.TestUtil;
-
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
 @WebService(portName = "W2JRLR2114TestPort", serviceName = "W2JRLR2114TestService", targetNamespace = "http://w2jrlr2114testservice.org/W2JRLR2114TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2114TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2114.W2JRLR2114Test")

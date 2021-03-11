@@ -18,13 +18,19 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
-import java.net.URL;
-
-import javax.xml.transform.stream.StreamSource;
-
-import jakarta.activation.DataHandler;
-import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.activation.*;
+import javax.xml.transform.stream.*;
+import javax.xml.transform.*;
+import java.util.*;
+import java.net.*;
+import java.awt.*;
+
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaTestOnePort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest1")
 

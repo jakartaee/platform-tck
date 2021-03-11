@@ -20,21 +20,26 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.client;
 
-import java.net.URL;
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
+import com.sun.ts.tests.jaxws.common.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import jakarta.xml.ws.AsyncHandler;
-import jakarta.xml.ws.Response;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
   // need to create jaxbContext

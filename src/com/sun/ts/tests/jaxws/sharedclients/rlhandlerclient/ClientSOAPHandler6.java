@@ -20,7 +20,16 @@
 
 package com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
+import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
 
 public class ClientSOAPHandler6 extends SOAPHandlerBase2 {
   private static final String WHICHHANDLERTYPE = "Client";

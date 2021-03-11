@@ -20,23 +20,29 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.client;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.io.*;
+import java.net.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
 import javax.xml.namespace.QName;
 
+import java.util.*;
+
+import java.math.BigInteger;
+import java.math.BigDecimal;
+
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Data;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import javax.naming.InitialContext;
+
+import javax.xml.datatype.*;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

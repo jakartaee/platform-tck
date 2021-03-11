@@ -22,7 +22,6 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1005;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
 
 public class W2JRLR1005Client extends SOAPClient {
 

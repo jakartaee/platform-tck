@@ -20,6 +20,12 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,12 +34,6 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 
 import org.w3c.dom.Document;
-
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
 
 public abstract class SOAPClient extends Client {
 

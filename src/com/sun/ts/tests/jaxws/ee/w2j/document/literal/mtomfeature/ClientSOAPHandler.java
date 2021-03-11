@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature;
 
-import java.util.List;
-import java.util.Map;
-
 import com.sun.ts.tests.jaxws.common.HTTPSOAPHandler;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-import jakarta.xml.ws.handler.MessageContext;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.WebServiceException;
+
+import java.util.Map;
+import java.util.List;
+import java.util.Iterator;
 
 public class ClientSOAPHandler extends HTTPSOAPHandler {
 

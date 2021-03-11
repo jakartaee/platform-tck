@@ -20,17 +20,24 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest;
 
-import java.math.BigDecimal;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.*;
+
+import jakarta.xml.ws.WebServiceException;
+
 import java.math.BigInteger;
+import java.math.BigDecimal;
+import jakarta.xml.soap.*;
+import javax.xml.datatype.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.sun.ts.tests.jaxws.common.JAXWS_Data;
+import java.util.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.WebServiceException;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort2", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.NewSchemaTest")
 

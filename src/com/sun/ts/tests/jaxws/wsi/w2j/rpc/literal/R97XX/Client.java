@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,22 +20,27 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R97XX;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Properties;
+import com.sun.ts.lib.util.TestUtil;
+
+import com.sun.javatest.Status;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
+import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest
     implements SOAPConstants, SOAPRequests {

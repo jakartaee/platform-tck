@@ -22,8 +22,10 @@ package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2707;
 
 import java.util.Properties;
 
+import jakarta.xml.ws.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.*;
+
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 
 public class Client extends ServiceEETest {

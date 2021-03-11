@@ -19,24 +19,27 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest;
 
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.javatest.Status;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.*;
 import java.util.Properties;
+import com.sun.ts.tests.jaxws.common.*;
 
 import javax.xml.namespace.QName;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.RespectBindingFeature;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceFeature;
+
 import jakarta.xml.ws.soap.AddressingFeature;
 import jakarta.xml.ws.soap.MTOMFeature;
+import jakarta.xml.ws.RespectBindingFeature;
+import jakarta.xml.ws.WebServiceFeature;
 
 public class Client extends ServiceEETest {
 

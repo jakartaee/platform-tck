@@ -20,11 +20,32 @@
 
 package com.sun.ts.tests.jaxws.wsa.common;
 
+import com.sun.ts.tests.jaxws.common.XMLUtils;
+
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPHeader;
+import jakarta.xml.soap.SOAPFault;
+import jakarta.xml.soap.Detail;
+import jakarta.xml.soap.DetailEntry;
+import jakarta.xml.soap.Text;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+import javax.xml.namespace.QName;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import java.util.Iterator;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
-import java.util.Iterator;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
@@ -33,21 +54,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
-import jakarta.xml.soap.Detail;
-import jakarta.xml.soap.DetailEntry;
-import jakarta.xml.soap.MessageFactory;
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPConstants;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPFault;
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.Text;
 import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.soap.SOAPFaultException;
+
+import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
+import com.sun.ts.tests.jaxws.wsa.common.MemberSubmissionAddressingConstants;
 
 public class WsaSOAPUtils implements jakarta.xml.soap.SOAPConstants,
     com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants {

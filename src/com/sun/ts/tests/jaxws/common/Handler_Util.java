@@ -20,24 +20,19 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-import java.util.Vector;
-
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMResult;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.*;
 
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Binding;
-import jakarta.xml.ws.LogicalMessage;
-import jakarta.xml.ws.handler.Handler;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import com.sun.ts.lib.util.*;
+
+import java.io.File;
 
 public final class Handler_Util {
 

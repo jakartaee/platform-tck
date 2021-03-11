@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest;
 
-import java.net.URL;
-
-import jakarta.activation.DataHandler;
-import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
+import javax.xml.transform.stream.*;
+import javax.xml.transform.*;
+import java.net.*;
+import java.awt.*;
+
+import jakarta.jws.WebService;
 
 @WebService(portName = "SwaTestOnePort", serviceName = "WSIDLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest1")
 

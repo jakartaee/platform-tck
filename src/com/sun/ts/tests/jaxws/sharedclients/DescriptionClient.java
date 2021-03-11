@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Serializable;
+import java.io.FileInputStream;
 import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -35,6 +34,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.sun.ts.lib.harness.EETest;
+
+import java.io.Serializable;
 
 public class DescriptionClient implements Serializable {
 

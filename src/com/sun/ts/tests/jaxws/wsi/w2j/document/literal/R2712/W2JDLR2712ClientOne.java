@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+import com.sun.ts.lib.harness.EETest;
 
 public class W2JDLR2712ClientOne extends SOAPClient {
 

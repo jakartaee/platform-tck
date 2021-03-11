@@ -20,34 +20,38 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.io.*;
+import java.net.*;
+import java.awt.*;
+import java.rmi.*;
+import java.util.*;
 import java.nio.charset.Charset;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.*;
+import jakarta.activation.*;
+import javax.xml.transform.stream.*;
+import javax.xml.transform.*;
+import jakarta.xml.ws.Holder;
+
 import java.util.Properties;
 
 import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import javax.naming.InitialContext;
+
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 
-import jakarta.activation.DataHandler;
-import jakarta.xml.soap.MessageFactory;
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Holder;
+import com.sun.ts.lib.harness.*;
 
 public class Client extends ServiceEETest implements SOAPRequests {
   // The webserver defaults (overidden by harness properties)

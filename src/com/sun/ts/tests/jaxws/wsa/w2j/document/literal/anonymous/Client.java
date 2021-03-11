@@ -20,31 +20,26 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous;
 
-import java.net.URL;
-import java.text.MessageFormat;
-import java.util.Properties;
-import java.util.UUID;
-import java.util.concurrent.Exchanger;
-import java.util.concurrent.TimeUnit;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.namespace.QName;
-
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
-import com.sun.ts.tests.jaxws.wsa.common.WsaSOAPUtils;
 
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.Endpoint;
-import jakarta.xml.ws.Service;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.soap.SOAPFaultException;
+import java.text.MessageFormat;
+import java.net.*;
+import java.io.*;
+import java.util.UUID;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
+import java.util.Properties;
+import javax.xml.namespace.QName;
+import javax.naming.InitialContext;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Exchanger;
 
 public class Client extends ServiceEETest {
 

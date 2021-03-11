@@ -20,19 +20,19 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps;
 
-import java.util.List;
+import com.sun.ts.lib.util.*;
 
-import org.w3c.dom.Element;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.HTTPSOAPHandler;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.HTTPSOAPHandler;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.XMLUtils;
 import com.sun.ts.tests.jaxws.wsa.common.EprUtil;
-
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.soap.*;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.WebServiceException;
+import org.w3c.dom.Element;
+import java.util.List;
 
 public class ServerSOAPHandler extends HTTPSOAPHandler {
 

@@ -22,12 +22,12 @@ package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action;
 
 import jakarta.annotation.Resource;
 import jakarta.jws.HandlerChain;
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
-import jakarta.xml.ws.Action;
-import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.FaultAction;
+import jakarta.jws.WebMethod;
 import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.Action;
+import jakarta.xml.ws.FaultAction;
+import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 

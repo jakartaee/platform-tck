@@ -20,13 +20,30 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+
+import jakarta.xml.ws.WebServiceException;
+
+import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.List;
+import java.util.Vector;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.activation.DataHandler;
+import java.util.Properties;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://rlowhandlertestservice.org/wsdl", serviceName = "RLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSRLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.Hello")
 

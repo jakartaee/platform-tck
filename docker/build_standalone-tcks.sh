@@ -187,7 +187,6 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaxws" == "$tck" ]
   then
-    sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/$GF_TOPLEVEL_DIR\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/$GF_TOPLEVEL_DIR\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/$tck/bin/ts.jte
     TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
     JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
     DOC_SPECIFIC_PROPS=""

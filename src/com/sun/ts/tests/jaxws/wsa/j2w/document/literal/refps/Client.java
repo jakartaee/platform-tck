@@ -20,39 +20,44 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps;
 
-import java.io.ByteArrayOutputStream;
-import java.net.URL;
-import java.text.MessageFormat;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.UUID;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.namespace.QName;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
+
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
+import com.sun.ts.tests.jaxws.sharedclients.*;
 
 import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.stream.StreamResult;
+import java.util.Iterator;
+
+import java.net.URL;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.wsaddressing.*;
+import jakarta.xml.soap.*;
+import java.io.*;
+
+import java.util.Properties;
+import java.util.UUID;
+import java.text.MessageFormat;
+
+import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.wsa.common.WsaSOAPUtils;
 
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.Text;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.WebServiceFeature;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.soap.SOAPFaultException;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
-import jakarta.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

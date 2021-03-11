@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.jaxws.sharedclients.simpleclient;
 
-import com.sun.javatest.util.StringArray;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
 
 public class SimpleTestClient extends SOAPClient {
 

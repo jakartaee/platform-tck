@@ -20,22 +20,23 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.handlerchaintest;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.namespace.QName;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Iterator;
 
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPEnvelope;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.Constants;
 
 public class SOAPHandler
     implements jakarta.xml.ws.handler.soap.SOAPHandler<SOAPMessageContext> {

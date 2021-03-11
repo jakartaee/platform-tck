@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPException;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.soap.*;
 
 public class ClientSOAPHandler extends WsaBaseSOAPHandler {
   protected void checkInboundAction(SOAPMessageContext context, String oper,

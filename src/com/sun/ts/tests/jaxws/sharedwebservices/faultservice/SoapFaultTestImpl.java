@@ -20,17 +20,11 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 
-import java.rmi.ServerException;
-
-import javax.xml.namespace.QName;
-
-import jakarta.xml.soap.MessageFactory;
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.SOAPFault;
-import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.soap.SOAPFaultException;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.WebServiceException;
+import java.rmi.ServerException;
 
 @jakarta.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl", portName = "SoapFaultTestPort", serviceName = "FaultTest", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest")
 public class SoapFaultTestImpl implements SoapFaultTest {

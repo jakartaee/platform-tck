@@ -23,6 +23,8 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
+import com.sun.ts.tests.jaxws.common.*;
+
 public class SwaTestClient1 extends SOAPClient {
   public SwaTestClient1(String webServerHost, int port, int mode)
       throws EETest.Fault {

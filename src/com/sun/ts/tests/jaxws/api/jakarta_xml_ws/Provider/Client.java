@@ -20,23 +20,28 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.Provider;
 
-import java.net.URL;
-import java.util.Properties;
-
-import javax.xml.namespace.QName;
-import javax.xml.transform.Source;
-
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
+import com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.*;
+
+import java.rmi.*;
+import javax.xml.namespace.QName;
+import javax.naming.InitialContext;
+import java.net.*;
+import java.util.*;
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
+import javax.xml.transform.*;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
 
 public class Client extends ServiceEETest {
   // need to create jaxbContext

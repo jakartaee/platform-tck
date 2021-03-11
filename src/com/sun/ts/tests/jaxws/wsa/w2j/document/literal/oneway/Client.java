@@ -20,21 +20,33 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
 import java.text.MessageFormat;
+
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.sharedclients.*;
+
+import java.net.URL;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
+
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.soap.SOAPFaultException;
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

@@ -22,7 +22,6 @@ package com.sun.ts.tests.jaxws.sharedclients.faultclient;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-import com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest;
 
 public class FaultTestClient extends SOAPClient {
 

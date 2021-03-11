@@ -20,13 +20,18 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_handler.MessageContext.Scope;
 
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import jakarta.xml.ws.handler.*;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.xml.ws.handler.MessageContext;
 
 public class Client extends ServiceEETest {
   // Expected Enum Constant Summary

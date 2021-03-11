@@ -20,22 +20,25 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.LogicalMessage;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import javax.xml.namespace.QName;
-
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import jakarta.xml.ws.Binding;
-import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.handler.Handler;
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
+
+import java.rmi.*;
+import jakarta.xml.ws.*;
+import javax.xml.namespace.QName;
+import javax.naming.InitialContext;
+import java.net.*;
+import java.util.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.soap.*;
+
+import jakarta.jws.HandlerChain;
 
 public class Client extends ServiceEETest {
   // The webserver defaults (overidden by harness properties)

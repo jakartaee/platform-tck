@@ -20,20 +20,22 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature;
 
-import java.awt.Image;
-import java.net.URL;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.transform.Source;
-
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
-
-import jakarta.activation.DataHandler;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.MTOM;
 import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.soap.MTOM;
+
+import java.awt.Image;
+import com.sun.ts.tests.jaxws.common.AttachmentHelper;
+import java.net.URL;
+import jakarta.activation.DataHandler;
+import javax.xml.transform.Source;
 
 @WebService(portName = "MTOMFeatureTest1Port", serviceName = "MTOMFeatureTestService", targetNamespace = "http://mtomfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest1")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)

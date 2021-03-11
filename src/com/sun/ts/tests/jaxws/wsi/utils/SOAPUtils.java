@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jaxws.wsi.utils;
 
-import jakarta.xml.soap.SOAPBody;
 import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPBody;
 import jakarta.xml.ws.soap.SOAPFaultException;
 
 public class SOAPUtils implements jakarta.xml.soap.SOAPConstants {

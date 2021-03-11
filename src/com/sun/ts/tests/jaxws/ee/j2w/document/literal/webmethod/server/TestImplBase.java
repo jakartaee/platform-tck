@@ -20,6 +20,9 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server;
 
+import jakarta.jws.WebService;
+import jakarta.jws.WebMethod;
+
 public class TestImplBase extends TestImplBaseBase {
 
   // Not a web method (not a WebService)

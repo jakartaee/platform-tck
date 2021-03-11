@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,23 +19,31 @@
  */
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.client;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+import com.sun.javatest.Status;
 
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+
+import org.w3c.dom.Node;
+
+import java.net.URL;
+import java.net.HttpURLConnection;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
+import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import com.sun.ts.tests.jaxws.common.*;
 import com.sun.ts.tests.jaxws.sharedclients.HttpClient;
+
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 
