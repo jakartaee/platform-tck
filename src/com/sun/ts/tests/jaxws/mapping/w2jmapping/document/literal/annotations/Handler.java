@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations;
 
-import jakarta.annotation.PostConstruct;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.LogicalMessage;
+
 import jakarta.annotation.PreDestroy;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
+import jakarta.annotation.PostConstruct;
 
 public class Handler
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,14 +20,20 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_soap.SOAPFaultException;
 
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.rmi.*;
+
+import javax.xml.namespace.QName;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.xml.soap.SOAPFault;
-import jakarta.xml.ws.soap.SOAPFaultException;
 
 public class Client extends ServiceEETest {
   private jakarta.xml.soap.Detail detail = null;

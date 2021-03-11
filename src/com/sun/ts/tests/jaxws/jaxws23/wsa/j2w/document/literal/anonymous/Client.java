@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,22 +20,26 @@
 
 package com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous;
 
-import java.net.URL;
-import java.util.Properties;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import javax.xml.namespace.QName;
-
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.Service;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.AddressingFeature;
+import java.text.MessageFormat;
+import java.net.*;
+import java.io.*;
+import java.util.UUID;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
+import java.util.Properties;
+import javax.xml.namespace.QName;
+import javax.naming.InitialContext;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Exchanger;
 
 /*
  * Test Repeatable annotation on WebServiceRef

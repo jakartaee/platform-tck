@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,23 +20,18 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxws.common.Constants;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.Constants;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.soap.*;
+import javax.xml.namespace.QName;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.HashSet;
 
 public class XMLLangHandler implements SOAPHandler<SOAPMessageContext> {
 

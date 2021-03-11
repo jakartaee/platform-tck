@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,14 +19,18 @@
  */
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
-import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
 
-import jakarta.jws.HandlerChain;
-import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+import jakarta.jws.WebParam;
+import jakarta.jws.HandlerChain;
+import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.soap.Addressing;
+
+import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
 
 @WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
 @HandlerChain(file = "server-handler.xml")

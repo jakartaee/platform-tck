@@ -76,6 +76,7 @@ jaxws.lib.ri=${jaxws.home.ri}/modules
 endorsed.dirs=${jaxws.home}/modules/endorsed
 endorsed.dirs.ri=${jaxws.home.ri}/modules/endorsed
 
+
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
 ###########################################################################
@@ -553,3 +554,45 @@ extension.dir=${webcontainer.home}/domains/domain1/lib/ext
 extension.dir.ri=${webcontainer.home.ri}/domains/domain1/lib/ext
 
 
+#################################################################
+# To Configure config.vi with security manager
+#################################################################
+javaee.home=${webcontainer.home}
+###############################################################
+## Config params needed for Sun Java System Application Server
+## (SJSAS) asadmin. You must change these values as needed
+## only if you are testing against SJSAS app server
+## (javaee.home is pointing to SJSAS).
+#
+# @s1as.admin.user     -- The SJSAS asadmin user id
+# @s1as.admin.passwd   -- The SJSAS asadmin user password
+# @s1as.admin.host     -- The SJSAS host
+# @s1as.admin.port     -- The SJSAS port
+# @s1as.admin          -- The SJSAS admin command
+# @s1as.server         -- The SJSAS server instance being used
+# @s1as.domain.dir     -- Points to where your domains are installed.
+# @s1as.domain.name    -- The SJSAS domain being used
+# @s1as.domain         -- The SJSAS domain path being used
+# @s1as.asenv.loc      -- location of asenv.conf or asenv.bat
+# @s1as.imqbin.loc     -- location of the IMQ bin directory
+# @s1as.lib            -- Library directory for other Java EE RI
+#                         jars
+# @s1as.imq.share.lib  -- Shared library directory for imq 
+# @s1as.jvm.options    -- Java options needed by SJSAS
+#                         The xxxlogin and xxxpassword are used
+#                         to set known server side creds for use
+#                         with connector tests.
+# @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
+# @s1as.applicationRoot-- Location of application repository
+#                         Only needed when running on windows
+# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
+#                         drivers.  Currently, this only needs
+#                         to be set when using DB2 else it
+#                         should be empty.
+############################################################### 
+s1as.admin=${javaee.home}/bin/asadmin
+s1as.domain.dir=${javaee.home}/domains
+s1as.domain.name=${glassfish.domain.name}
+s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
+s1as.admin.host=${glassfish.admin.host}
+s1as.admin.port=${glassfish.admin.port}

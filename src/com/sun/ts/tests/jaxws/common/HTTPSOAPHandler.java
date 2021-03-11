@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.Set;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import javax.xml.namespace.QName;
-
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.MessageContext;
+import javax.xml.namespace.QName;
+import java.util.Set;
 
 public abstract class HTTPSOAPHandler
     implements SOAPHandler<SOAPMessageContext> {

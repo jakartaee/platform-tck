@@ -79,13 +79,12 @@ endorsed.dirs.ri=${jaxws.lib.ri}
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
 ###########################################################################
-
-jaxws.classes=${jaxws.lib}/jakarta.servlet-api.jar${pathsep}${jaxws.lib}/FastInfoset.jar${pathsep}${jaxws.lib}/gmbal-api-only.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/jakarta.annotation.jar${pathsep}${jaxws.lib}/jakarta.xml.soap-api.jar${pathsep}${endorsed.dirs}/jaxb-api.jar${pathsep}${jaxws.lib}/jaxb-impl.jar${pathsep}${jaxws.lib}/jaxb-xjc.jar${pathsep}${jaxws.lib}/jaxb-jxc.jar${pathsep}${jaxws.lib}/jaxb-core.jar${pathsep}${endorsed.dirs}/jaxws-api.jar${pathsep}${jaxws.lib}/jaxws-rt.jar${pathsep}${jaxws.lib}/jaxws-tools.jar${pathsep}${jaxws.lib}/jsr181-api.jar${pathsep}${jaxws.lib}/mail.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/policy.jar${pathsep}${jaxws.lib}/resolver.jar${pathsep}${jaxws.lib}/saaj-impl.jar${pathsep}${jaxws.lib}/stax-ex.jar${pathsep}${jaxws.lib}/stax2-api.jar${pathsep}${jaxws.lib}/streambuffer.jar${pathsep}${jaxws.lib}/woodstox-core-asl.jar
+jaxws.classes=${jaxws.lib}/../lib/resolver.jar${pathsep}${jaxws.lib}/webservices-api-osgi.jar${pathsep}${jaxws.lib}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/webservices-api.jar${pathsep}${jaxws.lib}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib}/jakarta.activation.jar
 
 ###########################################################################
 # @jaxws.classes.ri  should contain all RI specific jars/classes
 ###########################################################################
-jaxws.classes.ri=${jaxws.lib.ri}/FastInfoset.jar${pathsep}${jaxws.lib.ri}/gmbal-api-only.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/jakarta.annotation.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.soap-api.jar${pathsep}${endorsed.dirs.ri}/jaxb-api.jar${pathsep}${jaxws.lib.ri}/jaxb-impl.jar${pathsep}${jaxws.lib.ri}/jaxb-xjc.jar${pathsep}${jaxws.lib.ri}/jaxb-jxc.jar${pathsep}${jaxws.lib.ri}/jaxb-core.jar${pathsep}${endorsed.dirs.ri}/jaxws-api.jar${pathsep}${jaxws.lib.ri}/jaxws-rt.jar${pathsep}${jaxws.lib.ri}/jaxws-tools.jar${pathsep}${jaxws.lib.ri}/jsr181-api.jar${pathsep}${jaxws.lib.ri}/mail.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/policy.jar${pathsep}${jaxws.lib.ri}/resolver.jar${pathsep}${jaxws.lib.ri}/saaj-impl.jar${pathsep}${jaxws.lib.ri}/stax-ex.jar${pathsep}${jaxws.lib.ri}/stax2-api.jar${pathsep}${jaxws.lib.ri}/streambuffer.jar${pathsep}${jaxws.lib.ri}/woodstox-core-asl.jar
+jaxws.classes.ri=${jaxws.lib.ri}/../lib/resolver.jar${pathsep}${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}${jaxws.lib.ri}/webservices-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}${jaxws.lib.ri}/gmbal.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/webservices-api.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib.ri}/jakarta.activation.jar
 
 ###########################################################################
 # @catalog.path  Path to catalog file for use with catalog tests
@@ -381,8 +380,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
-    -Djava.io.tmpdir=${harness.temp.directory} \
-    -XaddExports:java.rmi/sun.rmi.transport=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED \
+    	-Djava.io.tmpdir=${harness.temp.directory} \
         $testExecuteClass $testExecuteArgs
 
 # This execute line runs against the RI implementation
@@ -396,7 +394,6 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
-    -XaddExports:java.rmi/sun.rmi.transport=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED,java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver=ALL-UNNAMED,java.xml/com.sun.org.apache.xml.internal.resolver.tools=ALL-UNNAMED,java.xml/com.sun.xml.internal.stream.writers=ALL-UNNAMED,java.base/sun.reflect.misc=ALL-UNNAMED \    
         $testExecuteClass $testExecuteArgs
 
 #########################################################################
@@ -515,6 +512,49 @@ client.delay=1
 ###############################################################
 extension.dir=${webcontainer.home}/domains/domain1/lib
 extension.dir.ri=${webcontainer.home.ri}/domains/domain1/lib
+
+#################################################################
+# To Configure config.vi with security manager
+#################################################################
+javaee.home=${webcontainer.home}
+###############################################################
+## Config params needed for Sun Java System Application Server
+## (SJSAS) asadmin. You must change these values as needed
+## only if you are testing against SJSAS app server
+## (javaee.home is pointing to SJSAS).
+#
+# @s1as.admin.user     -- The SJSAS asadmin user id
+# @s1as.admin.passwd   -- The SJSAS asadmin user password
+# @s1as.admin.host     -- The SJSAS host
+# @s1as.admin.port     -- The SJSAS port
+# @s1as.admin          -- The SJSAS admin command
+# @s1as.server         -- The SJSAS server instance being used
+# @s1as.domain.dir     -- Points to where your domains are installed.
+# @s1as.domain.name    -- The SJSAS domain being used
+# @s1as.domain         -- The SJSAS domain path being used
+# @s1as.asenv.loc      -- location of asenv.conf or asenv.bat
+# @s1as.imqbin.loc     -- location of the IMQ bin directory
+# @s1as.lib            -- Library directory for other Java EE RI
+#                         jars
+# @s1as.imq.share.lib  -- Shared library directory for imq 
+# @s1as.jvm.options    -- Java options needed by SJSAS
+#                         The xxxlogin and xxxpassword are used
+#                         to set known server side creds for use
+#                         with connector tests.
+# @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
+# @s1as.applicationRoot-- Location of application repository
+#                         Only needed when running on windows
+# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
+#                         drivers.  Currently, this only needs
+#                         to be set when using DB2 else it
+#                         should be empty.
+############################################################### 
+s1as.admin=${javaee.home}/bin/asadmin
+s1as.domain.dir=${javaee.home}/domains
+s1as.domain.name=${glassfish.domain.name}
+s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
+s1as.admin.host=${glassfish.admin.host}
+s1as.admin.port=${glassfish.admin.port}
 
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,26 +20,32 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+
+import com.sun.ts.tests.jaxws.common.*;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
+
+import jakarta.xml.ws.WebServiceException;
+
+import java.io.*;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello;
-
+import jakarta.xml.ws.handler.MessageContext;
 import jakarta.activation.DataHandler;
-import jakarta.annotation.Resource;
+import java.util.Properties;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.WebServiceContext;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.handler.MessageContext;
+import jakarta.annotation.Resource;
 
 @WebService(portName = "HelloPort", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello")
 

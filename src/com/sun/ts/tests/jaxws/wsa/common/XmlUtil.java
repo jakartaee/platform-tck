@@ -29,7 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.xml.namespace.QName;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
@@ -40,6 +39,11 @@ import org.w3c.dom.EntityReference;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
+
+import java.net.URL;
+import java.util.Enumeration;
+import jakarta.xml.ws.WebServiceException;
+import javax.xml.namespace.QName;
 
 public class XmlUtil {
 

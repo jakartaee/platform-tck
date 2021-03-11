@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,7 +55,6 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-mkdir $TCK_HOME/ri
 
 if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
   export JAVA_HOME=${JDK11_HOME}
@@ -83,13 +82,15 @@ mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 
-cd $TCK_HOME/vi/$GF_TOPLEVEL_DIR/glassfish/bin
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin start-domain
 cd $TS_HOME/bin
 ant config.vi
 
 RI_DOMAIN_CONFIG_FILE=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
 rm -rf $TCK_HOME/ri/*
+mkdir $TCK_HOME/ri
+
 
 # TODO : Web Profile 
 # cp $TCK_HOME/latest-glassfish-$PROFILE.zip $BASEDIR/ri/latest-glassfish.zip
@@ -106,7 +107,7 @@ cd $TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/bin
 cd $TS_HOME/bin
 ant config.ri
 
-cd $TCK_HOME/vi/$GF_TOPLEVEL_DIR/glassfish/bin
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 

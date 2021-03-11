@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,25 +20,18 @@
 
 package com.sun.ts.tests.jaxws.common;
 
+import com.sun.ts.lib.util.*;
+
 import java.lang.annotation.Annotation;
+import jakarta.xml.ws.WebFault;
+import jakarta.xml.ws.*;
+import jakarta.jws.*;
+import jakarta.jws.soap.*;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.jws.HandlerChain;
-import jakarta.jws.WebMethod;
-import jakarta.jws.WebParam;
-import jakarta.jws.WebResult;
-import jakarta.jws.WebService;
-import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
-import jakarta.xml.ws.Action;
-import jakarta.xml.ws.FaultAction;
-import jakarta.xml.ws.WebEndpoint;
-import jakarta.xml.ws.WebFault;
-import jakarta.xml.ws.WebServiceClient;
+
+import java.lang.reflect.Method;
 
 public class AnnotationUtils {
 

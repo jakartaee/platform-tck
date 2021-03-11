@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.anonymous;
 
-import java.io.IOException;
+import jakarta.xml.ws.soap.SOAPBinding;
+import jakarta.xml.ws.*;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPException;
 import java.util.Calendar;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Provider;
-import jakarta.xml.ws.Service;
-import jakarta.xml.ws.ServiceMode;
-import jakarta.xml.ws.WebServiceProvider;
+import java.io.IOException;
 
 /**
  * This class handles the non-anonymous ReplyTo responses

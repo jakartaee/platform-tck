@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,19 @@
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import com.sun.ts.tests.jaxws.common.*;
 
-import jakarta.xml.soap.SOAPException;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
+import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
+import com.sun.ts.tests.jaxws.wsa.common.MapException;
+import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
+import jakarta.xml.soap.SOAPException;
 
 public class ServerSOAPHandler extends WsaBaseSOAPHandler {
   protected void checkInboundAction(SOAPMessageContext context, String oper,
