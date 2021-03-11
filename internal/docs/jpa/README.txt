@@ -47,7 +47,7 @@ Setup and Configuration of the JPA TCK
 
     jpa.classes=/ri/jlib/jpa/jakarta.persistence_2.2.0.v201706121819.jar:/ri/jlib/eclipselink.jar
 
-    jdbc.driver.classes=/derby/lib/derbyclient.jar
+    jdbc.driver.classes=/derby/lib/derbyclient.jar:/derby/lib/derbyshared.jar:/derby/lib/derbytools.jar
     jdbc.db=derby
     jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider
     jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver

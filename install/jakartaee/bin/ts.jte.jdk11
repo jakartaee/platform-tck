@@ -538,7 +538,7 @@ derby.driver=org.apache.derby.jdbc.ClientDriver
 derby.home=${javaee.home}/../javadb
 derby.system.home=${derby.home}/databases
 derby.classpath=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar
-derby.classes=${derby.home}/lib/derbyclient.jar
+derby.classes=${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar
 derby.poolName=cts-derby-pool
 derby.dataSource=org.apache.derby.jdbc.ClientDataSource
 derby.properties=DatabaseName\=\"${derby.dbName}\":user\=${derby.user}:password\=${derby.passwd}:serverName\=${derby.server}:portNumber=${derby.port}

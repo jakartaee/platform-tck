@@ -252,7 +252,7 @@ database.user=cts1
 database.passwd=cts1
 database.url=jdbc:derby://${database.server}:${database.port}/${database.dbName};create=true
 database.driver=org.apache.derby.jdbc.ClientDriver
-database.classes=${jdbc.lib.class.path}/derbyclient.jar
+database.classes=${jdbc.lib.class.path}/derbyclient.jar${pathsep}${jdbc.lib.class.path}/derbyshared.jar${pathsep}${jdbc.lib.class.path}/derbytools.jar
 database.dataSource=org.apache.derby.jdbc.ClientDataSource
 database.properties=DatabaseName\=\"${database.dbName}\":user\=${database.user}:password\=${database.passwd}:serverName\=${database.server}:portNumber=${database.port}
 
