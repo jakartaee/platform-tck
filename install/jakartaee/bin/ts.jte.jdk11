@@ -555,7 +555,7 @@ derbyEmbedded.user=cts1
 derbyEmbedded.passwd=cts1
 derbyEmbedded.url=jdbc:derby:${derbyEmbedded.dbName};create=true
 derbyEmbedded.driver=org.apache.derby.jdbc.EmbeddedDriver
-derbyEmbedded.classes=${javaee.home}/../javadb/lib/derby.jar${pathsep}${ts.home}/lib/dbprocedures.jar
+derbyEmbedded.classes=${javaee.home}/../javadb/lib/derby.jar${pathsep}${javaee.home}/../javadb/lib/derbyshared.jar${pathsep}${javaee.home}/../javadb/lib/derbytools.jar${pathsep}${ts.home}/lib/dbprocedures.jar
 derbyEmbedded.poolName=cts-derbyEmbedded-pool
 derbyEmbedded.dataSource=org.apache.derby.jdbc.EmbeddedDataSource
 derbyEmbedded.pool.url='jdbc\\:derby\\:${derbyEmbedded.dbName}\\;create=true'
