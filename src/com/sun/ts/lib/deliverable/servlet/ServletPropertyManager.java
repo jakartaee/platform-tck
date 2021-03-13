@@ -83,6 +83,8 @@ public class ServletPropertyManager extends TCKPropertyManager {
         getProperty("porting.ts.url.class.1"));
     pTestProps.put("porting.ts.HttpsURLConnection.class.1",
         getProperty("porting.ts.HttpsURLConnection.class.1", null));
+    pTestProps.put("client.cert.test.jdk.tls.client.protocols",
+        getProperty("client.cert.test.jdk.tls.client.protocols"));
 
     String tsHome = getProperty("TS_HOME", null);
     if (tsHome == null)
