@@ -903,7 +903,7 @@ derby.driver.ri=org.apache.derby.jdbc.ClientDriver
 derby.home.ri=${javaee.home.ri}/../javadb
 derby.system.home.ri=${derby.home.ri}/databases
 derby.classpath.ri=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home.ri}/lib/derbynet.jar
-derby.classes.ri=${derby.home.ri}/lib/derbyclient.jar
+derby.classes.ri=${derby.home.ri}/lib/derbyclient.jar{pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
 derby.poolName.ri=cts-derby-pool
 derby.dataSource.ri=org.apache.derby.jdbc.ClientDataSource
 derby.properties.ri=DatabaseName\=\"${derby.dbName.ri}\":user\=${derby.user.ri}:password\=${derby.passwd.ri}:serverName\=${derby.server.ri}:portNumber=${derby.port.ri}
