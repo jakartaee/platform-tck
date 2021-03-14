@@ -537,7 +537,7 @@ derby.url=jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true
 derby.driver=org.apache.derby.jdbc.ClientDriver
 derby.home=${javaee.home}/../javadb
 derby.system.home=${derby.home}/databases
-derby.classpath=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar
+derby.classpath=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar
 derby.classes=${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar
 derby.poolName=cts-derby-pool
 derby.dataSource=org.apache.derby.jdbc.ClientDataSource
@@ -902,7 +902,7 @@ derby.url.ri=jdbc:derby://${derby.server.ri}:${derby.port.ri}/${derby.dbName.ri}
 derby.driver.ri=org.apache.derby.jdbc.ClientDriver
 derby.home.ri=${javaee.home.ri}/../javadb
 derby.system.home.ri=${derby.home.ri}/databases
-derby.classpath.ri=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home.ri}/lib/derbynet.jar{pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
+derby.classpath.ri=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home.ri}/lib/derbynet.jar${pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
 derby.classes.ri=${derby.home.ri}/lib/derbyclient.jar{pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
 derby.poolName.ri=cts-derby-pool
 derby.dataSource.ri=org.apache.derby.jdbc.ClientDataSource
