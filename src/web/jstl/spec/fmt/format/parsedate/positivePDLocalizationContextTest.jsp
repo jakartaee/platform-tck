@@ -24,7 +24,7 @@
     <fmt:setTimeZone value="EST"/>
     <c:set var="dte" value="Nov 21, 2000"/>
     <c:set var="dtim" value="3:45:02 AM"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/> 
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>
 
     <!-- Validate that the action is able to dermine the

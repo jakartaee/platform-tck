@@ -29,7 +29,7 @@
     <fmt:setTimeZone value="EST"/>
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources1"/>
     <fmt:setLocale value="de_DE"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
     <!-- EL: If the jakarta.servlet.jstl.fmt.localizationContext scoped attribute is available,
              this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->

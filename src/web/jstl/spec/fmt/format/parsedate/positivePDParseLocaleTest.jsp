@@ -25,7 +25,7 @@
     <%
         pageContext.setAttribute("loc", new Locale("en", "US"));
     %>
-    <c:set var="dte" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dte" value="Nov 21, 2000, 3:45:02 AM"/>
     <c:set var="us" value="en_US"/>
     <fmt:setLocale value="de_DE"/>
     <fmt:setTimeZone value="EST"/>

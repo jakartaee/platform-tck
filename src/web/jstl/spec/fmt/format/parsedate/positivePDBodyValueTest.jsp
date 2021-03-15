@@ -26,7 +26,7 @@
     <!-- The date to be parsed can be provided as body content to the
               action. -->
     <fmt:parseDate type="both" var="e2">
-        Nov 21, 2000 3:45:02 AM
+        Nov 21, 2000, 3:45:02 AM
     </fmt:parseDate>
     <fmt:formatDate value="${e2}" type="both" timeZone="EST"/>
 

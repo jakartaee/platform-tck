@@ -25,7 +25,7 @@
     <%
         pageContext.setAttribute("tz", TimeZone.getTimeZone("PST"));
     %>
-    <c:set var="dte" value="Nov 21, 2000 3:45 AM"/>
+    <c:set var="dte" value="Nov 21, 2000, 3:45 AM"/>
     <fmt:setLocale value="en_US"/>
     <fmt:setTimeZone value="EST"/>
 

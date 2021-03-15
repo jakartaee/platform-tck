@@ -21,7 +21,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positivePDTimeZoneNullEmpytTest">
-    <c:set var="dt" value="Nov 21, 2000 3:45 AM"/> 
+    <c:set var="dt" value="Nov 21, 2000, 3:45 AM"/> 
     <fmt:setLocale value="en_US"/>
     <fmt:setTimeZone value="MST"/>
 

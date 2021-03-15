@@ -27,7 +27,7 @@
         pageContext.setAttribute("dte", date);
     %>
     <fmt:setTimeZone value="EST"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
     <!-- If the action is not wrapped in a fmt:bundle action,
              or the basename or locale scoped attributes don't exist,

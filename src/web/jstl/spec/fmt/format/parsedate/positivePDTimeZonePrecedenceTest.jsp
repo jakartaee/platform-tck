@@ -22,7 +22,7 @@
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="java.util.Date" %>
 <tck:test testName="positivePDTimeZonePrecedenceTest">
-    <c:set var="dte" value="Nov 21, 2000 3:45 AM"/>
+    <c:set var="dte" value="Nov 21, 2000, 3:45 AM"/>
     <fmt:setTimeZone value="EST"/>
     <fmt:setLocale value="en_US"/>
 

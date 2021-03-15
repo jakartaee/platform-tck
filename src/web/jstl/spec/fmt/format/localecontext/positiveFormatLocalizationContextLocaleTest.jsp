@@ -28,7 +28,7 @@
     %>
     <fmt:setTimeZone value="EST"/>
     <fmt:setLocale value="en_US"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
     <!-- If the jakarta.servlet.jsp.jstl.fmt.locale attribute
              is present, it will take precedence over the browser

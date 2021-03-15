@@ -22,8 +22,8 @@
     date: Nov 21, 2000<br>
     time: 3:45:02 AM<br>
     time: 3:45:02 AM<br>
-    both: Nov 21, 2000 3:45:02 AM<br>
-    both: Nov 21, 2000 3:45:02 AM<br>
+    both: Nov 21, 2000, 3:45:02 AM<br>
+    both: Nov 21, 2000, 3:45:02 AM<br>
     
 
 </body>

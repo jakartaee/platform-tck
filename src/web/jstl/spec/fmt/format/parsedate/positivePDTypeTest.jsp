@@ -23,7 +23,7 @@
 <tck:test testName="positivePDTypeTest">
     <c:set var="dte" value="Nov 21, 2000"/>
     <c:set var="dtim" value="3:45:02 AM"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/> 
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
     <c:set var="tim" value="time"/>
     <c:set var="dat" value="date"/>
     <c:set var="bot" value="both"/>

@@ -28,7 +28,7 @@
     %>
     <fmt:setTimeZone value="EST"/>
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.AlgoResources6"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
     <!-- The localization context for formatting actions can
              be provided by wrapping these actions in a fmt:bundle

@@ -91,22 +91,22 @@
      <fmt:parseDate value="3:45:03 AM EST" timeStyle="full" type="time"/><br>
 
      <br>'type' set to 'both' -- timeStyle should be applied.<br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM"
                        timeStyle='<%= (String) pageContext.getAttribute("def") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" timeStyle="default" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" timeStyle="default" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45 AM"
                        timeStyle='<%= (String) pageContext.getAttribute("sho") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45 AM" timeStyle="short" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45 AM" timeStyle="short" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM"
                        timeStyle='<%= (String) pageContext.getAttribute("med") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" timeStyle="medium" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM EST"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" timeStyle="medium" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM EST"
                        timeStyle='<%= (String) pageContext.getAttribute("lon") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM EST" timeStyle="long" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM EST"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM EST" timeStyle="long" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM EST"
                        timeStyle='<%= (String) pageContext.getAttribute("ful") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM EST"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM EST"
                        timeStyle="full" type="both"/><br>
 </tck:test>

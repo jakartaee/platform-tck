@@ -25,7 +25,7 @@
     <fmt:setTimeZone value="EST"/>
     <c:set var="dte" value="Nov 21, 2000"/>
     <c:set var="dtim" value="3:45:02 AM"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/> 
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
     <tck:config op="set" configVar="fallback" value="en-US"/>
 
     <!-- The fallbackLocale configuration variable will be
