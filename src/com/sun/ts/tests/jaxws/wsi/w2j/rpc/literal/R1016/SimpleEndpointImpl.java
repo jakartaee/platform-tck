@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,8 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016;
 
-import com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint;
-
-import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
+import jakarta.jws.WebService;
 
 @WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR1016TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016.SimpleEndpoint")
 

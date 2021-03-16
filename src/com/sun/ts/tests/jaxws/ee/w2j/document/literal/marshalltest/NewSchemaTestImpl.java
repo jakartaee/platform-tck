@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,18 +20,24 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest;
 
-import java.math.BigDecimal;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
+
+import com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.*;
+
+import jakarta.xml.ws.WebServiceException;
+
 import java.math.BigInteger;
+import java.math.BigDecimal;
+import jakarta.xml.soap.*;
+import javax.xml.datatype.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Data;
+import java.util.*;
 
 // Service Implementation Class - as outlined in JAX-WS Specification
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.WebServiceException;
 
 @WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort2", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.NewSchemaTest")
 

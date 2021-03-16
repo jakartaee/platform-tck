@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,27 +20,35 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPException;
+
+import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
+
+import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.wsa.common.*;
+import com.sun.ts.tests.jaxws.sharedclients.*;
+
 import java.net.URL;
-import java.text.MessageFormat;
+
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.soap.*;
+import java.io.*;
+
 import java.util.Properties;
 import java.util.UUID;
+import java.text.MessageFormat;
 
 import javax.xml.namespace.QName;
 
 import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import com.sun.ts.tests.jaxws.wsa.common.WsaSOAPUtils;
 
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.Dispatch;
-import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.WebServiceFeature;
-import jakarta.xml.ws.soap.AddressingFeature;
-import jakarta.xml.ws.soap.SOAPFaultException;
+import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
 

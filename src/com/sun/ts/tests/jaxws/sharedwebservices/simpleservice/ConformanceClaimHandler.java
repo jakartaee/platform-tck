@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,25 +20,14 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.handler.soap.*;
 import javax.xml.namespace.QName;
-
-import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+import jakarta.xml.soap.*;
+import java.util.*;
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPEnvelope;
-import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPHeaderElement;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.common.Constants;
 
 public class ConformanceClaimHandler
     implements SOAPHandler<SOAPMessageContext>, WSIConstants {

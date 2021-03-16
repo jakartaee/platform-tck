@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,18 +20,24 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.List;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.LogicalMessage;
+import jakarta.xml.ws.WebServiceContext;
 
 import jakarta.activation.DataHandler;
-import jakarta.annotation.PostConstruct;
+
 import jakarta.annotation.PreDestroy;
-import jakarta.xml.ws.LogicalMessage;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
+import jakarta.annotation.PostConstruct;
+
+import com.sun.ts.tests.jaxws.common.Handler_Util;
 
 public class LogicalHandlerBase
     implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {

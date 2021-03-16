@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,30 +20,22 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.io.Reader;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
+import java.awt.*;
+import java.util.*;
+import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.stream.StreamSource;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.activation.DataHandler;
+import java.awt.image.*;
 import jakarta.xml.soap.AttachmentPart;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.dom.DOMResult;
+import jakarta.activation.DataHandler;
+import javax.xml.transform.Source;
+
+import org.w3c.dom.Element;
 
 public class AttachmentHelper {
   public static Iterator getAttachments(Iterator iter) {

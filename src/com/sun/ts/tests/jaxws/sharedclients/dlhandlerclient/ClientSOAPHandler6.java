@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient;
 
-import javax.xml.namespace.QName;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.tests.jaxws.common.*;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jaxws.common.Constants;
-import com.sun.ts.tests.jaxws.common.HandlerTracker;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase;
-
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import jakarta.xml.ws.soap.SOAPFaultException;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import javax.xml.namespace.QName;
+import jakarta.xml.soap.SOAPFactory;
+import jakarta.xml.soap.Name;
 
 public class ClientSOAPHandler6 extends SOAPHandlerBase {
   private static final String WHICHHANDLERTYPE = "Client";

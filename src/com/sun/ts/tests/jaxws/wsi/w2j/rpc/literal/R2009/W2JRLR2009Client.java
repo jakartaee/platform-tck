@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2009;
 
-import java.math.BigInteger;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+
+import java.math.BigInteger;
 
 public class W2JRLR2009Client extends SOAPClient {
   public W2JRLR2009Client(String webServerHost, int webServerPort, int mode)

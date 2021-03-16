@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,15 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature;
 
+import com.sun.ts.lib.util.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.harness.*;
+
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
-import jakarta.xml.ws.soap.SOAPBinding;
 
 @WebService(portName = "AddressingFeatureTest3Port", serviceName = "AddressingFeatureTestService", targetNamespace = "http://addressingfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/AddressingFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTest3")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)

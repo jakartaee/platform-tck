@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,20 +21,21 @@
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.server;
 
 import java.io.ByteArrayInputStream;
-import java.util.Hashtable;
 import java.util.StringTokenizer;
 
+import jakarta.annotation.Resource;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
-
-import jakarta.annotation.Resource;
-import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.Provider;
 import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.WebServiceProvider;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.ServiceMode;
 import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.http.HTTPBinding;
 import jakarta.xml.ws.http.HTTPException;
+import jakarta.xml.ws.http.HTTPBinding;
+import jakarta.xml.ws.BindingType;
+import java.util.Hashtable;
 
 @WebServiceProvider
 @BindingType(value = HTTPBinding.HTTP_BINDING)
