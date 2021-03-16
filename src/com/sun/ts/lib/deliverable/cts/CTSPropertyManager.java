@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -353,6 +353,7 @@ public class CTSPropertyManager extends AbstractPropertyManager {
     pTestProps.put("securedWebServicePort",
         getProperty("securedWebServicePort"));
     pTestProps.put("webServerPort", getProperty("webServerPort"));
+    pTestProps.put("client.cert.test.jdk.tls.client.protocols", getProperty("client.cert.test.jdk.tls.client.protocols"));
 
     // add properties used for JPA 2.2 tests.
     pTestProps.put("persistence.unit.name",
