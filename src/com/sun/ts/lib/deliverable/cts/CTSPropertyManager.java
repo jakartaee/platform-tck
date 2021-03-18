@@ -353,8 +353,11 @@ public class CTSPropertyManager extends AbstractPropertyManager {
     pTestProps.put("securedWebServicePort",
         getProperty("securedWebServicePort"));
     pTestProps.put("webServerPort", getProperty("webServerPort"));
-    pTestProps.put("client.cert.test.jdk.tls.client.protocols", 
-        getProperty("client.cert.test.jdk.tls.client.protocols", null));
+
+    String sTlsClientProtocols = getProperty("client.cert.test.jdk.tls.client.protocols", null);
+    if (sTlsClientProtocols != null) {
+        pTestProps.put("client.cert.test.jdk.tls.client.protocols", sTlsClientProtocols);
+    }
 
     // add properties used for JPA 2.2 tests.
     pTestProps.put("persistence.unit.name",
