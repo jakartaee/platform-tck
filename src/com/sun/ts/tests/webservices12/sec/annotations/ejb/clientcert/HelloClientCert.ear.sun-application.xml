@@ -23,6 +23,7 @@
     <security-role-mapping>
         <role-name>Administrator</role-name>
         <principal-name>CN=CTS,OU=Java Software,O=Sun Microsystems Inc.,L=Burlington,ST=MA,C=US</principal-name>
+        <principal-name>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</principal-name>
     </security-role-mapping>
     <security-role-mapping>
         <role-name>Manager</role-name>
