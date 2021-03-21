@@ -926,7 +926,7 @@
                       </classpath>
                   </taskdef>
                   <wsgen 
-                     fork="true"
+                     fork="${wsgen.fork}"
                      debug="${wsgen.debug}"
                      keep="true"
                      destdir="${_pkg.dir.genclasses}"
@@ -955,7 +955,7 @@
                       </classpath>
                   </taskdef>
                   <wsgen 
-                     fork="true"
+                     fork="${ri.wsgen.fork}"
                      debug="${ri.wsgen.debug}"
                      keep="true"
                      destdir="${_pkg.dir.genclasses}"
