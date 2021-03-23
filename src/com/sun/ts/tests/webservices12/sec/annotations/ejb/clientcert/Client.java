@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -68,6 +68,11 @@ public class Client extends EETest {
     try {
       hostname = props.getProperty("webServerHost");
       portnum = Integer.parseInt(props.getProperty("securedWebServicePort"));
+      String tlsVersion = p.getProperty("client.cert.test.jdk.tls.client.protocols");
+      if (tlsVersion != null) {
+        TestUtil.logMsg("client.cert.test.jdk.tls.client.protocols=" + tlsVersion);
+        System.setProperty("https.protocols", tlsVersion);		  
+      }
       urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum,
           "/WSEjbClientCert/HelloService/Hello");
       HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
