@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021  Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -85,20 +85,6 @@ abstract public class ClientBase extends EETest {
 
   protected static final String[] INTERCEPTORS_CDA = new String[] { "C", "D",
       "A" };
-
-  // for interceptor injection tests. All ancestors of interceptors can perform
-  // injections
-  protected static final String[] INJECTIONS_2BASE_A_2BASE_B = new String[] {
-      "BASEBASE", "BASE", "A", "BASEBASE", "BASE", "B" };
-
-  protected static final String[] INJECTIONS_2BASE_B_2BASE_A = new String[] {
-      "BASEBASE", "BASE", "B", "BASEBASE", "BASE", "A" };
-
-  protected static final String[] INJECTIONS_2BASE_A = new String[] {
-      "BASEBASE", "BASE", "A" };
-
-  protected static final String[] INJECTIONS_2BASE_B = new String[] {
-      "BASEBASE", "BASE", "B" };
 
   protected static final String[] INJECTIONS_NONE = new String[] {};
 
@@ -396,45 +382,6 @@ abstract public class ClientBase extends EETest {
   public void singleDefaultInterceptorJar() throws Fault {
     List actual = getSingleDefaultInterceptorBean().getPostConstructCalls();
     Helper.compareResultList(INTERCEPTORS_A, actual);
-  }
-
-  /*
-   * testName: isInterceptorInjectionDoneForCallbackBean1
-   * 
-   * @test_Strategy: two default interceptors are configured for an ejb jar.
-   * Verifies injections on both interceptor and its superclass are all done by
-   * the time PostConstruct is called.
-   *
-   */
-  public void isInterceptorInjectionDoneForCallbackBean1() throws Fault {
-    List actual = getBean().getInjectionLocations();
-    Helper.compareResultList(INJECTIONS_2BASE_A_2BASE_B, actual);
-  }
-
-  /*
-   * testName: isInterceptorInjectionDoneForCallbackBean2
-   * 
-   * @test_Strategy: two default interceptors are configured for an ejb jar.
-   * Verifies injections on both interceptor and its superclass are all done by
-   * the time PostConstruct is called.
-   *
-   */
-  public void isInterceptorInjectionDoneForCallbackBean2() throws Fault {
-    List actual = getBean2().getInjectionLocations();
-    Helper.compareResultList(INJECTIONS_2BASE_B_2BASE_A, actual);
-  }
-
-  /*
-   * testName: isInterceptorInjectionDoneForSingleDefaultInterceptorJar
-   * 
-   * @test_Strategy: single default interceptors are configured for an ejb jar.
-   * Verifies only one is invoked.
-   *
-   */
-  public void isInterceptorInjectionDoneForSingleDefaultInterceptorJar()
-      throws Fault {
-    List actual = getSingleDefaultInterceptorBean().getInjectionLocations();
-    Helper.compareResultList(INJECTIONS_2BASE_A, actual);
   }
 
   //////////////////////////////////////////////////////////////////////

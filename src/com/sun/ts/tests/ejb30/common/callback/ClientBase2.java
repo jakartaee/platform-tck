@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,16 +20,11 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 
 abstract public class ClientBase2 extends ClientBase2NoAnnotation {
-  @Resource
-  private static ORB orbInClientBase2;
 
   public ClientBase2() {
   }
@@ -41,12 +36,5 @@ abstract public class ClientBase2 extends ClientBase2NoAnnotation {
   @PostConstruct
   private static void postConstructInBase2() {
     addPostConstructCall(BASE2);
-    // check injected fields
-    if (orbInClientBase2 != null) {
-      addInjectedField(orbInClientBase2);
-    } else {
-      TLogger.log("WARNING: ClientBase2.orbInClientBase2 has not been "
-          + "initialized when checking inside ClientBase2.postConstructInBase2()");
-    }
   }
 }

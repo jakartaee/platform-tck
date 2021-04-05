@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,6 @@
  */
 
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars;
-
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
@@ -56,9 +54,6 @@ public class StatelessAnnotationUsedRemoteCalculatorBean
   @Resource(name = "sessionContext") // NOT to be ignored
   private SessionContext sessionContext;
 
-  @Resource(name = "orb") // NOT to be ignored
-  private ORB orb;
-
   public StatelessAnnotationUsedRemoteCalculatorBean() {
   }
 
@@ -86,11 +81,6 @@ public class StatelessAnnotationUsedRemoteCalculatorBean
           + "injected, but its actual value is null.  The ejb-jar where "
           + "this bean is in has been marked as metadata-complete=false");
     }
-    if (orb == null) {
-      throw new IllegalStateException("orb field should have been "
-          + "injected, but its actual value is null.  The ejb-jar where "
-          + "this bean is in has been marked as metadata-complete=false");
-    }
     return postConstructCallsCount + a + b;
   }
 
@@ -102,5 +92,6 @@ public class StatelessAnnotationUsedRemoteCalculatorBean
     // do the same thing as remoteAdd(int, int)
     return postConstructCallsCount + a + b;
   }
+ 
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat;
 import java.net.URL;
 
 import javax.sql.DataSource;
-
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
@@ -70,8 +68,6 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
   private Topic topic;
 
   private Queue queue;
-
-  private ORB orb;
 
   public ResourceSetterBean() {
   }
@@ -266,16 +262,6 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   protected String getOrbName() {
     return "myOrb";
-  }
-
-  // @Resource(name="myOrb", type=ORB.class, description="corba orb",
-  // shareable=false)
-  private void setOrb(ORB orb) {
-    this.orb = orb;
-  }
-
-  protected ORB getOrb() {
-    return this.orb;
   }
 
 }

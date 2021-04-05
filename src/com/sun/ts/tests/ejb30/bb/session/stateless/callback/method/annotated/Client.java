@@ -155,14 +155,6 @@ public class Client extends ClientBase3 {
    */
 
   /*
-   * @testName: appclientInjectionCompleteInPostConstruct
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-
-  /*
    * @testName: ejbCreateTreatedAsPostConstruct
    * 
    * @assertion_ids:

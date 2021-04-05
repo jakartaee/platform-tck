@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
-import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.ORB_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.PREFIX;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TIMER_SERVICE_JNDI_NAME;
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME;
@@ -31,7 +30,6 @@ import java.net.URL;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
@@ -99,10 +97,6 @@ abstract public class ResourceBeanBase implements ResourceIF {
   abstract protected Topic getTopic();
 
   abstract protected String getTopicName();
-
-  abstract protected ORB getOrb();
-
-  abstract protected String getOrbName();
 
   protected TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
     return null;
@@ -397,27 +391,6 @@ abstract public class ResourceBeanBase implements ResourceIF {
     // UserTransaction ut4 = (UserTransaction)
     // ServiceLocator.lookup(PREFIX + getUserTransactionName());
     // verify(ut4, "Naming context lookup "+ PREFIX + getUserTransactionName());
-    // } catch (NamingException e) {
-    // throw new TestFailedException(e);
-    // }
-  }
-
-  public void testOrb() throws TestFailedException {
-    ORB orb1 = getOrb();
-    verify(orb1, "getOrb()");
-    orb1 = null;
-
-    try {
-      ORB orb3 = (ORB) ServiceLocator.lookup(ORB_JNDI_NAME);
-      verify(orb3, "Naming context lookup " + ORB_JNDI_NAME);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
-    }
-
-    // try {
-    // ORB orb4 = (ORB)
-    // ServiceLocator.lookup(PREFIX + getOrbName());
-    // verify(orb4, "Naming context lookup "+ PREFIX + getOrbName());
     // } catch (NamingException e) {
     // throw new TestFailedException(e);
     // }
