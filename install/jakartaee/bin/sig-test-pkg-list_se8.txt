@@ -176,3 +176,10 @@ jakarta.xml.ws.spi.http
 jakarta.xml.ws.wsaddressing
 org.w3c.dom
 org.xml.sax
+javax.rmi
+javax.rmi.CORBA
+javax.rmi.ssl
+org.omg.CORBA
+org.omg.CORBA.portable
+org.omg.CORBA_2_3.portable
+
