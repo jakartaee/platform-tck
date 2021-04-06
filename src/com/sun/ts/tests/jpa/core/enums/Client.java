@@ -34,6 +34,7 @@ import jakarta.persistence.CacheStoreMode;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.FlushModeType;
@@ -975,6 +976,8 @@ public class Client extends PMClientBase {
   public void setgetFlushModeEntityManagerTest() throws Fault {
     boolean pass = true;
     try {
+      EntityTransaction t = getEntityTransaction();
+      t.begin();
       EntityManager em = getEntityManager();
       TestUtil.logTrace("Checking Default mode");
       FlushModeType fmt = em.getFlushMode();
@@ -1005,6 +1008,15 @@ public class Client extends PMClientBase {
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: ", e);
       pass = false;
+
+    } finally {
+      try {
+        if (getEntityTransaction().isActive()) {
+          getEntityTransaction().rollback();
+        }
+      } catch (Exception fe) {
+        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+      }
     }
 
     if (!pass)
