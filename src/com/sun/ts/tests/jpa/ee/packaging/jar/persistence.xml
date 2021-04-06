@@ -27,8 +27,8 @@
         <jta-data-source>jdbc/DB1</jta-data-source>
         <mapping-file>myMappingFile.xml</mapping-file>
         <mapping-file>myMappingFile2.xml</mapping-file>
-        <jar-file>jpa_ee_packaging_jar_jarfile1.jar/</jar-file>
-        <jar-file>jpa_ee_packaging_jar_jarfile2.jar/</jar-file>
+        <jar-file>jpa_ee_packaging_jar1.jar/</jar-file>
+        <jar-file>jpa_ee_packaging_jar2.jar/</jar-file>
     </persistence-unit>
     <persistence-unit name="CTS-EM2" transaction-type="JTA">
         <description>Persistence Unit for CTS EE Package Tests</description>
