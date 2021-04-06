@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,8 @@
     <groupId>org.glassfish</groupId>
     <artifactId>cts_javaee</artifactId>
     <packaging>pom</packaging>
-    <version>9.0.0</version>
-    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition Test Compatibility Kit User's Guide, Release 9</name>
+    <version>9.1.0</version>
+    <name>Eclipse Foundation Jakarta EE Platform, Enterprise Edition Test Compatibility Kit User's Guide, Release 9.1</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

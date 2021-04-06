@@ -148,7 +148,7 @@ the following procedure to restore your environment to a clean state.
 To restore your environment after aborting a test run in command-line
 mode, perform these steps.
 
-.  Log in to the Eclipse GlassFish 6.0 Application Server with the `asadmin` command.
+.  Log in to the Eclipse GlassFish 6.1 Application Server with the `asadmin` command.
 .  List all registered components with the `asadmin list-components`
 command.
 .  Undeploy any listed components related to your test run with the

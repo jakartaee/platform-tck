@@ -28,16 +28,16 @@ Please see the Title page for additional license information.
 ========================================================================
 
 This book introduces the Test Compatibility Kit (TCK) for the Jakarta
-Platform, Enterprise Edition 9 (Jakarta EE 9) and Jakarta Platform, Enterprise
-Edition 9 Web Profile (Jakarta EE 9 Web Profile), and explains how to
+Platform, Enterprise Edition 9.1 (Jakarta EE 9.1) and Jakarta Platform, Enterprise
+Edition 9.1 Web Profile (Jakarta EE 9.1 Web Profile), and explains how to
 configure and run the test suite. It also provides information for
 troubleshooting problems you may encounter as you run the test suite.
 
-The Jakarta Platform, Enterprise Edition 9 Test Compatibility Kit (Jakarta
-EE 9 TCK) is a portable, configurable automated test suite for verifying
-the compatibility of an implementer's compliance with the Jakarta EE 9
+The Jakarta Platform, Enterprise Edition 9.1 Test Compatibility Kit (Jakarta
+EE 9.1 TCK) is a portable, configurable automated test suite for verifying
+the compatibility of an implementer's compliance with the Jakarta EE 9.1
 Specification (hereafter referred to as the implementer's implementation, or VI).
-The Jakarta EE 9 Platform TCK uses the JavaTest harness version 5.0 to run the
+The Jakarta EE 9.1 Platform TCK uses the JavaTest harness version 5.0 to run the
 test suite.
 
 
@@ -56,9 +56,9 @@ of this guide.
 Who Should Use This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This guide is for developers of the Jakarta EE 9 technology to assist them
+This guide is for developers of the Jakarta EE 9.1 technology to assist them
 in running the test suite that verifies compatibility of their
-implementation of the Jakarta EE 9 Specification.
+implementation of the Jakarta EE 9.1 Specification.
 
 
 [[GJFXS]][[before-you-read-this-book]]
@@ -67,13 +67,13 @@ Before You Read This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before reading this guide, you should familiarize yourself with the Java
-programming language, the Jakarta Platform, Enterprise Edition 9 (Jakarta EE
+programming language, the Jakarta Platform, Enterprise Edition 9.1 (Jakarta EE
 9) Specification, and the JavaTest documentation.
 
-The Jakarta Platform, Enterprise Edition 9 (Jakarta EE 9) Specification can be
+The Jakarta Platform, Enterprise Edition 9.1 (Jakarta EE 9.1) Specification can be
 downloaded from `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-For documentation on the test harness used for running the Jakarta EE 9 Platform TCK
+For documentation on the test harness used for running the Jakarta EE 9.1 Platform TCK
 test suite, see
 `https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
 
