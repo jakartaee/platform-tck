@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -149,34 +149,5 @@ public class Client extends ClientBase {
    * Verifies only one is invoked.
    *
    */
-  /*
-   * @testName: isInterceptorInjectionDoneForCallbackBean1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: two default interceptors are configured for an ejb jar.
-   * Verifies injections on both interceptor and its superclass are all done by
-   * the time PostConstruct is called.
-   *
-   */
-  /*
-   * @testName: isInterceptorInjectionDoneForCallbackBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: two default interceptors are configured for an ejb jar.
-   * Verifies injections on both interceptor and its superclass are all done by
-   * the time PostConstruct is called.
-   *
-   */
-  /*
-   * @testName: isInterceptorInjectionDoneForSingleDefaultInterceptorJar
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: single default interceptors are configured for an ejb jar.
-   * Verifies only one is invoked.
-   *
-   */
-
+  
 }

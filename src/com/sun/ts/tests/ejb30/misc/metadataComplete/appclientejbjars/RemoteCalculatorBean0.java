@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,22 +20,17 @@
 
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBException;
 
 abstract public class RemoteCalculatorBean0 extends BaseRemoteCalculator
     implements RemoteCalculator {
-
-  @Resource(name = "orb") // to be ignored
-  protected ORB orb;
 
   public RemoteCalculatorBean0() {
   }
@@ -60,11 +55,6 @@ abstract public class RemoteCalculatorBean0 extends BaseRemoteCalculator
   public int remoteAdd(int a, int b) {
     if (getEJBContext() != null) {
       throw new EJBException("SessionContext is not null: " + getEJBContext()
-          + ".  It should not be injected since this ejb-jar is marked"
-          + " as metadata-complete.");
-    }
-    if (orb != null) {
-      throw new EJBException("orb is not null: " + orb
           + ".  It should not be injected since this ejb-jar is marked"
           + " as metadata-complete.");
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,8 +52,6 @@ public interface ResourceIF {
   public void testQueue() throws TestFailedException;
 
   public void testTopic() throws TestFailedException;
-
-  public void testOrb() throws TestFailedException;
 
   public void testCustomResourceInjected() throws TestFailedException;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,17 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
-import javax.naming.NamingException;
-
-import org.omg.CORBA.ORB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -48,9 +42,6 @@ public class Client extends ClientBase {
 
   @EJB(beanName = "UserTransactionNegativeBean")
   private static UserTransactionNegativeIF userTransactionNegativeBean;
-
-  @Resource
-  private static ORB orb;
 
   @Resource(name = "dog", description = "inject a custom jndi resource")
   private static Dog dog;
@@ -83,30 +74,6 @@ public class Client extends ClientBase {
     Client theTests = new Client();
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
-  }
-
-  /*
-   * @testName: clientOrbTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void clientOrbTest() throws Fault {
-    if (orb == null) {
-      throw new Fault("orb is not injected");
-    } else {
-      TLogger.log("orb is injected: " + orb);
-    }
-    try {
-      ORB orb2 = (ORB) ServiceLocator.lookup("java:comp/ORB");
-      if (orb2 == null) {
-        throw new Fault("orb from lookup is null");
-      }
-    } catch (NamingException e) {
-      throw new Fault(e);
-    }
   }
 
   /*
@@ -219,15 +186,6 @@ public class Client extends ClientBase {
 
   /*
    * @testName: queueTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-
-  /*
-   * @testName: orbTest
    * 
    * @assertion_ids:
    * 

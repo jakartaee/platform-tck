@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,20 +24,15 @@ import java.util.Properties;
 
 import javax.naming.NamingException;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
-import jakarta.annotation.Resource;
-import jakarta.annotation.Resources;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
-@Resources({ @Resource(name = "typeLevelOrbNotInjected", type = ORB.class) })
 @EJBs({
     @EJB(name = "typeLevelBeanNotInjected", beanInterface = RemoteCalculator.class, beanName = "StatelessRemoteCalculatorBean") })
 public class Client extends EETest {
@@ -52,9 +47,6 @@ public class Client extends EETest {
 
   @EJB(name = "statefulBeanNotInjected", beanName = "StatefulRemoteCalculatorBean")
   static RemoteCalculator statefulBeanNotInjected;
-
-  @Resource(name = "orbNotInjected")
-  static ORB orbNotInjected;
 
   protected Properties props;
 
@@ -132,11 +124,6 @@ public class Client extends EETest {
       throw new Fault("Field statefulBeanNotInjected must not be injected,"
           + " since a full application client descriptor is used. "
           + "This field has been initialized to " + statefulBeanNotInjected);
-    }
-    if (orbNotInjected != null) {
-      throw new Fault("Field orbNotInjected must not be injected,"
-          + " since a full application client descriptor is used. "
-          + "This field has been initialized to " + orbNotInjected);
     }
     String lookupName = "java:comp/env/typeLevelBeanNotInjected";
     Object lookupValue = null;

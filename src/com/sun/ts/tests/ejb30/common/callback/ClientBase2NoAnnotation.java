@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,14 +23,10 @@ package com.sun.ts.tests.ejb30.common.callback;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
 abstract public class ClientBase2NoAnnotation extends ClientBase {
-  // @Resource
-  private static ORB orbInClientBase2;
 
   protected static final String BASE2 = "BASE2";
 
@@ -63,13 +59,6 @@ abstract public class ClientBase2NoAnnotation extends ClientBase {
   // @PostConstruct
   private static void postConstructInBase2NoAnnotation() {
     addPostConstructCall(BASE2);
-    // check injected fields
-    if (orbInClientBase2 != null) {
-      addInjectedField(orbInClientBase2);
-    } else {
-      TLogger.log("WARNING: ClientBase2.orbInClientBase2 has not been "
-          + "initialized when checking inside ClientBase2.postConstructInBase2()");
-    }
   }
 
   public static List getInjectedFields() {
@@ -108,25 +97,6 @@ abstract public class ClientBase2NoAnnotation extends ClientBase {
   public void appclientPostConstructCallOrder() throws Fault {
     List actual = getPostConstructCalls();
     Helper.compareResultList(BASE2_BASE3_CLIENT, actual);
-  }
-
-  /*
-   * testName: appclientInjectionCompleteInPostConstruct
-   * 
-   * @test_Strategy:
-   */
-  public void appclientInjectionCompleteInPostConstruct() throws Fault {
-    // ClientBase2.orbInClientBase2, ClientBase2.orbInClientBase3,
-    // Client.orbInClient
-    int expectedNumOfElements = 3;
-    List actual = getInjectedFields();
-    if (actual.size() == 3) {
-      TLogger
-          .log("Got expected " + expectedNumOfElements + " fields: " + actual);
-    } else {
-      throw new Fault("Expected " + expectedNumOfElements
-          + " fields to be injected, but actual injected fields are " + actual);
-    }
   }
 
 }

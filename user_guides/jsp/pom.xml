@@ -34,11 +34,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
-        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
-        <!-- XXX - jbake needs an older version than this -->
-        <asciidoctorj.version>1.6.2</asciidoctorj.version>
-        <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
-        <jruby.version>9.2.6.0</jruby.version>
+        <asciidoctorj.version>2.4.2</asciidoctorj.version>
+        <asciidoctorj.diagram.version>2.1.0</asciidoctorj.diagram.version>
+        <asciidoctorj.maven.plugin.version>2.1.0</asciidoctorj.maven.plugin.version>
+        <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
+        <jbake.maven.plugin.version>0.3.3</jbake.maven.plugin.version>
+        <freemarker.version>2.3.30</freemarker.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status></status>
         <doc.pdf>Jakarta-Server-Pages-TCK-Users-Guide.pdf</doc.pdf>
@@ -56,8 +57,21 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/jbake/content</directory>
+                            <includes>
+                                <include>toc.adoc</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4.1</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -67,8 +81,8 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.8.0,1.9.0)</version>
-                                    <message>You need JDK8 or lower</message>
+                                    <version>[1.8.0,)</version>
+                                    <message>You need JDK8 or newer</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -101,9 +115,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.blazebit</groupId>
+                <groupId>org.jbake</groupId>
                 <artifactId>jbake-maven-plugin</artifactId>
-                <version>1.0.0</version>
                 <configuration>
                     <outputDirectory>${site.output.dir}</outputDirectory>
                     <properties>
@@ -115,44 +128,14 @@
                         <id>build-site</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <goal>build</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj</artifactId>
-                        <version>1.5.5</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>1.5.4</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>${asciidoctor.maven.plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jruby</groupId>
-                        <artifactId>jruby-complete</artifactId>
-                        <version>${jruby.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj</artifactId>
-                        <version>${asciidoctorj.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj-pdf</artifactId>
-                        <version>${asciidoctorj.pdf.version}</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <sourceDirectory>${project.build.directory}/book</sourceDirectory>
                     <sourceDocumentName>book.adoc</sourceDocumentName>
@@ -183,7 +166,7 @@
                         <id>generate-pdf-doc</id>
                         <phase>generate-resources</phase>
                         <goals>
-                                <goal>process-asciidoc</goal>
+                            <goal>process-asciidoc</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -191,7 +174,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-scm-publish-plugin</artifactId>
-                <version>1.1</version>
                 <executions>
                     <execution>
                         <id>deploy-site</id>
@@ -207,21 +189,70 @@
                     </execution>
                 </executions>
             </plugin>
-	</plugins>
+	    </plugins>
 
-	<pluginManagement>
-	    <plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
                 <plugin>
                     <groupId>org.glassfish.doc</groupId>
                     <artifactId>glassfish-doc-maven-plugin</artifactId>
                     <version>1.3</version>
                 </plugin>
-		<plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-assembly-plugin</artifactId>
-		    <version>2.4</version>
-		</plugin>
-	    </plugins>
-	</pluginManagement>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-publish-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jbake</groupId>
+                    <artifactId>jbake-maven-plugin</artifactId>
+                    <version>${jbake.maven.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj</artifactId>
+                            <version>${asciidoctorj.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-diagram</artifactId>
+                            <version>${asciidoctorj.diagram.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.freemarker</groupId>
+                            <artifactId>freemarker</artifactId>
+                            <version>${freemarker.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>${asciidoctorj.maven.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-pdf</artifactId>
+                            <version>${asciidoctorj.pdf.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

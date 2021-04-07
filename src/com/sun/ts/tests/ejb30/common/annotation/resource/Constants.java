@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,8 +24,6 @@ public interface Constants {
   public static final String PREFIX = "java:comp/env/";
 
   public static final String USER_TRANSACTION_JNDI_NAME = "java:comp/UserTransaction";
-
-  public static final String ORB_JNDI_NAME = "java:comp/ORB";
 
   public static final String TIMER_SERVICE_JNDI_NAME = "java:comp/TimerService";
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,28 +25,21 @@ import java.io.PrintWriter;
 
 import javax.naming.NamingException;
 
-import org.omg.CORBA.ORB;
-
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
 
-import jakarta.annotation.Resource;
-import jakarta.annotation.Resources;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Resources({ @Resource(name = "typeLevelOrbNotInjected", type = ORB.class) })
+
 @EJBs({
     @EJB(name = "typeLevelBeanNotInjected", beanInterface = RemoteCalculator.class, beanName = "StatelessRemoteCalculatorBean") })
 public class TestServlet extends HttpTCKServlet {
-
-  @Resource(name = "orb")
-  private ORB orb;
 
   @EJB(name = "statelessBeanNotInjected", beanName = "StatelessRemoteCalculatorBean")
   private RemoteCalculator statelessBeanNotInjected;
@@ -101,14 +94,14 @@ public class TestServlet extends HttpTCKServlet {
   public void annotationNotProcessedForWar(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    if (orb == null && statelessBeanNotInjected == null
+    if (statelessBeanNotInjected == null
         && statefulBeanNotInjected == null) {
       pw.println(Data.PASSED + ".  Annotated fields are not injected, since "
           + "this war has been marked as metadata-complete.");
     } else {
       pw.println(Data.FAILED + ".  Annotated fields should not be injected, "
           + "since this war has been marked as metadata-complete.  But "
-          + "these fields were injected: " + orb + "\n"
+          + "these fields were injected: "  + "\n"
           + statelessBeanNotInjected + "\n" + statefulBeanNotInjected);
     }
   }

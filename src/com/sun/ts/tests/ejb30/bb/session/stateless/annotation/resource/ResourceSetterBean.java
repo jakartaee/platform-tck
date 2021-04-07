@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 import java.net.URL;
 
 import javax.sql.DataSource;
-
-import org.omg.CORBA.ORB;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
@@ -315,21 +313,6 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
   protected jakarta.transaction.UserTransaction getUserTransaction() {
     return userTransaction;
-  }
-
-  //////////////////////////////////////////////////////////////////////
-
-  protected String getOrbName() {
-    return "myOrb";
-  }
-
-  @Resource(name = "myOrb", type = ORB.class, description = "corba orb", shareable = false)
-  private void setOrb(Object orb) {
-    this.orb = orb;
-  }
-
-  protected ORB getOrb() {
-    return (ORB) this.orb;
   }
 
   //////////////////////////////////////////////////////////////////////

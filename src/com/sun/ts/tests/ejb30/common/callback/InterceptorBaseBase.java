@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,23 +20,16 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import org.omg.CORBA.ORB;
-
-import jakarta.annotation.Resource;
 
 abstract public class InterceptorBaseBase {
   protected static final String NOT_INJECTED = "NOT_INJECTED";
 
   protected static final String POSTCONSTRUCT_CALLS_IN_CONTEXTDATA = "POSTCONSTRUCT_CALLS_IN_CONTEXTDATA";
 
-  @Resource()
-  private ORB orbInBaseBase;
-
   abstract protected String getInjectedLocation();
 
   protected String getInjectedBaseBaseLocation() {
-    String result = (orbInBaseBase == null) ? NOT_INJECTED : "BASEBASE";
-    return result;
+    return NOT_INJECTED;
   }
 
   /**
