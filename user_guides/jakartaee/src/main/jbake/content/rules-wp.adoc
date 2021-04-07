@@ -529,7 +529,7 @@ A consensus that a test produces invalid results will result in the exclusion of
 When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
 There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
 If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
-A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec.committee@eclipse.org).
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
 The committee will evaluate the matter purely in terms of due process.
 If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
 If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
@@ -544,7 +544,7 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Specifications for Jakarta Platform, Enterprise Edition 9.1, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
-site at `https://jakarta.ee/specifications`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+site at `https://jakarta.ee/specifications/webprofile/9.1/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
 [[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-9.1-web-profile]]
 

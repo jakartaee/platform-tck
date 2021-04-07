@@ -135,7 +135,7 @@ h4 {  font-style: italic; color: #000099}
               indicates whether or not your HTTP server supports endpoint
               publishing. </li>
             <li>The <code>http.server.supports.endpoint.publish.2</code>
-              property indicates whether or not the Jakarta EE 9 CI server
+              property indicates whether or not the Jakarta EE 9.1 CI server
               supports endpoint publishing. </li>
           </ul>
           <p> If your server supports endpoint publishing (supports the use of <code>jakarta.xml.ws.Endpoint.publish()</code>
@@ -148,7 +148,7 @@ h4 {  font-style: italic; color: #000099}
           <p> If your server does not support endpoint publishing (does not
             support the use of <code>jakarta.xml.ws.Endpoint.publish()</code>
             methods), set the property value to "false". In a managed
-            environment, such as the Jakarta EE 9 Compatible Implementation,
+            environment, such as the Jakarta EE 9.1 Compatible Implementation,
             this is usually the case and this call would not be allowed. When
             the property is set to "false", the tests will check that these
             endpoint publish methods do not publish the endpoints and an
@@ -156,7 +156,7 @@ h4 {  font-style: italic; color: #000099}
             scenario, the result is considered a PASS. </p>
           <p> The <code>http.server.supports.endpoint.publish.2</code> property
             settings are used to specify whether or not endpoint publishing is
-            supported by the Jakarta EE 9 CI HTTP server. The same settings and
+            supported by the Jakarta EE 9.1 CI HTTP server. The same settings and
             caveats as the <code>http.server.supports.endpoint.publish </code>
             property apply to this property, based on whether or not the Jakarta
             EE 9 CI supports endpoint publishing. </p>
@@ -164,7 +164,8 @@ h4 {  font-style: italic; color: #000099}
           <h2><a name="install_setup_run">Installing, Setting Up, and Running
               the Jakarta EE XML Web Services TCK</a></h2>
           <p>Refer to the <a href="html-usersguide/title.html">Jakarta EE XML
-              Web Services TCK 3.0 User's Guide</a>, (or in <a href="./pdf-usersguide/XML-WS-TCK-Users-Guide.pdf"
+              Web Services TCK 3.0 User's Guide</a>, (or in <a href="./pdf-usersguide/XML-WS-TCK-Users-Guide.pdf"
+
               title="Jakarta EE XML Web Services 3.0 TCK User's Guide (PDF)">PDF</a>)
             available in the Jakarta EE XML Web Services TCK 3.0 documentation
             bundle, for complete instructions on installing, setting up, and
