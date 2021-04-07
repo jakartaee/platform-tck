@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,7 +51,7 @@ public class TSAuthConfigProviderStandalone
   // this is a default string used for Persistent Registration description
   public static String DESC_KEY = "description_key";
 
-  private static TSLogger logger = TSLogger.getTSLogger(JASPICData.LOGGER_NAME);
+  private static TSLogger logger;
 
   private HashMap serverAuthConfigMap = new HashMap();
 
