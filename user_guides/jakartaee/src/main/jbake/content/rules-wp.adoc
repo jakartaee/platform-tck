@@ -1,19 +1,19 @@
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 9 Web Profile Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 9.1 Web Profile Certification
 next=install.html
 prev=rules.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 9 Web Profile Certification
-==============================================================================
+Procedure for Jakarta Platform, Enterprise Edition 9.1 Web Profile Certification
+================================================================================
 
-[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-8-web-profile-certification]]
+[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-9.1-web-profile-certification]]
 
-3 Procedure for Jakarta Platform, Enterprise Edition 9 Web Profile Certification
---------------------------------------------------------------------------------
+3 Procedure for Jakarta Platform, Enterprise Edition 9.1 Web Profile Certification
+----------------------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
-compatibility requirements for Jakarta Platform, Enterprise Edition Version 9
+compatibility requirements for Jakarta Platform, Enterprise Edition Version 9.1
 Web Profile.
 
 This chapter contains the following sections:
@@ -32,7 +32,7 @@ Version 9, Web Profile]
 3.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 9, Web Profile consists of the following activities:
+The certification process for Jakarta EE 9.1, Web Profile consists of the following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
 (TCK) and execute it in accordance with the instructions in this User's
@@ -49,7 +49,7 @@ as required by the Eclipse Foundation TCK License.
 3.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 9, Web Profile consist of meeting the requirements set forth by the rules and
+The compatibility requirements for Jakarta EE 9.1, Web Profile consist of meeting the requirements set forth by the rules and
 associated definitions contained in this section.
 
 [[sthref10]][[definitions]]
@@ -242,10 +242,10 @@ Specification.
 |=======================================================================
 
 
-[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-8-products]]
+[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-9.1-products]]
 
-3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 9 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 9.1 Products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each version of an operating system,
 software component, and hardware platform Documented as supporting the
@@ -426,25 +426,26 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE-WP20 Compatibility testing for the Jakarta EE 9 Web Profile consists of
+EE-WP20 Compatibility testing for the Jakarta EE 9.1 Web Profile consists of
 running the tests for the technologies defined in
-link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 9 Web Profile
-Technologies Tested With Jakarta EE 9 Platform TCK."] If optional technologies
-defined in the Jakarta EE 9 Web Profile platform are implemented in
-addition to the required Jakarta EE 9 Web Profile technologies,
+link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 9.1 Web Profile
+Technologies Tested With Jakarta EE 9.1 Platform TCK."] If optional technologies
+defined in the Jakarta EE 9.1 Web Profile platform are implemented in
+addition to the required Jakarta EE 9.1 Web Profile technologies,
 corresponding tests within this TCK for those additional technologies
 must also be run.
 
-EE-WP21 Compliance testing for Jakarta EE 9 Web Profile consists of running
-the Jakarta EE 9 Web Profile tests and the following Technology
+EE-WP21 Compliance testing for Jakarta EE 9.1 Web Profile consists of running
+the Jakarta EE 9.1 Web Profile tests and the following Technology
 Compatibility Kits (TCKs):
 
 * Jakarta Contexts and Dependency Injection 3.0
 * Jakarta Dependency Injection 2.0 
 * Jakarta Bean Validation 3.0
+* Jakarta XML Binding 3.0 (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 9 implementations must also adhere to all of the
+Guide, Jakarta EE 9.1 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
@@ -461,14 +462,14 @@ EE-WP25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
 source code that does not conform to the Java Language Specification
 (JLS).
 
-[[CEGHFFED]][[jakarta-platform-enterprise-edition-version-8-test-appeals-process]]
+[[CEGHFFED]][[jakarta-platform-enterprise-edition-test-appeals-process]]
 
-3.3 Jakarta Platform, Enterprise Edition Version 9 Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 Jakarta Platform, Enterprise Edition Test Appeals Process
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE Version 9 TCK as it relates to their implementation.  Implementor
+Jakarta EE TCK as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
@@ -528,7 +529,7 @@ A consensus that a test produces invalid results will result in the exclusion of
 When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
 There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
 If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
-A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec.committee@eclipse.org).
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
 The committee will evaluate the matter purely in terms of due process.
 If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
 If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
@@ -537,26 +538,26 @@ If the appeal is rejected, the `challenge-appeal` issue should closed with a lab
 If there is a concern that a TCK process issue has not been resolved satisfactorily, the
 https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
-[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-8-web-profile]]
+[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-9.1-web-profile]]
 
-3.4 Specifications for Jakarta Platform, Enterprise Edition Version 9, Web Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.4 Specifications for Jakarta Platform, Enterprise Edition Version 9.1, Web Profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 9, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
-site at `https://jakarta.ee/specifications`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 9.1, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
+site at `https://jakarta.ee/specifications/webprofile/9.1/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-8-web-profile]]
+[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-9.1-web-profile]]
 
 3.5 Libraries for Jakarta Platform, Enterprise Edition Version 9, Web Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following location provides a list of packages that constitute the
-required class libraries for the full Java EE 9 platform:
+required class libraries for the full Java EE 9.1 platform:
 
 ``https://projects.eclipse.org/projects/ee4j.jakartaee-platform`
 
-The following list constitutes the subset of Jakarta EE 9 packages that are
-required for the Jakarta EE 9 Web Profile:
+The following list constitutes the subset of Jakarta EE 9.1 packages that are
+required for the Jakarta EE 9.1 Web Profile:
 
 * jakarta.annotation
 * jakarta.annotation.security
@@ -639,5 +640,8 @@ required for the Jakarta EE 9 Web Profile:
 * jakarta.security.enterprise.authentication.mechanism.http
 * jakarta.security.enterprise.credential
 * jakarta.security.enterprise.identitystore
-
-
+* jakarta.xml.bind (optional)
+* jakarta.xml.bind.annotation (optional)
+* jakarta.xml.bind.annotation.adapters (optional)
+* jakarta.xml.bind.attachment (optional)
+* jakarta.xml.bind.util (optional)

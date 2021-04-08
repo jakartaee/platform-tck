@@ -1,16 +1,16 @@
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 9 Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
 next=rules-wp.html
 prev=intro.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 9 Certification
-==================================================================
+Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
+====================================================================
 
-[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-8-certification]]
+[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-9.1-certification]]
 
-2 Procedure for Jakarta Platform, Enterprise Edition 9 Certification
---------------------------------------------------------------------
+2 Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
+----------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
@@ -32,7 +32,7 @@ Version 9]
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 9 consists of the
+The certification process for Jakarta EE 9.1 consists of the
 following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
@@ -50,7 +50,7 @@ as required by the Eclipse Foundation TCK License.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 9 consist of meeting the
+The compatibility requirements for Jakarta EE 9.1 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
@@ -250,7 +250,7 @@ Specification.
 |=======================================================================
 
 
-[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-8-products]]
+[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-9.1-products]]
 
 2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 9 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -452,15 +452,16 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE21 Compliance testing for Jakarta EE 9 consists of running Jakarta EE 9
+EE21 Compliance testing for Jakarta EE 9.1 consists of running Jakarta EE 9.1
 TCK and the following Technology Compatibility Kits (TCKs):
 
 * Jakarta Contexts and Dependency Injection 3.0
 * Jakarta Dependency Injection 2.0 
 * Jakarta Bean Validation 3.0
+* Jakarta XML Binding 3.0 (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 9 implementations must also adhere to all of the
+Guide, Jakarta EE 9.1 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
@@ -477,14 +478,14 @@ EE25 A Java-to-WSDL Tool must not produce Java-to-WSDL Output from
 source code that does not conform to the Java Language Specification
 (JLS).
 
-[[CJACBJIB]][[jakarta-platform-enterprise-edition-version-8-test-appeals-process]]
+[[CJACBJIB]][[jakarta-platform-enterprise-edition-test-appeals-process]]
 
-2.3 Jakarta Platform, Enterprise Edition Version 9 Test Appeals Process
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 Jakarta Platform, Enterprise Edition Test Appeals Process
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the
-Jakarta EE version 9 TCK as it relates to their implementation.  Implementor
+Jakarta EE TCK as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
@@ -544,7 +545,7 @@ A consensus that a test produces invalid results will result in the exclusion of
 When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
 There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
 If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
-A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec.committee@eclipse.org).
+A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
 The committee will evaluate the matter purely in terms of due process.
 If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.
 If the appeal is rejected, the `challenge-appeal` issue should closed with a label of `invalid`.
@@ -554,21 +555,21 @@ If there is a concern that a TCK process issue has not been resolved satisfactor
 https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
 
-[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-8]]
+[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-9.1]]
 
-2.4 Specifications for Jakarta Platform, Enterprise Edition Version 9
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 Specifications for Jakarta Platform, Enterprise Edition Version 9.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 9 are found on
-the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/9/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 9.1 are found on
+the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/9.1/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-8]]
+[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-9.1]]
 
-2.5 Libraries for Jakarta Platform, Enterprise Edition Version 9
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.5 Libraries for Jakarta Platform, Enterprise Edition Version 9.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
-required for Jakarta EE 9:
+required for Jakarta EE 9.1:
 
 * jakarta.annotation
 * jakarta.annotation.security
@@ -686,4 +687,9 @@ required for Jakarta EE 9:
 * jakarta.ws.rs.core
 * jakarta.ws.rs.ext
 * jakarta.ws.rs.sse
- 
+* jakarta.xml.bind (optional)
+* jakarta.xml.bind.annotation (optionsl)
+* jakarta.xml.bind.annotation.adapters (optional)
+* jakarta.xml.bind.attachment (optional)
+* jakarta.xml.bind.util (optional)
+

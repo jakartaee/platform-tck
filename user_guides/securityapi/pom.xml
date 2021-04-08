@@ -27,7 +27,7 @@
     <groupId>org.glassfish</groupId>
     <artifactId>tck_security</artifactId>
     <packaging>pom</packaging>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Security API for Jakarta EE, Release 2.0</name>
 
     <properties>
