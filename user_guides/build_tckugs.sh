@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -40,7 +40,8 @@ if [ -z "$1" ]; then
  for j in $alltcks
  do
    echo *************Building $j TCK Userguide************
-   cd $USERGUIDEDIR/$j;mvn
+   cd $USERGUIDEDIR/$j;
+   mvn -B -Dmaven.repo.local=$HOME/.m2/repository
    cp -r $USERGUIDEDIR/$j/target/staging $USERGUIDEDIR/tmp/userguides/$j
  done
  bundlename="userguides_alltcks.zip"
@@ -48,7 +49,8 @@ else
  for i in "$@"
  do
    echo *************Building $i TCK Userguide************
-   cd $USERGUIDEDIR/$i;mvn
+   cd $USERGUIDEDIR/$i;
+   mvn -B -Dmaven.repo.local=$HOME/.m2/repository
    cp -r $USERGUIDEDIR/$i/target/staging $USERGUIDEDIR/tmp/userguides/$i
  done
  bundlename="userguides.zip"
