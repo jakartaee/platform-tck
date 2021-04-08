@@ -171,7 +171,9 @@
 
 	</target>
 	<target name="mvn">
-         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn"/>
+         <exec dir="${ts.home}/user_guides/${deliverable.dir}" executable="mvn">
+         	<arg line="-B -Dmaven.repo.local=${ts.home}/.m2/repository"/>
+     	 </exec>
          <copy toDir="${deliverable.bundle.dir}/docs/">
          <fileset dir="${ts.home}/user_guides/${deliverable.dir}/target"
                          includes="staging/*.html,staging/css/*,staging/img/*,
