@@ -91,7 +91,8 @@ targets for the Jakarta EE 9 Platform TCK test suite
 1.  Set the `TS_HOME` environment variable to the directory in which the
 Jakarta EE 9 Platform TCK is installed.
 2.  Change to the `<TS_HOME>/bin` directory.
-3.  Ensure that the `ts.jte` file contains information relevant to your
+3.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte for JakartaEE 9.1.
+Ensure that the `ts.jte` file contains information relevant to your
 setup. +
 Refer to link:config.html#GBFVV[Chapter 5, "Setup and Configuration,"]
 for detailed configuration instructions.
