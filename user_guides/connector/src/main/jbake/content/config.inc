@@ -46,7 +46,8 @@ slashes as a path separator instead.
   {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
-2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+2.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
+Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
   Jakarta EE {JakartaEEVersion} CI is running. +

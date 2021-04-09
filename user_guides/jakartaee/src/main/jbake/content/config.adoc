@@ -1013,6 +1013,7 @@ as well.
 5.4.8.1 To Configure Your Environment to Run the Jakarta RESTful Web Services Tests Against the Jakarta EE 9.1 CI
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following environment
 variables:
 
@@ -1064,6 +1065,7 @@ the tests, you need to repackage the WAR files that contain the Jakarta RESTful 
 tests and the VI-specific Servlet class that will be deployed on the
 vendor's Jakarta EE 9.1-compliant application server.
 
+Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following properties:
 
 .  Set the `jaxrs_impl_lib` property to point to the JAR file that
