@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020 Oracle and/or its affiliates and others.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -199,3 +199,6 @@ jakarta.batch=2.0_se11
 # Jakarta EE Security API 2.0
 # (This is JSR-375)
 jakarta.security.enterprise=2.0_se11
+
+# javax.rmi
+javax.rmi=1.0_se11

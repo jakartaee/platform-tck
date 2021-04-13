@@ -1404,7 +1404,7 @@ sigTestClasspath=${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.
 ##           optional.tech.packages.to.ignore=jakarta.xml.bind 
 ##   
 #########################################################################
-optional.tech.packages.to.ignore=jakarta.xml.bind
+optional.tech.packages.to.ignore=jakarta.xml.bind,javax.rmi,org.omg.CORBA
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"

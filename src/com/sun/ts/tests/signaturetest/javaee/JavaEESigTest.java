@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -118,7 +118,7 @@ public class JavaEESigTest extends SigTestEE {
     // then do EJB then add it to JSP then set JSP to SERVLET.
 
     APPCLIENT_MAP.put("ejb", new String[] { "jakarta.ejb", "jakarta.ejb.spi",
-        "jakarta.ejb.embeddable", "jakarta.interceptor" });
+        "jakarta.ejb.embeddable", "jakarta.interceptor", "javax.rmi" });
     APPCLIENT_MAP.put("interceptors", new String[] { "jakarta.interceptor" });
     APPCLIENT_MAP.put("caj", new String[] { "jakarta.annotation",
         "jakarta.annotation.security", "jakarta.annotation.sql" });
