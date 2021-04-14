@@ -39,7 +39,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE 8 or Java SE 11 is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
@@ -50,7 +50,10 @@ environment variables:
   a.  Set the `jsonb.classes` property to the jar file(s) that contain
   the {TechnologyShortName} implementation. +
   For example, if you were using the {TechnologyFullName} {TechnologyVersion} RI, you would set
-  this property to `jsonb.classes=jakarta.json.bind-{TechnologyVersion}.jar`.
+  this property to `jsonb.classes=yasson-{TechnologyVersion}.jar`.
+  b. It is also needed to add all of the runtime dependencies required by the implementation.
+  Add these dependencies as another entries to the `jsonb.classes` property. Use
+  proper separator between the entries (`;` on Windows, `:` on UNIX/Linux).
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 
@@ -81,7 +84,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE 8 or Java SE 11 is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
@@ -91,6 +94,9 @@ Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `jsonb.classes` property to the jar file(s) that contain
   the {TechnologyShortName} implementation.
+  b. It is also needed to add all of the runtime dependencies required by the implementation.
+  Add these dependencies as another entries to the `jsonb.classes` property. Use
+  proper separator between the entries (`;` on Windows, `:` on UNIX/Linux).
 
 
 [[GHGDG]][[publishing-the-test-applications]]
