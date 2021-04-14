@@ -230,6 +230,21 @@ container: +
 Add this option to the list of other `-D JVM` options for this property. +
 As mentioned previously, these settings can vary, but must match
 whatever you used when setting up the Jakarta EE 9.1 CI server.
+..  Add the following JVM option for JSTL test runs with JDK 11: +
++
+[source,oac_no_warn]
+----
+-Djava.locale.providers=COMPAT
+
+----
++
+The JVM compatibility option should be passed while starting implementation
+under test. +
+`-Djava.locale.providers=COMPAT` option will enable JDK 8 compatibility mode, +
+JDK 8 compatibility mode is required for tags TCK tests with Dates, TimeZones 
+to PASS with JDK 11. +
+`-Djava.locale.providers=COMPAT` should not be passed to JVM, when tests are 
+run with JDK 8.
 .  Install the Jakarta EE 9.1 CI and configure basic settings, as described
 in link:install.html#GBFTP[Chapter 4, "Installation."]
 .  Start the Jakarta EE 9.1 CI application server. +
