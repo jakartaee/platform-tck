@@ -50,7 +50,7 @@ environment variables:
   a.  Set the `jsonb.classes` property to the jar file(s) that contain
   the {TechnologyShortName} implementation. +
   For example, if you were using the {TechnologyFullName} {TechnologyVersion} RI, you would set
-  this property to `jsonb.classes=jakarta.json.bind-{TechnologyVersion}.jar`.
+  this property to `jsonb.classes=yasson-{TechnologyVersion}.jar`.
   b. It is also needed to add all of the runtime dependencies required by the implementation.
   Add these dependencies as another entries to the `jsonb.classes` property. Use
   proper separator between the entries (`;` on Windows, `:` on UNIX/Linux).
