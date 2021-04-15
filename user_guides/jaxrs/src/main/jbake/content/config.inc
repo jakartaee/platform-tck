@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
-    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -97,7 +97,7 @@ ${web.home}/modules/jersey-media-jaxb.jar:
 ${web.home}/modules/jersey-media-sse.jar:
 ${web.home}/modules/jersey-hk2.jar:
 ${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/jakarta.inject.jar:
+${web.home}/modules/jakarta.inject-api.jar:
 ${web.home}/modules/guava.jar:
 ${web.home}/modules/hk2-api.jar:
 ${web.home}/modules/hk2-locator.jar:
@@ -105,7 +105,11 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/jakarta.annotation-api.jar
+${web.home}/modules/jakarta.annotation-api.jar:
+${web.home}/modules/jakarta.xml.bind-api.jar:
+${web.home}/modules/jaxb-osgi.jar:
+${web.home}/modules/jakarta.activation.jar:
+${web.home}/modules/javassist.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor
@@ -132,45 +136,36 @@ ${web.home}/modules/endorsed/jakarta.annotation-api.jar
   implementation class that is used for obtaining URLs. +
   The default setting for this property is
   `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
-  l. Optionally, to use your own implementation of HttpsURLConnection,
-  set the `porting.ts.HttpsURLConnection.class.1` property to your
+  l. Optionally, to use vendor implementation of HttpsURLConnection,
+  set the `porting.ts.HttpsURLConnection.class.1` property to that
   implementation of HttpsURLConnection. +
   The default setting for this property is
   `com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection`.
-  m. Set up users and passwords for your {TechnologyShortName} server.
 +
---
-[width="100%",cols="34%,33%,33%",options="header",]
-|==============================
-|User |Password |Groups
-|`javajoe` |`javajoe` |`guest`
-|`j2ee` |`j2ee` |`staff`, `mgr`
-|==============================
-Also make sure the principal to role-mappings that are specified in the
-runtime XML files are properly mapped in your environment. These
-mappings may vary for each application.
---
-+
-3.  Provide your own implementation of the porting package interface
+3.  Provide compatible implementation of the porting package interface
 provided with the {TechnologyShortName} TCK. +
 The porting package interface, `TSURLInterface.java`, obtains URL
 strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
-4.  If the {TechnologyShortName} TCK test applications are published on a Servlet
-5.0-compliant Web container to certify the VI, the `servlet_adaptor`
-property needs to be set in the `ts.jte` file, and VI-specific WAR files
+4.  If the {TechnologyShortName} TCK test applications are published on
+a Servlet 5.0-compliant Web container to run the CI, the `servlet_adaptor` 
+property needs to be set in the `ts.jte` file, and CI-specific WAR files
 containing the Servlet information need to be created for publishing. +
-The VI-specific WAR files should never override any existing files that
+The CI-specific WAR files should never override any existing files that
 come with the TCK. Refer to link:rebuild.html#GCLIZ[Appendix B,
 "Packaging the Test Applications in Servlet-Compliant WAR
 Files With VI-Specific Information,"] for more information.
-5.  When creating VI-specific WAR files, deploying {TechnologyShortName} test
+5.  When creating CI-specific WAR files, deploying {TechnologyShortName} test
 applications, or running the {TechnologyShortName} TCK, it is recommended that you
 create a porting file named `$jaxrs_impl_name` under
 `$TS_HOME/bin/xml/${impl_vi}`. +
 Use the `jersey.xml` file as a reference.
-6.  Run the `ant config.vi` target to configure the Vendor
+6.  When creating CI-specific application server settings, it is
+recommended that you create a configuring file named `config.vi.xml`
+under `$TS_HOME/bin/xml/${impl_vi}`. +
+Use the `$TS_HOME/bin/xml/glassfish/config.vi.xml` file as a reference.
+7.  Run the `ant config.vi` target to configure the Compatible
 Implementation that is defined in the `impl.vi` property.
 +
 [source,oac_no_warn]
@@ -186,6 +181,7 @@ This target performs the following tasks:
 * Starts the application server
 * Creates users and the appropriate roles
 * Enables HTTP trace requests
+* Sets up users and passwords for your {TechnologyShortName} server.
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 
@@ -233,7 +229,7 @@ Information,"] for information about repackaging the
 {TechnologyShortName} test application.
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
   b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
   c.  +{TechnologyHomeEnv}+ to the directory in which the
@@ -261,7 +257,7 @@ environment variables:
   point to the {TechnologyRI} CI. +
   The default setting for the `jaxrs_impl_lib` property is
   `${web.home}/modules/jersey-container-servlet-core.jar` . +
-  The default setting for the `jaxrs_impl.`classes property is as follows
+  The default setting for the `jaxrs_impl.classes` property is as follows
   (all on one line):
 +
 [source,oac_no_warn]
@@ -283,7 +279,11 @@ ${web.home}/modules/hk2-utils.jar:
 ${web.home}/modules/cglib.jar:
 ${web.home}/modules/asm-all-repackaged.jar:
 ${web.home}/modules/bean-validator.jar:
-${web.home}/modules/endorsed/jakarta.annotation-api.jar
+${web.home}/modules/jakarta.annotation-api.jar:
+${web.home}/modules/jakarta.xml.bind-api.jar:
+${web.home}/modules/jaxb-osgi.jar:
+${web.home}/modules/jakarta.activation.jar:
+${web.home}/modules/javassist.jar
 ----
 +
   f.  Set the `servlet_adaptor` property to point to the Servlet adaptor
@@ -307,7 +307,11 @@ ${web.home}/modules/endorsed/jakarta.annotation-api.jar
   `${web.home}/domains/domain1/autodpeloy`.
   j. Verify that the `tools.jar` property is set to the location of the
   `tools.jar` file that is distributed with Java SE 8.
-  k. Optionally, to use your own implementation of HttpsURLConnection,
+  k. Set the `porting.ts.url.class.1` property to your porting
+  implementation class that is used for obtaining URLs. +
+  The default setting for this property is
+  `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
+  l. Optionally, to use your own implementation of HttpsURLConnection,
   set the `porting.ts.HttpsURLConnection.class.1` property to your
   implementation of HttpsURLConnection. +
   The default setting for this property is
@@ -327,10 +331,44 @@ The VI-specific WAR files should never override any existing files that
 come with the TCK. Refer to link:rebuild.html#GCLIZ[Appendix B,
 "Packaging the Test Applications in Servlet-Compliant WAR
 Files With VI-Specific Information,"] for more information.
-5.  When creating VI-specific application server settings, it is
+5.  When creating VI-specific WAR files, deploying {TechnologyShortName} test
+applications, or running the {TechnologyShortName} TCK, it is recommended that you
+create a porting file named `$jaxrs_impl_name` under
+`$TS_HOME/bin/xml/${impl_vi}`. +
+Use the `jersey.xml` file as a reference.
+6.  When creating VI-specific application server settings, it is
 recommended that you create a configuring file named `config.vi.xml`
 under `$TS_HOME/bin/xml/${impl_vi}`. +
 Use the `$TS_HOME/bin/xml/glassfish/config.vi.xml` file as a reference.
+7.  Run the `ant config.vi` target to configure the Compatible
+Implementation that is defined in the `impl.vi` property.
++
+[source,oac_no_warn]
+----
+cd <TS_HOME>/bin
+ant config.vi
+----
++
+The target performs the following tasks:
+
+* Stops the application server running the {TechnologyShortName} {TechnologyVersion} CI
+* Copies the TCK-dependent files `${tslib.name}.jar` and `tsharness.jar` into the application server's external library folder
+* Starts the application server
+* Creates users and the appropriate roles
+* Enables HTTP trace requests
+* Sets up users and passwords for your {TechnologyShortName} server as follows:
++
+--
+[width="100%",cols="34%,33%,33%",options="header",]
+|==============================
+|User |Password |Groups
+|`javajoe` |`javajoe` |`guest`
+|`j2ee` |`j2ee` |`staff`, `mgr`
+|==============================
+Also make sure the principal to role-mappings that are specified in the
+runtime XML files are properly mapped in your environment. These
+mappings may vary for each application.
+--
 
 [[GHGDG]][[publishing-the-test-applications]]
 
