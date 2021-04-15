@@ -75,7 +75,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE 8 or 11 is installed
   b.  `ANT_HOME` to the directory in which Apache Ant {AntVersion} is installed
   c.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
@@ -134,7 +134,7 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
+  a.  `JAVA_HOME` to the directory in which Java SE 8 or 11 is installed
   b.  `ANT_HOME` to the directory in which Apache Ant {AntVersion} is installed
   c.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
