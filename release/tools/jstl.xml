@@ -91,10 +91,16 @@
 			<property name="jstl.db.driver" value="" />
 			<property name="jstl.db.user" value="" />
 			<property name="jstl.db.password" value="" />
+			<!-- retain default jdbc.classes for GF 8 run -->
+			<!--
 			<property name="jdbc.classes" value="" />
+			-->
 			<property name="jspservlet.classes" value="" />
 			<property name="jstl.classes" value="" />
+			<!-- retain default sigtestclasspath for GF 8 run -->
+			<!--
 			<property name="sigTestClasspath" value="" />
+			-->
 		</props.sanitizer>
 	</target>
 
