@@ -78,8 +78,11 @@
 				<property name="impl.deploy.timeout.multiplier" value="" />
 				<property name="jspservlet.classes" value="" />
 				<property name="jstl.classes" value="" />
-                                <property name="el.classes" value="" />
-				<property name="sigTestClasspath" value="" />
+                <property name="el.classes" value="" />
+                <!-- retain default sigtestclasspath for GF 8 run -->
+                <!--
+            	<property name="sigTestClasspath" value="" />
+                -->
 			</props.sanitizer>
 		</target>
 
