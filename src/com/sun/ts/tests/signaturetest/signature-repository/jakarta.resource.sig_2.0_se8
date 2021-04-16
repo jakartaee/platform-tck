@@ -1,14 +1,14 @@
-#Signature file v4.3
-#Version 2.0_se8
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.resource.AdministeredObjectDefinition
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.resource.AdministeredObjectDefinitions)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String interfaceName() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String interfaceName()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String className()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String resourceAdapter()
@@ -24,11 +24,11 @@ CLSS public abstract interface !annotation jakarta.resource.ConnectionFactoryDef
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int maxPoolSize() value= -1
-meth public abstract !hasdefault int minPoolSize() value= -1
-meth public abstract !hasdefault jakarta.resource.spi.TransactionSupport$TransactionSupportLevel transactionSupport() value= NoTransaction
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault int maxPoolSize()
+meth public abstract !hasdefault int minPoolSize()
+meth public abstract !hasdefault jakarta.resource.spi.TransactionSupport$TransactionSupportLevel transactionSupport()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String interfaceName()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String resourceAdapter()
@@ -40,11 +40,11 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.resource.ConnectionFactoryDefinition[] value()
 
 CLSS public jakarta.resource.NotSupportedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.Referenceable
@@ -52,11 +52,11 @@ intf javax.naming.Referenceable
 meth public abstract void setReference(javax.naming.Reference)
 
 CLSS public jakarta.resource.ResourceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.lang.Exception getLinkedException()
 meth public java.lang.String getErrorCode()
 meth public java.lang.String getMessage()
@@ -146,11 +146,11 @@ meth public abstract java.lang.String getSpecVersion()
 meth public abstract java.lang.String[] getInteractionSpecsSupported()
 
 CLSS public jakarta.resource.cci.ResourceWarning
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public jakarta.resource.cci.ResourceWarning getLinkedWarning()
 meth public void setLinkedWarning(jakarta.resource.cci.ResourceWarning)
 supr jakarta.resource.ResourceException
@@ -192,14 +192,14 @@ CLSS public abstract interface !annotation jakarta.resource.spi.AdministeredObje
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class[] adminObjectInterfaces() value= []
+meth public abstract !hasdefault java.lang.Class[] adminObjectInterfaces()
 
 CLSS public jakarta.resource.spi.ApplicationServerInternalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface !annotation jakarta.resource.spi.AuthenticationMechanism
@@ -208,9 +208,9 @@ CLSS public abstract interface !annotation jakarta.resource.spi.AuthenticationMe
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 innr public final static !enum CredentialInterface
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.resource.spi.AuthenticationMechanism$CredentialInterface credentialInterface() value= PasswordCredential
-meth public abstract !hasdefault java.lang.String authMechanism() value= "BasicPassword"
-meth public abstract !hasdefault java.lang.String[] description() value= []
+meth public abstract !hasdefault jakarta.resource.spi.AuthenticationMechanism$CredentialInterface credentialInterface()
+meth public abstract !hasdefault java.lang.String authMechanism()
+meth public abstract !hasdefault java.lang.String[] description()
 
 CLSS public final static !enum jakarta.resource.spi.AuthenticationMechanism$CredentialInterface
  outer jakarta.resource.spi.AuthenticationMechanism
@@ -229,11 +229,11 @@ meth public abstract jakarta.transaction.TransactionSynchronizationRegistry getT
 meth public abstract java.util.Timer createTimer() throws jakarta.resource.spi.UnavailableException
 
 CLSS public jakarta.resource.spi.CommException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface !annotation jakarta.resource.spi.ConfigProperty
@@ -241,12 +241,12 @@ CLSS public abstract interface !annotation jakarta.resource.spi.ConfigProperty
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean confidential() value= false
-meth public abstract !hasdefault boolean ignore() value= false
-meth public abstract !hasdefault boolean supportsDynamicUpdates() value= false
-meth public abstract !hasdefault java.lang.Class type() value= class java.lang.Object
-meth public abstract !hasdefault java.lang.String defaultValue() value= ""
-meth public abstract !hasdefault java.lang.String[] description() value= []
+meth public abstract !hasdefault boolean confidential()
+meth public abstract !hasdefault boolean ignore()
+meth public abstract !hasdefault boolean supportsDynamicUpdates()
+meth public abstract !hasdefault java.lang.Class type()
+meth public abstract !hasdefault java.lang.String defaultValue()
+meth public abstract !hasdefault java.lang.String[] description()
 
 CLSS public abstract interface !annotation jakarta.resource.spi.ConnectionDefinition
  anno 0 java.lang.annotation.Documented()
@@ -267,8 +267,8 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.resource.spi.ConnectionDefinition[] value()
 
 CLSS public jakarta.resource.spi.ConnectionEvent
-cons public <init>(jakarta.resource.spi.ManagedConnection,int)
-cons public <init>(jakarta.resource.spi.ManagedConnection,int,java.lang.Exception)
+cons public init(jakarta.resource.spi.ManagedConnection,int)
+cons public init(jakarta.resource.spi.ManagedConnection,int,java.lang.Exception)
 fld protected int id
 fld public final static int CONNECTION_CLOSED = 1
 fld public final static int CONNECTION_ERROR_OCCURRED = 5
@@ -303,46 +303,46 @@ CLSS public abstract interface !annotation jakarta.resource.spi.Connector
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean licenseRequired() value= false
-meth public abstract !hasdefault boolean reauthenticationSupport() value= false
-meth public abstract !hasdefault jakarta.resource.spi.AuthenticationMechanism[] authMechanisms() value= []
-meth public abstract !hasdefault jakarta.resource.spi.SecurityPermission[] securityPermissions() value= []
-meth public abstract !hasdefault jakarta.resource.spi.TransactionSupport$TransactionSupportLevel transactionSupport() value= NoTransaction
-meth public abstract !hasdefault java.lang.Class<? extends jakarta.resource.spi.work.WorkContext>[] requiredWorkContexts() value= []
-meth public abstract !hasdefault java.lang.String eisType() value= ""
-meth public abstract !hasdefault java.lang.String vendorName() value= ""
-meth public abstract !hasdefault java.lang.String version() value= ""
-meth public abstract !hasdefault java.lang.String[] description() value= []
-meth public abstract !hasdefault java.lang.String[] displayName() value= []
-meth public abstract !hasdefault java.lang.String[] largeIcon() value= []
-meth public abstract !hasdefault java.lang.String[] licenseDescription() value= []
-meth public abstract !hasdefault java.lang.String[] smallIcon() value= []
+meth public abstract !hasdefault boolean licenseRequired()
+meth public abstract !hasdefault boolean reauthenticationSupport()
+meth public abstract !hasdefault jakarta.resource.spi.AuthenticationMechanism[] authMechanisms()
+meth public abstract !hasdefault jakarta.resource.spi.SecurityPermission[] securityPermissions()
+meth public abstract !hasdefault jakarta.resource.spi.TransactionSupport$TransactionSupportLevel transactionSupport()
+meth public abstract !hasdefault java.lang.Class<? extends jakarta.resource.spi.work.WorkContext>[] requiredWorkContexts()
+meth public abstract !hasdefault java.lang.String eisType()
+meth public abstract !hasdefault java.lang.String vendorName()
+meth public abstract !hasdefault java.lang.String version()
+meth public abstract !hasdefault java.lang.String[] description()
+meth public abstract !hasdefault java.lang.String[] displayName()
+meth public abstract !hasdefault java.lang.String[] largeIcon()
+meth public abstract !hasdefault java.lang.String[] licenseDescription()
+meth public abstract !hasdefault java.lang.String[] smallIcon()
 
 CLSS public abstract interface jakarta.resource.spi.DissociatableManagedConnection
 meth public abstract void dissociateConnections() throws jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.EISSystemException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.IllegalStateException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.InvalidPropertyException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.beans.PropertyDescriptor[] getInvalidPropertyDescriptors()
 meth public void setInvalidPropertyDescriptors(java.beans.PropertyDescriptor[])
 supr jakarta.resource.ResourceException
@@ -363,11 +363,11 @@ meth public abstract void commit() throws jakarta.resource.ResourceException
 meth public abstract void rollback() throws jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.LocalTransactionException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.spi.ManagedConnection
@@ -412,40 +412,40 @@ meth public abstract jakarta.resource.spi.ResourceAdapter getResourceAdapter()
 meth public abstract void setResourceAdapter(jakarta.resource.spi.ResourceAdapter) throws jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.ResourceAdapterInternalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public jakarta.resource.spi.ResourceAllocationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.spi.RetryableException
 intf java.io.Serializable
 
 CLSS public jakarta.resource.spi.RetryableUnavailableException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf jakarta.resource.spi.RetryableException
 supr jakarta.resource.spi.UnavailableException
 hfds serialVersionUID
 
 CLSS public jakarta.resource.spi.SecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface !annotation jakarta.resource.spi.SecurityPermission
@@ -453,15 +453,15 @@ CLSS public abstract interface !annotation jakarta.resource.spi.SecurityPermissi
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String permissionSpec() value= ""
-meth public abstract !hasdefault java.lang.String[] description() value= []
+meth public abstract !hasdefault java.lang.String permissionSpec()
+meth public abstract !hasdefault java.lang.String[] description()
 
 CLSS public jakarta.resource.spi.SharingViolationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.spi.TransactionSupport
@@ -479,11 +479,11 @@ meth public static jakarta.resource.spi.TransactionSupport$TransactionSupportLev
 supr java.lang.Enum<jakarta.resource.spi.TransactionSupport$TransactionSupportLevel>
 
 CLSS public jakarta.resource.spi.UnavailableException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.spi.ValidatingManagedConnectionFactory
@@ -516,7 +516,7 @@ meth public abstract java.lang.String getMechType()
 meth public abstract java.lang.String getName()
 
 CLSS public final jakarta.resource.spi.security.PasswordCredential
-cons public <init>(java.lang.String,char[])
+cons public init(java.lang.String,char[])
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public char[] getPassword()
@@ -535,7 +535,7 @@ CLSS public abstract interface jakarta.resource.spi.work.DistributableWorkManage
 intf jakarta.resource.spi.work.WorkManager
 
 CLSS public jakarta.resource.spi.work.ExecutionContext
-cons public <init>()
+cons public init()
 meth public javax.transaction.xa.Xid getXid()
 meth public long getTransactionTimeout()
 meth public void setTransactionTimeout(long) throws jakarta.resource.NotSupportedException
@@ -544,7 +544,7 @@ supr java.lang.Object
 hfds transactionTimeout,xid
 
 CLSS public jakarta.resource.spi.work.HintsContext
-cons public <init>()
+cons public init()
 fld protected java.lang.String description
 fld protected java.lang.String name
 fld public final static java.lang.String LONGRUNNING_HINT = "jakarta.resource.LongRunning"
@@ -560,17 +560,17 @@ supr java.lang.Object
 hfds hints,serialVersionUID
 
 CLSS public jakarta.resource.spi.work.RetryableWorkRejectedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf jakarta.resource.spi.RetryableException
 supr jakarta.resource.spi.work.WorkRejectedException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.resource.spi.work.SecurityContext
-cons public <init>()
+cons public init()
 intf jakarta.resource.spi.work.WorkContext
 meth public abstract void setupSecurityContext(javax.security.auth.callback.CallbackHandler,javax.security.auth.Subject,javax.security.auth.Subject)
 meth public java.lang.String getDescription()
@@ -579,7 +579,7 @@ supr java.lang.Object
 hfds serialVersionUID
 
 CLSS public jakarta.resource.spi.work.TransactionContext
-cons public <init>()
+cons public init()
 intf jakarta.resource.spi.work.WorkContext
 meth public java.lang.String getDescription()
 meth public java.lang.String getName()
@@ -591,7 +591,7 @@ intf java.lang.Runnable
 meth public abstract void release()
 
 CLSS public jakarta.resource.spi.work.WorkAdapter
-cons public <init>()
+cons public init()
 intf jakarta.resource.spi.work.WorkListener
 meth public void workAccepted(jakarta.resource.spi.work.WorkEvent)
 meth public void workCompleted(jakarta.resource.spi.work.WorkEvent)
@@ -600,11 +600,11 @@ meth public void workStarted(jakarta.resource.spi.work.WorkEvent)
 supr java.lang.Object
 
 CLSS public jakarta.resource.spi.work.WorkCompletedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.spi.work.WorkException
 
 CLSS public abstract interface jakarta.resource.spi.work.WorkContext
@@ -613,7 +613,7 @@ meth public abstract java.lang.String getDescription()
 meth public abstract java.lang.String getName()
 
 CLSS public jakarta.resource.spi.work.WorkContextErrorCodes
-cons public <init>()
+cons public init()
 fld public final static java.lang.String CONTEXT_SETUP_FAILED = "3"
 fld public final static java.lang.String CONTEXT_SETUP_UNSUPPORTED = "4"
 fld public final static java.lang.String DUPLICATE_CONTEXTS = "2"
@@ -629,8 +629,8 @@ intf java.io.Serializable
 meth public abstract java.util.List<jakarta.resource.spi.work.WorkContext> getWorkContexts()
 
 CLSS public jakarta.resource.spi.work.WorkEvent
-cons public <init>(java.lang.Object,int,jakarta.resource.spi.work.Work,jakarta.resource.spi.work.WorkException)
-cons public <init>(java.lang.Object,int,jakarta.resource.spi.work.Work,jakarta.resource.spi.work.WorkException,long)
+cons public init(java.lang.Object,int,jakarta.resource.spi.work.Work,jakarta.resource.spi.work.WorkException)
+cons public init(java.lang.Object,int,jakarta.resource.spi.work.Work,jakarta.resource.spi.work.WorkException,long)
 fld public final static int WORK_ACCEPTED = 1
 fld public final static int WORK_COMPLETED = 4
 fld public final static int WORK_REJECTED = 2
@@ -643,11 +643,11 @@ supr java.util.EventObject
 hfds exc,startDuration,type,work
 
 CLSS public jakarta.resource.spi.work.WorkException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 fld public final static java.lang.String INTERNAL = "-1"
 fld public final static java.lang.String START_TIMED_OUT = "1"
 fld public final static java.lang.String TX_CONCURRENT_WORK_DISALLOWED = "2"
@@ -674,11 +674,11 @@ meth public abstract void scheduleWork(jakarta.resource.spi.work.Work) throws ja
 meth public abstract void scheduleWork(jakarta.resource.spi.work.Work,long,jakarta.resource.spi.work.ExecutionContext,jakarta.resource.spi.work.WorkListener) throws jakarta.resource.spi.work.WorkException
 
 CLSS public jakarta.resource.spi.work.WorkRejectedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.resource.spi.work.WorkException
 
 CLSS public abstract interface java.io.Serializable
@@ -692,7 +692,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -709,11 +709,11 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -729,7 +729,7 @@ meth public java.util.Spliterator<{java.lang.Iterable%0}> spliterator()
 meth public void forEach(java.util.function.Consumer<? super {java.lang.Iterable%0}>)
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -747,11 +747,11 @@ CLSS public abstract interface java.lang.Runnable
 meth public abstract void run()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -1043,7 +1043,7 @@ meth public java.util.stream.Stream<{java.util.Collection%0}> stream()
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 fld protected java.lang.Object source
 intf java.io.Serializable
 meth public java.lang.Object getSource()

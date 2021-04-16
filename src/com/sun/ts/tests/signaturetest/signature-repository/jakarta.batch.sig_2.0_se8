@@ -1,11 +1,8 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract jakarta.batch.api.AbstractBatchlet
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.Batchlet
 meth public abstract java.lang.String process() throws java.lang.Exception
 meth public void stop() throws java.lang.Exception
@@ -16,7 +13,7 @@ CLSS public abstract interface !annotation jakarta.batch.api.BatchProperty
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD, METHOD, PARAMETER])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface jakarta.batch.api.Batchlet
 meth public abstract java.lang.String process() throws java.lang.Exception
@@ -26,7 +23,7 @@ CLSS public abstract interface jakarta.batch.api.Decider
 meth public abstract java.lang.String decide(jakarta.batch.runtime.StepExecution[]) throws java.lang.Exception
 
 CLSS public abstract jakarta.batch.api.chunk.AbstractCheckpointAlgorithm
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.CheckpointAlgorithm
 meth public abstract boolean isReadyToCheckpoint() throws java.lang.Exception
 meth public int checkpointTimeout() throws java.lang.Exception
@@ -35,7 +32,7 @@ meth public void endCheckpoint() throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.chunk.AbstractItemReader
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.ItemReader
 meth public abstract java.lang.Object readItem() throws java.lang.Exception
 meth public java.io.Serializable checkpointInfo() throws java.lang.Exception
@@ -44,7 +41,7 @@ meth public void open(java.io.Serializable) throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.chunk.AbstractItemWriter
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.ItemWriter
 meth public abstract void writeItems(java.util.List<java.lang.Object>) throws java.lang.Exception
 meth public java.io.Serializable checkpointInfo() throws java.lang.Exception
@@ -74,7 +71,7 @@ meth public abstract void open(java.io.Serializable) throws java.lang.Exception
 meth public abstract void writeItems(java.util.List<java.lang.Object>) throws java.lang.Exception
 
 CLSS public abstract jakarta.batch.api.chunk.listener.AbstractChunkListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.listener.ChunkListener
 meth public void afterChunk() throws java.lang.Exception
 meth public void beforeChunk() throws java.lang.Exception
@@ -82,7 +79,7 @@ meth public void onError(java.lang.Exception) throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.chunk.listener.AbstractItemProcessListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.listener.ItemProcessListener
 meth public void afterProcess(java.lang.Object,java.lang.Object) throws java.lang.Exception
 meth public void beforeProcess(java.lang.Object) throws java.lang.Exception
@@ -90,7 +87,7 @@ meth public void onProcessError(java.lang.Object,java.lang.Exception) throws jav
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.chunk.listener.AbstractItemReadListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.listener.ItemReadListener
 meth public void afterRead(java.lang.Object) throws java.lang.Exception
 meth public void beforeRead() throws java.lang.Exception
@@ -98,7 +95,7 @@ meth public void onReadError(java.lang.Exception) throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.chunk.listener.AbstractItemWriteListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.chunk.listener.ItemWriteListener
 meth public void afterWrite(java.util.List<java.lang.Object>) throws java.lang.Exception
 meth public void beforeWrite(java.util.List<java.lang.Object>) throws java.lang.Exception
@@ -144,14 +141,14 @@ CLSS public abstract interface jakarta.batch.api.chunk.listener.SkipWriteListene
 meth public abstract void onSkipWriteItem(java.util.List<java.lang.Object>,java.lang.Exception) throws java.lang.Exception
 
 CLSS public abstract jakarta.batch.api.listener.AbstractJobListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.listener.JobListener
 meth public void afterJob() throws java.lang.Exception
 meth public void beforeJob() throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.listener.AbstractStepListener
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.listener.StepListener
 meth public void afterStep() throws java.lang.Exception
 meth public void beforeStep() throws java.lang.Exception
@@ -166,14 +163,14 @@ meth public abstract void afterStep() throws java.lang.Exception
 meth public abstract void beforeStep() throws java.lang.Exception
 
 CLSS public abstract jakarta.batch.api.partition.AbstractPartitionAnalyzer
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.partition.PartitionAnalyzer
 meth public void analyzeCollectorData(java.io.Serializable) throws java.lang.Exception
 meth public void analyzeStatus(jakarta.batch.runtime.BatchStatus,java.lang.String) throws java.lang.Exception
 supr java.lang.Object
 
 CLSS public abstract jakarta.batch.api.partition.AbstractPartitionReducer
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.partition.PartitionReducer
 meth public void afterPartitionedStepCompletion(jakarta.batch.api.partition.PartitionReducer$PartitionStatus) throws java.lang.Exception
 meth public void beforePartitionedStepCompletion() throws java.lang.Exception
@@ -202,7 +199,7 @@ meth public abstract void setPartitionsOverride(boolean)
 meth public abstract void setThreads(int)
 
 CLSS public jakarta.batch.api.partition.PartitionPlanImpl
-cons public <init>()
+cons public init()
 intf jakarta.batch.api.partition.PartitionPlan
 meth public boolean getPartitionsOverride()
 meth public int getPartitions()
@@ -231,42 +228,42 @@ meth public static jakarta.batch.api.partition.PartitionReducer$PartitionStatus[
 supr java.lang.Enum<jakarta.batch.api.partition.PartitionReducer$PartitionStatus>
 
 CLSS public jakarta.batch.operations.BatchRuntimeException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobExecutionAlreadyCompleteException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobExecutionIsRunningException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobExecutionNotMostRecentException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobExecutionNotRunningException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
@@ -286,55 +283,55 @@ meth public abstract void abandon(long)
 meth public abstract void stop(long)
 
 CLSS public jakarta.batch.operations.JobRestartException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobSecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.JobStartException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.NoSuchJobException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.NoSuchJobExecutionException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.operations.NoSuchJobInstanceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.batch.operations.BatchRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.batch.runtime.BatchRuntime
-cons public <init>()
+cons public init()
 meth public static jakarta.batch.operations.JobOperator getJobOperator()
 supr java.lang.Object
 hfds logger,sourceClass
@@ -432,7 +429,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -449,16 +446,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -472,20 +469,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)

@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 3.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.persistence.Access
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -22,9 +19,9 @@ CLSS public abstract interface !annotation jakarta.persistence.AssociationOverri
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns() value= []
-meth public abstract !hasdefault jakarta.persistence.JoinTable joinTable() value= anno 0 jakarta.persistence.JoinTable(jakarta.persistence.ForeignKey foreignKey=anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name=""), jakarta.persistence.ForeignKey inverseForeignKey=anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name=""), jakarta.persistence.Index[] indexes=[], jakarta.persistence.JoinColumn[] inverseJoinColumns=[], jakarta.persistence.JoinColumn[] joinColumns=[], jakarta.persistence.UniqueConstraint[] uniqueConstraints=[], java.lang.String catalog="", java.lang.String name="", java.lang.String schema="")
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns()
+meth public abstract !hasdefault jakarta.persistence.JoinTable joinTable()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.AssociationOverrides
@@ -60,8 +57,8 @@ CLSS public abstract interface !annotation jakarta.persistence.Basic
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean optional() value= true
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= EAGER
+meth public abstract !hasdefault boolean optional()
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
 
 CLSS public abstract interface jakarta.persistence.Cache
 meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
@@ -89,7 +86,7 @@ CLSS public abstract interface !annotation jakarta.persistence.Cacheable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean value() value= true
+meth public abstract !hasdefault boolean value()
 
 CLSS public final !enum jakarta.persistence.CascadeType
 fld public final static jakarta.persistence.CascadeType ALL
@@ -106,34 +103,34 @@ CLSS public abstract interface !annotation jakarta.persistence.CollectionTable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault jakarta.persistence.Index[] indexes() value= []
-meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns() value= []
-meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints() value= []
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
+meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns()
+meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.Column
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean insertable() value= true
-meth public abstract !hasdefault boolean nullable() value= true
-meth public abstract !hasdefault boolean unique() value= false
-meth public abstract !hasdefault boolean updatable() value= true
-meth public abstract !hasdefault int length() value= 255
-meth public abstract !hasdefault int precision() value= 0
-meth public abstract !hasdefault int scale() value= 0
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String table() value= ""
+meth public abstract !hasdefault boolean insertable()
+meth public abstract !hasdefault boolean nullable()
+meth public abstract !hasdefault boolean unique()
+meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault int length()
+meth public abstract !hasdefault int precision()
+meth public abstract !hasdefault int scale()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.ColumnResult
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class type() value= class void
+meth public abstract !hasdefault java.lang.Class type()
 meth public abstract java.lang.String name()
 
 CLSS public final !enum jakarta.persistence.ConstraintMode
@@ -156,15 +153,15 @@ CLSS public abstract interface !annotation jakarta.persistence.Convert
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean disableConversion() value= false
-meth public abstract !hasdefault java.lang.Class converter() value= class void
-meth public abstract !hasdefault java.lang.String attributeName() value= ""
+meth public abstract !hasdefault boolean disableConversion()
+meth public abstract !hasdefault java.lang.Class converter()
+meth public abstract !hasdefault java.lang.String attributeName()
 
 CLSS public abstract interface !annotation jakarta.persistence.Converter
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean autoApply() value= false
+meth public abstract !hasdefault boolean autoApply()
 
 CLSS public abstract interface !annotation jakarta.persistence.Converts
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -176,10 +173,10 @@ CLSS public abstract interface !annotation jakarta.persistence.DiscriminatorColu
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int length() value= 31
-meth public abstract !hasdefault jakarta.persistence.DiscriminatorType discriminatorType() value= STRING
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= "DTYPE"
+meth public abstract !hasdefault int length()
+meth public abstract !hasdefault jakarta.persistence.DiscriminatorType discriminatorType()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public final !enum jakarta.persistence.DiscriminatorType
 fld public final static jakarta.persistence.DiscriminatorType CHAR
@@ -199,8 +196,8 @@ CLSS public abstract interface !annotation jakarta.persistence.ElementCollection
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= LAZY
-meth public abstract !hasdefault java.lang.Class targetClass() value= class void
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
+meth public abstract !hasdefault java.lang.Class targetClass()
 
 CLSS public abstract interface !annotation jakarta.persistence.Embeddable
  anno 0 java.lang.annotation.Documented()
@@ -223,13 +220,13 @@ CLSS public abstract interface !annotation jakarta.persistence.Entity
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public jakarta.persistence.EntityExistsException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface jakarta.persistence.EntityGraph<%0 extends java.lang.Object>
@@ -323,16 +320,16 @@ meth public abstract void addNamedQuery(java.lang.String,jakarta.persistence.Que
 meth public abstract void close()
 
 CLSS public jakarta.persistence.EntityNotFoundException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.EntityResult
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.FieldResult[] fields() value= []
-meth public abstract !hasdefault java.lang.String discriminatorColumn() value= ""
+meth public abstract !hasdefault jakarta.persistence.FieldResult[] fields()
+meth public abstract !hasdefault java.lang.String discriminatorColumn()
 meth public abstract java.lang.Class entityClass()
 
 CLSS public abstract interface jakarta.persistence.EntityTransaction
@@ -354,7 +351,7 @@ CLSS public abstract interface !annotation jakarta.persistence.Enumerated
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.EnumType value() value= ORDINAL
+meth public abstract !hasdefault jakarta.persistence.EnumType value()
 
 CLSS public abstract interface !annotation jakarta.persistence.ExcludeDefaultListeners
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -391,16 +388,16 @@ CLSS public abstract interface !annotation jakarta.persistence.ForeignKey
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ConstraintMode value() value= CONSTRAINT
-meth public abstract !hasdefault java.lang.String foreignKeyDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault jakarta.persistence.ConstraintMode value()
+meth public abstract !hasdefault java.lang.String foreignKeyDefinition()
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.GeneratedValue
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.GenerationType strategy() value= AUTO
-meth public abstract !hasdefault java.lang.String generator() value= ""
+meth public abstract !hasdefault jakarta.persistence.GenerationType strategy()
+meth public abstract !hasdefault java.lang.String generator()
 
 CLSS public final !enum jakarta.persistence.GenerationType
 fld public final static jakarta.persistence.GenerationType AUTO
@@ -426,15 +423,15 @@ CLSS public abstract interface !annotation jakarta.persistence.Index
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean unique() value= false
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault boolean unique()
+meth public abstract !hasdefault java.lang.String name()
 meth public abstract java.lang.String columnList()
 
 CLSS public abstract interface !annotation jakarta.persistence.Inheritance
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.InheritanceType strategy() value= SINGLE_TABLE
+meth public abstract !hasdefault jakarta.persistence.InheritanceType strategy()
 
 CLSS public final !enum jakarta.persistence.InheritanceType
 fld public final static jakarta.persistence.InheritanceType JOINED
@@ -449,36 +446,36 @@ CLSS public abstract interface !annotation jakarta.persistence.JoinColumn
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean insertable() value= true
-meth public abstract !hasdefault boolean nullable() value= true
-meth public abstract !hasdefault boolean unique() value= false
-meth public abstract !hasdefault boolean updatable() value= true
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String referencedColumnName() value= ""
-meth public abstract !hasdefault java.lang.String table() value= ""
+meth public abstract !hasdefault boolean insertable()
+meth public abstract !hasdefault boolean nullable()
+meth public abstract !hasdefault boolean unique()
+meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String referencedColumnName()
+meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.JoinColumns
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract jakarta.persistence.JoinColumn[] value()
 
 CLSS public abstract interface !annotation jakarta.persistence.JoinTable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault jakarta.persistence.ForeignKey inverseForeignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault jakarta.persistence.Index[] indexes() value= []
-meth public abstract !hasdefault jakarta.persistence.JoinColumn[] inverseJoinColumns() value= []
-meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns() value= []
-meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints() value= []
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault jakarta.persistence.ForeignKey inverseForeignKey()
+meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
+meth public abstract !hasdefault jakarta.persistence.JoinColumn[] inverseJoinColumns()
+meth public abstract !hasdefault jakarta.persistence.JoinColumn[] joinColumns()
+meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.Lob
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -499,12 +496,12 @@ meth public static jakarta.persistence.LockModeType[] values()
 supr java.lang.Enum<jakarta.persistence.LockModeType>
 
 CLSS public jakarta.persistence.LockTimeoutException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getObject()
 supr jakarta.persistence.PersistenceException
 hfds entity
@@ -513,25 +510,25 @@ CLSS public abstract interface !annotation jakarta.persistence.ManyToMany
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade() value= []
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= LAZY
-meth public abstract !hasdefault java.lang.Class targetEntity() value= class void
-meth public abstract !hasdefault java.lang.String mappedBy() value= ""
+meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
+meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public abstract interface !annotation jakarta.persistence.ManyToOne
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean optional() value= true
-meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade() value= []
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= EAGER
-meth public abstract !hasdefault java.lang.Class targetEntity() value= class void
+meth public abstract !hasdefault boolean optional()
+meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
+meth public abstract !hasdefault java.lang.Class targetEntity()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKey
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyClass
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -543,43 +540,43 @@ CLSS public abstract interface !annotation jakarta.persistence.MapKeyColumn
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean insertable() value= true
-meth public abstract !hasdefault boolean nullable() value= false
-meth public abstract !hasdefault boolean unique() value= false
-meth public abstract !hasdefault boolean updatable() value= true
-meth public abstract !hasdefault int length() value= 255
-meth public abstract !hasdefault int precision() value= 0
-meth public abstract !hasdefault int scale() value= 0
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String table() value= ""
+meth public abstract !hasdefault boolean insertable()
+meth public abstract !hasdefault boolean nullable()
+meth public abstract !hasdefault boolean unique()
+meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault int length()
+meth public abstract !hasdefault int precision()
+meth public abstract !hasdefault int scale()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyEnumerated
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.EnumType value() value= ORDINAL
+meth public abstract !hasdefault jakarta.persistence.EnumType value()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyJoinColumn
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.MapKeyJoinColumns)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean insertable() value= true
-meth public abstract !hasdefault boolean nullable() value= false
-meth public abstract !hasdefault boolean unique() value= false
-meth public abstract !hasdefault boolean updatable() value= true
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String referencedColumnName() value= ""
-meth public abstract !hasdefault java.lang.String table() value= ""
+meth public abstract !hasdefault boolean insertable()
+meth public abstract !hasdefault boolean nullable()
+meth public abstract !hasdefault boolean unique()
+meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String referencedColumnName()
+meth public abstract !hasdefault java.lang.String table()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyJoinColumns
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract jakarta.persistence.MapKeyJoinColumn[] value()
 
 CLSS public abstract interface !annotation jakarta.persistence.MapKeyTemporal
@@ -598,14 +595,14 @@ CLSS public abstract interface !annotation jakarta.persistence.MapsId
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.persistence.NamedAttributeNode
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String keySubgraph() value= ""
-meth public abstract !hasdefault java.lang.String subgraph() value= ""
+meth public abstract !hasdefault java.lang.String keySubgraph()
+meth public abstract !hasdefault java.lang.String subgraph()
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.persistence.NamedEntityGraph
@@ -613,11 +610,11 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedEntityGraph
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean includeAllAttributes() value= false
-meth public abstract !hasdefault jakarta.persistence.NamedAttributeNode[] attributeNodes() value= []
-meth public abstract !hasdefault jakarta.persistence.NamedSubgraph[] subclassSubgraphs() value= []
-meth public abstract !hasdefault jakarta.persistence.NamedSubgraph[] subgraphs() value= []
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault boolean includeAllAttributes()
+meth public abstract !hasdefault jakarta.persistence.NamedAttributeNode[] attributeNodes()
+meth public abstract !hasdefault jakarta.persistence.NamedSubgraph[] subclassSubgraphs()
+meth public abstract !hasdefault jakarta.persistence.NamedSubgraph[] subgraphs()
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.NamedEntityGraphs
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -636,9 +633,9 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedNativeQuery
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints() value= []
-meth public abstract !hasdefault java.lang.Class resultClass() value= class void
-meth public abstract !hasdefault java.lang.String resultSetMapping() value= ""
+meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints()
+meth public abstract !hasdefault java.lang.Class resultClass()
+meth public abstract !hasdefault java.lang.String resultSetMapping()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String query()
 
@@ -653,8 +650,8 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedQuery
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.LockModeType lockMode() value= NONE
-meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints() value= []
+meth public abstract !hasdefault jakarta.persistence.LockModeType lockMode()
+meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String query()
 
@@ -669,10 +666,10 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedStoredProced
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints() value= []
-meth public abstract !hasdefault jakarta.persistence.StoredProcedureParameter[] parameters() value= []
-meth public abstract !hasdefault java.lang.Class[] resultClasses() value= []
-meth public abstract !hasdefault java.lang.String[] resultSetMappings() value= []
+meth public abstract !hasdefault jakarta.persistence.QueryHint[] hints()
+meth public abstract !hasdefault jakarta.persistence.StoredProcedureParameter[] parameters()
+meth public abstract !hasdefault java.lang.Class[] resultClasses()
+meth public abstract !hasdefault java.lang.String[] resultSetMappings()
 meth public abstract java.lang.String name()
 meth public abstract java.lang.String procedureName()
 
@@ -680,48 +677,48 @@ CLSS public abstract interface !annotation jakarta.persistence.NamedSubgraph
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class type() value= class void
+meth public abstract !hasdefault java.lang.Class type()
 meth public abstract jakarta.persistence.NamedAttributeNode[] attributeNodes()
 meth public abstract java.lang.String name()
 
 CLSS public jakarta.persistence.NoResultException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.persistence.PersistenceException
 
 CLSS public jakarta.persistence.NonUniqueResultException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.OneToMany
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean orphanRemoval() value= false
-meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade() value= []
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= LAZY
-meth public abstract !hasdefault java.lang.Class targetEntity() value= class void
-meth public abstract !hasdefault java.lang.String mappedBy() value= ""
+meth public abstract !hasdefault boolean orphanRemoval()
+meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
+meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public abstract interface !annotation jakarta.persistence.OneToOne
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean optional() value= true
-meth public abstract !hasdefault boolean orphanRemoval() value= false
-meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade() value= []
-meth public abstract !hasdefault jakarta.persistence.FetchType fetch() value= EAGER
-meth public abstract !hasdefault java.lang.Class targetEntity() value= class void
-meth public abstract !hasdefault java.lang.String mappedBy() value= ""
+meth public abstract !hasdefault boolean optional()
+meth public abstract !hasdefault boolean orphanRemoval()
+meth public abstract !hasdefault jakarta.persistence.CascadeType[] cascade()
+meth public abstract !hasdefault jakarta.persistence.FetchType fetch()
+meth public abstract !hasdefault java.lang.Class targetEntity()
+meth public abstract !hasdefault java.lang.String mappedBy()
 
 CLSS public jakarta.persistence.OptimisticLockException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getEntity()
 supr jakarta.persistence.PersistenceException
 hfds entity
@@ -730,17 +727,17 @@ CLSS public abstract interface !annotation jakarta.persistence.OrderBy
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.persistence.OrderColumn
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean insertable() value= true
-meth public abstract !hasdefault boolean nullable() value= true
-meth public abstract !hasdefault boolean updatable() value= true
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault boolean insertable()
+meth public abstract !hasdefault boolean nullable()
+meth public abstract !hasdefault boolean updatable()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface jakarta.persistence.Parameter<%0 extends java.lang.Object>
 meth public abstract java.lang.Class<{jakarta.persistence.Parameter%0}> getParameterType()
@@ -757,7 +754,7 @@ meth public static jakarta.persistence.ParameterMode[] values()
 supr java.lang.Enum<jakarta.persistence.ParameterMode>
 
 CLSS public jakarta.persistence.Persistence
-cons public <init>()
+cons public init()
 fld protected final static java.util.Set<jakarta.persistence.spi.PersistenceProvider> providers
  anno 0 java.lang.Deprecated()
 fld public final static java.lang.String PERSISTENCE_PROVIDER = "jakarta.persistence.spi.PersistenceProvider"
@@ -774,11 +771,11 @@ CLSS public abstract interface !annotation jakarta.persistence.PersistenceContex
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.PersistenceContextType type() value= TRANSACTION
-meth public abstract !hasdefault jakarta.persistence.PersistenceProperty[] properties() value= []
-meth public abstract !hasdefault jakarta.persistence.SynchronizationType synchronization() value= SYNCHRONIZED
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String unitName() value= ""
+meth public abstract !hasdefault jakarta.persistence.PersistenceContextType type()
+meth public abstract !hasdefault jakarta.persistence.PersistenceProperty[] properties()
+meth public abstract !hasdefault jakarta.persistence.SynchronizationType synchronization()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String unitName()
 
 CLSS public final !enum jakarta.persistence.PersistenceContextType
 fld public final static jakarta.persistence.PersistenceContextType EXTENDED
@@ -794,10 +791,10 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.persistence.PersistenceContext[] value()
 
 CLSS public jakarta.persistence.PersistenceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract interface !annotation jakarta.persistence.PersistenceProperty
@@ -812,8 +809,8 @@ CLSS public abstract interface !annotation jakarta.persistence.PersistenceUnit
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String unitName() value= ""
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String unitName()
 
 CLSS public abstract interface jakarta.persistence.PersistenceUnitUtil
 intf jakarta.persistence.PersistenceUtil
@@ -832,12 +829,12 @@ meth public abstract boolean isLoaded(java.lang.Object)
 meth public abstract boolean isLoaded(java.lang.Object,java.lang.String)
 
 CLSS public jakarta.persistence.PessimisticLockException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getEntity()
 supr jakarta.persistence.PersistenceException
 hfds entity
@@ -889,16 +886,16 @@ CLSS public abstract interface !annotation jakarta.persistence.PrimaryKeyJoinCol
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault java.lang.String columnDefinition() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String referencedColumnName() value= ""
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault java.lang.String columnDefinition()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String referencedColumnName()
 
 CLSS public abstract interface !annotation jakarta.persistence.PrimaryKeyJoinColumns
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
 meth public abstract jakarta.persistence.PrimaryKeyJoinColumn[] value()
 
 CLSS public abstract interface jakarta.persistence.Query
@@ -944,21 +941,21 @@ meth public abstract java.lang.String name()
 meth public abstract java.lang.String value()
 
 CLSS public jakarta.persistence.QueryTimeoutException
-cons public <init>()
-cons public <init>(jakarta.persistence.Query)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,jakarta.persistence.Query)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(jakarta.persistence.Query)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,jakarta.persistence.Query)
+cons public init(java.lang.Throwable)
 meth public jakarta.persistence.Query getQuery()
 supr jakarta.persistence.PersistenceException
 hfds query
 
 CLSS public jakarta.persistence.RollbackException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.SecondaryTable
@@ -966,12 +963,12 @@ CLSS public abstract interface !annotation jakarta.persistence.SecondaryTable
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey() value= anno 0 jakarta.persistence.ForeignKey(jakarta.persistence.ConstraintMode value=PROVIDER_DEFAULT, java.lang.String foreignKeyDefinition="", java.lang.String name="")
-meth public abstract !hasdefault jakarta.persistence.Index[] indexes() value= []
-meth public abstract !hasdefault jakarta.persistence.PrimaryKeyJoinColumn[] pkJoinColumns() value= []
-meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints() value= []
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
+meth public abstract !hasdefault jakarta.persistence.ForeignKey foreignKey()
+meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
+meth public abstract !hasdefault jakarta.persistence.PrimaryKeyJoinColumn[] pkJoinColumns()
+meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String schema()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.SecondaryTables
@@ -985,11 +982,11 @@ CLSS public abstract interface !annotation jakarta.persistence.SequenceGenerator
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int allocationSize() value= 50
-meth public abstract !hasdefault int initialValue() value= 1
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
-meth public abstract !hasdefault java.lang.String sequenceName() value= ""
+meth public abstract !hasdefault int allocationSize()
+meth public abstract !hasdefault int initialValue()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String schema()
+meth public abstract !hasdefault java.lang.String sequenceName()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.SequenceGenerators
@@ -1013,9 +1010,9 @@ CLSS public abstract interface !annotation jakarta.persistence.SqlResultSetMappi
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ColumnResult[] columns() value= []
-meth public abstract !hasdefault jakarta.persistence.ConstructorResult[] classes() value= []
-meth public abstract !hasdefault jakarta.persistence.EntityResult[] entities() value= []
+meth public abstract !hasdefault jakarta.persistence.ColumnResult[] columns()
+meth public abstract !hasdefault jakarta.persistence.ConstructorResult[] classes()
+meth public abstract !hasdefault jakarta.persistence.EntityResult[] entities()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.SqlResultSetMappings
@@ -1028,8 +1025,8 @@ CLSS public abstract interface !annotation jakarta.persistence.StoredProcedurePa
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.ParameterMode mode() value= IN
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault jakarta.persistence.ParameterMode mode()
+meth public abstract !hasdefault java.lang.String name()
 meth public abstract java.lang.Class type()
 
 CLSS public abstract interface jakarta.persistence.StoredProcedureQuery
@@ -1081,27 +1078,27 @@ CLSS public abstract interface !annotation jakarta.persistence.Table
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.persistence.Index[] indexes() value= []
-meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints() value= []
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
+meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
+meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String schema()
 
 CLSS public abstract interface !annotation jakarta.persistence.TableGenerator
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.persistence.TableGenerators)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int allocationSize() value= 50
-meth public abstract !hasdefault int initialValue() value= 0
-meth public abstract !hasdefault jakarta.persistence.Index[] indexes() value= []
-meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints() value= []
-meth public abstract !hasdefault java.lang.String catalog() value= ""
-meth public abstract !hasdefault java.lang.String pkColumnName() value= ""
-meth public abstract !hasdefault java.lang.String pkColumnValue() value= ""
-meth public abstract !hasdefault java.lang.String schema() value= ""
-meth public abstract !hasdefault java.lang.String table() value= ""
-meth public abstract !hasdefault java.lang.String valueColumnName() value= ""
+meth public abstract !hasdefault int allocationSize()
+meth public abstract !hasdefault int initialValue()
+meth public abstract !hasdefault jakarta.persistence.Index[] indexes()
+meth public abstract !hasdefault jakarta.persistence.UniqueConstraint[] uniqueConstraints()
+meth public abstract !hasdefault java.lang.String catalog()
+meth public abstract !hasdefault java.lang.String pkColumnName()
+meth public abstract !hasdefault java.lang.String pkColumnValue()
+meth public abstract !hasdefault java.lang.String schema()
+meth public abstract !hasdefault java.lang.String table()
+meth public abstract !hasdefault java.lang.String valueColumnName()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.persistence.TableGenerators
@@ -1125,8 +1122,8 @@ meth public static jakarta.persistence.TemporalType[] values()
 supr java.lang.Enum<jakarta.persistence.TemporalType>
 
 CLSS public jakarta.persistence.TransactionRequiredException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.Transient
@@ -1171,7 +1168,7 @@ CLSS public abstract interface !annotation jakarta.persistence.UniqueConstraint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault java.lang.String name()
 meth public abstract java.lang.String[] columnNames()
 
 CLSS public final !enum jakarta.persistence.ValidationMode
@@ -1796,7 +1793,7 @@ meth public abstract java.util.List<jakarta.persistence.spi.PersistenceProvider>
 meth public abstract void clearCachedProviders()
 
 CLSS public jakarta.persistence.spi.PersistenceProviderResolverHolder
-cons public <init>()
+cons public init()
 meth public static jakarta.persistence.spi.PersistenceProviderResolver getPersistenceProviderResolver()
 meth public static void setPersistenceProviderResolver(jakarta.persistence.spi.PersistenceProviderResolver)
 supr java.lang.Object
@@ -1840,7 +1837,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -1857,16 +1854,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -1880,20 +1877,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)

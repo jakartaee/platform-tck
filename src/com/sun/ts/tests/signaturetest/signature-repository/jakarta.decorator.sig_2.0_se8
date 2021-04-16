@@ -1,5 +1,5 @@
-#Signature file v4.3
-#Version 2.0_se8
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.decorator.Decorator
  anno 0 jakarta.enterprise.inject.Stereotype()

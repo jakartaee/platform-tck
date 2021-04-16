@@ -1,37 +1,20 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-#
-# Copyright (c) 2020 Oracle and/or its affiliates and others. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
-#
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.annotation.Generated
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=SOURCE)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PACKAGE, TYPE, ANNOTATION_TYPE, METHOD, CONSTRUCTOR, FIELD, LOCAL_VARIABLE, PARAMETER])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String comments() value= ""
-meth public abstract !hasdefault java.lang.String date() value= ""
+meth public abstract !hasdefault java.lang.String comments()
+meth public abstract !hasdefault java.lang.String date()
 meth public abstract java.lang.String[] value()
 
 CLSS public abstract interface !annotation jakarta.annotation.ManagedBean
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.annotation.PostConstruct
  anno 0 java.lang.annotation.Documented()
@@ -58,13 +41,13 @@ CLSS public abstract interface !annotation jakarta.annotation.Resource
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD])
 innr public final static !enum AuthenticationType
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean shareable() value= true
-meth public abstract !hasdefault jakarta.annotation.Resource$AuthenticationType authenticationType() value= CONTAINER
-meth public abstract !hasdefault java.lang.Class<?> type() value= class java.lang.Object
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String lookup() value= ""
-meth public abstract !hasdefault java.lang.String mappedName() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault boolean shareable()
+meth public abstract !hasdefault jakarta.annotation.Resource$AuthenticationType authenticationType()
+meth public abstract !hasdefault java.lang.Class<?> type()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String lookup()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public final static !enum jakarta.annotation.Resource$AuthenticationType
  outer jakarta.annotation.Resource
@@ -119,22 +102,22 @@ CLSS public abstract interface !annotation jakarta.annotation.sql.DataSourceDefi
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean transactional() value= true
-meth public abstract !hasdefault int initialPoolSize() value= -1
-meth public abstract !hasdefault int isolationLevel() value= -1
-meth public abstract !hasdefault int loginTimeout() value= 0
-meth public abstract !hasdefault int maxIdleTime() value= -1
-meth public abstract !hasdefault int maxPoolSize() value= -1
-meth public abstract !hasdefault int maxStatements() value= -1
-meth public abstract !hasdefault int minPoolSize() value= -1
-meth public abstract !hasdefault int portNumber() value= -1
-meth public abstract !hasdefault java.lang.String databaseName() value= ""
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String password() value= ""
-meth public abstract !hasdefault java.lang.String serverName() value= "localhost"
-meth public abstract !hasdefault java.lang.String url() value= ""
-meth public abstract !hasdefault java.lang.String user() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault boolean transactional()
+meth public abstract !hasdefault int initialPoolSize()
+meth public abstract !hasdefault int isolationLevel()
+meth public abstract !hasdefault int loginTimeout()
+meth public abstract !hasdefault int maxIdleTime()
+meth public abstract !hasdefault int maxPoolSize()
+meth public abstract !hasdefault int maxStatements()
+meth public abstract !hasdefault int minPoolSize()
+meth public abstract !hasdefault int portNumber()
+meth public abstract !hasdefault java.lang.String databaseName()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String password()
+meth public abstract !hasdefault java.lang.String serverName()
+meth public abstract !hasdefault java.lang.String url()
+meth public abstract !hasdefault java.lang.String user()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String className()
 meth public abstract java.lang.String name()
 
@@ -150,7 +133,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -167,7 +150,7 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)

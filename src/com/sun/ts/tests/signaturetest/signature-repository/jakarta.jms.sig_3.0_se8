@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 3.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface jakarta.jms.BytesMessage
 intf jakarta.jms.Message
@@ -88,54 +85,54 @@ CLSS public abstract interface jakarta.jms.ExceptionListener
 meth public abstract void onException(jakarta.jms.JMSException)
 
 CLSS public jakarta.jms.IllegalStateException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.IllegalStateRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidClientIDException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidClientIDRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidDestinationException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidDestinationRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidSelectorException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.InvalidSelectorRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -149,17 +146,17 @@ CLSS public abstract interface !annotation jakarta.jms.JMSConnectionFactoryDefin
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean transactional() value= true
-meth public abstract !hasdefault int maxPoolSize() value= -1
-meth public abstract !hasdefault int minPoolSize() value= -1
-meth public abstract !hasdefault java.lang.String className() value= ""
-meth public abstract !hasdefault java.lang.String clientId() value= ""
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String interfaceName() value= "jakarta.jms.ConnectionFactory"
-meth public abstract !hasdefault java.lang.String password() value= ""
-meth public abstract !hasdefault java.lang.String resourceAdapter() value= ""
-meth public abstract !hasdefault java.lang.String user() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault boolean transactional()
+meth public abstract !hasdefault int maxPoolSize()
+meth public abstract !hasdefault int minPoolSize()
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String clientId()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String interfaceName()
+meth public abstract !hasdefault java.lang.String password()
+meth public abstract !hasdefault java.lang.String resourceAdapter()
+meth public abstract !hasdefault java.lang.String user()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.jms.JMSConnectionFactoryDefinitions
@@ -234,11 +231,11 @@ CLSS public abstract interface !annotation jakarta.jms.JMSDestinationDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String className() value= ""
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String destinationName() value= ""
-meth public abstract !hasdefault java.lang.String resourceAdapter() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String destinationName()
+meth public abstract !hasdefault java.lang.String resourceAdapter()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String interfaceName()
 meth public abstract java.lang.String name()
 
@@ -249,8 +246,8 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.jms.JMSDestinationDefinition[] value()
 
 CLSS public jakarta.jms.JMSException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public java.lang.Exception getLinkedException()
 meth public java.lang.String getErrorCode()
 meth public void setLinkedException(java.lang.Exception)
@@ -315,23 +312,23 @@ meth public abstract long getTimeToLive()
 meth public abstract short getShortProperty(java.lang.String)
 
 CLSS public jakarta.jms.JMSRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 meth public java.lang.String getErrorCode()
 supr java.lang.RuntimeException
 hfds errorCode,serialVersionUID
 
 CLSS public jakarta.jms.JMSSecurityException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.JMSSecurityRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -339,7 +336,7 @@ CLSS public abstract interface !annotation jakarta.jms.JMSSessionMode
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, PARAMETER, TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault int value() value= 1
+meth public abstract !hasdefault int value()
 
 CLSS public abstract interface jakarta.jms.MapMessage
 intf jakarta.jms.Message
@@ -435,21 +432,21 @@ meth public abstract void close() throws jakarta.jms.JMSException
 meth public abstract void setMessageListener(jakarta.jms.MessageListener) throws jakarta.jms.JMSException
 
 CLSS public jakarta.jms.MessageEOFException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageFormatException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageFormatRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -457,21 +454,21 @@ CLSS public abstract interface jakarta.jms.MessageListener
 meth public abstract void onMessage(jakarta.jms.Message)
 
 CLSS public jakarta.jms.MessageNotReadableException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageNotWriteableException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageNotWriteableRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -532,7 +529,7 @@ intf jakarta.jms.MessageConsumer
 meth public abstract jakarta.jms.Queue getQueue() throws jakarta.jms.JMSException
 
 CLSS public jakarta.jms.QueueRequestor
-cons public <init>(jakarta.jms.QueueSession,jakarta.jms.Queue) throws jakarta.jms.JMSException
+cons public init(jakarta.jms.QueueSession,jakarta.jms.Queue) throws jakarta.jms.JMSException
 meth public jakarta.jms.Message request(jakarta.jms.Message) throws jakarta.jms.JMSException
 meth public void close() throws jakarta.jms.JMSException
 supr java.lang.Object
@@ -557,15 +554,15 @@ meth public abstract jakarta.jms.QueueSender createSender(jakarta.jms.Queue) thr
 meth public abstract jakarta.jms.TemporaryQueue createTemporaryQueue() throws jakarta.jms.JMSException
 
 CLSS public jakarta.jms.ResourceAllocationException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.ResourceAllocationRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -685,7 +682,7 @@ meth public abstract void publish(jakarta.jms.Topic,jakarta.jms.Message) throws 
 meth public abstract void publish(jakarta.jms.Topic,jakarta.jms.Message,int,int,long) throws jakarta.jms.JMSException
 
 CLSS public jakarta.jms.TopicRequestor
-cons public <init>(jakarta.jms.TopicSession,jakarta.jms.Topic) throws jakarta.jms.JMSException
+cons public init(jakarta.jms.TopicSession,jakarta.jms.Topic) throws jakarta.jms.JMSException
 meth public jakarta.jms.Message request(jakarta.jms.Message) throws jakarta.jms.JMSException
 meth public void close() throws jakarta.jms.JMSException
 supr java.lang.Object
@@ -708,28 +705,28 @@ meth public abstract boolean getNoLocal() throws jakarta.jms.JMSException
 meth public abstract jakarta.jms.Topic getTopic() throws jakarta.jms.JMSException
 
 CLSS public jakarta.jms.TransactionInProgressException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.TransactionInProgressRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.TransactionRolledBackException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.TransactionRolledBackRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr jakarta.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -798,11 +795,11 @@ CLSS public abstract interface java.lang.AutoCloseable
 meth public abstract void close() throws java.lang.Exception
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -813,7 +810,7 @@ CLSS public abstract interface !annotation java.lang.FunctionalInterface
 intf java.lang.annotation.Annotation
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -831,20 +828,20 @@ CLSS public abstract interface java.lang.Runnable
 meth public abstract void run()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)

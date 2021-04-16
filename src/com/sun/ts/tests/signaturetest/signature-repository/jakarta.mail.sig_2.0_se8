@@ -1,8 +1,5 @@
-#Signature file v4.3
-#Version 2.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface jakarta.activation.DataSource
 meth public abstract java.io.InputStream getInputStream() throws java.io.IOException
@@ -11,7 +8,7 @@ meth public abstract java.lang.String getContentType()
 meth public abstract java.lang.String getName()
 
 CLSS public abstract jakarta.mail.Address
-cons public <init>()
+cons public init()
 intf java.io.Serializable
 meth public abstract boolean equals(java.lang.Object)
 meth public abstract java.lang.String getType()
@@ -20,14 +17,14 @@ supr java.lang.Object
 hfds serialVersionUID
 
 CLSS public jakarta.mail.AuthenticationFailedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.Authenticator
-cons public <init>()
+cons public init()
 meth protected final int getRequestingPort()
 meth protected final java.lang.String getDefaultUserName()
 meth protected final java.lang.String getRequestingPrompt()
@@ -38,7 +35,7 @@ supr java.lang.Object
 hfds requestingPort,requestingPrompt,requestingProtocol,requestingSite,requestingUserName
 
 CLSS public abstract jakarta.mail.BodyPart
-cons public <init>()
+cons public init()
 fld protected jakarta.mail.Multipart parent
 intf jakarta.mail.Part
 meth public jakarta.mail.Multipart getParent()
@@ -48,7 +45,7 @@ CLSS public abstract interface jakarta.mail.EncodingAware
 meth public abstract java.lang.String getEncoding()
 
 CLSS public jakarta.mail.FetchProfile
-cons public <init>()
+cons public init()
 innr public static Item
 meth public boolean contains(jakarta.mail.FetchProfile$Item)
 meth public boolean contains(java.lang.String)
@@ -61,7 +58,7 @@ hfds headers,specials
 
 CLSS public static jakarta.mail.FetchProfile$Item
  outer jakarta.mail.FetchProfile
-cons protected <init>(java.lang.String)
+cons protected init(java.lang.String)
 fld public final static jakarta.mail.FetchProfile$Item CONTENT_INFO
 fld public final static jakarta.mail.FetchProfile$Item ENVELOPE
 fld public final static jakarta.mail.FetchProfile$Item FLAGS
@@ -71,10 +68,10 @@ supr java.lang.Object
 hfds name
 
 CLSS public jakarta.mail.Flags
-cons public <init>()
-cons public <init>(jakarta.mail.Flags$Flag)
-cons public <init>(jakarta.mail.Flags)
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(jakarta.mail.Flags$Flag)
+cons public init(jakarta.mail.Flags)
+cons public init(java.lang.String)
 innr public final static Flag
 intf java.io.Serializable
 intf java.lang.Cloneable
@@ -112,7 +109,7 @@ supr java.lang.Object
 hfds bit
 
 CLSS public abstract jakarta.mail.Folder
-cons protected <init>(jakarta.mail.Store)
+cons protected init(jakarta.mail.Store)
 fld protected int mode
 fld protected jakarta.mail.Store store
 fld public final static int HOLDS_FOLDERS = 2
@@ -182,25 +179,25 @@ supr java.lang.Object
 hfds connectionListeners,folderListeners,messageChangedListeners,messageCountListeners,q
 
 CLSS public jakarta.mail.FolderClosedException
-cons public <init>(jakarta.mail.Folder)
-cons public <init>(jakarta.mail.Folder,java.lang.String)
-cons public <init>(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
+cons public init(jakarta.mail.Folder)
+cons public init(jakarta.mail.Folder,java.lang.String)
+cons public init(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
 meth public jakarta.mail.Folder getFolder()
 supr jakarta.mail.MessagingException
 hfds folder,serialVersionUID
 
 CLSS public jakarta.mail.FolderNotFoundException
-cons public <init>()
-cons public <init>(jakarta.mail.Folder)
-cons public <init>(jakarta.mail.Folder,java.lang.String)
-cons public <init>(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
-cons public <init>(java.lang.String,jakarta.mail.Folder)
+cons public init()
+cons public init(jakarta.mail.Folder)
+cons public init(jakarta.mail.Folder,java.lang.String)
+cons public init(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
+cons public init(java.lang.String,jakarta.mail.Folder)
 meth public jakarta.mail.Folder getFolder()
 supr jakarta.mail.MessagingException
 hfds folder,serialVersionUID
 
 CLSS public jakarta.mail.Header
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 fld protected java.lang.String name
 fld protected java.lang.String value
 meth public java.lang.String getName()
@@ -208,9 +205,9 @@ meth public java.lang.String getValue()
 supr java.lang.Object
 
 CLSS public jakarta.mail.IllegalWriteException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
@@ -219,14 +216,14 @@ CLSS public abstract interface !annotation jakarta.mail.MailSessionDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String description() value= ""
-meth public abstract !hasdefault java.lang.String from() value= ""
-meth public abstract !hasdefault java.lang.String host() value= ""
-meth public abstract !hasdefault java.lang.String password() value= ""
-meth public abstract !hasdefault java.lang.String storeProtocol() value= ""
-meth public abstract !hasdefault java.lang.String transportProtocol() value= ""
-meth public abstract !hasdefault java.lang.String user() value= ""
-meth public abstract !hasdefault java.lang.String[] properties() value= []
+meth public abstract !hasdefault java.lang.String description()
+meth public abstract !hasdefault java.lang.String from()
+meth public abstract !hasdefault java.lang.String host()
+meth public abstract !hasdefault java.lang.String password()
+meth public abstract !hasdefault java.lang.String storeProtocol()
+meth public abstract !hasdefault java.lang.String transportProtocol()
+meth public abstract !hasdefault java.lang.String user()
+meth public abstract !hasdefault java.lang.String[] properties()
 meth public abstract java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.mail.MailSessionDefinitions
@@ -236,9 +233,9 @@ intf java.lang.annotation.Annotation
 meth public abstract jakarta.mail.MailSessionDefinition[] value()
 
 CLSS public abstract jakarta.mail.Message
-cons protected <init>()
-cons protected <init>(jakarta.mail.Folder,int)
-cons protected <init>(jakarta.mail.Session)
+cons protected init()
+cons protected init(jakarta.mail.Folder,int)
+cons protected init(jakarta.mail.Session)
 fld protected boolean expunged
 fld protected int msgnum
 fld protected jakarta.mail.Folder folder
@@ -279,7 +276,7 @@ supr java.lang.Object
 
 CLSS public static jakarta.mail.Message$RecipientType
  outer jakarta.mail.Message
-cons protected <init>(java.lang.String)
+cons protected init(java.lang.String)
 fld protected java.lang.String type
 fld public final static jakarta.mail.Message$RecipientType BCC
 fld public final static jakarta.mail.Message$RecipientType CC
@@ -294,7 +291,7 @@ CLSS public abstract interface jakarta.mail.MessageAware
 meth public abstract jakarta.mail.MessageContext getMessageContext()
 
 CLSS public jakarta.mail.MessageContext
-cons public <init>(jakarta.mail.Part)
+cons public init(jakarta.mail.Part)
 meth public jakarta.mail.Message getMessage()
 meth public jakarta.mail.Part getPart()
 meth public jakarta.mail.Session getSession()
@@ -302,16 +299,16 @@ supr java.lang.Object
 hfds part
 
 CLSS public jakarta.mail.MessageRemovedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public jakarta.mail.MessagingException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 meth public boolean setNextException(java.lang.Exception)
 meth public java.lang.Exception getNextException()
 meth public java.lang.String toString()
@@ -320,14 +317,14 @@ supr java.lang.Exception
 hfds next,serialVersionUID
 
 CLSS public jakarta.mail.MethodNotSupportedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.Multipart
-cons protected <init>()
+cons protected init()
 fld protected jakarta.mail.Part parent
 fld protected java.lang.String contentType
 fld protected java.util.Vector<jakarta.mail.BodyPart> parts
@@ -350,9 +347,9 @@ meth public abstract int getCount()
 meth public abstract jakarta.mail.BodyPart getBodyPart(int) throws jakarta.mail.MessagingException
 
 CLSS public jakarta.mail.NoSuchProviderException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
@@ -386,14 +383,14 @@ meth public abstract void setText(java.lang.String) throws jakarta.mail.Messagin
 meth public abstract void writeTo(java.io.OutputStream) throws jakarta.mail.MessagingException,java.io.IOException
 
 CLSS public final jakarta.mail.PasswordAuthentication
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public java.lang.String getPassword()
 meth public java.lang.String getUserName()
 supr java.lang.Object
 hfds password,userName
 
 CLSS public jakarta.mail.Provider
-cons public <init>(jakarta.mail.Provider$Type,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+cons public init(jakarta.mail.Provider$Type,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 innr public static Type
 meth public jakarta.mail.Provider$Type getType()
 meth public java.lang.String getClassName()
@@ -413,7 +410,7 @@ supr java.lang.Object
 hfds type
 
 CLSS public jakarta.mail.Quota
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 fld public jakarta.mail.Quota$Resource[] resources
 fld public java.lang.String quotaRoot
 innr public static Resource
@@ -422,7 +419,7 @@ supr java.lang.Object
 
 CLSS public static jakarta.mail.Quota$Resource
  outer jakarta.mail.Quota
-cons public <init>(java.lang.String,long,long)
+cons public init(java.lang.String,long,long)
 fld public java.lang.String name
 fld public long limit
 fld public long usage
@@ -433,18 +430,18 @@ meth public abstract jakarta.mail.Quota[] getQuota(java.lang.String) throws jaka
 meth public abstract void setQuota(jakarta.mail.Quota) throws jakarta.mail.MessagingException
 
 CLSS public jakarta.mail.ReadOnlyFolderException
-cons public <init>(jakarta.mail.Folder)
-cons public <init>(jakarta.mail.Folder,java.lang.String)
-cons public <init>(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
+cons public init(jakarta.mail.Folder)
+cons public init(jakarta.mail.Folder,java.lang.String)
+cons public init(jakarta.mail.Folder,java.lang.String,java.lang.Exception)
 meth public jakarta.mail.Folder getFolder()
 supr jakarta.mail.MessagingException
 hfds folder,serialVersionUID
 
 CLSS public jakarta.mail.SendFailedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
-cons public <init>(java.lang.String,java.lang.Exception,jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Address[])
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
+cons public init(java.lang.String,java.lang.Exception,jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Address[])
 fld protected jakarta.mail.Address[] invalid
 fld protected jakarta.mail.Address[] validSent
 fld protected jakarta.mail.Address[] validUnsent
@@ -455,7 +452,7 @@ supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.Service
-cons protected <init>(jakarta.mail.Session,jakarta.mail.URLName)
+cons protected init(jakarta.mail.Session,jakarta.mail.URLName)
 fld protected boolean debug
 fld protected jakarta.mail.Session session
 fld protected volatile jakarta.mail.URLName url
@@ -512,7 +509,7 @@ supr java.lang.Object
 hfds addressMap,authTable,authenticator,confDir,debug,defaultSession,logger,out,props,providers,providersByClassName,providersByProtocol,q
 
 CLSS public abstract jakarta.mail.Store
-cons protected <init>(jakarta.mail.Session,jakarta.mail.URLName)
+cons protected init(jakarta.mail.Session,jakarta.mail.URLName)
 meth protected void notifyFolderListeners(int,jakarta.mail.Folder)
 meth protected void notifyFolderRenamedListeners(jakarta.mail.Folder,jakarta.mail.Folder)
 meth protected void notifyStoreListeners(int,java.lang.String)
@@ -530,15 +527,15 @@ supr jakarta.mail.Service
 hfds folderListeners,storeListeners
 
 CLSS public jakarta.mail.StoreClosedException
-cons public <init>(jakarta.mail.Store)
-cons public <init>(jakarta.mail.Store,java.lang.String)
-cons public <init>(jakarta.mail.Store,java.lang.String,java.lang.Exception)
+cons public init(jakarta.mail.Store)
+cons public init(jakarta.mail.Store,java.lang.String)
+cons public init(jakarta.mail.Store,java.lang.String,java.lang.Exception)
 meth public jakarta.mail.Store getStore()
 supr jakarta.mail.MessagingException
 hfds serialVersionUID,store
 
 CLSS public abstract jakarta.mail.Transport
-cons public <init>(jakarta.mail.Session,jakarta.mail.URLName)
+cons public init(jakarta.mail.Session,jakarta.mail.URLName)
 meth protected void notifyTransportListeners(int,jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Message)
 meth public abstract void sendMessage(jakarta.mail.Message,jakarta.mail.Address[]) throws jakarta.mail.MessagingException
 meth public static void send(jakarta.mail.Message) throws jakarta.mail.MessagingException
@@ -563,14 +560,14 @@ meth public abstract long getUIDValidity() throws jakarta.mail.MessagingExceptio
 
 CLSS public static jakarta.mail.UIDFolder$FetchProfileItem
  outer jakarta.mail.UIDFolder
-cons protected <init>(java.lang.String)
+cons protected init(java.lang.String)
 fld public final static jakarta.mail.UIDFolder$FetchProfileItem UID
 supr jakarta.mail.FetchProfile$Item
 
 CLSS public jakarta.mail.URLName
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(java.net.URL)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.net.URL)
 fld protected java.lang.String fullURL
 meth protected void parseString(java.lang.String)
 meth public boolean equals(java.lang.Object)
@@ -588,7 +585,7 @@ supr java.lang.Object
 hfds caseDiff,doEncode,dontNeedEncoding,file,hashCode,host,hostAddress,hostAddressKnown,password,port,protocol,ref,username
 
 CLSS public abstract jakarta.mail.event.ConnectionAdapter
-cons public <init>()
+cons public init()
 intf jakarta.mail.event.ConnectionListener
 meth public void closed(jakarta.mail.event.ConnectionEvent)
 meth public void disconnected(jakarta.mail.event.ConnectionEvent)
@@ -596,7 +593,7 @@ meth public void opened(jakarta.mail.event.ConnectionEvent)
 supr java.lang.Object
 
 CLSS public jakarta.mail.event.ConnectionEvent
-cons public <init>(java.lang.Object,int)
+cons public init(java.lang.Object,int)
 fld protected int type
 fld public final static int CLOSED = 3
 fld public final static int DISCONNECTED = 2
@@ -613,7 +610,7 @@ meth public abstract void disconnected(jakarta.mail.event.ConnectionEvent)
 meth public abstract void opened(jakarta.mail.event.ConnectionEvent)
 
 CLSS public abstract jakarta.mail.event.FolderAdapter
-cons public <init>()
+cons public init()
 intf jakarta.mail.event.FolderListener
 meth public void folderCreated(jakarta.mail.event.FolderEvent)
 meth public void folderDeleted(jakarta.mail.event.FolderEvent)
@@ -621,8 +618,8 @@ meth public void folderRenamed(jakarta.mail.event.FolderEvent)
 supr java.lang.Object
 
 CLSS public jakarta.mail.event.FolderEvent
-cons public <init>(java.lang.Object,jakarta.mail.Folder,int)
-cons public <init>(java.lang.Object,jakarta.mail.Folder,jakarta.mail.Folder,int)
+cons public init(java.lang.Object,jakarta.mail.Folder,int)
+cons public init(java.lang.Object,jakarta.mail.Folder,jakarta.mail.Folder,int)
 fld protected int type
 fld protected jakarta.mail.Folder folder
 fld protected jakarta.mail.Folder newFolder
@@ -643,13 +640,13 @@ meth public abstract void folderDeleted(jakarta.mail.event.FolderEvent)
 meth public abstract void folderRenamed(jakarta.mail.event.FolderEvent)
 
 CLSS public abstract jakarta.mail.event.MailEvent
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 meth public abstract void dispatch(java.lang.Object)
 supr java.util.EventObject
 hfds serialVersionUID
 
 CLSS public jakarta.mail.event.MessageChangedEvent
-cons public <init>(java.lang.Object,int,jakarta.mail.Message)
+cons public init(java.lang.Object,int,jakarta.mail.Message)
 fld protected int type
 fld protected jakarta.mail.Message msg
 fld public final static int ENVELOPE_CHANGED = 2
@@ -665,14 +662,14 @@ intf java.util.EventListener
 meth public abstract void messageChanged(jakarta.mail.event.MessageChangedEvent)
 
 CLSS public abstract jakarta.mail.event.MessageCountAdapter
-cons public <init>()
+cons public init()
 intf jakarta.mail.event.MessageCountListener
 meth public void messagesAdded(jakarta.mail.event.MessageCountEvent)
 meth public void messagesRemoved(jakarta.mail.event.MessageCountEvent)
 supr java.lang.Object
 
 CLSS public jakarta.mail.event.MessageCountEvent
-cons public <init>(jakarta.mail.Folder,int,boolean,jakarta.mail.Message[])
+cons public init(jakarta.mail.Folder,int,boolean,jakarta.mail.Message[])
 fld protected boolean removed
 fld protected int type
 fld protected jakarta.mail.Message[] msgs
@@ -691,7 +688,7 @@ meth public abstract void messagesAdded(jakarta.mail.event.MessageCountEvent)
 meth public abstract void messagesRemoved(jakarta.mail.event.MessageCountEvent)
 
 CLSS public jakarta.mail.event.StoreEvent
-cons public <init>(jakarta.mail.Store,int,java.lang.String)
+cons public init(jakarta.mail.Store,int,java.lang.String)
 fld protected int type
 fld protected java.lang.String message
 fld public final static int ALERT = 1
@@ -707,7 +704,7 @@ intf java.util.EventListener
 meth public abstract void notification(jakarta.mail.event.StoreEvent)
 
 CLSS public abstract jakarta.mail.event.TransportAdapter
-cons public <init>()
+cons public init()
 intf jakarta.mail.event.TransportListener
 meth public void messageDelivered(jakarta.mail.event.TransportEvent)
 meth public void messageNotDelivered(jakarta.mail.event.TransportEvent)
@@ -715,7 +712,7 @@ meth public void messagePartiallyDelivered(jakarta.mail.event.TransportEvent)
 supr java.lang.Object
 
 CLSS public jakarta.mail.event.TransportEvent
-cons public <init>(jakarta.mail.Transport,int,jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Message)
+cons public init(jakarta.mail.Transport,int,jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Address[],jakarta.mail.Message)
 fld protected int type
 fld protected jakarta.mail.Address[] invalid
 fld protected jakarta.mail.Address[] validSent
@@ -740,10 +737,10 @@ meth public abstract void messageNotDelivered(jakarta.mail.event.TransportEvent)
 meth public abstract void messagePartiallyDelivered(jakarta.mail.event.TransportEvent)
 
 CLSS public jakarta.mail.internet.AddressException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,int)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,int)
 fld protected int pos
 fld protected java.lang.String ref
 meth public int getPos()
@@ -753,9 +750,9 @@ supr jakarta.mail.internet.ParseException
 hfds serialVersionUID
 
 CLSS public jakarta.mail.internet.ContentDisposition
-cons public <init>()
-cons public <init>(java.lang.String) throws jakarta.mail.internet.ParseException
-cons public <init>(java.lang.String,jakarta.mail.internet.ParameterList)
+cons public init()
+cons public init(java.lang.String) throws jakarta.mail.internet.ParseException
+cons public init(java.lang.String,jakarta.mail.internet.ParameterList)
 meth public jakarta.mail.internet.ParameterList getParameterList()
 meth public java.lang.String getDisposition()
 meth public java.lang.String getParameter(java.lang.String)
@@ -767,9 +764,9 @@ supr java.lang.Object
 hfds contentDispositionStrict,disposition,list
 
 CLSS public jakarta.mail.internet.ContentType
-cons public <init>()
-cons public <init>(java.lang.String) throws jakarta.mail.internet.ParseException
-cons public <init>(java.lang.String,java.lang.String,jakarta.mail.internet.ParameterList)
+cons public init()
+cons public init(java.lang.String) throws jakarta.mail.internet.ParseException
+cons public init(java.lang.String,java.lang.String,jakarta.mail.internet.ParameterList)
 meth public boolean match(jakarta.mail.internet.ContentType)
 meth public boolean match(java.lang.String)
 meth public jakarta.mail.internet.ParameterList getParameterList()
@@ -786,9 +783,9 @@ supr java.lang.Object
 hfds list,primaryType,subType
 
 CLSS public jakarta.mail.internet.HeaderTokenizer
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,boolean)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,boolean)
 fld public final static java.lang.String MIME = "()<>@,;:\u005c\u0022\u0009 []/?="
 fld public final static java.lang.String RFC822 = "()<>@,;:\u005c\u0022\u0009 .[]"
 innr public static Token
@@ -802,7 +799,7 @@ hfds EOFToken,currentPos,delimiters,maxPos,nextPos,peekPos,skipComments,string
 
 CLSS public static jakarta.mail.internet.HeaderTokenizer$Token
  outer jakarta.mail.internet.HeaderTokenizer
-cons public <init>(int,java.lang.String)
+cons public init(int,java.lang.String)
 fld public final static int ATOM = -1
 fld public final static int COMMENT = -3
 fld public final static int EOF = -4
@@ -813,11 +810,11 @@ supr java.lang.Object
 hfds type,value
 
 CLSS public jakarta.mail.internet.InternetAddress
-cons public <init>()
-cons public <init>(java.lang.String) throws jakarta.mail.internet.AddressException
-cons public <init>(java.lang.String,boolean) throws jakarta.mail.internet.AddressException
-cons public <init>(java.lang.String,java.lang.String) throws java.io.UnsupportedEncodingException
-cons public <init>(java.lang.String,java.lang.String,java.lang.String) throws java.io.UnsupportedEncodingException
+cons public init()
+cons public init(java.lang.String) throws jakarta.mail.internet.AddressException
+cons public init(java.lang.String,boolean) throws jakarta.mail.internet.AddressException
+cons public init(java.lang.String,java.lang.String) throws java.io.UnsupportedEncodingException
+cons public init(java.lang.String,java.lang.String,java.lang.String) throws java.io.UnsupportedEncodingException
 fld protected java.lang.String address
 fld protected java.lang.String encodedPersonal
 fld protected java.lang.String personal
@@ -848,9 +845,9 @@ supr jakarta.mail.Address
 hfds allowUtf8,ignoreBogusGroupName,rfc822phrase,serialVersionUID,specialsNoDot,specialsNoDotNoAt,useCanonicalHostName
 
 CLSS public jakarta.mail.internet.InternetHeaders
-cons public <init>()
-cons public <init>(java.io.InputStream) throws jakarta.mail.MessagingException
-cons public <init>(java.io.InputStream,boolean) throws jakarta.mail.MessagingException
+cons public init()
+cons public init(java.io.InputStream) throws jakarta.mail.MessagingException
+cons public init(java.io.InputStream,boolean) throws jakarta.mail.MessagingException
 fld protected java.util.List<jakarta.mail.internet.InternetHeaders$InternetHeader> headers
 innr protected final static InternetHeader
 meth public java.lang.String getHeader(java.lang.String,java.lang.String)
@@ -873,14 +870,14 @@ hcls MatchEnum,MatchHeaderEnum,MatchStringEnum
 
 CLSS protected final static jakarta.mail.internet.InternetHeaders$InternetHeader
  outer jakarta.mail.internet.InternetHeaders
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public java.lang.String getValue()
 supr jakarta.mail.Header
 hfds line
 
 CLSS public jakarta.mail.internet.MailDateFormat
-cons public <init>()
+cons public init()
 meth public jakarta.mail.internet.MailDateFormat clone()
 meth public java.lang.StringBuffer format(java.util.Date,java.lang.StringBuffer,java.text.FieldPosition)
 meth public java.util.Date get2DigitYearStart()
@@ -896,9 +893,9 @@ hfds LEAP_SECOND,LOGGER,PATTERN,UNKNOWN_DAY_NAME,UTC,serialVersionUID
 hcls AbstractDateParser,Rfc2822LenientParser,Rfc2822StrictParser
 
 CLSS public jakarta.mail.internet.MimeBodyPart
-cons public <init>()
-cons public <init>(jakarta.mail.internet.InternetHeaders,byte[]) throws jakarta.mail.MessagingException
-cons public <init>(java.io.InputStream) throws jakarta.mail.MessagingException
+cons public init()
+cons public init(jakarta.mail.internet.InternetHeaders,byte[]) throws jakarta.mail.MessagingException
+cons public init(java.io.InputStream) throws jakarta.mail.MessagingException
 fld protected byte[] content
 fld protected jakarta.activation.DataHandler dh
 fld protected jakarta.mail.internet.InternetHeaders headers
@@ -959,12 +956,12 @@ hfds allowutf8,cacheMultipart,decodeFileName,encodeFileName,ignoreMultipartEncod
 hcls EncodedFileDataSource,MimePartDataHandler
 
 CLSS public jakarta.mail.internet.MimeMessage
-cons protected <init>(jakarta.mail.Folder,int)
-cons protected <init>(jakarta.mail.Folder,jakarta.mail.internet.InternetHeaders,byte[],int) throws jakarta.mail.MessagingException
-cons protected <init>(jakarta.mail.Folder,java.io.InputStream,int) throws jakarta.mail.MessagingException
-cons public <init>(jakarta.mail.Session)
-cons public <init>(jakarta.mail.Session,java.io.InputStream) throws jakarta.mail.MessagingException
-cons public <init>(jakarta.mail.internet.MimeMessage) throws jakarta.mail.MessagingException
+cons protected init(jakarta.mail.Folder,int)
+cons protected init(jakarta.mail.Folder,jakarta.mail.internet.InternetHeaders,byte[],int) throws jakarta.mail.MessagingException
+cons protected init(jakarta.mail.Folder,java.io.InputStream,int) throws jakarta.mail.MessagingException
+cons public init(jakarta.mail.Session)
+cons public init(jakarta.mail.Session,java.io.InputStream) throws jakarta.mail.MessagingException
+cons public init(jakarta.mail.internet.MimeMessage) throws jakarta.mail.MessagingException
 fld protected boolean modified
 fld protected boolean saved
 fld protected byte[] content
@@ -1056,18 +1053,18 @@ hfds allowutf8,answeredFlag,mailDateFormat,strict
 
 CLSS public static jakarta.mail.internet.MimeMessage$RecipientType
  outer jakarta.mail.internet.MimeMessage
-cons protected <init>(java.lang.String)
+cons protected init(java.lang.String)
 fld public final static jakarta.mail.internet.MimeMessage$RecipientType NEWSGROUPS
 meth protected java.lang.Object readResolve() throws java.io.ObjectStreamException
 supr jakarta.mail.Message$RecipientType
 hfds serialVersionUID
 
 CLSS public jakarta.mail.internet.MimeMultipart
-cons public !varargs <init>(jakarta.mail.BodyPart[]) throws jakarta.mail.MessagingException
-cons public !varargs <init>(java.lang.String,jakarta.mail.BodyPart[]) throws jakarta.mail.MessagingException
-cons public <init>()
-cons public <init>(jakarta.activation.DataSource) throws jakarta.mail.MessagingException
-cons public <init>(java.lang.String)
+cons public !varargs init(jakarta.mail.BodyPart[]) throws jakarta.mail.MessagingException
+cons public !varargs init(java.lang.String,jakarta.mail.BodyPart[]) throws jakarta.mail.MessagingException
+cons public init()
+cons public init(jakarta.activation.DataSource) throws jakarta.mail.MessagingException
+cons public init(java.lang.String)
 fld protected boolean allowEmpty
 fld protected boolean complete
 fld protected boolean ignoreExistingBoundaryParameter
@@ -1114,7 +1111,7 @@ meth public abstract void setText(java.lang.String,java.lang.String) throws jaka
 meth public abstract void setText(java.lang.String,java.lang.String,java.lang.String) throws jakarta.mail.MessagingException
 
 CLSS public jakarta.mail.internet.MimePartDataSource
-cons public <init>(jakarta.mail.internet.MimePart)
+cons public init(jakarta.mail.internet.MimePart)
 fld protected jakarta.mail.internet.MimePart part
 intf jakarta.activation.DataSource
 intf jakarta.mail.MessageAware
@@ -1149,9 +1146,9 @@ supr java.lang.Object
 hfds ALL_ASCII,MOSTLY_ASCII,MOSTLY_NONASCII,allowUtf8,decodeStrict,defaultJavaCharset,defaultMIMECharset,encodeEolStrict,foldEncodedWords,foldText,ignoreUnknownEncoding,java2mime,mime2java,nonAsciiCharsetMap
 
 CLSS public jakarta.mail.internet.NewsAddress
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 fld protected java.lang.String host
 fld protected java.lang.String newsgroup
 meth public boolean equals(java.lang.Object)
@@ -1168,8 +1165,8 @@ supr jakarta.mail.Address
 hfds serialVersionUID
 
 CLSS public jakarta.mail.internet.ParameterList
-cons public <init>()
-cons public <init>(java.lang.String) throws jakarta.mail.internet.ParseException
+cons public init()
+cons public init(java.lang.String) throws jakarta.mail.internet.ParseException
 meth public int size()
 meth public java.lang.String get(java.lang.String)
 meth public java.lang.String toString()
@@ -1184,13 +1181,13 @@ hfds applehack,decodeParameters,decodeParametersStrict,encodeParameters,hex,last
 hcls LiteralValue,MultiValue,ParamEnum,ToStringBuffer,Value
 
 CLSS public jakarta.mail.internet.ParseException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public jakarta.mail.internet.PreencodedMimeBodyPart
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 meth protected void updateHeaders() throws jakarta.mail.MessagingException
 meth public java.lang.String getEncoding() throws jakarta.mail.MessagingException
 meth public void writeTo(java.io.OutputStream) throws jakarta.mail.MessagingException,java.io.IOException
@@ -1202,14 +1199,14 @@ meth public abstract java.io.InputStream newStream(long,long)
 meth public abstract long getPosition()
 
 CLSS public abstract jakarta.mail.search.AddressStringTerm
-cons protected <init>(java.lang.String)
+cons protected init(java.lang.String)
 meth protected boolean match(jakarta.mail.Address)
 meth public boolean equals(java.lang.Object)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.search.AddressTerm
-cons protected <init>(jakarta.mail.Address)
+cons protected init(jakarta.mail.Address)
 fld protected jakarta.mail.Address address
 meth protected boolean match(jakarta.mail.Address)
 meth public boolean equals(java.lang.Object)
@@ -1219,8 +1216,8 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.AndTerm
-cons public <init>(jakarta.mail.search.SearchTerm,jakarta.mail.search.SearchTerm)
-cons public <init>(jakarta.mail.search.SearchTerm[])
+cons public init(jakarta.mail.search.SearchTerm,jakarta.mail.search.SearchTerm)
+cons public init(jakarta.mail.search.SearchTerm[])
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1229,14 +1226,14 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID,terms
 
 CLSS public final jakarta.mail.search.BodyTerm
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.search.ComparisonTerm
-cons public <init>()
+cons public init()
 fld protected int comparison
 fld public final static int EQ = 3
 fld public final static int GE = 6
@@ -1250,7 +1247,7 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.search.DateTerm
-cons protected <init>(int,java.util.Date)
+cons protected init(int,java.util.Date)
 fld protected java.util.Date date
 meth protected boolean match(java.util.Date)
 meth public boolean equals(java.lang.Object)
@@ -1261,7 +1258,7 @@ supr jakarta.mail.search.ComparisonTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.FlagTerm
-cons public <init>(jakarta.mail.Flags,boolean)
+cons public init(jakarta.mail.Flags,boolean)
 meth public boolean equals(java.lang.Object)
 meth public boolean getTestSet()
 meth public boolean match(jakarta.mail.Message)
@@ -1271,21 +1268,21 @@ supr jakarta.mail.search.SearchTerm
 hfds flags,serialVersionUID,set
 
 CLSS public final jakarta.mail.search.FromStringTerm
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.AddressStringTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.FromTerm
-cons public <init>(jakarta.mail.Address)
+cons public init(jakarta.mail.Address)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.AddressTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.HeaderTerm
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1294,7 +1291,7 @@ supr jakarta.mail.search.StringTerm
 hfds headerName,serialVersionUID
 
 CLSS public abstract jakarta.mail.search.IntegerComparisonTerm
-cons protected <init>(int,int)
+cons protected init(int,int)
 fld protected int number
 meth protected boolean match(int)
 meth public boolean equals(java.lang.Object)
@@ -1305,21 +1302,21 @@ supr jakarta.mail.search.ComparisonTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.MessageIDTerm
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.MessageNumberTerm
-cons public <init>(int)
+cons public init(int)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.IntegerComparisonTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.NotTerm
-cons public <init>(jakarta.mail.search.SearchTerm)
+cons public init(jakarta.mail.search.SearchTerm)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1328,8 +1325,8 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID,term
 
 CLSS public final jakarta.mail.search.OrTerm
-cons public <init>(jakarta.mail.search.SearchTerm,jakarta.mail.search.SearchTerm)
-cons public <init>(jakarta.mail.search.SearchTerm[])
+cons public init(jakarta.mail.search.SearchTerm,jakarta.mail.search.SearchTerm)
+cons public init(jakarta.mail.search.SearchTerm[])
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1338,14 +1335,14 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID,terms
 
 CLSS public final jakarta.mail.search.ReceivedDateTerm
-cons public <init>(int,java.util.Date)
+cons public init(int,java.util.Date)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.DateTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.RecipientStringTerm
-cons public <init>(jakarta.mail.Message$RecipientType,java.lang.String)
+cons public init(jakarta.mail.Message$RecipientType,java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1354,7 +1351,7 @@ supr jakarta.mail.search.AddressStringTerm
 hfds serialVersionUID,type
 
 CLSS public final jakarta.mail.search.RecipientTerm
-cons public <init>(jakarta.mail.Message$RecipientType,jakarta.mail.Address)
+cons public init(jakarta.mail.Message$RecipientType,jakarta.mail.Address)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 meth public int hashCode()
@@ -1363,35 +1360,35 @@ supr jakarta.mail.search.AddressTerm
 hfds serialVersionUID,type
 
 CLSS public jakarta.mail.search.SearchException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr jakarta.mail.MessagingException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.search.SearchTerm
-cons public <init>()
+cons public init()
 intf java.io.Serializable
 meth public abstract boolean match(jakarta.mail.Message)
 supr java.lang.Object
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.SentDateTerm
-cons public <init>(int,java.util.Date)
+cons public init(int,java.util.Date)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.DateTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.SizeTerm
-cons public <init>(int,int)
+cons public init(int,int)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.IntegerComparisonTerm
 hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.search.StringTerm
-cons protected <init>(java.lang.String)
-cons protected <init>(java.lang.String,boolean)
+cons protected init(java.lang.String)
+cons protected init(java.lang.String,boolean)
 fld protected boolean ignoreCase
 fld protected java.lang.String pattern
 meth protected boolean match(java.lang.String)
@@ -1403,16 +1400,16 @@ supr jakarta.mail.search.SearchTerm
 hfds serialVersionUID
 
 CLSS public final jakarta.mail.search.SubjectTerm
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
 CLSS public jakarta.mail.util.ByteArrayDataSource
-cons public <init>(byte[],java.lang.String)
-cons public <init>(java.io.InputStream,java.lang.String) throws java.io.IOException
-cons public <init>(java.lang.String,java.lang.String) throws java.io.IOException
+cons public init(byte[],java.lang.String)
+cons public init(java.io.InputStream,java.lang.String) throws java.io.IOException
+cons public init(java.lang.String,java.lang.String) throws java.io.IOException
 intf jakarta.activation.DataSource
 meth public java.io.InputStream getInputStream() throws java.io.IOException
 meth public java.io.OutputStream getOutputStream() throws java.io.IOException
@@ -1424,8 +1421,8 @@ hfds data,len,name,type
 hcls DSByteArrayOutputStream
 
 CLSS public jakarta.mail.util.SharedByteArrayInputStream
-cons public <init>(byte[])
-cons public <init>(byte[],int,int)
+cons public init(byte[])
+cons public init(byte[],int,int)
 fld protected int start
 intf jakarta.mail.internet.SharedInputStream
 meth public java.io.InputStream newStream(long,long)
@@ -1433,10 +1430,10 @@ meth public long getPosition()
 supr java.io.ByteArrayInputStream
 
 CLSS public jakarta.mail.util.SharedFileInputStream
-cons public <init>(java.io.File) throws java.io.IOException
-cons public <init>(java.io.File,int) throws java.io.IOException
-cons public <init>(java.lang.String) throws java.io.IOException
-cons public <init>(java.lang.String,int) throws java.io.IOException
+cons public init(java.io.File) throws java.io.IOException
+cons public init(java.io.File,int) throws java.io.IOException
+cons public init(java.lang.String) throws java.io.IOException
+cons public init(java.lang.String,int) throws java.io.IOException
 fld protected int bufsize
 fld protected java.io.RandomAccessFile in
 fld protected long bufpos
@@ -1459,8 +1456,8 @@ hfds defaultBufferSize,master,sf
 hcls SharedFile
 
 CLSS public java.io.BufferedInputStream
-cons public <init>(java.io.InputStream)
-cons public <init>(java.io.InputStream,int)
+cons public init(java.io.InputStream)
+cons public init(java.io.InputStream,int)
 fld protected int count
 fld protected int marklimit
 fld protected int markpos
@@ -1478,8 +1475,8 @@ supr java.io.FilterInputStream
 hfds DEFAULT_BUFFER_SIZE,MAX_BUFFER_SIZE,bufUpdater
 
 CLSS public java.io.ByteArrayInputStream
-cons public <init>(byte[])
-cons public <init>(byte[],int,int)
+cons public init(byte[])
+cons public init(byte[],int,int)
 fld protected byte[] buf
 fld protected int count
 fld protected int mark
@@ -1499,7 +1496,7 @@ intf java.lang.AutoCloseable
 meth public abstract void close() throws java.io.IOException
 
 CLSS public java.io.FilterInputStream
-cons protected <init>(java.io.InputStream)
+cons protected init(java.io.InputStream)
 fld protected volatile java.io.InputStream in
 meth public boolean markSupported()
 meth public int available() throws java.io.IOException
@@ -1513,7 +1510,7 @@ meth public void reset() throws java.io.IOException
 supr java.io.InputStream
 
 CLSS public abstract java.io.InputStream
-cons public <init>()
+cons public init()
 intf java.io.Closeable
 meth public abstract int read() throws java.io.IOException
 meth public boolean markSupported()
@@ -1535,16 +1532,16 @@ meth public abstract void close() throws java.lang.Exception
 CLSS public abstract interface java.lang.Cloneable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -1558,11 +1555,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -1615,7 +1612,7 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
 CLSS public abstract java.text.DateFormat
-cons protected <init>()
+cons protected init()
 fld protected java.text.NumberFormat numberFormat
 fld protected java.util.Calendar calendar
 fld public final static int AM_PM_FIELD = 14
@@ -1674,7 +1671,7 @@ supr java.text.Format
 hfds serialVersionUID
 
 CLSS public abstract java.text.Format
-cons protected <init>()
+cons protected init()
 innr public static Field
 intf java.io.Serializable
 intf java.lang.Cloneable
@@ -1689,10 +1686,10 @@ hfds serialVersionUID
 hcls FieldDelegate
 
 CLSS public java.text.SimpleDateFormat
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.text.DateFormatSymbols)
-cons public <init>(java.lang.String,java.util.Locale)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.text.DateFormatSymbols)
+cons public init(java.lang.String,java.util.Locale)
 meth public boolean equals(java.lang.Object)
 meth public int hashCode()
 meth public java.lang.Object clone()
@@ -1713,7 +1710,7 @@ hfds GMT,MILLIS_PER_MINUTE,PATTERN_INDEX_TO_CALENDAR_FIELD,PATTERN_INDEX_TO_DATE
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 fld protected java.lang.Object source
 intf java.io.Serializable
 meth public java.lang.Object getSource()

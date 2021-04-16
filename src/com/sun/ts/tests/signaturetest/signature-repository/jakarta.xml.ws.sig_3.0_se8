@@ -1,26 +1,23 @@
-#Signature file v4.3
-#Version 3.0_se8
-
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
-
+#Signature file v4.1
+#Version 1.0
 
 CLSS public abstract interface !annotation jakarta.xml.bind.annotation.XmlRootElement
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= "##default"
-meth public abstract !hasdefault java.lang.String namespace() value= "##default"
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String namespace()
 
 CLSS public abstract interface !annotation jakarta.xml.bind.annotation.XmlSchema
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PACKAGE])
 fld public final static java.lang.String NO_LOCATION = "##generate"
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNsForm attributeFormDefault() value= UNSET
-meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNsForm elementFormDefault() value= UNSET
-meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNs[] xmlns() value= []
-meth public abstract !hasdefault java.lang.String location() value= "##generate"
-meth public abstract !hasdefault java.lang.String namespace() value= ""
+meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNsForm attributeFormDefault()
+meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNsForm elementFormDefault()
+meth public abstract !hasdefault jakarta.xml.bind.annotation.XmlNs[] xmlns()
+meth public abstract !hasdefault java.lang.String location()
+meth public abstract !hasdefault java.lang.String namespace()
 
 CLSS public abstract interface !annotation jakarta.xml.bind.annotation.XmlTransient
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -32,20 +29,20 @@ CLSS public abstract interface !annotation jakarta.xml.bind.annotation.XmlType
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public final static DEFAULT
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class factoryClass() value= class jakarta.xml.bind.annotation.XmlType$DEFAULT
-meth public abstract !hasdefault java.lang.String factoryMethod() value= ""
-meth public abstract !hasdefault java.lang.String name() value= "##default"
-meth public abstract !hasdefault java.lang.String namespace() value= "##default"
-meth public abstract !hasdefault java.lang.String[] propOrder() value= [""]
+meth public abstract !hasdefault java.lang.Class factoryClass()
+meth public abstract !hasdefault java.lang.String factoryMethod()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String namespace()
+meth public abstract !hasdefault java.lang.String[] propOrder()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.Action
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.xml.ws.FaultAction[] fault() value= []
-meth public abstract !hasdefault java.lang.String input() value= ""
-meth public abstract !hasdefault java.lang.String output() value= ""
+meth public abstract !hasdefault jakarta.xml.ws.FaultAction[] fault()
+meth public abstract !hasdefault java.lang.String input()
+meth public abstract !hasdefault java.lang.String output()
 
 CLSS public abstract interface jakarta.xml.ws.AsyncHandler<%0 extends java.lang.Object>
 meth public abstract void handleResponse(jakarta.xml.ws.Response<{jakarta.xml.ws.AsyncHandler%0}>)
@@ -73,7 +70,7 @@ CLSS public abstract interface !annotation jakarta.xml.ws.BindingType
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface jakarta.xml.ws.Dispatch<%0 extends java.lang.Object>
 intf jakarta.xml.ws.BindingProvider
@@ -83,7 +80,7 @@ meth public abstract void invokeOneWay({jakarta.xml.ws.Dispatch%0})
 meth public abstract {jakarta.xml.ws.Dispatch%0} invoke({jakarta.xml.ws.Dispatch%0})
 
 CLSS public abstract jakarta.xml.ws.Endpoint
-cons public <init>()
+cons public init()
 fld public final static java.lang.String WSDL_PORT = "jakarta.xml.ws.wsdl.port"
 fld public final static java.lang.String WSDL_SERVICE = "jakarta.xml.ws.wsdl.service"
 meth public !varargs static jakarta.xml.ws.Endpoint create(java.lang.Object,jakarta.xml.ws.WebServiceFeature[])
@@ -111,12 +108,12 @@ meth public void setEndpointContext(jakarta.xml.ws.EndpointContext)
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.ws.EndpointContext
-cons public <init>()
+cons public init()
 meth public abstract java.util.Set<jakarta.xml.ws.Endpoint> getEndpoints()
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.ws.EndpointReference
-cons protected <init>()
+cons protected init()
 meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,jakarta.xml.ws.WebServiceFeature[])
 meth public abstract void writeTo(javax.xml.transform.Result)
 meth public java.lang.String toString()
@@ -128,12 +125,12 @@ CLSS public abstract interface !annotation jakarta.xml.ws.FaultAction
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String value() value= ""
+meth public abstract !hasdefault java.lang.String value()
 meth public abstract java.lang.Class<? extends java.lang.Exception> className()
 
 CLSS public final jakarta.xml.ws.Holder<%0 extends java.lang.Object>
-cons public <init>()
-cons public <init>({jakarta.xml.ws.Holder%0})
+cons public init()
+cons public init({jakarta.xml.ws.Holder%0})
 fld public {jakarta.xml.ws.Holder%0} value
 intf java.io.Serializable
 supr java.lang.Object
@@ -146,10 +143,10 @@ meth public abstract void setPayload(java.lang.Object,jakarta.xml.bind.JAXBConte
 meth public abstract void setPayload(javax.xml.transform.Source)
 
 CLSS public jakarta.xml.ws.ProtocolException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr jakarta.xml.ws.WebServiceException
 
 CLSS public abstract interface jakarta.xml.ws.Provider<%0 extends java.lang.Object>
@@ -160,10 +157,10 @@ CLSS public abstract interface !annotation jakarta.xml.ws.RequestWrapper
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String className() value= ""
-meth public abstract !hasdefault java.lang.String localName() value= ""
-meth public abstract !hasdefault java.lang.String partName() value= ""
-meth public abstract !hasdefault java.lang.String targetNamespace() value= ""
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String localName()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.RespectBinding
  anno 0 jakarta.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends jakarta.xml.ws.WebServiceFeature> bean=class jakarta.xml.ws.RespectBindingFeature, java.lang.String id="jakarta.xml.ws.RespectBindingFeature")
@@ -171,11 +168,11 @@ CLSS public abstract interface !annotation jakarta.xml.ws.RespectBinding
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean enabled() value= true
+meth public abstract !hasdefault boolean enabled()
 
 CLSS public final jakarta.xml.ws.RespectBindingFeature
-cons public <init>()
-cons public <init>(boolean)
+cons public init()
+cons public init(boolean)
 fld public final static java.lang.String ID = "jakarta.xml.ws.RespectBindingFeature"
 meth public java.lang.String getID()
 supr jakarta.xml.ws.WebServiceFeature
@@ -189,14 +186,14 @@ CLSS public abstract interface !annotation jakarta.xml.ws.ResponseWrapper
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String className() value= ""
-meth public abstract !hasdefault java.lang.String localName() value= ""
-meth public abstract !hasdefault java.lang.String partName() value= ""
-meth public abstract !hasdefault java.lang.String targetNamespace() value= ""
+meth public abstract !hasdefault java.lang.String className()
+meth public abstract !hasdefault java.lang.String localName()
+meth public abstract !hasdefault java.lang.String partName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
 
 CLSS public jakarta.xml.ws.Service
-cons protected !varargs <init>(java.net.URL,javax.xml.namespace.QName,jakarta.xml.ws.WebServiceFeature[])
-cons protected <init>(java.net.URL,javax.xml.namespace.QName)
+cons protected !varargs init(java.net.URL,javax.xml.namespace.QName,jakarta.xml.ws.WebServiceFeature[])
+cons protected init(java.net.URL,javax.xml.namespace.QName)
 innr public final static !enum Mode
 meth public !varargs <%0 extends java.lang.Object> jakarta.xml.ws.Dispatch<{%%0}> createDispatch(jakarta.xml.ws.EndpointReference,java.lang.Class<{%%0}>,jakarta.xml.ws.Service$Mode,jakarta.xml.ws.WebServiceFeature[])
 meth public !varargs <%0 extends java.lang.Object> jakarta.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,jakarta.xml.ws.Service$Mode,jakarta.xml.ws.WebServiceFeature[])
@@ -238,33 +235,33 @@ CLSS public abstract interface !annotation jakarta.xml.ws.ServiceMode
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault jakarta.xml.ws.Service$Mode value() value= PAYLOAD
+meth public abstract !hasdefault jakarta.xml.ws.Service$Mode value()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.WebEndpoint
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
+meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.WebFault
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String faultBean() value= ""
-meth public abstract !hasdefault java.lang.String messageName() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String targetNamespace() value= ""
+meth public abstract !hasdefault java.lang.String faultBean()
+meth public abstract !hasdefault java.lang.String messageName()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String targetNamespace()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.WebServiceClient
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String targetNamespace() value= ""
-meth public abstract !hasdefault java.lang.String wsdlLocation() value= ""
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
 
 CLSS public abstract interface jakarta.xml.ws.WebServiceContext
 meth public abstract !varargs <%0 extends jakarta.xml.ws.EndpointReference> {%%0} getEndpointReference(java.lang.Class<{%%0}>,org.w3c.dom.Element[])
@@ -274,22 +271,22 @@ meth public abstract jakarta.xml.ws.handler.MessageContext getMessageContext()
 meth public abstract java.security.Principal getUserPrincipal()
 
 CLSS public jakarta.xml.ws.WebServiceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract jakarta.xml.ws.WebServiceFeature
-cons protected <init>()
+cons protected init()
 fld protected boolean enabled
 meth public abstract java.lang.String getID()
 meth public boolean isEnabled()
 supr java.lang.Object
 
 CLSS public final jakarta.xml.ws.WebServicePermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr java.security.BasicPermission
 hfds serialVersionUID
 
@@ -298,10 +295,10 @@ CLSS public abstract interface !annotation jakarta.xml.ws.WebServiceProvider
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String portName() value= ""
-meth public abstract !hasdefault java.lang.String serviceName() value= ""
-meth public abstract !hasdefault java.lang.String targetNamespace() value= ""
-meth public abstract !hasdefault java.lang.String wsdlLocation() value= ""
+meth public abstract !hasdefault java.lang.String portName()
+meth public abstract !hasdefault java.lang.String serviceName()
+meth public abstract !hasdefault java.lang.String targetNamespace()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.WebServiceRef
  anno 0 java.lang.annotation.Documented()
@@ -309,12 +306,12 @@ CLSS public abstract interface !annotation jakarta.xml.ws.WebServiceRef
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.Class<? extends jakarta.xml.ws.Service> value() value= class jakarta.xml.ws.Service
-meth public abstract !hasdefault java.lang.Class<?> type() value= class java.lang.Object
-meth public abstract !hasdefault java.lang.String lookup() value= ""
-meth public abstract !hasdefault java.lang.String mappedName() value= ""
-meth public abstract !hasdefault java.lang.String name() value= ""
-meth public abstract !hasdefault java.lang.String wsdlLocation() value= ""
+meth public abstract !hasdefault java.lang.Class<? extends jakarta.xml.ws.Service> value()
+meth public abstract !hasdefault java.lang.Class<?> type()
+meth public abstract !hasdefault java.lang.String lookup()
+meth public abstract !hasdefault java.lang.String mappedName()
+meth public abstract !hasdefault java.lang.String name()
+meth public abstract !hasdefault java.lang.String wsdlLocation()
 
 CLSS public abstract interface !annotation jakarta.xml.ws.WebServiceRefs
  anno 0 java.lang.annotation.Documented()
@@ -391,7 +388,7 @@ fld public final static java.lang.String HTTP_BINDING = "http://www.w3.org/2004/
 intf jakarta.xml.ws.Binding
 
 CLSS public jakarta.xml.ws.http.HTTPException
-cons public <init>(int)
+cons public init(int)
 meth public int getStatusCode()
 supr jakarta.xml.ws.ProtocolException
 hfds statusCode
@@ -402,15 +399,15 @@ CLSS public abstract interface !annotation jakarta.xml.ws.soap.Addressing
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean enabled() value= true
-meth public abstract !hasdefault boolean required() value= false
-meth public abstract !hasdefault jakarta.xml.ws.soap.AddressingFeature$Responses responses() value= ALL
+meth public abstract !hasdefault boolean enabled()
+meth public abstract !hasdefault boolean required()
+meth public abstract !hasdefault jakarta.xml.ws.soap.AddressingFeature$Responses responses()
 
 CLSS public final jakarta.xml.ws.soap.AddressingFeature
-cons public <init>()
-cons public <init>(boolean)
-cons public <init>(boolean,boolean)
-cons public <init>(boolean,boolean,jakarta.xml.ws.soap.AddressingFeature$Responses)
+cons public init()
+cons public init(boolean)
+cons public init(boolean,boolean)
+cons public init(boolean,boolean,jakarta.xml.ws.soap.AddressingFeature$Responses)
 fld protected boolean required
 fld public final static java.lang.String ID = "http://www.w3.org/2005/08/addressing/module"
 innr public final static !enum Responses
@@ -435,14 +432,14 @@ CLSS public abstract interface !annotation jakarta.xml.ws.soap.MTOM
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, FIELD])
 intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean enabled() value= true
-meth public abstract !hasdefault int threshold() value= 0
+meth public abstract !hasdefault boolean enabled()
+meth public abstract !hasdefault int threshold()
 
 CLSS public final jakarta.xml.ws.soap.MTOMFeature
-cons public <init>()
-cons public <init>(boolean)
-cons public <init>(boolean,int)
-cons public <init>(int)
+cons public init()
+cons public init(boolean)
+cons public init(boolean,int)
+cons public init(int)
 fld protected int threshold
 fld public final static java.lang.String ID = "http://www.w3.org/2004/08/soap/features/http-optimization"
 meth public int getThreshold()
@@ -463,19 +460,19 @@ meth public abstract void setMTOMEnabled(boolean)
 meth public abstract void setRoles(java.util.Set<java.lang.String>)
 
 CLSS public jakarta.xml.ws.soap.SOAPFaultException
-cons public <init>(jakarta.xml.soap.SOAPFault)
+cons public init(jakarta.xml.soap.SOAPFault)
 meth public jakarta.xml.soap.SOAPFault getFault()
 supr jakarta.xml.ws.ProtocolException
 hfds fault
 
 CLSS public abstract jakarta.xml.ws.spi.Invoker
-cons public <init>()
+cons public init()
 meth public abstract !varargs java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object[]) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
 meth public abstract void inject(jakarta.xml.ws.WebServiceContext) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.ws.spi.Provider
-cons protected <init>()
+cons protected init()
 meth public !varargs jakarta.xml.ws.Endpoint createAndPublishEndpoint(java.lang.String,java.lang.Object,jakarta.xml.ws.WebServiceFeature[])
 meth public !varargs jakarta.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Class<?>,jakarta.xml.ws.spi.Invoker,jakarta.xml.ws.WebServiceFeature[])
 meth public !varargs jakarta.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Object,jakarta.xml.ws.WebServiceFeature[])
@@ -492,7 +489,7 @@ supr java.lang.Object
 hfds DEFAULT_JAXWSPROVIDER
 
 CLSS public abstract jakarta.xml.ws.spi.ServiceDelegate
-cons protected <init>()
+cons protected init()
 meth public abstract !varargs <%0 extends java.lang.Object> jakarta.xml.ws.Dispatch<{%%0}> createDispatch(jakarta.xml.ws.EndpointReference,java.lang.Class<{%%0}>,jakarta.xml.ws.Service$Mode,jakarta.xml.ws.WebServiceFeature[])
 meth public abstract !varargs <%0 extends java.lang.Object> jakarta.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,jakarta.xml.ws.Service$Mode,jakarta.xml.ws.WebServiceFeature[])
 meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(jakarta.xml.ws.EndpointReference,java.lang.Class<{%%0}>,jakarta.xml.ws.WebServiceFeature[])
@@ -523,7 +520,7 @@ meth public abstract java.lang.Class<? extends jakarta.xml.ws.WebServiceFeature>
 meth public abstract java.lang.String id()
 
 CLSS public abstract jakarta.xml.ws.spi.http.HttpContext
-cons public <init>()
+cons public init()
 fld protected jakarta.xml.ws.spi.http.HttpHandler handler
 meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.String getPath()
@@ -532,7 +529,7 @@ meth public void setHandler(jakarta.xml.ws.spi.http.HttpHandler)
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.ws.spi.http.HttpExchange
-cons public <init>()
+cons public init()
 fld public final static java.lang.String REQUEST_CIPHER_SUITE = "jakarta.xml.ws.spi.http.request.cipher.suite"
 fld public final static java.lang.String REQUEST_KEY_SIZE = "jakarta.xml.ws.spi.http.request.key.size"
 fld public final static java.lang.String REQUEST_X509CERTIFICATE = "jakarta.xml.ws.spi.http.request.cert.X509Certificate"
@@ -561,13 +558,13 @@ meth public abstract void setStatus(int)
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.ws.spi.http.HttpHandler
-cons public <init>()
+cons public init()
 meth public abstract void handle(jakarta.xml.ws.spi.http.HttpExchange) throws java.io.IOException
 supr java.lang.Object
 
 CLSS public final jakarta.xml.ws.wsaddressing.W3CEndpointReference
-cons protected <init>()
-cons public <init>(javax.xml.transform.Source)
+cons protected init()
+cons public init(javax.xml.transform.Source)
 fld protected final static java.lang.String NS = "http://www.w3.org/2005/08/addressing"
 meth public void writeTo(javax.xml.transform.Result)
 supr jakarta.xml.ws.EndpointReference
@@ -575,7 +572,7 @@ hfds address,attributes,elements,metadata,referenceParameters,w3cjc
 hcls Address,Elements
 
 CLSS public final jakarta.xml.ws.wsaddressing.W3CEndpointReferenceBuilder
-cons public <init>()
+cons public init()
 meth public jakarta.xml.ws.wsaddressing.W3CEndpointReference build()
 meth public jakarta.xml.ws.wsaddressing.W3CEndpointReferenceBuilder address(java.lang.String)
 meth public jakarta.xml.ws.wsaddressing.W3CEndpointReferenceBuilder attribute(javax.xml.namespace.QName,java.lang.String)
@@ -597,7 +594,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -614,16 +611,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -637,20 +634,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -709,8 +706,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
 CLSS public abstract java.security.BasicPermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
@@ -724,7 +721,7 @@ CLSS public abstract interface java.security.Guard
 meth public abstract void checkGuard(java.lang.Object)
 
 CLSS public abstract java.security.Permission
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.io.Serializable
 intf java.security.Guard
 meth public abstract boolean equals(java.lang.Object)
