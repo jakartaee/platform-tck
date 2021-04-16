@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,6 +34,7 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.PersistenceException;
@@ -1276,6 +1277,8 @@ public class Client extends PMClientBase {
     boolean foundValue = false;
 
     try {
+      EntityTransaction t = getEntityTransaction();
+      t.begin();
       EntityManager em = getEntityManager();
       String expectedKey = "jakarta.persistence.cache.retrieveMode";
       CacheRetrieveMode expectedValue = CacheRetrieveMode.USE;
@@ -1319,6 +1322,15 @@ public class Client extends PMClientBase {
       }
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
+
+    } finally {
+      try {
+        if (getEntityTransaction().isActive()) {
+          getEntityTransaction().rollback();
+        }
+      } catch (Exception fe) {
+        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+      }
     }
     if (!foundKey || !foundValue) {
       throw new Fault("setPropertyTest failed");
