@@ -1,0 +1,19 @@
+<xs:schema xmlns:tns="http://contextual.non.injection.lookup.tests.tck.cdi.jboss.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://contextual.non.injection.lookup.tests.tck.cdi.jboss.org/" version="1.0">
+
+  <xs:element name="translate" type="tns:translate"></xs:element>
+
+  <xs:element name="translateResponse" type="tns:translateResponse"></xs:element>
+
+  <xs:complexType name="translate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="translateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

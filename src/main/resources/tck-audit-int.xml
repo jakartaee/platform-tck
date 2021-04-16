@@ -1,0 +1,1070 @@
+<specification xmlns="http://jboss.com/products/weld/tck/audit"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jboss.com/products/weld/tck/audit"
+               name="Jakarta Interceptors Specification" id="interceptors" version="2.0" generateSectionIds="true">
+
+    <section id="overview" title="Overview" level="1">
+    </section>
+
+    <section id="int_programming_contract" title="Interceptor Programming Contract" level="1">
+    </section>
+
+    <section id="terminology" title="Terminology" level="2">
+    </section>
+
+    <!-- 2.2 -->
+    <section id="def_of_interceptor_classes_and_interceptor_methods" title="Definition of Interceptor Classes and Interceptor Methods" level="2">
+
+        <group>
+            <text>An interceptor method may be declared in the target class, in an interceptor class associated with the target class, or in a superclass of the
+                target class or interceptor class.
+            </text>
+            <assertion id="aa">
+                <text>Interceptor method may be defined on an interceptor class associated with the target class.</text>
+            </assertion>
+            <assertion id="ab">
+                <text>Interceptor method may be defined in the target class.</text>
+            </assertion>
+            <assertion id="ac">
+                <text>Interceptor method may be defined in a super class of the target class.</text>
+            </assertion>
+            <assertion id="ad">
+                <text>Interceptor method may be defined in a super class of the interceptor class.</text>
+            </assertion>
+        </group>
+
+        <assertion id="b">
+            <text>Any number of interceptor classes may be associated with a target class.</text>
+            <note>It's not possible to test all the combinations, we only test few basic scenarios.</note>
+        </assertion>
+
+        <assertion id="c" testable="false">
+            <text>An interceptor class must not be |abstract| and must have a |public| no-arg constructor.</text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+        <group>
+            <text>This specification defines the interceptor method types listed below. Extension specifications may define additional interceptor method
+                types.
+            </text>
+            <assertion id="ca" testable="false">
+                <text>Around-invoke interceptor methods (annotated with the |jakarta.interceptor.AroundInvoke| annotation). Around-invoke interceptor methods
+                    interpose on the invocation of business methods.
+                </text>
+            </assertion>
+            <assertion id="cb" testable="false">
+                <text>Around-timeout interceptor methods (annotated with the |jakarta.interceptor.AroundTimeout| annotation). Around-timeout interceptor methods
+                    interpose on the invocation of timeout methods, in response to timer events.
+                </text>
+            </assertion>
+            <assertion id="cc" testable="false">
+                <text>Post-construct interceptor methods (annotated with the |jakarta.annotation.PostConstruct| annotation). Post-construct interceptor methods
+                    are invoked after dependency injection has been completed on the target instance.
+                </text>
+                <note>Tested in "Interceptor Methods for Lifecycle Event Callbacks" section.</note>
+            </assertion>
+            <assertion id="cd" testable="false">
+                <text>
+                    Pre-destroy interceptor methods (annotated with the |jakarta.annotation.PreDestroy| annotation). Pre-destroy interceptor methods are invoked
+                    before the target instance and all interceptor instances associated with it are destroyed by the container.
+                </text>
+            </assertion>
+            <assertion id="ce" testable="false">
+                <text>
+                    Around-construct interceptor methods (annotated with the |jakarta.interceptor.AroundConstruct| annotation). Around-construct interceptor
+                    methods
+                    interpose on the invocation of the constructor of the target instance.
+                </text>
+            </assertion>
+        </group>
+
+        <assertion id="d">
+            <text>
+                Up to one interceptor method of each interceptor method type may be defined in the same class. More specifically, up to one around-invoke
+                interceptor method, one around-timeout interceptor method, and one lifecycle callback interceptor method for each of the different lifecycle
+                events may be defined in the same class. Only the interceptor methods of the interceptor class that are relevant for the given invocation
+                context are invoked. For example, when a business method is invoked, around-invoke interceptor methods are invoked, but any
+                around-construct, around-timeout, post-construct, or pre-destroy methods are ignored.
+            </text>
+        </assertion>
+
+        <assertion id="f" testable="false">
+            <text>Interceptor methods and interceptor classes may be defined for a class by means of metadata annotations or, optionally, by means of a
+                deployment descriptor.
+            </text>
+            <note>Tested in several other sections</note>
+        </assertion>
+
+        <assertion id="g" testable="false">
+            <text>Interceptors classes may be associated with the target class using either interceptor binding or the |Interceptors| annotation. Typically only
+                one interceptor association type is used for any component.
+            </text>
+            <note>Tested in sections 3.3 and 4</note>
+        </assertion>
+
+        <assertion id="h" testable="false">
+            <text>An extension specification may use a deployment descriptor to specify the invocation order of interceptors or to override the order specified
+                in metadata annotations. A deployment descriptor can be optionally used to define default interceptors or to associate interceptors with the
+                target class. For example, the EJB specification requires support for the ejb-jar.xml deployment descriptor and the CDI specification requires
+                supports for the beans.xml deployment descriptor.
+            </text>
+            <note>The ejb-jar.xml deployment descriptor is tested within the EJB TCK. The beans.xml deployment descriptor is tested within the CDI TCK, section
+                9.4 Interceptor enablement and ordering.
+            </note>
+        </assertion>
+
+    </section>
+
+    <!-- 2.3 -->
+    <section id="interceptor_lifecycle" title="Interceptor Life Cycle" level="2">
+
+        <assertion id="a" testable="false">
+            <text>The lifecycle of an interceptor instance is the same as that of the target class instance with which it is associated.</text>
+            <note>Tested within 2.2 ba) and 2.2 bb).</note>
+        </assertion>
+
+        <assertion id="ba">
+            <text>Except as noted below, when the target instance is created, a corresponding interceptor instance is created for each associated interceptor
+                class.
+            </text>
+        </assertion>
+        <assertion id="bb" testable="false">
+            <text>These interceptor instances are destroyed if the target instance fails to be created or when it is removed.</text>
+            <note>Unable to test whether an instance is really destroyed.</note>
+        </assertion>
+
+        <assertion id="c" teastable="false">
+            <text>An interceptor instance may be the target of dependency injection. Dependency injection is performed when the interceptor instance is created,
+                using the naming context of the associated target class.
+            </text>
+            <note>Tested within 2.2.1 a).</note>
+        </assertion>
+
+        <assertion id="ca">
+            <text>With the exception of around-construct lifecycle callback interceptor methods, no interceptor methods are invoked until after dependency
+                injection has been completed on both the interceptor instances an the target instance.
+            </text>
+            <note>Implied by 2.3 ba) and 2.3 c).</note>
+            <note>If the PostConstruct callback is defined on the interceptor class, it is not invoked when the interceptor instance itself is created.</note>
+        </assertion>
+
+        <assertion id="cb" testable="false">
+            <text>Post-construct interceptor methods for the target instance are invoked after dependency injection has
+                been completed on the target instance.
+            </text>
+            <note>Tested in 2.3 e).</note>
+        </assertion>
+
+        <assertion id="cc" testable="false">
+            <text>
+                Pre-destroy interceptor methods are invoked before the target instance and all interceptor instances
+                associated with it are destroyed.
+            </text>
+        </assertion>
+
+        <group>
+            <text>The following rules apply specifically to around-construct lifecycle callback interceptor methods:</text>
+            <assertion id="da">
+                <text>|Around-construct| lifecycle callback interceptor methods are invoked after dependency injection has been completed on the instances of
+                    all interceptor classes associated with the target class.
+                </text>
+            </assertion>
+            <assertion id="daz" testable="false">
+                <text>Injection of the target component into interceptor instances that are invoked during the |AroundConstruct| lifecycle callback is not
+                    supported.
+                </text>
+            </assertion>
+            <assertion id="db">
+                <text>The target instance is created after the last interceptor method in the around-construct interceptor chain invokes the
+                    |InvocationContext.proceed| method. If the constructor for the target instance supports injection, such constructor injection is performed.
+                    If the |InvocationContext.proceed| method is not invoked by an interceptor method, the target instance will not be created.
+                </text>
+            </assertion>
+            <assertion id="dc">
+                <text>The |AroundConstruct| interceptor method can access the constructed instance using the |InvocationContext.getTarget| method after the
+                    |InvocationContext.proceed| completes.
+                </text>
+            </assertion>
+            <assertion id="dd" testable="false">
+                <text>Dependency injection on the target instance is not completed until after invocation of all interceptor methods in the |AroundConstruct|
+                    interceptor chain complete successfully. Around-construct lifecycle callback interceptor methods should therefore exercise caution when
+                    invoking methods of the target instance since dependency injection on the target instance will not have been completed.
+                </text>
+                <note>INTERCEPTORS_SPEC-26</note>
+            </assertion>
+        </group>
+    </section>
+
+    <!-- 2.3.1 -->
+    <section id="interceptor_environment" title="Interceptor Environment" level="3">
+
+        <assertion id="a">
+            <text>An interceptor class shares the enterprise naming context of its associated target class. Annotations and/or XML deployment descriptor
+                elements for dependency injection or for direct JNDI lookup refer to this shared naming context.
+            </text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Around-invoke and around-timeout interceptor methods run in the same Java thread as the associated target method.</text>
+        </assertion>
+
+        <assertion id="ba">
+            <text>Around-construct interceptor methods run in the same Java thread as the target constructor.</text>
+        </assertion>
+
+        <assertion id="c">
+            <text>It is possible to carry state across multiple interceptor method invocations for a single method invocation or lifecycle callback event in the
+                context data of the |InvocationContext| object. The |InvocationContext| object also provides information that enables interceptor methods to
+                control the behavior of the interceptor invocation chain, including whether the next method in the chain is invoked and the values of its
+                parameters and result.
+            </text>
+        </assertion>
+
+    </section>
+
+    <!-- 2.4 -->
+    <section id="invocationcontext" title="InvocationContext" level="2">
+
+        <assertion id="a" testable="false">
+            <text>The InvocationContext object provides information that enables interceptor methods to control the behavior of the invocation chain.</text>
+            <note>Statement of intent</note>
+        </assertion>
+
+        <assertion id="ba">
+            <text>The same |InvocationContext| instance is passed to each interceptor method for a given target class method or lifecycle event
+                interception. This allows an interceptor to save information in the context data property of the InvocationContext that can be subsequently
+                retrieved in other interceptors as a means to pass contextual data between interceptors. The contextual data is not sharable across separate
+                target class method invocations or lifecycle callback events.
+            </text>
+        </assertion>
+
+        <assertion id="bb">
+            <text>If interceptors are invoked as a result of the invocation on a web service endpoint, the map returned by getContextData() will be the JAX-WS
+                MessageContext.
+            </text>
+        </assertion>
+
+        <assertion id="c">
+            <text>The getTarget method returns the associated target instance. For the |AroundConstruct| lifecycle callback interceptor method, |getTarget|
+                returns |null| if called before the proceed method returns.
+            </text>
+        </assertion>
+
+        <assertion id="da" testable="false">
+            <text>The |getTimer| method returns the timer object associated with a timeout method invocation.</text>
+            <note>Duplicate of 2.7 f)</note>
+        </assertion>
+
+        <assertion id="db">
+            <text>The |getTimer| method returns |null| for around-invoke methods and lifecycle callback interceptor methods.</text>
+        </assertion>
+
+        <assertion id="ea">
+            <text>The |getMethod| method returns the method of the target class for which the interceptor was invoked.</text>
+        </assertion>
+
+        <assertion id="eb">
+            <text>In a lifecycle callback interceptor for which there is no corresponding lifecycle callback method on the target class or in the
+                |AroundConstruct| lifecycle callback interceptor method, getMethod returns |null|.
+            </text>
+        </assertion>
+
+        <assertion id="f">
+            <text>The |getParameters| method returns the parameters of the method or constructor invocation. If the |setParameters| method has been called,
+                getParameters returns the values to which the parameters have been set.
+            </text>
+        </assertion>
+
+        <group>
+            <text>The |setParameters| method modifies the parameters used for the target class method or constructor invocation. Modifying the parameter values
+                does not affect the determination of the method or the constructor that is invoked on the target class. The parameter types must match the types
+                for the target class method or constructor, and the number of parameters supplied must equal the number of parameters on the target class method
+                or constructor, or the |IllegalArgumentException| is thrown.
+            </text>
+            <assertion id="ga">
+                <text>Test |setParameters| method modifies the parameters used.</text>
+            </assertion>
+            <assertion id="gb">
+                <text>Test invalid number of parameters.</text>
+            </assertion>
+            <assertion id="gc">
+                <text>Test invalid parameter types.</text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>The |proceed| method causes the invocation of the next interceptor method in the chain, or, when called from the last around-invoke or
+                around-timeout interceptor method, the target class method.
+            </text>
+            <assertion id="ha">
+                <text>Test around-invoke interceptor method.</text>
+            </assertion>
+            <assertion id="hb">
+                <text>Test around-timeout interceptor method.</text>
+            </assertion>
+        </group>
+
+        <assertion id="i">
+            <text>For |AroundConstruct| lifecycle callback interceptor methods, the invocation of the last interceptor method in the chain causes the target
+                instance to be created.
+            </text>
+        </assertion>
+
+        <assertion id="j">
+            <text>Interceptor methods must always call the |InvocationContext.proceed| method or no subsequent interceptor methods, target class method, or
+                lifecycle callback methods will be invoked, or the target instance will not be created.
+            </text>
+        </assertion>
+
+        <assertion id="k">
+            <text>If a method is of type void, the invocation of the |proceed| method returns |null|.</text>
+        </assertion>
+
+        <assertion id="l">
+            <text>For all other lifecycle callback interceptor methods, if there is no callback method defined on the target class, the invocation of proceed in
+                the last interceptor method in the chain is a no-op, and null is returned.
+            </text>
+        </assertion>
+
+        <assertion id="m" testable="false">
+            <text>In case of the |PostConstruct| interceptor, if there is no callback method defined on the target class, the invocation of
+                |InvocationContext.proceed| method in the last interceptor method in the chain validates the target instance.
+            </text>
+            <note>Unclear meaning of validation.</note>
+        </assertion>
+
+    </section>
+
+    <section id="exceptions" title="Exceptions" level="2">
+
+        <assertion id="a">
+            <text>Interceptor methods are allowed to throw runtime exceptions or any checked exceptions that the associated target method allows within its
+                throws clause.
+            </text>
+        </assertion>
+
+        <group>
+            <text>Interceptor methods are allowed to catch and suppress exceptions and to recover by calling the |InvocationContext.proceed| method.</text>
+            <assertion id="ba">
+                <text>Interceptor method is allowed to catch and suppress exceptions.</text>
+            </assertion>
+            <assertion id="bb">
+                <text>Interceptor method is allowed to recover by calling the |InvocationContext.proceed| method.</text>
+            </assertion>
+        </group>
+
+        <assertion id="c">
+            <text>The invocation of the |InvocationContext.proceed| method will throw the same exception as any thrown by the associated target method unless an
+                interceptor further down the Java call stack has caught it and thrown a different exception.
+            </text>
+        </assertion>
+
+        <assertion id="d" testable="false">
+            <text>Exceptions and initialization and/or cleanup operations should typically be handled in try/catch/finally blocks around the proceed method.
+            </text>
+        </assertion>
+
+    </section>
+
+    <section id="business_method_interceptor_methods" title="Business Method Interceptor Methods" level="2">
+
+        <assertion id="a">
+            <text>Interceptor methods that interpose on business method invocations are denoted by the |AroundInvoke| annotation.</text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Around-invoke methods may be defined on interceptor classes and/or the target class and/or superclasses of the target class or the interceptor
+                classes. However, only one around-invoke method may be defined on a given class.
+            </text>
+        </assertion>
+
+        <group>
+            <text>Around-invoke methods can have |public|, |private|, |protected|, or |package| level access.</text>
+            <assertion id="ca">
+                <text>Test |public| level access.</text>
+            </assertion>
+            <assertion id="cb">
+                <text>Test |private| level access.</text>
+            </assertion>
+            <assertion id="cc">
+                <text>Test |protected| level access.</text>
+            </assertion>
+            <assertion id="cd">
+                <text>Test |package| level access.</text>
+            </assertion>
+        </group>
+
+        <assertion id="d" testable="false">
+            <text>An around-invoke method must not be declared as |abstract|, |final| or |static|.</text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+        <assertion id="e">
+            <text>An around-invoke method can invoke any component or resource that the method it is intercepting can invoke.</text>
+        </assertion>
+
+        <group>
+            <text>In general, an around-invoke method invocation occurs within the same transaction and security context as the method on which it is
+                interposing. However, note that the transaction context may be changed by transactional interceptors in the invocation chain.
+            </text>
+            <assertion id="fa">
+                <text>Test transaction context.</text>
+            </assertion>
+            <assertion id="fb">
+                <text>Test security context.</text>
+            </assertion>
+        </group>
+
+    </section>
+
+    <section id="int_methods_for_lifecycle_event_callbacks" title="Interceptor Methods for Lifecycle Event Callbacks" level="2">
+
+        <assertion id="a">
+            <text>The |AroundConstruct| annotation denotes lifecycle callback interceptor methods that interpose on invocation of the target instance’s
+                constructor.
+            </text>
+        </assertion>
+
+        <assertion id="b">
+            <text>The |PostConstruct| annotation denotes lifecycle callback interceptor methods that are invoked after the target instance has been constructed
+                and dependency injection on that instance has been completed, but before any business method or other event can be invoked on the target
+                instance.
+            </text>
+        </assertion>
+
+        <assertion id="c">
+            <text>The |PreDestroy| annotation denotes lifecycle callback interceptor methods that interpose on the target instance’s removal.</text>
+        </assertion>
+
+        <assertion id="d" testable="false">
+            <text>The |AroundConstruct| interceptor methods may be only defined on interceptor classes and/or superclasses of interceptor classes. The
+                |AroundConstruct| callback should not be defined on the target class.
+            </text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+        <group>
+            <text>All other interceptor methods that interpose on the target instance lifecycle event callbacks can be defined on an interceptor class and/or
+                directly on the target class.
+            </text>
+            <assertion id="ea">
+                <text>Test |PostConstruct| interceptor method.</text>
+            </assertion>
+            <assertion id="eb">
+                <text>Test |PreDestroy| interceptor method.</text>
+            </assertion>
+        </group>
+
+        <assertion id="f">
+            <text>A single lifecycle callback interceptor method may be used to interpose on multiple callback events.</text>
+        </assertion>
+
+        <assertion id="g" testable="false">
+            <text>Lifecycle callback interceptor methods are invoked in an unspecified security context.</text>
+        </assertion>
+
+        <assertion id="h">
+            <text>Lifecycle callback interceptor methods are invoked in a transaction context determined by their target class and/or method.</text>
+        </assertion>
+
+        <assertion id="i">
+            <text>|AroundConstruct| lifecycle callback interceptor methods may be defined on superclasses of interceptor classes. All other lifecycle callback
+                interceptor methods may be defined on superclasses of the target class or of interceptor classes. However, a given class may not have more than
+                one lifecycle callback interceptor method for the same lifecycle event. Any subset or combination of lifecycle callback annotations may
+                otherwise be specified on a target class or interceptor class.
+            </text>
+        </assertion>
+
+        <assertion id="ia">
+            <text>If a lifecycle callback interceptor method returns a value, it is ignored by the container.</text>
+        </assertion>
+
+        <group>
+            <text>Lifecycle callback interceptor methods can have |public|, |private|, |protected|, or |package| level access.</text>
+            <assertion id="ja">
+                <text>Test |public| level access.</text>
+            </assertion>
+            <assertion id="jb">
+                <text>Test |private| level access.</text>
+            </assertion>
+            <assertion id="jc">
+                <text>Test |protected| level access.</text>
+            </assertion>
+            <assertion id="jd">
+                <text>Test |package| level access.</text>
+            </assertion>
+        </group>
+
+        <assertion id="k" testable="false">
+            <text>A lifecycle callback interceptor method must not be declared as |abstract|, |final| or |static|.</text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+    </section>
+
+    <section id="lic_exceptions" title="Exceptions" level="3">
+
+        <assertion id="a">
+            <text>Lifecycle callback interceptor methods may throw runtime exceptions, but not checked exceptions.</text>
+        </assertion>
+
+        <assertion id="b">
+            <text>A lifecycle callback interceptor method (other than a method on the target class or its superclasses) may catch an exception thrown by another
+                lifecycle callback interceptor method in the invocation chain, and clean up before returning.
+            </text>
+        </assertion>
+
+        <assertion id="c">
+            <text>The |PreDestroy| callbacks are not invoked when the target instance and the interceptors are discarded as a result of such exceptions: the
+                lifecycle callback interceptor methods in the chain should perform any necessary clean-up operations as the interceptor chain unwinds.
+            </text>
+        </assertion>
+
+    </section>
+
+    <section id="timeout_method_int_methods" title="Timeout Method Interceptor Methods" level="2">
+        <assertion id="a" testable="false">
+            <text>Interceptor methods that interpose on timeout methods are denoted by the |AroundTimeout| annotation.</text>
+            <note>Tested within the CDI TCK, 7.2 Container invocations and interception.</note>
+        </assertion>
+
+        <group>
+            <text>Around-timeout methods may be defined on interceptor classes and/or the target class and/or superclasses of the target class or interceptor
+                classes. However, only one around-timeout method may be defined on a given class.
+            </text>
+            <assertion id="ba">
+                <text>Test interceptor classes and/or superclasses.</text>
+                <note>Partially tested within the CDI TCK, 7.2 Container invocations and interception.</note>
+            </assertion>
+            <assertion id="bb">
+                <text>Test target class and/or superclasses.</text>
+            </assertion>
+        </group>
+
+        <assertion id="c" testable="false">
+            <text>Around-timeout methods can have |public|, |private|, |protected|, or |package| level access. An around-timeout method must not be declared as
+                |abstract|, |final| or |static|.
+            </text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+        <assertion id="d">
+            <text>An around-timeout method can invoke any component or resource that its corresponding timeout method can invoke.</text>
+        </assertion>
+
+        <group>
+            <text>An around-timeout method invocation occurs within the same transaction and security context as the timeout method on which it is
+                interposing.
+            </text>
+            <assertion id="ea">
+                <text>Test transaction context.</text>
+            </assertion>
+            <assertion id="eb">
+                <text>Test security context.</text>
+            </assertion>
+        </group>
+
+        <assertion id="f">
+            <text>The |InvocationContext.getTimer| method allows an around-timeout method to retrieve the timer object associated with the timeout.</text>
+        </assertion>
+    </section>
+
+    <section id="constructor_and_method_level_int" title="Constructor- and Method-level Interceptors" level="2">
+
+        <assertion id="aa">
+            <text>Method-level interceptors are interceptor classes associated with a specific business or timeout method of the target class.</text>
+        </assertion>
+
+        <assertion id="ab">
+            <text>Constructor-level interceptors are interceptor classes associated with a constructor of the target class.</text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Only the interceptor methods of the interceptor class that are relevant for the context in which the interceptor is bound are invoked. For
+                example, if the interceptor is bound only to a business method, any |AroundConstruct|, |AroundTimeout|, |PostConstruct|, or |PreDestroy| methods
+                on the interceptor are not called.
+            </text>
+        </assertion>
+
+        <assertion id="c" testable="false">
+            <text>Method-level interceptors may not be associated with a lifecycle callback method of the target class.</text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+        <assertion id="d">
+            <text>The same interceptor may be applied to more than one business or timeout method of the target class.</text>
+        </assertion>
+
+        <assertion id="e">
+            <text>The applicability of a method-level interceptor to more than one method of an associated target class does not affect the relationship between
+                the interceptor instance and the target class - only a single instance of the interceptor class is created per target class instance.
+            </text>
+        </assertion>
+
+    </section>
+
+    <section id="default_interceptors" title="Default Interceptors" level="2">
+        <assertion id="a" testable="false">
+            <text>Default interceptors are interceptors that apply to a set of target classes. If a deployment descriptor is supported, it may be used to define
+                default interceptors and their relative ordering.
+            </text>
+            <note>Should be tested in the EJB TCK.</note>
+        </assertion>
+    </section>
+
+    <section id="associating_int_using_int_bindings" title="Associating Interceptors with Classes and Methods using Interceptor Bindings" level="1">
+
+        <assertion id="a" testable="false">
+            <text>Interceptor bindings are intermediate annotations that may be used to associate interceptors with any component that is not itself an
+                interceptor.
+            </text>
+            <note>Statement of intent</note>
+        </assertion>
+
+    </section>
+
+    <section id="int_binding_types" title="Interceptor Binding Types" level="2">
+
+        <assertion id="a">
+            <text>An interceptor binding type is a Java annotation defined as |Retention(RUNTIME)|. Typically an interceptor binding is defined as
+                |Target({TYPE, METHOD, CONSTRUCTOR})| or any subset of valid target types.
+            </text>
+        </assertion>
+
+        <assertion id="b">
+            <text>An interceptor binding type may be declared by specifying the |InterceptorBinding| meta-annotation.</text>
+        </assertion>
+
+    </section>
+
+    <section id="int_binding_types_with_additional_int_bindings" title="Interceptor binding types with additional interceptor bindings" level="3">
+
+        <assertion id="a">
+            <text>An interceptor binding type may declare other interceptor bindings.</text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Interceptor bindings are transitive - an interceptor binding declared by an interceptor binding type is inherited by all components and other
+                interceptor binding types that declare that interceptor binding type.
+            </text>
+        </assertion>
+
+        <assertion id="c" testable="false">
+            <text>An interceptor binding type can only be applied to an interceptor binding type defining a superset of it's target types. For example
+                interceptor binding types declared |Target(TYPE)| may not be applied to interceptor binding types declared |Target({TYPE, METHOD})|.
+            </text>
+            <note>INTERCEPTORS_SPEC-21</note>
+        </assertion>
+
+    </section>
+
+    <section id="other_sources_of_int_bindings" title="Other sources of interceptor bindings" level="3">
+
+        <assertion id="a">
+            <text>An extension specification may define other sources of interceptor bindings, such as via a CDI stereotype.</text>
+        </assertion>
+
+    </section>
+
+    <section id="declaring_interceptor_bindings_of_an_interceptor" title="Declaring Interceptor Bindings of an Interceptor" level="2">
+
+        <assertion id="a">
+            <text>The interceptor bindings of an interceptor are specified by annotating the interceptor class with the binding types and the |Interceptor|
+                annotation and are called the set of interceptor bindings for the interceptor.
+            </text>
+        </assertion>
+
+        <assertion id="b">
+            <text>An interceptor class may declare multiple interceptor bindings.</text>
+        </assertion>
+
+        <assertion id="c">
+            <text>Multiple interceptors may declare the same interceptor bindings.</text>
+        </assertion>
+
+        <assertion id="d" testable="false">
+            <text>An extension specification may define other ways of declaring an interceptor.</text>
+        </assertion>
+
+        <assertion id="e">
+            <text>If an interceptor does not declare an |Interceptor| annotation, it could be bound to components using |Interceptors| annotation or a
+                deployment descriptor file.
+            </text>
+        </assertion>
+
+        <assertion id="f" testable="false">
+            <text>All interceptors declared using the |Interceptor| annotation should specify at least one interceptor binding. If an interceptor declared using
+                the |Interceptor| annotation does not declare any interceptor binding, non-portable behavior results.
+            </text>
+            <note>Non-portable mode</note>
+        </assertion>
+
+        <assertion id="g" testable="false">
+            <text>With the exception of |AroundConstruct| lifecycle callback interceptors, an interceptor for lifecycle callbacks may only declare interceptor
+                binding types that are defined as |Target(TYPE)|.
+            </text>
+            <note>INTERCEPTORS_SPEC-22</note>
+        </assertion>
+
+    </section>
+
+    <section id="binding_int_to_component" title="Binding an Interceptor to a Component" level="2">
+
+        <group>
+            <text>An interceptor may be bound to a component by annotating the component class, a method, or constructor of the component class, with the
+                interceptor binding type.
+            </text>
+            <assertion id="aa">
+                <text>Test a component class.</text>
+            </assertion>
+            <assertion id="ab">
+                <text>Test a method.</text>
+            </assertion>
+            <assertion id="ac">
+                <text>Test a constructor.</text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>A component class, method, or constructor of a component class may declare multiple interceptor bindings.</text>
+            <assertion id="ba">
+                <text>Test a component class.</text>
+            </assertion>
+            <assertion id="bb">
+                <text>Test a method.</text>
+            </assertion>
+            <assertion id="bc">
+                <text>Test a constructor.</text>
+            </assertion>
+        </group>
+
+        <assertion id="c">
+            <text>The set of interceptor bindings for a method or constructor are those declared at class level combined with those declared at method or
+                constructor level.
+            </text>
+        </assertion>
+
+        <group>
+            <text>An interceptor binding declared on a method or constructor replaces an interceptor binding of the same type declared at class level or
+                inherited from a superclass.
+            </text>
+            <assertion id="da">
+                <text>Test a constructor.</text>
+            </assertion>
+            <assertion id="db">
+                <text>Test a method.</text>
+            </assertion>
+        </group>
+
+        <assertion id="e">
+            <text>An extension specification may define additional rules for combining interceptor bindings, such as interceptors defined via a CDI
+                stereotype.
+            </text>
+        </assertion>
+
+        <assertion id="f" testable="false">
+            <text>If the component class declares or inherits a class level interceptor binding, it must not be declared |final|, or have any non-|static|,
+                non-|private|, |final| methods. If a component has a class-level interceptor binding and is declared |final| or has a non-|static|,
+                non-|private|, |final| method, the container automatically detects the problem and treats it as a definition error.
+            </text>
+            <note>Tested within the CDI TCK, 9.3 Binding an interceptor to a bean.</note>
+        </assertion>
+
+        <assertion id="g" testable="false">
+            <text>If a non-|static|, non-|private| method of a component class declares a method level interceptor binding, neither the method nor the component
+                class may be declared |final|. If a non-|static|, non-|private|, |final| method of a component has a method level interceptor binding, the
+                container automatically detects the problem and treats it as a definition error.
+            </text>
+            <note>Tested within the CDI TCK, 9.3 Binding an interceptor to a bean.</note>
+        </assertion>
+
+    </section>
+
+    <section id="int_resolution" title="Interceptor Resolution" level="2">
+
+        <assertion id="a" testable="false">
+            <text>The process of matching interceptors to a certain lifecycle callback method, timeout method, business method or a constructor of a certain
+                component is called interceptor resolution.
+            </text>
+            <note>Statement of intent</note>
+        </assertion>
+
+        <assertion id="b">
+            <text>For a lifecycle callback, the interceptor bindings include the interceptor bindings declared or inherited by the component at the class level,
+                including, recursively, interceptor bindings declared as meta-annotations of other interceptor bindings.
+            </text>
+        </assertion>
+
+        <group>
+            <text>For a business method, timeout method, or constructor the interceptor bindings include the interceptor bindings declared or inherited by the
+                component at the class level, including, recursively, interceptor bindings declared as meta-annotations of other interceptor bindings, together
+                with all interceptor bindings declared on the constructor or method, including, recursively, interceptor bindings declared as meta-annotations
+                of other interceptor bindings.
+            </text>
+            <assertion id="ca">
+                <text>Test a business method.</text>
+            </assertion>
+            <assertion id="cb">
+                <text>Test a timeout method.</text>
+            </assertion>
+            <assertion id="cc">
+                <text>Test a constructor.</text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>An interceptor is bound to a method or constructor if:</text>
+            <assertion id="da">
+                <text>The method or constructor has all the interceptor bindings of the interceptor. A method or constructor has an interceptor binding of an
+                    interceptor if it has an interceptor binding with (a) the same type and (b) the same annotation member value for each member. An extension
+                    specification may further refine this rule. For example the CDI specification adds the |jakarta.enterprise.util.Nonbinding| annotation,
+                    causing member values to be ignored by the resolution process.
+                </text>
+            </assertion>
+            <assertion id="db">
+                <text>The interceptor intercepts the given kind of lifecycle callback or business method.</text>
+            </assertion>
+            <assertion id="dc">
+                <text>The interceptor is enabled.</text>
+            </assertion>
+        </group>
+
+    </section>
+
+    <section id="int_with_multiple_bindings" title="Interceptors with multiple bindings" level="3">
+
+        <assertion id="a">
+            <text>An interceptor class may specify multiple interceptor bindings.</text>
+        </assertion>
+
+    </section>
+
+    <section id="int_binding_types_with_members" title="Interceptor binding types with members" level="3">
+
+        <assertion id="a">
+            <text>Interceptor binding types may have annotation members.</text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Annotation member values are compared using the equals method.</text>
+        </assertion>
+
+        <assertion id="c">
+            <text>Array-valued or annotation-valued members of an interceptor binding type are not supported. An extension specification may add support for
+                these member types. For example the CDI specification adds the |jakarta.enterprise.util.Nonbinding| annotation, allowing array-valued or
+                annotation-valued members to be used on the annotation type, but ignored by the resolution process.
+            </text>
+            <note>Testing |jakarta.enterprise.util.Nonbinding| annotation.</note>
+        </assertion>
+
+        <assertion id="d">
+            <text>If the set of interceptor bindings of a component class or interceptor, including bindings inherited from stereotypes and other interceptor
+                bindings, has two instances of a certain interceptor binding type and the instances have different values of some annotation member, the
+                container automatically detects the problem and treats it as a definition error.
+            </text>
+        </assertion>
+
+    </section>
+
+    <section id="associating_int_using_interceptors_annotation" title="Associating Interceptors with Classes and Methods using the Interceptors Annotation"
+             level="1">
+
+        <assertion id="a">
+            <text>The |Interceptors| annotation can be used to denote interceptor classes and associate one or more interceptor classes with a target class,
+                and/or one or more of its methods, and/or a constructor of the target class.
+            </text>
+        </assertion>
+
+        <assertion id="b">
+            <text>Method-level around-invoke and around-timeout interceptors can be defined by applying the |Interceptors| annotation to the method for which
+                the interceptors are to be invoked.
+            </text>
+        </assertion>
+
+        <assertion id="c">
+            <text>Constructor-level interceptors can be defined by applying the |Interceptors| annotation to the constructor for which the interceptors are to
+                be invoked.
+            </text>
+        </assertion>
+
+        <assertion id="ca" testable="false">
+            <text>Constructor- and method-level interceptors are invoked in addition to any default interceptors and interceptors defined for
+                the target class (and its superclasses).
+            </text>
+            <note>Tested in section 5.</note>
+        </assertion>
+
+        <assertion id="d" testable="false">
+            <text>If multiple interceptors are defined for the target class in the Interceptors annotation, they are invoked in the order in which they are
+                specified. See Chapter 5 for the rules on interceptors ordering.
+            </text>
+            <note>Tested in section 5.</note>
+        </assertion>
+
+        <assertion id="e">
+            <text>The Interceptor annotation is ignored on interceptor classes bound using the Interceptors
+                annotation.
+            </text>
+        </assertion>
+
+        <assertion id="f" testable="false">
+            <text>
+                An extension specification may support the use of a deployment descriptor to associate interceptor classes with a target class, and/or method or
+                constructor of a target class, and to specify the order of interceptor invocation or override metadata specified by annotations.
+            </text>
+        </assertion>
+    </section>
+
+    <section id="int_ordering" title="Interceptor Ordering" level="1">
+    </section>
+
+    <section id="enabling_interceptors" title="Enabling Interceptors" level="2">
+
+        <assertion id="a">
+            <text>
+                Interceptors declared using the |Interceptors| annotation are enabled by that annotation. Using the |Interceptors| annotation to associate
+                interceptor classes with a target class or a method or constructor of a target class enables them for that target class, method, or constructor.
+                The order in which the interceptor classes are specified in the |Interceptors| annotation controls interceptor ordering (see Section 5.2).
+            </text>
+        </assertion>
+
+        <assertion id="b" testable="false">
+            <text>An extension specification may define alternative mechanisms (e.g., a deployment descriptor such as the CDI beans.xml or the EJB ejb-jar.xml
+                deployment descriptor) to enable and order interceptors, to override the order specified by means of annotations, or to disable interceptors.
+            </text>
+        </assertion>
+
+    </section>
+
+    <section id="int_ordering_rules" title="Interceptor Ordering Rules" level="2">
+        <group>
+            <text>Default interceptors are invoked first.</text>
+            <assertion id="a" testable="false">
+                <text>Default interceptors are invoked in the order defined by the extension specification (e.g., by their order in the deployment
+                    descriptor).
+                </text>
+            </assertion>
+            <assertion id="b" testable="false">
+                <text>If a default interceptor class has superclasses, interceptor methods declared in the interceptor class’s superclasses are invoked before
+                    the interceptor method declared in the interceptor class itself, most general superclass first.
+                </text>
+            </assertion>
+        </group>
+        <group>
+            <text>Interceptors declared by applying the Interceptors annotation at class-level to the target class are invoked next.</text>
+            <assertion id="c">
+                <text>Interceptor methods declared in the interceptor classes listed in the |Interceptors| annotation are invoked in the same order as the
+                    specification of the interceptor classes in that annotation.
+                </text>
+            </assertion>
+            <assertion id="d">
+                <text>
+                    If an interceptor class declared by applying the Interceptors annotation at class-level has superclasses, interceptor methods declared in
+                    the interceptor class’s superclasses are invoked before the interceptor method declared in the interceptor class itself, most general
+                    superclass first.
+                </text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>Interceptors declared by applying the Interceptors annotation at method- or constructor-level are invoked next.</text>
+            <assertion id="e">
+                <text>Interceptor methods declared in the interceptor classes listed in the Interceptors annotation are invoked in the same order as the
+                    specification of the interceptor classes in that annotation.
+                </text>
+            </assertion>
+            <assertion id="f">
+                <text>
+                    If an interceptor class declared by applying the |Interceptors| annotation at method- or constructor-level has superclasses, interceptor
+                    methods declared in the interceptor class’s superclasses are invoked before the interceptor method declared in the interceptor class itself,
+                    most general superclass first.
+                </text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>Interceptors declared using interceptor bindings are invoked next.</text>
+            <assertion id="g">
+                <text>
+                    All interceptors specified using interceptor binding annotations visible on the target class (e.g., specified on the class or visible on the
+                    class because they were declared with the Inherited annotation) are combined with all binding annotations on the target method and sorted by
+                    the priorities specified by the |Priority| annotation; and then the interceptor methods are invoked in order of priority. The |Priority|
+                    annotation is described in Section 5.2.1.
+                </text>
+            </assertion>
+            <assertion id="h">
+                <text>
+                    If an interceptor class declared using interceptor bindings has superclasses, interceptor methods declared in the interceptor class’s
+                    superclasses are invoked before the interceptor method declared in the interceptor class itself, most general superclass first.
+                </text>
+            </assertion>
+        </group>
+        <group>
+            <text>Interceptor methods declared in the target class or in any superclass of the target class are invoked last.</text>
+            <assertion id="i">
+                <text>
+                    If the target class has superclasses, interceptor methods declared in the target class’s superclasses are invoked before an interceptor
+                    method declared in the target class itself, most general superclass first.
+                </text>
+            </assertion>
+        </group>
+        <assertion id="j">
+            <text>
+                If an interceptor method is overridden by another method (regardless whether that method is itself an interceptor method), it will not be
+                invoked.
+            </text>
+        </assertion>
+    </section>
+
+    <section id="priority_annotation_in_ordering_int" title="Use of the Priority Annotation in Ordering Interceptors" level="3">
+        <assertion testable="false">
+            <text>
+                The |Priority| annotation can be used to enable and order interceptors associated with components that use interceptor bindings. The required
+                value element of the |Priority| annotation determines the ordering. Interceptors with smaller priority values are called first.
+            </text>
+            <note>Tested within the CDI TCK, section 9.4 Interceptor enablement and ordering.</note>
+        </assertion>
+
+        <assertion id="b" testable="false">
+            <text>If more than one interceptor has the same priority, the relative order of these interceptor is undefined.</text>
+            <note>Undefined behaviour.</note>
+        </assertion>
+
+        <assertion id="c" testable="false">
+            <text>The |Priority| annotation is ignored on interceptors bound to a component using the |Interceptors| annotation.</text>
+            <note>INTERCEPTORS_SPEC-23</note>
+        </assertion>
+    </section>
+
+    <section id="excluding_interceptors" title="Excluding Interceptors" level="2">
+        <assertion id="a" testable="false">
+            <text>
+                Interceptors may be excluded from execution by means of the |ExcludeClassInterceptors| annotation and the |ExcludeDefaultInterceptors|
+                annotation.
+            </text>
+            <note>Tested separately in the following assertions</note>
+        </assertion>
+
+        <assertion id="b">
+            <text>
+                The |ExcludeClassInterceptors| annotation can be used to exclude the invocation of the class-level interceptors defined by means of the
+                |Interceptors| annotation.
+            </text>
+        </assertion>
+
+        <assertion id="c" testable="false">
+            <text>
+                The |ExcludeDefaultInterceptors| annotation can be used to exclude the invocation of default interceptors for a target class or—when applied to
+                a target class constructor or method—to exclude the invocation of default interceptors for a particular constructor or method.
+            </text>
+            <note>Should be tested in the EJB TCK.</note>
+        </assertion>
+
+        <assertion id="d" testable="false">
+            <text>
+                An extension specification may define other means for excluding interceptors from execution, such as by means of a deployment descriptor.
+            </text>
+        </assertion>
+
+    </section>
+
+</specification>

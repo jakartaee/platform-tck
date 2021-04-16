@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar
+        xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        version="3.2">
+
+   <enterprise-beans>
+
+      <session>
+         <ejb-name>Elephant</ejb-name>
+         <business-local>org.jboss.cdi.tck.tests.context.passivating.enterprise.invalid.ElephantLocal</business-local>
+         <ejb-class>org.jboss.cdi.tck.tests.context.passivating.enterprise.invalid.Elephant</ejb-class>
+         <session-type>Stateful</session-type>
+         <passivation-capable>false</passivation-capable>
+      </session>
+   </enterprise-beans>
+</ejb-jar>

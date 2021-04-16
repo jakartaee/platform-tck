@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>cdi-tck-parent</artifactId>
+        <groupId>jakarta.enterprise</groupId>
+        <version>3.0.3-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cdi-tck-web-impl</artifactId>
+    <name>CDI Web TCK Test Suite</name>
+
+    <description>CDI Web TCK tests</description>
+
+    <properties>
+        <!-- CDI API -->
+        <cdi.api.version>3.0.0</cdi.api.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+            <!-- Jakarta EE APIs in Web Profile -->
+            <!-- Wave0 -->
+            <annotations.api.version>2.0.0</annotations.api.version>
+            <jpa.api.version>3.0.0</jpa.api.version>
+            <jms.api.version>3.0.0</jms.api.version>
+            <!-- Wave1 -->
+            <atinject.api.version>2.0.0</atinject.api.version>
+            <interceptors.api.version>2.0.0</interceptors.api.version>
+            <servlet.api.version>5.0.0</servlet.api.version>
+            <!-- Wave2 -->
+            <jsp.api.version>3.0.0</jsp.api.version>
+
+            <!-- Wave4 -->
+            <jaxrs.api.version>3.0.0</jaxrs.api.version>
+            <jta.api.version>2.0.0</jta.api.version>
+
+            <!-- Wave5 -->
+            <ejb.api.version>4.0.0</ejb.api.version>
+            <jca.api.version>2.0.0</jca.api.version>
+
+            <!-- Wave6 -->
+            <jsf.api.version>3.0.0</jsf.api.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>${jsp.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>${jta.api.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>${jsf.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${jpa.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>${jaxrs.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+            <version>${jms.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.resource</groupId>
+            <artifactId>jakarta.resource-api</artifactId>
+            <version>${jca.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>${ejb.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-core-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-ext-lib</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.testng</groupId>
+            <artifactId>arquillian-testng-container</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>container-se-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.test-audit</groupId>
+            <artifactId>jboss-test-audit-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.interceptor</groupId>
+            <artifactId>jakarta.interceptor-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.annotation</groupId>
+                                    <artifactId>jakarta.annotation-api</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/endorsed</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${basedir}/src/main/resources/tck-tests.xml</file>
+                                    <type>xml</type>
+                                    <classifier>suite</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/src/main/resources/tck-audit-mb.xml</file>
+                                    <type>xml</type>
+                                    <classifier>audit-mb</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/src/main/resources/tck-audit-cdi.xml</file>
+                                    <type>xml</type>
+                                    <classifier>audit-cdi</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/src/main/resources/tck-audit-int.xml</file>
+                                    <type>xml</type>
+                                    <classifier>audit-int</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${basedir}/src/main/resources/cdi-api-jdk8.sig</file>
+                                    <type>sig</type>
+                                    <classifier>sigtest-jdk8</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- Dummy porting package impls -->
+                        <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans</org.jboss.cdi.tck.spi.Beans>
+                        <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts</org.jboss.cdi.tck.spi.Contexts>
+                        <org.jboss.cdi.tck.spi.EL>org.jboss.cdi.tck.test.porting.DummyEL</org.jboss.cdi.tck.spi.EL>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings
+                    only. It has no influence on the Maven build itself. -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>exec-maven-plugin</artifactId>
+                                        <versionRange>[1.1.1,)</versionRange>
+                                        <goals>
+                                            <goal>java</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>tck-audit</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.test-audit</groupId>
+                    <artifactId>jboss-test-audit-impl</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <!-- this was a really ugly workaround for passing multiple arguments
+                                to the annotation processor tool, see MCOMPILER-75 and MCOMPILER-135 for
+                                more details -->
+                            <!-- compilerArguments> <Aapt.flag1>-AoutputDir=${basedir}/../target/</Aapt.flag1>
+                                </compilerArguments -->
+                            <compilerArguments>
+                                <AoutputDir>${basedir}/../target/</AoutputDir>
+                                <endorseddirs>${project.build.directory}/endorsed</endorseddirs>
+                            </compilerArguments>
+                            <compilerArgument>
+                                -AauditXml=${basedir}/src/main/resources/tck-audit-cdi.xml,${basedir}/src/main/resources/tck-audit-mb.xml,${basedir}/src/main/resources/tck-audit-int.xml
+                            </compilerArgument>
+                            <!-- Disable annotation processor for test sources -->
+                            <testCompilerArgument>-proc:none</testCompilerArgument>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-report-artifacts</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>attach-artifact</goal>
+                                </goals>
+                                <configuration>
+                                    <artifacts>
+                                        <artifact>
+                                            <file>../target/coverage-cdi.html</file>
+                                            <type>html</type>
+                                            <classifier>coverage-cdi</classifier>
+                                        </artifact>
+                                        <artifact>
+                                            <file>../target/coverage-mb.html</file>
+                                            <type>html</type>
+                                            <classifier>coverage-mb</classifier>
+                                        </artifact>
+                                        <artifact>
+                                            <file>../target/coverage-interceptors.html</file>
+                                            <type>html</type>
+                                            <classifier>coverage-interceptors</classifier>
+                                        </artifact>
+                                    </artifacts>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-source</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>target/generated-sources/audit</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <mainClass>org.jboss.test.audit.generate.SectionsClassGenerator</mainClass>
+                                    <arguments>
+                                        <!-- auditFilePath -->
+                                        <argument>${basedir}/src/main/resources/tck-audit-cdi.xml</argument>
+                                        <!-- packageBase -->
+                                        <argument>org.jboss.cdi.tck</argument>
+                                        <!-- outputDirPath -->
+                                        <argument>${basedir}/target/generated-sources/audit</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>interceptors-sections</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <mainClass>org.jboss.test.audit.generate.SectionsClassGenerator</mainClass>
+                                    <arguments>
+                                        <!-- auditFilePath -->
+                                        <argument>${basedir}/src/main/resources/tck-audit-int.xml</argument>
+                                        <!-- packageBase -->
+                                        <argument>org.jboss.cdi.tck</argument>
+                                        <!-- outputDirPath -->
+                                        <argument>${basedir}/target/generated-sources/audit</argument>
+                                        <argument>InterceptorsSections</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <!--This profile can be used to (re)generate signatures of CDI API, note that they differ based on JDK used to build them-->
+            <!--All .sig files should be included in the generated jar files!-->
+            <id>signature-generation</id>
+            <activation>
+                <property>
+                    <name>signature</name>
+                </property>
+            </activation>
+            <properties>
+                <!--Default assumed JDK version, can be overriden via -Dmajor.jdk.version=X-->
+                <jdk.major.version>8</jdk.major.version>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>jakarta.enterprise</groupId>
+                                            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+                                            <version>${cdi.api.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/cdi-api</outputDirectory>
+                                            <includes>**/*.class,**/*.xml</includes>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <includes>**/*.java</includes>
+                                    <excludes>**/*.properties</excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.netbeans.tools</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <classes>${project.build.directory}/cdi-api</classes>
+                            <packages>
+                                jakarta.decorator,
+                                jakarta.enterprise.context,
+                                jakarta.enterprise.context.control,
+                                jakarta.enterprise.context.spi,
+                                jakarta.enterprise.event,
+                                jakarta.enterprise.inject,
+                                jakarta.enterprise.inject.literal,
+                                jakarta.enterprise.inject.se,
+                                jakarta.enterprise.inject.spi,
+                                jakarta.enterprise.inject.spi.configurator,
+                                jakarta.enterprise.util
+                            </packages>
+                            <attach>false</attach>
+                            <sigfile>${project.build.directory}/cdi-api-jdk${jdk.major.version}.sig</sigfile>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <!-- auto-activated profile for any JDK 9+ -->
+            <id>jdk9+</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sun.xml.ws</groupId>
+                    <artifactId>jaxws-rt</artifactId>
+                    <version>3.0.0-M3</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+</project>

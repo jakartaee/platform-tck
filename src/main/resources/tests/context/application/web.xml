@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+   <description>Test servlets used to test session contexts.</description>
+   <display-name>Session Context Tests</display-name>
+   <listener>
+      <listener-class>org.jboss.cdi.tck.tests.context.application.TestServletContextListener</listener-class>
+   </listener>
+   <listener>
+      <listener-class>org.jboss.cdi.tck.tests.context.application.TestHttpSessionListener</listener-class>
+   </listener>
+   <listener>
+      <listener-class>org.jboss.cdi.tck.tests.context.application.TestServletRequestListener</listener-class>
+   </listener>
+   <filter>
+      <display-name>Test Filter for Sessions</display-name>
+      <filter-name>filterTest</filter-name>
+      <filter-class>org.jboss.cdi.tck.tests.context.application.TestFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>filterTest</filter-name>
+      <url-pattern>/SimplePage.html</url-pattern>
+   </filter-mapping>
+   <servlet>
+      <display-name>TestServlet</display-name>
+      <servlet-name>TestServlet</servlet-name>
+      <servlet-class>org.jboss.cdi.tck.tests.context.application.TestServlet</servlet-class>
+   </servlet>
+   <servlet>
+      <display-name>Introspection Service for Application Context</display-name>
+      <servlet-name>applicationIntrospector</servlet-name>
+      <servlet-class>org.jboss.cdi.tck.tests.context.application.IntrospectApplication</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>TestServlet</servlet-name>
+      <url-pattern>/TestServlet</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>applicationIntrospector</servlet-name>
+      <url-pattern>/IntrospectApplication</url-pattern>
+   </servlet-mapping>
+   <session-config>
+      <session-timeout>10</session-timeout>
+   </session-config>
+   <login-config>
+      <auth-method>BASIC</auth-method>
+   </login-config>
+</web-app>
