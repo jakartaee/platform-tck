@@ -24,7 +24,7 @@ import static org.testng.Assert.assertNotNull;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
-import org.jboss.cdi.tck.shrinkwrap.EnterpriseArchiveBuilder;
+import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
 import org.jboss.cdi.tck.util.Versions;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;

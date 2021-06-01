@@ -35,7 +35,8 @@ public class LifecycleCallbackInterceptorTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(LifecycleCallbackInterceptorTest.class).build();
+        return new WebArchiveBuilder().withTestClassPackage(LifecycleCallbackInterceptorTest.class)
+                .build();
     }
 
     @SuppressWarnings("unchecked")

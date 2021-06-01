@@ -51,7 +51,8 @@ public class EnterpriseVetoedTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder().withTestClass(EnterpriseVetoedTest.class)
                 .withClasses(ElephantLocal.class, Elephant.class, ModifyingExtension.class, VerifyingExtension.class)
-                .withPackage(Piranha.class.getPackage()).withExtensions(ModifyingExtension.class, VerifyingExtension.class)
+                .withPackage(Piranha.class.getPackage())
+                .withExtensions(ModifyingExtension.class, VerifyingExtension.class)
                 .withLibrary(Gecko.class).build();
     }
 

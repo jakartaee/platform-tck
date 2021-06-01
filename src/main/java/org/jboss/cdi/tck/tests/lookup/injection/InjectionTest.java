@@ -31,6 +31,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.cdi.tck.tests.lookup.injection.ejb.DeluxeHenHouse;
+import org.jboss.cdi.tck.tests.lookup.injection.ejb.HenHouse;
+import org.jboss.cdi.tck.tests.lookup.injection.ejb.SessionBean;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
@@ -46,6 +48,7 @@ public class InjectionTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder()
                 .withTestClassPackage(InjectionTest.class)
+                .withClasses(DeluxeHenHouse.class, HenHouse.class, SessionBean.class)
                 .withWebXml(
                         Descriptors.create(WebAppDescriptor.class).createEnvEntry().envEntryName("greeting")
                                 .envEntryType("java.lang.String").envEntryValue("Hello").up().createEnvEntry()

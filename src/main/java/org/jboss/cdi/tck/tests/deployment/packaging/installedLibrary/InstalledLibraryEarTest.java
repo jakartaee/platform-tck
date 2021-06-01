@@ -52,10 +52,10 @@ public class InstalledLibraryEarTest extends AbstractTest {
 
         EnterpriseArchive enterpriseArchive = new EnterpriseArchiveBuilder()
                 .withTestClassDefinition(InstalledLibraryEarTest.class).withClasses(Alpha.class).withBeanLibrary(Bravo.class)
-                .withLibrary(AssertBean.class).noDefaultWebModule().build();
+                .withLibrary(AssertBean.class).noDefaultWebModule().debugMode().build();
 
         WebArchive webArchive = new WebArchiveBuilder().withClasses(InstalledLibraryEarTest.class, Charlie.class)
-                .notTestArchive().withDefaultEjbModuleDependency().build();
+                .notTestArchive().withDefaultEjbModuleDependency().debugMode().build();
         enterpriseArchive.addAsModule(webArchive);
 
         enterpriseArchive.setManifest(new StringAsset(Descriptors.create(ManifestDescriptor.class)

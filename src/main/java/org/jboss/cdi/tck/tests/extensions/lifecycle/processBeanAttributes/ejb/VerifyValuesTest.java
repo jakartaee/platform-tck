@@ -19,14 +19,10 @@ package org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.ejb;
 import java.lang.annotation.Annotation;
 
 import jakarta.decorator.Decorator;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Any;
 import jakarta.enterprise.inject.Default;
-import jakarta.enterprise.inject.New;
 import jakarta.enterprise.inject.spi.Annotated;
-import jakarta.enterprise.inject.spi.AnnotatedField;
 import jakarta.enterprise.inject.spi.AnnotatedMethod;
 import jakarta.enterprise.inject.spi.AnnotatedType;
 import jakarta.enterprise.inject.spi.BeanAttributes;
@@ -41,11 +37,11 @@ import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoD
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoInterceptor;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoInterface;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoProducer;
+import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoQualifier;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.CharlieInterface;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.CharlieProducer;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.beans11.BeansDescriptor;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -80,11 +76,14 @@ public class VerifyValuesTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder()
                 .withTestClassPackage(VerifyValuesTest.class)
-                .withBeansXml(
-                        Descriptors.create(BeansDescriptor.class).getOrCreateAlternatives()
-                                .clazz(Alpha.class.getName(), BravoProducer.class.getName(), CharlieProducer.class.getName())
-                                .up().getOrCreateInterceptors().clazz(BravoInterceptor.class.getName()).up().getOrCreateDecorators()
-                                .clazz(BravoDecorator.class.getName()).up()).withExtension(VerifyingExtension.class).build();
+                .withClasses(Alpha.class, Bravo.class, BravoDecorator.class, BravoInterceptor.class, BravoInterface.class,
+                             BravoProducer.class, BravoQualifier.class, CharlieInterface.class, CharlieProducer.class)
+                .withBeansXml(new BeansXml()
+                              .alternatives(Alpha.class, BravoProducer.class, CharlieProducer.class)
+                              .interceptors(BravoInterceptor.class)
+                              .decorators(BravoDecorator.class)
+                )
+                .withExtension(VerifyingExtension.class).build();
     }
 
 

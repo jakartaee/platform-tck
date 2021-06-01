@@ -39,18 +39,19 @@ import jakarta.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
-import org.jboss.cdi.tck.shrinkwrap.EnterpriseArchiveBuilder;
+import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
 import org.jboss.cdi.tck.shrinkwrap.WebArchiveBuilder;
 import org.jboss.cdi.tck.util.Versions;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
+import org.jboss.shrinkwrap.api.BeansXmlVersion;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.beans11.BeanDiscoveryMode;
-import org.jboss.shrinkwrap.descriptor.api.beans11.BeansDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.spec.se.manifest.ManifestDescriptor;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -105,10 +106,10 @@ public class EnterpriseArchiveModulesTest extends AbstractTest {
                 .create(JavaArchive.class, "bar-ejb.jar")
                 .addClasses(Bar.class, AlternativeBar.class, BarInspector.class, ContainerEventsObserver.class, LegacyServiceProducer.class)
                 .addAsServiceProvider(Extension.class, ContainerEventsObserver.class)
-                .addAsManifestResource(
-                        new StringAsset(Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
-                                .clazz(SecurityInterceptor.class.getName()).up().beanDiscoveryMode(BeanDiscoveryMode._ALL.toString()).version(Versions.v1_1)
-                                .exportAsString()), "beans.xml")
+                .addAsManifestResource(new BeansXml().setBeansXmlVersion(BeansXmlVersion.v11)
+                                .setBeanDiscoveryMode(BeanDiscoveryMode.ALL)
+                                .interceptors(SecurityInterceptor.class)
+                                , "beans.xml")
                 // Make A visible in a portable way
                 .setManifest(
                         new StringAsset(Descriptors.create(ManifestDescriptor.class)
@@ -120,9 +121,9 @@ public class EnterpriseArchiveModulesTest extends AbstractTest {
                 .notTestArchive()
                 // F - with enabled decorator
                 .withClasses(Baz.class, EnterpriseArchiveModulesTest.class)
-                .withBeansXml(
-                        Descriptors.create(BeansDescriptor.class).getOrCreateDecorators().clazz(LoggingDecorator.class.getName())
-                                .up().getOrCreateAlternatives().clazz(AlternativeBar.class.getName()).up())
+                .withBeansXml(new BeansXml().decorators(LoggingDecorator.class)
+                        .alternatives(AlternativeBar.class)
+                )
                 // G
                 .withBeanLibrary(Qux.class)
                 .build()

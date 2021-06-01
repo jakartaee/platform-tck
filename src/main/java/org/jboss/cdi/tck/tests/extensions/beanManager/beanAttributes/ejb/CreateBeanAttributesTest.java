@@ -63,7 +63,10 @@ public class CreateBeanAttributesTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(CreateBeanAttributesTest.class).build();
+        return new WebArchiveBuilder().withTestClassPackage(CreateBeanAttributesTest.class)
+                .withClasses(Animal.class, Fish.class, InvalidBeanType.class, Landmark.class, Natural.class,
+                             TundraStereotype.class, WaterBody.class,Wild.class)
+                .build();
     }
 
 

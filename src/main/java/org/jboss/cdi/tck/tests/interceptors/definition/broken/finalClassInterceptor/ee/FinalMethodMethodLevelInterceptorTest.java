@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.cdi.tck.tests.interceptors.definition.broken.finalClassInterceptor;
+package org.jboss.cdi.tck.tests.interceptors.definition.broken.finalClassInterceptor.ee;
 
 import static org.jboss.cdi.tck.TestGroups.INTEGRATION;
 import static org.jboss.cdi.tck.cdi.Sections.BINDING_INTERCEPTOR_TO_BEAN;
@@ -26,8 +26,7 @@ import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.beans11.BeansDescriptor;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -46,10 +45,9 @@ public class FinalMethodMethodLevelInterceptorTest extends AbstractTest {
         return new WebArchiveBuilder()
                 .withTestClassDefinition(FinalMethodMethodLevelInterceptorTest.class)
                 .withClasses(FooBinding.class, MissileInterceptor.class, FinalMethodMethodLevelMissile.class,
-                        FinalMethodMethodLevelMissileLocal.class)
-                .withBeansXml(
-                        Descriptors.create(BeansDescriptor.class).getOrCreateInterceptors()
-                                .clazz(MissileInterceptor.class.getName()).up()).build();
+                             FinalMethodMethodLevelMissileLocal.class)
+                .withBeansXml(new BeansXml().interceptors(MissileInterceptor.class))
+                .build();
     }
 
     //TODO disable due to https://issues.jboss.org/browse/CDI-496

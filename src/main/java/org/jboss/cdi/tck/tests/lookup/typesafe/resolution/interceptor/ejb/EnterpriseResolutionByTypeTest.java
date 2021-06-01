@@ -28,13 +28,17 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
+import org.jboss.cdi.tck.tests.lookup.typesafe.resolution.Bird;
 
 @SpecVersion(spec = "cdi", version = "2.0")
 public class EnterpriseResolutionByTypeTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(EnterpriseResolutionByTypeTest.class).build();
+        return new WebArchiveBuilder()
+                .withTestClassPackage(EnterpriseResolutionByTypeTest.class)
+                .withClasses(Bird.class)
+                .build();
     }
 
     @Test(groups = { INTEGRATION })

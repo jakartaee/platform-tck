@@ -20,6 +20,7 @@ package org.jboss.cdi.tck.tests.implementation.disposal.method.definition.inheri
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.cdi.tck.tests.implementation.disposal.method.definition.inheritance.Yummy;
 import org.jboss.cdi.tck.util.DependentInstance;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -39,7 +40,8 @@ public class DisposerMethodInheritanceTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(DisposerMethodInheritanceTest.class).build();
+        return new WebArchiveBuilder().withTestClassPackage(DisposerMethodInheritanceTest.class)
+                .withClasses(Yummy.class).build();
     }
 
     @Test(groups = INTEGRATION)
