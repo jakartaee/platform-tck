@@ -59,7 +59,6 @@ public class ConversationDeterminationTest extends AbstractTest {
     public void testConversationDetermination() throws Exception {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
 
         // Begin long-running conversation
         TextPage cidPage = webClient.getPage(contextPath + "foo?action=begin");
@@ -78,7 +77,6 @@ public class ConversationDeterminationTest extends AbstractTest {
         TextPage results = webClient.getPage(contextPath + "Status");
         assertTrue(results.getContent().contains("onComplete: true"));
 
-        webClient.setThrowExceptionOnFailingStatusCode(false);
         webClient.getPage(getContextPath(contextPath,"foo-async","timeout",cid));
         results = webClient.getPage(contextPath + "Status");
         assertTrue(results.getContent().contains("onTimeout: true"));

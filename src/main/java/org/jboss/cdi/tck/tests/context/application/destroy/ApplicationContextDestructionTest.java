@@ -97,7 +97,6 @@ public class ApplicationContextDestructionTest extends AbstractTest {
 
         // Init foo - set bar archive deployment url
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(fooContext + "init?url=" + URLEncoder.encode(barContext.toExternalForm(), "UTF-8"));
 
         // Undeploy foo

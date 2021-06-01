@@ -115,7 +115,6 @@ public class ClientConversationContextTest extends AbstractConversationTest {
     @SpecAssertion(section = CONVERSATION_CONTEXT_EE, id = "p")
     public void testConversationsDontCrossSessionBoundary1() throws Exception {
         WebClient client = new WebClient();
-        client.setThrowExceptionOnFailingStatusCode(false);
         // Load the page
         HtmlPage rain = client.getPage(getPath("rain.jsf"));
 
@@ -164,7 +163,6 @@ public class ClientConversationContextTest extends AbstractConversationTest {
 
         // Create a new web client and load the page
         WebClient client2 = new WebClient();
-        client2.setThrowExceptionOnFailingStatusCode(false);
         verifyNonexistentConversationExceptionThrown(client2.getPage(getPath("rain.jsf", cid)));
     }
 

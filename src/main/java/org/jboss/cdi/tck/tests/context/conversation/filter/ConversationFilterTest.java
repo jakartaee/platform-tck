@@ -80,7 +80,6 @@ public class ConversationFilterTest extends AbstractTest {
     public void testConversationActivation() throws Exception {
 
         WebClient client = new WebClient();
-        client.setThrowExceptionOnFailingStatusCode(true);
 
         // Init the long-running conversation
         TextPage initPage = client.getPage(contextPath + "introspect?mode=" + IntrospectServlet.MODE_INIT);
@@ -106,7 +105,6 @@ public class ConversationFilterTest extends AbstractTest {
 
         // Init the long-running conversation
         WebClient client = new WebClient();
-        client.setThrowExceptionOnFailingStatusCode(true);
 
         TextPage initPage = client.getPage(contextPath + "introspect?mode=" + IntrospectServlet.MODE_INIT);
         String cid = extractCid(initPage.getContent());
@@ -160,7 +158,6 @@ public class ConversationFilterTest extends AbstractTest {
         public String call() throws Exception {
 
             WebClient client = new WebClient();
-            client.setThrowExceptionOnFailingStatusCode(false);
             client.getCookieManager().addCookie(new Cookie(contextPath.getHost(), JSESSIONID, jsessionid));
 
             Page page = client.getPage(contextPath + "introspect?mode=" + mode + "&cid=" + cid);

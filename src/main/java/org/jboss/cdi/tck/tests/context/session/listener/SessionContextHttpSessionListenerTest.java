@@ -56,7 +56,6 @@ public class SessionContextHttpSessionListenerTest extends AbstractTest {
     @SpecAssertion(section = SESSION_CONTEXT_EE, id = "ac")
     public void testSessionScopeActiveDuringHttpSessionListenerCall() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         // Create session
         String sessionBeanId = webClient.getPage(contextPath + "introspect").getWebResponse().getContentAsString();
         // Verify session scoped bean id
@@ -73,7 +72,6 @@ public class SessionContextHttpSessionListenerTest extends AbstractTest {
     public void testSessionScopeActiveDuringHttpSessionListenerCallOnTimeout() throws Exception {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         // Create session
         String sessionBeanId = webClient.getPage(contextPath + "introspect").getWebResponse().getContentAsString();
         // Verify session scoped bean id

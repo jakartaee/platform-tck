@@ -106,7 +106,6 @@ public class InterceptorEnvironmentJNDITest extends AbstractTest {
     public void testInterceptorEnvironment() throws FailingHttpStatusCodeException, MalformedURLException, IOException {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
 
         // create an instance of Foo and fail if interceptor was not called
         webClient.getPage(fooContextPath + FOO_GET + "init");

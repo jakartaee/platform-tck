@@ -85,7 +85,7 @@ public class ApplicationShutdownLifecycleTest extends AbstractTest {
     /**
      * This is not a real test method.
      *
-     * @see #testShutdown()
+     * @see #testShutdown(URL, URL)
      */
     @Test
     @InSequence(1)
@@ -109,7 +109,6 @@ public class ApplicationShutdownLifecycleTest extends AbstractTest {
 
         // Init foo - set info archive deployment url
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(fooContext + "init?url=" + URLEncoder.encode(infoContext.toExternalForm(), "UTF-8"));
 
         // Undeploy foo

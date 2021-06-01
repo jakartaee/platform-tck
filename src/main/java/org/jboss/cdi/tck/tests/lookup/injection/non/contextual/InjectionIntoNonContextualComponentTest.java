@@ -61,7 +61,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "bn"), @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoServlet() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/Servlet?test=injection");
     }
 
@@ -70,7 +69,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = INITIALIZER_METHODS_EE, id = "b") })
     public void testServletInitializerMethodCalled() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/Servlet?test=initializer");
     }
 
@@ -78,7 +76,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "bo")
     public void testServletInitCalledAfterResourceInjection() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/Servlet?test=resource");
         webClient.getPage(contextPath + "Test/Servlet?test=ejb");
     }
@@ -87,7 +84,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "bo")
     public void testServletInitCalledAfterPersistenceResourceInjection() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/Servlet?test=persistence");
     }
 
@@ -96,7 +92,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "bq"), @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoFilter() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestFilter?test=injection");
     }
 
@@ -105,7 +100,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = INITIALIZER_METHODS_EE, id = "b") })
     public void testFilterInitializerMethodCalled() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestFilter?test=initializer");
     }
 
@@ -113,7 +107,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "br")
     public void testFilterInitCalledAfterResourceInjection() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestFilter?test=resource");
         webClient.getPage(contextPath + "TestFilter?test=ejb");
     }
@@ -122,7 +115,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "br")
     public void testFilterInitCalledAfterPersistenceResourceInjection() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestFilter?test=persistence");
     }
 
@@ -131,7 +123,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoServletListener() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/ServletListener?test=injection");
     }
 
@@ -139,7 +130,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "aj"), @SpecAssertion(section = INITIALIZER_METHODS_EE, id = "b") })
     public void testServletListenerInitializerMethodCalled() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/ServletListener?test=initializer");
     }
 
@@ -148,7 +138,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "an"), @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoTagHandler() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(false);
         WebResponse response = webClient.getPage(contextPath + "TagPage.jsp").getWebResponse();
         assert response.getStatusCode() == 200;
         assert response.getContentAsString().contains(TestTagHandler.INJECTION_SUCCESS);
@@ -160,7 +149,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoTagLibraryListener() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/TagLibraryListener?test=injection");
     }
 
@@ -168,7 +156,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "at"), @SpecAssertion(section = INITIALIZER_METHODS_EE, id = "b") })
     public void testTagLibraryListenerInitializerMethodCalled() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "Test/TagLibraryListener?test=initializer");
     }
 
@@ -177,7 +164,6 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
             @SpecAssertion(section = FIELDS_INITIALIZER_METHODS_EE, id = "av"), @SpecAssertion(section = INJECTED_FIELDS_EE, id = "b") })
     public void testInjectionIntoJSFManagedBean() throws Exception {
         WebClient webclient = new WebClient();
-        webclient.setThrowExceptionOnFailingStatusCode(true);
         String content = webclient.getPage(contextPath + "ManagedBeanTestPage.jsf").getWebResponse().getContentAsString();
         assert content.contains("Injection works");
         assert content.contains("Initializer works");

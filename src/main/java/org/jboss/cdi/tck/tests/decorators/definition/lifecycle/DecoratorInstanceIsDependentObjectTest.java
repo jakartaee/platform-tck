@@ -59,7 +59,6 @@ public class DecoratorInstanceIsDependentObjectTest extends AbstractTest {
     public void testDecoratorInstanceIsDependentObject() throws Exception {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
 
         TextPage resp01 = webClient.getPage(contextPath + "bank?action=deposit&amount=10");
         assertTrue(resp01.getContent().contains("ShortTermBalance:10"));

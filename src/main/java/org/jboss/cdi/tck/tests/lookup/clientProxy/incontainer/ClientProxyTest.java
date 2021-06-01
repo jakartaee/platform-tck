@@ -48,7 +48,6 @@ public class ClientProxyTest extends AbstractTest {
     @SpecAssertion(section = CLIENT_PROXIES, id = "d")
     public void testInvocationIsProcessedOnCurrentInstance() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         String response;
         response = webClient.getPage(contextPath + "Test/Garage?make=Honda").getWebResponse().getContentAsString();
         assert response.contains("Honda");

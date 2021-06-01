@@ -61,7 +61,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "aa")
     public void testApplicationScopeActiveDuringServiceMethod() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestServlet?test=servlet");
     }
 
@@ -69,7 +68,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "ab")
     public void testApplicationScopeActiveDuringDoFilterMethod() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "SimplePage.html");
     }
 
@@ -77,7 +75,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "ac")
     public void testApplicationScopeActiveDuringServletContextListenerInvocation() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestServlet?test=servletContextListener");
     }
 
@@ -85,7 +82,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "ad")
     public void testApplicationScopeActiveDuringHttpSessionListenerInvocation() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestServlet?test=httpSessionListener");
     }
 
@@ -93,7 +89,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "af")
     public void testApplicationScopeActiveDuringServletRequestListenerInvocation() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "TestServlet?test=servletRequestListener");
     }
 
@@ -101,7 +96,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "e")
     public void testApplicationContextSharedBetweenServletRequests() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         TextPage firstRequestResult = webClient.getPage(contextPath + "IntrospectApplication");
         assertNotNull(firstRequestResult.getContent());
         assertTrue(Double.parseDouble(firstRequestResult.getContent()) != 0);
@@ -121,7 +115,6 @@ public class ApplicationContextTest extends AbstractTest {
     @SpecAssertion(section = APPLICATION_CONTEXT_EE, id = "e")
     public void testApplicationContextSharedBetweenJaxRsRequests() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         TextPage firstRequestResult = webClient.getPage(contextPath + "rest/application-id");
         assertNotNull(firstRequestResult.getContent());
         assertTrue(Double.parseDouble(firstRequestResult.getContent()) != 0);

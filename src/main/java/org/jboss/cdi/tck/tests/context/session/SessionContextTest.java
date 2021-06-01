@@ -59,7 +59,6 @@ public class SessionContextTest extends AbstractTest {
 			@SpecAssertion(section = SESSION_CONTEXT_EE, id = "ae") })
 	public void testSessionScopeActiveDuringServiceMethod() throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 		webClient.getPage(contextPath + "test");
 	}
 
@@ -68,7 +67,6 @@ public class SessionContextTest extends AbstractTest {
 			@SpecAssertion(section = SESSION_CONTEXT_EE, id = "ae") })
 	public void testSessionScopeActiveDuringDoFilterMethod() throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 		webClient.getPage(contextPath + "SimplePage.html");
 	}
 
@@ -77,7 +75,6 @@ public class SessionContextTest extends AbstractTest {
 	public void testSessionContextSharedBetweenServletRequestsInSameHttpSession()
 			throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 		TextPage firstRequestResult = webClient.getPage(contextPath
 				+ "introspect");
 		assertNotNull(firstRequestResult.getContent());
@@ -102,7 +99,6 @@ public class SessionContextTest extends AbstractTest {
 	public void testSessionContextDestroyedWhenHttpSessionInvalidated()
 			throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 
 		TextPage firstRequestResult = webClient.getPage(contextPath
 				+ "introspect");
@@ -140,7 +136,6 @@ public class SessionContextTest extends AbstractTest {
 	public void testSessionContextDestroyedWhenHttpSessionTimesOut()
 			throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 		TextPage firstRequestResult = webClient.getPage(contextPath
 				+ "introspect");
 		assertNotNull(firstRequestResult.getContent());

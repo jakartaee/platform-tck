@@ -86,7 +86,6 @@ public class JavaEEComponentsTest extends AbstractTest {
 
     private void assertComponentInstancesNotEqual(String mode) throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         TextPage page = webClient.getPage(contextPath + "test?mode=" + mode);
         String[] ids = page.getContent().split(":");
         System.out.println(Arrays.toString(ids));

@@ -58,7 +58,6 @@ public class RequestContextTest extends AbstractTest {
     @SpecAssertion(section = REQUEST_CONTEXT_EE, id = "ac")
     public void testRequestScopeActiveDuringServiceMethod() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "test");
     }
 
@@ -70,7 +69,6 @@ public class RequestContextTest extends AbstractTest {
     @SpecAssertion(section = REQUEST_CONTEXT_EE, id = "ac")
     public void testRequestScopeActiveDuringServletFilter() throws Exception {
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(contextPath + "SimplePage.html");
     }
 
@@ -85,7 +83,6 @@ public class RequestContextTest extends AbstractTest {
     public void testRequestScopeIsDestroyedAfterServletRequest() throws Exception {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
 
         // First request - response content contains SimpleRequestBean id
         TextPage firstRequestResult = webClient.getPage(contextPath + "introspect");

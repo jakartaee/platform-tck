@@ -21,12 +21,14 @@ import static org.jboss.cdi.tck.cdi.Sections.CONVERSATION_CONTEXT_EE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.cdi.tck.AbstractTest;
@@ -124,10 +126,11 @@ public class ServletConversationTest extends AbstractTest {
         }
 
         // verify that the conversation can no longer be restored
-        {
-            client.setThrowExceptionOnFailingStatusCode(false);
+        try {
             Page page = client.getPage(getPath("/display", cid));
-            assertEquals(page.getWebResponse().getStatusCode(), 500);
+            fail("Access to /display should have failed");
+        } catch (FailingHttpStatusCodeException e) {
+            assertEquals(e.getStatusCode(), 500);
         }
     }
 
@@ -192,10 +195,11 @@ public class ServletConversationTest extends AbstractTest {
         assertEquals(result, ActionSequence.getSequence().dataToCsv());
         
         // Additional verification that the conversation cannot be associated
-        {
-            client.setThrowExceptionOnFailingStatusCode(false);
+        try {
             Page page = client.getPage(getPath("/display", cid));
-            assertEquals(page.getWebResponse().getStatusCode(), 500);
+            fail("Access to /display should have failed");
+        } catch (FailingHttpStatusCodeException e) {
+            assertEquals(e.getStatusCode(), 500);
         }
     }
 
@@ -260,7 +264,7 @@ public class ServletConversationTest extends AbstractTest {
     protected <T> Set<T> getElements(HtmlElement rootElement, Class<T> elementClass) {
         Set<T> result = new HashSet<T>();
 
-        for (HtmlElement element : rootElement.getChildElements()) {
+        for (HtmlElement element : rootElement.getHtmlElementDescendants()) {
             result.addAll(getElements(element, elementClass));
         }
 

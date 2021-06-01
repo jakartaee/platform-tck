@@ -101,7 +101,6 @@ public class SessionContextListenerShutdownTest extends AbstractTest {
 
         // Init SessionScopedTestFlagClient - set bravo archive deployment url
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
         webClient.getPage(alphaContext + "init?url=" + URLEncoder.encode(bravoContext.toExternalForm(), "UTF-8"));
 
         deployer.undeploy(ALPHA_DEPLOYMENT_NAME);

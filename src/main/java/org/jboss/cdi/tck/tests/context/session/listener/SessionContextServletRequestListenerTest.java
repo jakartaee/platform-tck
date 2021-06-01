@@ -52,7 +52,6 @@ public class SessionContextServletRequestListenerTest extends AbstractTest {
 	@SpecAssertion(section = SESSION_CONTEXT_EE, id = "ae")
 	public void testSessionScopeActiveDuringServletRequestListenerCall() throws Exception {
 		WebClient webClient = new WebClient();
-		webClient.setThrowExceptionOnFailingStatusCode(true);
 		// Create session
 		webClient.getPage(contextPath + "introspect");
 		// Invalidate session

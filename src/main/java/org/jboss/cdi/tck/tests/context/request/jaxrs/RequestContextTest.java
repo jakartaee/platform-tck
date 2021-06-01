@@ -59,7 +59,6 @@ public class RequestContextTest extends AbstractTest {
     public void testRequestScopeActiveDuringWebServiceInvocation() throws Exception {
 
         WebClient webClient = new WebClient();
-        webClient.setThrowExceptionOnFailingStatusCode(true);
 
         // New instance of Foo is created for each request
         TextPage resource01 = webClient.getPage(contextPath + "rest/foo");
