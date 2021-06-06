@@ -80,7 +80,8 @@ public class EnvInjectionTest extends AbstractTest {
         @SuppressWarnings("serial")
         Bean<Boolean> check = getBeans(Boolean.class, new AnnotationLiteral<Greeting>() {
         }).iterator().next();
-        assert check.getTypes().size() == 4;
+
+        assert check.getTypes().size() == 4 : "Bean<Boolean> has 4 types: "+check.getTypes();
         assert rawTypeSetMatches(check.getTypes(), Boolean.class, Object.class, Serializable.class, Comparable.class);
     }
 }
