@@ -21,7 +21,8 @@ import static org.jboss.cdi.tck.cdi.Sections.DECLARING_RESOURCE;
 import static org.jboss.cdi.tck.cdi.Sections.RESOURCE_LIFECYCLE;
 import static org.jboss.cdi.tck.cdi.Sections.RESOURCE_TYPES;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;
@@ -81,7 +82,15 @@ public class EnvInjectionTest extends AbstractTest {
         Bean<Boolean> check = getBeans(Boolean.class, new AnnotationLiteral<Greeting>() {
         }).iterator().next();
 
-        assert check.getTypes().size() == 4 : "Bean<Boolean> has 4 types: "+check.getTypes();
-        assert rawTypeSetMatches(check.getTypes(), Boolean.class, Object.class, Serializable.class, Comparable.class);
+        // Build the expected types from the JVM Boolean.class to avoid issues as the java.lang types evolve
+        ArrayList<Class<?>> classes = new ArrayList<>();
+        classes.addAll(Arrays.asList(Boolean.class.getInterfaces()));
+        classes.addAll(Arrays.asList(Boolean.class.getSuperclass()));
+        classes.add(Boolean.class);
+        Class<?>[] expectedClasses = new Class[classes.size()];
+        classes.toArray(expectedClasses);
+
+        assert check.getTypes().size() == expectedClasses.length : "Bean<Boolean> has "+expectedClasses.length+" types: "+check.getTypes();
+        assert rawTypeSetMatches(check.getTypes(), expectedClasses) : "Expected classes are: "+classes;
     }
 }
