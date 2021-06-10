@@ -12,8 +12,6 @@
     <description>CDI Web TCK tests</description>
 
     <properties>
-        <!-- CDI API -->
-        <cdi.api.version>3.0.0</cdi.api.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
             <!-- Jakarta EE APIs in Web Profile -->

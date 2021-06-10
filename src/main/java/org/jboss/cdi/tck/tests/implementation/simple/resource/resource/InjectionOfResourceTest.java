@@ -23,6 +23,7 @@ import static org.jboss.cdi.tck.cdi.Sections.RESOURCE_TYPES;
 
 import jakarta.enterprise.context.spi.CreationalContext;
 import jakarta.enterprise.inject.spi.Bean;
+import jakarta.enterprise.inject.spi.BeanContainer;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.util.AnnotationLiteral;
 
@@ -79,8 +80,9 @@ public class InjectionOfResourceTest extends AbstractTest {
     public void testResourceBeanTypes() {
         Bean<BeanManager> beanRemote = getBeans(BeanManager.class, new AnnotationLiteral<Another>() {
         }).iterator().next();
-        assert beanRemote.getTypes().size() == 2;
+        assert beanRemote.getTypes().size() == 3;
         assert beanRemote.getTypes().contains(BeanManager.class);
+        assert beanRemote.getTypes().contains(BeanContainer.class);
         assert beanRemote.getTypes().contains(Object.class);
     }
 }

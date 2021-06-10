@@ -17,7 +17,6 @@
 package org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.ejb;
 
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.inject.New;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.Alpha;
@@ -28,7 +27,6 @@ public class Delta {
 
     @SuppressWarnings("unused")
     @Inject
-    @New
     private Alpha alpha;
 
     public void foo() {

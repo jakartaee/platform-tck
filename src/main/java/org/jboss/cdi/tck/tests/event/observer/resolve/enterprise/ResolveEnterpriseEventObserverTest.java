@@ -41,7 +41,7 @@ public class ResolveEnterpriseEventObserverTest extends AbstractTest {
     @SpecAssertion(section = OBSERVER_METHODS_EE, id = "d")
     public void testObserverMethodOnEnterpriseBeanIsBusinessMethodOrStatic() {
         assertEquals(getCurrentManager().resolveObserverMethods(new EJBEvent()).size(), 3);
-        getCurrentManager().fireEvent(new EJBEvent());
+        getCurrentManager().getEvent().select(EJBEvent.class).fire(new EJBEvent());
         assertTrue(Spitz.localNotified);
         assertTrue(Spitz.staticallyNotified);
         assertTrue(NoInterfaceSLSB.notified);

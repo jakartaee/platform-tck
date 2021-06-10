@@ -45,6 +45,6 @@ public class EjbTestBean {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void initTransaction() throws SystemException {
         ctx.setRollbackOnly();
-        beanManager.fireEvent(new Foo());
+        beanManager.getEvent().select(Foo.class).fire(new Foo());
     }
 }

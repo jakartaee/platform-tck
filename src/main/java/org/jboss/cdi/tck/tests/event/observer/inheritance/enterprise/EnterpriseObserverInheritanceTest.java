@@ -48,7 +48,7 @@ public class EnterpriseObserverInheritanceTest extends AbstractTest {
     @SpecAssertion(section = MEMBER_LEVEL_INHERITANCE_EE, id = "df")
     public void testNonStaticObserverMethodInherited() throws Exception {
         Egg egg = new Egg();
-        getCurrentManager().fireEvent(egg);
+        getCurrentManager().getEvent().select(Egg.class).fire(egg);
         assertEquals(egg.getVisited().size(), 2);
         assertTrue(egg.getVisited().contains(Farmer.class.getSimpleName()));
         assertTrue(egg.getVisited().contains(LazyFarmer.class.getSimpleName()));
@@ -58,7 +58,7 @@ public class EnterpriseObserverInheritanceTest extends AbstractTest {
     @SpecAssertion(section = MEMBER_LEVEL_INHERITANCE_EE, id = "dl")
     public void testNonStaticObserverMethodIndirectlyInherited() throws Exception {
         StockPrice stockPrice = new StockPrice();
-        getCurrentManager().fireEvent(stockPrice);
+        getCurrentManager().getEvent().select(StockPrice.class).fire(stockPrice);
         assertEquals(stockPrice.getVisited().size(), 3);
         assertTrue(stockPrice.getVisited().contains(StockWatcher.class.getSimpleName()));
         assertTrue(stockPrice.getVisited().contains(IntermediateStockWatcher.class.getSimpleName()));

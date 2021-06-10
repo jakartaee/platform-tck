@@ -102,7 +102,7 @@ public class ContainerLifeCycleEventRuntimeInvocationTest extends AbstractTest {
 
         new Invocation() {
             void execute() {
-                event.addAnnotatedType(type);
+                event.addAnnotatedType(type, type.getJavaClass().getSimpleName());
             }
         }.run();
         new Invocation() {
@@ -501,7 +501,7 @@ public class ContainerLifeCycleEventRuntimeInvocationTest extends AbstractTest {
     public void testProcessInjectionTargetEventFails() {
         final ProcessInjectionTarget<SimpleBean> event = extension.getProcessInjectionTarget();
         AnnotatedType<?> type = beanManager.createAnnotatedType(SimpleBean.class);
-        final InjectionTarget target = beanManager.createInjectionTarget(type);
+        final InjectionTarget target = beanManager.getInjectionTargetFactory(type).createInjectionTarget(null);
 
         new Invocation() {
             void execute() {
