@@ -365,8 +365,9 @@ public class SecBasicClient extends BaseUrlClient {
     TEST_PROPS.setProperty(BASIC_AUTH_USER, "invalid");
     TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
     // The servlet is mapped to "/ServletSecTest" so this request should result
-    // in a 404 since no Servlet is mapped to the requested URI.
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    // in a 404 since no Servlet is mapped to the requested URI or 401 if the container
+    // rejects the incoming BASIC header.
+    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED + "," + NOT_FOUND);
     invoke();
 
     dumpResponse(); // debug aid
