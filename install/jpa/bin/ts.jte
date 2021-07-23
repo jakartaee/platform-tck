@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -117,14 +117,21 @@ persistence.second.level.caching.supported=true
 ###################################################################
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your
 #                    Java Persistence and Java SE classes.
 #########################################################################
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
 sigTestClasspath=${jpa.classes}${pathsep}\
-                 ${JAVA_HOME}/lib/rt.jar${pathsep}\
-                 ${JAVA_HOME}/../Classes/classes.jar
+                 ${jimage.dir}/java.base${pathsep}\
+                 ${jimage.dir}/java.rmi${pathsep}\
+                 ${jimage.dir}/java.sql${pathsep}\
+                 ${jimage.dir}/java.naming
 
 ###############################################################
 ## Users must set this property when running on Windows.  The

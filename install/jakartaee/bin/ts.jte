@@ -273,7 +273,6 @@ endorsed.dirs.ri=${javaee.home.ri}/modules/endorsed
 #                       xxxlogin and xxxpassword are used
 #                       to set known server side creds for use
 #                       with connector tests.
-# @ri.java.endorsed.dirs -- endorsed directory used by RI
 # @ri.applicationRoot-- Location of application repository
 #                       Only needed when running on windows
 # @ri.and.vi.run.on.same.host  - set to true if interop tests are run 
@@ -337,7 +336,6 @@ ri.orb.iiop.orbserverid=200
 #                       xxxlogin and xxxpassword are used
 #                       to set known server side creds for use
 #                       with connector tests.
-# @vi.java.endorsed.dirs -- endorsed directory used by RI
 # @vi.applicationRoot-- Location of application repository
 #                       Only needed when running on windows
 ###############################################################
@@ -385,14 +383,6 @@ vi.applicationRoot=c:
 #                         The xxxlogin and xxxpassword are used
 #                         to set known server side creds for use
 #                         with connector tests.
-# @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
-#                         for running the servlet suite with
-#                         JDK 8, append the CTS endorsed 
-#                         directory - ${ts.home}/endorsedlib 
-#                         to this property.
-#                         eg : s1as.java.endorsed.dirs=\
-#                                ${endorsed.dirs}${pathsep}\
-#                                ${ts.home}/endorsedlib
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
 # @s1as.db.ext.dirs    -- The extension directory for DB Type 2
@@ -488,7 +478,7 @@ s1as.se.jmsServer=imqbroker
 #       app server's extension directory.  The CTS config.vi
 #       target will copy the CTS library jars to this location.
 ###############################################################
-extension.dir=${s1as.domain}/lib/ext
+extension.dir=${s1as.domain}/lib
 
 ###############################################################
 # @instance.listenerName - Default value for the iiop listener
@@ -547,8 +537,8 @@ derby.url=jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true
 derby.driver=org.apache.derby.jdbc.ClientDriver
 derby.home=${javaee.home}/../javadb
 derby.system.home=${derby.home}/databases
-derby.classpath=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar
-derby.classes=${derby.home}/lib/derbyclient.jar
+derby.classpath=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar
+derby.classes=${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar
 derby.poolName=cts-derby-pool
 derby.dataSource=org.apache.derby.jdbc.ClientDataSource
 derby.properties=DatabaseName\=\"${derby.dbName}\":user\=${derby.user}:password\=${derby.passwd}:serverName\=${derby.server}:portNumber=${derby.port}
@@ -565,7 +555,7 @@ derbyEmbedded.user=cts1
 derbyEmbedded.passwd=cts1
 derbyEmbedded.url=jdbc:derby:${derbyEmbedded.dbName};create=true
 derbyEmbedded.driver=org.apache.derby.jdbc.EmbeddedDriver
-derbyEmbedded.classes=${javaee.home}/../javadb/lib/derby.jar${pathsep}${ts.home}/lib/dbprocedures.jar
+derbyEmbedded.classes=${javaee.home}/../javadb/lib/derby.jar${pathsep}${javaee.home}/../javadb/lib/derbyshared.jar${pathsep}${javaee.home}/../javadb/lib/derbytools.jar${pathsep}${ts.home}/lib/dbprocedures.jar
 derbyEmbedded.poolName=cts-derbyEmbedded-pool
 derbyEmbedded.dataSource=org.apache.derby.jdbc.EmbeddedDataSource
 derbyEmbedded.pool.url='jdbc\\:derby\\:${derbyEmbedded.dbName}\\;create=true'
@@ -912,8 +902,8 @@ derby.url.ri=jdbc:derby://${derby.server.ri}:${derby.port.ri}/${derby.dbName.ri}
 derby.driver.ri=org.apache.derby.jdbc.ClientDriver
 derby.home.ri=${javaee.home.ri}/../javadb
 derby.system.home.ri=${derby.home.ri}/databases
-derby.classpath.ri=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home.ri}/lib/derbynet.jar
-derby.classes.ri=${derby.home.ri}/lib/derbyclient.jar
+derby.classpath.ri=${ts.home}/lib/dbprocedures.jar${pathsep}${derby.home.ri}/lib/derbynet.jar${pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
+derby.classes.ri=${derby.home.ri}/lib/derbyclient.jar{pathsep}${derby.home.ri}/lib/derbyshared.jar${pathsep}${derby.home.ri}/lib/derbytools.jar
 derby.poolName.ri=cts-derby-pool
 derby.dataSource.ri=org.apache.derby.jdbc.ClientDataSource
 derby.properties.ri=DatabaseName\=\"${derby.dbName.ri}\":user\=${derby.user.ri}:password\=${derby.passwd.ri}:serverName\=${derby.server.ri}:portNumber=${derby.port.ri}
@@ -1074,18 +1064,18 @@ implementation.classes.ri=${ri.modules}/orb-connector.jar${pathsep}${ri.modules}
 
 implementation.classes=${s1as.modules}/deployment-client.jar${pathsep}${s1as.modules}/security.jar${pathsep}${s1as.modules}/common-util.jar${pathsep}${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/deployment-common.jar${pathsep}${s1as.modules}/gmbal.jar${pathsep}${s1as.modules}/bean-validator.jar${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/jersey-client.jar${pathsep}${s1as.modules}/jersey-common.jar${pathsep}${s1as.modules}/jersey-hk2.jar${pathsep}${s1as.modules}/jersey-media-jaxb.jar${pathsep}${s1as.modules}/jersey-media-sse.jar${pathsep}${s1as.modules}/jersey-media-json-processing.jar${pathsep}${s1as.modules}/jsonp-jaxrs.jar${pathsep}${s1as.modules}/jersey-media-json-binding.jar${pathsep}${s1as.modules}/jersey-server.jar${pathsep}${s1as.modules}/jersey-container-servlet.jar${pathsep}${s1as.modules}/jersey-container-servlet-core.jar${pathsep}${s1as.modules}/guava.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/tyrus-websocket-core.jar${pathsep}${s1as.modules}/tyrus-client.jar${pathsep}${s1as.modules}/tyrus-core.jar${pathsep}${s1as.modules}/tyrus-container-grizzly.jar${pathsep}${s1as.modules}/tyrus-container-grizzly-client.jar${pathsep}${s1as.modules}/glassfish-grizzly-extra-all.jar${pathsep}${s1as.modules}/nucleus-grizzly-all.jar${pathsep}${s1as.modules}/tyrus-server.jar${pathsep}${s1as.modules}/tyrus-container-servlet.jar${pathsep}${s1as.modules}/tyrus-spi.jar${pathsep}${s1as.modules}/com.ibm.jbatch-runtime-all.jar${pathsep}${s1as.modules}/com.ibm.jbatch-ri-spi.jar${pathsep}${s1as.modules}/glassfish-batch-connector.jar${pathsep}${s1as.modules}/glassfish-batch-commands.jar${pathsep}${s1as.modules}/yasson.jar
 
-javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json-api.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${ri.modules}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.mail-api.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.persistence-api.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.authentication-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.authorization-api.jar${pathsep}${ri.modules}/jakarta.interceptor-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${ri.modules}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/jakarta.faces-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${ri.modules}/webservices-api-osgi.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/jakarta.batch-api.jar${pathsep}${ri.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar
+javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json-api.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${ri.modules}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.mail-api.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.persistence-api.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.authentication-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.authorization-api.jar${pathsep}${ri.modules}/jakarta.interceptor-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${ri.modules}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/jakarta.faces-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${ri.modules}/webservices-api-osgi.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/jakarta.batch-api.jar${pathsep}${ri.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/resolver.jar
 
-javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar
+javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/resolver.jar
 
 ts.run.classpath.ri=${javaee.classes.ri}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
-ts.run.classpath=${pathsep}${javaee.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${jdbc.db.classes}${pathsep}${ts.home}/lib/glassfishporting.jar
+ts.run.classpath=${pathsep}${javaee.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${jdbc.db.classes}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-core.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ri.modules}/admin-cli.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ri.modules}/jakarta.activation-api.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-core.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ri.modules}/admin-cli.jar${pathsep}${ts.home}/lib/http.jar
 
 #classpath used for building CTS tests only (DO NOT MODIFY)
-ts.classpath=${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.run.classpath.ri}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/htmlunit-2.15.jar${pathsep}${ts.home}/lib/htmlunit-core-js-2.15.jar${pathsep}${ts.home}/lib/unboundid-ldapsdk.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/xml-apis-1.4.01.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${ts.home}/lib/glassfishporting.jar
+ts.classpath=${ts.home}/lib/commons-lang3-3.3.2.jar${pathsep}${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.run.classpath}${pathsep}${ts.run.classpath.ri}${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/jdom-1.1.3.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/htmlunit-2.15.jar${pathsep}${ts.home}/lib/htmlunit-core-js-2.15.jar${pathsep}${ts.home}/lib/unboundid-ldapsdk.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/xml-apis-1.4.01.jar${pathsep}${ts.home}/lib/http.jar
 #classpath used for building cts.jar (DO NOT MODIFY)
 ts.lib.classpath=${javaee.home.ri}/javadb/lib/derby.jar${pathsep}${ts.harness.classpath}
 
@@ -1152,7 +1142,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Dcom.sun.aas.installRoot=${javaee.home} \
         -Dlog.file.location=${log.file.location} \
         -Dservlet.is.jsr115.compatible=${servlet.is.jsr115.compatible} \
@@ -1196,7 +1185,6 @@ command.testExecuteAppClient= \
         -Dcom.sun.aas.installRoot=${javaee.home} \
         -Dcom.sun.aas.imqLib=${javaee.home}/../mq/lib \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
         -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
         -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
@@ -1212,7 +1200,6 @@ command.testExecuteAppClient= \
         -DwebServerPort.2=${webServerPort.2} \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
-        -Djava.ext.dirs=${s1as.lib}/jdbcdrivers${pathsep}${JAVA_HOME}/lib/ext${pathsep}${JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/lib/jdbcdrivers${pathsep}${javaee.home}/javadb/lib \
         -Dcom.sun.aas.configRoot=${javaee.home}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/s1as.sun-acc.xml,client=jar=$testExecuteArgs
 
@@ -1260,8 +1247,6 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.util.logging.config.file=${javaee.home}/domains/domain1/config/logging.properties \
         -Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds} \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
-        -Djava.ext.dirs=${s1as.lib}/jdbcdrivers${pathsep}${JAVA_HOME}/lib/ext${pathsep}${JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
        
@@ -1289,7 +1274,6 @@ command.testExecuteAppClient2= \
         -Dcom.sun.aas.installRoot=${javaee.home.ri} \
 	-Dcom.sun.aas.imqLib=${javaee.home.ri}/../mq/lib \
         -Djavax.net.ssl.trustStore=${ri.domain}/config/cacerts.jks \
-        -Djava.endorsed.dirs=${ri.java.endorsed.dirs} \
         -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
         -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
         -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
@@ -1305,7 +1289,6 @@ command.testExecuteAppClient2= \
         -DwebServerPort.2=${webServerPort.2} \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
-        -Djava.ext.dirs=${RI_JAVA_HOME}/lib/ext${pathsep}${RI_JAVA_HOME}/jre/lib/ext${pathsep}${javaee.home}/javadb/lib \
         -Dcom.sun.aas.configRoot=${javaee.home.ri}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home.ri}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/ri.sun-acc.xml,client=jar=$testExecuteArgs
 
@@ -1315,7 +1298,6 @@ command.testExecuteAppClient2= \
 ########################################################################
 command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.harness.classpath}${pathsep}${ts.home}/classes${pathsep}\
-        ${JAVA_HOME}/../lib/tools.jar${pathsep}\
         ${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}\
         ${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}\
         ${ts.home}/lib/commons-codec-1.9.jar${pathsep}\
@@ -1343,13 +1325,12 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
-        ${JAVA_HOME}/bin/java \
+        ${RI_JAVA_HOME}/bin/java \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${ri.domain}/${ri.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${ri.java.endorsed.dirs} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
 #########################################################################
@@ -1378,6 +1359,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecuteAppClient2=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -1386,7 +1370,9 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #########################################################################
 
-sigTestClasspath=${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/glassfish-corba-orb.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################
@@ -1404,7 +1390,7 @@ sigTestClasspath=${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.
 ##           optional.tech.packages.to.ignore=jakarta.xml.bind 
 ##   
 #########################################################################
-optional.tech.packages.to.ignore=jakarta.xml.bind,javax.rmi,org.omg.CORBA
+optional.tech.packages.to.ignore=jakarta.xml.bind
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -1808,6 +1794,13 @@ nobodyuser=guest
 ###############################################################
 securedWebServicePort=1044
 securedWebServicePort.2=1045
+
+###############################################################################
+# @client.cert.test.jdk.tls.client.protocols JDK 11 in TLSv1.3 does not support
+#                        Post-Handshake Authentication, so TLSv1.2 must be used
+#                        for client-cert authentication to work.
+###############################################################################
+client.cert.test.jdk.tls.client.protocols=TLSv1.2
 
 ###############################################################
 # @login This property must be set to run appclient security
@@ -2466,3 +2459,4 @@ jakarta.persistence.jdbc.driver=${derby.driver}
 jakarta.persistence.jdbc.url=${derby.url}
 jakarta.persistence.jdbc.user=${derby.user}
 jakarta.persistence.jdbc.password=${derby.passwd}
+

@@ -40,7 +40,7 @@ if [ -z "$GF_TOPLEVEL_DIR" ]; then
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 6.1.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
@@ -55,11 +55,8 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
-fi
+export JAVA_HOME=${JDK11_HOME}
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version

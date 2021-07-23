@@ -19,11 +19,10 @@
 #   JavaTest Environment file for Jakarta RESTful Web Services          #
 #   Compatibility Test Suite                                            #
 #                                                                       #
-#   Environment specific properties in this file will likely	 	    #
+#   Environment specific properties in this file will likely        #
 #   have to be modified prior to running the Jakarta RESTful Web        #
 #   Services TCK. Instructions for modifying these properties are       #
-#   contained in this file.	 	                                        #
-#                                                                       #
+#   contained in this file.
 #########################################################################
 
 ########################################################################
@@ -120,7 +119,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 ###############################################################
 ts.run.classpath=${jaxrs_impl.classes}${pathsep}${jaxrs.classes}${pathsep}${servlet.classes}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/classes${pathsep}${jaxrs.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
+ts.harness.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar
 
 apache.commons.classes=${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar
 local.classes=${ts.harness.classpath}${pathsep}${ts.home}/lib/jaxrstck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${apache.commons.classes}
@@ -154,7 +153,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         PATH="${javaee.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
         -Dcts.tmp=$harness.temp.directory \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
 
@@ -184,12 +182,18 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecuteAppClient2=
 
 ##########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature tests.
 #
 #                    The sigTestClasspath specifies a list of classes/jar files
 #                    which contains Jakarta RESTful Web Services implementation and Java SE classes.
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jaxrs.classes}${pathsep}${web.home}/modules/jakarta.xml.bind-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## This property is used to support the odd side case when we have an
@@ -432,10 +436,9 @@ impl.vi.deploy.dir=
 
 tslib.name=jaxrstck
 
-
 ###############################################################
 # @extension.dir - The extension directory of RI. 
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${web.home}/domains/domain1/lib/ext
+extension.dir=${web.home}/domains/domain1/lib

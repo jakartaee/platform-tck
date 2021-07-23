@@ -243,7 +243,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
-                -Djava.endorsed.dirs=${endorsed.dirs} \
         $testExecuteClass $testExecuteArgs
 
 #########################################################################
@@ -265,6 +264,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -272,7 +274,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${concurrency.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${concurrency.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ###############################################################
 ## This command allows the test clients to be run in
@@ -302,4 +306,5 @@ tslib.name=concurrencytck
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${webcontainer.home}/domains/domain1/lib/ext
+extension.dir=${webcontainer.home}/domains/domain1/lib
+

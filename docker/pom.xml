@@ -70,7 +70,9 @@
         <webservices-api.version>3.0.0</webservices-api.version>
         <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
-        <webservices-tools.version>3.0.0</webservices-tools.version>        
+        <webservices-tools.version>3.0.0</webservices-tools.version> 
+
+        <glassfish-corba-orb.version>4.2.4</glassfish-corba-orb.version>       
         
 </properties>
 
@@ -239,6 +241,16 @@
         <groupId>org.glassfish.metro</groupId>
         <artifactId>webservices-tools</artifactId>
         <version>${webservices-tools.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.glassfish.corba</groupId>
+        <artifactId>glassfish-corba-orb</artifactId>
+        <version>${glassfish-corba-orb.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.sun.org.apache.xml.internal</groupId>
+        <artifactId>resolver</artifactId>
+        <version>20050927</version>
     </dependency>
   </dependencies>
 

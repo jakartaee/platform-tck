@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -12,10 +12,6 @@
 # https://www.gnu.org/software/classpath/license.html.
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
-
-#
-# $Id$
 #
 
 #########################################################################
@@ -120,6 +116,9 @@ if.existing.work.report.dirs=append
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -127,7 +126,9 @@ porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jsonp.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jsonp.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 # These properties are used by the harness.  "harness.log.port"

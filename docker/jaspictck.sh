@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -59,11 +59,8 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
-fi
+export JAVA_HOME=${JDK11_HOME}
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version

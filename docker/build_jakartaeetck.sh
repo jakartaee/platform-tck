@@ -18,10 +18,7 @@ if [ -z "$ANT_HOME" ]; then
   export ANT_HOME=/usr/share/ant/
 fi
 
-if [ -z "$JAVA_HOME" ]; then
-  export JAVA_HOME=/opt/jdk1.8.0_171
-fi
-
+export JAVA_HOME=${JDK11_HOME}
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 cd $WORKSPACE
@@ -70,10 +67,9 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${JAKARTA_JARS}/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
+export ANT_OPTS="-Xmx2G -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
-		 -DenableExternalEntityProcessing=true \
+		             -DenableExternalEntityProcessing=true \
                  -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
@@ -93,7 +89,7 @@ echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
 
 mkdir -p $JAKARTA_JARS/modules
-mkdir -p $JAKARTA_JARS/endorsed
+
 
 mvn -f $BASEDIR/docker/pom.xml dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
 
@@ -108,7 +104,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$JAKARTA_JARS/endorsed build.all
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"

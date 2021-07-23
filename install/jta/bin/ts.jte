@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -86,9 +86,13 @@ tck.classes=${ts.home}/lib/tsharness.jar${pathsep}\
 # @extension.dir - The extension directory for the
 #                  server under test (if applicable).  
 ###############################################################
-extension.dir=${webServerHome}/domains/domain1/lib/ext
+extension.dir=${webServerHome}/domains/domain1/lib
 
 ########################################################################
+#
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 #
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
@@ -98,8 +102,13 @@ extension.dir=${webServerHome}/domains/domain1/lib/ext
 #                    (';' windows, ':' Unixes).
 #
 ########################################################################
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
 sigTestClasspath=${jta.classes}${pathsep}\
-                 ${JAVA_HOME}/lib/rt.jar
+                 ${jimage.dir}/java.base${pathsep}\
+                 ${jimage.dir}/java.rmi${pathsep}\
+                 ${jimage.dir}/java.sql${pathsep}\
+                 ${jimage.dir}/java.naming
 
 ########################################################################
 #These properties must be set to tell the Javatest harness the

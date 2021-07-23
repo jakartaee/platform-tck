@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -141,7 +141,7 @@ s1as.db.ext.dirs=
 #       target will copy the library jars(jacctck.jar,tsharness.jar) 
 #        to this location.
 ###############################################################
-extension.dir=${s1as.domain}/lib/ext
+extension.dir=${s1as.domain}/lib
 
 ##############################################################################
 # @sjsas.master.password  -- Used as default password for keystore &  truststore
@@ -252,7 +252,7 @@ database.user=cts1
 database.passwd=cts1
 database.url=jdbc:derby://${database.server}:${database.port}/${database.dbName};create=true
 database.driver=org.apache.derby.jdbc.ClientDriver
-database.classes=${jdbc.lib.class.path}/derbyclient.jar
+database.classes=${jdbc.lib.class.path}/derbyclient.jar${pathsep}${jdbc.lib.class.path}/derbyshared.jar${pathsep}${jdbc.lib.class.path}/derbytools.jar
 database.dataSource=org.apache.derby.jdbc.ClientDataSource
 database.properties=DatabaseName\=\"${database.dbName}\":user\=${database.user}:password\=${database.passwd}:serverName\=${database.server}:portNumber=${database.port}
 
@@ -311,7 +311,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${jacc.home}/domains/domain1/config/cacerts.jks \
-        -Djava.ext.dirs=${JAVA_HOME}/lib/ext \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
 
@@ -336,6 +335,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your
@@ -343,7 +345,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jacc.home}/modules/jakarta.authorization-api.jar:${jacc.home}/modules/jakarta.security.auth.message-api.jar:${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jacc.home}/modules/jakarta.authorization-api.jar:${jacc.home}/modules/jakarta.security.auth.message-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################

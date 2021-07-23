@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -170,7 +170,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     windir=${windir} \
                     SYSTEMROOT=${SYSTEMROOT} \
                     ${JAVA_HOME}/bin/java \
-                    -Djava.endorsed.dirs=${endorsedlib.dir} \
                     -Dbytecheck=true \
                     -Djava.protocol.handler.pkgs=javax.net.ssl \
                     -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
@@ -189,10 +188,15 @@ env.ts_unix.menu=true
 env.ts_win32.menu=true
 
 ##########################################################################
-# The sigTestClasspath specify the location of servlet implementation 
-# classes that used for signature test
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+# @sigTestClasspath: This property specifies the location of servlet
+#                    implementation classes used for the signature test
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${java.home}/lib/modules${pathsep}${servlet.classes}
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${servlet.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -304,6 +308,13 @@ authpassword=javajoe
 #                        server's secured webservice port.
 ###############################################################
 securedWebServicePort=
+
+###############################################################################
+# @client.cert.test.jdk.tls.client.protocols JDK 11 in TLSv1.3 does not support
+#                        Post-Handshake Authentication, so TLSv1.2 must be used
+#                        for client-cert authentication to work.
+###############################################################################
+client.cert.test.jdk.tls.client.protocols=TLSv1.2
 
 ###################################################################
 ###################################################################
