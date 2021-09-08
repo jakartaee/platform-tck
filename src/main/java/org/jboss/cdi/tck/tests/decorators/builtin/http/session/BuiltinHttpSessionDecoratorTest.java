@@ -28,7 +28,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpSession;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
-import org.jboss.cdi.tck.tests.decorators.AbstractDecoratorTest;
+import org.jboss.cdi.tck.tests.full.decorators.AbstractDecoratorTest;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;

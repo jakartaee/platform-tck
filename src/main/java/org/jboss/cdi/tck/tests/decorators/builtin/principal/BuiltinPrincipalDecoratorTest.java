@@ -24,7 +24,7 @@ import static org.testng.Assert.assertNotNull;
 import jakarta.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
-import org.jboss.cdi.tck.tests.decorators.AbstractDecoratorTest;
+import org.jboss.cdi.tck.tests.full.decorators.AbstractDecoratorTest;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
