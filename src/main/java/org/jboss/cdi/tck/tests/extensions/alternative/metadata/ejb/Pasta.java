@@ -17,7 +17,7 @@
 package org.jboss.cdi.tck.tests.extensions.alternative.metadata.ejb;
 
 import jakarta.ejb.Stateless;
-import org.jboss.cdi.tck.tests.extensions.alternative.metadata.ItalianFood;
+import org.jboss.cdi.tck.tests.full.extensions.alternative.metadata.ItalianFood;
 
 @Stateless
 public class Pasta extends ItalianFood {

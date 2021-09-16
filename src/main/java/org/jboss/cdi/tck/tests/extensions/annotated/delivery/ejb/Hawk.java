@@ -19,9 +19,9 @@ package org.jboss.cdi.tck.tests.extensions.annotated.delivery.ejb;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import org.jboss.cdi.tck.tests.extensions.annotated.delivery.Baby;
-import org.jboss.cdi.tck.tests.extensions.annotated.delivery.Chicken;
-import org.jboss.cdi.tck.tests.extensions.annotated.delivery.Desired;
+import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.Baby;
+import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.Chicken;
+import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.Desired;
 
 @Stateless
 public class Hawk {

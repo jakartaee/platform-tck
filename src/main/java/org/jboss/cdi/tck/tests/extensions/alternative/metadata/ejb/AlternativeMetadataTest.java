@@ -20,7 +20,7 @@ import jakarta.enterprise.inject.spi.Bean;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
-import org.jboss.cdi.tck.tests.extensions.alternative.metadata.ItalianFood;
+import org.jboss.cdi.tck.tests.full.extensions.alternative.metadata.ItalianFood;
 import org.jboss.shrinkwrap.api.BeansXmlVersion;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
