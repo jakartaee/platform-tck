@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.function.Predicate;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
@@ -36,6 +37,7 @@ import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 
 import jakarta.el.ELException;
+import jakarta.el.ELProcessor;
 
 public class ELClient extends ServiceEETest {
 
@@ -1650,6 +1652,101 @@ public class ELClient extends ServiceEETest {
 
     if (fail)
       throw new Fault("TEST FAILED");
+  }
+
+  /**
+   * @testName: elCoerceLambdaExpressionToFunctionalInterfaceTest
+   * @assertion_ids: EL:SPEC:79.1; EL:SPEC:79.2; EL:SPEC:79.3
+   * @test_Strategy: Validate that - a lambda expression can be coerced to a
+   *                 functional interface invocation if the parameter types
+   *                 match or can be made to match via the standard coercion
+   *                 rules.
+   */
+  public void elCoerceLambdaExpressionToFunctionalInterfaceTest() throws Fault {
+
+    boolean fail = false;
+    boolean[] pass = { false, false, false, false, false };
+    Object result = null;
+
+    try {
+      // Coercible lambda expression where filter matches
+      ELProcessor elp0 = new ELProcessor();
+      elp0.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
+      result = elp0.eval("testPredicateString(x -> x.equals('data'))");
+      pass[0] = ExprEval.compareClass(result, String.class)
+          && ExprEval.compareValue(result, "PASS");
+      
+      // Coercible lambda expression where filter does not match
+      ELProcessor elp1 = new ELProcessor();
+      elp1.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
+      result = elp1.eval("testPredicateString(x -> x.equals('other'))");
+      pass[1] = ExprEval.compareClass(result, String.class)
+          && ExprEval.compareValue(result, "BLOCK");
+
+      // Not a lambda expression
+      ELProcessor elp2 = new ELProcessor();
+      elp2.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
+      pass[2] = ExprEval.compareClass(result, String.class)
+          && ExprEval.compareValue(result, "BLOCK");
+      try {
+        result = elp2.eval("testPredicateString('notLambdaExpression)");
+      } catch (ELException e) {
+        pass[2] = true;
+      }
+
+      // Coercible lambda expression with wrong type
+      ELProcessor elp3 = new ELProcessor();
+      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
+      try {
+        result = elp3.eval("testPredicateLong(x -> x.equals('data'))");
+      } catch (ELException e) {
+        pass[3] = true;
+      }
+      
+      // Coercible lambda expression where filter does not match and parameter needs to be coerced
+      ELProcessor elp4 = new ELProcessor();
+      elp4.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
+      result = elp4.eval("testPredicateString(x -> x.equals(1234))");
+      pass[4] = ExprEval.compareClass(result, String.class)
+          && ExprEval.compareValue(result, "BLOCK");
+
+    } catch (Exception e) {
+      TestUtil.logErr("Testing coercion of lambda expressions to functional interfaces " +
+          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+
+      throw new Fault(e);
+    } finally {
+      ExprEval.cleanup();
+    }
+
+    for (int i = 0; i < pass.length; ++i) {
+      if (!pass[i]) {
+        fail = true;
+        TestUtil.logErr("Unexpected result for test case " + i);
+      }
+    }
+
+    if (fail)
+      throw new Fault("TEST FAILED");
+  }
+
+  
+  public static String testPredicateString(Predicate<String> filter) {
+    String s = "data";
+    if (filter.test(s)) {
+      return "PASS";
+    } else {
+      return "BLOCK";
+    }
+  }
+
+  public static String testPredicateLong(Predicate<Long> filter) {
+    Long l = Long.valueOf("1234");
+    if (filter.test(l)) {
+      return "PASS";
+    } else {
+      return "BLOCK";
+    }
   }
 
   /**
