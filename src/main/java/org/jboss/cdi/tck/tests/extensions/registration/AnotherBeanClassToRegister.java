@@ -1,8 +1,8 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2010, Red Hat, Inc., and individual contributors
- * by the @authors tag. See the copyright.txt in the distribution for a
- * full listing of individual contributors.
+ * Copyright 2011, Red Hat, Inc. and/or its affiliates, and individual
+ * contributors by the @authors tag. See the copyright.txt in the
+ * distribution for a full listing of individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.ee;
+package org.jboss.cdi.tck.tests.extensions.registration;
 
-import jakarta.enterprise.inject.Vetoed;
 import jakarta.inject.Inject;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Charlie;
 
-@SuppressWarnings("serial")
-@Vetoed
-@WebServlet("/testServlet")
-public class TestServlet extends HttpServlet {
+public class AnotherBeanClassToRegister {
     @Inject
-    Charlie charlie;
+    private BeanClassToRegister collaborator;
 
-
+    public BeanClassToRegister getCollaborator() {
+        return collaborator;
+    }
 }

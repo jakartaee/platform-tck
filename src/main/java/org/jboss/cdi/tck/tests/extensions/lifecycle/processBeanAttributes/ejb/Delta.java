@@ -19,7 +19,7 @@ package org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.ejb;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.Alpha;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.Alpha;
 
 @Named
 @Stateless

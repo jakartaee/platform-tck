@@ -22,12 +22,12 @@ import jakarta.enterprise.inject.spi.Extension;
 import jakarta.enterprise.inject.spi.InjectionPoint;
 import jakarta.enterprise.inject.spi.ProcessInjectionPoint;
 import jakarta.enterprise.inject.spi.ProcessManagedBean;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.Alpha;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.Bravo;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.BravoObserver;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.Charlie;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.Delta;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.InjectingBean;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Alpha;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Bravo;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.BravoObserver;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Charlie;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Delta;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.InjectingBean;
 
 import static org.testng.Assert.assertNull;
 

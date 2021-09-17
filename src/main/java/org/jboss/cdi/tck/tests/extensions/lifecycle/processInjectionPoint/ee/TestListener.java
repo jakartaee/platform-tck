@@ -21,7 +21,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionPoint.Charlie;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.Charlie;
 
 @Vetoed
 @WebListener

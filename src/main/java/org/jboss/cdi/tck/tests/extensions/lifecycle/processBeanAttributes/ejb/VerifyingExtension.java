@@ -25,9 +25,9 @@ import jakarta.enterprise.inject.spi.AnnotatedMethod;
 import jakarta.enterprise.inject.spi.BeanAttributes;
 import jakarta.enterprise.inject.spi.Extension;
 import jakarta.enterprise.inject.spi.ProcessBeanAttributes;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.Bravo;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoDecorator;
-import org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.BravoInterceptor;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.Bravo;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.BravoDecorator;
+import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.BravoInterceptor;
 
 public class VerifyingExtension implements Extension {
 
