@@ -16,8 +16,8 @@
  */
 package org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.ejb;
 
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.Fish;
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.Wild;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Fish;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Wild;
 
 public class Dam extends Lake {
 

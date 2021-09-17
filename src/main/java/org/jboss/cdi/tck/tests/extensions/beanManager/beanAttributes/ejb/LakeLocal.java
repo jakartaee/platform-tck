@@ -17,7 +17,7 @@
 package org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.ejb;
 
 import jakarta.ejb.Local;
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.WaterBody;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.WaterBody;
 
 @Local
 public interface LakeLocal extends WaterBody {

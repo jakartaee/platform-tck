@@ -20,9 +20,9 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Typed;
 import jakarta.inject.Named;
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.Fish;
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.Natural;
-import org.jboss.cdi.tck.tests.extensions.beanManager.beanAttributes.TundraStereotype;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Fish;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.Natural;
+import org.jboss.cdi.tck.tests.full.extensions.beanManager.beanAttributes.TundraStereotype;
 
 @Stateless
 @TundraStereotype
