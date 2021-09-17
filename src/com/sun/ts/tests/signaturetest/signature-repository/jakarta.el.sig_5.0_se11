@@ -9,7 +9,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly
@@ -23,7 +23,7 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,properties
@@ -36,7 +36,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds beanNameResolver
@@ -59,7 +59,7 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void add(jakarta.el.ELResolver)
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
@@ -158,7 +158,7 @@ meth public abstract java.lang.Object getValue(jakarta.el.ELContext,java.lang.Ob
 meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 supr java.lang.Object
 
 CLSS public abstract jakarta.el.EvaluationListener
@@ -222,7 +222,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,theUnmodifiableListClass
@@ -235,7 +235,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,theUnmodifiableMapClass
@@ -301,7 +301,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
@@ -326,7 +326,7 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
@@ -338,7 +338,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="EL 5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
