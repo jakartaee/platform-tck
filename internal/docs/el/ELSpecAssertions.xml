@@ -22,7 +22,7 @@
 <?xml-stylesheet href = 'file:///files/workspaces/tools/docs/xsl/assertions/spec_assertions_comments.xsl' type = 'text/xsl'?>
 <spec>
 	<!-- @(#)ELSpecAssertions.xml 1.0 03/23/06 -->
-	<next-available-id>80</next-available-id>
+	<next-available-id>81</next-available-id>
 	<previous-id>48</previous-id>
 	<technology>EL</technology>
 	<id>EL</id>
@@ -177,6 +177,15 @@
 				[MethodExprSignature]</description>
 			<location chapter="1" section="2.1.2" />
 		</assertion>
+        <assertion required="true" impl-spec="false" defined-by="technology"
+            status="active" testable="true">
+            <id>EL:SPEC:80</id>
+            <description>Identification of methods in method expressions from
+                parameter types follows the rules of the JLS with the addition
+                that coercion resolution is less specific than overload
+                resolution. [MethodExpressionMatch]</description>
+            <location chapter="1" section="2.1.2" />
+        </assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="true">
 			<id>EL:SPEC:6</id>
