@@ -28,8 +28,6 @@ import jakarta.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
-import org.jboss.cdi.tck.tests.implementation.builtin.metadata.Frozen;
-import org.jboss.cdi.tck.tests.implementation.builtin.metadata.YoghurtInterceptor;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
