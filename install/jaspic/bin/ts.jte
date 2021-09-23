@@ -229,7 +229,7 @@ s1as.targets=${s1as.server}
 #       app server's extension directory.  The CTS config.vi
 #       target will copy the CTS library jars to this location.
 ###############################################################
-extension.dir=${s1as.domain}/lib/ext
+extension.dir=${s1as.domain}/lib
 
 
 ###############################################################
@@ -337,7 +337,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Dcom.sun.aas.installRoot=${jaspic.home} \
         -Dcom.sun.aas.configRoot=${jaspic.home}/config \
         -Dlog.file.location=${log.file.location} \
@@ -391,7 +390,6 @@ command.testExecuteAppClient= \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
         -Dcom.sun.aas.installRoot=${jaspic.home} \
         -Dcom.sun.aas.imqLib=${jaspic.home}/imq/lib \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl \
         -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl \
         -Djavax.xml.transform.TransformerFactory=com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl \
@@ -399,7 +397,6 @@ command.testExecuteAppClient= \
         -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
         -Dstartup.login=false \
         -Dauth.gui=false \
-        -Djava.ext.dirs=${JAVA_HOME}/lib/ext \
         -Dcom.sun.aas.configRoot=${jaspic.home}/config \
         -Ddeliverable.class=${deliverable.class} \
         -Dcom.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true \
@@ -430,7 +427,6 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${ri.domain}/${ri.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${ri.java.endorsed.dirs} \
         -Dlog.file.location=${log.file.location} \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${ri.domain}/config/ts.java.security \
@@ -462,6 +458,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecuteAppClient2=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -470,7 +469,9 @@ env.ts_win32.menu=true
 #                    (';' windows, ':' Unixes).
 #                    Note that on mac, classes.jar is used instead of rt.jar.
 #########################################################################
-sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${JAVA_HOME}/lib/jce.jar:${JAVA_HOME}/lib/rt.jar:${JAVA_HOME}/../Classes/classes.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jaspic.home}/modules/jakarta.authentication-api.jar:${jaspic.home}/modules/security.jar:${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## These properties are used by the harness.  "harness.log.port"
@@ -702,8 +703,8 @@ log.file.location=${s1as.domain}/logs
 # @servlet.is.jsr115.compatible  This property is used by Jakarta Authentication tests 
 #   to determine if the servlet container is a Jakarta Authorization compatible 
 #   container.  (true = compatible to Jakarta Authorization, false = not compatible.)
-# @soap.is.jsr115.compatible  This is also used by JASPIC tests to
-#   determine if the SOAP container is Jakarta Authorization compatible.
+# @soap.is.jsr115.compatible  This is also used by Jakarta Authentication tests to
+#   determine if the SOAP container is  Jakarta Authorization compatible.
 ###################################################################
 servlet.is.jsr115.compatible=true
 soap.is.jsr115.compatible=false
@@ -744,7 +745,7 @@ $
 #              log level specified in sun-acc.xml
 #
 #              This log level directly affects the output of TSLogger which 
-#              logs the JSR196 SPI calls made in appclient container. 
+#              logs the Jakarta Authentication calls made in appclient container. 
 #
 #              using this property we enable the appclient container's 
 #              logging level to INFO

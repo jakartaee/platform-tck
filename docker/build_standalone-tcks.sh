@@ -19,6 +19,10 @@ if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
 fi
 
+export JAVA_HOME=${JDK11_HOME}
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+
 which ant
 ant -version
 
@@ -45,8 +49,7 @@ if [ ! -z "$GF_VERSION_URL" ]; then
   cat glassfish.version
 fi
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${BASEDIR}/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed \
--Djavax.xml.accessExternalStylesheet=all \
+export ANT_OPTS="-Xmx2G -Djavax.xml.accessExternalStylesheet=all \
 -Djavax.xml.accessExternalSchema=all \
 -DenableExternalEntityProcessing=true \
 -Djavax.xml.accessExternalDTD=file,http,https"
@@ -98,6 +101,8 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
   #done
   exit 0
 fi
+
+RMI_CLASSES="-Drmi.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/glassfish-corba-omgapi.jar"
 
 for tck in ${TCK_LIST[@]}; do
   if [ "jta" == "$tck" ]
@@ -197,7 +202,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "saaj" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar -Dwebcontainer.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish -Dendorsed.dirs=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed"
+    TCK_SPECIFIC_PROPS="-Dlocal.classes=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar -Dwebcontainer.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "servlet" == "$tck" ]
@@ -210,12 +215,12 @@ for tck in ${TCK_LIST[@]}; do
   fi
 
   echo "########## Trunk.$tck Started##########"
-  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
+  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
 
-  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all 
+  ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS -Djava.endorsed.dirs=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish/modules/endorsed build.all 
   
   if [ "jaxrs" == "$tck" ]; then
-    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $TCK_SPECIFIC_PROPS update.jaxrs.wars
+    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS update.jaxrs.wars
   fi
 
   mkdir -p $BASEDIR/internal/docs/$tck

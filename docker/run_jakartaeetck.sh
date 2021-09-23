@@ -48,35 +48,17 @@ if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
     export GF_VI_TOPLEVEL_DIR=glassfish6
 fi
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  cp $TS_HOME/bin/ts.jte.jdk11 $TS_HOME/bin/ts.jte
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  export ANT_OPTS="-Xmx2G \
-                 -Djavax.xml.accessExternalStylesheet=all \
-                 -Djavax.xml.accessExternalSchema=all \
-		 -DenableExternalEntityProcessing=true \
-                 -Djavax.xml.accessExternalDTD=file,http"
-  export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
-                 -Djavax.xml.accessExternalSchema=all \
-     -Djavax.xml.accessExternalDTD=file,http"
+export JAVA_HOME=${JDK11_HOME}
 
-else
-  export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/modules/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
-                 -Djavax.xml.accessExternalSchema=all \
-		 -DenableExternalEntityProcessing=true \
-                 -Djavax.xml.accessExternalDTD=file,http"
-  export CTS_ANT_OPTS="-Djava.endorsed.dirs=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/modules/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
-                 -Djavax.xml.accessExternalSchema=all \
-     -Djavax.xml.accessExternalDTD=file,http"
-
-fi
-
-if [ -z "${RI_JAVA_HOME}" ]; then
-  export RI_JAVA_HOME=$JAVA_HOME
-fi
+export PATH=$JAVA_HOME/bin:$PATH
+export ANT_OPTS="-Xmx2G \
+               -Djavax.xml.accessExternalStylesheet=all \
+               -Djavax.xml.accessExternalSchema=all \
+	 -DenableExternalEntityProcessing=true \
+               -Djavax.xml.accessExternalDTD=file,http"
+export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
+               -Djavax.xml.accessExternalSchema=all \
+   -Djavax.xml.accessExternalDTD=file,http"
 
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
@@ -161,10 +143,6 @@ mkdir -p ${CTS_HOME}/ri
 unzip -q ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
 chmod -R 777 ${CTS_HOME}/ri
 
-if [ ! -z "${RI_JAVA_HOME}" ]; then
- echo "AS_JAVA=${RI_JAVA_HOME}" >> ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/config/asenv.conf
-fi
-
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
 echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
 
@@ -215,8 +193,8 @@ sleep 5
 
 echo "Killing any RI java processes that were not stopped gracefully"
 echo "Pending process to be killed:"
-ps -eaf | grep "$RI_JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
-for i in `ps -eaf | grep "$RI_JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
+ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" 
+for i in `ps -eaf | grep "$JAVA_HOME/bin/java" | grep -v "grep" | grep -v "nohup" | tr -s " " | cut -d" " -f2`
 do
   echo "[killJava.sh] kill -9 $i"
   kill -9 $i

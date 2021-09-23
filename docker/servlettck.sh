@@ -55,13 +55,8 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
-else
-  export JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
-fi
+export JAVA_HOME=${JDK11_HOME}
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version

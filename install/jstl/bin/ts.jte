@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -112,7 +112,7 @@ jstl.db.password=cts1
 #    				${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 #
 ########################################################
-jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar
+jdbc.classes=${webServerHome}/../javadb/lib/derbyclient.jar${pathsep}${webServerHome}/../javadb/lib/derbyshared.jar.jar${pathsep}${webServerHome}/../javadb/lib/derbytools.jar
 jspservlet.classes=${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp-api.jar${pathsep}${webServerHome}/modules/jakarta.el-api.jar${pathsep}${webServerHome}/modules/jakarta.el.jar
 jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar${pathsep}${webServerHome}/modules/jakarta.servlet.jsp.jstl-api.jar
 
@@ -168,20 +168,20 @@ ts.harness.classpath=${ts.classpath}
 javatest.timeout.factor=1.0
 
 ########################################################
+#
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
 #                    Java EE and Java SE classes.
 #
-# Example:(Mac OS/X, Apples VM)
-#   sigTestClasspath=${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}\
-#                    /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar
-#
-# Example:(Solaris, Sun VM)
-#   sigTestClasspath=${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}${java.home}/lib/rt.jar
-#
 ########################################################
-sigTestClasspath=${ts.home}/classes${pathsep}${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${ts.home}/classes${pathsep}${jstl.classes}${pathsep}${jspservlet.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################
 #  Common environment for both ts_unix and ts_win32
