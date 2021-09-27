@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -440,6 +440,25 @@ public class JSONPTypesMappingTest extends ServiceEETest {
           "Failed to unmarshal object with JsonNumber attribute value.");
     }
 
+    return Status.passed("OK");
+  }
+  
+  /*
+   * @testName: testNullDeserializedToJsonValueNull
+   *
+   * @assertion_ids: JSONB:SPEC:JSB-3.20
+   *
+   * @test_Strategy: Assert that null is properly deserialized to the JsonValue.NULL
+   */
+  public Status testNullDeserializedToJsonValueNull() throws Fault {
+    JsonValueContainer unmarshalledValue = jsonb.fromJson("{ \"instance\" : null }", JsonValueContainer.class);
+    if (JsonValue.NULL != unmarshalledValue.getInstance()) {
+        throw new Fault("Failed to unmarshal null value to the JsonValue.NULL");
+    }
+    unmarshalledValue = jsonb.fromJson("{}", JsonValueContainer.class);
+    if (unmarshalledValue.getInstance() != null) {
+        throw new Fault("Failed to unmarshal object with JsonNumber attribute value.");
+    }
     return Status.passed("OK");
   }
 }
