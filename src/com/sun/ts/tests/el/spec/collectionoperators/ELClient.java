@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -26,6 +26,7 @@ import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.DataBase;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -474,6 +475,112 @@ public class ELClient extends ServiceEETest {
 
   }// End elCollectionFlatMapTest()
 
+  
+  /**
+   * @testName: elCollectionSetLiteralTest
+   * @assertion_ids: EL:SPEC:51; EL:SPEC:51.1; EL:SPEC:51.2; EL:SPEC:51.3;
+   * @test+Strategy: Verify that a value in a literal List constructed from
+   *                 variables can be retrieved using the associated index.
+   */
+  public void elCollectionSetLiteralTest() throws Fault {
+    boolean pass = false;
+    
+    try {
+      ELProcessor elp = new ELProcessor();
+      
+      String valueA = "myValueA";
+      String valueB = "myValueB";
+      
+      elp.setVariable("aaa", "'" + valueA + "'");
+      elp.setVariable("bbb", "'" + valueB + "'");
+      
+      Boolean result = (Boolean) elp.eval("{aaa,bbb}.contains(aaa)");
+      
+      pass = result.booleanValue();
+    } catch (Exception e) {
+      pass = false;
+      TestUtil.logErr("Construction and use of a valid Set literal threw an Exception!" +
+          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+
+      e.printStackTrace();
+    }
+    
+    if (!pass) {
+      throw new Fault("TEST FAILED!");
+    }
+  }
+  
+  
+  /**
+   * @testName: elCollectionListLiteralTest
+   * @assertion_ids: EL:SPEC:52; EL:SPEC:52.1; EL:SPEC:52.2; EL:SPEC:52.3;
+   * @test+Strategy: Verify that a value in a literal List constructed from
+   *                 variables can be retrieved using the associated index.
+   */
+  public void elCollectionListLiteralTest() throws Fault {
+    boolean pass = false;
+    
+    try {
+      ELProcessor elp = new ELProcessor();
+      
+      String valueA = "myValueA";
+      String valueB = "myValueB";
+      
+      elp.setVariable("aaa", "'" + valueA + "'");
+      elp.setVariable("bbb", "'" + valueB + "'");
+      
+      Object result = elp.eval("[aaa,bbb].get(1)");
+      
+      pass = valueB.equals(result);
+    } catch (Exception e) {
+      pass = false;
+      TestUtil.logErr("Construction and use of a valid List literal threw an Exception!" +
+          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+
+      e.printStackTrace();
+    }
+    
+    if (!pass) {
+      throw new Fault("TEST FAILED!");
+    }
+  }
+  
+  
+  /**
+   * @testName: elCollectionMapLiteralTest
+   * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
+   * @test+Strategy: Verify that a value in a literal Map constructed from
+   *                 variables can be retrieved using the associated key.
+   */
+  public void elCollectionMapLiteralTest() throws Fault {
+    boolean pass = false;
+    
+    try {
+      ELProcessor elp = new ELProcessor();
+      
+      String key = "myKey";
+      String value = "myValue";
+      
+      elp.setVariable("aaa", "'" + key + "'");
+      elp.setVariable("bbb", "'" + value + "'");
+      
+      Object result = elp.eval("{aaa:bbb}.get(aaa)");
+      
+      pass = value.equals(result);
+    } catch (Exception e) {
+      pass = false;
+      TestUtil.logErr("Construction and use of a valid Map literal threw an Exception!" +
+          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+
+      e.printStackTrace();
+    }
+    
+    if (!pass) {
+      throw new Fault("TEST FAILED!");
+    }
+  }
+  
+  
   // --------------------------- private methods
 
   private void logLine(String s) {
