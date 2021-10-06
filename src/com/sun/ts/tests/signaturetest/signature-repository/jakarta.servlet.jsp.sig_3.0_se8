@@ -11,7 +11,7 @@ meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.O
 meth public abstract java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public abstract java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
 meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-meth public java.lang.Object convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<?>)
+meth public <%0 extends java.lang.Object> {%%0} convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<{%%0}>)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 supr java.lang.Object
 
@@ -218,6 +218,7 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hcls EnumeratedMap,ImplicitObjects
@@ -229,6 +230,29 @@ meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.
 meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
+meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+supr jakarta.el.ELResolver
+
+CLSS public jakarta.servlet.jsp.el.ImportELResolver
+cons public init()
+meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
+meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+supr jakarta.el.ELResolver
+
+CLSS public jakarta.servlet.jsp.el.NotFoundELResolver
+cons public init()
+meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
