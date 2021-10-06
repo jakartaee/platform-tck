@@ -596,7 +596,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:35
    * 
    * @test_Strategy: Validate that classes from the jakarta.servlet.http package
-   * are implicitly imported by creating and using an instance of HttpUtils.
+   * are implicitly imported by creating and using an instance of Cookie.
    */
 
   public void implicitImportHttpTest() throws Fault {
