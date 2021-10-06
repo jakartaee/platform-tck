@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -1247,6 +1248,41 @@ public class URLClient extends AbstractUrlClient {
   public void deferredSyntaxAllowedAsLiteralTrueActionTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD,
         "DeferredSyntaxAllowedAsLiteralTrueActionTest");
+    invoke();
+  }
+  
+  /*
+   * @testName: errorOnELNotFoundFalseTest
+   * 
+   * @assertion_ids: JSP:SPEC:319
+   * 
+   * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the
+   * ErrorOnELNotFound page directive attribute is set to false, a reference
+   * to an unresolved identifier results in the empty string being used.
+   */
+  public void errorOnELNotFoundFalseTest()
+      throws Fault {
+    String testName = "ErrorOnELNotFoundFalseTest";
+    TEST_PROPS.setProperty(REQUEST,
+        "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
+    invoke();
+  }
+  
+  /*
+   * @testName: errorOnELNotFoundTrueTest
+   * 
+   * @assertion_ids: JSP:SPEC:319
+   * 
+   * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the
+   * ErrorOnELNotFound page directive attribute is set to false, a reference
+   * to an unresolved identifier results in the empty string being used.
+   */
+  public void errorOnELNotFoundTrueTest()
+      throws Fault {
+    String testName = "ErrorOnELNotFoundTrueTest";
+    TEST_PROPS.setProperty(REQUEST,
+        "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
+    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     invoke();
   }
 }
