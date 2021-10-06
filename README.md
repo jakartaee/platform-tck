@@ -1,3 +1,13 @@
+# Platform TCK refactoring
+
+## Build
+From the root folder, try:
+```
+mvn clean install -Dmaven.compiler.failOnError=false > /tmp/build.txt
+```
+
+The ^ command will compile all sources that are included as per root pom.xml with many failures that we need to resolve.  
+
 # JakartaEE TCK Jenkins Jobs
 The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and are available under
 https://jenkins.eclipse.org/jakartaee-tck/
