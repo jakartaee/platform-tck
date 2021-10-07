@@ -26,8 +26,10 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceUnitUtil;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -97,11 +99,48 @@ public class Client extends PMClientBase {
   }
 
   /*
+   * @testName: autoCloseableTest
+   *
+   * @assertion_ids: PERSISTENCE:JAVADOC:N/A;
+   *
+   * @test_Strategy: Create EntityManagerFactory in try with resources block
+   * and verify whether it's open inside and outside of the try block.
+   */
+  @SetupMethod(name = "setupNoData")
+  @CleanupMethod(name = "cleanupNoData")
+  public void autoCloseableTest() throws Fault {
+    boolean pass = true;
+    EntityManagerFactory emf = null;
+    try (final EntityManagerFactory emfLocal
+                 = Persistence.createEntityManagerFactory(getPersistenceUnitName())) {
+      emf = emfLocal;
+      if (emf == null) {
+        TestUtil.logErr("createEntityManagerFactory(String) returned a null result");
+        pass = false;
+      }
+      if (emf.isOpen() == false) {
+        TestUtil.logErr("EntityManagerFactory isOpen() returned false in try block");
+        pass = false;
+      }
+    } catch (Throwable t) {
+      throw new Fault("autoCloseableTest failed with Exception", t);
+    } finally {
+      if (emf.isOpen() == true) {
+        TestUtil.logErr("EntityManagerFactory isOpen() returned true outside try block");
+        pass = false;
+      }
+    }
+    if (!pass) {
+      throw new Fault("autoCloseableTest failed");
+    }
+  }
+
+  /*
    * @testName: getMetamodelTest
    * 
    * @assertion_ids: PERSISTENCE:JAVADOC:340;
    * 
-   * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory an
+   * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and
    * make sure it is not null
    */
   @SetupMethod(name = "setupNoData")

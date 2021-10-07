@@ -37,6 +37,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.ParameterMode;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 import jakarta.persistence.StoredProcedureQuery;
@@ -274,6 +275,43 @@ public class Client extends PMClientBase {
       }
     }
     return result;
+  }
+
+  /*
+   * @testName: autoCloseableTest
+   *
+   * @assertion_ids: PERSISTENCE:JAVADOC:N/A
+   *
+   * @test_Strategy: Create EntityManager in try with resources block
+   * and verify whether it's open inside and outside of the try block.
+   */
+  public void autoCloseableTest() throws Fault {
+    boolean pass = true;
+    EntityManager em = null;
+    try (final EntityManagerFactory emfLocal
+                 = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
+      try (final EntityManager emLocal = emfLocal.createEntityManager()) {
+        em = emLocal;
+        if (em == null) {
+          TestUtil.logErr("createEntityManager() returned a null result");
+          pass = false;
+        }
+        if (em.isOpen() == false) {
+          TestUtil.logErr("EntityManager isOpen() returned false in try block");
+          pass = false;
+        }
+      } finally {
+        if (em.isOpen() == true) {
+          TestUtil.logErr("EntityManager isOpen() returned true outside try block");
+          pass = false;
+        }
+      }
+    } catch (Throwable t) {
+      throw new Fault("autoCloseableTest failed with Exception", t);
+    }
+    if (!pass) {
+      throw new Fault("autoCloseableTest failed");
+    }
   }
 
   /*
