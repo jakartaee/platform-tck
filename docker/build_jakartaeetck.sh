@@ -91,7 +91,7 @@ cd $BASEDIR
 mkdir -p $JAKARTA_JARS/modules
 
 
-mvn -f $BASEDIR/docker/pom.xml dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
+mvn -f $BASEDIR/docker/pom.xml -Pstaging dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
 
 
 ls $JAKARTA_JARS/modules/
