@@ -256,7 +256,6 @@
                         <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans</org.jboss.cdi.tck.spi.Beans>
                         <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts</org.jboss.cdi.tck.spi.Contexts>
                         <org.jboss.cdi.tck.spi.EL>org.jboss.cdi.tck.test.porting.DummyEL</org.jboss.cdi.tck.spi.EL>
-                        <org.jboss.cdi.tck.spi.SourceProcessor>org.jboss.cdi.tck.test.porting.DummySourceProcessor</org.jboss.cdi.tck.spi.SourceProcessor>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
