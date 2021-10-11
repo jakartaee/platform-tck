@@ -286,31 +286,26 @@ public class Client extends PMClientBase {
    * and verify whether it's open inside and outside of the try block.
    */
   public void autoCloseableTest() throws Fault {
-    boolean pass = true;
     EntityManager em = null;
     try (final EntityManagerFactory emfLocal
                  = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
       try (final EntityManager emLocal = emfLocal.createEntityManager()) {
         em = emLocal;
         if (em == null) {
-          TestUtil.logErr("createEntityManager() returned a null result");
-          pass = false;
+          throw new Fault("autoCloseableTest failed: createEntityManager() returned null");
         }
-        if (em.isOpen() == false) {
-          TestUtil.logErr("EntityManager isOpen() returned false in try block");
-          pass = false;
+        if (!em.isOpen()) {
+          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned false in try block");
         }
       } finally {
-        if (em.isOpen() == true) {
-          TestUtil.logErr("EntityManager isOpen() returned true outside try block");
-          pass = false;
+        if (em != null && em.isOpen()) {
+          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned true outside try block");
         }
       }
+    } catch (Fault f) {
+      throw f;
     } catch (Throwable t) {
       throw new Fault("autoCloseableTest failed with Exception", t);
-    }
-    if (!pass) {
-      throw new Fault("autoCloseableTest failed");
     }
   }
 

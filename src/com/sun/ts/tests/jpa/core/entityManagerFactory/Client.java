@@ -109,29 +109,24 @@ public class Client extends PMClientBase {
   @SetupMethod(name = "setupNoData")
   @CleanupMethod(name = "cleanupNoData")
   public void autoCloseableTest() throws Fault {
-    boolean pass = true;
     EntityManagerFactory emf = null;
     try (final EntityManagerFactory emfLocal
                  = Persistence.createEntityManagerFactory(getPersistenceUnitName())) {
       emf = emfLocal;
       if (emf == null) {
-        TestUtil.logErr("createEntityManagerFactory(String) returned a null result");
-        pass = false;
+        throw new Fault("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
       }
-      if (emf.isOpen() == false) {
-        TestUtil.logErr("EntityManagerFactory isOpen() returned false in try block");
-        pass = false;
+      if (!emf.isOpen()) {
+        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
       }
+    } catch (Fault f) {
+      throw f;
     } catch (Throwable t) {
       throw new Fault("autoCloseableTest failed with Exception", t);
     } finally {
-      if (emf.isOpen() == true) {
-        TestUtil.logErr("EntityManagerFactory isOpen() returned true outside try block");
-        pass = false;
+      if (emf != null && emf.isOpen()) {
+        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
       }
-    }
-    if (!pass) {
-      throw new Fault("autoCloseableTest failed");
     }
   }
 
