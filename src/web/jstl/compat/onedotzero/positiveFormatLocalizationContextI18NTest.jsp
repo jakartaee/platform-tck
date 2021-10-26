@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,7 +29,7 @@
     <fmt:setTimeZone value="EST"/>
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources1"/>
     <fmt:setLocale value="de_DE"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
     <!-- EL: If the jakarta.servlet.jstl.fmt.localizationContext scoped attribute is available,
              this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->

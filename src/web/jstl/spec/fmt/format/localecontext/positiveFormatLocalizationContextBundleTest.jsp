@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@
     %>
     <fmt:setTimeZone value="EST"/>
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.AlgoResources6"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
     <!-- The localization context for formatting actions can
              be provided by wrapping these actions in a fmt:bundle

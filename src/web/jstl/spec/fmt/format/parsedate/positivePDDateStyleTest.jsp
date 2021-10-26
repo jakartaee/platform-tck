@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -91,22 +91,22 @@
      <fmt:parseDate value="3:45:03 AM" dateStyle="full" type="time"/><br>
 
      <br>'type' set to 'both' -- dateStyle should be applied<br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM"
                        dateStyle='<%= (String) pageContext.getAttribute("def") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" dateStyle="default" type="both"/><br>
-     <fmt:parseDate value="11/21/00 3:45:02 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" dateStyle="default" type="both"/><br>
+     <fmt:parseDate value="11/21/00, 3:45:02 AM"
                        dateStyle='<%= (String) pageContext.getAttribute("sho") %>' type="both"/><br>
-     <fmt:parseDate value="11/21/00 3:45:02 AM" dateStyle="short" type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="11/21/00, 3:45:02 AM" dateStyle="short" type="both"/><br>
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM"
                        dateStyle='<%= (String) pageContext.getAttribute("med") %>' type="both"/><br>
-     <fmt:parseDate value="Nov 21, 2000 3:45:02 AM" dateStyle="medium" type="both"/><br>
-     <fmt:parseDate value="November 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="Nov 21, 2000, 3:45:02 AM" dateStyle="medium" type="both"/><br>
+     <fmt:parseDate value="November 21, 2000, 3:45:02 AM"
                        dateStyle='<%= (String) pageContext.getAttribute("lon") %>' type="both"/><br>
-     <fmt:parseDate value="November 21, 2000 3:45:02 AM" dateStyle="long" type="both"/><br>
-     <fmt:parseDate value="Tuesday, November 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="November 21, 2000, 3:45:02 AM" dateStyle="long" type="both"/><br>
+     <fmt:parseDate value="Tuesday, November 21, 2000, 3:45:02 AM"
                        dateStyle='<%= (String) pageContext.getAttribute("ful") %>' type="both"/><br>
-     <fmt:parseDate value="Tuesday, November 21, 2000 3:45:02 AM"
+     <fmt:parseDate value="Tuesday, November 21, 2000, 3:45:02 AM"
                        dateStyle="full" type="both"/><br>
 </tck:test>
