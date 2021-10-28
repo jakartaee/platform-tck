@@ -21,6 +21,10 @@ fi
 export JAVA_HOME=${JDK11_HOME}
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
+if [ -z "$WORKSPACE" ]; then
+  export WORKSPACE=`pwd`
+fi
+
 cd $WORKSPACE
 export BASEDIR=`pwd`
 
