@@ -174,7 +174,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jacc" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Djacc.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/ -Djacc.classes=$JAKARTA_JARS/modules/jakarta.jms-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/security.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.authorization-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jakarta.persistence-api.jar:$JAKARTA_JARS/modules/jakarta.interceptor-api.jar:$JAKARTA_JARS/modules/jakarta.mail-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.servlet.jsp-api.jar"
+    TCK_SPECIFIC_PROPS="-Djacc.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/ -Djacc.classes=$JAKARTA_JARS/modules/jakarta.jms-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/security.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.authorization-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jakarta.persistence-api.jar:$JAKARTA_JARS/modules/jakarta.interceptor-api.jar:$JAKARTA_JARS/modules/jakarta.mail-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.servlet.jsp-api.jar:$RMI_CLASSES"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "jaspic" == "$tck" ]
