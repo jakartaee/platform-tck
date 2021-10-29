@@ -113,6 +113,8 @@ cd $TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/bin
 
 cd $TS_HOME/src/com/sun/ts/tests/jaxws
 ant -Dkeywords=all -Dbuild.vi=true build
+cd $TS_HOME/src/com/sun/ts/tests/jws
+ant -Dkeywords=all -Dbuild.vi=true build
 cd $TS_HOME/bin
 ant -Dkeywords=all deploy.all
 ant -Dkeywords=all run.all 

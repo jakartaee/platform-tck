@@ -170,7 +170,6 @@ which shall contain following list of `jaxws.classes`:
 *  ${jaxws.lib}/ha-api.jar
 *  ${jaxws.lib}/jakarta.activation.jar
 *  ${jaxws.lib}/jakarta.annotation-api.jar
-*  ${jaxws.lib}/jakarta.jws-api.jar
 *  ${jaxws.lib}/jakarta.mail.jar
 *  ${jaxws.lib}/jakarta.xml.bind-api.jar
 *  ${jaxws.lib}/jakarta.xml.soap-api.jar
