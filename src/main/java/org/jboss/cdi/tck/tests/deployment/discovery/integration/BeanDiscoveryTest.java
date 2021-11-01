@@ -104,11 +104,12 @@ public class BeanDiscoveryTest extends AbstractTest {
         // Empty beans.xml
         JavaArchive bravo = ShrinkWrap.create(JavaArchive.class).addClass(Bravo.class)
                 .addAsManifestResource(new StringAsset(""), "beans.xml");
-        // No version beans.xml
+        // No version beans.xml, since CDI 4.0 this is "annotated" unless explicitly stated otherwise
         JavaArchive charlie = ShrinkWrap
                 .create(JavaArchive.class)
                 .addClass(Charlie.class)
-                .addAsManifestResource(new BeansXml(BeanDiscoveryMode.ALL),"beans.xml");
+                // using null values enforces missing attribute in resulting XML file
+                .addAsManifestResource(new BeansXml().setBeansXmlVersion(null).setBeanDiscoveryMode(null),"beans.xml");
         // Bean defining annotation and no beans.xml
         JavaArchive delta = ShrinkWrap.create(JavaArchive.class).addClasses(Delta.class, Golf.class, India.class, Kilo.class,
                                                                             Mike.class, Interceptor1.class, Decorator1.class);
