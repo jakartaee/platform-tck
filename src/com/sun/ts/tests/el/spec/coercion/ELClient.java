@@ -1655,6 +1655,93 @@ public class ELClient extends ServiceEETest {
   }
 
   /**
+   * @testName: elCoerceToArrayTest
+   * @assertion_ids: EL:SPEC:81.1; EL:SPEC:81.2; EL:SPEC:81.3; EL:SPEC:81.4;
+   *                 EL:SPEC:81.5
+   * @test_Strategy: Validate that - coercing a null to an array returns a null
+   *                 value, coercing an array of type T returns an array of type
+   *                 T, coercing an array coerces each member of the array to
+   *                 the expected type, coercing an array where at least one
+   *                 element cannot be coerced results in an ELException. If
+   *                 not, an ELException is thrown.
+   */
+  public void elCoerceToArrayTest() throws Fault {
+
+    boolean fail = false;
+    boolean[] pass = { false, false, false, false, false };
+    Object result = null;
+
+    try {
+      // If A is null, return null
+      ELProcessor elp0 = new ELProcessor();
+      elp0.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
+      result = elp0.eval("testPrimitiveBooleanArray(null)");
+      pass[0] = ExprEval.compareClass(result, Integer.class)
+          && ExprEval.compareValue(result, Integer.valueOf(-1));
+      
+      // If A is an array of T, coerce quietly
+      ELProcessor elp1 = new ELProcessor();
+      elp1.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
+      result = elp1.eval("testPrimitiveBooleanArray([true, false].toArray())");
+      pass[1] = ExprEval.compareClass(result, Integer.class)
+          && ExprEval.compareValue(result, Integer.valueOf(2));
+
+      // If A is an array of other types, coerce each element
+      ELProcessor elp2 = new ELProcessor();
+      elp2.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
+      result = elp2.eval("testPrimitiveBooleanArray([\"true\", false, true, 'false', null, \"\"].toArray())");
+      pass[2] = ExprEval.compareClass(result, Integer.class)
+          && ExprEval.compareValue(result, Integer.valueOf(6));
+
+      // If A is an array of other types, where at least one cannot be coerced
+      ELProcessor elp3 = new ELProcessor();
+      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
+      try {
+        result = elp3.eval("testPrimitiveBooleanArray(['true', 'false', 1234].toArray())");
+      } catch (ELException e) {
+        pass[3] = true;
+      }
+      
+      // If A is not an array, error
+      ELProcessor elp4 = new ELProcessor();
+      elp4.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
+      try {
+        result = elp4.eval("testPrimitiveBooleanArray([true, false, true, false, true])");
+      } catch (ELException e) {
+        pass[4] = true;
+      }
+
+    } catch (Exception e) {
+      TestUtil.logErr("Testing coercion to arrays " +
+          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+
+      throw new Fault(e);
+    } finally {
+      ExprEval.cleanup();
+    }
+
+    for (int i = 0; i < pass.length; ++i) {
+      if (!pass[i]) {
+        fail = true;
+        TestUtil.logErr("Unexpected result for test case " + i);
+      }
+    }
+
+    if (fail)
+      throw new Fault("TEST FAILED");
+  }
+
+
+  public static int testPrimitiveBooleanArray(boolean input[]) {
+    if (input == null) {
+      return -1;
+    }
+    
+    return input.length;
+  }
+
+  
+  /**
    * @testName: elCoerceLambdaExpressionToFunctionalInterfaceTest
    * @assertion_ids: EL:SPEC:79.1; EL:SPEC:79.2; EL:SPEC:79.3
    * @test_Strategy: Validate that - a lambda expression can be coerced to a
@@ -1686,8 +1773,6 @@ public class ELClient extends ServiceEETest {
       // Not a lambda expression
       ELProcessor elp2 = new ELProcessor();
       elp2.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
-      pass[2] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "BLOCK");
       try {
         result = elp2.eval("testPredicateString('notLambdaExpression)");
       } catch (ELException e) {
