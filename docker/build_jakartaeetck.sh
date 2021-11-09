@@ -21,6 +21,10 @@ fi
 export JAVA_HOME=${JDK11_HOME}
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
+if [ -z "$WORKSPACE" ]; then
+  export WORKSPACE=`pwd`
+fi
+
 cd $WORKSPACE
 export BASEDIR=`pwd`
 
@@ -91,7 +95,7 @@ cd $BASEDIR
 mkdir -p $JAKARTA_JARS/modules
 
 
-mvn -f $BASEDIR/docker/pom.xml dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
+mvn -f $BASEDIR/docker/pom.xml -Pstaging dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
 
 
 ls $JAKARTA_JARS/modules/
