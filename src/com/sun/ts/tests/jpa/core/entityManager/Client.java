@@ -280,7 +280,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: autoCloseableTest
    *
-   * @assertion_ids: PERSISTENCE:JAVADOC:N/A
+   * @assertion_ids: PERSISTENCE:JAVADOC:36
    *
    * @test_Strategy: Create EntityManager in try with resources block
    * and verify whether it's open inside and outside of the try block.
