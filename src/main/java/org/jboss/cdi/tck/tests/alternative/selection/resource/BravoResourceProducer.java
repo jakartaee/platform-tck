@@ -18,11 +18,13 @@ package org.jboss.cdi.tck.tests.alternative.selection.resource;
 
 import jakarta.annotation.Priority;
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.enterprise.inject.Produces;
 
 @Priority(1000)
 @Alternative
+@Dependent
 public class BravoResourceProducer {
 
     @Produces

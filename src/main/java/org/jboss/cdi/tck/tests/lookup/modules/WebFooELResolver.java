@@ -16,6 +16,7 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 
@@ -27,6 +28,7 @@ import org.jboss.cdi.tck.spi.EL;
  * 
  * @author Martin Kouba
  */
+@Dependent
 public class WebFooELResolver {
 
     @Inject

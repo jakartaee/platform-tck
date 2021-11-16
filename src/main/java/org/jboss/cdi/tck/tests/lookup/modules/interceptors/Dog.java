@@ -16,9 +16,12 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules.interceptors;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@Dependent
 public class Dog implements Animal, Serializable {
     @Override
     public String getName() {

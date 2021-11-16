@@ -18,6 +18,7 @@
 package org.jboss.cdi.tck.tests.context.request.postconstruct;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
@@ -26,6 +27,7 @@ import jakarta.inject.Inject;
  * @author Martin Kouba
  * 
  */
+@Dependent
 public class SimpleBean {
 
     private boolean isRequestContextActiveDuringPostConstruct = false;

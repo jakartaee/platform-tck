@@ -33,7 +33,9 @@ import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.D
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processInjectionPoint.InjectingBean;
 import org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionTarget.Farm;
 import org.jboss.cdi.tck.util.HierarchyDiscovery;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -60,6 +62,7 @@ public class ProcessInjectionPointFiredTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder().withTestClassPackage(ProcessInjectionPointFiredTest.class)
                 .withClasses(Alpha.class, Bravo.class, BravoObserver.class, Charlie.class, Delta.class, InjectingBean.class, Farm.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
                 .withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
                 .withExtension(VerifyingExtension.class).build();
     }

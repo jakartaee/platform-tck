@@ -17,6 +17,7 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Event;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
@@ -24,6 +25,7 @@ import jakarta.enterprise.inject.Produces;
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class LegacyServiceProducer {
 
     @Produces

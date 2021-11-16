@@ -36,7 +36,9 @@ import jakarta.enterprise.inject.spi.AnnotatedType;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -57,6 +59,7 @@ public class ContainerEventTest extends AbstractTest {
     public static EnterpriseArchive createTestArchive() {
         return new EnterpriseArchiveBuilder()
                 .withTestClassPackage(ContainerEventTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
                 .withExtensions(ProcessBeanObserver.class, ProcessInjectionTargetObserver.class,
                         ProcessAnnotatedTypeObserver.class).withEjbJarXml("ejb-jar.xml").build();
     }

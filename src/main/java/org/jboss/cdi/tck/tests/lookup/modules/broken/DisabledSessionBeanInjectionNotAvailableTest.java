@@ -27,7 +27,9 @@ import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -45,7 +47,8 @@ public class DisabledSessionBeanInjectionNotAvailableTest extends AbstractTest {
 
         EnterpriseArchive enterpriseArchive = new EnterpriseArchiveBuilder().noDefaultWebModule()
                 .withTestClassDefinition(DisabledSessionBeanInjectionNotAvailableTest.class)
-                .withClasses(DisabledEjbFoo.class, EjbFooLocal.class).withBeanLibrary(BrokenFoo.class, BrokenBar.class).build();
+                .withClasses(DisabledEjbFoo.class, EjbFooLocal.class)
+                .withBeanLibrary(BrokenFoo.class, BrokenBar.class).build();
 
         enterpriseArchive.addAsModule(new WebArchiveBuilder().notTestArchive().withDefaultEjbModuleDependency()
                 .withClasses(BrokenWebBar.class).build());

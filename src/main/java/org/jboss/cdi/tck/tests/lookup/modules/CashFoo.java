@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Specializes;
 
 @Specializes
+@Dependent
 public class CashFoo extends PaymentFoo {
 
     @Override

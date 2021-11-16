@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.lookup.injection;
 
+import jakarta.enterprise.context.Dependent;
 import org.jboss.cdi.tck.tests.lookup.injection.ejb.HenHouse;
 
+@Dependent
 public class PoorHenHouse extends HenHouse {
 
 }

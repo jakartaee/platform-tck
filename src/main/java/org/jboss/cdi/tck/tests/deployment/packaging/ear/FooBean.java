@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.ear;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class FooBean {
 
     @Inject

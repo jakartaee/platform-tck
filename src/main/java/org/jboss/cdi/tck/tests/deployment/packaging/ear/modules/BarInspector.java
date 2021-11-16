@@ -17,11 +17,13 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class BarInspector {
 
     @Inject

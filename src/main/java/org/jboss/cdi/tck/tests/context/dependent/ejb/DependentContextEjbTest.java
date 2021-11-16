@@ -26,7 +26,9 @@ import jakarta.enterprise.inject.spi.Bean;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -36,7 +38,10 @@ public class DependentContextEjbTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(DependentContextEjbTest.class).build();
+        return new WebArchiveBuilder()
+                .withTestClassPackage(DependentContextEjbTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
+                .build();
     }
 
     @Test(groups =  INTEGRATION)

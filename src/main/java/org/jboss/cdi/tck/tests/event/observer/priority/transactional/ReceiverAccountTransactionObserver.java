@@ -18,6 +18,7 @@ package org.jboss.cdi.tck.tests.event.observer.priority.transactional;
 
 import jakarta.annotation.Priority;
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.TransactionPhase;
 import jakarta.interceptor.Interceptor;
@@ -27,6 +28,7 @@ import jakarta.transaction.UserTransaction;
  * 
  * @author Mark Paluch
  */
+@Dependent
 public class ReceiverAccountTransactionObserver extends AbstractObserver {
 
     @Resource

@@ -17,10 +17,12 @@
 package org.jboss.cdi.tck.tests.extensions.lifecycle.events;
 
 import jakarta.enterprise.context.Conversation;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 
+@Dependent
 public class SimpleBean {
 
     @Inject

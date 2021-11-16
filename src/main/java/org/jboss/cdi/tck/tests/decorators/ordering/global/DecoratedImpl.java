@@ -16,8 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.decorators.ordering.global;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.util.List;
 
+@Dependent
 public class DecoratedImpl implements Decorated {
 
     @Override

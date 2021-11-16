@@ -19,9 +19,11 @@ package org.jboss.cdi.tck.tests.decorators.builtin.principal;
 
 import java.security.Principal;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 
+@Dependent
 public class PrincipalInjector {
 
     @Inject

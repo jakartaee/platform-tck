@@ -17,9 +17,12 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
+
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class Util {
 
     public void utilize() {

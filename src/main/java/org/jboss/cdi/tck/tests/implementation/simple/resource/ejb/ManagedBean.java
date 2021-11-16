@@ -18,8 +18,10 @@ package org.jboss.cdi.tck.tests.implementation.simple.resource.ejb;
 
 import java.io.Serializable;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class ManagedBean implements Serializable {
     @Inject
     @Lazy

@@ -17,10 +17,12 @@
 package org.jboss.cdi.tck.tests.implementation.simple.resource.broken.name;
 
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Named;
 
+@Dependent
 public class ResourceProducer {
 
     @SuppressWarnings("unused")

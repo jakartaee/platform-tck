@@ -17,8 +17,10 @@
 
 package org.jboss.cdi.tck.tests.lookup.modules.specialization;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public abstract class Connector {
 
     @Inject

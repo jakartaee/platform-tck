@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.extensions.interceptors;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class WordSource {
     
     public static final String word = "awesome";

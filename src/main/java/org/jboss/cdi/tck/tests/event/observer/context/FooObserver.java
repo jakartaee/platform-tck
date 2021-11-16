@@ -20,6 +20,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.TransactionPhase;
 import javax.naming.InitialContext;
@@ -27,6 +28,7 @@ import jakarta.transaction.TransactionSynchronizationRegistry;
 
 import org.jboss.cdi.tck.util.ActionSequence;
 
+@Dependent
 public class FooObserver {
 
     @EJB

@@ -16,12 +16,14 @@
  */
 package org.jboss.cdi.tck.tests.alternative.enterprise.resource;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.enterprise.inject.Produces;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Alternative
+@Dependent
 public class EnabledResourceProducer {
 
     @Produces

@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.lookup.injection.enterprise;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class PoorHenHouse extends HenHouse {
     protected boolean initializerCalledAfterSuperclassInjection = false;
 

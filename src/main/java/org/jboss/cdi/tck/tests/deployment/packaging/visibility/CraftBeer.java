@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.visibility;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 
 @Named("americanCraftBeer")
 @American
+@Dependent
 public class CraftBeer extends Beer {
 }

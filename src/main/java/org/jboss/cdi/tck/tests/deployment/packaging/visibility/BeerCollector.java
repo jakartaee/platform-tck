@@ -16,11 +16,13 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.visibility;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Any;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 
+@Dependent
 public class BeerCollector {
     @Inject
     private BeanManager beanManager;

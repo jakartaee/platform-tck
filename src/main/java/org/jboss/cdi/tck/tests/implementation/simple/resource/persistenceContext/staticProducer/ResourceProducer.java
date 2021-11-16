@@ -16,12 +16,14 @@
  */
 package org.jboss.cdi.tck.tests.implementation.simple.resource.persistenceContext.staticProducer;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 
+@Dependent
 public class ResourceProducer {
     @Produces
     @Database

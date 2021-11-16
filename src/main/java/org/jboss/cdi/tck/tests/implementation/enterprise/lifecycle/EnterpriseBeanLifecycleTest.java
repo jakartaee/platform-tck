@@ -36,7 +36,9 @@ import jakarta.enterprise.util.AnnotationLiteral;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -58,7 +60,10 @@ public class EnterpriseBeanLifecycleTest extends AbstractTest {
 
     @Deployment
     public static WebArchive createTestArchive() {
-        return new WebArchiveBuilder().withTestClassPackage(EnterpriseBeanLifecycleTest.class).build();
+        return new WebArchiveBuilder()
+                .withTestClassPackage(EnterpriseBeanLifecycleTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
+                .build();
     }
 
     @Test(groups =  INTEGRATION)

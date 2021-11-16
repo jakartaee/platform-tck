@@ -17,6 +17,7 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Event;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
@@ -24,6 +25,7 @@ import jakarta.inject.Inject;
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class Qux {
 
     @Inject

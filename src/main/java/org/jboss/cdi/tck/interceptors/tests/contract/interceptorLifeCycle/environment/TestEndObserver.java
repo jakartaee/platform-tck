@@ -19,9 +19,11 @@ package org.jboss.cdi.tck.interceptors.tests.contract.interceptorLifeCycle.envir
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.event.Observes;
 
+@Dependent
 public class TestEndObserver {
 
     public static AtomicBoolean toBeDestroyed = new AtomicBoolean();

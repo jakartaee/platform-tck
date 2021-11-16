@@ -17,12 +17,14 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 
 /**
  * @author Martin Kouba
  */
 @NonEnterprise
+@Dependent
 public class Baz implements Business {
 
     public void observeLegacyServiceDisposal(@Observes LegacyService legacyService) {

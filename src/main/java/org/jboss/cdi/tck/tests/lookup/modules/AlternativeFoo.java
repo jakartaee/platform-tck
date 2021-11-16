@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 
 @Alternative
+@Dependent
 public class AlternativeFoo implements Foo {
 
     @Override

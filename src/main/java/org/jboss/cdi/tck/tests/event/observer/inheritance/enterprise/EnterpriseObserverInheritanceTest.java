@@ -24,7 +24,9 @@ import static org.testng.Assert.assertTrue;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -41,7 +43,8 @@ public class EnterpriseObserverInheritanceTest extends AbstractTest {
 
     @Deployment
     public static EnterpriseArchive createTestArchive() {
-        return new EnterpriseArchiveBuilder().withTestClassPackage(EnterpriseObserverInheritanceTest.class).build();
+        return new EnterpriseArchiveBuilder().withTestClassPackage(EnterpriseObserverInheritanceTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL)).build();
     }
 
     @Test

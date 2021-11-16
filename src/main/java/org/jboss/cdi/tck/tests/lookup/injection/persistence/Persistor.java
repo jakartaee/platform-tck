@@ -16,11 +16,13 @@
  */
 package org.jboss.cdi.tck.tests.lookup.injection.persistence;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceUnit;
 
+@Dependent
 public class Persistor {
 
     @PersistenceContext

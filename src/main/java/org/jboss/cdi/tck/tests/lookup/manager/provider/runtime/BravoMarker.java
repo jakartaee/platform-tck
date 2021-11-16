@@ -17,12 +17,14 @@
 
 package org.jboss.cdi.tck.tests.lookup.manager.provider.runtime;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.spi.BeanManager;
 
 /**
  * @author Martin Kouba
  * 
  */
+@Dependent
 public class BravoMarker {
 
     public BeanManager getBeanManager() {

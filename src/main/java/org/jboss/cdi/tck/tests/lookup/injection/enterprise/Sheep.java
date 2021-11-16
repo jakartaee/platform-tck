@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.lookup.injection.enterprise;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Sheep {
 
 }

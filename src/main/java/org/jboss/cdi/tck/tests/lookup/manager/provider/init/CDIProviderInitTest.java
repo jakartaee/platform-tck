@@ -29,6 +29,7 @@ import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.WebArchiveBuilder;
 import org.jboss.cdi.tck.tests.full.extensions.alternative.deployment.Bar;
 import org.jboss.cdi.tck.tests.full.extensions.alternative.deployment.Foo;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -57,12 +58,12 @@ public class CDIProviderInitTest extends AbstractTest {
                 .withClasses(Alpha.class, MarkerObtainerWar.class, Foo.class, Marker.class,
                         AfterDeploymentValidationObserver.class)
                 .withExtension(AfterDeploymentValidationObserver.class)
-                .withBeansXml(new BeansXml().alternatives(Alpha.class))
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL).alternatives(Alpha.class))
                 .withBeanLibrary(
-                        new BeansXml().alternatives(Bravo.class),
+                        new BeansXml(BeanDiscoveryMode.ALL).alternatives(Bravo.class),
                         Bravo.class, MarkerObtainerBda1.class, Bar.class)
                 .withBeanLibrary(
-                        new BeansXml().alternatives(Charlie.class),
+                        new BeansXml(BeanDiscoveryMode.ALL).alternatives(Charlie.class),
                         Charlie.class, MarkerObtainerBda2.class, Baz.class)
                 .withLibrary(MarkerObtainerNonBda.class, NonBdaAfterDeploymentValidationObserver.class).build();
     }

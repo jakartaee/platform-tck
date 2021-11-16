@@ -18,10 +18,12 @@ package org.jboss.cdi.tck.tests.implementation.simple.resource.persistenceContex
 
 import java.io.Serializable;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+@Dependent
 public class ManagedBean implements Serializable {
     @Inject
     @Database

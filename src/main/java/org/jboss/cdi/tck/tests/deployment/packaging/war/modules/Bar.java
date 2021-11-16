@@ -17,12 +17,14 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.war.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 /**
  * @author Martin Kouba
  */
 @Secured
+@Dependent
 public class Bar {
 
     @Inject

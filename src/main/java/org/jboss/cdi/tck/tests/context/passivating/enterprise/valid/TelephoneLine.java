@@ -16,8 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.context.passivating.enterprise.valid;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@Dependent
 public class TelephoneLine implements Serializable {
 }

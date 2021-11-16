@@ -23,7 +23,9 @@ import static org.testng.Assert.assertTrue;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -44,6 +46,7 @@ public class InvalidatingSessionDestroysConversationTest extends AbstractConvers
                 .withTestClassDefinition(InvalidatingSessionDestroysConversationTest.class)
                 .withClasses(Storm.class, ConversationTestPhaseListener.class, ConversationStatusServlet.class, Cloud.class,
                         CloudController.class, OutermostFilter.class).withWebResource("cloud.xhtml")
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
                 .withWebResource("clouds.xhtml").withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
                 .withWebXml("web.xml").build();
     }
@@ -57,7 +60,7 @@ public class InvalidatingSessionDestroysConversationTest extends AbstractConvers
         WebClient webClient = new WebClient();
 
         resetCloud(webClient);
-        webClient.getPage(getPath("clouds.jsf"));
+        webClient.getPage(getPath("clouds.xhtml"));
 
         assertFalse(isCloudDestroyed(webClient));
         invalidateSession(webClient);

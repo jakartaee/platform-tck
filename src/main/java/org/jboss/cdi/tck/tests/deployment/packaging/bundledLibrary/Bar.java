@@ -16,10 +16,13 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.bundledLibrary;
 
+import jakarta.enterprise.context.Dependent;
+
 /**
  * @author pmuir
  * 
  */
+@Dependent
 public class Bar {
 
     public int ping() {

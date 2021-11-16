@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.Specializes;
 
+@Dependent
 public class SpecializingFooMethodProducer extends FooMethodProducer {
 
     @Produces

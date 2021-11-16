@@ -17,6 +17,7 @@
 package org.jboss.cdi.tck.tests.event.observer.transactional;
 
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.TransactionPhase;
 import jakarta.transaction.UserTransaction;
@@ -28,6 +29,7 @@ import org.jboss.cdi.tck.util.SimpleLogger;
  * 
  * @author Martin Kouba
  */
+@Dependent
 public class AccountTransactionObserver {
 
     private static final SimpleLogger logger = new SimpleLogger(AccountTransactionObserver.class);

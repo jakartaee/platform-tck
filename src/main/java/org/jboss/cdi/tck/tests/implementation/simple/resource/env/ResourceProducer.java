@@ -17,8 +17,10 @@
 package org.jboss.cdi.tck.tests.implementation.simple.resource.env;
 
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 
+@Dependent
 public class ResourceProducer {
     @Produces
     @Greeting

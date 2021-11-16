@@ -26,7 +26,9 @@ import jakarta.enterprise.inject.spi.Bean;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.EnterpriseArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -42,7 +44,10 @@ public class EnterpriseBeanViaXmlTest extends AbstractTest {
 
     @Deployment
     public static EnterpriseArchive createTestArchive() {
-        return new EnterpriseArchiveBuilder().withTestClassPackage(EnterpriseBeanViaXmlTest.class).withEjbJarXml("ejb-jar.xml")
+        return new EnterpriseArchiveBuilder()
+                .withTestClassPackage(EnterpriseBeanViaXmlTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
+                .withEjbJarXml("ejb-jar.xml")
                 .build();
     }
 

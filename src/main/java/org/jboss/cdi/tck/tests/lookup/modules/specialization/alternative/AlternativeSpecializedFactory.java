@@ -16,11 +16,13 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules.specialization.alternative;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.enterprise.inject.Specializes;
 
 @Specializes
 @Alternative
+@Dependent
 public class AlternativeSpecializedFactory extends Factory {
 
 }

@@ -17,11 +17,13 @@
 package org.jboss.cdi.tck.tests.context.application.event;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContext;
 
+@Dependent
 public class Observer2 {
 
     @Inject

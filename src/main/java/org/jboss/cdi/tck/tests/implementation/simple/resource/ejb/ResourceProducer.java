@@ -17,11 +17,14 @@
 package org.jboss.cdi.tck.tests.implementation.simple.resource.ejb;
 
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 
+@Dependent
 public class ResourceProducer {
-    private @Produces
+
     @EJB
     @Lazy
-    BeanRemote remoteEjb;
+    @Produces
+    private BeanRemote remoteEjb;
 }

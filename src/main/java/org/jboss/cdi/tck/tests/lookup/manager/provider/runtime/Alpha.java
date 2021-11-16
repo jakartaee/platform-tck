@@ -17,11 +17,14 @@
 
 package org.jboss.cdi.tck.tests.lookup.manager.provider.runtime;
 
+import jakarta.enterprise.context.Dependent;
+
 /**
  * @author Martin Kouba
  * 
  */
 @Powerful
+@Dependent
 public class Alpha {
 
     public boolean ping() {

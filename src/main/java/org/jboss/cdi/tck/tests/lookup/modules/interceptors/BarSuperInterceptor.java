@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules.interceptors;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class BarSuperInterceptor {
 
     @Inject

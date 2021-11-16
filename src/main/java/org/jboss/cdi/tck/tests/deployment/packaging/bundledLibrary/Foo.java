@@ -16,12 +16,14 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.bundledLibrary;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 /**
  * @author pmuir
  * 
  */
+@Dependent
 public class Foo {
 
     @Inject

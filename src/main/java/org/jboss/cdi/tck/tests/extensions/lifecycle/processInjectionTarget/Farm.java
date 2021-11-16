@@ -16,5 +16,8 @@
  */
 package org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionTarget;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Farm {
 }

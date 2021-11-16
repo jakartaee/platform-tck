@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 @Enterprise
+@Dependent
 public class WebPaymentEjbBar implements Bar {
 
     @Inject

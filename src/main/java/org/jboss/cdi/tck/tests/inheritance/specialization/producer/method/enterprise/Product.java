@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.inheritance.specialization.producer.method.enterprise;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Product {
 
     private int price = 0;

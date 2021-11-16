@@ -16,10 +16,12 @@
  */
 package org.jboss.cdi.tck.tests.implementation.disposal.method.definition.broken.observes.async;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.ObservesAsync;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.ws.rs.Produces;
 
+@Dependent
 public class BrokenFoodProducer {
 
     @Produces

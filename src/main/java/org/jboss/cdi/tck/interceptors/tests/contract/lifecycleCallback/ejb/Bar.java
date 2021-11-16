@@ -16,5 +16,8 @@
  */
 package org.jboss.cdi.tck.interceptors.tests.contract.lifecycleCallback.ejb;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Bar {
 }

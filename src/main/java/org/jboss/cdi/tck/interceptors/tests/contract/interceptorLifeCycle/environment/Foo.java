@@ -16,10 +16,12 @@
  */
 package org.jboss.cdi.tck.interceptors.tests.contract.interceptorLifeCycle.environment;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
+@Dependent
 public class Foo {
 
     public static boolean called = false;

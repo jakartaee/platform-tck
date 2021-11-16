@@ -20,12 +20,14 @@ package org.jboss.cdi.tck.interceptors.tests.contract.lifecycleCallback.bindings
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
+import jakarta.enterprise.context.Dependent;
 import org.jboss.cdi.tck.util.ActionSequence;
 
 /**
  * @author Martin Kouba
  * 
  */
+@Dependent
 public class Weapon {
 
     @PostConstruct

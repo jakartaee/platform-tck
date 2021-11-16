@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules.interceptors;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Cat implements Animal {
     @Override
     public String getName() {

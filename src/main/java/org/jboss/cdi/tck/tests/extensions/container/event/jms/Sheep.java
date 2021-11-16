@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.extensions.container.event.jms;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class Sheep {
 
 }

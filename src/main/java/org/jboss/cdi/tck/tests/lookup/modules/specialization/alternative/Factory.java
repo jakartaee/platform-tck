@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules.specialization.alternative;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Produces;
 
+@Dependent
 public class Factory {
 
     public static boolean eventDelivered;

@@ -17,11 +17,13 @@
 package org.jboss.cdi.tck.tests.context.conversation;
 
 import jakarta.enterprise.context.Conversation;
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-public @Named
-class CloudController {
+@Named
+@Dependent
+public class CloudController {
     @Inject
     Conversation conversation;
 

@@ -17,12 +17,14 @@
 
 package org.jboss.cdi.tck.tests.event.observer.transactional.custom;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.TransactionPhase;
 
 import org.jboss.cdi.tck.util.ActionSequence;
 import org.jboss.cdi.tck.util.SimpleLogger;
 
+@Dependent
 public class GiraffeObserver {
 
     private static final SimpleLogger logger = new SimpleLogger(GiraffeObserver.class);

@@ -16,6 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.lookup.modules;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class PaymentFoo implements Foo {
 
     @Override

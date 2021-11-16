@@ -17,6 +17,7 @@
 package org.jboss.cdi.tck.tests.interceptors.definition.enterprise.jms;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
 import jakarta.jms.Connection;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSException;
@@ -30,6 +31,7 @@ import org.jboss.cdi.tck.impl.ConfigurationFactory;
 import org.jboss.cdi.tck.util.JndiLookupUtils;
 import org.jboss.cdi.tck.util.SimpleLogger;
 
+@Dependent
 public class SimpleMessageProducer {
 
     private static final SimpleLogger simpleLogger = new SimpleLogger(SimpleMessageProducer.class);

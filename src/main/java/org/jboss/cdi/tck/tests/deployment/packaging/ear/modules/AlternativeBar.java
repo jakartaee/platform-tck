@@ -17,12 +17,14 @@
 
 package org.jboss.cdi.tck.tests.deployment.packaging.ear.modules;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 
 /**
  * @author Martin Kouba
  */
 @Alternative
+@Dependent
 public class AlternativeBar extends Bar {
 
     @Override

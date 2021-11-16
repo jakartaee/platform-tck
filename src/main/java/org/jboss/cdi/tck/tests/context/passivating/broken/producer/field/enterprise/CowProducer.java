@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.context.passivating.broken.producer.field.enterprise;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 
+@Dependent
 public class CowProducer {
     @Produces
     @British

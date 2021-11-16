@@ -17,6 +17,7 @@
 
 package org.jboss.cdi.tck.tests.lookup.manager.provider.runtime;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
 
@@ -25,6 +26,7 @@ import jakarta.inject.Inject;
  * 
  */
 @Alternative
+@Dependent
 public class Bravo {
 
     @Powerful

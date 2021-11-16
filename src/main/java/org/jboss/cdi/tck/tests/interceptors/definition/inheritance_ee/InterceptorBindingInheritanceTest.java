@@ -19,6 +19,7 @@ package org.jboss.cdi.tck.tests.interceptors.definition.inheritance_ee;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -46,8 +47,8 @@ public class InterceptorBindingInheritanceTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder()
                 .withTestClassPackage(InterceptorBindingInheritanceTest.class)
-                .withBeansXml(new BeansXml().interceptors(SquirrelInterceptor.class, WoodpeckerInterceptor.class)
-                )
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL)
+                        .interceptors(SquirrelInterceptor.class, WoodpeckerInterceptor.class))
                 .build();
     }
 

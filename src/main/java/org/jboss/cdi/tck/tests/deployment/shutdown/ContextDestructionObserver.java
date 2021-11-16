@@ -19,6 +19,7 @@ package org.jboss.cdi.tck.tests.deployment.shutdown;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.ConversationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
@@ -27,6 +28,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+@Dependent
 public class ContextDestructionObserver {
 
     public void observerRequestContextDestroyed(@Observes @Destroyed(RequestScoped.class) ServletRequest event) {

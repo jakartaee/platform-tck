@@ -19,9 +19,11 @@ package org.jboss.cdi.tck.tests.lookup.injection.ejb;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import org.jboss.cdi.tck.tests.lookup.injection.Wolf;
 
+@Dependent
 public class DeluxeHenHouse extends HenHouse {
 
     @Resource(name = "greeting")

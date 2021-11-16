@@ -16,5 +16,8 @@
  */
 package org.jboss.cdi.tck.tests.context.passivating.enterprise;
 
+import jakarta.enterprise.context.Dependent;
+
+@Dependent
 public class TelephoneLine {
 }

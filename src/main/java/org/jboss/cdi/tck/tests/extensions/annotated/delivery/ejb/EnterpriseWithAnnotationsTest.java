@@ -36,7 +36,9 @@ import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.Desired;
 import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.MetaAnnotation;
 import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.ProcessAnnotatedTypeObserver;
 import org.jboss.cdi.tck.tests.full.extensions.annotated.delivery.Wanted;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
@@ -55,6 +57,7 @@ public class EnterpriseWithAnnotationsTest extends AbstractTest {
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder()
                 .withTestClass(EnterpriseWithAnnotationsTest.class)
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
                 .withClasses(Baby.class, Desired.class, ProcessAnnotatedTypeObserver.class, Hawk.class, Wanted.class,
                              Chicken.class, MetaAnnotation.class).withExtensions(ProcessAnnotatedTypeObserver.class).build();
     }

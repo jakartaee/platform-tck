@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.implementation.simple.resource.env.staticProducer;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class GreetingBean {
     @Inject
     @Greeting

@@ -17,6 +17,7 @@
 
 package org.jboss.cdi.tck.tests.context.application.disposer;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
@@ -26,6 +27,7 @@ import org.jboss.cdi.tck.util.SimpleLogger;
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class Mushroomer {
 
     private static final SimpleLogger logger = new SimpleLogger(Mushroomer.class);

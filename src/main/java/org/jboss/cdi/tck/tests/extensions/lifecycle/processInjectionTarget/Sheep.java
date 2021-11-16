@@ -16,8 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.extensions.lifecycle.processInjectionTarget;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.io.Serializable;
 
+@Dependent
 public class Sheep implements Serializable {
 
 }

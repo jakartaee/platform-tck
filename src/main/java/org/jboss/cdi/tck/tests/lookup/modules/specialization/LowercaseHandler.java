@@ -17,9 +17,11 @@
 
 package org.jboss.cdi.tck.tests.lookup.modules.specialization;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Specializes;
 
 @Specializes
+@Dependent
 public class LowercaseHandler extends Handler {
 
     public String handle(String text) {

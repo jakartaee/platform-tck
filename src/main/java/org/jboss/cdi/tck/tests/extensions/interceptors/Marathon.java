@@ -16,7 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.extensions.interceptors;
 
+import jakarta.enterprise.context.Dependent;
+
 @FullMarathon
+@Dependent
 public class Marathon {
     long length;
 

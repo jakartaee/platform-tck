@@ -16,8 +16,10 @@
  */
 package org.jboss.cdi.tck.tests.lookup.injection.non.contextual;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
+@Dependent
 public class Farm {
     @Inject
     private Sheep sheep;

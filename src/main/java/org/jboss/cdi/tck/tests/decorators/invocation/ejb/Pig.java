@@ -16,8 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.decorators.invocation.ejb;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.io.Serializable;
 
+@Dependent
 public class Pig implements Serializable {
 
 }

@@ -40,6 +40,7 @@ import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.B
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.BravoQualifier;
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.CharlieInterface;
 import org.jboss.cdi.tck.tests.full.extensions.lifecycle.processBeanAttributes.CharlieProducer;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
@@ -76,7 +77,7 @@ public class VerifyValuesTest extends AbstractTest {
                 .withTestClassPackage(VerifyValuesTest.class)
                 .withClasses(Alpha.class, Bravo.class, BravoDecorator.class, BravoInterceptor.class, BravoInterface.class,
                              BravoProducer.class, BravoQualifier.class, CharlieInterface.class, CharlieProducer.class)
-                .withBeansXml(new BeansXml()
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL)
                               .alternatives(Alpha.class, BravoProducer.class, CharlieProducer.class)
                               .interceptors(BravoInterceptor.class)
                               .decorators(BravoDecorator.class)

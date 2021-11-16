@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.inheritance.specialization.producer.method.enterprise;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Named;
 
+@Dependent
 public class Shop {
 
     @Produces

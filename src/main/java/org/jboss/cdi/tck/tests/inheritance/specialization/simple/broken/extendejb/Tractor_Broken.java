@@ -16,9 +16,11 @@
  */
 package org.jboss.cdi.tck.tests.inheritance.specialization.simple.broken.extendejb;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Specializes;
 
 @Specializes
+@Dependent
 public class Tractor_Broken extends FarmEquipment {
 
 }

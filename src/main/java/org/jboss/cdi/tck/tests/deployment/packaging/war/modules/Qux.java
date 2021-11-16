@@ -19,12 +19,14 @@ package org.jboss.cdi.tck.tests.deployment.packaging.war.modules;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 
 /**
  * @author Martin Kouba
  */
+@Dependent
 public class Qux {
 
     private static AtomicInteger eventsObserved = new AtomicInteger(0);

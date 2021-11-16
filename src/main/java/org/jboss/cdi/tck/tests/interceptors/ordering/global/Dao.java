@@ -17,7 +17,10 @@
 
 package org.jboss.cdi.tck.tests.interceptors.ordering.global;
 
+import jakarta.enterprise.context.Dependent;
+
 @Transactional
+@Dependent
 public class Dao {
 
     public void ping() {

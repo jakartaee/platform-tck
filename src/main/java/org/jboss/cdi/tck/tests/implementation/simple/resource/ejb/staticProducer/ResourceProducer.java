@@ -17,8 +17,10 @@
 package org.jboss.cdi.tck.tests.implementation.simple.resource.ejb.staticProducer;
 
 import jakarta.ejb.EJB;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
 
+@Dependent
 public class ResourceProducer {
     @Produces
     @EJB

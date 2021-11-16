@@ -16,7 +16,9 @@
  */
 package org.jboss.cdi.tck.tests.deployment.packaging.installedLibrary;
 
+import jakarta.enterprise.context.Dependent;
 
+@Dependent
 public class Charlie extends AssertBean {
 
 }
