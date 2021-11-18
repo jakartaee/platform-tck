@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -40,6 +40,7 @@ public class TestListener implements ServletContextListener {
     try {
       context.addListener(
           "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener");
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SCListener).");
     } catch (UnsupportedOperationException ex) {
@@ -50,6 +51,7 @@ public class TestListener implements ServletContextListener {
     try {
       context.addListener(
           "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCAttributeListener");
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SCAttributeListener).");
     } catch (UnsupportedOperationException ex) {
@@ -60,6 +62,7 @@ public class TestListener implements ServletContextListener {
     try {
       context.addListener(
           "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener");
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SRListener).");
     } catch (UnsupportedOperationException ex) {
@@ -70,6 +73,7 @@ public class TestListener implements ServletContextListener {
     try {
       context.addListener(
           "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRAttributeListener");
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SRAttributeListene).");
     } catch (UnsupportedOperationException ex) {
