@@ -16,18 +16,10 @@
 #
 
 #
-# $Id$
-
-#
 # Servlet 6.0 TCK Exclude List
 #
 #
 com/sun/ts/tests/servlet/api/jakarta_servlet/servletrequest30/URLClient.java#asyncStartedTest3
-
-#
-# In response to accepted Platform TCK challenge servlet-api/issues/385 + https://github.com/eclipse-ee4j/jakartaee-tck/issues/594, exclude the following tests:
-#    com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest40/Client.java#httpServletMappingDispatchTest
-com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest40/Client.java#httpServletMappingDispatchTest
 
 #
 # In response to accepted challenge eclipse-ee4j/servlet-api#378 + https://github.com/eclipse-ee4j/jakartaee-tck/issues/593, exclude the following tests:

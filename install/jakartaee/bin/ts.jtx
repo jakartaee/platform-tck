@@ -25,11 +25,6 @@
 com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpupgradehandler/URLClient.java#upgradeTest
 
 #
-# In response to accepted Platform TCK challenge servlet-api/issues/385 + https://github.com/eclipse-ee4j/jakartaee-tck/issues/594, exclude the following tests:
-#    com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest40/Client.java#httpServletMappingDispatchTest
-com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest40/Client.java#httpServletMappingDispatchTest
-
-#
 # In response to accepted challenge eclipse-ee4j/servlet-api#378 + https://github.com/eclipse-ee4j/jakartaee-tck/issues/593, exclude the following tests:
 #    com.sun.ts.tests.servlet.api.jakarta_servlet_http.cookie.URLClient#setMaxAgePositiveTest
 #    com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet_http.cookie.URLClient#setMaxAgePositiveTest
