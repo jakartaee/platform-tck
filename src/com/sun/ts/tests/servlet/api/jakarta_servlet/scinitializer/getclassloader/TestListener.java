@@ -33,18 +33,18 @@ public class TestListener implements ServletContextListener {
    *          The ServletContextEvent
    */
   public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
+    boolean passed = false;
     ServletContext context = sce.getServletContext();
     StringBuilder log = new StringBuilder();
 
     try {
       context.getClassLoader();
-      passed = false;
+      passed = true;
       log.append(
-          "Expected UnsupportedOperationException not thrown by getClassLoader().");
+          "UnsupportedOperationException not thrown by getClassLoader().");
     } catch (UnsupportedOperationException ex) {
       log.append(
-          "Expected UnsupportedOperationException thrown by getClassLoader().");
+          "UnsupportedOperationException thrown by getClassLoader().");
     }
 
     context.setAttribute("TCK_TEST_STATUS", log.toString());
