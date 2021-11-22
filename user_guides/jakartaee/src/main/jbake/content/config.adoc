@@ -868,14 +868,6 @@ logical.hostname.servlet=server
 s1as.java.endorsed.dirs=${endorsed.dirs}${pathsep}${ts.home}/endorsedlib
 ----
 
-The `ServletClientThreads` property configures the number of threads
-used by the client for the `SingleThreadModel` servlet test. If your
-container implementation supports pooling of `SingleThreadModel`
-servlets, set the value of the `ServletClientThreads` property to twice
-the value of the default servlet instance pool size. If your container
-implementation only maintains a single instance of a
-`ServletClientThreads` servlet, use the default value of `2`.
-
 The `servlet_waittime` property specifies the amount of time, in
 milliseconds, to wait between the time when the `HttpSession` is set to
 expire on the server and when the `HttpSession` actually expires on the
