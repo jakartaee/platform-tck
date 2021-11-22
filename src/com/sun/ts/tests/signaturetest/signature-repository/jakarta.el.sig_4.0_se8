@@ -9,6 +9,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly
@@ -22,6 +23,7 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,properties
@@ -34,6 +36,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds beanNameResolver
@@ -49,13 +52,14 @@ supr java.lang.Object
 
 CLSS public jakarta.el.CompositeELResolver
 cons public init()
+meth public <%0 extends java.lang.Object> {%%0} convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<{%%0}>)
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Object convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<?>)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void add(jakarta.el.ELResolver)
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
@@ -70,13 +74,13 @@ hfds klass
 
 CLSS public abstract jakarta.el.ELContext
 cons public init()
+meth public <%0 extends java.lang.Object> {%%0} convertToType(java.lang.Object,java.lang.Class<{%%0}>)
 meth public abstract jakarta.el.ELResolver getELResolver()
 meth public abstract jakarta.el.FunctionMapper getFunctionMapper()
 meth public abstract jakarta.el.VariableMapper getVariableMapper()
 meth public boolean isLambdaArgument(java.lang.String)
 meth public boolean isPropertyResolved()
 meth public jakarta.el.ImportHandler getImportHandler()
-meth public java.lang.Object convertToType(java.lang.Object,java.lang.Class<?>)
 meth public java.lang.Object getContext(java.lang.Class<?>)
 meth public java.lang.Object getLambdaArgument(java.lang.String)
 meth public java.util.List<jakarta.el.EvaluationListener> getEvaluationListeners()
@@ -131,9 +135,9 @@ hfds elContext
 
 CLSS public jakarta.el.ELProcessor
 cons public init()
+meth public <%0 extends java.lang.Object> {%%0} eval(java.lang.String)
+meth public <%0 extends java.lang.Object> {%%0} getValue(java.lang.String,java.lang.Class<{%%0}>)
 meth public jakarta.el.ELManager getELManager()
-meth public java.lang.Object eval(java.lang.String)
-meth public java.lang.Object getValue(java.lang.String,java.lang.Class<?>)
 meth public void defineBean(java.lang.String,java.lang.Object)
 meth public void defineFunction(java.lang.String,java.lang.String,java.lang.String,java.lang.String) throws java.lang.ClassNotFoundException,java.lang.NoSuchMethodException
 meth public void defineFunction(java.lang.String,java.lang.String,java.lang.reflect.Method) throws java.lang.NoSuchMethodException
@@ -146,14 +150,15 @@ CLSS public abstract jakarta.el.ELResolver
 cons public init()
 fld public final static java.lang.String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime"
 fld public final static java.lang.String TYPE = "type"
+meth public <%0 extends java.lang.Object> {%%0} convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<{%%0}>)
 meth public abstract boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public abstract java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public abstract java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public abstract java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
 meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-meth public java.lang.Object convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<?>)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
+meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 supr java.lang.Object
 
 CLSS public abstract jakarta.el.EvaluationListener
@@ -175,10 +180,10 @@ hfds serialVersionUID
 
 CLSS public abstract jakarta.el.ExpressionFactory
 cons public init()
+meth public abstract <%0 extends java.lang.Object> {%%0} coerceToType(java.lang.Object,java.lang.Class<{%%0}>)
 meth public abstract jakarta.el.MethodExpression createMethodExpression(jakarta.el.ELContext,java.lang.String,java.lang.Class<?>,java.lang.Class<?>[])
 meth public abstract jakarta.el.ValueExpression createValueExpression(jakarta.el.ELContext,java.lang.String,java.lang.Class<?>)
 meth public abstract jakarta.el.ValueExpression createValueExpression(java.lang.Object,java.lang.Class<?>)
-meth public abstract java.lang.Object coerceToType(java.lang.Object,java.lang.Class<?>)
 meth public jakarta.el.ELResolver getStreamELResolver()
 meth public java.util.Map<java.lang.String,java.lang.reflect.Method> getInitFunctionMap()
 meth public static jakarta.el.ExpressionFactory newInstance()
@@ -217,6 +222,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,theUnmodifiableListClass
@@ -229,6 +235,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 hfds isReadOnly,theUnmodifiableMapClass
@@ -238,13 +245,14 @@ cons public init()
 meth public abstract jakarta.el.MethodInfo getMethodInfo(jakarta.el.ELContext)
 meth public abstract java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object[])
 meth public boolean isParametersProvided()
-meth public boolean isParmetersProvided()
- anno 0 java.lang.Deprecated()
+meth public jakarta.el.MethodReference getMethodReference(jakarta.el.ELContext)
 supr jakarta.el.Expression
 hfds serialVersionUID
 
 CLSS public jakarta.el.MethodInfo
 cons public init(java.lang.String,java.lang.Class<?>,java.lang.Class<?>[])
+meth public boolean equals(java.lang.Object)
+meth public int hashCode()
 meth public java.lang.Class<?> getReturnType()
 meth public java.lang.Class<?>[] getParamTypes()
 meth public java.lang.String getName()
@@ -258,6 +266,17 @@ cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr jakarta.el.ELException
 hfds serialVersionUID
+
+CLSS public jakarta.el.MethodReference
+cons public init(java.lang.Object,jakarta.el.MethodInfo,java.lang.annotation.Annotation[],java.lang.Object[])
+meth public boolean equals(java.lang.Object)
+meth public int hashCode()
+meth public jakarta.el.MethodInfo getMethodInfo()
+meth public java.lang.Object getBase()
+meth public java.lang.Object[] getEvaluatedParameters()
+meth public java.lang.annotation.Annotation[] getAnnotations()
+supr java.lang.Object
+hfds annotations,base,evaluatedParameters,methodInfo
 
 CLSS public jakarta.el.PropertyNotFoundException
 cons public init()
@@ -282,6 +301,7 @@ meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.l
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
@@ -306,26 +326,28 @@ meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,jav
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object invoke(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Class<?>[],java.lang.Object[])
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
 CLSS public abstract jakarta.el.TypeConverter
 cons public init()
-meth public abstract java.lang.Object convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<?>)
+meth public abstract <%0 extends java.lang.Object> {%%0} convertToType(jakarta.el.ELContext,java.lang.Object,java.lang.Class<{%%0}>)
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<?> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Class<?> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="5.0")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
 CLSS public abstract jakarta.el.ValueExpression
 cons public init()
+meth public abstract <%0 extends java.lang.Object> {%%0} getValue(jakarta.el.ELContext)
 meth public abstract boolean isReadOnly(jakarta.el.ELContext)
 meth public abstract java.lang.Class<?> getExpectedType()
 meth public abstract java.lang.Class<?> getType(jakarta.el.ELContext)
-meth public abstract java.lang.Object getValue(jakarta.el.ELContext)
 meth public abstract void setValue(jakarta.el.ELContext,java.lang.Object)
 meth public jakarta.el.ValueReference getValueReference(jakarta.el.ELContext)
 supr jakarta.el.Expression
@@ -354,12 +376,12 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
-hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="9")
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getClass()
 meth public final void notify()
@@ -377,7 +399,6 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
-hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -400,8 +421,6 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
-hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
-hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.util.EventListener
 
@@ -412,5 +431,4 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
-hfds serialVersionUID
 
