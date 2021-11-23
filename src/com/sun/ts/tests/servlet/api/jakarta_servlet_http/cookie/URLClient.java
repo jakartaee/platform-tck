@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2006, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -273,20 +273,6 @@ public class URLClient extends AbstractUrlClient {
   }
 
   /*
-   * @testName: setCommentTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:435
-   * 
-   * @test_Strategy: Servlet tests method and returns result to client
-   */
-  public void setCommentTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setCommentVer0Test");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setCommentVer1Test");
-    invoke();
-  }
-
-  /*
    * @testName: setDomainTest
    * 
    * @assertion_ids: Servlet:JAVADOC:438
@@ -294,9 +280,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   public void setDomainTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setDomainVer0Test");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setDomainVer1Test");
+    TEST_PROPS.setProperty(APITEST, "setDomainTest");
     invoke();
   }
 
@@ -308,8 +292,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   public void setMaxAgePositiveTest() throws Fault {
-    // version 0 cookie
-    String testName = "setMaxAgeVer0PositiveTest";
+    String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
     String dateHeader = null;
     int index = -1;
@@ -349,7 +332,7 @@ public class URLClient extends AbstractUrlClient {
       if (!foundcookie)
         throw new Fault("The test cookie was not located in the response");
     } catch (Throwable t) {
-      throw new Fault("Exception occurred:" + t);
+      throw new Fault("Exception occurred:" + t, t);
     }
 
     // put expiry date into GMT
@@ -371,12 +354,6 @@ public class URLClient extends AbstractUrlClient {
     if (body.indexOf(Data.PASSED) == -1) {
       throw new Fault("The string: " + Data.PASSED + " not found in response");
     }
-
-    // version 1 cookie
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeVer1PositiveTest");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##Max-Age=2");
-    invoke();
   }
 
   /*
@@ -387,13 +364,8 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   public void setMaxAgeZeroTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroVer0Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1");
-    invoke();
-
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroVer1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##Max-Age=0");
+    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroTest");
+    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
     invoke();
   }
 
@@ -405,13 +377,9 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   public void setMaxAgeNegativeTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeVer0Test");
+    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##!Expire");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeVer1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##!Max-Age");
+        "Set-Cookie:name1=value1##!Expire##!Max-Age");
     invoke();
   }
 
@@ -423,13 +391,9 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   public void setPathTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setPathVer0Test");
+    TEST_PROPS.setProperty(APITEST, "setPathTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS,
         "Set-Cookie:Path=\"/servlet_jsh_cookie_web\"");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setPathVer1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##Path=\"/servlet_jsh_cookie_web\"");
     invoke();
   }
 
