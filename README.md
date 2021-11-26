@@ -13,11 +13,13 @@ https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Jakarta-EE-TCK-Jenkins-jobs
 
     Sample steps done for JTA:
 
-    ```git clone https://github.com/eclipse-ee4j/glassfish.git
+    ```
+    git clone https://github.com/eclipse-ee4j/glassfish.git
     git checkout -b EE4J_8
     find . -name \pom.xml -exec sed -i "s/javax.transaction</jakarta.transaction</g" {} ;
     find . -name \pom.xml -exec sed -i "s/javax.transaction-api</jakarta.transaction-api</g" {} ;
-    mvn clean install```
+    mvn clean install
+    ```
 
 3. Upload the glassfish bundle built in the previous step as attachment to the corresponding pull request.
 
