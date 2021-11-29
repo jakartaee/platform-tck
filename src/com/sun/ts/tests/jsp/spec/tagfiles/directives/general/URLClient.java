@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,6 +24,7 @@ package com.sun.ts.tests.jsp.spec.tagfiles.directives.general;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {
@@ -190,4 +192,38 @@ public class URLClient extends AbstractUrlClient {
     invoke();
   }
 
+  /*
+   * @testName: errorOnELNotFoundFalseTest
+   * 
+   * @assertion_ids: JSP:SPEC:320
+   * 
+   * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the
+   * ErrorOnELNotFound tag directive attribute is set to false, a reference
+   * to an unresolved identifier results in the empty string being used.
+   */
+  public void errorOnELNotFoundFalseTest()
+      throws Fault {
+    String testName = "ErrorOnELNotFoundFalse";
+    TEST_PROPS.setProperty(REQUEST,
+        "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.0");
+    invoke();
+  }
+  
+  /*
+   * @testName: errorOnELNotFoundTrueTest
+   * 
+   * @assertion_ids: JSP:SPEC:320
+   * 
+   * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the
+   * ErrorOnELNotFound tag directive attribute is set to false, a reference
+   * to an unresolved identifier results in the empty string being used.
+   */
+  public void errorOnELNotFoundTrueTest()
+      throws Fault {
+    String testName = "ErrorOnELNotFoundTrue";
+    TEST_PROPS.setProperty(REQUEST,
+        "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.0");
+    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    invoke();
+  }
 }

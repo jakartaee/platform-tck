@@ -1,7 +1,6 @@
 <%--
 
-    Copyright (c) 2021 Oracle and/or its affiliates and others.
-    All rights reserved.
+    Copyright (c) 2021 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,29 +16,11 @@
 
 --%>
 
-<html>
-<body>
-<% /**	Name: implicitImportJsp
-	Description: Use jsp page directive with language="java" 
-		    Do not specify jakarta.servlet.http in the import attribute
-		    as it should be available implicitly.  Validate
-		    that an Cookie object can be created.
-			    
-	Result:No error
-**/ %>
+<%-- jakarta.servlet.* --%>
+${AsyncContext.ASYNC_CONTEXT_PATH}
 
-<!-- language=java and we check if implicit import works -->
+<%-- jakarta.servlet.jsp.* --%>
+${PageContext.PAGE}
 
-<%@ page language="java" %>
-
-<%
-
-  Cookie cookie = new Cookie("name","value");
-    
-  
-%>
-
-<%= cookie instanceof jakarta.servlet.http.Cookie %>
-
-</body>
-</html>
+<%-- jakarta.servlet.http.* --%>
+${HttpServletRequest.BASIC_AUTH}

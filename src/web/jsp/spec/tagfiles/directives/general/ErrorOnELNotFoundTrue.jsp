@@ -1,7 +1,6 @@
 <%--
 
-    Copyright (c) 2021 Oracle and/or its affiliates and others.
-    All rights reserved.
+    Copyright (c) 2021 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,29 +16,12 @@
 
 --%>
 
-<html>
-<body>
-<% /**	Name: implicitImportJsp
-	Description: Use jsp page directive with language="java" 
-		    Do not specify jakarta.servlet.http in the import attribute
-		    as it should be available implicitly.  Validate
-		    that an Cookie object can be created.
-			    
-	Result:No error
-**/ %>
+<%@ page contentType="text/plain" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+<%--
+Set the ErrorOnELNotFound tag directive attribute to true. Verify that
+referencing an unknown identifier triggers a PropertyNotFoundException
+--%>
 
-<!-- language=java and we check if implicit import works -->
-
-<%@ page language="java" %>
-
-<%
-
-  Cookie cookie = new Cookie("name","value");
-    
-  
-%>
-
-<%= cookie instanceof jakarta.servlet.http.Cookie %>
-
-</body>
-</html>
+<%-- invoke the tag --%>
+<tags:ErrorOnELNotFoundTrue />

@@ -1,6 +1,7 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,10 +19,10 @@
 
 <%@ tag language="java" %>
 <%
-    HttpUtils ex = new HttpUtils();
-    if(ex instanceof jakarta.servlet.http.HttpUtils) {
+    Cookie ex = new Cookie("name","value");
+    if(ex instanceof jakarta.servlet.http.Cookie) {
         out.println("Test PASSED.");
     } else {
-        out.println("Test FAILED. HttpUtils instance is not instance of jakarta.servlet.http.HttpUtils");
+        out.println("Test FAILED. Cookie instance is not instance of jakarta.servlet.http.Cookie");
     }
 %>
