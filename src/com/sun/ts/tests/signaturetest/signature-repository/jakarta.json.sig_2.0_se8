@@ -10,12 +10,13 @@ meth public static jakarta.json.JsonMergePatch createMergeDiff(jakarta.json.Json
 meth public static jakarta.json.JsonMergePatch createMergePatch(jakarta.json.JsonValue)
 meth public static jakarta.json.JsonNumber createValue(double)
 meth public static jakarta.json.JsonNumber createValue(int)
+meth public static jakarta.json.JsonNumber createValue(java.lang.Number)
 meth public static jakarta.json.JsonNumber createValue(java.math.BigDecimal)
 meth public static jakarta.json.JsonNumber createValue(java.math.BigInteger)
 meth public static jakarta.json.JsonNumber createValue(long)
 meth public static jakarta.json.JsonObjectBuilder createObjectBuilder()
 meth public static jakarta.json.JsonObjectBuilder createObjectBuilder(jakarta.json.JsonObject)
-meth public static jakarta.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.lang.String,java.lang.Object>)
+meth public static jakarta.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.lang.String,?>)
 meth public static jakarta.json.JsonPatch createDiff(jakarta.json.JsonStructure,jakarta.json.JsonStructure)
 meth public static jakarta.json.JsonPatch createPatch(jakarta.json.JsonArray)
 meth public static jakarta.json.JsonPatchBuilder createPatchBuilder()
@@ -102,10 +103,25 @@ meth public jakarta.json.JsonArrayBuilder createArrayBuilder(java.util.Collectio
 meth public jakarta.json.JsonObjectBuilder createObjectBuilder(jakarta.json.JsonObject)
 meth public jakarta.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.lang.String,java.lang.Object>)
 
+CLSS public final jakarta.json.JsonConfig
+fld public final static java.lang.String KEY_STRATEGY = "jakarta.json.JsonConfig.keyStrategy"
+innr public final static !enum KeyStrategy
+supr java.lang.Object
+
+CLSS public final static !enum jakarta.json.JsonConfig$KeyStrategy
+ outer jakarta.json.JsonConfig
+fld public final static jakarta.json.JsonConfig$KeyStrategy FIRST
+fld public final static jakarta.json.JsonConfig$KeyStrategy LAST
+fld public final static jakarta.json.JsonConfig$KeyStrategy NONE
+meth public static jakarta.json.JsonConfig$KeyStrategy valueOf(java.lang.String)
+meth public static jakarta.json.JsonConfig$KeyStrategy[] values()
+supr java.lang.Enum<jakarta.json.JsonConfig$KeyStrategy>
+
 CLSS public jakarta.json.JsonException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.RuntimeException
+hfds serialVersionUID
 
 CLSS public abstract interface jakarta.json.JsonMergePatch
 meth public abstract jakarta.json.JsonValue apply(jakarta.json.JsonValue)
@@ -291,11 +307,12 @@ meth public jakarta.json.JsonMergePatch createMergeDiff(jakarta.json.JsonValue,j
 meth public jakarta.json.JsonMergePatch createMergePatch(jakarta.json.JsonValue)
 meth public jakarta.json.JsonNumber createValue(double)
 meth public jakarta.json.JsonNumber createValue(int)
+meth public jakarta.json.JsonNumber createValue(java.lang.Number)
 meth public jakarta.json.JsonNumber createValue(java.math.BigDecimal)
 meth public jakarta.json.JsonNumber createValue(java.math.BigInteger)
 meth public jakarta.json.JsonNumber createValue(long)
 meth public jakarta.json.JsonObjectBuilder createObjectBuilder(jakarta.json.JsonObject)
-meth public jakarta.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.lang.String,java.lang.Object>)
+meth public jakarta.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.lang.String,?>)
 meth public jakarta.json.JsonPatch createDiff(jakarta.json.JsonStructure,jakarta.json.JsonStructure)
 meth public jakarta.json.JsonPatch createPatch(jakarta.json.JsonArray)
 meth public jakarta.json.JsonPatchBuilder createPatchBuilder()
@@ -318,6 +335,7 @@ CLSS public jakarta.json.stream.JsonGenerationException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 supr jakarta.json.JsonException
+hfds serialVersionUID
 
 CLSS public abstract interface jakarta.json.stream.JsonGenerator
 fld public final static java.lang.String PRETTY_PRINTING = "jakarta.json.stream.JsonGenerator.prettyPrinting"
@@ -376,6 +394,7 @@ meth public abstract void close()
 meth public jakarta.json.JsonArray getArray()
 meth public jakarta.json.JsonObject getObject()
 meth public jakarta.json.JsonValue getValue()
+meth public jakarta.json.stream.JsonParser$Event currentEvent()
 meth public java.util.stream.Stream<jakarta.json.JsonValue> getArrayStream()
 meth public java.util.stream.Stream<jakarta.json.JsonValue> getValueStream()
 meth public java.util.stream.Stream<java.util.Map$Entry<java.lang.String,jakarta.json.JsonValue>> getObjectStream()
@@ -411,7 +430,7 @@ cons public init(java.lang.String,jakarta.json.stream.JsonLocation)
 cons public init(java.lang.String,java.lang.Throwable,jakarta.json.stream.JsonLocation)
 meth public jakarta.json.stream.JsonLocation getLocation()
 supr jakarta.json.JsonException
-hfds location
+hfds location,serialVersionUID
 
 CLSS public abstract interface java.io.Closeable
 intf java.lang.AutoCloseable
@@ -443,7 +462,6 @@ meth public final java.lang.String name()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
-hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -452,7 +470,6 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
-hfds serialVersionUID
 
 CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
 meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
@@ -463,6 +480,7 @@ CLSS public java.lang.Object
 cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="9")
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getClass()
 meth public final void notify()
@@ -480,7 +498,6 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
-hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -503,11 +520,10 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
-hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
-hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.util.Collection<%0 extends java.lang.Object>
 intf java.lang.Iterable<{java.util.Collection%0}>
+meth public <%0 extends java.lang.Object> {%%0}[] toArray(java.util.function.IntFunction<{%%0}[]>)
 meth public abstract <%0 extends java.lang.Object> {%%0}[] toArray({%%0}[])
 meth public abstract boolean add({java.util.Collection%0})
 meth public abstract boolean addAll(java.util.Collection<? extends {java.util.Collection%0}>)
@@ -530,6 +546,8 @@ meth public java.util.stream.Stream<{java.util.Collection%0}> stream()
 
 CLSS public abstract interface java.util.List<%0 extends java.lang.Object>
 intf java.util.Collection<{java.util.List%0}>
+meth public !varargs static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0}[])
+ anno 0 java.lang.SafeVarargs()
 meth public abstract <%0 extends java.lang.Object> {%%0}[] toArray({%%0}[])
 meth public abstract boolean add({java.util.List%0})
 meth public abstract boolean addAll(int,java.util.Collection<? extends {java.util.List%0}>)
@@ -556,11 +574,25 @@ meth public abstract {java.util.List%0} get(int)
 meth public abstract {java.util.List%0} remove(int)
 meth public abstract {java.util.List%0} set(int,{java.util.List%0})
 meth public java.util.Spliterator<{java.util.List%0}> spliterator()
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> copyOf(java.util.Collection<? extends {%%0}>)
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of()
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0})
+meth public static <%0 extends java.lang.Object> java.util.List<{%%0}> of({%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0},{%%0})
 meth public void replaceAll(java.util.function.UnaryOperator<{java.util.List%0}>)
 meth public void sort(java.util.Comparator<? super {java.util.List%0}>)
 
 CLSS public abstract interface java.util.Map<%0 extends java.lang.Object, %1 extends java.lang.Object>
 innr public abstract interface static Entry
+meth public !varargs static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> ofEntries(java.util.Map$Entry<? extends {%%0},? extends {%%1}>[])
+ anno 0 java.lang.SafeVarargs()
 meth public abstract boolean containsKey(java.lang.Object)
 meth public abstract boolean containsValue(java.lang.Object)
 meth public abstract boolean equals(java.lang.Object)
@@ -577,6 +609,19 @@ meth public abstract {java.util.Map%1} put({java.util.Map%0},{java.util.Map%1})
 meth public abstract {java.util.Map%1} remove(java.lang.Object)
 meth public boolean remove(java.lang.Object,java.lang.Object)
 meth public boolean replace({java.util.Map%0},{java.util.Map%1},{java.util.Map%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map$Entry<{%%0},{%%1}> entry({%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> copyOf(java.util.Map<? extends {%%0},? extends {%%1}>)
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of()
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
 meth public void forEach(java.util.function.BiConsumer<? super {java.util.Map%0},? super {java.util.Map%1}>)
 meth public void replaceAll(java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
 meth public {java.util.Map%1} compute({java.util.Map%0},java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)

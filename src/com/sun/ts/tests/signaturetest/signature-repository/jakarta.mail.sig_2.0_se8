@@ -477,6 +477,7 @@ supr java.lang.Object
 hfds connected,connectionListeners,q
 
 CLSS public final jakarta.mail.Session
+fld public final static jakarta.mail.util.StreamProvider STREAM_PROVIDER
 meth public boolean getDebug()
 meth public jakarta.mail.Folder getFolder(jakarta.mail.URLName) throws jakarta.mail.MessagingException
 meth public jakarta.mail.PasswordAuthentication getPasswordAuthentication(jakarta.mail.URLName)
@@ -506,7 +507,7 @@ meth public void setPasswordAuthentication(jakarta.mail.URLName,jakarta.mail.Pas
 meth public void setProtocolForAddress(java.lang.String,java.lang.String)
 meth public void setProvider(jakarta.mail.Provider) throws jakarta.mail.NoSuchProviderException
 supr java.lang.Object
-hfds addressMap,authTable,authenticator,confDir,debug,defaultSession,logger,out,props,providers,providersByClassName,providersByProtocol,q
+hfds DEFAULT_PROVIDER,addressMap,authTable,authenticator,confDir,debug,defaultSession,logger,out,props,providers,providersByClassName,providersByProtocol,q
 
 CLSS public abstract jakarta.mail.Store
 cons protected init(jakarta.mail.Session,jakarta.mail.URLName)
@@ -1125,6 +1126,8 @@ hfds context
 
 CLSS public jakarta.mail.internet.MimeUtility
 fld public final static int ALL = -1
+meth public static byte[] getBytes(java.io.InputStream) throws java.io.IOException
+meth public static byte[] getBytes(java.lang.String)
 meth public static java.io.InputStream decode(java.io.InputStream,java.lang.String) throws jakarta.mail.MessagingException
 meth public static java.io.OutputStream encode(java.io.OutputStream,java.lang.String) throws jakarta.mail.MessagingException
 meth public static java.io.OutputStream encode(java.io.OutputStream,java.lang.String,java.lang.String) throws jakarta.mail.MessagingException
@@ -1143,7 +1146,7 @@ meth public static java.lang.String mimeCharset(java.lang.String)
 meth public static java.lang.String quote(java.lang.String,java.lang.String)
 meth public static java.lang.String unfold(java.lang.String)
 supr java.lang.Object
-hfds ALL_ASCII,MOSTLY_ASCII,MOSTLY_NONASCII,allowUtf8,decodeStrict,defaultJavaCharset,defaultMIMECharset,encodeEolStrict,foldEncodedWords,foldText,ignoreUnknownEncoding,java2mime,mime2java,nonAsciiCharsetMap
+hfds ALL_ASCII,MOSTLY_ASCII,MOSTLY_NONASCII,TEXT_SPECIALS,WORD_SPECIALS,allowUtf8,decodeStrict,defaultJavaCharset,defaultMIMECharset,encodeEolStrict,foldEncodedWords,foldText,ignoreUnknownEncoding,java2mime,mime2java,nonAsciiCharsetMap
 
 CLSS public jakarta.mail.internet.NewsAddress
 cons public init()
@@ -1420,6 +1423,14 @@ supr java.lang.Object
 hfds data,len,name,type
 hcls DSByteArrayOutputStream
 
+CLSS public abstract interface jakarta.mail.util.LineInputStream
+meth public abstract java.lang.String readLine() throws java.io.IOException
+
+CLSS public abstract interface jakarta.mail.util.LineOutputStream
+meth public abstract void write(byte[]) throws java.io.IOException
+meth public abstract void writeln() throws java.io.IOException
+meth public abstract void writeln(java.lang.String) throws java.io.IOException
+
 CLSS public jakarta.mail.util.SharedByteArrayInputStream
 cons public init(byte[])
 cons public init(byte[],int,int)
@@ -1455,6 +1466,41 @@ supr java.io.BufferedInputStream
 hfds defaultBufferSize,master,sf
 hcls SharedFile
 
+CLSS public abstract interface jakarta.mail.util.StreamProvider
+innr public final static !enum EncoderTypes
+meth public abstract jakarta.mail.util.LineInputStream inputLineStream(java.io.InputStream,boolean)
+meth public abstract jakarta.mail.util.LineOutputStream outputLineStream(java.io.OutputStream,boolean)
+meth public abstract java.io.InputStream inputBase64(java.io.InputStream)
+meth public abstract java.io.InputStream inputBinary(java.io.InputStream)
+meth public abstract java.io.InputStream inputQ(java.io.InputStream)
+meth public abstract java.io.InputStream inputQP(java.io.InputStream)
+meth public abstract java.io.InputStream inputSharedByteArray(byte[])
+meth public abstract java.io.InputStream inputUU(java.io.InputStream)
+meth public abstract java.io.OutputStream outputB(java.io.OutputStream)
+meth public abstract java.io.OutputStream outputBase64(java.io.OutputStream)
+meth public abstract java.io.OutputStream outputBinary(java.io.OutputStream)
+meth public abstract java.io.OutputStream outputQ(java.io.OutputStream,boolean)
+meth public abstract java.io.OutputStream outputQP(java.io.OutputStream)
+meth public abstract java.io.OutputStream outputUU(java.io.OutputStream,java.lang.String)
+
+CLSS public final static !enum jakarta.mail.util.StreamProvider$EncoderTypes
+ outer jakarta.mail.util.StreamProvider
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes BASE_64
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes BINARY_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes BIT7_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes BIT8_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes B_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes QUOTED_PRINTABLE_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes Q_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes UU_ENCODER
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes X_UUE
+fld public final static jakarta.mail.util.StreamProvider$EncoderTypes X_UU_ENCODER
+meth public java.lang.String getEncoder()
+meth public static jakarta.mail.util.StreamProvider$EncoderTypes valueOf(java.lang.String)
+meth public static jakarta.mail.util.StreamProvider$EncoderTypes[] values()
+supr java.lang.Enum<jakarta.mail.util.StreamProvider$EncoderTypes>
+hfds encoder
+
 CLSS public java.io.BufferedInputStream
 cons public init(java.io.InputStream)
 cons public init(java.io.InputStream,int)
@@ -1472,7 +1518,6 @@ meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
 supr java.io.FilterInputStream
-hfds DEFAULT_BUFFER_SIZE,MAX_BUFFER_SIZE,bufUpdater
 
 CLSS public java.io.ByteArrayInputStream
 cons public init(byte[])
@@ -1482,10 +1527,13 @@ fld protected int count
 fld protected int mark
 fld protected int pos
 meth public boolean markSupported()
+meth public byte[] readAllBytes()
 meth public int available()
 meth public int read()
 meth public int read(byte[],int,int)
+meth public int readNBytes(byte[],int,int)
 meth public long skip(long)
+meth public long transferTo(java.io.OutputStream) throws java.io.IOException
 meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset()
@@ -1514,15 +1562,19 @@ cons public init()
 intf java.io.Closeable
 meth public abstract int read() throws java.io.IOException
 meth public boolean markSupported()
+meth public byte[] readAllBytes() throws java.io.IOException
+meth public byte[] readNBytes(int) throws java.io.IOException
 meth public int available() throws java.io.IOException
 meth public int read(byte[]) throws java.io.IOException
 meth public int read(byte[],int,int) throws java.io.IOException
+meth public int readNBytes(byte[],int,int) throws java.io.IOException
 meth public long skip(long) throws java.io.IOException
+meth public long transferTo(java.io.OutputStream) throws java.io.IOException
+meth public static java.io.InputStream nullInputStream()
 meth public void close() throws java.io.IOException
 meth public void mark(int)
 meth public void reset() throws java.io.IOException
 supr java.lang.Object
-hfds MAX_SKIP_BUFFER_SIZE
 
 CLSS public abstract interface java.io.Serializable
 
@@ -1531,6 +1583,25 @@ meth public abstract void close() throws java.lang.Exception
 
 CLSS public abstract interface java.lang.Cloneable
 
+CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
+meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
+cons protected init(java.lang.String,int)
+intf java.io.Serializable
+intf java.lang.Comparable<{java.lang.Enum%0}>
+meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
+meth protected final void finalize()
+meth public final boolean equals(java.lang.Object)
+meth public final int compareTo({java.lang.Enum%0})
+meth public final int hashCode()
+meth public final int ordinal()
+meth public final java.lang.Class<{java.lang.Enum%0}> getDeclaringClass()
+meth public final java.lang.String name()
+meth public java.lang.String toString()
+meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
+supr java.lang.Object
+
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public init()
@@ -1538,12 +1609,12 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
-hfds serialVersionUID
 
 CLSS public java.lang.Object
 cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="9")
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getClass()
 meth public final void notify()
@@ -1575,8 +1646,6 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
-hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
-hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -1668,7 +1737,6 @@ meth public void setLenient(boolean)
 meth public void setNumberFormat(java.text.NumberFormat)
 meth public void setTimeZone(java.util.TimeZone)
 supr java.text.Format
-hfds serialVersionUID
 
 CLSS public abstract java.text.Format
 cons protected init()
@@ -1682,8 +1750,6 @@ meth public java.lang.Object clone()
 meth public java.lang.Object parseObject(java.lang.String) throws java.text.ParseException
 meth public java.text.AttributedCharacterIterator formatToCharacterIterator(java.lang.Object)
 supr java.lang.Object
-hfds serialVersionUID
-hcls FieldDelegate
 
 CLSS public java.text.SimpleDateFormat
 cons public init()
@@ -1705,7 +1771,6 @@ meth public void applyPattern(java.lang.String)
 meth public void set2DigitYearStart(java.util.Date)
 meth public void setDateFormatSymbols(java.text.DateFormatSymbols)
 supr java.text.DateFormat
-hfds GMT,MILLIS_PER_MINUTE,PATTERN_INDEX_TO_CALENDAR_FIELD,PATTERN_INDEX_TO_DATE_FORMAT_FIELD,PATTERN_INDEX_TO_DATE_FORMAT_FIELD_ID,REST_OF_STYLES,TAG_QUOTE_ASCII_CHAR,TAG_QUOTE_CHARS,cachedNumberFormatData,compiledPattern,currentSerialVersion,defaultCenturyStart,defaultCenturyStartYear,forceStandaloneForm,formatData,hasFollowingMinusSign,locale,minusSign,originalNumberFormat,originalNumberPattern,pattern,serialVersionOnStream,serialVersionUID,useDateFormatSymbols,zeroDigit
 
 CLSS public abstract interface java.util.EventListener
 
@@ -1716,5 +1781,4 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
-hfds serialVersionUID
 

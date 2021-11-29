@@ -3,13 +3,13 @@
 
 CLSS public abstract jakarta.el.ELContext
 cons public init()
+meth public <%0 extends java.lang.Object> {%%0} convertToType(java.lang.Object,java.lang.Class<{%%0}>)
 meth public abstract jakarta.el.ELResolver getELResolver()
 meth public abstract jakarta.el.FunctionMapper getFunctionMapper()
 meth public abstract jakarta.el.VariableMapper getVariableMapper()
 meth public boolean isLambdaArgument(java.lang.String)
 meth public boolean isPropertyResolved()
 meth public jakarta.el.ImportHandler getImportHandler()
-meth public java.lang.Object convertToType(java.lang.Object,java.lang.Class<?>)
 meth public java.lang.Object getContext(java.lang.Class<?>)
 meth public java.lang.Object getLambdaArgument(java.lang.String)
 meth public java.util.List<jakarta.el.EvaluationListener> getEvaluationListeners()
@@ -163,18 +163,18 @@ meth public abstract jakarta.faces.application.NavigationHandler getNavigationHa
 meth public abstract jakarta.faces.application.StateManager getStateManager()
 meth public abstract jakarta.faces.application.ViewHandler getViewHandler()
 meth public abstract jakarta.faces.component.UIComponent createComponent(jakarta.faces.el.ValueBinding,jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.component.UIComponent createComponent(java.lang.String)
 meth public abstract jakarta.faces.convert.Converter createConverter(java.lang.Class<?>)
 meth public abstract jakarta.faces.convert.Converter createConverter(java.lang.String)
 meth public abstract jakarta.faces.el.MethodBinding createMethodBinding(java.lang.String,java.lang.Class<?>[])
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.el.PropertyResolver getPropertyResolver()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.el.ValueBinding createValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.el.VariableResolver getVariableResolver()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ActionListener getActionListener()
 meth public abstract jakarta.faces.validator.Validator createValidator(java.lang.String)
 meth public abstract java.lang.String getDefaultRenderKitId()
@@ -195,11 +195,11 @@ meth public abstract void setDefaultRenderKitId(java.lang.String)
 meth public abstract void setMessageBundle(java.lang.String)
 meth public abstract void setNavigationHandler(jakarta.faces.application.NavigationHandler)
 meth public abstract void setPropertyResolver(jakarta.faces.el.PropertyResolver)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setStateManager(jakarta.faces.application.StateManager)
 meth public abstract void setSupportedLocales(java.util.Collection<java.util.Locale>)
 meth public abstract void setVariableResolver(jakarta.faces.el.VariableResolver)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setViewHandler(jakarta.faces.application.ViewHandler)
 meth public jakarta.el.ELContextListener[] getELContextListeners()
 meth public jakarta.el.ELResolver getELResolver()
@@ -242,7 +242,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.application.ApplicationFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.ApplicationFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.ApplicationFactory>
 meth public abstract jakarta.faces.application.Application getApplication()
@@ -253,11 +253,11 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.application.ApplicationWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.Application)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.Application>
 meth public <%0 extends java.lang.Object> {%%0} evaluateExpressionGet(jakarta.faces.context.FacesContext,java.lang.String,java.lang.Class<? extends {%%0}>)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.el.ELContextListener[] getELContextListeners()
 meth public jakarta.el.ELResolver getELResolver()
 meth public jakarta.el.ExpressionFactory getExpressionFactory()
@@ -272,7 +272,7 @@ meth public jakarta.faces.component.UIComponent createComponent(jakarta.el.Value
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,jakarta.faces.application.Resource)
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.el.ValueBinding,jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.component.UIComponent createComponent(java.lang.String)
 meth public jakarta.faces.component.behavior.Behavior createBehavior(java.lang.String)
 meth public jakarta.faces.component.search.SearchExpressionHandler getSearchExpressionHandler()
@@ -280,12 +280,12 @@ meth public jakarta.faces.component.search.SearchKeywordResolver getSearchKeywor
 meth public jakarta.faces.convert.Converter createConverter(java.lang.Class<?>)
 meth public jakarta.faces.convert.Converter createConverter(java.lang.String)
 meth public jakarta.faces.el.MethodBinding createMethodBinding(java.lang.String,java.lang.Class<?>[])
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.el.PropertyResolver getPropertyResolver()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.el.ValueBinding createValueBinding(java.lang.String)
 meth public jakarta.faces.el.VariableResolver getVariableResolver()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener getActionListener()
 meth public jakarta.faces.flow.FlowHandler getFlowHandler()
 meth public jakarta.faces.validator.Validator createValidator(java.lang.String)
@@ -319,13 +319,13 @@ meth public void setFlowHandler(jakarta.faces.flow.FlowHandler)
 meth public void setMessageBundle(java.lang.String)
 meth public void setNavigationHandler(jakarta.faces.application.NavigationHandler)
 meth public void setPropertyResolver(jakarta.faces.el.PropertyResolver)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setResourceHandler(jakarta.faces.application.ResourceHandler)
 meth public void setSearchExpressionHandler(jakarta.faces.component.search.SearchExpressionHandler)
 meth public void setStateManager(jakarta.faces.application.StateManager)
 meth public void setSupportedLocales(java.util.Collection<java.util.Locale>)
 meth public void setVariableResolver(jakarta.faces.el.VariableResolver)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setViewHandler(jakarta.faces.application.ViewHandler)
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.SystemEventListener)
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,java.lang.Class<?>,jakarta.faces.event.SystemEventListener)
@@ -345,7 +345,7 @@ supr jakarta.faces.application.NavigationHandler
 
 CLSS public abstract jakarta.faces.application.ConfigurableNavigationHandlerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.ConfigurableNavigationHandler)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.ConfigurableNavigationHandler>
 meth public jakarta.faces.application.ConfigurableNavigationHandler getWrapped()
@@ -417,7 +417,7 @@ hfds condition,conditionExpr,fromAction,fromOutcome,fromViewId,hashCode,includeV
 
 CLSS public abstract jakarta.faces.application.NavigationCaseWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.NavigationCase)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.NavigationCase>
 meth public boolean equals(java.lang.Object)
@@ -449,7 +449,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.application.NavigationHandlerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.NavigationHandler)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.NavigationHandler>
 meth public jakarta.faces.application.NavigationHandler getWrapped()
@@ -541,7 +541,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.application.ResourceHandlerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.ResourceHandler)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.ResourceHandler>
 meth public !varargs java.util.stream.Stream<java.lang.String> getViewResources(jakarta.faces.context.FacesContext,java.lang.String,int,jakarta.faces.application.ResourceVisitOption[])
@@ -570,7 +570,7 @@ supr java.lang.Enum<jakarta.faces.application.ResourceVisitOption>
 
 CLSS public abstract jakarta.faces.application.ResourceWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.Resource)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.Resource>
 meth public boolean userAgentNeedsUpdate(jakarta.faces.context.FacesContext)
@@ -600,30 +600,30 @@ fld public final static java.lang.String STATE_SAVING_METHOD_PARAM_NAME = "jakar
 fld public final static java.lang.String STATE_SAVING_METHOD_SERVER = "server"
 innr public SerializedView
 meth protected jakarta.faces.component.UIViewRoot restoreTreeStructure(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected java.lang.Object getComponentStateToSave(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected java.lang.Object getTreeStructureToSave(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected void restoreComponentState(jakarta.faces.context.FacesContext,jakarta.faces.component.UIViewRoot,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.component.UIViewRoot restoreView(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean isSavingStateInClient(jakarta.faces.context.FacesContext)
 meth public jakarta.faces.application.StateManager$SerializedView saveSerializedView(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object saveView(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getViewState(jakarta.faces.context.FacesContext)
 meth public void writeState(jakarta.faces.context.FacesContext,jakarta.faces.application.StateManager$SerializedView) throws java.io.IOException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void writeState(jakarta.faces.context.FacesContext,java.lang.Object) throws java.io.IOException
 supr java.lang.Object
 hfds IS_CALLED_FROM_API_CLASS,savingStateInClient
 
 CLSS public jakarta.faces.application.StateManager$SerializedView
  outer jakarta.faces.application.StateManager
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.StateManager,java.lang.Object,java.lang.Object)
 meth public java.lang.Object getState()
 meth public java.lang.Object getStructure()
@@ -632,7 +632,7 @@ hfds state,structure
 
 CLSS public abstract jakarta.faces.application.StateManagerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.StateManager)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.StateManager>
 meth protected jakarta.faces.component.UIViewRoot restoreTreeStructure(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
@@ -701,7 +701,7 @@ hfds log
 
 CLSS public abstract jakarta.faces.application.ViewHandlerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.ViewHandler)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.ViewHandler>
 meth public !varargs java.util.stream.Stream<java.lang.String> getViews(jakarta.faces.context.FacesContext,java.lang.String,int,jakarta.faces.application.ViewVisitOption[])
@@ -741,14 +741,14 @@ meth public static jakarta.faces.application.ViewVisitOption[] values()
 supr java.lang.Enum<jakarta.faces.application.ViewVisitOption>
 
 CLSS public abstract interface !annotation jakarta.faces.bean.ApplicationScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.faces.bean.CustomScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
@@ -756,7 +756,7 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.faces.bean.ManagedBean
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
@@ -765,7 +765,7 @@ meth public abstract !hasdefault boolean eager()
 meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.faces.bean.ManagedProperty
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD])
 intf java.lang.annotation.Annotation
@@ -773,14 +773,14 @@ meth public abstract !hasdefault java.lang.String name()
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.faces.bean.NoneScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.faces.bean.ReferencedBean
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=CLASS)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
@@ -788,42 +788,42 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String name()
 
 CLSS public abstract interface !annotation jakarta.faces.bean.RequestScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.faces.bean.SessionScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 
 CLSS public abstract interface !annotation jakarta.faces.bean.ViewScoped
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
 
 CLSS abstract interface jakarta.faces.bean.package-info
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 
 CLSS public abstract interface jakarta.faces.component.ActionSource
 meth public abstract boolean isImmediate()
 meth public abstract jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ActionListener[] getActionListeners()
 meth public abstract void addActionListener(jakarta.faces.event.ActionListener)
 meth public abstract void removeActionListener(jakarta.faces.event.ActionListener)
 meth public abstract void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setImmediate(boolean)
 
 CLSS public abstract interface jakarta.faces.component.ActionSource2
@@ -841,9 +841,9 @@ meth public abstract boolean isLocalValueSet()
 meth public abstract boolean isRequired()
 meth public abstract boolean isValid()
 meth public abstract jakarta.faces.el.MethodBinding getValidator()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.el.MethodBinding getValueChangeListener()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ValueChangeListener[] getValueChangeListeners()
 meth public abstract jakarta.faces.validator.Validator[] getValidators()
 meth public abstract java.lang.Object getSubmittedValue()
@@ -858,9 +858,9 @@ meth public abstract void setRequired(boolean)
 meth public abstract void setSubmittedValue(java.lang.Object)
 meth public abstract void setValid(boolean)
 meth public abstract void setValidator(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setValueChangeListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 
 CLSS public abstract interface !annotation jakarta.faces.component.FacesComponent
  anno 0 java.lang.annotation.Inherited()
@@ -875,7 +875,7 @@ meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface jakarta.faces.component.NamingContainer
 fld public final static char SEPARATOR_CHAR = ':'
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 
 CLSS public abstract interface jakarta.faces.component.PartialStateHolder
 intf jakarta.faces.component.StateHolder
@@ -929,9 +929,9 @@ intf jakarta.faces.component.ActionSource2
 meth public boolean isImmediate()
 meth public jakarta.el.MethodExpression getActionExpression()
 meth public jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener[] getActionListeners()
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
@@ -940,10 +940,10 @@ meth public void broadcast(jakarta.faces.event.FacesEvent)
 meth public void queueEvent(jakarta.faces.event.FacesEvent)
 meth public void removeActionListener(jakarta.faces.event.ActionListener)
 meth public void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setActionExpression(jakarta.el.MethodExpression)
 meth public void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setImmediate(boolean)
 meth public void setValue(java.lang.Object)
 supr jakarta.faces.component.UIComponentBase
@@ -952,15 +952,15 @@ hcls PropertyKeys
 CLSS public abstract jakarta.faces.component.UIComponent
 cons public init()
 fld protected java.util.Map<java.lang.String,jakarta.el.ValueExpression> bindings
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static java.lang.String ATTRS_WITH_DECLARED_DEFAULT_VALUES = "jakarta.faces.component.ATTR_NAMES_WITH_DEFAULT_VALUES"
 fld public final static java.lang.String BEANINFO_KEY = "jakarta.faces.component.BEANINFO_KEY"
 fld public final static java.lang.String COMPOSITE_COMPONENT_TYPE_KEY = "jakarta.faces.component.COMPOSITE_COMPONENT_TYPE"
 fld public final static java.lang.String COMPOSITE_FACET_NAME = "jakarta.faces.component.COMPOSITE_FACET_NAME"
 fld public final static java.lang.String CURRENT_COMPONENT = "jakarta.faces.component.CURRENT_COMPONENT"
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static java.lang.String CURRENT_COMPOSITE_COMPONENT = "jakarta.faces.component.CURRENT_COMPOSITE_COMPONENT"
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static java.lang.String FACETS_KEY = "jakarta.faces.component.FACETS_KEY"
 fld public final static java.lang.String HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME = "jakarta.faces.HONOR_CURRENT_COMPONENT_ATTRIBUTES"
 fld public final static java.lang.String VIEW_LOCATION_KEY = "jakarta.faces.component.VIEW_LOCATION_KEY"
@@ -983,7 +983,7 @@ meth public abstract jakarta.faces.component.UIComponent findComponent(java.lang
 meth public abstract jakarta.faces.component.UIComponent getFacet(java.lang.String)
 meth public abstract jakarta.faces.component.UIComponent getParent()
 meth public abstract jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.Object processSaveState(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.String getClientId(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.String getFamily()
@@ -1008,7 +1008,7 @@ meth public abstract void setParent(jakarta.faces.component.UIComponent)
 meth public abstract void setRendered(boolean)
 meth public abstract void setRendererType(java.lang.String)
 meth public abstract void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean initialStateMarked()
 meth public boolean invokeOnComponent(jakarta.faces.context.FacesContext,java.lang.String,jakarta.faces.component.ContextCallback)
 meth public boolean isInView()
@@ -1061,7 +1061,7 @@ meth public jakarta.faces.component.UIComponent findComponent(java.lang.String)
 meth public jakarta.faces.component.UIComponent getFacet(java.lang.String)
 meth public jakarta.faces.component.UIComponent getParent()
 meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object processSaveState(jakarta.faces.context.FacesContext)
 meth public java.lang.Object saveState(jakarta.faces.context.FacesContext)
 meth public java.lang.String getClientId(jakarta.faces.context.FacesContext)
@@ -1098,7 +1098,7 @@ meth public void setRendered(boolean)
 meth public void setRendererType(java.lang.String)
 meth public void setTransient(boolean)
 meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 meth public void unsubscribeFromEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 supr jakarta.faces.component.UIComponent
@@ -1146,7 +1146,7 @@ meth public void setRowStatePreserved(boolean)
 meth public void setRows(int)
 meth public void setValue(java.lang.Object)
 meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void setVar(java.lang.String)
 supr jakarta.faces.component.UIComponentBase
@@ -1179,14 +1179,14 @@ fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.Graph
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.Graphic"
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
 meth public java.lang.String getUrl()
 meth public void setUrl(java.lang.String)
 meth public void setValue(java.lang.Object)
 meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIComponentBase
 hcls PropertyKeys
@@ -1223,7 +1223,7 @@ meth public boolean isLocalValueSet()
 meth public boolean isRequired()
 meth public boolean isValid()
 meth public jakarta.faces.el.MethodBinding getValidator()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.el.MethodBinding getValueChangeListener()
 meth public jakarta.faces.event.ValueChangeListener[] getValueChangeListeners()
 meth public jakarta.faces.validator.Validator[] getValidators()
@@ -1255,11 +1255,11 @@ meth public void setRequiredMessage(java.lang.String)
 meth public void setSubmittedValue(java.lang.Object)
 meth public void setValid(boolean)
 meth public void setValidator(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValidatorMessage(java.lang.String)
 meth public void setValue(java.lang.Object)
 meth public void setValueChangeListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void updateModel(jakarta.faces.context.FacesContext)
 meth public void validate(jakarta.faces.context.FacesContext)
 supr jakarta.faces.component.UIOutput
@@ -1378,11 +1378,11 @@ fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.SelectB
 meth public boolean isSelected()
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getFamily()
 meth public void setSelected(boolean)
 meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIInput
 
@@ -1427,12 +1427,12 @@ meth protected boolean compareValues(java.lang.Object,java.lang.Object)
 meth protected void validateValue(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
 meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object[] getSelectedValues()
 meth public java.lang.String getFamily()
 meth public void setSelectedValues(java.lang.Object[])
 meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIInput
 hcls ArrayIterator
@@ -1460,9 +1460,9 @@ meth public boolean isOnPostback()
 meth public boolean isRendered()
 meth public jakarta.el.MethodExpression getActionExpression()
 meth public jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener[] getActionListeners()
 meth public java.lang.String getFamily()
 meth public java.lang.String getPhase()
@@ -1472,10 +1472,10 @@ meth public void broadcast(jakarta.faces.event.FacesEvent)
 meth public void decode(jakarta.faces.context.FacesContext)
 meth public void removeActionListener(jakarta.faces.event.ActionListener)
 meth public void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setActionExpression(jakarta.el.MethodExpression)
 meth public void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setImmediate(boolean)
 meth public void setOnPostback(boolean)
 meth public void setPhase(java.lang.String)
@@ -4394,7 +4394,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.component.visit.VisitContextFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.component.visit.VisitContextFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.component.visit.VisitContextFactory>
 meth public abstract jakarta.faces.component.visit.VisitContext getVisitContext(jakarta.faces.context.FacesContext,java.util.Collection<java.lang.String>,java.util.Set<jakarta.faces.component.visit.VisitHint>)
@@ -4404,7 +4404,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.component.visit.VisitContextWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.component.visit.VisitContext)
 intf jakarta.faces.FacesWrapper<jakarta.faces.component.visit.VisitContext>
 meth public jakarta.faces.component.visit.VisitContext getWrapped()
@@ -4447,7 +4447,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.context.ExceptionHandlerFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.ExceptionHandlerFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.ExceptionHandlerFactory>
 meth public abstract jakarta.faces.context.ExceptionHandler getExceptionHandler()
@@ -4457,7 +4457,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.context.ExceptionHandlerWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.ExceptionHandler)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.ExceptionHandler>
 meth public boolean isListenerForSource(java.lang.Object)
@@ -4558,7 +4558,7 @@ hfds defaultExternalContext
 
 CLSS public abstract jakarta.faces.context.ExternalContextFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.ExternalContextFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.ExternalContextFactory>
 meth public abstract jakarta.faces.context.ExternalContext getExternalContext(java.lang.Object,java.lang.Object,java.lang.Object)
@@ -4568,7 +4568,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.context.ExternalContextWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.ExternalContext)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.ExternalContext>
 meth public boolean isResponseCommitted()
@@ -4698,7 +4698,7 @@ hfds attributesForInvalidFactoryConstruction,currentPhaseIdForInvalidFactoryCons
 
 CLSS public abstract jakarta.faces.context.FacesContextFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.FacesContextFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.FacesContextFactory>
 meth public abstract jakarta.faces.context.FacesContext getFacesContext(java.lang.Object,java.lang.Object,java.lang.Object,jakarta.faces.lifecycle.Lifecycle)
@@ -4708,7 +4708,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.context.FacesContextWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.FacesContext)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.FacesContext>
 meth public boolean getRenderResponse()
@@ -4769,7 +4769,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.context.FlashFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.FlashFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.FlashFactory>
 meth public abstract jakarta.faces.context.Flash getFlash(boolean)
@@ -4779,7 +4779,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.context.FlashWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.Flash)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.Flash>
 meth public boolean containsKey(java.lang.Object)
@@ -4853,7 +4853,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.context.PartialViewContextFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.PartialViewContextFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.PartialViewContextFactory>
 meth public abstract jakarta.faces.context.PartialViewContext getPartialViewContext(jakarta.faces.context.FacesContext)
@@ -4863,7 +4863,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.context.PartialViewContextWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.PartialViewContext)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.PartialViewContext>
 meth public boolean isAjaxRequest()
@@ -4917,7 +4917,7 @@ supr java.io.Writer
 
 CLSS public abstract jakarta.faces.context.ResponseWriterWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.context.ResponseWriter)
 intf jakarta.faces.FacesWrapper<jakarta.faces.context.ResponseWriter>
 meth public jakarta.faces.context.ResponseWriter cloneWithWriter(java.io.Writer)
@@ -5178,7 +5178,7 @@ CLSS public abstract interface jakarta.faces.el.CompositeComponentExpressionHold
 meth public abstract jakarta.el.ValueExpression getExpression(java.lang.String)
 
 CLSS public jakarta.faces.el.EvaluationException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
@@ -5187,7 +5187,7 @@ supr jakarta.faces.FacesException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.el.MethodBinding
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public abstract java.lang.Class getType(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.Object invoke(jakarta.faces.context.FacesContext,java.lang.Object[])
@@ -5195,7 +5195,7 @@ meth public java.lang.String getExpressionString()
 supr java.lang.Object
 
 CLSS public jakarta.faces.el.MethodNotFoundException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
@@ -5204,7 +5204,7 @@ supr jakarta.faces.el.EvaluationException
 hfds serialVersionUID
 
 CLSS public jakarta.faces.el.PropertyNotFoundException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
@@ -5213,7 +5213,7 @@ supr jakarta.faces.el.EvaluationException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.el.PropertyResolver
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public abstract boolean isReadOnly(java.lang.Object,int)
 meth public abstract boolean isReadOnly(java.lang.Object,java.lang.Object)
@@ -5226,7 +5226,7 @@ meth public abstract void setValue(java.lang.Object,java.lang.Object,java.lang.O
 supr java.lang.Object
 
 CLSS public jakarta.faces.el.ReferenceSyntaxException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
@@ -5235,7 +5235,7 @@ supr jakarta.faces.el.EvaluationException
 hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.el.ValueBinding
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public abstract boolean isReadOnly(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.Class getType(jakarta.faces.context.FacesContext)
@@ -5245,7 +5245,7 @@ meth public java.lang.String getExpressionString()
 supr java.lang.Object
 
 CLSS public abstract jakarta.faces.el.VariableResolver
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public abstract java.lang.Object resolveVariable(jakarta.faces.context.FacesContext,java.lang.String)
 supr java.lang.Object
@@ -5679,7 +5679,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.flow.FlowHandlerFactoryWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.flow.FlowHandlerFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.flow.FlowHandlerFactory>
 meth public jakarta.faces.flow.FlowHandler createFlowHandler(jakarta.faces.context.FacesContext)
@@ -5857,7 +5857,7 @@ hfds PER_USE_CLIENT_WINDOW_URL_QUERY_PARAMETER_DISABLED_KEY
 
 CLSS public abstract jakarta.faces.lifecycle.ClientWindowFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.lifecycle.ClientWindowFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.lifecycle.ClientWindowFactory>
 meth public abstract jakarta.faces.lifecycle.ClientWindow getClientWindow(jakarta.faces.context.FacesContext)
@@ -5867,7 +5867,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.lifecycle.ClientWindowWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.lifecycle.ClientWindow)
 intf jakarta.faces.FacesWrapper<jakarta.faces.lifecycle.ClientWindow>
 meth public boolean isClientWindowRenderModeEnabled(jakarta.faces.context.FacesContext)
@@ -5892,7 +5892,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.lifecycle.LifecycleFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.lifecycle.LifecycleFactory)
 fld public final static java.lang.String DEFAULT_LIFECYCLE = "DEFAULT"
 intf jakarta.faces.FacesWrapper<jakarta.faces.lifecycle.LifecycleFactory>
@@ -5905,7 +5905,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.lifecycle.LifecycleWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.lifecycle.Lifecycle)
 intf jakarta.faces.FacesWrapper<jakarta.faces.lifecycle.Lifecycle>
 meth public jakarta.faces.event.PhaseListener[] getPhaseListeners()
@@ -6136,7 +6136,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.render.RenderKitFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.render.RenderKitFactory)
 fld public final static java.lang.String HTML_BASIC_RENDER_KIT = "HTML_BASIC"
 intf jakarta.faces.FacesWrapper<jakarta.faces.render.RenderKitFactory>
@@ -6149,7 +6149,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.render.RenderKitWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.render.RenderKit)
 intf jakarta.faces.FacesWrapper<jakarta.faces.render.RenderKit>
 meth public jakarta.faces.context.ResponseStream createResponseStream(java.io.OutputStream)
@@ -6180,7 +6180,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.render.RendererWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.render.Renderer)
 intf jakarta.faces.FacesWrapper<jakarta.faces.render.Renderer>
 meth public boolean getRendersChildren()
@@ -6204,14 +6204,14 @@ fld public final static java.lang.String VIEW_STATE_PARAM = "jakarta.faces.ViewS
 meth public boolean isPostback(jakarta.faces.context.FacesContext)
 meth public boolean isStateless(jakarta.faces.context.FacesContext,java.lang.String)
 meth public java.lang.Object getComponentStateToRestore(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object getState(jakarta.faces.context.FacesContext,java.lang.String)
 meth public java.lang.Object getTreeStructureToRestore(jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getCryptographicallyStrongTokenFromSession(jakarta.faces.context.FacesContext)
 meth public java.lang.String getViewState(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public void writeState(jakarta.faces.context.FacesContext,jakarta.faces.application.StateManager$SerializedView) throws java.io.IOException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void writeState(jakarta.faces.context.FacesContext,java.lang.Object) throws java.io.IOException
 supr java.lang.Object
 hfds log
@@ -6376,7 +6376,7 @@ supr java.lang.Object
 
 CLSS public abstract interface jakarta.faces.validator.Validator<%0 extends java.lang.Object>
 fld public final static java.lang.String NOT_IN_RANGE_MESSAGE_ID = "jakarta.faces.validator.NOT_IN_RANGE"
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 intf java.util.EventListener
 meth public abstract void validate(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,{jakarta.faces.validator.Validator%0})
 
@@ -6465,7 +6465,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.view.ViewDeclarationLanguageFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.view.ViewDeclarationLanguageFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.view.ViewDeclarationLanguageFactory>
 meth public abstract jakarta.faces.view.ViewDeclarationLanguage getViewDeclarationLanguage(java.lang.String)
@@ -6476,7 +6476,7 @@ hfds wrapped
 
 CLSS public abstract jakarta.faces.view.ViewDeclarationLanguageWrapper
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.view.ViewDeclarationLanguage)
 intf jakarta.faces.FacesWrapper<jakarta.faces.view.ViewDeclarationLanguage>
 meth public !varargs java.util.stream.Stream<java.lang.String> getViews(jakarta.faces.context.FacesContext,java.lang.String,int,jakarta.faces.application.ViewVisitOption[])
@@ -6597,7 +6597,7 @@ innr public abstract interface static MemberFactory
 meth protected jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}> getMemberFactory()
 meth protected jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}> getMetadataMemberFactory()
 meth protected void setMemberFactories(jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}>,jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}>)
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract boolean isFaceletCached(java.net.URL)
 meth public abstract boolean isViewMetadataFaceletCached(java.net.URL)
 meth public abstract {jakarta.faces.view.facelets.FaceletCache%0} getFacelet(java.net.URL) throws java.io.IOException
@@ -6612,7 +6612,7 @@ meth public abstract {jakarta.faces.view.facelets.FaceletCache$MemberFactory%0} 
 
 CLSS public abstract jakarta.faces.view.facelets.FaceletCacheFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.view.facelets.FaceletCacheFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.view.facelets.FaceletCacheFactory>
 meth public abstract jakarta.faces.view.facelets.FaceletCache getFaceletCache()
@@ -6700,7 +6700,7 @@ meth public abstract java.lang.reflect.Method getWriteMethod(java.lang.String)
 supr java.lang.Object
 
 CLSS public abstract jakarta.faces.view.facelets.ResourceResolver
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 fld public final static java.lang.String FACELETS_RESOURCE_RESOLVER_PARAM_NAME = "jakarta.faces.FACELETS_RESOURCE_RESOLVER"
 meth public abstract java.net.URL resolveUrl(java.lang.String)
@@ -6795,7 +6795,7 @@ supr java.lang.Object
 
 CLSS public abstract jakarta.faces.view.facelets.TagHandlerDelegateFactory
 cons public init()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.view.facelets.TagHandlerDelegateFactory)
 intf jakarta.faces.FacesWrapper<jakarta.faces.view.facelets.TagHandlerDelegateFactory>
 meth public abstract jakarta.faces.view.facelets.TagHandlerDelegate createBehaviorHandlerDelegate(jakarta.faces.view.facelets.BehaviorHandler)
@@ -6824,7 +6824,7 @@ supr jakarta.faces.view.facelets.FaceletsAttachedObjectHandler
 hfds config,helper,validatorId
 
 CLSS public jakarta.faces.webapp.AttributeTag
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public int doEndTag() throws jakarta.servlet.jsp.JspException
 meth public int doStartTag() throws jakarta.servlet.jsp.JspException
@@ -6842,7 +6842,7 @@ supr jakarta.servlet.jsp.tagext.TagSupport
 hfds serialVersionUID
 
 CLSS public jakarta.faces.webapp.ConverterTag
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth protected jakarta.faces.convert.Converter createConverter() throws jakarta.servlet.jsp.JspException
 meth public int doStartTag() throws jakarta.servlet.jsp.JspException
@@ -6883,7 +6883,7 @@ supr jakarta.faces.context.ExceptionHandlerFactory
 hcls PreJsf2ExceptionHandler
 
 CLSS public abstract jakarta.faces.webapp.UIComponentBodyTag
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 supr jakarta.faces.webapp.UIComponentTag
 
@@ -6914,13 +6914,13 @@ meth protected void addFacet(java.lang.String)
 meth protected void addVerbatimAfterComponent(jakarta.faces.webapp.UIComponentClassicTagBase,jakarta.faces.component.UIComponent,jakarta.faces.component.UIComponent)
 meth protected void addVerbatimBeforeComponent(jakarta.faces.webapp.UIComponentClassicTagBase,jakarta.faces.component.UIComponent,jakarta.faces.component.UIComponent)
 meth protected void encodeBegin() throws java.io.IOException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected void encodeChildren() throws java.io.IOException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected void encodeEnd() throws java.io.IOException
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth protected void setupResponseWriter()
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean getCreated()
 meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
 meth public int doEndTag() throws jakarta.servlet.jsp.JspException
@@ -6955,7 +6955,7 @@ supr jakarta.faces.webapp.UIComponentClassicTagBase
 hfds binding,rendered
 
 CLSS public abstract jakarta.faces.webapp.UIComponentTag
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 intf jakarta.servlet.jsp.tagext.Tag
 meth protected boolean hasBinding()
@@ -6995,7 +6995,7 @@ supr jakarta.servlet.jsp.tagext.TagSupport
 hfds serialVersionUID
 
 CLSS public jakarta.faces.webapp.ValidatorTag
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth protected jakarta.faces.validator.Validator createValidator() throws jakarta.servlet.jsp.JspException
 meth public int doStartTag() throws jakarta.servlet.jsp.JspException
@@ -7030,7 +7030,7 @@ meth public abstract !hasdefault long maxRequestSize()
 CLSS public abstract interface jakarta.servlet.jsp.tagext.BodyTag
 fld public final static int EVAL_BODY_BUFFERED = 2
 fld public final static int EVAL_BODY_TAG = 2
- anno 0 java.lang.Deprecated()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 intf jakarta.servlet.jsp.tagext.IterationTag
 meth public abstract void doInitBody() throws jakarta.servlet.jsp.JspException
 meth public abstract void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
@@ -7093,6 +7093,7 @@ cons public init()
 intf java.io.Closeable
 intf java.io.Flushable
 meth public abstract void write(int) throws java.io.IOException
+meth public static java.io.OutputStream nullOutputStream()
 meth public void close() throws java.io.IOException
 meth public void flush() throws java.io.IOException
 meth public void write(byte[]) throws java.io.IOException
@@ -7114,12 +7115,12 @@ meth public abstract void write(char[],int,int) throws java.io.IOException
 meth public java.io.Writer append(char) throws java.io.IOException
 meth public java.io.Writer append(java.lang.CharSequence) throws java.io.IOException
 meth public java.io.Writer append(java.lang.CharSequence,int,int) throws java.io.IOException
+meth public static java.io.Writer nullWriter()
 meth public void write(char[]) throws java.io.IOException
 meth public void write(int) throws java.io.IOException
 meth public void write(java.lang.String) throws java.io.IOException
 meth public void write(java.lang.String,int,int) throws java.io.IOException
 supr java.lang.Object
-hfds WRITE_BUFFER_SIZE,writeBuffer
 
 CLSS public abstract interface java.lang.Appendable
 meth public abstract java.lang.Appendable append(char) throws java.io.IOException
@@ -7135,8 +7136,10 @@ meth public abstract int compareTo({java.lang.Comparable%0})
 CLSS public abstract interface !annotation java.lang.Deprecated
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
 intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean forRemoval()
+meth public abstract !hasdefault java.lang.String since()
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
@@ -7153,7 +7156,6 @@ meth public final java.lang.String name()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
-hfds name,ordinal
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -7162,7 +7164,6 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
-hfds serialVersionUID
 
 CLSS public abstract interface java.lang.Iterable<%0 extends java.lang.Object>
 meth public abstract java.util.Iterator<{java.lang.Iterable%0}> iterator()
@@ -7173,6 +7174,7 @@ CLSS public java.lang.Object
 cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="9")
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getClass()
 meth public final void notify()
@@ -7190,7 +7192,6 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Exception
-hfds serialVersionUID
 
 CLSS public java.lang.Throwable
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
@@ -7213,8 +7214,6 @@ meth public void printStackTrace(java.io.PrintStream)
 meth public void printStackTrace(java.io.PrintWriter)
 meth public void setStackTrace(java.lang.StackTraceElement[])
 supr java.lang.Object
-hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MESSAGE,SUPPRESSED_CAPTION,SUPPRESSED_SENTINEL,UNASSIGNED_STACK,backtrace,cause,detailMessage,serialVersionUID,stackTrace,suppressedExceptions
-hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract interface java.lang.annotation.Annotation
 meth public abstract boolean equals(java.lang.Object)
@@ -7264,10 +7263,11 @@ intf java.io.Serializable
 meth public java.lang.Object getSource()
 meth public java.lang.String toString()
 supr java.lang.Object
-hfds serialVersionUID
 
 CLSS public abstract interface java.util.Map<%0 extends java.lang.Object, %1 extends java.lang.Object>
 innr public abstract interface static Entry
+meth public !varargs static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> ofEntries(java.util.Map$Entry<? extends {%%0},? extends {%%1}>[])
+ anno 0 java.lang.SafeVarargs()
 meth public abstract boolean containsKey(java.lang.Object)
 meth public abstract boolean containsValue(java.lang.Object)
 meth public abstract boolean equals(java.lang.Object)
@@ -7284,6 +7284,19 @@ meth public abstract {java.util.Map%1} put({java.util.Map%0},{java.util.Map%1})
 meth public abstract {java.util.Map%1} remove(java.lang.Object)
 meth public boolean remove(java.lang.Object,java.lang.Object)
 meth public boolean replace({java.util.Map%0},{java.util.Map%1},{java.util.Map%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map$Entry<{%%0},{%%1}> entry({%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> copyOf(java.util.Map<? extends {%%0},? extends {%%1}>)
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of()
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
+meth public static <%0 extends java.lang.Object, %1 extends java.lang.Object> java.util.Map<{%%0},{%%1}> of({%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1},{%%0},{%%1})
 meth public void forEach(java.util.function.BiConsumer<? super {java.util.Map%0},? super {java.util.Map%1}>)
 meth public void replaceAll(java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
 meth public {java.util.Map%1} compute({java.util.Map%0},java.util.function.BiFunction<? super {java.util.Map%0},? super {java.util.Map%1},? extends {java.util.Map%1}>)
