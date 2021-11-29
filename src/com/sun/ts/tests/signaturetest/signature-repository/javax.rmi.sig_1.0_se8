@@ -1,8 +1,5 @@
 #Signature file v4.1
-#Version 1.0_se8
-
-# Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
-
+#Version 1.0
 
 CLSS public abstract interface java.io.Serializable
 
@@ -10,6 +7,7 @@ CLSS public java.lang.Object
 cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="9")
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getClass()
 meth public final void notify()
@@ -19,12 +17,6 @@ meth public final void wait(long) throws java.lang.InterruptedException
 meth public final void wait(long,int) throws java.lang.InterruptedException
 meth public int hashCode()
 meth public java.lang.String toString()
-
-CLSS public abstract interface java.rmi.server.RMIClientSocketFactory
-meth public abstract java.net.Socket createSocket(java.lang.String,int) throws java.io.IOException
-
-CLSS public abstract interface java.rmi.server.RMIServerSocketFactory
-meth public abstract java.net.ServerSocket createServerSocket(int) throws java.io.IOException
 
 CLSS public javax.rmi.CORBA.ClassDesc
 cons public init()
@@ -141,30 +133,6 @@ meth public static void exportObject(java.rmi.Remote) throws java.rmi.RemoteExce
 meth public static void unexportObject(java.rmi.Remote) throws java.rmi.NoSuchObjectException
 supr java.lang.Object
 hfds PortableRemoteObjectClassKey,defaultPortableRemoteObjectImplName,proDelegate
-
-CLSS public javax.rmi.ssl.SslRMIClientSocketFactory
-cons public init()
-intf java.io.Serializable
-intf java.rmi.server.RMIClientSocketFactory
-meth public boolean equals(java.lang.Object)
-meth public int hashCode()
-meth public java.net.Socket createSocket(java.lang.String,int) throws java.io.IOException
-supr java.lang.Object
-hfds defaultSocketFactory,serialVersionUID
-
-CLSS public javax.rmi.ssl.SslRMIServerSocketFactory
-cons public init()
-cons public init(java.lang.String[],java.lang.String[],boolean)
-cons public init(javax.net.ssl.SSLContext,java.lang.String[],java.lang.String[],boolean)
-intf java.rmi.server.RMIServerSocketFactory
-meth public boolean equals(java.lang.Object)
-meth public final boolean getNeedClientAuth()
-meth public final java.lang.String[] getEnabledCipherSuites()
-meth public final java.lang.String[] getEnabledProtocols()
-meth public int hashCode()
-meth public java.net.ServerSocket createServerSocket(int) throws java.io.IOException
-supr java.lang.Object
-hfds context,defaultSSLSocketFactory,enabledCipherSuites,enabledCipherSuitesList,enabledProtocols,enabledProtocolsList,needClientAuth
 
 CLSS public abstract interface org.omg.CORBA.Object
 meth public abstract boolean _is_a(java.lang.String)

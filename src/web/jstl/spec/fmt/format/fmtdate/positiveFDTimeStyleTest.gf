@@ -50,22 +50,22 @@
      10:11:34 PM<br>
      10:11:34 PM EST<br>
      10:11:34 PM EST<br>
-     10:11:34 PM EST<br>
-     10:11:34 PM EST<br>
+     10:11:34 PM Eastern Standard Time<br>
+     10:11:34 PM Eastern Standard Time<br>
 
      <br>'type' set to 'both' -- timeStyle should be applied<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11 PM<br>
-     Dec 26, 1997 10:11 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM EST<br>
-     Dec 26, 1997 10:11:34 PM EST<br>
-     Dec 26, 1997 10:11:34 PM EST<br>
-     Dec 26, 1997 10:11:34 PM EST<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11 PM<br>
+     Dec 26, 1997, 10:11 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM EST<br>
+     Dec 26, 1997, 10:11:34 PM EST<br>
+     Dec 26, 1997, 10:11:34 PM Eastern Standard Time<br>
+     Dec 26, 1997, 10:11:34 PM Eastern Standard Time<br>
 
 </body>
 </html>

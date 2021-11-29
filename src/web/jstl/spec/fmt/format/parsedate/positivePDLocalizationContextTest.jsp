@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,7 @@
     <fmt:setTimeZone value="EST"/>
     <c:set var="dte" value="Nov 21, 2000"/>
     <c:set var="dtim" value="3:45:02 AM"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/> 
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>
 
     <!-- Validate that the action is able to dermine the
