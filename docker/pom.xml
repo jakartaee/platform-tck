@@ -66,7 +66,7 @@
         <!-- CDI -->
         <cdi-api.version>3.0.0</cdi-api.version>
         
-        <jakarta.annotation-api.version>2.1.0-B1</jakarta.annotation-api.version>
+        <jakarta.annotation-api.version>2.1.0</jakarta.annotation-api.version>
         <jakarta.el-api.version>5.0.0</jakarta.el-api.version>
         <jakarta.inject-api.version>2.0.0</jakarta.inject-api.version>
         <jakarta.mail-api.version>2.1.0</jakarta.mail-api.version>
