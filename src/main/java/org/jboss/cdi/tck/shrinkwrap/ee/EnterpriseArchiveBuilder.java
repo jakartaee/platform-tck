@@ -129,7 +129,9 @@ public class EnterpriseArchiveBuilder extends ArchiveBuilder<EnterpriseArchiveBu
         processLibraries(enterpriseArchive);
 
         // Deployment descriptors
-        ejbArchive.addAsManifestResource(getBeansDescriptorAsset(), getBeansDescriptorTarget());
+        if (includeBeansXml) {
+            ejbArchive.addAsManifestResource(getBeansDescriptorAsset(), getBeansDescriptorTarget());
+        }
 
         if (persistenceDescriptor != null) {
             ejbArchive.addAsManifestResource(new StringAsset(persistenceDescriptor.exportAsString()), "persistence.xml");
