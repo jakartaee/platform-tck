@@ -22,8 +22,8 @@
     <!-- IMPORTS -->
 	<import file="../../bin/xml/ts.common.props.xml"/>
 
-	<property name="deliverable.version"  value="2.0"/>
-        <property name="deliverable.tck.version"  value="2.0.1"/>
+	<property name="deliverable.version"  value="2.1"/>
+        <property name="deliverable.tck.version"  value="2.1.0"/>
 
 	<property name="platform.folder" value="com/sun/ts/tests/websocket/platform/**"/>
 
