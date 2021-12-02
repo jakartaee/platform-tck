@@ -679,8 +679,7 @@ public class SuiteSynchronizer {
     if (executionMode == ExecutionMode.DEPLOY_RUN_UNDEPLOY
         || executionMode == ExecutionMode.DEPLOY
         || executionMode == ExecutionMode.DEPLOY_RUN) {
-      String sInteropDirections = InteropTestManager
-          .getInteropDirectionsFromKeywords(sDir);
+      String sInteropDirections = sInteropDirectionWhenTablesWerePopulated;
       File fTestDir = new File(sDir);
 
       if (TestUtil.harnessDebug)
@@ -1113,10 +1112,8 @@ public class SuiteSynchronizer {
       throws TSDeploymentException, TSJMSAdminException {
     if (executionMode == ExecutionMode.DEPLOY_RUN_UNDEPLOY
         || executionMode == ExecutionMode.UNDEPLOY) {
-      String sInteropDirections = InteropTestManager
-          .getInteropDirectionsFromKeywords(sDir);
       String[] sAppJarsArray;
-
+      String sInteropDirections = sInteropDirectionWhenTablesWerePopulated;
       if (TestUtil.harnessDebug)
         TestUtil.logHarnessDebug(
             "undeployApps - InteropDirections:  " + sInteropDirections);
