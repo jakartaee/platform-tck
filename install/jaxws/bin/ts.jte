@@ -79,12 +79,12 @@ endorsed.dirs.ri=${jaxws.lib.ri}
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
 ###########################################################################
-jaxws.classes=${jaxws.lib}/pfl-tf.jar${pathsep}${jaxws.lib}/jakarta.servlet-api.jar${pathsep}${jaxws.lib}/pfl-basic.jar${pathsep}${jaxws.lib}/webservices-api-osgi.jar${pathsep}${jaxws.lib}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/webservices-api.jar${pathsep}${jaxws.lib}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib}/jakarta.activation.jar
+jaxws.classes=${jaxws.lib}/pfl-tf.jar${pathsep}${jaxws.lib}/jakarta.servlet-api.jar${pathsep}${jaxws.lib}/pfl-basic.jar${pathsep}${jaxws.lib}/webservices-api-osgi.jar${pathsep}${jaxws.lib}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/webservices-api.jar${pathsep}${jaxws.lib}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib}/jakarta.activation-api.jar
 
 ###########################################################################
 # @jaxws.classes.ri  should contain all RI specific jars/classes
 ###########################################################################
-jaxws.classes.ri=${jaxws.lib.ri}/pfl-tf.jar${pathsep}${jaxws.lib.ri}/jakarta.servlet-api.jar${pathsep}${jaxws.lib.ri}/pfl-basic.jar${pathsep}${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}${jaxws.lib.ri}/webservices-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}${jaxws.lib.ri}/gmbal.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/webservices-api.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib.ri}/jakarta.activation.jar
+jaxws.classes.ri=${jaxws.lib.ri}/pfl-tf.jar${pathsep}${jaxws.lib.ri}/jakarta.servlet-api.jar${pathsep}${jaxws.lib.ri}/pfl-basic.jar${pathsep}${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}${jaxws.lib.ri}/webservices-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}${jaxws.lib.ri}/gmbal.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/webservices-api.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib.ri}/jakarta.activation-api.jar
 
 ###########################################################################
 # @catalog.path  Path to catalog file for use with catalog tests

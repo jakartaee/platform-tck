@@ -127,6 +127,8 @@
 		          com/sun/ts/tests/common/vehicle/standalone/*.class,
 		          com/sun/ts/tests/jaxws/**/*.class,
 		          com/sun/ts/tests/jaxws/**/*_handler.xml,
+                  com/sun/ts/tests/jws/**/*.class,
+                  com/sun/ts/tests/jws/**/*_handler.xml,
 		          com/sun/ts/tests/signaturetest/*.class,
 		          com/sun/ts/tests/signaturetest/jaxws/*.class,
 		          com/sun/ts/lib/porting/**/*TSURL*.class,
@@ -145,6 +147,7 @@
 		<!-- maintain dist class hierarchy of test directory wars -->
 		<copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="yes">
 			<fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jaxws/**/*.war"/>
+            <fileset dir="${ts.home}/dist" includes="com/sun/ts/tests/jws/**/*.war"/>
 		</copy>
 
 		<!-- the specific deliverable source directories -->
@@ -152,12 +155,14 @@
 			<fileset dir="${ts.home}/src"
 			includes="
                    com/sun/ts/tests/jaxws/**/*,
+                   com/sun/ts/tests/jws/**/*,
                    com/sun/ts/tests/signaturetest/signature-repository/jakarta.xml.ws.*,
                    com/sun/ts/tests/signaturetest/*,
                    com/sun/ts/tests/signaturetest/jaxws/*,
                    com/sun/ts/tests/common/vehicle/*,
                    com/sun/ts/tests/common/vehicle/standalone/*,
                    ${lib.pkg.dir}/deliverable/jaxws/*,
+                   ${lib.pkg.dir}/deliverable/jws/*,
                    com/sun/ts/lib/porting/**/*TSURL*,
                    com/sun/ts/lib/implementation/sun/common/**/SunRIURL*"
 			excludes="
