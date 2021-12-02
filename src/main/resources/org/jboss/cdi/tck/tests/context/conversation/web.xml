@@ -17,7 +17,7 @@
 
     <filter-mapping>
         <filter-name>OutermostFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
@@ -27,7 +27,7 @@
 
    <servlet-mapping>
       <servlet-name>Faces Servlet</servlet-name>
-      <url-pattern>/*</url-pattern>
+      <url-pattern>*.jsf</url-pattern>
    </servlet-mapping>
 
    <servlet>
