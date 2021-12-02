@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,7 +45,7 @@ sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish6/glassfish/modules
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed#g" ts.jte
 
 if [ "$profile" == "web" ]; then
-  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
+  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se11.map
 fi
 
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport#g" ts.jte

@@ -2938,8 +2938,8 @@ For example, some failures from an actual `JavaEESigTest_signatureTest_from_serv
 SVR: ********** Status Report 'jakarta.servlet.jsp.jstl.core' **********
 
 SVR: SignatureTest report
-Base version: 2.0_se8
-Tested version: 2.0_se8
+Base version: 2.0_se11
+Tested version: 2.0_se11
 Check mode: src [throws normalized]
 Constant checking: on
 
@@ -2975,8 +2975,8 @@ Another example only with methods is:
 SVR: ********** Status Report 'jakarta.el' **********
 
 SVR: SignatureTest report
-Base version: 4.0_se8
-Tested version: 4.0_se8
+Base version: 4.0_se11
+Tested version: 4.0_se11
 Check mode: src [throws normalized]
 Constant checking: on
 

@@ -45,7 +45,7 @@ public abstract class SignatureTestDriver {
    */
   public String getPackageFileImpl(String binDir) {
 
-    String thePkgListFile = "sig-test-pkg-list_se8.txt";
+    String thePkgListFile = "sig-test-pkg-list_se11.txt";
 
     TestUtil.logMsg(
         "Using the following as the SigTest Package file: " + thePkgListFile);
@@ -79,7 +79,7 @@ public abstract class SignatureTestDriver {
    */
   public String getMapFileImpl(String binDir) {
 
-    String  theMapFile = "sig-test_se8.map";
+    String  theMapFile = "sig-test_se11.map";
 
     TestUtil
         .logMsg("Using the following as the sig-Test map file: " + theMapFile);
