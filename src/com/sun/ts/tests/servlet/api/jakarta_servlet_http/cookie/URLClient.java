@@ -438,4 +438,28 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "setVersionVer1Test");
     invoke();
   }
+  
+  /*
+   * @testName: setAttributeTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Servlet tests method and returns result to client
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    invoke();
+  }
+  
+  /*
+   * @testName: getAttributesTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Servlet tests method and returns result to client
+   */
+  public void getAttributesTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "getAttributesTest");
+    invoke();
+  }
 }

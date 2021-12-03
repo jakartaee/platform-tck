@@ -31,6 +31,7 @@ import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.cookie.CookieSpec;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
@@ -475,6 +476,32 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "setVersionVer0Test");
     invoke();
     TEST_PROPS.setProperty(APITEST, "setVersionVer1Test");
+    invoke();
+  }
+
+  /*
+   * @testName: setAttributeTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Create a web application with no web.xml and one fragment;
+   * Define everything in web-fragment.xml; Package everything in the fragment;
+   * Servlet tests method Cookie.setAttribute
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    invoke();
+  }
+  
+  /*
+   * @testName: getAttributesTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Servlet tests method and returns result to client
+   */
+  public void getAttributesTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "getAttributesTest");
     invoke();
   }
 }

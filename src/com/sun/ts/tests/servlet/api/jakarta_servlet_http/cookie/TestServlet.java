@@ -3,7 +3,7 @@
  *  *
  *  * The Apache Software License, Version 1.1
  *  *
- *  * Copyright (c) 2001, 2020 Oracle and/or its affiliates and others.
+ *  * Copyright (c) 2001, 2021 Oracle and/or its affiliates and others.
  *  * All rights reserved.
  *  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  *  * reserved.
@@ -63,7 +63,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.TimeZone;
+
+import javax.management.AttributeValueExp;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
@@ -669,6 +672,67 @@ public class TestServlet extends HttpTCKServlet {
       pw.println("Actual = |" + result + "| ");
     } else {
       passed = true;
+    }
+    ServletTestUtil.printResult(pw, passed);
+  }
+
+  public void setAttributeTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+
+    PrintWriter pw = response.getWriter();
+    boolean passed = true;
+    Cookie testCookie = new Cookie("name1", "value1");
+
+    String attrName = "some-name";
+    String attrValue = "some-value";
+    testCookie.setAttribute(attrName, attrValue);
+    String result = testCookie.getAttribute(attrName);
+
+    response.addCookie(testCookie);
+    if (result != null) {
+      if (!result.equalsIgnoreCase(attrValue)) {
+        passed = false;
+        pw.println("setAttribute(" + attrName + "," + attrValue +
+            ") did not set the attribute properly ");
+        pw.println("Expected value = " + attrValue + " ");
+        pw.println("Actual value = |" + result + "| ");
+      }
+    } else {
+      passed = false;
+      pw.println("getAttribute(" + attrName + ") returned a null result ");
+    }
+    ServletTestUtil.printResult(pw, passed);
+  }
+
+  public void getAttributesTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+
+    PrintWriter pw = response.getWriter();
+    boolean passed = true;
+    String name = "name1";
+    String value = "value1";
+    Cookie testCookie = new Cookie(name, value);
+
+    String attrName = "some-name";
+    String attrValue = "some-value";
+    testCookie.setAttribute(attrName, attrValue);
+    Map<String,String> result = testCookie.getAttributes();
+
+    response.addCookie(testCookie);
+    if (result != null) {
+      if (result.size() == 1) {
+        if (!result.get(attrName).equals(attrValue)) {
+          passed = false;
+          pw.println("getAttributes() returned a map that contained [" + result.get(attrName) +
+              "] as the value for key [" + attrName + "] rather than [" + attrValue + "]");
+        }
+      } else {
+        passed = false;
+        pw.println("getAttributes() returned a map of size [" + result.size() + "] rather than 1.");
+      }
+    } else {
+      passed = false;
+      pw.println("getAttributes() returned a null result ");
     }
     ServletTestUtil.printResult(pw, passed);
   }
