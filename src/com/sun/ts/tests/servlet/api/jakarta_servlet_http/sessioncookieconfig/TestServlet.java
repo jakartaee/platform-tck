@@ -33,7 +33,7 @@ import jakarta.servlet.http.HttpSession;
 public class TestServlet extends HttpTCKServlet {
 
   public void constructortest1(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     request.getSession(true);
 
     String results = (String) getServletContext().getAttribute(TestListener.class.getName());
@@ -46,9 +46,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setNameTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     String name = "WHO_SHOULD_NOT_BE_NAMED_HERE";
-    Boolean pass = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -66,9 +66,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setCommentTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     String comment = "WHO_SHOULD_NOT_BE_NAMED_HERE";
-    Boolean pass = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -86,9 +86,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setPathTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     String path = "WHO_SHOULD_NOT_BE_NAMED_HERE";
-    Boolean pass = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -106,9 +106,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setDomainTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     String domain = "WHO_SHOULD_NOT_BE_NAMED_HERE";
-    Boolean pass = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -126,9 +126,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setMaxAgeTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     int maxage = 12345;
-    Boolean pass = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -146,9 +146,9 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setHttpOnlyTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    Boolean http = true;
-    Boolean pass = true;
+      HttpServletResponse response) throws IOException {
+    boolean http = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
@@ -166,15 +166,35 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setSecureTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    Boolean secure = true;
-    Boolean pass = true;
+      HttpServletResponse response) throws IOException {
+    boolean secure = true;
+    boolean pass = true;
     PrintWriter pw = response.getWriter();
     HttpSession session = request.getSession();
 
     try {
       pw.println("calling method setSecure");
       getServletContext().getSessionCookieConfig().setSecure(secure);
+      pass = false;
+      pw.println("Expected IllegalStateException not thrown");
+    } catch (IllegalStateException ex) {
+      pw.println("Expected IllegalStateException thrown");
+    } finally {
+      session.invalidate();
+      ServletTestUtil.printResult(pw, pass);
+    }
+  }
+
+  public void setAttributeTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+    String attribute = "WHO_SHOULD_NOT_BE_NAMED_HERE";
+    boolean pass = true;
+    PrintWriter pw = response.getWriter();
+    HttpSession session = request.getSession();
+
+    try {
+      pw.println("calling method setAttribute");
+      getServletContext().getSessionCookieConfig().setAttribute(attribute, attribute);
       pass = false;
       pw.println("Expected IllegalStateException not thrown");
     } catch (IllegalStateException ex) {

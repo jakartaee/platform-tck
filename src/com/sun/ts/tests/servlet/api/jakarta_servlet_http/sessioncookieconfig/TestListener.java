@@ -35,6 +35,8 @@ public class TestListener implements ServletContextListener {
     Boolean isSecure = true;
     Boolean httpOnly = false;
     int maxage = 50000;
+    String attrName = "a1";
+    String attrValue= "b2";
     String name = "TCK_Cookie_Name";
 
     SessionCookieConfig scf = sce.getServletContext().getSessionCookieConfig();
@@ -44,6 +46,7 @@ public class TestListener implements ServletContextListener {
     scf.setMaxAge(maxage);
     scf.setPath(path);
     scf.setSecure(isSecure);
+    scf.setAttribute(attrName, attrValue);
 
     if (!scf.getPath().equals(path)) {
       testData.append("|getPathFAILED-expecting-" + path + "-got-" + scf.getPath());
@@ -57,7 +60,7 @@ public class TestListener implements ServletContextListener {
       testData.append("|isHttpOnlyFAILED-expecting-" + httpOnly + "-got-" + scf.isHttpOnly());
     }
 
-    if (!scf.getDomain().equals(domain.toString())) {
+    if (!scf.getDomain().equals(domain)) {
       testData.append("|getDomainFAILED-expecting-" + domain + "-got-" + scf.getDomain());
     }
 
@@ -65,6 +68,10 @@ public class TestListener implements ServletContextListener {
       testData.append("|getMaxAgeFAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
     }
 
+    if (!scf.getAttribute(attrName).equals(attrValue)) {
+      testData.append("|getAttributeFAILED-expecting-" + attrValue + "-got-" + scf.getAttribute(attrName));
+    }
+    
     if (scf.getName() != null) {
       testData.append("|getNameFAILED-expecting-null-got-" + scf.getName());
     }
