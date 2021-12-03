@@ -22,6 +22,7 @@ package com.sun.ts.tests.servlet.api.common.response;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Locale;
@@ -225,28 +226,106 @@ public class ResponseTests {
   }
 
   public static void setCharacterEncodingTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    boolean pass = false;
-
+      ServletResponse response) throws IOException {
+    boolean pass = true;
+    StringBuilder report = new StringBuilder();
+    
+    // First need to know the default
+    String defaultEncoding = response.getCharacterEncoding();
+    
+    report.append("Test 1: Direct UTF-8 then null:\n");
+    response.setCharacterEncoding("UTF-8");
+    if ("UTF-8".equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set with UTF-8 Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set with UTF-8 Fail\n");
+    }
+    response.setCharacterEncoding(null);
+    if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
+        defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set with null Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set with null Fail\n");
+    }
+    response.reset();
+    
+    report.append("Test 2: Content-Type UTF-8 then null:\n");
+    response.setContentType("text/plain; charset=UTF-8");
+    if ("UTF-8".equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set via Content-Type Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set via Content-Type Fail\n");
+    }
+    response.setCharacterEncoding(null);
+    if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
+        defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set with null Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set with null Fail\n");
+    }
+    response.reset();
+    
+    report.append("Test 3: Locale Shift_Jis then null:\n");
+    response.setLocale(new Locale("ja"));
+    if ("Shift_Jis".equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set via Locale Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set via Locale Fail\n");
+    }
+    response.setCharacterEncoding(null);
+    if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
+        defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set with null Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set with null Fail\n");
+    }
+    response.reset();
+    
+    report.append("Test 4: Invalid then getWriter():\n");
+    response.setCharacterEncoding("does-not-exist");
+    if ("does-not-exist".equalsIgnoreCase(response.getCharacterEncoding())) {
+      report.append(" Set with invalid Pass\n");
+    } else {
+      pass = false;
+      report.append(" Set with invalid Fail\n");
+    }
+    try {
+      response.getWriter();
+      pass = false;
+      report.append(" getWriter() did not throw UnsupportedEncodingException Fail\n");
+    } catch (UnsupportedEncodingException uee) {
+      report.append(" getWriter() throw UnsupportedEncodingException Pass\n");
+    }
+    response.reset();
+    
+    report.append("Test 5: Check getContentType():\n");
     final String ENCODING = "ISO-8859-7";
     response.setContentType("text/html");
     response.setCharacterEncoding(ENCODING);
     String type = response.getContentType();
 
-    PrintWriter pw = response.getWriter();
     if (type != null) {
       if ((type.toLowerCase().indexOf("text/html") > -1)
           && (type.toLowerCase().indexOf("charset") > -1)
           && (type.toLowerCase().indexOf("iso-8859-7") > -1)) {
-        pass = true;
       } else {
-        pw.println("Expecting text/html; charset=ISO-8859-7");
-        pw.println("getContentType returns incorrect type: " + type);
+        pass = false;
+        report.append(" Expecting text/html; charset=ISO-8859-7");
+        report.append(" getContentType returns incorrect type: " + type);
       }
     } else {
-      pw.println("getContentType return null");
+      pass = false;
+      report.append(" getContentType return null");
     }
 
+    PrintWriter pw = response.getWriter();
+    pw.print(report.toString());
     ServletTestUtil.printResult(pw, pass);
   }
 
