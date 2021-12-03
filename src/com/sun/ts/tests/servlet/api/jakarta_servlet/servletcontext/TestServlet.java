@@ -150,7 +150,7 @@ public class TestServlet extends GenericTCKServlet {
    */
   public void getRealPath(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    boolean passed = false;
+    boolean passed = true;
     PrintWriter pw = response.getWriter();
 
     String path = "/servlet_js_ServletContext/Test";
@@ -166,12 +166,25 @@ public class TestServlet extends GenericTCKServlet {
     if ((realPath == null) || (realPath.indexOf(path) > -1) || // UNIX path
         (realPath.indexOf(win32Path) > -1)) // Win32 path
     {
-      passed = true;
       pw.println("realPath = " + realPath);
     } else {
       passed = false;
       pw.println("getRealPath(" + path + ") did not contain the named files");
       pw.println("Actual result = " + realPath + " ");
+    }
+    
+    // Leading '/' is optional. Ensure the result is the same with or without it
+    String pathNoSolidus = path.substring(1);
+    String realPathNoSolidus = context.getRealPath(pathNoSolidus);
+    
+    if (realPath == null && realPathNoSolidus == null ||
+        realPath != null && realPath.equals(realPathNoSolidus)) {
+      pw.println("realPathNoSolidus = " + realPathNoSolidus);      
+    } else {
+      passed = false;
+      pw.println("getRealPath(" + path + ") returned [" + realPath + "]");
+      pw.println("getRealPath(" + pathNoSolidus + ") returned [" + realPathNoSolidus + "]");
+      pw.println("The return values should be the same");
     }
     ServletTestUtil.printResult(pw, passed);
   }
