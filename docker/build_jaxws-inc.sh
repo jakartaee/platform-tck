@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,9 +27,9 @@ if [ ! -d metro ]; then
   rm -v ${WORKSPACE}/metro.zip
 fi
 
-(cd metro && ant -f metro-on-glassfish.xml -Das.home="$GF_HOME/glassfish6/glassfish" install)
-cp -v metro/lib/webservices-tools.jar $GF_HOME/glassfish6/glassfish/modules/webservices-tools.jar
-cp -v metro/lib/webservices-api.jar $GF_HOME/glassfish6/glassfish/modules/webservices-api.jar
-cp -v metro/osgi/jakarta.xml.bind-api.jar $GF_HOME/glassfish6/glassfish/modules/endorsed
+(cd metro && ant -f metro-on-glassfish.xml -Das.home="$GF_HOME/glassfish7/glassfish" install)
+cp -v metro/lib/webservices-tools.jar $GF_HOME/glassfish7/glassfish/modules/webservices-tools.jar
+cp -v metro/lib/webservices-api.jar $GF_HOME/glassfish7/glassfish/modules/webservices-api.jar
+cp -v metro/osgi/jakarta.xml.bind-api.jar $GF_HOME/glassfish7/glassfish/modules/endorsed
 
-sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/glassfish6\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/$tck/bin/ts.jte
+sed -i -e 's#tools\.jar=.*#tools.jar='${GF_HOME//\//\\\/}'\/glassfish7\/glassfish\/modules\/webservices-tools.jar:'${GF_HOME//\//\\\/}'\/glassfish7\/glassfish\/modules\/webservices-api.jar#g' $BASEDIR/install/$tck/bin/ts.jte

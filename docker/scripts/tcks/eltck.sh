@@ -33,7 +33,7 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i 's#^javax\.el=3\.0_se6.*#javax.el=5.0_se11#g' sig-test.map
-sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/glassfish6/glassfish/modules/javax.el.jar#g" ts.jte
+sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.el.jar#g" ts.jte
 sed -i "s#^sigTestClasspath=.*#sigTestClasspath=\$\{el.classes\}\$\{pathsep\}\$\{JAVA_HOME\}/lib/rt.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/eltckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/eltckwork#g" ts.jte

@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,15 +33,15 @@ chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
 sed -i "s#^build.level=.*#build.level=2#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish6/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
+sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
+sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork#g" ts.jte
 
 mkdir $TCK_HOME/cajtckreport
 mkdir $TCK_HOME/cajtckwork
 
-cd $TCK_HOME/glassfish6/bin
+cd $TCK_HOME/glassfish7/bin
 ./asadmin start-domain
 
 cd $TS_HOME/src/com/sun/ts/tests/signaturetest/caj

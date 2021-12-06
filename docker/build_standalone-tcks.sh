@@ -43,7 +43,7 @@ if [ "false" == "${buildStandaloneTCKFlag}" ]; then
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 if [ ! -d "$GF_HOME/$GF_TOPLEVEL_DIR" ]; then
