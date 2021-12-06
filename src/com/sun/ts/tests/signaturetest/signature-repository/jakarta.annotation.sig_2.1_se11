@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.1_se11
 
 CLSS public abstract interface !annotation jakarta.annotation.Generated
  anno 0 java.lang.annotation.Documented()
@@ -156,6 +156,7 @@ meth public final java.lang.String name()
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Object
 cons public init()

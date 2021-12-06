@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
+sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
 sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
 sed -i "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
@@ -40,8 +40,8 @@ sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/websockettckwork#g" ts.jte
 mkdir $TCK_HOME/websockettckreport
 mkdir $TCK_HOME/websockettckwork
 
-cat $TS_HOME/bin/server_policy.append >> $TCK_HOME/glassfish6/glassfish/domains/domain1/config/server.policy
-cd $TCK_HOME/glassfish6/bin
+cat $TS_HOME/bin/server_policy.append >> $TCK_HOME/glassfish7/glassfish/domains/domain1/config/server.policy
+cd $TCK_HOME/glassfish7/bin
 ./asadmin start-domain
 
 cd $TS_HOME/bin

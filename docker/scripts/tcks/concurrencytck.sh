@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,7 +33,7 @@ chmod -R 777 $TS_HOME
 rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextPropagate/ContextPropagate_web.war
 
 cd $TS_HOME/bin
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
+sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
 sed -i 's#^concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/javax.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar#g' ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/concurrencytckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/concurrencytckwork#g" ts.jte

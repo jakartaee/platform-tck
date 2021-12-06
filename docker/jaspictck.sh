@@ -35,7 +35,7 @@ else
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
@@ -44,7 +44,7 @@ fi
 
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
