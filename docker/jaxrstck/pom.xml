@@ -1,0 +1,278 @@
+ <!--
+
+    Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <groupId>jakarta</groupId>
+    <artifactId>glassfish-rest-tck</artifactId>
+    <version>3.1.0</version>
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Jakarta REST TCK run on glassfish</name>
+    <description>This verifies the compliance of Eclipse Glassfish with Jakarta REST standalone TCK</description>
+
+    <properties>
+        <glassfish.container.version>6.1.0</glassfish.container.version>
+        <jakarta.platform.version>9.1.0</jakarta.platform.version>
+        <junit.jupiter.version>5.7.2</junit.jupiter.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.hk2</groupId>
+            <artifactId>hk2-locator</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>3.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-managed-6</artifactId>
+            <version>1.0.0.Alpha1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-tck</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.main.common</groupId>
+            <artifactId>simple-glassfish-api</artifactId>
+            <version>${glassfish.container.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>1.7.0.Alpha10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakarta.platform.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>	    
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>glassfish</artifactId>
+                                    <version>${glassfish.container.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
+                        <id>StartDomain1</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>start-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Enable Trace requests</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>set</argument>
+                                <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Add User j2ee</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>create-file-user</argument>
+                                <argument>--groups</argument>
+                                <argument>staff:mgr</argument>
+                                <argument>j2ee</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Add User javajoe</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/javajoe.pass</argument>
+                                <argument>create-file-user</argument>
+                                <argument>--groups</argument>
+                                <argument>guest</argument>
+                                <argument>javajoe</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>list users</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>list-file-users</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>StopDomain</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <executable>asadmin</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-server.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-container-grizzly2-http.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-json-binding.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <dependenciesToScan>jakarta.ws.rs:jakarta.ws.rs-tck</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/glassfish6</GLASSFISH_HOME>
+                                <servlet_adaptor>org.glassfish.jersey.servlet.ServletContainer</servlet_adaptor>
+                                <webServerHost>localhost</webServerHost>
+                                <webServerPort>8080</webServerPort>
+                                <junit.log.traceflag>true</junit.log.traceflag>
+                                <user>j2ee</user>
+                                <password>j2ee</password>
+                                <authuser>javajoe</authuser>
+                                <authpassword>javajoe</authpassword>
+                                <porting.ts.url.class.1>jakarta.ws.rs.tck.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
+                            </systemPropertyVariables>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/glassfish6</GLASSFISH_HOME>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
