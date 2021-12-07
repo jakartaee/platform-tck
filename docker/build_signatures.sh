@@ -127,7 +127,7 @@ java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0 
 # jakarta.json
 java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -Exclude jakarta.json.bind -package jakarta.json -FileName ${SIGFILEPATH}/jakarta.json.sig_2.1_se11
 # jakarta.json.bind
-java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.json.bind -FileName ${SIGFILEPATH}/jakarta.json.bind.sig_2.1_se11
+java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 3.0  -package jakarta.json.bind -FileName ${SIGFILEPATH}/jakarta.json.bind.sig_3.0_se11
 # jakarta.mail
 java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.mail -FileName ${SIGFILEPATH}/jakarta.mail.sig_2.1_se11
 # jakarta.persistence
