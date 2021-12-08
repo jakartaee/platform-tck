@@ -153,9 +153,9 @@ java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0 
 # jakarta.ws.rs
 java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.ws.rs -FileName ${SIGFILEPATH}/jakarta.ws.rs.sig_3.1_se11
 # jakarta.xml.ws
-java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.xml.ws -FileName ${SIGFILEPATH}/jakarta.xml.ws.sig_3.0_se11
+java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.xml.ws -FileName ${SIGFILEPATH}/jakarta.xml.ws.sig_4.0_se11
 # jakarta.xml.soap
-java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.xml.soap -FileName ${SIGFILEPATH}/jakarta.xml.soap.sig_2.0_se11
+java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0  -package jakarta.xml.soap -FileName ${SIGFILEPATH}/jakarta.xml.soap.sig_3.0_se11
 # javax.rmi (only check on JDK11+)
 java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.0 -package javax.rmi  -FileName ${SIGFILEPATH}/javax.rmi.sig_1.0_se11
 
