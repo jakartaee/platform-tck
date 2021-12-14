@@ -387,4 +387,23 @@ public class WSCClient extends WebSocketCommonClient {
   public void modifyHandshakeResponseTest() throws Fault {
     invoke("modifyhandshake", "response", "true");
   }
+  /*
+   * @testName: getContainerDefaultConfiguratorTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Obtain the container default configurator from two separate
+   * endpoints and check that the same object is ontained.
+   */
+
+  public void getContainerDefaultConfiguratorTest() throws Fault {
+    invoke("containerdefaultconfiguratorA", "anything", "");
+    String containerdefaultconfiguratorIdA = getResponseAsString();
+    
+    invoke("containerdefaultconfiguratorB", "anything", "");
+    String containerdefaultconfiguratorIdB = getResponseAsString();
+
+    assertEquals(containerdefaultconfiguratorIdA, containerdefaultconfiguratorIdB,
+        "Different instances returned for container default configurator");
+  }
 }
