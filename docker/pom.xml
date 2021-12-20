@@ -74,11 +74,11 @@
         <jakarta.validation-api.version>3.0.2-SNAPSHOT</jakarta.validation-api.version>
 
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
-        <jakarta.xml.bind-api.version>4.0.1-SNAPSHOT</jakarta.xml.bind-api.version>
+        <jakarta.xml.bind-api.version>4.0.0-RC3</jakarta.xml.bind-api.version>
         <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
-        <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.1-SNAPSHOT* -->
-        <webservices-api.version>4.0.1-SNAPSHOT</webservices-api.version>
-        <soapwithattachments-api.version>3.0.1-SNAPSHOT</soapwithattachments-api.version>
+        <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0-RC2* -->
+        <webservices-api.version>4.0.0-RC2</webservices-api.version>
+        <soapwithattachments-api.version>3.0.0-RC2</soapwithattachments-api.version>
         <webservices-api-osgi.version>3.0.3</webservices-api-osgi.version>
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version> 
