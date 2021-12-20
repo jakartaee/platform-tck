@@ -57,7 +57,7 @@ public class ELClient extends ServiceEETest {
   /**
    * @testName: methodInfoTest
    * 
-   * @assertion_ids: EL:JAVADOC:87; EL:JAVADOC:88; EL:JAVADOC:89
+   * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
    * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
    *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
    *                 MethodInfo.getParamTypes()

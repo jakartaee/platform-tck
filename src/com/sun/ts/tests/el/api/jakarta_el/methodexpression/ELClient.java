@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -28,7 +28,9 @@ import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
+import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
+import com.sun.ts.tests.el.common.util.MethodsBean;
 import com.sun.ts.tests.el.common.util.ResolverType;
 
 import jakarta.el.ELContext;
@@ -37,6 +39,7 @@ import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.el.MethodNotFoundException;
 import jakarta.el.PropertyNotFoundException;
+import jakarta.el.ValueExpression;
 
 public class ELClient extends ServiceEETest {
 
@@ -412,6 +415,266 @@ public class ELClient extends ServiceEETest {
     } catch (Exception ex) {
       throw new Fault(ex);
 
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+
+  /*
+   * @testName: methodExpressionMatchingExactPreferredTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * method for the given parameters and that exact type matches are always
+   * preferred.
+   */
+  public void methodExpressionMatchingExactPreferredTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetA('text')}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      // Single String arg so should match to "String"
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      if (!ExpressionTest.testMethodExpression(me, context, exprStr, null, "String", false, buf)) {
+        pass = false;
+      }
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with valid method expression "
+          + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+  
+  /*
+   * @testName: methodExpressionMatchingOverloadBeatsCoercionTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * method for the given parameters and that overloading is preferred to
+   * coercion.
+   */
+  public void methodExpressionMatchingOverloadBeatsCoercionTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetB('1')}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      if (!ExpressionTest.testMethodExpression(me, context, exprStr, null, "CharSequence", false, buf)) {
+        pass = false;
+      }
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with valid method expression "
+          + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+
+  /*
+   * @testName: methodExpressionMatchingOverloadBeatsExactVarArgsTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * method for the given parameters and that any match without varags is
+   * preferred to all matches with varrags
+   */
+  public void methodExpressionMatchingOverloadBeatsExactVarArgsTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetC('aaa','bbb')}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      if (!ExpressionTest.testMethodExpression(me, context, exprStr, null, "CharSequence-CharSequence", false, buf)) {
+        pass = false;
+      }
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with valid method expression "
+          + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+
+  /*
+   * @testName: methodExpressionMatchingCoercionBeatsExactVarArgsTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * method for the given parameters and that any match without varags is
+   * preferred to all matches with varrags
+   */
+  public void methodExpressionMatchingCoercionBeatsExactVarArgsTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetD('1','1')}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      if (!ExpressionTest.testMethodExpression(me, context, exprStr, null, "Long-Long", false, buf)) {
+        pass = false;
+      }
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with valid method expression "
+          + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+
+  /*
+   * @testName: methodExpressionMatchingVarArgsTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * method for the given parameters and that varags will be matched if no other
+   * suitable match is available
+   */
+  public void methodExpressionMatchingVarArgsTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetD('aaa','bbb')}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      if (!ExpressionTest.testMethodExpression(me, context, exprStr, null, "String-Strings", false, buf)) {
+        pass = false;
+      }
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with valid method expression "
+          + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass)
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    else
+      TestUtil.logTrace(buf.toString());
+  }
+
+  /*
+   * @testName: methodExpressionMatchingAmbiguousTest
+   * 
+   * @assertion_ids: EL:SPEC:80
+   * 
+   * @test_Strategy: Validate that MethodExpression does not match a method when
+   * the match is ambiguous and that a MethodNotFoundException is thrown
+   */
+  public void methodExpressionMatchingAmbiguousTest() throws Fault {
+
+    StringBuffer buf = new StringBuffer();
+    String exprStr = "#{bean.targetE('aaa',1234)}"; 
+
+    boolean pass = true;
+
+    try {
+
+      ExpressionFactory expFactory = ExpressionFactory.newInstance();
+      ELContext context = (new VarMapperELContext(testProps)).getELContext();
+      
+      MethodsBean bean = new MethodsBean();
+      ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
+      context.getVariableMapper().setVariable("bean", ve);
+
+      MethodExpression me = expFactory.createMethodExpression(context, exprStr, String.class, null);
+      me.getMethodInfo(context);
+      pass = false;
+    } catch (MethodNotFoundException mnfe) {
+      pass = true;
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Call to getMethodInfo() with ambiguous method expression "
+          + "threw the wrong Exception!" + NL + "Expected: MethodNotFoundException"
+          + NL + "Received: " + ex.toString() + NL);
+
+      ex.printStackTrace();
     }
 
     if (!pass)
