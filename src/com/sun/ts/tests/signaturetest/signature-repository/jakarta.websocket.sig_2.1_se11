@@ -17,6 +17,7 @@ intf jakarta.websocket.EndpointConfig
 meth public abstract jakarta.websocket.ClientEndpointConfig$Configurator getConfigurator()
 meth public abstract java.util.List<jakarta.websocket.Extension> getExtensions()
 meth public abstract java.util.List<java.lang.String> getPreferredSubprotocols()
+meth public abstract javax.net.ssl.SSLContext getSSLContext()
 
 CLSS public final static jakarta.websocket.ClientEndpointConfig$Builder
  outer jakarta.websocket.ClientEndpointConfig
@@ -26,6 +27,7 @@ meth public jakarta.websocket.ClientEndpointConfig$Builder decoders(java.util.Li
 meth public jakarta.websocket.ClientEndpointConfig$Builder encoders(java.util.List<java.lang.Class<? extends jakarta.websocket.Encoder>>)
 meth public jakarta.websocket.ClientEndpointConfig$Builder extensions(java.util.List<jakarta.websocket.Extension>)
 meth public jakarta.websocket.ClientEndpointConfig$Builder preferredSubprotocols(java.util.List<java.lang.String>)
+meth public jakarta.websocket.ClientEndpointConfig$Builder sslContext(javax.net.ssl.SSLContext)
 meth public static jakarta.websocket.ClientEndpointConfig$Builder create()
 supr java.lang.Object
 hfds clientEndpointConfigurator,decoders,encoders,extensions,preferredSubprotocols
