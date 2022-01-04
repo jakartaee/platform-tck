@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsonb.defaultmapping.basictypes;
 
 import static com.sun.ts.tests.jsonb.MappingTester.combine;
 
+import com.sun.ts.tests.jsonb.TypeContainer;
 import java.math.BigDecimal;
 import java.util.Properties;
 
@@ -245,7 +246,7 @@ public class BasicJavaTypesMappingTest extends ServiceEETest {
    * java.math.BigDecimal using String constructor
    */
   public Status testNumberMapping() throws Fault {
-    return new SimpleMappingTester<>(NumberContainer.class).test(
+      return new SimpleMappingTester<>(NumberContainer.class, TypeContainer.class).test(
         new NumberContainer(), "\\{\\s*\"instance\"\\s*:\\s*0[\\.0]?+\\s*}",
         "{ \"instance\" : 0 }", new NumberContainer() {
           {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,6 +19,9 @@
  */
 
 package com.sun.ts.tests.jsonb.defaultmapping.specifictypes;
+
+
+import com.sun.ts.tests.jsonb.TypeContainer;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -158,7 +161,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
     simpleContainer.setStringInstance("String Value");
     container.setInstance(Optional.of(simpleContainer));
 
-    return new SimpleMappingTester<>(OptionalTypeContainer.class).test(
+    return new SimpleMappingTester<>(OptionalTypeContainer.class, TypeContainer.class).test(
         container,
         "\\{\\s*\"instance\"\\s*:\\s*\\{\\s*\"stringInstance\"\\s*:\\s*\"String Value\"\\s*}\\s*}",
         "{ \"instance\" : { \"stringInstance\" : \"String Value\" } }",
@@ -178,7 +181,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
   public Status testEmptyOptionalMapping() throws Fault {
     OptionalContainer optionalContainer = new OptionalContainer();
     optionalContainer.setInstance(Optional.empty());
-    return new SimpleMappingTester<>(OptionalContainer.class).test(
+    return new SimpleMappingTester<>(OptionalContainer.class, TypeContainer.class).test(
         optionalContainer, "\\{\\s*}", "{ \"instance\" : null }",
         optionalContainer);
   }
@@ -197,7 +200,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
   public Status testEmptyOptionalArrayMapping() throws Fault {
     OptionalArrayContainer optionalContainer = new OptionalArrayContainer();
     optionalContainer.setInstance(new Optional[] { Optional.empty() });
-    return new SimpleMappingTester<>(OptionalArrayContainer.class).test(
+    return new SimpleMappingTester<>(OptionalArrayContainer.class, TypeContainer.class).test(
         optionalContainer, "\\{\\s*\"instance\"\\s*:\\s*\\[\\s*null\\s*]\\s*}",
         "{ \"instance\" : [ null ] }", optionalContainer);
   }
@@ -229,7 +232,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
   public Status testEmptyOptionalIntMapping() throws Fault {
     OptionalIntContainer optionalContainer = new OptionalIntContainer();
     optionalContainer.setInstance(OptionalInt.empty());
-    return new SimpleMappingTester<>(OptionalIntContainer.class).test(
+    return new SimpleMappingTester<>(OptionalIntContainer.class, TypeContainer.class).test(
         optionalContainer, "\\{\\s*}", "{ \"instance\" : null }",
         optionalContainer);
   }
@@ -261,7 +264,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
   public Status testEmptyOptionalLongMapping() throws Fault {
     OptionalLongContainer optionalContainer = new OptionalLongContainer();
     optionalContainer.setInstance(OptionalLong.empty());
-    return new SimpleMappingTester<>(OptionalLongContainer.class).test(
+    return new SimpleMappingTester<>(OptionalLongContainer.class, TypeContainer.class).test(
         optionalContainer, "\\{\\s*}", "{ \"instance\" : null }",
         optionalContainer);
   }
@@ -293,7 +296,7 @@ public class SpecificTypesMappingTest extends ServiceEETest {
   public Status testEmptyOptionalDoubleMapping() throws Fault {
     OptionalDoubleContainer optionalContainer = new OptionalDoubleContainer();
     optionalContainer.setInstance(OptionalDouble.empty());
-    return new SimpleMappingTester<>(OptionalDoubleContainer.class).test(
+    return new SimpleMappingTester<>(OptionalDoubleContainer.class, TypeContainer.class).test(
         optionalContainer, "\\{\\s*}", "{ \"instance\" : null }",
         optionalContainer);
   }

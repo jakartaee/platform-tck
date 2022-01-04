@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
@@ -40,9 +41,11 @@ public class SimpleMappingTester<T> {
   private final Jsonb jsonb = JsonbBuilder.create();
 
   private final Class<T> typeClass;
+  private final Class<? super T> serializationType;
 
-  public SimpleMappingTester(Class<T> typeClass) {
-    this.typeClass = typeClass;
+  public SimpleMappingTester(Class<T> typeClass, Class<? super T> serializationType) {
+      this.typeClass = Objects.requireNonNull(typeClass);
+      this.serializationType = Objects.requireNonNull(serializationType);
   }
 
   public Status test(T value, String expectedRepresentationPattern,
@@ -113,7 +116,7 @@ public class SimpleMappingTester<T> {
   }
 
   private Status testMarshallingByType(T value, String expectedRepresentation) {
-    String jsonString = jsonb.toJson(value, TypeContainer.class);
+    String jsonString = jsonb.toJson(value, serializationType);
     if (jsonString.matches(expectedRepresentation)) {
       return Status.passed("OK");
     } else {
