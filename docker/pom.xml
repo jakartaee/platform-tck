@@ -32,13 +32,13 @@
     <artifactId>dependency_copy</artifactId>
 
  <properties>
-        <jakarta.faces-api.version>3.0.0</jakarta.faces-api.version>
+        <jakarta.faces-api.version>4.0.0-M2</jakarta.faces-api.version>
         <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.0.0</websocket-api.version>
+        <websocket-api.version>2.1.0</websocket-api.version>
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>2.0.0</concurrent-api.version>
         <!-- Jakarta Interceptors -->
-        <jakarta.interceptor-api.version>2.1.0-RC1</jakarta.interceptor-api.version>
+        <jakarta.interceptor-api.version>2.0.0</jakarta.interceptor-api.version>
         <!-- Jakarta EE Security + Authentication/Authorization -->
         <jakarta.security.enterprise-api.version>2.0.0</jakarta.security.enterprise-api.version>
         <jakarta.authorization-api.version>2.1.0-RC1</jakarta.authorization-api.version>
