@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +18,6 @@ if [ -z "$ANT_HOME" ]; then
   export ANT_HOME=/usr/share/ant/
 fi
 
-export JAVA_HOME=${JDK11_HOME}
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 if [ -z "$WORKSPACE" ]; then

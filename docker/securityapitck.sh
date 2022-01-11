@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -61,7 +61,9 @@ rm -f $TS_HOME/lib/jax-qname.jar
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-export JAVA_HOME=${JDK11_HOME}
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
+fi
 export PATH=$JAVA_HOME/bin:$PATH
 
 which java
