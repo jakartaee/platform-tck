@@ -12060,30 +12060,36 @@
               <assertion required="true" impl-spec="false" defined-by="technology"
                          status="active" testable="true">
                   <id>PERSISTENCE:SPEC:2519.3</id>
-                  <description>WEEK means the ISO-8601 week number.</description>
+                  <description>MONTH means the calendar month of the year, numbered from 1.</description>
                   <location chapter="4" section="6.17.2"/>
               </assertion>
               <assertion required="true" impl-spec="false" defined-by="technology"
                          status="active" testable="true">
                   <id>PERSISTENCE:SPEC:2519.4</id>
-                  <description>DAY means the calendar day of the month, numbered from 1.</description>
+                  <description>WEEK means the ISO-8601 week number.</description>
                   <location chapter="4" section="6.17.2"/>
               </assertion>
               <assertion required="true" impl-spec="false" defined-by="technology"
                          status="active" testable="true">
                   <id>PERSISTENCE:SPEC:2519.5</id>
-                  <description>HOUR means the hour of the day in 24-hour time, numbered from 0 to 23.</description>
+                  <description>DAY means the calendar day of the month, numbered from 1.</description>
                   <location chapter="4" section="6.17.2"/>
               </assertion>
               <assertion required="true" impl-spec="false" defined-by="technology"
                          status="active" testable="true">
                   <id>PERSISTENCE:SPEC:2519.6</id>
-                  <description>MINUTE means the minute of the hour, numbered from 0 to 59.</description>
+                  <description>HOUR means the hour of the day in 24-hour time, numbered from 0 to 23.</description>
                   <location chapter="4" section="6.17.2"/>
               </assertion>
               <assertion required="true" impl-spec="false" defined-by="technology"
                          status="active" testable="true">
                   <id>PERSISTENCE:SPEC:2519.7</id>
+                  <description>MINUTE means the minute of the hour, numbered from 0 to 59.</description>
+                  <location chapter="4" section="6.17.2"/>
+              </assertion>
+              <assertion required="true" impl-spec="false" defined-by="technology"
+                         status="active" testable="true">
+                  <id>PERSISTENCE:SPEC:2519.8</id>
                   <description>SECOND means the second of the minute, numbered from 0 to 59.</description>
                   <location chapter="4" section="6.17.2"/>
               </assertion>
