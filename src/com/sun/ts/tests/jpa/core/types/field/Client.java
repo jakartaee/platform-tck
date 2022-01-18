@@ -1033,6 +1033,8 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
       getEntityManager().persist(uuidType);
       getEntityManager().flush();
+      getEntityTransaction().commit();
+      getEntityManager().clear();
       UUIDType fromDb = getEntityManager().find(UUIDType.class, id);
       System.out.println("UUID: " + fromDb.getId().toString());
       if (fromDb == null) {
@@ -1042,7 +1044,6 @@ public class Client extends PMClientBase {
         throw new Fault("testCreateUUIDType: UUID returned from database " + fromDb.getId()
                 + " does not match expected value " + id);
       }
-      getEntityTransaction().commit();
     } catch (Exception ex) {
       TestUtil.logErr("Caught exception: ", ex);
       throw new Fault("Caught exception: ", ex);
