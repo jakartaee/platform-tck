@@ -1022,7 +1022,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testCreateUUIDType
    *
-   * @assertion_ids: PERSISTENCE:SPEC:2512; PERSISTENCE:SPEC:1643;
+   * @assertion_ids: PERSISTENCE:SPEC:527;
    *
    * @test_Strategy: Test EM create on entity class with UUID.
    */
