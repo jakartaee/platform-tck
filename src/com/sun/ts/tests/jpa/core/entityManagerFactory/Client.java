@@ -101,7 +101,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: autoCloseableTest
    *
-   * @assertion_ids: PERSISTENCE:JAVADOC:57;
+   * @assertion_ids: PERSISTENCE:SPEC:2517;
    *
    * @test_Strategy: Create EntityManagerFactory in try with resources block
    * and verify whether it's open inside and outside of the try block.
@@ -132,9 +132,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getMetamodelTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:340;
-   * 
+   *
    * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and
    * make sure it is not null
    */
@@ -160,9 +160,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getPersistenceUnitUtil
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:341;
-   * 
+   *
    * @test_Strategy: Get a PersistenceUnitUtil Object from the
    * EntityManagerFactory an make sure it is not null
    */
@@ -188,7 +188,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getCriteriaBuilderTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:339; PERSISTENCE:SPEC:1702;
    *
    * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify
@@ -226,10 +226,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryMaxResultTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that max result of addNamedQuery is retained or can be
    * overridden
    */
@@ -663,10 +663,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryFlushModeTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be
    * overridden
    */
@@ -1060,10 +1060,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryLockModeTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be
    * overridden
    */
