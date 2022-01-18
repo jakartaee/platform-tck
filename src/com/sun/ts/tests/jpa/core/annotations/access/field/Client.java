@@ -1190,7 +1190,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateYear
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.1
    *
    * @test_Strategy: SELECT EXTRACT(YEAR FROM d.id) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1212,7 +1212,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateQuarter
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.2
    *
    * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.id) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1234,7 +1234,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateMonth
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.3
    *
    * @test_Strategy: SELECT EXTRACT(MONTH FROM d.id) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1256,7 +1256,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateDay
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.5
    *
    * @test_Strategy: SELECT EXTRACT(DAY FROM d.id) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1278,7 +1278,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractTimeHour
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.6
    *
    * @test_Strategy: SELECT EXTRACT(HOUR FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1300,7 +1300,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractTimeMinute
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.7
    *
    * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1322,7 +1322,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractTimeSecond
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.8
    *
    * @test_Strategy: SELECT EXTRACT(SECOND FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1344,7 +1344,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeYear
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.1
    *
    * @test_Strategy: SELECT EXTRACT(YEAR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1366,7 +1366,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeQuarter
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.2
    *
    * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1388,7 +1388,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeMonth
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.3
    *
    * @test_Strategy: SELECT EXTRACT(MONTH FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1410,7 +1410,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeDay
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.5
    *
    * @test_Strategy: SELECT EXTRACT(DAY FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1432,7 +1432,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeHour
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.6
    *
    * @test_Strategy: SELECT EXTRACT(HOUR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1454,7 +1454,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeMinute
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.7
    *
    * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
@@ -1476,7 +1476,7 @@ public class Client extends PMClientBase {
   /*
    * @testName: testExtractDateTimeSecond
    *
-   * @assertion_ids: N/A
+   * @assertion_ids: PERSISTENCE:SPEC:2519.8
    *
    * @test_Strategy: SELECT EXTRACT(SECOND FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
    */
