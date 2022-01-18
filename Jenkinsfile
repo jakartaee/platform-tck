@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -133,7 +133,7 @@ spec:
       limits:
         memory: "3Gi"
   - name: jakartaeetck-ci
-    image: jakartaee/cts-base:0.2
+    image: jakartaee/cts-base:0.3
     command:
     - cat
     tty: true
@@ -163,7 +163,7 @@ spec:
   }
   parameters {
     string(name: 'GF_BUNDLE_URL', 
-           defaultValue: 'https://download.eclipse.org/ee4j/glassfish/glassfish-6.1.0.zip', 
+           defaultValue: 'https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
@@ -182,8 +182,8 @@ spec:
            description: 'List of standalone TCK bundle file names to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
-    choice(name: 'JDK', choices: 'JDK11',
-           description: 'Java SE Version to be used for running TCK either JDK11' )
+    choice(name: 'JDK', choices: 'JDK11\nJDK17',
+           description: 'Java SE Version to be used for running TCK either JDK11/JDK17' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
     choice(name: 'DATABASE', choices: 'JavaDB\nOracle\nMySQL', 
@@ -204,7 +204,7 @@ spec:
     MAIL_USER="user01@james.local"
     MAIL_HOST="localhost"
     LANG="en_US.UTF-8"
-    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-6.1.0-SNAPSHOT-nightly.zip"
+    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip"
   }
   stages {
     stage('jakartaeetck-build') {
