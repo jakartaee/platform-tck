@@ -19,6 +19,7 @@ package com.sun.ts.tests.jpa.core.types.field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
@@ -1019,6 +1020,41 @@ public class Client extends PMClientBase {
   }
 
   /*
+   * @testName: testCreateUUIDType
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:527;
+   *
+   * @test_Strategy: Test EM create on entity class with UUID.
+   */
+  public void testCreateUUIDType() throws Fault {
+    UUID id = UUID.randomUUID();
+    UUIDType uuidType = new UUIDType(id, "Create UUID Type");
+    try {
+      getEntityTransaction().begin();
+      getEntityManager().persist(uuidType);
+      getEntityManager().flush();
+      getEntityTransaction().commit();
+      getEntityManager().clear();
+      UUIDType fromDb = getEntityManager().find(UUIDType.class, id);
+      System.out.println("UUID: " + fromDb.getId().toString());
+      if (fromDb == null) {
+        throw new Fault("testCreateUUIDType: no UUID was found in database");
+      }
+      if (!id.equals(fromDb.getId())) {
+        throw new Fault("testCreateUUIDType: UUID returned from database " + fromDb.getId()
+                + " does not match expected value " + id);
+      }
+    } catch (Exception ex) {
+      TestUtil.logErr("Caught exception: ", ex);
+      throw new Fault("Caught exception: ", ex);
+    } finally {
+      if (getEntityTransaction().isActive()) {
+        getEntityTransaction().rollback();
+      }
+    }
+  }
+
+  /*
    * @testName: scalarExpressionsTest
    * 
    * @assertion_ids: PERSISTENCE:SPEC:2512; PERSISTENCE:SPEC:1643;
@@ -1231,6 +1267,8 @@ public class Client extends PMClientBase {
           .executeUpdate();
       getEntityManager().createNativeQuery("DELETE FROM DATATYPES2")
           .executeUpdate();
+      getEntityManager().createNativeQuery("DELETE FROM UUIDTYPE")
+              .executeUpdate();
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception encountered while removing entities:", e);
