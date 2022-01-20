@@ -58,7 +58,7 @@
         <jakarta.ejb-api.version>4.0.0</jakarta.ejb-api.version>
         <!-- Jakarta JSON -->
         <jsonp-api.version>2.1.0</jsonp-api.version>
-        <json.bind-api.version>3.0.0-SNAPSHOT</json.bind-api.version>
+        <json.bind-api.version>3.0.0-RC1</json.bind-api.version>
         <!-- Jakarta Server Pages -->
         <jsp-api.version>3.1.0</jsp-api.version>
         <!-- Jakarta Standard Tag Library -->
@@ -75,13 +75,13 @@
 
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
         <jakarta.xml.bind-api.version>4.0.0-RC3</jakarta.xml.bind-api.version>
-        <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
+        <jaxb-osgi.version>4.0.0-M2</jaxb-osgi.version>
         <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0-RC2* -->
         <webservices-api.version>4.0.0-RC2</webservices-api.version>
         <soapwithattachments-api.version>3.0.0-RC2</soapwithattachments-api.version>
-        <webservices-api-osgi.version>3.0.3</webservices-api-osgi.version>
-        <webservices-osgi.version>3.0.0</webservices-osgi.version>
-        <webservices-tools.version>3.0.0</webservices-tools.version> 
+        <webservices-api-osgi.version>4.0.0-M2</webservices-api-osgi.version>
+        <webservices-osgi.version>4.0.0-M2</webservices-osgi.version>
+        <webservices-tools.version>4.0.0-M2</webservices-tools.version> 
 
         <glassfish-corba-orb.version>4.2.4</glassfish-corba-orb.version>       
         
