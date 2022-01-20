@@ -88,6 +88,7 @@ $JAKARTA_JARS/jakarta.servlet.jsp.jstl-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.transaction-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.validation-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.websocket-api.jar${pathsep}\
+$JAKARTA_JARS/jakarta.websocket-client-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.ws.rs-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.xml.bind-api.jar${pathsep}\
 $JAKARTA_JARS/webservices-api.jar${pathsep}\
