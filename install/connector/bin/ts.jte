@@ -484,20 +484,9 @@ certLoginUserAlias=cts
 #
 # @webServerHost  hostname for the Vendor's Java EE Web Server
 # @webServerPort  port number of the Vendor's Java EE Web Server
-# @ServletClientThreads  The ServletClientThreads property configures
-#                        the number of threads used by the client for
-#                        the SingleThreadModel servlet test. If the
-#                        container implementation supports pooling of
-#                        SingleThreadModel servlets, set the value of
-#                        ServletClientThreads to twice the value of
-#                        the default servlet instance pool size.  If
-#                        the container implementation only maintains
-#                        a single instance of a SingleTheadModel
-#                        servlet, leave the default value of 2.
 #####################################################################
 webServerHost=${orb.host}
 webServerPort=8001
-ServletClientThreads=2
 
 
 #########################################################################

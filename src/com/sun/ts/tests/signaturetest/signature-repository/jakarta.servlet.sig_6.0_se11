@@ -197,6 +197,12 @@ meth public abstract java.lang.String getInitParameter(java.lang.String)
 meth public abstract java.lang.String getServletName()
 meth public abstract java.util.Enumeration<java.lang.String> getInitParameterNames()
 
+CLSS public abstract interface jakarta.servlet.ServletConnection
+meth public abstract java.lang.String getConnectionId()
+meth public abstract java.lang.String getProtocol()
+meth public abstract java.lang.String getProtocolConnectionId()
+meth public abstract boolean isSecure()
+
 CLSS public abstract interface jakarta.servlet.ServletContainerInitializer
 meth public abstract void onStartup(java.util.Set<java.lang.Class<?>>,jakarta.servlet.ServletContext) throws jakarta.servlet.ServletException
 
@@ -220,8 +226,6 @@ meth public abstract jakarta.servlet.FilterRegistration$Dynamic addFilter(java.l
 meth public abstract jakarta.servlet.FilterRegistration$Dynamic addFilter(java.lang.String,java.lang.String)
 meth public abstract jakarta.servlet.RequestDispatcher getNamedDispatcher(java.lang.String)
 meth public abstract jakarta.servlet.RequestDispatcher getRequestDispatcher(java.lang.String)
-meth public abstract jakarta.servlet.Servlet getServlet(java.lang.String) throws jakarta.servlet.ServletException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.servlet.ServletContext getContext(java.lang.String)
 meth public abstract jakarta.servlet.ServletRegistration getServletRegistration(java.lang.String)
 meth public abstract jakarta.servlet.ServletRegistration$Dynamic addJspFile(java.lang.String,java.lang.String)
@@ -243,12 +247,8 @@ meth public abstract java.lang.String getServerInfo()
 meth public abstract java.lang.String getServletContextName()
 meth public abstract java.lang.String getVirtualServerName()
 meth public abstract java.net.URL getResource(java.lang.String) throws java.net.MalformedURLException
-meth public abstract java.util.Enumeration<jakarta.servlet.Servlet> getServlets()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.util.Enumeration<java.lang.String> getAttributeNames()
 meth public abstract java.util.Enumeration<java.lang.String> getInitParameterNames()
-meth public abstract java.util.Enumeration<java.lang.String> getServletNames()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.util.Map<java.lang.String,? extends jakarta.servlet.FilterRegistration> getFilterRegistrations()
 meth public abstract java.util.Map<java.lang.String,? extends jakarta.servlet.ServletRegistration> getServletRegistrations()
 meth public abstract java.util.Set<jakarta.servlet.SessionTrackingMode> getDefaultSessionTrackingModes()
@@ -256,8 +256,6 @@ meth public abstract java.util.Set<jakarta.servlet.SessionTrackingMode> getEffec
 meth public abstract java.util.Set<java.lang.String> getResourcePaths(java.lang.String)
 meth public abstract void addListener(java.lang.Class<? extends java.util.EventListener>)
 meth public abstract void addListener(java.lang.String)
-meth public abstract void log(java.lang.Exception,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void log(java.lang.String)
 meth public abstract void log(java.lang.String,java.lang.Throwable)
 meth public abstract void removeAttribute(java.lang.String)
@@ -369,8 +367,6 @@ meth public abstract java.lang.String getLocalAddr()
 meth public abstract java.lang.String getLocalName()
 meth public abstract java.lang.String getParameter(java.lang.String)
 meth public abstract java.lang.String getProtocol()
-meth public abstract java.lang.String getRealPath(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.String getRemoteAddr()
 meth public abstract java.lang.String getRemoteHost()
 meth public abstract java.lang.String getScheme()
@@ -385,6 +381,9 @@ meth public abstract long getContentLengthLong()
 meth public abstract void removeAttribute(java.lang.String)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
+meth public abstract jakarta.servlet.ServletConnection getServletConnection()
+meth public abstract java.lang.String getProtocolRequestId()
+meth public abstract java.lang.String getRequestId()
 
 CLSS public jakarta.servlet.ServletRequestAttributeEvent
 cons public init(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
@@ -439,8 +438,6 @@ meth public java.lang.String getLocalAddr()
 meth public java.lang.String getLocalName()
 meth public java.lang.String getParameter(java.lang.String)
 meth public java.lang.String getProtocol()
-meth public java.lang.String getRealPath(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getRemoteAddr()
 meth public java.lang.String getRemoteHost()
 meth public java.lang.String getScheme()
@@ -455,6 +452,9 @@ meth public long getContentLengthLong()
 meth public void removeAttribute(java.lang.String)
 meth public void setAttribute(java.lang.String,java.lang.Object)
 meth public void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
+meth public jakarta.servlet.ServletConnection getServletConnection()
+meth public java.lang.String getProtocolRequestId()
+meth public java.lang.String getRequestId()
 meth public void setRequest(jakarta.servlet.ServletRequest)
 supr java.lang.Object
 hfds request
@@ -519,16 +519,21 @@ meth public abstract boolean isHttpOnly()
 meth public abstract boolean isSecure()
 meth public abstract int getMaxAge()
 meth public abstract java.lang.String getComment()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public abstract java.lang.String getDomain()
 meth public abstract java.lang.String getName()
 meth public abstract java.lang.String getPath()
 meth public abstract void setComment(java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public abstract void setDomain(java.lang.String)
 meth public abstract void setHttpOnly(boolean)
 meth public abstract void setMaxAge(int)
 meth public abstract void setName(java.lang.String)
 meth public abstract void setPath(java.lang.String)
 meth public abstract void setSecure(boolean)
+meth public abstract java.lang.String getAttribute(java.lang.String)
+meth public abstract java.util.Map<java.lang.String,java.lang.String> getAttributes()
+meth public abstract void setAttribute(java.lang.String,java.lang.String)
 
 CLSS public final !enum jakarta.servlet.SessionTrackingMode
 fld public final static jakarta.servlet.SessionTrackingMode COOKIE
@@ -538,20 +543,11 @@ meth public static jakarta.servlet.SessionTrackingMode valueOf(java.lang.String)
 meth public static jakarta.servlet.SessionTrackingMode[] values()
 supr java.lang.Enum<jakarta.servlet.SessionTrackingMode>
 
-CLSS public abstract interface jakarta.servlet.SingleThreadModel
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-
 CLSS public jakarta.servlet.UnavailableException
-cons public init(int,jakarta.servlet.Servlet,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init(jakarta.servlet.Servlet,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String)
 cons public init(java.lang.String,int)
 meth public boolean isPermanent()
 meth public int getUnavailableSeconds()
-meth public jakarta.servlet.Servlet getServlet()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 supr jakarta.servlet.ServletException
 hfds permanent,seconds,serialVersionUID,servlet
 
@@ -685,6 +681,7 @@ meth public abstract java.lang.String getTrimDirectiveWhitespaces()
 meth public abstract java.util.Collection<java.lang.String> getIncludeCodas()
 meth public abstract java.util.Collection<java.lang.String> getIncludePreludes()
 meth public abstract java.util.Collection<java.lang.String> getUrlPatterns()
+meth public abstract java.lang.String getErrorOnELNotFound()
 
 CLSS public abstract interface jakarta.servlet.descriptor.TaglibDescriptor
 meth public abstract java.lang.String getTaglibLocation()
@@ -698,13 +695,16 @@ meth public boolean getSecure()
 meth public boolean isHttpOnly()
 meth public int getMaxAge()
 meth public int getVersion()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public java.lang.Object clone()
 meth public java.lang.String getComment()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public java.lang.String getDomain()
 meth public java.lang.String getName()
 meth public java.lang.String getPath()
 meth public java.lang.String getValue()
 meth public void setComment(java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public void setDomain(java.lang.String)
 meth public void setHttpOnly(boolean)
 meth public void setMaxAge(int)
@@ -712,6 +712,10 @@ meth public void setPath(java.lang.String)
 meth public void setSecure(boolean)
 meth public void setValue(java.lang.String)
 meth public void setVersion(int)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
+meth public java.lang.String getAttribute(java.lang.String)
+meth public java.util.Map<java.lang.String,java.lang.String> getAttributes()
+meth public void setAttribute(java.lang.String,java.lang.String)
 supr java.lang.Object
 hfds LSTRING_FILE,TSPECIALS,comment,domain,isHttpOnly,lStrings,maxAge,name,path,secure,serialVersionUID,value,version
 
@@ -724,6 +728,8 @@ hfds serialVersionUID
 
 CLSS public abstract jakarta.servlet.http.HttpServlet
 cons public init()
+fld public final static java.lang.String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth protected long getLastModified(jakarta.servlet.http.HttpServletRequest)
 meth protected void doDelete(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doGet(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
@@ -753,8 +759,6 @@ meth public abstract <%0 extends jakarta.servlet.http.HttpUpgradeHandler> {%%0} 
 meth public abstract boolean authenticate(jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth public abstract boolean isRequestedSessionIdFromCookie()
 meth public abstract boolean isRequestedSessionIdFromURL()
-meth public abstract boolean isRequestedSessionIdFromUrl()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract boolean isRequestedSessionIdValid()
 meth public abstract boolean isUserInRole(java.lang.String)
 meth public abstract int getIntHeader(java.lang.String)
@@ -794,8 +798,6 @@ meth public <%0 extends jakarta.servlet.http.HttpUpgradeHandler> {%%0} upgrade(j
 meth public boolean authenticate(jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth public boolean isRequestedSessionIdFromCookie()
 meth public boolean isRequestedSessionIdFromURL()
-meth public boolean isRequestedSessionIdFromUrl()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean isRequestedSessionIdValid()
 meth public boolean isTrailerFieldsReady()
 meth public boolean isUserInRole(java.lang.String)
@@ -875,11 +877,7 @@ intf jakarta.servlet.ServletResponse
 meth public abstract boolean containsHeader(java.lang.String)
 meth public abstract int getStatus()
 meth public abstract java.lang.String encodeRedirectURL(java.lang.String)
-meth public abstract java.lang.String encodeRedirectUrl(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.String encodeURL(java.lang.String)
-meth public abstract java.lang.String encodeUrl(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.String getHeader(java.lang.String)
 meth public abstract java.util.Collection<java.lang.String> getHeaderNames()
 meth public abstract java.util.Collection<java.lang.String> getHeaders(java.lang.String)
@@ -894,8 +892,6 @@ meth public abstract void setDateHeader(java.lang.String,long)
 meth public abstract void setHeader(java.lang.String,java.lang.String)
 meth public abstract void setIntHeader(java.lang.String,int)
 meth public abstract void setStatus(int)
-meth public abstract void setStatus(int,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>> getTrailerFields()
 meth public void setTrailerFields(java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>>)
 
@@ -905,11 +901,7 @@ intf jakarta.servlet.http.HttpServletResponse
 meth public boolean containsHeader(java.lang.String)
 meth public int getStatus()
 meth public java.lang.String encodeRedirectURL(java.lang.String)
-meth public java.lang.String encodeRedirectUrl(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String encodeURL(java.lang.String)
-meth public java.lang.String encodeUrl(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getHeader(java.lang.String)
 meth public java.util.Collection<java.lang.String> getHeaderNames()
 meth public java.util.Collection<java.lang.String> getHeaders(java.lang.String)
@@ -925,8 +917,6 @@ meth public void setDateHeader(java.lang.String,long)
 meth public void setHeader(java.lang.String,java.lang.String)
 meth public void setIntHeader(java.lang.String,int)
 meth public void setStatus(int)
-meth public void setStatus(int,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setTrailerFields(java.util.function.Supplier<java.util.Map<java.lang.String,java.lang.String>>)
 supr jakarta.servlet.ServletResponseWrapper
 
@@ -934,23 +924,13 @@ CLSS public abstract interface jakarta.servlet.http.HttpSession
 meth public abstract boolean isNew()
 meth public abstract int getMaxInactiveInterval()
 meth public abstract jakarta.servlet.ServletContext getServletContext()
-meth public abstract jakarta.servlet.http.HttpSessionContext getSessionContext()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.Object getAttribute(java.lang.String)
-meth public abstract java.lang.Object getValue(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.String getId()
-meth public abstract java.lang.String[] getValueNames()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.util.Enumeration<java.lang.String> getAttributeNames()
 meth public abstract long getCreationTime()
 meth public abstract long getLastAccessedTime()
 meth public abstract void invalidate()
-meth public abstract void putValue(java.lang.String,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void removeAttribute(java.lang.String)
-meth public abstract void removeValue(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setMaxInactiveInterval(int)
 
@@ -978,13 +958,6 @@ intf java.util.EventListener
 meth public void valueBound(jakarta.servlet.http.HttpSessionBindingEvent)
 meth public void valueUnbound(jakarta.servlet.http.HttpSessionBindingEvent)
 
-CLSS public abstract interface jakarta.servlet.http.HttpSessionContext
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.servlet.http.HttpSession getSession(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract java.util.Enumeration<java.lang.String> getIds()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-
 CLSS public jakarta.servlet.http.HttpSessionEvent
 cons public init(jakarta.servlet.http.HttpSession)
 meth public jakarta.servlet.http.HttpSession getSession()
@@ -1003,15 +976,6 @@ meth public void sessionDestroyed(jakarta.servlet.http.HttpSessionEvent)
 CLSS public abstract interface jakarta.servlet.http.HttpUpgradeHandler
 meth public abstract void destroy()
 meth public abstract void init(jakarta.servlet.http.WebConnection)
-
-CLSS public jakarta.servlet.http.HttpUtils
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public static java.lang.StringBuffer getRequestURL(jakarta.servlet.http.HttpServletRequest)
-meth public static java.util.Hashtable<java.lang.String,java.lang.String[]> parsePostData(int,jakarta.servlet.ServletInputStream)
-meth public static java.util.Hashtable<java.lang.String,java.lang.String[]> parseQueryString(java.lang.String)
-supr java.lang.Object
-hfds LSTRING_FILE,lStrings
 
 CLSS public final !enum jakarta.servlet.http.MappingMatch
 fld public final static jakarta.servlet.http.MappingMatch CONTEXT_ROOT

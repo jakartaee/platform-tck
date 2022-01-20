@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2022 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -136,11 +136,11 @@ alt.schema.dir=${ts.home}/lib/schemas
 # @ts.classpath         --  Classes used to build the Servlet TCK tests
 # @servlet.classes      --  Servlet API classes, default value using Servlet RI
 ##########################################################################
-local.classes=${ts.home}/classes${pathsep}${servlet.classes}${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/http.jar
+local.classes=${ts.home}/classes${pathsep}${servlet.classes}${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar$
 
 ts.classpath=${local.classes}${pathsep}${ts.harness.classpath}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/http.jar${pathsep}${servlet.classes}${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/servlettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${servlet.classes}${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
 
 servlet.classes=${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.annotation-api.jar
 
@@ -269,20 +269,9 @@ certLoginUserAlias=cts
 #
 # @webServerHost  hostname for the Vendor's Java EE Web Server
 # @webServerPort  port number of the Vendor's Java EE Web Server
-# @ServletClientThreads  The ServletClientThreads property configures
-#                        the number of threads used by the client for
-#                        the SingleThreadModel servlet test. If the
-#                        container implementation supports pooling of
-#                        SingleThreadModel servlets, set the value of
-#                        ServletClientThreads to twice the value of
-#                        the default servlet instance pool size.  If
-#                        the container implementation only maintains
-#                        a single instance of a SingleTheadModel
-#                        servlet, leave the default value of 2.
 #####################################################################
 webServerHost=
 webServerPort=
-ServletClientThreads=2
 
 #########################################################################
 ## The following properties must be set before running any security

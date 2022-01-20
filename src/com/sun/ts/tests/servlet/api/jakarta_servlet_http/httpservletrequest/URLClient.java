@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +21,17 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest;
 
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
+
+import org.apache.commons.httpclient.Header;
 
 import com.sun.javatest.Status;
+import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.servlet.api.common.request.HttpRequestClient;
 import com.sun.ts.tests.servlet.common.util.Data;
 
@@ -724,6 +733,66 @@ public class URLClient extends HttpRequestClient {
     invoke();
   }
 
+  /*
+   * @testName: doHeadTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Perform a GET request and a HEAD request for the same
+   * resource and confirm that a) HEAD response has no body and b) the header
+   * values are the same.
+   */
+  public void doHeadTest() throws Fault {
+    HttpRequest requestGet = new HttpRequest("GET " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
+    HttpRequest requestHead = new HttpRequest("HEAD " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
+    
+    try {
+      HttpResponse responseGet = requestGet.execute();
+      HttpResponse responseHead = requestHead.execute();
+
+      // Validate the response bodies
+      String responseBodyGet = responseGet.getResponseBodyAsString(); 
+      if (responseBodyGet == null || responseBodyGet.length() == 0) {
+        throw new Fault("GET request did not include a response body");
+      }
+      InputStream responseBodyHead = responseHead.getResponseBodyAsRawStream(); 
+      if (responseBodyHead != null) {
+        throw new Fault("HEAD request included a response body");
+      }
+
+      // Validate the response headers
+      Set<Header> headersToMatch = new HashSet<>();
+      
+      Header[] headersGet = responseGet.getResponseHeaders();
+      for (Header header : headersGet) {
+        switch (header.getName().toLowerCase(Locale.ENGLISH)) {
+        case "date":
+          // Ignore date header as it will change between requests
+          break;
+        default:
+          headersToMatch.add(header);
+        }
+      }
+      
+      Header[] headersHead = responseHead.getResponseHeaders();
+      for (Header header : headersHead) {
+        if (header.getName().toLowerCase().equals("date")) {
+          // Skip date header
+          continue;
+        }
+        if (!headersToMatch.remove(header)) {
+          throw new Fault("HEAD request contained header that was not present for GET: " + header);
+        }
+      }
+      
+      if (headersToMatch.size() > 0) {
+        throw new Fault("HEAD request did not contain header that was present for GET:" + headersToMatch.iterator().next());
+      }
+    } catch (Throwable t) {
+      throw new Fault("Exception occurred:" + t, t);
+    }
+  }
+  
   // -------------------------- END HttpServletRequest
   // ---------------------------
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,6 +52,10 @@
     <servlet-name>setCharacterEncodingTest</servlet-name>
     <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest.SetCharacterEncodingTest</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>doHeadTest</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest.doHeadTest</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>getServletContextTest</servlet-name>
     <url-pattern>/getServletContextTest</url-pattern>
@@ -82,6 +87,10 @@
   <servlet-mapping>
     <servlet-name>setCharacterEncodingTest</servlet-name>
     <url-pattern>/setCharacterEncodingTest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>doHeadTest</servlet-name>
+    <url-pattern>/doHeadTest</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>1</session-timeout>
