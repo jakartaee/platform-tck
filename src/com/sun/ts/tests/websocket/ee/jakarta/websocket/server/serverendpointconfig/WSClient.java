@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -186,6 +186,27 @@ public class WSClient extends WebSocketCommonClient {
       assertEqualsInt(0,
           response.replace("[", "").replace("]", "").trim().length(),
           "Unexpected subprotocol list received", response);
+      cleanup();
+    }
+  }
+
+  /*
+   * @testName: getUserPropertiesTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Run test twice. Modifications to user properties in first
+   * run should not be visible to second run as shallow copies should be used.
+   */
+  public void getUserPropertiesTest() throws Fault {
+    String[] endpoints = new String[] { "programatic/userproperties", "programatic/userproperties" };
+    for (String endpoint : endpoints) {
+      setProperty(Property.REQUEST, buildRequest(endpoint));
+      setProperty(Property.CONTENT, "userproperties");
+      invoke(false);
+      String response = getResponseAsString();
+      assertEquals("PASS", response,
+          "Unexpected result received", response);
       cleanup();
     }
   }

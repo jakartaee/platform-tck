@@ -235,6 +235,12 @@
         <scope>provided</scope>
     </dependency>
     <dependency>
+        <groupId>jakarta.websocket</groupId>
+        <artifactId>jakarta.websocket-client-api</artifactId>
+        <version>${websocket-api.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
         <groupId>jakarta.ws.rs</groupId>
         <artifactId>jakarta.ws.rs-api</artifactId>
         <version>${jakarta.ws.rs-api.version}</version>

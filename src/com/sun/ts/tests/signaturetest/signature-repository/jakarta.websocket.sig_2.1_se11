@@ -17,6 +17,7 @@ intf jakarta.websocket.EndpointConfig
 meth public abstract jakarta.websocket.ClientEndpointConfig$Configurator getConfigurator()
 meth public abstract java.util.List<jakarta.websocket.Extension> getExtensions()
 meth public abstract java.util.List<java.lang.String> getPreferredSubprotocols()
+meth public abstract javax.net.ssl.SSLContext getSSLContext()
 
 CLSS public final static jakarta.websocket.ClientEndpointConfig$Builder
  outer jakarta.websocket.ClientEndpointConfig
@@ -26,6 +27,7 @@ meth public jakarta.websocket.ClientEndpointConfig$Builder decoders(java.util.Li
 meth public jakarta.websocket.ClientEndpointConfig$Builder encoders(java.util.List<java.lang.Class<? extends jakarta.websocket.Encoder>>)
 meth public jakarta.websocket.ClientEndpointConfig$Builder extensions(java.util.List<jakarta.websocket.Extension>)
 meth public jakarta.websocket.ClientEndpointConfig$Builder preferredSubprotocols(java.util.List<java.lang.String>)
+meth public jakarta.websocket.ClientEndpointConfig$Builder sslContext(javax.net.ssl.SSLContext)
 meth public static jakarta.websocket.ClientEndpointConfig$Builder create()
 supr java.lang.Object
 hfds clientEndpointConfigurator,decoders,encoders,extensions,preferredSubprotocols
@@ -350,7 +352,8 @@ CLSS public abstract interface jakarta.websocket.server.ServerContainer
 intf jakarta.websocket.WebSocketContainer
 meth public abstract void addEndpoint(jakarta.websocket.server.ServerEndpointConfig) throws jakarta.websocket.DeploymentException
 meth public abstract void addEndpoint(java.lang.Class<?>) throws jakarta.websocket.DeploymentException
-
+meth public abstract void upgradeHttpToWebSocket(java.lang.Object,java.lang.Object,jakarta.websocket.server.ServerEndpointConfig,java.util.Map<java.lang.String,java.lang.String>) throws jakarta.websocket.DeploymentException,java.io.IOException
+ 
 CLSS public abstract interface !annotation jakarta.websocket.server.ServerEndpoint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
@@ -391,6 +394,7 @@ meth public boolean checkOrigin(java.lang.String)
 meth public java.lang.String getNegotiatedSubprotocol(java.util.List<java.lang.String>,java.util.List<java.lang.String>)
 meth public java.util.List<jakarta.websocket.Extension> getNegotiatedExtensions(java.util.List<jakarta.websocket.Extension>,java.util.List<jakarta.websocket.Extension>)
 meth public void modifyHandshake(jakarta.websocket.server.ServerEndpointConfig,jakarta.websocket.server.HandshakeRequest,jakarta.websocket.HandshakeResponse)
+meth public jakarta.websocket.server.ServerEndpointConfig$Configurator getContainerDefaultConfigurator()
 supr java.lang.Object
 hfds containerDefaultConfigurator
 
