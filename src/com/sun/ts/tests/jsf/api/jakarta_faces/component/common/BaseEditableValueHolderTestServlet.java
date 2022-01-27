@@ -29,7 +29,10 @@ import jakarta.faces.component.EditableValueHolder;
 import jakarta.faces.component.ValueHolder;
 import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.NumberConverter;
-import jakarta.faces.el.MethodBinding;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.MethodExpressionValueChangeListener;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.ValueChangeListener;
 import jakarta.faces.validator.LengthValidator;
@@ -177,18 +180,20 @@ public abstract class BaseEditableValueHolderTestServlet
     PrintWriter out = response.getWriter();
     EditableValueHolder holder = (EditableValueHolder) createComponent();
 
+    FacesContext fc = getFacesContext();
     String ref = "requestScope.tckValueChangeRef.processValueChange";
 
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.tckValueChangeRef.processValueChange}",
-        new Class[] { ValueChangeEvent.class });
-    holder.setValueChangeListener(binding);
+    ELContext context2 = fc.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
+    "#{requestScope.tckValueChangeRef.processValueChange}", null, new Class[] { ELContext.class, ValueChangeEvent.class });
+    MethodExpressionValueChangeListener listener = new MethodExpressionValueChangeListener(binding);
+    holder.addValueChangeListener(listener);
 
-    if (binding != holder.getValueChangeListener()) {
+      if (listener != holder.getValueChangeListeners()[0]) {
       out.println(JSFTestUtil.FAIL + " getValueChangeListener() didn't return"
           + " the value as set via setValueChangeListener().");
       out.println("Expected: " + ref);
-      out.println("Received: " + holder.getValueChangeListener());
+      out.println("Received: " + holder.getValueChangeListeners());
       return;
     }
 

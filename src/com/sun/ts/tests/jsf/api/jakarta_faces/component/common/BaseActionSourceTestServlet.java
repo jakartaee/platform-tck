@@ -27,8 +27,11 @@ import java.util.List;
 
 import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 
-import jakarta.faces.component.ActionSource;
-import jakarta.faces.el.MethodBinding;
+import jakarta.faces.component.ActionSource2;
+import jakarta.faces.event.MethodExpressionActionListener;
+import jakarta.faces.context.FacesContext;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELContext;
 import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ActionListener;
@@ -67,7 +70,7 @@ public abstract class BaseActionSourceTestServlet
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ActionSource source = (ActionSource) createComponent();
+    ActionSource2 source = (ActionSource2) createComponent();
 
     ActionListener[] listeners = source.getActionListeners();
 
@@ -166,7 +169,7 @@ public abstract class BaseActionSourceTestServlet
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ActionSource source = (ActionSource) createComponent();
+    ActionSource2 source = (ActionSource2) createComponent();
 
     JSFTestUtil.checkForNPE(source.getClass(), "addActionListener",
         new Class<?>[] { ActionListener.class }, new Object[] { null }, out);
@@ -178,7 +181,7 @@ public abstract class BaseActionSourceTestServlet
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ActionSource source = (ActionSource) createComponent();
+    ActionSource2 source = (ActionSource2) createComponent();
 
     JSFTestUtil.checkForNPE(source.getClass(), "removeActionListener",
         new Class<?>[] { ActionListener.class }, new Object[] { null }, out);
@@ -189,12 +192,16 @@ public abstract class BaseActionSourceTestServlet
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ActionSource source = (ActionSource) createComponent();
+    ActionSource2 source = (ActionSource2) createComponent();
     request.setAttribute("actionSource", "value");
-    MethodBinding binding = getApplication()
-        .createMethodBinding("#{requestScope.actionSource}", null);
-    source.setAction(binding);
-    Object result = source.getAction();
+    FacesContext context = getFacesContext();
+
+    ELContext elcontext = context.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(elcontext,
+    "#{requestScope.actionSource}", null, new Class[] { ELContext.class });
+
+    source.setActionExpression(binding);
+    Object result = source.getActionExpression();
     if (binding != result) {
       out.println(JSFTestUtil.FAIL + " getAction() failed to return the value"
           + " set via setAction().");
@@ -217,15 +224,18 @@ public abstract class BaseActionSourceTestServlet
         // no-op
       }
     });
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.actionListener.processAction}",
-        new Class[] { ActionEvent.class });
 
-    ActionSource source = (ActionSource) createComponent();
+    FacesContext context = getFacesContext();
+    ELContext elcontext = context.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(elcontext,
+    "#{requestScope.actionListener.processAction}", null, new Class[] { ELContext.class, ActionEvent.class });
 
-    source.setActionListener(binding);
-    Object result = source.getActionListener();
-    if (result != binding) {
+    ActionSource2 source = (ActionSource2) createComponent();
+
+    MethodExpressionActionListener listener = new MethodExpressionActionListener(binding);
+    source.addActionListener(listener);
+    ActionListener[] result = source.getActionListeners();
+    if (result[0] != listener) {
       out.println(JSFTestUtil.FAIL + " getActionListener() failed to return "
           + "the value set via setActionListener().");
       out.println("Expected: " + binding);
@@ -241,7 +251,7 @@ public abstract class BaseActionSourceTestServlet
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
 
-    ActionSource source = (ActionSource) createComponent();
+    ActionSource2 source = (ActionSource2) createComponent();
 
     if (source.isImmediate()) {
       out.println(JSFTestUtil.FAIL + " Expected isImmediate() to return"

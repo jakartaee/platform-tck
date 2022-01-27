@@ -31,6 +31,7 @@ import jakarta.faces.component.StateHolder;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIOutput;
+import jakarta.el.ELContext;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -83,8 +84,10 @@ public abstract class BaseStateHolderTestServlet extends HttpTCKServlet {
 
     component.getAttributes().put("key1", "value 1");
     component.getAttributes().put("key2", "value 2");
-    component.setValueBinding(REF_NAME, new TCKValueBinding(
-        getApplication().createValueBinding(COMPONENT_REF), COMPONENT_REF));
+
+    ELContext elContext = getFacesContext().getELContext();
+    component.setValueExpression(REF_NAME, new TCKValueBinding(
+        getApplication().getExpressionFactory().createValueExpression(elContext, COMPONENT_REF, Object.class), COMPONENT_REF));
     component.setId("componentId");
     component.getClientId(getFacesContext()); // Forces evaluation
     component.setRendered(false);
@@ -95,13 +98,13 @@ public abstract class BaseStateHolderTestServlet extends HttpTCKServlet {
   // Check that the properties on the specified components are equal
   protected void checkProperties(UIComponent orig, UIComponent restored,
       StringBuffer buf) {
-    if (!((TCKValueBinding) orig.getValueBinding(REF_NAME)).getRef().equals(
-        ((TCKValueBinding) restored.getValueBinding(REF_NAME)).getRef())) {
+    if (!((TCKValueBinding) orig.getValueExpression(REF_NAME)).getRef().equals(
+        ((TCKValueBinding) restored.getValueExpression(REF_NAME)).getRef())) {
       buf.append(JSFTestUtil.FAIL + " ComponentRefs are not equal.\n");
       buf.append("Original componentRef: ")
-          .append(((TCKValueBinding) orig.getValueBinding(REF_NAME)).getRef());
+          .append(((TCKValueBinding) orig.getValueExpression(REF_NAME)).getRef());
       buf.append("\nRestored componentRef: ").append(
-          ((TCKValueBinding) restored.getValueBinding(REF_NAME)).getRef());
+          ((TCKValueBinding) restored.getValueExpression(REF_NAME)).getRef());
       buf.append("\n\n");
     }
 

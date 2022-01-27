@@ -21,6 +21,10 @@ import jakarta.faces.application.StateManagerWrapper;
 
 public class TCKStateManager extends StateManagerWrapper {
 
+  public TCKStateManager(StateManager wrapped) {
+    super(wrapped);
+  }
+
   @Override
   public StateManager getWrapped() {
     return null;

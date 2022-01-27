@@ -18,11 +18,11 @@ package com.sun.ts.tests.jsf.common.beans;
 
 import java.io.Serializable;
 
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.ManagedBean;
+import jakarta.enterprise.context.ApplicationScoped;
+// import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.event.ActionEvent;
 
-@ManagedBean(name = "color")
+// @ManagedBean(name = "color")
 @ApplicationScoped
 public class ColorBean implements Serializable {
 

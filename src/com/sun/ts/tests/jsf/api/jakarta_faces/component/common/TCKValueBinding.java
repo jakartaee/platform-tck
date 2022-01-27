@@ -22,13 +22,14 @@ package com.sun.ts.tests.jsf.api.jakarta_faces.component.common;
 
 import jakarta.faces.component.StateHolder;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.el.EvaluationException;
-import jakarta.faces.el.PropertyNotFoundException;
-import jakarta.faces.el.ValueBinding;
+import jakarta.el.ELException;
+import jakarta.el.ELContext;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.ValueExpression;
 
-public class TCKValueBinding extends ValueBinding implements StateHolder {
+public class TCKValueBinding extends ValueExpression implements StateHolder {
 
-  private ValueBinding binding;
+  private ValueExpression binding;
 
   private String ref;
 
@@ -36,27 +37,32 @@ public class TCKValueBinding extends ValueBinding implements StateHolder {
     super();
   }
 
-  public TCKValueBinding(ValueBinding binding, String ref) {
+  public TCKValueBinding(ValueExpression binding, String ref) {
     this.binding = binding;
     this.ref = ref;
   }
 
-  public Class getType(FacesContext context) throws PropertyNotFoundException {
+  public Class getExpectedType() {
+    return Object.class;
+  }
+
+
+  public Class getType(ELContext context) throws PropertyNotFoundException {
     return binding.getType(context);
   }
 
-  public Object getValue(FacesContext context)
-      throws EvaluationException, PropertyNotFoundException {
+  public Object getValue(ELContext context)
+      throws ELException, PropertyNotFoundException {
     return binding.getValue(context);
   }
 
-  public boolean isReadOnly(FacesContext context)
+  public boolean isReadOnly(ELContext context)
       throws PropertyNotFoundException {
     return binding.isReadOnly(context);
   }
 
-  public void setValue(FacesContext context, Object value)
-      throws EvaluationException, PropertyNotFoundException {
+  public void setValue(ELContext context, Object value)
+      throws ELException, PropertyNotFoundException {
     binding.setValue(context, value);
   }
 
@@ -71,6 +77,11 @@ public class TCKValueBinding extends ValueBinding implements StateHolder {
     return false;
   }
 
+  public boolean isLiteralText() {
+    return false;
+  }
+  
+
   public void setTransient(boolean newTransientValue) {
     // ignore
   }
@@ -78,10 +89,53 @@ public class TCKValueBinding extends ValueBinding implements StateHolder {
   public void restoreState(FacesContext context, Object state) {
     Object values[] = (Object[]) state;
     ref = (String) values[0];
-    binding = (ValueBinding) values[1];
+    binding = (ValueExpression) values[1];
+  }
+
+  public void restoreState(ELContext context, Object state) {
+    Object values[] = (Object[]) state;
+    ref = (String) values[0];
+    binding = (ValueExpression) values[1];
   }
 
   public String getRef() {
     return ref;
   }
+
+  public String getExpressionString() {
+    return binding.getExpressionString();
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((binding == null) ? 0 : binding.hashCode());
+    result = prime * result + ((ref == null) ? 0 : ref.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    TCKValueBinding other = (TCKValueBinding) obj;
+    if (binding == null) {
+      if (other.binding != null)
+        return false;
+    } else if (!binding.equals(other.binding))
+      return false;
+    if (ref == null) {
+      if (other.ref != null)
+        return false;
+    } else if (!ref.equals(other.ref))
+      return false;
+    return true;
+  }
+
+
 }
