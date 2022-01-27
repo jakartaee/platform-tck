@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -314,6 +314,7 @@ public class ResponseTests {
       if ((type.toLowerCase().indexOf("text/html") > -1)
           && (type.toLowerCase().indexOf("charset") > -1)
           && (type.toLowerCase().indexOf("iso-8859-7") > -1)) {
+        report.append(" getContentType returns correct type\n");
       } else {
         pass = false;
         report.append(" Expecting text/html; charset=ISO-8859-7");
