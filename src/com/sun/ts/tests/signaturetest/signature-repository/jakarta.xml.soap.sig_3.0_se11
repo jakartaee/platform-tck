@@ -188,14 +188,6 @@ meth public abstract javax.xml.namespace.QName getElementQName()
 meth public abstract void removeContents()
 meth public abstract void setEncodingStyle(java.lang.String) throws jakarta.xml.soap.SOAPException
 
-CLSS public jakarta.xml.soap.SOAPElementFactory
-meth public jakarta.xml.soap.SOAPElement create(jakarta.xml.soap.Name) throws jakarta.xml.soap.SOAPException
-meth public jakarta.xml.soap.SOAPElement create(java.lang.String) throws jakarta.xml.soap.SOAPException
-meth public jakarta.xml.soap.SOAPElement create(java.lang.String,java.lang.String,java.lang.String) throws jakarta.xml.soap.SOAPException
-meth public static jakarta.xml.soap.SOAPElementFactory newInstance() throws jakarta.xml.soap.SOAPException
-supr java.lang.Object
-hfds soapFactory
-
 CLSS public abstract interface jakarta.xml.soap.SOAPEnvelope
 intf jakarta.xml.soap.SOAPElement
 meth public abstract jakarta.xml.soap.Name createName(java.lang.String) throws jakarta.xml.soap.SOAPException
