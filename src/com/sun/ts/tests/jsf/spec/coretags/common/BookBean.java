@@ -19,7 +19,7 @@ package com.sun.ts.tests.jsf.spec.coretags.common;
 import java.io.Serializable;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 @RequestScoped
 public class BookBean implements Serializable {

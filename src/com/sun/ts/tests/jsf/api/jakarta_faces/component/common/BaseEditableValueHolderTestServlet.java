@@ -185,7 +185,7 @@ public abstract class BaseEditableValueHolderTestServlet
 
     ELContext context2 = fc.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
-    "#{requestScope.tckValueChangeRef.processValueChange}", null, new Class[] { ELContext.class, ValueChangeEvent.class });
+    "#{requestScope.tckValueChangeRef.processValueChange}", null, new Class[] { ValueChangeEvent.class });
     MethodExpressionValueChangeListener listener = new MethodExpressionValueChangeListener(binding);
     holder.addValueChangeListener(listener);
 

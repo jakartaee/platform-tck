@@ -153,7 +153,7 @@ public class TestServlet extends BaseComponentTestServlet {
 
     ELContext context2 = facesContext.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
-    "#{requestScope.reqVCL.processValueChange}", null, new Class[] { ELContext.class, ValueChangeEvent.class });
+    "#{requestScope.reqVCL.processValueChange}", null, new Class[] { ValueChangeEvent.class });
 
     request.setAttribute("reqVCL", listener);
     MethodExpressionValueChangeListener lnr = new MethodExpressionValueChangeListener(binding);
@@ -496,7 +496,7 @@ public class TestServlet extends BaseComponentTestServlet {
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(
       context2, "#{requestScope.TCKValidator.validate}", null,
-        new Class[] { ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+        new Class[] { FacesContext.class, UIComponent.class, Object.class });
     
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
@@ -557,7 +557,7 @@ public class TestServlet extends BaseComponentTestServlet {
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(
       context2, "#{requestScope.TCKValidator.validate}", null,
-        new Class[] { ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+        new Class[] { FacesContext.class, UIComponent.class, Object.class });
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
 
@@ -628,7 +628,7 @@ public class TestServlet extends BaseComponentTestServlet {
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(
       context2, "#{requestScope.TCKValidator.validate}", null,
-        new Class[] { ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+        new Class[] { FacesContext.class, UIComponent.class, Object.class });
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
 

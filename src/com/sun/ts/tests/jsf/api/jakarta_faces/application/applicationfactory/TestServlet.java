@@ -45,11 +45,9 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.behavior.Behavior;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.el.PropertyResolver;
-import jakarta.faces.el.ReferenceSyntaxException;
-import jakarta.faces.el.ValueBinding;
-import jakarta.faces.el.VariableResolver;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELException;
+import jakarta.el.ValueExpression;
 import jakarta.faces.event.ActionListener;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.event.SystemEventListenerHolder;
@@ -214,15 +212,13 @@ public class TestServlet extends HttpTCKServlet {
       // do nothing
     }
 
-    @Override
-    public MethodBinding createMethodBinding(String ref, Class params[])
-        throws ReferenceSyntaxException {
+    public MethodExpression createMethodExpression(String ref, Class params[])
+        throws ELException {
       return null;
     }
 
-    @Override
-    public ValueBinding createValueBinding(String ref)
-        throws ReferenceSyntaxException {
+    public ValueExpression createValueExpression(String ref)
+        throws ELException {
       return null;
     }
 
@@ -233,11 +229,6 @@ public class TestServlet extends HttpTCKServlet {
 
     @Override
     public String getMessageBundle() {
-      return null;
-    }
-
-    public MethodBinding getMethodBinding(String ref, Class params[])
-        throws ReferenceSyntaxException {
       return null;
     }
 
@@ -282,11 +273,6 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     @Override
-    public PropertyResolver getPropertyResolver() {
-      return null;
-    }
-
-    @Override
     public void addConverter(Class targetClass, String converterClass) {
       // do nothing
     }
@@ -317,27 +303,11 @@ public class TestServlet extends HttpTCKServlet {
       // do nothing
     }
 
-    @Override
-    public void setPropertyResolver(PropertyResolver resolver) {
-      // do nothing
-    }
-
     public Converter createConverter(Class targetClass) {
       return null;
     }
 
     public ViewHandler getViewHandler() {
-      return null;
-    }
-
-    @Override
-    public VariableResolver getVariableResolver() {
-      return null;
-    }
-
-    @Override
-    public UIComponent createComponent(ValueBinding componentRef,
-        FacesContext context, String componentType) throws FacesException {
       return null;
     }
 
@@ -358,11 +328,6 @@ public class TestServlet extends HttpTCKServlet {
 
     @Override
     public void setActionListener(ActionListener listener) {
-      // do nothing
-    }
-
-    @Override
-    public void setVariableResolver(VariableResolver resolver) {
       // do nothing
     }
 

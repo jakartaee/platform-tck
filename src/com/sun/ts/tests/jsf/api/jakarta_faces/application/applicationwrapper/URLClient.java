@@ -305,19 +305,6 @@ public final class URLClient extends AbstractUrlClient {
   }
 
   /**
-   * @testName: applicationWrapperCreateValueBindingTest
-   * 
-   * @assertion_ids: JSF:JAVADOC:190; JSF:JAVADOC:146; JSF:JAVADOC:164
-   * 
-   * @test_Strategy: Validate a ValueBinding is returned when provided a valid
-   *                 value reference expression.
-   */
-  public void applicationWrapperCreateValueBindingTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationWrapperCreateValueBindingTest");
-    invoke();
-  }
-
-  /**
    * @testName: applicationWrapperCreateValidatorFETest
    * @assertion_ids: JSF:JAVADOC:146; JSF:JAVADOC:163
    * @test_Strategy: Validate a FacesException if a Validator of the specified
@@ -343,19 +330,6 @@ public final class URLClient extends AbstractUrlClient {
     invoke();
   }
 
-  /**
-   * @testName: applicationWrapperCreateMethodBindingTest
-   * 
-   * @assertion_ids: JSF:JAVADOC:190; JSF:JAVADOC:146; JSF:JAVADOC:160
-   * 
-   * @test_Strategy: Validate a MethodBinding instance can be obtained from the
-   *                 applicationWrapper object.
-   */
-  public void applicationWrapperCreateMethodBindingTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST,
-        "applicationWrapperCreateMethodBindingTest");
-    invoke();
-  }
 
   /**
    * @testName: applicationWrapperSetGetSupportedLocalesTest
@@ -874,17 +848,5 @@ public final class URLClient extends AbstractUrlClient {
     invoke();
   }
 
-  /**
-   * @testName: applicationWrapperCreateValueBindingRSETest
-   * @assertion_ids: JSF:JAVADOC:190; JSF:JAVADOC:165
-   * @test_Strategy: Validate a RefereceSyntaxException is thrown if
-   *                 ApplicationWrapper.getValueBinding(String) is provided a
-   *                 syntactically invalid reference expression.
-   */
-  public void applicationWrapperCreateValueBindingRSETest() throws Fault {
-    TEST_PROPS.setProperty(APITEST,
-        "applicationWrapperCreateValueBindingRSETest");
-    invoke();
-  }
 
 } // end of URLClient

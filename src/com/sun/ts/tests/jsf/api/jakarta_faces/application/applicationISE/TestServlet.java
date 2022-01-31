@@ -76,10 +76,11 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter out = response.getWriter();
 
     Application application = getApplication();
+    
 
     JSFTestUtil.checkForISE(application, "setStateManager",
         new Class<?>[] { StateManager.class },
-        new Object[] { new TCKStateManager() }, out);
+        new Object[] { new TCKStateManager(application.getStateManager()) }, out);
   }
 
   // Test for Application.setViewHandler() throws IllegalStateException

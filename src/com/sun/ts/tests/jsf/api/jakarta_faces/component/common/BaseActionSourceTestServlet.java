@@ -198,7 +198,7 @@ public abstract class BaseActionSourceTestServlet
 
     ELContext elcontext = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(elcontext,
-    "#{requestScope.actionSource}", null, new Class[] { ELContext.class });
+    "#{requestScope.actionSource}", null, new Class[] { });
 
     source.setActionExpression(binding);
     Object result = source.getActionExpression();
@@ -228,7 +228,7 @@ public abstract class BaseActionSourceTestServlet
     FacesContext context = getFacesContext();
     ELContext elcontext = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(elcontext,
-    "#{requestScope.actionListener.processAction}", null, new Class[] { ELContext.class, ActionEvent.class });
+    "#{requestScope.actionListener.processAction}", null, new Class[] { ActionEvent.class });
 
     ActionSource2 source = (ActionSource2) createComponent();
 

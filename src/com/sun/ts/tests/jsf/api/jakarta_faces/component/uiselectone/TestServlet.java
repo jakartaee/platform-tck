@@ -113,7 +113,7 @@ public class TestServlet
 
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
-    "#{requestScope.TCKValidator.validate}", null, new Class[] { TCKValidator.class, ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
 
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
@@ -181,7 +181,7 @@ public class TestServlet
 
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
-    "#{requestScope.TCKValidator.validate}", null, new Class[] { ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
 
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
@@ -256,7 +256,7 @@ public class TestServlet
 
     ELContext context2 = context.getELContext();
     MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
-    "#{requestScope.TCKValidator.validate}", null, new Class[] { ELContext.class, FacesContext.class, UIComponent.class, Object.class });
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
 
     MethodExpressionValidator validator = new MethodExpressionValidator(binding);
     input.addValidator(validator);
