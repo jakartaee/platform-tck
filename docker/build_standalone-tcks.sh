@@ -68,7 +68,7 @@ fi
 echo "The option selected to build is $TCK_NAME TCK"
 
 if [ "All" == "$TCK_NAME" ];then
-  TCK_LIST=( websocket el concurrency connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
+  TCK_LIST=( websocket el connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
 else 
   TCK_LIST=( ${TCK_NAME} )
 fi
@@ -139,11 +139,6 @@ for tck in ${TCK_LIST[@]}; do
   elif [ "el" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Del.classes=$JAKARTA_JARS/modules/jakarta.el-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
-  elif [ "concurrency" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Dconcurrency.classes=$JAKARTA_JARS/modules/jakarta.enterprise.concurrent-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jta.jar:$JAKARTA_JARS/modules/jakarta.enterprise.deploy-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "connector" == "$tck" ]

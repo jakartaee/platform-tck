@@ -114,11 +114,6 @@ if [ "$TCK_NAME" ==  "jstl" ];then
    exit 0
 fi
 
-if [ "$TCK_NAME" ==  "concurrency" ];then
-   source concurrencytck.sh
-   exit 0
-fi
-
 if [ "$TCK_NAME" ==  "connector" ];then
    source connectortck.sh
    exit 0
