@@ -148,7 +148,7 @@ for tck in ${TCK_LIST[@]}; do
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]
   then
-    TCK_SPECIFIC_PROPS="-Dwebsocket.classes=$JAKARTA_JARS/modules/jakarta.websocket-client-api.jar:$JAKARTA_JARS/modules/jakarta.websocket-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.activation-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
+    TCK_SPECIFIC_PROPS="-Dwebsocket.classes=$JAKARTA_JARS/modules/jakarta.websocket-client-api.jar:$JAKARTA_JARS/modules/jakarta.websocket-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.activation-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar:$JAKARTA_JARS/modules/jakarta.xml.bind-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "securityapi" == "$tck" ]
