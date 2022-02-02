@@ -33,6 +33,7 @@ import jakarta.faces.component.UIComponentBase;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.MethodExpressionActionListener;
 import jakarta.faces.render.RenderKit;
 import jakarta.faces.render.RenderKitFactory;
 import jakarta.servlet.ServletConfig;
@@ -184,9 +185,9 @@ public class TestServlet extends BaseComponentTestServlet {
     TestActionListener listener = TestActionListener.withID("ALR");
 
     request.setAttribute("ListRef", listener);
-
-    command.setActionListener(getApplication().createMethodBinding(
-        "#{ListRef.processAction}", new Class[] { ActionEvent.class }));
+    MethodExpressionActionListener lnr = new MethodExpressionActionListener(getApplication().getExpressionFactory().createMethodExpression(
+      context.getELContext(), "#{ListRef.processAction}", null, new Class[] { ActionEvent.class }));
+    command.addActionListener(lnr);
     command.setImmediate(true);
     TestActionListener.trace(null);
 

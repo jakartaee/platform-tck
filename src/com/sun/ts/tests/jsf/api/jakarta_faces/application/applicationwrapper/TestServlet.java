@@ -62,9 +62,9 @@ import jakarta.faces.component.UIInput;
 import jakarta.faces.component.UIOutput;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.BooleanConverter;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.el.ReferenceSyntaxException;
-import jakarta.faces.el.ValueBinding;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELException;
+import jakarta.el.ValueExpression;
 import jakarta.faces.event.ActionListener;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.event.SystemEventListener;
@@ -627,65 +627,6 @@ public class TestServlet extends HttpTCKServlet {
     applicationWrapper.setNavigationHandler(handler);
   }
 
-  // Application.createValueBinding(String)
-  public void applicationWrapperCreateValueBindingTest(
-      HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    ApplicationWrapper applicationWrapper = new TCKApplication();
-
-    request.setAttribute("TestBean", new TestBean());
-    ValueBinding binding;
-
-    try {
-      binding = applicationWrapper.createValueBinding("#{TestBean.boolProp}");
-
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "Application.getValueBinding(String) threw an expected "
-          + "Exception.");
-      e.printStackTrace();
-      return;
-    }
-
-    if (binding == null) {
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "Application.getValueBinding() returned null for a "
-          + "valid value reference expression.");
-      return;
-    }
-
-    out.println(JSFTestUtil.PASS);
-  }
-
-  // ApplicationWrapper.createValueBinding(String) throws
-  // ReferenceSyntaxException
-  // when provided an invalid ref
-  public void applicationWrapperCreateValueBindingRSETest(
-      HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    ApplicationWrapper application = new TCKApplication();
-
-    request.setAttribute("TestBean", new TestBean());
-    out.println("Testing #{TestBean[}");
-
-    try {
-      application.createValueBinding("#{TestBean[}");
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "No Exception thrown when value reference expression "
-          + "provided was invalid.");
-
-    } catch (ReferenceSyntaxException rse) {
-      out.println(JSFTestUtil.PASS);
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL
-          + ":   Exception thrown when invalid value reference expression was provided"
-          + " to Application.getValueBinding(String), but wasn't an instance of ReferenceSyntaxException.");
-      e.printStackTrace();
-    }
-  } // End applicationWrapperCreateValueBindingRSETest
-
   // ApplicationWrapper.createValidator(String) throws FacesException
   public void applicationWrapperCreateValidatorFETest(
       HttpServletRequest request, HttpServletResponse response)
@@ -750,27 +691,6 @@ public class TestServlet extends HttpTCKServlet {
 
     // restore the original handler
     applicationWrapper.setViewHandler(origHandler);
-  }
-
-  public void applicationWrapperCreateMethodBindingTest(
-      HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    ApplicationWrapper applicationWrapper = new TCKApplication();
-
-    TestBean bean = new TestBean();
-    request.setAttribute("TestBean", bean);
-
-    MethodBinding binding = applicationWrapper.createMethodBinding(
-        "#{requestScope.TestBean.setBoolProp}", new Class[] { Boolean.TYPE });
-
-    if (binding == null) {
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "Application.createMethodBinding()" + " returned a null value.");
-      return;
-    }
-
-    out.println(JSFTestUtil.PASS);
   }
 
   public void applicationWrapperSetGetDefaultLocaleTest(
@@ -1702,9 +1622,9 @@ public class TestServlet extends HttpTCKServlet {
     ApplicationWrapper applicationWrapper = new TCKApplication();
 
     // Test to make sure we get a StateManger by default.
+    StateManager stateManager = null;
     try {
-      applicationWrapper.getStateManager();
-
+      stateManager = applicationWrapper.getStateManager();
     } catch (Exception e) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
           + "Unexpected Exception thrown when calling "
@@ -1713,7 +1633,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     try {
-      StateManager tckstatemgr = new TCKStateManager();
+      StateManager tckstatemgr = new TCKStateManager(stateManager);
       applicationWrapper.setStateManager(tckstatemgr);
       String result = applicationWrapper.getStateManager().getClass()
           .getSimpleName();

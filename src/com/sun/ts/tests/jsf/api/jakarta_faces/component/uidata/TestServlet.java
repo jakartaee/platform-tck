@@ -1216,6 +1216,9 @@ public class TestServlet extends BaseComponentTestServlet {
 
   private void setupTree(UIComponent root, UIData data) {
 
+    FacesContext fc = getFacesContext();
+    ELContext elContext = fc.getELContext();
+
     // Attach our UIData to the view root
     // UIData data = new UIData();
     data.setId("data");
@@ -1242,8 +1245,8 @@ public class TestServlet extends BaseComponentTestServlet {
     column.getFacets().put("footer", label);
     command = new UICommand();
     command.setId("command");
-    command.setValueBinding("value",
-        getApplication().createValueBinding("#{foo.command}"));
+    command.setValueExpression("value",
+        getApplication().getExpressionFactory().createValueExpression(elContext, "#{foo.command}", Object.class));
     column.getChildren().add(command);
     data.getChildren().add(column);
     command.addActionListener(new TCKDataActionListener());
@@ -1261,8 +1264,8 @@ public class TestServlet extends BaseComponentTestServlet {
     column.getFacets().put("footer", label);
     input = new UIInput();
     input.setId("input");
-    input.setValueBinding("value",
-        getApplication().createValueBinding("#{foo.input}"));
+    input.setValueExpression("value",
+        getApplication().getExpressionFactory().createValueExpression(elContext, "#{foo.input}", Object.class));
     column.getChildren().add(input);
     data.getChildren().add(column);
 
@@ -1283,8 +1286,8 @@ public class TestServlet extends BaseComponentTestServlet {
 
     output = new UIOutput();
     output.setId("output");
-    output.setValueBinding("value",
-        getApplication().createValueBinding("#{foo.output}"));
+    output.setValueExpression("value",
+        getApplication().getExpressionFactory().createValueExpression(elContext, "#{foo.output}", Object.class));
     column.getChildren().add(output);
     data.getChildren().add(column);
 
