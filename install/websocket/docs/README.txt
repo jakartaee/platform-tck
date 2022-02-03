@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the WebSocket TCK 2.0 and related software against the WebSocket 2.0 CI. For
-more detailed instructions please refer to the WebSocket 2.0 Users Guide.
+and run the WebSocket TCK 2.1 and related software against the WebSocket 2.1 CI. For
+more detailed instructions please refer to the WebSocket 2.1 Users Guide.
 
 -----------------------
 Installing the Software
@@ -8,9 +8,9 @@ Installing the Software
 Before you can run the WebSocket TCK tests, you need to install
 and set up the following software components:
 
-1) Java SE 8
-2) WebSocket CI Version 2.0
-3) WebSocket TCK Version 2.0
+1) Java 11
+2) WebSocket CI Version 2.1
+3) WebSocket TCK Version 2.1
 
 1. Download and install Java SE 8 software.
 
@@ -19,13 +19,13 @@ and set up the following software components:
    unzip <java-zip-bundle>
 
 
-2. Download and install the WebSocket 2.0 Compatible Implementation/jarfile.
+2. Download and install the WebSocket 2.1 Compatible Implementation/jarfile.
 
    mkdir /ci
    cd /ci
    
 
-3. Download and install the WebSocket TCK 2.0 software.
+3. Download and install the WebSocket TCK 2.1 software.
 
    mkdir /tck
    cd /tck
@@ -53,10 +53,10 @@ Setup and Configuration of the WebSocket TCK
 ------------------------------
 Executing the WebSocket TCK Tests
 ------------------------------
-At this point we are ready to run the WebSocket TCK tests against the WebSocket 2.0
+At this point we are ready to run the WebSocket TCK tests against the WebSocket 2.1
 Reference Implementation.
 
-1. Start WebSocket 2.0 Reference Implementation:
+1. Start WebSocket 2.1 Reference Implementation:
 
    cd /ci/glassfish6/glassfish/bin
    ./asadmin start-domain
