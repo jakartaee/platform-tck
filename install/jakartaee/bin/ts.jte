@@ -1138,6 +1138,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
+        -Xss2048k \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
