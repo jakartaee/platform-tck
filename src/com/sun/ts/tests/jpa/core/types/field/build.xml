@@ -27,8 +27,7 @@
     <property name="app.name" value="jpa_core_types_field"/>
     <property name="jpa_core_types_common_dir" value="com/sun/ts/tests/jpa/core/types/common"/>
     <property name="par.classes"
-              value="${pkg.dir}/DataTypes.class,
-	     ${pkg.dir}/DataTypes2.class"/>
+              value="${pkg.dir}/DataTypes.class, ${pkg.dir}/DataTypes2.class,  ${pkg.dir}/UUIDType.class"/>
 
     <target name="package">
 

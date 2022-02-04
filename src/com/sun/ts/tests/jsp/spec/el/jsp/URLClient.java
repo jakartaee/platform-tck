@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -264,4 +265,18 @@ public class URLClient extends AbstractUrlClient {
     invoke();
   }
 
+
+  /*
+   * @testName: implicitImportTest
+   * 
+   * @assertion_ids: JSP:SPEC:35
+   * 
+   * @test_Strategy: [ImplicitELImport] Verify that each of the implicit package
+   * is available to the EL environment.
+   */
+  public void implicitImportTest() throws Fault {
+    TEST_PROPS.setProperty(REQUEST,
+        "GET /jsp_el_jsp_web/ImplicitELImport.jsp HTTP/1.1");
+    invoke();
+  }
 }

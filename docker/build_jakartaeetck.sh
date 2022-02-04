@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,11 +18,11 @@ if [ -z "$ANT_HOME" ]; then
   export ANT_HOME=/usr/share/ant/
 fi
 
-if [ -z "$JAVA_HOME" ]; then
-  export JAVA_HOME=/opt/jdk1.8.0_171
-fi
-
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+if [ -z "$WORKSPACE" ]; then
+  export WORKSPACE=`pwd`
+fi
 
 cd $WORKSPACE
 export BASEDIR=`pwd`
@@ -70,10 +70,9 @@ ant -version
 which java
 java -version
 
-export ANT_OPTS="-Xmx2G -Djava.endorsed.dirs=${JAKARTA_JARS}/endorsed \
-                 -Djavax.xml.accessExternalStylesheet=all \
+export ANT_OPTS="-Xmx2G -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
-		 -DenableExternalEntityProcessing=true \
+		             -DenableExternalEntityProcessing=true \
                  -Djavax.xml.accessExternalDTD=file,http"
 
 echo ########## Remove hard-coded paths from install/jakartaee/bin/ts.jte ##########"
@@ -93,9 +92,9 @@ echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
 
 mkdir -p $JAKARTA_JARS/modules
-mkdir -p $JAKARTA_JARS/endorsed
 
-mvn -f $BASEDIR/docker/pom.xml dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
+
+mvn -f $BASEDIR/docker/pom.xml -Pstaging dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
 
 
 ls $JAKARTA_JARS/modules/
@@ -108,7 +107,7 @@ echo "########## Trunk.Build ##########"
 ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin  modify.jstl.db.resources
 
 # Full workspace build.
-ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin -Djava.endorsed.dirs=$JAKARTA_JARS/endorsed build.all
+ant -f $BASEDIR/install/jakartaee/bin/build.xml -Ddeliverabledir=jakartaee -Dbasedir=$BASEDIR/install/jakartaee/bin build.all
 
 
 echo "########## Trunk.Sanitize.JTE ##########"
@@ -125,12 +124,12 @@ echo "########## Trunk.CTS ##########"
 mkdir -p $BASEDIR/internal/docs/jakartaee/
 cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/jakartaee/
 if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=9.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEFTLicensefile="true" jakartaee
+  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=10.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEFTLicensefile="true" jakartaee
 else
-  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=9.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools jakartaee
+  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=10.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools jakartaee
 fi
 
-ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=9.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
+ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=jakartaee -Ddeliverable.version=10.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
 
 mkdir -p ${WORKSPACE}/jakartaeetck-bundles
 cd ${WORKSPACE}/jakartaeetck-bundles

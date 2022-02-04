@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +32,7 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
+sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrstckreport#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrstckwork#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte

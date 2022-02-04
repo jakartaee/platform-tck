@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,10 +22,6 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.WebUtil;
-import jdk.incubator.http.HttpClient;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
-import jdk.incubator.http.MultiMapResult;
 import org.apache.commons.codec.binary.Base64;
 
 import java.net.Authenticator;
@@ -35,6 +31,9 @@ import java.net.CookieStore;
 import java.net.HttpCookie;
 import java.net.InetAddress;
 import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,7 +43,10 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executors;
+import java.util.function.Function;
 
 public class Client extends EETest {
   private static final String CONTEXT_ROOT = "/servlet_spec_serverpush_web";
@@ -488,7 +490,7 @@ public class Client extends EETest {
     if (auth != null)
       builder.authenticator(auth);
     if (cm != null)
-      builder.cookieManager(cm);
+      builder.cookieHandler(cm);
 
     HttpClient client = builder.version(HttpClient.Version.HTTP_2)
         .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -507,26 +509,31 @@ public class Client extends EETest {
 
       HttpRequest request = requestBuilder.GET().build();
 
-      CompletableFuture<MultiMapResult<String>> sendAsync = client
-          .sendAsync(request, HttpResponse.MultiProcessor.asMap((req) -> {
-            Optional<HttpResponse.BodyHandler<String>> optional = Optional
-                .of(HttpResponse.BodyHandler.asString());
-            String msg = " - " + req.uri();
-            logMsg(msg);
-            return optional;
-          }));
-
-      Map<HttpRequest, CompletableFuture<HttpResponse<String>>> multiMapResult = sendAsync
-          .join();
-
-      if (multiMapResult != null) {
-        for (HttpRequest key : multiMapResult.keySet()) {
-          CompletableFuture<HttpResponse<String>> completableFuture = multiMapResult
-              .get(key);
-          HttpResponse<String> response = completableFuture.get();
-          printResponse(response);
-          responses.add(response);
-        }
+      ConcurrentMap<HttpRequest, CompletableFuture<HttpResponse<String>>> promisesMap =
+          new ConcurrentHashMap<>();
+      
+      Function<HttpRequest, HttpResponse.BodyHandler<String>> promiseHandler =
+          (HttpRequest req) -> {
+              String msg = " - " + req.uri();
+              logMsg(msg);
+              return HttpResponse.BodyHandlers.ofString();
+            };
+      
+      CompletableFuture<HttpResponse<String>> sendAsync = client.sendAsync(
+          request, HttpResponse.BodyHandlers.ofString(), 
+          HttpResponse.PushPromiseHandler.of(promiseHandler, promisesMap));
+      
+      // Original response
+      HttpResponse<String> response = sendAsync.join();
+      printResponse(response);
+      responses.add(response);
+      
+      // Pushed responses
+      for (HttpRequest key : promisesMap.keySet()) {
+        CompletableFuture<HttpResponse<String>> completableFuture = promisesMap.get(key);
+        response = completableFuture.get();
+        printResponse(response);
+        responses.add(response);
       }
     } catch (Exception e) {
       throw new Fault("Test fail", e);

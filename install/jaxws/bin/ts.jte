@@ -73,19 +73,18 @@ jaxws.home=${webcontainer.home}
 jaxws.home.ri=${webcontainer.home.ri}
 jaxws.lib=${jaxws.home}/modules
 jaxws.lib.ri=${jaxws.home.ri}/modules
-endorsed.dirs=${jaxws.home}/modules/endorsed
-endorsed.dirs.ri=${jaxws.home.ri}/modules/endorsed
-
+endorsed.dirs=${jaxws.lib}
+endorsed.dirs.ri=${jaxws.lib.ri}
 
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
 ###########################################################################
-jaxws.classes=${jaxws.lib}/webservices-api-osgi.jar${pathsep}${jaxws.lib}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/webservices-api.jar${pathsep}${jaxws.lib}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib}/jakarta.activation.jar
+jaxws.classes=${jaxws.lib}/pfl-tf.jar${pathsep}${jaxws.lib}/jakarta.servlet-api.jar${pathsep}${jaxws.lib}/pfl-basic.jar${pathsep}${jaxws.lib}/webservices-api-osgi.jar${pathsep}${jaxws.lib}/jaxb-api-osgi.jar${pathsep}${jaxws.lib}/webservices-osgi.jar${pathsep}${jaxws.lib}/jaxb-osgi.jar${pathsep}${jaxws.lib}/gmbal.jar${pathsep}${jaxws.lib}/management-api.jar${pathsep}${jaxws.lib}/mimepull.jar${pathsep}${jaxws.lib}/ha-api.jar${pathsep}${jaxws.lib}/webservices-api.jar${pathsep}${jaxws.lib}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib}/jakarta.activation-api.jar
 
 ###########################################################################
 # @jaxws.classes.ri  should contain all RI specific jars/classes
 ###########################################################################
-jaxws.classes.ri=${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}${jaxws.lib.ri}/webservices-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}${jaxws.lib.ri}/gmbal.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/webservices-api.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib.ri}/jakarta.activation.jar
+jaxws.classes.ri=${jaxws.lib.ri}/pfl-tf.jar${pathsep}${jaxws.lib.ri}/jakarta.servlet-api.jar${pathsep}${jaxws.lib.ri}/pfl-basic.jar${pathsep}${jaxws.lib.ri}/webservices-api-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-api-osgi.jar${pathsep}${jaxws.lib.ri}/webservices-osgi.jar${pathsep}${jaxws.lib.ri}/jaxb-osgi.jar${pathsep}${jaxws.lib.ri}/gmbal.jar${pathsep}${jaxws.lib.ri}/management-api.jar${pathsep}${jaxws.lib.ri}/mimepull.jar${pathsep}${jaxws.lib.ri}/ha-api.jar${pathsep}${jaxws.lib.ri}/webservices-api.jar${pathsep}${jaxws.lib.ri}/jakarta.xml.bind-api.jar${pathsep}${jaxws.lib.ri}/jakarta.activation-api.jar
 
 ###########################################################################
 # @catalog.path  Path to catalog file for use with catalog tests
@@ -127,11 +126,11 @@ tools.jar=${jdk.home}/lib/tools.jar
 # @wsimport.debug          Debug flag
 # @wsimport.jvmargs        JVM args to pass to Vendors wsimport tool
 ###########################################################################
-wsgen.ant.classname=
+wsgen.ant.classname=com.sun.tools.ws.ant.WsGen
 wsgen.classpath=${jaxws.classes}${pathsep}${tools.jar}
 wsgen.verbose=true
 wsgen.debug=false
-wsimport.ant.classname=
+wsimport.ant.classname=com.sun.tools.ws.ant.WsImport
 wsimport.classpath=${jaxws.classes}${pathsep}${tools.jar}
 wsimport.verbose=true
 wsimport.debug=false
@@ -381,7 +380,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
-                -Djava.endorsed.dirs=${endorsed.dirs} \
+    	-Djava.io.tmpdir=${harness.temp.directory} \
         $testExecuteClass $testExecuteArgs
 
 # This execute line runs against the RI implementation
@@ -395,7 +394,6 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
-		-Djava.endorsed.dirs=${endorsed.dirs.ri} \
         $testExecuteClass $testExecuteArgs
 
 #########################################################################
@@ -417,6 +415,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -424,7 +425,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jaxws.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jaxws.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ###############################################################
 ## This command allows the test clients to be run in
@@ -502,57 +505,13 @@ tslib.name=jaxwstck
 ###########################################################################
 client.delay=1
 
-#################################################################
-# To Configure config.vi with security manager
-#################################################################
-javaee.home=${webcontainer.home}
-###############################################################
-## Config params needed for Sun Java System Application Server
-## (SJSAS) asadmin. You must change these values as needed
-## only if you are testing against SJSAS app server
-## (javaee.home is pointing to SJSAS).
-#
-# @s1as.admin.user     -- The SJSAS asadmin user id
-# @s1as.admin.passwd   -- The SJSAS asadmin user password
-# @s1as.admin.host     -- The SJSAS host
-# @s1as.admin.port     -- The SJSAS port
-# @s1as.admin          -- The SJSAS admin command
-# @s1as.server         -- The SJSAS server instance being used
-# @s1as.domain.dir     -- Points to where your domains are installed.
-# @s1as.domain.name    -- The SJSAS domain being used
-# @s1as.domain         -- The SJSAS domain path being used
-# @s1as.asenv.loc      -- location of asenv.conf or asenv.bat
-# @s1as.imqbin.loc     -- location of the IMQ bin directory
-# @s1as.lib            -- Library directory for other Java EE RI
-#                         jars
-# @s1as.imq.share.lib  -- Shared library directory for imq 
-# @s1as.jvm.options    -- Java options needed by SJSAS
-#                         The xxxlogin and xxxpassword are used
-#                         to set known server side creds for use
-#                         with connector tests.
-# @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
-# @s1as.applicationRoot-- Location of application repository
-#                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
-############################################################### 
-s1as.admin=${javaee.home}/bin/asadmin
-s1as.domain.dir=${javaee.home}/domains
-s1as.domain.name=${glassfish.domain.name}
-s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
-s1as.admin.host=${glassfish.admin.host}
-s1as.admin.port=${glassfish.admin.port}
-
 ###############################################################
 # @extension.dir - The extension directory of RI. 
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${webcontainer.home}/domains/domain1/lib/ext
-extension.dir.ri=${webcontainer.home.ri}/domains/domain1/lib/ext
-
+extension.dir=${webcontainer.home}/domains/domain1/lib
+extension.dir.ri=${webcontainer.home.ri}/domains/domain1/lib
 
 #################################################################
 # To Configure config.vi with security manager
@@ -596,3 +555,6 @@ s1as.domain.name=${glassfish.domain.name}
 s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.admin.host=${glassfish.admin.host}
 s1as.admin.port=${glassfish.admin.port}
+
+
+

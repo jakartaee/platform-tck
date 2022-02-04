@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,11 +36,11 @@ else
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
@@ -55,11 +55,10 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
 fi
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -41,12 +41,14 @@ public class TestListener implements ServletContextListener {
     try {
       context.createListener(
           com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener.class);
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by createListener(SCListener.class).");
     } catch (UnsupportedOperationException ex) {
       log.append(
           "Expected UnsupportedOperationException thrown by createListener(SCListener.class).");
     } catch (ServletException ex1) {
+      passed = false;
       log.append(
           "ServletException thrown by createListener(SCListener.class).");
     }
@@ -54,12 +56,14 @@ public class TestListener implements ServletContextListener {
     try {
       context.createListener(
           com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCAttributeListener.class);
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by createListener(SCAttributeListener.class).");
     } catch (UnsupportedOperationException ex) {
       log.append(
           "Expected UnsupportedOperationException thrown by createListener(SCAttributeListener.class).");
     } catch (ServletException ex1) {
+      passed = false;
       log.append(
           "ServletException thrown by createListener(SCAttributeListener.class).");
     }
@@ -67,12 +71,14 @@ public class TestListener implements ServletContextListener {
     try {
       context.createListener(
           com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener.class);
+      passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by createListener(SRListener.class).");
     } catch (UnsupportedOperationException ex) {
       log.append(
           "Expected UnsupportedOperationException thrown by createListener(SRListener.class).");
     } catch (ServletException ex1) {
+      passed = false;
       log.append(
           "ServletException thrown by createListener(SRListener.class).");
     }

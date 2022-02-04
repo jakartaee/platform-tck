@@ -80,7 +80,7 @@ public class TestServlet extends HttpTCKServlet {
 
     JSFTestUtil.checkForISE(application, "setStateManager",
         new Class<?>[] { StateManager.class },
-        new Object[] { new TCKStateManager() }, out);
+        new Object[] { new TCKStateManager(application.getStateManager()) }, out);
   }
 
   public void applicationWrapperSetViewHandlerISETest(

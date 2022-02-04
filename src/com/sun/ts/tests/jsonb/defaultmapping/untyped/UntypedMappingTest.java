@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -127,7 +127,7 @@ public class UntypedMappingTest extends ServiceEETest {
    * java.util.List<Object>
    */
   public Status testArrayMapping() throws Fault {
-    return new SimpleMappingTester<>(List.class).test(
+      return new SimpleMappingTester<>(List.class, List.class).test(
         Arrays.asList("Test String"), "\\[\\s*\"Test String\"s*\\]",
         "[ \"Test String\" ]", Arrays.asList("Test String"));
   }

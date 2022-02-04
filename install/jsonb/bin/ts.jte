@@ -14,10 +14,6 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-#
-# $Id$
-#
-
 #########################################################################
 #                                                                   	#
 #   JavaTest Environment file for JSON-B Compatibility Test Suite       #
@@ -120,6 +116,10 @@ if.existing.work.report.dirs=append
 porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -127,7 +127,9 @@ porting.ts.url.class.1=com.sun.ts.lib.implementation.sun.common.SunRIURL
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jsonb.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jsonb.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 # These properties are used by the harness.  "harness.log.port"
@@ -249,4 +251,5 @@ tslib.name=jsonbtck
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${web.home}/domains/domain1/lib/ext
+extension.dir=${web.home}/domains/domain1/lib
+

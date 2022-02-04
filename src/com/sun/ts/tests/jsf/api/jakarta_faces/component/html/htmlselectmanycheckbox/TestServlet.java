@@ -32,9 +32,10 @@ import jakarta.faces.component.UIInput;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.component.html.HtmlSelectManyCheckbox;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.el.MethodBinding;
+import jakarta.el.MethodExpression;
 import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.ValueChangeEvent;
+import jakarta.faces.event.MethodExpressionValueChangeListener;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -128,11 +129,13 @@ public final class TestServlet extends
 
     TCKValueChangeListener listener = new TCKValueChangeListener("VCLR");
 
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.reqVCL.processValueChange}",
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(
+      facesContext.getELContext(), "#{requestScope.reqVCL.processValueChange}", null, 
         new Class[] { ValueChangeEvent.class });
+    MethodExpressionValueChangeListener lnr = new MethodExpressionValueChangeListener(binding);
+
     request.setAttribute("reqVCL", listener);
-    input.setValueChangeListener(binding);
+    input.addValueChangeListener(lnr);
 
     ValueChangeEvent event = new ValueChangeEvent(input, null, null);
     event.setPhaseId(PhaseId.PROCESS_VALIDATIONS);

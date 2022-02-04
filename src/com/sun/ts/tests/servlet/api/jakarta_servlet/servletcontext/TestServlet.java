@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -53,13 +53,13 @@ public class TestServlet extends GenericTCKServlet {
     ServletConfig config = this.getServletConfig();
     ServletContext context = config.getServletContext();
 
-    // Version should be 5 for Servlet 5.0 release
-    if (context.getMajorVersion() == 5) {
+    // Version should be 6 for Servlet 6.0 release
+    if (context.getMajorVersion() == 6) {
       passed = true;
     } else {
       passed = false;
       pw.println("getMajorVersion() returned " + context.getMajorVersion());
-      pw.println("Expected ServletContext.getMajorVersion() -> 5 ");
+      pw.println("Expected ServletContext.getMajorVersion() -> 6 ");
     }
     ServletTestUtil.printResult(pw, passed);
   }
@@ -150,7 +150,7 @@ public class TestServlet extends GenericTCKServlet {
    */
   public void getRealPath(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    boolean passed = false;
+    boolean passed = true;
     PrintWriter pw = response.getWriter();
 
     String path = "/servlet_js_ServletContext/Test";
@@ -166,12 +166,25 @@ public class TestServlet extends GenericTCKServlet {
     if ((realPath == null) || (realPath.indexOf(path) > -1) || // UNIX path
         (realPath.indexOf(win32Path) > -1)) // Win32 path
     {
-      passed = true;
       pw.println("realPath = " + realPath);
     } else {
       passed = false;
       pw.println("getRealPath(" + path + ") did not contain the named files");
       pw.println("Actual result = " + realPath + " ");
+    }
+    
+    // Leading '/' is optional. Ensure the result is the same with or without it
+    String pathNoSolidus = path.substring(1);
+    String realPathNoSolidus = context.getRealPath(pathNoSolidus);
+    
+    if (realPath == null && realPathNoSolidus == null ||
+        realPath != null && realPath.equals(realPathNoSolidus)) {
+      pw.println("realPathNoSolidus = " + realPathNoSolidus);      
+    } else {
+      passed = false;
+      pw.println("getRealPath(" + path + ") returned [" + realPath + "]");
+      pw.println("getRealPath(" + pathNoSolidus + ") returned [" + realPathNoSolidus + "]");
+      pw.println("The return values should be the same");
     }
     ServletTestUtil.printResult(pw, passed);
   }

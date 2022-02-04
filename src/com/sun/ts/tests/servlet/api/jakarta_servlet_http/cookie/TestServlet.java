@@ -3,7 +3,7 @@
  *  *
  *  * The Apache Software License, Version 1.1
  *  *
- *  * Copyright (c) 2001, 2020 Oracle and/or its affiliates and others.
+ *  * Copyright (c) 2001, 2021 Oracle and/or its affiliates and others.
  *  * All rights reserved.
  *  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  *  * reserved.
@@ -63,7 +63,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.TimeZone;
+
+import javax.management.AttributeValueExp;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
@@ -125,8 +128,7 @@ public class TestServlet extends HttpTCKServlet {
   public void constructorIllegalArgumentExceptionTest(
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String[] invalidNameValues = { "$test", ",test", ";test", " test", "\ttest",
-        "\ntest" };
+    String[] invalidNameValues = { ",test", ";test", " test", "\ttest", "\ntest" };
 
     PrintWriter pw = response.getWriter();
 
@@ -157,24 +159,18 @@ public class TestServlet extends HttpTCKServlet {
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
 
-    String expectedResult = "This is a comment";
     // set and get
-    testCookie.setComment(expectedResult);
+    testCookie.setComment("This is a comment");
     String result = testCookie.getComment();
 
     response.addCookie(testCookie);
-    if (result != null) {
-      if (!result.equals(expectedResult)) {
-        passed = false;
-        pw.println("getComment() returned an incorrect result");
-        pw.println("Expected = " + expectedResult);
-        pw.println("Actual = |" + result + "| ");
-      } else {
-        passed = true;
-      }
+    if (result == null) {
+      passed = true;
     } else {
       passed = false;
-      pw.println("getComment() returned a null result ");
+      pw.println("getComment() returned an incorrect result");
+      pw.println("Expected null value");
+      pw.println("Actual = |" + result + "| ");
     }
     ServletTestUtil.printResult(pw, passed);
 
@@ -203,7 +199,9 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie[] cookie = request.getCookies();
-    int index = ServletTestUtil.findCookie(cookie, "name1");
+    // RFC 6265 treats the domain attribute of an RFC 2109 cookie as a separate
+    // cookie
+    int index = ServletTestUtil.findCookie(cookie, "$Domain");
     if (index >= 0) {
       String host = request.getHeader("host");
       int col = host.indexOf(':');
@@ -212,7 +210,7 @@ public class TestServlet extends HttpTCKServlet {
       }
 
       // get
-      String result = cookie[index].getDomain();
+      String result = cookie[index].getValue();
       if (result != null) {
         if (!result.equalsIgnoreCase(host)) {
           passed = false;
@@ -288,10 +286,12 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie[] cookie = request.getCookies();
-    int index = ServletTestUtil.findCookie(cookie, "name1");
+    // RFC 6265 treats the path attribute of an RFC 2109 cookie as a separate
+    // cookie
+    int index = ServletTestUtil.findCookie(cookie, "$Path");
     if (index >= 0) {
       String expectedResult = request.getContextPath();
-      String result = cookie[index].getPath();
+      String result = cookie[index].getValue();
       if (result != null) {
         if (!result.equals(expectedResult)) {
           passed = false;
@@ -367,6 +367,7 @@ public class TestServlet extends HttpTCKServlet {
   public void getVersionVer0Test(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
+    // Version should be hard-coded to zero
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie[] cookie = request.getCookies();
@@ -392,12 +393,13 @@ public class TestServlet extends HttpTCKServlet {
   public void getVersionVer1Test(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
+    // Version should be hard-coded to zero
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie[] cookie = request.getCookies();
     int index = ServletTestUtil.findCookie(cookie, "name1");
     if (index >= 0) {
-      int expectedResult = 1;
+      int expectedResult = 0;
       int result = cookie[index].getVersion();
       if (result != expectedResult) {
         passed = false;
@@ -414,7 +416,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setCommentVer0Test(HttpServletRequest request,
+  public void setDomainTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
     PrintWriter pw = response.getWriter();
@@ -422,73 +424,7 @@ public class TestServlet extends HttpTCKServlet {
     Cookie testCookie = new Cookie("name1", "value1");
     testCookie.setVersion(0);
 
-    String expectedResult = "This is a comment";
-    // set comment
-    testCookie.setComment(expectedResult);
-
-    // get and see if it is properly set
-    String result = testCookie.getComment();
-
-    response.addCookie(testCookie);
-    if (result != null) {
-      if (!result.equals(expectedResult)) {
-        passed = false;
-        pw.println("setComment(" + expectedResult
-            + ") did not set the comment proplerly ");
-        pw.println("Expected = " + expectedResult + " ");
-        pw.println("Actual = |" + result + "| ");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("getComment() returned a null result ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void setCommentVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
-
-    String expectedResult = "This is a comment";
-    // set comment
-    testCookie.setComment(expectedResult);
-
-    // get and see if it is properly set
-    String result = testCookie.getComment();
-
-    response.addCookie(testCookie);
-    if (result != null) {
-      if (!result.equals(expectedResult)) {
-        passed = false;
-        pw.println("setComment(" + expectedResult
-            + ") did not set the comment proplerly ");
-        pw.println("Expected = " + expectedResult + " ");
-        pw.println("Actual = |" + result + "| ");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("getComment() returned a null result ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void setDomainVer0Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(0);
-
-    String expectedResult = ".ENG.COM";
+    String expectedResult = "ENG.COM";
     testCookie.setDomain(expectedResult);
     String result = testCookie.getDomain();
 
@@ -510,37 +446,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setDomainVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
-
-    String expectedResult = ".ENG.COM";
-    testCookie.setDomain(expectedResult);
-    String result = testCookie.getDomain();
-
-    response.addCookie(testCookie);
-    if (result != null) {
-      if (!result.equalsIgnoreCase(expectedResult)) {
-        passed = false;
-        pw.println("setDomain(" + expectedResult
-            + ") did not set the domain properly ");
-        pw.println("Expected = " + expectedResult + " ");
-        pw.println("Actual = |" + result + "| ");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("getDomain() returned a null result ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void setMaxAgeVer0PositiveTest(HttpServletRequest request,
+  public void setMaxAgePositiveTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
     PrintWriter pw = response.getWriter();
@@ -560,19 +466,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setMaxAgeVer1PositiveTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
-    testCookie.setMaxAge(2);
-    response.addCookie(testCookie);
-    ServletTestUtil.printResult(pw, true);
-
-  }
-
-  public void setMaxAgeZeroVer0Test(HttpServletRequest request,
+  public void setMaxAgeZeroTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
     PrintWriter pw = response.getWriter();
@@ -585,20 +479,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setMaxAgeZeroVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
-
-    testCookie.setMaxAge(0);
-    response.addCookie(testCookie);
-
-    ServletTestUtil.printResult(pw, true);
-  }
-
-  public void setMaxAgeNegativeVer0Test(HttpServletRequest request,
+  public void setMaxAgeNegativeTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
     PrintWriter pw = response.getWriter();
@@ -611,56 +492,13 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setMaxAgeNegativeVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
-
-    testCookie.setMaxAge(-1);
-    response.addCookie(testCookie);
-
-    ServletTestUtil.printResult(pw, true);
-  }
-
-  public void setPathVer0Test(HttpServletRequest request,
+  public void setPathTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
     testCookie.setVersion(0);
-
-    String expectedResult = "\"/servlet_jsh_cookie_web\"";
-    testCookie.setPath(expectedResult);
-    String result = testCookie.getPath();
-
-    response.addCookie(testCookie);
-    if (result != null) {
-      if (!result.equals(expectedResult)) {
-        passed = false;
-        pw.println(
-            "setPath(" + expectedResult + ") returned an incorrect result");
-        pw.println("Expected = " + expectedResult + " ");
-        pw.println("Actual = |" + result + "| ");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("getPath() returned a null result ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void setPathVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    testCookie.setVersion(1);
 
     String expectedResult = "\"/servlet_jsh_cookie_web\"";
     testCookie.setPath(expectedResult);
@@ -793,12 +631,13 @@ public class TestServlet extends HttpTCKServlet {
   public void setVersionVer0Test(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
+    // Expected to be hard-coded to zero
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
     int expectedResult = 0;
-    testCookie.setVersion(expectedResult); // set according to original Netscape
-                                           // specifications
+    testCookie.setVersion(expectedResult);
+
     int result = testCookie.getVersion();
 
     response.addCookie(testCookie);
@@ -819,9 +658,9 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
-    int expectedResult = 1;
-    testCookie.setVersion(expectedResult); // set according to original Netscape
-                                           // specifications
+    int expectedResult = 0;
+    testCookie.setVersion(1);
+
     int result = testCookie.getVersion();
 
     response.addCookie(testCookie);
@@ -833,6 +672,67 @@ public class TestServlet extends HttpTCKServlet {
       pw.println("Actual = |" + result + "| ");
     } else {
       passed = true;
+    }
+    ServletTestUtil.printResult(pw, passed);
+  }
+
+  public void setAttributeTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+
+    PrintWriter pw = response.getWriter();
+    boolean passed = true;
+    Cookie testCookie = new Cookie("name1", "value1");
+
+    String attrName = "some-name";
+    String attrValue = "some-value";
+    testCookie.setAttribute(attrName, attrValue);
+    String result = testCookie.getAttribute(attrName);
+
+    response.addCookie(testCookie);
+    if (result != null) {
+      if (!result.equalsIgnoreCase(attrValue)) {
+        passed = false;
+        pw.println("setAttribute(" + attrName + "," + attrValue +
+            ") did not set the attribute properly ");
+        pw.println("Expected value = " + attrValue + " ");
+        pw.println("Actual value = |" + result + "| ");
+      }
+    } else {
+      passed = false;
+      pw.println("getAttribute(" + attrName + ") returned a null result ");
+    }
+    ServletTestUtil.printResult(pw, passed);
+  }
+
+  public void getAttributesTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+
+    PrintWriter pw = response.getWriter();
+    boolean passed = true;
+    String name = "name1";
+    String value = "value1";
+    Cookie testCookie = new Cookie(name, value);
+
+    String attrName = "some-name";
+    String attrValue = "some-value";
+    testCookie.setAttribute(attrName, attrValue);
+    Map<String,String> result = testCookie.getAttributes();
+
+    response.addCookie(testCookie);
+    if (result != null) {
+      if (result.size() == 1) {
+        if (!result.get(attrName).equals(attrValue)) {
+          passed = false;
+          pw.println("getAttributes() returned a map that contained [" + result.get(attrName) +
+              "] as the value for key [" + attrName + "] rather than [" + attrValue + "]");
+        }
+      } else {
+        passed = false;
+        pw.println("getAttributes() returned a map of size [" + result.size() + "] rather than 1.");
+      }
+    } else {
+      passed = false;
+      pw.println("getAttributes() returned a null result ");
     }
     ServletTestUtil.printResult(pw, passed);
   }

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2012, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -91,6 +91,10 @@ jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 
 ########################################################################
 #
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+#
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -98,14 +102,10 @@ jstl.classes=${webServerHome}/modules/jakarta.servlet.jsp.jstl.jar
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #
-# Example:(Mac OSX)
-#   sigTestClasspath=${jspservlet.classes}${pathsep}\
-#                    /System/Library/Frameworks/JavaVM.framework/Versions/1.7.0/Classes/classes.jar
-# Example:(Solaris)
-#   sigTestClasspath=${jspservlet.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
-#
 ########################################################################
-sigTestClasspath=${jspservlet.classes}${pathsep}${el.classes}${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}/System/Library/Frameworks/JavaVM.framework/Versions/1.7.0/Classes/classes.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jspservlet.classes}${pathsep}${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################

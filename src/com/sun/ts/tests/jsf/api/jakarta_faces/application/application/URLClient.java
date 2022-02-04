@@ -419,27 +419,6 @@ public final class URLClient extends AbstractUrlClient {
     invoke();
   }
 
-  /**
-   * @testName: applicationCreateValueBindingRSETest
-   * @assertion_ids: JSF:JAVADOC:30; JSF:JAVADOC:66
-   * @test_Strategy: Validate a RefereceSyntaxException is thrown if
-   *                 Application.getValueBinding(String) is provided a
-   *                 syntactically invalid reference expression.
-   */
-  public void applicationCreateValueBindingRSETest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationCreateValueBindingRSETest");
-    invoke();
-  }
-
-  /**
-   * @testName: applicationCreateValueBindingNPETest
-   * @assertion_ids: JSF:JAVADOC:30; JSF:JAVADOC:67
-   * @test_Strategy: Validate an NPE is thrown if any arguments are null.
-   */
-  public void applicationCreateValueBindingNPETest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationCreateValueBindingNPETest");
-    invoke();
-  }
 
   /**
    * @testName: applicationGetSetViewHandlerTest
@@ -554,40 +533,6 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void applicationCreateComponentResNPETest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "applicationCreateComponentResNPETest");
-    invoke();
-  }
-
-  /**
-   * @testName: applicationCreateMethodBindingTest
-   * @assertion_ids: JSF:JAVADOC:30; JSF:JAVADOC:59
-   * @test_Strategy: Validate a MethodBinding instance can be obtained from the
-   *                 Application object.
-   */
-  public void applicationCreateMethodBindingTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationCreateMethodBindingTest");
-    invoke();
-  }
-
-  /**
-   * @testName: applicationCreateMethodBindingNPETest
-   * @assertion_ids: JSF:JAVADOC:61
-   * @test_Strategy: Validate an NPE is thrown if a null method reference is
-   *                 passed to createMethodBinding().
-   */
-  public void applicationCreateMethodBindingNPETest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationCreateMethodBindingNPETest");
-    invoke();
-  }
-
-  /**
-   * @testName: applicationCreateMethodBindingRSETest
-   * @assertion_ids: JSF:JAVADOC:60
-   * @test_Strategy: Validate createMethodBinding() throws a
-   *                 ReferenceSyntaxException if an invalid method reference is
-   *                 provided.
-   */
-  public void applicationCreateMethodBindingRSETest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "applicationCreateMethodBindingRSETest");
     invoke();
   }
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ echo "ANT_HOME $ANT_HOME"
 echo "PATH $PATH"
 echo "TCK_HOME $TCK_HOME"
 
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "$GLASSFISH_BUNDLE_URL" ]; then
   wget http://<host>/latest-glassfish.zip
 else
@@ -40,9 +40,9 @@ fi
 unzip latest-glassfish.zip
 
 # Do we really need this ?
-chmod -R 777 $TCK_HOME/glassfish6
+chmod -R 777 $TCK_HOME/glassfish7
 
-export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish6/glassfish/modules/endorsed \
+export ANT_OPTS="-Djava.endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed \
                  -Djavax.xml.accessExternalStylesheet=all \
                  -Djavax.xml.accessExternalSchema=all \
                  -Djavax.xml.accessExternalDTD=file,http $ANT_OPTS"

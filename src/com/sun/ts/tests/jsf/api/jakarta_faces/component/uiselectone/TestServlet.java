@@ -38,12 +38,15 @@ import jakarta.faces.component.UISelectOne;
 import jakarta.faces.component.UIViewRoot;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.el.ValueBinding;
+import jakarta.el.MethodExpression;
+import jakarta.el.ValueExpression;
+import jakarta.el.ELContext;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.faces.validator.MethodExpressionValidator;
+
 
 public class TestServlet
     extends com.sun.ts.tests.jsf.api.jakarta_faces.component.uiinput.TestServlet {
@@ -108,10 +111,12 @@ public class TestServlet
     input.addValidator(validator1);
     request.setAttribute("TCKValidator", validator2);
 
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.TCKValidator.validate}",
-        new Class[] { FacesContext.class, UIComponent.class, Object.class });
-    input.setValidator(binding);
+    ELContext context2 = context.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
+
+    MethodExpressionValidator validator = new MethodExpressionValidator(binding);
+    input.addValidator(validator);
 
     // Setup the listeners
     TCKValueChangeListener listener = new TCKValueChangeListener("VCL1");
@@ -173,11 +178,13 @@ public class TestServlet
     input.addValidator(validator1);
     request.setAttribute("TCKValidator", validator2);
 
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.TCKValidator.validate}",
-        new Class[] { FacesContext.class, UIComponent.class, Object.class });
 
-    input.setValidator(binding);
+    ELContext context2 = context.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
+
+    MethodExpressionValidator validator = new MethodExpressionValidator(binding);
+    input.addValidator(validator);
 
     // Setup the listeners
     TCKValueChangeListener listener = new TCKValueChangeListener("VCL1");
@@ -247,11 +254,12 @@ public class TestServlet
     input.addValidator(validator1);
     request.setAttribute("TCKValidator", validator2);
 
-    MethodBinding binding = getApplication().createMethodBinding(
-        "#{requestScope.TCKValidator.validate}",
-        new Class[] { FacesContext.class, UIComponent.class, Object.class });
+    ELContext context2 = context.getELContext();
+    MethodExpression binding = getApplication().getExpressionFactory().createMethodExpression(context2,
+    "#{requestScope.TCKValidator.validate}", null, new Class[] { FacesContext.class, UIComponent.class, Object.class });
 
-    input.setValidator(binding);
+    MethodExpressionValidator validator = new MethodExpressionValidator(binding);
+    input.addValidator(validator);
 
     // Setup the listeners
     TCKValueChangeListener listener = new TCKValueChangeListener("VCL1");
@@ -367,9 +375,11 @@ public class TestServlet
 
     // setup value binding
     request.setAttribute("simple", new TestBean());
-    ValueBinding binding = application
-        .createValueBinding("#{requestScope.simple.boolWrapProp}");
-    input.setValueBinding("value", binding);
+
+    ELContext context2 = context.getELContext();
+    ValueExpression binding = getApplication().getExpressionFactory().createValueExpression(context2,
+    "#{requestScope.simple.boolWrapProp}",  Object.class);
+    input.setValueExpression("value", binding);
 
     // run through validation
     input.setSubmittedValue("new");

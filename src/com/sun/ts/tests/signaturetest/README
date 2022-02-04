@@ -54,7 +54,7 @@ source controlled in that directory.  The sig-test.map file should be
 copied to $TS_HOME/bin during the install process for a deliverable.
 
 Additionally, different sig-test.map is created specific to the JDK version.
-sig-test_se8.map for Java SE 8, sig-test_se11.map for Java SE 11.
+sig-test_se11.map for Java SE 11.
 If the JDK specific map file does not exist by default sig-test.map will be used 
 to run the signature tests.
 

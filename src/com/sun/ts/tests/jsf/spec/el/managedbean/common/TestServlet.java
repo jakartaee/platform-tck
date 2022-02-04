@@ -32,7 +32,7 @@ import com.sun.ts.tests.jsf.common.util.JSFTestUtil;
 import jakarta.faces.application.Application;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.el.ValueBinding;
+import jakarta.el.ValueExpression;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -140,9 +140,9 @@ public final class TestServlet extends HttpTCKServlet {
 
     String expression = "#{noScopeBean}";
 
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
-    Object val = binding.getValue(facesContext);
+    Object val = binding.getValue(facesContext.getELContext());
     boolean passed = true;
 
     Map[] scopes = { extContext.getRequestMap(), extContext.getSessionMap(),
@@ -187,10 +187,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -222,10 +222,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -255,10 +255,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -299,10 +299,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -351,10 +351,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -409,10 +409,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -464,10 +464,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{managedPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     ManagedPropertyBean bean = (ManagedPropertyBean) binding
-        .getValue(facesContext);
+        .getValue(facesContext.getELContext());
 
     if (bean == null) {
       out.println(
@@ -540,10 +540,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{noSuchBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     try {
-      binding.getValue(facesContext);
+      binding.getValue(facesContext.getELContext());
       out.println("Test FAILED.  No error condition was raised when "
           + "managed bean was associated with a non-existent class.");
     } catch (Exception e) {
@@ -560,10 +560,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{noZeroArgCtorBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     try {
-      binding.getValue(facesContext);
+      binding.getValue(facesContext.getELContext());
       out.println("Test FAILED.  No error condition was raised when "
           + "managed bean was associated with class containing no"
           + " zero argument constructor.");
@@ -581,10 +581,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{typeConversionErrorBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     try {
-      binding.getValue(facesContext);
+      binding.getValue(facesContext.getELContext());
       out.println("Test FAILED.  No error condition was raised when "
           + "managed propery value cannot be converted to the specified "
           + "type.");
@@ -602,10 +602,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{noSuchPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     try {
-      binding.getValue(facesContext);
+      binding.getValue(facesContext.getELContext());
       out.println("Test FAILED.  No error condition was raised when "
           + "referenced managed property did not exist.");
     } catch (Exception e) {
@@ -622,10 +622,10 @@ public final class TestServlet extends HttpTCKServlet {
     FacesContext facesContext = getFacesContext();
 
     String expression = "#{noPublicPropertyBean}";
-    ValueBinding binding = application.createValueBinding(expression);
+    ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expression, Object.class);
 
     try {
-      binding.getValue(facesContext);
+      binding.getValue(facesContext.getELContext());
       out.println("Test FAILED.  No error condition was raised when "
           + "referenced managed property setter has private method access.");
     } catch (Exception e) {
@@ -645,10 +645,10 @@ public final class TestServlet extends HttpTCKServlet {
 
     boolean passed = true;
     for (int i = 0; i < expressions.length; i++) {
-      ValueBinding binding = application.createValueBinding(expressions[i]);
+      ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),expressions[i], Object.class);
 
       try {
-        binding.getValue(facesContext);
+        binding.getValue(facesContext.getELContext());
         out.println("Test FAILED.  No error condition was raised when "
             + "cyclic references are present between two managed beans.");
         passed = false;
@@ -685,10 +685,10 @@ public final class TestServlet extends HttpTCKServlet {
     boolean passed = true;
     for (int i = 0; i < negExpressions.length; i++) {
       System.out.println("NEG [" + negExpressions[i] + ']');
-      ValueBinding binding = application.createValueBinding(negExpressions[i]);
+      ValueExpression binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(),negExpressions[i], Object.class);
 
       try {
-        binding.getValue(facesContext);
+        binding.getValue(facesContext.getELContext());
         out.println("Test FAILED.  [" + negExpressions[i] + "] No error "
             + "condition was raised when managed bean contained a "
             + "reference to another bean with a potentially shorter "

@@ -930,7 +930,7 @@
                                 <comment>the SOAPMessage object to be sent</comment>
                             </parameter>
                             <parameter name="to" package="java.lang" type="Object">
-                                <comment>an Object that identifies          where the message should be sent. It is required to          support Objects of type          java.lang.String,          java.net.URL, and when JAXM is present          javax.xml.messaging.URLEndpoint</comment>
+                                <comment>an Object that identifies          where the message should be sent. It is required to          support Objects of type          java.lang.String,          java.net.URL</comment>
                             </parameter>
                         </parameters>
                         <returns package="javax.xml.soap" type="SOAPMessage">

@@ -1626,9 +1626,20 @@ public class WSClient extends WebSocketCommonClient {
           .build();
 
       messageLatch = new CountDownLatch(2);
-      Session session = clientContainer.connectToServer(TCKBasicEndpoint.class,
-          config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
-              + "/TCKTestServer?" + querystring));
+      
+      StringBuilder uriBuilder = new StringBuilder();
+      uriBuilder.append("ws://");
+      uriBuilder.append(_hostname);
+      if (_port != 80) {
+        uriBuilder.append(':');
+        uriBuilder.append(_port);
+      }
+      uriBuilder.append(CONTEXT_ROOT);
+      uriBuilder.append("/TCKTestServer?");
+      uriBuilder.append(querystring);
+      String uri = uriBuilder.toString();
+      
+      Session session = clientContainer.connectToServer(TCKBasicEndpoint.class, config, new URI(uri));
       messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
       messageLatch = new CountDownLatch(4);
@@ -1639,7 +1650,7 @@ public class WSClient extends WebSocketCommonClient {
       passed = MessageValidator.checkSearchStrings("TCKBasicEndpoint OnOpen|"
           + "TCKTestServer opened|" + "session from Server is open=TRUE|"
           + "TCKTestServer received String: testName=" + testName + "|"
-          + "TCKTestServer: getRequestURI returned=/websocket_servercontainer_addendpoint_web/TCKTestServer",
+          + "TCKTestServer: getRequestURI returned=" + uri,
           receivedMessageString.toString());
     } catch (Exception e) {
       e.printStackTrace();

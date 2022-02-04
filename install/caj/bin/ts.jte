@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,15 +38,6 @@
 # @local.classes  should contain all Vendor specific jars/classes
 ###########################################################################
 local.classes=
-
-###########################################################################
-# @endorsed.dirs  using JavaSE 7 or above and you provide newer versions
-#                 of technologies than those contained in Java SE 7, verify
-#                 that the property endorsed.dirs is set to the location of
-#                 the VI api jars for those technologies you wish to
-#                 overrride.
-###########################################################################
-endorsed.dirs=
 
 ####################################################################
 # The jars/classes for the TS harness/javatest and the test classes
@@ -178,7 +169,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 		windir=${windir} \
 		SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
-		-Djava.endorsed.dirs="${endorsed.dirs}" \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
@@ -203,6 +193,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -210,7 +203,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${local.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${local.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ###############################################################
 ## This command allows the test clients to be run in

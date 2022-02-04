@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -350,5 +350,47 @@ public class URLClient extends EETest {
 
     if (!pass)
       throw new Fault("createNameTest2 failed");
+  }
+
+    /*
+   * @testName: createNameTest3
+   *
+   * @assertion_ids: SAAJ:JAVADOC:329;
+   *
+   * @test_Strategy: Call SOAPEnvelope.createName(String, String).
+   *
+   * Description: Creates a new Name object initialized with the given local
+   * name, prefix, and URI.
+   *
+   */
+  public void createNameTest3() throws Fault {
+    boolean pass = true;
+    try {
+      TestUtil.logMsg("createNameTest3: create a Name object constructor2");
+      TestUtil.logMsg("Creating url to test servlet.....");
+      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+      TestUtil.logMsg(url.toString());
+      for (int i = 0; i < 2; i++) {
+        TestUtil.logMsg("Sending post request to test servlet.....");
+        props.setProperty("TESTNAME", "createNameTest3");
+        if (i == 0)
+          props.setProperty("SOAPVERSION", "soap11");
+        else
+          props.setProperty("SOAPVERSION", "soap12");
+        urlConn = TestUtil.sendPostData(props, url);
+        TestUtil.logMsg("Getting response from test servlet.....");
+        Properties resProps = TestUtil.getResponseProperties(urlConn);
+        if (!resProps.getProperty("TESTRESULT").equals("pass"))
+          pass = false;
+      }
+
+    } catch (Exception e) {
+      TestUtil.logErr("Caught exception: " + e.getMessage());
+      e.printStackTrace();
+      throw new Fault("createNameTest3 failed", e);
+    }
+
+    if (!pass)
+      throw new Fault("createNameTest3 failed");
   }
 }

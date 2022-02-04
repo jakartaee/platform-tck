@@ -283,9 +283,6 @@ public class TSTestFinder extends TagTestFinder {
       cs.init(new BufferedReader(new FileReader(file)));
       if (fastScan)
         cs.setFastScan(true);
-
-      sInteropDirections = InteropTestManager
-          .getInteropDirections(file.getPath());
       Map propTags = new Hashtable();
       String comment;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -180,31 +180,31 @@ public class Client extends EETest {
       System.setProperty("provider.configuration.file", providerConfigFileLoc);
       System.setProperty("logical.hostname.servlet", appContextHostname);
 
-      providerConfigurationFileLocation = props
-          .getProperty("provider.configuration.file");
-      TestUtil.logMsg("TestSuite Provider ConfigFile = "
-          + providerConfigurationFileLocation);
+      providerConfigurationFileLocation = props.getProperty("provider.configuration.file");
+      TestUtil.logMsg("TestSuite Provider ConfigFile = " + providerConfigurationFileLocation);
 
-      vendorAuthConfigFactoryClass = props
-          .getProperty("vendor.authconfig.factory");
-      TestUtil.logMsg(
-          "Vendor AuthConfigFactory class = " + vendorAuthConfigFactoryClass);
+      vendorAuthConfigFactoryClass = props.getProperty("vendor.authconfig.factory");
+      TestUtil.logMsg("Vendor AuthConfigFactory class = " + vendorAuthConfigFactoryClass);
 
       if (!initialized) {
         // create LogFileProcessor
         logProcessor = new LogFileProcessor(props);
 
+        // LogProcessor can take only the path without the file name - it will ad to it the default log file
+        // the init logger in Servlet or provider does the same so let's check more carefuly
+        String strFilePathAndName = "";
+        if (logFileLocation.indexOf(com.sun.ts.tests.jaspic.tssv.util.JASPICData.DEFAULT_LOG_FILE) <= 0) {
+          strFilePathAndName = logFileLocation + "/" + com.sun.ts.tests.jaspic.tssv.util.JASPICData.DEFAULT_LOG_FILE;
+        }
+
         // if no TSSVLog.txt file exists, then we want to do something that
         // cause one to be generated.
-        File logfile = new File(logFileLocation);
+        File logfile = new File(strFilePathAndName);
         if (!logfile.exists()) {
-          TestUtil.logMsg(
-              "setup(): no TSSVLog.txt so access url to indirectly create one");
-          String theContext = contextPath + "/"
-              + JASPICData.AUTHSTAT_MAND_SUCCESS;
+          TestUtil.logMsg("setup(): no TSSVLog.txt so access url to indirectly create one");
+          String theContext = contextPath + "/" + JASPICData.AUTHSTAT_MAND_SUCCESS;
           int statusCode = invokeServlet(theContext, "POST");
-          TestUtil.logMsg(
-              "setup(): invokeServlet() returned statusCode =" + statusCode);
+          TestUtil.logMsg("setup(): invokeServlet() returned statusCode =" + statusCode);
         }
 
         // retrieve logs based on application Name
@@ -245,14 +245,14 @@ public class Client extends EETest {
    *                 principal values explicitly being set. Note: we need to
    *                 specifically hardwire the particular context used in this
    *                 test to NOT have any principals set on the server side.
-   * 
+   *
    */
   public void CheckSecureRespForOptionalAuth() throws Fault {
     String strHDR = "HttpServlet profile with servletName=/";
     String strMsg1 = strHDR
-        + "OptionalAuthen returning  AuthStatus=AuthStatus.SUCCESS";
+                     + "OptionalAuthen returning  AuthStatus=AuthStatus.SUCCESS";
     String strMsg2 = "secureResponse called for layer=HttpServlet for requestURI="
-        + contextPath + "/OptionalAuthen";
+                     + contextPath + "/OptionalAuthen";
     String tempArg1[] = { strMsg1 };
     String tempArg2[] = { strMsg2 };
 
@@ -320,9 +320,9 @@ public class Client extends EETest {
     String strHDR = "HttpServlet profile with servletName=/";
     String theContext = contextPath + "/" + JASPICData.AUTHSTAT_MAND_SUCCESS;
     String strMsg1 = strHDR + JASPICData.AUTHSTAT_MAND_SUCCESS
-        + " returning  AuthStatus=AuthStatus.SUCCESS";
+                     + " returning  AuthStatus=AuthStatus.SUCCESS";
     String strMsg2 = "secureResponse called for layer=HttpServlet for requestURI="
-        + theContext;
+                     + theContext;
     String strMsg3 = "In HttpServlet : ServerRuntime CallerPrincipalCallback";
     strMsg3 += " called for profile=HttpServlet for servletPath=" + theContext;
     String tempArg1[] = { strMsg1, strMsg2, strMsg3 };
@@ -370,7 +370,7 @@ public class Client extends EETest {
     String theContext = contextPath + "/" + JASPICData.AUTHSTAT_MAND_SUCCESS;
 
     String str = invokeServletAndGetResponse(theContext, "POST",
-        "testSecRespCalledAfterSvcInvoc");
+                                             "testSecRespCalledAfterSvcInvoc");
 
     TestUtil.logMsg("testSecRespCalledAfterSvcInvoc : str = " + str);
 
@@ -433,7 +433,7 @@ public class Client extends EETest {
    * @testName: VerifyRequestDispatchedProperly
    *
    * @assertion_ids: JASPIC:SPEC:317; JASPIC:JAVADOC:27; JASPIC:JAVADOC:28;
-   * 
+   *
    *
    * @test_Strategy: 1. issue request that has mandatory auth and verify it gets
    *                 authorized. 2. issue a request that is mandatory but NOT
@@ -455,7 +455,7 @@ public class Client extends EETest {
     // we will assume that a proper response code indicates success
     // as we are using correct creds
     int statusCode = invokeServlet(theContext, "POST",
-        "VerifyRequestDispatchedProperly");
+                                   "VerifyRequestDispatchedProperly");
     if (statusCode != 200) {
       throw new Fault("VerifyRequestDispatchedProperly : FAILED");
     }
@@ -472,7 +472,7 @@ public class Client extends EETest {
 
     // now verify that the MPR went into the secureResponse
     String strMsg1 = "secureResponse called for layer=HttpServlet for requestURI="
-        + theContext;
+                     + theContext;
     String tempArg1[] = { strMsg1 };
     verified = logProcessor.verifyLogContains(tempArg1);
     if (!verified) {
@@ -509,11 +509,11 @@ public class Client extends EETest {
     String strHDR = "HttpServlet profile with servletName=/";
     String theContext = contextPath + "/" + JASPICData.AUTHSTAT_THROW_EX_ND;
     String strMsg1 = strHDR + JASPICData.AUTHSTAT_THROW_EX_ND
-        + " returning  AuthStatus=AuthException";
+                     + " returning  AuthStatus=AuthException";
     String tempArg1[] = { strMsg1 };
 
     String strMsg2 = "secureResponse called for layer=HttpServlet for requestURI="
-        + contextPath + "/" + JASPICData.AUTHSTAT_THROW_EX_ND;
+                     + contextPath + "/" + JASPICData.AUTHSTAT_THROW_EX_ND;
     String tempArg2[] = { strMsg2 };
 
     checkAuthStatus(theContext, "AuthException", "POST", false);
@@ -692,7 +692,7 @@ public class Client extends EETest {
     strMsg1 = strMsg1 + " AuthContextId=/ModTestServlet POST";
     String strMsg2 = "TSServerAuthConfig.getAuthContext:  layer=HttpServlet";
     strMsg2 = strMsg2 + " : appContext=" + appContext
-        + " operationId=/ModTestServlet POST";
+              + " operationId=/ModTestServlet POST";
     String tempArgs[] = { strMsg1, strMsg2 };
 
     invokeServlet(servletPath, "POST", "CheckAuthContextId");
@@ -739,7 +739,7 @@ public class Client extends EETest {
     strMsg1 = strMsg1 + " AuthContextId=/ModTestServlet GET";
     String strMsg2 = "TSServerAuthConfig.getAuthContext:  layer=HttpServlet";
     strMsg2 = strMsg2 + " : appContext=" + appContext
-        + " operationId=/ModTestServlet GET";
+              + " operationId=/ModTestServlet GET";
     String tempArgs[] = { strMsg1, strMsg2 };
 
     invokeServlet(servletPath, "GET", "CheckAuthContextIdUsingGet");
@@ -768,7 +768,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->AuthConfigFactoryRegistration() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "AuthConfigFactoryRegistration");
+                                             "AuthConfigFactoryRegistration");
     TestUtil.logMsg("AuthConfigFactoryRegistration : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -797,7 +797,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFInMemoryNotifyOnUnReg() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFInMemoryNotifyOnUnReg");
+                                             "ACFInMemoryNotifyOnUnReg");
     TestUtil.logMsg("ACFInMemoryNotifyOnUnReg : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -826,7 +826,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFPersistentNotifyOnUnReg() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFPersistentNotifyOnUnReg");
+                                             "ACFPersistentNotifyOnUnReg");
     TestUtil.logMsg("ACFPersistentNotifyOnUnReg : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -855,7 +855,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFInMemoryPrecedenceRules() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFInMemoryPrecedenceRules");
+                                             "ACFInMemoryPrecedenceRules");
     TestUtil.logMsg("ACFInMemoryPrecedenceRules : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -884,7 +884,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFPersistentPrecedenceRules() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFPersistentPrecedenceRules");
+                                             "ACFPersistentPrecedenceRules");
     TestUtil.logMsg("ACFPersistentPrecedenceRules : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -911,7 +911,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFGetRegistrationContext() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFGetRegistrationContext");
+                                             "ACFGetRegistrationContext");
     TestUtil.logMsg("ACFGetRegistrationContext : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -934,13 +934,13 @@ public class Client extends EETest {
    *                 returns null hint: this must return empty array even if
    *                 unrecognized acp. (this requirement described in javadoc
    *                 for api)
-   * 
+   *
    */
   public void ACFGetRegistrationIDs() throws Fault {
     String strMsg1 = "ACFTestServlet->ACFGetRegistrationIDs() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFGetRegistrationIDs");
+                                             "ACFGetRegistrationIDs");
     TestUtil.logMsg("ACFGetRegistrationIDs : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -968,7 +968,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFRemoveRegistration() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFRemoveRegistration");
+                                             "ACFRemoveRegistration");
     TestUtil.logMsg("ACFRemoveRegistration : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -996,7 +996,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFDetachListener() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFDetachListener");
+                                             "ACFDetachListener");
     TestUtil.logMsg("ACFDetachListener : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1024,7 +1024,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFGetFactory() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFGetFactory");
+                                             "ACFGetFactory");
     TestUtil.logMsg("ACFGetFactory : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1054,7 +1054,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->testACFComesFromSecFile() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "testACFComesFromSecFile");
+                                             "testACFComesFromSecFile");
     TestUtil.logMsg("testACFComesFromSecFile : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1094,7 +1094,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFPersistentRegisterOnlyOneACP() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFPersistentRegisterOnlyOneACP");
+                                             "ACFPersistentRegisterOnlyOneACP");
     TestUtil.logMsg("ACFPersistentRegisterOnlyOneACP : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1133,7 +1133,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFInMemoryRegisterOnlyOneACP() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFInMemoryRegisterOnlyOneACP");
+                                             "ACFInMemoryRegisterOnlyOneACP");
     TestUtil.logMsg("ACFInMemoryRegisterOnlyOneACP : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1153,26 +1153,26 @@ public class Client extends EETest {
    * @assertion_ids: JASPIC:SPEC:108; JASPIC:SPEC:311;
    *
    * @test_Strategy:
-   * 
+   *
    *                 From JASPIC Spec section 3.8.3.5: When a ServerAuthModule
    *                 returns a wrapped message in MessageInfo, or unwraps a
    *                 message in MessageInfo, the message processing runtime must
    *                 ensure that the HttpServletRequest and HttpServletResponse
    *                 objects established by the ServerAuthModule are used in
    *                 downstream processing.
-   * 
+   *
    *                 This test uses a Server Authentication Module(SAM) that
    *                 wraps and unwraps the HttpRequest as specified by the
    *                 JASPIC spec and expects the runtime to handle the Wrapped
    *                 HttpRequest.
-   * 
+   *
    */
   public void testRequestWrapper() throws Fault {
     String strMsg1 = "isRequestWrapped = true";
     String strMsg2 = "Incorrect request type";
 
     String str = invokeServletAndGetResponse(wrapperServletPath, "POST",
-        "testRequestWrapper");
+                                             "testRequestWrapper");
     TestUtil.logMsg("testRequestWrapper response msg = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1206,7 +1206,7 @@ public class Client extends EETest {
    *                 ensure that the HttpServletRequest and HttpServletResponse
    *                 objects established by the ServerAuthModule are used in
    *                 downstream processing.
-   * 
+   *
    *                 This test uses a Server Authentication Module(SAM) that
    *                 wraps and unwraps the HttpResponse as specified by the
    *                 JASPIC spec and expects the runtime to handle the Wrapped
@@ -1217,7 +1217,7 @@ public class Client extends EETest {
     String strMsg2 = "Incorrect response type";
 
     String str = invokeServletAndGetResponse(wrapperServletPath, "POST",
-        "testResponseWrapper");
+                                             "testResponseWrapper");
     TestUtil.logMsg("testResponseWrapper response msg = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1263,7 +1263,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFUnregisterACP() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFUnregisterACP");
+                                             "ACFUnregisterACP");
     TestUtil.logMsg("ACFUnregisterACP : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1402,7 +1402,7 @@ public class Client extends EETest {
     // servlet profile TSServerAuthModule.validateRequest() method
     // which will perform checks to see which CBH's are supported.
     String str = invokeServletAndGetResponse(allAccessServletPath, "POST",
-        "testGPCWithNoRequiredAuth");
+                                             "testGPCWithNoRequiredAuth");
 
     boolean verified = logProcessor.verifyLogContains(tempArgs);
     if (!verified) {
@@ -1430,7 +1430,7 @@ public class Client extends EETest {
    *                 the check that the validateRequest ensures there was a
    *                 return value set for calls to
    *                 HttpServletRequest.getRemoteUser()
-   * 
+   *
    */
   public void testGPCIsUserInRole() throws Fault {
 
@@ -1448,7 +1448,7 @@ public class Client extends EETest {
     // which will perform checks to see that GPC is supported and
     // that the IsUserInRole() is properly populated.
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testGPCIsUserInRole");
+                                             "testGPCIsUserInRole");
 
     // First, lets make sure CBH's were actually called
     boolean verified = logProcessor.verifyLogContains(tempArgs);
@@ -1460,7 +1460,7 @@ public class Client extends EETest {
     if (!str.contains(strChkServlet)) {
       String msg = "testGPCIsUserInRole did not have proper credential values returned in ";
       msg += servletPath
-          + ".  this could be due to CBH's not properly doing authentication.";
+             + ".  this could be due to CBH's not properly doing authentication.";
       TestUtil.logMsg(msg);
       throw new Fault("testGPCIsUserInRole : FAILED");
     }
@@ -1486,7 +1486,7 @@ public class Client extends EETest {
    *                 the check that the validateRequest ensures there was a
    *                 return value set for calls to
    *                 HttpServletRequest.getRemoteUser()
-   * 
+   *
    */
   public void testGPCGetRemoteUser() throws Fault {
 
@@ -1504,7 +1504,7 @@ public class Client extends EETest {
     // which will perform checks to see that GPC is supported and
     // that the GetRemoteUser() is properly populated.
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testGPCGetRemoteUser");
+                                             "testGPCGetRemoteUser");
 
     // First, lets make sure CBH's were actually called
     boolean verified = logProcessor.verifyLogContains(tempArgs);
@@ -1516,7 +1516,7 @@ public class Client extends EETest {
     if (!str.contains(strChkServlet)) {
       String msg = "testGPCGetRemoteUser did not have proper credential values returned in ";
       msg += servletPath
-          + ".  this could be due to CBH's not properly doing authentication.";
+             + ".  this could be due to CBH's not properly doing authentication.";
       TestUtil.logMsg(msg);
       throw new Fault("testGPCGetRemoteUser : FAILED");
     }
@@ -1542,7 +1542,7 @@ public class Client extends EETest {
    *                 the check that the validateRequest ensures there was a
    *                 return value set for calls to
    *                 HttpServletRequest.getUserPrincipal()
-   * 
+   *
    */
   public void testGPCGetUserPrincipal() throws Fault {
 
@@ -1560,7 +1560,7 @@ public class Client extends EETest {
     // which will perform checks to see that GPC is supported and
     // that the GetUserPrincipal() is properly populated.
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testGPCGetUserPrincipal");
+                                             "testGPCGetUserPrincipal");
 
     // First, lets make sure CBH's were actually called
     boolean verified = logProcessor.verifyLogContains(tempArgs);
@@ -1572,7 +1572,7 @@ public class Client extends EETest {
     if (!str.contains(strChkServlet)) {
       String msg = "testGPCGetUserPrincipal did not have proper credential values returned in ";
       msg += servletPath
-          + ".  this could be due to CBH's not properly doing authentication.";
+             + ".  this could be due to CBH's not properly doing authentication.";
       TestUtil.logMsg(msg);
       throw new Fault("testGPCGetUserPrincipal : FAILED");
     }
@@ -1598,7 +1598,7 @@ public class Client extends EETest {
    *                 the check that the validateRequest ensures there was a
    *                 return value set for calls to
    *                 HttpServletRequest.getAuthType()
-   * 
+   *
    */
   public void testGPCGetAuthType() throws Fault {
 
@@ -1616,7 +1616,7 @@ public class Client extends EETest {
     // which will perform checks to see that GPC is supported and
     // that the GetAuthType() is properly populated.
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testGPCGetAuthType");
+                                             "testGPCGetAuthType");
 
     // First, lets make sure CBH's were actually called
     boolean verified = logProcessor.verifyLogContains(tempArgs);
@@ -1631,7 +1631,7 @@ public class Client extends EETest {
     if (!str.contains(strChkServlet)) {
       String msg = "testGPCGetAuthType did not have proper credential values returned in ";
       msg += servletPath
-          + ".  this could be due to CBH's not properly doing authentication.";
+             + ".  this could be due to CBH's not properly doing authentication.";
       TestUtil.logMsg(msg);
       throw new Fault("testGPCGetAuthType : FAILED");
     }
@@ -1703,7 +1703,7 @@ public class Client extends EETest {
     String strMsg1 = "ModTestServlet->testAuthenResultsOnHttpServlet() passed";
 
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testAuthenResultsOnHttpServlet");
+                                             "testAuthenResultsOnHttpServlet");
     TestUtil.logMsg("testAuthenResultsOnHttpServlet : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -1737,7 +1737,7 @@ public class Client extends EETest {
    *                 getRemoteUser correspond, ..." Using the above spec
    *                 reference COMBINED with the following Servlet spec
    *                 reference, we see that:
-   * 
+   *
    *                 (Using Servlet spec v3.1, section 13.3 - it states: "The
    *                 getRemoteUser method returns the name of the remote user"
    *                 AND "Calling the getName() method on the Principal returned
@@ -1752,7 +1752,7 @@ public class Client extends EETest {
     String strMsg1 = "ModTestServlet->testRemoteUserCorrespondsToPrin() passed";
 
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testRemoteUserCorrespondsToPrin");
+                                             "testRemoteUserCorrespondsToPrin");
 
     TestUtil.logMsg("testRemoteUserCorrespondsToPrin : str = " + str);
 
@@ -1786,7 +1786,7 @@ public class Client extends EETest {
     String strMsg1 = "ModTestServlet->testAuthenIsUserInRole() passed";
 
     String str = invokeServletAndGetResponse(servletPath, "POST",
-        "testAuthenIsUserInRole");
+                                             "testAuthenIsUserInRole");
 
     TestUtil.logMsg("testAuthenIsUserInRole : str = " + str);
 
@@ -1810,7 +1810,7 @@ public class Client extends EETest {
    *                 is returned from validateRequest, we should be able to
    *                 verify that we can properly login and invoke callback
    *                 handlers.
-   * 
+   *
    *                 This test ensures that we can authN when we are not already
    *                 pre-logged in. This will call a servlet that is open to
    *                 all, (thus no security constraints) and it will invoke the
@@ -1830,12 +1830,12 @@ public class Client extends EETest {
     // call a servlet that is open to all and requires NO authN to access
     // validate we were not pre-authenticated and if so, force logout
     String str = invokeServletAndGetResponse(allAccessServletPath, "POST",
-        "TestAuthenAfterLogout");
+                                             "TestAuthenAfterLogout");
 
     // now make a call to a servlet that requires mandatory authN and
     // make sure we still successfully support callbacks
     str = invokeServletAndGetResponse(servletPath, "POST",
-        "testAuthenAfterLogout");
+                                      "testAuthenAfterLogout");
 
     TestUtil.logMsg("testAuthenAfterLogout : str = " + str);
     int ii = str.indexOf(strMsg1);
@@ -1852,7 +1852,7 @@ public class Client extends EETest {
     TestUtil.logMsg("validating CPC worked and logfile contains: " + strMsg2);
     TestUtil.logMsg(
         "validating we were not prelogged in and that logfile contains: "
-            + strMsg3);
+        + strMsg3);
     boolean verified = logProcessor.verifyLogContains(tempArg1);
     if (!verified) {
       throw new Fault("testAuthenAfterLogout : FAILED");
@@ -1887,16 +1887,16 @@ public class Client extends EETest {
 
     // strings that MUST exist within the TSSVLog.txt file
     String strMsg1 = "TSServerAuthContext.validateRequest called for layer=HttpServlet for requestURI="
-        + wrapperServletPath;
+                     + wrapperServletPath;
     String strMsg2 = "WrapperServlet.doTests() content processed for requestURI";
     String strMsg3 = "secureResponse called for layer=HttpServlet for requestURI="
-        + wrapperServletPath;
+                     + wrapperServletPath;
     String theArgs[] = { strMsg1, strMsg2, strMsg3 };
 
     TestUtil.logMsg("Enterred verifyRuntimesCallOrder()");
 
     String str = invokeServletAndGetResponse(wrapperServletPath, "POST",
-        "testRequestWrapper");
+                                             "testRequestWrapper");
     TestUtil.logMsg("TestRequestWrapper response msg = " + str);
 
     boolean verified = logProcessor.verifyLogContains(theArgs, true);
@@ -1924,7 +1924,7 @@ public class Client extends EETest {
    *
    *                 3. Use FetchLog servlet to read the server side log to
    *                 verify no invalid scenarios were encountered.
-   * 
+   *
    *
    *                 Description This is a negative test case that is used to
    *                 assist in verifying several different assertions. The
@@ -2016,7 +2016,7 @@ public class Client extends EETest {
     String strMsg1 = "validateRequest: MessageInfo.getRequestMessage() is of type ";
     String strMsg2 = "validateRequest: MessageInfo.getResponseMessage() is of type ";
     String tempArgs[] = { strMsg1 + "jakarta.servlet.http.HttpServletRequest",
-        strMsg2 + "jakarta.servlet.http.HttpServletResponse" };
+                          strMsg2 + "jakarta.servlet.http.HttpServletResponse" };
 
     // this should work for servlets and static pages
     // invoking a static should cause the validateRequest to be called
@@ -2044,7 +2044,7 @@ public class Client extends EETest {
    *                 2. Use FetchLog servlet to read the server side log to
    *                 verify we have more than 1 target policy AND that
    *                 ProtectionPolicy.getID() returns a proper value.
-   * 
+   *
    *
    *                 Description Calling getTargetPolicies on the request
    *                 MessagePolicy must return an array containing at least one
@@ -2107,7 +2107,7 @@ public class Client extends EETest {
     // invoking a servlet should cause the validateRequest to be called
     // and here we are invoking a url that has no auth-constraints
     invokeServlet(noConstraintPath, "POST",
-        "checkSACValidateRequestWithVaryingAccess");
+                  "checkSACValidateRequestWithVaryingAccess");
 
     boolean verified = logProcessor.verifyLogContains(tempArg1);
     if (!verified) {
@@ -2117,7 +2117,7 @@ public class Client extends EETest {
     // invoking a servlet should cause the validateRequest to be called
     // and here we are invoking a url that has auth-constraints
     invokeServlet(servletPath, "POST",
-        "checkSACValidateRequestWithVaryingAccess");
+                  "checkSACValidateRequestWithVaryingAccess");
     verified = logProcessor.verifyLogContains(tempArg2);
     if (!verified) {
       throw new Fault("checkSACValidateRequestWithVaryingAccess : FAILED");
@@ -2148,7 +2148,7 @@ public class Client extends EETest {
    *                 Description Verify that the MessageInfo object passed into
    *                 the validateRequest() method is the same MessageInfo object
    *                 that is passed into secureResponse().
-   * 
+   *
    *
    */
   public void VerifyMessageInfoObjects() throws Fault {
@@ -2250,7 +2250,7 @@ public class Client extends EETest {
    *
    * @assertion_ids: JASPIC:SPEC:306; JASPIC:SPEC:300; JASPIC:JAVADOC:73;
    *                 JASPIC:SPEC:92; JASPIC:SPEC:24; JASPIC:SPEC:103;
-   * 
+   *
    *
    * @test_Strategy: 1. invoke servlet that requires authentication 2. verify
    *                 that the MesageInfo object passed into getAuthContextID,
@@ -2302,7 +2302,7 @@ public class Client extends EETest {
     if (bIs115Compatible) {
       String HDR = "layer=HttpServlet appContext=" + appContext;
       String str1 = HDR
-          + " Key=jakarta.security.jacc.PolicyContext does exist thus 115 compatible";
+                    + " Key=jakarta.security.jacc.PolicyContext does exist thus 115 compatible";
       String arg1[] = { str1 };
 
       invokeServlet(servletPath, "POST", "CheckMsgInfoKey");
@@ -2322,7 +2322,7 @@ public class Client extends EETest {
       // CPC)
       String strMsg1 = "In HttpServlet : ServerRuntime CallerPrincipalCallback";
       strMsg1 += " called for profile=HttpServlet for servletPath="
-          + servletPath;
+                 + servletPath;
       strMsg1 += " subject=non-null principal set = j2ee";
       String tempArg1[] = { strMsg1 };
       bVerified = logProcessor.verifyLogContains(tempArg1);
@@ -2363,21 +2363,21 @@ public class Client extends EETest {
     String layer = "HttpServlet";
     // String appContext = "localhost " + contextPath;
     String acfMsg = "getConfigProvider called for Layer : " + layer
-        + " and AppContext :" + appContext;
+                    + " and AppContext :" + appContext;
     String sacMsg = "TSServerAuthConfig called for layer=" + layer
-        + " : appContext=" + appContext;
+                    + " : appContext=" + appContext;
 
     // verify TSAuthConfigProviderServlet was registered properly
     String tempArgs[] = { acfMsg };
     boolean verified = logProcessor.verifyLogContains(tempArgs);
     if (!verified) {
       TestUtil.logMsg(MNAME
-          + "Can't verify TSAuthConfigProviderServlet registered properly");
+                      + "Can't verify TSAuthConfigProviderServlet registered properly");
       TestUtil.logMsg(MNAME + "Could not successfully find: " + acfMsg);
       throw new Fault(MNAME + "FAILED");
     } else {
       TestUtil.logMsg(MNAME
-          + "Verified TSAuthConfigProviderServlet was registered properly");
+                      + "Verified TSAuthConfigProviderServlet was registered properly");
     }
 
     // verify MPR used same appContextId for the ACP and ServerAuthConfig
@@ -2385,7 +2385,7 @@ public class Client extends EETest {
     verified = logProcessor.verifyLogContains(tempArgs2);
     if (!verified) {
       TestUtil.logMsg(MNAME
-          + "Can't verify MPR used same appContextId for the ACP and SAC");
+                      + "Can't verify MPR used same appContextId for the ACP and SAC");
       TestUtil.logMsg(MNAME + "Could not successfully find: " + sacMsg);
       throw new Fault(MNAME + "FAILED");
     } else {
@@ -2425,7 +2425,7 @@ public class Client extends EETest {
     String MNAME = "CheckACPConfigObjAppContext : ";
     String layer = "HttpServlet";
     String sacMsg = "TSAuthConfigProviderServlet.getServerAuthConfig"
-        + " : layer=" + layer + " : appContext=" + appContext;
+                    + " : layer=" + layer + " : appContext=" + appContext;
 
     // make sure everything we need is properly setup
     invokeServlet(servletPath, "POST", "CheckACPConfigObjAppContext");
@@ -2482,10 +2482,10 @@ public class Client extends EETest {
     String MNAME = "CheckACPContextObjAppContext : ";
     String layer = "HttpServlet";
     String sacMsg = "TSServerAuthConfig called for layer=" + layer
-        + " : appContext=" + appContext;
+                    + " : appContext=" + appContext;
 
     String saConfigMsg = "TSServerAuthContext called for messageLayer=" + layer
-        + " : appContext=" + appContext;
+                         + " : appContext=" + appContext;
 
     // make sure everything we need is properly setup
     invokeServlet(servletPath, "POST", "CheckACPContextObjAppContext");
@@ -2519,7 +2519,7 @@ public class Client extends EETest {
     verified = logProcessor.verifyLogContains(tempArgs3);
     if (!verified) {
       TestUtil.logMsg(MNAME
-          + "Could not verify same context info used to init auth context.");
+                      + "Could not verify same context info used to init auth context.");
       TestUtil.logMsg(MNAME + "Could not successfully find: " + saConfigMsg);
       throw new Fault(MNAME + "FAILED");
     } else {
@@ -2555,7 +2555,7 @@ public class Client extends EETest {
     String MNAME = "CheckMPRCallsGetAuthContext : ";
     String layer = "HttpServlet";
     String saConfigMsg = "TSServerAuthConfig.getAuthContext:  layer=" + layer
-        + " : appContext=" + appContext;
+                         + " : appContext=" + appContext;
 
     // make sure everything we need is properly setup
     invokeServlet(servletPath, "POST", "CheckMPRCallsGetAuthContext");
@@ -2715,7 +2715,7 @@ public class Client extends EETest {
   /*
    * This is used to verify assertion JASPIC:SPEC:323 which states in spec
    * section 3.8.4 (para 2)
-   * 
+   *
    */
   public void checkForinvalidMsgInfoMapKey() throws Fault {
     String strMsg1 = "ERROR - invalid setting for jakarta.servlet.http.authType = null";
@@ -2736,7 +2736,7 @@ public class Client extends EETest {
    * returned by calling getAuthType on the HttpServletRequest is consistent in
    * terms of being null or non-null with the value returned by
    * getUserPrincipal."
-   * 
+   *
    */
   public void checkForAuthenMisMatch() throws Fault {
     String strMsg1 = "ERROR - HttpServletRequest authentication result mis-match with getAuthType() and getRemoteUser()";
@@ -2831,10 +2831,10 @@ public class Client extends EETest {
    * This also tests assertion JASPIC:SPEC:313 which states that along with the
    * above requirments if a non-null serviceSubject is used in this call, it
    * must not be read-only. (see spec section 2.1.5.2).
-   * 
+   *
    * Also tested are assertions JASPIC:SPEC:61, JASPIC:SPEC:314 and
    * JASPIC:SPEC:313.
-   * 
+   *
    * We look for occurances of strings that indicate we have a serviceSubject
    * mismatch in our runtime - which we should not have.
    */
@@ -2850,7 +2850,7 @@ public class Client extends EETest {
     String tempArgs3[] = { strMsg3 };
     String tempArgs4[] = { strMsg4 };
     String tempArgs5[] = { strMsg5 }; // assertion: JASPIC:SPEC:61 and
-                                      // JASPIC:SPEC:314
+    // JASPIC:SPEC:314
     String tempArgs6[] = { strMsg6 }; // assertion: JASPIC:SPEC:313
 
     boolean verified = logProcessor.verifyLogContainsOneOf(tempArgs1);
@@ -2932,19 +2932,19 @@ public class Client extends EETest {
    *
    */
   private void checkAuthStatus(String sContext, String statusType,
-      String requestMethod, boolean isDispatchingToSvc) {
+                               String requestMethod, boolean isDispatchingToSvc) {
 
     // add some servlet params onto our context
     sContext = sContext + "?" + "log.file.location=" + logFileLocation;
     sContext = sContext + "&" + "provider.configuration.file="
-        + providerConfigFileLoc;
+               + providerConfigFileLoc;
     sContext = sContext + "&" + "vendor.authconfig.factory=" + vendorACF;
 
     TestUtil.logMsg("sContext = " + sContext);
     TestUtil
         .logMsg("passing to servlet:  log.file.location = " + logFileLocation);
     TestUtil.logMsg("passing to servlet:  provider.configuration.file = "
-        + providerConfigFileLoc);
+                    + providerConfigFileLoc);
     TestUtil.logMsg(
         "passing to servlet:  vendor.authconfig.factory = " + vendorACF);
 
@@ -2967,7 +2967,7 @@ public class Client extends EETest {
       conn.setDoOutput(true);
       conn.setDoInput(true);
       conn.setRequestProperty("Authorization",
-          "Basic " + encodedAuthData.trim());
+                              "Basic " + encodedAuthData.trim());
       conn.setRequestMethod(requestMethod); // POST or GET etc
       conn.connect();
 
@@ -3053,8 +3053,7 @@ public class Client extends EETest {
     return invokeServlet(sContext, requestMethod, null);
   }
 
-  private int invokeServlet(String sContext, String requestMethod,
-      String testMethod) {
+  private int invokeServlet(String sContext, String requestMethod, String testMethod) {
     int code = 200;
 
     TSURL ctsurl = new TSURL();
@@ -3062,23 +3061,21 @@ public class Client extends EETest {
       sContext = "/" + sContext;
     }
 
-    if (testMethod != null) {
-      // lets set some other request params to be passed into servlet calls
-      sContext = sContext + "?" + "log.file.location=" + logFileLocation;
-      sContext = sContext + "&" + "provider.configuration.file="
-          + providerConfigFileLoc;
-      sContext = sContext + "&" + "vendor.authconfig.factory=" + vendorACF;
-      sContext = sContext + "&" + "method.under.test=" + testMethod;
+    // lets set some other request params to be passed into servlet calls
+    sContext = sContext + "?" + "log.file.location=" + logFileLocation;
+    sContext = sContext + "&" + "provider.configuration.file=" + providerConfigFileLoc;
+    sContext = sContext + "&" + "vendor.authconfig.factory=" + vendorACF;
 
-      TestUtil.logMsg("sContext = " + sContext);
-      TestUtil.logMsg(
-          "passing to servlet:  log.file.location = " + logFileLocation);
-      TestUtil.logMsg("passing to servlet:  provider.configuration.file = "
-          + providerConfigFileLoc);
-      TestUtil.logMsg(
-          "passing to servlet:  vendor.authconfig.factory = " + vendorACF);
+    TestUtil.logMsg("passing to servlet:  log.file.location = " + logFileLocation);
+    TestUtil.logMsg("passing to servlet:  provider.configuration.file = " + providerConfigFileLoc);
+    TestUtil.logMsg("passing to servlet:  vendor.authconfig.factory = " + vendorACF);
+
+    if (testMethod != null) {
+      sContext = sContext + "&" + "method.under.test=" + testMethod;
       TestUtil.logMsg("passing to servlet:  testMethod = " + testMethod);
     }
+
+    TestUtil.logMsg("sContext = " + sContext);
 
     String url = ctsurl.getURLString("http", hostname, portnum, sContext);
     try {
@@ -3102,7 +3099,7 @@ public class Client extends EETest {
       conn.setDoOutput(true);
       conn.setDoInput(true);
       conn.setRequestProperty("Authorization",
-          "Basic " + encodedAuthData.trim());
+                              "Basic " + encodedAuthData.trim());
       conn.setRequestMethod(requestMethod); // POST or GET etc
       conn.connect();
 
@@ -3146,12 +3143,12 @@ public class Client extends EETest {
    *
    */
   private String invokeServletAndGetResponse(String sContext,
-      String requestMethod) {
+                                             String requestMethod) {
     return invokeServletAndGetResponse(sContext, requestMethod, null);
   }
 
   private String invokeServletAndGetResponse(String sContext,
-      String requestMethod, String testMethod) {
+                                             String requestMethod, String testMethod) {
 
     TSURL ctsurl = new TSURL();
     if (!sContext.startsWith("/")) {
@@ -3161,7 +3158,7 @@ public class Client extends EETest {
     // add some servlet params onto our context
     sContext = sContext + "?" + "log.file.location=" + logFileLocation;
     sContext = sContext + "&" + "provider.configuration.file="
-        + providerConfigFileLoc;
+               + providerConfigFileLoc;
     sContext = sContext + "&" + "vendor.authconfig.factory=" + vendorACF;
     if (testMethod != null) {
       sContext = sContext + "&" + "method.under.test=" + testMethod;
@@ -3171,7 +3168,7 @@ public class Client extends EETest {
     TestUtil
         .logMsg("passing to servlet:  log.file.location = " + logFileLocation);
     TestUtil.logMsg("passing to servlet:  provider.configuration.file = "
-        + providerConfigFileLoc);
+                    + providerConfigFileLoc);
     TestUtil.logMsg(
         "passing to servlet:  vendor.authconfig.factory = " + vendorACF);
     TestUtil.logMsg("passing to servlet:  testMethod = " + testMethod);
@@ -3200,7 +3197,7 @@ public class Client extends EETest {
       conn.setDoOutput(true);
       conn.setDoInput(true);
       conn.setRequestProperty("Authorization",
-          "Basic " + encodedAuthData.trim());
+                              "Basic " + encodedAuthData.trim());
       conn.setRequestMethod(requestMethod); // POST or GET etc
       conn.connect();
 
@@ -3259,7 +3256,7 @@ public class Client extends EETest {
 
     // register providers in vendor factory
     verified = register(logFileLocation, providerConfigurationFileLocation,
-        vendorAuthConfigFactoryClass);
+                        vendorAuthConfigFactoryClass);
     if (!verified) {
       throw new Fault("getRegistrationContextId failed : ");
     }
@@ -3348,7 +3345,7 @@ public class Client extends EETest {
 
       // register providers in vendor factory
       verified = register(logFileLocation, providerConfigurationFileLocation,
-          vendorAuthConfigFactoryClass);
+                          vendorAuthConfigFactoryClass);
       if (!verified) {
         throw new Fault("getRegistrationContextId failed : ");
       }
@@ -3358,13 +3355,13 @@ public class Client extends EETest {
 
       if (acf != null) {
         TestUtil.logMsg("Default AuthConfigFactory class name = "
-            + acf.getClass().getName());
+                        + acf.getClass().getName());
 
         verified = verifyRegistrations(acf);
 
       } else {
         TestUtil.logErr("Default AuthConfigFactory is null"
-            + " can't verify registrations for TestSuite Providers");
+                        + " can't verify registrations for TestSuite Providers");
       }
     } catch (SecurityException ex) {
       // if here we may not have permission to invoke ACF.getFactory...
@@ -3384,8 +3381,8 @@ public class Client extends EETest {
   }
 
   public boolean register(String logFileLocation,
-      String providerConfigurationFileLocation,
-      String vendorAuthConfigFactoryClass) {
+                          String providerConfigurationFileLocation,
+                          String vendorAuthConfigFactoryClass) {
 
     try {
 
@@ -3403,11 +3400,11 @@ public class Client extends EETest {
 
       if (acf != null) {
         TestUtil.logMsg("Default AuthConfigFactory class name = "
-            + acf.getClass().getName());
+                        + acf.getClass().getName());
 
       } else {
         TestUtil.logErr("Default AuthConfigFactory is null"
-            + " can't register TestSuite Providers with null");
+                        + " can't register TestSuite Providers with null");
         // System.exit(1);
         return false;
       }
@@ -3432,8 +3429,8 @@ public class Client extends EETest {
           TestUtil.logMsg(
               "Registering Provider " + pce.getProviderClassName() + " ...");
           acf.registerConfigProvider(pce.getProviderClassName(),
-              pce.getProperties(), pce.getMessageLayer(),
-              pce.getApplicationContextId(), pce.getRegistrationDescription());
+                                     pce.getProperties(), pce.getMessageLayer(),
+                                     pce.getApplicationContextId(), pce.getRegistrationDescription());
           TestUtil.logMsg("Registration Successful");
         }
       }
@@ -3447,7 +3444,7 @@ public class Client extends EETest {
       // if here we may not have permission to invoke ACF.getFactory...
       String msg = "SecurityException:  make sure you have permission to call ACF.getFactory";
       msg = msg
-          + "or ACF.setFactory().  Check your server side security policies.";
+            + "or ACF.setFactory().  Check your server side security policies.";
       TestUtil.logMsg(msg);
       ex.printStackTrace();
 
@@ -3479,7 +3476,7 @@ public class Client extends EETest {
 
       } catch (Exception e) {
         TestUtil.logMsg("Error instantiating vendor's "
-            + "AuthConfigFactory class :" + className);
+                        + "AuthConfigFactory class :" + className);
         e.printStackTrace();
 
       }
@@ -3507,19 +3504,19 @@ public class Client extends EETest {
         if (servletACP.getClass().getName().equals(
             "com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderServlet")) {
           TestUtil.logMsg("TSAuthConfigProviderServlet registered for"
-              + " message layer=HttpServlet" + " and appContextId="
-              + servletAppContext);
+                          + " message layer=HttpServlet" + " and appContextId="
+                          + servletAppContext);
         } else {
           TestUtil.logMsg(
               "Wrong provider registerd for " + " message layer=HttpServlet"
-                  + " and appContextId=" + servletAppContext);
+              + " and appContextId=" + servletAppContext);
           return false;
         }
 
       } else {
         TestUtil.logMsg("Error : No AuthConfigprovider registerd for"
-            + " message layer=HttpServlet" + " and appContextId="
-            + servletAppContext);
+                        + " message layer=HttpServlet" + " and appContextId="
+                        + servletAppContext);
         return false;
       }
 
@@ -3539,7 +3536,7 @@ public class Client extends EETest {
     Collection<ProviderConfigurationEntry> providerConfigurationEntriesCollection = null;
 
     TestUtil.logMsg("Reading TestSuite Providers from :"
-        + providerConfigurationFileLocation);
+                    + providerConfigurationFileLocation);
     try {
       // Given the provider configuration xml file
       // This reader parses the xml file and stores the configuration
@@ -3552,7 +3549,7 @@ public class Client extends EETest {
           .getProviderConfigurationEntriesCollection();
 
       TestUtil.logMsg("TestSuite Providers read successfully "
-          + "from ProviderConfiguration.xml file");
+                      + "from ProviderConfiguration.xml file");
 
       return providerConfigurationEntriesCollection;
 
@@ -3570,12 +3567,12 @@ public class Client extends EETest {
    */
   /*
    * private void setFactoryClass(String acfClass) {
-   * 
+   *
    * try { AuthConfigFactory acf = AuthConfigFactory.getFactory(); Object acfObj
    * = (Object) acf; if (! (acfObj instanceof
    * com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory)) { if (acf!=null){
    * String curClass = acf.getClass().getName();
-   * 
+   *
    * TestUtil.logMsg("Changing factory to class: " + acfClass + " from class: "
    * + curClass); } AuthConfigFactory correctAcf = new TSAuthConfigFactory();
    * AuthConfigFactory.setFactory(correctAcf); } } catch (SecurityException ex)
@@ -3655,7 +3652,7 @@ public class Client extends EETest {
       // if here we may not have permission to invoke ACF.getFactory...
       String msg = "SecurityException:  make sure you have permission to call ACF.getFactory";
       msg = msg
-          + "or ACF.setFactory().  Check your server side security policies.";
+            + "or ACF.setFactory().  Check your server side security policies.";
       TestUtil.logMsg(msg);
       ex.printStackTrace();
     }
@@ -3668,13 +3665,13 @@ public class Client extends EETest {
    * @testName: ACFSwitchFactorys
    *
    * @assertion_ids:
-   * 
+   *
    *
    * @test_Strategy: This test does the following: - gets current (CTS) factory
    *                 - sets the vendors ACF thus replacing the CTS ACF - verify
    *                 ACF's were correctly set - reset factory back to the
    *                 original CTS factory
-   * 
+   *
    *                 1. Use the static setFactory method to set an ACF and this
    *                 should always work. and use the getFactory to verify it
    *                 worked.
@@ -3686,7 +3683,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFSwitchFactorys() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFSwitchFactorys");
+                                             "ACFSwitchFactorys");
     TestUtil.logMsg("ACFSwitchFactorys : str = " + str);
 
     int ii = str.indexOf(strMsg1);
@@ -3705,11 +3702,11 @@ public class Client extends EETest {
    * @testName: ACFRemoveRegistrationWithBadId
    *
    * @assertion_ids: JASPIC:SPEC:345;
-   * 
+   *
    *
    * @test_Strategy: This test verifies we get a return value of False when
    *                 invoking ACF.removeRegistration(some_bad_id);
-   * 
+   *
    *                 1. Use the static setFactory method to get an ACF and then
    *                 attempt to invoke removeRegistration() with an invalid (ie
    *                 non-existant) regId. This should return False (per
@@ -3722,7 +3719,7 @@ public class Client extends EETest {
     String strMsg1 = "ACFTestServlet->ACFRemoveRegistrationWithBadId() passed";
 
     String str = invokeServletAndGetResponse(acfServletPath, "POST",
-        "ACFRemoveRegistrationWithBadId");
+                                             "ACFRemoveRegistrationWithBadId");
     TestUtil.logMsg("ACFRemoveRegistrationWithBadId : str = " + str);
 
     int ii = str.indexOf(strMsg1);

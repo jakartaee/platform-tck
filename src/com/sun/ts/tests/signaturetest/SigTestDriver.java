@@ -77,7 +77,6 @@ public class SigTestDriver extends SignatureTestDriver {
           "java.lang.InterruptedException",
           "java.lang.CloneNotSupportedException",
           "java.lang.Throwable",
-          "jakarta.resource.spi.SecurityException",
           "java.lang.Thread",
           "java.lang.Enum"
   };

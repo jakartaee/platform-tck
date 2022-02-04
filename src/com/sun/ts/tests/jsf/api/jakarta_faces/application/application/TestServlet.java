@@ -65,9 +65,9 @@ import jakarta.faces.component.search.SearchExpressionContext;
 import jakarta.faces.component.search.SearchExpressionHandler;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.BooleanConverter;
-import jakarta.faces.el.MethodBinding;
-import jakarta.faces.el.ReferenceSyntaxException;
-import jakarta.faces.el.ValueBinding;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELException;
+import jakarta.el.ValueExpression;
 import jakarta.faces.event.ActionListener;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.event.SystemEventListener;
@@ -1029,6 +1029,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter out = response.getWriter();
     Application application = getApplication();
+    FacesContext facesContext = getFacesContext();
 
     if (application == null) {
       out.println(JSFTestUtil.APP_NULL_MSG);
@@ -1036,9 +1037,9 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     request.setAttribute("TestBean", new TestBean());
-    ValueBinding binding;
+    ValueExpression binding;
     try {
-      binding = application.createValueBinding("#{TestBean.boolProp}");
+      binding = application.getExpressionFactory().createValueExpression(facesContext.getELContext(), "#{TestBean.boolProp}", Object.class);
 
     } catch (Exception e) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
@@ -1057,67 +1058,6 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     out.println(JSFTestUtil.PASS);
-
-  }
-
-  // Application.createValueBinding(String) throws ReferenceSyntaxException
-  // when provided an invalid ref
-  public void applicationCreateValueBindingRSETest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    Application application = getApplication();
-    if (application == null) {
-      out.println(JSFTestUtil.APP_NULL_MSG);
-      return;
-    }
-
-    request.setAttribute("TestBean", new TestBean());
-    out.println("Testing #{TestBean[}");
-
-    try {
-      application.createValueBinding("#{TestBean[}");
-      out.println(JSFTestUtil.FAIL
-          + ": No Exception thrown when value reference expression "
-          + "provided was invalid.");
-
-    } catch (ReferenceSyntaxException rse) {
-      out.println(JSFTestUtil.PASS);
-
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL
-          + ": Exception thrown when invalid value reference expression was provided"
-          + " to Application.getValueBinding(String), but wasn't an instance of ReferenceSyntaxException.");
-      e.printStackTrace();
-    }
-  }
-
-  // Application.createValueBinding(String) throws NullPointerException when
-  // provided will a null arg
-  public void applicationCreateValueBindingNPETest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    Application application = getApplication();
-
-    if (application == null) {
-      out.println(JSFTestUtil.APP_NULL_MSG);
-      return;
-    }
-
-    try {
-      application.createValueBinding(null);
-      out.println(JSFTestUtil.FAIL + ": Expected NullPointerException, "
-          + "No Exception thrown using: "
-          + "Application.createValueBinding(null)");
-
-    } catch (NullPointerException npe) {
-      out.println(JSFTestUtil.PASS);
-
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL
-          + ": Exception thrown when Application.getValueBinding(String) "
-          + "was provided a null argument, but it wasn't an instance of NullPointerException.");
-      e.printStackTrace();
-    }
 
   }
 
@@ -1348,65 +1288,6 @@ public class TestServlet extends HttpTCKServlet {
         new Class<?>[] { StateManager.class }, new Object[] { null }, out);
 
   } // End applicationStateManagerNPETest
-
-  public void applicationCreateMethodBindingTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    Application application = getApplication();
-    if (application == null) {
-      out.println(JSFTestUtil.APP_NULL_MSG);
-      return;
-    }
-
-    TestBean bean = new TestBean();
-    request.setAttribute("TestBean", bean);
-
-    MethodBinding binding = application.createMethodBinding(
-        "#{requestScope.TestBean.setBoolProp}", new Class[] { Boolean.TYPE });
-
-    if (binding == null) {
-      out.println(JSFTestUtil.FAIL + ": Application.createMethodBinding()"
-          + " returned a null value.");
-      return;
-    }
-
-    out.println(JSFTestUtil.PASS);
-  }
-
-  public void applicationCreateMethodBindingNPETest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    Application application = getApplication();
-
-    JSFTestUtil.checkForNPE(application, "createMethodBinding",
-        new Class<?>[] { String.class, Class[].class },
-        new Object[] { null, new Class[] { Boolean.TYPE } }, out);
-  }
-
-  public void applicationCreateMethodBindingRSETest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    Application application = getApplication();
-
-    try {
-      application.createMethodBinding("requestScope.getRemoteHost",
-          new Class[] { Boolean.TYPE });
-      out.println(JSFTestUtil.FAIL
-          + ": No Exception thrown if an invalid method reference"
-          + " was passed to Application.createMethodBinding().");
-
-    } catch (ReferenceSyntaxException rse) {
-      out.println(JSFTestUtil.PASS);
-
-    } catch (Exception e) {
-      out.println(
-          JSFTestUtil.FAIL + ": Exception thrown if an invalid method reference"
-              + " was passed to Application.createMethodBinding(), but it"
-              + " wasn't an instance of ReferenceSyntaxException.");
-      e.printStackTrace();
-    }
-
-  }
 
   public void applicationSetGetDefaultLocaleTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
@@ -2068,8 +1949,9 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     // Test to make sure we get a StateManger by default.
+    StateManager stateManager = null;
     try {
-      application.getStateManager();
+      stateManager = application.getStateManager();
 
     } catch (Exception e) {
       out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
@@ -2079,7 +1961,7 @@ public class TestServlet extends HttpTCKServlet {
     }
 
     try {
-      StateManager tckstatemgr = new TCKStateManager();
+      StateManager tckstatemgr = new TCKStateManager(stateManager);
       application.setStateManager(tckstatemgr);
       String result = application.getStateManager().getClass().getSimpleName();
 

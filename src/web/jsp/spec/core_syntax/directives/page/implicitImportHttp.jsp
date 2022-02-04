@@ -1,6 +1,7 @@
 <%--
 
-    Copyright (c) 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2021 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +23,7 @@
 	Description: Use jsp page directive with language="java" 
 		    Do not specify jakarta.servlet.http in the import attribute
 		    as it should be available implicitly.  Validate
-		    that an HttpUtils object can be created.
+		    that an Cookie object can be created.
 			    
 	Result:No error
 **/ %>
@@ -33,12 +34,12 @@
 
 <%
 
-  HttpUtils hu = new HttpUtils();
+  Cookie cookie = new Cookie("name","value");
     
   
 %>
 
-<%= hu instanceof jakarta.servlet.http.HttpUtils %>
+<%= cookie instanceof jakarta.servlet.http.Cookie %>
 
 </body>
 </html>

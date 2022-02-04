@@ -177,4 +177,18 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "setSecureTest");
     invoke();
   }
+
+  /*
+   * @testName: setAttributeTest
+   *
+   * @assertion_ids:
+   *
+   * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
+   * HttpSession on; Verify in servlet SessionCookieConfig.setAttribute cannot be
+   * called once is set.
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    invoke();
+  }
 }

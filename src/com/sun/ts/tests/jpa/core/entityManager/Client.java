@@ -37,6 +37,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.ParameterMode;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 import jakarta.persistence.StoredProcedureQuery;
@@ -277,10 +278,42 @@ public class Client extends PMClientBase {
   }
 
   /*
+   * @testName: autoCloseableTest
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2517;
+   *
+   * @test_Strategy: Create EntityManager in try with resources block
+   * and verify whether it's open inside and outside of the try block.
+   */
+  public void autoCloseableTest() throws Fault {
+    EntityManager em = null;
+    try (final EntityManagerFactory emfLocal
+                 = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
+      try (final EntityManager emLocal = emfLocal.createEntityManager()) {
+        em = emLocal;
+        if (em == null) {
+          throw new Fault("autoCloseableTest failed: createEntityManager() returned null");
+        }
+        if (!em.isOpen()) {
+          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned false in try block");
+        }
+      } finally {
+        if (em != null && em.isOpen()) {
+          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned true outside try block");
+        }
+      }
+    } catch (Fault f) {
+      throw f;
+    } catch (Throwable t) {
+      throw new Fault("autoCloseableTest failed with Exception", t);
+    }
+  }
+
+  /*
    * @testName: mergeTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:660
-   * 
+   *
    * @test_Strategy: Merge new entity
    */
   public void mergeTest() throws Fault {
@@ -310,9 +343,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: mergeExceptionsTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:504
-   * 
+   *
    * @test_Strategy: Call EntityManager.merge() method
    */
   public void mergeExceptionsTest() throws Fault {
@@ -374,10 +407,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: persistExceptionsTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:31; PERSISTENCE:JAVADOC:506;
    * PERSISTENCE:JAVADOC:507; PERSISTENCE:SPEC:618.1; PERSISTENCE:SPEC:618.2
-   * 
+   *
    * @test_Strategy: Call EntityManager.persist()
    */
   @SetupMethod(name = "setupOrderData")
@@ -441,9 +474,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: removeExceptionsTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:527
-   * 
+   *
    * @test_Strategy: Call EntityManager.remove() method
    */
   public void removeExceptionsTest() throws Fault {
@@ -477,9 +510,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: lockIllegalStateExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:490; PERSISTENCE:JAVADOC:497;
-   * 
+   *
    * @test_Strategy: Call EntityManager.lock() method
    */
   public void lockIllegalStateExceptionTest() throws Fault {
@@ -538,9 +571,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshInvalidObjectIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:509
-   * 
+   *
    * @test_Strategy: Call EntityManager.refresh() method
    */
   public void refreshInvalidObjectIllegalArgumentExceptionTest() throws Fault {
@@ -574,7 +607,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshNonManagedObjectIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:509
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -611,7 +644,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshRemovedObjectEntityNotFoundExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:511
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -653,7 +686,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshInvalidObjectMapIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:512
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -691,7 +724,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshNonManagedObjectMapIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:512
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -729,7 +762,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshRemovedObjectMapEntityNotFoundExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:514;
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -774,7 +807,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshInvalidObjectLockModeTypeIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:515
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -810,7 +843,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshNonManagedObjectLockModeTypeIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:515
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -846,7 +879,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshRemovedObjectLockModeTypeEntityNotFoundExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:517
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -891,7 +924,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshInvalidObjectLockModeTypeMapIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:521
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -930,7 +963,7 @@ public class Client extends PMClientBase {
   /*
    * @testName:
    * refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:521
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -968,7 +1001,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: refreshRemovedObjectLockModeTypeMapEntityNotFoundExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:523
    *
    * @test_Strategy: Call EntityManager.refresh() method
@@ -1014,9 +1047,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: containsIllegalArgumentException
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:458
-   * 
+   *
    * @test_Strategy: Call EntityManager.contains() method passing an Object that
    * is not an Entity
    */
@@ -1051,9 +1084,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createNamedQueryIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:459; PERSISTENCE:JAVADOC:460
-   * 
+   *
    * @test_Strategy: Call EntityManager.createNamedQuery() with a query string
    * that is invalid, verify IllegalArgumentException is thrown Call
    * EntityManager.createNamedQuery() with a TypedQuery string that is invalid,
@@ -1104,10 +1137,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createQueryIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:461; PERSISTENCE:JAVADOC:463;
    * PERSISTENCE:JAVADOC:462; PERSISTENCE:SPEC:609; PERSISTENCE:SPEC:1372;
-   * 
+   *
    * @test_Strategy: Call EntityManager.createQuery(String) with a query string
    * that is invalid, verify IllegalArgumentException is thrown Call
    * EntityManager.createQuery(String, Class) with a TypedQuery string with a
@@ -1181,9 +1214,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: detachIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:464
-   * 
+   *
    * @test_Strategy: Call EntityManager.detach(String), verify
    * IllegalArgumentException is thrown
    */
@@ -1215,9 +1248,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getEntityManagerFactoryTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:328;
-   * 
+   *
    * @test_Strategy: Get EntityManagerFactory
    */
   public void getEntityManagerFactoryTest() throws Fault {
@@ -1240,9 +1273,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: emGetMetamodelTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:330;
-   * 
+   *
    * @test_Strategy: Get a MetaModel Object from the EntityManager an make sure
    * it is not null
    */
@@ -1266,9 +1299,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: setPropertyTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:336;
-   * 
+   *
    * @test_Strategy: Set a standard property in the EntityManager and retrieve
    * it.
    */
@@ -1339,7 +1372,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getCriteriaBuilderTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:327; PERSISTENCE:SPEC:1702;
    *
    * @test_Strategy: access EntityManager.getCriteriaBuilder and verify it can
@@ -1374,7 +1407,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: isJoinedToTransactionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1526
    *
    * @test_Strategy:
@@ -1409,7 +1442,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createStoredProcedureQueryStringTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1520
    *
    * @test_Strategy:
@@ -1454,7 +1487,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createStoredProcedureQueryStringIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1521
    *
    * @test_Strategy:
@@ -1495,7 +1528,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createStoredProcedureQueryStringClassArrayTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1522
    *
    * @test_Strategy:
@@ -1547,7 +1580,7 @@ public class Client extends PMClientBase {
   /*
    * @testName:
    * createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1523
    *
    * @test_Strategy:
@@ -1589,7 +1622,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createStoredProcedureQueryStringStringArrayTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1524; PERSISTENCE:SPEC:1571;
    *
    * @test_Strategy:
@@ -1645,7 +1678,7 @@ public class Client extends PMClientBase {
   /*
    * @testName:
    * createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1525
    *
    * @test_Strategy:
@@ -1687,12 +1720,12 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: createNamedStoredProcedureQueryStringTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1514; PERSISTENCE:JAVADOC:1530;
    * PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
    * PERSISTENCE:JAVADOC:1534; PERSISTENCE:JAVADOC:1541;
    * PERSISTENCE:JAVADOC:1543;
-   * 
+   *
    * @test_Strategy:
    *
    */
@@ -1745,7 +1778,7 @@ public class Client extends PMClientBase {
   /*
    * @testName:
    * createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1515
    *
    * @test_Strategy:

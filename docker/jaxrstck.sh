@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,11 +36,11 @@ else
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
@@ -54,11 +54,10 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
 fi
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version
@@ -67,7 +66,7 @@ sed -i "s#^web.home=.*#web.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
-sed -i 's#jaxrs_impl\.classes=.*#jaxrs_impl.classes=${web.home}/modules/jakarta.json.jar:${web.home}/modules/jakarta.json.bind-api.jar:${web.home}/modules/jakarta.json.jar:${web.home}/modules/jsonp-jaxrs.jar:${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/jersey-media-jaxb.jar:${web.home}/modules/jersey-media-sse.jar:${web.home}/modules/jersey-hk2.jar:${web.home}/modules/osgi-resource-locator.jar:${web.home}/modules/jakarta.inject-api.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/javassist.jar:${web.home}/modules/cglib.jar:${web.home}/modules/jakarta.annotation-api.jar:${web.home}/modules/jakarta.xml.bind-api.jar:${web.home}/modules/jakarta.activation.jar#g' ts.jte
+sed -i 's#jaxrs_impl\.classes=.*#jaxrs_impl.classes=${web.home}/modules/jakarta.json.jar:${web.home}/modules/jakarta.json.bind-api.jar:${web.home}/modules/jakarta.json.jar:${web.home}/modules/jsonp-jaxrs.jar:${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/jersey-media-jaxb.jar:${web.home}/modules/jersey-media-sse.jar:${web.home}/modules/jersey-hk2.jar:${web.home}/modules/osgi-resource-locator.jar:${web.home}/modules/jakarta.inject-api.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/javassist.jar:${web.home}/modules/cglib.jar:${web.home}/modules/jakarta.annotation-api.jar:${web.home}/modules/jakarta.xml.bind-api.jar:${web.home}/modules/jakarta.activation-api.jar#g' ts.jte
 sed -i 's#jaxrs_impl_lib=.*#jaxrs_impl_lib=${web.home}/modules/jersey-container-servlet-core.jar#g' ts.jte
 sed -i 's#jaxrs\.classes=.*#jaxrs.classes=${web.home}/modules/jakarta.ws.rs-api.jar#g' ts.jte
 sed -i 's#servlet_adaptor=.*#servlet_adaptor=org\/glassfish\/jersey\/servlet\/ServletContainer.class#g' ts.jte

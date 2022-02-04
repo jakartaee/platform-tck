@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
-sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish6/glassfish#g" ts.jte
+sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
 sed -i 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
 sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
 sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
@@ -56,7 +56,7 @@ echo "persistence.second.level.caching.supported=true" >> ts.jte
 mkdir $TCK_HOME/jaspictckreport
 mkdir $TCK_HOME/jaspictckwork
 
-cd $TCK_HOME/glassfish6/bin
+cd $TCK_HOME/glassfish7/bin
 ./asadmin start-domain
 ./asadmin stop-domain
 
@@ -67,7 +67,7 @@ ant config.vi
 cd $TS_HOME/bin
 ant enable.jaspic
 
-cd $TCK_HOME/glassfish6/bin
+cd $TCK_HOME/glassfish7/bin
 ./asadmin stop-domain
 ./asadmin start-domain
 

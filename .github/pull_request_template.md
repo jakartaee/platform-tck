@@ -1,12 +1,3 @@
----
-name: Pull Request
-about: Create a pull request for a Platform TCK change
-title: ''
-labels: ''
-assignees: ''
-
----
-
 **Fixes Issue**
 Specify the issue (link) that is solved with this pull request.
 

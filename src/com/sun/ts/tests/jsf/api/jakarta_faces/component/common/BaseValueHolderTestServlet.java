@@ -215,11 +215,11 @@ public abstract class BaseValueHolderTestServlet
   // " at runtime.");
   // return;
   // } catch (Exception e) {
-  // if (!(e instanceof EvaluationException)) {
+  // if (!(e instanceof ELException)) {
   // out.println(FAIL + " Test FAILED. Exception thrown when" +
   // " currentValue() was called with a valueRef that should" +
   // " fail to evaluate at runtime, but it wasn't an" +
-  // " instance of EvaluationException.");
+  // " instance of ELException.");
   // out.println("Exeception received: " + e.getClass().getName());
   // return;
   // }

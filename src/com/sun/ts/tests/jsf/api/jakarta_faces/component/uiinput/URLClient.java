@@ -1279,7 +1279,7 @@ public class URLClient extends BaseUIComponentClient {
    * @testName: uiInputUpdateModelNoActionTest
    * @assertion_ids: JSF:JAVADOC:784; JSF:JAVADOC:785
    * @test_Strategy: Verify if the component's valid property is false, or there
-   *                 is no ValueBinding associated wit the component, no action
+   *                 is no ValueExpression associated wit the component, no action
    *                 is taken when updateModel() is called.
    */
   public void uiInputUpdateModelNoActionTest() throws Fault {
@@ -1422,7 +1422,7 @@ public class URLClient extends BaseUIComponentClient {
    * @testName: uiInputValidate5Test
    * @assertion_ids: JSF:JAVADOC:784; JSF:JAVADOC:787
    * @test_Strategy: Verify that if no Converter is returned by getConverter()
-   *                 and 'value' is a ValueBinding, use the type of the
+   *                 and 'value' is a ValueExpression, use the type of the
    *                 expression to create a Converter for that type and use it
    *                 to convert the submitted value. Additionally verify if an
    *                 exception is thrown during the conversion process, a

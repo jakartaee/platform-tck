@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -81,6 +81,79 @@ public class ELClient extends ServiceEETest {
           "ABC123", buf, false);
     } catch (Exception ex) {
       throw new Fault(ex);
+    }
+
+    if (!pass) {
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    }
+    TestUtil.logTrace(buf.toString());
+  }
+
+  /**
+   * @testName: beanELResolverDefaultMethodReadOnlyTest
+   * 
+   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
+   * 
+   * @test_Strategy: Verify that API calls work as expected when accessing
+   *                 read-only properties defined via a default interface method
+   */
+  public void beanELResolverDefaultMethodReadOnlyTest() throws Fault {
+
+    boolean pass = false;
+    StringBuffer buf = new StringBuffer();
+
+    try {
+      BeanELResolver beanResolver = new BeanELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, beanResolver, sb, "defaultRO",
+         "RO", buf, true);
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Test of a valid expression using a Bean with a read-only " +
+          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
+          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+
+      ex.printStackTrace();
+    }
+
+    if (!pass) {
+      throw new Fault(ELTestUtil.FAIL + buf.toString());
+    }
+    TestUtil.logTrace(buf.toString());
+  }
+
+  
+  /**
+   * @testName: beanELResolverDefaultMethodReadWriteTest
+   * 
+   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
+   * 
+   * @test_Strategy: Verify that API calls work as expected when accessing
+   *                 writable properties defined via a default interface method
+   */
+  public void beanELResolverDefaultMethodReadWriteTest() throws Fault {
+
+    boolean pass = false;
+    StringBuffer buf = new StringBuffer();
+
+    try {
+      BeanELResolver beanResolver = new BeanELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, beanResolver, sb, "defaultRW",
+          "RW", buf, false);
+    } catch (Exception ex) {
+      pass = false;
+      TestUtil.logErr("Test of a valid expression using a Bean with a read-write " +
+          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
+          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+
+      ex.printStackTrace();
     }
 
     if (!pass) {
