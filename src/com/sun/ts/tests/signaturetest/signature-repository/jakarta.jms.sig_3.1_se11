@@ -145,6 +145,7 @@ meth public abstract java.lang.String value()
 CLSS public abstract interface !annotation jakarta.jms.JMSConnectionFactoryDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.jms.JMSConnectionFactoryDefinitions)
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean transactional()
 meth public abstract !hasdefault int maxPoolSize()
@@ -230,6 +231,7 @@ meth public abstract void unsubscribe(java.lang.String)
 CLSS public abstract interface !annotation jakarta.jms.JMSDestinationDefinition
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.jms.JMSDestinationDefinitions)
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String className()
 meth public abstract !hasdefault java.lang.String description()
