@@ -36,7 +36,7 @@
         <!-- Jakarta WebSocket -->
         <websocket-api.version>2.1.0</websocket-api.version>
         <!-- Jakarta Concurrency -->
-        <concurrent-api.version>2.0.0</concurrent-api.version>
+        <concurrent-api.version>3.0.0</concurrent-api.version>
         <!-- Jakarta Interceptors -->
         <jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
         <!-- Jakarta EE Security + Authentication/Authorization -->
