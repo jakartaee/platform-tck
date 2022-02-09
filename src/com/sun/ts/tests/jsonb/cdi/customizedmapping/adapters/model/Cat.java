@@ -20,44 +20,44 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter;
-
-import jakarta.json.bind.annotation.JsonbTypeAdapter;
-
-public class AnimalShelterInjectedAdapter {
-  @JsonbTypeAdapter(InjectedListAdapter.class)
-  private List<Animal> animals = new ArrayList<>();
-
-  public List<Animal> getAnimals() {
-    return animals;
+public class Cat extends Animal {
+  public Cat() {
   }
 
-  public void setAnimals(List<Animal> animals) {
-    this.animals = animals;
+  public Cat(int age, String name, float weight, boolean furry,
+      boolean cuddly) {
+    super(age, name, weight, furry);
+    this.cuddly = cuddly;
   }
 
-  public boolean addAnimal(Animal animal) {
-    return animals.add(animal);
+  private boolean cuddly;
+
+  public boolean isCuddly() {
+    return cuddly;
+  }
+
+  public void setCuddly(boolean cuddly) {
+    this.cuddly = cuddly;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o)
       return true;
-    if (!(o instanceof AnimalShelterInjectedAdapter))
+    if (!(o instanceof Cat))
+      return false;
+    if (!super.equals(o))
       return false;
 
-    AnimalShelterInjectedAdapter that = (AnimalShelterInjectedAdapter) o;
+    Cat cat = (Cat) o;
 
-    return animals != null ? animals.equals(that.animals)
-        : that.animals == null;
+    return cuddly == cat.cuddly;
   }
 
   @Override
   public int hashCode() {
-    return animals != null ? animals.hashCode() : 0;
+    int result = super.hashCode();
+    result = 31 * result + (cuddly ? 1 : 0);
+    return result;
   }
 }

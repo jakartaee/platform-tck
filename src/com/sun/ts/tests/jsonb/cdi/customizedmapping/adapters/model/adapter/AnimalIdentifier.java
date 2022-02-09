@@ -20,34 +20,22 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
 
-import jakarta.inject.Inject;
-import jakarta.json.bind.adapter.JsonbAdapter;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
 
-public class InjectedListAdapter
-    implements JsonbAdapter<List<Animal>, List<AnimalJson>> {
-  @Inject
-  private InjectedAdapter animalAdapter;
-
-  @Override
-  public List<AnimalJson> adaptToJson(List<Animal> animals) throws Exception {
-    List<AnimalJson> adapted = new ArrayList<>();
-    for (Animal animal : animals) {
-      adapted.add(animalAdapter.adaptToJson(animal));
+public class AnimalIdentifier {
+  public AnimalJson.TYPE getType(Animal animal) {
+    if (Cat.class.isAssignableFrom(animal.getClass())) {
+      return CAT;
+    } else if (Dog.class.isAssignableFrom(animal.getClass())) {
+      return DOG;
+    } else {
+      return GENERIC;
     }
-    return adapted;
-  }
-
-  @Override
-  public List<Animal> adaptFromJson(List<AnimalJson> adapted) throws Exception {
-    List<Animal> animals = new ArrayList<>();
-    for (AnimalJson animal : adapted) {
-      animals.add(animalAdapter.adaptFromJson(animal));
-    }
-    return animals;
   }
 }
