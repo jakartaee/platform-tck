@@ -49,7 +49,7 @@
         <!-- Jakarta Persistence -->
         <jakarta-persistence-api.version>3.1.0-RC2</jakarta-persistence-api.version>
         <!-- Jakarta Transactions -->
-        <jakarta.transaction-api.version>2.0.0</jakarta.transaction-api.version>
+        <jakarta.transaction-api.version>2.0.1-RC1</jakarta.transaction-api.version>
         <!-- Jakarta Connectors -->
         <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
         <!-- Jakarta Batch -->
