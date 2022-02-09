@@ -169,6 +169,9 @@ spec:
 	  string(name: 'OLD_GF_BUNDLE_URL', 
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
+    string(name: 'MQ_BUNDLE_URL',
+           defaultValue: 'https://ci.eclipse.org/openmq/job/openmq-build-and-test-using-jenkinsfile/job/master/lastSuccessfulBuild/artifact/mq.zip',
+           description: 'URL required for downloading OpenMQ bundle' )
     string(name: 'TCK_BUNDLE_BASE_URL', 
            defaultValue: '', 
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )

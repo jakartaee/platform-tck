@@ -34,18 +34,18 @@ else
   exit 1
 fi
 
-if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish7
+if [ -z "$MQ_HOME" ]; then
+  export MQ_HOME=mq
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 7.0.0 ..."
-if [ -z "${GF_BUNDLE_URL}" ]; then
-  echo "[ERROR] GF_BUNDLE_URL not set"
+echo "Download and install MQ distribution ..."
+if [ -z "${MQ_BUNDLE_URL}" ]; then
+  echo "[ERROR] MQ_BUNDLE_URL not set"
   exit 1
 fi
-wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O latest-glassfish.zip
-unzip -q ${TCK_HOME}/latest-glassfish.zip -d ${TCK_HOME}
+wget --progress=bar:force --no-cache $MQ_BUNDLE_URL -O latest-mq.zip
+unzip -q latest-mq.zip -d ${TCK_HOME}
 
 TS_HOME=$TCK_HOME/$TCK_NAME
 echo "TS_HOME $TS_HOME"
@@ -62,7 +62,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i.bak "s#^jms.home=.*#jms.home=$TCK_HOME/$GF_TOPLEVEL_DIR/mq#g" ts.jte
+sed -i.bak "s#^jms.home=.*#jms.home=$TCK_HOME/$MQ_HOME#g" ts.jte
 sed -i.bak 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
 sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
@@ -82,4 +82,4 @@ echo "1 ${TCK_NAME} ${HOST}" > ${WORKSPACE}/args.txt
 mkdir -p ${WORKSPACE}/results/junitreports/
 ${JAVA_HOME}/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar ${WORKSPACE}/args.txt ${JT_REPORT_DIR} ${WORKSPACE}/results/junitreports/
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ ${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish/domains/domain1 $TCK_HOME/$TCK_NAME/bin/ts.*
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz ${TCK_HOME}/${TCK_NAME}report ${TCK_HOME}/${TCK_NAME}work ${WORKSPACE}/results/junitreports/ $TCK_HOME/$TCK_NAME/bin/ts.*
