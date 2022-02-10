@@ -328,13 +328,16 @@ guide.
 
 1.  Make sure that the following software has been correctly installed
 on the system hosting the JavaTest harness:
++
+--
 include::req-software.inc[]
 * Java SE {SEversion}
 * Apache Ant {AntVersion}
 * A CI for {TechnologyShortName} {TechnologyVersion}. One example is {TechnologyRI}.
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
-* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI) +
+* The {TechnologyShortName} {TechnologyVersion} Vendor Implementation (VI)
+--
 See the documentation for each of these software applications for
 installation instructions. See link:install.html#GBFTP[Chapter 3,
 "Installation,"] for instructions on installing the {TechnologyShortName} TCK.
