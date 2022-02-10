@@ -69,11 +69,6 @@ if [ "$TCK_NAME" == "securityapi" ];then
   exit 0
 fi
 
-if [ "$TCK_NAME" == "jsonp" ];then
-  source jsonptck.sh
-  exit 0
-fi
-
 if [ "$TCK_NAME" == "websocket" ];then
   source websockettck.sh
   exit 0

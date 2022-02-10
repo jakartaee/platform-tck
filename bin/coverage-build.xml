@@ -313,7 +313,7 @@
   <target name="all" depends="start.log,
 	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
-	                              jaxrs,webservices,jsf,jsonp,
+	                              jaxrs,webservices,jsf,
                                   jsonb,concurrency,websocket,securityapi">
     <antcall target="generate.exec.summary"/>
     <antcall target="generate.index.page"/>
@@ -413,14 +413,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/jaxws/JAXWSJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/jaxws/JAXWSSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/jaxws"/>
-    </antcall>
-  </target>
-
-  <target name="jsonp">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jsonp_1_1/api"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jsonp/JSONP1.1JavadocAssertions.xml"/>
-      <param name="test.src.dir"      value="/jsonp"/>
     </antcall>
   </target>
 
