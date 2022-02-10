@@ -4,10 +4,10 @@
 <javadoc>
   <next-available-id>6056</next-available-id>
   <previous-id>2219</previous-id>
-  <technology>JSF</technology>
-  <id>JSF 2.3</id>
-  <name>Java Server Faces</name>
-  <version>2.3</version>
+  <technology>FACES</technology>
+  <id>Jakarta Faces 4.0</id>
+  <name>Jakarta Faces</name>
+  <version>4.0</version>
   <assertions>
     <!-- ********************************************************************************** -->
     <!-- ********************************************************************************** -->
