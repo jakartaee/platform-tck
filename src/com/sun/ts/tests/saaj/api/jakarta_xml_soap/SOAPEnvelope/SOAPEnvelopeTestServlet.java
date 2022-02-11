@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -113,6 +113,9 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     } else if (testname.equals("createNameTest2")) {
       TestUtil.logMsg("Starting createNameTest2");
       createNameTest2(req, res);
+    } else if (testname.equals("createNameTest3")) {
+      TestUtil.logMsg("Starting createNameTest3");
+      createNameTest3(req, res);
     } else {
       throw new ServletException(
           "The testname '" + testname + "' was not found in the test servlet");
@@ -446,7 +449,7 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     resultProps.list(out);
   }
 
-    private void createNameTest3(HttpServletRequest req, HttpServletResponse res)
+  private void createNameTest3(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
     TestUtil.logTrace("createNameTest3");
     Properties resultProps = new Properties();
@@ -465,10 +468,8 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
         pass = false;
       } else {
         String localName = name.getLocalName();
-        String prefix = name.getPrefix();
         String uri = name.getURI();
         TestUtil.logMsg("localName=" + localName);
-        TestUtil.logMsg("prefix=" + prefix);
         TestUtil.logMsg("uri=" + uri);
         if (localName == null) {
           TestUtil.logErr("localName is null (expected MyName1)");
