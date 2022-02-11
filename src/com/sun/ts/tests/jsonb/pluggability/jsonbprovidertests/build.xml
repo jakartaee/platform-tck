@@ -49,6 +49,9 @@ $Id$
         <zipfileset dir="${ts.home}/lib" includes="${provider.jar}"
                 prefix="WEB-INF/lib"/>
       </jsp-elements>
+      <ear-elements>
+        <zipfileset dir="${ts.home}/lib" includes="${provider.jar}" prefix="lib"/>
+      </ear-elements>
     </ts.vehicles>
   </target>
 </project>
