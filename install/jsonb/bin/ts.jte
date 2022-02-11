@@ -50,8 +50,8 @@ jsonb.classes=
 #
 #                                Added to ts.run.classpath below.
 ###############################################################################
-#jsonb.resources=${ts.home}/src/com/sun/ts/tests/jsonb/resources
-#jsonb.alt.provider.classes=jsonb.alt.provider.classes
+jsonb.resources=${ts.home}/src/com/sun/ts/tests/jsonb/resources
+jsonb.alt.provider.classes=jsonb.alt.provider.classes
 
 ####################################################################
 # The jars/classes for the TS harness/javatest and the test classes
