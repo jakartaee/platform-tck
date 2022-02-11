@@ -77,7 +77,7 @@ $Id$
         <trycatch>
             <try>
 		<!-- Override previous list of tests to execute. -->
-		<var name="tests.string" value="com/sun/ts/tests/jsonb  /pluggability"/>
+		<var name="tests.string" value="com/sun/ts/tests/jsonb/pluggability"/>
                 <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/tests/jsonb/pluggability" target="runclient" /> 
             </try>
             <catch>
