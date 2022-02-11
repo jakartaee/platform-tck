@@ -90,7 +90,7 @@ cons protected init()
 meth protected abstract jakarta.xml.soap.MessageFactory newMessageFactory(java.lang.String) throws jakarta.xml.soap.SOAPException
 meth protected abstract jakarta.xml.soap.SOAPFactory newSOAPFactory(java.lang.String) throws jakarta.xml.soap.SOAPException
 supr java.lang.Object
-hfds DEFAULT_META_FACTORY_CLASS,META_FACTORY_DEPRECATED_CLASS_PROPERTY
+hfds DEFAULT_META_FACTORY_CLASS
 
 CLSS public jakarta.xml.soap.SAAJResult
 cons public init() throws jakarta.xml.soap.SOAPException
@@ -119,10 +119,16 @@ intf jakarta.xml.soap.SOAPElement
 
 CLSS public abstract jakarta.xml.soap.SOAPConnection
 cons public init()
+intf java.lang.AutoCloseable
 meth public abstract jakarta.xml.soap.SOAPMessage call(jakarta.xml.soap.SOAPMessage,java.lang.Object) throws jakarta.xml.soap.SOAPException
 meth public abstract void close() throws jakarta.xml.soap.SOAPException
+meth public int getConnectTimeout()
+meth public int getReadTimeout()
 meth public jakarta.xml.soap.SOAPMessage get(java.lang.Object) throws jakarta.xml.soap.SOAPException
+meth public void setConnectTimeout(int)
+meth public void setReadTimeout(int)
 supr java.lang.Object
+hfds connectTimeout,readTimeout
 
 CLSS public abstract jakarta.xml.soap.SOAPConnectionFactory
 cons public init()
@@ -191,6 +197,7 @@ meth public abstract void setEncodingStyle(java.lang.String) throws jakarta.xml.
 CLSS public abstract interface jakarta.xml.soap.SOAPEnvelope
 intf jakarta.xml.soap.SOAPElement
 meth public abstract jakarta.xml.soap.Name createName(java.lang.String) throws jakarta.xml.soap.SOAPException
+meth public abstract jakarta.xml.soap.Name createName(java.lang.String,java.lang.String) throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.Name createName(java.lang.String,java.lang.String,java.lang.String) throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.SOAPBody addBody() throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.SOAPBody getBody() throws jakarta.xml.soap.SOAPException
@@ -336,6 +343,9 @@ intf org.w3c.dom.Text
 meth public abstract boolean isComment()
 
 CLSS public abstract interface java.io.Serializable
+
+CLSS public abstract interface java.lang.AutoCloseable
+meth public abstract void close() throws java.lang.Exception
 
 CLSS public java.lang.Exception
 cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)

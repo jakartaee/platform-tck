@@ -45,6 +45,7 @@ meth public abstract !hasdefault java.lang.String input()
 meth public abstract !hasdefault java.lang.String output()
 
 CLSS public abstract interface jakarta.xml.ws.AsyncHandler<%0 extends java.lang.Object>
+ anno 0 java.lang.FunctionalInterface()
 meth public abstract void handleResponse(jakarta.xml.ws.Response<{jakarta.xml.ws.AsyncHandler%0}>)
 
 CLSS public abstract interface jakarta.xml.ws.Binding
@@ -148,6 +149,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr jakarta.xml.ws.WebServiceException
+hfds serialVersionUID
 
 CLSS public abstract interface jakarta.xml.ws.Provider<%0 extends java.lang.Object>
 meth public abstract {jakarta.xml.ws.Provider%0} invoke({jakarta.xml.ws.Provider%0})
@@ -276,6 +278,7 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
+hfds serialVersionUID
 
 CLSS public abstract jakarta.xml.ws.WebServiceFeature
 cons protected init()
@@ -391,7 +394,7 @@ CLSS public jakarta.xml.ws.http.HTTPException
 cons public init(int)
 meth public int getStatusCode()
 supr jakarta.xml.ws.ProtocolException
-hfds statusCode
+hfds serialVersionUID,statusCode
 
 CLSS public abstract interface !annotation jakarta.xml.ws.soap.Addressing
  anno 0 jakarta.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends jakarta.xml.ws.WebServiceFeature> bean=class jakarta.xml.ws.soap.AddressingFeature, java.lang.String id="http://www.w3.org/2005/08/addressing/module")
@@ -463,7 +466,7 @@ CLSS public jakarta.xml.ws.soap.SOAPFaultException
 cons public init(jakarta.xml.soap.SOAPFault)
 meth public jakarta.xml.soap.SOAPFault getFault()
 supr jakarta.xml.ws.ProtocolException
-hfds fault
+hfds fault,serialVersionUID
 
 CLSS public abstract jakarta.xml.ws.spi.Invoker
 cons public init()
@@ -616,6 +619,12 @@ cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.Throwable)
 cons public init(java.lang.Throwable)
 supr java.lang.Throwable
+
+CLSS public abstract interface !annotation java.lang.FunctionalInterface
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+intf java.lang.annotation.Annotation
 
 CLSS public java.lang.Object
 cons public init()
