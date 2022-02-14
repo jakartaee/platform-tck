@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -76,9 +76,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(4, "WaterShoes");
-      final Item i2 = new Item(5, "FlipFlops");
-      final Item i3 = new Item(6, "Sandals");
+      final Item i1 = new Item(1, "WaterShoes");
+      final Item i2 = new Item(2, "FlipFlops");
+      final Item i3 = new Item(3, "Sandals");
 
       TestUtil.logTrace("Create Order1s");
       Order1 o4 = new Order1(4, 25.0D);
@@ -188,9 +188,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(7, "Loafers");
-      final Item i2 = new Item(8, "High Heels");
-      final Item i3 = new Item(9, "Socks");
+      final Item i1 = new Item(1, "Loafers");
+      final Item i2 = new Item(2, "High Heels");
+      final Item i3 = new Item(3, "Socks");
 
       TestUtil.logTrace("Create Orders");
 
@@ -303,9 +303,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(1, "Boots");
-      final Item i2 = new Item(2, "Sneakers");
-      final Item i3 = new Item(3, "Slippers");
+      final Item i1 = new Item(4, "Boots");
+      final Item i2 = new Item(5, "Sneakers");
+      final Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
@@ -410,9 +410,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(7, "Loafers");
-      final Item i2 = new Item(8, "High Heels");
-      final Item i3 = new Item(9, "Socks");
+      final Item i1 = new Item(1, "Loafers");
+      final Item i2 = new Item(2, "High Heels");
+      final Item i3 = new Item(3, "Socks");
 
       TestUtil.logTrace("Create Orders");
 
@@ -518,9 +518,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(7, "Loafers");
-      final Item i2 = new Item(8, "High Heels");
-      final Item i3 = new Item(9, "Socks");
+      final Item i1 = new Item(1, "Loafers");
+      final Item i2 = new Item(2, "High Heels");
+      final Item i3 = new Item(3, "Socks");
 
       TestUtil.logTrace("Create Orders");
 
@@ -736,9 +736,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(1, "Boots");
-      final Item i2 = new Item(2, "Sneakers");
-      final Item i3 = new Item(3, "Slippers");
+      final Item i1 = new Item(4, "Boots");
+      final Item i2 = new Item(5, "Sneakers");
+      final Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
@@ -802,9 +802,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(1, "Boots");
-      final Item i2 = new Item(2, "Sneakers");
-      final Item i3 = new Item(3, "Slippers");
+      final Item i1 = new Item(4, "Boots");
+      final Item i2 = new Item(5, "Sneakers");
+      final Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
@@ -866,9 +866,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      Item i1 = new Item(1, "Boots");
-      Item i2 = new Item(2, "Sneakers");
-      Item i3 = new Item(3, "Slippers");
+      Item i1 = new Item(4, "Boots");
+      Item i2 = new Item(5, "Sneakers");
+      Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
@@ -960,9 +960,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      Item i1 = new Item(1, "Boots");
-      Item i2 = new Item(2, "Sneakers");
-      Item i3 = new Item(3, "Slippers");
+      Item i1 = new Item(4, "Boots");
+      Item i2 = new Item(5, "Sneakers");
+      Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
@@ -1022,9 +1022,9 @@ public class Client extends PMClientBase {
       getEntityTransaction().begin();
 
       TestUtil.logTrace("Create Items");
-      Item i1 = new Item(1, "Boots");
-      Item i2 = new Item(2, "Sneakers");
-      Item i3 = new Item(3, "Slippers");
+      Item i1 = new Item(4, "Boots");
+      Item i2 = new Item(5, "Sneakers");
+      Item i3 = new Item(6, "Slippers");
 
       TestUtil.logTrace("Create Orders");
       Order1 o1 = new Order1(1, 25.0D);
