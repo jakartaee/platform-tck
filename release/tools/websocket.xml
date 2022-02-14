@@ -173,7 +173,7 @@
 		<copy todir="${deliverable.bundle.dir}/src/com/sun/ts/tests/signaturetest/signature-repository/"
 			  includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src/com/sun/ts/tests/signaturetest/signature-repository/"
-					 includes="jakarta.websocket.sig_2.1*" />
+					 includes="jakarta.websocket.*" />
 		</copy>
 
         <!-- the com/sun/ts/lib file -->
