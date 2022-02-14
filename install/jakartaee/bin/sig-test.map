@@ -26,16 +26,12 @@
 #
 # The resultant signature file name has a name that complies
 # with the following format:
-# <package>.sig_<technology_version><JavaSE_version_these_work_with>
+# <package>.sig_<technology_version>
 # Given this format, the following example breaks down as follows:
-#    jakarta.servlet=4.0_se11
+#    jakarta.servlet=4.0
 #      <package> = jakarta.servlet
 #      <technology_version> = 4.0  (for Servlet)
-#      <JavaSE_version_these_work_with> = JDK 8
 #
-# For this release valid versions are:  "_se11"
-# This sig-test.map file is designed to be run using JDK 11+ so any
-# signature file that ends with "_se11" will be valid.
 #
 # For updates to this file when the JavaEE spec gets updated,
 # as a good rule of thumb, we pull out any packages that end
@@ -66,70 +62,70 @@
 
 # EJB 4.0 
 # (This is JSR-345)
-jakarta.ejb=4.0_se11
+jakarta.ejb=4.0
 
 # Interceptors 2.0  
 # (This is JSR-318)
-jakarta.interceptor=2.0_se11
+jakarta.interceptor=2.0
 
 # Servlet 6.0 
 # (This is JSR-369)
-jakarta.servlet=6.0_se11
+jakarta.servlet=6.0
 
 # JSP 3.1 
 # (This is JSR-245)
-jakarta.servlet.jsp=3.1_se11
+jakarta.servlet.jsp=3.1
 
 # EL 5.0
 # (This is JSR-341)
-jakarta.el=5.0_se11
+jakarta.el=5.0
 
 # Faces 4.0 
 # (This is JSR-372)
-jakarta.faces=4.0_se11
+jakarta.faces=4.0
 
 # Tags 3.0
 # (This is JSR-52)
-jakarta.servlet.jsp.jstl=3.0_se11
+jakarta.servlet.jsp.jstl=3.0
 
 # Messaging 3.1 
 # (This is JSR-343)
-jakarta.jms=3.1_se11
+jakarta.jms=3.1
 
 # Transactions 2.0 
 # (This is JSR-907)
-jakarta.transaction=2.0_se11
+jakarta.transaction=2.0
 
 # Mail 2.1 
 # (This is JSR-919)
-jakarta.mail=2.1_se11
+jakarta.mail=2.1
 
 # Connector 2.1 
 # (This is JSR-322)
-jakarta.resource=2.1_se11
+jakarta.resource=2.1
 
 # Authorization 3.0
 # (This is JSR-115)
-jakarta.security.jacc=3.0_se11
+jakarta.security.jacc=3.0
 
 # Persistence 3.1
-jakarta.persistence=3.1_se11
+jakarta.persistence=3.1
 
 # Annotations 2.1
 # This is JSR-250
-jakarta.annotation=2.1_se11
+jakarta.annotation=2.1
 
 # Authentication 3.0
 # (This is JSR-196)
-jakarta.security.auth.message=3.0_se11
+jakarta.security.auth.message=3.0
 
 # JAX-RS 3.1
 # (This is JSR-370)
-jakarta.ws.rs=3.1_se11
+jakarta.ws.rs=3.1
 
 # Bean Validation 3.0
 # (This is JSR-380)
-jakarta.validation=3.0_se11
+jakarta.validation=3.0
 
 # Managed Beans 1.0 - no API to test
 # (This is listed along w/ EE spec at JSR-316)
@@ -139,36 +135,36 @@ jakarta.validation=3.0_se11
 
 # Dependency Injection for Java 2.0
 # (This is JSR-330)
-jakarta.inject=2.0_se11
+jakarta.inject=2.0
 
 # Contexts and Dependency Injection (CDI) 
 # (This is JSR-365)
-jakarta.enterprise=4.0_se11
-jakarta.decorator=4.0_se11
+jakarta.enterprise=4.0
+jakarta.decorator=4.0
 
 # Concurrency (JSR 236)
-jakarta.enterprise.concurrent=3.0_se11
+jakarta.enterprise.concurrent=3.0
 
 # JSON-P 2.1
 # (This is JSR-374)
-jakarta.json=2.1_se11
+jakarta.json=2.1
 
 # JSON-B
 # (This is JSR-367)
-jakarta.json.bind=2.1_se11
+jakarta.json.bind=2.1
 
 # WebSocket 2.1
 # (This is JSR-356)
-jakarta.websocket=2.1_se11
+jakarta.websocket=2.1
 
 # Batch 2.1 
 # (This is JSR-352)
-jakarta.batch=2.1_se11
+jakarta.batch=2.1
 
 # Security API 3.0
 # (This is JSR-375)
-jakarta.security.enterprise=3.0_se11
+jakarta.security.enterprise=3.0
 
 # javax.rmi
-javax.rmi=1.0_se11
+javax.rmi=1.0
 

@@ -43,7 +43,7 @@ public abstract class SignatureTestDriver {
    */
   public String getPackageFileImpl(String binDir) {
 
-    String thePkgListFile = "sig-test-pkg-list_se11.txt";
+    String thePkgListFile = "sig-test-pkg-list.txt";
 
     TestUtil.logMsg(
         "Using the following as the SigTest Package file: " + thePkgListFile);
@@ -56,15 +56,6 @@ public abstract class SignatureTestDriver {
       // try to default to use the sig-test-pkg-list.txt
       TestUtil
           .logErr("The SigTest Package file does not exist: " + thePkgListFile);
-      theFile = binDir + File.separator + "sig-test-pkg-list.txt";
-      File ff2 = new File(theFile);
-      if (!ff2.exists()) {
-        TestUtil
-            .logErr("The Default SigTest Package file does not exist either: "
-                + theFile);
-      } else {
-        TestUtil.logMsg("Defaulting to using SigTest Package file: " + theFile);
-      }
     }
 
     return (theFile);
@@ -77,7 +68,7 @@ public abstract class SignatureTestDriver {
    */
   public String getMapFileImpl(String binDir) {
 
-    String  theMapFile = "sig-test_se11.map";
+    String  theMapFile = "sig-test.map";
 
     TestUtil
         .logMsg("Using the following as the sig-Test map file: " + theMapFile);
@@ -89,14 +80,6 @@ public abstract class SignatureTestDriver {
       // lets
       // try to default to use the sig-test.map
       TestUtil.logErr("The SigTest Map file does not exist: " + theMapFile);
-      theFile = binDir + File.separator + "sig-test.map";
-      File ff2 = new File(theFile);
-      if (!ff2.exists()) {
-        TestUtil
-            .logErr("The SigTest Map file does not exist either: " + theFile);
-      } else {
-        TestUtil.logMsg("Defaulting to using SigTest Map file: " + theFile);
-      }
     }
 
     return (theFile);
