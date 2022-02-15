@@ -63,7 +63,7 @@ ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharne
 
 ts.classpath=${jsonb.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jsonbtck.jar
 
-ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jsonbtck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/bin${pathsep}${jsonb.classes}
+ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jsonbtck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/bin${pathsep}${jsonb.alt.provider.classes}${pathsep}${jsonb.classes}
 
 ###########################################################################
 # @tools.jar  should be set to the location of the tools.jar from the 
