@@ -598,13 +598,6 @@
           <param name="poolName" value="${postgresql.poolName}"/>
          </antcall>
 
-         <!-- For Batch TCK tests  -->
-         <antcall target="create-jdbc-connection-pool" >
-          <param name="restype" value="javax.sql.DataSource"/>
-          <param name="datasourceclassname" value="${batch.db.dataSource}"/>
-          <param name="pool.properties" value="${batch.db.properties}"/>
-          <param name="poolName" value="cts-derby-jsr352-tck-pool"/>
-         </antcall>       
      </target>
 
      <!--
@@ -617,11 +610,6 @@
           <param name="poolName" value="${use.derby.poolName}"/>
          </antcall>
          
-         <!-- For Batch TCK tests  -->
-         <antcall target="delete-jdbc-connection-pool" >
-          <param name="poolName" value="cts-derby-jsr352-tck-pool"/>
-         </antcall>
-
          <antcall target="delete-jdbc-connection-pool" >
           <param name="poolName" value="${derbyEmbedded.poolName}"/>
          </antcall>
@@ -748,12 +736,6 @@
           <param name="jndiName" value="jdbc/DB1"/>
         </antcall>
         
-        <!-- Batch TCK Tests -->   
-        <antcall target="create-jdbc-resource" >
-          <param name="connectionpoolid" value="cts-derby-jsr352-tck-pool"/>
-          <param name="jndiName" value="jdbc/orderDB"/>
-        </antcall>
-
         <antcall target="create-jdbc-resource" >
           <param name="connectionpoolid" value="${timer.poolName}"/>
           <param name="jndiName" value="jdbc/DBTimer"/>
@@ -804,11 +786,6 @@
      -->
      <target name="drop.jdbc.resources" depends="configPlatform" if="create.jdbc.pools.prop">
 
-         <!-- Batch TCK Tests -->
-        <!--<antcall target="delete-jdbc-resource" >
-          <param name="jndiName" value="jdbc/batch"/>
-         </antcall>-->
-         
          <antcall target="delete-jdbc-resource" >
           <param name="jndiName" value="jdbc/orderDB"/>
          </antcall>
