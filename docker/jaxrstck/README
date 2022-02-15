@@ -6,9 +6,9 @@ https://github.com/eclipse-ee4j/jaxrs-api repository.
 
 1. Install Java11+ , set JAVAHOME
 2. Install Maven 3.6+ set M2_HOME
-3. SET PATH : add /glassfish6/glassfish/bin as to start the glassfish domain in some environments, 
+3. SET PATH : add /${glassfish.toplevel.dir}/glassfish/bin as to start the glassfish domain in some environments, 
 add M2_HOME/bin, JAVA_HOME/bin
-eg: export PATH=$ANT_HOME/bin:$M2_HOME/bin:$JAVA_HOME/bin:<path to current directory>/target/glassfish6/glassfish/bin:$PATH
+eg: export PATH=$ANT_HOME/bin:$M2_HOME/bin:$JAVA_HOME/bin:<path to current directory>/target/${glassfish.toplevel.dir}/glassfish/bin:$PATH
 
 4. Download the latest Eclipse Jakarta REST TCK zip bundle that contains the tck jar.
 (If the jar is available from maven this step is not required as it will be resolved when dependencies are downloaded)

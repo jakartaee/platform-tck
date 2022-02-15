@@ -168,7 +168,9 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
-	string(name: 'OLD_GF_BUNDLE_URL', 
+    choice(name: 'GF_TOPLEVEL_DIR', choices: 'glassfish7\nglassfish6', 
+           description: 'Glassfish parent folder to identify between versions 6 & 7 of Glassfish' )
+	  string(name: 'OLD_GF_BUNDLE_URL', 
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
     string(name: 'TCK_BUNDLE_BASE_URL', 

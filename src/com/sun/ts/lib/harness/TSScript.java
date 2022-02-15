@@ -234,7 +234,7 @@ public class TSScript extends com.sun.javatest.Script {
       pTestProps.put("current.keywords", keywords);
       String version = (String)System.getProperties().get("java.version");
       if (!version.startsWith("1.")) {
-        pTestProps.put("jimage.dir", propMgr.getProperty("jimage.dir"));
+        pTestProps.put("jimage.dir", propMgr.getProperty("jimage.dir", ""));
       }
 
       // so we know what kind of test this is

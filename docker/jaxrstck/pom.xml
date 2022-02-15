@@ -31,6 +31,7 @@
         <glassfish.container.version>6.1.0</glassfish.container.version>
         <jakarta.platform.version>9.1.0</jakarta.platform.version>
         <junit.jupiter.version>5.7.2</junit.jupiter.version>
+        <glassfish.toplevel.dir>glassfish6</glassfish.toplevel.dir>
     </properties>
 
     <dependencyManagement>
@@ -145,7 +146,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>start-domain</argument>
@@ -159,7 +160,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>set</argument>
@@ -174,7 +175,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>--passwordfile</argument>
@@ -193,7 +194,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>--passwordfile</argument>
@@ -212,7 +213,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>list-file-users</argument>
@@ -226,7 +227,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}/glassfish6/glassfish/bin</workingDirectory>
+                            <workingDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin</workingDirectory>
                             <executable>asadmin</executable>
                             <arguments>
                                 <argument>stop-domain</argument>
@@ -247,15 +248,15 @@
                         </goals>
                         <configuration>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-server.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-container-grizzly2-http.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-json-binding.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/glassfish6/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jersey-server.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jersey-container-grizzly2-http.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jersey-media-json-binding.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jersey-media-sse.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <dependenciesToScan>jakarta.ws.rs:jakarta.ws.rs-tck</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/glassfish6</GLASSFISH_HOME>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <servlet_adaptor>org.glassfish.jersey.servlet.ServletContainer</servlet_adaptor>
                                 <webServerHost>localhost</webServerHost>
                                 <webServerPort>8080</webServerPort>
@@ -267,7 +268,7 @@
                                 <porting.ts.url.class.1>jakarta.ws.rs.tck.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
                             </systemPropertyVariables>
                             <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/glassfish6</GLASSFISH_HOME>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                             </environmentVariables>
                         </configuration>
                     </execution>
