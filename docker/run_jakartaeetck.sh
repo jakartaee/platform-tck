@@ -48,6 +48,12 @@ if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
     export GF_VI_TOPLEVEL_DIR=${GF_TOPLEVEL_DIR}
 fi
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  if [ -f $TS_HOME/bin/ts.jte.jdk11 ];then
+    cp $TS_HOME/bin/ts.jte.jdk11 $TS_HOME/bin/ts.jte
+  fi
+fi
+
 if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
   export JAVA_HOME=${JDK17_HOME}
 fi

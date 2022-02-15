@@ -39,6 +39,7 @@ if [ -z "$GF_TOPLEVEL_DIR" ]; then
   export GF_TOPLEVEL_DIR=glassfish7
 fi
 
+
 ##### installRI.sh starts here #####
 echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
@@ -55,6 +56,12 @@ chmod -R 777 $TS_HOME
 rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextPropagate/ContextPropagate_web.war
 
 cd $TS_HOME/bin
+
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  if [ -f ts.jte.jdk11 ];then
+    cp ts.jte.jdk11 ts.jte 
+  fi
+fi
 
 if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
   export JAVA_HOME=${JDK17_HOME}

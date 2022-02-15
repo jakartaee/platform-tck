@@ -54,6 +54,12 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
+if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
+  if [ -f ts.jte.jdk11 ];then
+    cp ts.jte.jdk11 ts.jte 
+  fi
+fi
+
 if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
   export JAVA_HOME=${JDK17_HOME}
 fi
