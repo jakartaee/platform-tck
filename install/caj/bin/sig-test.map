@@ -1,6 +1,5 @@
 #
-# Copyright (c) 2019, 2021 Oracle and/or its affiliates and others.
-# All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,15 +13,4 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
-
-###############################################################
-# The signature test mapping file for the JSP TCK.  This file
-# should be formatted as a standard java properties file.  The
-# name is the package name and the value is the version of the
-# package that should be tested by the signature tests.
-###############################################################
-
-
-# JSP
-=======
-jakarta.servlet.jsp=3.1_se11
+jakarta.annotation=2.1

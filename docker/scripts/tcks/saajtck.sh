@@ -45,7 +45,7 @@ sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules
 sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
 
 if [ "$profile" == "web" ]; then
-  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se11.map
+  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test.map
 fi
 
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport#g" ts.jte

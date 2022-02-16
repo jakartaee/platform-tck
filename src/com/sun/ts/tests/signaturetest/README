@@ -1,6 +1,6 @@
-The latest signature files (specific for Java SE 8 & Java SE 11)  were updated in
+The latest signature files  were updated in
 the jakartaee-tck repoitory (src/com/sun/ts/tests/signaturetests/signature-repository) 
-for JakartaEE 9 release. The wikipage to generate the signature files is updated in the 
+for JakartaEE 10 release. The wikipage to generate the signature files is updated in the 
 wiki link :
 https://github.com/eclipse-ee4j/jakartaee-tck/wiki/Signature-Tests-in-JakartaEE-TCK
 
@@ -53,8 +53,8 @@ The file should then be copied to $TS_HOME/install/<deliverable>/bin and
 source controlled in that directory.  The sig-test.map file should be
 copied to $TS_HOME/bin during the install process for a deliverable.
 
-Additionally, different sig-test.map is created specific to the JDK version.
-sig-test_se11.map for Java SE 11.
+Additionally, different sig-test.map is created with the version of the API tested.
+
 If the JDK specific map file does not exist by default sig-test.map will be used 
 to run the signature tests.
 
@@ -66,9 +66,9 @@ signature tests.  All signatures files live in the following directory:
 $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/
 Users should see if their signatures already exist in this directory.
 Note, every property in the sig-test.map file maps to a signature
-file.  For example the property "jakarta.ejb=4.0_se11" maps to the signature
+file.  For example the property "jakarta.ejb=4.0" maps to the signature
 file:
- $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/jakarta.ejb.sig_4.0_se11
+ $TS_HOME/src/com/sun/ts/tests/signaturetest/signature-repository/jakarta.ejb.sig
 
 If the signature file already exist, the user should checkout the signature
 file (using git clone) then record the new signatures and do an "git diff"

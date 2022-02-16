@@ -54,4 +54,4 @@
 
 
 # Authentication
-jakarta.security.auth.message=3.0_se11
+jakarta.security.auth.message=3.0

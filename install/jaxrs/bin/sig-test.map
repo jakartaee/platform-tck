@@ -15,6 +15,6 @@
 #
 
 ###############################################################
-# The signature test mapping file for the Websocket TCK.
+# The signature test mapping file for the JAX-RS TCK.
 ###############################################################
-jakarta.websocket=2.1_se11
+jakarta.ws.rs=3.1

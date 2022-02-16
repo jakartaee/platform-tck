@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,7 +15,7 @@
 #
 
 ###############################################################
-# The signature test mapping file for the JPA TCK.  This file
+# The signature test mapping file for the JACC TCK.  This file
 # should be formatted as a standard java properties file.  The
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
@@ -35,8 +35,17 @@
 #       jakarta.servlet.jsp signature file can vary independent
 #       of the jakarta.servlet signature file.
 #
+# Command used to record the JACC signatures in reflective mode
+#
+# cd to: $TS_HOME/src/com/sun/ts/tests/signaturetest
+#
+# run: $ANT_HOME/bin/ant -f record-build.xml \
+#   -Dsig.source=JAVAEE_HOME/lib/javaee.jar \
+#   -Dmap.file=$TS_HOME/bin/sig-test.map record.sig.batch
+#
 ###############################################################
 
-# Persistence packages
-jakarta.persistence=3.1_se11
+# Authorization 
+jakarta.security.jacc=3.0
+
 
