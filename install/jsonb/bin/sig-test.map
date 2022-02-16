@@ -30,9 +30,9 @@
 #
 # The resultant signature file name has a name that complies
 # with the following format:
-# <package>.sig_<technology_version>
+# <package>.sig
 # Given this format, the following example breaks down as follows:
-#    jakarta.json.bind.sig_1.0:
+#    jakarta.json.bind.sig:
 #      <package> = jakarta.json.bind
 #      <technology_version> = 1.1  (for JSON-B) 
 #

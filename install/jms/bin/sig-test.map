@@ -29,9 +29,9 @@
 #
 # The resultant signature file name has a name that complies
 # with the following format:
-# <package>.sig_<technology_version>
+# <package>.sig
 # Given this format, the following example breaks down as follows:
-#    jakarta.jms.sig_2.0:
+#    jakarta.jms.sig:
 #      <package> = jakarta.jms
 #      <technology_version> = 2.0  (for JMS) 
 ###############################################################

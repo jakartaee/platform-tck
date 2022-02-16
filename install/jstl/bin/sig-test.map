@@ -20,8 +20,6 @@
 # name is the package name and the value is the version of the
 # package that should be tested by the signature tests.
 #
-#	$Id$
-#
 ###############################################################
 
 # JSTL packages

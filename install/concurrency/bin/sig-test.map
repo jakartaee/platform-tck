@@ -29,9 +29,9 @@
 #
 # The resultant signature file name has a name that complies
 # with the following format:
-# <package>.sig_<technology_version>
+# <package>.sig
 # Given this format, the following example breaks down as follows:
-#    jakarta.enterprise.concurrent.sig_1.0:
+#    jakarta.enterprise.concurrent.sig:
 #      <package> = jakarta.enterprise.concurrent
 #      <technology_version> = 1.0  (for CONCURRENCY)
 #

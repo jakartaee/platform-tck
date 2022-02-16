@@ -26,7 +26,7 @@
 #
 # The resultant signature file name has a name that complies
 # with the following format:
-# <package>.sig_<technology_version>
+# <package>.sig
 # Given this format, the following example breaks down as follows:
 #    jakarta.servlet=4.0
 #      <package> = jakarta.servlet
