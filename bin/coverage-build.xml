@@ -406,16 +406,6 @@
     </antcall>
   </target>
 
-  <target name="jaxrs">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxrs_2_1/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jaxrs_2_1/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jaxrs/JAXRSJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jaxrs/JAXRSSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jaxrs"/>
-    </antcall>
-  </target>
-
   <target name="jaxws">
     <antcall target="calculate.coverage">
       <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxws_2_2/api"/>
