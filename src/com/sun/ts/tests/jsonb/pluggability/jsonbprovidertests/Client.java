@@ -64,30 +64,14 @@ public class Client extends ServiceEETest {
      * static JsonbProvider provider()
      */
     public void jsonbProviderTest1() throws Fault {
-        boolean pass = true;
         try {
-            // Load my provider
+            // Load any provider
             JsonbProvider provider = JsonbProvider.provider();
             String providerClass = provider.getClass().getName();
             logMsg("provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONBROVIDER_CLASS))
-                logMsg("Current provider is my provider - expected.");
-            else {
-                logErr("Current provider is not my provider - unexpected.");
-                pass = false;
-                ServiceLoader<JsonbProvider> loader = ServiceLoader.load(JsonbProvider.class);
-                Iterator<JsonbProvider> it = loader.iterator();
-                List<JsonbProvider> providers = new ArrayList<>();
-                while(it.hasNext()) {
-                    providers.add(it.next());
-                }
-                logMsg("Providers: "+providers);
-            }
         } catch (Exception e) {
             throw new Fault("jsonbProviderTest1 Failed: ", e);
         }
-        if (!pass)
-            throw new Fault("jsonbProviderTest1 Failed");
     }
 
     /*
