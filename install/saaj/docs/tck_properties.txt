@@ -22,35 +22,35 @@
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 1a. TCK full name.
-TCKFullName=SOAP with Attachments API for Java (SAAJ) TCK
+TCKFullName=SOAP with Attachments API for Java (Soap) TCK
 
 // 1b. TCK short name.
-TCKShortName=SAAJ TCK
+TCKShortName=SOAP TCK
 
 // 1c. Technology full name.
-TechnologyFullName=SOAP with Attachments API for Java (SAAJ) 2.0
+TechnologyFullName=SOAP with Attachments API for Java (Soap) 3.0
 
 // 1d. Technology short name.
-TechnologyShortName=SAAJ
+TechnologyShortName=SOAP
 
 // 1e. Technology/TCK version.
-TechnologyVersion=2.0
+TechnologyVersion=3.0
 
 // 1f. TCK release date.
-ReleaseDate=April 2006
+ReleaseDate=March 2022
 
 // 1g. Version of JavaTest included with/used by the TCK.
 JavaTestVersion=5.0
 
 // 1h. Version of Java SE required to run the TCK.
-J2SEVersion=J2SE 1.8
+J2SEVersion=J2SE 11
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Section 2. Paths, package names, and URLs.
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 2a. Name of the package ZIP file.
-TCKPackageName=soap-tck-2.0.0.zip
+TCKPackageName=soap-tck-3.0.0.zip
 
 // 2b. Directory base name created when TCK bundle is unzipped; do
 // not enter path prefix.
