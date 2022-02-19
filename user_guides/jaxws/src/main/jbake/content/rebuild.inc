@@ -84,24 +84,7 @@ Documentation for these tasks can be found later in this appendix:
 2.  Set the `wsimport.ant.classname` and `wsgen.ant.classname`
 properties in `<TS_HOME>/bin/ts.jte` to point to your implementations of
 the above two tasks.
-3.  If using Java SE 8 or above:
-  a.  Verify that the property `endorsed.dirs` is set to the location of
-  the VI API jars for those technologies you wish to override. Java SE 8
-  contains an implementation of JAX-WS 2.2 which will conflict with XML-WS
-  3.0, therefore this property must be set so that XML-WS 3.0 will be used
-  during the building of tests and during test execution.
-  b.  Set the `java.endorsed.dirs` property in the `ANT_OPTS` environment
-  variable to point to the location in which only the XML-WS 3.0 API jars
-  exist; for example:
-+
---
-[source,oac_no_warn]
-----
-ANT_OPTS="-Djava.endorsed.dirs=PATH_TO_YOUR_ENDORSED_DIR"
-----
---
-+
-4.  Change to the `jaxws` test directory and execute the following build
+3.  Change to the `jaxws` test directory and execute the following build
 target:
 +
 --

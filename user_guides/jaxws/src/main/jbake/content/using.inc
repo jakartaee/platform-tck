@@ -4,7 +4,7 @@ This include file allows for additional instructions for running the TCK.
 For example, the following is used for the JAX-WS TCK.
 ///////////////////////////////////////////////////////////////////////
 
-[[GCLRR]][[running-the-jax-ws-tck-against-the-jax-ws-ri]]
+[[GCLQR]][[running-the-jax-ws-tck-against-the-jax-ws-ri]]
 
 5.6 Running the JAX-WS TCK Against the JAX-WS Compatible Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,7 +23,7 @@ link:config.html#GCLIW[Deploying the JAX-WS TCK Prebuilt Archives].
 4.  Run the tests, as described in link:#GBFUZ[Starting JavaTest] and,
 if desired, link:#GBFWM[Running a Subset of the Tests].
 
-[[GCLRZ]][[running-the-jax-ws-tck-against-a-vendors-implementation]]
+[[GCLQZ]][[running-the-jax-ws-tck-against-a-vendors-implementation]]
 
 5.7 Running the JAX-WS TCK Against a Vendor's Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
