@@ -38,13 +38,12 @@ import com.sun.ts.tests.jms.common.*;
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinitions(value = {
   @JMSDestinationDefinition(
 	description="Define Queue EJBMyTestQueue",
 	interfaceName="jakarta.jms.Queue",
 	name="java:global/env/EJBMyTestQueue",
     	destinationName="EJBMyTestQueue"
-   ),
+   )
 
   @JMSDestinationDefinition(
 	description="Define Topic EJBMyTestTopic",
@@ -53,19 +52,16 @@ import com.sun.ts.tests.jms.common.*;
 	destinationName="EJBMyTestTopic"
    )
 
-})
-
 //-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 //-------------------------------------------
-@JMSConnectionFactoryDefinitions(value = {
   @JMSConnectionFactoryDefinition(
 	description="Define ConnectionFactory EJBMyTestConnectionFactory",
 	interfaceName="jakarta.jms.ConnectionFactory",
     	name="java:global/EJBMyTestConnectionFactory",
 	user = "@user@",
 	password = "@password@"
-   ),
+   )
 
   @JMSConnectionFactoryDefinition(
 	description="Define QueueConnectionFactory EJBMyTestQueueConnectionFactory",
@@ -73,7 +69,7 @@ import com.sun.ts.tests.jms.common.*;
     	name="java:app/EJBMyTestQueueConnectionFactory",
 	user = "@user@",
 	password = "@password@"
-   ),
+   )
 
   @JMSConnectionFactoryDefinition(
 	description="Define TopicConnectionFactory EJBMyTestTopicConnectionFactory",
@@ -81,7 +77,7 @@ import com.sun.ts.tests.jms.common.*;
     	name="java:module/EJBMyTestTopicConnectionFactory",
 	user = "@user@",
 	password = "@password@"
-   ),
+   )
 
   @JMSConnectionFactoryDefinition(
 	description="Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory",
@@ -95,8 +91,6 @@ import com.sun.ts.tests.jms.common.*;
 	maxPoolSize = 30,
 	minPoolSize = 20
    )
-})
-
 
 @Stateful(name="JMSResourceDefsEjbClientBean")
 @Remote({EjbClientIF.class})

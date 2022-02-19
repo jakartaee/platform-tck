@@ -36,65 +36,59 @@ import jakarta.annotation.Resource;
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinitions(value = {
-  @JMSDestinationDefinition(
-	description="Define Queue ServletMyTestQueue",
-	interfaceName="jakarta.jms.Queue",
-	name="java:global/env/ServletMyTestQueue",
-    	destinationName="ServletMyTestQueue"
-   ),
+@JMSDestinationDefinition(
+      description="Define Queue ServletMyTestQueue",
+      interfaceName="jakarta.jms.Queue",
+      name="java:global/env/ServletMyTestQueue",
+      destinationName="ServletMyTestQueue"
+ )
 
-  @JMSDestinationDefinition(
-	description="Define Topic ServletMyTestTopic",
-	interfaceName="jakarta.jms.Topic",
-	name="java:app/env/ServletMyTestTopic",
-	destinationName="ServletMyTestTopic"
-   )
-
-})
+@JMSDestinationDefinition(
+      description="Define Topic ServletMyTestTopic",
+      interfaceName="jakarta.jms.Topic",
+      name="java:app/env/ServletMyTestTopic",
+      destinationName="ServletMyTestTopic"
+ )
 
 //-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 //-------------------------------------------
-@JMSConnectionFactoryDefinitions(value = {
-  @JMSConnectionFactoryDefinition(
-	description="Define ConnectionFactory ServletMyTestConnectionFactory",
-	interfaceName="jakarta.jms.ConnectionFactory",
-    	name="java:global/ServletMyTestConnectionFactory",
-	user = "@user@",
-	password = "@password@"
-   ),
+@JMSConnectionFactoryDefinition(
+      description="Define ConnectionFactory ServletMyTestConnectionFactory",
+      interfaceName="jakarta.jms.ConnectionFactory",
+      name="java:global/ServletMyTestConnectionFactory",
+      user = "@user@",
+      password = "@password@"
+ )
 
-  @JMSConnectionFactoryDefinition(
-	description="Define QueueConnectionFactory ServletMyTestQueueConnectionFactory",
-	interfaceName="jakarta.jms.QueueConnectionFactory",
-    	name="java:app/ServletMyTestQueueConnectionFactory",
-	user = "@user@",
-	password = "@password@"
-   ),
+@JMSConnectionFactoryDefinition(
+      description="Define QueueConnectionFactory ServletMyTestQueueConnectionFactory",
+      interfaceName="jakarta.jms.QueueConnectionFactory",
+      name="java:app/ServletMyTestQueueConnectionFactory",
+      user = "@user@",
+      password = "@password@"
+ )
 
-  @JMSConnectionFactoryDefinition(
-	description="Define TopicConnectionFactory ServletMyTestTopicConnectionFactory",
-	interfaceName="jakarta.jms.TopicConnectionFactory",
-    	name="java:module/ServletMyTestTopicConnectionFactory",
-	user = "@user@",
-	password = "@password@"
-   ),
+@JMSConnectionFactoryDefinition(
+      description="Define TopicConnectionFactory ServletMyTestTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:module/ServletMyTestTopicConnectionFactory",
+      user = "@user@",
+      password = "@password@"
+ )
 
-
-  @JMSConnectionFactoryDefinition(
-	description="Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory",
-	interfaceName="jakarta.jms.TopicConnectionFactory",
-    	name="java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory",
-	user = "@user@",
-	password = "@password@",
-	clientId = "MyClientID",
-	properties = { "Property1=10", "Property2=20" },
-	transactional = false,
-	maxPoolSize = 30,
-	minPoolSize = 20
-   )
-})
+@JMSConnectionFactoryDefinition(
+      description="Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory",
+      user = "@user@",
+      password = "@password@",
+      clientId = "MyClientID",
+      properties = { "Property1=10", "Property2=20" },
+      transactional = false,
+      maxPoolSize = 30,
+      minPoolSize = 20
+ )
 
 @WebServlet("/ServletTest")
 public class ServletClient extends HttpServlet {
