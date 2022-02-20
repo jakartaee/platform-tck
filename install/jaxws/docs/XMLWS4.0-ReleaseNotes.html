@@ -53,38 +53,46 @@ h4 {  font-style: italic; color: #000099}
           <strong>WS-I Conformance</strong>, <strong> Java-to-WSDL/WSDL-to-Java Mapping</strong>
           and <strong>Web Services Addressing Conformance</strong> tests:</p>
         <ul type="square">
-          <li><p>A <strong>Signature test</strong> that checks that all of the
+          <li>A <strong>Signature test</strong> that checks that all of the
             public APIs are supported/defined as specified in the Jakarta EE XML
-            Web Services Version 4.0 implementation that is being tested.</p>
+            Web Services Version 4.0 implementation that is being tested.
           </li>
-          <li><p><strong>API tests</strong> to verify the functionality of all the
-            public APIs under <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.handler</code>,
-            <code>jakarta.xml.ws.handler.soap</code>, <code>jakarta.xml.ws.http</code>,
-            <code>jakarta.xml.ws.spi</code>, <code>jakarta.xml.ws.spi.http</code>,
-            <code>jakarta.xml.ws.soap</code>, <code>jakarta.xml.ws.wsaddressing</code>,
-            <code>jakarta.jws</code> and <code>jakarta.jws.soap</code>.</p>
+          <li><strong>API tests</strong> to verify the functionality of all the
+            public APIs under
+            <ul>
+              <li><code>jakarta.jws</code></li>
+              <li><code>jakarta.jws.soap</code></li>
+              <li><code>jakarta.xml.ws</code></li>
+              <li><code>jakarta.xml.ws.handler</code></li>
+              <li><code>jakarta.xml.ws.handler.soap</code></li>
+              <li><code>jakarta.xml.ws.http</code></li>
+              <li><code>jakarta.xml.ws.spi</code></li>
+              <li><code>jakarta.xml.ws.spi.http</code></li>
+              <li><code>jakarta.xml.ws.soap</code></li>
+              <li><code>jakarta.xml.ws.wsaddressing</code></li>
+            </ul>
           </li>
-          <li><p><strong>End-to-end tests</strong> that demonstrate
+          <li><strong>End-to-end tests</strong> that demonstrate
             marshalling/unmarshalling of all XML supported data types when going
             from WSDL-to-Java and all Jakarta EE XML Web Services supported Java
             data types when going from Java-to-WSDL as Jakarta EE XML Web Services
             SOAP Messages both through synchronous (request/response) and
             asynchronous (request/response) and (one-way) RPC invocations. All
             client programming model invocation methods (Stub-based, Dynamic
-            Proxy, and Dispatch interface) are tested.</p>
+            Proxy, and Dispatch interface) are tested.
           </li>
-          <li><p><strong>WS-I Conformance Tests</strong> that test and check for
+          <li><strong>WS-I Conformance Tests</strong> that test and check for
             conformance to the WS-I Basic Profile 1.1, Attachment Profile 1.0, and
-            Simple Soap Binding Profile 1.0 conformance specifications.</p>
+            Simple Soap Binding Profile 1.0 conformance specifications.
           </li>
-          <li><p><strong>Java-to-WSDL/WSDL-to-Java Mapping Tests</strong> that test
+          <li><strong>Java-to-WSDL/WSDL-to-Java Mapping Tests</strong> that test
             and check for conformance to the Java-to-WSDL and WSDL-to-Java
-            mappings.</p>
+            mappings.
           </li>
-          <li><p><strong>Web Services Addressing Conformance Tests</strong> that test
+          <li><strong>Web Services Addressing Conformance Tests</strong> that test
             and check for conformance to the Web Services Addressing 1.0 - Core,
             Web Services Addressing 1.0 - Metadata, and Web Services Addressing
-            1.0 - SOAP Binding conformance specifications.</p>
+            1.0 - SOAP Binding conformance specifications.
           </li>
         </ul>
     </ul>
