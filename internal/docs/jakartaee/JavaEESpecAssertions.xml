@@ -1,7 +1,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -266,7 +266,7 @@
                     <section id = "3" name = "Enterprise JavaBeans (EJB) 3.2 Requirements"/>
                     <section id = "4" name = "Servlet 4.0 Requirements"/>
                     <section id = "5" name = "Java Server Pages (JSP) 2.3 Requirements"/>
-                    <section id = "6" name = "Expression Language (EL) 3.0 Requirements"/>
+                    <section id = "6" name = "Expression Language (EL) 5.0 Requirements"/>
                     <section id = "7" name = "Java Message Service (JMS) 2.0 Requirements"/>
                     <section id = "8" name = "Java Transaction API (JTA) 1.2 Requirements"/>
                     <section id = "9" name = "JavaMail 1.6 Requirements"/>
