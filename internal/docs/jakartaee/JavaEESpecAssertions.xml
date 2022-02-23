@@ -171,7 +171,7 @@
                     <section id = "13.2" name = "Application Assembler s Responsibilities"/>
                     <section id = "13.3" name = "Deployer s Responsibility"/>
                     <section id = "13.4" name = "JavaEE Product Provider s Responsibility"/>
-                    <section id = "13.5" name = "System Administrator s Responsibility"/>
+                    <section id = "13.5" name = "System Administrator s Responsibility"/>Copyright (c) 2013, 2020 Oracle and/or its affiliates.
                     <section id = "14" name = "Persistence Context References"/>
                     <section id = "14.1" name = "Bean Provider s Responsibilities"/>
                     <section id = "14.1.1" name = "Injection of Persistence Context References"/>
@@ -274,7 +274,7 @@
                     <section id = "11" name = "Web Services for Java EE 1.4 Requirements"/>
                     <section id = "12" name = "Java API for XML-based RPC (JAX-RPC) 1.1 Requirements (Optional)"/>
                     <section id = "13" name = "Java API for RESTful Web Services (JAX-RS) 2.1 Requirements"/>
-                    <section id = "14" name = "Java API for WebSocket 1.1 (WebSocket) Requirements"/>
+                    <section id = "14" name = "Java API for WebSocket 2.1 (WebSocket) Requirements"/>
                     <section id = "15" name = "Java API for JSON Processing 1.1 (JSON-P) Requirements"/>
                     <section id = "16" name = "Java API for JSON Binding 1.0 (JSON-B) Requirements"/>
                     <section id = "17" name = "Concurrency Utilities for Java EE 1.0 (Concurrency Utilities) Requirements"/>
