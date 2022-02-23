@@ -153,7 +153,7 @@ following required and optional Jakarta EE 9.1 technologies:
 * Jakarta Enterprise Beans 4.0 +
 * Jakarta Servlet 5.0
 * Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
+* Jakarta Expression Language 5.0
 * Jakarta Messaging 3.0
 * Jakarta Transactions 2.0
 * Jakarta Mail 2.0
@@ -196,7 +196,7 @@ the following required Jakarta EE 9.1 Web Profile technologies:
 
 * Jakarta Servlet 5.0
 * Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
+* Jakarta Expression Language 5.0
 * Jakarta Standard Tag Library 2.0
 * Jakarta Faces 3.0
 * Jakarta RESTful Web Services 3.0

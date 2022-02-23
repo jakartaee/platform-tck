@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -27,7 +27,7 @@
 	<technology>EL</technology>
 	<id>EL</id>
 	<name>Expression Language</name>
-	<version>4.0</version>
+	<version>5.0</version>
 	<location-names>
 		<chapters>
 			<chapter id="1" name="Language Syntax and Semantics">
