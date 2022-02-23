@@ -160,7 +160,7 @@ following required and optional Jakarta EE 9.1 technologies:
 * Jakarta Connectors 2.0
 * Jakarta Enterprise Web Services 2.0 (optional)
 * Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
+* Jakarta WebSocket 2.1
 * Jakarta JSON Processing 2.0
 * Jakarta JSON Binding 2.0
 * Jakarta Concurrency 2.0
@@ -200,7 +200,7 @@ the following required Jakarta EE 9.1 Web Profile technologies:
 * Jakarta Standard Tag Library 2.0
 * Jakarta Faces 3.0
 * Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
+* Jakarta WebSocket 2.1
 * Jakarta JSON Processing 2.0
 * Jakarta JSON Binding 2.0
 * Jakarta Common Annotations 2.0
