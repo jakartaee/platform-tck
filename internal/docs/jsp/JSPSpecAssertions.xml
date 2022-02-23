@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "US-ASCII"?>
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
-  Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+  Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
   All rights reserved.
 
   This program and the accompanying materials are made available under the
@@ -25,8 +25,8 @@
 	<previous-id>318</previous-id>
 	<technology>JSP</technology>
 	<id>JSP:SPEC:JSP</id>
-	<name>Java Server(TM) Pages</name>
-	<version>2.2</version>
+	<name>Jakarta Server Pages</name>
+	<version>3.1</version>
 	<location-names>
 		<chapters>
 			<chapter id="0" name="Preface" />

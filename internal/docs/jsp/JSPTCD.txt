@@ -1,8 +1,8 @@
-TCK Coverage Document for JSR-245: JavaServer Pages 2.3 Specification and
-Expression Language 2.3 Specification
+TCK Coverage Document for JSR-245: JavaServer Pages 3.1 Specification and
+Expression Language 5.0 Specification
 
-The Expression Language 2.3 Specification is incorporated by reference in
-the JavaServer Pages 2.3 Specification.
+The Expression Language 3.1 Specification is incorporated by reference in
+the JavaServer Pages 5.0 Specification.
 
 TCK Components:
 ---------------
@@ -31,21 +31,21 @@ Terminology of Metrics
 
 Coverage
 --------
-- Total testable assertions from the JavaServer Pages 2.3 Specification,
-  Expression Language 2.3 Specification, and Javadoc:
+- Total testable assertions from the JavaServer Pages 3.1 Specification,
+  Expression Language 5.1 Specification, and Javadoc:
 
      883 specification assertions
   +  451 API assertions
   ----------------------
     1334 testable assertions
 
-- Number of testable JavaServer Pages Spec assertions tested: 546 (61.83%)
-- Number of testable JavaServer Pages API assertions tested:  370 (82.04%)
+- Number of testable Jakarta Server Pages Spec assertions tested: 546 (61.83%)
+- Number of testable Jakarta Server Pages API assertions tested:  370 (82.04%)
 
 - Total of 68.67% combined specification and api coverage.
 
 Assertions were identified through the use of CTS Tools and hand markup (hand markup was
-required for the JavaServer Pages and Expression Language specifications)
+required for the Jakarta Server Pages and Expression Language specifications)
 
 
 Quality Assurance
@@ -65,7 +65,7 @@ Quality Assurance
 
 Justification of Adequacy
 -------------------------
-The JavaServer Pages and Expression Language tests, distributed as part 
+The Jakarta Server Pages and Expression Language tests, distributed as part 
 of the JavaEE CTS version 7, provides an adequate set of tests to ensure all
 implementations of the Java EE 7 Platform are compatible with the requirements
 defined in these specifications.  As with all TCKs it is impossible to provide tests
