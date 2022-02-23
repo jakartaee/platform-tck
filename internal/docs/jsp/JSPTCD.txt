@@ -66,8 +66,8 @@ Quality Assurance
 Justification of Adequacy
 -------------------------
 The Jakarta Server Pages and Expression Language tests, distributed as part 
-of the JavaEE CTS version 7, provides an adequate set of tests to ensure all
-implementations of the Java EE 7 Platform are compatible with the requirements
+of the Jakarta EE CTS version 10, provides an adequate set of tests to ensure all
+implementations of the Jakarta EE 10 Platform are compatible with the requirements
 defined in these specifications.  As with all TCKs it is impossible to provide tests
 that will yield 100% assertion coverage. Untested assertions are due to the effects
 of late specification changes, and the availability and cost of test development resources.
