@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,31 +50,11 @@ webServerPort.2=
 #		  This is usually installed within a web container (glassfish 
 #		  or tomcat) so we default this value to @webcontainer.home.ri.
 #		  See this property below.
-# @endorsed.dirs  If using JavaSE 6 or above, verify that the property 
-#                 endorsed.dirs is set to the location of the VI api jars 
-#                 for those technologies you wish to overrride. JavaSE 6 
-#                 contains an implementation of JAXWS 2.x which will conflict
-#                 with JAXWS 2.2, therefore this property must be set so that 
-#                 JAXWS 2.2 will be used during the building of tests and 
-#                 during test execution. For details regarding how the 
-#                 Endorsed Standards Override Mechanism works, see 
-#                 http://java.sun.com/javase/6/docs/technotes/guides/standards
-# @endorsed.dirs.ri  If using JavaSE 6 or above, verify that the property 
-#                    endorsed.dirs is set to the location of the RI api jars 
-#                    for those technologies you wish to overrride. JavaSE 6 
-#                    contains an implementation of JAXWS 2.x which will conflict
-#                    with JAXWS 2.2, therefore this property must be set so that 
-#                    JAXWS 2.2 will be used during the building of tests and 
-#                    during test execution. For details regarding how the 
-#                    Endorsed Standards Override Mechanism works, see 
-#                    http://java.sun.com/javase/6/docs/technotes/guides/standards
 #################################################################################
 jaxws.home=${webcontainer.home}
 jaxws.home.ri=${webcontainer.home.ri}
 jaxws.lib=${jaxws.home}/modules
 jaxws.lib.ri=${jaxws.home.ri}/modules
-endorsed.dirs=${jaxws.lib}
-endorsed.dirs.ri=${jaxws.lib.ri}
 
 ###########################################################################
 # @jaxws.classes  should contain all Vendor specific jars/classes
@@ -100,7 +80,7 @@ catalog.path=${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog
 # @ts.run.classpath.ri  --  Classpath required by Java EE RI
 #                           appclient container.
 ####################################################################
-ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jaxb-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
+ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/lib/jakarta.xml.bind-api.jar${pathsep}${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/jaxb-libs.jar${pathsep}${ts.home}/lib/jaxb-impl.jar
 
 ts.classpath=${jaxws.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jaxwstck.jar
 
@@ -541,7 +521,6 @@ javaee.home=${webcontainer.home}
 #                         The xxxlogin and xxxpassword are used
 #                         to set known server side creds for use
 #                         with connector tests.
-# @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
 # @s1as.db.ext.dirs    -- The extension directory for DB Type 2
