@@ -875,7 +875,7 @@ client. This time is configurable to allow the servlet container enough
 time to completely invalidate the `HttpSession`. The default value is 10
 milliseconds.
 
-The test `serverpush` in Jakarta Servlet 5.0, uses `httpclient`, a new library
+The test `serverpush` in Jakarta Servlet 6.0, uses `httpclient`, a new library
 in JDK9 which is backported to JDK8. There is a restriction on using
 `httpclient` in JDK8 as the `httpclient` depends on
 java.util.concurrent.flow which is a new class in JDK9. To run the test
@@ -2608,7 +2608,7 @@ element : transport-guarantee
 This is an optional setting on `webservice-endpoint`. The allowable
 values are `NONE`, `INTEGRAL`, and `CONFIDENTIAL`. If not specified, the
 behavior is equivalent to `NONE`. The meaning of each option is the same
-as is defined in the Security chapter of the Jakarta Servlet 5.0 Specification. 
+as is defined in the Security chapter of the Jakarta Servlet 6.0 Specification. 
 This setting will determine the
 scheme and port used to generate the final endpoint address for a web
 service endpoint. For `NONE`, the scheme will be `HTTP` and port will be
