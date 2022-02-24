@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 4.0
 
 CLSS public abstract interface !annotation jakarta.xml.bind.annotation.XmlRootElement
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)

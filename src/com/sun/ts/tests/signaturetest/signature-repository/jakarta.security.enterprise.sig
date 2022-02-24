@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.0
 
 CLSS public abstract interface !annotation jakarta.interceptor.InterceptorBinding
  anno 0 java.lang.annotation.Documented()

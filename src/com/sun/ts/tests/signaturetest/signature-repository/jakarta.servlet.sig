@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 6.0
 
 CLSS public abstract interface jakarta.servlet.AsyncContext
 fld public final static java.lang.String ASYNC_CONTEXT_PATH = "jakarta.servlet.async.context_path"
@@ -198,10 +198,10 @@ meth public abstract java.lang.String getServletName()
 meth public abstract java.util.Enumeration<java.lang.String> getInitParameterNames()
 
 CLSS public abstract interface jakarta.servlet.ServletConnection
+meth public abstract boolean isSecure()
 meth public abstract java.lang.String getConnectionId()
 meth public abstract java.lang.String getProtocol()
 meth public abstract java.lang.String getProtocolConnectionId()
-meth public abstract boolean isSecure()
 
 CLSS public abstract interface jakarta.servlet.ServletContainerInitializer
 meth public abstract void onStartup(java.util.Set<java.lang.Class<?>>,jakarta.servlet.ServletContext) throws jakarta.servlet.ServletException
@@ -357,6 +357,7 @@ meth public abstract jakarta.servlet.AsyncContext startAsync()
 meth public abstract jakarta.servlet.AsyncContext startAsync(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
 meth public abstract jakarta.servlet.DispatcherType getDispatcherType()
 meth public abstract jakarta.servlet.RequestDispatcher getRequestDispatcher(java.lang.String)
+meth public abstract jakarta.servlet.ServletConnection getServletConnection()
 meth public abstract jakarta.servlet.ServletContext getServletContext()
 meth public abstract jakarta.servlet.ServletInputStream getInputStream() throws java.io.IOException
 meth public abstract java.io.BufferedReader getReader() throws java.io.IOException
@@ -367,8 +368,10 @@ meth public abstract java.lang.String getLocalAddr()
 meth public abstract java.lang.String getLocalName()
 meth public abstract java.lang.String getParameter(java.lang.String)
 meth public abstract java.lang.String getProtocol()
+meth public abstract java.lang.String getProtocolRequestId()
 meth public abstract java.lang.String getRemoteAddr()
 meth public abstract java.lang.String getRemoteHost()
+meth public abstract java.lang.String getRequestId()
 meth public abstract java.lang.String getScheme()
 meth public abstract java.lang.String getServerName()
 meth public abstract java.lang.String[] getParameterValues(java.lang.String)
@@ -381,9 +384,6 @@ meth public abstract long getContentLengthLong()
 meth public abstract void removeAttribute(java.lang.String)
 meth public abstract void setAttribute(java.lang.String,java.lang.Object)
 meth public abstract void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
-meth public abstract jakarta.servlet.ServletConnection getServletConnection()
-meth public abstract java.lang.String getProtocolRequestId()
-meth public abstract java.lang.String getRequestId()
 
 CLSS public jakarta.servlet.ServletRequestAttributeEvent
 cons public init(jakarta.servlet.ServletContext,jakarta.servlet.ServletRequest,java.lang.String,java.lang.Object)
@@ -427,6 +427,7 @@ meth public jakarta.servlet.AsyncContext startAsync()
 meth public jakarta.servlet.AsyncContext startAsync(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
 meth public jakarta.servlet.DispatcherType getDispatcherType()
 meth public jakarta.servlet.RequestDispatcher getRequestDispatcher(java.lang.String)
+meth public jakarta.servlet.ServletConnection getServletConnection()
 meth public jakarta.servlet.ServletContext getServletContext()
 meth public jakarta.servlet.ServletInputStream getInputStream() throws java.io.IOException
 meth public jakarta.servlet.ServletRequest getRequest()
@@ -438,8 +439,10 @@ meth public java.lang.String getLocalAddr()
 meth public java.lang.String getLocalName()
 meth public java.lang.String getParameter(java.lang.String)
 meth public java.lang.String getProtocol()
+meth public java.lang.String getProtocolRequestId()
 meth public java.lang.String getRemoteAddr()
 meth public java.lang.String getRemoteHost()
+meth public java.lang.String getRequestId()
 meth public java.lang.String getScheme()
 meth public java.lang.String getServerName()
 meth public java.lang.String[] getParameterValues(java.lang.String)
@@ -452,9 +455,6 @@ meth public long getContentLengthLong()
 meth public void removeAttribute(java.lang.String)
 meth public void setAttribute(java.lang.String,java.lang.Object)
 meth public void setCharacterEncoding(java.lang.String) throws java.io.UnsupportedEncodingException
-meth public jakarta.servlet.ServletConnection getServletConnection()
-meth public java.lang.String getProtocolRequestId()
-meth public java.lang.String getRequestId()
 meth public void setRequest(jakarta.servlet.ServletRequest)
 supr java.lang.Object
 hfds request
@@ -518,11 +518,14 @@ CLSS public abstract interface jakarta.servlet.SessionCookieConfig
 meth public abstract boolean isHttpOnly()
 meth public abstract boolean isSecure()
 meth public abstract int getMaxAge()
+meth public abstract java.lang.String getAttribute(java.lang.String)
 meth public abstract java.lang.String getComment()
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public abstract java.lang.String getDomain()
 meth public abstract java.lang.String getName()
 meth public abstract java.lang.String getPath()
+meth public abstract java.util.Map<java.lang.String,java.lang.String> getAttributes()
+meth public abstract void setAttribute(java.lang.String,java.lang.String)
 meth public abstract void setComment(java.lang.String)
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public abstract void setDomain(java.lang.String)
@@ -531,9 +534,6 @@ meth public abstract void setMaxAge(int)
 meth public abstract void setName(java.lang.String)
 meth public abstract void setPath(java.lang.String)
 meth public abstract void setSecure(boolean)
-meth public abstract java.lang.String getAttribute(java.lang.String)
-meth public abstract java.util.Map<java.lang.String,java.lang.String> getAttributes()
-meth public abstract void setAttribute(java.lang.String,java.lang.String)
 
 CLSS public final !enum jakarta.servlet.SessionTrackingMode
 fld public final static jakarta.servlet.SessionTrackingMode COOKIE
@@ -549,7 +549,7 @@ cons public init(java.lang.String,int)
 meth public boolean isPermanent()
 meth public int getUnavailableSeconds()
 supr jakarta.servlet.ServletException
-hfds permanent,seconds,serialVersionUID,servlet
+hfds permanent,seconds,serialVersionUID
 
 CLSS public abstract interface jakarta.servlet.WriteListener
 intf java.util.EventListener
@@ -673,6 +673,7 @@ meth public abstract java.lang.String getBuffer()
 meth public abstract java.lang.String getDefaultContentType()
 meth public abstract java.lang.String getDeferredSyntaxAllowedAsLiteral()
 meth public abstract java.lang.String getElIgnored()
+meth public abstract java.lang.String getErrorOnELNotFound()
 meth public abstract java.lang.String getErrorOnUndeclaredNamespace()
 meth public abstract java.lang.String getIsXml()
 meth public abstract java.lang.String getPageEncoding()
@@ -681,7 +682,6 @@ meth public abstract java.lang.String getTrimDirectiveWhitespaces()
 meth public abstract java.util.Collection<java.lang.String> getIncludeCodas()
 meth public abstract java.util.Collection<java.lang.String> getIncludePreludes()
 meth public abstract java.util.Collection<java.lang.String> getUrlPatterns()
-meth public abstract java.lang.String getErrorOnELNotFound()
 
 CLSS public abstract interface jakarta.servlet.descriptor.TaglibDescriptor
 meth public abstract java.lang.String getTaglibLocation()
@@ -691,18 +691,24 @@ CLSS public jakarta.servlet.http.Cookie
 cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 intf java.lang.Cloneable
+meth public boolean equals(java.lang.Object)
 meth public boolean getSecure()
 meth public boolean isHttpOnly()
 meth public int getMaxAge()
 meth public int getVersion()
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
+meth public int hashCode()
 meth public java.lang.Object clone()
+meth public java.lang.String getAttribute(java.lang.String)
 meth public java.lang.String getComment()
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public java.lang.String getDomain()
 meth public java.lang.String getName()
 meth public java.lang.String getPath()
 meth public java.lang.String getValue()
+meth public java.lang.String toString()
+meth public java.util.Map<java.lang.String,java.lang.String> getAttributes()
+meth public void setAttribute(java.lang.String,java.lang.String)
 meth public void setComment(java.lang.String)
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
 meth public void setDomain(java.lang.String)
@@ -713,11 +719,8 @@ meth public void setSecure(boolean)
 meth public void setValue(java.lang.String)
 meth public void setVersion(int)
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="Servlet 6.0")
-meth public java.lang.String getAttribute(java.lang.String)
-meth public java.util.Map<java.lang.String,java.lang.String> getAttributes()
-meth public void setAttribute(java.lang.String,java.lang.String)
 supr java.lang.Object
-hfds LSTRING_FILE,TSPECIALS,comment,domain,isHttpOnly,lStrings,maxAge,name,path,secure,serialVersionUID,value,version
+hfds DOMAIN,HTTP_ONLY,LSTRING_FILE,MAX_AGE,PATH,SECURE,TSPECIALS,attributes,lStrings,name,serialVersionUID,value
 
 CLSS public abstract jakarta.servlet.http.HttpFilter
 cons public init()
@@ -739,9 +742,10 @@ meth protected void doPost(jakarta.servlet.http.HttpServletRequest,jakarta.servl
 meth protected void doPut(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doTrace(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void service(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
+meth public void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
 meth public void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 supr jakarta.servlet.GenericServlet
-hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_POST,METHOD_PUT,METHOD_TRACE,lStrings,serialVersionUID
+hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_POST,METHOD_PUT,METHOD_TRACE,lStrings,legacyHeadHandling,serialVersionUID
 
 CLSS public abstract interface jakarta.servlet.http.HttpServletMapping
 meth public abstract jakarta.servlet.http.MappingMatch getMappingMatch()
@@ -1067,14 +1071,6 @@ CLSS public abstract interface java.lang.Cloneable
 
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
-
-CLSS public abstract interface !annotation java.lang.Deprecated
- anno 0 java.lang.annotation.Documented()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean forRemoval()
-meth public abstract !hasdefault java.lang.String since()
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)

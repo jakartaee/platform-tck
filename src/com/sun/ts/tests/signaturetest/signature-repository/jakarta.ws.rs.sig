@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.1
 
 CLSS public abstract interface !annotation jakarta.ws.rs.ApplicationPath
  anno 0 java.lang.annotation.Documented()
@@ -314,6 +314,72 @@ meth public static jakarta.ws.rs.RuntimeType valueOf(java.lang.String)
 meth public static jakarta.ws.rs.RuntimeType[] values()
 supr java.lang.Enum<jakarta.ws.rs.RuntimeType>
 
+CLSS public abstract interface jakarta.ws.rs.SeBootstrap
+innr public abstract interface static Configuration
+innr public abstract interface static Instance
+meth public static java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> start(jakarta.ws.rs.core.Application)
+meth public static java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> start(jakarta.ws.rs.core.Application,jakarta.ws.rs.SeBootstrap$Configuration)
+meth public static java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> start(java.lang.Class<? extends jakarta.ws.rs.core.Application>)
+meth public static java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> start(java.lang.Class<? extends jakarta.ws.rs.core.Application>,jakarta.ws.rs.SeBootstrap$Configuration)
+
+CLSS public abstract interface static jakarta.ws.rs.SeBootstrap$Configuration
+ outer jakarta.ws.rs.SeBootstrap
+fld public final static int DEFAULT_PORT = -1
+fld public final static int FREE_PORT = 0
+fld public final static java.lang.String HOST = "jakarta.ws.rs.SeBootstrap.Host"
+fld public final static java.lang.String PORT = "jakarta.ws.rs.SeBootstrap.Port"
+fld public final static java.lang.String PROTOCOL = "jakarta.ws.rs.SeBootstrap.Protocol"
+fld public final static java.lang.String ROOT_PATH = "jakarta.ws.rs.SeBootstrap.RootPath"
+fld public final static java.lang.String SSL_CLIENT_AUTHENTICATION = "jakarta.ws.rs.SeBootstrap.SSLClientAuthentication"
+fld public final static java.lang.String SSL_CONTEXT = "jakarta.ws.rs.SeBootstrap.SSLContext"
+innr public abstract interface static Builder
+innr public final static !enum SSLClientAuthentication
+meth public abstract java.lang.Object property(java.lang.String)
+meth public boolean hasProperty(java.lang.String)
+meth public int port()
+meth public jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication sslClientAuthentication()
+meth public jakarta.ws.rs.core.UriBuilder baseUriBuilder()
+meth public java.lang.String host()
+meth public java.lang.String protocol()
+meth public java.lang.String rootPath()
+meth public java.net.URI baseUri()
+meth public javax.net.ssl.SSLContext sslContext()
+meth public static jakarta.ws.rs.SeBootstrap$Configuration$Builder builder()
+
+CLSS public abstract interface static jakarta.ws.rs.SeBootstrap$Configuration$Builder
+ outer jakarta.ws.rs.SeBootstrap$Configuration
+meth public abstract <%0 extends java.lang.Object> jakarta.ws.rs.SeBootstrap$Configuration$Builder from(java.util.function.BiFunction<java.lang.String,java.lang.Class<{%%0}>,java.util.Optional<{%%0}>>)
+meth public abstract jakarta.ws.rs.SeBootstrap$Configuration build()
+meth public abstract jakarta.ws.rs.SeBootstrap$Configuration$Builder property(java.lang.String,java.lang.Object)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder from(java.lang.Object)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder host(java.lang.String)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder port(java.lang.Integer)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder protocol(java.lang.String)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder rootPath(java.lang.String)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder sslClientAuthentication(jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication)
+meth public jakarta.ws.rs.SeBootstrap$Configuration$Builder sslContext(javax.net.ssl.SSLContext)
+
+CLSS public final static !enum jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication
+ outer jakarta.ws.rs.SeBootstrap$Configuration
+fld public final static jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication MANDATORY
+fld public final static jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication NONE
+fld public final static jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication OPTIONAL
+meth public static jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication valueOf(java.lang.String)
+meth public static jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication[] values()
+supr java.lang.Enum<jakarta.ws.rs.SeBootstrap$Configuration$SSLClientAuthentication>
+
+CLSS public abstract interface static jakarta.ws.rs.SeBootstrap$Instance
+ outer jakarta.ws.rs.SeBootstrap
+innr public abstract interface static StopResult
+meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
+meth public abstract jakarta.ws.rs.SeBootstrap$Configuration configuration()
+meth public abstract java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance$StopResult> stop()
+meth public void stopOnShutdown(java.util.function.Consumer<jakarta.ws.rs.SeBootstrap$Instance$StopResult>)
+
+CLSS public abstract interface static jakarta.ws.rs.SeBootstrap$Instance$StopResult
+ outer jakarta.ws.rs.SeBootstrap$Instance
+meth public abstract <%0 extends java.lang.Object> {%%0} unwrap(java.lang.Class<{%%0}>)
+
 CLSS public jakarta.ws.rs.ServerErrorException
 cons public init(int)
 cons public init(int,java.lang.Throwable)
@@ -409,6 +475,7 @@ meth public abstract java.util.concurrent.Future<jakarta.ws.rs.core.Response> tr
 
 CLSS public abstract interface jakarta.ws.rs.client.Client
 intf jakarta.ws.rs.core.Configurable<jakarta.ws.rs.client.Client>
+intf java.lang.AutoCloseable
 meth public abstract jakarta.ws.rs.client.Invocation$Builder invocation(jakarta.ws.rs.core.Link)
 meth public abstract jakarta.ws.rs.client.WebTarget target(jakarta.ws.rs.core.Link)
 meth public abstract jakarta.ws.rs.client.WebTarget target(jakarta.ws.rs.core.UriBuilder)
@@ -437,6 +504,7 @@ meth public static jakarta.ws.rs.client.Client newClient()
 meth public static jakarta.ws.rs.client.Client newClient(jakarta.ws.rs.core.Configuration)
 meth public static jakarta.ws.rs.client.ClientBuilder newBuilder()
 supr java.lang.Object
+hcls CreateErrorMessageAction
 
 CLSS public abstract interface jakarta.ws.rs.client.ClientRequestContext
 meth public abstract boolean hasEntity()
@@ -468,6 +536,7 @@ meth public abstract void setEntityStream(java.io.OutputStream)
 meth public abstract void setMethod(java.lang.String)
 meth public abstract void setProperty(java.lang.String,java.lang.Object)
 meth public abstract void setUri(java.net.URI)
+meth public boolean hasProperty(java.lang.String)
 
 CLSS public abstract interface jakarta.ws.rs.client.ClientRequestFilter
 meth public abstract void filter(jakarta.ws.rs.client.ClientRequestContext) throws java.io.IOException
@@ -723,6 +792,7 @@ meth public abstract void setProperty(java.lang.String,java.lang.Object)
 meth public abstract void setRequestUri(java.net.URI)
 meth public abstract void setRequestUri(java.net.URI,java.net.URI)
 meth public abstract void setSecurityContext(jakarta.ws.rs.core.SecurityContext)
+meth public boolean hasProperty(java.lang.String)
 
 CLSS public abstract interface jakarta.ws.rs.container.ContainerRequestFilter
 meth public abstract void filter(jakarta.ws.rs.container.ContainerRequestContext) throws java.io.IOException
@@ -824,6 +894,7 @@ cons public init()
 meth public java.util.Map<java.lang.String,java.lang.Object> getProperties()
 meth public java.util.Set<java.lang.Class<?>> getClasses()
 meth public java.util.Set<java.lang.Object> getSingletons()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 supr java.lang.Object
 
 CLSS public jakarta.ws.rs.core.CacheControl
@@ -880,6 +951,7 @@ meth public abstract java.util.Map<java.lang.Class<?>,java.lang.Integer> getCont
 meth public abstract java.util.Map<java.lang.String,java.lang.Object> getProperties()
 meth public abstract java.util.Set<java.lang.Class<?>> getClasses()
 meth public abstract java.util.Set<java.lang.Object> getInstances()
+meth public boolean hasProperty(java.lang.String)
 
 CLSS public abstract interface !annotation jakarta.ws.rs.core.Context
  anno 0 java.lang.annotation.Documented()
@@ -888,10 +960,16 @@ CLSS public abstract interface !annotation jakarta.ws.rs.core.Context
 intf java.lang.annotation.Annotation
 
 CLSS public jakarta.ws.rs.core.Cookie
+cons protected init(jakarta.ws.rs.core.Cookie$AbstractCookieBuilder<?>)
 cons public init(java.lang.String,java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static int DEFAULT_VERSION = 1
+innr public abstract static AbstractCookieBuilder
+innr public static Builder
 meth public boolean equals(java.lang.Object)
 meth public int getVersion()
 meth public int hashCode()
@@ -905,6 +983,49 @@ meth public static jakarta.ws.rs.core.Cookie valueOf(java.lang.String)
  anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 supr java.lang.Object
 hfds HEADER_DELEGATE,domain,name,path,value,version
+
+CLSS public abstract static jakarta.ws.rs.core.Cookie$AbstractCookieBuilder<%0 extends jakarta.ws.rs.core.Cookie$AbstractCookieBuilder<{jakarta.ws.rs.core.Cookie$AbstractCookieBuilder%0}>>
+ outer jakarta.ws.rs.core.Cookie
+cons public init(java.lang.String)
+meth public abstract jakarta.ws.rs.core.Cookie build()
+meth public {jakarta.ws.rs.core.Cookie$AbstractCookieBuilder%0} domain(java.lang.String)
+meth public {jakarta.ws.rs.core.Cookie$AbstractCookieBuilder%0} path(java.lang.String)
+meth public {jakarta.ws.rs.core.Cookie$AbstractCookieBuilder%0} value(java.lang.String)
+meth public {jakarta.ws.rs.core.Cookie$AbstractCookieBuilder%0} version(int)
+supr java.lang.Object
+hfds domain,name,path,value,version
+
+CLSS public static jakarta.ws.rs.core.Cookie$Builder
+ outer jakarta.ws.rs.core.Cookie
+cons public init(java.lang.String)
+meth public jakarta.ws.rs.core.Cookie build()
+supr jakarta.ws.rs.core.Cookie$AbstractCookieBuilder<jakarta.ws.rs.core.Cookie$Builder>
+
+CLSS public abstract interface jakarta.ws.rs.core.EntityPart
+innr public abstract interface static Builder
+meth public abstract <%0 extends java.lang.Object> {%%0} getContent(jakarta.ws.rs.core.GenericType<{%%0}>) throws java.io.IOException
+meth public abstract <%0 extends java.lang.Object> {%%0} getContent(java.lang.Class<{%%0}>) throws java.io.IOException
+meth public abstract jakarta.ws.rs.core.MediaType getMediaType()
+meth public abstract jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String> getHeaders()
+meth public abstract java.io.InputStream getContent()
+meth public abstract java.lang.String getName()
+meth public abstract java.util.Optional<java.lang.String> getFileName()
+meth public static jakarta.ws.rs.core.EntityPart$Builder withFileName(java.lang.String)
+meth public static jakarta.ws.rs.core.EntityPart$Builder withName(java.lang.String)
+
+CLSS public abstract interface static jakarta.ws.rs.core.EntityPart$Builder
+ outer jakarta.ws.rs.core.EntityPart
+meth public abstract !varargs jakarta.ws.rs.core.EntityPart$Builder header(java.lang.String,java.lang.String[])
+meth public abstract <%0 extends java.lang.Object> jakarta.ws.rs.core.EntityPart$Builder content({%%0},jakarta.ws.rs.core.GenericType<{%%0}>)
+meth public abstract <%0 extends java.lang.Object> jakarta.ws.rs.core.EntityPart$Builder content({%%0},java.lang.Class<? extends {%%0}>)
+meth public abstract jakarta.ws.rs.core.EntityPart build() throws java.io.IOException
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder content(java.io.InputStream)
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder fileName(java.lang.String)
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder headers(jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String>)
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder mediaType(jakarta.ws.rs.core.MediaType)
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder mediaType(java.lang.String)
+meth public jakarta.ws.rs.core.EntityPart$Builder content(java.lang.Object)
+meth public jakarta.ws.rs.core.EntityPart$Builder content(java.lang.String,java.io.InputStream)
 
 CLSS public jakarta.ws.rs.core.EntityTag
 cons public init(java.lang.String)
@@ -977,6 +1098,7 @@ fld public final static java.lang.String CONTENT_TYPE = "Content-Type"
 fld public final static java.lang.String COOKIE = "Cookie"
 fld public final static java.lang.String DATE = "Date"
 fld public final static java.lang.String ETAG = "ETag"
+fld public final static java.lang.String EXPECT = "Expect"
 fld public final static java.lang.String EXPIRES = "Expires"
 fld public final static java.lang.String HOST = "Host"
 fld public final static java.lang.String IF_MATCH = "If-Match"
@@ -1047,6 +1169,7 @@ meth public abstract jakarta.ws.rs.core.Link$Builder uriBuilder(jakarta.ws.rs.co
 
 CLSS public static jakarta.ws.rs.core.Link$JaxbAdapter
  outer jakarta.ws.rs.core.Link
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 meth public jakarta.ws.rs.core.Link unmarshal(jakarta.ws.rs.core.Link$JaxbLink)
 meth public jakarta.ws.rs.core.Link$JaxbLink marshal(jakarta.ws.rs.core.Link)
@@ -1054,6 +1177,7 @@ supr jakarta.xml.bind.annotation.adapters.XmlAdapter<jakarta.ws.rs.core.Link$Jax
 
 CLSS public static jakarta.ws.rs.core.Link$JaxbLink
  outer jakarta.ws.rs.core.Link
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init()
 cons public init(java.net.URI)
 cons public init(java.net.URI,java.util.Map<javax.xml.namespace.QName,java.lang.Object>)
@@ -1134,21 +1258,38 @@ meth public abstract void putSingle({jakarta.ws.rs.core.MultivaluedMap%0},{jakar
 meth public abstract {jakarta.ws.rs.core.MultivaluedMap%1} getFirst({jakarta.ws.rs.core.MultivaluedMap%0})
 
 CLSS public jakarta.ws.rs.core.NewCookie
+cons protected init(jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder<?>)
 cons public init(jakarta.ws.rs.core.Cookie)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.ws.rs.core.Cookie,java.lang.String,int,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
+cons public init(jakarta.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean,jakarta.ws.rs.core.NewCookie$SameSite)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean,jakarta.ws.rs.core.NewCookie$SameSite)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static int DEFAULT_MAX_AGE = -1
+innr public abstract static AbstractNewCookieBuilder
+innr public final static !enum SameSite
+innr public static Builder
 meth public boolean equals(java.lang.Object)
 meth public boolean isHttpOnly()
 meth public boolean isSecure()
 meth public int getMaxAge()
 meth public int hashCode()
 meth public jakarta.ws.rs.core.Cookie toCookie()
+meth public jakarta.ws.rs.core.NewCookie$SameSite getSameSite()
 meth public java.lang.String getComment()
 meth public java.lang.String toString()
  anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
@@ -1156,7 +1297,37 @@ meth public java.util.Date getExpiry()
 meth public static jakarta.ws.rs.core.NewCookie valueOf(java.lang.String)
  anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 supr jakarta.ws.rs.core.Cookie
-hfds comment,delegate,expiry,httpOnly,maxAge,secure
+hfds DELEGATE,comment,expiry,httpOnly,maxAge,sameSite,secure
+
+CLSS public abstract static jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder<%0 extends jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder<{jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0}>>
+ outer jakarta.ws.rs.core.NewCookie
+cons public init(jakarta.ws.rs.core.Cookie)
+cons public init(java.lang.String)
+meth public abstract jakarta.ws.rs.core.NewCookie build()
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} comment(java.lang.String)
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} expiry(java.util.Date)
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} httpOnly(boolean)
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} maxAge(int)
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} sameSite(jakarta.ws.rs.core.NewCookie$SameSite)
+meth public {jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0} secure(boolean)
+supr jakarta.ws.rs.core.Cookie$AbstractCookieBuilder<jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder<{jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder%0}>>
+hfds comment,expiry,httpOnly,maxAge,sameSite,secure
+
+CLSS public static jakarta.ws.rs.core.NewCookie$Builder
+ outer jakarta.ws.rs.core.NewCookie
+cons public init(jakarta.ws.rs.core.Cookie)
+cons public init(java.lang.String)
+meth public jakarta.ws.rs.core.NewCookie build()
+supr jakarta.ws.rs.core.NewCookie$AbstractNewCookieBuilder<jakarta.ws.rs.core.NewCookie$Builder>
+
+CLSS public final static !enum jakarta.ws.rs.core.NewCookie$SameSite
+ outer jakarta.ws.rs.core.NewCookie
+fld public final static jakarta.ws.rs.core.NewCookie$SameSite LAX
+fld public final static jakarta.ws.rs.core.NewCookie$SameSite NONE
+fld public final static jakarta.ws.rs.core.NewCookie$SameSite STRICT
+meth public static jakarta.ws.rs.core.NewCookie$SameSite valueOf(java.lang.String)
+meth public static jakarta.ws.rs.core.NewCookie$SameSite[] values()
+supr java.lang.Enum<jakarta.ws.rs.core.NewCookie$SameSite>
 
 CLSS public jakarta.ws.rs.core.NoContentException
 cons public init(java.lang.String)
@@ -1209,6 +1380,7 @@ meth public abstract java.util.Map<java.lang.String,jakarta.ws.rs.core.NewCookie
 meth public abstract java.util.Set<jakarta.ws.rs.core.Link> getLinks()
 meth public abstract java.util.Set<java.lang.String> getAllowedMethods()
 meth public abstract void close()
+meth public boolean isClosed()
 meth public jakarta.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.Object> getHeaders()
 meth public static jakarta.ws.rs.core.Response$ResponseBuilder accepted()
 meth public static jakarta.ws.rs.core.Response$ResponseBuilder accepted(java.lang.Object)
@@ -1287,6 +1459,7 @@ fld public final static jakarta.ws.rs.core.Response$Status INTERNAL_SERVER_ERROR
 fld public final static jakarta.ws.rs.core.Response$Status LENGTH_REQUIRED
 fld public final static jakarta.ws.rs.core.Response$Status METHOD_NOT_ALLOWED
 fld public final static jakarta.ws.rs.core.Response$Status MOVED_PERMANENTLY
+fld public final static jakarta.ws.rs.core.Response$Status MULTIPLE_CHOICES
 fld public final static jakarta.ws.rs.core.Response$Status NETWORK_AUTHENTICATION_REQUIRED
 fld public final static jakarta.ws.rs.core.Response$Status NOT_ACCEPTABLE
 fld public final static jakarta.ws.rs.core.Response$Status NOT_FOUND
@@ -1296,6 +1469,7 @@ fld public final static jakarta.ws.rs.core.Response$Status NO_CONTENT
 fld public final static jakarta.ws.rs.core.Response$Status OK
 fld public final static jakarta.ws.rs.core.Response$Status PARTIAL_CONTENT
 fld public final static jakarta.ws.rs.core.Response$Status PAYMENT_REQUIRED
+fld public final static jakarta.ws.rs.core.Response$Status PERMANENT_REDIRECT
 fld public final static jakarta.ws.rs.core.Response$Status PRECONDITION_FAILED
 fld public final static jakarta.ws.rs.core.Response$Status PRECONDITION_REQUIRED
 fld public final static jakarta.ws.rs.core.Response$Status PROXY_AUTHENTICATION_REQUIRED
@@ -1310,6 +1484,7 @@ fld public final static jakarta.ws.rs.core.Response$Status SERVICE_UNAVAILABLE
 fld public final static jakarta.ws.rs.core.Response$Status TEMPORARY_REDIRECT
 fld public final static jakarta.ws.rs.core.Response$Status TOO_MANY_REQUESTS
 fld public final static jakarta.ws.rs.core.Response$Status UNAUTHORIZED
+fld public final static jakarta.ws.rs.core.Response$Status UNAVAILABLE_FOR_LEGAL_REASONS
 fld public final static jakarta.ws.rs.core.Response$Status UNSUPPORTED_MEDIA_TYPE
 fld public final static jakarta.ws.rs.core.Response$Status USE_PROXY
 innr public final static !enum Family
@@ -1480,6 +1655,7 @@ meth public abstract void setGenericType(java.lang.reflect.Type)
 meth public abstract void setMediaType(jakarta.ws.rs.core.MediaType)
 meth public abstract void setProperty(java.lang.String,java.lang.Object)
 meth public abstract void setType(java.lang.Class<?>)
+meth public boolean hasProperty(java.lang.String)
 
 CLSS public abstract interface jakarta.ws.rs.ext.MessageBodyReader<%0 extends java.lang.Object>
 meth public abstract boolean isReadable(java.lang.Class<?>,java.lang.reflect.Type,java.lang.annotation.Annotation[],jakarta.ws.rs.core.MediaType)
@@ -1533,10 +1709,14 @@ fld public final static java.lang.String JAXRS_RUNTIME_DELEGATE_PROPERTY = "jaka
 innr public abstract interface static HeaderDelegate
 meth public abstract <%0 extends java.lang.Object> jakarta.ws.rs.ext.RuntimeDelegate$HeaderDelegate<{%%0}> createHeaderDelegate(java.lang.Class<{%%0}>)
 meth public abstract <%0 extends java.lang.Object> {%%0} createEndpoint(jakarta.ws.rs.core.Application,java.lang.Class<{%%0}>)
+meth public abstract jakarta.ws.rs.SeBootstrap$Configuration$Builder createConfigurationBuilder()
+meth public abstract jakarta.ws.rs.core.EntityPart$Builder createEntityPartBuilder(java.lang.String)
 meth public abstract jakarta.ws.rs.core.Link$Builder createLinkBuilder()
 meth public abstract jakarta.ws.rs.core.Response$ResponseBuilder createResponseBuilder()
 meth public abstract jakarta.ws.rs.core.UriBuilder createUriBuilder()
 meth public abstract jakarta.ws.rs.core.Variant$VariantListBuilder createVariantListBuilder()
+meth public abstract java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> bootstrap(jakarta.ws.rs.core.Application,jakarta.ws.rs.SeBootstrap$Configuration)
+meth public abstract java.util.concurrent.CompletionStage<jakarta.ws.rs.SeBootstrap$Instance> bootstrap(java.lang.Class<? extends jakarta.ws.rs.core.Application>,jakarta.ws.rs.SeBootstrap$Configuration)
 meth public static jakarta.ws.rs.ext.RuntimeDelegate getInstance()
 meth public static void setInstance(jakarta.ws.rs.ext.RuntimeDelegate)
 supr java.lang.Object
@@ -1598,6 +1778,7 @@ CLSS public abstract interface jakarta.ws.rs.sse.SseBroadcaster
 intf java.lang.AutoCloseable
 meth public abstract java.util.concurrent.CompletionStage<?> broadcast(jakarta.ws.rs.sse.OutboundSseEvent)
 meth public abstract void close()
+meth public abstract void close(boolean)
 meth public abstract void onClose(java.util.function.Consumer<jakarta.ws.rs.sse.SseEventSink>)
 meth public abstract void onError(java.util.function.BiConsumer<jakarta.ws.rs.sse.SseEventSink,java.lang.Throwable>)
 meth public abstract void register(jakarta.ws.rs.sse.SseEventSink)
@@ -1657,6 +1838,14 @@ meth public abstract void close() throws java.lang.Exception
 
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract interface !annotation java.lang.Deprecated
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean forRemoval()
+meth public abstract !hasdefault java.lang.String since()
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
