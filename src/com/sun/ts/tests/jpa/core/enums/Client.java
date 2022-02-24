@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -1162,6 +1162,12 @@ public class Client extends PMClientBase {
             + ft.name());
         pass = false;
       }
+      ft = GenerationType.valueOf(GenerationType.UUID.name());
+      if (!ft.equals(GenerationType.UUID)) {
+        TestUtil.logErr("expected:" + GenerationType.UUID.name() + ", actual:"
+            + ft.name());
+        pass = false;
+      }
       try {
         GenerationType.valueOf("DOESNOTEXIST");
         TestUtil.logErr("IllegalArgumentException was not thrown");
@@ -1200,9 +1206,9 @@ public class Client extends PMClientBase {
     try {
 
       Collection<GenerationType> gt = Arrays.asList(GenerationType.values());
-      if (gt.size() != 4) {
+      if (gt.size() != 5) {
         TestUtil
-            .logErr("Number of GenerationType expected:4, actual:" + gt.size());
+            .logErr("Number of GenerationType expected:5, actual:" + gt.size());
         pass = false;
       }
 
@@ -1228,6 +1234,12 @@ public class Client extends PMClientBase {
         TestUtil.logTrace("received:" + GenerationType.TABLE);
       } else {
         TestUtil.logErr("Expected value:" + GenerationType.TABLE);
+        pass = false;
+      }
+      if (gt.contains(GenerationType.UUID)) {
+        TestUtil.logTrace("received:" + GenerationType.UUID);
+      } else {
+        TestUtil.logErr("Expected value:" + GenerationType.UUID);
         pass = false;
       }
 
