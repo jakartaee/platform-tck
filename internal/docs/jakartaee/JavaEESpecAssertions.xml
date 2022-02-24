@@ -1,7 +1,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -171,7 +171,7 @@
                     <section id = "13.2" name = "Application Assembler s Responsibilities"/>
                     <section id = "13.3" name = "Deployer s Responsibility"/>
                     <section id = "13.4" name = "JavaEE Product Provider s Responsibility"/>
-                    <section id = "13.5" name = "System Administrator s Responsibility"/>
+                    <section id = "13.5" name = "System Administrator s Responsibility"/>Copyright (c) 2013, 2020 Oracle and/or its affiliates.
                     <section id = "14" name = "Persistence Context References"/>
                     <section id = "14.1" name = "Bean Provider s Responsibilities"/>
                     <section id = "14.1.1" name = "Injection of Persistence Context References"/>
@@ -266,7 +266,7 @@
                     <section id = "3" name = "Enterprise JavaBeans (EJB) 3.2 Requirements"/>
                     <section id = "4" name = "Servlet 4.0 Requirements"/>
                     <section id = "5" name = "Java Server Pages (JSP) 2.3 Requirements"/>
-                    <section id = "6" name = "Expression Language (EL) 3.0 Requirements"/>
+                    <section id = "6" name = "Expression Language (EL) 5.0 Requirements"/>
                     <section id = "7" name = "Java Message Service (JMS) 2.0 Requirements"/>
                     <section id = "8" name = "Java Transaction API (JTA) 1.2 Requirements"/>
                     <section id = "9" name = "JavaMail 1.6 Requirements"/>
@@ -274,7 +274,7 @@
                     <section id = "11" name = "Web Services for Java EE 1.4 Requirements"/>
                     <section id = "12" name = "Java API for XML-based RPC (JAX-RPC) 1.1 Requirements (Optional)"/>
                     <section id = "13" name = "Java API for RESTful Web Services (JAX-RS) 2.1 Requirements"/>
-                    <section id = "14" name = "Java API for WebSocket 1.1 (WebSocket) Requirements"/>
+                    <section id = "14" name = "Java API for WebSocket 2.1 (WebSocket) Requirements"/>
                     <section id = "15" name = "Java API for JSON Processing 1.1 (JSON-P) Requirements"/>
                     <section id = "16" name = "Java API for JSON Binding 1.0 (JSON-B) Requirements"/>
                     <section id = "17" name = "Concurrency Utilities for Java EE 1.0 (Concurrency Utilities) Requirements"/>

@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.1
 
 CLSS public abstract jakarta.el.ELResolver
 cons public init()
@@ -224,29 +224,26 @@ meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object
 supr jakarta.el.ELResolver
 hcls EnumeratedMap,ImplicitObjects
 
-CLSS public jakarta.servlet.jsp.el.ScopedAttributeELResolver
-cons public init()
-meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
-meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
-meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
-supr jakarta.el.ELResolver
-
 CLSS public jakarta.servlet.jsp.el.ImportELResolver
 cons public init()
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
 meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
-meth public java.util.Iterator<java.beans.FeatureDescriptor> getFeatureDescriptors(jakarta.el.ELContext,java.lang.Object)
- anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="JSP 3.1")
 meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
 supr jakarta.el.ELResolver
 
 CLSS public jakarta.servlet.jsp.el.NotFoundELResolver
+cons public init()
+meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public java.lang.Class<java.lang.String> getCommonPropertyType(jakarta.el.ELContext,java.lang.Object)
+meth public java.lang.Object getValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
+meth public void setValue(jakarta.el.ELContext,java.lang.Object,java.lang.Object,java.lang.Object)
+supr jakarta.el.ELResolver
+hfds LSTRING_FILE,lStrings
+
+CLSS public jakarta.servlet.jsp.el.ScopedAttributeELResolver
 cons public init()
 meth public boolean isReadOnly(jakarta.el.ELContext,java.lang.Object,java.lang.Object)
 meth public java.lang.Class<java.lang.Object> getType(jakarta.el.ELContext,java.lang.Object,java.lang.Object)

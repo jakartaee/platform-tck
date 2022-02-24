@@ -242,7 +242,7 @@ slashes as a path separator instead.
 =======================================================================
 
 
-[[sthref9]]
+[[sthref3]]
 
 Before You Begin
 
@@ -777,7 +777,7 @@ the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 For more information, you may wish to view `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
 the configuration file for Jakarta EE {JakartaEEVersion} Compatible Implementation, Eclipse GlassFish.
 
-[[GBFWG]][[custom-deployment-handlers]]
+[[GBFWE]][[custom-deployment-handlers]]
 
 4.5 Custom Deployment Handlers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -801,7 +801,7 @@ resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
 has a target to invoke any of the required targets (`-deploy`, `-undeploy`,
 `-deploy.all`, `-undeploy.all`).
 
-[[GBFVA]][[create-custom-deployment-handler]]
+[[GBFWF]][[create-custom-deployment-handler]]
 
 4.5.1 To Create a Custom Deployment Handler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

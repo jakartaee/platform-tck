@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.1
 
 CLSS public abstract interface !annotation jakarta.websocket.ClientEndpoint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -30,7 +30,7 @@ meth public jakarta.websocket.ClientEndpointConfig$Builder preferredSubprotocols
 meth public jakarta.websocket.ClientEndpointConfig$Builder sslContext(javax.net.ssl.SSLContext)
 meth public static jakarta.websocket.ClientEndpointConfig$Builder create()
 supr java.lang.Object
-hfds clientEndpointConfigurator,decoders,encoders,extensions,preferredSubprotocols
+hfds clientEndpointConfigurator,decoders,encoders,extensions,preferredSubprotocols,sslContext
 
 CLSS public static jakarta.websocket.ClientEndpointConfig$Configurator
  outer jakarta.websocket.ClientEndpointConfig
@@ -353,7 +353,7 @@ intf jakarta.websocket.WebSocketContainer
 meth public abstract void addEndpoint(jakarta.websocket.server.ServerEndpointConfig) throws jakarta.websocket.DeploymentException
 meth public abstract void addEndpoint(java.lang.Class<?>) throws jakarta.websocket.DeploymentException
 meth public abstract void upgradeHttpToWebSocket(java.lang.Object,java.lang.Object,jakarta.websocket.server.ServerEndpointConfig,java.util.Map<java.lang.String,java.lang.String>) throws jakarta.websocket.DeploymentException,java.io.IOException
- 
+
 CLSS public abstract interface !annotation jakarta.websocket.server.ServerEndpoint
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
@@ -391,10 +391,10 @@ CLSS public static jakarta.websocket.server.ServerEndpointConfig$Configurator
 cons public init()
 meth public <%0 extends java.lang.Object> {%%0} getEndpointInstance(java.lang.Class<{%%0}>) throws java.lang.InstantiationException
 meth public boolean checkOrigin(java.lang.String)
+meth public jakarta.websocket.server.ServerEndpointConfig$Configurator getContainerDefaultConfigurator()
 meth public java.lang.String getNegotiatedSubprotocol(java.util.List<java.lang.String>,java.util.List<java.lang.String>)
 meth public java.util.List<jakarta.websocket.Extension> getNegotiatedExtensions(java.util.List<jakarta.websocket.Extension>,java.util.List<jakarta.websocket.Extension>)
 meth public void modifyHandshake(jakarta.websocket.server.ServerEndpointConfig,jakarta.websocket.server.HandshakeRequest,jakarta.websocket.HandshakeResponse)
-meth public jakarta.websocket.server.ServerEndpointConfig$Configurator getContainerDefaultConfigurator()
 supr java.lang.Object
 hfds containerDefaultConfigurator
 

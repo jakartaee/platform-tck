@@ -111,7 +111,7 @@ public class Client extends PMClientBase {
   public void autoCloseableTest() throws Fault {
     EntityManagerFactory emf = null;
     try (final EntityManagerFactory emfLocal
-                 = Persistence.createEntityManagerFactory(getPersistenceUnitName())) {
+                 = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
       emf = emfLocal;
       if (emf == null) {
         throw new Fault("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
