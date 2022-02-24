@@ -77,7 +77,7 @@
         <jakarta.xml.bind-api.version>4.0.0-RC3</jakarta.xml.bind-api.version>
         <jaxb-osgi.version>4.0.0-M2</jaxb-osgi.version>
         <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0-RC2* -->
-        <webservices-api.version>4.0.0-RC2</webservices-api.version>
+        <webservices-api.version>4.0.0</webservices-api.version>
         <soapwithattachments-api.version>3.0.0</soapwithattachments-api.version>
         <webservices-api-osgi.version>4.0.0-M2</webservices-api-osgi.version>
         <webservices-osgi.version>4.0.0-M2</webservices-osgi.version>
