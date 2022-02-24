@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 1.6
 
 CLSS public final jakarta.security.jacc.EJBMethodPermission
 cons public init(java.lang.String,java.lang.String)
@@ -24,6 +24,9 @@ hfds actions,hashCodeValue,serialPersistentFields,serialVersionUID
 CLSS public abstract interface jakarta.security.jacc.PolicyConfiguration
 meth public abstract boolean inService() throws jakarta.security.jacc.PolicyContextException
 meth public abstract java.lang.String getContextID() throws jakarta.security.jacc.PolicyContextException
+meth public abstract java.security.PermissionCollection getExcludedPermissions()
+meth public abstract java.security.PermissionCollection getUncheckedPermissions()
+meth public abstract java.util.Map<java.lang.String,java.security.PermissionCollection> getPerRolePermissions()
 meth public abstract void addToExcludedPolicy(java.security.Permission) throws jakarta.security.jacc.PolicyContextException
 meth public abstract void addToExcludedPolicy(java.security.PermissionCollection) throws jakarta.security.jacc.PolicyContextException
 meth public abstract void addToRole(java.lang.String,java.security.Permission) throws jakarta.security.jacc.PolicyContextException
@@ -40,13 +43,15 @@ meth public abstract void removeUncheckedPolicy() throws jakarta.security.jacc.P
 CLSS public abstract jakarta.security.jacc.PolicyConfigurationFactory
 cons public init()
 meth public abstract boolean inService(java.lang.String) throws jakarta.security.jacc.PolicyContextException
+meth public abstract jakarta.security.jacc.PolicyConfiguration getPolicyConfiguration()
+meth public abstract jakarta.security.jacc.PolicyConfiguration getPolicyConfiguration(java.lang.String)
 meth public abstract jakarta.security.jacc.PolicyConfiguration getPolicyConfiguration(java.lang.String,boolean) throws jakarta.security.jacc.PolicyContextException
 meth public static jakarta.security.jacc.PolicyConfigurationFactory getPolicyConfigurationFactory() throws jakarta.security.jacc.PolicyContextException,java.lang.ClassNotFoundException
 supr java.lang.Object
 hfds FACTORY_NAME,policyConfigurationFactory
 
 CLSS public final jakarta.security.jacc.PolicyContext
-meth public static java.lang.Object getContext(java.lang.String) throws jakarta.security.jacc.PolicyContextException
+meth public static <%0 extends java.lang.Object> {%%0} getContext(java.lang.String) throws jakarta.security.jacc.PolicyContextException
 meth public static java.lang.String getContextID()
 meth public static java.util.Set getHandlerKeys()
 meth public static void registerHandler(java.lang.String,jakarta.security.jacc.PolicyContextHandler,boolean) throws jakarta.security.jacc.PolicyContextException

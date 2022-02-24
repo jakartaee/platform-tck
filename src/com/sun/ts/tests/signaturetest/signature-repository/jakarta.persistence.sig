@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.1
 
 CLSS public abstract interface !annotation jakarta.persistence.Access
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -406,6 +406,7 @@ fld public final static jakarta.persistence.GenerationType AUTO
 fld public final static jakarta.persistence.GenerationType IDENTITY
 fld public final static jakarta.persistence.GenerationType SEQUENCE
 fld public final static jakarta.persistence.GenerationType TABLE
+fld public final static jakarta.persistence.GenerationType UUID
 meth public static jakarta.persistence.GenerationType valueOf(java.lang.String)
 meth public static jakarta.persistence.GenerationType[] values()
 supr java.lang.Enum<jakarta.persistence.GenerationType>
@@ -1773,7 +1774,7 @@ meth public static jakarta.persistence.metamodel.Type$PersistenceType[] values()
 supr java.lang.Enum<jakarta.persistence.metamodel.Type$PersistenceType>
 
 CLSS public abstract interface jakarta.persistence.spi.ClassTransformer
-meth public abstract byte[] transform(java.lang.ClassLoader,java.lang.String,java.lang.Class<?>,java.security.ProtectionDomain,byte[]) throws java.lang.instrument.IllegalClassFormatException
+meth public abstract byte[] transform(java.lang.ClassLoader,java.lang.String,java.lang.Class<?>,java.security.ProtectionDomain,byte[]) throws jakarta.persistence.spi.TransformerException
 
 CLSS public final !enum jakarta.persistence.spi.LoadState
 fld public final static jakarta.persistence.spi.LoadState LOADED
@@ -1832,6 +1833,14 @@ CLSS public abstract interface jakarta.persistence.spi.ProviderUtil
 meth public abstract jakarta.persistence.spi.LoadState isLoaded(java.lang.Object)
 meth public abstract jakarta.persistence.spi.LoadState isLoadedWithReference(java.lang.Object,java.lang.String)
 meth public abstract jakarta.persistence.spi.LoadState isLoadedWithoutReference(java.lang.Object,java.lang.String)
+
+CLSS public jakarta.persistence.spi.TransformerException
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public abstract interface java.io.Serializable
 

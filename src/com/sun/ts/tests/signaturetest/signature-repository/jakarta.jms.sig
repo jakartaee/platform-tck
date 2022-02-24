@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.0
 
 CLSS public abstract interface jakarta.jms.BytesMessage
 intf jakarta.jms.Message
