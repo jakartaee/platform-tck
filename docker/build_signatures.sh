@@ -63,7 +63,6 @@ export INCLUDES="jakarta.activation:jakarta.annotation:javax.annotation.processi
 
 export sigTestClasspath="$JAKARTA_JARS/glassfish-corba-omgapi.jar${pathsep}\
 $JAKARTA_JARS/jakarta.activation-api.jar${pathsep}\
-$JAKARTA_JARS/jakarta.activation.jar${pathsep}\
 $JAKARTA_JARS/jakarta.annotation-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.authentication-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.authorization-api.jar${pathsep}\
@@ -92,7 +91,8 @@ $JAKARTA_JARS/jakarta.websocket-client-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.ws.rs-api.jar${pathsep}\
 $JAKARTA_JARS/jakarta.xml.bind-api.jar${pathsep}\
 $JAKARTA_JARS/webservices-api.jar${pathsep}\
-$JAKARTA_JARS/webservices-api-osgi.jar${pathsep}"
+$JAKARTA_JARS/webservices-api-osgi.jar${pathsep}\
+$JAKARTA_JARS/jakarta.enterprise.lang-model.jar${pathsep}"
 
 #export OPTIONS="-static -debug -verbose"
 export OPTIONS="-static -BootCp 11"

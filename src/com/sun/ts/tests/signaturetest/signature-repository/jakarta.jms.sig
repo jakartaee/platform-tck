@@ -87,6 +87,7 @@ meth public abstract void onException(jakarta.jms.JMSException)
 CLSS public jakarta.jms.IllegalStateException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -100,6 +101,7 @@ hfds serialVersionUID
 CLSS public jakarta.jms.InvalidClientIDException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -113,6 +115,7 @@ hfds serialVersionUID
 CLSS public jakarta.jms.InvalidDestinationException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -126,6 +129,7 @@ hfds serialVersionUID
 CLSS public jakarta.jms.InvalidSelectorException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -143,6 +147,7 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.jms.JMSConnectionFactoryDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.jms.JMSConnectionFactoryDefinitions)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
@@ -228,6 +233,7 @@ meth public abstract void stop()
 meth public abstract void unsubscribe(java.lang.String)
 
 CLSS public abstract interface !annotation jakarta.jms.JMSDestinationDefinition
+ anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.jms.JMSDestinationDefinitions)
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 intf java.lang.annotation.Annotation
@@ -248,6 +254,7 @@ meth public abstract jakarta.jms.JMSDestinationDefinition[] value()
 CLSS public jakarta.jms.JMSException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 meth public java.lang.Exception getLinkedException()
 meth public java.lang.String getErrorCode()
 meth public void setLinkedException(java.lang.Exception)
@@ -322,6 +329,7 @@ hfds errorCode,serialVersionUID
 CLSS public jakarta.jms.JMSSecurityException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -434,12 +442,14 @@ meth public abstract void setMessageListener(jakarta.jms.MessageListener) throws
 CLSS public jakarta.jms.MessageEOFException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageFormatException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -456,12 +466,14 @@ meth public abstract void onMessage(jakarta.jms.Message)
 CLSS public jakarta.jms.MessageNotReadableException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
 CLSS public jakarta.jms.MessageNotWriteableException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -556,6 +568,7 @@ meth public abstract jakarta.jms.TemporaryQueue createTemporaryQueue() throws ja
 CLSS public jakarta.jms.ResourceAllocationException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -707,6 +720,7 @@ meth public abstract jakarta.jms.Topic getTopic() throws jakarta.jms.JMSExceptio
 CLSS public jakarta.jms.TransactionInProgressException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -720,6 +734,7 @@ hfds serialVersionUID
 CLSS public jakarta.jms.TransactionRolledBackException
 cons public init(java.lang.String)
 cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Exception)
 supr jakarta.jms.JMSException
 hfds serialVersionUID
 
@@ -868,6 +883,13 @@ CLSS public abstract interface !annotation java.lang.annotation.Documented
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
+
+CLSS public abstract interface !annotation java.lang.annotation.Repeatable
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class<? extends java.lang.annotation.Annotation> value()
 
 CLSS public abstract interface !annotation java.lang.annotation.Retention
  anno 0 java.lang.annotation.Documented()

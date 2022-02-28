@@ -286,6 +286,7 @@ meth public abstract java.util.Map<java.lang.String,?> getConfigInUse()
 
 CLSS public abstract jakarta.json.spi.JsonProvider
 cons protected init()
+fld public final static java.lang.String JSONP_PROVIDER_FACTORY = "jakarta.json.provider"
 meth public abstract jakarta.json.JsonArrayBuilder createArrayBuilder()
 meth public abstract jakarta.json.JsonBuilderFactory createBuilderFactory(java.util.Map<java.lang.String,?>)
 meth public abstract jakarta.json.JsonObjectBuilder createObjectBuilder()
@@ -321,7 +322,7 @@ meth public jakarta.json.JsonPointer createPointer(java.lang.String)
 meth public jakarta.json.JsonString createValue(java.lang.String)
 meth public static jakarta.json.spi.JsonProvider provider()
 supr java.lang.Object
-hfds DEFAULT_PROVIDER,JSONP_PROVIDER_FACTORY,OSGI_SERVICE_LOADER_CLASS_NAME
+hfds DEFAULT_PROVIDER,OSGI_SERVICE_LOADER_CLASS_NAME
 hcls LazyFactoryLoader
 
 CLSS public final jakarta.json.stream.JsonCollectors

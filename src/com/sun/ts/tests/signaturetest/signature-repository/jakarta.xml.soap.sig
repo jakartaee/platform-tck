@@ -2,7 +2,7 @@
 #Version 3.0
 
 CLSS public abstract jakarta.xml.soap.AttachmentPart
-cons public init()
+cons protected init()
 meth public abstract byte[] getRawContentBytes() throws jakarta.xml.soap.SOAPException
 meth public abstract int getSize() throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.activation.DataHandler getDataHandler() throws jakarta.xml.soap.SOAPException
@@ -41,7 +41,7 @@ CLSS public abstract interface jakarta.xml.soap.DetailEntry
 intf jakarta.xml.soap.SOAPElement
 
 CLSS public abstract jakarta.xml.soap.MessageFactory
-cons public init()
+cons protected init()
 meth public abstract jakarta.xml.soap.SOAPMessage createMessage() throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.SOAPMessage createMessage(jakarta.xml.soap.MimeHeaders,java.io.InputStream) throws jakarta.xml.soap.SOAPException,java.io.IOException
 meth public static jakarta.xml.soap.MessageFactory newInstance() throws jakarta.xml.soap.SOAPException
@@ -118,7 +118,7 @@ CLSS public abstract interface jakarta.xml.soap.SOAPBodyElement
 intf jakarta.xml.soap.SOAPElement
 
 CLSS public abstract jakarta.xml.soap.SOAPConnection
-cons public init()
+cons protected init()
 intf java.lang.AutoCloseable
 meth public abstract jakarta.xml.soap.SOAPMessage call(jakarta.xml.soap.SOAPMessage,java.lang.Object) throws jakarta.xml.soap.SOAPException
 meth public abstract void close() throws jakarta.xml.soap.SOAPException
@@ -131,7 +131,7 @@ supr java.lang.Object
 hfds connectTimeout,readTimeout
 
 CLSS public abstract jakarta.xml.soap.SOAPConnectionFactory
-cons public init()
+cons protected init()
 meth public abstract jakarta.xml.soap.SOAPConnection createConnection() throws jakarta.xml.soap.SOAPException
 meth public static jakarta.xml.soap.SOAPConnectionFactory newInstance() throws jakarta.xml.soap.SOAPException
 supr java.lang.Object
@@ -213,10 +213,10 @@ meth public java.lang.String getMessage()
 meth public java.lang.Throwable getCause()
 meth public java.lang.Throwable initCause(java.lang.Throwable)
 supr java.lang.Exception
-hfds cause
+hfds cause,serialVersionUID
 
 CLSS public abstract jakarta.xml.soap.SOAPFactory
-cons public init()
+cons protected init()
 meth public abstract jakarta.xml.soap.Detail createDetail() throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.Name createName(java.lang.String) throws jakarta.xml.soap.SOAPException
 meth public abstract jakarta.xml.soap.Name createName(java.lang.String,java.lang.String,java.lang.String) throws jakarta.xml.soap.SOAPException
@@ -290,7 +290,7 @@ meth public abstract void setRelay(boolean) throws jakarta.xml.soap.SOAPExceptio
 meth public abstract void setRole(java.lang.String) throws jakarta.xml.soap.SOAPException
 
 CLSS public abstract jakarta.xml.soap.SOAPMessage
-cons public init()
+cons protected init()
 fld public final static java.lang.String CHARACTER_SET_ENCODING = "jakarta.xml.soap.character-set-encoding"
 fld public final static java.lang.String WRITE_XML_DECLARATION = "jakarta.xml.soap.write-xml-declaration"
 meth public abstract boolean saveRequired()
@@ -317,7 +317,7 @@ meth public void setProperty(java.lang.String,java.lang.Object) throws jakarta.x
 supr java.lang.Object
 
 CLSS public abstract jakarta.xml.soap.SOAPPart
-cons public init()
+cons protected init()
 intf jakarta.xml.soap.Node
 intf org.w3c.dom.Document
 meth public abstract jakarta.xml.soap.SOAPEnvelope getEnvelope() throws jakarta.xml.soap.SOAPException
