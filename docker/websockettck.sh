@@ -77,7 +77,7 @@ if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
 fi
 
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
-  sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar#g' ts.jte
+  sed -i 's#websocket.api=.*#websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.websocket-client-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar#g' ts.jte
 fi
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
