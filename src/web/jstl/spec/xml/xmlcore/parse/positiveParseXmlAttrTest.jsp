@@ -18,7 +18,7 @@
 
 <%@ page contentType="text/plain" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <%-- Validate that the xml attribute is still present and can be
      used in JSTL 1.1 based tag libraries. --%>

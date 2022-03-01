@@ -24,7 +24,7 @@
                  java.util.Enumeration,
                  java.util.Hashtable" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%
     int[] intArray = { 1, 2 };
