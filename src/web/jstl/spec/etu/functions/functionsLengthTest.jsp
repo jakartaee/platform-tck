@@ -23,7 +23,7 @@
                  java.util.Map,
                  java.util.Enumeration,
                  java.util.Hashtable" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%

@@ -17,7 +17,7 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:if test="${fn:contains('some string', 'me str')}">

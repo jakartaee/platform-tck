@@ -17,7 +17,7 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="jakarta.tags.xml" prefix="x" %>
  <x:parse var="doc">
         <a>
             <b>btext1</b>

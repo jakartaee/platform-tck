@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="x" uri="jakarta.tags.xml" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="negativeParseScopeVarDomSyntaxELTest">
     <!-- If scopeDom is specified, and varDom is not, the TLV

@@ -17,7 +17,7 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="jakarta.tags.xml" prefix="x" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <%-- Validate that the xml attribute is still present and can be
