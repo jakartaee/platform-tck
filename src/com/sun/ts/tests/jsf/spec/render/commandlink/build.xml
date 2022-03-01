@@ -40,7 +40,7 @@
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}/commandlink" includes="*.jsp, *.xhtml"/>
+            <fileset dir="${facelets.dir}/commandlink" includes="*.xhtml"/>
         </ts.war>       
     </target>
     

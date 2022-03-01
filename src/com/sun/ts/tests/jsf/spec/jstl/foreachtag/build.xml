@@ -35,7 +35,7 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/foreachtag" 
+            <fileset dir="${facelets.dir}/foreachtag" 
                      includes="*.xhtml"/>
 
             <zipfileset dir="${src.dir}/${pkg.dir}"

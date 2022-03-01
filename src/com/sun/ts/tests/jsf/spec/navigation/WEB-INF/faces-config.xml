@@ -23,93 +23,93 @@
     version="3.0">
 
     <navigation-rule>
-        <from-view-id>/nullOutcome.jsp</from-view-id>
+        <from-view-id>/nullOutcome.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{someBean.someAction}</from-action>
-            <to-view-id>/failed1.jsp</to-view-id>
+            <to-view-id>/failed1.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <to-view-id>/failed2.jsp</to-view-id>
+            <to-view-id>/failed2.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/exactMatch.jsp</from-view-id>
+        <from-view-id>/exactMatch.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>match</from-outcome>
-            <to-view-id>/passed.jsp</to-view-id>
+            <to-view-id>/passed.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <to-view-id>/failed.jsp</to-view-id>
+            <to-view-id>/failed.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/longest*</from-view-id>
         <navigation-case>
-            <to-view-id>/failed1.jsp</to-view-id>
+            <to-view-id>/failed1.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/long*</from-view-id>
         <navigation-case>
-            <to-view-id>/failed2.jsp</to-view-id>
+            <to-view-id>/failed2.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
      <navigation-rule>
         <from-view-id>/longestv*</from-view-id>
         <navigation-case>
-            <to-view-id>/passed.jsp</to-view-id>
+            <to-view-id>/passed.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/operation1.jsp</from-view-id>
+        <from-view-id>/operation1.xhtml</from-view-id>
         <navigation-case>
-            <to-view-id>/passed1.jsp</to-view-id>
+            <to-view-id>/passed1.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/operation*</from-view-id>
         <navigation-case>
-            <to-view-id>/passed2.jsp</to-view-id>
+            <to-view-id>/passed2.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <to-view-id>/wildcard.jsp</to-view-id>
+            <to-view-id>/wildcard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/navigationCase.jsp</from-view-id>
+        <from-view-id>/navigationCase.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{someBean.someAction}</from-action>
             <from-outcome>go</from-outcome>
-            <to-view-id>/passed1.jsp</to-view-id>
+            <to-view-id>/passed1.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>go</from-outcome>
-            <to-view-id>/passed2.jsp</to-view-id>
+            <to-view-id>/passed2.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{someBean.someAction}</from-action>
-            <to-view-id>/passed3.jsp</to-view-id>
+            <to-view-id>/passed3.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <to-view-id>/passed4.jsp</to-view-id>
+            <to-view-id>/passed4.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/redirect.jsp</from-view-id>
+        <from-view-id>/redirect.xhtml</from-view-id>
         <navigation-case>
-            <to-view-id>/target.jsp</to-view-id>
+            <to-view-id>/target.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -119,14 +119,14 @@
         <navigation-case>
             <from-action>#{someBean.someAction}</from-action>
             <from-outcome>go</from-outcome>
-            <to-view-id>/failed.jsp</to-view-id>
+            <to-view-id>/failed.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/mat*</from-view-id>
         <navigation-case>
-            <to-view-id>/passed.jsp</to-view-id>
+            <to-view-id>/passed.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

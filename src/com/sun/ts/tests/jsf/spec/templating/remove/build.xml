@@ -34,7 +34,7 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/remove"
+            <fileset dir="${facelets.dir}/remove"
                      includes="*.xhtml"/>
         </ts.war>       
     </target>

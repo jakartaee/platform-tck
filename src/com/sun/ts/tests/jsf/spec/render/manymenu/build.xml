@@ -36,7 +36,7 @@
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}/manymenu" includes="*.jsp, *.xhtml"/>
+            <fileset dir="${facelets.dir}/manymenu" includes="*.xhtml"/>
         </ts.war>       
     </target>
     

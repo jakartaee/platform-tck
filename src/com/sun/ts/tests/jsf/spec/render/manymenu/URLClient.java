@@ -89,7 +89,7 @@ public class URLClient extends BaseHtmlUnitClient {
     StringBuilder messages = new StringBuilder(128);
     Formatter formatter = new Formatter(messages);
 
-    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/encodetest.jsp");
+    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/encodetest.xhtml");
 
     // ------------------------------------------------------------- Menu1
 
@@ -331,7 +331,7 @@ public class URLClient extends BaseHtmlUnitClient {
     StringBuilder messages = new StringBuilder(128);
     Formatter formatter = new Formatter(messages);
 
-    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/decodetest.jsp");
+    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/decodetest.xhtml");
 
     HtmlSelect menu1 = (HtmlSelect) getElementOfTypeIncludingId(page, "select",
         "form:menu1");
@@ -507,7 +507,7 @@ public class URLClient extends BaseHtmlUnitClient {
     control.put("title", "title");
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {

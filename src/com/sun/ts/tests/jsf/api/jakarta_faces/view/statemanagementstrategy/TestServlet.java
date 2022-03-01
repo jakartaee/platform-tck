@@ -33,7 +33,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
-  private static final String JSP_VIEWID = "/root.jsp";
 
   private static final String FACELETS_VIEWID = "/root.xhtml";
 
@@ -66,23 +65,6 @@ public class TestServlet extends HttpTCKServlet {
     }
 
   }// End stateMgmtStrategyNonNullTest
-
-  public void stateMgmtStratNullForJSPTest(HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-    PrintWriter out = response.getWriter();
-    FacesContext context = getFacesContext();
-    StateManagementStrategy statestrategy = this.getStateMgtmStrat(context,
-        JSP_VIEWID);
-
-    if (statestrategy == null) {
-      out.println(JSFTestUtil.PASS);
-
-    } else {
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "StateManagementStrategy Must be null for JSP Views!");
-    }
-
-  }// End stateMgmtStratNullForJSPTest
 
   // --------------------------------------------- private methods
 

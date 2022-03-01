@@ -51,7 +51,7 @@ public class OutputUIComponentBean {
   public void setLink(HtmlOutputLink link) {
     link.setId("case_three");
     link.setStyleClass("text");
-    link.setValue("encodetest.jsp");
+    link.setValue("encodetest_facelet.xhtml");
 
     this.link = link;
   }

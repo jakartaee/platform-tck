@@ -82,7 +82,7 @@ public class URLClient extends BaseHtmlUnitClient {
     control.put("title", "title");
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {

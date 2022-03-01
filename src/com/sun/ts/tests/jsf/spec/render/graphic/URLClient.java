@@ -70,7 +70,6 @@ public class URLClient extends BaseHtmlUnitClient {
     final String expectedSrc = "pnglogo.png";
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetest.jsp"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/encodetest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {
@@ -238,7 +237,7 @@ public class URLClient extends BaseHtmlUnitClient {
     control.put("width", "10");
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {

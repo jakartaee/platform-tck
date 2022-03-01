@@ -31,7 +31,7 @@
               value="${class.dir}/${tests.pkg.dir}${app.dir}/common"/>
 
     <!-- JavaServer Pages common directory. -->  
-    <property name="jsp.dir" value="${src.dir}/web/${app.dir}"/>
+    <property name="facelets.dir" value="${src.dir}/web/${app.dir}"/>
     
     <!-- Override top level target to compile utility classes -->
     <target name="compile" description="jsf/spec/appconfigresources test specific.">

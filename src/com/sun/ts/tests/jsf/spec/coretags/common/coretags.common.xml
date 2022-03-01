@@ -34,7 +34,7 @@
               value="WEB-INF/classes/${tests.pkg.dir}/jsf/spec/coretags/common"/>
     
     <!-- JavaServer Pages common directory for coretags tests. -->
-    <property name="jsp.dir" value="${src.dir}/web/jsf/spec/coretags"/>
+    <property name="facelets.dir" value="${src.dir}/web/jsf/spec/coretags"/>
     
     <!-- Override top level target to compile utility classes -->
     <target name="compile" description="jsf/spec/coretags test specific.">

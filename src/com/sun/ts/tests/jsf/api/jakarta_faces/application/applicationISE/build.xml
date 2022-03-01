@@ -22,7 +22,7 @@
     <import file="../../../../common/common.xml"/>
     
     <property name="app.name" value="jsf_appl_applicationISE"/>   
-    <property name="jsp.dir" 
+    <property name="facelets.dir" 
               value="${src.dir}/web/jsf/api/jakarta_faces/application/applicationISE"/>
 
     <target name="package">
@@ -38,7 +38,7 @@
                         prefix="WEB-INF/classes"/>
             <zipfileset dir="${ts.home}/weblib" includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}" includes="*.jsp"/>
+            <fileset dir="${facelets.dir}" includes="*.xhtml"/>
         </ts.war>       
     </target>
     

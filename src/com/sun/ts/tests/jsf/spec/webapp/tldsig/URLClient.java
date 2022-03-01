@@ -59,7 +59,7 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void jsfTldSignatureTest() throws Fault {
     TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/test.jsp HTTP/1.1");
+        "GET " + CONTEXT_ROOT + "/test.xhtml HTTP/1.1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "FAILED");
     invoke();
   }

@@ -35,7 +35,7 @@
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}/fnescapexml"
+            <fileset dir="${facelets.dir}/fnescapexml"
                      includes="*.xhtml"/>
             <zipfileset dir="${jstl.common.class}"
                         includes="faces-config.xml"

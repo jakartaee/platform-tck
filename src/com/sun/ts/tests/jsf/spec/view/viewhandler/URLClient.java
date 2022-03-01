@@ -57,8 +57,8 @@ public class URLClient extends BaseHtmlUnitClient {
    * @test_Strategy: Verify on an initial request that the ViewId has not been
    *                 changed. By Setting the suffix as ".jsf" and then looking
    *                 for the correct suffix in the ViewHandler.createView()
-   *                 method. Verify that the default suffix is ".jsp". By
-   *                 calling the Wrapped.createView() this must support ".jsp"
+   *                 method. Verify that the default suffix is ".xhtml". By
+   *                 calling the Wrapped.createView() this must support ".xhtml"
    *                 as the default suffix.
    * 
    * 
@@ -86,8 +86,8 @@ public class URLClient extends BaseHtmlUnitClient {
    * @test_Strategy: Verify on an initial request that the ViewId has not been
    *                 changed. By Setting the suffix as ".jsf" and then looking
    *                 for the correct suffix in the ViewHandler.restoreView()
-   *                 method. Verify that the default suffix is ".jsp". By
-   *                 calling the Wrapped.restoreView() this must support ".jsp"
+   *                 method. Verify that the default suffix is ".xhtml". By
+   *                 calling the Wrapped.restoreView() this must support ".xhtml"
    *                 as the default suffix.
    * 
    * @since 1.2

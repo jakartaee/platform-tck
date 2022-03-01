@@ -56,7 +56,7 @@
                         includes="testCase2*"
                         prefix="META-INF/"/>
 
-            <fileset dir="${jsp.dir}/startupbehavior"
+            <fileset dir="${facelets.dir}/startupbehavior"
                      includes="*.xhtml"/>
         </ts.war>
         <delete file="${dist.dir}/${pkg.dir}/jsftck-resource.jar"/>

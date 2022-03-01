@@ -22,7 +22,7 @@
     <import file="../../../../common/common.xml"/>
     
     <property name="app.name" value="jsf_appl_resourcehandlerEx"/>
-    <property name="jsp.dir" 
+    <property name="facelets.dir" 
               value="${src.dir}/web/jsf/api/jakarta_faces/application/resourcehandlerEx"/>
               
     <target name="package">
@@ -36,7 +36,7 @@
             <zipfileset dir="${class.dir}/com/sun/ts/tests/jsf/api/jakarta_faces/application/resourcehandlerEx"
                         includes="neg_class_test.class"
                         prefix="resources"/>
-            <fileset dir="${jsp.dir}" includes="*.jsp"/>
+            <fileset dir="${facelets.dir}" includes="*.xhtml"/>
         </ts.war>
     </target>
 </project>

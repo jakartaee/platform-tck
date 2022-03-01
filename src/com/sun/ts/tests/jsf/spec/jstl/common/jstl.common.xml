@@ -34,7 +34,7 @@
     <property name="common.class.prefix" 
               value="WEB-INF/classes/${tests.pkg.dir}/jsf/spec/jstl/common"/>
 
-    <property name="jsp.dir" value="${src.dir}/web/jsf/spec/jstl"/>
+    <property name="facelets.dir" value="${src.dir}/web/jsf/spec/jstl"/>
 
     <!-- Override top level target to compile utility classes -->
     <target name="compile" description="jstl common compile target.">

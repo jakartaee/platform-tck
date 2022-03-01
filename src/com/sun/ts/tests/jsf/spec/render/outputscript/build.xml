@@ -38,7 +38,7 @@
             <zipfileset dir="${render.common.dir}"
                         includes="goodbye.js"
                         prefix="resources/jsLibrary"/>
-            <fileset dir="${jsp.dir}/outputscript"
+            <fileset dir="${facelets.dir}/outputscript"
                      includes="*.xhtml"/>
         </ts.war>
     </target>

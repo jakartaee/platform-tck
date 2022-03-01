@@ -38,7 +38,7 @@
             <zipfileset dir="${render.common.dir}"
                         includes="morning.css"
                         prefix="resources/cssLibrary"/>
-            <fileset dir="${jsp.dir}/outputstyle"
+            <fileset dir="${facelets.dir}/outputstyle"
                      includes="*.xhtml"/>
         </ts.war>
     </target>

@@ -61,7 +61,7 @@ public final class URLClient extends BaseHtmlUnitClient {
    */
   public void resourceHandlerExcludePropertiesTest() throws Fault {
     HtmlPage page = getPage(
-        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.jsp");
+        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.xhtml");
     HtmlAnchor outputLink = (HtmlAnchor) getElementOfTypeIncludingId(page, "a",
         "properties");
     this.testLink(outputLink);
@@ -78,7 +78,7 @@ public final class URLClient extends BaseHtmlUnitClient {
    */
   public void resourceHandlerExcludeClassTest() throws Fault {
     HtmlPage page = getPage(
-        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.jsp");
+        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.xhtml");
     HtmlAnchor outputLink = (HtmlAnchor) getElementOfTypeIncludingId(page, "a",
         "class");
     this.testLink(outputLink);
@@ -95,7 +95,7 @@ public final class URLClient extends BaseHtmlUnitClient {
    */
   public void resourceHandlerExcludeJSPXTest() throws Fault {
     HtmlPage page = getPage(
-        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.jsp");
+        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.xhtml");
     HtmlAnchor outputLink = (HtmlAnchor) getElementOfTypeIncludingId(page, "a",
         "jspx");
     this.testLink(outputLink);
@@ -112,7 +112,7 @@ public final class URLClient extends BaseHtmlUnitClient {
    */
   public void resourceHandlerExcludeJSPTest() throws Fault {
     HtmlPage page = getPage(
-        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.jsp");
+        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.xhtml");
     HtmlAnchor outputLink = (HtmlAnchor) getElementOfTypeIncludingId(page, "a",
         "jsp");
     this.testLink(outputLink);
@@ -129,7 +129,7 @@ public final class URLClient extends BaseHtmlUnitClient {
    */
   public void resourceHandlerExcludeXHTMLTest() throws Fault {
     HtmlPage page = getPage(
-        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.jsp");
+        CONTEXT_ROOT + "/faces/resourceHandlerExcludeTest.xhtml");
     HtmlAnchor outputLink = (HtmlAnchor) getElementOfTypeIncludingId(page, "a",
         "xhtml");
     this.testLink(outputLink);

@@ -34,7 +34,7 @@
               value="WEB-INF/classes/${tests.pkg.dir}/jsf/spec/render/common"/>
     
     <!-- JavaServer Pages common directory for Render tests. -->  
-    <property name="jsp.dir" value="${src.dir}/web/jsf/spec/render"/>
+    <property name="facelets.dir" value="${src.dir}/web/jsf/spec/render"/>
     
     <!-- Override top level target to compile utility classes -->
     <target name="compile" description="jsf/spec/render test specific.">

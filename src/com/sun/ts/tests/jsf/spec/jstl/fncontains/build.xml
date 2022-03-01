@@ -32,7 +32,7 @@
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}/fncontains"
+            <fileset dir="${facelets.dir}/fncontains"
                      includes="*.xhtml"/>
         </ts.war>
     </target>

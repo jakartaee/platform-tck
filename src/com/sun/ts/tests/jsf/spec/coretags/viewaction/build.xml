@@ -35,7 +35,7 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/viewaction" includes="*.xhtml"/>
+            <fileset dir="${facelets.dir}/viewaction" includes="*.xhtml"/>
 
             <zipfileset dir="${src.dir}/${pkg.dir}"
                         includes="faces-config.xml"

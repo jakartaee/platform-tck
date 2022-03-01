@@ -59,7 +59,7 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/absolute_ordering"
+            <fileset dir="${facelets.dir}/absolute_ordering"
                      includes="*.xhtml"/>
         </ts.war>
         <delete file="${dist.dir}/${pkg.dir}/config.jar"/>
