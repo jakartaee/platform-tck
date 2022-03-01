@@ -16,8 +16,8 @@
 
 --%>
 
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="jakarta.faces.core" prefix="f" %>
+<%@ taglib uri="jakarta.faces.html" prefix="h" %>
 
 <html>
 <head>

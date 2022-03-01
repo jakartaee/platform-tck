@@ -17,8 +17,8 @@
 --%>
 
 <%@page contentType="text/html"%>
-<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@taglib prefix="f" uri="jakarta.faces.core"%>
+<%@taglib prefix="h" uri="jakarta.faces.html"%>
 
 <html>
     <head><title>${param['testName']}_from_ejblitejsf</title></head>

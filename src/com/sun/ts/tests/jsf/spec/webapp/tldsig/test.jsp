@@ -18,8 +18,8 @@
 
 <%-- Testing JSF core and html taglibraries --%>
 <%@ page contentType="plain/txt" %>
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="jakarta.faces.core" prefix="f" %>
+<%@ taglib uri="jakarta.faces.html" prefix="h" %>
 
 <%@ taglib uri="/WEB-INF/signaturetest.tld" prefix="tck" %>
 

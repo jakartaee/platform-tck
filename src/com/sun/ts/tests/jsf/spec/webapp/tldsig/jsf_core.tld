@@ -31,7 +31,7 @@
     </description>
     <tlib-version>2.1</tlib-version>
     <short-name>f</short-name>
-    <uri>http://java.sun.com/jsf/core</uri>
+    <uri>jakarta.faces.core</uri>
 
 
 

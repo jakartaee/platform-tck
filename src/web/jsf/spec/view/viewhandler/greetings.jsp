@@ -18,8 +18,8 @@
 
 <HTML>
     <HEAD> <title>Hello</title> </HEAD>
-    <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
-    <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+    <%@ taglib uri="jakarta.faces.html" prefix="h" %>
+    <%@ taglib uri="jakarta.faces.core" prefix="f" %>
     <body bgcolor="white">
     <h2>Hi. My name is Duke.  I'm thinking of a number from 0 to 10.
     Can you guess it?</h2>

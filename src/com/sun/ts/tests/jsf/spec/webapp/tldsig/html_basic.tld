@@ -33,7 +33,7 @@
         h
     </short-name>
     <uri>
-        http://java.sun.com/jsf/html
+        jakarta.faces.html
     </uri>
 
 <!-- ============== Tag Library Validator ============= -->

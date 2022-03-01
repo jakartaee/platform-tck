@@ -20,8 +20,8 @@ public class JSFSigTEI extends SignatureExtraInfo {
 
   protected String[][] getTaglibDescriptorInfo() {
     return new String[][] {
-        { "/WEB-INF/jsf_core.tld", "http://java.sun.com/jsf/core" },
-        { "/WEB-INF/html_basic.tld", "http://java.sun.com/jsf/html" }, };
+        { "/WEB-INF/jsf_core.tld", "jakarta.faces.core" },
+        { "/WEB-INF/html_basic.tld", "jakarta.faces.html" }, };
   }
 
 }

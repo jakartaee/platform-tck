@@ -108,7 +108,7 @@ public abstract class SignatureExtraInfo extends TagExtraInfo {
    * is the resource that contains the 'master' tld, the second element contains
    * the well known URI for which we can obtain a matching TagLibraryInfo from
    * the container. Example: return new String[][] { { "/jsf-core.tld",
-   * "http://java.sun.com/jsf/core" } };
+   * "jakarta.faces.core" } };
    */
   protected abstract String[][] getTaglibDescriptorInfo();
 

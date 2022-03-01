@@ -18,7 +18,7 @@
 
 <%@page contentType="text/html"%>
 <%@taglib prefix="ejblitejsp" uri="/WEB-INF/tlds/ejblitejsp.tld"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 
 <html>
     <head><title>${param['testName']}_from_ejblitejsp</title></head>
