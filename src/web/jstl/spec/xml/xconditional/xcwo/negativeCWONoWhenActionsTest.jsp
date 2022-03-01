@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="x" uri="jakarta.tags.xml" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="negativeCWONoWhenActionsRTTest">
     <!-- If there are no when actions nested within a choose action
