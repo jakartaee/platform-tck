@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2006, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -601,7 +601,7 @@ namingServiceHost1=${orb.host}
 namingServicePort1=${orb.port}
 namingServiceHost2=${orb.host}
 namingServicePort2=${orb.port}
-variable.mapper=com.sun.el.lang.VariableMapperImpl
+variable.mapper=org.glassfish.expressly.lang.VariableMapperImpl
 # The following Jakarta Deployment properties are not supported
 #deployManagerJarFile.2=${jaspic.home}/lib/deployment/sun-as-jsr88-dm.jar
 #deployManageruri.2=deployer:Sun:AppServer::${deployment_host.2}:${s1as.admin.port}

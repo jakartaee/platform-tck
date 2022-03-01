@@ -2127,10 +2127,10 @@ secured.ejb.vehicle.client=true
 #     This property is used to point to the location of the 
 #     implementation of VariableMapper. The value for sjsas 9.x is
 #
-#     variable.mapper=com.sun.el.lang.VariableMapperImpl
+#     variable.mapper=org.glassfish.expressly.lang.VariableMapperImpl
 #
 ####################################################################
-variable.mapper=com.sun.el.lang.VariableMapperImpl
+variable.mapper=org.glassfish.expressly.lang.VariableMapperImpl
 
 #######################################################################
 # Endpoint API test
