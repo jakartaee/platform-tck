@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
+@jakarta.inject.Named("Escape") @jakarta.enterprise.context.SessionScoped
 public class EscapeBean {
   private String foo;
 

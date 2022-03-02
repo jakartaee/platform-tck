@@ -25,6 +25,7 @@ import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.context.FacesContext;
 
+@jakarta.inject.Named("library") @jakarta.enterprise.context.SessionScoped
 public class DataTableUIBean {
 
   private HtmlDataTable books;

@@ -23,6 +23,7 @@ package com.sun.ts.tests.jsf.spec.render.common;
 import java.util.HashMap;
 import java.util.Map;
 
+@jakarta.inject.Named("Attribute") @jakarta.enterprise.context.SessionScoped
 public class AttributeBean {
   public Map<String, Object> attMap = new HashMap<String, Object>();
 

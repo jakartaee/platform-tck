@@ -26,6 +26,7 @@ import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.component.html.HtmlPanelGrid;
 import jakarta.faces.context.FacesContext;
 
+@jakarta.inject.Named("location") @jakarta.enterprise.context.SessionScoped
 public class GridUIBean {
 
   private HtmlPanelGrid gps;

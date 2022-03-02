@@ -23,6 +23,7 @@ package com.sun.ts.tests.jsf.spec.render.common;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 
+@jakarta.inject.Named("Message") @jakarta.enterprise.context.SessionScoped
 public class MessageBean {
   private static String INFO_SUMMARY = "INFO: Summary Message";
 

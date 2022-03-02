@@ -19,6 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
+@jakarta.inject.Named("Color") @jakarta.enterprise.context.SessionScoped
 public class ColorRedBean {
 
   private String color;

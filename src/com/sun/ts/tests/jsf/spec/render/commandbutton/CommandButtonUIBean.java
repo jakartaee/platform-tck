@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.render.commandbutton;
 
 import jakarta.faces.component.html.HtmlCommandButton;
 
+@jakarta.inject.Named("status") @jakarta.enterprise.context.SessionScoped
 public class CommandButtonUIBean {
 
   private HtmlCommandButton onoff;

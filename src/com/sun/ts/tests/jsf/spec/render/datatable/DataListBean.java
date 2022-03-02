@@ -23,6 +23,7 @@ package com.sun.ts.tests.jsf.spec.render.datatable;
 import java.util.ArrayList;
 import java.util.List;
 
+@jakarta.inject.Named("dList") @jakarta.enterprise.context.RequestScoped
 public class DataListBean {
 
   private List<DataBean> dataList = new ArrayList<DataBean>();

@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
 import java.io.Serializable;
 
+@jakarta.inject.Named("viewScoped") @jakarta.faces.view.ViewScoped
 public class ViewScopedBean implements Serializable {
   private String stringProperty;
 

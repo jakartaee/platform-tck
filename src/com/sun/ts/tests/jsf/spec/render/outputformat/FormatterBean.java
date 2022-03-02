@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.render.outputformat;
 
 import java.io.Serializable;
 
+@jakarta.inject.Named("info") @jakarta.enterprise.context.SessionScoped
 public class FormatterBean implements Serializable {
 
   public String technology = "JSF";

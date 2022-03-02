@@ -25,6 +25,7 @@ import java.util.LinkedHashSet;
 
 import jakarta.faces.event.ActionEvent;
 
+@jakarta.inject.Named("ajaxtag") @jakarta.enterprise.context.SessionScoped
 public class AjaxTagValuesBean {
 
   private Integer count = 0;

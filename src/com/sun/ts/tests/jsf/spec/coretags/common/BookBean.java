@@ -19,9 +19,8 @@ package com.sun.ts.tests.jsf.spec.coretags.common;
 import java.io.Serializable;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 
-@RequestScoped
+@jakarta.inject.Named("book") @jakarta.enterprise.context.RequestScoped
 public class BookBean implements Serializable {
 
   private String authorName;

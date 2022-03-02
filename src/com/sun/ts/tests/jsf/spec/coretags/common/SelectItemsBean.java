@@ -24,6 +24,7 @@ import java.util.List;
 
 import jakarta.faces.model.SelectItem;
 
+@jakarta.inject.Named("Music") @jakarta.enterprise.context.RequestScoped
 public class SelectItemsBean {
 
   private List<String> myList;

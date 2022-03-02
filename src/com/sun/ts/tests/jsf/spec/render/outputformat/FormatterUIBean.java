@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.render.outputformat;
 
 import jakarta.faces.component.html.HtmlOutputFormat;
 
+@jakarta.inject.Named("score") @jakarta.enterprise.context.SessionScoped
 public class FormatterUIBean {
 
   private HtmlOutputFormat fscore;

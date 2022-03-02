@@ -25,6 +25,7 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UISelectItem;
 import jakarta.faces.context.FacesContext;
 
+@jakarta.inject.Named("Answer") @jakarta.enterprise.context.SessionScoped
 public class SelectUIComponentBean {
 
   private UIComponent yesNo;

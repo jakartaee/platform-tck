@@ -37,6 +37,7 @@ import jakarta.faces.model.SelectItem;
 /**
  * $Id:
  */
+@jakarta.inject.Named("select01") @jakarta.enterprise.context.SessionScoped
 public class SelectMany01Bean {
 
   private final Collection<SelectItem> possibleValues;

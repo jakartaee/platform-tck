@@ -24,6 +24,7 @@ import java.io.Serializable;
 
 import jakarta.annotation.PostConstruct;
 
+@jakarta.inject.Named("RuntimeExceptionPostConstruct") @jakarta.enterprise.context.RequestScoped
 public class RuntimeExceptionPostConstructBean implements Serializable {
 
   // intentionally generate an unchecked exception

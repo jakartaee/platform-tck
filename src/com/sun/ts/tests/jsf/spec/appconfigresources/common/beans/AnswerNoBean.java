@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
+@jakarta.inject.Named("Question") @jakarta.enterprise.context.SessionScoped
 public class AnswerNoBean {
 
   private String answer;

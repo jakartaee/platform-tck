@@ -24,6 +24,7 @@ import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.ValueChangeListener;
 
+@jakarta.inject.Named("lastname") @jakarta.enterprise.context.SessionScoped
 public class LastNameBean implements ValueChangeListener {
 
   public ValueChangeListener getValueChangeListener() {

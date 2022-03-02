@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
+@jakarta.inject.Named("Status") @jakarta.enterprise.context.SessionScoped
 public class StatBean {
   private String testString;
 

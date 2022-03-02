@@ -30,6 +30,7 @@ import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ActionListener;
 import jakarta.servlet.http.HttpServletResponse;
 
+@jakarta.inject.Named("ActionListener") @jakarta.enterprise.context.SessionScoped
 public class SimpleActionListener implements ActionListener {
 
   /**

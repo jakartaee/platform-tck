@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.render.graphic;
 
 import jakarta.faces.component.html.HtmlGraphicImage;
 
+@jakarta.inject.Named("pictures") @jakarta.enterprise.context.SessionScoped
 public class GraphicUIBean {
 
   private HtmlGraphicImage img1;

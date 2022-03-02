@@ -24,6 +24,7 @@ import jakarta.faces.component.html.HtmlForm;
 import jakarta.faces.component.html.HtmlInputText;
 import jakarta.faces.context.FacesContext;
 
+@jakarta.inject.Named("greeting") @jakarta.enterprise.context.SessionScoped
 public class FormUIBean {
 
   private HtmlForm myForm;

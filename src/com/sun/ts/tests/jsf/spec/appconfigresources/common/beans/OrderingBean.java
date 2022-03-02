@@ -28,6 +28,7 @@ import jakarta.faces.event.PhaseListener;
 import jakarta.faces.lifecycle.Lifecycle;
 import jakarta.faces.lifecycle.LifecycleFactory;
 
+@jakarta.inject.Named("orderingBean") @jakarta.enterprise.context.SessionScoped
 public class OrderingBean {
 
   private String[] suffixes;

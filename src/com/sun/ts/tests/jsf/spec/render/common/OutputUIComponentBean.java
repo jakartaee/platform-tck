@@ -23,6 +23,7 @@ import jakarta.faces.component.html.HtmlOutputLabel;
 import jakarta.faces.component.html.HtmlOutputLink;
 import jakarta.faces.component.html.HtmlOutputText;
 
+@jakarta.inject.Named("Out") @jakarta.enterprise.context.SessionScoped
 public class OutputUIComponentBean {
 
   private HtmlOutputLabel label;

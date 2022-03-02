@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.render.inputtext;
 
 import jakarta.faces.component.html.HtmlInputText;
 
+@jakarta.inject.Named("Hello") @jakarta.enterprise.context.SessionScoped
 public class InputTextUIBean {
 
   private HtmlInputText greeting;

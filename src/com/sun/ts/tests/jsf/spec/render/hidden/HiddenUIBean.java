@@ -21,6 +21,7 @@ package com.sun.ts.tests.jsf.spec.render.hidden;
 
 import jakarta.faces.component.html.HtmlInputHidden;
 
+@jakarta.inject.Named("scene") @jakarta.enterprise.context.SessionScoped
 public class HiddenUIBean {
 
   private HtmlInputHidden seeMe;
