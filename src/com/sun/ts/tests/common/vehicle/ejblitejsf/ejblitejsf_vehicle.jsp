@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,8 +17,8 @@
 --%>
 
 <%@page contentType="text/html"%>
-<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@taglib prefix="f" uri="jakarta.faces.core"%>
+<%@taglib prefix="h" uri="jakarta.faces.html"%>
 
 <html>
     <head><title>${param['testName']}_from_ejblitejsf</title></head>
