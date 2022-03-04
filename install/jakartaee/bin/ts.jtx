@@ -146,6 +146,8 @@ com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredS
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_puservlet
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateful3
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateless3
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1
+com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index/Client.java#indexTest
 
 #
 #
