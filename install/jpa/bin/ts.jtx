@@ -30,8 +30,8 @@ com/sun/ts/tests/jpa/se/schemaGeneration/annotations/tableGenerator/Client.java#
 #
 com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReference_from_standalone
 
-# https://github.com/eclipse-ee4j/jpa-api/issues/350 
-com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1
+# https://github.com/eclipse-ee4j/jpa-api/issues/350
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_standalone
 
 # https://github.com/eclipse-ee4j/jpa-api/issues/361
-com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index/Client.java#indexTest
+com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index/Client.java#indexTest_from_standalone

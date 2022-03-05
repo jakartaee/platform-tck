@@ -146,8 +146,6 @@ com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredS
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_puservlet
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateful3
 com/sun/ts/tests/jpa/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes_from_stateless3
-com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1
-com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index/Client.java#indexTest
 
 #
 #
@@ -173,6 +171,14 @@ com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollec
 com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollectionTest_from_stateless3
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_pmservlet
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_stateless3
+
+# https://github.com/eclipse-ee4j/jpa-api/issues/350
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_appmanaged
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_pmservlet
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_puservlet
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_stateful3
+com/sun/ts/tests/jpa/core/annotations/nativequery/Client.java#nativeQueryTest1_from_stateless3
 
 ################
 # JSON-B
