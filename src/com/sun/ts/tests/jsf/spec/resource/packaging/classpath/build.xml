@@ -79,6 +79,7 @@
             <zipfileset dir="${common.locales}"
                         includes="*.properties"
                         prefix="WEB-INF/classes/${tests.pkg.dir}/jsf/spec/resource/common"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
         
         <delete file="${dist.dir}/${pkg.dir}/jsftck-resource.jar"/>

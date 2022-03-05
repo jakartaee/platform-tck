@@ -41,6 +41,7 @@
 
             <fileset dir="${facelet.dir}/insertchildren"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     

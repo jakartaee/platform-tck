@@ -40,6 +40,7 @@
                         prefix="resources/jsLibrary"/>
             <fileset dir="${facelets.dir}/outputscript"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     

@@ -48,6 +48,7 @@
                         prefix="resources/versioned/2_0"/>
 
             <fileset dir="${facelet.dir}/packaging/webapproot" includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     

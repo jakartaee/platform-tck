@@ -44,6 +44,7 @@
                         prefix="WEB-INF"/>
                         
             <fileset dir="${facelet.dir}/actionsource" includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     
