@@ -38,6 +38,7 @@
             <zipfileset dir="../common/resources"
                         includes="duke-boxer.gif"
                         prefix="resources/images"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

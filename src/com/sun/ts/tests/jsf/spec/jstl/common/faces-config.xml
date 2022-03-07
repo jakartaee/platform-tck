@@ -22,12 +22,5 @@
     xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
     version="3.0">
 
-    <managed-bean>
-        <managed-bean-name>commonBean</managed-bean-name>
-        <managed-bean-class>
-            com.sun.ts.tests.jsf.spec.jstl.common.CommonBean
-        </managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
     
 </faces-config>

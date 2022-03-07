@@ -26,6 +26,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+@jakarta.inject.Named("commonBean")
+@jakarta.enterprise.context.RequestScoped
 public class CommonBean {
 
   private String escapeString = "><&'\"";

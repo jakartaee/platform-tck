@@ -37,6 +37,7 @@
                         includes="neg_class_test.class"
                         prefix="resources"/>
             <fileset dir="${facelets.dir}" includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
 </project>

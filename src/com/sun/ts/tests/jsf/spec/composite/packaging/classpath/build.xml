@@ -47,6 +47,7 @@
                         prefix="WEB-INF/lib"/>
                         
             <fileset dir="${facelet.dir}/packaging/classpath" includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
 
         <delete file="${dist.dir}/${pkg.dir}/tckComponent.jar" />

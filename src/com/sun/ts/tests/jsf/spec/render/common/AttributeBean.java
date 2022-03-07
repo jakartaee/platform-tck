@@ -25,6 +25,8 @@ import java.util.Map;
 
 @jakarta.inject.Named("Attribute") @jakarta.enterprise.context.SessionScoped
 public class AttributeBean {
+  
+  @jakarta.enterprise.context.Dependent
   public Map<String, Object> attMap = new HashMap<String, Object>();
 
   {

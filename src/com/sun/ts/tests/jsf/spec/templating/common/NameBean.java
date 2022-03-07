@@ -24,6 +24,8 @@ import java.io.Serializable;
 
 import jakarta.faces.component.UIOutput;
 
+@jakarta.inject.Named("Character")
+@jakarta.enterprise.context.RequestScoped
 public class NameBean implements Serializable {
 
   private UIOutput name;

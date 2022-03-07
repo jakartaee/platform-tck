@@ -20,8 +20,12 @@
 
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
+import java.io.Serializable;
+
 @jakarta.inject.Named("Question") @jakarta.enterprise.context.SessionScoped
-public class AnswerNoBean {
+public class AnswerNoBean implements Serializable {
+
+  private static final long serialVersionUID = -2564031884483456327L;
 
   private String answer;
 

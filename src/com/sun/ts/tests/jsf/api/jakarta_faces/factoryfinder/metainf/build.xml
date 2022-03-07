@@ -48,6 +48,7 @@
             <zipfileset dir="${dist.dir}/${pkg.dir}" 
                         includes="jsftck-context.jar"
                         prefix="WEB-INF/lib"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
 
         <delete file="${dist.dir}/${pkg.dir}/jsftck-context.jar"/>

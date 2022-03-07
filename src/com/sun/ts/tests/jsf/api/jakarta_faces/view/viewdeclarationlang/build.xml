@@ -36,6 +36,7 @@
             <zipfileset dir="../common" includes="myRoot.xhtml" /> 
             <zipfileset dir="${ts.home}/weblib" includes="*.jar"
                          prefix="WEB-INF/lib"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
          </ts.war>
 	</target>
 

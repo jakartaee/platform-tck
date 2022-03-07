@@ -58,6 +58,7 @@
 
             <fileset dir="${facelets.dir}/startupbehavior"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
         <delete file="${dist.dir}/${pkg.dir}/jsftck-resource.jar"/>
     </target>

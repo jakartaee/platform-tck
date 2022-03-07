@@ -40,6 +40,7 @@
             <zipfileset dir="${jstl.common.class}"
                         includes="faces-config.xml"
                         prefix="WEB-INF"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     
