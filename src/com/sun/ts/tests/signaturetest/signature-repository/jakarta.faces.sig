@@ -4303,6 +4303,8 @@ meth public static jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys[
 supr java.lang.Enum<jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys>
 hfds toString
 
+CLSS abstract interface jakarta.faces.component.html.package-info
+
 CLSS public jakarta.faces.component.search.ComponentNotFoundException
 cons public init()
 cons public init(java.lang.String)
