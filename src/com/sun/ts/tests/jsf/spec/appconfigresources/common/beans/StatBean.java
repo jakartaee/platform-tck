@@ -20,8 +20,13 @@
 
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
+import java.io.Serializable;
+
 @jakarta.inject.Named("Status") @jakarta.enterprise.context.SessionScoped
-public class StatBean {
+public class StatBean implements Serializable {
+
+  private static final long serialVersionUID = -2538081884483638087L;
+
   private String testString;
 
   /** Creates a new instance of StatBean */

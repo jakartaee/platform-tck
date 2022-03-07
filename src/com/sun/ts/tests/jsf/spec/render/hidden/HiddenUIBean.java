@@ -20,9 +20,12 @@
 package com.sun.ts.tests.jsf.spec.render.hidden;
 
 import jakarta.faces.component.html.HtmlInputHidden;
+import java.io.Serializable;
 
 @jakarta.inject.Named("scene") @jakarta.enterprise.context.SessionScoped
-public class HiddenUIBean {
+public class HiddenUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2564031838038088087L;
 
   private HtmlInputHidden seeMe;
 
