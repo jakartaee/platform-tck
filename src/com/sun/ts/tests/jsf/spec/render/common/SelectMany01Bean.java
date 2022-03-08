@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -38,7 +39,9 @@ import jakarta.faces.model.SelectItem;
  * $Id:
  */
 @jakarta.inject.Named("select01") @jakarta.enterprise.context.SessionScoped
-public class SelectMany01Bean {
+public class SelectMany01Bean implements Serializable {
+
+  private static final long serialVersionUID = -8823380871067856327L;
 
   private final Collection<SelectItem> possibleValues;
 

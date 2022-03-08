@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 
 @jakarta.inject.Named("Message") @jakarta.enterprise.context.SessionScoped
-public class MessageBean {
+public class MessageBean implements Serializable {
+
+  private static final long serialVersionUID = -2156780871083890367L;
+
   private static String INFO_SUMMARY = "INFO: Summary Message";
 
   private static String INFO_DETAIL = "INFO: Detailed Message";

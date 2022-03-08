@@ -21,6 +21,7 @@
 package com.sun.ts.tests.jsf.spec.render.common;
 
 import java.util.Map;
+import java.io.Serializable;
 
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.ExternalContext;
@@ -31,7 +32,9 @@ import jakarta.faces.event.ActionListener;
 import jakarta.servlet.http.HttpServletResponse;
 
 @jakarta.inject.Named("ActionListener") @jakarta.enterprise.context.SessionScoped
-public class SimpleActionListener implements ActionListener {
+public class SimpleActionListener implements ActionListener, Serializable {
+
+  private static final long serialVersionUID = -2123380871083456327L;
 
   /**
    * <p>

@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jsf.spec.render.inputtext;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlInputText;
 
 @jakarta.inject.Named("Hello") @jakarta.enterprise.context.SessionScoped
-public class InputTextUIBean {
+public class InputTextUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2564325672383456327L;
 
   private HtmlInputText greeting;
 

@@ -16,8 +16,13 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
+
 @jakarta.inject.Named("Escape") @jakarta.enterprise.context.SessionScoped
-public class EscapeBean {
+public class EscapeBean implements Serializable {
+
+  private static final long serialVersionUID = -3544855687654980327L;
+  
   private String foo;
 
   private String bar;

@@ -24,8 +24,12 @@ import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.ValueChangeListener;
 
+import java.io.Serializable;
+
 @jakarta.inject.Named("lastname") @jakarta.enterprise.context.SessionScoped
-public class LastNameBean implements ValueChangeListener {
+public class LastNameBean implements ValueChangeListener, Serializable {
+
+  private static final long serialVersionUID = -2564031838083638087L;
 
   public ValueChangeListener getValueChangeListener() {
     ValueChangeListener lname = new LastNameBean();
