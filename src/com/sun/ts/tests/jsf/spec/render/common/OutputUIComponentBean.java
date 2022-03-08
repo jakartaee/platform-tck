@@ -19,12 +19,15 @@
  */
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlOutputLabel;
 import jakarta.faces.component.html.HtmlOutputLink;
 import jakarta.faces.component.html.HtmlOutputText;
 
 @jakarta.inject.Named("Out") @jakarta.enterprise.context.SessionScoped
-public class OutputUIComponentBean {
+public class OutputUIComponentBean implements Serializable {
+
+  private static final long serialVersionUID = -2564325687654356327L;
 
   private HtmlOutputLabel label;
 

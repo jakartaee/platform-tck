@@ -24,9 +24,9 @@ import java.io.Serializable;
 @jakarta.inject.Named("info") @jakarta.enterprise.context.SessionScoped
 public class FormatterBean implements Serializable {
 
-  public String technology = "JSF";
+  private String technology = "JSF";
 
-  public String component = "f:param";
+  private String component = "f:param";
 
   /** Creates a new instance of MessageBean */
   public FormatterBean() {

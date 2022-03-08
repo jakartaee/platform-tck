@@ -19,6 +19,7 @@
  */
 package com.sun.ts.tests.jsf.spec.render.datatable;
 
+import java.io.Serializable;
 import jakarta.faces.application.Application;
 import jakarta.faces.component.html.HtmlColumn;
 import jakarta.faces.component.html.HtmlDataTable;
@@ -26,7 +27,9 @@ import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.context.FacesContext;
 
 @jakarta.inject.Named("library") @jakarta.enterprise.context.SessionScoped
-public class DataTableUIBean {
+public class DataTableUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2574855687654980327L;
 
   private HtmlDataTable books;
 

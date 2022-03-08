@@ -19,13 +19,16 @@
  */
 package com.sun.ts.tests.jsf.spec.render.form;
 
+import java.io.Serializable;
 import jakarta.faces.application.Application;
 import jakarta.faces.component.html.HtmlForm;
 import jakarta.faces.component.html.HtmlInputText;
 import jakarta.faces.context.FacesContext;
 
 @jakarta.inject.Named("greeting") @jakarta.enterprise.context.SessionScoped
-public class FormUIBean {
+public class FormUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2123380871451256327L;
 
   private HtmlForm myForm;
 

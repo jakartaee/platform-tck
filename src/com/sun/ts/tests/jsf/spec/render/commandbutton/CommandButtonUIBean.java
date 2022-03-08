@@ -20,10 +20,13 @@
 
 package com.sun.ts.tests.jsf.spec.render.commandbutton;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlCommandButton;
 
 @jakarta.inject.Named("status") @jakarta.enterprise.context.SessionScoped
-public class CommandButtonUIBean {
+public class CommandButtonUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2574855687654356327L;
 
   private HtmlCommandButton onoff;
 
