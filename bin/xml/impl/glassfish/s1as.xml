@@ -35,7 +35,6 @@
     <property name="server.config.dir" 	value="config"/>
     <property name="server.home"     value="${javaee.home}"/>
     <property name="drive"           value="${s1as.applicationRoot}"/>
-    <property name="ext.dir.prop"    value="-Djava.ext.dirs="/>
     <property name="start.index"     value="16"/>
     <property name="custom.resource.jndi.name" value="custom/dog"/>
 
@@ -217,23 +216,13 @@
         </not>
       </condition>
 
-      <!-- Check if we need to set ext.dirs -->
-      <condition property="s1as.db.ext.dirs.set">
-        <not>
-          <equals arg1="" arg2="${s1as.db.ext.dirs}" casesensitive="true" trim="true"/>
-        </not>
-      </condition>
-
       <!-- Check to see if we are using DB2 -->
       <condition property="using.db2.type2">
           <contains string="${use.jdbc.poolName}" substring="db2" casesensitive="false"/>
       </condition>
 
       <condition property="db2.props.set">
-        <and>
           <isset property="using.db2.type2"/>
-          <isset property="s1as.db.ext.dirs.set"/>
-        </and>
       </condition>
 
       <!-- Check to see if we are using Oracle, will be needed in the future -->
