@@ -4,7 +4,7 @@ These CLI examples can be customized as necessary.
 ///////////////////////////////////////////////////////////////////////
 
 As explained in link:rebuild.html#GCLIZ[Appendix B],
-the JAX-WS TCK introduces the
+the XML-WS TCK introduces the
 concept of rebuilding the TCK tests. To provide the user an ability to
 run the TCK against the Vendor Implementation and the Reference
 Implementation, the use of the `keywords` feature (in GUI mode) or
@@ -52,9 +52,9 @@ mode only, not in GUI mode.
 [[TCJWS00012]][[GCMCU]]
 
 
-Example 5-1 Running JAX-WS TCK Signature Tests
+Example 5-1 Running XML-WS TCK Signature Tests
 
-To run the JAX-WS TCK signature tests, enter the following commands:
+To run the XML-WS TCK signature tests, enter the following commands:
 
 [source,oac_no_warn]
 ----

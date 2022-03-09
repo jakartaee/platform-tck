@@ -582,7 +582,7 @@ the default package name algorithm defined in the specification.
 
 |`-target` |Generate code for the specified version of the XML-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
+compliant with the XML-WS 2.0 Specification. The default value is 3.0.
 
 |`-quiet` |Suppress `wsimport` output.
 
@@ -686,7 +686,7 @@ See the `wsimport_catalog` sample for more information. |`-catalog`
 
 |`target` |Generate code for the specified version of the XML-WS
 specification. For example, a value of 2.0 generates code that is
-compliant with the JAX-WS 2.0 Specification. The default value is 3.0.
+compliant with the XML-WS 2.0 Specification. The default value is 3.0.
 |`-target`
 
 |`quiet` |Suppress `wsimport` output. |`-quiet`
