@@ -54,12 +54,30 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 
-cd $TS_HOME/bin
-
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
+if [ -z "$JDK18_URL" ]; then
+  export JDK18_URL=https://download.java.net/java/GA/jdk18/43f95e8614114aeaa8e8a5fcf20a682d/36/GPL/openjdk-18_linux-x64_bin.tar.gz
 fi
+
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]]; then
+  export JAVA_HOME=${JDK17_HOME}
+elif [[ "$JDK" == "JDK18" || "$JDK" == "jdk18" ]]; then
+  wget $JDK18_URL -O ${TCK_HOME}/jdk18.tar.gz
+  tar -xvf ${TCK_HOME}/jdk18.tar.gz
+  export JDK18_HOME=${TCK_HOME}/jdk-18 
+  export JAVA_HOME=${JDK18_HOME}
+elif [[ "$JDK" == "JDK19" || "$JDK" == "jdk19" ]]; then
+  export JAVA_HOME=${JDK19_HOME}
+fi
+
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=allow '$JAVA_TOOL_OPTIONS
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=disallow '$JAVA_TOOL_OPTIONS
+fi
+
 export PATH=$JAVA_HOME/bin:$PATH
+
+cd $TS_HOME/bin
 
 which java
 java -version
@@ -71,10 +89,6 @@ sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.
 sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
 sed -i "s#local.classes=.*#local.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jaxb-osgi.jar#g" ts.jte
 
-#if [ "web" == "$PROFILE" ]; then
-#  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
-#fi
-
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
@@ -83,7 +97,6 @@ mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
 
 cd $TS_HOME/bin
 ant config.vi
-# ant add.interop.certs
 
 ### ctsStartStandardDeploymentServer.sh starts here #####
 

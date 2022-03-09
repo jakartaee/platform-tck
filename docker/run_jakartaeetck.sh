@@ -48,9 +48,27 @@ if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
     export GF_VI_TOPLEVEL_DIR=glassfish7
 fi
 
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
+if [ -z "$JDK18_URL" ]; then
+  export JDK18_URL=https://download.java.net/java/GA/jdk18/43f95e8614114aeaa8e8a5fcf20a682d/36/GPL/openjdk-18_linux-x64_bin.tar.gz
 fi
+
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]]; then
+  export JAVA_HOME=${JDK17_HOME}
+elif [[ "$JDK" == "JDK18" || "$JDK" == "jdk18" ]]; then
+  wget $JDK18_URL -O ${TCK_HOME}/jdk18.tar.gz
+  tar -xvf ${TCK_HOME}/jdk18.tar.gz
+  export JDK18_HOME=${TCK_HOME}/jdk-18 
+  export JAVA_HOME=${JDK18_HOME}
+elif [[ "$JDK" == "JDK19" || "$JDK" == "jdk19" ]]; then
+  export JAVA_HOME=${JDK19_HOME}
+fi
+
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=allow '$JAVA_TOOL_OPTIONS
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=disallow '$JAVA_TOOL_OPTIONS
+fi
+
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANT_OPTS="-Xmx2G \
@@ -112,7 +130,11 @@ done
 
 
 ##### installCTS.sh starts here #####
-cat ${TS_HOME}/bin/ts.jte | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager/"  > ts.save
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  cat ${TS_HOME}/bin/ts.jte | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager=allow/"  > ts.save
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+  cat ${TS_HOME}/bin/ts.jte | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager=disallow/"  > ts.save
+fi
 cp ts.save $TS_HOME/bin/ts.jte
 ##### installCTS.sh ends here #####
 
@@ -252,7 +274,13 @@ fi
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
-${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager
+
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager=allow
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+  ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager=disallow
+fi
+
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
 
 sleep 5

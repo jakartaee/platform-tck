@@ -54,12 +54,39 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextPropagate/ContextPropagate_web.war
 
-cd $TS_HOME/bin
-
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
+if [ -z "$JDK18_URL" ]; then
+  export JDK18_URL=https://download.java.net/java/GA/jdk18/43f95e8614114aeaa8e8a5fcf20a682d/36/GPL/openjdk-18_linux-x64_bin.tar.gz
 fi
+
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]]; then
+  export JAVA_HOME=${JDK17_HOME}
+elif [[ "$JDK" == "JDK18" || "$JDK" == "jdk18" ]]; then
+  wget $JDK18_URL -O ${TCK_HOME}/jdk18.tar.gz
+  tar -xvf ${TCK_HOME}/jdk18.tar.gz
+  export JDK18_HOME=${TCK_HOME}/jdk-18 
+  export JAVA_HOME=${JDK18_HOME}
+elif [[ "$JDK" == "JDK19" || "$JDK" == "jdk19" ]]; then
+  export JAVA_HOME=${JDK19_HOME}
+fi
+
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=allow '$JAVA_TOOL_OPTIONS
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+  export JAVA_TOOL_OPTIONS=' -Djava.security.manager=disallow '$JAVA_TOOL_OPTIONS
+fi
+
 export PATH=$JAVA_HOME/bin:$PATH
+
+cd $TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/bin
+./asadmin start-domain
+if [[ "$SECURITY_MANAGER" == "ALLOW" || "$SECURITY_MANAGER" == "allow" ]]; then
+  ./asadmin create-jvm-options -Djava.security.manager=allow
+elif [[ "$SECURITY_MANAGER" == "DISALLOW" || "$SECURITY_MANAGER" == "disallow" ]]; then
+    ./asadmin create-jvm-options -Djava.security.manager=disallow  
+fi
+./asadmin restart-domain
+
+cd $TS_HOME/bin
 
 which java
 java -version
