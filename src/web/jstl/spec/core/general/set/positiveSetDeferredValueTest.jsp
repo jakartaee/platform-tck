@@ -36,7 +36,7 @@
           ValueExpression ve = (ValueExpression) al.get(i);
    %>
           <%= i %>
-          <%= ve.getValue(pageContext.getELContext()) %>
+          <%= (Object) ve.getValue(pageContext.getELContext()) %>
           <br/>
    <%
        }
