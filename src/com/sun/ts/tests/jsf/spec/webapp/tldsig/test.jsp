@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,8 +18,8 @@
 
 <%-- Testing JSF core and html taglibraries --%>
 <%@ page contentType="plain/txt" %>
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="jakarta.faces.core" prefix="f" %>
+<%@ taglib uri="jakarta.faces.html" prefix="h" %>
 
 <%@ taglib uri="/WEB-INF/signaturetest.tld" prefix="tck" %>
 

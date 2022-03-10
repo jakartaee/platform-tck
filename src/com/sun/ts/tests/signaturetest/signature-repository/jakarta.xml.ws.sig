@@ -411,14 +411,13 @@ cons public init()
 cons public init(boolean)
 cons public init(boolean,boolean)
 cons public init(boolean,boolean,jakarta.xml.ws.soap.AddressingFeature$Responses)
-fld protected boolean required
 fld public final static java.lang.String ID = "http://www.w3.org/2005/08/addressing/module"
 innr public final static !enum Responses
 meth public boolean isRequired()
 meth public jakarta.xml.ws.soap.AddressingFeature$Responses getResponses()
 meth public java.lang.String getID()
 supr jakarta.xml.ws.WebServiceFeature
-hfds responses
+hfds required,responses
 
 CLSS public final static !enum jakarta.xml.ws.soap.AddressingFeature$Responses
  outer jakarta.xml.ws.soap.AddressingFeature
@@ -443,11 +442,11 @@ cons public init()
 cons public init(boolean)
 cons public init(boolean,int)
 cons public init(int)
-fld protected int threshold
 fld public final static java.lang.String ID = "http://www.w3.org/2004/08/soap/features/http-optimization"
 meth public int getThreshold()
 meth public java.lang.String getID()
 supr jakarta.xml.ws.WebServiceFeature
+hfds threshold
 
 CLSS public abstract interface jakarta.xml.ws.soap.SOAPBinding
 fld public final static java.lang.String SOAP11HTTP_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/http"
@@ -566,12 +565,10 @@ meth public abstract void handle(jakarta.xml.ws.spi.http.HttpExchange) throws ja
 supr java.lang.Object
 
 CLSS public final jakarta.xml.ws.wsaddressing.W3CEndpointReference
-cons protected init()
 cons public init(javax.xml.transform.Source)
-fld protected final static java.lang.String NS = "http://www.w3.org/2005/08/addressing"
 meth public void writeTo(javax.xml.transform.Result)
 supr jakarta.xml.ws.EndpointReference
-hfds address,attributes,elements,metadata,referenceParameters,w3cjc
+hfds NS,address,attributes,elements,metadata,referenceParameters,w3cjc
 hcls Address,Elements
 
 CLSS public final jakarta.xml.ws.wsaddressing.W3CEndpointReferenceBuilder

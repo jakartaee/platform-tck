@@ -1,6 +1,6 @@
  <!--
 
-    Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2021, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,7 +32,7 @@
     <artifactId>dependency_copy</artifactId>
 
  <properties>
-        <jakarta.faces-api.version>4.0.0-M2</jakarta.faces-api.version>
+        <jakarta.faces-api.version>4.0.0</jakarta.faces-api.version>
         <!-- Jakarta WebSocket -->
         <websocket-api.version>2.1.0</websocket-api.version>
         <!-- Jakarta Concurrency -->
@@ -42,29 +42,29 @@
         <!-- Jakarta EE Security + Authentication/Authorization -->
         <jakarta.security.enterprise-api.version>2.0.0</jakarta.security.enterprise-api.version>
         <jakarta.authorization-api.version>2.1.0-RC1</jakarta.authorization-api.version>
-        <jakarta.authentication-api.version>2.0.0</jakarta.authentication-api.version>
+        <jakarta.authentication-api.version>3.0.0-RC2</jakarta.authentication-api.version>
         <!-- Jakarta Messaging -->
-        <jms-api.version>3.0.0</jms-api.version>
+        <jms-api.version>3.1.0</jms-api.version>
         <jakarta.activation-api.version>2.1.0</jakarta.activation-api.version>
         <!-- Jakarta Persistence -->
-        <jakarta-persistence-api.version>3.1.0-RC2</jakarta-persistence-api.version>
+        <jakarta-persistence-api.version>3.1.0</jakarta-persistence-api.version>
         <!-- Jakarta Transactions -->
         <jakarta.transaction-api.version>2.0.1-RC1</jakarta.transaction-api.version>
         <!-- Jakarta Connectors -->
-        <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
+        <jakarta.resource-api.version>2.1.0</jakarta.resource-api.version>
         <!-- Jakarta Batch -->
         <jakarta.batch-api.version>2.1.0</jakarta.batch-api.version>
         <!-- Jakarta Enterprise beans -->
         <jakarta.ejb-api.version>4.0.0</jakarta.ejb-api.version>
         <!-- Jakarta JSON -->
         <jsonp-api.version>2.1.0</jsonp-api.version>
-        <json.bind-api.version>3.0.0-RC1</json.bind-api.version>
+        <json.bind-api.version>3.0.0</json.bind-api.version>
         <!-- Jakarta Server Pages -->
         <jsp-api.version>3.1.0</jsp-api.version>
         <!-- Jakarta Standard Tag Library -->
-        <jstl-api.version>2.0.0</jstl-api.version>        
+        <jstl-api.version>3.0.0</jstl-api.version>        
         <!-- CDI -->
-        <cdi-api.version>3.0.0</cdi-api.version>
+        <cdi-api.version>4.0.0</cdi-api.version>
         
         <jakarta.annotation-api.version>2.1.0</jakarta.annotation-api.version>
         <jakarta.el-api.version>5.0.0</jakarta.el-api.version>
@@ -74,14 +74,14 @@
         <jakarta.validation-api.version>3.0.2-SNAPSHOT</jakarta.validation-api.version>
 
         <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
-        <jakarta.xml.bind-api.version>4.0.0-RC3</jakarta.xml.bind-api.version>
-        <jaxb-osgi.version>4.0.0-M2</jaxb-osgi.version>
-        <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0-RC2* -->
+        <jakarta.xml.bind-api.version>4.0.0</jakarta.xml.bind-api.version>
+        <jaxb-osgi.version>4.0.0-M3</jaxb-osgi.version>
+        <!-- Jakarta XML Web Services 4.0 via jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0 -->
         <webservices-api.version>4.0.0</webservices-api.version>
         <soapwithattachments-api.version>3.0.0</soapwithattachments-api.version>
-        <webservices-api-osgi.version>4.0.0-M2</webservices-api-osgi.version>
-        <webservices-osgi.version>4.0.0-M2</webservices-osgi.version>
-        <webservices-tools.version>4.0.0-M2</webservices-tools.version> 
+        <webservices-api-osgi.version>4.0.0-M3</webservices-api-osgi.version>
+        <webservices-osgi.version>4.0.0-M3</webservices-osgi.version>
+        <webservices-tools.version>4.0.0-M3</webservices-tools.version> 
 
         <glassfish-corba-orb.version>4.2.4</glassfish-corba-orb.version>       
         
@@ -231,12 +231,6 @@
     <dependency>
         <groupId>jakarta.websocket</groupId>
         <artifactId>jakarta.websocket-api</artifactId>
-        <version>${websocket-api.version}</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>jakarta.websocket</groupId>
-        <artifactId>jakarta.websocket-client-api</artifactId>
         <version>${websocket-api.version}</version>
         <scope>provided</scope>
     </dependency>

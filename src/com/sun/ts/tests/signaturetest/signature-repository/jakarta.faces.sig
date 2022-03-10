@@ -102,6 +102,7 @@ innr public final static !enum Version
 innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.faces.annotation.FacesConfig$Version version()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 
 CLSS public final static jakarta.faces.annotation.FacesConfig$Literal
  outer jakarta.faces.annotation.FacesConfig
@@ -114,6 +115,7 @@ hfds serialVersionUID
 
 CLSS public final static !enum jakarta.faces.annotation.FacesConfig$Version
  outer jakarta.faces.annotation.FacesConfig
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.annotation.FacesConfig$Version JSF_2_3
 meth public static jakarta.faces.annotation.FacesConfig$Version valueOf(java.lang.String)
 meth public static jakarta.faces.annotation.FacesConfig$Version[] values()
@@ -4301,6 +4303,8 @@ meth public static jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys[
 supr java.lang.Enum<jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys>
 hfds toString
 
+CLSS abstract interface jakarta.faces.component.html.package-info
+
 CLSS public jakarta.faces.component.search.ComponentNotFoundException
 cons public init()
 cons public init(java.lang.String)
@@ -6898,6 +6902,14 @@ meth public abstract void close() throws java.lang.Exception
 
 CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
+
+CLSS public abstract interface !annotation java.lang.Deprecated
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, MODULE, PARAMETER, TYPE])
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault boolean forRemoval()
+meth public abstract !hasdefault java.lang.String since()
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
 cons protected init(java.lang.String,int)
