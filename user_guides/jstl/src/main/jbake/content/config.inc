@@ -173,7 +173,7 @@ Adapt the instructions above for the vendor implementation.
 4.3 Deploying the {TechnologyShortName} TCK Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 10 platform, perform the
 following steps.
 
 1.  Make sure that the Web server to which you will deploy the {TechnologyShortName} TCK
