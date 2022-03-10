@@ -84,12 +84,6 @@ The porting package interface, `TSURLInterface.java`, obtains URL
 strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
-+
-4. JVM option `-Djava.locale.providers=COMPAT` should be passed for JDK 11 test runs. 
-The JVM compatibility option should be passed while starting implementation under test. 
-`-Djava.locale.providers=COMPAT` option will enable JDK 8 compatibility mode,
-JDK 8 compatibility mode is required for tags TCK tests with Dates, TimeZones to PASS with JDK 11.
-`-Djava.locale.providers=COMPAT` should not be passed to JVM, when tests are run with JDK 8.
 
 4.1.1 Initializing Database and Packaging the War Files for Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
