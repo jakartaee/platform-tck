@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jsf.spec.render.outputformat;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlOutputFormat;
 
 @jakarta.inject.Named("score") @jakarta.enterprise.context.SessionScoped
-public class FormatterUIBean {
+public class FormatterUIBean implements Serializable {
+
+  private static final long serialVersionUID = -9564143088038088087L;
 
   private HtmlOutputFormat fscore;
 
