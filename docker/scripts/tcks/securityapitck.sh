@@ -34,9 +34,9 @@ rm -f $TS_HOME/lib/jax-qname.jar
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web\.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/securityapitckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/securityapitckwork#g" ts.jte
+sed -i.bak "s#^web\.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/securityapitckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/securityapitckwork#g" ts.jte
 
 mkdir -p $TCK_HOME/securityapitckreport
 mkdir -p $TCK_HOME/securityapitckwork

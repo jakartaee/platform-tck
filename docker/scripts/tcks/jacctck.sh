@@ -32,16 +32,16 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-sed -i 's#orb\.port=.*#orb.port=3699#g' ts.jte
-sed -i 's#javaee\.level=.*#javaee.level=full#g' ts.jte
-sed -i "s#jacc\.home=.*#jacc.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jacctckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jacctckwork#g" ts.jte
+sed -i.bak 's#orb\.port=.*#orb.port=3699#g' ts.jte
+sed -i.bak 's#javaee\.level=.*#javaee.level=full#g' ts.jte
+sed -i.bak "s#jacc\.home=.*#jacc.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jacctckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jacctckwork#g" ts.jte
 
 CONTENT='<property name="all.test.dir" value="com/sun/ts/tests/jacc/,com/sun/ts/tests/signaturetest/jacc,com/sun/ts/tests/common/vehicle/" />'
 C=$(echo $CONTENT | sed 's/\//\\\//g')
-sed -i "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
+sed -i.bak "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
 
 mkdir $TCK_HOME/jacctckreport
 mkdir $TCK_HOME/jacctckwork

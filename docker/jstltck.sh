@@ -63,24 +63,24 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#webServerHome=.*#webServerHome=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
-sed -i 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
-sed -i "s#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/autodeploy#g" ts.jte
-sed -i 's#impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=20#g' ts.jte
-sed -i 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
-sed -i 's#jstl\.db\.name=.*#jstl.db.name=derbyDB#g' ts.jte
-sed -i 's#jstl\.db\.server=.*#jstl.db.server=localhost#g' ts.jte
-sed -i 's#jstl\.db\.port=.*#jstl.db.port=1527#g' ts.jte
-sed -i 's#jstl\.db\.url=.*#jstl.db.url=jdbc:derby://\$\{jstl.db.server\}:\$\{jstl.db.port\}/\$\{jstl.db.name\};create=true#g' ts.jte
-sed -i 's#jstl\.db\.driver=.*#jstl.db.driver=org.apache.derby.jdbc.ClientDriver#g' ts.jte
-sed -i 's#jstl\.db\.user=.*#jstl.db.user=cts1#g' ts.jte
-sed -i 's#jstl\.db\.password=.*#jstl.db.password=cts1#g' ts.jte
-sed -i 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/jakarta.servlet-api.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp-api.jar:\$\{webServerHome\}/modules/jakarta.el.jar:\$\{webServerHome\}/modules/jakarta.el-api.jar#g' ts.jte
-sed -i 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl-api.jar#g' ts.jte
+sed -i.bak "s#webServerHome=.*#webServerHome=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#webServerPort=.*#webServerPort=8080#g' ts.jte
+sed -i.bak 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
+sed -i.bak "s#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/autodeploy#g" ts.jte
+sed -i.bak 's#impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=20#g' ts.jte
+sed -i.bak 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
+sed -i.bak 's#jstl\.db\.name=.*#jstl.db.name=derbyDB#g' ts.jte
+sed -i.bak 's#jstl\.db\.server=.*#jstl.db.server=localhost#g' ts.jte
+sed -i.bak 's#jstl\.db\.port=.*#jstl.db.port=1527#g' ts.jte
+sed -i.bak 's#jstl\.db\.url=.*#jstl.db.url=jdbc:derby://\$\{jstl.db.server\}:\$\{jstl.db.port\}/\$\{jstl.db.name\};create=true#g' ts.jte
+sed -i.bak 's#jstl\.db\.driver=.*#jstl.db.driver=org.apache.derby.jdbc.ClientDriver#g' ts.jte
+sed -i.bak 's#jstl\.db\.user=.*#jstl.db.user=cts1#g' ts.jte
+sed -i.bak 's#jstl\.db\.password=.*#jstl.db.password=cts1#g' ts.jte
+sed -i.bak 's#jspservlet.classes=.*#jspservlet.classes=\$\{webServerHome\}/modules/jakarta.servlet-api.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp.jar:\$\{webServerHome\}/modules/jakarta.servlet.jsp-api.jar:\$\{webServerHome\}/modules/jakarta.el.jar:\$\{webServerHome\}/modules/jakarta.el-api.jar#g' ts.jte
+sed -i.bak 's#jstl.classes=.*#jstl.classes=\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl.jar\$\{pathsep\}\$\{webServerHome\}/modules/jakarta.servlet.jsp.jstl-api.jar#g' ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte

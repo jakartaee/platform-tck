@@ -31,9 +31,9 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsonptckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsonptckwork#g" ts.jte
-sed -i "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/glassfish7/glassfish/modules/javax.json.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jsonptckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jsonptckwork#g" ts.jte
+sed -i.bak "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/glassfish7/glassfish/modules/javax.json.jar#g" ts.jte
 
 mkdir $TCK_HOME/jsonptckreport
 mkdir $TCK_HOME/jsonptckwork

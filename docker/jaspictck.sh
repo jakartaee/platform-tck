@@ -68,16 +68,16 @@ which java
 java -version
 
 
-sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
-sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
-sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
-sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
-sed -i 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
-sed -i "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak 's#orb\.port=.*#orb.port=3700#g' ts.jte
+sed -i.bak "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
+sed -i.bak 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
+sed -i.bak 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
+sed -i.bak 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
+sed -i.bak 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
+sed -i.bak "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte

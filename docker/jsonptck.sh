@@ -62,9 +62,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}/#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
-sed -i "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}/#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#jsonp\.classes=.*#jsonp.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.json.jar#g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte

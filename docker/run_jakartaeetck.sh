@@ -240,13 +240,13 @@ fi
 
 if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   echo "Using higher JVM memory for EJB Lite suites to avoid OOM errors"
-  sed -i 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
-  sed -i 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx512m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx512m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
+  sed -i.bak 's/-Xmx1024m/-Xmx2048m/g' ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/domains/domain1/config/domain.xml
  
   # Change the memory setting in ts.jte as well.
-  sed -i 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
+  sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
 fi 
 
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
@@ -309,49 +309,49 @@ export JT_WORK_DIR=${CTS_HOME}/jakartaeetck-work
 
 ### Update ts.jte for CTS run
 cd ${TS_HOME}/bin
-sed -i "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=${JT_REPORT_DIR}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=${JT_WORK_DIR}#g" ts.jte
 
-sed -i "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
-sed -i "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
-sed -i "s/^mailFrom=.*/mailFrom=${MAIL_FROM}/g" ts.jte
-sed -i "s/^javamail.password=.*/javamail.password=${MAIL_PASSWORD}/g" ts.jte
-sed -i "s/^smtp.port=.*/smtp.port=${SMTP_PORT}/g" ts.jte
-sed -i "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
+sed -i.bak "s/^mailHost=.*/mailHost=${MAIL_HOST}/g" ts.jte
+sed -i.bak "s/^mailuser1=.*/mailuser1=${MAIL_USER}/g" ts.jte
+sed -i.bak "s/^mailFrom=.*/mailFrom=${MAIL_FROM}/g" ts.jte
+sed -i.bak "s/^javamail.password=.*/javamail.password=${MAIL_PASSWORD}/g" ts.jte
+sed -i.bak "s/^smtp.port=.*/smtp.port=${SMTP_PORT}/g" ts.jte
+sed -i.bak "s/^imap.port=.*/imap.port=${IMAP_PORT}/g" ts.jte
 
-sed -i 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
-sed -i 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
+sed -i.bak 's/^s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
+sed -i.bak 's/^ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
 
-sed -i 's/^jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
-sed -i 's/^jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte
+sed -i.bak 's/^jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
+sed -i.bak 's/^jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte
 
-sed -i "s#^javaee.home=.*#javaee.home=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's/^orb.host=.*/orb.host=localhost/g' ts.jte
+sed -i.bak "s#^javaee.home=.*#javaee.home=${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's/^orb.host=.*/orb.host=localhost/g' ts.jte
 
-sed -i "s#^javaee.home.ri=.*#javaee.home.ri=${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish#g" ts.jte
-sed -i 's/^orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
+sed -i.bak "s#^javaee.home.ri=.*#javaee.home.ri=${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish#g" ts.jte
+sed -i.bak 's/^orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
 
-sed -i 's/^ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
-sed -i 's/^orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
+sed -i.bak 's/^ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
+sed -i.bak 's/^orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
 
-sed -i "s#^registryURL=.*#registryURL=${UDDI_REGISTRY_URL}#g" ts.jte
-sed -i "s#^queryManagerURL=.*#queryManagerURL=${UDDI_REGISTRY_URL}#g" ts.jte
+sed -i.bak "s#^registryURL=.*#registryURL=${UDDI_REGISTRY_URL}#g" ts.jte
+sed -i.bak "s#^queryManagerURL=.*#queryManagerURL=${UDDI_REGISTRY_URL}#g" ts.jte
 
-sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
-sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
+sed -i.bak "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
+sed -i.bak "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
-  sed -i "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy jacc jaspic wsmd/g" ts.jte
+  sed -i.bak "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy jacc jaspic wsmd/g" ts.jte
 fi
 
-sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
-sed -i 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
-sed -i 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
-sed -i 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
-sed -i 's/^impl\.deploy\.timeout\.multiplier=240/impl\.deploy\.timeout\.multiplier=480/g' ts.jte
+sed -i.bak 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
+sed -i.bak 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
+sed -i.bak 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
+sed -i.bak 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
+sed -i.bak 's/^impl\.deploy\.timeout\.multiplier=240/impl\.deploy\.timeout\.multiplier=480/g' ts.jte
 
 if [ "servlet" == "${test_suite}" ]; then
-  sed -i 's/s1as\.java\.endorsed\.dirs=.*/s1as.java.endorsed.dirs=\$\{endorsed.dirs\}\$\{pathsep\}\$\{ts.home\}\/endorsedlib/g' ts.jte
+  sed -i.bak 's/s1as\.java\.endorsed\.dirs=.*/s1as.java.endorsed.dirs=\$\{endorsed.dirs\}\$\{pathsep\}\$\{ts.home\}\/endorsedlib/g' ts.jte
 fi
 
 if [ ! -z "${DATABASE}" ];then
@@ -481,7 +481,7 @@ if [ -z ${vehicle} ];then
   RESULT_FILE_NAME=${TEST_SUITE}-results.tar.gz
 else
   RESULT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-results.tar.gz
-  sed -i "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
+  sed -i.bak "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
 tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/ ${CTS_HOME}/ri/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/

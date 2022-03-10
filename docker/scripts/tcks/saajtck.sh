@@ -32,24 +32,24 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i 's#^wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
-sed -i 's#^wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
+sed -i.bak "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's#^wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
+sed -i.bak 's#^wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
 PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
 PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#^glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules/endorsed/webservices-api-osgi.jar#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
+sed -i.bak "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+sed -i.bak "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+sed -i.bak "s#^glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
+sed -i.bak "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules/endorsed/webservices-api-osgi.jar#g" ts.jte
+sed -i.bak "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
 
 if [ "$profile" == "web" ]; then
-  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test.map
+  sed -i.bak "s#1\.4#1.3#g" $TS_HOME/bin/sig-test.map
 fi
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/saajtckwork#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/saajtckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/saajtckwork#g" ts.jte
 
 mkdir $TCK_HOME/saajtckreport
 mkdir $TCK_HOME/saajtckwork

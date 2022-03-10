@@ -64,19 +64,19 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
-sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#local.classes=.*#local.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jaxb-osgi.jar#g" ts.jte
+sed -i.bak "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
+sed -i.bak 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
+sed -i.bak "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
+sed -i.bak "s#local.classes=.*#local.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-api-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/webservices-osgi.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.activation-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jaxb-osgi.jar#g" ts.jte
 
 #if [ "web" == "$PROFILE" ]; then
-#  sed -i "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
+#  sed -i.bak "s#1\.4#1.3#g" $TS_HOME/bin/sig-test_se8.map
 #fi
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}

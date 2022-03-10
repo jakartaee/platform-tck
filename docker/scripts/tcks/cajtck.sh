@@ -32,11 +32,11 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-sed -i "s#^build.level=.*#build.level=2#g" ts.jte
-sed -i "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
-sed -i "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork#g" ts.jte
+sed -i.bak "s#^build.level=.*#build.level=2#g" ts.jte
+sed -i.bak "s#^endorsed.dirs=.*#endorsed.dirs=$TCK_HOME/glassfish7/glassfish/modules/endorsed#g" ts.jte
+sed -i.bak "s#^local.classes=.*#local.classes=$TCK_HOME/glassfish7/glassfish/modules/endorsed/jakarta.annotation-api.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/cajtckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/cajtckwork#g" ts.jte
 
 mkdir $TCK_HOME/cajtckreport
 mkdir $TCK_HOME/cajtckwork

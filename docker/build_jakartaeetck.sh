@@ -83,7 +83,7 @@ sed -e "s#^javaee.home=.*#javaee.home=$JAKARTA_JARS#g" \
 mv $BASEDIR/install/jakartaee/bin/ts.jte.new $BASEDIR/install/jakartaee/bin/ts.jte
 
 #tools.jar from jdk8 has old apis
-sed -i -e 's#tools\.jar=.*#tools.jar='${JAKARTA_JARS//\//\\\/}'\/modules\/webservices-tools.jar:'${JAKARTA_JARS//\//\\\/}'\/modules\/webservices-api.jar#g' $BASEDIR/install/jakartaee/bin/ts.jte
+sed -i.bak -e 's#tools\.jar=.*#tools.jar='${JAKARTA_JARS//\//\\\/}'\/modules\/webservices-tools.jar:'${JAKARTA_JARS//\//\\\/}'\/modules\/webservices-api.jar#g' $BASEDIR/install/jakartaee/bin/ts.jte
 
 echo "Contents of modified TS.JTE file"
 cat $BASEDIR/install/jakartaee/bin/ts.jte

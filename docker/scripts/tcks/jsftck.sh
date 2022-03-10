@@ -35,15 +35,15 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
-sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
-sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
-sed -i "s#^impl.vi.deploy.dir=.*#impl.vi.deploy.dir=$TCK_HOME/glassfish7/glassfish/domains/domain1/autodeploy#g" ts.jte
-sed -i "s#^jsf.classes=.*#jsf.classes=${webServerHome}/modules/cdi-api.jar;${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar;${webServerHome}/modules/javax.inject.jar;${webServerHome}/modules/jakarta.faces.jar;${webServerHome}/modules/javax.servlet.jsp-api.jar;${webServerHome}/modules/javax.servlet-api.jar;${webServerHome}/modules/javax.el.jar#g" ts.jte
-sed -i 's/^impl\.deploy\.timeout\.multiplier=.*/impl\.deploy\.timeout\.multiplier=960/g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsftckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsftckwork#g" ts.jte
+sed -i.bak "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
+sed -i.bak "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
+sed -i.bak "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
+sed -i.bak "s#^impl.vi.deploy.dir=.*#impl.vi.deploy.dir=$TCK_HOME/glassfish7/glassfish/domains/domain1/autodeploy#g" ts.jte
+sed -i.bak "s#^jsf.classes=.*#jsf.classes=${webServerHome}/modules/cdi-api.jar;${webServerHome}/modules/javax.servlet.jsp.jstl-api.jar;${webServerHome}/modules/javax.inject.jar;${webServerHome}/modules/jakarta.faces.jar;${webServerHome}/modules/javax.servlet.jsp-api.jar;${webServerHome}/modules/javax.servlet-api.jar;${webServerHome}/modules/javax.el.jar#g" ts.jte
+sed -i.bak 's/^impl\.deploy\.timeout\.multiplier=.*/impl\.deploy\.timeout\.multiplier=960/g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jsftckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jsftckwork#g" ts.jte
 
 mkdir $TCK_HOME/jsftckreport
 mkdir $TCK_HOME/jsftckwork

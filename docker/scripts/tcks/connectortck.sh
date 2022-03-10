@@ -30,11 +30,11 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^connector.home=.*#connector.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^orb.host=.*#orb.host=localhost#g" ts.jte
-sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/connectortckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/connectortckwork#g" ts.jte
+sed -i.bak "s#^connector.home=.*#connector.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^orb.host=.*#orb.host=localhost#g" ts.jte
+sed -i.bak "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/connectortckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/connectortckwork#g" ts.jte
 
 mkdir $TCK_HOME/connectortckreport
 mkdir $TCK_HOME/connectortckwork

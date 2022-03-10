@@ -32,20 +32,20 @@ echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrstckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrstckwork#g" ts.jte
-sed -i "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
-sed -i 's#jaxrs_impl\.classes=.*#jaxrs_impl.classes=${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/jersey-media-jaxb.jar:${web.home}/modules/jersey-media-sse.jar:${web.home}/modules/jersey-hk2.jar:${web.home}/modules/osgi-resource-ocator.jar:${web.home}/modules/javax.inject.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/cglib.jar:${web.home}/modules/asm-all-repackaged.jar:${web.home}/modules/bean-validator.jar:${web.home}/modules/endorsed/jakarta.annotation-api.jar#g' ts.jte
-sed -i 's#jaxrs_impl_lib=.*#jaxrs_impl_lib=${web.home}/modules/jersey-container-servlet-core.jar#g' ts.jte
-sed -i 's#jaxrs\.classes=.*#jaxrs.classes=${web.home}/modules/javax.ws.rs-api.jar#g' ts.jte
-sed -i 's#servlet_adaptor=.*#servlet_adaptor=org\/glassfish\/jersey\/servlet\/ServletContainer.class#g' ts.jte
-sed -i 's#servlet.classes=.*#servlet.classes=${web.home}/modules/javax.servlet-api.jar#g' ts.jte
-sed -i 's#jaxrs_impl_name=.*#jaxrs_impl_name=jersey#g' ts.jte
-sed -i 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
-sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
-sed -i 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
-sed -i 's#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${web.home}/domains/domain1/autodeploy#g' ts.jte
+sed -i.bak "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jaxrstckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jaxrstckwork#g" ts.jte
+sed -i.bak "s#^impl.vi=.*#impl.vi=glassfish#g" ts.jte
+sed -i.bak 's#jaxrs_impl\.classes=.*#jaxrs_impl.classes=${web.home}/modules/jersey-client.jar:${web.home}/modules/jersey-common.jar:${web.home}/modules/jersey-server.jar:${web.home}/modules/jersey-container-servlet.jar:${web.home}/modules/jersey-container-servlet-core.jar:${web.home}/modules/jersey-media-jaxb.jar:${web.home}/modules/jersey-media-sse.jar:${web.home}/modules/jersey-hk2.jar:${web.home}/modules/osgi-resource-ocator.jar:${web.home}/modules/javax.inject.jar:${web.home}/modules/guava.jar:${web.home}/modules/hk2-api.jar:${web.home}/modules/hk2-locator.jar:${web.home}/modules/hk2-utils.jar:${web.home}/modules/cglib.jar:${web.home}/modules/asm-all-repackaged.jar:${web.home}/modules/bean-validator.jar:${web.home}/modules/endorsed/jakarta.annotation-api.jar#g' ts.jte
+sed -i.bak 's#jaxrs_impl_lib=.*#jaxrs_impl_lib=${web.home}/modules/jersey-container-servlet-core.jar#g' ts.jte
+sed -i.bak 's#jaxrs\.classes=.*#jaxrs.classes=${web.home}/modules/javax.ws.rs-api.jar#g' ts.jte
+sed -i.bak 's#servlet_adaptor=.*#servlet_adaptor=org\/glassfish\/jersey\/servlet\/ServletContainer.class#g' ts.jte
+sed -i.bak 's#servlet.classes=.*#servlet.classes=${web.home}/modules/javax.servlet-api.jar#g' ts.jte
+sed -i.bak 's#jaxrs_impl_name=.*#jaxrs_impl_name=jersey#g' ts.jte
+sed -i.bak 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
+sed -i.bak 's#webServerPort=.*#webServerPort=8080#g' ts.jte
+sed -i.bak 's#impl\.vi=.*#impl.vi=glassfish#g' ts.jte
+sed -i.bak 's#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${web.home}/domains/domain1/autodeploy#g' ts.jte
 
 mkdir $TCK_HOME/jaxrstckreport
 mkdir $TCK_HOME/jaxrstckwork

@@ -67,13 +67,13 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^webServerHome=.*#webServerHome=${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=${TCK_HOME}/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=${TCK_HOME}/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^webServerHome=.*#webServerHome=${TCK_HOME}/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=${TCK_HOME}/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=${TCK_HOME}/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
-  sed -i 's/javax.transaction-api.jar/jakarta.transaction-api.jar/g' ts.jte
-  sed -i 's/javax.interceptor-api.jar/jakarta.interceptor-api.jar/g' ts.jte
-  sed -i 's/javax.servlet-api.jar/jakarta.servlet-api.jar/g' ts.jte
+  sed -i.bak 's/javax.transaction-api.jar/jakarta.transaction-api.jar/g' ts.jte
+  sed -i.bak 's/javax.interceptor-api.jar/jakarta.interceptor-api.jar/g' ts.jte
+  sed -i.bak 's/javax.servlet-api.jar/jakarta.servlet-api.jar/g' ts.jte
 fi
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then

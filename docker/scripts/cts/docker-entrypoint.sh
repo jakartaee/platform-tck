@@ -130,41 +130,41 @@ export ANT_OPTS="-Djava.endorsed.dirs=$CT_HOME/vi/glassfish7/glassfish/modules/e
 # TODO : Call tsJte 
 cd $TS_HOME/bin
 
-sed -i "s#report.dir=.*#report.dir=$CTS_HOME/ctsreport#g" ts.jte
-sed -i "s#work.dir=.*#work.dir=$CTS_HOME/ctswork#g" ts.jte
+sed -i.bak "s#report.dir=.*#report.dir=$CTS_HOME/ctsreport#g" ts.jte
+sed -i.bak "s#work.dir=.*#work.dir=$CTS_HOME/ctswork#g" ts.jte
 
-# sed -i 's/mailHost=.*/mailHost=localhost/g' ts.jte
-sed -i 's#mailHost=.*#mailHost=172.17.0.2#g' ts.jte
+# sed -i.bak 's/mailHost=.*/mailHost=localhost/g' ts.jte
+sed -i.bak 's#mailHost=.*#mailHost=172.17.0.2#g' ts.jte
 
-sed -i 's/mailuser1=.*/mailuser1=user01@james.local/g' ts.jte
-sed -i 's/mailFrom=.*/mailFrom=user01@james.local/g' ts.jte
-sed -i 's/javamail.password=.*/javamail.password=1234/g' ts.jte
+sed -i.bak 's/mailuser1=.*/mailuser1=user01@james.local/g' ts.jte
+sed -i.bak 's/mailFrom=.*/mailFrom=user01@james.local/g' ts.jte
+sed -i.bak 's/javamail.password=.*/javamail.password=1234/g' ts.jte
 
-sed -i 's/s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
-sed -i 's/ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
+sed -i.bak 's/s1as.admin.passwd=.*/s1as.admin.passwd=adminadmin/g' ts.jte
+sed -i.bak 's/ri.admin.passwd=.*/ri.admin.passwd=adminadmin/g' ts.jte
 
-sed -i 's/jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
-sed -i 's/jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte
+sed -i.bak 's/jdbc.maxpoolsize=.*/jdbc.maxpoolsize=30/g' ts.jte
+sed -i.bak 's/jdbc.steadypoolsize=.*/jdbc.steadypoolsize=5/g' ts.jte
 
-sed -i "s#javaee.home=.*#javaee.home=$CTS_HOME/vi/glassfish7/glassfish#g" ts.jte
-sed -i 's/orb.host=.*/orb.host=localhost/g' ts.jte
+sed -i.bak "s#javaee.home=.*#javaee.home=$CTS_HOME/vi/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's/orb.host=.*/orb.host=localhost/g' ts.jte
 
-sed -i "s#javaee.home.ri=.*#javaee.home.ri=$CTS_HOME/ri/glassfish7/glassfish#g" ts.jte
-sed -i 's/orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
+sed -i.bak "s#javaee.home.ri=.*#javaee.home.ri=$CTS_HOME/ri/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's/orb.host.ri=.*/orb.host.ri=localhost/g' ts.jte
 
-sed -i 's/ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
-sed -i 's/orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
+sed -i.bak 's/ri.admin.port=.*/ri.admin.port=5858/g' ts.jte
+sed -i.bak 's/orb.port.ri=.*/orb.port.ri=3701/g' ts.jte
 
-sed -i "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
-sed -i "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
+sed -i.bak "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classname\}/g" ts.jte
+sed -i.bak "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 PROXY_HOST=`echo ${http_proxy} | cut -d: -f2 | sed -e 's/\/\///g'`
 PROXY_PORT=`echo ${http_proxy} | cut -d: -f3`
-sed -i "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
-sed -i 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
-sed -i 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
-sed -i 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
-sed -i 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
+sed -i.bak "s#^wsimport.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+sed -i.bak "s#^ri.wsimport.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=$PROXY_HOST -Dhttp.proxyPort=$PROXY_PORT -Dhttp.nonProxyHosts=localhost#g" ts.jte
+sed -i.bak 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
+sed -i.bak 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
+sed -i.bak 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
+sed -i.bak 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
 
 mkdir $CTS_HOME/ctsreport
 mkdir $CTS_HOME/ctswork

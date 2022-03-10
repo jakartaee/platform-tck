@@ -67,16 +67,16 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/expressly.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/expressly.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte
 fi
 
 #if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
-#  sed -i 's#sigTestClasspath=.*#sigTestClasspath=\$\{el.classes\}\$\{pathsep\}\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
+#  sed -i.bak 's#sigTestClasspath=.*#sigTestClasspath=\$\{el.classes\}\$\{pathsep\}\$\{JAVA_HOME\}/lib/rt.jar#g' ts.jte
 #fi
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}

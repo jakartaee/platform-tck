@@ -64,13 +64,13 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
-sed -i 's#impl.vi=.*#impl.vi=glassfish#g' ts.jte
-sed -i 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
-sed -i 's#webServerPort=.*#webServerPort=8080#g' ts.jte
-sed -i 's#securedWebServicePort=.*#securedWebServicePort=8181#g' ts.jte
+sed -i.bak "s#^web.home=.*#web.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak 's#impl.vi=.*#impl.vi=glassfish#g' ts.jte
+sed -i.bak 's#webServerHost=.*#webServerHost=localhost#g' ts.jte
+sed -i.bak 's#webServerPort=.*#webServerPort=8080#g' ts.jte
+sed -i.bak 's#securedWebServicePort=.*#securedWebServicePort=8181#g' ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte

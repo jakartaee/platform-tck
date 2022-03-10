@@ -30,18 +30,18 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i 's#orb\.port=.*#orb.port=3700#g' ts.jte
-sed -i "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
-sed -i 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
-sed -i 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
-sed -i 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i 's#wsimport\.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=<host> -Dhttp.proxyPort=<port> -Dhttp.nonProxyHosts=<host>#g' ts.jte
-sed -i 's#ri\.wsimport\.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=<host> -Dhttp.proxyPort=<port> -Dhttp.nonProxyHosts=<host>#g' ts.jte
-sed -i 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
-sed -i "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jaspictckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jaspictckwork#g" ts.jte
+sed -i.bak 's#orb\.port=.*#orb.port=3700#g' ts.jte
+sed -i.bak "s#jaspic\.home=.*#jaspic.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's#platform\.mode=.*#platform.mode=jakartaEE#g' ts.jte
+sed -i.bak 's#^deliverable\.class=.*#deliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable#g' ts.jte
+sed -i.bak 's#wsgen\.ant\.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
+sed -i.bak 's#wsimport\.ant\.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
+sed -i.bak 's#wsimport\.jvmargs=.*#wsimport.jvmargs=-Dhttp.proxyHost=<host> -Dhttp.proxyPort=<port> -Dhttp.nonProxyHosts=<host>#g' ts.jte
+sed -i.bak 's#ri\.wsimport\.jvmargs=.*#ri.wsimport.jvmargs=-Dhttp.proxyHost=<host> -Dhttp.proxyPort=<port> -Dhttp.nonProxyHosts=<host>#g' ts.jte
+sed -i.bak 's#harness\.log\.traceflag=false.*#harness.log.traceflag=true#g' ts.jte
+sed -i.bak "s#tools\.jar=.*#tools.jar=$JAVA_HOME/lib/tools.jar#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jaspictckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jaspictckwork#g" ts.jte
 
 echo "persistence.unit.name.2=JPATCK2" >> ts.jte
 echo "persistence.unit.name=CTS-EM" >> ts.jte

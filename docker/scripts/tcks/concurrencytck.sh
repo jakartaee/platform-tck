@@ -33,10 +33,10 @@ chmod -R 777 $TS_HOME
 rm -f $TS_HOME/dist/com/sun/ts/tests/concurrency/spec/ContextService/contextPropagate/ContextPropagate_web.war
 
 cd $TS_HOME/bin
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i 's#^concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/javax.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/concurrencytckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/concurrencytckwork#g" ts.jte
+sed -i.bak "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak 's#^concurrency\.classes=.*#concurrency.classes=${webcontainer.home}/modules/javax.enterprise.concurrent-api.jar${pathsep}${webcontainer.home}/modules/javax.servlet-api.jar${pathsep}${webcontainer.home}/modules/javax.ejb-api.jar${pathsep}${webcontainer.home}/modules/jta.jar#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/concurrencytckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/concurrencytckwork#g" ts.jte
 
 mkdir $TCK_HOME/concurrencytckreport
 mkdir $TCK_HOME/concurrencytckwork

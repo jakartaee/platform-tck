@@ -30,9 +30,9 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsonbtckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsonbtckwork#g" ts.jte
-sed -i "s#^jsonb\.classes=.*#jsonb.classes=$TCK_HOME/glassfish7/glassfish/modules/javax.json.bind-api.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.json.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.inject.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish7/glassfish/modules/yasson.jar#" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jsonbtckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jsonbtckwork#g" ts.jte
+sed -i.bak "s#^jsonb\.classes=.*#jsonb.classes=$TCK_HOME/glassfish7/glassfish/modules/javax.json.bind-api.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.json.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.inject.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish7/glassfish/modules/yasson.jar#" ts.jte
 
 mkdir $TCK_HOME/jsonbtckreport
 mkdir $TCK_HOME/jsonbtckwork

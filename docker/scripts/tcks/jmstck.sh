@@ -30,10 +30,10 @@ TS_HOME=$TCK_HOME/jmstck
 echo "TS_HOME $TS_HOME"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/glassfish7/mq#g" ts.jte
-sed -i 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jmstckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jmstckwork#g" ts.jte
+sed -i.bak "s#^jms.home=.*#jms.home=$TCK_HOME/glassfish7/mq#g" ts.jte
+sed -i.bak 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jmstckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jmstckwork#g" ts.jte
 
 mkdir $TCK_HOME/jmstckreport
 mkdir $TCK_HOME/jmstckwork

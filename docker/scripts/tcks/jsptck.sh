@@ -32,16 +32,16 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-sed -i "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
-sed -i "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
-sed -i "s#^impl\.vi=.*#impl.vi=glassfish#g" ts.jte
-sed -i 's#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy#' ts.jte
-sed -i "s#^impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=30#g" ts.jte
-sed -i 's#^jspservlet\.classes=.*#jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp-api.jar#g' ts.jte
-sed -i 's#^jstl\.classes=.*#jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jsptckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jsptckwork#g" ts.jte
+sed -i.bak "s#^webServerHome=.*#webServerHome=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^webServerHost=.*#webServerHost=localhost#g" ts.jte
+sed -i.bak "s#^webServerPort=.*#webServerPort=8080#g" ts.jte
+sed -i.bak "s#^impl\.vi=.*#impl.vi=glassfish#g" ts.jte
+sed -i.bak 's#^impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=${webServerHome}/domains/domain1/autodeploy#' ts.jte
+sed -i.bak "s#^impl\.deploy\.timeout\.multiplier=.*#impl.deploy.timeout.multiplier=30#g" ts.jte
+sed -i.bak 's#^jspservlet\.classes=.*#jspservlet.classes=${webServerHome}/modules/javax.servlet-api.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp.jar${pathsep}${webServerHome}/modules/javax.servlet.jsp-api.jar#g' ts.jte
+sed -i.bak 's#^jstl\.classes=.*#jstl.classes=${webServerHome}/modules/javax.servlet.jsp.jstl.jar#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jsptckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jsptckwork#g" ts.jte
 
 mkdir $TCK_HOME/jsptckreport
 mkdir $TCK_HOME/jsptckwork

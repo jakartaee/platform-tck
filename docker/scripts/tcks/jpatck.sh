@@ -30,18 +30,18 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
-sed -i "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/glassfish7/glassfish/modules/jakarta.persistence.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.transaction-api.jar:$TCK_HOME/glassfish7/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
-sed -i "s#^jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/glassfish7/javadb/lib/derbyclient.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
-sed -i "s#^jdbc\.db=.*#jdbc.db=derby#g" ts.jte
-sed -i "s#^jakarta.persistence.provider=.*#jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider#g" ts.jte
-sed -i "s#^jakarta.persistence.jdbc.driver=.*#jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver#g" ts.jte
-sed -i 's#^jakarta.persistence.jdbc.url=.*#jakarta.persistence.jdbc.url=jdbc:derby:\/\/localhost:1527\/derbyDB;create=true#g' ts.jte
-sed -i "s#^jakarta.persistence.jdbc.user=.*#jakarta.persistence.jdbc.user=cts1#g" ts.jte
-sed -i "s#^jakarta.persistence.jdbc.password=.*#jakarta.persistence.jdbc.password=cts1#g" ts.jte
+sed -i.bak "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/glassfish7/glassfish/modules/jakarta.persistence.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.servlet-api.jar:$TCK_HOME/glassfish7/glassfish/modules/javax.transaction-api.jar:$TCK_HOME/glassfish7/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/glassfish7/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
+sed -i.bak "s#^jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/glassfish7/javadb/lib/derbyclient.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
+sed -i.bak "s#^jdbc\.db=.*#jdbc.db=derby#g" ts.jte
+sed -i.bak "s#^jakarta.persistence.provider=.*#jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider#g" ts.jte
+sed -i.bak "s#^jakarta.persistence.jdbc.driver=.*#jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver#g" ts.jte
+sed -i.bak 's#^jakarta.persistence.jdbc.url=.*#jakarta.persistence.jdbc.url=jdbc:derby:\/\/localhost:1527\/derbyDB;create=true#g' ts.jte
+sed -i.bak "s#^jakarta.persistence.jdbc.user=.*#jakarta.persistence.jdbc.user=cts1#g" ts.jte
+sed -i.bak "s#^jakarta.persistence.jdbc.password=.*#jakarta.persistence.jdbc.password=cts1#g" ts.jte
 echo "impl.vi=glassfish" >> ts.jte
-#sed -i "s#harness.log.traceflag=false.*#harness.log.traceflag=true#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/jpatckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/jpatckwork#g" ts.jte
+#sed -i.bak "s#harness.log.traceflag=false.*#harness.log.traceflag=true#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/jpatckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/jpatckwork#g" ts.jte
 
 mkdir $TCK_HOME/jpatckreport
 mkdir $TCK_HOME/jpatckwork

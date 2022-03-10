@@ -33,13 +33,13 @@ export JAVA_OPTIONS="-Djava.endorsed.dirs=$TS_HOME/endorsedlib/"
 chmod -R 777 $TS_HOME
 cd $TS_HOME/bin
 
-sed -i "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/servlettckreport#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/servlettckwork#g" ts.jte
-sed -i 's#^impl.vi=.*#impl.vi=glassfish#g' ts.jte
-sed -i 's#^webServerHost=.*#webServerHost=localhost#g' ts.jte
-sed -i 's#^webServerPort=.*#webServerPort=8080#g' ts.jte
-sed -i 's#^securedWebServicePort=.*#securedWebServicePort=8181#g' ts.jte
+sed -i.bak "s#^web.home=.*#web.home=$TCK_HOME/glassfish7/glassfish#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/servlettckreport#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/servlettckwork#g" ts.jte
+sed -i.bak 's#^impl.vi=.*#impl.vi=glassfish#g' ts.jte
+sed -i.bak 's#^webServerHost=.*#webServerHost=localhost#g' ts.jte
+sed -i.bak 's#^webServerPort=.*#webServerPort=8080#g' ts.jte
+sed -i.bak 's#^securedWebServicePort=.*#securedWebServicePort=8181#g' ts.jte
 
 mkdir $TCK_HOME/servlettckreport
 mkdir $TCK_HOME/servlettckwork
