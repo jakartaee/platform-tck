@@ -4,6 +4,8 @@
 CLSS public jakarta.security.auth.message.AuthException
 cons public init()
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.security.auth.login.LoginException
 hfds serialVersionUID
 
@@ -19,13 +21,13 @@ hfds value
 
 CLSS public abstract interface jakarta.security.auth.message.ClientAuth
 meth public abstract jakarta.security.auth.message.AuthStatus secureRequest(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
-meth public abstract jakarta.security.auth.message.AuthStatus validateResponse(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
-meth public abstract void cleanSubject(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
+meth public jakarta.security.auth.message.AuthStatus validateResponse(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
+meth public void cleanSubject(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
 
 CLSS public abstract interface jakarta.security.auth.message.MessageInfo
 meth public abstract java.lang.Object getRequestMessage()
 meth public abstract java.lang.Object getResponseMessage()
-meth public abstract java.util.Map getMap()
+meth public abstract java.util.Map<java.lang.String,java.lang.Object> getMap()
 meth public abstract void setRequestMessage(java.lang.Object)
 meth public abstract void setResponseMessage(java.lang.Object)
 
@@ -61,9 +63,9 @@ supr java.lang.Object
 hfds protectionPolicy,targets
 
 CLSS public abstract interface jakarta.security.auth.message.ServerAuth
-meth public abstract jakarta.security.auth.message.AuthStatus secureResponse(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
 meth public abstract jakarta.security.auth.message.AuthStatus validateRequest(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
-meth public abstract void cleanSubject(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
+meth public jakarta.security.auth.message.AuthStatus secureResponse(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
+meth public void cleanSubject(jakarta.security.auth.message.MessageInfo,javax.security.auth.Subject) throws jakarta.security.auth.message.AuthException
 
 CLSS public jakarta.security.auth.message.callback.CallerPrincipalCallback
 cons public init(javax.security.auth.Subject,java.lang.String)
@@ -199,17 +201,22 @@ fld public final static java.lang.String GET_FACTORY_PERMISSION_NAME = "getPrope
 fld public final static java.lang.String PROVIDER_REGISTRATION_PERMISSION_NAME = "setProperty.authconfigfactory.provider"
 fld public final static java.lang.String SET_FACTORY_PERMISSION_NAME = "setProperty.authconfigprovider.factory"
 fld public final static java.security.SecurityPermission getFactorySecurityPermission
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
 fld public final static java.security.SecurityPermission providerRegistrationSecurityPermission
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
 fld public final static java.security.SecurityPermission setFactorySecurityPermission
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="")
 innr public abstract interface static RegistrationContext
 meth public abstract boolean removeRegistration(java.lang.String)
 meth public abstract jakarta.security.auth.message.config.AuthConfigFactory$RegistrationContext getRegistrationContext(java.lang.String)
 meth public abstract jakarta.security.auth.message.config.AuthConfigProvider getConfigProvider(java.lang.String,java.lang.String,jakarta.security.auth.message.config.RegistrationListener)
 meth public abstract java.lang.String registerConfigProvider(jakarta.security.auth.message.config.AuthConfigProvider,java.lang.String,java.lang.String,java.lang.String)
-meth public abstract java.lang.String registerConfigProvider(java.lang.String,java.util.Map,java.lang.String,java.lang.String,java.lang.String)
+meth public abstract java.lang.String registerConfigProvider(java.lang.String,java.util.Map<java.lang.String,java.lang.String>,java.lang.String,java.lang.String,java.lang.String)
+meth public abstract java.lang.String registerServerAuthModule(jakarta.security.auth.message.module.ServerAuthModule,java.lang.Object)
 meth public abstract java.lang.String[] detachListener(jakarta.security.auth.message.config.RegistrationListener,java.lang.String,java.lang.String)
 meth public abstract java.lang.String[] getRegistrationIDs(jakarta.security.auth.message.config.AuthConfigProvider)
 meth public abstract void refresh()
+meth public abstract void removeServerAuthModule(java.lang.Object)
 meth public static jakarta.security.auth.message.config.AuthConfigFactory getFactory()
 meth public static void setFactory(jakarta.security.auth.message.config.AuthConfigFactory)
 supr java.lang.Object
@@ -229,7 +236,7 @@ meth public abstract void refresh()
 
 CLSS public abstract interface jakarta.security.auth.message.config.ClientAuthConfig
 intf jakarta.security.auth.message.config.AuthConfig
-meth public abstract jakarta.security.auth.message.config.ClientAuthContext getAuthContext(java.lang.String,javax.security.auth.Subject,java.util.Map) throws jakarta.security.auth.message.AuthException
+meth public abstract jakarta.security.auth.message.config.ClientAuthContext getAuthContext(java.lang.String,javax.security.auth.Subject,java.util.Map<java.lang.String,java.lang.Object>) throws jakarta.security.auth.message.AuthException
 
 CLSS public abstract interface jakarta.security.auth.message.config.ClientAuthContext
 intf jakarta.security.auth.message.ClientAuth
@@ -239,20 +246,20 @@ meth public abstract void notify(java.lang.String,java.lang.String)
 
 CLSS public abstract interface jakarta.security.auth.message.config.ServerAuthConfig
 intf jakarta.security.auth.message.config.AuthConfig
-meth public abstract jakarta.security.auth.message.config.ServerAuthContext getAuthContext(java.lang.String,javax.security.auth.Subject,java.util.Map) throws jakarta.security.auth.message.AuthException
+meth public abstract jakarta.security.auth.message.config.ServerAuthContext getAuthContext(java.lang.String,javax.security.auth.Subject,java.util.Map<java.lang.String,java.lang.Object>) throws jakarta.security.auth.message.AuthException
 
 CLSS public abstract interface jakarta.security.auth.message.config.ServerAuthContext
 intf jakarta.security.auth.message.ServerAuth
 
 CLSS public abstract interface jakarta.security.auth.message.module.ClientAuthModule
 intf jakarta.security.auth.message.ClientAuth
-meth public abstract java.lang.Class[] getSupportedMessageTypes()
-meth public abstract void initialize(jakarta.security.auth.message.MessagePolicy,jakarta.security.auth.message.MessagePolicy,javax.security.auth.callback.CallbackHandler,java.util.Map) throws jakarta.security.auth.message.AuthException
+meth public abstract java.lang.Class<?>[] getSupportedMessageTypes()
+meth public abstract void initialize(jakarta.security.auth.message.MessagePolicy,jakarta.security.auth.message.MessagePolicy,javax.security.auth.callback.CallbackHandler,java.util.Map<java.lang.String,java.lang.Object>) throws jakarta.security.auth.message.AuthException
 
 CLSS public abstract interface jakarta.security.auth.message.module.ServerAuthModule
 intf jakarta.security.auth.message.ServerAuth
-meth public abstract java.lang.Class[] getSupportedMessageTypes()
-meth public abstract void initialize(jakarta.security.auth.message.MessagePolicy,jakarta.security.auth.message.MessagePolicy,javax.security.auth.callback.CallbackHandler,java.util.Map) throws jakarta.security.auth.message.AuthException
+meth public abstract java.lang.Class<?>[] getSupportedMessageTypes()
+meth public abstract void initialize(jakarta.security.auth.message.MessagePolicy,jakarta.security.auth.message.MessagePolicy,javax.security.auth.callback.CallbackHandler,java.util.Map<java.lang.String,java.lang.Object>) throws jakarta.security.auth.message.AuthException
 
 CLSS public abstract interface java.io.Serializable
 

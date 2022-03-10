@@ -15,12 +15,12 @@
 #
 
 #########################################################################
-#                                                                   	#
+#                                                                       #
 #   JavaTest Environment file for JAXWS Compatibility Test Suite        #
 #                                                                       #
-#   Environment specific properties in this file will likely	 	#
-#   have to be modified prior to running the JAXWS TCK. Instructions	#
-#   for modifying these properties are contained in this file.	 	#
+#   Environment specific properties in this file will likely            #
+#   have to be modified prior to running the JAXWS TCK. Instructions    #
+#   for modifying these properties are contained in this file.          #
 #                                                                       #
 #########################################################################
 
@@ -44,12 +44,12 @@ webServerPort.2=
 #################################################################################
 # @jaxws.home  should be set to the location of where the implementation under
 #              test is installed (VI implementation). This is usually installed
-#	       within a web container (glassfish or tomcat) so we default this
-#	       value to @webcontainer.home. See this property below.
+#              within a web container (glassfish or tomcat) so we default this
+#              value to @webcontainer.home. See this property below.
 # @jaxws.home.ri  should be set to the location of where the RI is installed.
-#		  This is usually installed within a web container (glassfish 
-#		  or tomcat) so we default this value to @webcontainer.home.ri.
-#		  See this property below.
+#                 This is usually installed within a web container (glassfish
+#                 or tomcat) so we default this value to @webcontainer.home.ri.
+#                 See this property below.
 #################################################################################
 jaxws.home=${webcontainer.home}
 jaxws.home.ri=${webcontainer.home.ri}
@@ -74,7 +74,7 @@ catalog.path=${src.dir}/com/sun/ts/tests/jaxws/common/xml/catalog
 ####################################################################
 # The jars/classes for the TS harness/javatest and the test classes
 # @ts.harness.classpath --  Classes required by javatest
-# @ts.classpath         --  Classes used to build the CTS tests
+# @ts.classpath         --  Classes used to build the XMLWS tests
 # @ts.run.classpath     --  Classpath required by the vendor
 #                           appclient container.
 # @ts.run.classpath.ri  --  Classpath required by Java EE RI
@@ -106,11 +106,11 @@ tools.jar=${jdk.home}/lib/tools.jar
 # @wsimport.debug          Debug flag
 # @wsimport.jvmargs        JVM args to pass to Vendors wsimport tool
 ###########################################################################
-wsgen.ant.classname=
+wsgen.ant.classname=com.sun.tools.ws.ant.WsGen
 wsgen.classpath=${jaxws.classes}${pathsep}${tools.jar}
 wsgen.verbose=true
 wsgen.debug=false
-wsimport.ant.classname=
+wsimport.ant.classname=com.sun.tools.ws.ant.WsImport
 wsimport.classpath=${jaxws.classes}${pathsep}${tools.jar}
 wsimport.verbose=true
 wsimport.debug=false
@@ -143,40 +143,40 @@ ri.wsimport.jvmargs=
 # Implementation Property Settings for Vendor and RI
 #
 # The TCK uses the following implementations:
-#    - glassfish	(JavaEE Web Container)
-#    - tomcat		(Tomcat Web Container)
+#    - glassfish    (JavaEE Web Container)
+#    - tomcat       (Tomcat Web Container)
 #
 # Here are the common properties that need to be defined for the common
 # implementation functionality:
 #
-# @impl.vi		    This property must be set to the Vendor implementation
-#			    under test.
-# @impl.vi.deploy.dir	    This property must be set to the deploy directory for
-#			    the Vendor implementation.
-# @impl.vi.host		    This property must be set to the webserver host where
-#			    the Vendor implementation is running.
-# @impl.vi.port		    This property must be set to the webserver port where
-#			    the Vendor implementation is running.
-# @impl.ri		    This property must be set to the RI implementation
-#			    under test.
-# @impl.ri.deploy.dir	    This property must be set to the deploy directory for
-#			    the RI implementation.
-# @impl.ri.host		    This property must be set to the webserver host where
-#			    the RI implementation is running.
-# @impl.ri.port		    This property must be set to the webserver port where
-#			    the RI implementation is running.
+# @impl.vi                  This property must be set to the Vendor implementation
+#                           under test.
+# @impl.vi.deploy.dir       This property must be set to the deploy directory for
+#                           the Vendor implementation.
+# @impl.vi.host             This property must be set to the webserver host where
+#                           the Vendor implementation is running.
+# @impl.vi.port             This property must be set to the webserver port where
+#                           the Vendor implementation is running.
+# @impl.ri                  This property must be set to the RI implementation
+#                           under test.
+# @impl.ri.deploy.dir       This property must be set to the deploy directory for
+#                           the RI implementation.
+# @impl.ri.host             This property must be set to the webserver host where
+#                           the RI implementation is running.
+# @impl.ri.port             This property must be set to the webserver port where
+#                           the RI implementation is running.
 #
 # These additional properties are required to be defined for use with configuration
 # functionality used for Vendor and RI specific configuration:
 #
-# @webcontainer.home	    This property must refer to the location of where the
-#			    Vendor implementation is installed within the webcontainer
-#			    under test (glassfish or tomcat). 
-# @webcontainer.home.ri	    This property must refer to the location of where the 
-#			    RI implementation is installed within the webcontainer
-#                           under test (glassfish or tomcat). 
+# @webcontainer.home        This property must refer to the location of where the
+#                           Vendor implementation is installed within the webcontainer
+#                           under test (glassfish or tomcat).
+# @webcontainer.home.ri     This property must refer to the location of where the
+#                           RI implementation is installed within the webcontainer
+#                           under test (glassfish or tomcat).
 # @impl.deploy.timeout.multiplier  The time it will wait for deployment to succeed
-#			    or fail
+#                                  or fail
 ####################################################################
 webcontainer.home=
 webcontainer.home.ri=
@@ -237,7 +237,7 @@ glassfish.domain.name.ri=domain1
 #               (overwrite, backup or append).  the value is determined
 #               like this:
 #                  if.existing.work.report.dirs == auto
-#                    if in CTS workspace
+#                    if in XMLWS workspace
 #                      if.existing.work.report.dirs = overwrite
 #                    else we are in a distribution bundle
 #                      if.existing.work.report.dirs = append
@@ -254,7 +254,7 @@ if.existing.work.report.dirs=auto
 ## These properties must be set to tell the Test harness the
 ## class names of your porting class implementations.  By default
 ## both property sets below point to Sun RI specific classes.  To
-## run against both implementations automatically, the ".2" 
+## run against both implementations automatically, the ".2"
 ## property should always point to Sun RI classes.  The ".1"
 ## property should point to implementations that work in your specific
 ## Java EE environment.
@@ -337,7 +337,7 @@ javatest.timeout.factor=1.0
 build.level=2
 
 ###############################################################
-# @ts.display -- location to display CTS output on Unix
+# @ts.display -- location to display XMLWS output on Unix
 ###############################################################
 ts.display=:0.0
 
@@ -353,26 +353,27 @@ deliverable.class=com.sun.ts.lib.deliverable.jaxws.JAXWSDeliverable
 command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.run.classpath} \
         DISPLAY="${ts.display}" \
-		HOME="${user.home}"  \
-		windir=${windir} \
-		SYSTEMROOT=${SYSTEMROOT} \
+        HOME="${user.home}"  \
+        windir=${windir} \
+        SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
-		-Djava.security.policy="${bin.dir}/harness.policy" \
-		-Djava.security.manager \
-		-Ddeliverable.class=${deliverable.class} \
+        -Djava.security.policy="${bin.dir}/harness.policy" \
+        -Djava.security.manager \
+        -Ddeliverable.class=${deliverable.class} \
+        -Djava.io.tmpdir=${harness.temp.directory} \
         $testExecuteClass $testExecuteArgs
 
 # This execute line runs against the RI implementation
 command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.run.classpath.ri} \
         DISPLAY="${ts.display}" \
-		HOME="${user.home}"  \
-		windir=${windir} \
-		SYSTEMROOT=${SYSTEMROOT} \
+        HOME="${user.home}"  \
+        windir=${windir} \
+        SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
-		-Djava.security.policy="${bin.dir}/harness.policy" \
-		-Djava.security.manager \
-		-Ddeliverable.class=${deliverable.class} \
+        -Djava.security.policy="${bin.dir}/harness.policy" \
+        -Djava.security.manager \
+        -Ddeliverable.class=${deliverable.class} \
         $testExecuteClass $testExecuteArgs
 
 #########################################################################
@@ -394,14 +395,19 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
-# @sigTestClasspath: This property must be set when running signature 
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+# @sigTestClasspath: This property must be set when running signature
 #                    tests.  This property should be set to a list of
-#                    jar files and/or directories which contain your 
-#                    Java EE and Java SE classes. Paths must be 
-#                    separated by the appropriate path separator 
+#                    jar files and/or directories which contain your
+#                    Java EE and Java SE classes. Paths must be
+#                    separated by the appropriate path separator
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${jaxws.classes}${pathsep}${JAVA_HOME}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${jaxws.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ###############################################################
 ## This command allows the test clients to be run in
@@ -418,8 +424,8 @@ command.testExecuteSameJVM=com.sun.ts.lib.harness.ExecuteTSTestSameJVMCmd \
 # J2EE Programming Model for service and port access or the
 # JAXWS Programming model based on the runtime execution platform.
 #
-# platform.mode=standalone	JAXWS Programming Model
-# platform.mode=jakartaEE		Java EE Programming Model
+# platform.mode=standalone  XMLWS Programming Model
+# platform.mode=jakartaEE   Jakarta EE Programming Model
 #######################################################################
 platform.mode=standalone
 
