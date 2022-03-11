@@ -68,7 +68,7 @@ fi
 echo "The option selected to build is $TCK_NAME TCK"
 
 if [ "All" == "$TCK_NAME" ];then
-  TCK_LIST=( jsonp jsonb jaxrs websocket el concurrency connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
+  TCK_LIST=( jsonp jsonb websocket el concurrency connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
 else 
   TCK_LIST=( ${TCK_NAME} )
 fi
@@ -134,16 +134,6 @@ for tck in ${TCK_LIST[@]}; do
   elif [ "jsonb" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Djsonb.classes=$JAKARTA_JARS/modules/jakarta.json-api.jar:$JAKARTA_JARS/modules/jakarta.json.bind-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
-  elif [ "jaxrs" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Djaxrs.classes=$JAKARTA_JARS/modules/jakarta.json-api.jar:$JAKARTA_JARS/modules/jakarta.json.bind-api.jar:$JAKARTA_JARS/modules/jsonp-jaxrs.jar:$JAKARTA_JARS/modules/jakarta.ws.rs-api.jar:$JAKARTA_JARS/modules/jsonp-jaxrs.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jakarta.interceptor-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.validation-api.jar:$JAKARTA_JARS/modules/jakarta.xml.bind-api.jar:$JAKARTA_JARS/modules/jakarta.activation-api.jar:$JAKARTA_JARS/modules/webservices-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    sed -i "s#impl\.vi\.deploy\.dir=.*#impl.vi.deploy.dir=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/autodeploy#g" $BASEDIR/install/$tck/bin/ts.jte
-    sed -i "s#impl\.vi=.*#impl.vi=glassfish#g" $BASEDIR/install/$tck/bin/ts.jte
-    sed -i "s#jaxrs_impl_lib=.*#jaxrs_impl_lib=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jersey-container-servlet-core.jar#g" $BASEDIR/install/$tck/bin/ts.jte
-    sed -i "s#jaxrs_impl_name=.*#jaxrs_impl_name=jersey#g" $BASEDIR/install/$tck/bin/ts.jte
-    sed -i 's#servlet_adaptor=.*#servlet_adaptor=org\/glassfish\/jersey\/servlet\/ServletContainer.class#g' $BASEDIR/install/$tck/bin/ts.jte
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]
@@ -230,10 +220,6 @@ for tck in ${TCK_LIST[@]}; do
 
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS build.all 
   
-  if [ "jaxrs" == "$tck" ]; then
-    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS update.jaxrs.wars
-  fi
-
   mkdir -p $BASEDIR/internal/docs/$tck
   cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/
   if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
