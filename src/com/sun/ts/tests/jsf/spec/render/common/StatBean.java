@@ -20,7 +20,13 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
-public class StatBean {
+import java.io.Serializable;
+
+@jakarta.inject.Named("Status") @jakarta.enterprise.context.SessionScoped
+public class StatBean implements Serializable {
+
+  private static final long serialVersionUID = -2808031838038088087L;
+  
   private String formOneOutput = "";
 
   private String formTwoOutput = "";

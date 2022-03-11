@@ -37,6 +37,7 @@
                         prefix="${common.class.prefix}"/>
             <fileset dir="${facelets.dir}/tagwrapper"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

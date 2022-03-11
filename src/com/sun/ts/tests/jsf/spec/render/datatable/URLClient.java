@@ -84,7 +84,7 @@ public class URLClient extends BaseHtmlUnitClient {
     Formatter formatter = new Formatter(messages);
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestBasic.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestBasic.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestBasic_facelet.xhtml"));
 
     for (HtmlPage page : pages) {
@@ -201,7 +201,7 @@ public class URLClient extends BaseHtmlUnitClient {
     Formatter formatter = new Formatter(messages);
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption_facelet.xhtml"));
 
     for (HtmlPage page : pages) {
@@ -412,7 +412,7 @@ public class URLClient extends BaseHtmlUnitClient {
     Formatter formatter = new Formatter(messages);
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestCaption_facelet.xhtml"));
 
     for (HtmlPage page : pages) {
@@ -478,7 +478,7 @@ public class URLClient extends BaseHtmlUnitClient {
     Formatter formatter = new Formatter(messages);
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestTableHeaderFooter.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/encodetestTableHeaderFooter.xhtml"));
     pages.add(getPage(
         CONTEXT_ROOT + "/faces/encodetestTableHeaderFooter_facelet.xhtml"));
 
@@ -742,7 +742,7 @@ public class URLClient extends BaseHtmlUnitClient {
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
     pages
-        .add(getPage(CONTEXT_ROOT + "/faces/encodetestColumnHeaderFooter.jsp"));
+        .add(getPage(CONTEXT_ROOT + "/faces/encodetestColumnHeaderFooter.xhtml"));
     pages.add(getPage(
         CONTEXT_ROOT + "/faces/encodetestColumnHeaderFooter_facelet.xhtml"));
 
@@ -1093,7 +1093,7 @@ public class URLClient extends BaseHtmlUnitClient {
     control.put("width", "100%");
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {

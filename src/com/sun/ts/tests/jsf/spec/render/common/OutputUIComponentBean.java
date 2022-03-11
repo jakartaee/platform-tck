@@ -19,11 +19,15 @@
  */
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlOutputLabel;
 import jakarta.faces.component.html.HtmlOutputLink;
 import jakarta.faces.component.html.HtmlOutputText;
 
-public class OutputUIComponentBean {
+@jakarta.inject.Named("Out") @jakarta.enterprise.context.SessionScoped
+public class OutputUIComponentBean implements Serializable {
+
+  private static final long serialVersionUID = -2564325687654356327L;
 
   private HtmlOutputLabel label;
 
@@ -51,7 +55,7 @@ public class OutputUIComponentBean {
   public void setLink(HtmlOutputLink link) {
     link.setId("case_three");
     link.setStyleClass("text");
-    link.setValue("encodetest.jsp");
+    link.setValue("encodetest_facelet.xhtml");
 
     this.link = link;
   }

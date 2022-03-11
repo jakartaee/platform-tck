@@ -26,6 +26,7 @@ import java.util.List;
 
 import jakarta.faces.event.ActionEvent;
 
+@jakarta.inject.Named("album") @jakarta.enterprise.context.RequestScoped
 public class AlbumBean implements Serializable {
 
   private String artist;

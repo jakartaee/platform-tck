@@ -35,7 +35,8 @@
                         prefix="WEB-INF"/>
             <zipfileset dir="${ts.home}/weblib" includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <zipfileset dir="." includes="*.jsp"/>
+            <zipfileset dir="." includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>    
     </target>
 </project>

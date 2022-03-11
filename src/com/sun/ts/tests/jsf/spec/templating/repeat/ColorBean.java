@@ -23,6 +23,8 @@ package com.sun.ts.tests.jsf.spec.templating.repeat;
 import java.util.ArrayList;
 import java.util.List;
 
+@jakarta.inject.Named("Color")
+@jakarta.enterprise.context.RequestScoped
 public class ColorBean {
 
   private List<String> colors = new ArrayList<String>();

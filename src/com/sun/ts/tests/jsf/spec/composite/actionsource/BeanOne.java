@@ -23,6 +23,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ActionEvent;
 import jakarta.faces.event.ActionListener;
 
+@jakarta.inject.Named("beanOne") @jakarta.enterprise.context.RequestScoped
 public class BeanOne implements ActionListener {
 
   public ActionListener getTestOneEventListener() {

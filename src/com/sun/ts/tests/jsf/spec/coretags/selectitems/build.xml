@@ -35,11 +35,13 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/selectitems" includes="*.jsp, *.xhtml"/>
+            <fileset dir="${facelets.dir}/selectitems" includes="*.xhtml"/>
 
             <zipfileset dir="${src.dir}/${pkg.dir}"
                         includes="faces-config.xml"
                         prefix="WEB-INF"/>
+
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

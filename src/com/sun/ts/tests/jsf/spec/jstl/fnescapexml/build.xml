@@ -35,11 +35,12 @@
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
-            <fileset dir="${jsp.dir}/fnescapexml"
+            <fileset dir="${facelets.dir}/fnescapexml"
                      includes="*.xhtml"/>
             <zipfileset dir="${jstl.common.class}"
                         includes="faces-config.xml"
                         prefix="WEB-INF"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
     </target>
     

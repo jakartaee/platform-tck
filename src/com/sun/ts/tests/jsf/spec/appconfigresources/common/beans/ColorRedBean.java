@@ -19,7 +19,12 @@
  */
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
-public class ColorRedBean {
+import java.io.Serializable;
+
+@jakarta.inject.Named("Color") @jakarta.enterprise.context.SessionScoped
+public class ColorRedBean implements Serializable {
+
+  private static final long serialVersionUID = -2564031884483638087L;
 
   private String color;
 

@@ -411,7 +411,7 @@ public final class URLClient extends AbstractUrlClient {
       try {
         TestUtil.logMsg("MAKING REQUEST FOR FACES SERVLET");
         TEST_PROPS.setProperty(REQUEST,
-            "GET " + CONTEXT_ROOT + "/faces/test.jsp HTTP/1.0");
+            "GET " + CONTEXT_ROOT + "/faces/test.xhtml HTTP/1.0");
         TEST_PROPS.setProperty(IGNORE_STATUS_CODE, "true");
         TEST_PROPS.setProperty(IGNORE_BODY, "true");
         invoke();

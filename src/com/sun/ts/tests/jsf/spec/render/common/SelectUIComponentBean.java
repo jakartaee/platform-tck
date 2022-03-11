@@ -20,12 +20,16 @@
 
 package com.sun.ts.tests.jsf.spec.render.common;
 
+import java.io.Serializable;
 import jakarta.faces.application.Application;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UISelectItem;
 import jakarta.faces.context.FacesContext;
 
-public class SelectUIComponentBean {
+@jakarta.inject.Named("Answer") @jakarta.enterprise.context.SessionScoped
+public class SelectUIComponentBean implements Serializable {
+
+  private static final long serialVersionUID = -2564323472383456327L;
 
   private UIComponent yesNo;
 

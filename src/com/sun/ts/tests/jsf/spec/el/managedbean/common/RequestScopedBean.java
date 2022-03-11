@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.el.managedbean.common;
 
 import java.io.Serializable;
 
+@jakarta.inject.Named("requestScoped") @jakarta.enterprise.context.RequestScoped
 public class RequestScopedBean implements Serializable {
   private String stringProperty;
 

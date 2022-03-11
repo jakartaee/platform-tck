@@ -35,6 +35,7 @@
                         prefix="WEB-INF/lib"/>
             <fileset dir="${facelets.dir}/jsresource"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

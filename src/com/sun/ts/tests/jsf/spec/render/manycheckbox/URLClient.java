@@ -96,7 +96,7 @@ public class URLClient extends BaseHtmlUnitClient {
     StringBuilder messages = new StringBuilder(128);
     Formatter formatter = new Formatter(messages);
 
-    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/encodetest.jsp");
+    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/encodetest.xhtml");
 
     // ----------------------------------------------------------- checkbox1
 
@@ -446,7 +446,7 @@ public class URLClient extends BaseHtmlUnitClient {
     StringBuilder messages = new StringBuilder(128);
     Formatter formatter = new Formatter(messages);
 
-    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/decodetest.jsp");
+    HtmlPage page = getPage(CONTEXT_ROOT + "/faces/decodetest.xhtml");
 
     HtmlInput checkbox10 = (HtmlInput) getElementOfTypeIncludingId(page,
         "input", "form1:checkbox1:0");
@@ -669,7 +669,7 @@ public class URLClient extends BaseHtmlUnitClient {
     control.put("title", "title");
 
     List<HtmlPage> pages = new ArrayList<HtmlPage>();
-    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.jsp"));
+    pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest.xhtml"));
     pages.add(getPage(CONTEXT_ROOT + "/faces/passthroughtest_facelet.xhtml"));
 
     for (HtmlPage page : pages) {

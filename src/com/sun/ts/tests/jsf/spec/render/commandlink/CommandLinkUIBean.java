@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.render.commandlink;
 
 import jakarta.faces.component.html.HtmlCommandLink;
 
+@jakarta.inject.Named("linker") @jakarta.enterprise.context.RequestScoped
 public class CommandLinkUIBean {
 
   private HtmlCommandLink gothere;

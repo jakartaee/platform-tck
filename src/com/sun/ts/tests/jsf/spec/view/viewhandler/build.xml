@@ -22,7 +22,7 @@
     <import file="../../../common/common.xml"/>
     
     <property name="app.name" value="jsf_view_viewhandler"/>
-    <property name="jsp.dir" 
+    <property name="facelets.dir" 
               value="${ts.home}/src/web/jsf/spec/view/viewhandler"/>
     
     <target name="package">
@@ -34,10 +34,11 @@
                         prefix="WEB-INF/classes"/>
             <zipfileset dir="WEB-INF" includes="*.xml"
                         prefix="WEB-INF"/>
-            <fileset dir="${jsp.dir}" includes="*.jsp"/>
+            <fileset dir="${facelets.dir}" includes="*.xhtml"/>
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>      
     </target>
     

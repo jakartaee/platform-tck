@@ -204,14 +204,14 @@ public final class TestServlet extends HttpTCKServlet {
   // if ("prefix".equals(request.getParameter("mapping"))) {
   // // Simulate an incoming prefix path mapped request
   // wrapper.setServletPath("/mapping");
-  // wrapper.setPathInfo("/myapp/test.jsp");
+  // wrapper.setPathInfo("/myapp/test.xhtml");
   //
-  // result = handler.getViewIdPath(context, "/view.jsp");
+  // result = handler.getViewIdPath(context, "/view.xhtml");
   //
-  // if (!"/mapping/view.jsp".equals(result)) {
+  // if (!"/mapping/view.xhtml".equals(result)) {
   // out.println(FAIL + " Unexpected result returned when using" +
   // " a simulated prefix path mapped request.");
-  // out.println("Expected: /mapping/view.jsp");
+  // out.println("Expected: /mapping/view.xhtml");
   // out.println("Received: " + result);
   // return;
   // }
@@ -225,7 +225,7 @@ public final class TestServlet extends HttpTCKServlet {
   // wrapper.setServletPath("/myapp/view.faces");
   // wrapper.setPathInfo(null);
   //
-  // result = handler.getViewIdPath(context, "/view.jsp");
+  // result = handler.getViewIdPath(context, "/view.xhtml");
   //
   // if (!"/view.faces".equals(result)) {
   // out.println("Test FAILED[1]. Unexpected result returned when using" +

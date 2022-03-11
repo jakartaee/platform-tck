@@ -43,10 +43,10 @@ public class ViewHandlerImpl extends ViewHandlerWrapper {
   @Override
   public UIViewRoot createView(FacesContext context, String viewId) {
     UIViewRoot root = this.getWrapped().createView(context, viewId);
-    if (!root.getViewId().endsWith(".jsp")) {
+    if (!root.getViewId().endsWith(".xhtml")) {
       throw new FacesException("createView: ViewId has been "
           + "manipulated before being passed to the ViewHandler."
-          + JSFTestUtil.NL + "Expected viewId: /greetings.jsp" + JSFTestUtil.NL
+          + JSFTestUtil.NL + "Expected viewId: /greetings.xhtml" + JSFTestUtil.NL
           + "Received viewId: " + viewId + JSFTestUtil.NL);
     }
     return root;
@@ -55,10 +55,10 @@ public class ViewHandlerImpl extends ViewHandlerWrapper {
   @Override
   public UIViewRoot restoreView(FacesContext context, String viewId) {
     UIViewRoot root = this.getWrapped().restoreView(context, viewId);
-    if (!root.getViewId().endsWith(".jsp")) {
+    if (!root.getViewId().endsWith(".xhtml")) {
       throw new FacesException("restoreView: ViewId has been "
           + "manipulated before being passed to the ViewHandler. "
-          + JSFTestUtil.NL + "Expected viewId: /greetings.jsp" + JSFTestUtil.NL
+          + JSFTestUtil.NL + "Expected viewId: /greetings.xhtml" + JSFTestUtil.NL
           + "Received viewId: " + viewId + JSFTestUtil.NL);
     }
     return root;

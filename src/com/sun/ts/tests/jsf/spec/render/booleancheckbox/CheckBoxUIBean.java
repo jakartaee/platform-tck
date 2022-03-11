@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsf.spec.render.booleancheckbox;
 
 import jakarta.faces.component.html.HtmlSelectBooleanCheckbox;
 
+@jakarta.inject.Named("status") @jakarta.enterprise.context.RequestScoped
 public class CheckBoxUIBean {
 
   private HtmlSelectBooleanCheckbox yesno;

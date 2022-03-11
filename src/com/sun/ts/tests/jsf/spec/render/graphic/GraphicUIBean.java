@@ -20,9 +20,13 @@
 
 package com.sun.ts.tests.jsf.spec.render.graphic;
 
+import java.io.Serializable;
 import jakarta.faces.component.html.HtmlGraphicImage;
 
-public class GraphicUIBean {
+@jakarta.inject.Named("pictures") @jakarta.enterprise.context.SessionScoped
+public class GraphicUIBean implements Serializable {
+
+  private static final long serialVersionUID = -4324855687654980327L;
 
   private HtmlGraphicImage img1;
 

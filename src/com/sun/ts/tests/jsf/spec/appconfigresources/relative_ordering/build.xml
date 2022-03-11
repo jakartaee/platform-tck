@@ -59,8 +59,9 @@
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
 
-            <fileset dir="${jsp.dir}/relative_ordering"
+            <fileset dir="${facelets.dir}/relative_ordering"
                      includes="*.xhtml"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
         <delete file="${dist.dir}/${pkg.dir}/config.jar"/>
     </target>

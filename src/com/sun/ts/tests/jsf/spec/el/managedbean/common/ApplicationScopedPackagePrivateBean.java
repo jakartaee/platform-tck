@@ -25,6 +25,7 @@ import java.io.Serializable;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
+@jakarta.inject.Named("applicationScopedPackagePrivate") @jakarta.enterprise.context.ApplicationScoped
 public class ApplicationScopedPackagePrivateBean extends ScopedBean
     implements Serializable {
 

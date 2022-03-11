@@ -25,6 +25,7 @@ import java.io.Serializable;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
+@jakarta.inject.Named("requestScopedPublic") @jakarta.enterprise.context.RequestScoped
 public class RequestScopedPublicBean extends ScopedBean
     implements Serializable {
 

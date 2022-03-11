@@ -38,6 +38,7 @@
             <zipfileset dir="../common/resources"
                         includes="background.css"
                         prefix="resources/style-sheets"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

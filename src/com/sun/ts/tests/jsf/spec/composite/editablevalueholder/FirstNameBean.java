@@ -23,8 +23,12 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.faces.event.ValueChangeListener;
+import java.io.Serializable;
 
-public class FirstNameBean implements ValueChangeListener {
+@jakarta.inject.Named("firstname") @jakarta.enterprise.context.SessionScoped
+public class FirstNameBean implements ValueChangeListener, Serializable {
+
+  private static final long serialVersionUID = -2564031838038087108L; 
 
   public ValueChangeListener getValueChangeListener() {
     ValueChangeListener fname = new FirstNameBean();

@@ -22,9 +22,14 @@ package com.sun.ts.tests.jsf.spec.render.common;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
 
-public class AttributeBean {
-  public Map<String, Object> attMap = new HashMap<String, Object>();
+@jakarta.inject.Named("Attribute") @jakarta.enterprise.context.SessionScoped
+public class AttributeBean implements Serializable {
+
+  private static final long serialVersionUID = -2564380871083456327L;
+  
+  private Map<String, Object> attMap = new HashMap<String, Object>();
 
   {
     attMap.put("manyattone", "manyOne");

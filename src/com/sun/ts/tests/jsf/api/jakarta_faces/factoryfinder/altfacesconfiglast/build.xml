@@ -49,6 +49,7 @@
             <zipfileset dir="${src.dir}/${pkg.dir}"
                         includes="alt-faces-config.xml"
                         prefix="WEB-INF"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>
 
         <delete file="${dist.dir}/${pkg.dir}/jsftck-context.jar"/>

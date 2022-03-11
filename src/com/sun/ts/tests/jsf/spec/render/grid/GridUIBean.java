@@ -25,8 +25,12 @@ import jakarta.faces.component.html.HtmlColumn;
 import jakarta.faces.component.html.HtmlOutputText;
 import jakarta.faces.component.html.HtmlPanelGrid;
 import jakarta.faces.context.FacesContext;
+import java.io.Serializable;
 
-public class GridUIBean {
+@jakarta.inject.Named("location") @jakarta.enterprise.context.SessionScoped
+public class GridUIBean implements Serializable {
+
+  private static final long serialVersionUID = -2564031838083638087L;
 
   private HtmlPanelGrid gps;
 

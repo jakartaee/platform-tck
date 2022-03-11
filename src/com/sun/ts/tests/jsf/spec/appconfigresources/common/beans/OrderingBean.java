@@ -22,13 +22,17 @@ package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.Serializable;
 
 import jakarta.faces.FactoryFinder;
 import jakarta.faces.event.PhaseListener;
 import jakarta.faces.lifecycle.Lifecycle;
 import jakarta.faces.lifecycle.LifecycleFactory;
 
-public class OrderingBean {
+@jakarta.inject.Named("orderingBean") @jakarta.enterprise.context.SessionScoped
+public class OrderingBean implements Serializable {
+
+  private static final long serialVersionUID = -2562021884483676327L;
 
   private String[] suffixes;
 

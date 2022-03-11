@@ -19,7 +19,12 @@
  */
 package com.sun.ts.tests.jsf.spec.appconfigresources.common.beans;
 
-public class AnswerYesBean {
+import java.io.Serializable;
+
+@jakarta.inject.Named("Answer") @jakarta.enterprise.context.SessionScoped
+public class AnswerYesBean implements Serializable {
+
+  private static final long serialVersionUID = -2564071088038088087L;
 
   private String answer;
 

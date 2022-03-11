@@ -21,14 +21,4 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
     version="3.0">
-    <managed-bean>
-        <managed-bean-name>pictures</managed-bean-name>
-        <managed-bean-class>com.sun.ts.tests.jsf.spec.render.graphic.GraphicUIBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-		<managed-bean-name>Attribute</managed-bean-name>
-		<managed-bean-class>com.sun.ts.tests.jsf.spec.render.common.AttributeBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 </faces-config>

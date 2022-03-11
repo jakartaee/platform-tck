@@ -25,6 +25,7 @@ import java.io.Serializable;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
+@jakarta.inject.Named("sessionScopedProtected") @jakarta.enterprise.context.SessionScoped
 public class SessionScopedProtectedBean extends ScopedBean
     implements Serializable {
 

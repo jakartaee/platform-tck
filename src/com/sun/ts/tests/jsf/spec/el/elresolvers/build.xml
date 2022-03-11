@@ -34,10 +34,11 @@
         				${jsf.common}/resourcebundle/SimpleResourceBundle_en.class"
         	             prefix="WEB-INF/classes"/>
             <zipfileset dir="." includes="faces-config.xml" prefix="WEB-INF"/>
-            <zipfileset dir="." includes="*.jsp"/>
+            <zipfileset dir="." includes="*.xhtml"/>
             <zipfileset dir="${ts.home}/weblib"
                         includes="*.jar"
                         prefix="WEB-INF/lib"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>      
     </target>
     

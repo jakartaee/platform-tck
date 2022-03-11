@@ -24,8 +24,13 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import jakarta.faces.event.ActionEvent;
+import java.io.Serializable;
 
-public class AjaxTagValuesBean {
+
+@jakarta.inject.Named("ajaxtag") @jakarta.enterprise.context.SessionScoped
+public class AjaxTagValuesBean implements Serializable {
+
+  private static final long serialVersionUID = -2564031884433676327L;
 
   private Integer count = 0;
 

@@ -24,6 +24,7 @@ import java.io.Serializable;
 
 import jakarta.annotation.PreDestroy;
 
+@jakarta.inject.Named("RuntimeExceptionPreDestroy") @jakarta.enterprise.context.RequestScoped
 public class RuntimeExceptionPreDestroyBean implements Serializable {
 
   // intentionally generate an unchecked exception

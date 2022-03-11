@@ -48,6 +48,7 @@
         	             includes="compOne.xhtml"
         	             prefix="resources/"/>
         	 <zipfileset dir="." includes="faces-config.xml" prefix="WEB-INF"/>
+             <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
              <zipfileset dir="${ts.home}/weblib" includes="*.jar"
                         prefix="WEB-INF/lib"/>
         </ts.war>       

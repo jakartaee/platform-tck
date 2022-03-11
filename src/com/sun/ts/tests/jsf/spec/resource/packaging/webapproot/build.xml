@@ -117,6 +117,7 @@
             <zipfileset dir="${class.dir}" 
                         includes="${tests.pkg.dir}/jsf/spec/resource/common/util/ResourceChecker.class"
                         prefix="WEB-INF/classes"/>
+            <zipfileset dir="${src.dir}/${jsf.common}" includes="beans.xml" prefix="WEB-INF"/>
         </ts.war>       
     </target>
     

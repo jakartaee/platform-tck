@@ -43,8 +43,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
 
-  private static final String JSP_VIEWID = "/root.jsp";
-
   private static final String FACELETS_VIEWID = "/root.xhtml";
 
   /**
@@ -56,71 +54,6 @@ public class TestServlet extends HttpTCKServlet {
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
   }
-
-  public void vdlWrapperGetComponentMetadataUSOETest(HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-    PrintWriter out = response.getWriter();
-    FacesContext context = getFacesContext();
-
-    Resource resource = this.getResource(context);
-    ViewDeclarationLanguage vdlWrapper = new TCKVDL(context, JSP_VIEWID);
-
-    String methName = "getComponentMetadata";
-
-    try {
-      vdlWrapper.getComponentMetadata(context, resource);
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "No Exception thrown when calling '"
-          + vdlWrapper.getClass().getName() + "." + methName + "()'"
-          + JSFTestUtil.NL
-          + "Expected: UnsupportedOperationException to be thrown!");
-
-    } catch (UnsupportedOperationException uoe) {
-      out.println(JSFTestUtil.PASS);
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL + " Unexpected Exception thrown for "
-          + vdlWrapper.getClass().getName() + "." + methName + "("
-          + context.getClass().getSimpleName() + ", "
-          + resource.getClass().getSimpleName() + ")" + JSFTestUtil.NL
-          + "Expected: UnsupportedOperationException" + JSFTestUtil.NL
-          + "Received: " + e.getClass().getName());
-    }
-
-  }// End vdlWrapperGetComponentMetadataUSOETest
-
-  public void vdlWrapperGetScriptComponentResourceUSOETest(
-      HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
-    PrintWriter out = response.getWriter();
-    FacesContext context = getFacesContext();
-
-    ResourceHandler handler = context.getApplication().getResourceHandler();
-    Resource resource = handler.createResource("myComp.xhtml");
-
-    String methName = "getScriptComponentResource";
-    ViewDeclarationLanguage vdlWrapper = new TCKVDL(context, JSP_VIEWID);
-
-    try {
-      vdlWrapper.getScriptComponentResource(context, resource);
-      out.println(JSFTestUtil.FAIL + JSFTestUtil.NL
-          + "No Exception thrown when calling '"
-          + vdlWrapper.getClass().getName() + "." + methName + "()'"
-          + JSFTestUtil.NL
-          + "Expected: UnsupportedOperationException to be thrown!");
-
-    } catch (UnsupportedOperationException uoe) {
-      out.println(JSFTestUtil.PASS);
-
-    } catch (Exception e) {
-      out.println(JSFTestUtil.FAIL + " Unexpected Exception thrown for "
-          + vdlWrapper.getClass().getName() + "." + methName + "("
-          + context.getClass().getSimpleName() + ", "
-          + resource.getClass().getSimpleName() + ")" + JSFTestUtil.NL
-          + "Expected: UnsupportedOperationException" + JSFTestUtil.NL
-          + "Received: " + e.getClass().getName());
-    }
-
-  }// End vdlWrapperGetScriptComponentResourceUSOETest
 
   public void vdlWrapperGetComponentMetadataNPETest(HttpServletRequest request,
       HttpServletResponse response) throws IOException {

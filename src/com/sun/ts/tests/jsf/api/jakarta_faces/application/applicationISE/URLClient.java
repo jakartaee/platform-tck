@@ -59,7 +59,7 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void applicationAddELResolverISETest() throws Fault {
     // Make Client Call before running the test.
-    String clientside = "/faces/applicationtest.jsp";
+    String clientside = "/faces/applicationtest.xhtml";
     this.getPage(new WebClient(),
         "http://" + _hostname + ":" + _port + CONTEXT_ROOT + clientside);
 
@@ -78,7 +78,7 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void applicationSetResourceHandlerISETest() throws Fault {
     // Make Client Call before running the test.
-    String clientside = "/faces/applicationtest.jsp";
+    String clientside = "/faces/applicationtest.xhtml";
     this.getPage(new WebClient(),
         "http://" + _hostname + ":" + _port + CONTEXT_ROOT + clientside);
 
@@ -97,7 +97,7 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void applicationSetStateManagerISETest() throws Fault {
     // Make Client Call before running the test.
-    String clientside = "/faces/applicationtest.jsp";
+    String clientside = "/faces/applicationtest.xhtml";
     this.getPage(new WebClient(),
         "http://" + _hostname + ":" + _port + CONTEXT_ROOT + clientside);
 
@@ -116,7 +116,7 @@ public final class URLClient extends AbstractUrlClient {
    */
   public void applicationSetViewHandlerISETest() throws Fault {
     // Make Client Call before running the test.
-    String clientside = "/faces/applicationtest.jsp";
+    String clientside = "/faces/applicationtest.xhtml";
     this.getPage(new WebClient(),
         "http://" + _hostname + ":" + _port + CONTEXT_ROOT + clientside);
 
