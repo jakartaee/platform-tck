@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="negativeCWOWhenSelectReqAttrRTTest">
     <!-- RT: Validate that if the 'test' attribute is not present, a 

@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.0
 
 CLSS public abstract interface jakarta.json.bind.Jsonb
 intf java.lang.AutoCloseable
@@ -30,6 +30,7 @@ CLSS public jakarta.json.bind.JsonbConfig
 cons public init()
 fld public final static java.lang.String ADAPTERS = "jsonb.adapters"
 fld public final static java.lang.String BINARY_DATA_STRATEGY = "jsonb.binary-data-strategy"
+fld public final static java.lang.String CREATOR_PARAMETERS_REQUIRED = "jsonb.creator-parameters-required"
 fld public final static java.lang.String DATE_FORMAT = "jsonb.date-format"
 fld public final static java.lang.String DESERIALIZERS = "jsonb.derializers"
 fld public final static java.lang.String ENCODING = "jsonb.encoding"
@@ -46,6 +47,7 @@ meth public !varargs final jakarta.json.bind.JsonbConfig withDeserializers(jakar
 meth public !varargs final jakarta.json.bind.JsonbConfig withSerializers(jakarta.json.bind.serializer.JsonbSerializer[])
 meth public final jakarta.json.bind.JsonbConfig setProperty(java.lang.String,java.lang.Object)
 meth public final jakarta.json.bind.JsonbConfig withBinaryDataStrategy(java.lang.String)
+meth public final jakarta.json.bind.JsonbConfig withCreatorParametersRequired(boolean)
 meth public final jakarta.json.bind.JsonbConfig withDateFormat(java.lang.String,java.util.Locale)
 meth public final jakarta.json.bind.JsonbConfig withEncoding(java.lang.String)
 meth public final jakarta.json.bind.JsonbConfig withFormatting(java.lang.Boolean)
@@ -96,7 +98,7 @@ meth public abstract !hasdefault java.lang.String value()
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbNillable
  anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE, PACKAGE])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, FIELD, METHOD, TYPE, PACKAGE])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean value()
 
@@ -115,6 +117,7 @@ CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbPro
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, METHOD, FIELD, PARAMETER])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean nillable()
+ anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="2.1")
 meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbPropertyOrder
@@ -123,6 +126,14 @@ CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbPro
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.String[] value()
+
+CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbSubtype
+ anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[])
+intf java.lang.annotation.Annotation
+meth public abstract java.lang.Class<?> type()
+meth public abstract java.lang.String alias()
 
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbTransient
  anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
@@ -133,16 +144,25 @@ intf java.lang.annotation.Annotation
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbTypeAdapter
  anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE, FIELD, METHOD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE, FIELD, METHOD, PARAMETER])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.Class<? extends jakarta.json.bind.adapter.JsonbAdapter> value()
 
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbTypeDeserializer
  anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE, FIELD, METHOD])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE, FIELD, METHOD, PARAMETER])
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.Class<? extends jakarta.json.bind.serializer.JsonbDeserializer> value()
+
+CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbTypeInfo
+ anno 0 jakarta.json.bind.annotation.JsonbAnnotation()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE, TYPE])
+fld public final static java.lang.String DEFAULT_KEY_NAME = "@type"
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault jakarta.json.bind.annotation.JsonbSubtype[] value()
+meth public abstract !hasdefault java.lang.String key()
 
 CLSS public abstract interface !annotation jakarta.json.bind.annotation.JsonbTypeSerializer
  anno 0 jakarta.json.bind.annotation.JsonbAnnotation()

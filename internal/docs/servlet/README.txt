@@ -1,6 +1,6 @@
 Simple README file with instructions to quickly install, setup, configure,
-and run the Servlet TCK 5.0 and related software against the Servlet 5.0 Compatible Implementation. For 
-more detailed instructions please refer to the Servlet 5.0 Users Guide.
+and run the Servlet TCK 6.0 and related software against the Servlet 6.0 Compatible Implementation. For 
+more detailed instructions please refer to the Servlet 6.0 Users Guide.
 
 -----------------------
 Installing the Software
@@ -8,19 +8,19 @@ Installing the Software
 Before you can run the Servlet TCK tests, you need to install
 and set up the following software components:
 
-1) Java SE 8
-2) Servlet Compatible Implementation Version 5.0
-3) Servlet TCK Version 5.0
+1) Java 11
+2) Servlet Compatible Implementation Version 6.0
+3) Servlet TCK Version 6.0
 
-1. Download and install Java SE 8 software.
+1. Download and install Java 11 software.
 
-2. Download and install the Servlet 5.0 Compatible Implementation/jarfile.
+2. Download and install the Servlet 6.0 Compatible Implementation/jarfile.
 
    mkdir /ri
    cd /ri
    
 
-3. Download and install the Servlet TCK 5.0 software.
+3. Download and install the Servlet TCK 6.0 software.
 
    mkdir /tck
    cd /tck
@@ -49,10 +49,10 @@ Setup and Configuration of the Servlet TCK
 ------------------------------
 Executing the Servlet TCK Tests
 ------------------------------
-At this point we are ready to run the Servlet TCK tests against the Servlet 5.0
+At this point we are ready to run the Servlet TCK tests against the Servlet 6.0
 Reference Implementation.
 
-1. Start Servlet 5.0 Reference Implementation:
+1. Start Servlet 6.0 Reference Implementation:
 
    cd /ri/glassfish4/glassfish/bin
    ./asadmin start-domain

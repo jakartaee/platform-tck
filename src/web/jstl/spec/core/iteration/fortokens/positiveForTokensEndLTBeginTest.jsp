@@ -17,7 +17,7 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <c:forTokens items="${'one,two,three'}" delims="," begin="2" end="1">
     Test FAILED

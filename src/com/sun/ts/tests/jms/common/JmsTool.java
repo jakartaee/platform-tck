@@ -138,11 +138,11 @@ public class JmsTool {
 
   public static final int COMMON_FACTORY = 17;
 
-  public static final String JMS_VERSION = "3.0";
+  public static final String JMS_VERSION = "3.1";
 
   public static final int JMS_MAJOR_VERSION = 3;
 
-  public static final int JMS_MINOR_VERSION = 0;
+  public static final int JMS_MINOR_VERSION = 1;
 
   // JNDI names for JMS objects (Standalone mode)
   public static final String TCKTESTQUEUENAME = "MY_QUEUE";

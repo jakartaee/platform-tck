@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 4.0
 
 CLSS public abstract jakarta.el.ELContext
 cons public init()
@@ -33,6 +33,17 @@ CLSS public abstract interface !annotation jakarta.enterprise.context.NormalScop
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[ANNOTATION_TYPE])
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean passivating()
+
+CLSS public abstract jakarta.enterprise.util.AnnotationLiteral<%0 extends java.lang.annotation.Annotation>
+cons protected init()
+intf java.io.Serializable
+intf java.lang.annotation.Annotation
+meth public boolean equals(java.lang.Object)
+meth public int hashCode()
+meth public java.lang.Class<? extends java.lang.annotation.Annotation> annotationType()
+meth public java.lang.String toString()
+supr java.lang.Object
+hfds annotationType,cachedHashCode,members,serialVersionUID
 
 CLSS public jakarta.faces.FacesException
 cons public init()
@@ -72,18 +83,39 @@ CLSS public abstract interface !annotation jakarta.faces.annotation.ApplicationM
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.ApplicationMap$Literal
+ outer jakarta.faces.annotation.ApplicationMap
+cons public init()
+fld public final static jakarta.faces.annotation.ApplicationMap$Literal INSTANCE
+intf jakarta.faces.annotation.ApplicationMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.ApplicationMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.FacesConfig
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
 innr public final static !enum Version
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault jakarta.faces.annotation.FacesConfig$Version version()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
+
+CLSS public final static jakarta.faces.annotation.FacesConfig$Literal
+ outer jakarta.faces.annotation.FacesConfig
+cons public init()
+fld public final static jakarta.faces.annotation.FacesConfig$Literal INSTANCE
+intf jakarta.faces.annotation.FacesConfig
+meth public jakarta.faces.annotation.FacesConfig$Version version()
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.FacesConfig>
+hfds serialVersionUID
 
 CLSS public final static !enum jakarta.faces.annotation.FacesConfig$Version
  outer jakarta.faces.annotation.FacesConfig
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.annotation.FacesConfig$Version JSF_2_3
 meth public static jakarta.faces.annotation.FacesConfig$Version valueOf(java.lang.String)
 meth public static jakarta.faces.annotation.FacesConfig$Version[] values()
@@ -93,68 +125,186 @@ CLSS public abstract interface !annotation jakarta.faces.annotation.FlowMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.FlowMap$Literal
+ outer jakarta.faces.annotation.FlowMap
+cons public init()
+fld public final static jakarta.faces.annotation.FlowMap$Literal INSTANCE
+intf jakarta.faces.annotation.FlowMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.FlowMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.HeaderMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.HeaderMap$Literal
+ outer jakarta.faces.annotation.HeaderMap
+cons public init()
+fld public final static jakarta.faces.annotation.HeaderMap$Literal INSTANCE
+intf jakarta.faces.annotation.HeaderMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.HeaderMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.HeaderValuesMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.HeaderValuesMap$Literal
+ outer jakarta.faces.annotation.HeaderValuesMap
+cons public init()
+fld public final static jakarta.faces.annotation.HeaderValuesMap$Literal INSTANCE
+intf jakarta.faces.annotation.HeaderValuesMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.HeaderValuesMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.InitParameterMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.InitParameterMap$Literal
+ outer jakarta.faces.annotation.InitParameterMap
+cons public init()
+fld public final static jakarta.faces.annotation.InitParameterMap$Literal INSTANCE
+intf jakarta.faces.annotation.InitParameterMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.InitParameterMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.ManagedProperty
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
+
+CLSS public final static jakarta.faces.annotation.ManagedProperty$Literal
+ outer jakarta.faces.annotation.ManagedProperty
+fld public final static jakarta.faces.annotation.ManagedProperty$Literal INSTANCE
+intf jakarta.faces.annotation.ManagedProperty
+meth public java.lang.String value()
+meth public static jakarta.faces.annotation.ManagedProperty$Literal of(java.lang.String)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.ManagedProperty>
+hfds serialVersionUID,value
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.RequestCookieMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.RequestCookieMap$Literal
+ outer jakarta.faces.annotation.RequestCookieMap
+cons public init()
+fld public final static jakarta.faces.annotation.RequestCookieMap$Literal INSTANCE
+intf jakarta.faces.annotation.RequestCookieMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.RequestCookieMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.RequestMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.RequestMap$Literal
+ outer jakarta.faces.annotation.RequestMap
+cons public init()
+fld public final static jakarta.faces.annotation.RequestMap$Literal INSTANCE
+intf jakarta.faces.annotation.RequestMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.RequestMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.RequestParameterMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.RequestParameterMap$Literal
+ outer jakarta.faces.annotation.RequestParameterMap
+cons public init()
+fld public final static jakarta.faces.annotation.RequestParameterMap$Literal INSTANCE
+intf jakarta.faces.annotation.RequestParameterMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.RequestParameterMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.RequestParameterValuesMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.RequestParameterValuesMap$Literal
+ outer jakarta.faces.annotation.RequestParameterValuesMap
+cons public init()
+fld public final static jakarta.faces.annotation.RequestParameterValuesMap$Literal INSTANCE
+intf jakarta.faces.annotation.RequestParameterValuesMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.RequestParameterValuesMap>
+hfds serialVersionUID
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.SessionMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.SessionMap$Literal
+ outer jakarta.faces.annotation.SessionMap
+cons public init()
+fld public final static jakarta.faces.annotation.SessionMap$Literal INSTANCE
+intf jakarta.faces.annotation.SessionMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.SessionMap>
+hfds serialVersionUID
+
+CLSS public abstract interface !annotation jakarta.faces.annotation.View
+ anno 0 jakarta.inject.Qualifier()
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
+intf java.lang.annotation.Annotation
+meth public abstract !hasdefault java.lang.String value()
+
+CLSS public final static jakarta.faces.annotation.View$Literal
+ outer jakarta.faces.annotation.View
+fld public final static jakarta.faces.annotation.View$Literal INSTANCE
+intf jakarta.faces.annotation.View
+meth public java.lang.String value()
+meth public static jakarta.faces.annotation.View$Literal of(java.lang.String)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.View>
+hfds serialVersionUID,value
 
 CLSS public abstract interface !annotation jakarta.faces.annotation.ViewMap
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.annotation.ViewMap$Literal
+ outer jakarta.faces.annotation.ViewMap
+cons public init()
+fld public final static jakarta.faces.annotation.ViewMap$Literal INSTANCE
+intf jakarta.faces.annotation.ViewMap
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.annotation.ViewMap>
+hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.application.Application
 cons public init()
@@ -162,19 +312,9 @@ meth public <%0 extends java.lang.Object> {%%0} evaluateExpressionGet(jakarta.fa
 meth public abstract jakarta.faces.application.NavigationHandler getNavigationHandler()
 meth public abstract jakarta.faces.application.StateManager getStateManager()
 meth public abstract jakarta.faces.application.ViewHandler getViewHandler()
-meth public abstract jakarta.faces.component.UIComponent createComponent(jakarta.faces.el.ValueBinding,jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.component.UIComponent createComponent(java.lang.String)
 meth public abstract jakarta.faces.convert.Converter createConverter(java.lang.Class<?>)
 meth public abstract jakarta.faces.convert.Converter createConverter(java.lang.String)
-meth public abstract jakarta.faces.el.MethodBinding createMethodBinding(java.lang.String,java.lang.Class<?>[])
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.el.PropertyResolver getPropertyResolver()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.el.ValueBinding createValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.el.VariableResolver getVariableResolver()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ActionListener getActionListener()
 meth public abstract jakarta.faces.validator.Validator createValidator(java.lang.String)
 meth public abstract java.lang.String getDefaultRenderKitId()
@@ -194,12 +334,8 @@ meth public abstract void setDefaultLocale(java.util.Locale)
 meth public abstract void setDefaultRenderKitId(java.lang.String)
 meth public abstract void setMessageBundle(java.lang.String)
 meth public abstract void setNavigationHandler(jakarta.faces.application.NavigationHandler)
-meth public abstract void setPropertyResolver(jakarta.faces.el.PropertyResolver)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setStateManager(jakarta.faces.application.StateManager)
 meth public abstract void setSupportedLocales(java.util.Collection<java.util.Locale>)
-meth public abstract void setVariableResolver(jakarta.faces.el.VariableResolver)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setViewHandler(jakarta.faces.application.ViewHandler)
 meth public jakarta.el.ELContextListener[] getELContextListeners()
 meth public jakarta.el.ELResolver getELResolver()
@@ -257,7 +393,6 @@ cons public init()
 cons public init(jakarta.faces.application.Application)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.Application>
 meth public <%0 extends java.lang.Object> {%%0} evaluateExpressionGet(jakarta.faces.context.FacesContext,java.lang.String,java.lang.Class<? extends {%%0}>)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.el.ELContextListener[] getELContextListeners()
 meth public jakarta.el.ELResolver getELResolver()
 meth public jakarta.el.ExpressionFactory getExpressionFactory()
@@ -271,21 +406,12 @@ meth public jakarta.faces.component.UIComponent createComponent(jakarta.el.Value
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.el.ValueExpression,jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,jakarta.faces.application.Resource)
 meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
-meth public jakarta.faces.component.UIComponent createComponent(jakarta.faces.el.ValueBinding,jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.component.UIComponent createComponent(java.lang.String)
 meth public jakarta.faces.component.behavior.Behavior createBehavior(java.lang.String)
 meth public jakarta.faces.component.search.SearchExpressionHandler getSearchExpressionHandler()
 meth public jakarta.faces.component.search.SearchKeywordResolver getSearchKeywordResolver()
 meth public jakarta.faces.convert.Converter createConverter(java.lang.Class<?>)
 meth public jakarta.faces.convert.Converter createConverter(java.lang.String)
-meth public jakarta.faces.el.MethodBinding createMethodBinding(java.lang.String,java.lang.Class<?>[])
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public jakarta.faces.el.PropertyResolver getPropertyResolver()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public jakarta.faces.el.ValueBinding createValueBinding(java.lang.String)
-meth public jakarta.faces.el.VariableResolver getVariableResolver()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener getActionListener()
 meth public jakarta.faces.flow.FlowHandler getFlowHandler()
 meth public jakarta.faces.validator.Validator createValidator(java.lang.String)
@@ -318,14 +444,10 @@ meth public void setDefaultRenderKitId(java.lang.String)
 meth public void setFlowHandler(jakarta.faces.flow.FlowHandler)
 meth public void setMessageBundle(java.lang.String)
 meth public void setNavigationHandler(jakarta.faces.application.NavigationHandler)
-meth public void setPropertyResolver(jakarta.faces.el.PropertyResolver)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setResourceHandler(jakarta.faces.application.ResourceHandler)
 meth public void setSearchExpressionHandler(jakarta.faces.component.search.SearchExpressionHandler)
 meth public void setStateManager(jakarta.faces.application.StateManager)
 meth public void setSupportedLocales(java.util.Collection<java.util.Locale>)
-meth public void setVariableResolver(jakarta.faces.el.VariableResolver)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setViewHandler(jakarta.faces.application.ViewHandler)
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.SystemEventListener)
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,java.lang.Class<?>,jakarta.faces.event.SystemEventListener)
@@ -514,8 +636,12 @@ meth public abstract java.lang.String name()
 
 CLSS public abstract jakarta.faces.application.ResourceHandler
 cons public init()
+fld public final static java.lang.String FACES_SCRIPT_LIBRARY_NAME = "jakarta.faces"
+fld public final static java.lang.String FACES_SCRIPT_RESOURCE_NAME = "faces.js"
 fld public final static java.lang.String JSF_SCRIPT_LIBRARY_NAME = "jakarta.faces"
-fld public final static java.lang.String JSF_SCRIPT_RESOURCE_NAME = "jsf.js"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
+fld public final static java.lang.String JSF_SCRIPT_RESOURCE_NAME = "faces.js"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static java.lang.String LOCALE_PREFIX = "jakarta.faces.resource.localePrefix"
 fld public final static java.lang.String RESOURCE_CONTRACT_XML = "jakarta.faces.contract.xml"
 fld public final static java.lang.String RESOURCE_EXCLUDES_DEFAULT_VALUE = ".class .jsp .jspx .properties .xhtml .groovy"
@@ -598,54 +724,18 @@ fld public final static java.lang.String SERIALIZE_SERVER_STATE_PARAM_NAME = "ja
 fld public final static java.lang.String STATE_SAVING_METHOD_CLIENT = "client"
 fld public final static java.lang.String STATE_SAVING_METHOD_PARAM_NAME = "jakarta.faces.STATE_SAVING_METHOD"
 fld public final static java.lang.String STATE_SAVING_METHOD_SERVER = "server"
-innr public SerializedView
-meth protected jakarta.faces.component.UIViewRoot restoreTreeStructure(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected java.lang.Object getComponentStateToSave(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected java.lang.Object getTreeStructureToSave(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected void restoreComponentState(jakarta.faces.context.FacesContext,jakarta.faces.component.UIViewRoot,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.component.UIViewRoot restoreView(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean isSavingStateInClient(jakarta.faces.context.FacesContext)
-meth public jakarta.faces.application.StateManager$SerializedView saveSerializedView(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public java.lang.Object saveView(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getViewState(jakarta.faces.context.FacesContext)
-meth public void writeState(jakarta.faces.context.FacesContext,jakarta.faces.application.StateManager$SerializedView) throws java.io.IOException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void writeState(jakarta.faces.context.FacesContext,java.lang.Object) throws java.io.IOException
 supr java.lang.Object
-hfds IS_CALLED_FROM_API_CLASS,savingStateInClient
-
-CLSS public jakarta.faces.application.StateManager$SerializedView
- outer jakarta.faces.application.StateManager
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init(jakarta.faces.application.StateManager,java.lang.Object,java.lang.Object)
-meth public java.lang.Object getState()
-meth public java.lang.Object getStructure()
-supr java.lang.Object
-hfds state,structure
+hfds savingStateInClient
 
 CLSS public abstract jakarta.faces.application.StateManagerWrapper
-cons public init()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 cons public init(jakarta.faces.application.StateManager)
 intf jakarta.faces.FacesWrapper<jakarta.faces.application.StateManager>
-meth protected jakarta.faces.component.UIViewRoot restoreTreeStructure(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
-meth protected java.lang.Object getComponentStateToSave(jakarta.faces.context.FacesContext)
-meth protected java.lang.Object getTreeStructureToSave(jakarta.faces.context.FacesContext)
-meth protected void restoreComponentState(jakarta.faces.context.FacesContext,jakarta.faces.component.UIViewRoot,java.lang.String)
 meth public boolean isSavingStateInClient(jakarta.faces.context.FacesContext)
 meth public jakarta.faces.application.StateManager getWrapped()
-meth public jakarta.faces.application.StateManager$SerializedView saveSerializedView(jakarta.faces.context.FacesContext)
-meth public jakarta.faces.component.UIViewRoot restoreView(jakarta.faces.context.FacesContext,java.lang.String,java.lang.String)
-meth public java.lang.Object saveView(jakarta.faces.context.FacesContext)
 meth public java.lang.String getViewState(jakarta.faces.context.FacesContext)
-meth public void writeState(jakarta.faces.context.FacesContext,jakarta.faces.application.StateManager$SerializedView) throws java.io.IOException
 meth public void writeState(jakarta.faces.context.FacesContext,java.lang.Object) throws java.io.IOException
 supr jakarta.faces.application.StateManager
 hfds wrapped
@@ -665,9 +755,10 @@ CLSS public abstract jakarta.faces.application.ViewHandler
 cons public init()
 fld public final static java.lang.String CHARACTER_ENCODING_KEY = "jakarta.faces.request.charset"
 fld public final static java.lang.String DEFAULT_FACELETS_SUFFIX = ".xhtml"
-fld public final static java.lang.String DEFAULT_SUFFIX = ".xhtml .view.xml .jsp"
+fld public final static java.lang.String DEFAULT_SUFFIX = ".xhtml"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static java.lang.String DEFAULT_SUFFIX_PARAM_NAME = "jakarta.faces.DEFAULT_SUFFIX"
-fld public final static java.lang.String DISABLE_FACELET_JSF_VIEWHANDLER_PARAM_NAME = "jakarta.faces.DISABLE_FACELET_JSF_VIEWHANDLER"
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static java.lang.String FACELETS_BUFFER_SIZE_PARAM_NAME = "jakarta.faces.FACELETS_BUFFER_SIZE"
 fld public final static java.lang.String FACELETS_DECORATORS_PARAM_NAME = "jakarta.faces.FACELETS_DECORATORS"
 fld public final static java.lang.String FACELETS_LIBRARIES_PARAM_NAME = "jakarta.faces.FACELETS_LIBRARIES"
@@ -740,90 +831,11 @@ meth public static jakarta.faces.application.ViewVisitOption valueOf(java.lang.S
 meth public static jakarta.faces.application.ViewVisitOption[] values()
 supr java.lang.Enum<jakarta.faces.application.ViewVisitOption>
 
-CLSS public abstract interface !annotation jakarta.faces.bean.ApplicationScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS public abstract interface !annotation jakarta.faces.bean.CustomScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract java.lang.String value()
-
-CLSS public abstract interface !annotation jakarta.faces.bean.ManagedBean
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault boolean eager()
-meth public abstract !hasdefault java.lang.String name()
-
-CLSS public abstract interface !annotation jakarta.faces.bean.ManagedProperty
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[FIELD])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name()
-meth public abstract java.lang.String value()
-
-CLSS public abstract interface !annotation jakarta.faces.bean.NoneScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS public abstract interface !annotation jakarta.faces.bean.ReferencedBean
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=CLASS)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-meth public abstract !hasdefault java.lang.String name()
-
-CLSS public abstract interface !annotation jakarta.faces.bean.RequestScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS public abstract interface !annotation jakarta.faces.bean.SessionScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS public abstract interface !annotation jakarta.faces.bean.ViewScoped
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
-CLSS abstract interface jakarta.faces.bean.package-info
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-
 CLSS public abstract interface jakarta.faces.component.ActionSource
 meth public abstract boolean isImmediate()
-meth public abstract jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ActionListener[] getActionListeners()
 meth public abstract void addActionListener(jakarta.faces.event.ActionListener)
 meth public abstract void removeActionListener(jakarta.faces.event.ActionListener)
-meth public abstract void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract void setImmediate(boolean)
 
 CLSS public abstract interface jakarta.faces.component.ActionSource2
@@ -834,16 +846,17 @@ meth public abstract void setActionExpression(jakarta.el.MethodExpression)
 CLSS public abstract interface jakarta.faces.component.ContextCallback
 meth public abstract void invokeContextCallback(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent)
 
+CLSS public abstract interface jakarta.faces.component.Doctype
+meth public abstract java.lang.String getPublic()
+meth public abstract java.lang.String getRootElement()
+meth public abstract java.lang.String getSystem()
+
 CLSS public abstract interface jakarta.faces.component.EditableValueHolder
 intf jakarta.faces.component.ValueHolder
 meth public abstract boolean isImmediate()
 meth public abstract boolean isLocalValueSet()
 meth public abstract boolean isRequired()
 meth public abstract boolean isValid()
-meth public abstract jakarta.faces.el.MethodBinding getValidator()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract jakarta.faces.el.MethodBinding getValueChangeListener()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract jakarta.faces.event.ValueChangeListener[] getValueChangeListeners()
 meth public abstract jakarta.faces.validator.Validator[] getValidators()
 meth public abstract java.lang.Object getSubmittedValue()
@@ -857,16 +870,12 @@ meth public abstract void setLocalValueSet(boolean)
 meth public abstract void setRequired(boolean)
 meth public abstract void setSubmittedValue(java.lang.Object)
 meth public abstract void setValid(boolean)
-meth public abstract void setValidator(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public abstract void setValueChangeListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 
 CLSS public abstract interface !annotation jakarta.faces.component.FacesComponent
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-fld public final static java.lang.String NAMESPACE = "http://xmlns.jcp.org/jsf/component"
+fld public final static java.lang.String NAMESPACE = "jakarta.faces.component"
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean createTag()
 meth public abstract !hasdefault java.lang.String namespace()
@@ -875,7 +884,6 @@ meth public abstract !hasdefault java.lang.String value()
 
 CLSS public abstract interface jakarta.faces.component.NamingContainer
 fld public final static char SEPARATOR_CHAR = ':'
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 
 CLSS public abstract interface jakarta.faces.component.PartialStateHolder
 intf jakarta.faces.component.StateHolder
@@ -887,6 +895,7 @@ CLSS public abstract interface jakarta.faces.component.StateHelper
 intf jakarta.faces.component.StateHolder
 meth public abstract java.lang.Object eval(java.io.Serializable)
 meth public abstract java.lang.Object eval(java.io.Serializable,java.lang.Object)
+meth public abstract java.lang.Object eval(java.io.Serializable,java.util.function.Supplier<java.lang.Object>)
 meth public abstract java.lang.Object get(java.io.Serializable)
 meth public abstract java.lang.Object put(java.io.Serializable,java.lang.Object)
 meth public abstract java.lang.Object put(java.io.Serializable,java.lang.String,java.lang.Object)
@@ -928,10 +937,6 @@ fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.Command
 intf jakarta.faces.component.ActionSource2
 meth public boolean isImmediate()
 meth public jakarta.el.MethodExpression getActionExpression()
-meth public jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener[] getActionListeners()
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
@@ -939,11 +944,7 @@ meth public void addActionListener(jakarta.faces.event.ActionListener)
 meth public void broadcast(jakarta.faces.event.FacesEvent)
 meth public void queueEvent(jakarta.faces.event.FacesEvent)
 meth public void removeActionListener(jakarta.faces.event.ActionListener)
-meth public void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setActionExpression(jakarta.el.MethodExpression)
-meth public void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setImmediate(boolean)
 meth public void setValue(java.lang.Object)
 supr jakarta.faces.component.UIComponentBase
@@ -957,12 +958,7 @@ fld public final static java.lang.String ATTRS_WITH_DECLARED_DEFAULT_VALUES = "j
 fld public final static java.lang.String BEANINFO_KEY = "jakarta.faces.component.BEANINFO_KEY"
 fld public final static java.lang.String COMPOSITE_COMPONENT_TYPE_KEY = "jakarta.faces.component.COMPOSITE_COMPONENT_TYPE"
 fld public final static java.lang.String COMPOSITE_FACET_NAME = "jakarta.faces.component.COMPOSITE_FACET_NAME"
-fld public final static java.lang.String CURRENT_COMPONENT = "jakarta.faces.component.CURRENT_COMPONENT"
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-fld public final static java.lang.String CURRENT_COMPOSITE_COMPONENT = "jakarta.faces.component.CURRENT_COMPOSITE_COMPONENT"
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 fld public final static java.lang.String FACETS_KEY = "jakarta.faces.component.FACETS_KEY"
-fld public final static java.lang.String HONOR_CURRENT_COMPONENT_ATTRIBUTES_PARAM_NAME = "jakarta.faces.HONOR_CURRENT_COMPONENT_ATTRIBUTES"
 fld public final static java.lang.String VIEW_LOCATION_KEY = "jakarta.faces.component.VIEW_LOCATION_KEY"
 intf jakarta.faces.component.PartialStateHolder
 intf jakarta.faces.component.TransientStateHolder
@@ -982,8 +978,6 @@ meth public abstract int getChildCount()
 meth public abstract jakarta.faces.component.UIComponent findComponent(java.lang.String)
 meth public abstract jakarta.faces.component.UIComponent getFacet(java.lang.String)
 meth public abstract jakarta.faces.component.UIComponent getParent()
-meth public abstract jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract java.lang.Object processSaveState(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.String getClientId(jakarta.faces.context.FacesContext)
 meth public abstract java.lang.String getFamily()
@@ -1007,8 +1001,6 @@ meth public abstract void setId(java.lang.String)
 meth public abstract void setParent(jakarta.faces.component.UIComponent)
 meth public abstract void setRendered(boolean)
 meth public abstract void setRendererType(java.lang.String)
-meth public abstract void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public boolean initialStateMarked()
 meth public boolean invokeOnComponent(jakarta.faces.context.FacesContext,java.lang.String,jakarta.faces.component.ContextCallback)
 meth public boolean isInView()
@@ -1041,7 +1033,7 @@ meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 meth public void unsubscribeFromEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 supr java.lang.Object
-hfds LOGGER,_CURRENT_COMPONENT_STACK_KEY,_CURRENT_COMPOSITE_COMPONENT_STACK_KEY,_isPushedAsCurrentRefCount,attributesThatAreSet,compositeParent,initialState,isCompositeComponent,isInView,isSetCurrentComponent,resourceBundleMap,stateHelper
+hfds LOGGER,_CURRENT_COMPONENT_STACK_KEY,_CURRENT_COMPOSITE_COMPONENT_STACK_KEY,_isPushedAsCurrentRefCount,attributesThatAreSet,compositeParent,initialState,isCompositeComponent,isInView,resourceBundleMap,stateHelper
 hcls ComponentSystemEventListenerAdapter,PropertyKeys,PropertyKeysPrivate
 
 CLSS public abstract jakarta.faces.component.UIComponentBase
@@ -1060,8 +1052,6 @@ meth public int getFacetCount()
 meth public jakarta.faces.component.UIComponent findComponent(java.lang.String)
 meth public jakarta.faces.component.UIComponent getFacet(java.lang.String)
 meth public jakarta.faces.component.UIComponent getParent()
-meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object processSaveState(jakarta.faces.context.FacesContext)
 meth public java.lang.Object saveState(jakarta.faces.context.FacesContext)
 meth public java.lang.String getClientId(jakarta.faces.context.FacesContext)
@@ -1097,8 +1087,6 @@ meth public void setParent(jakarta.faces.component.UIComponent)
 meth public void setRendered(boolean)
 meth public void setRendererType(java.lang.String)
 meth public void setTransient(boolean)
-meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void subscribeToEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 meth public void unsubscribeFromEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.ComponentSystemEventListener)
 supr jakarta.faces.component.UIComponent
@@ -1145,8 +1133,6 @@ meth public void setRowIndex(int)
 meth public void setRowStatePreserved(boolean)
 meth public void setRows(int)
 meth public void setValue(java.lang.Object)
-meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 meth public void setVar(java.lang.String)
 supr jakarta.faces.component.UIComponentBase
@@ -1178,15 +1164,11 @@ cons public init()
 fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.Graphic"
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.Graphic"
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
-meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
 meth public java.lang.String getUrl()
 meth public void setUrl(java.lang.String)
 meth public void setValue(java.lang.Object)
-meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIComponentBase
 hcls PropertyKeys
@@ -1222,9 +1204,6 @@ meth public boolean isImmediate()
 meth public boolean isLocalValueSet()
 meth public boolean isRequired()
 meth public boolean isValid()
-meth public jakarta.faces.el.MethodBinding getValidator()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public jakarta.faces.el.MethodBinding getValueChangeListener()
 meth public jakarta.faces.event.ValueChangeListener[] getValueChangeListeners()
 meth public jakarta.faces.validator.Validator[] getValidators()
 meth public java.lang.Object getSubmittedValue()
@@ -1254,12 +1233,8 @@ meth public void setRequired(boolean)
 meth public void setRequiredMessage(java.lang.String)
 meth public void setSubmittedValue(java.lang.Object)
 meth public void setValid(boolean)
-meth public void setValidator(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValidatorMessage(java.lang.String)
 meth public void setValue(java.lang.Object)
-meth public void setValueChangeListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void updateModel(jakarta.faces.context.FacesContext)
 meth public void validate(jakarta.faces.context.FacesContext)
 supr jakarta.faces.component.UIOutput
@@ -1377,12 +1352,8 @@ fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.Selec
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.SelectBoolean"
 meth public boolean isSelected()
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
-meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getFamily()
 meth public void setSelected(boolean)
-meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIInput
 
@@ -1408,6 +1379,18 @@ meth public void setValue(java.lang.Object)
 supr jakarta.faces.component.UIComponentBase
 hcls PropertyKeys
 
+CLSS public jakarta.faces.component.UISelectItemGroup
+cons public init()
+fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.SelectItemGroup"
+meth public java.lang.Object getValue()
+supr jakarta.faces.component.UISelectItem
+
+CLSS public jakarta.faces.component.UISelectItemGroups
+cons public init()
+fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.SelectItemGroups"
+meth public java.lang.Object getValue()
+supr jakarta.faces.component.UISelectItems
+
 CLSS public jakarta.faces.component.UISelectItems
 cons public init()
 fld public final static java.lang.String COMPONENT_FAMILY = "jakarta.faces.SelectItems"
@@ -1415,6 +1398,7 @@ fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.SelectI
 meth public java.lang.Object getValue()
 meth public java.lang.String getFamily()
 meth public void setValue(java.lang.Object)
+meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIComponentBase
 hcls PropertyKeys
 
@@ -1426,13 +1410,9 @@ fld public final static java.lang.String INVALID_MESSAGE_ID = "jakarta.faces.com
 meth protected boolean compareValues(java.lang.Object,java.lang.Object)
 meth protected void validateValue(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public jakarta.el.ValueExpression getValueExpression(java.lang.String)
-meth public jakarta.faces.el.ValueBinding getValueBinding(java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object[] getSelectedValues()
 meth public java.lang.String getFamily()
 meth public void setSelectedValues(java.lang.Object[])
-meth public void setValueBinding(java.lang.String,jakarta.faces.el.ValueBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setValueExpression(java.lang.String,jakarta.el.ValueExpression)
 supr jakarta.faces.component.UIInput
 hcls ArrayIterator
@@ -1459,10 +1439,6 @@ meth public boolean isImmediate()
 meth public boolean isOnPostback()
 meth public boolean isRendered()
 meth public jakarta.el.MethodExpression getActionExpression()
-meth public jakarta.faces.el.MethodBinding getAction()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public jakarta.faces.el.MethodBinding getActionListener()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public jakarta.faces.event.ActionListener[] getActionListeners()
 meth public java.lang.String getFamily()
 meth public java.lang.String getPhase()
@@ -1471,11 +1447,7 @@ meth public void addActionListener(jakarta.faces.event.ActionListener)
 meth public void broadcast(jakarta.faces.event.FacesEvent)
 meth public void decode(jakarta.faces.context.FacesContext)
 meth public void removeActionListener(jakarta.faces.event.ActionListener)
-meth public void setAction(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setActionExpression(jakarta.el.MethodExpression)
-meth public void setActionListener(jakarta.faces.el.MethodBinding)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void setImmediate(boolean)
 meth public void setOnPostback(boolean)
 meth public void setPhase(java.lang.String)
@@ -1526,6 +1498,7 @@ meth public boolean getRendersChildren()
 meth public boolean isInView()
 meth public jakarta.el.MethodExpression getAfterPhaseListener()
 meth public jakarta.el.MethodExpression getBeforePhaseListener()
+meth public jakarta.faces.component.Doctype getDoctype()
 meth public java.lang.Object saveState(jakarta.faces.context.FacesContext)
 meth public java.lang.String createUniqueId()
 meth public java.lang.String createUniqueId(jakarta.faces.context.FacesContext,java.lang.String)
@@ -1561,6 +1534,7 @@ meth public void restoreState(jakarta.faces.context.FacesContext,java.lang.Objec
 meth public void restoreViewScopeState(jakarta.faces.context.FacesContext,java.lang.Object)
 meth public void setAfterPhaseListener(jakarta.el.MethodExpression)
 meth public void setBeforePhaseListener(jakarta.el.MethodExpression)
+meth public void setDoctype(jakarta.faces.component.Doctype)
 meth public void setInView(boolean)
 meth public void setLocale(java.util.Locale)
 meth public void setRenderKitId(java.lang.String)
@@ -1568,7 +1542,7 @@ meth public void setViewId(java.lang.String)
 meth public void subscribeToViewEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.SystemEventListener)
 meth public void unsubscribeFromViewEvent(java.lang.Class<? extends jakarta.faces.event.SystemEvent>,jakarta.faces.event.SystemEventListener)
 supr jakarta.faces.component.UIComponentBase
-hfds LOCATION_IDENTIFIER_MAP,LOCATION_IDENTIFIER_PREFIX,LOGGER,beforeMethodException,events,lifecycle,phaseListenerIterator,skipPhase,values,viewListeners
+hfds LOCATION_IDENTIFIER_MAP,LOCATION_IDENTIFIER_PREFIX,LOGGER,beforeMethodException,doctype,events,lifecycle,phaseListenerIterator,skipPhase,values,viewListeners
 hcls DoResetValues,PropertyKeys,ViewMap
 
 CLSS public jakarta.faces.component.UIWebsocket
@@ -1581,6 +1555,7 @@ meth public java.io.Serializable getUser()
 meth public java.lang.String getChannel()
 meth public java.lang.String getFamily()
 meth public java.lang.String getOnclose()
+meth public java.lang.String getOnerror()
 meth public java.lang.String getOnmessage()
 meth public java.lang.String getOnopen()
 meth public java.lang.String getScope()
@@ -1588,6 +1563,7 @@ meth public java.util.Collection<java.lang.String> getEventNames()
 meth public void setChannel(java.lang.String)
 meth public void setConnected(boolean)
 meth public void setOnclose(java.lang.String)
+meth public void setOnerror(java.lang.String)
 meth public void setOnmessage(java.lang.String)
 meth public void setOnopen(java.lang.String)
 meth public void setScope(java.lang.String)
@@ -1720,10 +1696,21 @@ CLSS public abstract interface !annotation jakarta.faces.component.behavior.Face
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD, PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean managed()
 meth public abstract java.lang.String value()
+
+CLSS public final static jakarta.faces.component.behavior.FacesBehavior$Literal
+ outer jakarta.faces.component.behavior.FacesBehavior
+fld public final static jakarta.faces.component.behavior.FacesBehavior$Literal INSTANCE
+intf jakarta.faces.component.behavior.FacesBehavior
+meth public boolean managed()
+meth public java.lang.String value()
+meth public static jakarta.faces.component.behavior.FacesBehavior$Literal of(java.lang.String,boolean)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.component.behavior.FacesBehavior>
+hfds managed,serialVersionUID,value
 
 CLSS public jakarta.faces.component.html.HtmlBody
 cons public init()
@@ -2188,6 +2175,7 @@ CLSS public jakarta.faces.component.html.HtmlDoctype
 cons public init()
 fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.OutputDoctype"
 innr protected final static !enum PropertyKeys
+intf jakarta.faces.component.Doctype
 meth public java.lang.String getPublic()
 meth public java.lang.String getRootElement()
 meth public java.lang.String getSystem()
@@ -2406,13 +2394,20 @@ fld public final static java.lang.String COMPONENT_TYPE = "jakarta.faces.HtmlInp
 innr protected final static !enum PropertyKeys
 intf jakarta.faces.component.behavior.ClientBehaviorHolder
 meth public boolean isDisabled()
+meth public boolean isMultiple()
 meth public boolean isReadonly()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public int getMaxlength()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public int getSize()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public java.lang.Object saveState(jakarta.faces.context.FacesContext)
+meth public java.lang.String getAccept()
 meth public java.lang.String getAccesskey()
 meth public java.lang.String getAlt()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public java.lang.String getAutocomplete()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public java.lang.String getDefaultEventName()
 meth public java.lang.String getDir()
 meth public java.lang.String getLabel()
@@ -2437,14 +2432,19 @@ meth public java.lang.String getStyleClass()
 meth public java.lang.String getTabindex()
 meth public java.lang.String getTitle()
 meth public java.util.Collection<java.lang.String> getEventNames()
+meth public void setAccept(java.lang.String)
 meth public void setAccesskey(java.lang.String)
 meth public void setAlt(java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public void setAutocomplete(java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public void setDir(java.lang.String)
 meth public void setDisabled(boolean)
 meth public void setLabel(java.lang.String)
 meth public void setLang(java.lang.String)
 meth public void setMaxlength(int)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
+meth public void setMultiple(boolean)
 meth public void setOnblur(java.lang.String)
 meth public void setOnchange(java.lang.String)
 meth public void setOnclick(java.lang.String)
@@ -2460,8 +2460,10 @@ meth public void setOnmouseover(java.lang.String)
 meth public void setOnmouseup(java.lang.String)
 meth public void setOnselect(java.lang.String)
 meth public void setReadonly(boolean)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public void setRole(java.lang.String)
 meth public void setSize(int)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public void setStyle(java.lang.String)
 meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
@@ -2471,14 +2473,19 @@ hfds EVENT_NAMES,OPTIMIZED_PACKAGE
 
 CLSS protected final static !enum jakarta.faces.component.html.HtmlInputFile$PropertyKeys
  outer jakarta.faces.component.html.HtmlInputFile
+fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys accept
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys accesskey
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys alt
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys autocomplete
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys dir
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys disabled
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys label
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys lang
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys maxlength
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
+fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys multiple
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys onblur
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys onchange
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys onclick
@@ -2494,8 +2501,10 @@ fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys 
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys onmouseup
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys onselect
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys readonly
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys role
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys size
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys style
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys styleClass
 fld public final static jakarta.faces.component.html.HtmlInputFile$PropertyKeys tabindex
@@ -2533,6 +2542,7 @@ meth public int getMaxlength()
 meth public int getSize()
 meth public java.lang.String getAccesskey()
 meth public java.lang.String getAlt()
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public java.lang.String getAutocomplete()
 meth public java.lang.String getDefaultEventName()
 meth public java.lang.String getDir()
@@ -2560,6 +2570,7 @@ meth public java.lang.String getTitle()
 meth public java.util.Collection<java.lang.String> getEventNames()
 meth public void setAccesskey(java.lang.String)
 meth public void setAlt(java.lang.String)
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 meth public void setAutocomplete(java.lang.String)
 meth public void setDir(java.lang.String)
 meth public void setDisabled(boolean)
@@ -2595,6 +2606,7 @@ CLSS protected final static !enum jakarta.faces.component.html.HtmlInputSecret$P
  outer jakarta.faces.component.html.HtmlInputSecret
 fld public final static jakarta.faces.component.html.HtmlInputSecret$PropertyKeys accesskey
 fld public final static jakarta.faces.component.html.HtmlInputSecret$PropertyKeys alt
+ anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
 fld public final static jakarta.faces.component.html.HtmlInputSecret$PropertyKeys autocomplete
 fld public final static jakarta.faces.component.html.HtmlInputSecret$PropertyKeys dir
 fld public final static jakarta.faces.component.html.HtmlInputSecret$PropertyKeys disabled
@@ -2664,6 +2676,7 @@ meth public java.lang.String getStyle()
 meth public java.lang.String getStyleClass()
 meth public java.lang.String getTabindex()
 meth public java.lang.String getTitle()
+meth public java.lang.String getType()
 meth public java.util.Collection<java.lang.String> getEventNames()
 meth public void setAccesskey(java.lang.String)
 meth public void setAlt(java.lang.String)
@@ -2694,6 +2707,7 @@ meth public void setStyle(java.lang.String)
 meth public void setStyleClass(java.lang.String)
 meth public void setTabindex(java.lang.String)
 meth public void setTitle(java.lang.String)
+meth public void setType(java.lang.String)
 supr jakarta.faces.component.UIInput
 hfds EVENT_NAMES,OPTIMIZED_PACKAGE
 
@@ -2728,6 +2742,7 @@ fld public final static jakarta.faces.component.html.HtmlInputText$PropertyKeys 
 fld public final static jakarta.faces.component.html.HtmlInputText$PropertyKeys styleClass
 fld public final static jakarta.faces.component.html.HtmlInputText$PropertyKeys tabindex
 fld public final static jakarta.faces.component.html.HtmlInputText$PropertyKeys title
+fld public final static jakarta.faces.component.html.HtmlInputText$PropertyKeys type
 meth public java.lang.String toString()
 meth public static jakarta.faces.component.html.HtmlInputText$PropertyKeys valueOf(java.lang.String)
 meth public static jakarta.faces.component.html.HtmlInputText$PropertyKeys[] values()
@@ -4288,6 +4303,8 @@ meth public static jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys[
 supr java.lang.Enum<jakarta.faces.component.html.HtmlSelectOneRadio$PropertyKeys>
 hfds toString
 
+CLSS abstract interface jakarta.faces.component.html.package-info
+
 CLSS public jakarta.faces.component.search.ComponentNotFoundException
 cons public init()
 cons public init(java.lang.String)
@@ -4512,6 +4529,7 @@ meth public abstract void dispatch(java.lang.String) throws java.io.IOException
 meth public abstract void log(java.lang.String)
 meth public abstract void log(java.lang.String,java.lang.Throwable)
 meth public abstract void redirect(java.lang.String) throws java.io.IOException
+meth public abstract void release()
 meth public boolean isResponseCommitted()
 meth public boolean isSecure()
 meth public int getRequestContentLength()
@@ -4634,6 +4652,7 @@ meth public void invalidateSession()
 meth public void log(java.lang.String)
 meth public void log(java.lang.String,java.lang.Throwable)
 meth public void redirect(java.lang.String) throws java.io.IOException
+meth public void release()
 meth public void responseFlushBuffer() throws java.io.IOException
 meth public void responseReset()
 meth public void responseSendError(int,java.lang.String) throws java.io.IOException
@@ -4662,6 +4681,7 @@ meth public abstract jakarta.faces.component.UIViewRoot getViewRoot()
 meth public abstract jakarta.faces.context.ExternalContext getExternalContext()
 meth public abstract jakarta.faces.context.ResponseStream getResponseStream()
 meth public abstract jakarta.faces.context.ResponseWriter getResponseWriter()
+meth public abstract jakarta.faces.lifecycle.Lifecycle getLifecycle()
 meth public abstract jakarta.faces.render.RenderKit getRenderKit()
 meth public abstract java.util.Iterator<jakarta.faces.application.FacesMessage> getMessages()
 meth public abstract java.util.Iterator<jakarta.faces.application.FacesMessage> getMessages(java.lang.String)
@@ -4730,6 +4750,7 @@ meth public jakarta.faces.context.PartialViewContext getPartialViewContext()
 meth public jakarta.faces.context.ResponseStream getResponseStream()
 meth public jakarta.faces.context.ResponseWriter getResponseWriter()
 meth public jakarta.faces.event.PhaseId getCurrentPhaseId()
+meth public jakarta.faces.lifecycle.Lifecycle getLifecycle()
 meth public jakarta.faces.render.RenderKit getRenderKit()
 meth public java.util.Iterator<jakarta.faces.application.FacesMessage> getMessages()
 meth public java.util.Iterator<jakarta.faces.application.FacesMessage> getMessages(java.lang.String)
@@ -4883,12 +4904,6 @@ meth public void setRenderAll(boolean)
 supr jakarta.faces.context.PartialViewContext
 hfds wrapped
 
-CLSS public abstract interface !annotation jakarta.faces.context.RequestCookieMap
- anno 0 jakarta.inject.Qualifier()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
-intf java.lang.annotation.Annotation
-
 CLSS public abstract jakarta.faces.context.ResponseStream
 cons public init()
 supr java.io.OutputStream
@@ -4943,12 +4958,6 @@ meth public void writeText(java.lang.Object,java.lang.String) throws java.io.IOE
 meth public void writeURIAttribute(java.lang.String,java.lang.Object,java.lang.String) throws java.io.IOException
 supr jakarta.faces.context.ResponseWriter
 hfds wrapped
-
-CLSS public abstract interface !annotation jakarta.faces.context.SessionMap
- anno 0 jakarta.inject.Qualifier()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
-intf java.lang.annotation.Annotation
 
 CLSS public jakarta.faces.convert.BigDecimalConverter
 cons public init()
@@ -5085,10 +5094,22 @@ CLSS public abstract interface !annotation jakarta.faces.convert.FacesConverter
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD, PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean managed()
 meth public abstract !hasdefault java.lang.Class forClass()
 meth public abstract !hasdefault java.lang.String value()
+
+CLSS public final static jakarta.faces.convert.FacesConverter$Literal
+ outer jakarta.faces.convert.FacesConverter
+fld public final static jakarta.faces.convert.FacesConverter$Literal INSTANCE
+intf jakarta.faces.convert.FacesConverter
+meth public boolean managed()
+meth public java.lang.Class forClass()
+meth public java.lang.String value()
+meth public static jakarta.faces.convert.FacesConverter$Literal of(java.lang.String,java.lang.Class,boolean)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.convert.FacesConverter>
+hfds forClass,managed,serialVersionUID,value
 
 CLSS public jakarta.faces.convert.FloatConverter
 cons public init()
@@ -5176,79 +5197,6 @@ supr java.lang.Object
 
 CLSS public abstract interface jakarta.faces.el.CompositeComponentExpressionHolder
 meth public abstract jakarta.el.ValueExpression getExpression(java.lang.String)
-
-CLSS public jakarta.faces.el.EvaluationException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.Throwable)
-cons public init(java.lang.Throwable)
-supr jakarta.faces.FacesException
-hfds serialVersionUID
-
-CLSS public abstract jakarta.faces.el.MethodBinding
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract java.lang.Class getType(jakarta.faces.context.FacesContext)
-meth public abstract java.lang.Object invoke(jakarta.faces.context.FacesContext,java.lang.Object[])
-meth public java.lang.String getExpressionString()
-supr java.lang.Object
-
-CLSS public jakarta.faces.el.MethodNotFoundException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.Throwable)
-cons public init(java.lang.Throwable)
-supr jakarta.faces.el.EvaluationException
-hfds serialVersionUID
-
-CLSS public jakarta.faces.el.PropertyNotFoundException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.Throwable)
-cons public init(java.lang.Throwable)
-supr jakarta.faces.el.EvaluationException
-hfds serialVersionUID
-
-CLSS public abstract jakarta.faces.el.PropertyResolver
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract boolean isReadOnly(java.lang.Object,int)
-meth public abstract boolean isReadOnly(java.lang.Object,java.lang.Object)
-meth public abstract java.lang.Class getType(java.lang.Object,int)
-meth public abstract java.lang.Class getType(java.lang.Object,java.lang.Object)
-meth public abstract java.lang.Object getValue(java.lang.Object,int)
-meth public abstract java.lang.Object getValue(java.lang.Object,java.lang.Object)
-meth public abstract void setValue(java.lang.Object,int,java.lang.Object)
-meth public abstract void setValue(java.lang.Object,java.lang.Object,java.lang.Object)
-supr java.lang.Object
-
-CLSS public jakarta.faces.el.ReferenceSyntaxException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.Throwable)
-cons public init(java.lang.Throwable)
-supr jakarta.faces.el.EvaluationException
-hfds serialVersionUID
-
-CLSS public abstract jakarta.faces.el.ValueBinding
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract boolean isReadOnly(jakarta.faces.context.FacesContext)
-meth public abstract java.lang.Class getType(jakarta.faces.context.FacesContext)
-meth public abstract java.lang.Object getValue(jakarta.faces.context.FacesContext)
-meth public abstract void setValue(jakarta.faces.context.FacesContext,java.lang.Object)
-meth public java.lang.String getExpressionString()
-supr java.lang.Object
-
-CLSS public abstract jakarta.faces.el.VariableResolver
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public abstract java.lang.Object resolveVariable(jakarta.faces.context.FacesContext,java.lang.String)
-supr java.lang.Object
 
 CLSS public jakarta.faces.event.AbortProcessingException
 cons public init()
@@ -5436,8 +5384,8 @@ CLSS public abstract interface jakarta.faces.event.PhaseListener
 intf java.io.Serializable
 intf java.util.EventListener
 meth public abstract jakarta.faces.event.PhaseId getPhaseId()
-meth public abstract void afterPhase(jakarta.faces.event.PhaseEvent)
-meth public abstract void beforePhase(jakarta.faces.event.PhaseEvent)
+meth public void afterPhase(jakarta.faces.event.PhaseEvent)
+meth public void beforePhase(jakarta.faces.event.PhaseEvent)
 
 CLSS public jakarta.faces.event.PostAddToViewEvent
 cons public init(jakarta.faces.component.UIComponent)
@@ -5618,7 +5566,16 @@ CLSS public abstract interface static !annotation jakarta.faces.event.WebsocketE
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.event.WebsocketEvent$Closed$Literal
+ outer jakarta.faces.event.WebsocketEvent$Closed
+cons public init()
+fld public final static jakarta.faces.event.WebsocketEvent$Closed$Literal INSTANCE
+intf jakarta.faces.event.WebsocketEvent$Closed
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.event.WebsocketEvent$Closed>
+hfds serialVersionUID
 
 CLSS public abstract interface static !annotation jakarta.faces.event.WebsocketEvent$Opened
  outer jakarta.faces.event.WebsocketEvent
@@ -5626,7 +5583,16 @@ CLSS public abstract interface static !annotation jakarta.faces.event.WebsocketE
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.event.WebsocketEvent$Opened$Literal
+ outer jakarta.faces.event.WebsocketEvent$Opened
+cons public init()
+fld public final static jakarta.faces.event.WebsocketEvent$Opened$Literal INSTANCE
+intf jakarta.faces.event.WebsocketEvent$Opened
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.event.WebsocketEvent$Opened>
+hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.flow.Flow
 cons public init()
@@ -5760,7 +5726,16 @@ CLSS public abstract interface !annotation jakarta.faces.flow.builder.FlowBuilde
  anno 0 java.lang.annotation.Documented()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, METHOD, PARAMETER, FIELD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.flow.builder.FlowBuilderParameter$Literal
+ outer jakarta.faces.flow.builder.FlowBuilderParameter
+cons public init()
+fld public final static jakarta.faces.flow.builder.FlowBuilderParameter$Literal INSTANCE
+intf jakarta.faces.flow.builder.FlowBuilderParameter
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.flow.builder.FlowBuilderParameter>
+hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.flow.builder.FlowCallBuilder
 cons public init()
@@ -5775,7 +5750,16 @@ CLSS public abstract interface !annotation jakarta.faces.flow.builder.FlowDefini
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD])
+innr public final static Literal
 intf java.lang.annotation.Annotation
+
+CLSS public final static jakarta.faces.flow.builder.FlowDefinition$Literal
+ outer jakarta.faces.flow.builder.FlowDefinition
+cons public init()
+fld public final static jakarta.faces.flow.builder.FlowDefinition$Literal INSTANCE
+intf jakarta.faces.flow.builder.FlowDefinition
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.flow.builder.FlowDefinition>
+hfds serialVersionUID
 
 CLSS public abstract jakarta.faces.flow.builder.MethodCallBuilder
 cons public init()
@@ -5846,6 +5830,7 @@ supr java.lang.Object
 CLSS public abstract jakarta.faces.lifecycle.ClientWindow
 cons public init()
 fld public final static java.lang.String CLIENT_WINDOW_MODE_PARAM_NAME = "jakarta.faces.CLIENT_WINDOW_MODE"
+fld public final static java.lang.String NUMBER_OF_CLIENT_WINDOWS_PARAM_NAME = "jakarta.faces.NUMBER_OF_CLIENT_WINDOWS"
 meth public abstract java.lang.String getId()
 meth public abstract java.util.Map<java.lang.String,java.lang.String> getQueryURLParameters(jakarta.faces.context.FacesContext)
 meth public abstract void decode(jakarta.faces.context.FacesContext)
@@ -5864,6 +5849,14 @@ meth public abstract jakarta.faces.lifecycle.ClientWindow getClientWindow(jakart
 meth public jakarta.faces.lifecycle.ClientWindowFactory getWrapped()
 supr java.lang.Object
 hfds wrapped
+
+CLSS public abstract interface !annotation jakarta.faces.lifecycle.ClientWindowScoped
+ anno 0 jakarta.enterprise.context.NormalScope(boolean passivating=true)
+ anno 0 java.lang.annotation.Documented()
+ anno 0 java.lang.annotation.Inherited()
+ anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD])
+intf java.lang.annotation.Annotation
 
 CLSS public abstract jakarta.faces.lifecycle.ClientWindowWrapper
 cons public init()
@@ -5979,8 +5972,18 @@ CLSS public abstract interface !annotation jakarta.faces.model.FacesDataModel
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.Class<?> forClass()
+
+CLSS public final static jakarta.faces.model.FacesDataModel$Literal
+ outer jakarta.faces.model.FacesDataModel
+fld public final static jakarta.faces.model.FacesDataModel$Literal INSTANCE
+intf jakarta.faces.model.FacesDataModel
+meth public java.lang.Class<?> forClass()
+meth public static jakarta.faces.model.FacesDataModel$Literal of(java.lang.Class<?>)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.model.FacesDataModel>
+hfds forClass,serialVersionUID
 
 CLSS public jakarta.faces.model.IterableDataModel<%0 extends java.lang.Object>
 cons public init()
@@ -6007,19 +6010,6 @@ meth public void setWrappedData(java.lang.Object)
 meth public {jakarta.faces.model.ListDataModel%0} getRowData()
 supr jakarta.faces.model.DataModel<{jakarta.faces.model.ListDataModel%0}>
 hfds index,list
-
-CLSS public jakarta.faces.model.ResultDataModel
-cons public init()
-cons public init(jakarta.servlet.jsp.jstl.sql.Result)
-meth public boolean isRowAvailable()
-meth public int getRowCount()
-meth public int getRowIndex()
-meth public java.lang.Object getWrappedData()
-meth public java.util.SortedMap<java.lang.String,java.lang.Object> getRowData()
-meth public void setRowIndex(int)
-meth public void setWrappedData(java.lang.Object)
-supr jakarta.faces.model.DataModel<java.util.SortedMap<java.lang.String,java.lang.Object>>
-hfds index,result,rows
 
 CLSS public jakarta.faces.model.ResultSetDataModel
 cons public init()
@@ -6073,11 +6063,13 @@ supr java.lang.Object
 hfds description,disabled,escape,label,noSelectionOption,serialVersionUID,value
 
 CLSS public jakarta.faces.model.SelectItemGroup
+cons public !varargs init(java.lang.String,java.lang.String,boolean,jakarta.faces.model.SelectItem[])
 cons public init()
 cons public init(java.lang.String)
-cons public init(java.lang.String,java.lang.String,boolean,jakarta.faces.model.SelectItem[])
+cons public init(java.lang.String,java.lang.String,boolean,java.util.Collection<? extends jakarta.faces.model.SelectItem>)
+meth public !varargs void setSelectItems(jakarta.faces.model.SelectItem[])
 meth public jakarta.faces.model.SelectItem[] getSelectItems()
-meth public void setSelectItems(jakarta.faces.model.SelectItem[])
+meth public void setSelectItems(java.util.Collection<? extends jakarta.faces.model.SelectItem>)
 supr jakarta.faces.model.SelectItem
 hfds selectItems,serialVersionUID
 
@@ -6085,8 +6077,18 @@ CLSS public abstract interface !annotation jakarta.faces.push.Push
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
  anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[METHOD, FIELD, PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String channel()
+
+CLSS public final static jakarta.faces.push.Push$Literal
+ outer jakarta.faces.push.Push
+fld public final static jakarta.faces.push.Push$Literal INSTANCE
+intf jakarta.faces.push.Push
+meth public java.lang.String channel()
+meth public static jakarta.faces.push.Push$Literal of(java.lang.String)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.push.Push>
+hfds channel,serialVersionUID
 
 CLSS public abstract interface jakarta.faces.push.PushContext
 fld public final static java.lang.String ENABLE_WEBSOCKET_ENDPOINT_PARAM_NAME = "jakarta.faces.ENABLE_WEBSOCKET_ENDPOINT"
@@ -6166,16 +6168,16 @@ meth public void addRenderer(java.lang.String,java.lang.String,jakarta.faces.ren
 supr jakarta.faces.render.RenderKit
 hfds wrapped
 
-CLSS public abstract jakarta.faces.render.Renderer
+CLSS public abstract jakarta.faces.render.Renderer<%0 extends jakarta.faces.component.UIComponent>
 cons public init()
 fld public final static java.lang.String PASSTHROUGH_RENDERER_LOCALNAME_KEY = "elementName"
 meth public boolean getRendersChildren()
 meth public java.lang.Object getConvertedValue(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.lang.Object)
 meth public java.lang.String convertClientId(jakarta.faces.context.FacesContext,java.lang.String)
-meth public void decode(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent)
-meth public void encodeBegin(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent) throws java.io.IOException
-meth public void encodeChildren(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent) throws java.io.IOException
-meth public void encodeEnd(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent) throws java.io.IOException
+meth public void decode(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0})
+meth public void encodeBegin(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0}) throws java.io.IOException
+meth public void encodeChildren(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0}) throws java.io.IOException
+meth public void encodeEnd(jakarta.faces.context.FacesContext,{jakarta.faces.render.Renderer%0}) throws java.io.IOException
 supr java.lang.Object
 
 CLSS public abstract jakarta.faces.render.RendererWrapper
@@ -6203,18 +6205,11 @@ fld public final static java.lang.String RENDER_KIT_ID_PARAM = "jakarta.faces.Re
 fld public final static java.lang.String VIEW_STATE_PARAM = "jakarta.faces.ViewState"
 meth public boolean isPostback(jakarta.faces.context.FacesContext)
 meth public boolean isStateless(jakarta.faces.context.FacesContext,java.lang.String)
-meth public java.lang.Object getComponentStateToRestore(jakarta.faces.context.FacesContext)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.Object getState(jakarta.faces.context.FacesContext,java.lang.String)
-meth public java.lang.Object getTreeStructureToRestore(jakarta.faces.context.FacesContext,java.lang.String)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public java.lang.String getCryptographicallyStrongTokenFromSession(jakarta.faces.context.FacesContext)
 meth public java.lang.String getViewState(jakarta.faces.context.FacesContext,java.lang.Object)
-meth public void writeState(jakarta.faces.context.FacesContext,jakarta.faces.application.StateManager$SerializedView) throws java.io.IOException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public void writeState(jakarta.faces.context.FacesContext,java.lang.Object) throws java.io.IOException
 supr java.lang.Object
-hfds log
 
 CLSS public jakarta.faces.validator.BeanValidator
 cons public init()
@@ -6239,7 +6234,7 @@ meth public void setValidationGroups(java.lang.String)
 meth public void validate(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,java.lang.Object)
 supr java.lang.Object
 hfds LOGGER,cachedValidationGroups,initialState,transientValue,validationGroups
-hcls JsfAwareMessageInterpolator
+hcls FacesAwareMessageInterpolator
 
 CLSS public jakarta.faces.validator.DoubleRangeValidator
 cons public init()
@@ -6273,11 +6268,23 @@ CLSS public abstract interface !annotation jakarta.faces.validator.FacesValidato
  anno 0 jakarta.inject.Qualifier()
  anno 0 java.lang.annotation.Inherited()
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
+ anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE, FIELD, METHOD, PARAMETER])
+innr public final static Literal
 intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean isDefault()
 meth public abstract !hasdefault boolean managed()
 meth public abstract !hasdefault java.lang.String value()
+
+CLSS public final static jakarta.faces.validator.FacesValidator$Literal
+ outer jakarta.faces.validator.FacesValidator
+fld public final static jakarta.faces.validator.FacesValidator$Literal INSTANCE
+intf jakarta.faces.validator.FacesValidator
+meth public boolean isDefault()
+meth public boolean managed()
+meth public java.lang.String value()
+meth public static jakarta.faces.validator.FacesValidator$Literal of(java.lang.String,boolean,boolean)
+supr jakarta.enterprise.util.AnnotationLiteral<jakarta.faces.validator.FacesValidator>
+hfds isDefault,managed,serialVersionUID,value
 
 CLSS public jakarta.faces.validator.LengthValidator
 cons public init()
@@ -6375,8 +6382,6 @@ meth public void validate(jakarta.faces.context.FacesContext,jakarta.faces.compo
 supr java.lang.Object
 
 CLSS public abstract interface jakarta.faces.validator.Validator<%0 extends java.lang.Object>
-fld public final static java.lang.String NOT_IN_RANGE_MESSAGE_ID = "jakarta.faces.validator.NOT_IN_RANGE"
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 intf java.util.EventListener
 meth public abstract void validate(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent,{jakarta.faces.validator.Validator%0})
 
@@ -6444,7 +6449,6 @@ intf jakarta.faces.view.AttachedObjectTarget
 CLSS public abstract jakarta.faces.view.ViewDeclarationLanguage
 cons public init()
 fld public final static java.lang.String FACELETS_VIEW_DECLARATION_LANGUAGE_ID = "java.faces.Facelets"
-fld public final static java.lang.String JSP_VIEW_DECLARATION_LANGUAGE_ID = "java.faces.JSP"
 meth public !varargs java.util.stream.Stream<java.lang.String> getViews(jakarta.faces.context.FacesContext,java.lang.String,int,jakarta.faces.application.ViewVisitOption[])
 meth public !varargs java.util.stream.Stream<java.lang.String> getViews(jakarta.faces.context.FacesContext,java.lang.String,jakarta.faces.application.ViewVisitOption[])
 meth public abstract jakarta.faces.application.Resource getScriptComponentResource(jakarta.faces.context.FacesContext,jakarta.faces.application.Resource)
@@ -6556,7 +6560,7 @@ intf jakarta.faces.view.facelets.FaceletHandler
 meth public jakarta.faces.view.facelets.FaceletHandler[] getHandlers()
 meth public void apply(jakarta.faces.view.facelets.FaceletContext,jakarta.faces.component.UIComponent) throws java.io.IOException
 supr java.lang.Object
-hfds children,len
+hfds handlers
 
 CLSS public abstract interface jakarta.faces.view.facelets.ConverterConfig
 intf jakarta.faces.view.facelets.TagConfig
@@ -6589,6 +6593,7 @@ hfds binding,disabled
 CLSS public abstract jakarta.faces.view.facelets.Facelet
 cons public init()
 meth public abstract void apply(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent) throws java.io.IOException
+meth public void applyMetadata(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent) throws java.io.IOException
 supr java.lang.Object
 
 CLSS public abstract jakarta.faces.view.facelets.FaceletCache<%0 extends java.lang.Object>
@@ -6596,8 +6601,6 @@ cons public init()
 innr public abstract interface static MemberFactory
 meth protected jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}> getMemberFactory()
 meth protected jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}> getMetadataMemberFactory()
-meth protected void setMemberFactories(jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}>,jakarta.faces.view.facelets.FaceletCache$MemberFactory<{jakarta.faces.view.facelets.FaceletCache%0}>)
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
 meth public abstract boolean isFaceletCached(java.net.URL)
 meth public abstract boolean isViewMetadataFaceletCached(java.net.URL)
 meth public abstract {jakarta.faces.view.facelets.FaceletCache%0} getFacelet(java.net.URL) throws java.io.IOException
@@ -6653,12 +6656,6 @@ meth public final java.lang.String getFor()
 meth public final void applyAttachedObject(jakarta.faces.context.FacesContext,jakarta.faces.component.UIComponent)
 supr jakarta.faces.view.facelets.DelegatingMetaTagHandler
 
-CLSS public abstract interface !annotation jakarta.faces.view.facelets.FaceletsResourceResolver
- anno 0 java.lang.annotation.Inherited()
- anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
- anno 0 java.lang.annotation.Target(java.lang.annotation.ElementType[] value=[TYPE])
-intf java.lang.annotation.Annotation
-
 CLSS public abstract interface jakarta.faces.view.facelets.FacetHandler
 meth public abstract java.lang.String getFacetName(jakarta.faces.view.facelets.FaceletContext)
 
@@ -6697,13 +6694,6 @@ meth public abstract java.lang.Class getPropertyType(java.lang.String)
 meth public abstract java.lang.Class getTargetClass()
 meth public abstract java.lang.reflect.Method getReadMethod(java.lang.String)
 meth public abstract java.lang.reflect.Method getWriteMethod(java.lang.String)
-supr java.lang.Object
-
-CLSS public abstract jakarta.faces.view.facelets.ResourceResolver
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-fld public final static java.lang.String FACELETS_RESOURCE_RESOLVER_PARAM_NAME = "jakarta.faces.FACELETS_RESOURCE_RESOLVER"
-meth public abstract java.net.URL resolveUrl(java.lang.String)
 supr java.lang.Object
 
 CLSS public final jakarta.faces.view.facelets.Tag
@@ -6823,37 +6813,9 @@ meth public java.lang.String getValidatorId(jakarta.faces.view.facelets.FaceletC
 supr jakarta.faces.view.facelets.FaceletsAttachedObjectHandler
 hfds config,helper,validatorId
 
-CLSS public jakarta.faces.webapp.AttributeTag
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth public int doEndTag() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public void release()
-meth public void setName(java.lang.String)
-meth public void setValue(java.lang.String)
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds name,serialVersionUID,value
-
-CLSS public abstract jakarta.faces.webapp.ConverterELTag
-cons public init()
-meth protected abstract jakarta.faces.convert.Converter createConverter() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds serialVersionUID
-
-CLSS public jakarta.faces.webapp.ConverterTag
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth protected jakarta.faces.convert.Converter createConverter() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public void release()
-meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
-meth public void setConverterId(java.lang.String)
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds binding,converterId,serialVersionUID
-
 CLSS public final jakarta.faces.webapp.FacesServlet
 cons public init()
+fld public final static java.lang.String AUTOMATIC_EXTENSIONLESS_MAPPING_PARAM_NAME = "jakarta.faces.AUTOMATIC_EXTENSIONLESS_MAPPING"
 fld public final static java.lang.String CONFIG_FILES_ATTR = "jakarta.faces.CONFIG_FILES"
 fld public final static java.lang.String DISABLE_FACESSERVLET_TO_XHTML_PARAM_NAME = "jakarta.faces.DISABLE_FACESSERVLET_TO_XHTML"
 fld public final static java.lang.String LIFECYCLE_ID_ATTR = "jakarta.faces.LIFECYCLE_ID"
@@ -6866,144 +6828,6 @@ meth public void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletR
 supr java.lang.Object
 hfds ALLOWED_HTTP_METHODS_ATTR,LOGGER,allHttpMethods,allowAllMethods,allowedKnownHttpMethods,allowedUnknownHttpMethods,defaultAllowedHttpMethods,facesContextFactory,initFacesContextReleased,lifecycle,servletConfig
 hcls HttpMethod
-
-CLSS public jakarta.faces.webapp.FacetTag
-cons public init()
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public java.lang.String getName()
-meth public void release()
-meth public void setName(java.lang.String)
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds name,serialVersionUID
-
-CLSS public jakarta.faces.webapp.PreJsf2ExceptionHandlerFactory
-cons public init()
-meth public jakarta.faces.context.ExceptionHandler getExceptionHandler()
-supr jakarta.faces.context.ExceptionHandlerFactory
-hcls PreJsf2ExceptionHandler
-
-CLSS public abstract jakarta.faces.webapp.UIComponentBodyTag
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-supr jakarta.faces.webapp.UIComponentTag
-
-CLSS public abstract jakarta.faces.webapp.UIComponentClassicTagBase
-cons public init()
-fld protected final static java.lang.String UNIQUE_ID_PREFIX = "j_id_"
-fld protected jakarta.servlet.jsp.PageContext pageContext
-fld protected jakarta.servlet.jsp.tagext.BodyContent bodyContent
-intf jakarta.servlet.jsp.tagext.BodyTag
-intf jakarta.servlet.jsp.tagext.JspIdConsumer
-meth protected abstract boolean hasBinding()
-meth protected abstract jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,java.lang.String) throws jakarta.servlet.jsp.JspException
-meth protected abstract void setProperties(jakarta.faces.component.UIComponent)
-meth protected int getDoAfterBodyValue() throws jakarta.servlet.jsp.JspException
-meth protected int getDoEndValue() throws jakarta.servlet.jsp.JspException
-meth protected int getDoStartValue() throws jakarta.servlet.jsp.JspException
-meth protected int getIndexOfNextChildTag()
-meth protected jakarta.faces.component.UIComponent createVerbatimComponentFromBodyContent()
-meth protected jakarta.faces.component.UIComponent findComponent(jakarta.faces.context.FacesContext) throws jakarta.servlet.jsp.JspException
-meth protected jakarta.faces.component.UIOutput createVerbatimComponent()
-meth protected jakarta.faces.context.FacesContext getFacesContext()
-meth protected java.lang.String getFacesJspId()
-meth protected java.lang.String getFacetName()
-meth protected java.lang.String getId()
-meth protected java.util.List<java.lang.String> getCreatedComponents()
-meth protected void addChild(jakarta.faces.component.UIComponent)
-meth protected void addFacet(java.lang.String)
-meth protected void addVerbatimAfterComponent(jakarta.faces.webapp.UIComponentClassicTagBase,jakarta.faces.component.UIComponent,jakarta.faces.component.UIComponent)
-meth protected void addVerbatimBeforeComponent(jakarta.faces.webapp.UIComponentClassicTagBase,jakarta.faces.component.UIComponent,jakarta.faces.component.UIComponent)
-meth protected void encodeBegin() throws java.io.IOException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected void encodeChildren() throws java.io.IOException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected void encodeEnd() throws java.io.IOException
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth protected void setupResponseWriter()
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-meth public boolean getCreated()
-meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
-meth public int doEndTag() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public jakarta.faces.component.UIComponent getComponentInstance()
-meth public jakarta.servlet.jsp.JspWriter getPreviousOut()
-meth public jakarta.servlet.jsp.tagext.BodyContent getBodyContent()
-meth public jakarta.servlet.jsp.tagext.Tag getParent()
-meth public java.lang.String getJspId()
-meth public static jakarta.faces.webapp.UIComponentClassicTagBase getParentUIComponentClassicTagBase(jakarta.servlet.jsp.PageContext)
-meth public void doInitBody() throws jakarta.servlet.jsp.JspException
-meth public void release()
-meth public void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
-meth public void setId(java.lang.String)
-meth public void setJspId(java.lang.String)
-meth public void setPageContext(jakarta.servlet.jsp.PageContext)
-meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
-supr jakarta.faces.webapp.UIComponentTagBase
-hfds COMPONENT_TAG_STACK_ATTR,CURRENT_FACES_CONTEXT,CURRENT_VIEW_ROOT,GLOBAL_ID_VIEW,JAKARTA_FACES_PAGECONTEXT_COUNTER,JAKARTA_FACES_PAGECONTEXT_MARKER,JSP_CREATED_COMPONENT_IDS,JSP_CREATED_FACET_NAMES,PREVIOUS_JSP_ID_SET,_nextChildIndex,component,context,created,createdComponents,createdFacets,facesJspId,id,isNestedInIterator,jspId,namingContainerChildIds,parent,parentTag
-
-CLSS public abstract jakarta.faces.webapp.UIComponentELTag
-cons public init()
-intf jakarta.servlet.jsp.tagext.Tag
-meth protected boolean hasBinding()
-meth protected jakarta.el.ELContext getELContext()
-meth protected jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,java.lang.String) throws jakarta.servlet.jsp.JspException
-meth protected void setProperties(jakarta.faces.component.UIComponent)
-meth public void release()
-meth public void setBinding(jakarta.el.ValueExpression) throws jakarta.servlet.jsp.JspException
-meth public void setRendered(jakarta.el.ValueExpression)
-supr jakarta.faces.webapp.UIComponentClassicTagBase
-hfds binding,rendered
-
-CLSS public abstract jakarta.faces.webapp.UIComponentTag
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-intf jakarta.servlet.jsp.tagext.Tag
-meth protected boolean hasBinding()
-meth protected boolean isSuppressed()
-meth protected jakarta.faces.component.UIComponent createComponent(jakarta.faces.context.FacesContext,java.lang.String)
-meth protected void setProperties(jakarta.faces.component.UIComponent)
-meth public static boolean isValueReference(java.lang.String)
-meth public static jakarta.faces.webapp.UIComponentTag getParentUIComponentTag(jakarta.servlet.jsp.PageContext)
-meth public void release()
-meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
-meth public void setRendered(java.lang.String)
-supr jakarta.faces.webapp.UIComponentClassicTagBase
-hfds binding,rendered,suppressed
-hcls UIComponentTagAdapter
-
-CLSS public abstract jakarta.faces.webapp.UIComponentTagBase
-cons public init()
-fld protected final static java.util.logging.Logger log
-intf jakarta.servlet.jsp.tagext.JspTag
-meth protected abstract int getIndexOfNextChildTag()
-meth protected abstract jakarta.faces.context.FacesContext getFacesContext()
-meth protected abstract void addChild(jakarta.faces.component.UIComponent)
-meth protected abstract void addFacet(java.lang.String)
-meth protected jakarta.el.ELContext getELContext()
-meth public abstract boolean getCreated()
-meth public abstract jakarta.faces.component.UIComponent getComponentInstance()
-meth public abstract java.lang.String getComponentType()
-meth public abstract java.lang.String getRendererType()
-meth public abstract void setId(java.lang.String)
-supr java.lang.Object
-
-CLSS public abstract jakarta.faces.webapp.ValidatorELTag
-cons public init()
-meth protected abstract jakarta.faces.validator.Validator createValidator() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds serialVersionUID
-
-CLSS public jakarta.faces.webapp.ValidatorTag
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-cons public init()
-meth protected jakarta.faces.validator.Validator createValidator() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public void release()
-meth public void setBinding(java.lang.String) throws jakarta.servlet.jsp.JspException
-meth public void setValidatorId(java.lang.String)
-supr jakarta.servlet.jsp.tagext.TagSupport
-hfds binding,serialVersionUID,validatorId
 
 CLSS public abstract interface !annotation jakarta.inject.Qualifier
  anno 0 java.lang.annotation.Documented()
@@ -7026,60 +6850,6 @@ meth public abstract !hasdefault int fileSizeThreshold()
 meth public abstract !hasdefault java.lang.String location()
 meth public abstract !hasdefault long maxFileSize()
 meth public abstract !hasdefault long maxRequestSize()
-
-CLSS public abstract interface jakarta.servlet.jsp.tagext.BodyTag
-fld public final static int EVAL_BODY_BUFFERED = 2
-fld public final static int EVAL_BODY_TAG = 2
- anno 0 java.lang.Deprecated(boolean forRemoval=false, java.lang.String since="")
-intf jakarta.servlet.jsp.tagext.IterationTag
-meth public abstract void doInitBody() throws jakarta.servlet.jsp.JspException
-meth public abstract void setBodyContent(jakarta.servlet.jsp.tagext.BodyContent)
-
-CLSS public abstract interface jakarta.servlet.jsp.tagext.IterationTag
-fld public final static int EVAL_BODY_AGAIN = 2
-intf jakarta.servlet.jsp.tagext.Tag
-meth public abstract int doAfterBody() throws jakarta.servlet.jsp.JspException
-
-CLSS public abstract interface jakarta.servlet.jsp.tagext.JspIdConsumer
-meth public abstract void setJspId(java.lang.String)
-
-CLSS public abstract interface jakarta.servlet.jsp.tagext.JspTag
-
-CLSS public abstract interface jakarta.servlet.jsp.tagext.Tag
-fld public final static int EVAL_BODY_INCLUDE = 1
-fld public final static int EVAL_PAGE = 6
-fld public final static int SKIP_BODY = 0
-fld public final static int SKIP_PAGE = 5
-intf jakarta.servlet.jsp.tagext.JspTag
-meth public abstract int doEndTag() throws jakarta.servlet.jsp.JspException
-meth public abstract int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public abstract jakarta.servlet.jsp.tagext.Tag getParent()
-meth public abstract void release()
-meth public abstract void setPageContext(jakarta.servlet.jsp.PageContext)
-meth public abstract void setParent(jakarta.servlet.jsp.tagext.Tag)
-
-CLSS public jakarta.servlet.jsp.tagext.TagSupport
-cons public init()
-fld protected jakarta.servlet.jsp.PageContext pageContext
-fld protected java.lang.String id
-intf jakarta.servlet.jsp.tagext.IterationTag
-intf java.io.Serializable
-meth public final static jakarta.servlet.jsp.tagext.Tag findAncestorWithClass(jakarta.servlet.jsp.tagext.Tag,java.lang.Class<?>)
-meth public int doAfterBody() throws jakarta.servlet.jsp.JspException
-meth public int doEndTag() throws jakarta.servlet.jsp.JspException
-meth public int doStartTag() throws jakarta.servlet.jsp.JspException
-meth public jakarta.servlet.jsp.tagext.Tag getParent()
-meth public java.lang.Object getValue(java.lang.String)
-meth public java.lang.String getId()
-meth public java.util.Enumeration<java.lang.String> getValues()
-meth public void release()
-meth public void removeValue(java.lang.String)
-meth public void setId(java.lang.String)
-meth public void setPageContext(jakarta.servlet.jsp.PageContext)
-meth public void setParent(jakarta.servlet.jsp.tagext.Tag)
-meth public void setValue(java.lang.String,java.lang.Object)
-supr java.lang.Object
-hfds parent,serialVersionUID,values
 
 CLSS public abstract interface java.io.Closeable
 intf java.lang.AutoCloseable

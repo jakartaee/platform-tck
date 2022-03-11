@@ -67,7 +67,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar#g" ts.jte
+sed -i "s#^el\.classes=.*#el.classes=$TS_HOME/lib/javatest.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.el-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/expressly.jar#g" ts.jte
 sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
 sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 

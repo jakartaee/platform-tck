@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="negativeFNScopeNoVarTest">
     <!-- If scope is specified and var is not, a fatal translation

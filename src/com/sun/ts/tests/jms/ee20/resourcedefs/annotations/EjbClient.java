@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Contributors to Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,26 +46,59 @@ import jakarta.jms.TopicConnectionFactory;
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinitions(value = {
-    @JMSDestinationDefinition(description = "Define Queue EJBMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/EJBMyTestQueue", destinationName = "EJBMyTestQueue"),
+  @JMSDestinationDefinition(
+	description="Define Queue EJBMyTestQueue",
+	interfaceName="jakarta.jms.Queue",
+	name="java:global/env/EJBMyTestQueue",
+    	destinationName="EJBMyTestQueue"
+   )
 
-    @JMSDestinationDefinition(description = "Define Topic EJBMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/EJBMyTestTopic", destinationName = "EJBMyTestTopic")
+  @JMSDestinationDefinition(
+	description="Define Topic EJBMyTestTopic",
+	interfaceName="jakarta.jms.Topic",
+	name="java:app/env/EJBMyTestTopic",
+	destinationName="EJBMyTestTopic"
+   )
 
-})
-
-// -------------------------------------------
+//-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
-// -------------------------------------------
-@JMSConnectionFactoryDefinitions(value = {
-    @JMSConnectionFactoryDefinition(description = "Define ConnectionFactory EJBMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/EJBMyTestConnectionFactory", user = "j2ee", password = "j2ee"),
+//-------------------------------------------
+  @JMSConnectionFactoryDefinition(
+	description="Define ConnectionFactory EJBMyTestConnectionFactory",
+	interfaceName="jakarta.jms.ConnectionFactory",
+    	name="java:global/EJBMyTestConnectionFactory",
+	user = "j2ee",
+	password = "j2ee"
+   )
 
-    @JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory EJBMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/EJBMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee"),
+  @JMSConnectionFactoryDefinition(
+	description="Define QueueConnectionFactory EJBMyTestQueueConnectionFactory",
+	interfaceName="jakarta.jms.QueueConnectionFactory",
+    	name="java:app/EJBMyTestQueueConnectionFactory",
+	user = "j2ee",
+	password = "j2ee"
+   )
 
-    @JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory EJBMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/EJBMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee"),
+  @JMSConnectionFactoryDefinition(
+	description="Define TopicConnectionFactory EJBMyTestTopicConnectionFactory",
+	interfaceName="jakarta.jms.TopicConnectionFactory",
+    	name="java:module/EJBMyTestTopicConnectionFactory",
+	user = "j2ee",
+	password = "j2ee"
+   )
 
-    @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
-        "Property1=10",
-        "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20) })
+  @JMSConnectionFactoryDefinition(
+	description="Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory",
+	interfaceName="jakarta.jms.TopicConnectionFactory",
+    	name="java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory",
+	user = "j2ee",
+	password = "j2ee",
+	clientId = "MyClientID",
+	properties = { "Property1=10", "Property2=20" },
+	transactional = false,
+	maxPoolSize = 30,
+	minPoolSize = 20
+   )
 
 @Stateful(name = "JMSResourceDefsEjbClientBean")
 @Remote({ EjbClientIF.class })

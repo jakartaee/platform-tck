@@ -42,7 +42,7 @@
         <freemarker.version>2.3.30</freemarker.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status></status>
-        <doc.pdf>SAAJ-TCK-Users-Guide.pdf</doc.pdf>
+        <doc.pdf>SOAP-Attachments-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 

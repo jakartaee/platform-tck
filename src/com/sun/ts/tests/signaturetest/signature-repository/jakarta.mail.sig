@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.1
 
 CLSS public abstract interface jakarta.activation.DataSource
 meth public abstract java.io.InputStream getInputStream() throws java.io.IOException
@@ -36,6 +36,7 @@ hfds requestingPort,requestingPrompt,requestingProtocol,requestingSite,requestin
 
 CLSS public abstract jakarta.mail.BodyPart
 cons public init()
+fld protected final jakarta.mail.util.StreamProvider streamProvider
 fld protected jakarta.mail.Multipart parent
 intf jakarta.mail.Part
 meth public jakarta.mail.Multipart getParent()
@@ -325,6 +326,7 @@ hfds serialVersionUID
 
 CLSS public abstract jakarta.mail.Multipart
 cons protected init()
+fld protected final jakarta.mail.util.StreamProvider streamProvider
 fld protected jakarta.mail.Part parent
 fld protected java.lang.String contentType
 fld protected java.util.Vector<jakarta.mail.BodyPart> parts
@@ -477,7 +479,6 @@ supr java.lang.Object
 hfds connected,connectionListeners,q
 
 CLSS public final jakarta.mail.Session
-fld public final static jakarta.mail.util.StreamProvider STREAM_PROVIDER
 meth public boolean getDebug()
 meth public jakarta.mail.Folder getFolder(jakarta.mail.URLName) throws jakarta.mail.MessagingException
 meth public jakarta.mail.PasswordAuthentication getPasswordAuthentication(jakarta.mail.URLName)
@@ -493,6 +494,7 @@ meth public jakarta.mail.Transport getTransport(jakarta.mail.Address) throws jak
 meth public jakarta.mail.Transport getTransport(jakarta.mail.Provider) throws jakarta.mail.NoSuchProviderException
 meth public jakarta.mail.Transport getTransport(jakarta.mail.URLName) throws jakarta.mail.NoSuchProviderException
 meth public jakarta.mail.Transport getTransport(java.lang.String) throws jakarta.mail.NoSuchProviderException
+meth public jakarta.mail.util.StreamProvider getStreamProvider()
 meth public java.io.PrintStream getDebugOut()
 meth public java.lang.String getProperty(java.lang.String)
 meth public java.util.Properties getProperties()
@@ -507,7 +509,7 @@ meth public void setPasswordAuthentication(jakarta.mail.URLName,jakarta.mail.Pas
 meth public void setProtocolForAddress(java.lang.String,java.lang.String)
 meth public void setProvider(jakarta.mail.Provider) throws jakarta.mail.NoSuchProviderException
 supr java.lang.Object
-hfds DEFAULT_PROVIDER,addressMap,authTable,authenticator,confDir,debug,defaultSession,logger,out,props,providers,providersByClassName,providersByProtocol,q
+hfds DEFAULT_PROVIDER,addressMap,authTable,authenticator,confDir,debug,defaultSession,logger,out,props,providers,providersByClassName,providersByProtocol,q,streamProvider
 
 CLSS public abstract jakarta.mail.Store
 cons protected init(jakarta.mail.Session,jakarta.mail.URLName)
@@ -1482,6 +1484,7 @@ meth public abstract java.io.OutputStream outputBinary(java.io.OutputStream)
 meth public abstract java.io.OutputStream outputQ(java.io.OutputStream,boolean)
 meth public abstract java.io.OutputStream outputQP(java.io.OutputStream)
 meth public abstract java.io.OutputStream outputUU(java.io.OutputStream,java.lang.String)
+meth public static jakarta.mail.util.StreamProvider provider()
 
 CLSS public final static !enum jakarta.mail.util.StreamProvider$EncoderTypes
  outer jakarta.mail.util.StreamProvider

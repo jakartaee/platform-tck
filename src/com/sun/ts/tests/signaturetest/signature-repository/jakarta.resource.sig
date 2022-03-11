@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.1
 
 CLSS public abstract interface !annotation jakarta.resource.AdministeredObjectDefinition
  anno 0 java.lang.annotation.Repeatable(java.lang.Class<? extends java.lang.annotation.Annotation> value=class jakarta.resource.AdministeredObjectDefinitions)
@@ -87,10 +87,10 @@ meth public abstract java.lang.String getUserName() throws jakarta.resource.Reso
 
 CLSS public abstract interface jakarta.resource.cci.ConnectionSpec
 
-CLSS public abstract interface jakarta.resource.cci.IndexedRecord
+CLSS public abstract interface jakarta.resource.cci.IndexedRecord<%0 extends java.lang.Object>
 intf jakarta.resource.cci.Record
 intf java.io.Serializable
-intf java.util.List
+intf java.util.List<{jakarta.resource.cci.IndexedRecord%0}>
 
 CLSS public abstract interface jakarta.resource.cci.Interaction
 meth public abstract boolean execute(jakarta.resource.cci.InteractionSpec,jakarta.resource.cci.Record,jakarta.resource.cci.Record) throws jakarta.resource.ResourceException
@@ -111,10 +111,10 @@ meth public abstract void begin() throws jakarta.resource.ResourceException
 meth public abstract void commit() throws jakarta.resource.ResourceException
 meth public abstract void rollback() throws jakarta.resource.ResourceException
 
-CLSS public abstract interface jakarta.resource.cci.MappedRecord
+CLSS public abstract interface jakarta.resource.cci.MappedRecord<%0 extends java.lang.Object, %1 extends java.lang.Object>
 intf jakarta.resource.cci.Record
 intf java.io.Serializable
-intf java.util.Map
+intf java.util.Map<{jakarta.resource.cci.MappedRecord%0},{jakarta.resource.cci.MappedRecord%1}>
 
 CLSS public abstract interface jakarta.resource.cci.MessageListener
 meth public abstract jakarta.resource.cci.Record onMessage(jakarta.resource.cci.Record) throws jakarta.resource.ResourceException
@@ -131,8 +131,8 @@ meth public abstract void setRecordName(java.lang.String)
 meth public abstract void setRecordShortDescription(java.lang.String)
 
 CLSS public abstract interface jakarta.resource.cci.RecordFactory
-meth public abstract jakarta.resource.cci.IndexedRecord createIndexedRecord(java.lang.String) throws jakarta.resource.ResourceException
-meth public abstract jakarta.resource.cci.MappedRecord createMappedRecord(java.lang.String) throws jakarta.resource.ResourceException
+meth public abstract <%0 extends java.lang.Object, %1 extends java.lang.Object> jakarta.resource.cci.MappedRecord<{%%0},{%%1}> createMappedRecord(java.lang.String) throws jakarta.resource.ResourceException
+meth public abstract <%0 extends java.lang.Object> jakarta.resource.cci.IndexedRecord<{%%0}> createIndexedRecord(java.lang.String) throws jakarta.resource.ResourceException
 
 CLSS public abstract interface jakarta.resource.cci.ResourceAdapterMetaData
 meth public abstract boolean supportsExecuteWithInputAndOutputRecord()

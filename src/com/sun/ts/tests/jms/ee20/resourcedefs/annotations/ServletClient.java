@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Contributors to Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -48,26 +49,59 @@ import jakarta.servlet.http.HttpServletResponse;
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinitions(value = {
-    @JMSDestinationDefinition(description = "Define Queue ServletMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/ServletMyTestQueue", destinationName = "ServletMyTestQueue"),
+@JMSDestinationDefinition(
+      description="Define Queue ServletMyTestQueue",
+      interfaceName="jakarta.jms.Queue",
+      name="java:global/env/ServletMyTestQueue",
+      destinationName="ServletMyTestQueue"
+ )
 
-    @JMSDestinationDefinition(description = "Define Topic ServletMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/ServletMyTestTopic", destinationName = "ServletMyTestTopic")
+@JMSDestinationDefinition(
+      description="Define Topic ServletMyTestTopic",
+      interfaceName="jakarta.jms.Topic",
+      name="java:app/env/ServletMyTestTopic",
+      destinationName="ServletMyTestTopic"
+ )
 
-})
-
-// -------------------------------------------
+//-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
-// -------------------------------------------
-@JMSConnectionFactoryDefinitions(value = {
-    @JMSConnectionFactoryDefinition(description = "Define ConnectionFactory ServletMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/ServletMyTestConnectionFactory", user = "j2ee", password = "j2ee"),
+//-------------------------------------------
+@JMSConnectionFactoryDefinition(
+      description="Define ConnectionFactory ServletMyTestConnectionFactory",
+      interfaceName="jakarta.jms.ConnectionFactory",
+      name="java:global/ServletMyTestConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory ServletMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/ServletMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee"),
+@JMSConnectionFactoryDefinition(
+      description="Define QueueConnectionFactory ServletMyTestQueueConnectionFactory",
+      interfaceName="jakarta.jms.QueueConnectionFactory",
+      name="java:app/ServletMyTestQueueConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory ServletMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/ServletMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee"),
+@JMSConnectionFactoryDefinition(
+      description="Define TopicConnectionFactory ServletMyTestTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:module/ServletMyTestTopicConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
-        "Property1=10",
-        "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20) })
+@JMSConnectionFactoryDefinition(
+      description="Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory",
+      user = "j2ee",
+      password = "j2ee",
+      clientId = "MyClientID",
+      properties = { "Property1=10", "Property2=20" },
+      transactional = false,
+      maxPoolSize = 30,
+      minPoolSize = 20
+ )
 
 @WebServlet("/ServletTest")
 public class ServletClient extends HttpServlet {

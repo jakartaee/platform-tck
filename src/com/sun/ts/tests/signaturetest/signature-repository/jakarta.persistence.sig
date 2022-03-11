@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 3.1
 
 CLSS public abstract interface !annotation jakarta.persistence.Access
  anno 0 java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy value=RUNTIME)
@@ -323,7 +323,9 @@ meth public abstract void close()
 
 CLSS public jakarta.persistence.EntityNotFoundException
 cons public init()
+cons public init(java.lang.Exception)
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.EntityResult
@@ -406,6 +408,7 @@ fld public final static jakarta.persistence.GenerationType AUTO
 fld public final static jakarta.persistence.GenerationType IDENTITY
 fld public final static jakarta.persistence.GenerationType SEQUENCE
 fld public final static jakarta.persistence.GenerationType TABLE
+fld public final static jakarta.persistence.GenerationType UUID
 meth public static jakarta.persistence.GenerationType valueOf(java.lang.String)
 meth public static jakarta.persistence.GenerationType[] values()
 supr java.lang.Enum<jakarta.persistence.GenerationType>
@@ -690,7 +693,9 @@ supr jakarta.persistence.PersistenceException
 
 CLSS public jakarta.persistence.NonUniqueResultException
 cons public init()
+cons public init(java.lang.Exception)
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.OneToMany
@@ -1125,7 +1130,9 @@ supr java.lang.Enum<jakarta.persistence.TemporalType>
 
 CLSS public jakarta.persistence.TransactionRequiredException
 cons public init()
+cons public init(java.lang.Exception)
 cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr jakarta.persistence.PersistenceException
 
 CLSS public abstract interface !annotation jakarta.persistence.Transient
@@ -1243,15 +1250,18 @@ meth public abstract <%0 extends java.lang.Comparable<? super {%%0}>> jakarta.pe
 meth public abstract <%0 extends java.lang.Comparable<? super {%%0}>> jakarta.persistence.criteria.Predicate lessThanOrEqualTo(jakarta.persistence.criteria.Expression<? extends {%%0}>,{%%0})
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<java.lang.Double> avg(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> abs(jakarta.persistence.criteria.Expression<{%%0}>)
+meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> ceiling(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> diff(jakarta.persistence.criteria.Expression<? extends {%%0}>,jakarta.persistence.criteria.Expression<? extends {%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> diff(jakarta.persistence.criteria.Expression<? extends {%%0}>,{%%0})
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> diff({%%0},jakarta.persistence.criteria.Expression<? extends {%%0}>)
+meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> floor(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> max(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> min(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> neg(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> prod(jakarta.persistence.criteria.Expression<? extends {%%0}>,jakarta.persistence.criteria.Expression<? extends {%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> prod(jakarta.persistence.criteria.Expression<? extends {%%0}>,{%%0})
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> prod({%%0},jakarta.persistence.criteria.Expression<? extends {%%0}>)
+meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> round(jakarta.persistence.criteria.Expression<{%%0}>,java.lang.Integer)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> sum(jakarta.persistence.criteria.Expression<? extends {%%0}>,jakarta.persistence.criteria.Expression<? extends {%%0}>)
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> sum(jakarta.persistence.criteria.Expression<? extends {%%0}>,{%%0})
 meth public abstract <%0 extends java.lang.Number> jakarta.persistence.criteria.Expression<{%%0}> sum(jakarta.persistence.criteria.Expression<{%%0}>)
@@ -1293,6 +1303,10 @@ meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.cr
 meth public abstract <%0 extends java.util.Collection<?>> jakarta.persistence.criteria.Predicate isNotEmpty(jakarta.persistence.criteria.Expression<{%%0}>)
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<jakarta.persistence.Tuple> createTupleQuery()
 meth public abstract jakarta.persistence.criteria.CriteriaQuery<java.lang.Object> createQuery()
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> exp(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> ln(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> power(jakarta.persistence.criteria.Expression<? extends java.lang.Number>,jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> power(jakarta.persistence.criteria.Expression<? extends java.lang.Number>,java.lang.Number)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> sqrt(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> sumAsDouble(jakarta.persistence.criteria.Expression<java.lang.Float>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Double> toDouble(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
@@ -1305,6 +1319,7 @@ meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> 
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> mod(jakarta.persistence.criteria.Expression<java.lang.Integer>,jakarta.persistence.criteria.Expression<java.lang.Integer>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> mod(jakarta.persistence.criteria.Expression<java.lang.Integer>,java.lang.Integer)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> mod(java.lang.Integer,jakarta.persistence.criteria.Expression<java.lang.Integer>)
+meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> sign(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Integer> toInteger(jakarta.persistence.criteria.Expression<? extends java.lang.Number>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Long> count(jakarta.persistence.criteria.Expression<?>)
 meth public abstract jakarta.persistence.criteria.Expression<java.lang.Long> countDistinct(jakarta.persistence.criteria.Expression<?>)
@@ -1334,6 +1349,9 @@ meth public abstract jakarta.persistence.criteria.Expression<java.math.BigIntege
 meth public abstract jakarta.persistence.criteria.Expression<java.sql.Date> currentDate()
 meth public abstract jakarta.persistence.criteria.Expression<java.sql.Time> currentTime()
 meth public abstract jakarta.persistence.criteria.Expression<java.sql.Timestamp> currentTimestamp()
+meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalDate> localDate()
+meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalDateTime> localDateTime()
+meth public abstract jakarta.persistence.criteria.Expression<java.time.LocalTime> localTime()
 meth public abstract jakarta.persistence.criteria.Order asc(jakarta.persistence.criteria.Expression<?>)
 meth public abstract jakarta.persistence.criteria.Order desc(jakarta.persistence.criteria.Expression<?>)
 meth public abstract jakarta.persistence.criteria.Predicate and(jakarta.persistence.criteria.Expression<java.lang.Boolean>,jakarta.persistence.criteria.Expression<java.lang.Boolean>)
@@ -1395,6 +1413,8 @@ meth public abstract jakarta.persistence.criteria.Expression<{jakarta.persistenc
 CLSS public abstract interface static jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<%0 extends java.lang.Object, %1 extends java.lang.Object>
  outer jakarta.persistence.criteria.CriteriaBuilder
 intf jakarta.persistence.criteria.Expression<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}>
+meth public abstract jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}> when(jakarta.persistence.criteria.Expression<? extends {jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0}>,jakarta.persistence.criteria.Expression<? extends {jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}>)
+meth public abstract jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}> when(jakarta.persistence.criteria.Expression<? extends {jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0}>,{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1})
 meth public abstract jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}> when({jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},jakarta.persistence.criteria.Expression<? extends {jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}>)
 meth public abstract jakarta.persistence.criteria.CriteriaBuilder$SimpleCase<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1}> when({jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0},{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%1})
 meth public abstract jakarta.persistence.criteria.Expression<{jakarta.persistence.criteria.CriteriaBuilder$SimpleCase%0}> getExpression()
@@ -1773,7 +1793,7 @@ meth public static jakarta.persistence.metamodel.Type$PersistenceType[] values()
 supr java.lang.Enum<jakarta.persistence.metamodel.Type$PersistenceType>
 
 CLSS public abstract interface jakarta.persistence.spi.ClassTransformer
-meth public abstract byte[] transform(java.lang.ClassLoader,java.lang.String,java.lang.Class<?>,java.security.ProtectionDomain,byte[]) throws java.lang.instrument.IllegalClassFormatException
+meth public abstract byte[] transform(java.lang.ClassLoader,java.lang.String,java.lang.Class<?>,java.security.ProtectionDomain,byte[]) throws jakarta.persistence.spi.TransformerException
 
 CLSS public final !enum jakarta.persistence.spi.LoadState
 fld public final static jakarta.persistence.spi.LoadState LOADED
@@ -1832,6 +1852,14 @@ CLSS public abstract interface jakarta.persistence.spi.ProviderUtil
 meth public abstract jakarta.persistence.spi.LoadState isLoaded(java.lang.Object)
 meth public abstract jakarta.persistence.spi.LoadState isLoadedWithReference(java.lang.Object,java.lang.String)
 meth public abstract jakarta.persistence.spi.LoadState isLoadedWithoutReference(java.lang.Object,java.lang.String)
+
+CLSS public jakarta.persistence.spi.TransformerException
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+supr java.lang.Exception
+hfds serialVersionUID
 
 CLSS public abstract interface java.io.Serializable
 

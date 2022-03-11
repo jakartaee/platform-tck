@@ -61,7 +61,7 @@ JavaTest Harness Software."]
 
 In these instructions, variables in angle brackets need to be expanded
 for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+UNIX/Linux and `%TS_HOME%` on Windows. In addition, the forward
 slashes (`/`) used in all of the examples need to be replaced with
 backslashes (`\`) for Windows. Finally, be sure to use the appropriate
 separator for your operating system when specifying multiple path
@@ -101,7 +101,7 @@ file and set the following environment variables:
   `impl.vi, impl.vi.deploy.dir, impl.vi.host, and impl.vi.port` properties
   to the supported web container, deploy directory, host and port for the
   {TechnologyShortName} Compatible Implementation. +
-  The supported web container for the {TechnologyShortName} Compatible Implementation is the Jakarta EE 9 Compatible Platform. So
+  The supported web container for the {TechnologyShortName} Compatible Implementation is the Jakarta EE {JakartaEEVersion} Compatible Platform. So
   the default settings for these properties are as follows:
 +
 --
@@ -115,7 +115,7 @@ impl.vi.port=${webServerPort}
 --
 +
   f.  Set the `webcontainer.home` property to the location where the web
-  server is installed for the {TechnologyShortName} Compatible Implementation. This will be where the Jakarta EE 9
+  server is installed for the {TechnologyShortName} Compatible Implementation. This will be where the Jakarta EE {JakartaEEVersion}
   Compatible Implementation is installed.
   g.  Set the `porting.ts.url.class.1` property to the porting
   implementation class that is used for obtaining URLs. +
@@ -137,7 +137,7 @@ com.sun.ts.lib.implementation.sun.common.SunRIURL
   j. Set the `http.server.supports.endpoint.publish` property based on
   whether Endpoint Publish APIs are supported on the container.
 
-3.  If you use the Standalone JAX-WS 3.0 Compatible Implementation software
+3.  If you use the Standalone XML-WS {TechnologyVersion} Compatible Implementation software
 with the ApacheTomcat web container, set the following environment variables
 in your `<TS_HOME>/bin/ts.jte` file:
   a.  Set `webcontainer.home` value to the location where the Apache Tomcat web
@@ -229,7 +229,7 @@ JavaTest Harness Software."]
 
 In these instructions, variables in angle brackets need to be expanded
 for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+UNIX/Linux and `%TS_HOME%` on Windows. In addition, the forward
 slashes (`/`) used in all of the examples need to be replaced with
 backslashes (`\`) for Windows. Finally, be sure to use the appropriate
 separator for your operating system when specifying multiple path
@@ -242,7 +242,7 @@ slashes as a path separator instead.
 =======================================================================
 
 
-[[sthref9]]
+[[sthref3]]
 
 Before You Begin
 
@@ -310,7 +310,7 @@ Implementation should contain all classes copied to `${jaxws.home.ri}/shared/lib
   e.  Set the `impl.vi`, `impl.vi.deploy.dir`, `impl.vi.host`, and
   `impl.vi.port` properties to the supported web container, deploy
   directory, host and port for the Vendor Implementation. +
-  As an example, the `ts.jte` file contains the settings for the Jakarta EE 9
+  As an example, the `ts.jte` file contains the settings for the Jakarta EE {JakartaEEVersion}
   Compatible Implementation, which are as follows:
 +
 --
@@ -408,28 +408,25 @@ instructions in link:#GBFUY[Using the JavaTest Harness Software].
 
 In these instructions, variables in angle brackets need to be expanded
 for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows XP/Vista. In addition, the
-forward slashes (`/`) used in all of the examples need to be replaced
-with backslashes (`\`) for Windows XP/Vista. Finally, be sure to use the
-appropriate separator for your operating system when specifying multiple
-path entries (`;` on Windows, `:` on UNIX/Linux).
+UNIX/Linux and `%TS_HOME%` on Windows. In addition, the forward
+slashes (`/`) used in all of the examples need to be replaced with
+backslashes (`\`) for Windows. Finally, be sure to use the appropriate
+separator for your operating system when specifying multiple path
+entries (`;` on Windows, `:` on UNIX/Linux).
 
 On Windows, you must escape any backslashes with an extra backslash in
 path separators used in any of the following properties, or use forward
-slashes as a path separator instead. For example, if the Jakarta EE 9 Compatible Platform
-installation is `C:\JakartaEE9`, you must specify it as `C:\\JakartaEE9` or
-`C:/JakartaEE9`.
+slashes as a path separator instead..
 
 =======================================================================
 
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK {TechnologyVersion} software is
   installed
   c.  `ANT_HOME` should be set in your environment.
-2.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
-Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+2. Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the hostname where the web
   server for the Vendor Implementation is running. +
@@ -469,7 +466,7 @@ environment variables:
   `impl.ri.port` properties to the supported web container, deploy
   directory, host and port used for the {TechnologyShortName} Reference Implementation. +
   The supported web container for standalone web applications is the Jakarta
-  EE 9 Compatible Implementation. The default settings for these properties are as follows:
+  EE {JakartaEEVersion} Compatible Implementation. The default settings for these properties are as follows:
 +
 --
 [source,oac_no_warn]
@@ -557,7 +554,7 @@ server environments for the Compatible Implementation and VI.
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK {TechnologyVersion} software is
   installed
   c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Vendor specific properties
@@ -579,7 +576,7 @@ ant config.vi
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK 3.0 software is
+  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK {TechnologyVersion} software is
   installed
   c.  `ANT_HOME` should be set in your environment.
 2.  Ensure that the `ts.jte` settings for Compatible Implementation specific properties have
@@ -604,8 +601,8 @@ and Vendor-built archives to the configured web container or container
 by using deployment handlers.
 
 The handler file (`<TS_HOME>/bin/xml/impl/glassfish/deploy.xml`) is
-written to be used with the Jakarta EE 9 Compatible Platform. If the Vendor chooses not to
-use Jakarta EE 9 Compatible Platform with their implementation, or chooses to rebuild the
+written to be used with the Jakarta EE {JakartaEEVersion} Compatible Platform. If the Vendor chooses not to
+use Jakarta EE {JakartaEEVersion} Compatible Platform with their implementation, or chooses to rebuild the
 {TechnologyShortName} TCK tests using some other method than the infrastructure
 provided, they should create their own version handler file to provide
 this functionality.
@@ -777,7 +774,7 @@ the file under the `<TS_HOME>/bin/xml/impl/<your_impl>` directory.
 For more information, you may wish to view `<TS_HOME>/bin/xml/impl/glassfish/config.vi.xml`,
 the configuration file for Jakarta EE {JakartaEEVersion} Compatible Implementation, Eclipse GlassFish.
 
-[[GBFWG]][[custom-deployment-handlers]]
+[[GBFWE]][[custom-deployment-handlers]]
 
 4.5 Custom Deployment Handlers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -801,7 +798,7 @@ resides. The primary `build.xml` file in the `<TS_HOME>/bin` directory
 has a target to invoke any of the required targets (`-deploy`, `-undeploy`,
 `-deploy.all`, `-undeploy.all`).
 
-[[GBFVA]][[create-custom-deployment-handler]]
+[[GBFWF]][[create-custom-deployment-handler]]
 
 4.5.1 To Create a Custom Deployment Handler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

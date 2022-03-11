@@ -151,16 +151,16 @@ The Jakarta EE 9.1 Platform TCK test suite includes compatibility tests for the
 following required and optional Jakarta EE 9.1 technologies:
 
 * Jakarta Enterprise Beans 4.0 +
-* Jakarta Servlet 5.0
-* Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
+* Jakarta Server Pages 3.1
+* Jakarta Servlet 6.0
+* Jakarta Expression Language 5.0
 * Jakarta Messaging 3.0
 * Jakarta Transactions 2.0
 * Jakarta Mail 2.0
 * Jakarta Connectors 2.0
 * Jakarta Enterprise Web Services 2.0 (optional)
 * Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
+* Jakarta WebSocket 2.1
 * Jakarta JSON Processing 2.0
 * Jakarta JSON Binding 2.0
 * Jakarta Concurrency 2.0
@@ -194,13 +194,13 @@ following required and optional Jakarta EE 9.1 technologies:
 The Jakarta EE 9.1 Platform TCK test suite can also be used to test compatibility for
 the following required Jakarta EE 9.1 Web Profile technologies:
 
-* Jakarta Servlet 5.0
-* Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
+* Jakarta Server Pages 3.1
+* Jakarta Servlet 6.0
+* Jakarta Expression Language 5.0
 * Jakarta Standard Tag Library 2.0
 * Jakarta Faces 3.0
 * Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
+* Jakarta WebSocket 2.1
 * Jakarta JSON Processing 2.0
 * Jakarta JSON Binding 2.0
 * Jakarta Common Annotations 2.0

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
+# Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -49,7 +49,7 @@ el.classes=
 #     variable.mapper=com.sun.el.lang.VariableMapperImpl
 #
 ########################################################
-variable.mapper=com.sun.el.lang.VariableMapperImpl
+variable.mapper=org.glassfish.expressly.lang.VariableMapperImpl
 
 ########################################################
 #

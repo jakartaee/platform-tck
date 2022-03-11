@@ -177,6 +177,15 @@ public class Client extends PMClientBase {
         "CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)");
     pass1d = pass1d || findDataInFile(f1, expected);
 
+    expected.clear();
+    expected.add("ALTER TABLE SCHEMAGENSIMPLE");
+    expected.add("ADD");
+    expected.add("CONSTRAINT");
+    expected.add("SCHEMAGENSIMPLE_SVALUE3");
+    expected.add("UNIQUE");
+
+    pass1d = pass1d || findDataInFile(f1, expected);
+
     pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
     /*
      * Index can be dropped using ALTER TABLE AS WELL Bug 27422087: Some

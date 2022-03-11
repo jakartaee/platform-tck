@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.0
+#Version 2.1
 
 CLSS public final jakarta.json.Json
 meth public static jakarta.json.JsonArrayBuilder createArrayBuilder()
@@ -286,6 +286,7 @@ meth public abstract java.util.Map<java.lang.String,?> getConfigInUse()
 
 CLSS public abstract jakarta.json.spi.JsonProvider
 cons protected init()
+fld public final static java.lang.String JSONP_PROVIDER_FACTORY = "jakarta.json.provider"
 meth public abstract jakarta.json.JsonArrayBuilder createArrayBuilder()
 meth public abstract jakarta.json.JsonBuilderFactory createBuilderFactory(java.util.Map<java.lang.String,?>)
 meth public abstract jakarta.json.JsonObjectBuilder createObjectBuilder()
@@ -321,7 +322,8 @@ meth public jakarta.json.JsonPointer createPointer(java.lang.String)
 meth public jakarta.json.JsonString createValue(java.lang.String)
 meth public static jakarta.json.spi.JsonProvider provider()
 supr java.lang.Object
-hfds DEFAULT_PROVIDER
+hfds DEFAULT_PROVIDER,OSGI_SERVICE_LOADER_CLASS_NAME
+hcls LazyFactoryLoader
 
 CLSS public final jakarta.json.stream.JsonCollectors
 meth public static <%0 extends jakarta.json.JsonArrayBuilder> java.util.stream.Collector<jakarta.json.JsonValue,java.util.Map<java.lang.String,{%%0}>,jakarta.json.JsonObject> groupingBy(java.util.function.Function<jakarta.json.JsonValue,java.lang.String>,java.util.stream.Collector<jakarta.json.JsonValue,{%%0},jakarta.json.JsonArray>)
