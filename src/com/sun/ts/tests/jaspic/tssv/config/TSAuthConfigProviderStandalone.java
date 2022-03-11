@@ -300,4 +300,8 @@ public class TSAuthConfigProviderStandalone
   public void setDescription(String val) {
     description = val;
   }
+
+  public void removeServerAuthModule(Object context){
+  }
+
 }

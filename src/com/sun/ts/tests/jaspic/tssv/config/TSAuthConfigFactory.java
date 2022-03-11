@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,6 +34,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.module.ServerAuthModule;
 
 /**
  *
@@ -676,6 +677,13 @@ public class TSAuthConfigFactory
       return isPersistent;
     }
 
+  }
+
+  public void removeServerAuthModule(Object context){
+  }
+
+  public String registerServerAuthModule(ServerAuthModule sa, Object context){
+    return "";
   }
 
 }

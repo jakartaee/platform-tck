@@ -200,7 +200,7 @@ public class TSServerAuthConfig
     // see if entry already exists and if not we need to add the entry
     Boolean booleanObj = (Boolean) authMandatoryMap.get(layer + appContext);
     if (booleanObj == null) {
-      authMandatoryMap.put(layer + appContext, new Boolean(isMandatory));
+      authMandatoryMap.put(layer + appContext, Boolean.valueOf(isMandatory));
     }
   }
 

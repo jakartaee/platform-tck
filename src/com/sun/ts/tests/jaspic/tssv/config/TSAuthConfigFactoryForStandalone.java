@@ -36,6 +36,8 @@ import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.module.ServerAuthModule;
+
 
 /**
  *
@@ -688,5 +690,14 @@ public class TSAuthConfigFactoryForStandalone
     }
 
   }
+
+  public void removeServerAuthModule(Object context){
+  }
+
+  public String registerServerAuthModule(ServerAuthModule sa, Object context){
+    return "";
+  }
+
+
 
 }
