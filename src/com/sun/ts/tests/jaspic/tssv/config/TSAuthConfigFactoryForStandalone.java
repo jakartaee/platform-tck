@@ -18,6 +18,7 @@ package com.sun.ts.tests.jaspic.tssv.config;
 
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -106,7 +107,7 @@ public class TSAuthConfigFactoryForStandalone
         pce = (ProviderConfigurationEntry) iterator.next();
 
         if (pce != null) {
-          Properties newProps = getCleanACPProps(pce.getProperties());
+          Map<String,String> newProps = getCleanACPProps(pce.getProperties());
           registerConfigProvider(pce.getProviderClassName(), newProps,
               pce.getMessageLayer(), pce.getApplicationContextId(),
               pce.getRegistrationDescription());
@@ -131,20 +132,18 @@ public class TSAuthConfigFactoryForStandalone
    * method. This method will 'clean' a Property map so that its props can be
    * passed to the registerConfigProvider() method.
    */
-  private Properties getCleanACPProps(Properties origProps) {
+  private Map<String,String> getCleanACPProps(Map<String,String> origProps) {
 
     if (origProps == null) {
       return null;
     }
 
-    Properties props = new Properties();
+    HashMap<String,String> props = new HashMap<>();
 
     // loop thru passed in props and remove anything that is
     // not of type String since only String type Props are allowed in our
     // calls to registerConfigProvider()
-    Enumeration eProps = origProps.keys();
-    while (eProps.hasMoreElements()) {
-      String key = (String) eProps.nextElement();
+    for(String key : origProps.keySet()) {
       if (key != null) {
         Object val = origProps.get(key);
         if ((val != null) && ((val instanceof java.lang.String))) {

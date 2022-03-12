@@ -19,7 +19,9 @@ package com.sun.ts.tests.jaspic.spi.common;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 
 import com.sun.ts.tests.jaspic.tssv.util.JASPICData;
@@ -102,7 +104,7 @@ public class CommonUtils implements Serializable {
 
           printIt(
               "Registering Provider " + pce.getProviderClassName() + " ...");
-          Properties newProps = getCleanACPProps(pce.getProperties());
+          Map<String,String> newProps = getCleanACPProps(pce.getProperties());
           acf.registerConfigProvider(pce.getProviderClassName(), newProps,
               pce.getMessageLayer(), pce.getApplicationContextId(),
               pce.getRegistrationDescription());
@@ -129,20 +131,18 @@ public class CommonUtils implements Serializable {
     return acf;
   }
 
-  private static Properties getCleanACPProps(Properties origProps) {
+  private static Map<String,String> getCleanACPProps(Map<String,String> origProps) {
 
     if (origProps == null) {
       return null;
     }
 
-    Properties props = new Properties();
+    HashMap<String,String> props = new HashMap<>();
 
     // loop thru passed in props and remove anything that is
     // not of type String since only Strings are allowed in our
     // calls to registerConfigProvider()
-    Enumeration eProps = origProps.keys();
-    while (eProps.hasMoreElements()) {
-      String key = (String) eProps.nextElement();
+    for(String key : origProps.keySet()) {
       if (key != null) {
         Object val = origProps.get(key);
         if ((val != null) && ((val instanceof java.lang.String))) {
