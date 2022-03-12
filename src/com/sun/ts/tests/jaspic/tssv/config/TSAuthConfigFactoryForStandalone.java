@@ -36,6 +36,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.module.ServerAuthModule;
 
 /**
  *
@@ -54,7 +55,7 @@ import jakarta.security.auth.message.config.RegistrationListener;
  *
  */
 public class TSAuthConfigFactoryForStandalone
-    extends jakarta.security.auth.message.config.AuthConfigFactory {
+        extends jakarta.security.auth.message.config.AuthConfigFactory {
 
   private static TSLogger logger = null;
 
@@ -82,23 +83,23 @@ public class TSAuthConfigFactoryForStandalone
    */
   private void readProviderConfigurationXMLFile() {
     String providerConfigFileLocation = System
-        .getProperty("provider.configuration.file");
+            .getProperty("provider.configuration.file");
 
     try {
       // Given the provider configuration xml file
       // This reader parses the xml file and stores the configuration
       // entries as a collection.
       configFileProcessor = new ProviderConfigurationXMLFileProcessor(
-          providerConfigFileLocation);
+              providerConfigFileLocation);
 
       // Retrieve the ProviderConfigurationEntries collection
       Collection<ProviderConfigurationEntry> providerConfigurationEntriesCollection = configFileProcessor
-          .getProviderConfigurationEntriesCollection();
+              .getProviderConfigurationEntriesCollection();
 
       ProviderConfigurationEntry pce = null;
 
       Iterator<ProviderConfigurationEntry> iterator = providerConfigurationEntriesCollection
-          .iterator();
+              .iterator();
       while (iterator.hasNext()) {
         // obtain each ProviderConfigurationEntry and register it
         // with TSAuthConfigFactoryForStandalone
@@ -107,8 +108,8 @@ public class TSAuthConfigFactoryForStandalone
         if (pce != null) {
           Properties newProps = getCleanACPProps(pce.getProperties());
           registerConfigProvider(pce.getProviderClassName(), newProps,
-              pce.getMessageLayer(), pce.getApplicationContextId(),
-              pce.getRegistrationDescription());
+                                 pce.getMessageLayer(), pce.getApplicationContextId(),
+                                 pce.getRegistrationDescription());
         }
       }
 
@@ -150,11 +151,11 @@ public class TSAuthConfigFactoryForStandalone
           // we found entry that is not String so remove it
           props.put(key, (String) val);
           System.out.println("TSAuthConfigFactoryForStandalone:  added key="
-              + key + " with value = " + val);
+                                     + key + " with value = " + val);
         } else {
           System.out.println(
-              "TSAuthConfigFactoryForStandalone: found non-string value for key="
-                  + key);
+                  "TSAuthConfigFactoryForStandalone: found non-string value for key="
+                          + key);
         }
       }
     }
@@ -208,17 +209,17 @@ public class TSAuthConfigFactoryForStandalone
    */
   @Override
   public AuthConfigProvider getConfigProvider(String layer, String appContext,
-      RegistrationListener listener) {
+                                              RegistrationListener listener) {
     AuthConfigProvider localACP = null;
 
     // Runtime calls getConfigProvider() after calling
     // AuthConfigFactory.getFactory()
     logger.log(Level.INFO, "getConfigProvider called for Layer : " + layer
-        + " and AppContext :" + appContext);
+            + " and AppContext :" + appContext);
 
     if (authConfigProviderMap != null) {
       localACP = (AuthConfigProvider) authConfigProviderMap
-          .get(layer + appContext);
+              .get(layer + appContext);
 
       // register the listener for AuthConfigProvider
       if ((listener != null) && (localACP != null)) {
@@ -333,7 +334,7 @@ public class TSAuthConfigFactoryForStandalone
    */
   @Override
   public String[] detachListener(RegistrationListener listener, String layer,
-      String appContext) {
+                                 String appContext) {
     return null;
   }
 
@@ -425,23 +426,23 @@ public class TSAuthConfigFactoryForStandalone
    */
   @Override
   public String registerConfigProvider(String className, Map properties,
-      String layer, String appContext, String description) {
+                                       String layer, String appContext, String description) {
     String result = null;
     AuthConfigProvider acp = null;
     String theClass = "com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderStandalone";
 
     logger.log(Level.INFO, "registerConfigProvider() called for layer " + layer
-        + " and appContext " + appContext);
+            + " and appContext " + appContext);
     try {
       // Here we instantiate only TSAuthConfigProvider
       // this needs to be revisited.
       if (className
-          .equals("com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProvider")) {
+              .equals("com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProvider")) {
         // instantiate CTS AuthConfigProviderImpl with logger
         acp = new TSAuthConfigProvider(properties, null, logger);
 
       } else if (className.equals(
-          "com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderServlet")) {
+              "com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigProviderServlet")) {
         acp = new TSAuthConfigProviderServlet(properties, logger, null);
 
       } else if (className.equals(theClass)) {
@@ -454,28 +455,28 @@ public class TSAuthConfigFactoryForStandalone
       RegistrationContext previousRC = null;
       AuthConfigProvider previousACP = null;
       previousACP = (AuthConfigProvider) authConfigProviderMap
-          .get(layer + appContext);
+              .get(layer + appContext);
       previousRC = (RegistrationContext) registrationContextMap
-          .get(layer + appContext);
+              .get(layer + appContext);
 
       if (previousACP == null) {
         authConfigProviderMap.put(layer + appContext, acp);
         registrationContextMap.put(layer + appContext,
-            new RegistrationContextImpl(layer, appContext, description, true));
+                                   new RegistrationContextImpl(layer, appContext, description, true));
 
         // Add new provider to the persistent store(ProviderConfiguration.xml)
         ProviderConfigurationXMLFileProcessor.addProviderConfigEntry(className,
-            properties, layer, appContext, description);
+                                                                     properties, layer, appContext, description);
 
       } else if ((previousACP != null)
-          && (previousRC.isPersistent() == false)) {
+              && (previousRC.isPersistent() == false)) {
         authConfigProviderMap.put(layer + appContext, acp);
         registrationContextMap.put(layer + appContext,
-            new RegistrationContextImpl(layer, appContext, description, true));
+                                   new RegistrationContextImpl(layer, appContext, description, true));
 
         // Add new provider to the persistent store(ProviderConfiguration.xml)
         ProviderConfigurationXMLFileProcessor.addProviderConfigEntry(className,
-            properties, layer, appContext, description);
+                                                                     properties, layer, appContext, description);
       }
       result = layer + appContext;
 
@@ -507,7 +508,7 @@ public class TSAuthConfigFactoryForStandalone
    * registration identifiers to registrations, and must never assign a
    * previously used registration identifier to a registration whose message
    * layer and or appContext identifier differ from the previous use.
-   * 
+   *
    * @param provider
    *          the AuthConfigProvider to be registered at the factory (or null).
    *          Calling this method with a null value for this parameter shall
@@ -544,13 +545,13 @@ public class TSAuthConfigFactoryForStandalone
    */
   @Override
   public String registerConfigProvider(AuthConfigProvider provider,
-      String layer, String appContext, String description) {
+                                       String layer, String appContext, String description) {
 
     String result = null;
     String providerClassName = null;
 
     logger.log(Level.INFO, "registerConfigProvider() called for layer " + layer
-        + " and appContext " + appContext);
+            + " and appContext " + appContext);
 
     if (provider == null) {
       return result;
@@ -560,19 +561,19 @@ public class TSAuthConfigFactoryForStandalone
       RegistrationContext previousRC = null;
       AuthConfigProvider previousACP = null;
       previousACP = (AuthConfigProvider) authConfigProviderMap
-          .get(layer + appContext);
+              .get(layer + appContext);
       previousRC = (RegistrationContext) registrationContextMap
-          .get(layer + appContext);
+              .get(layer + appContext);
 
       if (previousACP == null) {
         authConfigProviderMap.put(layer + appContext, provider);
         registrationContextMap.put(layer + appContext,
-            new RegistrationContextImpl(layer, appContext, description, false));
+                                   new RegistrationContextImpl(layer, appContext, description, false));
 
       } else if ((previousACP != null) && (previousRC.isPersistent() == true)) {
         // update registration context
         registrationContextMap.put(layer + appContext,
-            new RegistrationContextImpl(layer, appContext, description, false));
+                                   new RegistrationContextImpl(layer, appContext, description, false));
 
         if (provider != null) {
           providerClassName = provider.getClass().getName();
@@ -580,7 +581,7 @@ public class TSAuthConfigFactoryForStandalone
 
         // delete existing provider from its persistent state
         configFileProcessor.deleteProviderConfigEntry(providerClassName, layer,
-            appContext, description);
+                                                      appContext, description);
       }
       result = layer + appContext;
     } catch (Exception e) {
@@ -589,6 +590,57 @@ public class TSAuthConfigFactoryForStandalone
     }
 
     return result;
+  }
+
+  /**
+   * Registers within the (in-memory) factory, an instance of a <code>ServerAuthModule</code> for a
+   * message layer and application context identifier as identified by a profile specific context object.
+   *
+   * <p>
+   * This will override any other modules that have already been registered, either via proprietary
+   * means or using the standard API. The <code>ServerAuthModule</code> is removed, via a call to
+   * <code>removeServerAuthModule</code> when the context associated with the profile specific context object ends.
+   *
+   * <p>
+   * Note that this method is a convenience method that can be used instead of <code>registerConfigProvider</code>,
+   * but should ultimately have the same effect. That is, the <code>layer</code> and <code>appContext</code> parameters
+   * are generated from the context object, and the <code>ServerAuthModule</code> is wrapped by an implementation
+   * specific <code>AuthConfigProvider</code>, which are then used to call <code>registerConfigProvider</code> or an
+   * internal method with the same effect. The returned registration ID is then associated with the profile specific
+   * context object, and also returned from this method.
+   *
+   * <p>
+   * A "profile specific context object" is for example the <code>ServletContext</code> in the
+   * Servlet Container Profile. The context associated with this <code>ServletContext</code> ends
+   * when for example the application corresponding to it is undeployed. Association of the
+   * registration ID with the <code>ServletContext</code> simply means calling the <code>setAttribute</code>
+   * method on the <code>ServletContext</code>, with the registration ID as value. (The name attribute has not been
+   * standardised in this version of the specification)
+   *
+   * @param serverAuthModule the <code>ServerAuthModule</code> instance to be registered
+   * @param context the profile specific context of the application for which the module is registered
+   * @return A String identifier assigned by the factory to the provider registration, and that may be used to remove the
+   * registration from the factory.
+   */
+  public String registerServerAuthModule(ServerAuthModule serverAuthModule, Object context) {
+    logger.log(Level.INFO, "registerServerAuthModule() called for serverAuthModule " + serverAuthModule
+            + " and context " + context);
+    return context.toString();
+  }
+
+  /**
+   * Remove the <code>ServerAuthModule</code> (and potentially encompassing wrappers/factories) that was previously registered via a call
+   * to <code>registerServerAuthModule</code>.
+   *
+   * <p>
+   * Note that this method is a convenience method that can be used instead of <code>removeRegistration</code>, but should ultimately
+   * have the same effect. That is calling <code>removeRegistration</code> with the return value from <code>registerServerAuthModule</code>
+   * must have the same effect in that the <code>ServerAuthModule</code> is removed.
+   *
+   * @param context the profile specific context of the application for which the module is removed.
+   */
+  public void removeServerAuthModule(Object context) {
+    logger.log(Level.INFO, "removeServerAuthModule() called for context " + context);
   }
 
   /**
@@ -623,7 +675,7 @@ public class TSAuthConfigFactoryForStandalone
 
           // create a new file
           TSFileHandler fileHandler = new TSFileHandler(
-              logFileLocation + "/" + JASPICData.DEFAULT_LOG_FILE, appendMode);
+                  logFileLocation + "/" + JASPICData.DEFAULT_LOG_FILE, appendMode);
           fileHandler.setFormatter(new TSXMLFormatter());
           logger.addHandler(fileHandler);
         } else {
@@ -653,7 +705,7 @@ public class TSAuthConfigFactoryForStandalone
     private String description;
 
     private RegistrationContextImpl(String messageLayer, String appContext,
-        String description, boolean isPersistent) {
+                                    String description, boolean isPersistent) {
       this.messageLayer = messageLayer;
       this.appContext = appContext;
       this.description = description;
