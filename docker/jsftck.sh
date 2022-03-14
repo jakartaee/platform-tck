@@ -61,6 +61,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
+# to avoid OOM error while deployment
+sed -i.bak 's/-Xmx512m/-Xmx1024m/g' $TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/domains/domain1/config/domain.xml
+
 cd $TCK_HOME/$GF_TOPLEVEL_DIR/bin
 ./asadmin start-domain
 
