@@ -17,6 +17,7 @@
 package com.sun.ts.tests.jaspic.spi.common;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -940,7 +941,7 @@ public class CommonTests {
     String layer2 = "layer4";
     String context2 = "context 4";
     String rId1 = null, rId2 = null;
-    Properties props;
+    Map<String,String> props;
     String strDesc1 = "acp4";
     String strDesc2 = "acp4b";
 
@@ -1031,7 +1032,7 @@ public class CommonTests {
     String APP_CTXT = "context3";
     String rId = null;
     String rId2 = null;
-    Properties props;
+    Map<String,String> props;
     String strDesc1 = "acp3";
     String strDesc2 = "acp3a";
 
@@ -1089,7 +1090,7 @@ public class CommonTests {
     TSAuthConfigProviderStandalone acp2, acp2a;
     String rId = null;
     String rId2 = null;
-    Properties props;
+    Map<String,String> props;
     String strDesc1 = "acp2";
     String strDesc2 = "acp2a";
 
@@ -1180,9 +1181,9 @@ public class CommonTests {
    * property to set the description when we are creating a new/persistent ACP
    * registration.
    */
-  private Properties setDescriptionProp(String val) {
-    Properties props = new Properties();
-    props.setProperty(TSAuthConfigProviderStandalone.DESC_KEY, val);
+  private Map<String, String> setDescriptionProp(String val) {
+    HashMap<String,String> props = new HashMap<>();
+    props.put(TSAuthConfigProviderStandalone.DESC_KEY, val);
     return props;
   }
 

@@ -35,7 +35,7 @@ public class TestServerAuthContext implements ServerAuthContext {
       ServerAuthModule serverAuthModule) throws AuthException {
     this.serverAuthModule = serverAuthModule;
     serverAuthModule.initialize(null, null, handler,
-        Collections.<String, String> emptyMap());
+        Collections.<String, Object> emptyMap());
   }
 
   @Override

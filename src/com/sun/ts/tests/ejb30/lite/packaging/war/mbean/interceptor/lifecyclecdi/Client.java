@@ -25,6 +25,7 @@ import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
 import jakarta.annotation.Resource;
+import jakarta.enterprise.context.ApplicationScoped;
 
 /**
  * This test directory contains an empty beans.xml that will be packaged in WAR
@@ -32,6 +33,7 @@ import jakarta.annotation.Resource;
  * of ManagedBean's lifecycle methods still works. The similar tests without
  * beans.xml are in ../lifecycle.
  */
+@ApplicationScoped
 public class Client extends EJBLiteClientBase {
 
   @Resource

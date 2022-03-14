@@ -34,6 +34,7 @@ import com.sun.ts.tests.jaspic.tssv.util.TSXMLFormatter;
 import jakarta.security.auth.message.AuthException;
 import jakarta.security.auth.message.config.AuthConfigProvider;
 import jakarta.security.auth.message.config.RegistrationListener;
+import jakarta.security.auth.message.module.ServerAuthModule;
 
 /**
  *
@@ -575,6 +576,57 @@ public class TSAuthConfigFactory
     }
 
     return result;
+  }
+
+  /**
+   * Registers within the (in-memory) factory, an instance of a <code>ServerAuthModule</code> for a
+   * message layer and application context identifier as identified by a profile specific context object.
+   *
+   * <p>
+   * This will override any other modules that have already been registered, either via proprietary
+   * means or using the standard API. The <code>ServerAuthModule</code> is removed, via a call to
+   * <code>removeServerAuthModule</code> when the context associated with the profile specific context object ends.
+   *
+   * <p>
+   * Note that this method is a convenience method that can be used instead of <code>registerConfigProvider</code>,
+   * but should ultimately have the same effect. That is, the <code>layer</code> and <code>appContext</code> parameters
+   * are generated from the context object, and the <code>ServerAuthModule</code> is wrapped by an implementation
+   * specific <code>AuthConfigProvider</code>, which are then used to call <code>registerConfigProvider</code> or an
+   * internal method with the same effect. The returned registration ID is then associated with the profile specific
+   * context object, and also returned from this method.
+   *
+   * <p>
+   * A "profile specific context object" is for example the <code>ServletContext</code> in the
+   * Servlet Container Profile. The context associated with this <code>ServletContext</code> ends
+   * when for example the application corresponding to it is undeployed. Association of the
+   * registration ID with the <code>ServletContext</code> simply means calling the <code>setAttribute</code>
+   * method on the <code>ServletContext</code>, with the registration ID as value. (The name attribute has not been
+   * standardised in this version of the specification)
+   *
+   * @param serverAuthModule the <code>ServerAuthModule</code> instance to be registered
+   * @param context the profile specific context of the application for which the module is registered
+   * @return A String identifier assigned by the factory to the provider registration, and that may be used to remove the
+   * registration from the factory.
+   */
+  public String registerServerAuthModule(ServerAuthModule serverAuthModule, Object context) {
+    logger.log(Level.INFO, "registerServerAuthModule() called for serverAuthModule " + serverAuthModule
+            + " and context " + context);
+    return context.toString();
+  }
+
+  /**
+   * Remove the <code>ServerAuthModule</code> (and potentially encompassing wrappers/factories) that was previously registered via a call
+   * to <code>registerServerAuthModule</code>.
+   *
+   * <p>
+   * Note that this method is a convenience method that can be used instead of <code>removeRegistration</code>, but should ultimately
+   * have the same effect. That is calling <code>removeRegistration</code> with the return value from <code>registerServerAuthModule</code>
+   * must have the same effect in that the <code>ServerAuthModule</code> is removed.
+   *
+   * @param context the profile specific context of the application for which the module is removed.
+   */
+  public void removeServerAuthModule(Object context) {
+    logger.log(Level.INFO, "removeServerAuthModule() called for context " + context);
   }
 
   /**
