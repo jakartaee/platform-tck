@@ -25,7 +25,7 @@ import jakarta.faces.component.html.HtmlOutputFormat;
 @jakarta.inject.Named("score") @jakarta.enterprise.context.SessionScoped
 public class FormatterUIBean implements Serializable {
 
-  private static final long serialVersionUID = -9564143088038088087L;
+  private static final long serialVersionUID = -956414308038088087L;
 
   private HtmlOutputFormat fscore;
 
