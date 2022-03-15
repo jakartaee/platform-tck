@@ -56,8 +56,7 @@
                   com/sun/ts/tests/webservices13,
                   com/sun/ts/tests/websocket,
                   com/sun/ts/tests/concurrency,
-                  com/sun/ts/tests/securityapi,
-                  com/ibm/jbatch/tck/tests"/>
+                  com/sun/ts/tests/securityapi"/>
 
 	<!--
           These jaspic dirs involve tests that are not required for Java EE 6.

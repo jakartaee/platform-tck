@@ -2335,47 +2335,9 @@ tests again.
 =======================================================================
 
 
-[[sthref24]][[jakarta-batch-test-setup]]
-
-5.4.18 Jakarta Batch Test Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Jakarta Batch tests, which are located under the
-`<TS_HOME>/src/com/ibm/jbatch/tck` directory, don't require extra setup
-for most implementations. However, there may be a few cases where some
-customization is needed.
-
-If you are using an injection technology other than CDI, complete the
-following steps before running the Jakarta Batch tests:
-
-.  Remove the `<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/beans.xml`
-and `<TS_HOME>/src/com/ibm/jbatch/tck/tests/ee/beans.xml` files.
-.  Change to the `<TS_HOME>/src/com/ibm/jbatch/tck` directory.
-.  Execute the `ant build` command to rebuild the archives.
-
-If you are using a different implementation of the porting interface
-`<<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/META-INF/services/com.ibm.jbatch.tck.spi.JobExecutionWaiterFactory`,
-complete the following steps before running the Jakarta Batch tests:
-
-.  Change the entry in
-`<TS_HOME>/src/com/ibm/jbatch/tck/testJobXml/META-INF/services/com.ibm.jbatch.tck.spi.JobExecutionWaiterFactory`
-to specify the new porting implementation class.
-.  Change to the `<TS_HOME>/src/com/ibm/jbatch/tck` directory.
-.  Execute the `ant build` command to rebuild the archives.
-
-For information about the Jakarta Batch tests themselves, see the
-_Technology Compatibility Kit Reference Guide for JSR-352: Batch
-Applications for the Java Platform_. This document is included with the TCK
-ZIP archive, or you may review the latest working copy,
-https://github.com/eclipse-ee4j/batch-tck/blob/master/jakarta.batch.official.tck/src/main/asciidoc/batch-tck-reference-guide.adoc[here].
-
-All the Batch TCK material can be found here:
-
-`https://github.com/eclipse-ee4j/batch-tck`
-
 [[GEYAM]][[wsdl-webservice-test-and-runtime-notes]]
 
-5.4.19 WSDL: Webservice Test and Runtime Notes
+5.4.18 WSDL: Webservice Test and Runtime Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In addition to the WSDL elements described later in this section, the
@@ -2420,7 +2382,7 @@ specified in the `<wsdl-publish-location>` tag.
 
 [[GEYAJ]][[wsdl-ts.jte-properties]]
 
-5.4.19.1 WSDL ts.jte Properties
+5.4.18.1 WSDL ts.jte Properties
 +++++++++++++++++++++++++++++++
 
 For file URL publishing, the TCK defines two properties in the `ts.jte`
@@ -2495,14 +2457,14 @@ Edition implementation used as the interop test machine. See
 
 [[GEYCO]][[webservice-endpoint-wsdl-elements]]
 
-5.4.19.2 Webservice Endpoint WSDL Elements
+5.4.18.2 Webservice Endpoint WSDL Elements
 ++++++++++++++++++++++++++++++++++++++++++
 
 The following are the webservice endpoint WSDL elements:
 
 [[GEYMW]][[setting-endpoint-address]]
 
-5.4.19.2.1 Setting Endpoint Address
+5.4.18.2.1 Setting Endpoint Address
 
 [source,oac_no_warn]
 ----
@@ -2567,7 +2529,7 @@ http://localhost:8000/GoogleServletContext/GoogleSearch
 
 [[GEYLR]][[jakarta-enterprise-beans-endpoint-security]]
 
-5.4.19.2.2 Jakarta Enterprise Beans Endpoint Security
+5.4.18.2.2 Jakarta Enterprise Beans Endpoint Security
 
 [source,oac_no_warn]
 ----
@@ -2598,7 +2560,7 @@ For example:
 
 [[GEYNB]][[transport-guarantee]]
 
-5.4.19.2.3 Transport Guarantee
+5.4.18.2.3 Transport Guarantee
 
 [source,oac_no_warn]
 ----
@@ -2617,7 +2579,7 @@ the default HTTP port. For `INTEGRAL/CONFIDENTIAL`, the scheme will be
 
 [[GEYMY]][[publishing-final-wsdl-during-deployment]]
 
-5.4.19.2.4 Publishing Final WSDL During Deployment
+5.4.18.2.4 Publishing Final WSDL During Deployment
 
 * URL publishing: no extra information required. +
 The final WSDL document for each webservice endpoint is always published
@@ -2671,7 +2633,7 @@ a file URL; for example:
 
 [[GEYLF]][[webservice-client-wsdl-elements]]
 
-5.4.19.3 Webservice Client WSDL Elements
+5.4.18.3 Webservice Client WSDL Elements
 ++++++++++++++++++++++++++++++++++++++++
 
 In the TCK for file publishing, the directory in which to publish the
@@ -2717,7 +2679,7 @@ document, which in this case would be
 
 [[GEYLV]][[resolving-container-managed-ports]]
 
-5.4.19.3.1 Resolving Container-Managed Ports
+5.4.18.3.1 Resolving Container-Managed Ports
 
 [source,oac_no_warn]
 ----
@@ -2745,7 +2707,7 @@ Interface is mapped. Only required for each `port-component-ref` in the
 
 [[GEYOG]][[overriding-wsdl]]
 
-===== 5.4.19.3.2 Overriding WSDL
+===== 5.4.18.3.2 Overriding WSDL
 
 [source,oac_no_warn]
 ----
@@ -2785,7 +2747,7 @@ matches a webservice's `wsdl-publish-location` could be:
 
 [[CEGCHDEA]][[jakarta-security-api-test-setup]]
 
-5.4.20 Jakarta Security API Test Setup
+5.4.19 Jakarta Security API Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Complete the following steps before you run the Jakarta Security API tests:
@@ -2871,14 +2833,14 @@ init.ldap.
 
 [[GEYNX]][[signature-test-setup]]
 
-5.4.21 Signature Test Setup
+5.4.20 Signature Test Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The signature test setup includes the following:
 
 [[GEYPN]][[sigtestclasspath-property]]
 
-5.4.21.1 sigTestClasspath Property
+5.4.20.1 sigTestClasspath Property
 ++++++++++++++++++++++++++++++++++
 
 Set the `sigTestClasspath` property in the `<TS_HOME>/bin/ts.jte` file
@@ -2902,7 +2864,7 @@ running against the Jakarta Platform, Enterprise Edition CI
 
 [[GEYOS]][[additional-signature-test-information]]
 
-5.4.21.2 Additional Signature Test Information
+5.4.20.2 Additional Signature Test Information
 ++++++++++++++++++++++++++++++++++++++++++++++
 
 The Jakarta EE 9.1 Platform TCK signature tests perform verifications in two different
@@ -3002,7 +2964,7 @@ additional debugging information.
 
 [[GJLGQ]][[backend-database-setup]]
 
-5.4.22 Backend Database Setup
+5.4.21 Backend Database Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following sections address special backend database setup
@@ -3013,7 +2975,7 @@ considerations:
 
 [[GJLIB]][[setup-considerations-for-mysql]]
 
-5.4.22.1 Setup Considerations for MySQL
+5.4.21.1 Setup Considerations for MySQL
 +++++++++++++++++++++++++++++++++++++++
 
 The Jakarta Persistence API (formerly JPA) tests require delimited identifiers for
@@ -3029,7 +2991,7 @@ sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ANSI_QU
 
 [[GJLHU]][[setup-considerations-for-ms-sql-server]]
 
-5.4.22.2 Setup Considerations for MS SQL Server
+5.4.21.2 Setup Considerations for MS SQL Server
 +++++++++++++++++++++++++++++++++++++++++++++++
 
 If your database already exists and if you use a case-sensitive
