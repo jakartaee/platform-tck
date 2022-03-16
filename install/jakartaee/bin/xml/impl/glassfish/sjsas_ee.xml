@@ -37,7 +37,6 @@
     <property name="server.config.dir" 	value="config"/>
     <property name="server.home"        value="${javaee.home}"/>
     <property name="drive"              value="${s1as.applicationRoot}"/>
-    <property name="default.ext.dirs"   value="$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/config/$$\{com.sun.aas.configName\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/javadb/lib/"/>
 
     <!--
        Used to signify that we update the system properties in the domain.xml

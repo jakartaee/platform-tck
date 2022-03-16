@@ -729,25 +729,6 @@ public class PolicyFile extends java.security.Policy {
         // No need to sync because noone has access to newInfo yet
         newInfo.policyEntries.add(pe);
 
-        // Add AllPermissions for standard extensions
-        String[] extCodebases = PolicyParser
-            .parseExtDirs(PolicyParser.EXTDIRS_EXPANSION, 0);
-        if (extCodebases != null && extCodebases.length > 0) {
-          for (int i = 0; i < extCodebases.length; i++) {
-            try {
-              pe = new PolicyEntry(canonicalizeCodebase(new CodeSource(
-                  new URL(extCodebases[i]), (Certificate[]) null), false));
-              pe.add(SecurityConstants.ALL_PERMISSION);
-
-              // No need to sync because noone has access to
-              // newInfo yet
-              newInfo.policyEntries.add(pe);
-            } catch (Exception e) {
-              // this is probably bad (though not dangerous).
-              // What should we do?
-            }
-          }
-        }
         return null;
       }
     });

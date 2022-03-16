@@ -174,7 +174,6 @@ s1as.imq.share.lib=${connector.home}/imq/lib
 s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 
 

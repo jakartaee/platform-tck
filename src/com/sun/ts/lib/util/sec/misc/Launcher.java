@@ -25,16 +25,13 @@ import java.net.MalformedURLException;
 import java.net.URLStreamHandler;
 import java.net.URLStreamHandlerFactory;
 import java.util.HashSet;
-import java.util.StringTokenizer;
 import java.util.Set;
 import java.util.Vector;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.security.PrivilegedExceptionAction;
 import java.security.AccessControlContext;
 import java.security.PermissionCollection;
 import java.security.Permissions;
-import java.security.Permission;
 import java.security.ProtectionDomain;
 import java.security.CodeSource;
 import com.sun.ts.lib.util.sec.security.action.GetPropertyAction;
@@ -56,17 +53,10 @@ public class Launcher {
   private ClassLoader loader;
 
   public Launcher() {
-    // Create the extension class loader
-    ClassLoader extcl;
-    try {
-      extcl = ExtClassLoader.getExtClassLoader();
-    } catch (IOException e) {
-      throw new InternalError("Could not create extension class loader");
-    }
 
     // Now create the class loader to use to launch the application
     try {
-      loader = AppClassLoader.getAppClassLoader(extcl);
+      loader = AppClassLoader.getAppClassLoader(new ExtClassLoader(null));
     } catch (IOException e) {
       throw new InternalError("Could not create application class loader");
     }
@@ -108,34 +98,6 @@ public class Launcher {
    * The class loader used for loading installed extensions.
    */
   static class ExtClassLoader extends URLClassLoader {
-    private File[] dirs;
-
-    /**
-     * create an ExtClassLoader. The ExtClassLoader is created within a context
-     * that limits which files it can read
-     */
-    public static ExtClassLoader getExtClassLoader() throws IOException {
-      final File[] dirs = getExtDirs();
-
-      try {
-        // Prior implementations of this doPrivileged() block supplied
-        // aa synthesized ACC via a call to the private method
-        // ExtClassLoader.getContext().
-
-        return (ExtClassLoader) AccessController
-            .doPrivileged(new PrivilegedExceptionAction() {
-              public Object run() throws IOException {
-                int len = dirs.length;
-                for (int i = 0; i < len; i++) {
-                  MetaIndex.registerDirectory(dirs[i]);
-                }
-                return new ExtClassLoader(dirs);
-              }
-            });
-      } catch (java.security.PrivilegedActionException e) {
-        throw (IOException) e.getException();
-      }
-    }
 
     void addExtURL(URL url) {
       super.addURL(url);
@@ -144,43 +106,8 @@ public class Launcher {
     /*
      * Creates a new ExtClassLoader for the specified directories.
      */
-    public ExtClassLoader(File[] dirs) throws IOException {
-      super(getExtURLs(dirs), null, factory);
-      this.dirs = dirs;
-    }
-
-    private static File[] getExtDirs() {
-      String s = System.getProperty("java.ext.dirs");
-      File[] dirs;
-      if (s != null) {
-        StringTokenizer st = new StringTokenizer(s, File.pathSeparator);
-        int count = st.countTokens();
-        dirs = new File[count];
-        for (int i = 0; i < count; i++) {
-          dirs[i] = new File(st.nextToken());
-        }
-      } else {
-        dirs = new File[0];
-      }
-      return dirs;
-    }
-
-    private static URL[] getExtURLs(File[] dirs) throws IOException {
-      Vector urls = new Vector();
-      for (int i = 0; i < dirs.length; i++) {
-        String[] files = dirs[i].list();
-        if (files != null) {
-          for (int j = 0; j < files.length; j++) {
-            if (!files[j].equals("meta-index")) {
-              File f = new File(dirs[i], files[j]);
-              urls.add(getFileURL(f));
-            }
-          }
-        }
-      }
-      URL[] ua = new URL[urls.size()];
-      urls.copyInto(ua);
-      return ua;
+    public ExtClassLoader(File[] ignore) throws IOException {
+      super(new URL[0], null, factory);
     }
 
     /*
@@ -191,22 +118,6 @@ public class Launcher {
      * itself.
      */
     public String findLibrary(String name) {
-      name = System.mapLibraryName(name);
-      for (int i = 0; i < dirs.length; i++) {
-        // Look in architecture-specific subdirectory first
-        String arch = System.getProperty("os.arch");
-        if (arch != null) {
-          File file = new File(new File(dirs[i], arch), name);
-          if (file.exists()) {
-            return file.getAbsolutePath();
-          }
-        }
-        // Then check the extension directory
-        File file = new File(dirs[i], name);
-        if (file.exists()) {
-          return file.getAbsolutePath();
-        }
-      }
       return null;
     }
 

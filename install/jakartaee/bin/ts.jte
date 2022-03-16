@@ -386,10 +386,6 @@ vi.applicationRoot=c:
 #                         with connector tests.
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
 ###############################################################
 s1as.admin.user=admin
 s1as.admin.passwd=
@@ -409,7 +405,6 @@ s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Xmx
 s1as.jvm.options.remove=-XX\\\:MaxPermSize=192m:-Xmx512m:${s1as.jvm.options}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 ###############################################################
 # @sjsas.das.orb.port              -- ORB port number for the DAS

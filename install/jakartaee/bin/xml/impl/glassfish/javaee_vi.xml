@@ -74,19 +74,6 @@
 
        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="filter.password.file"/>
        
-       <!--
-         Now called from here instead of from s1as.xml's add.jdbc.resources
-         target. Since the get command is broken (issue tracker bug id 7151)
-         we need to use our regular expression hack to set the extension
-         directories while the server is down. If we modify the domain.xml disk
-         file while the server is up, the server process can overwrite our
-         changes to the domain.xml file. See set.ext.dirs target in s1as.xml
-         to see the hack. This code can be reverted once they fix bug ID 7151.
-         We can go back to using the get command.
-       -->
-       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="reset.ext.dirs"/>
-       <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="add.ext.dirs"/>
-       
        <antcall target="config.das"/>
        <antcall target="config.remoteInstance"/>
 
