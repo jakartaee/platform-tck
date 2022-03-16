@@ -20,35 +20,32 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.requestdispatcher;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_requestdispatcher_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_requestdispatcher_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(ForwardedServlet.class, ForwardedServlet2.class, ForwardedServlet3.class,
+                        IncludedServlet.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_requestdispatcher_web.xml"));
   }
 
   /*
@@ -66,7 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to
    * forward to a servlet
    */
-
+  @Test
   public void forwardTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forwardTest");
     invoke();
@@ -82,7 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * Create a servlet, print a string to the buffer, flush the buffer to commit
    * the string, get its RequestDispatcher and use it to forward to a servlet.
    */
-
+  @Test
   public void forward_1Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forward_1Test");
     invoke();
@@ -96,7 +93,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to
    * include a servlet
    */
-
+  @Test
   public void includeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "includeTest");
     invoke();
@@ -113,7 +110,7 @@ public class URLClient extends AbstractUrlClient {
    * tries to change the Content-Type to be text/html. Test at the client side
    * for correct Content-Type.
    */
-
+  @Test
   public void include_1Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "include_1Test");
     TEST_PROPS.setProperty(EXPECTED_HEADERS, "Content-Type: text/sgml");
@@ -131,7 +128,7 @@ public class URLClient extends AbstractUrlClient {
    * RequestDispatcher to include to this servlet. Verify that include() method
    * throws ServletException.
    */
-
+  @Test
   public void include_2Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "include_2Test");
     invoke();
@@ -148,7 +145,7 @@ public class URLClient extends AbstractUrlClient {
    * RequestDispatcher to include to this servlet. Verify that include() method
    * throws IOException.
    */
-
+  @Test
   public void include_3Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "include_3Test");
     invoke();

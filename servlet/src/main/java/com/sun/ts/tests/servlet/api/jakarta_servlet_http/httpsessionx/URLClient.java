@@ -23,34 +23,38 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionx;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpsessionx_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_httpsessionx_web.xml"));
+  }
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_jsh_httpsessionx_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false, name = "servlet_jsh_httpsession2x_web")
+  public static WebArchive getTestArchive2() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpsessionx2_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(ExpireHttpSession.class, GetNewSession.class,
+                    InvalidateHttpSession.class, SetMaxInterval.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_httpsessionx2_web.xml"));
   }
 
   /*
@@ -70,6 +74,7 @@ public class URLClient extends AbstractUrlClient {
    * contains the JSESSIONID in a request cookie to the servlet again, verify
    * that MaxInactiveInterval is set correctly
    */
+  @Test
   public void getMaxInactiveIntervalTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSession");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -101,7 +106,7 @@ public class URLClient extends AbstractUrlClient {
    * the session by calling request.getSession(false). Verify that no session is
    * returned this time
    */
-
+  @Test
   public void expireHttpSessionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSession");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -139,7 +144,7 @@ public class URLClient extends AbstractUrlClient {
    * the session by calling request.getSession(false). Verify that no session is
    * returned this time
    */
-
+  @Test
   public void expireHttpSessionxTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSession");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -181,7 +186,7 @@ public class URLClient extends AbstractUrlClient {
    * calling request.getSession(false). Verify that no session is returned this
    * time
    */
-
+  @Test
   public void expireHttpSessionxriTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSession");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -223,7 +228,7 @@ public class URLClient extends AbstractUrlClient {
    * 4. The second servlet tries to resume the session by calling
    * request.getSession(false). Verify that no session is returned this time
    */
-
+  @Test
   public void expireHttpSessionxri1Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalxiTest");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -260,7 +265,7 @@ public class URLClient extends AbstractUrlClient {
    * 4. The second servlet tries to resume the session by calling
    * request.getSession(false). Verify that no session is returned this time
    */
-
+  @Test
   public void expireHttpSessionxrfTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalxfTest");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -291,7 +296,7 @@ public class URLClient extends AbstractUrlClient {
    * tries to resume the session, then invalidate the session by calling
    * Session.invalidate(). Verify that session is invalidated
    */
-
+  @Test
   public void invalidateHttpSessionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSession");
     TEST_PROPS.setProperty(SAVE_STATE, "true");
@@ -318,7 +323,7 @@ public class URLClient extends AbstractUrlClient {
    * servlet invalidate the session by calling Session.invalidate(). Verify that
    * session is invalidated
    */
-
+  @Test
   public void invalidateHttpSessionxTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getNewSessionx");
     TEST_PROPS.setProperty(SAVE_STATE, "true");

@@ -21,46 +21,43 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.cookie;
 
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.request.HttpRequest;
+import com.sun.ts.tests.servlet.common.request.HttpResponse;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.common.util.Data;
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.cookie.CookieSpec;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.webclient.http.HttpRequest;
-import com.sun.ts.tests.common.webclient.http.HttpResponse;
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import com.sun.ts.tests.servlet.common.util.Data;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+
+
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_jsh_cookie_web");
-
-    return super.run(args, out, err);
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_cookie_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_cookie_web.xml"));
   }
 
   /*
@@ -92,11 +89,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: cloneTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:453
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void cloneTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "cloneTest");
     invoke();
@@ -104,11 +102,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: constructorTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:434
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void constructorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "constructorTest");
     invoke();
@@ -116,25 +115,27 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: constructorIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:628
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void constructorIllegalArgumentExceptionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
-        "GET /servlet_jsh_cookie_web/TestServlet?testname=constructorIllegalArgumentExceptionTest HTTP/1.1");
+            "GET /servlet_jsh_cookie_web/TestServlet?testname=constructorIllegalArgumentExceptionTest HTTP/1.1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
   /*
    * @testName: getCommentTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:436
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getCommentTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getCommentTest");
     invoke();
@@ -142,11 +143,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: getCommentNullTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:437
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getCommentNullTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getCommentNullTest");
     invoke();
@@ -154,17 +156,18 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: getDomainTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:439
-   * 
+   *
    * @test_Strategy: Client sends a version 0 and 1 cookie to the servlet.
    * Servlet verifies values and returns result to client
    */
+  @Test
   public void getDomainTest() throws Exception {
     // version 1
     TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=/servlet_jsh_cookie_web");
+            "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
+                    + "; $Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getDomainTest");
     invoke();
 
@@ -172,11 +175,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: getMaxAgeTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:443
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getMaxAgeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getMaxAgeTest");
     invoke();
@@ -184,47 +188,50 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: getNameTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:448
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getNameTest() throws Exception {
     // version 0
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
-        + _hostname + "; Path=/servlet_jsh_cookie_web");
+            + _hostname + "; Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getNameTest");
     invoke();
     // version 1
     TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=/servlet_jsh_cookie_web");
+            "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
+                    + "; $Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getNameTest");
     invoke();
   }
 
   /*
    * @testName: getPathTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:445
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getPathTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=/servlet_jsh_cookie_web");
+            "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
+                    + "; $Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getPathTest");
     invoke();
   }
 
   /*
    * @testName: getSecureTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:447
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getSecureTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getSecureTest");
     invoke();
@@ -232,53 +239,56 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: getValueTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:450
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getValueTest() throws Exception {
     // version 0
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
-        + _hostname + "; Path=/servlet_jsh_cookie_web");
+            + _hostname + "; Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getValueTest");
     invoke();
     // version 1
     TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=/servlet_jsh_cookie_web");
+            "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
+                    + "; $Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getValueTest");
     invoke();
   }
 
   /*
    * @testName: getVersionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:451
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getVersionTest() throws Exception {
     // version 0
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
-        + _hostname + "; Path=/servlet_jsh_cookie_web");
+            + _hostname + "; Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getVersionVer0Test");
     invoke();
     // version 1
     TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=/servlet_jsh_cookie_web");
+            "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
+                    + "; $Path=/servlet_jsh_cookie_web");
     TEST_PROPS.setProperty(APITEST, "getVersionVer1Test");
     invoke();
   }
 
   /*
    * @testName: setDomainTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:438
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setDomainTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setDomainTest");
     invoke();
@@ -286,11 +296,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: setMaxAgePositiveTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:440
-   * 
+   *
    * @test_Strategy: Servlet sets values and client verifies them
    */
+  @Test
   public void setMaxAgePositiveTest() throws Exception {
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
@@ -300,25 +311,24 @@ public class URLClient extends AbstractUrlClient {
     String body = null;
 
     HttpRequest request = new HttpRequest("GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
-        _port);
+            + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
+            _port);
 
     try {
       response = request.execute();
       dateHeader = response.getResponseHeader("testDate").toString();
       CookieSpec spec = CookiePolicy.getCookieSpec(CookiePolicy.NETSCAPE);
 
-      TestUtil
-          .logTrace("Found " + response.getResponseHeaders("Set-Cookie").length
-              + " set-cookie entry");
+      logger.trace("Found " + response.getResponseHeaders("Set-Cookie").length
+                      + " set-cookie entry");
 
       boolean foundcookie = false;
       Header[] CookiesHeader = response.getResponseHeaders("Set-Cookie");
       int i = 0;
       while (i < CookiesHeader.length) {
-        TestUtil.logTrace("Checking set-cookiei " + i + ":" + CookiesHeader[i]);
+        logger.trace("Checking set-cookiei " + i + ":" + CookiesHeader[i]);
         Cookie[] cookies = spec.parse(".eng.com", _port, getServletName(),
-            false, CookiesHeader[i]);
+                false, CookiesHeader[i]);
         index = findCookie(cookies, "name1");
         if (index >= 0) {
           expiryDate = cookies[index].getExpiryDate();
@@ -342,10 +352,10 @@ public class URLClient extends AbstractUrlClient {
     try {
       Date resultDate = sdf.parse(resultStringDate);
       Date expectedDate = sdf
-          .parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
+              .parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
       if (resultDate.before(expectedDate)) {
         throw new Exception("The expiry date was incorrect, expected ="
-            + expectedDate + ", result = " + resultDate);
+                + expectedDate + ", result = " + resultDate);
       }
     } catch (Throwable t) {
       throw new Exception("Exception occurred: " + t);
@@ -358,11 +368,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: setMaxAgeZeroTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:442
-   * 
+   *
    * @test_Strategy: Servlet sets values and client verifies them
    */
+  @Test
   public void setMaxAgeZeroTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
@@ -371,39 +382,42 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: setMaxAgeNegativeTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:441
-   * 
+   *
    * @test_Strategy: Servlet sets values and client verifies them
    */
+  @Test
   public void setMaxAgeNegativeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##!Expire##!Max-Age");
+            "Set-Cookie:name1=value1##!Expire##!Max-Age");
     invoke();
   }
 
   /*
    * @testName: setPathTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:444
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setPathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setPathTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:Path=\"/servlet_jsh_cookie_web\"");
+            "Set-Cookie:Path=\"/servlet_jsh_cookie_web\"");
     invoke();
   }
 
   /*
    * @testName: setSecureTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:446
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setSecureTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setSecureVer0Test");
     invoke();
@@ -413,11 +427,12 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: setValueTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:449
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setValueVer0Test");
     invoke();
@@ -427,37 +442,40 @@ public class URLClient extends AbstractUrlClient {
 
   /*
    * @testName: setVersionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:452
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setVersionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setVersionVer0Test");
     invoke();
     TEST_PROPS.setProperty(APITEST, "setVersionVer1Test");
     invoke();
   }
-  
+
   /*
    * @testName: setAttributeTest
-   * 
+   *
    * @assertion_ids:
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void setAttributeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setAttributeTest");
     invoke();
   }
-  
+
   /*
    * @testName: getAttributesTest
-   * 
+   *
    * @assertion_ids:
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
+  @Test
   public void getAttributesTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getAttributesTest");
     invoke();

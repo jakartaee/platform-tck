@@ -31,8 +31,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpTestServlet extends HttpServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(HttpTestServlet.class);
 
   public void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -41,7 +45,7 @@ public class HttpTestServlet extends HttpServlet {
     PrintWriter pw = response.getWriter();
 
     pw.write("flushBufferTest for compatibility\n\r");
-    System.out.println("flushBufferTest for compatibility");
+    LOGGER.info("flushBufferTest for compatibility");
     response.flushBuffer();
 
     try {

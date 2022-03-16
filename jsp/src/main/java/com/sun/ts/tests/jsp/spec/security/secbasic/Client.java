@@ -13,62 +13,54 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id$
  */
-
 package com.sun.ts.tests.jsp.spec.security.secbasic;
 
 import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.common.jspservletsec.SecBasicClient;
 
 public class Client extends SecBasicClient {
-  // Shared test variables:
-  private Properties props = null;
 
-  public static void main(String[] args) {
+    // Shared test variables:
+    private Properties props = null;
 
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, null, null);
+        s.exit();
+    }
 
-  // Note: To share the commoncode between servlet and JSP,
-  // the commoncode is kept under
-  // <TS_HOME>/src/com/sun/ts/tests/common/jspservletsec/secbasicClient.java
-  // This subclass(Client.java) is used to flag the superclass
-  // to run JSP related secbasic tests
-  //
-
-  /*
+    // Note: To share the commoncode between servlet and JSP,
+    // the commoncode is kept under
+    // <TS_HOME>/src/com/sun/ts/tests/common/jspservletsec/secbasicClient.java
+    // This subclass(Client.java) is used to flag the superclass
+    // to run JSP related secbasic tests
+    // 
+    /*
    * setup() passes "jsp" as the argument to its parent class setup()
    *
    */
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
    * authpassword; ts_home;
    *
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-
-    // create newarguments to pass into superclass setup method.
-    String[] newargs = new String[2];
-
-    // "jsp" is the flag passed to superclass
-    String argExt = new String("jsp");
-    newargs[0] = argExt;
-    newargs[1] = argExt; // dummy argument
-
-    // Inform the super class to run JSP related tests
-    super.setup(newargs, p);
-  }
-
-  /*
+    public void setup(String[] args, Properties p) throws Exception {
+        props = p;
+        // create newarguments to pass into superclass setup method.
+        String[] newargs = new String[2];
+        // "jsp" is the flag passed to superclass
+        String argExt = new String("jsp");
+        newargs[0] = argExt;
+        // dummy argument
+        newargs[1] = argExt;
+        // Inform the super class to run JSP related tests
+        super.setup(newargs, p);
+    }
+    /*
    * @testName: test1
    *
    * @assertion_ids: Servlet:SPEC:140
@@ -76,8 +68,7 @@ public class Client extends SecBasicClient {
    * @test_Strategy: 1. Send request to access jspSec.jsp 2. Receive
    * authentication request.
    */
-
-  /*
+    /*
    * @testName: test2
    *
    * @assertion_ids: Servlet:SPEC:140;Servlet:JAVADOC:368
@@ -93,8 +84,7 @@ public class Client extends SecBasicClient {
    * 2. getRemoteUser() returns the user name that the client authenticated
    * with.
    */
-
-  /*
+    /*
    * @testName: test3
    *
    * @assertion_ids: Servlet:SPEC:162
@@ -106,8 +96,7 @@ public class Client extends SecBasicClient {
    * protected web resource, and user enters an invalid username and password,
    * the container denies access to the web resource.
    */
-
-  /*
+    /*
    * @testName: test4
    *
    * @assertion_ids: Servlet:SPEC:162
@@ -124,8 +113,7 @@ public class Client extends SecBasicClient {
    * denies access to the web resource.
    *
    */
-
-  /*
+    /*
    * @testName: test5
    *
    * @assertion_ids: Servlet:JAVADOC:368; Servlet:JAVADOC:369
@@ -140,8 +128,7 @@ public class Client extends SecBasicClient {
    * authenticate. 2. isUserInRole() must return false for any valid or invalid
    * role reference. 3. getRemoteUser() must return false
    */
-
-  /*
+    /*
    * @testName: test6
    *
    * @assertion_ids: Servlet:SPEC:149

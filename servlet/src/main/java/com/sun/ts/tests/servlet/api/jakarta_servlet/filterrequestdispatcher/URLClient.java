@@ -20,36 +20,40 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
 import com.sun.ts.tests.servlet.common.util.Data;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_filterrequestdispatcher_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    WebArchive webArchive =
+            ShrinkWrap.create(WebArchive.class, "servlet_js_filterrequestdispatcher_web.war")
+                    .addAsLibraries(CommonServlets.getCommonServletsArchive())
+                    .addClasses(DummyServlet.class, ErrorPage.class, ForwardedServlet.class,
+                                ForwardTest1Servlet.class, ForwardTestServlet.class, IncludedServlet.class,
+                                IncludeTest1Servlet.class, IncludeTestServlet.class, RequestTestServlet.class,
+                                Test_Filter.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_filterrequestdispatcher_web.xml"));
+    Arrays.asList("dummy.html","dummyJSP.jsp")
+            .forEach(s -> webArchive.addAsWebResource("api/jakarta_servlet/filterrequestdispatcher/"+ s, s));
+    return webArchive;
   }
 
   /*
@@ -69,7 +73,7 @@ public class URLClient extends AbstractUrlClient {
    * url-pattern, as well as ERROR, FORWARD and INCLUDE. 3. Client try to access
    * all of them directly. 4. Verify that filter is properly invoked.
    */
-
+  @Test
   public void RequestTest() throws Exception {
     TEST_PROPS.setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.setProperty(APITEST, "generic/DummyServlet");
@@ -94,7 +98,7 @@ public class URLClient extends AbstractUrlClient {
    * using servlet-name 3. Client try to access RequestTestServlet directly. 4.
    * Verify that filter is properly invoked.
    */
-
+  @Test
   public void RequestTest1() throws Exception {
     TEST_PROPS.setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.setProperty(APITEST, "request/RequestTest");
@@ -111,7 +115,7 @@ public class URLClient extends AbstractUrlClient {
    * set to REQUEST but to FORWARD only. 3. Client try to access
    * forward/ForwardedServlet directly. 4. Verify that filter is not invoked.
    */
-
+  @Test
   public void RequestTest2() throws Exception {
     TEST_PROPS.setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.setProperty(SEARCH_STRING, Data.FAILED);
@@ -132,7 +136,7 @@ public class URLClient extends AbstractUrlClient {
    * forward to ForwardedServlet through TestServlet. 4. Verify that filter is
    * properly invoked.
    */
-
+  @Test
   public void ForwardTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forwardTest");
     invoke();
@@ -150,7 +154,7 @@ public class URLClient extends AbstractUrlClient {
    * RequestDispatcher to forward to TestServlet. 4. Verify that filter is
    * properly invoked.
    */
-
+  @Test
   public void ForwardTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forwardServletTest");
     invoke();
@@ -173,7 +177,7 @@ public class URLClient extends AbstractUrlClient {
    * access IncludedServlet through TestServlet. 4. Verify that filter is
    * properly invoked.
    */
-
+  @Test
   public void IncludeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "includeTest");
     invoke();
@@ -191,7 +195,7 @@ public class URLClient extends AbstractUrlClient {
    * try to use the RequestDispatcher's include to access all three through
    * TestServlet. 4. Verify that filter is properly invoked.
    */
-
+  @Test
   public void IncludeTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "includeJSPTest");
     invoke();
@@ -214,7 +218,7 @@ public class URLClient extends AbstractUrlClient {
    * Client try to access a non-existent Servlet 4. Verify that filter is
    * properly invoked.
    */
-
+  @Test
   public void ErrorTest() throws Exception {
     TEST_PROPS.setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.setProperty(APITEST, "forward/IncludedServlet");

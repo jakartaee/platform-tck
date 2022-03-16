@@ -20,34 +20,28 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filter;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_filter_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_filter_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(DoFilter_Filter.class, DoFilterTestServlet.class, InitFilter_Filter.class,
+                        InitFilterConfigTestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_filter_web.xml"));
   }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -62,7 +56,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Client attempts to access a servlet and the filter
    * configured for that servlet should be invoked.
    */
-
+  @Test
   public void doFilterTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "DoFilterTest");
     invoke();
@@ -76,7 +70,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Client attempts to access a servlet and the filter
    * configured for that servlet.
    */
-
+  @Test
   public void initFilterConfigTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "InitFilterConfigTest");
     invoke();

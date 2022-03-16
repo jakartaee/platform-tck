@@ -13,62 +13,63 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id:$
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletrequest1;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.servlet.api.common.request.RequestClient;
+import com.sun.ts.tests.servlet.common.request.RequestClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends RequestClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletrequest1_web";
+    @BeforeEach
+    public void setupServletName() throws Exception {
+        setServletName("TestServlet");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar").addClasses(TestServlet1.class, RequestListener1.class).addAsResource(URLClient.class.getResource("servlet_plu_servletrequest1_web-fragment.xml"), "META-INF/web-fragment.xml");
+        return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletrequest1_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addAsLibraries(javaArchive);
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
-
-  /* Run test */
-  /*
+    /* Run test */
+    /*
    * @testName: getLocalPortTest
    *
    * @assertion_ids: Servlet:JAVADOC:635
    *
    * @test_Strategy: Test servlet API SDervletRequest.getLocalPort()
    */
-
-  /*
+    /*
    * @testName: getLocalNameTest
    *
    * @assertion_ids: Servlet:JAVADOC:632
    *
    * @test_Strategy: Test servlet API SDervletRequest.getLocalName()
    */
+    @Test()
+    public void getLocalNameTest() throws Exception {
+        super.getLocalNameTest();
+    }
+
+    @Test()
+    public void getLocalPortTest() throws Exception {
+        super.getLocalPortTest();
+    }
 }

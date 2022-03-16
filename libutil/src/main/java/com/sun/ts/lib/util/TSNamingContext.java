@@ -20,10 +20,12 @@
 
 package com.sun.ts.lib.util;
 
+import javax.naming.InitialContext;
 import java.io.Serializable;
 import java.util.*;
 import javax.naming.*;
 import javax.rmi.PortableRemoteObject;
+import java.util.Properties;
 
 /**
  * TSNamingContext provides a wrapper for all lookups.
@@ -52,7 +54,7 @@ public class TSNamingContext implements TSNamingContextInterface, Serializable {
    */
   public Object lookup(String s, Class c) throws Exception {
     Object o = lookup(s);
-    return c == null ? o : PortableRemoteObject.narrow(o, c);
+    return  (c != null && c.isAssignableFrom(o.getClass())) ? c.cast(o):null;
   }
 
   /**

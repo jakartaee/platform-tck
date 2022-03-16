@@ -30,8 +30,12 @@ import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SecondIncludedServlet extends GenericServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SecondIncludedServlet.class);
 
   private static final String TEST_HEADER = "testname";
 
@@ -57,7 +61,7 @@ public class SecondIncludedServlet extends GenericServlet {
       throws ServletException, IOException {
     PrintWriter pw = res.getWriter();
     pw.print("SecondIncludedServlet Invoked, simple method");
-    System.out.println("In SecondIncludedServlet, simple method");
+    LOGGER.info("In SecondIncludedServlet, simple method");
     ServletTestUtil.printResult(pw, true);
   }
 }

@@ -21,8 +21,12 @@ import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SecBasicClient extends BaseUrlClient {
+
+  private static final Logger lOGGER = LoggerFactory.getLogger(SecBasicClient.class);
 
   // Constants:
   private static final String USERNAME = "user";
@@ -107,7 +111,7 @@ public class SecBasicClient extends BaseUrlClient {
 
       }
     } catch (Exception e) {
-      logErr("Error: got exception: ", e);
+      lOGGER.error("Error: got exception: ", e);
     }
   }
 

@@ -23,27 +23,30 @@ import java.util.ArrayList;
 
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class SRListener implements ServletRequestListener {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SRListener.class);
 
   // Public Methods
   public void requestDestroyed(ServletRequestEvent event) {
     ArrayList al = null;
     al = (ArrayList) event.getServletContext().getAttribute("arraylist");
     if (al != null) {
-      System.out.println("in requestDestroyed method of listener");
+      LOGGER.info("in requestDestroyed method of listener");
       al.add("in requestDestroyed method of listener");
       event.getServletContext().setAttribute("arraylist", al);
     }
   }
 
   public void requestInitialized(ServletRequestEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("arraylist");
+    ArrayList al = (ArrayList) event.getServletContext().getAttribute("arraylist");
     if (al == null) {
       al = new ArrayList();
     }
-    System.out.println("in requestInitialized method of listener");
+    LOGGER.info("in requestInitialized method of listener");
     al.add("in requestInitialized method of listener");
     event.getServletContext().setAttribute("arraylist", al);
   }

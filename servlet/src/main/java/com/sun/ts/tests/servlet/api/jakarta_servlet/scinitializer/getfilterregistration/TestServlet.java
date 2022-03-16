@@ -33,8 +33,13 @@ import jakarta.servlet.ServletResponse;
 
 public class TestServlet extends GenericTCKServlet {
 
+  @Override
+  public void init(ServletConfig config) throws ServletException {
+    super.init(config);
+  }
+
   public void getFilterRegistrationTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+                                        ServletResponse response) throws ServletException, IOException {
     boolean passed = true;
     PrintWriter pw = response.getWriter();
     ServletConfig config = this.getServletConfig();

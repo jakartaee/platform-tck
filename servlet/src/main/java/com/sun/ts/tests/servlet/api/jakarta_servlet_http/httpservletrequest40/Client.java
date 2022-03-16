@@ -19,86 +19,43 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest40;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.lib.util.WebUtil;
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.util.WebUtil;
-
-public class Client extends EETest {
-
-  private static final String CONTEXT_ROOT = "/servlet_jsh_httpservletrequest40_web";
-
-  private static final String PROTOCOL = "http";
-
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
-
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+public class Client extends AbstractUrlClient {
 
   public static final String DELIMITER = "\r\n";
 
   public static final String ENCODING = "ISO-8859-1";
-
-  private String hostname;
-
-  private int portnum;
-
+  
   private WebUtil.Response response = null;
 
   private String request = null;
 
-  private TSURL tsurl = new TSURL();
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    boolean pass = true;
-
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-
-    System.out.println(hostname);
-    System.out.println(portnum);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-  }
-
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpservletrequest40_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(DispatchServlet.class, ForwardFilter.class, ForwardServlet.class,
+                    IncludeServlet.class, NamedForwardServlet.class, NamedIncludeServlet.class,
+                    TestServlet.class, TrailerTestServlet.class, Utilities.class)
+            .setWebXML(Client.class.getResource("servlet_jsh_httpservletrequest40_web.xml"));
+  }  
+  
   /*
    * @testName: httpServletMappingTest
    * 
@@ -106,8 +63,9 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingTest() throws Exception {
-    simpleTest("httpServletMappingTest", CONTEXT_ROOT + "/TestServlet", "GET",
+    simpleTest("httpServletMappingTest", getContextRoot() + "/TestServlet", "GET",
         "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
   }
 
@@ -118,8 +76,9 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingTest2() throws Exception {
-    simpleTest("httpServletMappingTest2", CONTEXT_ROOT + "/a.ts", "GET",
+    simpleTest("httpServletMappingTest2", getContextRoot() + "/a.ts", "GET",
         "matchValue=a, pattern=*.ts, servletName=TestServlet, mappingMatch=EXTENSION");
   }
 
@@ -130,8 +89,9 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingTest3() throws Exception {
-    simpleTest("httpServletMappingTest3", CONTEXT_ROOT + "/default", "GET", 
+    simpleTest("httpServletMappingTest3", getContextRoot() + "/default", "GET", 
         "matchValue=, pattern=/, servletName=defaultServlet, mappingMatch=DEFAULT");
   }
 
@@ -142,9 +102,10 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingForwardTest() throws Exception {
     simpleTest("httpServletMappingForwardTest",
-        CONTEXT_ROOT + "/ForwardServlet", "GET",
+        getContextRoot() + "/ForwardServlet", "GET",
         "matchValue=a, pattern=*.ts, servletName=TestServlet, mappingMatch=EXTENSION");
   }
 
@@ -155,9 +116,10 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingNamedForwardTest() throws Exception {
     simpleTest("httpServletMappingNamedForwardTest",
-        CONTEXT_ROOT + "/NamedForwardServlet", "GET",
+        getContextRoot() + "/NamedForwardServlet", "GET",
         "matchValue=NamedForwardServlet, pattern=/NamedForwardServlet, servletName=NamedForwardServlet, mappingMatch=EXACT");
   }
 
@@ -168,9 +130,10 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingNamedIncludeTest() throws Exception {
     simpleTest("httpServletMappingNamedIncludeTest",
-        CONTEXT_ROOT + "/NamedIncludeServlet", "GET",
+        getContextRoot() + "/NamedIncludeServlet", "GET",
         "matchValue=NamedIncludeServlet, pattern=/NamedIncludeServlet, servletName=NamedIncludeServlet, mappingMatch=EXACT");
   }
 
@@ -181,9 +144,10 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingIncludeTest() throws Exception {
     simpleTest("httpServletMappingIncludeTest",
-        CONTEXT_ROOT + "/IncludeServlet", "POST",
+        getContextRoot() + "/IncludeServlet", "POST",
         "matchValue=IncludeServlet, pattern=/IncludeServlet, servletName=IncludeServlet, mappingMatch=EXACT");
   }
 
@@ -194,8 +158,9 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingFilterTest() throws Exception {
-    simpleTest("httpServletMappingFilterTest", CONTEXT_ROOT + "/ForwardFilter",
+    simpleTest("httpServletMappingFilterTest", getContextRoot() + "/ForwardFilter",
         "GET",
         "matchValue=, pattern=/, servletName=defaultServlet, mappingMatch=DEFAULT");
   }
@@ -207,28 +172,29 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void httpServletMappingDispatchTest() throws Exception {
     simpleTest("httpServletMappingDispatchTest",
-        CONTEXT_ROOT + "/DispatchServlet", "GET",
-        "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
+            getContextRoot() + "/DispatchServlet", "GET",
+            "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
   }
 
+  @Test
   private void simpleTest(String testName, String request, String method,
       String expected) throws Exception {
     try {
-      TestUtil.logMsg("Sending request \"" + request + "\"");
+      logger.debug("Sending request {}", request);
 
-      response = WebUtil.sendRequest(method, InetAddress.getByName(hostname),
-          portnum, tsurl.getRequest(request), null, null);
+      response = WebUtil.sendRequest(method, InetAddress.getByName(_hostname),
+          _port, getRequest(request), null, null);
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logger.error("Caught exception: " + e.getMessage(), e);
       throw new Exception(testName + " failed: ", e);
     }
 
-    TestUtil.logMsg("response.statusToken:" + response.statusToken);
-    TestUtil.logMsg("response.content:" + response.content);
+    logger.debug("response.statusToken: {}", response.statusToken);
+    logger.debug("response.content: {}", response.content);
 
     // Check that the page was found (no error).
     if (response.isError()) {
@@ -236,8 +202,8 @@ public class Client extends EETest {
       throw new Exception(testName + " failed.");
     }
 
-    if (response.content.indexOf(expected) < 0) {
-      TestUtil.logMsg("Expected: " + expected);
+    if (!response.content.contains(expected)) {
+      logger.error("Expected: {} but found {}", expected, response.content);
       throw new Exception(testName + " failed.");
     }
   }
@@ -249,18 +215,15 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void TrailerTest() throws Exception {
-    URL url;
-    Socket socket = null;
-    OutputStream output;
     InputStream input;
 
-    try {
-      url = new URL("http://" + hostname + ":" + portnum + CONTEXT_ROOT
-          + "/TrailerTestServlet");
-      socket = new Socket(url.getHost(), url.getPort());
+    URL url = new URL("http://" + _hostname + ":" + _port + getContextRoot()
+            + "/TrailerTestServlet");
+    try (Socket socket = new Socket(url.getHost(), url.getPort());
+         OutputStream output = socket.getOutputStream()) {
       socket.setKeepAlive(true);
-      output = socket.getOutputStream();
 
       String path = url.getPath();
       StringBuffer outputBuffer = new StringBuffer();
@@ -293,31 +256,26 @@ public class Client extends EETest {
       String response = new String(bytes.toByteArray());
       TestUtil.logMsg(response);
       if (response.indexOf("isTrailerFieldsReady: true") < 0) {
-        TestUtil.logErr("isTrailerFieldsReady should be true");
+        logger.error("isTrailerFieldsReady should be true");
         throw new Exception("TrailerTest failed.");
       }
 
-      if (response.toLowerCase().indexOf("mytrailer=foo") < 0) {
-        TestUtil.logErr("failed to get trailer field: mytrailer=foo");
+      if (!response.toLowerCase().contains("mytrailer=foo")) {
+        logger.error("failed to get trailer field: mytrailer=foo");
         throw new Exception("TrailerTest failed.");
       }
 
-      if (response.toLowerCase().indexOf("mytrailer2=bar") < 0) {
-        TestUtil.logErr("failed to get trailer field: mytrailer=foo");
+      if (!response.toLowerCase().contains("mytrailer2=bar")) {
+        logger.error("failed to get trailer field: mytrailer=foo");
         throw new Exception("TrailerTest failed.");
       }
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("TrailerTest failed: ", e);
-    } finally {
-      try {
-        if (socket != null)
-          socket.close();
-      } catch (Exception e) {
-      }
     }
   }
+
 
   /*
    * @testName: TrailerTest2
@@ -326,10 +284,11 @@ public class Client extends EETest {
    * 
    * @test_Strategy:
    */
+  @Test
   public void TrailerTest2() throws Exception {
-    simpleTest("TrailerTest2", CONTEXT_ROOT + "/TrailerTestServlet", "POST",
+    simpleTest("TrailerTest2", getContextRoot() + "/TrailerTestServlet", "POST",
         "isTrailerFieldsReady: true");
-    simpleTest("TrailerTest2", CONTEXT_ROOT + "/TrailerTestServlet", "POST",
+    simpleTest("TrailerTest2", getContextRoot() + "/TrailerTestServlet", "POST",
         "Trailer: {}");
   }
 }

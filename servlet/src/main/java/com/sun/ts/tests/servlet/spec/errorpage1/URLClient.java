@@ -20,37 +20,37 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage1;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
 import com.sun.ts.tests.servlet.common.util.Data;
+import com.sun.ts.tests.servlet.spec.errorpage.ServletErrorPage;
+import com.sun.ts.tests.servlet.spec.errorpage.SecondServletErrorPage;
+import com.sun.ts.tests.servlet.spec.errorpage.TestException;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_spec_errorpage1_web");
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_errorpage1_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class, TestServletException.class, TestException.class, ServletErrorPage.class,
+                    SecondServletErrorPage.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_errorpage1_web.xml"));
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -69,7 +69,7 @@ public class URLClient extends AbstractUrlClient {
    * defined to deal with IllegalStateException is invoked with the appropriate
    * info regarding the error
    */
-
+  @Test
   public void nonServletExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "nonServletExceptionTest");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
@@ -96,7 +96,7 @@ public class URLClient extends AbstractUrlClient {
    * --- No error pages are defined to deal with TestException; Verify this
    * Error Page is invoked with the appropriate info regarding the error
    */
-
+  @Test
   public void servletExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "ServletExceptionTest");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);

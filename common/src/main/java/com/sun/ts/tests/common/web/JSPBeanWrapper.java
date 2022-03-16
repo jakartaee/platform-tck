@@ -51,7 +51,7 @@ public class JSPBeanWrapper implements java.io.Serializable {
     Properties resultProps;
 
     WebUtil.logTrace("[JSPBeanWrapper] executeTest()");
-    resultProps = WebUtil.executeTest(this, nctx, request);
+    resultProps = WebUtil.executeTest(this, request);
 
     return WebUtil.propsToString(resultProps);
   }

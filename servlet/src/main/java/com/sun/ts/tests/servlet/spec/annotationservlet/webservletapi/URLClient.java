@@ -19,34 +19,32 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webservletapi;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet1;
+import com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2;
+import com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet3;
+import com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet4;
+import com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet5;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName("TestServlet");
-    setContextRoot("/servlet_annotationservlet_webservletapi_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "webservletapi_web.war")
+            .addClasses(TestListener.class, Servlet1.class, Servlet2.class, Servlet3.class, Servlet4.class, Servlet5.class);
   }
 
   /*
@@ -70,6 +68,7 @@ public class URLClient extends AbstractUrlClient {
    * properly; Verify that servlet name is set correctly; Verify that servlet
    * name is set to the default name;
    */
+  @Test
   public void test1() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1URL HTTP/1.1");
@@ -100,6 +99,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet2 at the URLs specified in program; Veriy Servlet2 is invoked
    * properly; Verify that servlet name is set properly;
    */
+  @Test
   public void test2() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL1 HTTP/1.1");
@@ -171,6 +171,7 @@ public class URLClient extends AbstractUrlClient {
    * and -- value is set correctly -- all @initParams are passed correctly. --
    * servlet name is set correctly
    */
+  @Test
   public void test3() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3URL HTTP/1.1");

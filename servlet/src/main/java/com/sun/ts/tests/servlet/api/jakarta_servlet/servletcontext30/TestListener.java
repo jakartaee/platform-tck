@@ -31,8 +31,12 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestListener implements ServletContextListener {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestListener.class);
 
   /**
    * Receives notification that the web application initialization process is
@@ -118,7 +122,7 @@ public class TestListener implements ServletContextListener {
       frFilter.setInitParameter(addServletName3,
           DispatcherType.REQUEST.toString());
     } catch (ServletException ex) {
-      System.out.println("Error creating Servlet");
+      LOGGER.error("Error creating Servlet");
     }
 
     /*
@@ -152,7 +156,7 @@ public class TestListener implements ServletContextListener {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateSCAttributeListener.class);
       context.addListener(sclistener);
     } catch (ServletException ex) {
-      System.out.println("Error creating Listener CreateSCAttributeListener: "
+      LOGGER.error("Error creating Listener CreateSCAttributeListener: "
           + ex.getMessage());
     }
 
@@ -168,7 +172,7 @@ public class TestListener implements ServletContextListener {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateSRListener.class);
       context.addListener(srlistener);
     } catch (ServletException ex) {
-      System.out.println("Error creating Listener CreateSRAttributeListener: "
+      LOGGER.error("Error creating Listener CreateSRAttributeListener: "
           + ex.getMessage());
     }
 
@@ -184,7 +188,7 @@ public class TestListener implements ServletContextListener {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateSRAttributeListener.class);
       context.addListener(sralistener);
     } catch (ServletException ex) {
-      System.out.println("Error creating Listener CreateSRAttributeListener: "
+      LOGGER.error("Error creating Listener CreateSRAttributeListener: "
           + ex.getMessage());
     }
 
@@ -241,11 +245,11 @@ public class TestListener implements ServletContextListener {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSCListenerClass.class);
     } catch (IllegalArgumentException ilex) {
       scc_listener_test = true;
-      System.out.println(
+      LOGGER.error(
           "Expected exception thrown adding Listener AddSCListenerClass: "
               + ilex.getMessage());
     } catch (Exception ex) {
-      System.out.println(
+      LOGGER.error(
           "Error adding Listener AddSCListenerClass: " + ex.getMessage());
     }
     context.setInitParameter(SCC_LISTENER_TEST, scc_listener_test.toString());
@@ -255,11 +259,11 @@ public class TestListener implements ServletContextListener {
           "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSCListenerString");
     } catch (IllegalArgumentException ilex) {
       scs_listener_test = true;
-      System.out.println(
+      LOGGER.error(
           "Expected exception thrown adding Listener AddSCListenerString: "
               + ilex.getMessage());
     } catch (Exception ex) {
-      System.out.println(
+      LOGGER.error(
           "Error adding Listener AddSCListenerString: " + ex.getMessage());
     }
     context.setInitParameter(SCS_LISTENER_TEST, scs_listener_test.toString());
@@ -270,11 +274,11 @@ public class TestListener implements ServletContextListener {
       context.addListener(csclistener);
     } catch (IllegalArgumentException ilex) {
       csc_listener_test = true;
-      System.out.println(
+      LOGGER.error(
           "Expected exception thrown adding Listener CreateSCListener: "
               + ilex.getMessage());
     } catch (Exception ex) {
-      System.out.println(
+      LOGGER.error(
           "Error adding Listener AddSCListenerClass: " + ex.getMessage());
     }
     context.setInitParameter(CSC_LISTENER_TEST, csc_listener_test.toString());

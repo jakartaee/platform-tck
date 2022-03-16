@@ -66,8 +66,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
 
-import javax.management.AttributeValueExp;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 

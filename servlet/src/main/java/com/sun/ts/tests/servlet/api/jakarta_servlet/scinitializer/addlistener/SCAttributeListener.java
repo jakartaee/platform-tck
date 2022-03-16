@@ -22,24 +22,27 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener;
 
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class SCAttributeListener
     implements ServletContextAttributeListener {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(SCAttributeListener.class);
+
   // Public Methods
 
   public void attributeAdded(ServletContextAttributeEvent event) {
-    System.out
-        .print("SCAttributeAdded:" + event.getName() + "," + event.getValue());
+    LOGGER.info("SCAttributeAdded:" + event.getName() + "," + event.getValue());
   }
 
   public void attributeRemoved(ServletContextAttributeEvent event) {
-    System.out.print(
+    LOGGER.info(
         "SCAttributeRemoved:" + event.getName() + "," + event.getValue());
   }
 
   public void attributeReplaced(ServletContextAttributeEvent event) {
-    System.out.print(
+    LOGGER.info(
         "SCAttributeReplaced:" + event.getName() + "," + event.getValue());
   }
 

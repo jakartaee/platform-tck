@@ -25,17 +25,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpState;
+import java.util.logging.Logger;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.common.webclient.validation.ValidationFactory;
 import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
-// used to force the class to be compiled
-import com.sun.ts.tests.common.webclient.validation.TokenizedValidator;
+import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.HttpState;
+
 
 /**
  * A TestCase implementation for HTTP-based testing. This allows the user to set
@@ -43,6 +42,8 @@ import com.sun.ts.tests.common.webclient.validation.TokenizedValidator;
  * the server.
  */
 public class WebTestCase implements TestCase {
+
+  private static final Logger LOGGER = Logger.getLogger(WebTestCase.class.getName());
 
   /**
    * Tokenized response validation strategy
@@ -172,7 +173,7 @@ public class WebTestCase implements TestCase {
     } catch (Throwable t) {
       String message = t.getMessage();
       throw new TestFailureException("[FATAL] Unexpected failure during "
-          + "test execution." + (message == null ? t.toString() : message), t);
+              + "test execution." + (message == null ? t.toString() : message), t);
     }
 
     // Validate this test case instance
@@ -211,7 +212,7 @@ public class WebTestCase implements TestCase {
    */
   public void addExpectedHeader(String header) {
     if (_expected == null) {
-      _expected = new HashMap<String, Header>();
+      _expected = new HashMap<>();
     }
     addHeader(_expected, header);
   }
@@ -330,7 +331,7 @@ public class WebTestCase implements TestCase {
 
   /**
    * Returns the list of search strings.
-   * 
+   *
    * @return the list of search strings.
    */
   public List<String> getUnorderedSearchStrings() {
@@ -512,8 +513,8 @@ public class WebTestCase implements TestCase {
       _strategy = strat;
     } else {
       TestUtil.logMsg("[WebTestCase][WARNING] An attempt was made to use a "
-          + "non-existing validator (" + validator + ")"
-          + ".  Falling back to the TokenizedValidator");
+              + "non-existing validator (" + validator + ")"
+              + ".  Falling back to the TokenizedValidator");
     }
   }
 
@@ -540,17 +541,15 @@ public class WebTestCase implements TestCase {
    *          String representation of a header in the form of
    *          <headername>:<value>
    */
-  private void addHeader(Map<String, Header> map, String headerString) {
-    TestUtil.logTrace(
-        "[WebTestCase] addHeader utility method called: " + headerString);
+  private void addHeader(Map<String,Header> map, String headerString) {
+    LOGGER.fine("[WebTestCase] addHeader utility method called: " + headerString);
     StringTokenizer st = new StringTokenizer(headerString, "|");
     while (st.hasMoreTokens()) {
       String head = st.nextToken();
       int colIdx = head.indexOf(':');
       String name = head.substring(0, colIdx).trim();
       String value = head.substring(colIdx + 1).trim();
-      TestUtil
-          .logTrace("[WebTestCase] Adding test header: " + name + ", " + value);
+      LOGGER.fine("[WebTestCase] Adding test header: " + name + ", " + value);
       Header header = map.get(name);
       if (header != null) {
         map.put(name, createNewHeader(value, header));
@@ -562,7 +561,7 @@ public class WebTestCase implements TestCase {
 
   /**
    * Creates a new header based of the provided header and value.
-   * 
+   *
    * @param newValue
    *          - the new value to add to an existing header
    * @param header
@@ -576,7 +575,7 @@ public class WebTestCase implements TestCase {
 
   /**
    * Adds a search string to the provided list
-   * 
+   *
    * @param stringList
    *          - list to add the string to
    * @param s

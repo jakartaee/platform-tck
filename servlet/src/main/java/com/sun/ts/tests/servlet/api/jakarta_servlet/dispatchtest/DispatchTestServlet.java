@@ -29,6 +29,18 @@ import jakarta.servlet.ServletResponse;
 
 public class DispatchTestServlet extends GenericTCKServlet {
 
+  public static String DISPATCH_TEST1_CTX_KEY = "DISPATCH_TEST1_CTX_KEY";
+
+  public static String DISPATCH_TEST_CTX_KEY = "DISPATCH_TEST_CTX_KEY";
+
+  public static String getDispatcherContextRoot() {
+    return System.getProperty(DISPATCH_TEST_CTX_KEY, "/servlet_js_dispatchtest_web");
+  }
+
+  public static String getDispatcher1ContextRoot() {
+    return System.getProperty(DISPATCH_TEST1_CTX_KEY, "/servlet_js_dispatchtest1_web");
+  }
+
   // Test for AsyncContext.dispatch()
   public void dispatchReturnTest(ServletRequest request,
       ServletResponse response) throws IOException {
@@ -145,7 +157,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -165,7 +177,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -573,7 +585,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests11?testname=dispatchTest11");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -593,7 +605,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests12?testname=dispatchTest12");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -613,7 +625,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests13?testname=dispatchTest13");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -633,7 +645,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests14?testname=dispatchTest14");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -653,7 +665,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests15?testname=dispatchTest15");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -673,7 +685,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests16?testname=dispatchTest16");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -836,7 +848,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -845,7 +857,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
       response.getWriter().println("dispatch again");
       ac.dispatch(
           request.getServletContext()
-              .getContext("/servlet_js_dispatchtest1_web"),
+              .getContext(getDispatcher1ContextRoot()),
           "/DispatchTests19?testname=dispatchTest19");
     } catch (IllegalStateException ex) {
       response.getWriter().println("dispatch() called again");
@@ -868,7 +880,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -877,7 +889,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
       response.getWriter().println("dispatch again");
       ac.dispatch(
           request.getServletContext()
-              .getContext("/servlet_js_dispatchtest1_web"),
+              .getContext(getDispatcher1ContextRoot()),
           "/DispatchTests19?testname=dispatchTest19");
     } catch (IllegalStateException ex) {
       response.getWriter().println("dispatch() called again");
@@ -901,7 +913,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -931,7 +943,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -1076,7 +1088,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -1099,7 +1111,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest1_web"),
+        request.getServletContext().getContext(getDispatcher1ContextRoot()),
         "/DispatchTests10?testname=dispatchTest10");
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());

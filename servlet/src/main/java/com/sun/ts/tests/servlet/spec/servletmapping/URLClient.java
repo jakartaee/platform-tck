@@ -20,32 +20,22 @@
 
 package com.sun.ts.tests.servlet.spec.servletmapping;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_js_servletmapping_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_servletmapping_web.war")
+            .addClasses(TestServlet1.class, TestServlet2.class, TestServlet4.class, TestServlet5.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_servletmapping_web.xml"));
   }
 
   /*
@@ -62,6 +52,7 @@ public class URLClient extends AbstractUrlClient {
    * request to /TestServlet1, verify TestServlet1 is invoked 4. Send request to
    * /TestServlet2, verify TestServlet2 is invoked
    */
+  @Test
   public void multiURLmappingTest1() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(REQUEST,
@@ -87,6 +78,7 @@ public class URLClient extends AbstractUrlClient {
    * invoked 4. Send request to /foo/bar/TestServlet5, verify TestServlet5 is
    * invoked
    */
+  @Test
   public void multiURLmappingTest2() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(REQUEST,
@@ -111,6 +103,7 @@ public class URLClient extends AbstractUrlClient {
    * request to /foo/baR/TestServlet1, verify TestServlet1 is invoked 4. Send
    * request to /foo/baR/Ten, verify TestServlet2 is invoked
    */
+  @Test
   public void multiURLmappingTest3() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(REQUEST,
@@ -135,6 +128,7 @@ public class URLClient extends AbstractUrlClient {
    * request to /test/Test1.bop, verify TestServlet1 is invoked 4. Send request
    * to /Test1.bop, verify TestServlet4 is invoked
    */
+  @Test
   public void multiURLmappingTest4() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(REQUEST,

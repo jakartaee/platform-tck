@@ -61,7 +61,7 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.sun.ts.tests.servlet.api.common.request.RequestTests;
+import com.sun.ts.tests.servlet.common.servlets.RequestTests;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

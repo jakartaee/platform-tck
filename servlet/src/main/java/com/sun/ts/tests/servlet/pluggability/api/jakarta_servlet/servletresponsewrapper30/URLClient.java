@@ -19,36 +19,36 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletresponsewrapper30;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper30.IsWrapperForTest;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper30.TCKServletResponseWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper30.TCKServletResponsesubWrapper;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletresponsewrapper30_web";
-
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, RequestListener1.class)
+            .addAsResource(URLClient.class.getResource("servlet_plu_servletresponsewrapper30_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletresponsewrapper30_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(IsWrapperForTest.class, TCKServletResponsesubWrapper.class, TCKServletResponseWrapper.class)
+            .addAsLibraries(javaArchive);
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -65,6 +65,7 @@ public class URLClient extends AbstractUrlClient {
    * works: - jakarta.servlet.ServletResponseWrapper.isWrapperFor(ServletResponse)
    * - jakarta.servlet.ServletResponseWrapper.isWrapperFor(Class)
    */
+  @Test
   public void isWrapperForTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/IsWrapperForTest  HTTP/1.1");

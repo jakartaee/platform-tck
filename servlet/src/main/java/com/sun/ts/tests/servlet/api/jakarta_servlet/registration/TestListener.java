@@ -36,8 +36,12 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestListener implements ServletContextListener {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestListener.class);
 
   /**
    * Receives notification that the web application initialization process is
@@ -154,7 +158,7 @@ public class TestListener implements ServletContextListener {
       frFilter.setInitParameters(params);
       params.clear();
     } catch (ServletException ex) {
-      System.out.println("Error creating Servlet");
+      LOGGER.error("Error creating Servlet");
     }
 
     /*
@@ -227,10 +231,10 @@ public class TestListener implements ServletContextListener {
      * Test for ServletRegistration.getMappings()
      */
     String URL_MAPPING = "URL_MAPPING_TEST";
-    StringBuffer Value_OF_URL = new StringBuffer();
+    StringBuilder Value_OF_URL = new StringBuilder();
     Collection<String> url_mappings = srClass.getMappings();
     for (String url : url_mappings) {
-      Value_OF_URL.append(url + "|");
+      Value_OF_URL.append(url).append('|');
     }
     context.setInitParameter(URL_MAPPING, Value_OF_URL.toString());
 
@@ -238,9 +242,8 @@ public class TestListener implements ServletContextListener {
      * Test for ServletRegistration.getServletRegistrations()
      */
     String SERVLET_REGISTRATIONS = "SERVLET_REGISTRATIONS";
-    StringBuffer Value_OF_Servlet_Registrations = new StringBuffer();
-    Map<String, ? extends ServletRegistration> servlet_registrations = context
-        .getServletRegistrations();
+    StringBuilder Value_OF_Servlet_Registrations = new StringBuilder();
+    Map<String, ? extends ServletRegistration> servlet_registrations = context.getServletRegistrations();
     Iterator it = servlet_registrations.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry pairs = (Map.Entry) it.next();
@@ -254,9 +257,8 @@ public class TestListener implements ServletContextListener {
      * Test for ServletRegistration.getServletRegistration(String)
      */
     String SERVLET_REGISTRATION = "SERVLET_REGISTRATION";
-    StringBuffer Value_OF_Registration = new StringBuffer();
-    String[] servlets = { "AddServletString", "AddServletClass",
-        "AddServletNotFound", "CreateServlet", "TestServlet" };
+    StringBuilder Value_OF_Registration = new StringBuilder();
+    String[] servlets = { "AddServletString", "AddServletClass", "AddServletNotFound", "CreateServlet", "TestServlet" };
     for (String servlet : servlets) {
       Value_OF_Registration.append(
           servlet + "=" + context.getServletRegistration(servlet) + "|");
@@ -268,7 +270,7 @@ public class TestListener implements ServletContextListener {
      * Test for FilterRegistration.getFilterRegistrations()
      */
     String FILTER_REGISTRATIONS = "FILTER_REGISTRATIONS";
-    StringBuffer Value_OF_Filter_Registrations = new StringBuffer();
+    StringBuilder Value_OF_Filter_Registrations = new StringBuilder();
     Map<String, ? extends FilterRegistration> filter_registrations = context
         .getFilterRegistrations();
     it = filter_registrations.entrySet().iterator();

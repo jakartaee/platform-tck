@@ -94,7 +94,7 @@ public abstract class ServletWrapper extends HttpServlet {
       throws ServletException, IOException {
 
     WebUtil.logTrace("[ServletWrapper] doPost()");
-    servletProps = WebUtil.executeTest(this, nctx, req);
+    servletProps = WebUtil.executeTest(this, req);
     doGet(req, res);
     servletProps = null;
   }

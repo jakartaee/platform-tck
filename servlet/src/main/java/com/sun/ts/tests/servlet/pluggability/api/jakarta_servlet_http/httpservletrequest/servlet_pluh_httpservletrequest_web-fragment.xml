@@ -24,7 +24,7 @@
               version="5.0" >
     <servlet>
         <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.sun.ts.tests.servlet.api.common.request.HttpRequestTestServlet</servlet-class>
+        <servlet-class>com.sun.ts.tests.servlet.common.servlets.HttpRequestTestServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>getReaderUnsupportedEncodingExceptionTest</servlet-name>

@@ -20,35 +20,39 @@
 
 package com.sun.ts.tests.servlet.spec.multifiltermapping;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.spec.requestmap.TestServlet1;
+import com.sun.ts.tests.servlet.spec.requestmap.TestServlet2;
+import com.sun.ts.tests.servlet.spec.requestmap.TestServlet3;
+import com.sun.ts.tests.servlet.spec.requestmap.TestServlet4;
+import com.sun.ts.tests.servlet.spec.requestmap.TestServlet5;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  @Override
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_multifiltermapping_web");
-    setServletName("TestServlet");
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_multifiltermapping_web.war")
+            .addAsWebResource("api/jakarta_servlet/filterrequestdispatcher/dummy.html", "dummy.html")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(ErrorPage.class, Test_ErrorFilter.class, Test_ForwardFilter.class, Test_IncludeFilter.class,
+                    TestServlet1.class, TestServlet2.class, TestServlet3.class, TestServlet4.class, TestServlet5.class,
+                    Test_RequestFilter.class, TestServlet.class, TestServlet6.class, TestServlet7.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_multifiltermapping_web.xml"));
 
-    return super.run(args, out, err);
   }
 
   /*
@@ -69,6 +73,7 @@ public class URLClient extends AbstractUrlClient {
    * servlet name respectively. 3. Client try to access all of them directly. 4.
    * Verify that Test_RequestFilter is properly invoked.
    */
+  @Test
   public void requestTest() throws Exception {
     TEST_PROPS.setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
@@ -132,6 +137,7 @@ public class URLClient extends AbstractUrlClient {
    * request to TestServlet, which access all resources list in 1 and 2 using
    * forward. 6. Verify that the filter is invoked properly
    */
+  @Test
   public void forwardTest() throws Exception {
     String testName = "forwardTest";
 
@@ -206,6 +212,7 @@ public class URLClient extends AbstractUrlClient {
    * request to TestServlet, which access all resources list in 1 and 2 using
    * include. 6. Verify that the filter is invoked properly
    */
+  @Test
   public void includeTest() throws Exception {
     String testName = "includeTest";
     String filterString = "Test_IncludeFilter";
@@ -287,6 +294,7 @@ public class URLClient extends AbstractUrlClient {
    * that dose not match any resource listed in 1 and 2 using include and
    * forward respectively. 10. Verify that Test_ErrorFilter is properly invoked.
    */
+  @Test
   public void errorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "test/foo/bar/xyz");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");

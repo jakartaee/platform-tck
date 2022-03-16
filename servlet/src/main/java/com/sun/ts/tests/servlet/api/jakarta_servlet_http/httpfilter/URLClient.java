@@ -20,35 +20,26 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpfilter;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpfilter_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(HttpFilter_Filter1.class, HttpFilter_Filter2.class, HttpFilterTestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_httpfilter_web.xml"));
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_jsh_httpfilter_web");
-
-    return super.run(args, out, err);
-  }
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -63,7 +54,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Client attempts to access a servlet and both filters
    * extending HttpFilter configured for that servlet should be invoked.
    */
-
+  @Test
   public void dofilterTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "HttpFilterTest");
     invoke();

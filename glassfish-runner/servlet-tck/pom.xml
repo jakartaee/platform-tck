@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2021  Contributors to the Eclipse Foundation
+    All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>jakartatck</groupId>
+        <artifactId>project</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>servlet-tck</artifactId>
+    <packaging>jar</packaging>
+
+    <name>servlet-tck</name>
+
+    <properties>
+        <arquillian.core.version>1.7.0.Alpha10</arquillian.core.version>
+        <test></test>
+        <failIfNoTests>true</failIfNoTests>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakartatck</groupId>
+            <artifactId>servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+            <version>${arquillian.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>glassfish-ci-managed</id>
+
+            <properties>
+                <glassfish.root>${project.build.directory}/glassfish-root</glassfish.root>
+                <glassfish.bin.directory>${glassfish.home}/bin</glassfish.bin.directory>
+                <!-- home depends on version number -->
+                <glassfish.home>${glassfish.root}/glassfish6</glassfish.home>
+                <glassfish.version>6.2.5</glassfish.version>
+                <classesNamesTests></classesNamesTests>
+                <http2.timeout></http2.timeout>
+                <fork.argLine>-Xmx4g -Xms4g</fork.argLine>
+                <glassfish.debug>false</glassfish.debug>
+                <glassfish.suspend>false</glassfish.suspend>
+                <gf.keystore.path>${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks</gf.keystore.path>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.omnifaces.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-server-managed</artifactId>
+                    <version>1.2</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-glassfish</id>
+                                <phase>generate-test-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${glassfish.root}</outputDirectory>
+                                    <markersDirectory>${glassfish.root}/dependency-maven-plugin-markers</markersDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.glassfish.main.distributions</groupId>
+                                            <artifactId>glassfish</artifactId>
+                                            <version>${glassfish.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${glassfish.root}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>unpack-certificates</id>
+                                <phase>generate-test-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>jakartatck</groupId>
+                                            <artifactId>libutil</artifactId>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.testOutputDirectory}/</outputDirectory>
+                                            <includes>**/**cts_cert,**/**clientcert.jks,**/**clientcert.p12</includes>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-antrun-plugin</artifactId>-->
+<!--                        <version>3.1.0</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>clean-certificate</id>-->
+<!--                                <phase>process-test-resources</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>run</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <target>-->
+<!--                                        <delete file="${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks"-->
+<!--                                                verbose="true"/>-->
+<!--                                    </target>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>keytool-maven-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>importCertificate</goal>
+                                </goals>
+                                <id>import-certificate</id>
+                                <phase>process-test-resources</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- "$JAVA_HOME/bin/keytool -import -noprompt -alias cts -dname \"CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US\"
+                            -file servlet-tck/bin/certificates/cts_cert -storetype JKS  -keystore cacerts.jks -storepass changeit -keypass changeit" -->
+                            <noprompt>true</noprompt>
+                            <alias>cts</alias>
+                            <dname>CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US</dname>
+                            <file>${project.build.testOutputDirectory}/certificates/cts_cert</file>
+                            <storetype>JKS</storetype>
+                            <keystore>${gf.keystore.path}</keystore>
+                            <storepass>changeit</storepass>
+                            <keypass>changeit</keypass>
+                            <skipIfExist>false</skipIfExist>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>
+                                ${fork.argLine} -Duser.language=en -Duser.country=US -Djava.locale.providers=COMPAT,CLDR
+                                -Djava.protocol.handler.pkgs=javax.net.ssl
+                                -Djavax.net.ssl.keyStore=${project.build.testOutputDirectory}/certificates/clientcert.jks
+                                -Djavax.net.ssl.keyStorePassword=changeit
+                                -Djavax.net.ssl.trustStore=${glassfish.home}/glassfish/domains/domain1/config/cacerts.jks
+                            </argLine>
+                            <failIfNoTests>false</failIfNoTests>
+                            <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
+                            <dependenciesToScan>
+                                <dependenciesToScan>jakartatck:servlet</dependenciesToScan>
+                            </dependenciesToScan>
+                            <includes>
+                                <include>**/URLClient*</include>
+                                <include>**/Client*</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <test>${test}</test>
+                                <failIfNoTests>${failIfNoTests}</failIfNoTests>
+                                <http2.timeout>${http2.timeout}</http2.timeout>
+                                <glassfish.postBootCommands>
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                    create-file-user --passwordfile src/test/resources/j2ee.pass --groups Administrator:Employee j2ee
+                                    list-file-users
+                                </glassfish.postBootCommands>
+                                <!--
+                                    delete-file-user j2ee
+                                    create-file-user -passwordfile src/test/resources/j2ee.pass -groups Administrator:Employee j2ee
+                                    delete-file-user javajoe
+                                    create-file-user -passwordfile src/test/resources/javajoe.pass -groups VP:Manager javajoe
+                                    delete-file-user "CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US="
+
+                                -->
+                                <!--
+                                    delete-file-user "CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US="
+                                    create-file-user -passwordfile src/test/resources/admin.pass -groups Administrator "CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US="
+                                -->
+                                <!--
+                                    set configs.config.server-config.network-config.protocols.protocol.http-listener-2.security-enabled=true
+                                    set configs.config.server-config.network-config.protocols.protocol.http-listener-2.ssl.tls-enabled=true
+                                    set configs.config.server-config.network-config.protocols.protocol.http-listener-2.ssl.tls11-enabled=true
+                                    set configs.config.server-config.network-config.protocols.protocol.http-listener-2.ssl.tls12-enabled=true
+                                    set configs.config.server-config.network-config.protocols.protocol.http-listener-2.ssl.tls13-enabled=true
+                                -->
+                                <!-- set configs.config.server-config.network-config.protocols.protocol.http-listener-2.ssl.cert-nickname=cts -->
+                                <tck.servlet.username>j2ee</tck.servlet.username>
+                                <tck.servlet.password>j2ee</tck.servlet.password>
+                                <tck.servlet.unauth.username>javajoe</tck.servlet.unauth.username>
+                                <tck.servlet.unauth.password>javajoe</tck.servlet.unauth.password>
+                                <tck.servlet.realm></tck.servlet.realm>
+                                <securedWebServicePort>8181</securedWebServicePort>
+                                <glassfish.debug>${glassfish.debug}</glassfish.debug>
+                                <glassfish.suspend>${glassfish.suspend}</glassfish.suspend>
+<!--                                <client.cert.test.jdk.tls.client.protocols>TLSv1.3</client.cert.test.jdk.tls.client.protocols>-->
+                                <keystore.path>${gf.keystore.path}</keystore.path>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <repositories>
+                <repository>
+                    <name>Jakarta Staging</name>
+                    <id>jakarta.staging</id>
+                    <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+</project>

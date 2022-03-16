@@ -13,102 +13,101 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id:$
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletrequestwrapper;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.servlet.api.common.request.RequestClient;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper.SetCharacterEncodingTest;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper.SetCharacterEncodingTestWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper.SetCharacterEncodingUnsupportedEncodingExceptionTest;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper.SetCharacterEncodingUnsupportedEncodingExceptionTestWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper.TestServlet;
+import com.sun.ts.tests.servlet.common.request.RequestClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends RequestClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletrequestwrapper_web";
+    @BeforeEach
+    public void setupServletName() throws Exception {
+        setServletName("TestServlet");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        JavaArchive javaArchive1 = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar").addClasses(TestServlet1.class, RequestListener1.class).addAsResource(URLClient.class.getResource("servlet_plu_servletrequestwrapper_web-fragment.xml"), "META-INF/web-fragment.xml");
+        return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletrequestwrapper_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(SetCharacterEncodingTest.class, SetCharacterEncodingTestWrapper.class, SetCharacterEncodingUnsupportedEncodingExceptionTest.class, SetCharacterEncodingUnsupportedEncodingExceptionTestWrapper.class, TestServlet.class).addAsLibraries(javaArchive1);
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    *
    */
-
-  /* Run test */
-
-  /*
+    /* Run test */
+    /*
    * @testName: requestWrapperConstructorTest
    * 
    * @assertion_ids: Servlet:JAVADOC:31
    * 
    * @test_Strategy: Servlet calls wrapper constructor
    */
-  public void requestWrapperConstructorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "requestWrapperConstructorTest");
-    invoke();
-  }
+    @Test
+    public void requestWrapperConstructorTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "requestWrapperConstructorTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: requestWrapperGetRequestTest
    * 
    * @assertion_ids: Servlet:JAVADOC:32
    * 
    * @test_Strategy: Servlet gets wrapped request object
    */
-  public void requestWrapperGetRequestTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "requestWrapperGetRequestTest");
-    invoke();
-  }
+    @Test
+    public void requestWrapperGetRequestTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "requestWrapperGetRequestTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: requestWrapperSetRequestTest
    * 
    * @assertion_ids: Servlet:JAVADOC:33
    * 
    * @test_Strategy: Servlet sets wrapped request object
    */
-  public void requestWrapperSetRequestTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "requestWrapperSetRequestTest");
-    invoke();
-  }
+    @Test
+    public void requestWrapperSetRequestTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "requestWrapperSetRequestTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: requestWrapperSetRequestIllegalArgumentExceptionTest
    * 
    * @assertion_ids: Servlet:JAVADOC:34
    * 
    * @test_Strategy: Servlet sets wrapped request object
    */
-  public void requestWrapperSetRequestIllegalArgumentExceptionTest()
-      throws Exception {
-    TEST_PROPS.setProperty(APITEST,
-        "requestWrapperSetRequestIllegalArgumentExceptionTest");
-    invoke();
-  }
+    @Test
+    public void requestWrapperSetRequestIllegalArgumentExceptionTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "requestWrapperSetRequestIllegalArgumentExceptionTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: getAttributeNamesTest
    * 
    * @assertion_ids: Servlet:JAVADOC:36
@@ -116,8 +115,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then sets some
    * attributes and verifies they can be retrieved.
    */
-
-  /*
+    /*
    * @testName: getAttributeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:35
@@ -126,7 +124,7 @@ public class URLClient extends RequestClient {
    * and retrieves it.
    *
    */
-  /*
+    /*
    * @testName: getCharacterEncodingTest
    * 
    * @assertion_ids: Servlet:JAVADOC:37
@@ -134,8 +132,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets an encoding. Servlet wraps the request. Servlet
    * then tries to retrieve it.
    */
-
-  /*
+    /*
    * @testName: getContentLengthTest
    * 
    * @assertion_ids: Servlet:JAVADOC:40
@@ -145,8 +142,7 @@ public class URLClient extends RequestClient {
    * getInputStream
    *
    */
-
-  /*
+    /*
    * @testName: getContentTypeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:41; Servlet:SPEC:34;
@@ -154,8 +150,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets the content type and servlet reads it.
    *
    */
-
-  /*
+    /*
    * @testName: getInputStreamTest
    * 
    * @assertion_ids: Servlet:JAVADOC:42
@@ -163,7 +158,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then tries to read the
    * input stream.
    */
-  /*
+    /*
    * @testName: getLocaleTest
    * 
    * @assertion_ids: Servlet:JAVADOC:58
@@ -171,8 +166,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client specifics a locale, Servlet wraps the request.
    * Servlet then verifies it.
    */
-
-  /*
+    /*
    * @testName: getLocalesTest
    * 
    * @assertion_ids: Servlet:JAVADOC:59
@@ -180,8 +174,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client specifics 2 locales.Servlet wraps the request.
    * Servlet then verifies it.
    */
-
-  /*
+    /*
    * @testName: getParameterMapTest
    * 
    * @assertion_ids: Servlet:JAVADOC:45
@@ -189,8 +182,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets several parameters.Servlet wraps the request.
    * Servlet then attempts to access them.
    */
-
-  /*
+    /*
    * @testName: getParameterNamesTest
    * 
    * @assertion_ids: Servlet:JAVADOC:46
@@ -198,8 +190,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets several parameters.Servlet wraps the request.
    * Servlet then attempts to access them.
    */
-
-  /*
+    /*
    * @testName: getParameterTest
    * 
    * @assertion_ids: Servlet:JAVADOC:44
@@ -207,7 +198,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets a parameter.Servlet wraps the request. Servlet
    * then retrieves parameter.
    */
-  /*
+    /*
    * @testName: getParameterValuesTest
    * 
    * @assertion_ids: Servlet:JAVADOC:47
@@ -215,8 +206,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets a parameter which has 2 values.Servlet wraps
    * the request. Servlet then verifies both values.
    */
-
-  /*
+    /*
    * @testName: getProtocolTest
    * 
    * @assertion_ids: Servlet:JAVADOC:48
@@ -224,7 +214,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verifies the
    * protocol used by the client
    */
-  /*
+    /*
    * @testName: getReaderTest
    * 
    * @assertion_ids: Servlet:JAVADOC:52
@@ -232,7 +222,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Client sets some content.Servlet wraps the request. Servlet
    * then reads the content
    */
-  /*
+    /*
    * @testName: getRemoteAddrTest
    * 
    * @assertion_ids: Servlet:JAVADOC:54
@@ -240,8 +230,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies
    * where the request originated
    */
-
-  /*
+    /*
    * @testName: getRemoteHostTest
    * 
    * @assertion_ids: Servlet:JAVADOC:55
@@ -249,8 +238,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies
    * where the request originated
    */
-
-  /*
+    /*
    * @testName: getRequestDispatcherTest
    * 
    * @assertion_ids: Servlet:JAVADOC:61
@@ -258,7 +246,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then tries to get a
    * dispatcher
    */
-  /*
+    /*
    * @testName: getSchemeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:49
@@ -266,7 +254,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verifies the scheme
    * of the url used in the request
    */
-  /*
+    /*
    * @testName: getServerNameTest
    * 
    * @assertion_ids: Servlet:JAVADOC:50
@@ -274,7 +262,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verifies the
    * destination of the request
    */
-  /*
+    /*
    * @testName: getServerPortTest
    * 
    * @assertion_ids: Servlet:JAVADOC:51
@@ -282,7 +270,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verifies the
    * destination port of the request
    */
-  /*
+    /*
    * @testName: isSecureTest
    * 
    * @assertion_ids: Servlet:JAVADOC:60
@@ -290,7 +278,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verifies the
    * isSecure method for the non-secure case.
    */
-  /*
+    /*
    * @testName: removeAttributeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:57
@@ -298,7 +286,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then adds then removes
    * an attribute, then verifies it was removed.
    */
-  /*
+    /*
    * @testName: setAttributeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:56
@@ -306,7 +294,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then adds an attribute,
    * then verifies it was added
    */
-  /*
+    /*
    * @testName: setCharacterEncodingUnsupportedEncodingExceptionTest
    * 
    * @assertion_ids: Servlet:JAVADOC:39
@@ -315,7 +303,7 @@ public class URLClient extends RequestClient {
    * invalid encoding.
    *
    */
-  /*
+    /*
    * @testName: setCharacterEncodingTest
    * 
    * @assertion_ids: Servlet:JAVADOC:38
@@ -323,7 +311,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then sets a new encoding
    * and tries to retrieve it. verifies that the new encoding gets set.
    */
-  /*
+    /*
    * @testName: setCharacterEncodingTest1
    * 
    * @assertion_ids: Servlet:JAVADOC:38; Servlet:JAVADOC:37; Servlet:SPEC:28;
@@ -333,7 +321,7 @@ public class URLClient extends RequestClient {
    * getReader(); then sets a new encoding and tries to retrieve it. verifies
    * that the new encoding is ignored.
    */
-  /*
+    /*
    * @testName: getLocalNameTest
    * 
    * @assertion_ids: Servlet:JAVADOC:633
@@ -341,8 +329,7 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verify
    * getLocalName();
    */
-
-  /*
+    /*
    * @testName: getLocalPortTest
    * 
    * @assertion_ids: Servlet:JAVADOC:636
@@ -350,4 +337,143 @@ public class URLClient extends RequestClient {
    * @test_Strategy: Servlet wraps the request. Servlet then verify
    * getLocalPort();
    */
+    @Test()
+    public void getAttributeNamesTest() throws Exception {
+        super.getAttributeNamesTest();
+    }
+
+    @Test()
+    public void getAttributeTest() throws Exception {
+        super.getAttributeTest();
+    }
+
+    @Test()
+    public void getCharacterEncodingTest() throws Exception {
+        super.getCharacterEncodingTest();
+    }
+
+    @Test()
+    public void getContentLengthTest() throws Exception {
+        super.getContentLengthTest();
+    }
+
+    @Test()
+    public void getContentTypeTest() throws Exception {
+        super.getContentTypeTest();
+    }
+
+    @Test()
+    public void getInputStreamTest() throws Exception {
+        super.getInputStreamTest();
+    }
+
+    @Test()
+    public void getLocalNameTest() throws Exception {
+        super.getLocalNameTest();
+    }
+
+    @Test()
+    public void getLocalPortTest() throws Exception {
+        super.getLocalPortTest();
+    }
+
+    @Test()
+    public void getLocaleTest() throws Exception {
+        super.getLocaleTest();
+    }
+
+    @Test()
+    public void getLocalesTest() throws Exception {
+        super.getLocalesTest();
+    }
+
+    @Test()
+    public void getParameterMapTest() throws Exception {
+        super.getParameterMapTest();
+    }
+
+    @Test()
+    public void getParameterNamesTest() throws Exception {
+        super.getParameterNamesTest();
+    }
+
+    @Test()
+    public void getParameterTest() throws Exception {
+        super.getParameterTest();
+    }
+
+    @Test()
+    public void getParameterValuesTest() throws Exception {
+        super.getParameterValuesTest();
+    }
+
+    @Test()
+    public void getProtocolTest() throws Exception {
+        super.getProtocolTest();
+    }
+
+    @Test()
+    public void getReaderTest() throws Exception {
+        super.getReaderTest();
+    }
+
+    @Test()
+    public void getRemoteAddrTest() throws Exception {
+        super.getRemoteAddrTest();
+    }
+
+    @Test()
+    public void getRemoteHostTest() throws Exception {
+        super.getRemoteHostTest();
+    }
+
+    @Test()
+    public void getRequestDispatcherTest() throws Exception {
+        super.getRequestDispatcherTest();
+    }
+
+    @Test()
+    public void getSchemeTest() throws Exception {
+        super.getSchemeTest();
+    }
+
+    @Test()
+    public void getServerNameTest() throws Exception {
+        super.getServerNameTest();
+    }
+
+    @Test()
+    public void getServerPortTest() throws Exception {
+        super.getServerPortTest();
+    }
+
+    @Test()
+    public void isSecureTest() throws Exception {
+        super.isSecureTest();
+    }
+
+    @Test()
+    public void removeAttributeTest() throws Exception {
+        super.removeAttributeTest();
+    }
+
+    @Test()
+    public void setAttributeTest() throws Exception {
+        super.setAttributeTest();
+    }
+
+    @Test()
+    public void setCharacterEncodingTest() throws Exception {
+        super.setCharacterEncodingTest();
+    }
+
+    @Test()
+    public void setCharacterEncodingTest1() throws Exception {
+        super.setCharacterEncodingTest1();
+    }
+
+    @Test()
+    public void setCharacterEncodingUnsupportedEncodingExceptionTest() throws Exception {
+        super.setCharacterEncodingUnsupportedEncodingExceptionTest();
+    }
 }

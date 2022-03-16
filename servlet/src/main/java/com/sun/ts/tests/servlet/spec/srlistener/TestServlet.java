@@ -40,7 +40,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/include/IncludedServlet?testname=simple";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method includes");
+    logger.info("In method includes");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -54,7 +54,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/include/IncludedServlet?testname=includeagain";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method multipleincludes");
+    logger.debug("In method multipleincludes");
 
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
@@ -69,7 +69,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/include/IncludedServlet?testname=forward";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method includeforward");
+    logger.debug("In method includeforward");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -83,7 +83,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/include/IncludedServlet?testname=error";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method includeerror");
+    logger.debug("In method includeerror");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -104,7 +104,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/forward/ForwardedServlet?testname=simple";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method forward");
+    logger.debug("In method forward");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -118,7 +118,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/forward/ForwardedServlet?testname=forwardagain";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method multipleforward");
+    logger.debug("In method multipleforward");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -132,7 +132,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/forward/ForwardedServlet?testname=include";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method forwardinclude");
+    logger.debug("In method forwardinclude");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -146,7 +146,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String path = "/forward/ForwardedServlet?testname=error";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method forwarderror");
+    logger.debug("In method forwarderror");
     if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
     } else {
@@ -159,7 +159,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     pw.println("TestServlet Invoked");
     pw.println("In method async");
-    System.out.println("In method async");
+    logger.debug("In method async");
     try {
       AsyncContext asyncc = request.startAsync();
       response.getWriter().println("TestServlet_Async=STARTED");
@@ -176,7 +176,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     pw.println("TestServlet Invoked");
     pw.println("In method simpleasyncinclude");
-    System.out.println("In method simpleasyncinclude");
+    logger.debug("In method simpleasyncinclude");
     try {
       AsyncContext asyncc = request.startAsync();
       response.getWriter().println("TestServlet_Async=STARTED");
@@ -202,7 +202,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     pw.println("TestServlet Invoked");
     pw.println("In method simpleasyncforward");
-    System.out.println("In method simpleasyncforward");
+    logger.debug("In method simpleasyncforward");
     try {
       AsyncContext asyncc = request.startAsync();
       response.getWriter().println("TestServlet_Async=STARTED");
@@ -228,7 +228,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     pw.println("TestServlet Invoked");
     pw.println("In method simpleasyncerror");
-    System.out.println("In method simpleasyncerror");
+    logger.debug("In method simpleasyncerror");
     try {
       AsyncContext asyncc = request.startAsync();
       response.getWriter().println("TestServlet_Async=STARTED");
@@ -243,7 +243,7 @@ public class TestServlet extends HttpTCKServlet {
 
   public void error(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
-    System.out.println("In TestServlet, error method");
+    logger.debug("In TestServlet, error method");
     res.sendError(403);
   }
 

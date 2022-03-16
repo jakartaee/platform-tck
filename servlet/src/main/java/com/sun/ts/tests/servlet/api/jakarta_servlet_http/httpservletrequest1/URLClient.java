@@ -13,57 +13,43 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id$
  */
-
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest1;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.servlet.api.common.request.HttpRequestClient;
+import com.sun.ts.tests.servlet.common.request.HttpRequestClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends HttpRequestClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_jsh_httpservletrequest1_web";
+    @BeforeEach
+    public void setupServletName() throws Exception {
+        setServletName("TestServlet");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpservletrequest1_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).setWebXML(URLClient.class.getResource("servlet_jsh_httpservletrequest1_web.xml"));
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    *
    */
-
-  /* Run test */
-
-  // ------------------------------- ServletRequest
-  // ------------------------------
-
-  /*
+    /* Run test */
+    // ------------------------------- ServletRequest
+    // ------------------------------
+    /*
    * @testName: getLocalNameTest
    * 
    * @assertion_ids: Servlet:JAVADOC:629;
@@ -71,7 +57,10 @@ public class URLClient extends HttpRequestClient {
    * @test_Strategy: Send an HttpServletRequest to server; Verify that
    * getLocalName();
    */
-
-  // -------------------------- END HttpServletRequest
-  // ---------------------------
+    // -------------------------- END HttpServletRequest
+    // ---------------------------
+    @Test()
+    public void getLocalNameTest() throws Exception {
+        super.getLocalNameTest();
+    }
 }

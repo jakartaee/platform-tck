@@ -20,34 +20,23 @@
 
 package com.sun.ts.tests.servlet.spec.requestmap;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_requestmap_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_requestmap_web.war")
+            .addClasses(TestServlet1.class, TestServlet2.class, TestServlet3.class,
+                    TestServlet4.class, TestServlet5.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_requestmap_web.xml"));
   }
 
   /*
@@ -68,7 +57,7 @@ public class URLClient extends AbstractUrlClient {
    * is invoked based on Servlet Spec(11.1) that it has longest path-prefix
    * match and it is the default Servlet at the path.
    */
-
+  @Test
   public void longestPathMatchTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(APITEST, "foo/bar/index.html");
@@ -87,7 +76,7 @@ public class URLClient extends AbstractUrlClient {
    * based on Servlet Spec(11.1) that it has longest path-prefix match and it is
    * the default Servlet at the path.
    */
-
+  @Test
   public void longestPathMatchTest1() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
     TEST_PROPS.setProperty(APITEST, "foo/bar");
@@ -106,7 +95,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet2 is invoked based on Servlet Spec(11.1) that it has longest
    * path-prefix match and it is the default Servlet at the path.
    */
-
+  @Test
   public void longestPathMatchTest2() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
     TEST_PROPS.setProperty(APITEST, "foo/baR/TestServlet5");
@@ -124,7 +113,7 @@ public class URLClient extends AbstractUrlClient {
    * 2. Send request with path /TestServlet3. 3. Verify that TestServlet3 is
    * invoked based on Servlet Spec(11.1) that it has exact match.
    */
-
+  @Test
   public void exactMatchTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet3");
     TEST_PROPS.setProperty(APITEST, "TestServlet3");
@@ -143,7 +132,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet5 is invoked based on Servlet Spec(11.1) that it has exact
    * match.
    */
-
+  @Test
   public void exactMatchTest1() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet5");
     TEST_PROPS.setProperty(APITEST, "foo/bar/TestServlet5");
@@ -162,7 +151,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet4 is invoked based on Servlet Spec(11.1) that it has the
    * extension match.
    */
-
+  @Test
   public void extMatchTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
     TEST_PROPS.setProperty(APITEST, "TestServlet3/racecar.bop");
@@ -180,7 +169,7 @@ public class URLClient extends AbstractUrlClient {
    * 2. Send request with path /index.bop 3. Verify that TestServlet4 is invoked
    * based on Servlet Spec(11.1) that it has the extension match.
    */
-
+  @Test
   public void extMatchTest1() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
     TEST_PROPS.setProperty(APITEST, "index.bop");
@@ -198,7 +187,7 @@ public class URLClient extends AbstractUrlClient {
    * 2. Send request with path /test/foo/bar/xxx 3. Verify that no match is
    * found and 404 should be returned.
    */
-
+  @Test
   public void notFoundTest1() throws Exception {
     TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
     TEST_PROPS.setProperty(REQUEST,

@@ -85,7 +85,7 @@ public class DispatchTests11 extends GenericServlet {
     response.getWriter()
         .println("Before second dispatch=" + System.currentTimeMillis());
     ac.dispatch(
-        request.getServletContext().getContext("/servlet_js_dispatchtest_web"),
+        request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot()),
         "/DispatchTests?testname=dispatchTest");
     response.getWriter()
         .println("second dispatch return=" + System.currentTimeMillis());

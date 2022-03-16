@@ -25,11 +25,22 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 
 public class TestServlet1 extends GenericServlet {
+
+  @Override
+  public void init(ServletConfig config) throws ServletException {
+    super.init(config);
+  }
+
+  @Override
+  public void init() throws ServletException {
+    super.init();
+  }
 
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {

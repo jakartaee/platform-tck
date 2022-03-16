@@ -16,19 +16,21 @@
 
 package com.sun.ts.tests.servlet.spec.security.annotations;
 
-import java.io.PrintWriter;
-import java.util.Properties;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.WebUtil;
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
+import com.sun.ts.tests.servlet.common.client.BaseUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
 
 /*
  *
  */
 public class Client extends BaseUrlClient {
+
+  // TOFIX
 
   // Constants:
   private static final String USERNAME = "user";
@@ -38,8 +40,6 @@ public class Client extends BaseUrlClient {
   private static final String UNAUTH_USERNAME = "authuser";
 
   private static final String UNAUTH_PASSWORD = "authpassword";
-
-  private static final String CLASS_TRACE_HEADER = "[Client]: ";
 
   private static final String USER_PRINCIPAL_SEARCH = "The user principal is: "; // (+username)
 
@@ -58,24 +58,6 @@ public class Client extends BaseUrlClient {
 
   private String pagePartial = null;
 
-  private String pageServletBase = "/servlet_sec_annotations_web";
-
-  private String pageServletDeny = pageServletBase + "/ServletDenyAll";
-
-  private String pageServletSec = pageServletBase + "/ServletSecTest";
-
-  private String pageServletGuest = pageServletBase + "/GuestPageTest";
-
-  private String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
-
-  private String pageTransport = pageServletBase + "/TransportServlet";
-
-  private String pagePartialDD = pageServletBase + "/PartialDDTest";
-
-  private String hostname = null;
-
-  private int portnum = 0;
-
   private String username = null;
 
   private String password = null;
@@ -84,34 +66,23 @@ public class Client extends BaseUrlClient {
 
   private String unauthPassword = null;
 
-  private TSURL ctsurl = new TSURL();
+  private String realm = null;
 
   private WebUtil.Response response = null;
 
   private String request = null;
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_sec_annotations_web.war")
+            .addClasses(DenyAllServlet.class, GuestPageTestServlet.class, PartialDDServlet.class,
+                    ServletSecTestServlet.class, UnProtectedTestServlet.class)
+            .setWebXML(Client.class.getResource("servlet_sec_annotations_web.xml"));
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    Client theTests = new Client();
-
-    return super.run(args, out, err);
-  }
 
   /*
    * @class.setup_props: webServerHost; webServerPort; securedWebServicePort;
@@ -121,13 +92,34 @@ public class Client extends BaseUrlClient {
   public void setup(String[] args, Properties p) throws Exception {
     super.setup(args, p);
 
+    // user=j2ee
+    // password=j2ee
+    // authuser=javajoe
+    // authpassword=javajoe
+
+    //portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
+
+    // TOFIX configurable
     try {
-      hostname = p.getProperty("webServerHost");
-      portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
-      username = p.getProperty(USERNAME);
-      password = p.getProperty(PASSWORD);
-      unauthUsername = p.getProperty(UNAUTH_USERNAME);
-      unauthPassword = p.getProperty(UNAUTH_PASSWORD);
+      username = System.getProperty("tck.servlet.username", "j2ee");
+      password = System.getProperty("tck.servlet.password", "j2ee");
+      unauthUsername = System.getProperty("tck.servlet.unauth.username", "javajoe");
+      unauthPassword = System.getProperty("tck.servlet.unauth.password", "javajoe");
+      realm = System.getProperty("tck.servlet.realm", "");
+
+      String pageServletBase = getContextRoot();//"/servlet_sec_annotations_web";
+
+      String pageServletDeny = pageServletBase + "/ServletDenyAll";
+
+      String pageServletSec = pageServletBase + "/ServletSecTest";
+
+      String pageServletGuest = pageServletBase + "/GuestPageTest";
+
+      String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
+
+      String pageTransport = pageServletBase + "/TransportServlet";
+
+      String pagePartialDD = pageServletBase + "/PartialDDTest";
 
       pageSec = pageServletSec;
       pageDeny = pageServletDeny;
@@ -153,6 +145,7 @@ public class Client extends BaseUrlClient {
    * @test_Strategy: 1. Send request to access DenyAllServlet 2. Receive an
    * access denied
    */
+  @Test
   public void test1() throws Exception {
     trace("testing DenyAll");
 
@@ -198,9 +191,10 @@ public class Client extends BaseUrlClient {
    * authentication (ie "j2ee") should NOT allows access since "j2ee" is not in
    * roles as defined in DD.
    */
+  @Test
   public void test2() throws Exception {
 
-    StringBuffer sb = new StringBuffer(100);
+    StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(unauthUsername);
 
     // attempt to doPost as "javajoe" should be allowed
@@ -210,6 +204,7 @@ public class Client extends BaseUrlClient {
     TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
     TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
     TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
+    //TEST_PROPS.setProperty(BASIC_AUTH_REALM, realm); // default
     TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
@@ -279,6 +274,7 @@ public class Client extends BaseUrlClient {
    * really does work.
    *
    */
+  @Test
   public void test3() throws Exception {
     String invalidUser = "invalid";
 
@@ -314,6 +310,7 @@ public class Client extends BaseUrlClient {
    * normally work to ensure that setting deny all access really does work.
    *
    */
+  @Test
   public void test4() throws Exception {
     String invalidUser = "invalid";
 
@@ -355,6 +352,7 @@ public class Client extends BaseUrlClient {
    * @test_Strategy: 1. Send request for unprotected servlet that uses the
    * PermitAll access at the class level. 2. Receive page
    */
+  @Test
   public void test5() throws Exception {
 
     trace("Sending request to resource that uses the PermitAll annotation....");
@@ -391,6 +389,7 @@ public class Client extends BaseUrlClient {
    * (user==javajoe) so we want to verify that user is the principal passed into
    * the servlet.
    */
+  @Test
   public void test6() throws Exception {
 
     trace(
@@ -443,6 +442,7 @@ public class Client extends BaseUrlClient {
    * no cred (if the http-method-omission does its job.)
    * 
    */
+  @Test
   public void test7() throws Exception {
     trace("testing http-method-omission");
 
@@ -506,8 +506,8 @@ public class Client extends BaseUrlClient {
    * @param message
    *          - the message to log
    */
-  private static void trace(String message) {
-    TestUtil.logMsg(CLASS_TRACE_HEADER + message);
+  private void trace(String message) {
+    logger.debug("[Client]: {}", message);
   }
 
 }

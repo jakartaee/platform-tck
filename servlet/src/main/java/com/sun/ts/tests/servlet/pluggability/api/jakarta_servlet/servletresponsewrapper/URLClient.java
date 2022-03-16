@@ -13,102 +13,98 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id:$
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletresponsewrapper;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.servlet.api.common.response.HttpResponseClient;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper.SetCharacterEncodingTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper.TestServlet;
+import com.sun.ts.tests.servlet.common.response.HttpResponseClient;
+import com.sun.ts.tests.servlet.common.response.ResponseTestServlet;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends HttpResponseClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletresponsewrapper_web";
+    @BeforeEach
+    public void setupServletName() throws Exception {
+        setServletName("TestServlet");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar").addClasses(TestServlet1.class, RequestListener1.class).addAsResource(URLClient.class.getResource("servlet_plu_servletresponsewrapper_web-fragment.xml"), "META-INF/web-fragment.xml");
+        return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletresponsewrapper_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(SetCharacterEncodingTestServlet.class, TestServlet.class, ResponseTestServlet.class).addAsLibraries(javaArchive);
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
-
-  /* Run test */
-
-  /*
+    /* Run test */
+    /*
    * @testName: responseWrapperConstructorTest
    * 
    * @assertion_ids: Servlet:JAVADOC:9
    * 
    * @test_Strategy: Servlet calls wrapper constructor
    */
-  public void responseWrapperConstructorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "responseWrapperConstructorTest");
-    invoke();
-  }
+    @Test
+    public void responseWrapperConstructorTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "responseWrapperConstructorTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: responseWrapperGetResponseTest
    * 
    * @assertion_ids: Servlet:JAVADOC:10
    * 
    * @test_Strategy: Servlet gets wrapped response object
    */
-  public void responseWrapperGetResponseTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "responseWrapperGetResponseTest");
-    invoke();
-  }
+    @Test
+    public void responseWrapperGetResponseTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "responseWrapperGetResponseTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: responseWrapperSetResponseTest
    * 
    * @assertion_ids: Servlet:JAVADOC:11
    * 
    * @test_Strategy: Servlet sets wrapped response object
    */
-  public void responseWrapperSetResponseTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "responseWrapperSetResponseTest");
-    invoke();
-  }
+    @Test
+    public void responseWrapperSetResponseTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "responseWrapperSetResponseTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: responseWrapperSetResponseIllegalArgumentExceptionTest
    * 
    * @assertion_ids: Servlet:JAVADOC:12
    * 
    * @test_Strategy: Servlet sets wrapped response object
    */
-  public void responseWrapperSetResponseIllegalArgumentExceptionTest()
-      throws Exception {
-    TEST_PROPS.setProperty(APITEST,
-        "responseWrapperSetResponseIllegalArgumentExceptionTest");
-    invoke();
-  }
+    @Test
+    public void responseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "responseWrapperSetResponseIllegalArgumentExceptionTest");
+        invoke();
+    }
 
-  /*
+    /*
    * @testName: flushBufferTest
    * 
    * @assertion_ids: Servlet:JAVADOC:24
@@ -116,8 +112,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet writes data in the buffer
    * and flushes it
    */
-
-  /*
+    /*
    * @testName: getBufferSizeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:23
@@ -125,8 +120,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet flushes buffer and verifies
    * the size of the buffer
    */
-
-  /*
+    /*
    * @testName: getLocaleTest
    * 
    * @assertion_ids: Servlet:JAVADOC:30
@@ -135,8 +129,7 @@ public class URLClient extends HttpResponseClient {
    * verifies it
    *
    */
-
-  /*
+    /*
    * @testName: getOutputStreamTest
    * 
    * @assertion_ids: Servlet:JAVADOC:15
@@ -144,8 +137,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet gets an output stream and
    * writes to it.
    */
-
-  /*
+    /*
    * @testName: getWriterTest
    * 
    * @assertion_ids: Servlet:JAVADOC:17
@@ -153,8 +145,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet gets a Writer object, then
    * sets the content type; Verify that content type didn't get set by servlet
    */
-
-  /*
+    /*
    * @testName: isCommittedTest
    * 
    * @assertion_ids: Servlet:JAVADOC:26
@@ -163,8 +154,7 @@ public class URLClient extends HttpResponseClient {
    * response is flushed
    *
    */
-
-  /*
+    /*
    * @testName: resetBufferTest
    * 
    * @assertion_ids: Servlet:JAVADOC:28
@@ -172,8 +162,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet writes data to the
    * response, resets the buffer and then writes new data
    */
-
-  /*
+    /*
    * @testName: resetTest
    * 
    * @assertion_ids: Servlet:JAVADOC:27
@@ -181,8 +170,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet writes data to the
    * response, does a reset, then writes new data
    */
-
-  /*
+    /*
    * @testName: resetTest1
    * 
    * @assertion_ids: Servlet:JAVADOC:27; Servlet:JAVADOC:162; Servlet:SPEC:31;
@@ -190,8 +178,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet writes data to the response, set the Headers, does
    * a reset, then writes new data, set the new Header
    */
-
-  /*
+    /*
    * @testName: getCharacterEncodingTest
    * 
    * @assertion_ids: Servlet:JAVADOC:14
@@ -199,8 +186,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet checks for the default
    * encoding
    */
-
-  /*
+    /*
    * @testName: setCharacterEncodingTest
    * 
    * @assertion_ids: Servlet:JAVADOC:13
@@ -208,7 +194,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet set the encoding and client
    * verifies it
    */
-  /*
+    /*
    * @testName: setBufferSizeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:22
@@ -216,15 +202,14 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet sets the buffer size then
    * verifies it was set
    */
-  /*
+    /*
    * @testName: setContentLengthTest
    * 
    * @assertion_ids: Servlet:JAVADOC:19
    * 
    * @test_Strategy: Servlet wraps response. Servlet sets the content length
    */
-
-  /*
+    /*
    * @testName: getContentTypeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:21; Servlet:SPEC:34;
@@ -232,7 +217,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet verifies the content type
    * sent by the client
    */
-  /*
+    /*
    * @testName: setContentTypeTest
    * 
    * @assertion_ids: Servlet:JAVADOC:20; Servlet:SPEC:34;
@@ -240,11 +225,90 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Servlet wraps response. Servlet sets the content type
    *
    */
-  /*
+    /*
    * @testName: setLocaleTest
    * 
    * @assertion_ids: Servlet:JAVADOC:29
    * 
    * @test_Strategy: Servlet wraps response. Servlet sets the Locale
    */
+    @Test()
+    public void flushBufferTest() throws Exception {
+        super.flushBufferTest();
+    }
+
+    @Test()
+    public void getBufferSizeTest() throws Exception {
+        super.getBufferSizeTest();
+    }
+
+    @Test()
+    public void getCharacterEncodingTest() throws Exception {
+        super.getCharacterEncodingTest();
+    }
+
+    @Test()
+    public void getContentTypeTest() throws Exception {
+        super.getContentTypeTest();
+    }
+
+    @Test()
+    public void getLocaleTest() throws Exception {
+        super.getLocaleTest();
+    }
+
+    @Test()
+    public void getOutputStreamTest() throws Exception {
+        super.getOutputStreamTest();
+    }
+
+    @Test()
+    public void getWriterTest() throws Exception {
+        super.getWriterTest();
+    }
+
+    @Test()
+    public void isCommittedTest() throws Exception {
+        super.isCommittedTest();
+    }
+
+    @Test()
+    public void resetBufferTest() throws Exception {
+        super.resetBufferTest();
+    }
+
+    @Test()
+    public void resetTest() throws Exception {
+        super.resetTest();
+    }
+
+    @Test()
+    public void resetTest1() throws Exception {
+        super.resetTest1();
+    }
+
+    @Test()
+    public void setBufferSizeTest() throws Exception {
+        super.setBufferSizeTest();
+    }
+
+    @Test()
+    public void setCharacterEncodingTest() throws Exception {
+        super.setCharacterEncodingTest();
+    }
+
+    @Test()
+    public void setContentLengthTest() throws Exception {
+        super.setContentLengthTest();
+    }
+
+    @Test()
+    public void setContentTypeTest() throws Exception {
+        super.setContentTypeTest();
+    }
+
+    @Test()
+    public void setLocaleTest() throws Exception {
+        super.setLocaleTest();
+    }
 }

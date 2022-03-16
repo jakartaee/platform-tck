@@ -19,36 +19,38 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_servletcontext30_web");
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_servletcontext30_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(AddFilterClass.class, AddFilterNotFound.class, AddFilterString.class, AddSCAttributeListenerClass.class,
+                    AddSCAttributeListenerString.class, AddSCListenerClass.class, AddSCListenerString.class, AddServletClass.class,
+                    AddServletNotFound.class, AddServletString.class, AddSRAttributeListenerClass.class, AddSRAttributeListenerString.class,
+                    AddSRListenerClass.class, AddSRListenerString.class, BadFilter.class, BadListener.class, BadServlet.class,
+                    CreateFilter.class, CreateSCAttributeListener.class, CreateSCListener.class, CreateServlet.class, CreateSRAttributeListener.class,
+                    CreateSRListener.class, DuplicateFilterClass.class, DuplicateFilterString.class, DuplicateServletClass.class, DuplicateServletString.class,
+                    FilterTestServlet.class, TestListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_servletcontext30_web.xml"));
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -90,6 +92,7 @@ public class URLClient extends AbstractUrlClient {
    * In client verify that all Listeners are added correctly and invoked in the
    * order added.
    */
+  @Test
   public void getContextPathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getContextPathTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -117,6 +120,7 @@ public class URLClient extends AbstractUrlClient {
    * invoked. Verify in client that all Listeners are added correctly and
    * invoked in the order added.
    */
+  @Test
   public void testAddServletString() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletString HTTP/1.1");
@@ -148,6 +152,7 @@ public class URLClient extends AbstractUrlClient {
    * in client that request goes through and Filter IS invoked. Verify in client
    * that all Listeners are added correctly and invoked in the order added.
    */
+  @Test
   public void testAddFilterString() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testAddFilterString");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -175,6 +180,7 @@ public class URLClient extends AbstractUrlClient {
    * invoked. Verify in client that all Listeners are added correctly and
    * invoked in the order added.
    */
+  @Test
   public void testAddServletClass() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletClass HTTP/1.1");
@@ -205,6 +211,7 @@ public class URLClient extends AbstractUrlClient {
    * invoked. Verify in client that all Listeners are added correctly and
    * invoked in the order added.
    */
+  @Test
   public void testAddFilterClass() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testAddFilterClass");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
@@ -237,6 +244,7 @@ public class URLClient extends AbstractUrlClient {
    * invoked. Verify in client that all Listeners are added correctly and
    * invoked in the order added.
    */
+  @Test
   public void testAddServlet() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/createServlet HTTP/1.1");
@@ -270,6 +278,7 @@ public class URLClient extends AbstractUrlClient {
    * Filter is NOT invoked. Verify in client that all Listeners are added
    * correctly and invoked in the order added.
    */
+  @Test
   public void testAddFilterForward() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testCreateFilterForward");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
@@ -302,6 +311,7 @@ public class URLClient extends AbstractUrlClient {
    * Filter is NOT invoked. Verify in client that all Listeners are added
    * correctly and invoked in the order added.
    */
+  @Test
   public void testAddFilterInclude() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testCreateFilterInclude");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
@@ -331,6 +341,7 @@ public class URLClient extends AbstractUrlClient {
    * the new servlet, Verify in client that request does NOT go through and
    * Filter is NOT invoked.
    */
+  @Test
   public void testAddServletNotFound() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletNotFound HTTP/1.1");
@@ -364,6 +375,7 @@ public class URLClient extends AbstractUrlClient {
    * Listener works - request does NOT through and Filter is NOT invoked. - all
    * Listeners are added correctly and invoked in the order added.
    */
+  @Test
   public void testCreateSRAListener() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testCreateSRAListener");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
@@ -402,6 +414,7 @@ public class URLClient extends AbstractUrlClient {
    * - createListener failed accordingly; - addListener failed accordingly; -
    * setInitParameter works properly
    */
+  @Test
   public void negativeCreateTests() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeCreateTests");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -421,6 +434,7 @@ public class URLClient extends AbstractUrlClient {
    * by calling ServletContext.addServlet(servletName, Servlet.class) 6. Verify
    * that the Servlet can be invoked as defined in web.xml1.
    */
+  @Test
   public void duplicateServletTest1() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletClass HTTP/1.0");
@@ -438,6 +452,7 @@ public class URLClient extends AbstractUrlClient {
    * by calling ServletContext.addServlet(servletName, "Servlet.class") 4.
    * Verify that the Servlet can be invoked as defined in web.xm1.
    */
+  @Test
   public void duplicateServletTest2() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletString HTTP/1.0");
@@ -458,6 +473,7 @@ public class URLClient extends AbstractUrlClient {
    * the Servlet2 again by calling ServletContext.addServlet(servletName,
    * "Servlet.class") 4. Verify null is returned in both cases.
    */
+  @Test
   public void duplicateServletTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "duplicateServletTest3");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -477,6 +493,7 @@ public class URLClient extends AbstractUrlClient {
    * again by calling ServletContext.addFilter(FilterName,,"Filter.class") 6.
    * Verify that both Filter can be invoked as defined in web.xml
    */
+  @Test
   public void duplicateFilterTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/FilterTestServlet HTTP/1.0");
@@ -496,6 +513,7 @@ public class URLClient extends AbstractUrlClient {
    * again by calling ServletContext.addFilter(FilterName,,"Filter.class") 6.
    * Verify that null is returned in both cases
    */
+  @Test
   public void duplicateFilterTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "duplicateFilterTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -511,6 +529,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which call
    * ServletContext.getEffectiveMajorVersion() Verify that 5 is returned.
    */
+  @Test
   public void getEffectiveMajorVersionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getEffectiveMajorVersionTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
@@ -525,6 +544,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which call
    * ServletContext.getEffectiveMinorVersion() Verify that 0 is returned.
    */
+  @Test
   public void getEffectiveMinorVersionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getEffectiveMinorVersionTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMINORVERSION=0;");
@@ -539,6 +559,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which call
    * ServletContext.getDefaultSessionTrackingModes() Verify it works.
    */
+  @Test
   public void getDefaultSessionTrackingModes() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getDefaultSessionTrackingModes");
     invoke();
@@ -552,6 +573,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, verify SessionTrackingModes.valueOf()
    * works
    */
+  @Test
   public void sessionTrackingModesValueOfTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "sessionTrackingModesValueOfTest");
     invoke();
@@ -565,6 +587,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, verify SessionTrackingModes.values()
    * works
    */
+  @Test
   public void sessionTrackingModesValuesTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "sessionTrackingModesValuesTest");
     invoke();

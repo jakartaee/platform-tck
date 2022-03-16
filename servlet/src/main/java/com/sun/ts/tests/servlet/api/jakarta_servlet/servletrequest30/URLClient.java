@@ -19,38 +19,32 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_js_servletrequest30_web";
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_servletrequest30_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(AsyncTests.class, AsyncTestServlet.class, SecondServlet.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_servletrequest30_web.xml"));
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -67,6 +61,7 @@ public class URLClient extends AbstractUrlClient {
    * returned ServletContext instance is consistent with the one stored in
    * ServletConfigs.
    */
+  @Test
   public void getServletContextTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getServletContextTest");
     TEST_PROPS.setProperty(STATUS_CODE, OK);
@@ -84,6 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet; call ServletRequest.getDispatcherType() verifies that
    * DispatcherType.REQUEST is returned.
    */
+  @Test
   public void getDispatcherTypeTestRequest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestRequest");
     TEST_PROPS.setProperty(SEARCH_STRING, "DispatcherType=REQUEST");
@@ -100,6 +96,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getDispatcherType() verifies that DispatcherType.FORWARD is
    * returned.
    */
+  @Test
   public void getDispatcherTypeTestForward() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestForward");
     TEST_PROPS.setProperty(SEARCH_STRING, "DispatcherType=FORWARD");
@@ -116,6 +113,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getDispatcherType() verifies that DispatcherType.INCLUDE is
    * returned.
    */
+  @Test
   public void getDispatcherTypeTestInclude() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestInclude");
     TEST_PROPS.setProperty(SEARCH_STRING, "DispatcherType=INCLUDE");
@@ -132,6 +130,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getDispatcherType() verifies that DispatcherType.ERROR is
    * returned.
    */
+  @Test
   public void getDispatcherTypeTestError() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/nowheretobefound/  HTTP/1.1");
@@ -152,6 +151,7 @@ public class URLClient extends AbstractUrlClient {
    * call ServletRequest.getDispatcherType() verifies that DispatcherType.ASYNC
    * is returned.
    */
+  @Test
   public void getDispatcherTypeTestAsync() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=getDispatcherTypeTestAsync  HTTP/1.1");
@@ -169,6 +169,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); call ServletRequest.isAsyncStarted() verifies
    * that true is returned.
    */
+  @Test
   public void asyncStartedTest1() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=asyncStartedTest1  HTTP/1.1");
@@ -186,6 +187,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncStarted() without start async mode verifies that
    * false is returned.
    */
+  @Test
   public void asyncStartedTest2() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=asyncStartedTest2  HTTP/1.1");
@@ -205,6 +207,7 @@ public class URLClient extends AbstractUrlClient {
    * AsyncContext.complete() called verifies that true is returned before it
    * dispatch return to the container
    */
+  @Test
   public void asyncStartedTest3() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=asyncStartedTest3  HTTP/1.1");
@@ -222,6 +225,7 @@ public class URLClient extends AbstractUrlClient {
    * AsyncTestServlet; Invoke AsyncTests using AsyncContext.dispatch(String)
    * call ServletRequest.isAsyncStarted() verifies that false is returned.
    */
+  @Test
   public void asyncStartedTest4() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=asyncStartedTest4  HTTP/1.1");
@@ -238,6 +242,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; call
    * ServletRequest.isAsyncSupported() verifies that true is returned.
    */
+  @Test
   public void isAsyncSupportedTest1() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=isAsyncSupportedTest  HTTP/1.1");
@@ -254,6 +259,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to TestServlet; call
    * ServletRequest.isAsyncSupported() verifies that false is returned.
    */
+  @Test
   public void isAsyncSupportedTest2() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/TestServlet?testname=isAsyncSupportedTest  HTTP/1.1");
@@ -270,6 +276,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to TestServlet; call ServletRequest.startAsyncTest()
    * verifies that IllegalStateException is thrown.
    */
+  @Test
   public void startAsyncTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncTest");
     invoke();
@@ -287,6 +294,7 @@ public class URLClient extends AbstractUrlClient {
    * Call ServletRequest.startAsyncTest() outside of dispatch verifies that
    * IllegalStateException is thrown.
    */
+  @Test
   public void startAsyncTest2() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=startAsyncTest  HTTP/1.1");
@@ -304,6 +312,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; Start Async in AsyncTestServlet;
    * Call ServletRequest.getAsyncContext() verifies it works.
    */
+  @Test
   public void getAsyncContextTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
         + "/AsyncTestServlet?testname=getAsyncContextTest  HTTP/1.1");

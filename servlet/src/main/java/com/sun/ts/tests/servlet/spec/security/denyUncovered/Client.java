@@ -16,16 +16,17 @@
 
 package com.sun.ts.tests.servlet.spec.security.denyUncovered;
 
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.BASE64Encoder;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class will be used to perform simple servlet invocations. The servlet
@@ -39,12 +40,24 @@ import com.sun.ts.lib.util.TestUtil;
  * deny-uncovered-http-methods DD semantic (Servlet 3.1 spec, section 13.8.4.2).
  *
  */
-public class Client extends ServiceEETest implements Serializable {
+public class Client extends AbstractUrlClient {
   private Properties props = null;
 
   private String hostname = null;
 
   private int portnum = 0;
+
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_sec_denyUncovered_web.war")
+            .addClasses(AllMethodsAllowedAnno.class, ExcludeAuthConstraint.class, PartialDDServlet.class,
+                    TestServlet.class)
+            .setWebXML(Client.class.getResource("servlet_sec_denyUncovered_web.xml"));
+  }
 
   // this must be the decoded context path corresponding to the web module
   private String contextPath = "/servlet_sec_denyUncovered_web";
@@ -66,11 +79,6 @@ public class Client extends ServiceEETest implements Serializable {
 
   private String password = "";
 
-  public static void main(String args[]) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /**
    * @class.setup_props: logical.hostname.servlet; webServerHost; webServerPort;
@@ -95,7 +103,7 @@ public class Client extends ServiceEETest implements Serializable {
   public void cleanup() throws Exception {
   }
 
-  /**
+  /*
    * @testName: testAllMethodsAllowedAnno
    *
    * @assertion_ids: Servlet:SPEC:310
@@ -111,19 +119,18 @@ public class Client extends ServiceEETest implements Serializable {
    *                 return 200
    * 
    */
+  @Test
   public void testAllMethodsAllowedAnno() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtAllMethodsAllowedAnno, "POST");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtAllMethodsAllowedAnno
-          + "  (POST) returns = " + httpStatusCode);
+      logger.error("Accessing {} (POST) returns = {}", ctxtAllMethodsAllowedAnno, httpStatusCode);
       throw new Exception("testAllMethodsAllowedAnno : FAILED");
     }
 
     httpStatusCode = invokeServlet(ctxtAllMethodsAllowedAnno, "GET");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtAllMethodsAllowedAnno
-          + "  (GET) returns = " + httpStatusCode);
+      logger.error("Accessing {} (GET) returns = {}", ctxtAllMethodsAllowedAnno, httpStatusCode);
       throw new Exception("testAllMethodsAllowedAnno : FAILED");
     }
 
@@ -144,7 +151,7 @@ public class Client extends ServiceEETest implements Serializable {
     TestUtil.logMsg("testAllMethodsAllowedAnno : PASSED");
   }
 
-  /**
+  /*
    * @testName: testAccessToMethodAllowed
    *
    * @assertion_ids: Servlet:SPEC:309;
@@ -160,6 +167,7 @@ public class Client extends ServiceEETest implements Serializable {
    *                 attempts to access get & put must be alloed (return 200=ok)
    * 
    */
+  @Test
   public void testAccessToMethodAllowed() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "POST");
@@ -179,7 +187,7 @@ public class Client extends ServiceEETest implements Serializable {
     TestUtil.logMsg("testAccessToMethodAllowed : PASSED");
   }
 
-  /**
+  /*
    * @testName: testDenySomeUncovered
    *
    * @assertion_ids: Servlet:SPEC:309;
@@ -195,6 +203,7 @@ public class Client extends ServiceEETest implements Serializable {
    *                 attempts to access get & put must be alloed (return 200=ok)
    * 
    */
+  @Test
   public void testDenySomeUncovered() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "DELETE");
@@ -214,7 +223,7 @@ public class Client extends ServiceEETest implements Serializable {
     TestUtil.logMsg("testDenySomeUncovered : PASSED");
   }
 
-  /**
+  /*
    * @testName: testExcludeAuthConstraint
    *
    * @assertion_ids: Servlet:SPEC:309;
@@ -235,6 +244,7 @@ public class Client extends ServiceEETest implements Serializable {
    *                 deny-uncovered-http-method elelent, they must be denied!
    * 
    */
+  @Test
   public void testExcludeAuthConstraint() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtExcludeAuthConstraint, "GET");
@@ -254,7 +264,7 @@ public class Client extends ServiceEETest implements Serializable {
     TestUtil.logMsg("testExcludeAuthConstraint : PASSED");
   }
 
-  /**
+  /*
    * @testName: testPartialDDServlet
    *
    * @assertion_ids: Servlet:SPEC:309;
@@ -276,6 +286,7 @@ public class Client extends ServiceEETest implements Serializable {
    *                 the other "uncovered" methods to get "denied"
    * 
    */
+  @Test
   public void testPartialDDServlet() throws Exception {
 
     TestUtil.logMsg("Invoking " + ctxtPartialDDServlet + "  (GET)");
@@ -319,15 +330,14 @@ public class Client extends ServiceEETest implements Serializable {
    * header and they will be encoded using the BASE64Encoder class. returns the
    * http status code.
    */
-  private int invokeServlet(String sContext, String requestMethod) {
+  private int invokeServlet(String sContext, String requestMethod) throws Exception {
     int code = 200;
 
-    TSURL ctsurl = new TSURL();
-    if (!sContext.startsWith("/")) {
-      sContext = "/" + sContext;
+    if (sContext.startsWith("/")) {
+      sContext = sContext.substring(1);
     }
 
-    String url = ctsurl.getURLString("http", hostname, portnum, sContext);
+    String url = getURLString("http", hostname, portnum, sContext);
     try {
       URL newURL = new URL(url);
 
@@ -335,12 +345,12 @@ public class Client extends ServiceEETest implements Serializable {
       // hint: make sure username and password are valid for your
       // (J2EE) security realm otherwise you recieve http 401 error.
       String authData = username + ":" + password;
-      TestUtil.logMsg("authData : " + authData);
+      logger.debug("authData : {}", authData);
 
       BASE64Encoder encoder = new BASE64Encoder();
 
       String encodedAuthData = encoder.encode(authData.getBytes());
-      TestUtil.logMsg("encoded authData : " + encodedAuthData);
+      logger.debug("encoded authData : {}", encodedAuthData);
 
       // open URLConnection
       HttpURLConnection conn = (HttpURLConnection) newURL.openConnection();
@@ -348,16 +358,15 @@ public class Client extends ServiceEETest implements Serializable {
       // set request property
       conn.setDoOutput(true);
       conn.setDoInput(true);
-      conn.setRequestProperty("Authorization",
-          "Basic " + encodedAuthData.trim());
+      conn.setRequestProperty("Authorization", "Basic " + encodedAuthData.trim());
       conn.setRequestMethod(requestMethod); // POST or GET etc
       conn.connect();
 
-      TestUtil.logMsg("called HttpURLConnection.connect() for url: " + url);
+      logger.debug("called HttpURLConnection.connect() for url: {}", url);
       code = conn.getResponseCode();
-      TestUtil.logMsg("Got response code of: " + code);
+      logger.debug("Got response code of: {}", code);
       String str = conn.getResponseMessage();
-      TestUtil.logMsg("Got response string of: " + str);
+      logger.debug("Got response string of: {}", str);
       /*
        * // not used right now but left here in case we need it InputStream
        * content = (InputStream)conn.getInputStream(); BufferedReader in = new
@@ -368,10 +377,9 @@ public class Client extends ServiceEETest implements Serializable {
        */
 
     } catch (Exception e) {
-      TestUtil.logMsg(
-          "Abnormal return status encountered while invoking " + sContext);
-      TestUtil.logMsg("Exception Message was:  " + e.getMessage());
-      // e.printStackTrace();
+      logger.error("Abnormal return status encountered while invoking {}", sContext);
+      logger.error("Exception Message was:  " + e.getMessage(), e);
+      throw e;
     }
 
     return code;

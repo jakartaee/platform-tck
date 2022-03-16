@@ -27,14 +27,18 @@ import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestServlet7 extends GenericServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestServlet7.class);
 
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
     if (pw == null) {
-      System.out.println("TestServlet7 is invoked");
+      LOGGER.info("TestServlet7 is invoked");
     } else {
       pw.println("TestServlet7 is invoked");
       pw.println("TestServlet7's URL: /*");

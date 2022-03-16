@@ -22,6 +22,7 @@
 
   <property name="app.name"  value="servlet_js_filterrequestdispatcher" />
   <property name="content.dir" value="${src.dir}/web/servlet/api/jakarta_servlet/filterrequestdispatcher"/>
+  <!-- done -->
   <property name="content.file" value="dummy.html, dummyJSP.jsp"/>
   <property name="web.war.classes"
             value="com/sun/ts/tests/servlet/common/util/Data.class,

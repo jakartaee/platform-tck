@@ -23,8 +23,12 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestListener implements ServletContextListener {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestListener.class);
 
   /**
    * Receives notification that the web application initialization process is
@@ -44,10 +48,10 @@ public class TestListener implements ServletContextListener {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext304.CreateGenericEventListener.class);
     } catch (java.lang.IllegalArgumentException ex) {
       listener_test = true;
-      System.out.println("Error creating Listener CreateGenericEventListener: "
+      LOGGER.error("Error creating Listener CreateGenericEventListener: "
           + ex.getMessage());
     } catch (ServletException exs) {
-      System.out.println("Error creating Listener CreateGenericEventListener: "
+      LOGGER.error("Error creating Listener CreateGenericEventListener: "
           + exs.getMessage());
     }
     context.setInitParameter(LISTENER_TEST, listener_test.toString());

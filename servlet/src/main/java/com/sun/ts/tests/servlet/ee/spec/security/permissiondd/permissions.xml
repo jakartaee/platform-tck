@@ -18,10 +18,10 @@
 -->
 
 <permissions xmlns="https://jakarta.ee/xml/ns/jakartaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
         https://jakarta.ee/xml/ns/jakartaee/permissions_10.xsd"
-    version="10">
+             version="10">
   <permission>
     <class-name>java.security.SecurityPermission</class-name>
     <name>CTSPermission1_name</name>

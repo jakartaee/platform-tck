@@ -19,36 +19,34 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.geteffectivesessiontrackingmodes;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_sci_geteffectivesessiontrackingmode_web");
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_sci_geteffectivesessiontrackingmode_web.war")
+            .addAsResource(URLClient.class.getResource("jakarta.servlet.ServletContainerInitializer"),
+                    "META-INF/services/jakarta.servlet.ServletContainerInitializer")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TCKServletContainerInitializer.class, TestListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_sci_geteffectivesessiontrackingmode_web.xml"));
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -65,6 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext.getEffectiveSessionTrackingModes() Verify that
    * UnsupportedOperationException is thrown.
    */
+  @Test
   public void getEffectiveSessionTrackingModes() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getEffectiveSessionTrackingModes");
     invoke();

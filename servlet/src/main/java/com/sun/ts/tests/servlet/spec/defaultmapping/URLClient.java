@@ -20,32 +20,23 @@
 
 package com.sun.ts.tests.servlet.spec.defaultmapping;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_defaultmapping_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_defaultmapping_web.war")
+            .addClasses(TestServlet6.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_defaultmapping_web.xml"));
   }
 
   /*
@@ -63,6 +54,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet6 with URL / 2. Send request with path /TestServlet3/xyz. 3.
    * Verify that TestServlet6 is invoked based on Servlet Spec(11.1)
    */
+  @Test
   public void defaultservletTest1() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");
     TEST_PROPS.setProperty(APITEST, "TestServlet3/xyz");
@@ -81,6 +73,7 @@ public class URLClient extends AbstractUrlClient {
    * Verify that default Servlet TestServlet6 should be invoked. Since no match
    * is found.
    */
+  @Test
   public void defaultservletTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");
     TEST_PROPS.setProperty(REQUEST,
