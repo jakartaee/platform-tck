@@ -101,7 +101,7 @@ public class Client extends PMClientBase {
       .of(1970, 1, 1, 0, 0, 0);
 
   /** LocalDateTime constant. */
-  private static final LocalDateTime LOCAL_DATE_TIME = LocalDateTime.now();
+  private static final LocalDateTime LOCAL_DATE_TIME = initLocalDateTime();
 
   /** Default OffsetTime constant. */
   private static final OffsetTime OFFSET_TIME_DEF = OffsetTime
@@ -130,6 +130,12 @@ public class Client extends PMClientBase {
           LOCAL_DATE_TIME_DEF, OFFSET_TIME, OFFSET_DATE_TIME_DEF),
       new DateTimeEntity(5L, LOCAL_DATE_DEF, LOCAL_TIME_DEF,
           LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME) };
+
+  // Databases precision is usually not nanoseconds. Truncate to miliseconds.
+  private static LocalDateTime initLocalDateTime() {
+    final LocalDateTime value = LocalDateTime.now();
+    return value.withNano((value.getNano() / 1000000) * 1000000);
+  }
 
   /*
    * @testName: dateTimeTest
