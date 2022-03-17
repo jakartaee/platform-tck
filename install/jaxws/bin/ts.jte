@@ -523,11 +523,7 @@ javaee.home=${webcontainer.home}
 #                         with connector tests.
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
-############################################################### 
+###############################################################
 s1as.admin=${javaee.home}/bin/asadmin
 s1as.domain.dir=${javaee.home}/domains
 s1as.domain.name=${glassfish.domain.name}

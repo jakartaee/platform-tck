@@ -166,10 +166,6 @@ ts.display=:0.0
 # @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
 ###############################################################
 s1as.admin.user=admin
 s1as.admin.passwd=
@@ -187,7 +183,6 @@ s1as.imq.share.lib=${jaspic.home}/imq/lib
 s1as.jvm.options=-XX\\\:MaxPermSize=128m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 sjsas.master.password=changeit
 sjsas.instance.config.dir=config

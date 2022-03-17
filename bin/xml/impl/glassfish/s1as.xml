@@ -35,7 +35,6 @@
     <property name="server.config.dir" 	value="config"/>
     <property name="server.home"     value="${javaee.home}"/>
     <property name="drive"           value="${s1as.applicationRoot}"/>
-    <property name="ext.dir.prop"    value="-Djava.ext.dirs="/>
     <property name="start.index"     value="16"/>
     <property name="custom.resource.jndi.name" value="custom/dog"/>
 
@@ -217,23 +216,13 @@
         </not>
       </condition>
 
-      <!-- Check if we need to set ext.dirs -->
-      <condition property="s1as.db.ext.dirs.set">
-        <not>
-          <equals arg1="" arg2="${s1as.db.ext.dirs}" casesensitive="true" trim="true"/>
-        </not>
-      </condition>
-
       <!-- Check to see if we are using DB2 -->
       <condition property="using.db2.type2">
           <contains string="${use.jdbc.poolName}" substring="db2" casesensitive="false"/>
       </condition>
 
       <condition property="db2.props.set">
-        <and>
           <isset property="using.db2.type2"/>
-          <isset property="s1as.db.ext.dirs.set"/>
-        </and>
       </condition>
 
       <!-- Check to see if we are using Oracle, will be needed in the future -->
@@ -710,19 +699,6 @@
         <antcall target="copy.db2.jars"/>
         <antcall target="delete.db2.jars"/>
 
-<!-- 
-  Since the get command is broken (issue tracker bug id 7151) we need to use
-  our regular expression hack to set the extension directories while the server
-  is down. If we modify the domain.xml disk file while the server is up, the
-  server process can overwrite our changes to the domain.xml file. See
-  set.ext.dirs target below to see the hack.  We now call these two targets from
-  javaee_vi.xml's config.vi target before the server is started.  Seems to do
-  the trick.  This code can be reverted once they fix bug ID 7151.  We can go
-  back to using the get command.
-
-        <antcall target="reset.ext.dirs"/>
-        <antcall target="add.ext.dirs"/>
--->
         <antcall target="set" >
           <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.jdbc.poolName}.max_pool_size=${use.jdbc.maxpoolsize}"/>
         </antcall>
@@ -1052,106 +1028,6 @@
           <param name="instance.name" value=" ${server.instance}-config"/>
          </antcall>
      </target>
-
-    <!-- revisit these values for V3. -->
-    <target name="set.ext.dirs.value.mac" if="isMac">
-      <property name="default.ext.dirs" value="$$\{com.sun.aas.javaRoot\}/lib/ext$\{path.separator\}$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/../javadb/lib"/>
-    </target>
-
-    <target name="set.ext.dirs.value.non.mac" unless="isMac">
-      <property name="default.ext.dirs" value="$$\{com.sun.aas.javaRoot\}/lib/ext$\{path.separator\}$$\{com.sun.aas.javaRoot\}/jre/lib/ext$$\{path.separator\}$$\{com.sun.aas.instanceRoot\}/lib/ext$$\{path.separator\}$$\{com.sun.aas.installRoot\}/lib/jdbcdrivers$$\{path.separator\}$$\{com.sun.aas.installRoot\}/../javadb/lib"/>      
-    </target>
-
-
-    <!--
-      reset.ext.dirs Sets the S1AS extension directory property
-      back to it's original value as defined by the default.ext.dirs
-      property.
-    -->
-    <target name="reset.ext.dirs" depends="set.ext.dirs.value.mac, set.ext.dirs.value.non.mac"
-            unless="using.db2.type2">
-      <antcall target="set.ext.dirs">
-        <param name="ext.dirs.to.use" value="${default.ext.dirs}"/>
-      </antcall>
-    </target>
-
-    <!--
-      add.ext.dirs Add the extension directories defined by
-      the s1as.db.ext.dirs property in the ts.jte file to the
-      S1AS extension directory.  This is currently used to allow
-      CTS to run against S1AS using a type 2 DB driver.  Currently
-      our only type 2 driver is DB2.
-    -->
-    <target name="add.ext.dirs" depends="set.ext.dirs.value.mac, set.ext.dirs.value.non.mac"
-            if="db2.props.set">
-      <antcall target="set.ext.dirs">
-        <param name="ext.dirs.to.use" value="${default.ext.dirs}$$\{path.separator\}${s1as.db.ext.dirs}"/>
-      </antcall>
-    </target>
-
-    <!--
-      set.ext.dirs sets the extension directory value for S1AS.
-      The value is passed as the ext.dirs.to.use param.  This
-      task is called by add.ext.dirs and reset.ext.dirs.
-    -->
-    <target name="set.ext.dirs">
-
-      <property name ="domain.file"
-                value="${server.home}/domains/domain1/config/domain.xml"/>
-      <loadfile property="domain.file.contents" srcfile="${domain.file}"/>
-      <propertyregex property="ext.dir.not.found"
-                     input="${domain.file.contents}"
-                     regexp="&lt;jvm-options>-Djava.ext.dirs=(.*)&lt;/jvm-options>"
-                     replace="&lt;jvm-options>-Djava.ext.dirs=${ext.dirs.to.use}&lt;/jvm-options>"
-                     defaultvalue="true"/>
-      <if>
-        <istrue value="${ext.dir.not.found}"/>
-      <then>
-        <echo>Extension directory does not match default, so not setting.</echo>
-      </then>
-      <else>
-        <echo>Extension directory found.</echo>
-        <echo>  Extension directory set to: ${ext.dirs.to.use}</echo>
-        <copy file="${domain.file}" tofile="${domain.file}.original" failonerror="false"/>
-        <echo message="${ext.dir.not.found}" file="${domain.file}"/>
-        <echo>${domain.file} written to disk.</echo>
-      </else>
-      </if>
-
-
-<!-- Currently broken in V3.  See bug ID 7151 in issues tracker.  Add back secodn dash to
-     user, passworfile, host and port when working, sicne the double -'s are not allowed in XML
-     comments.
-
-         <exec executable="${exec.asadmin}" outputproperty="current.props">
-            <arg line="${exec.asadmin.part2}"/>
-            <arg line="-user ${admin.user}"/>
-            <arg line="-passwordfile ${password.file}"/>
-            <arg line="-host ${server.host}"/>
-            <arg line="-port ${server.port}"/>
-            <arg line="get"/>
-            <arg line="${server.instance}-config.java-config.jvm_options"/>
-         </exec>
-         <string this="${current.props}" method="indexOf" return="index.of.ext.prop" arg1="${ext.dir.prop}"/>
-         <string this="${current.props}" method="substring" return="ext.dirs" arg1="${index.of.ext.prop}"/>
-         <string this="${ext.dirs}" method="indexOf" return="index.of.last.comma" arg1=","/>
-         <string this="${ext.dirs}" method="length" return="ext.dirs.length"/>
-         <condition property="end.index" value="${ext.dirs.length}">
-           <equals arg1="${index.of.last.comma}" arg2="-1"/>
-         </condition>
-         <property name="end.index" value="${index.of.last.comma}"/>
-         <string this="${ext.dirs}" method="substring" return="ext.dir" arg1="${start.index}" arg2="${end.index}"/>
-         <echo message="Current Extension Directories: &quot;${ext.dir}&quot;"/>
-         <property name="new.ext.dirs" value="${ext.dir.prop}${ext.dirs.to.use}"/>
-         <echo message="New Extension Directories: &quot;${new.ext.dirs}&quot;"/>
-         <antcall target="delete-jvm-options">
-           <param name="jvm.options" value="${ext.dir.prop}${ext.dir}"/>
-         </antcall>
-         <antcall target="create-jvm-options" >
-           <param name="jvm.options" value="${new.ext.dirs}"/>
-         </antcall>
--->
-    </target>
 
     <property name="ant.opts" value=""/>
     <property name="run.client.args" value=""/>
