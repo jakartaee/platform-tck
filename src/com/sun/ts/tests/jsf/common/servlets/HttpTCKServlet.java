@@ -192,7 +192,7 @@ public abstract class HttpTCKServlet extends HttpServlet {
 
   protected UIViewRoot createViewRoot() {
 
-    return createViewRoot(null);
+    return new UIViewRoot();
 
   }
 
