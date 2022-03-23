@@ -20,44 +20,44 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Dog extends Animal {
+  private boolean barking;
 
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter;
-
-import jakarta.json.bind.annotation.JsonbTypeAdapter;
-
-public class AnimalShelterInjectedAdapter {
-  @JsonbTypeAdapter(InjectedListAdapter.class)
-  private List<Animal> animals = new ArrayList<>();
-
-  public List<Animal> getAnimals() {
-    return animals;
+  public Dog() {
   }
 
-  public void setAnimals(List<Animal> animals) {
-    this.animals = animals;
+  public Dog(int age, String name, float weight, boolean furry,
+      boolean barking) {
+    super(age, name, weight, furry);
+    this.barking = barking;
   }
 
-  public boolean addAnimal(Animal animal) {
-    return animals.add(animal);
+  public boolean isBarking() {
+    return barking;
+  }
+
+  public void setBarking(boolean barking) {
+    this.barking = barking;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o)
       return true;
-    if (!(o instanceof AnimalShelterInjectedAdapter))
+    if (!(o instanceof Dog))
+      return false;
+    if (!super.equals(o))
       return false;
 
-    AnimalShelterInjectedAdapter that = (AnimalShelterInjectedAdapter) o;
+    Dog dog = (Dog) o;
 
-    return animals != null ? animals.equals(that.animals)
-        : that.animals == null;
+    return barking == dog.barking;
   }
 
   @Override
   public int hashCode() {
-    return animals != null ? animals.hashCode() : 0;
+    int result = super.hashCode();
+    result = 31 * result + (barking ? 1 : 0);
+    return result;
   }
 }

@@ -50,8 +50,8 @@ jsonb.classes=
 #
 #                                Added to ts.run.classpath below.
 ###############################################################################
-#jsonb.resources=${ts.home}/src/com/sun/ts/tests/jsonb/resources
-#jsonb.alt.provider.classes=jsonb.alt.provider.classes
+jsonb.resources=${ts.home}/src/com/sun/ts/tests/jsonb/resources
+jsonb.alt.provider.classes=jsonb.alt.provider.classes
 
 ####################################################################
 # The jars/classes for the TS harness/javatest and the test classes
@@ -63,7 +63,7 @@ ts.harness.classpath=${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharne
 
 ts.classpath=${jsonb.classes}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/jsonbtck.jar
 
-ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jsonbtck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/bin${pathsep}${jsonb.classes}
+ts.run.classpath=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/jsonbtck.jar${pathsep}${ts.home}/classes${pathsep}${ts.home}/bin${pathsep}${jsonb.alt.provider.classes}${pathsep}${jsonb.classes}
 
 ###########################################################################
 # @tools.jar  should be set to the location of the tools.jar from the 

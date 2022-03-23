@@ -20,25 +20,20 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.CAT;
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.DOG;
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.GENERIC;
-
 import java.lang.reflect.Type;
 
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog;
 
-import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;
 import jakarta.json.bind.serializer.JsonbDeserializer;
 import jakarta.json.stream.JsonParser;
 
-public class AnimalDeserializerInjected implements JsonbDeserializer<Animal> {
-  @Inject
-  private AnimalBuilder animalBuilder;
-
+public class AnimalDeserializer implements JsonbDeserializer<Animal> {
   public Animal deserialize(JsonParser jsonParser,
       DeserializationContext deserializationContext, Type type) {
+    Animal animal = null;
     while (jsonParser.hasNext()) {
       JsonParser.Event event = jsonParser.next();
       if (event == JsonParser.Event.START_OBJECT) {
@@ -53,41 +48,41 @@ public class AnimalDeserializerInjected implements JsonbDeserializer<Animal> {
           jsonParser.next();
           switch (jsonParser.getString()) {
           case "cat":
-            animalBuilder.setType(CAT);
+            animal = new Cat();
             break;
           case "dog":
-            animalBuilder.setType(DOG);
+            animal = new Dog();
             break;
           default:
-            animalBuilder.setType(GENERIC);
+            animal = new Animal();
           }
           break;
         case "name":
           jsonParser.next();
-          animalBuilder.setName(jsonParser.getString());
+          animal.setName(jsonParser.getString());
           break;
         case "age":
           jsonParser.next();
-          animalBuilder.setAge(jsonParser.getInt());
+          animal.setAge(jsonParser.getInt());
           break;
         case "furry":
           event = jsonParser.next();
-          animalBuilder.setFurry(event == JsonParser.Event.VALUE_TRUE);
+          animal.setFurry(event == JsonParser.Event.VALUE_TRUE);
           break;
         case "weight":
           jsonParser.next();
-          animalBuilder.setWeight(jsonParser.getBigDecimal().floatValue());
+          animal.setWeight(jsonParser.getBigDecimal().floatValue());
           break;
         case "cuddly":
           event = jsonParser.next();
-          animalBuilder.setCuddly(event == JsonParser.Event.VALUE_TRUE);
+          ((Cat) animal).setCuddly(event == JsonParser.Event.VALUE_TRUE);
           break;
         case "barking":
           event = jsonParser.next();
-          animalBuilder.setBarking(event == JsonParser.Event.VALUE_TRUE);
+          ((Dog) animal).setBarking(event == JsonParser.Event.VALUE_TRUE);
         }
       }
     }
-    return animalBuilder.build();
+    return animal;
   }
 }
