@@ -54,11 +54,6 @@ if [ "$TCK_NAME" == "servlet" ];then
   exit 0
 fi
 
-if [ "$TCK_NAME" == "jsonb" ];then
-  source jsonbtck.sh
-  exit 0
-fi
-
 if [ "$TCK_NAME" == "jsf" ];then
   source jsftck.sh
   exit 0
