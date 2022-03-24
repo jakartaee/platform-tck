@@ -44,6 +44,7 @@ import org.jboss.cdi.tck.util.ActionSequence;
  */
 @SuppressWarnings("serial")
 @WebServlet("/test")
+@Dependent
 public class IntrospectServlet extends HttpServlet {
 
     public static final String MODE_INJECT = "inject";
