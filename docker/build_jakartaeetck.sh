@@ -52,7 +52,6 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
      cp -R docker jakartaeetck
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip jakartaeetck/docker/run_jakartaeetck.sh
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip jakartaeetck/docker/build_jakartaeetck.sh
-     zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip jakartaeetck/docker/fix_classpaths.sh
      zip -u ${WORKSPACE}/jakartaeetck-bundles/jakartaeetck.zip jakartaeetck/docker/JTReportParser/JTReportParser.jar
      rm -rf jakartaeetck
    fi
