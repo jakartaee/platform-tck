@@ -45,7 +45,9 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.cdi.tck.AbstractTest;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
+import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.BeansXml;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
@@ -75,6 +77,7 @@ public class ContainerEventTest extends AbstractTest {
                 .withWebResource("TagPage.jsp", "TagPage.jsp").withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
                 .withWebResource("TestLibrary.tld", "WEB-INF/TestLibrary.tld")
                 .withDefaultPersistenceXml()
+                .withBeansXml(new BeansXml(BeanDiscoveryMode.ALL))
                 .build();
     }
 
