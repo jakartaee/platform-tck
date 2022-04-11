@@ -98,7 +98,6 @@
         <echo message=" jpa           [overrides]"/>
         <echo message=" provisioning  [overrides]"/>
         <echo message=" jaxm          [overrides]"/>
-        <echo message=" concurrency   [overrides]"/>
         <echo message=" jaxws         [overrides]"/>
         <echo message=" jsonb         [overrides]"/>
         <echo message=" jsonp         [overrides]"/>
@@ -525,10 +524,6 @@
         <property name="deliverable.tck.dir" value="messaging"/>
         <antcall target="${the.target}"/>
     </target>
-    <target name="concurrency" depends="has.override, no.override" >
-        <property name="deliverable.name" value="CONCURRENCY"/>
-        <antcall target="${the.target}"/>
-    </target>
     <target name="websocket" depends="has.override, no.override" >
         <property name="deliverable.name" value="WEBSOCKET"/>
         <antcall target="${the.target}"/>
@@ -780,7 +775,6 @@
     	    jms/ee20/ra/activationconfig/queue/selectorauto,
     	    jsonb/defaultmapping/basictypes,
     	    jsonp/api/jsongeneratortests,
-            concurrency/api/ManagedScheduledExecutorService,
             jsp/spec/core_syntax/actions/usebean,
             jsp/api/javax_servlet/jsp/tagext/bodytagsupport,
             servlet/api/jakarta_servlet_http/httpservletrequest,
@@ -793,7 +787,6 @@
             jms/common,
             jms/commonee,
             jsonp/common,
-            concurrency/api/common,
             jsp/common,
             jta/ee/common,
             servlet/common,
