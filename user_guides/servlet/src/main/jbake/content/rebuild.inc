@@ -24,7 +24,7 @@ published in a Java SE environment are located under
 `$TS_HOME/classes`.
 
 The {TechnologyShortName} TCK comes with prebuilt test WAR files for
-deployment on Jakarta EE 9 CI {TechnologyRI}, which provides a Servlet–compliant Web
+deployment on Jakarta EE 10 CI {TechnologyRI}, which provides a Servlet–compliant Web
 container. The WAR files are {TechnologyRI}-specific, with {TechnologyRI}'s servlet
 class and {TechnologyRI}'s servlet defined in the `web.xml` deployment
 descriptor. To run the TCK tests against the VI in a Servlet–compliant
@@ -51,7 +51,7 @@ B.1 Overview
 
 The set of prebuilt archives and classes that ship with the
 {TechnologyShortName} TCK were built using the {TechnologyRI} Jakarta EE Compatible
-Implementation, and must be deployed on a Jakarta EE 9 CI and run against
+Implementation, and must be deployed on a Jakarta EE 10 CI and run against
 the {TechnologyRI} CI.
 
 The prebuilt {TechnologyRI}-specific Servlet–compliant WAR files are located
