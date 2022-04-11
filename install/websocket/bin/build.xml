@@ -16,7 +16,7 @@
 
 -->
 
-<project name=" Web Socket 2.0 TCK" default="usage">
+<project name=" WebSocket 2.1 TCK" default="usage">
 
     <!-- IMPORTS -->
     <import file="xml/ts.top.import.xml" optional="true"/>
