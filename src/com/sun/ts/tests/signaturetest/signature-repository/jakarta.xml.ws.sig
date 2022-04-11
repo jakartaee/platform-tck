@@ -375,6 +375,8 @@ meth public abstract java.lang.String getBindingID()
 meth public abstract javax.xml.namespace.QName getPortName()
 meth public abstract javax.xml.namespace.QName getServiceName()
 
+CLSS abstract interface jakarta.xml.ws.handler.package-info
+
 CLSS public abstract interface jakarta.xml.ws.handler.soap.SOAPHandler<%0 extends jakarta.xml.ws.handler.soap.SOAPMessageContext>
 intf jakarta.xml.ws.handler.Handler<{jakarta.xml.ws.handler.soap.SOAPHandler%0}>
 meth public abstract java.util.Set<javax.xml.namespace.QName> getHeaders()
@@ -386,6 +388,8 @@ meth public abstract java.lang.Object[] getHeaders(javax.xml.namespace.QName,jak
 meth public abstract java.util.Set<java.lang.String> getRoles()
 meth public abstract void setMessage(jakarta.xml.soap.SOAPMessage)
 
+CLSS abstract interface jakarta.xml.ws.handler.soap.package-info
+
 CLSS public abstract interface jakarta.xml.ws.http.HTTPBinding
 fld public final static java.lang.String HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http"
 intf jakarta.xml.ws.Binding
@@ -395,6 +399,10 @@ cons public init(int)
 meth public int getStatusCode()
 supr jakarta.xml.ws.ProtocolException
 hfds serialVersionUID,statusCode
+
+CLSS abstract interface jakarta.xml.ws.http.package-info
+
+CLSS abstract interface jakarta.xml.ws.package-info
 
 CLSS public abstract interface !annotation jakarta.xml.ws.soap.Addressing
  anno 0 jakarta.xml.ws.spi.WebServiceFeatureAnnotation(java.lang.Class<? extends jakarta.xml.ws.WebServiceFeature> bean=class jakarta.xml.ws.soap.AddressingFeature, java.lang.String id="http://www.w3.org/2005/08/addressing/module")
@@ -466,6 +474,8 @@ cons public init(jakarta.xml.soap.SOAPFault)
 meth public jakarta.xml.soap.SOAPFault getFault()
 supr jakarta.xml.ws.ProtocolException
 hfds fault,serialVersionUID
+
+CLSS abstract interface jakarta.xml.ws.soap.package-info
 
 CLSS public abstract jakarta.xml.ws.spi.Invoker
 cons public init()
@@ -563,6 +573,10 @@ CLSS public abstract jakarta.xml.ws.spi.http.HttpHandler
 cons public init()
 meth public abstract void handle(jakarta.xml.ws.spi.http.HttpExchange) throws java.io.IOException
 supr java.lang.Object
+
+CLSS abstract interface jakarta.xml.ws.spi.http.package-info
+
+CLSS abstract interface jakarta.xml.ws.spi.package-info
 
 CLSS public final jakarta.xml.ws.wsaddressing.W3CEndpointReference
 cons public init(javax.xml.transform.Source)
