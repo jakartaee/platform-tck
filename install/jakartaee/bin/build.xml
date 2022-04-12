@@ -55,7 +55,6 @@
                   com/sun/ts/tests/webservices12,
                   com/sun/ts/tests/webservices13,
                   com/sun/ts/tests/websocket,
-                  com/sun/ts/tests/concurrency,
                   com/sun/ts/tests/securityapi"/>
 
 	<!--
@@ -999,6 +998,3 @@
 
 
 </project>
-
-
-
