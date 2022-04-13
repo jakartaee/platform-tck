@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.glassfish</groupId>
+    <artifactId>glassfish.concurreny-tck</artifactId>
+    <version>3.0.0</version>
+    <name>Jakarta Concurrency TCK Runner for Glassfish</name>
+
+    <properties>
+        <!--  General properties  -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!--  Dependency and Plugin Versions  -->
+        <jakarta.concurrent.version>3.0.0</jakarta.concurrent.version>
+        <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
+        <arquillian.version>1.7.0.Alpha10</arquillian.version>
+        <testng.version>6.14.3</testng.version>
+        <sigtest.version>1.6</sigtest.version>
+        <derby.version>10.15.2.0</derby.version>
+        <maven.dep.plugin.version>3.3.0</maven.dep.plugin.version>
+        <maven.comp.plugin.version>3.10.1</maven.comp.plugin.version>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <!--  Pointer to suite.xml file that has the TestNG configuration  -->
+        <suiteXmlFile>suite.xml</suiteXmlFile>
+        <!--  Pointer to logging.properties file that has the java.util.logging configuration  -->
+        <logging.config>logging.properties</logging.config>
+        <!--  Output directory  -->
+        <targetDirectory>${project.basedir}/target</targetDirectory>
+        <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
+        <glassfish.container.version>7.0.0-M4</glassfish.container.version>
+    </properties>
+
+    <!-- TODO: Temporarily enable snapshot repository -->
+    <!-- This can be removed once an official releases available -->
+    <repositories>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+
+    <!--  tag::testClientDep[]  -->
+    <!--  The Arquillian test framework  -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--  Client Dependencies  -->
+    <dependencies>
+        <!--  The TCK  -->
+        <dependency>
+            <groupId>jakarta.enterprise.concurrent</groupId>
+            <artifactId>jakarta.enterprise.concurrent-tck</artifactId>
+            <version>${jakarta.concurrent.version}</version>
+        </dependency>
+        <!--  The API  -->
+        <dependency>
+            <groupId>jakarta.enterprise.concurrent</groupId>
+            <artifactId>jakarta.enterprise.concurrent-api</artifactId>
+            <version>${jakarta.concurrent.version}</version>
+        </dependency>
+        <!--  Arquillian Implementation for TestNG  -->
+        <dependency>
+            <groupId>org.jboss.arquillian.testng</groupId>
+            <artifactId>arquillian-testng-container</artifactId>
+            <version>${arquillian.version}</version>
+        </dependency>
+        <!--  TODO add Arquillian SPI impl for your Jakarta EE Platform  -->
+        <!--  Arquillian transitive dependency on Servlet  -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet.version}</version>
+        </dependency>
+        <!--  TestNG  -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+        <!--  Signature Test Plugin  -->
+        <dependency>
+            <groupId>org.netbeans.tools</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>${sigtest.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-managed-6</artifactId>
+            <version>1.0.0.Alpha1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.glassfish.hk2</groupId>
+            <artifactId>hk2-locator</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        
+    </dependencies>
+    <!--  end::testClientDep[]  -->
+    <build>
+        <directory>${targetDirectory}</directory>
+        <defaultGoal>clean test</defaultGoal>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven.dep.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>unpack</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>org.glassfish.main.distributions</groupId>
+                                        <artifactId>glassfish</artifactId>
+                                        <version>${glassfish.container.version}</version>
+                                        <type>zip</type>
+                                        <overWrite>false</overWrite>
+                                        <outputDirectory>${project.build.directory}</outputDirectory>
+                                    </artifactItem>
+                                </artifactItems>
+                            </configuration>
+                        </execution>
+                        <!--  tag::testServerDep[]  -->
+                        <!--  Test Server Dependencies  -->
+                        <execution>
+                            <id>copy-server-dependencies</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>org.testng</groupId>
+                                        <artifactId>testng</artifactId>
+                                        <version>${testng.version}</version>
+                                        </artifactItem>
+                                    <artifactItem>
+                                        <groupId>org.apache.derby</groupId>
+                                        <artifactId>derby</artifactId>
+                                        <version>${derby.version}</version>
+                                    </artifactItem>
+                                    <dependency>
+                                        <groupId>org.netbeans.tools</groupId>
+                                        <artifactId>sigtest-maven-plugin</artifactId>
+                                        <version>${sigtest.version}</version>
+                                    </dependency>
+                                </artifactItems>
+                                <outputDirectory>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/lib</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <executions>
+                        <execution>
+                            <id>StopDomain1</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>stop-domain</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>StartDomain1</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>start-domain</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>Enable Trace requests</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>set</argument>
+                                    <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>Delete User j2ee</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/j2ee.pass</argument>
+                                    <argument>delete-file-user</argument>
+                                    <argument>j2ee</argument>
+                                </arguments>
+                                <successCodes>
+                                    <successCode>0</successCode>
+                                    <successCode>1</successCode>
+                                </successCodes>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>Add User j2ee</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/j2ee.pass</argument>
+                                    <argument>create-file-user</argument>
+                                    <argument>--groups</argument>
+                                    <argument>staff:mgr</argument>
+                                    <argument>j2ee</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>Delete User javajoe</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/javajoe.pass</argument>
+                                    <argument>delete-file-user</argument>
+                                    <argument>javajoe</argument>
+                                </arguments>
+                                <successCodes>
+                                    <successCode>0</successCode>
+                                    <successCode>1</successCode>
+                                </successCodes>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>Add User javajoe</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/javajoe.pass</argument>
+                                    <argument>create-file-user</argument>
+                                    <argument>--groups</argument>
+                                    <argument>Manager</argument>
+                                    <argument>javajoe</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>list users</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>list-file-users</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>jimage-jvm-option</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/javajoe.pass</argument>
+                                    <argument>create-jvm-options</argument>
+                                    <argument>-Djimage.dir=${project.build.directory}/jdk11-bundle</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>add-export-annotation-jvm-option</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/javajoe.pass</argument>
+                                    <argument>create-jvm-options</argument>
+                                    <argument>--add-exports java.base/jdk.internal.vm.annotation=ALL-UNNAMED</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>add-opens-annotation-jvm-option</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>--passwordfile</argument>
+                                    <argument>${project.basedir}/javajoe.pass</argument>
+                                    <argument>create-jvm-options</argument>
+                                    <argument>--add-opens java.base/jdk.internal.vm.annotation=ALL-UNNAMED</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>StopDomain</id>
+                            <phase>generate-test-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                                <arguments>
+                                    <argument>stop-domain</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--  Compile plugin for any supplemental class files  -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.comp.plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <!--  tag::configTestNG[]  -->
+                <!--  Surefire plugin - Entrypoint for TestNG  -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <!--  tag::logging[]  -->
+                        <systemProperties>
+                        <property>
+                            <name>java.util.logging.config.file</name>
+                            <value>${logging.config}</value>
+                        </property>
+                        </systemProperties>
+                        <!--  end::logging[]  -->
+                        <!--  tag::ignore[]  -->
+                        <systemPropertyVariables>
+                            <!--  Properties shared with Arquillian  -->
+                            <domain>domain1</domain>
+                            <adminHost>localhost</adminHost>
+                            <adminPort>4848</adminPort>
+                            <adminUser>admin</adminUser>
+                            <adminPassword></adminPassword>
+                            <tck_server>localhost</tck_server>
+                            <tck_hostname>localhost</tck_hostname>
+                            <tck_username>javajoe</tck_username>
+                            <tck_password>javajoe</tck_password>
+                            <tck_port>8080</tck_port>
+                            <tck_port_secure>8181</tck_port_secure>
+                            <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                            <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
+                            <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.enterprise.concurrent-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</signature.sigTestClasspath>
+                        </systemPropertyVariables>
+                        <!--  end::ignore[]  -->
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <!--  Ensure surfire plugin looks under src/main/java instead of src/test/java  -->
+                        <testSourceDirectory>${basedir}${file.separarator}src${file.separarator}main${file.separarator}java${file.separarator}</testSourceDirectory>
+                    </configuration>
+                </plugin>
+            <!--  end::configTestNG[]  -->
+            <!--  TODO: you can include a plugin to start your application server here  -->
+        </plugins>
+    </build>
+</project>
