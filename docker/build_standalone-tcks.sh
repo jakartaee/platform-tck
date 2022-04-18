@@ -68,7 +68,7 @@ fi
 echo "The option selected to build is $TCK_NAME TCK"
 
 if [ "All" == "$TCK_NAME" ];then
-  TCK_LIST=( websocket el connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
+  TCK_LIST=( websocket el connector jacc jaspic caj jms jsp jstl jaxws saaj servlet securityapi jpa jta )
 else 
   TCK_LIST=( ${TCK_NAME} )
 fi
@@ -119,11 +119,6 @@ for tck in ${TCK_LIST[@]}; do
   if [ "jta" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Djta.classes=$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
-  elif [ "jsf" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Djsf.classes=$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.servlet.jsp.jstl-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.faces-api.jar:$JAKARTA_JARS/modules/jakarta.servlet.jsp-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.el-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "websocket" == "$tck" ]
