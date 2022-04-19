@@ -75,19 +75,6 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(STRATEGY,
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_core_act_plugin_web/JspPluginAppletTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "http://www.nowaythiswebsitecouldpossiblyexist.com|"
-            + "fallback_text|vspace=1|hspace=1|"
-            + "width=10|height=10|test=testvalue|applet|"
-            + "code=foo.class|archive=test.jar|name=test|"
-            + "align=middle|codebase=/");
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
-        "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
-    invoke();
-    TEST_PROPS.setProperty(STRATEGY,
-        "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
-    TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginBeanTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING,
         "http://www.nowaythiswebsitecouldpossiblyexist.com|"
@@ -356,7 +343,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:167.4.1
    * 
    * @test_Strategy: Validate that if the type attribute is provided a value
-   * other than 'bean', or 'applet' that a translation error occurs.
+   * other than 'bean' that a translation error occurs.
    */
   public void jspPluginInvalidTypeTest() throws Fault {
     TEST_PROPS.setProperty(REQUEST,

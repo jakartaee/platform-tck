@@ -18,7 +18,6 @@
 
 <%@ page contentType="text/plain" %>
 
-<%-- Validate a translation-time error occurs if a value other than applet
-     or bean is provided to the type attribute. --%>
+<%-- Validate a translation-time error occurs if a value other than bean is provided to the type attribute. --%>
 
 <jsp:plugin type="widget" code="foo.class" codebase="/" ></jsp:plugin>
