@@ -46,8 +46,7 @@ slashes as a path separator instead.
   {TechnologyVersion} CI has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`,
   +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`
-2.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
-Edit your `<TS_HOME>/bin/ts.jte` file and set the following
+2.  Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `webServerHost` property to the name of the host on which
   CI (for example, {TechnologyRI}), is running. +
@@ -84,12 +83,6 @@ The porting package interface, `TSURLInterface.java`, obtains URL
 strings for web resources in an implementation-specific manner. API
 documentation for the `TSURLInterface.java` porting package interface is
 available in the {TechnologyShortName} TCK documentation bundle.
-+
-4. JVM option `-Djava.locale.providers=COMPAT` should be passed for JDK 11 test runs. 
-The JVM compatibility option should be passed while starting implementation under test. 
-`-Djava.locale.providers=COMPAT` option will enable JDK 8 compatibility mode,
-JDK 8 compatibility mode is required for tags TCK tests with Dates, TimeZones to PASS with JDK 11.
-`-Djava.locale.providers=COMPAT` should not be passed to JVM, when tests are run with JDK 8.
 
 4.1.1 Initializing Database and Packaging the War Files for Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -173,7 +166,7 @@ Adapt the instructions above for the vendor implementation.
 4.3 Deploying the {TechnologyShortName} TCK Tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 8 platform, perform the
+To deploy the {TechnologyShortName} TCK tests to the Jakarta EE 10 platform, perform the
 following steps.
 
 1.  Make sure that the Web server to which you will deploy the {TechnologyShortName} TCK
