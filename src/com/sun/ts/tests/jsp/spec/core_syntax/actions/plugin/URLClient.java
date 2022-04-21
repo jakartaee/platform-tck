@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -76,12 +77,13 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginAppletTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "http://www.nowaythiswebsitecouldpossiblyexist.com|"
-            + "fallback_text|vspace=1|hspace=1|"
-            + "width=10|height=10|test=testvalue|applet|"
-            + "code=foo.class|archive=test.jar|name=test|"
-            + "align=middle|codebase=/");
+    TEST_PROPS.setProperty(SEARCH_STRING, "expected_text");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+        "http://www.nowaythiswebsitecouldpossiblyexist.com|" +
+        "fallback_text|vspace=1|hspace=1|" +
+        "width=10|height=10|test=testvalue|applet|" +
+        "code=foo.class|archive=test.jar|name=test|" +
+        "align=middle|codebase=/");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -89,12 +91,13 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginBeanTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "http://www.nowaythiswebsitecouldpossiblyexist.com|"
-            + "fallback_text|vspace=1|hspace=1|"
-            + "width=10|height=10|test=testvalue|bean|"
-            + "code=foo.class|archive=test.jar|name=test|"
-            + "align=middle|codebase=/");
+    TEST_PROPS.setProperty(SEARCH_STRING, "expected_text");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+        "http://www.nowaythiswebsitecouldpossiblyexist.com|" +
+        "fallback_text|vspace=1|hspace=1|" +
+        "width=10|height=10|test=testvalue|bean|" +
+        "code=foo.class|archive=test.jar|name=test|" +
+        "align=middle|codebase=/");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -113,7 +116,7 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginHeightElAttributeValueTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "height=10");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "height=10");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -121,7 +124,7 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginHeightRtAttributeValueTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "height=10");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "height=10");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -129,7 +132,7 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginWidthElAttributeValueTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "width=10");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "width=10");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -137,7 +140,7 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginWidthRtAttributeValueTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "width=10");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "width=10");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -323,8 +326,8 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspFallbackBodyTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "fallback_text");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "<jsp:body>|</jsp:body>");
+    TEST_PROPS.setProperty(SEARCH_STRING, "expected_text");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "<jsp:body>|fallback_text|</jsp:body>");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -343,8 +346,8 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspParamsBodyTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "param1=value1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "<jsp:body>|</jsp:body>");
+    TEST_PROPS.setProperty(SEARCH_STRING, "expected_text");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "<jsp:body>|param1=value1|</jsp:body>");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
@@ -380,14 +383,14 @@ public class URLClient extends AbstractUrlClient {
         "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_core_act_plugin_web/JspPluginJspAttributeTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "http://www.nowaythiswebsitecouldpossiblyexist.com|"
-            + "fallback_text|vspace=1|hspace=1|"
-            + "width=10|height=10|test=testvalue|bean|"
-            + "code=foo.class|archive=test.jar|name=test|"
-            + "align=middle|codebase=/");
+    TEST_PROPS.setProperty(SEARCH_STRING, "expected_text");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
-        "<jsp:attribute>|</jsp:attribute>");
+        "<jsp:attribute>|</jsp:attribute>|" +
+        "http://www.nowaythiswebsitecouldpossiblyexist.com|" +
+        "fallback_text|vspace=1|hspace=1|" +
+        "width=10|height=10|test=testvalue|bean|" +
+        "code=foo.class|archive=test.jar|name=test|" +
+        "align=middle|codebase=/");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)");
     invoke();
