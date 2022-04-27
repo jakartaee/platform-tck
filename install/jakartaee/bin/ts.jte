@@ -1823,7 +1823,7 @@ ejb_wait=60000
 # @test.ejb.stateful.timeout.wait.seconds - the minimum amount of time in seconds 
 #       the test client waits before verifying the status of the target stateful
 #       bean.  Its value must be an integer number.  Its default value in ts.jte
-#       file is 480 seconds.  It may be set to a smaller number (e.g., 240 seconds)
+#       file is 120 seconds.  It may be set to a smaller number (e.g., 60 seconds)
 #       to speed up testing, depending on the stateful timeout implementation
 #       strategy in the target server.
 #     
@@ -1832,7 +1832,7 @@ ejb_wait=60000
 #       before the test completes.  Usually setting javatest.timeout.factor to
 #       2.0 or greater should suffice.
 ###############################################################################
-test.ejb.stateful.timeout.wait.seconds=480
+test.ejb.stateful.timeout.wait.seconds=120
 
 ###################################################################
 # @log.file.location  This property is used by JACC tests to create
