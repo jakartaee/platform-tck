@@ -154,7 +154,7 @@ ri.asenv.loc=${connector.home}/config
 ri.imqbin.loc=${connector.home}/imq/bin
 ri.lib=${connector.home}/modules
 ri.imq.share.lib=${connector.home}/imq/lib
-ri.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+ri.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 ri.java.endorsed.dirs=${endorsed.dirs}
 ri.applicationRoot=c:
 
@@ -171,7 +171,7 @@ s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.asenv.loc=${connector.home}/config
 s1as.imqbin.loc=${connector.home}/imq/bin
 s1as.imq.share.lib=${connector.home}/imq/lib
-s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
 
