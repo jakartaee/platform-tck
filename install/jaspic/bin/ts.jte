@@ -180,7 +180,7 @@ s1as.asenv.loc=${jaspic.home}/config
 s1as.imqbin.loc=${jaspic.home}/imq/bin
 s1as.lib=${jaspic.home}/lib
 s1as.imq.share.lib=${jaspic.home}/imq/lib
-s1as.jvm.options=-XX\\\:MaxPermSize=128m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}
+s1as.jvm.options=-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
 

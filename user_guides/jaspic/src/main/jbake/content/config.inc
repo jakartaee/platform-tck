@@ -140,8 +140,6 @@ principal-to-role mappings may vary for each application.
   e.  Appends the file `<TS_HOME>/bin/client_policy.append` to the
   application client's Java policy file, which is referenced in the
   `TestExecuteAppClient` section of the `ts.jte` file.
-  f.  Creates a JVM option that increases the MaxPermSize for your
-  implementation.
 +
 4.  Run `ant enable.jaspic`. +
 This task performs the configuration necessary for adding the test
