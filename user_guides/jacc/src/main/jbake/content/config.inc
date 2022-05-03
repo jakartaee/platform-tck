@@ -48,7 +48,7 @@ slashes as a path separator instead.
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `jacc.home` property to the installation directory of Jakarta EE
-  8 CI.
+  {JakartaEEVersion} CI.
   b.  Set the `jacc.host` property to the host name of the system where your
   {TechnologyShortName} runtime implementation is installed.
   c.  Set the `jacc.classes` property to point to the classes or JAR file
@@ -105,7 +105,7 @@ slashes as a path separator instead.
 Edit your `<TS_HOME>/bin/ts.jte` file and set the following
 environment variables:
   a.  Set the `jacc.home` property to the installation directory of Jakarta EE
-  9 CI.
+  {JakartaEEVersion} CI.
   b.  Set the `jacc.host` property to the host name of the system where your
   {TechnologyShortName} runtime implementation is installed.
   c.  Set the `jacc.classes` property to point to the classes or JAR file
