@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-#
+# Copyright (c) 2022 Contributors to the Eclipse Foundation
 # Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 # Copyright (c) 2019, 2022 Payara Foundation and/or its affiliates. All rights reserved.
 #
@@ -36,7 +36,9 @@ fi
 if [ -z "${CTS_HOME}" ]; then
   export CTS_HOME="${WORKSPACE}"
 fi
-export TS_HOME=${CTS_HOME}/jakartaeetck/
+if [ -z "${TS_HOME}" ]; then
+  export TS_HOME="${CTS_HOME}/jakartaeetck/"
+fi
 
 if [ -z "${GF_RI_TOPLEVEL_DIR}" ]; then
     echo "Using glassfish7 for GF_RI_TOPLEVEL_DIR"
@@ -54,13 +56,13 @@ fi
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANT_OPTS="-Xmx2G \
-               -Djavax.xml.accessExternalStylesheet=all \
-               -Djavax.xml.accessExternalSchema=all \
-	 -DenableExternalEntityProcessing=true \
-               -Djavax.xml.accessExternalDTD=file,http"
+         -Djavax.xml.accessExternalStylesheet=all \
+         -Djavax.xml.accessExternalSchema=all \
+         -DenableExternalEntityProcessing=true \
+         -Djavax.xml.accessExternalDTD=file,http"
 export CTS_ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all \
-               -Djavax.xml.accessExternalSchema=all \
-   -Djavax.xml.accessExternalDTD=file,http"
+         -Djavax.xml.accessExternalSchema=all \
+         -Djavax.xml.accessExternalDTD=file,http"
 
 # Run CTS related steps
 echo "JAVA_HOME ${JAVA_HOME}"
@@ -120,38 +122,41 @@ cp ts.save $TS_HOME/bin/ts.jte
 
 printf  "
 ******************************************************
-* Installing CI/RI (Glassfish 6.0)                   *
+* Installing CI/RI (Glassfish 7)                     *
 ******************************************************
 
 "
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6"
-if [ -z "${GF_BUNDLE_URL}" ]; then
-  if [ -z "$DEFAULT_GF_BUNDLE_URL" ]; then
-    echo "[ERROR] GF_BUNDLE_URL not set"
-    exit 1
-  else 
-    echo "Using default url for GF bundle: $DEFAULT_GF_BUNDLE_URL"
-    export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
+if [ -z "${GF_BUNDLE_ZIP}" ]; then
+  echo "Download and install GlassFish 7"
+  if [ -z "${GF_BUNDLE_URL}" ]; then
+    if [ -z "$DEFAULT_GF_BUNDLE_URL" ]; then
+      echo "[ERROR] GF_BUNDLE_URL not set"
+      exit 1
+    else
+      echo "Using default url for GF bundle: $DEFAULT_GF_BUNDLE_URL"
+      export GF_BUNDLE_URL="$DEFAULT_GF_BUNDLE_URL"
+    fi
   fi
+  if [ -z "${OLD_GF_BUNDLE_URL}" ]; then
+    export OLD_GF_BUNDLE_URL="$GF_BUNDLE_URL"
+  fi
+  export GF_BUNDLE_ZIP="${CTS_HOME}/latest-glassfish.zip";
+  wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O "${GF_BUNDLE_ZIP}"
 fi
-if [ -z "${OLD_GF_BUNDLE_URL}" ]; then
-  export OLD_GF_BUNDLE_URL=$GF_BUNDLE_URL
-fi
-wget --progress=bar:force --no-cache $GF_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish.zip
-rm -Rf ${CTS_HOME}/ri
-mkdir -p ${CTS_HOME}/ri
-unzip -q ${CTS_HOME}/latest-glassfish.zip -d ${CTS_HOME}/ri
-chmod -R 777 ${CTS_HOME}/ri
+rm -Rf "${CTS_HOME}/ri"
+mkdir -p "${CTS_HOME}/ri"
+unzip -q "${GF_BUNDLE_ZIP}" -d "${CTS_HOME}/ri"
+chmod -R 777 "${CTS_HOME}/ri"
 
 export ADMIN_PASSWORD_FILE="${CTS_HOME}/admin-password.txt"
-echo "AS_ADMIN_PASSWORD=adminadmin" > ${ADMIN_PASSWORD_FILE}
+echo "AS_ADMIN_PASSWORD=adminadmin" > "${ADMIN_PASSWORD_FILE}"
 
-echo "AS_ADMIN_PASSWORD=" > ${CTS_HOME}/change-admin-password.txt
-echo "AS_ADMIN_NEWPASSWORD=adminadmin" >> ${CTS_HOME}/change-admin-password.txt
+echo "AS_ADMIN_PASSWORD=" > "${CTS_HOME}/change-admin-password.txt"
+echo "AS_ADMIN_NEWPASSWORD=adminadmin" >> "${CTS_HOME}/change-admin-password.txt"
 
-echo "" >> ${CTS_HOME}/change-admin-password.txt
+echo "" >> "${CTS_HOME}/change-admin-password.txt"
 
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
@@ -216,22 +221,22 @@ printf  "
 
 
 ##### installVI.sh starts here #####
-
-if [ -z "${GF_VI_BUNDLE_URL}" ]; then
+if [ -z "${GF_VI_BUNDLE_ZIP}" ]; then
+  if [ -z "${GF_VI_BUNDLE_URL}" ]; then
     echo "Using GF_BUNDLE_URL for GF VI bundle: $GF_BUNDLE_URL"
     export GF_VI_BUNDLE_URL=$GF_BUNDLE_URL
-fi
+  fi
 
-if [ -z "${GF_VI_BUNDLE_URL}" ]; then
+  if [ -z "${GF_VI_BUNDLE_URL}" ]; then
     echo "Using GF_BUNDLE_URL for GF VI bundle: $GF_BUNDLE_URL"
     export GF_VI_BUNDLE_URL=$GF_BUNDLE_URL
+  fi
+  export GF_VI_BUNDLE_ZIP="${CTS_HOME}/latest-glassfish-vi.zip"
+  wget --progress=bar:force --no-cache $GF_VI_BUNDLE_URL -O ${GF_VI_BUNDLE_ZIP}
 fi
-
-wget --progress=bar:force --no-cache $GF_VI_BUNDLE_URL -O ${CTS_HOME}/latest-glassfish-vi.zip
-
 rm -Rf ${CTS_HOME}/vi
 mkdir -p ${CTS_HOME}/vi
-unzip -q ${CTS_HOME}/latest-glassfish-vi.zip -d ${CTS_HOME}/vi
+unzip -q ${GF_VI_BUNDLE_ZIP} -d ${CTS_HOME}/vi
 chmod -R 777 ${CTS_HOME}/vi
 
 if [ ! -d "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR" ]; then
@@ -467,12 +472,12 @@ else
   sed -i.bak "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml
   mv ${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml  ${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml
 fi
-tar zcvf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/ ${CTS_HOME}/ri/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/
+tar zcf ${WORKSPACE}/${RESULT_FILE_NAME} ${CTS_HOME}/*.log ${JT_REPORT_DIR} ${JT_WORK_DIR} ${WORKSPACE}/results/junitreports/ ${CTS_HOME}/jakartaeetck/bin/ts.* ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/ ${CTS_HOME}/ri/$GF_VI_TOPLEVEL_DIR/glassfish/domains/domain1/
 
 if [ -z ${vehicle} ];then
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}-junitreports.tar.gz
 else
   JUNIT_REPORT_FILE_NAME=${TEST_SUITE}_${vehicle_name}-junitreports.tar.gz
 fi
-tar zcvf ${WORKSPACE}/${JUNIT_REPORT_FILE_NAME} ${WORKSPACE}/results/junitreports/
+tar zcf ${WORKSPACE}/${JUNIT_REPORT_FILE_NAME} ${WORKSPACE}/results/junitreports/
 
