@@ -1,29 +1,29 @@
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
 next=rules-wp.html
 prev=intro.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
+Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
 ====================================================================
 
-[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-9.1-certification]]
+[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-10.0-certification]]
 
-2 Procedure for Jakarta Platform, Enterprise Edition 9.1 Certification
+2 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
 ----------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
-9.
+10.
 
 This chapter contains the following sections:
 
 * link:#CJACEHEF[Certification Overview]
 * link:#CJAJFCJI[Compatibility Requirements]
-* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 9 Test
+* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 10 Test
 Appeals Process]
 * link:#CJAHFAJE[Specifications for Jakarta Platform, Enterprise Edition
-Version 9]
+Version 10]
 * link:#CJAHIGAB[Libraries for Jakarta Platform, Enterprise Edition Version
 8]
 
@@ -32,7 +32,7 @@ Version 9]
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 9.1 consists of the
+The certification process for Jakarta EE 10.0 consists of the
 following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
@@ -50,7 +50,7 @@ as required by the Eclipse Foundation TCK License.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 9.1 consist of meeting the
+The compatibility requirements for Jakarta EE 10.0 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
@@ -152,7 +152,7 @@ rules described in the Specifications.
 The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
-The Libraries for Jakarta Platform, Enterprise Edition Version 9 are listed
+The Libraries for Jakarta Platform, Enterprise Edition Version 10 are listed
 at the end of this chapter.
 
 |Location Resource a|
@@ -171,7 +171,7 @@ Technology. The Specification Project Team will propose revisions and
 updates to the Jakarta EE Specification Committee which will approve and 
 release new versions of the specification and TCK. Eclipse Jakarta EE 
 Specification Committee is the Maintenance Lead for Jakarta Platform, 
-Enterprise Edition Version 9. 
+Enterprise Edition Version 10. 
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -232,7 +232,7 @@ this chapter.
 through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
-for Jakarta Platform, Enterprise Edition Version 9.
+for Jakarta Platform, Enterprise Edition Version 10.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
@@ -250,59 +250,28 @@ Specification.
 |=======================================================================
 
 
-[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-9.1-products]]
+[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-10.0-products]]
 
-2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 9 Products
+2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following rules apply for each version of an operating system,
-software component, and hardware platform Documented as supporting the
-Product:
+The following rules apply for each implementation:
 
 EE1 The Product must be able to satisfy all applicable compatibility
-requirements, including passing all Conformance Tests, in every Product
-Configuration and in every combination of Product Configurations, except
-only as specifically exempted by these Rules.
+requirements, including passing all required TCK tests.
 
 For example, if a Product provides distinct Operating Modes to optimize
 performance, then that Product must satisfy all applicable compatibility
 requirements for a Product in each Product Configuration, and
 combination of Product Configurations, of those Operating Modes.
 
-EE1.1 If an Operating Mode controls a Resource necessary for the
-basic execution of the Test Suite, testing may always use a Product
-Configuration of that Operating Mode providing that Resource, even if
-other Product Configurations do not provide that Resource.
-Notwithstanding such exceptions, each Product must have at least one set
-of Product Configurations of such Operating Modes that is able to pass
-all the Conformance Tests.
+EE1.1 Each implementation must have at least one configuration that can be used to pass
+all required TCK Tests, although such configuration may need adjustment (e.g. whether statically
+or via administrative tooling).
 
-For example, a Product with an Operating Mode that controls a security
-policy (i.e., Security Resource) which has one or more Product
-Configurations that cause Conformance Tests to fail may be tested using
-a Product Configuration that allows all Conformance Tests to pass.
+EE1.2 An implementation may have mode(s) that provide compatibility with previous Jakarta EE versions.
 
-EE1.2 A Product Configuration of an Operating Mode that causes the
-Product to report only version, usage, or diagnostic information is
-exempted from these compatibility rules.
-
-EE1.3 A Product may contain an Operating Mode that provides
-compatibility with previous versions of the Product that would not
-otherwise meet these compatibility requirements. At least the default
-Product Configuration of this Operating Mode must meet these
-compatibility requirements without invoking this rule; testing may
-always use such a Product Configuration. This Operating Mode must affect
-no smaller unit of execution than an entire Application. Any Product
-Configuration that invokes this rule must be clearly Documented as not
-meeting the requirements of the Specifications.
-
-EE1.4 A Product may contain an Operating Mode that selects the
-Edition with which it is compatible. The Product must meet the
-compatibility requirements for the corresponding Edition for all Product
-Configurations of this Operating Mode. This Operating Mode must affect
-no smaller unit of execution than an entire Application.
-
-EE1.5 An API Definition Product is exempt from all functional testing
+EE1.3 An API Definition Product is exempt from all functional testing
 requirements defined here, except the signature tests.
 
 EE2 Some Conformance Tests may have properties that may be changed.
@@ -330,11 +299,6 @@ modifications to a Documented supporting hardware/software platform,
 that are not part of the Product but required for the Product to satisfy
 the compatibility requirements, must be Documented and available to
 users of the Product.
-
-For example, if a patch to a particular version of a supporting
-operating system is required for the Product to pass the Conformance
-Tests, that patch must be Documented and available to users of the
-Product.
 
 EE7 The Product must contain the full set of public and protected
 classes and interfaces for all the Libraries. Those classes and
@@ -379,14 +343,8 @@ interface must be that defined by the Specifications.
 EE9.1 A Product may contain Operating Modes that meet all of these
 requirements, except Rule EE9, provided that:
 
-.  At least the default Product Configuration of each Operating Mode
-must meet these requirements, without invoking this rule; testing may
-always use such a Product Configuration.
 .  The Operating Modes must not violate the Java Platform, Standard
 Edition Rules.
-.  The Product Configurations of Operating Modes of an application and
-its components are configured at deployment time, or by administrative
-action, and can not be changed during the runtime of that application.
 .  Some Product Configurations of such Operating Modes may provide only
 a subset of the functional programmatic behavior required by the
 Specifications. The behavior of applications that use more than the
@@ -452,18 +410,18 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE21 Compliance testing for Jakarta EE 9.1 consists of running Jakarta EE 9.1
+EE21 Compliance testing for Jakarta EE 10.0 consists of running Jakarta EE 10.0
 TCK and the following Technology Compatibility Kits (TCKs):
 
-* Jakarta Contexts and Dependency Injection 3.0
+* Jakarta Contexts and Dependency Injection 4.0
 * Jakarta Dependency Injection 2.0 
 * Jakarta Bean Validation 3.0
-* Jakarta XML Binding 3.0 (If XML Binding is supported)
+* Jakarta XML Binding 4.0 (If XML Binding is supported)
 * Jakarta JSON Processing 2.1
 * Jakarta JSON Binding 3.0
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 9.1 implementations must also adhere to all of the
+Guide, Jakarta EE 10.0 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
@@ -562,21 +520,21 @@ If there is a concern that a TCK process issue has not been resolved satisfactor
 https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
 
-[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-9.1]]
+[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-10.0]]
 
-2.4 Specifications for Jakarta Platform, Enterprise Edition Version 9.1
+2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 9.1 are found on
-the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/9.1/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 10.0 are found on
+the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/10/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-9.1]]
+[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-10.0]]
 
-2.5 Libraries for Jakarta Platform, Enterprise Edition Version 9.1
+2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
-required for Jakarta EE 9.1:
+required for Jakarta EE 10.0:
 
 * jakarta.annotation
 * jakarta.annotation.security
