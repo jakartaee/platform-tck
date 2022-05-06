@@ -1,6 +1,7 @@
 <%--
 
-    Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2006, 2022 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,7 +38,7 @@
     // supported.
     //
     // Check that isSecure() returns true, indicating that this is indeed
-    // an SSL session.  Also, check that the request URL begins with https.
+    // an SSL session.  Also, check that the scheme is https.
     // We cannot do much more than this from here 
     // to guarantee that it is truly SSL, but this is a good failsafe.  
     String testName = "test_login_basic_over_ssl";
@@ -50,11 +51,9 @@
 	    fail = true;
 	}
 
-	String requestURL = HttpUtils.getRequestURL( request ).toString();
-	boolean isHttps = requestURL.toLowerCase().startsWith( "https" );
-	if( !isHttps ) {
+	if( !"https".equals(request.getScheme()) ) {
             out.println( testName + ": " + FAILSTRING +
-                " - must start with https." );
+                " - must use https." );
 
 	    fail = true;
 	}
