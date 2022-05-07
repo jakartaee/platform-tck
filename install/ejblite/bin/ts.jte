@@ -17,7 +17,7 @@
 
 #########################################################################
 ##
-##   JavaTest Environment file for Java EE Compatibility Test Suite
+##   JavaTest Environment file for EJB Lite TCK
 ##
 ##   Environment specific properties in this file will likely
 ##   have to be modified prior to running the Java EE CTS. 

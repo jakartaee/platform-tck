@@ -16,8 +16,8 @@
 
 -->
 
-<project name="Java EE setup" basedir="." default="setup">
- <property name="deliverable.dir" value="j2ee"/>
+<project name="EJB Lite setup" basedir="." default="setup">
+ <property name="deliverable.dir" value="ejblite"/>
 
  <target name="setup"> 
   <copy tofile="../../src/com/sun/ts/tests/smoke.xml" overwrite="true">

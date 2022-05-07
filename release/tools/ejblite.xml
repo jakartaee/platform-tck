@@ -16,7 +16,7 @@
 
 -->
 
-<project name="Java EE" basedir="." default="build">
+<project name="EJB Lite" basedir="." default="build">
 
     <!-- IMPORTS -->
     <import file="../../bin/xml/ts.common.props.xml"/>
@@ -29,8 +29,8 @@
     <property name="cts.internal.compat"           value="NULL"/>
     <property name="sjsas.internal.compat"         value="NULL"/>
     <property name="cts.internal.comment"          value=""/>
-    <property name="deliverable.version"           value="10.0"/>
-    <property name="deliverable.tck.version"           value="10.0.0"/>
+    <property name="deliverable.version"           value="4.0"/>
+    <property name="deliverable.tck.version"           value="4.0.1"/>
 
 	<property name="the.excludes" value="**/internal/**/*,
 	     **/jaxm/**/*, **/jaxm1.0.1/**/*,
@@ -141,8 +141,8 @@
     <target name="build" depends="init">
 		<antcall target="copyinstall"/>
 		<antcall target="make.cts.internal.archive"/>
-        <antcall target="build.j2eetck"/>
-        <antcall target="mvn"/>
+        <antcall target="build.ejblitetck"/>
+        <!--antcall target="mvn"/-->
     </target>
      
     <target name="mvn">
@@ -163,7 +163,7 @@
                 </move>
    </target>
  
-    <target name="build.j2eetck" unless="only.build.internal">
+    <target name="build.ejblitetck" unless="only.build.internal">
 		<!-- the classes directory -->
 		<copy todir="${deliverable.bundle.dir}/classes" includeEmptyDirs="no">
 			<fileset dir="${ts.home}/classes"
@@ -222,7 +222,7 @@
 		</copy>
 
         <!-- the specific sig test source directories -->
-        <copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
+        <!--copy todir="${deliverable.bundle.dir}/src" includeEmptyDirs="no">
 			<fileset dir="${ts.home}/src"
 				includes="com/sun/ts/tests/signaturetest/javaee/**,
 				          com/sun/ts/tests/signaturetest/*,
@@ -235,17 +235,17 @@
                             com/sun/ts/tests/signaturetest/*Record*,
                             com/sun/ts/tests/signaturetest/*record*,
 						    ${the.excludes}"/>
-		</copy>
+		</copy-->
 
         <!-- the sig test ear files in the dist directory -->
-        <copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
+        <!--copy todir="${deliverable.bundle.dir}/dist" includeEmptyDirs="no">
                         <fileset dir="${ts.home}/dist"
                                 includes="com/sun/ts/tests/signaturetest/javaee/**"
                                 excludes="${the.excludes}"/>
-        </copy>
+        </copy-->
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
-            <fileset dir="${ts.home}/docker" includes="*jakartaeetck*.sh, process_db_config.sh"/>
+            <fileset dir="${ts.home}/docker" includes="*ejblitetck*.sh"/>
         </copy>
 
         <copy todir="${deliverable.bundle.dir}/docker" includeEmptyDirs="no">
