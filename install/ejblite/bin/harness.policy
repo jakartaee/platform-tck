@@ -1,0 +1,4 @@
+grant { 
+        // "standard" properies that can be read by anyone
+        permission java.security.AllPermission ;
+};

@@ -1,0 +1,37 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+# This file contains properties that will get appended to the JRE's master
+# security properties file (ie java.security) which is located within the
+# JAVA_HOME/jre/lib/security directory.  The use of this file assumes that
+# java.security has "security.overridePropertiesFile=true".
+#
+# The contents of this file will be appended to the system wide security
+# properties (ie java.security) by the appserver when we reference this
+# file with the following JVM option during appserver startup:
+#   java -Djava.security.properties=/<SOME_DIR>/cts.java.security
+#
+# The alternative to using this file is to directly put the properties
+# from this file directly into JAVA_HOME/jre/lib/security/java.security
+#
+
+
+# authconfigprovider.factory:
+# This property is used by the JSR-196 (JASPIC) Technology tests, so that
+# the JASPIC tests can specify that the appserver use a non-default
+# authconfigprovider.
+#
+authconfigprovider.factory=com.sun.ts.tests.jaspic.tssv.config.TSAuthConfigFactory
