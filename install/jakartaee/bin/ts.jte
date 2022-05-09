@@ -206,8 +206,6 @@ orb.port=3699
 #  options to pass when running ExecTSTestCmd command.
 #  This is a convenience intended for adding Java SE 17+ options.
 ########################################################################
-<property environment="env"/>
-<property name="JVMOPTS_RUNTESTCOMMAND" value="${env.JVMOPTS_RUNTESTCOMMAND}"/>
 
 ########################################################################
 ## Settings for Sun RI Java EE Implementation
