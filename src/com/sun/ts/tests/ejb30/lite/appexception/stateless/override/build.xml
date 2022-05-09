@@ -40,7 +40,8 @@ com/sun/ts/tests/ejb30/common/appexception/RollbackIF.class,
 com/sun/ts/tests/ejb30/common/appexception/UncheckedAppException.class,
 com/sun/ts/tests/ejb30/common/appexception/UncheckedRollbackAppException.class,
 com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
-com/sun/ts/tests/ejb30/lite/appexception/common/ClientBase.class
+com/sun/ts/tests/ejb30/lite/appexception/common/ClientBase.class,
+com/sun/ts/tests/ejb30/lite/appexception/common/JsfClientBase.class
 	">
         </ts.vehicles>
     </target>
