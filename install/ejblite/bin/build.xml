@@ -746,6 +746,10 @@
 				<pathelement path="${ts.lib.classpath}" />
 			</classpath>
 		</ts.javac>
+		<echo message="trial ts.lib.classpath :${ts.lib.classpath}"/>
+		<echo message="trial lib.pkg.dir :${lib.pkg.dir}"/>
+		<echo message="trial class.dir for rmic :${class.dir}"/>
+
 		<rmic classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer" base="${class.dir}"/>
 	</target>
 

@@ -532,6 +532,11 @@
         <property name="deliverable.name" value="JAKARTAEE"/>
         <antcall target="${the.target}"/>
     </target>
+    <target name="ejblite" depends="has.override, no.override" >
+        <property name="deliverable.name" value="EJBLITE"/>
+        <antcall target="${the.target}"/>
+    </target>
+
     
     <target name="cts-internal" depends="has.override, no.override" >
         <echo message="Only creating cts-internal.zip bundle"/>

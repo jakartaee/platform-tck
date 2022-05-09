@@ -42,7 +42,7 @@ export ANT_OPTS="-Xmx2G -Djavax.xml.accessExternalStylesheet=all \
 		             -DenableExternalEntityProcessing=true \
                  -Djavax.xml.accessExternalDTD=file,http"
 
-echo ########## Remove hard-coded paths from install/ejblite/bin/ts.jte ##########"
+echo "########## Remove hard-coded paths from install/ejblite/bin/ts.jte ##########"
 sed -e "s#^javaee.home=.*#javaee.home=$JAKARTA_JARS#g" \
     -e "s#^javaee.home.ri=.*#javaee.home.ri=$JAKARTA_JARS#g" \
     -e "s#^report.dir=.*#report.dir=$BASEDIR/JTReport#g" \
@@ -58,11 +58,11 @@ cat $BASEDIR/install/ejblite/bin/ts.jte
 echo "########## Trunk.Install.V5 Config ##########"
 cd $BASEDIR
 
+
 mkdir -p $JAKARTA_JARS/modules
 
 
 mvn -f $BASEDIR/docker/pom.xml -Pstaging dependency:copy-dependencies -DoutputDirectory="${JAKARTA_JARS}/modules" -Dmdep.stripVersion=true
-
 
 ls $JAKARTA_JARS/modules/
 
@@ -91,17 +91,16 @@ echo "########## Trunk.CTS ##########"
 mkdir -p $BASEDIR/internal/docs/ejblite/
 cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/ejblite/
 if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=ejblite -Ddeliverable.version=4.0.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEFTLicensefile="true" ejblite
+  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=ejblite -Ddeliverable.version=4.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools -DuseEFTLicensefile="true" ejblite
 else
-  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=ejblite -Ddeliverable.version=4.0.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools ejblite
+  ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=ejblite -Ddeliverable.version=4.0 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools ejblite
 fi
 
-#ant -f $BASEDIR/release/tools/build.xml -Ddeliverabledir=ejblite -Ddeliverable.version=4.0.1 -Dskip.createbom="true" -Dskip.build="true" -Dbasedir=$BASEDIR/release/tools smoke
 
 mkdir -p ${WORKSPACE}/standalone-bundles
 cd ${WORKSPACE}/standalone-bundles
 
-cp ${WORKSPACE}/release/EJBLITE_BUILD/latest/ejblitetck*.zip ${WORKSPACE}/standalone-bundles/
+cp ${WORKSPACE}/release/EJBLITE_BUILD/latest/*ejblite-tck*.zip ${WORKSPACE}/standalone-bundles/
 
 for entry in `ls *.zip`; do
   date=`echo "$entry" | cut -d_ -f2`
@@ -117,8 +116,8 @@ done
 GIT_HASH=`git rev-parse HEAD`
 GIT_BRANCH=`git branch | awk '{print $2}'`
 BUILD_DATE=`date`
-rm -f ${WORKSPACE}/ejblitetck.version
-touch ${WORKSPACE}/ejblitetck.version
-echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/ejblitetck.version
-echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/ejblitetck.version
-echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/ejblitetck.version
+rm -f ${WORKSPACE}/ejblite-tck.version
+touch ${WORKSPACE}/ejblite-tck.version
+echo "Git Revision: ${GIT_HASH}" >> ${WORKSPACE}/ejblite-tck.version
+echo "Git Branch: ${GIT_BRANCH}" >> ${WORKSPACE}/ejblite-tck.version
+echo "Build Date: ${BUILD_DATE}" >> ${WORKSPACE}/ejblite-tck.version

@@ -206,7 +206,6 @@
                             jpa_alternate_provider.jar,
                             tsprovider.jar,
                             riinterceptors.jar,
-                            sigtest.jar,
                             tssv.jar"/>
         </copy>
 
