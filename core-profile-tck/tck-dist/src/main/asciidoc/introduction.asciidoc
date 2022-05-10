@@ -1,0 +1,240 @@
+[[introduction]]
+
+== Introduction (Core Profile TCK)
+
+This chapter explains the purpose of a TCK and identifies the foundation elements of the Jakarta Core Profile TCK.
+
+
+
+=== TCK Primer
+
+A TCK, or Technology Compatibility Kit, is one of the three required pieces for any specification (the other two being the specification document and a compatible implementation). The TCK is a set of tools and tests to verify that an implementation of the technology conforms to the specification. The tests are the primary component, but the tools serve an equally critical role of providing a framework and/or set of SPIs for executing the tests.
+
+The tests in the TCK are derived from assertions in the written specification document. The assertions are itemized in an XML document, where they each get assigned a unique identifier, and materialize as a suite of automated tests that collectively validate whether an implementation complies with the aforementioned assertions, and in turn the specification. For a particular implementation to be certified, all of the required tests must pass (i.e., the provided test suite must be run unmodified).
+
+A TCK is entirely implementation agnostic. Ideally, it should validate assertions by consulting the specification's public API.  However, when the information returned by the public API is not low-level enough to validate the assertion, the implementation must be consulted directly. In this case, the TCK provides an independent API as part of a porting package that enables this transparency. The porting package must be implemented for each Core Profile implementation.
+
+
+=== Compatibility Testing
+
+The goal of any specification is to eliminate portability problems so long as the program which uses the implementation also conforms to the rules laid out in the specification.
+
+Executing the TCK is a form of compatibility testing. It's important to understand that compatibility testing is distinctly different from product testing. The TCK is not concerned with robustness, performance or ease of use, and therefore cannot vouch for how well an implementation meets these criteria. What a TCK can do is to ensure the exactness of an implementation as it relates to the specification.
+
+Compatibility testing of any feature relies on both a complete specification and a complete compatible implementation. The compatible implementation demonstrates how each test can be passed and provides additional context to the implementor during development for the corresponding assertion.
+
+
+
+==== Why Compatibility Is Important
+
+Java platform compatibility is important to different groups involved with Java technologies for different reasons:
+
+
+*  Compatibility testing is the means by which the Jakarta ensures that the Java platform does not become fragmented as it's ported to different operating systems and hardware.
+
+
+*  Compatibility testing benefits developers working in the Java programming language, enabling them to write applications once and deploy them across heterogeneous computing environments without porting.
+
+
+*  Compatibility testing enables application users to obtain applications from disparate sources and deploy them with confidence.
+
+
+* Conformance testing benefits Java platform implementors by ensuring the same extent of reliability for all Java platform ports.
+
+The CDI specification goes to great lengths to ensure that programs written for Jakarta EE are compatible and the TCK is rigorous about enforcing the rules the specification lays down.
+
+
+=== Compatibility Requirements
+
+The compatibility requirements for Jakarta Contexts and Dependency Injection Version 3.0 consist of meeting the
+requirements set forth by the rules and associated definitions contained in this section.
+
+==== Definitions
+
+These definitions are for use only with these compatibility requirements and are not
+intended for any other purpose.
+
+.Definitions
+[options="header"]
+|===============
+|Term|Definition
+|API Definition Product   +|
+                     A Product for which the only Java class files contained in the product
+                     are those corresponding to the application programming interfaces
+                     defined by the Specifications, and which is intended only as a means
+                     for formally specifying the application programming interfaces
+                     defined by the Specifications.
+|Computational Resource   +|
+                     A piece of hardware or software that may vary in quantity, existence,
+                     or version, which may be required to exist in a minimum quantity
+                     and/or at a specific or minimum revision level so as to satisfy the
+                     requirements of the Test Suite.
+                     Examples of computational resources that may vary in quantity are
+                     RAM and file descriptors.
+                     Examples of computational resources that may vary in existence (that
+                     is, may or may not exist) are graphics cards and device drivers.
+                     Examples of computational resources that may vary in version are
+                     operating systems and device drivers.
+|Conformance Tests   +|
+                     All tests in the Test Suite for an indicated Technology Under Test, as
+                     distributed by the Maintenance Lead, excluding those tests on the
+                     Exclude List for the Technology Under Test.
+|Documented   +|
+                     Made technically accessible and made known to users, typically by
+                     means such as marketing materials, product documentation, usage
+                     messages, or developer support programs.
+|Edition   +|
+                     A Version of the Java Platform. Editions include Java Platform
+                     Standard Edition and Jakarta Platform Enterprise Edition.
+|Exclude List   +|
+                     The most current list of tests, distributed by the Maintenance Lead or TCK Lead,
+                     that are not required to be passed to certify conformance. The
+                     Maintenance Lead or TCK Lead may add to the Exclude List for that Test Suite as
+                     needed at any time, in which case the updated Exclude List supplants
+                     any previous Exclude Lists for that Test Suite.
+|Libraries   +|
+                     The class libraries for the Technology Under Test.
+                     The Libraries for Jakarta Contexts and Dependency Injection Version {revnumver} are listed in <<libraries>>.
+|Location Resource   +|
+                     A location of classes or native libraries that are components of the test
+                     tools or tests, such that these classes or libraries may be required to
+                     exist in a certain location in order to satisfy the requirements of the
+                     test suite.
+                     For example, classes may be required to exist in directories named in a
+                     CLASSPATH variable, or native libraries may be required to exist in
+                     directories named in a PATH variable.
+|Product   +|
+                     A licensee product in which the Technology Under Test is
+                     implemented or incorporated, and that is subject to compatibility
+                     testing.
+|Product Configuration   +|
+                     A specific setting or instantiation of an Operating Mode.
+                     For example, a Product supporting an Operating Mode that permits
+                     user selection of an external encryption package may have a Product
+                     Configuration that links the Product to that encryption package.
+|Compatible Implementation (CI)   +|
+                     The prototype or "proof of concept" implementation of a Specification.
+|Resource   +|
+                     A Computational Resource, a Location Resource, or a Security
+                     Resource.
+|Rules   +|
+                     These definitions and rules in this Compatibility Requirements section
+                     of this User’s Guide.
+|Security Resource   +|
+                     A security privilege or policy necessary for the proper execution of the
+                     Test Suite.
+                     For example, the user executing the Test Suite will need the privilege
+                     to access the files and network resources necessary for use of the
+                     Product.
+|Specifications   +|
+                     The documents produced through the Jakarta EE Specification Process that
+                     define a particular Version of a Technology.
+                     The Specifications for the Technology Under Test are referenced later
+                     in this chapter.
+|TCK Lead   +|
+                     Person responsible for maintaining TCK for the Technology. TCK Lead is representative of Red Hat Inc.
+|Technology   +|
+                     Specifications and a compatible implementation produced through the
+                     Jakarta EE Specification Process.
+|Technology Under Test  +|
+                     Specifications and the compatible implementation for Jakarta Contexts and Dependency Injection Version 3.0.
+|Test Suite   +|
+                     The requirements, tests, and testing tools distributed by the
+                     Maintenance Lead or TCK Lead as applicable to a given Version of the Technology.
+|Version  +|
+                     A release of the Technology, as produced through the Jakarta EE Specification Process.
+|===============
+
+==== Rules for Jakarta Core Profile Version {revnumber} Products
+
+The following rules apply for each version of an operating system, software
+component, and hardware platform Documented as supporting the Product:
+
+*CORE_PROFILE-1* The Product must be able to satisfy all applicable compatibility requirements, including passing all Conformance Tests Rules.
+
+
+*CORE_PROFILE-2* Some Conformance Tests may have properties that may be changed. Properties
+that can be changed are identified in the configuration interview. Properties that can be
+changed are specified in <<tck-properties>>. Apart from changing such properties and other allowed
+modifications described in this User’s Guide (if any), no source or binary code for a Conformance Test may be altered in any way.
+
+*CORE_PROFILE-3* The testing tools supplied as part of the Test Suite or as updated by the must be used to certify compliance.
+
+*CORE_PROFILE-4* The Exclude List associated with the Test Suite cannot be modified.
+
+*CORE_PROFILE-6* All hardware and software component additions, deletions, and modifications to
+a Documented supporting hardware/software platform, that are not part of the
+Product but required for the Product to satisfy the compatibility requirements, must be
+Documented and available to users of the Product.
+For example, if a patch to a particular version of a supporting operating system is
+required for the Product to pass the Conformance Tests, that patch must be
+Documented and available to users of the Product.
+
+*CORE_PROFILE-7* The Product must contain the full set of public and protected classes and
+interfaces for all the Libraries. Those classes and interfaces must contain exactly the set
+of public and protected methods, constructors, and fields defined by the Specifications
+for those Libraries. No subsetting, supersetting, or modifications of the public and
+protected API of the Libraries are allowed except only as specifically exempted by
+these Rules.
+
+*CORE_PROFILE-8* Except for tests specifically required by this TCK to be recompiled (if any), the
+binary Conformance Tests supplied as part of the Test Suite must be used to certify compliance.
+
+*CORE_PROFILE-9* The functional programmatic behavior of any binary class or interface must be that defined by the Specifications.
+
+*CORE_PROFILE-10* In addition to the instructions and requirements the Core Profile TCK, each Product must pass the following standalone TCKs for the following technologies:
+
+* Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
+* Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
+* Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
+* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
+* Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/3.1/[Rest 3.1]
+
+=== About the Jakarta Core Profile TCK
+
+The Jakarta Core Profile TCK is designed as a portable, configurable and automated test suite for verifying the compatibility of an implementation of the Jakarta CDI specification. The test suite is built atop Junit5 framework and Arquillian platform.
+
+Each test class in the suite acts as a deployable unit. The deployable units, or artifacts, can be either a WAR or an EAR.
+
+[NOTE]
+====
+The test archives are built with ShrinkWrap, a Java API for creating archives. ShrinkWrap is a part of the Arqullian platform ecosystem.
+====
+
+==== Jakarta Core Profile TCK Specifications and Requirements
+
+This section lists the applicable requirements and specifications for the Jakarta Core Profile TCK.
+
+*  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 11 compatible runtime.
+
+*  *Jakarta Contexts and Dependency Injection {revnumber} API* - The Java API defined in the CDI specification and provided by the compatible implementation.
+
+*  *Testing platform* - The Jakarta Core Profile TCK requires version 1.7.0.Alpha10 of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap WebArchives of the test contents. The TCK test suite is based on Junit 5.8.2 (http://junit.org).
+
+*  *Porting Package* - An implementation of SPIs that are required for the test suite to run the in-container tests and at times extend the Jakarta Core Profile 4.0 API to provide extra information to the TCK.
+
+*  *Compatible implementation* - A compatible implementation runtime for compatibility testing of the Jakarta Platform Enterprise Edition Core Profile 10.
+
+*  *Jarkarta Container and Dependency Injection (CDI)* - CDI builds on DI, and as such CDI implementations must additionally pass the CDI TCK.
+
+*  *Jarkarta Dependency Injection (DI)* - CDI builds on DI, and as such CDI implementations must additionally pass the Jakarta Dependency Injection TCK.
+
+[[tck-components]]
+
+==== Core Profile TCK Components
+
+The Core Profile TCK includes the following components:
+
+*  *Arquillian 1.7.0.Alpha10*
+
+*  *Junit 5.8.2*
+
+*  *Porting Package SPIs* - Extensions to the CDI SPIs to allow testing of a container.
+
+*  *The test suite*, which is a collection of Junit 5 tests, the TestNG test suite descriptor and supplemental resources that configure CDI and other software components.
+
+*  *TCK documentation* accompanied by release notes identifying updates between versions.
+
+The Core Profile TCK has been tested on following platforms:
+
+*  WildFly 27 Preview using Eclipse Temurin Java SE 11 on Linux based operation systems.

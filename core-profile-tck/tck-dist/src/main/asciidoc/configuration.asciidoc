@@ -1,0 +1,16 @@
+[[configuration]]
+
+== Core Profile TCK Configuration
+
+This chapter lays out how to configure the TCK Harness by specifying the SPI implementation classes, defining the target container connection information, and various other switches. You then learn how to setup a TCK runner project that executes the TCK test suite, putting these settings into practice.
+
+[[tck-properties]]
+
+
+=== TCK Properties
+
+The various TCKs will have properties or configuration variables that need to be set in order to enable running the TCK agains a compatible implementation. The examples directory in the TCK distribution illustrates sample properties setup using Maven.
+
+=== Standalone TCK Configuration
+
+Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The examples directory in the TCK distribution illustrates sample configuration setup using Maven.

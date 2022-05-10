@@ -1,0 +1,44 @@
+= Jakarta Core Profile TCK
+
+This is the TCK distribution for the Jakarta Core Profile.
+
+This distribution, as a whole, is licensed under the terms of the Apache Public License, while the final distribution used for compatibility testing is under the EFTL. The bundled LICENSE file will dictate which license applies to the TCK distribution.
+
+This distribution consists of:
+
+artifacts/
+
+ – TCK binaries and sources, packaged as jars
+ – TestNG suite.xml file for running the CDI Lite TCK
+ - maven pom.xml to install artifacts into a local repo
+
+doc/
+
+ – A detailed reference guide for the current version of TCK in both pdf and html formats
+
+
+examples/
+
+- example maven based TCK runner projects for compatible implementations
+
+== Software Requirements
+
+* A Java SE 11 runtime
+* Maven 3.6.x +
+
+== Installation
+
+To install the zip file distribution of TCK into local repository:
+
+* unzip/untar the distribution file to create a core-profile-tck-x.y.z directory.
+* Use the artifacts/pom.xml maven script to install the TCK artifacts into a local maven repo by running `mvn install` from that directory.
+* Read the doc/cdi-tck-reference-guide.pdf for setup against your compatible implementation
+
+== Running against a compatible implementation
+
+Following the instructions in the examples/wf-core-tck-runner project to execute the required standalone and Core Profile TCK against WildFly.
+
+== Where to file challenges
+
+Challenges and bug reports should be filed against the TCK project issue tracker at
+https://github.com/eclipse-ee4j/cdi-tck/issues[https://github.com/eclipse-ee4j/cdi-tck/issues]
