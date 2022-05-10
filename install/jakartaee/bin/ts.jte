@@ -202,6 +202,12 @@ orb.host=localhost
 orb.port=3699
 
 ########################################################################
+## Environment variable JVMOPTS_RUNTESTCOMMAND may be set to JVM 
+#  options to pass when running ExecTSTestCmd command.
+#  This is a convenience intended for adding Java SE 17+ options.
+########################################################################
+
+########################################################################
 ## Settings for Sun RI Java EE Implementation
 # @javaee.home.ri The location of the RI.
 # @orb.host       Hostname of the machine running the RI.
@@ -1092,6 +1098,7 @@ s1as.classpathsuffix=${javaee.home}/lib/tsprovider.jar
 #                        test directories which make use of this command
 #                        are servlet and jsp.
 ########################################################################
+
 command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.harness.classpath}${pathsep}${ts.home}/classes${pathsep}\
         ${JAVA_HOME}/../lib/tools.jar${pathsep}\
@@ -1125,6 +1132,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Xss2048k \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
@@ -1163,6 +1171,7 @@ command.testExecuteAppClient= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
         TZ=${tz} \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader  \
         -Djava.security.policy=${javaee.home}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1233,6 +1242,7 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.util.logging.config.file=${javaee.home}/domains/domain1/config/logging.properties \
         -Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds} \
@@ -1252,6 +1262,7 @@ command.testExecuteAppClient2= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
         ${RI_JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1315,6 +1326,7 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${RI_JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
