@@ -23,7 +23,7 @@ examples/
 
 == Software Requirements
 
-* A Java SE 11 runtime
+* A Java SE 11+ runtime
 * Maven 3.6.x +
 
 == Installation
