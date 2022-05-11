@@ -19,21 +19,35 @@ package com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp;
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.resource.ConnectionFactoryDefinition;
+import jakarta.resource.AdministeredObjectDefinition;
 
+@ConnectionFactoryDefinition(
+	name = "java:app/jms/TestConnectionFactory",
+	description = "application scoped jms connector resource definition",
+	interfaceName = "jakarta.jms.ConnectionFactory",
+	resourceAdapter="jmsra"
+)
+@AdministeredObjectDefinition(
+                name = "java:app/jms/TestQ",
+                description = "application scoped AdminObjectDefinition",
+                interfaceName = "jakarta.jms.Queue",
+                className = "com.sun.messaging.Queue",
+                resourceAdapter="jmsra")
 @ManagedBean("mybean")
 public class TestBean {
 
   public TestBean() {
-    System.out.println(">>>>>>>>>>>>> Test123 ");
+    System.out.println("TestBean : Constructor");
   }
 
   @PostConstruct
   public void postConstruct() {
-    System.out.println(">>> TestBean:postConstruct()");
+    System.out.println("TestBean : postConstruct");
   }
 
   @PreDestroy
   public void preDestroy() {
-    System.out.println(">>> TestBean:preDestroy()");
+    System.out.println("TestBean : preDestroy");
   }
 }

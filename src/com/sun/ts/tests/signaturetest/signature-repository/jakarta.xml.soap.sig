@@ -342,6 +342,8 @@ intf jakarta.xml.soap.Node
 intf org.w3c.dom.Text
 meth public abstract boolean isComment()
 
+CLSS abstract interface jakarta.xml.soap.package-info
+
 CLSS public abstract interface java.io.Serializable
 
 CLSS public abstract interface java.lang.AutoCloseable

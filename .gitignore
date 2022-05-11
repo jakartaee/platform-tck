@@ -19,3 +19,5 @@ target/
 /user_guides/**/toc.adoc
 /nbproject
 *.iml
+.project
+.idea

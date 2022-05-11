@@ -450,7 +450,7 @@
                     <var name="vehicle.prefix" value="${vehicle.name}_web"/>
 
                     <copy todir="${dist.dir}/${pkg.dir}">
-                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="faces-config.xml"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="faces-config.xml,beans.xml"/>
                         <filterset>
                             <filter token="package" value="${package}"/>
                         </filterset>
@@ -475,7 +475,7 @@
                                     excludes="${runner.classes}, @{excludedfiles}"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
-                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml" prefix="WEB-INF"/>
+                        <zipfileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml,beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
                         <zipfileset dir="${basedir}" includes="*.tld" prefix="WEB-INF/tlds"/>
                         <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
@@ -483,7 +483,7 @@
                         <jar-elements/>
                     </ts.war>
                     <delete failonerror="false">
-                        <fileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml"/>
+                        <fileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml,beans.xml"/>
                     </delete>
                 </then>
                 </elseif>

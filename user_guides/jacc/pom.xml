@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2021 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2017, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,10 +28,10 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>tck_jacc</artifactId>
-    <version>2.0.1</version>
+    <version>2.1.0</version>
     <packaging>pom</packaging>
 
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Authorization for Jakarta EE, Release 2.0</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Authorization for Jakarta EE, Release 2.1</name>
 
     <distributionManagement>
         <site>
@@ -88,8 +88,8 @@
                                     <version>3.5.4</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>[1.8.0,)</version>
-                                    <message>You need JDK8 or newer</message>
+                                    <version>[11,)</version>
+                                    <message>You need JDK11 or newer</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>

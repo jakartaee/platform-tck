@@ -739,6 +739,8 @@ meth public abstract void messageDelivered(jakarta.mail.event.TransportEvent)
 meth public abstract void messageNotDelivered(jakarta.mail.event.TransportEvent)
 meth public abstract void messagePartiallyDelivered(jakarta.mail.event.TransportEvent)
 
+CLSS abstract interface jakarta.mail.event.package-info
+
 CLSS public jakarta.mail.internet.AddressException
 cons public init()
 cons public init(java.lang.String)
@@ -1203,6 +1205,10 @@ CLSS public abstract interface jakarta.mail.internet.SharedInputStream
 meth public abstract java.io.InputStream newStream(long,long)
 meth public abstract long getPosition()
 
+CLSS abstract interface jakarta.mail.internet.package-info
+
+CLSS abstract interface jakarta.mail.package-info
+
 CLSS public abstract jakarta.mail.search.AddressStringTerm
 cons protected init(java.lang.String)
 meth protected boolean match(jakarta.mail.Address)
@@ -1411,6 +1417,8 @@ meth public boolean match(jakarta.mail.Message)
 supr jakarta.mail.search.StringTerm
 hfds serialVersionUID
 
+CLSS abstract interface jakarta.mail.search.package-info
+
 CLSS public jakarta.mail.util.ByteArrayDataSource
 cons public init(byte[],java.lang.String)
 cons public init(java.io.InputStream,java.lang.String) throws java.io.IOException
@@ -1503,6 +1511,8 @@ meth public static jakarta.mail.util.StreamProvider$EncoderTypes valueOf(java.la
 meth public static jakarta.mail.util.StreamProvider$EncoderTypes[] values()
 supr java.lang.Enum<jakarta.mail.util.StreamProvider$EncoderTypes>
 hfds encoder
+
+CLSS abstract interface jakarta.mail.util.package-info
 
 CLSS public java.io.BufferedInputStream
 cons public init(java.io.InputStream)

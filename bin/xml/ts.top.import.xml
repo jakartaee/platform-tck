@@ -34,6 +34,19 @@
     <import file="./ts.vehicles.xml"/>
     
     <!-- PROPERTIES -->
+    <condition property="noSecurityManager" value="true">
+        <javaversion atleast="18"/>
+    </condition>
+    <property name="noSecurityManager" value="false"/>
+
+    <if>
+        <isset property="env.JVMOPTS_RUNTESTCOMMAND"/>
+        <then>
+            <property name="JVMOPTS_RUNTESTCOMMAND"
+                        value="${env.JVMOPTS_RUNTESTCOMMAND}"/>
+        </then>
+    </if>
+
     <!-- Set the archives to deploy - default to wars-->
     <target name="setup.archive.set">
         <fileset dir="${dist.dir}/${pkg.dir}" id="deploy.vi.archive.set">
@@ -769,6 +782,7 @@
             <sysproperty key="TZ" value="${tz}"/>
             <sysproperty key="deliverable.class" value="${deliverable.class}"/>
             <sysproperty key="common.apps.only" value="${common.apps.only}"/>
+            <sysproperty key="javatest.security.noSecurityManager" value="${noSecurityManager}"/>
             <sysproperty key="harness.executeMode" value="${exec.mode}"/>
             <sysproperty key="DEPLOY_DELAY_IN_MINUTES" 
                          value="${deploy.delay.in.minutes}"/>

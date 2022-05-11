@@ -35,11 +35,6 @@ public class WSClient extends WebSocketCommonClient {
 
   private static final String MESSAGE_TEXT = "TCK upgrade test message";
   
-  private static StringBuffer receivedMessageString = new StringBuffer();
-
-  static CountDownLatch messageLatch;
-
-
   public static void main(String[] args) {
     new WSClient().run(args);
   }
@@ -69,7 +64,12 @@ public class WSClient extends WebSocketCommonClient {
       WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
       ClientEndpointConfig config = ClientEndpointConfig.Builder.create().build();
 
-      messageLatch = new CountDownLatch(1);
+      CountDownLatch messageLatch = new CountDownLatch(1);
+      StringBuffer receivedMessageString = new StringBuffer();
+
+      config.getUserProperties().put("messageLatch", messageLatch);
+      config.getUserProperties().put("receivedMessageString", receivedMessageString);
+
       Session session = clientContainer.connectToServer(
           TCKUpgradeEndpoint.class,
           config, new URI("ws://" + _hostname + ":" + _port + "/" + getContextRoot() + "/TCKTestServlet"));
@@ -97,9 +97,15 @@ public class WSClient extends WebSocketCommonClient {
 
   public final static class TCKUpgradeEndpoint extends Endpoint {
 
+    private CountDownLatch messageLatch;
+    private StringBuffer receivedMessageString;
+
     @Override
     public void onOpen(Session session, EndpointConfig config) {
-      
+
+      messageLatch = (CountDownLatch)config.getUserProperties().get("messageLatch");
+      receivedMessageString = (StringBuffer)config.getUserProperties().get("receivedMessageString");
+
       session.addMessageHandler(new MessageHandler.Whole<String>() {
 
         @Override

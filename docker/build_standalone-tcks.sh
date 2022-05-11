@@ -68,7 +68,7 @@ fi
 echo "The option selected to build is $TCK_NAME TCK"
 
 if [ "All" == "$TCK_NAME" ];then
-  TCK_LIST=( jsonp jsonb jaxrs websocket el concurrency connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jsf securityapi jpa jta )
+  TCK_LIST=( websocket el connector jacc jaspic caj jms jsp jstl jaxws saaj servlet jpa jta )
 else 
   TCK_LIST=( ${TCK_NAME} )
 fi
@@ -151,19 +151,9 @@ for tck in ${TCK_LIST[@]}; do
     TCK_SPECIFIC_PROPS="-Dwebsocket.classes=$JAKARTA_JARS/modules/jakarta.websocket-client-api.jar:$JAKARTA_JARS/modules/jakarta.websocket-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.activation-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar:$JAKARTA_JARS/modules/jakarta.xml.bind-api.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
-  elif [ "securityapi" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Dsecurityapi.classes=$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.inject-api.jar:$JAKARTA_JARS/modules/jakarta.security.enterprise-api.jar:$JAKARTA_JARS/modules/jakarta.enterprise.cdi-api.jar:$JAKARTA_JARS/modules/jakarta.faces-api.jar:$JAKARTA_JARS/modules/jakarta.security.auth.message-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jakarta.interceptor-api.jar:$JAKARTA_JARS/modules/jakarta.authentication-api.jar:$JAKARTA_JARS/modules/jakarta.activation-api.jar:$JAKARTA_JARS/modules/jakarta.xml.bind-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
   elif [ "el" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Del.classes=$JAKARTA_JARS/modules/jakarta.el-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
-  elif [ "concurrency" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Dconcurrency.classes=$JAKARTA_JARS/modules/jakarta.enterprise.concurrent-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jta.jar:$JAKARTA_JARS/modules/jakarta.enterprise.deploy-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
   elif [ "connector" == "$tck" ]
@@ -229,10 +219,6 @@ for tck in ${TCK_LIST[@]}; do
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
 
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS build.all 
-  
-  if [ "jaxrs" == "$tck" ]; then
-    ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS update.jaxrs.wars
-  fi
 
   mkdir -p $BASEDIR/internal/docs/$tck
   cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/

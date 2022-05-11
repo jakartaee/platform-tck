@@ -17,6 +17,8 @@
 package com.sun.ts.tests.jaspic.tssv.util;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.w3c.dom.NamedNodeMap;
@@ -31,7 +33,7 @@ public class ProviderConfigurationEntry implements Serializable {
 
   private String providerClassName = null;
 
-  private Properties properties = null;
+  private Map<String,String> properties = null;
 
   private String messageLayer = null;
 
@@ -87,7 +89,7 @@ public class ProviderConfigurationEntry implements Serializable {
   // <entry key="AuthStatus_SEND_SUCCESS">true</entry>
   // <entry key="requestPolicy">USER_NAME_PASSWORD</entry>
   // </properties>
-  private static Properties loadProperties(Node node) {
+  private static Map<String,String> loadProperties(Node node) {
     Node topLevelChildNode = null;
     String topLevelNodeName;
     String key = null;
@@ -114,7 +116,9 @@ public class ProviderConfigurationEntry implements Serializable {
       }
     }
 
-    return nodeProperties;
+    HashMap<String,String> map = new HashMap<>();
+    nodeProperties.stringPropertyNames().forEach((tmpkey) -> map.put(tmpkey, nodeProperties.getProperty(tmpkey)));
+    return map;
   }
 
   public String getProviderClassName() {
@@ -133,7 +137,7 @@ public class ProviderConfigurationEntry implements Serializable {
     return registrationDescription;
   }
 
-  public Properties getProperties() {
+  public Map<String, String> getProperties() {
     return properties;
   }
 

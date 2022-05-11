@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,8 +32,8 @@ import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.validation.ValidationStrategy;
 
 /**
- * This validator will, loosely, validate the generated output of a jsp:plugin
- * action.
+ * This validator will, loosely, validate that a jsp:plugin action does not
+ * generate any output.
  */
 public class JspPluginValidator implements ValidationStrategy {
   private static final String NL = System.getProperty("line.separartor", "\n");
@@ -67,8 +68,7 @@ public class JspPluginValidator implements ValidationStrategy {
   public boolean validate(WebTestCase testCase) {
 
     List<String> searchStrings = testCase.getSearchStrings();
-    List<String> unexpectedSearchStrings = testCase
-        .getUnexpectedSearchStrings();
+    List<String> unexpectedSearchStrings = testCase.getUnexpectedSearchStrings();
     boolean passed = true;
     String response = null;
 
@@ -83,8 +83,7 @@ public class JspPluginValidator implements ValidationStrategy {
 
     // get response body
     try {
-      response = testCase.getResponse().getResponseBodyAsRawString()
-          .toLowerCase();
+      response = testCase.getResponse().getResponseBodyAsRawString().toLowerCase();
 
       String[] htmlTokens = prepareTokens(
           new StringTokenizer(response, "<>='\";\n\t "));
@@ -104,16 +103,19 @@ public class JspPluginValidator implements ValidationStrategy {
             + sb.toString());
       }
 
-      // check the response for either an object or embed tag in the
-      // response
-      if (response.indexOf("<embed") < 0 && response.indexOf("<object") < 0) {
-        TestUtil.logErr("[JspPluginValidator] Unable to locate either an"
-            + "OBJECT or EMBED tag in the server's response.");
+      // Check the response for object tag in the response
+      if (response.indexOf("<embed") > -1) {
+        TestUtil.logErr("[JspPluginValidator] Found EMBED tag in the server's response.");
         return false;
       }
 
-      List<String> itemsNotFound = scanForExpectedValues(response, htmlTokens,
-          searchStrings);
+      // Check the response for embed tag in the response
+      if (response.indexOf("<object") > -1) {
+        TestUtil.logErr("[JspPluginValidator] Found OBJECT tag in the server's response.");
+        return false;
+      }
+
+      List<String> itemsNotFound = scanForExpectedValues(response, htmlTokens, searchStrings);
 
       // check to see if we had any misses
       if (itemsNotFound.size() > 0) {

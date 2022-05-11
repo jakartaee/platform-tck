@@ -96,10 +96,6 @@ cd $TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin create-jvm-options -Djavax.xml.accessExternalStylesheet=all
 ./asadmin create-jvm-options -Djavax.xml.accessExternalSchema=all
 ./asadmin create-jvm-options -Djavax.xml.accessExternalDTD=file,http
-#https://github.com/eclipse-ee4j/jakartaee-tck/issues/631
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]]; then
-  ./asadmin create-jvm-options -Djava.locale.providers=COMPAT
-fi
 
 ./asadmin stop-domain
 ./asadmin start-domain

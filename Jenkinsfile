@@ -17,7 +17,7 @@
 env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 
 default_suites=[ "samples", "signaturetest/javaee" ] 
-default_tcks=["caj", "concurrency", "connector", "el", "jacc", "jaspic", "jaxrs", "jaxws", "jms", "jpa", "jsf", "jsp", "jsonb", "jsonp", "jstl", "jta", "saaj", "securityapi", "servlet",  "websocket"]
+default_tcks=["caj", "connector", "el", "jacc", "jaspic", "jaxws", "jms", "jpa", "jsp", "jstl", "jta", "saaj", "servlet",  "websocket"]
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
 def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : default_tcks
@@ -46,7 +46,6 @@ def generateCTSStage(job) {
               sh """
                 env
                 unzip -q -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_jakartaeetck.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
@@ -66,7 +65,6 @@ def generateCTSStage(job) {
               sh """
                 env
                 unzip -q -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
-                bash -x ${CTS_HOME}/jakartaeetck/docker/fix_classpaths.sh 2>&1 | tee ${CTS_HOME}/fix_classpaths.log
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_cts.log
               """
               archiveArtifacts artifacts: "*-results.tar.gz,*-junitreports.tar.gz", allowEmptyArchive: true
@@ -168,7 +166,7 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
-	string(name: 'OLD_GF_BUNDLE_URL', 
+	  string(name: 'OLD_GF_BUNDLE_URL', 
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
     string(name: 'TCK_BUNDLE_BASE_URL', 
@@ -190,9 +188,9 @@ spec:
            description: 'Database to be used for running CTS. Currently only JavaDB is supported.' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
            description: 'Run the full EE compliance testsuite or a standalone tck' )
-    string(name: 'test_suites', defaultValue: 'concurrency connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc jaspic javaee javamail jaxrs jbatch jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsf jsonb jsonp jsp jstl jta jws samples securityapi servlet signaturetest/javaee webservices12 webservices13 websocket xa',
+    string(name: 'test_suites', defaultValue: 'connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc jaspic javaee javamail jaxrs jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsonb jsonp jsp jstl jta jws samples servlet signaturetest/javaee webservices12 webservices13 websocket xa',
            description: 'Space separated list of Test suites to run') 
-    string(name: 'standalone_tcks', defaultValue: 'caj concurrency connector el jacc jaspic jaxrs jaxws jms jpa jsf jsp jsonb jsonp jstl jta saaj securityapi servlet websocket', 
+    string(name: 'standalone_tcks', defaultValue: 'caj connector el jacc jaspic jaxws jms jpa jsp jstl jta saaj servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 
     string(name: 'USER_KEYWORDS',
            defaultValue: '',

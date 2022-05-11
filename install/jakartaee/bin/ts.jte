@@ -83,8 +83,8 @@ jte.version=@JTE_VERSION@
 #                    if.existing.work.report.dirs = value in this file
 #                  end if
 ######################################################################## 
-work.dir=/files/JTWork
-report.dir=/files/JTReport
+work.dir=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/JTWork
+report.dir=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/JTReport
 if.existing.work.report.dirs=auto
 
 ########################################################################
@@ -147,7 +147,7 @@ javatest.timeout.factor=1
 #		      Java EE 8 Web Profile and any combination of optional
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
-#                            "batch", "jaxr", "connector", "jaxb", 
+#                            "jaxr", "connector", "jaxb", 
 #                            "jms", "javamail", "jacc", "jaspic", "wsmd" 
 #		      ex 1/   javaee.level=web connector jms jacc 
 #		      ex 2/   javaee.level=web jaspic
@@ -198,8 +198,14 @@ javaee.level=full
 #              to for service requests.
 ########################################################################
 javaee.home=
-orb.host=localhost
+orb.host=
 orb.port=3699
+
+########################################################################
+## Environment variable JVMOPTS_RUNTESTCOMMAND may be set to JVM 
+#  options to pass when running ExecTSTestCmd command.
+#  This is a convenience intended for adding Java SE 17+ options.
+########################################################################
 
 ########################################################################
 ## Settings for Sun RI Java EE Implementation
@@ -209,7 +215,7 @@ orb.port=3699
 #                 requests.
 ########################################################################
 javaee.home.ri=
-orb.host.ri=localhost
+orb.host.ri=
 orb.port.ri=3700
 
 ###################################################################
@@ -305,8 +311,8 @@ ri.lib=${javaee.home.ri}/lib
 ri.log.file.location=${ri.domain}/logs
 ri.modules=${javaee.home.ri}/modules
 ri.imq.share.lib=${javaee.home.ri}/../mq/lib
-ri.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-Dcsiv2.save.log.file=${harness.log.traceflag}:-Djavax.xml.accessExternalStylesheet=all:-Djavax.xml.accessExternalDTD=file,http
-ri.jvm.options.remove=-XX\\\:MaxPermSize=192m:-Xmx512m:${ri.jvm.options}
+ri.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-Dcsiv2.save.log.file=${harness.log.traceflag}:-Djavax.xml.accessExternalStylesheet=all:-Djavax.xml.accessExternalDTD=file,http
+ri.jvm.options.remove=-Xmx512m:${ri.jvm.options}
 ri.java.endorsed.dirs=${endorsed.dirs.ri}
 ri.applicationRoot=c:
 ri.and.vi.run.on.same.host=true
@@ -355,8 +361,8 @@ vi.lib=${javaee.home}/server/lib
 vi.log.file.location=${vi.domain}/logs
 vi.modules=${javaee.home}/modules
 vi.imq.share.lib=${javaee.home}/../mq/lib
-vi.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-Dcsiv2.save.log.file=${harness.log.traceflag}:-Djavax.xml.accessExternalStylesheet=all:-Djavax.xml.accessExternalDTD=file,http
-vi.jvm.options.remove=-XX\\\:MaxPermSize=192m:-Xmx512m:${vi.jvm.options}
+vi.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-Dcsiv2.save.log.file=${harness.log.traceflag}:-Djavax.xml.accessExternalStylesheet=all:-Djavax.xml.accessExternalDTD=file,http
+vi.jvm.options.remove=-Xmx512m:${vi.jvm.options}
 vi.java.endorsed.dirs=${endorsed.dirs}
 vi.applicationRoot=c:
 
@@ -386,10 +392,6 @@ vi.applicationRoot=c:
 #                         with connector tests.
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
 ###############################################################
 s1as.admin.user=admin
 s1as.admin.passwd=
@@ -405,11 +407,10 @@ s1as.imqbin.loc=${javaee.home}/../mq/bin
 s1as.lib=${javaee.home}/lib
 s1as.modules=${javaee.home}/modules
 s1as.imq.share.lib=${javaee.home}/../mq/lib
-s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}
-s1as.jvm.options.remove=-XX\\\:MaxPermSize=192m:-Xmx512m:${s1as.jvm.options}
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}
+s1as.jvm.options.remove=-Xmx512m:${s1as.jvm.options}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 ###############################################################
 # @sjsas.das.orb.port              -- ORB port number for the DAS
@@ -1033,14 +1034,6 @@ db.dml.file.ri=${derby.dml.file}
 jstl.db.driver=${derby.driver}
 jstl.db.url=${derby.url}
 
-###############################################################
-## Configure the DB specific information needed by Batch
-# @batch.db.dataSource   - JDBC dataSource 
-# @batch.db.properties   - DB properties
-###############################################################
-batch.db.dataSource=${derby.dataSource}
-batch.db.properties=${derby.properties}
-
 ########################################################################
 #
 # @jtaJarClasspath: This property must be set when running signature
@@ -1061,13 +1054,13 @@ jtaJarClasspath=${s1as.modules}/jakarta.transaction-api.jar
 # @ts.classpath         --  Classes used to build the CTS tests
 # @ts.lib.classpath     --  Classes used to build cts.jar 
 ###############################################################
-implementation.classes.ri=${ri.modules}/orb-connector.jar${pathsep}${ri.modules}/deployment-client.jar${pathsep}${ri.modules}/security-ee.jar${pathsep}${ri.modules}/security.jar${pathsep}${ri.modules}/common-util.jar${pathsep}${ri.modules}/glassfish-corba-omgapi.jar${pathsep}${ri.modules}/glassfish-corba-orb.jar${pathsep}${ri.modules}/internal-api.jar${pathsep}${ri.modules}/deployment-common.jar${pathsep}${ri.modules}/gmbal.jar${pathsep}${ri.modules}/bean-validator.jar${pathsep}${ri.modules}/jersey-client.jar${pathsep}${ri.modules}/jersey-common.jar${pathsep}${ri.modules}/jersey-hk2.jar${pathsep}${ri.modules}/jersey-media-jaxb.jar${pathsep}${ri.modules}/jersey-media-sse.jar${pathsep}${ri.modules}/jersey-media-json-processing.jar${pathsep}${ri.modules}/jsonp-jaxrs.jar${pathsep}${ri.modules}/jersey-media-json-binding.jar${pathsep}${ri.modules}/jersey-server.jar${pathsep}${ri.modules}/jersey-container-servlet.jar${pathsep}${ri.modules}/jersey-container-servlet-core.jar${pathsep}${ri.modules}/guava.jar${pathsep}${ri.modules}/jakarta.el.jar${pathsep}${ri.modules}/jakarta.el-api.jar${pathsep}${ri.modules}/tyrus-websocket-core.jar${pathsep}${ri.modules}/tyrus-client.jar${pathsep}${ri.modules}/tyrus-container-grizzly-client.jar${pathsep}${ri.modules}/tyrus-core.jar${pathsep}${ri.modules}/tyrus-container-grizzly.jar${pathsep}${ri.modules}/tyrus-container-grizzly-client.jar${pathsep}${ri.modules}/glassfish-grizzly-extra-all.jar${pathsep}${ri.modules}/nucleus-grizzly-all.jar${pathsep}${ri.modules}/tyrus-server.jar${pathsep}${ri.modules}/tyrus-container-servlet.jar${pathsep}${ri.modules}/tyrus-spi.jar${pathsep}${ri.modules}/com.ibm.jbatch-runtime-all.jar${pathsep}${ri.modules}/com.ibm.jbatch-ri-spi.jar${pathsep}${ri.modules}/glassfish-batch-connector.jar${pathsep}${ri.modules}/glassfish-batch-commands.jar${pathsep}${ri.modules}/yasson.jar${pathsep}${ri.modules}/jakarta.websocket-client-api.jar
+implementation.classes.ri=${ri.modules}/orb-connector.jar${pathsep}${ri.modules}/deployment-client.jar${pathsep}${ri.modules}/security-ee.jar${pathsep}${ri.modules}/security.jar${pathsep}${ri.modules}/common-util.jar${pathsep}${ri.modules}/glassfish-corba-omgapi.jar${pathsep}${ri.modules}/glassfish-corba-orb.jar${pathsep}${ri.modules}/internal-api.jar${pathsep}${ri.modules}/deployment-common.jar${pathsep}${ri.modules}/gmbal.jar${pathsep}${ri.modules}/bean-validator.jar${pathsep}${ri.modules}/jersey-client.jar${pathsep}${ri.modules}/jersey-common.jar${pathsep}${ri.modules}/jersey-hk2.jar${pathsep}${ri.modules}/jersey-media-jaxb.jar${pathsep}${ri.modules}/jersey-media-sse.jar${pathsep}${ri.modules}/jersey-media-json-processing.jar${pathsep}${ri.modules}/jsonp-jaxrs.jar${pathsep}${ri.modules}/jersey-media-json-binding.jar${pathsep}${ri.modules}/jersey-server.jar${pathsep}${ri.modules}/jersey-container-servlet.jar${pathsep}${ri.modules}/jersey-container-servlet-core.jar${pathsep}${ri.modules}/guava.jar${pathsep}${ri.modules}/jakarta.el.jar${pathsep}${ri.modules}/jakarta.el-api.jar${pathsep}${ri.modules}/tyrus-websocket-core.jar${pathsep}${ri.modules}/tyrus-client.jar${pathsep}${ri.modules}/tyrus-container-grizzly-client.jar${pathsep}${ri.modules}/tyrus-core.jar${pathsep}${ri.modules}/tyrus-container-grizzly.jar${pathsep}${ri.modules}/tyrus-container-grizzly-client.jar${pathsep}${ri.modules}/glassfish-grizzly-extra-all.jar${pathsep}${ri.modules}/nucleus-grizzly-all.jar${pathsep}${ri.modules}/tyrus-server.jar${pathsep}${ri.modules}/tyrus-container-servlet.jar${pathsep}${ri.modules}/tyrus-spi.jar${pathsep}${ri.modules}/yasson.jar${pathsep}${ri.modules}/jakarta.websocket-client-api.jar${pathsep}${ri.modules}/parsson.jar${pathsep}${ri.modules}/parsson-media.jar${pathsep}${ri.modules}/angus-activation.jar${pathsep}${ri.modules}/angus-mail.jar${pathsep}${ri.modules}/expressly.jar
 
-implementation.classes=${s1as.modules}/deployment-client.jar${pathsep}${s1as.modules}/security.jar${pathsep}${s1as.modules}/common-util.jar${pathsep}${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/deployment-common.jar${pathsep}${s1as.modules}/gmbal.jar${pathsep}${s1as.modules}/bean-validator.jar${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/jersey-client.jar${pathsep}${s1as.modules}/jersey-common.jar${pathsep}${s1as.modules}/jersey-hk2.jar${pathsep}${s1as.modules}/jersey-media-jaxb.jar${pathsep}${s1as.modules}/jersey-media-sse.jar${pathsep}${s1as.modules}/jersey-media-json-processing.jar${pathsep}${s1as.modules}/jsonp-jaxrs.jar${pathsep}${s1as.modules}/jersey-media-json-binding.jar${pathsep}${s1as.modules}/jersey-server.jar${pathsep}${s1as.modules}/jersey-container-servlet.jar${pathsep}${s1as.modules}/jersey-container-servlet-core.jar${pathsep}${s1as.modules}/guava.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/tyrus-websocket-core.jar${pathsep}${s1as.modules}/tyrus-client.jar${pathsep}${s1as.modules}/tyrus-core.jar${pathsep}${s1as.modules}/tyrus-container-grizzly.jar${pathsep}${s1as.modules}/tyrus-container-grizzly-client.jar${pathsep}${s1as.modules}/glassfish-grizzly-extra-all.jar${pathsep}${s1as.modules}/nucleus-grizzly-all.jar${pathsep}${s1as.modules}/tyrus-server.jar${pathsep}${s1as.modules}/tyrus-container-servlet.jar${pathsep}${s1as.modules}/tyrus-spi.jar${pathsep}${s1as.modules}/com.ibm.jbatch-runtime-all.jar${pathsep}${s1as.modules}/com.ibm.jbatch-ri-spi.jar${pathsep}${s1as.modules}/glassfish-batch-connector.jar${pathsep}${s1as.modules}/glassfish-batch-commands.jar${pathsep}${s1as.modules}/yasson.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar
+implementation.classes=${s1as.modules}/deployment-client.jar${pathsep}${s1as.modules}/security.jar${pathsep}${s1as.modules}/common-util.jar${pathsep}${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/deployment-common.jar${pathsep}${s1as.modules}/gmbal.jar${pathsep}${s1as.modules}/bean-validator.jar${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/jersey-client.jar${pathsep}${s1as.modules}/jersey-common.jar${pathsep}${s1as.modules}/jersey-hk2.jar${pathsep}${s1as.modules}/jersey-media-jaxb.jar${pathsep}${s1as.modules}/jersey-media-sse.jar${pathsep}${s1as.modules}/jersey-media-json-processing.jar${pathsep}${s1as.modules}/jsonp-jaxrs.jar${pathsep}${s1as.modules}/jersey-media-json-binding.jar${pathsep}${s1as.modules}/jersey-server.jar${pathsep}${s1as.modules}/jersey-container-servlet.jar${pathsep}${s1as.modules}/jersey-container-servlet-core.jar${pathsep}${s1as.modules}/guava.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/tyrus-websocket-core.jar${pathsep}${s1as.modules}/tyrus-client.jar${pathsep}${s1as.modules}/tyrus-core.jar${pathsep}${s1as.modules}/tyrus-container-grizzly.jar${pathsep}${s1as.modules}/tyrus-container-grizzly-client.jar${pathsep}${s1as.modules}/glassfish-grizzly-extra-all.jar${pathsep}${s1as.modules}/nucleus-grizzly-all.jar${pathsep}${s1as.modules}/tyrus-server.jar${pathsep}${s1as.modules}/tyrus-container-servlet.jar${pathsep}${s1as.modules}/tyrus-spi.jar${pathsep}${s1as.modules}/yasson.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar${pathsep}${s1as.modules}/parsson.jar${pathsep}${s1as.modules}/parsson-media.jar${pathsep}${s1as.modules}/angus-activation.jar${pathsep}${s1as.modules}/angus-mail.jar${pathsep}${s1as.modules}/expressly.jar
 
-javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json-api.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${ri.modules}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.mail-api.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.persistence-api.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.authentication-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.authorization-api.jar${pathsep}${ri.modules}/jakarta.interceptor-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${ri.modules}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/jakarta.faces-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${ri.modules}/webservices-api-osgi.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/jakarta.batch-api.jar${pathsep}${ri.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/resolver.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar
+javaee.classes.ri=${ri.modules}/jakarta.jms-api.jar${pathsep}${ri.modules}/jakarta.json.jar${pathsep}${ri.modules}/jakarta.json-api.jar${pathsep}${ri.modules}/jakarta.json.bind-api.jar${pathsep}${ri.modules}/jakarta.ejb-api.jar${pathsep}${ri.modules}/jakarta.annotation-api.jar${pathsep}${ri.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${ri.modules}/jakarta.mail.jar${pathsep}${ri.modules}/jakarta.mail-api.jar${pathsep}${ri.modules}/jakarta.persistence.jar${pathsep}${ri.modules}/jakarta.persistence-api.jar${pathsep}${ri.modules}/jakarta.resource-api.jar${pathsep}${ri.modules}/jakarta.security.auth.message-api.jar${pathsep}${ri.modules}/jakarta.authentication-api.jar${pathsep}${ri.modules}/jakarta.security.jacc-api.jar${pathsep}${ri.modules}/jakarta.authorization-api.jar${pathsep}${ri.modules}/jakarta.interceptor-api.jar${pathsep}${ri.modules}/jakarta.servlet-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp-api.jar${pathsep}${ri.modules}/jakarta.transaction-api.jar${pathsep}${ri.modules}/jakarta.xml.bind-api.jar${pathsep}${ri.modules}/jaxb-osgi.jar${pathsep}${ri.modules}/jmxremote_optional-repackaged.jar${pathsep}${ri.modules}/jakarta.faces.jar${pathsep}${ri.modules}/jakarta.faces-api.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${ri.modules}/webservices-osgi.jar${pathsep}${ri.modules}/webservices-api-osgi.jar${pathsep}${ri.modules}/ejb.security.jar${pathsep}${ri.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${ri.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes.ri}${pathsep}${ri.modules}/javamail-connector.jar${pathsep}${ri.modules}/javamail-runtime.jar${pathsep}${ri.modules}/jakarta.websocket-api.jar${pathsep}${ri.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${ri.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${ri.modules}/jakarta.security.enterprise-api.jar${pathsep}${ri.modules}/resolver.jar${pathsep}${ri.modules}/jakarta.websocket-client-api.jar${pathsep}${ri.modules}/parsson.jar${pathsep}${s1as.modules}/parsson-media.jar${pathsep}${ri.modules}/angus-activation.jar${pathsep}${s1as.modules}/angus-mail.jar${pathsep}${s1as.modules}/expressly.jar${pathsep}${ri.modules}/webservices-extra-jdk-packages.jar${pathsep}${ri.modules}/webservices-connector.jar${pathsep}${ri.modules}/webservices-extra-xmlsec.jar${pathsep}${ri.modules}/webservices.security.jar
 
-javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/resolver.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar
+javaee.classes=${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.deploy-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.security.auth.message-api.jar${pathsep}${s1as.modules}/jakarta.security.jacc-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/el-impl.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jaxb-osgi.jar${pathsep}${s1as.modules}/jmxremote_optional-repackaged.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.faces-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl.jar${pathsep}${ri.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${s1as.modules}/webservices-osgi.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${s1as.modules}/jakarta.management.j2ee-api.jar${pathsep}${s1as.modules}/ejb.security.jar${pathsep}${s1as.modules}/glassfish-corba-csiv2-idl.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${implementation.classes}${pathsep}${s1as.modules}/javamail-connector.jar${pathsep}${s1as.modules}/javamail-runtime.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar$${pathsep}${s1as.modules}/jakarta.xml.ws-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/resolver.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar${pathsep}${s1as.modules}/parsson.jar${pathsep}${s1as.modules}/parsson-media.jar${pathsep}${s1as.modules}/angus-activation.jar${pathsep}${s1as.modules}/angus-mail.jar${pathsep}${s1as.modules}/expressly.jar${pathsep}${s1as.modules}/webservices-extra-jdk-packages.jar${pathsep}${s1as.modules}/webservices-connector.jar${pathsep}${s1as.modules}/webservices-extra-xmlsec.jar${pathsep}${s1as.modules}/webservices.security.jar
 
 ts.run.classpath.ri=${javaee.classes.ri}${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar
 
@@ -1105,6 +1098,7 @@ s1as.classpathsuffix=${javaee.home}/lib/tsprovider.jar
 #                        test directories which make use of this command
 #                        are servlet and jsp.
 ########################################################################
+
 command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         CLASSPATH=${ts.harness.classpath}${pathsep}${ts.home}/classes${pathsep}\
         ${JAVA_HOME}/../lib/tools.jar${pathsep}\
@@ -1138,6 +1132,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Xss2048k \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
@@ -1176,6 +1171,7 @@ command.testExecuteAppClient= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
         TZ=${tz} \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader  \
         -Djava.security.policy=${javaee.home}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1246,6 +1242,7 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.util.logging.config.file=${javaee.home}/domains/domain1/config/logging.properties \
         -Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds} \
@@ -1265,6 +1262,7 @@ command.testExecuteAppClient2= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
         ${RI_JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
         -Dcts.tmp=$harness.temp.directory \
@@ -1328,6 +1326,7 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${RI_JAVA_HOME}/bin/java \
+        ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
@@ -1374,8 +1373,7 @@ env.ts_win32.menu=true
 
 jimage.dir=${ts.home}/tmp/jdk-bundles
 
-sigTestClasspath=${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/glassfish-corba-orb.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
-
+sigTestClasspath=${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/glassfish-corba-orb.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ########################################################################
 ## This property is used to support the odd side case when we have an
@@ -1837,7 +1835,7 @@ ejb_wait=60000
 # @test.ejb.stateful.timeout.wait.seconds - the minimum amount of time in seconds 
 #       the test client waits before verifying the status of the target stateful
 #       bean.  Its value must be an integer number.  Its default value in ts.jte
-#       file is 480 seconds.  It may be set to a smaller number (e.g., 240 seconds)
+#       file is 120 seconds.  It may be set to a smaller number (e.g., 60 seconds)
 #       to speed up testing, depending on the stateful timeout implementation
 #       strategy in the target server.
 #     
@@ -1846,7 +1844,7 @@ ejb_wait=60000
 #       before the test completes.  Usually setting javatest.timeout.factor to
 #       2.0 or greater should suffice.
 ###############################################################################
-test.ejb.stateful.timeout.wait.seconds=480
+test.ejb.stateful.timeout.wait.seconds=120
 
 ###################################################################
 # @log.file.location  This property is used by JACC tests to create
@@ -1947,7 +1945,7 @@ platform.mode=jakartaEE
 # tools.jar should be set to the location of the tools.jar from the installed
 # jdk
 ###########################################################################
-tools.jar=${jdk.home}/lib/tools.jar
+tools.jar=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/modules/webservices-tools.jar:/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/modules/webservices-api.jar
 
 ###########################################################################
 # various flags used by the generation tools
@@ -1960,7 +1958,7 @@ wsimport.ant.classname=
 wsimport.classpath=${javaee.classes}${pathsep}${tools.jar}
 wsimport.verbose=true
 wsimport.debug=false
-wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
+wsimport.jvmargs=
 
 ###########################################################################
 # various flags used by Suns generation tools
@@ -1974,7 +1972,7 @@ ri.wsimport.ant.classname=com.sun.tools.ws.ant.WsImport
 ri.wsimport.classpath=${javaee.classes.ri}${pathsep}${tools.jar}
 ri.wsimport.verbose=true
 ri.wsimport.debug=false
-ri.wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
+ri.wsimport.jvmargs=
 
 #################################
 ## Packaging properties for DAOs
@@ -2390,10 +2388,10 @@ ws_wait=5
 #
 ############################################################################################
 
-mailHost=jsepc04.us.oracle.com
-mailuser1=cts1@jsepc04.us.oracle.com
-mailFrom=cts1@jsepc04.us.oracle.com
-javamail.password=cts1
+mailHost=
+mailuser1=
+mailFrom=
+javamail.password=
 smtp.port=25
 imap.port=143
 

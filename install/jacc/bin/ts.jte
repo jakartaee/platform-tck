@@ -128,10 +128,9 @@ s1as.asenv.loc=${jacc.home}/config
 s1as.imqbin.loc=${jacc.home}/imq/bin
 s1as.lib=${jacc.home}/lib
 s1as.imq.share.lib=${jacc.home}/imq/lib
-s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 ###############################################################
 # @extension.dir - The extension directory for the app server under test.

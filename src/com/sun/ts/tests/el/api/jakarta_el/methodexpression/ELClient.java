@@ -650,7 +650,7 @@ public class ELClient extends ServiceEETest {
   public void methodExpressionMatchingAmbiguousTest() throws Fault {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetE('aaa',1234)}"; 
+    String exprStr = "#{bean.targetE('1234',1234)}"; 
 
     boolean pass = true;
 

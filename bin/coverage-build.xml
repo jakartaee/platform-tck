@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -313,8 +313,8 @@
   <target name="all" depends="start.log,
 	                              jta,jdbc,ejb,connector,jaspic,
 	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
-	                              jaxrs,webservices,jsf,jsonp,
-                                  jsonb,concurrency,websocket,securityapi">
+	                              jaxrs,webservices,jsf,
+                                concurrency,websocket,securityapi">
     <antcall target="generate.exec.summary"/>
     <antcall target="generate.index.page"/>
     <antcall target="set.permissions"/>
@@ -406,16 +406,6 @@
     </antcall>
   </target>
 
-  <target name="jaxrs">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxrs_2_1/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jaxrs_2_1/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jaxrs/JAXRSJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jaxrs/JAXRSSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jaxrs"/>
-    </antcall>
-  </target>
-
   <target name="jaxws">
     <antcall target="calculate.coverage">
       <param name="api.coverage.dir"  value="${coverage.base.dir}/jaxws_2_2/api"/>
@@ -423,24 +413,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/jaxws/JAXWSJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/jaxws/JAXWSSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/jaxws"/>
-    </antcall>
-  </target>
-
-  <target name="jsonp">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jsonp_1_1/api"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jsonp/JSONP1.1JavadocAssertions.xml"/>
-      <param name="test.src.dir"      value="/jsonp"/>
-    </antcall>
-  </target>
-
-  <target name="jsonb">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jsonb_1_0/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jsonb_1_0/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jsonb/JSONB10JavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jsonb/Jsonb10SpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jsonb"/>
     </antcall>
   </target>
 

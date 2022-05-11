@@ -940,15 +940,15 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
   }
 
   public PermissionCollection getExcludedPermissions(){
-    return null;
+    return policyConfiguration.getExcludedPermissions();
   }
 
   public PermissionCollection getUncheckedPermissions(){
-    return null;
+    return policyConfiguration.getUncheckedPermissions();
   }
 
   public Map<String, PermissionCollection> getPerRolePermissions(){
-    return null;
+    return policyConfiguration.getPerRolePermissions();
   }
 
   private void assertIsInserviceState(String callingMethod) {

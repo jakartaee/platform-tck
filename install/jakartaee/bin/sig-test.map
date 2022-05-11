@@ -151,7 +151,7 @@ jakarta.json=2.1
 
 # JSON-B
 # (This is JSR-367)
-jakarta.json.bind=2.1
+jakarta.json.bind=3.0
 
 # WebSocket 2.1
 # (This is JSR-356)

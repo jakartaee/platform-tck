@@ -507,7 +507,6 @@
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.jstl.sql"/>
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.sprocs.sql"/>
              <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.persistence.sprocs.sql"/>
-             <transaction src="${ts.home}/sql/${db.name}/${db.name}.ddl.jbatch-tck.sql"/>           
         </sql>
         <antcall target="configure.cmp" />        
     </target >
