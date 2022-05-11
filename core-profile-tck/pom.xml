@@ -26,7 +26,7 @@
   <name>Jakarta Core TCK</name>
 
   <!-- Metadata -->
-  <url>https://github.com/eclipse-ee4j/cdi-tck/</url>
+  <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
 
   <developers>
     <developer>
@@ -45,12 +45,12 @@
 
   <organization>
     <name>Jakarta Core Profile TCK</name>
-    <url>https://github.com/jakartaredhat/core-profile-tck</url>
+    <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
   </organization>
 
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://ci.eclipse.org/jakartaee-tck//</url>
+    <url>https://ci.eclipse.org/jakartaee-tck/</url>
   </ciManagement>
 
   <issueManagement>

@@ -41,4 +41,4 @@ Following the instructions in the examples/wf-core-tck-runner project to execute
 == Where to file challenges
 
 Challenges and bug reports should be filed against the TCK project issue tracker at
-https://github.com/eclipse-ee4j/cdi-tck/issues[https://github.com/eclipse-ee4j/cdi-tck/issues]
+https://github.com/eclipse-ee4j/jakartaee-tckissues[https://github.com/eclipse-ee4j/jakartaee-tck/issues]
