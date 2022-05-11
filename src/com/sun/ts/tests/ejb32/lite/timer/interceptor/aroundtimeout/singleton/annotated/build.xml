@@ -31,6 +31,7 @@
         com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/MethodOverrideBeanBase.class,
         com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/AroundTimeoutIF.class,
         com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/ClientBase.class,
+        com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/JsfClientBase.class,
         com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/InterceptorBase.class,
         com/sun/ts/tests/ejb30/timer/interceptor/aroundtimeout/common/Interceptor*.class
 	">

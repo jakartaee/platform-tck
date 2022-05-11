@@ -30,6 +30,7 @@
 	    com/sun/ts/tests/ejb32/lite/timer/service/common/TimersStatelessBean.class,
 	    com/sun/ts/tests/ejb32/lite/timer/service/common/NonPersistentTimerServiceBeanBase.class,
 	    com/sun/ts/tests/ejb32/timer/service/common/ClientBase.class,
+	    com/sun/ts/tests/ejb32/timer/service/common/JsfClientBase.class,
 	    com/sun/ts/tests/ejb32/timer/service/common/NoTimersStatefulBean.class,
 	    com/sun/ts/tests/ejb32/timer/service/common/TimerIF.class,
 	    com/sun/ts/tests/ejb30/timer/common/TimerUtil.class,

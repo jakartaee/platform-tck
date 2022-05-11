@@ -25,6 +25,7 @@
         <ts.vehicles name="${app.name}" buildleveloverride="2"
                      classes="${ejb30.timer.common.classes},
 	    ${app.common}/ClientBase.class,
+	    ${app.common}/JsfClientBase.class,
 	    ${app.common}/ScheduleTxBeanBase.class,
 	    ${app.common}/ScheduleBean.class,
 	    ${app.common}/ScheduleBMTBean.class

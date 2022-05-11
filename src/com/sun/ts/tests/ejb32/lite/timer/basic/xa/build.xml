@@ -35,6 +35,7 @@
 		com/sun/ts/tests/ejb30/timer/common/TimerInfo.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerUtil.class,
 		com/sun/ts/tests/ejb30/timer/common/ClientBase.class,
+		com/sun/ts/tests/ejb30/timer/common/JsfClientBase.class,
 		com/sun/ts/tests/ejb30/timer/common/TimeoutStatusBean.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerBeanBaseWithoutTimeOutMethod.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerBeanBase.class

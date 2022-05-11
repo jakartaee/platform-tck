@@ -26,7 +26,8 @@
             com/sun/ts/tests/ejb30/timer/common/ScheduleValues.class,
             com/sun/ts/tests/ejb30/timer/common/TimerBeanBase.class,
             com/sun/ts/tests/ejb30/timer/common/TimerBeanBaseWithoutTimeOutMethod.class,
-            com/sun/ts/tests/ejb30/timer/common/ClientBase.class"/>
+            com/sun/ts/tests/ejb30/timer/common/ClientBase.class,
+            com/sun/ts/tests/ejb30/timer/common/JsfClientBase.class"/>
 
     <target name="package">
         <ts.vehicles name="${app.name}" buildleveloverride="2"
