@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,23 +14,53 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-package com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated;
+package com.sun.ts.tests.ejb30.lite.appexception.stateless.override;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {  
+@jakarta.inject.Named("client")
+@jakarta.enterprise.context.RequestScoped
+public class JsfClient
+    extends com.sun.ts.tests.ejb30.lite.appexception.common.JsfClientBase implements Serializable {
+  
+  private static final long serialVersionUID = -2564031884412336327L;
+
+
   @Override
   @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
   protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {
     this.noInterfaceBean = noInterfaceBean;
   }
 
+  // tests used by both */appexception/annotated/ and */appexception/override/
+
+  /*
+   * @testName: atCheckedRollbackAppExceptionTest
+   * 
+   * @test_Strategy:
+   *
+   */
+  /*
+   * @testName: atCheckedRollbackAppExceptionTestLocal
+   * 
+   * @test_Strategy:
+   *
+   */
+  /*
+   * @testName: atUncheckedRollbackAppExceptionTest
+   * 
+   * @test_Strategy:
+   *
+   */
+  /*
+   * @testName: atUncheckedRollbackAppExceptionTestLocal
+   * 
+   * @test_Strategy:
+   *
+   */
   /*
    * @testName: checkedAppExceptionTest
    * 
@@ -61,62 +91,35 @@ public class Client
    * @test_Strategy:
    *
    */
+
+  // tests used by */appexception/override/
+
   /*
-   * @testName: atCheckedAppExceptionTest
+   * @testName: uncheckedAppExceptionTest
    * 
    * @test_Strategy:
    *
    */
   /*
-   * @testName: atCheckedAppExceptionTest2
+   * @testName: uncheckedAppExceptionTest2
    * 
    * @test_Strategy:
    *
    */
   /*
-   * @testName: atCheckedAppExceptionTestLocal
+   * @testName: uncheckedAppExceptionTestLocal
    * 
    * @test_Strategy:
    *
    */
   /*
-   * @testName: atUncheckedAppExceptionTest
+   * @testName: uncheckedRollbackAppExceptionTest
    * 
    * @test_Strategy:
    *
    */
   /*
-   * @testName: atUncheckedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTestLocal
+   * @testName: uncheckedRollbackAppExceptionTestLocal
    * 
    * @test_Strategy:
    *

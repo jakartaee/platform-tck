@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,14 +14,22 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-package com.sun.ts.tests.ejb30.lite.appexception.singleton.inheritance;
+package com.sun.ts.tests.ejb30.lite.appexception.stateful.inheritance;
 
+import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceIF;
+import java.io.Serializable;
 
-public class Client extends
-    com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.ClientBase {
+@jakarta.inject.Named("client")
+@jakarta.enterprise.context.RequestScoped
+public class JsfClient extends
+    com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.JsfClientBase implements Serializable {
+  
+  private static final long serialVersionUID = -2564031884423676327L;
+
+  @Override
+  protected InheritanceIF getBean() {
+    return (InheritanceIF) lookup(BEAN_LOOKUP_NAME, "InheritanceBean", null);
+  }
 
   /*
    * @testName: uncheckedAppException1

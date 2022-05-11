@@ -1,4 +1,4 @@
-<%--
+<!--
 
     Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
@@ -14,17 +14,12 @@
 
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
---%>
+-->
 
-<%@page contentType="text/html"%>
-<%@taglib prefix="f" uri="jakarta.faces.core"%>
-<%@taglib prefix="h" uri="jakarta.faces.html"%>
-
-<html>
-    <head><title>${param['testName']}_from_ejblitejsf</title></head>
+<!DOCTYPE html>
+<html xmlns:f="jakarta.faces.core" xmlns:h="jakarta.faces.html">
+    <head><title>#{param['testName']}_from_ejblitejsf</title></head>
     <body>
-        <f:view>
-            <h:outputText value="#{client.status} #{client.reason}" />
-        </f:view>
+        #{client.status} #{client.reason}
     </body>
 </html>
