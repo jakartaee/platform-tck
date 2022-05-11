@@ -194,7 +194,7 @@ for tck in ${TCK_LIST[@]}; do
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS clean.all build.all.jars 
 
   ant -f $BASEDIR/install/$tck/bin/build.xml -Ddeliverabledir=$tck -Dbasedir=$BASEDIR/install/$tck/bin $RMI_CLASSES $TCK_SPECIFIC_PROPS $JAXWS_SPECIFIC_PROPS build.all 
-  
+
   mkdir -p $BASEDIR/internal/docs/$tck
   cp $BASEDIR/internal/docs/dtd/*.dtd $BASEDIR/internal/docs/$tck/
   if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then

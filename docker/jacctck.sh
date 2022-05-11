@@ -63,16 +63,16 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i 's#orb\.port=.*#orb.port=3699#g' ts.jte
-sed -i 's#javaee\.level=.*#javaee.level=full#g' ts.jte
-sed -i "s#jacc\.home=.*#jacc.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak 's#orb\.port=.*#orb.port=3699#g' ts.jte
+sed -i.bak 's#javaee\.level=.*#javaee.level=full#g' ts.jte
+sed -i.bak "s#jacc\.home=.*#jacc.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 CONTENT='<property name="all.test.dir" value="com/sun/ts/tests/jacc/,com/sun/ts/tests/signaturetest/jacc,com/sun/ts/tests/common/vehicle/" />'
 C=$(echo $CONTENT | sed 's/\//\\\//g')
-sed -i "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
+sed -i.bak "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
