@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -436,7 +436,7 @@
                                            com/sun/ts/tests/ejb30/common/lite/*.class,
                                            com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                            ${harness.pkg.dir}/ServiceEETest*.class"
-                                 excludes="@{excludedfiles}"/>
+                                 excludes="@{excludedfiles}, ${pkg.dir}/**/JsfClient.class"/>
                     </ts.ejbjar>
                 </then>
                 </elseif>
@@ -472,13 +472,13 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/Client.class"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml,beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
                         <zipfileset dir="${basedir}" includes="*.tld" prefix="WEB-INF/tlds"/>
-                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.jsp"/>
+                        <fileset dir="${src.dir}/${vehicle.pkg.dir}/@{vehicle}" includes="*.xhtml"/>
                         <jsp-elements/>
                         <jar-elements/>
                     </ts.war>
@@ -529,7 +529,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="ejblitejsp.tld" prefix="WEB-INF/tlds"/>
@@ -653,7 +653,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
@@ -782,7 +782,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}"
+                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
