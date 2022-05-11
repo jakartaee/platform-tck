@@ -67,15 +67,15 @@ export ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExte
 which java
 java -version
 
-sed -i "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
-sed -i 's#webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
-sed -i 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
-sed -i 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
-sed -i "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak "s#webcontainer\.home\.ri=.*#webcontainer.home.ri=$TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#webServerHost\.2=.*#webServerHost.2=localhost#g' ts.jte
+sed -i.bak 's#webServerPort\.2=.*#webServerPort.2=9080#g' ts.jte
+sed -i.bak 's#wsgen.ant.classname=.*#wsgen.ant.classname=com.sun.tools.ws.ant.WsGen#g' ts.jte
+sed -i.bak 's#wsimport.ant.classname=.*#wsimport.ant.classname=com.sun.tools.ws.ant.WsImport#g' ts.jte
+sed -i.bak "s#glassfish.admin.port.ri=.*#glassfish.admin.port.ri=5858#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
@@ -97,9 +97,9 @@ cp $TCK_HOME/latest-glassfish.zip $TCK_HOME/ri/latest-glassfish.zip
 cd $TCK_HOME/ri
 unzip -q latest-glassfish.zip
 
-sed -i 's/4848/5858/g' $RI_DOMAIN_CONFIG_FILE
-sed -i 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
-sed -i 's/8181/9181/g' $RI_DOMAIN_CONFIG_FILE
+sed -i.bak 's/4848/5858/g' $RI_DOMAIN_CONFIG_FILE
+sed -i.bak 's/8080/9080/g' $RI_DOMAIN_CONFIG_FILE
+sed -i.bak 's/8181/9181/g' $RI_DOMAIN_CONFIG_FILE
 
 cd $TCK_HOME/ri/$GF_TOPLEVEL_DIR/glassfish/bin
 ./asadmin start-domain

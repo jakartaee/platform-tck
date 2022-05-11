@@ -62,10 +62,10 @@ export PATH=$JAVA_HOME/bin:$PATH
 which java
 java -version
 
-sed -i "s#^jms.home=.*#jms.home=$TCK_HOME/$GF_TOPLEVEL_DIR/mq#g" ts.jte
-sed -i 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^jms.home=.*#jms.home=$TCK_HOME/$GF_TOPLEVEL_DIR/mq#g" ts.jte
+sed -i.bak 's#^jms\.classes=.*#jms.classes=${ri.jars}#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}
