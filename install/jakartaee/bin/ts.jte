@@ -83,8 +83,8 @@ jte.version=@JTE_VERSION@
 #                    if.existing.work.report.dirs = value in this file
 #                  end if
 ######################################################################## 
-work.dir=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/JTWork
-report.dir=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/JTReport
+work.dir=/files/JTWork
+report.dir=/files/JTReport
 if.existing.work.report.dirs=auto
 
 ########################################################################
@@ -198,7 +198,7 @@ javaee.level=full
 #              to for service requests.
 ########################################################################
 javaee.home=
-orb.host=
+orb.host=localhost
 orb.port=3699
 
 ########################################################################
@@ -215,7 +215,7 @@ orb.port=3699
 #                 requests.
 ########################################################################
 javaee.home.ri=
-orb.host.ri=
+orb.host.ri=localhost
 orb.port.ri=3700
 
 ###################################################################
@@ -1945,7 +1945,7 @@ platform.mode=jakartaEE
 # tools.jar should be set to the location of the tools.jar from the installed
 # jdk
 ###########################################################################
-tools.jar=/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/modules/webservices-tools.jar:/Users/starksm/Dev/JBoss/Jakarta/rh-jakartaee-tck/modules/webservices-api.jar
+tools.jar=${jdk.home}/lib/tools.jar
 
 ###########################################################################
 # various flags used by the generation tools
@@ -1958,7 +1958,7 @@ wsimport.ant.classname=
 wsimport.classpath=${javaee.classes}${pathsep}${tools.jar}
 wsimport.verbose=true
 wsimport.debug=false
-wsimport.jvmargs=
+wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
 
 ###########################################################################
 # various flags used by Suns generation tools
@@ -1972,7 +1972,7 @@ ri.wsimport.ant.classname=com.sun.tools.ws.ant.WsImport
 ri.wsimport.classpath=${javaee.classes.ri}${pathsep}${tools.jar}
 ri.wsimport.verbose=true
 ri.wsimport.debug=false
-ri.wsimport.jvmargs=
+ri.wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
 
 #################################
 ## Packaging properties for DAOs
@@ -2388,10 +2388,10 @@ ws_wait=5
 #
 ############################################################################################
 
-mailHost=
-mailuser1=
-mailFrom=
-javamail.password=
+mailHost=jsepc04.us.oracle.com
+mailuser1=cts1@jsepc04.us.oracle.com
+mailFrom=cts1@jsepc04.us.oracle.com
+javamail.password=cts1
 smtp.port=25
 imap.port=143
 
