@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,11 +28,13 @@
 		com/sun/ts/tests/ejb30/timer/common/TimerInfo.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerUtil.class,
 		com/sun/ts/tests/ejb30/timer/common/ClientBase.class,
+		com/sun/ts/tests/ejb30/timer/common/JsfClientBase.class,
 		com/sun/ts/tests/ejb30/timer/common/TimeoutStatusBean.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerBeanBaseWithoutTimeOutMethod.class,
 		com/sun/ts/tests/ejb30/timer/common/TimerBeanBase.class,
 		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/BusinessTimerBeanBase.class,
 		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/ClientBase.class,
+		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/JsfClientBase.class,
 		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/InterceptorBase.class,
 		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/Interceptor1.class,
 		com/sun/ts/tests/ejb32/lite/timer/interceptor/business/common/Interceptor2.class,

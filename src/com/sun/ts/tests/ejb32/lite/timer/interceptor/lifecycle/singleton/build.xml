@@ -44,7 +44,7 @@
         </jar>
 
         <ts.vehicles name="${app.name}" buildleveloverride="2"
-                     classes="com/sun/ts/tests/ejb30/timer/common/ClientBase.class"
+                     classes="com/sun/ts/tests/ejb30/timer/common/ClientBase.class, com/sun/ts/tests/ejb30/timer/common/JsfClientBase.class"
                      excludedfiles="${ejb.classes}">
         </ts.vehicles>
 
