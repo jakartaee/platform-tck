@@ -436,7 +436,7 @@
                                            com/sun/ts/tests/ejb30/common/lite/*.class,
                                            com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                            ${harness.pkg.dir}/ServiceEETest*.class"
-                                 excludes="@{excludedfiles}, ${pkg.dir}/**/JsfClient.class"/>
+                                 excludes="@{excludedfiles}"/>
                     </ts.ejbjar>
                 </then>
                 </elseif>
@@ -472,7 +472,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/Client.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="faces-config.xml,beans.xml" prefix="WEB-INF"/>
@@ -529,7 +529,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="ejblitejsp.tld" prefix="WEB-INF/tlds"/>
@@ -653,7 +653,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
@@ -782,7 +782,7 @@
                                               com/sun/ts/tests/ejb30/common/lite/*.class,
                                               com/sun/ts/tests/ejb30/common/helper/Helper.class,
                                               ${harness.pkg.dir}/ServiceEETest*.class"
-                                    excludes="${runner.classes}, @{excludedfiles}, ${pkg.dir}/**/JsfClient.class"
+                                    excludes="${runner.classes}, @{excludedfiles}"
                                     prefix="WEB-INF/classes"/>
                         <zipfileset dir="${basedir}" includes="ejb-jar.xml, beans.xml" prefix="WEB-INF"/>
                         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="*.jar" prefix="WEB-INF/lib" excludes="ejbembed_vehicle*.jar"/>
