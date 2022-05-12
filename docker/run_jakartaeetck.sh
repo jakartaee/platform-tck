@@ -162,13 +162,6 @@ ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwo
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-   echo "enabling GlassFish --add-opens options for JDK17"
-   export JVMOPTS_RUNTESTCOMMAND="--add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED"
-   echo "will use $JVMOPTS_RUNTESTCOMMAND "
-fi
-
-
 # Change default ports for RI
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --interactive=false  --user admin --passwordfile ${ADMIN_PASSWORD_FILE} delete-jvm-options -Dosgi.shell.telnet.port=6666
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Dosgi.shell.telnet.port=6667
@@ -255,6 +248,15 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
   # Change the memory setting in ts.jte as well.
   sed -i.bak 's/-Xmx1024m/-Xmx4096m/g' ${TS_HOME}/bin/ts.jte
 fi 
+
+# do ts.jte parameter substitution here of ${JVMOPTS_RUNTESTCOMMAND}
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+   echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
+   search="..JVMOPTS_RUNTESTCOMMAND."
+   replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
+   sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
+   echo "updated ts.jte to use -add-opens for Java SE 17 "
+fi
 
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain

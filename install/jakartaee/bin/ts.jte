@@ -202,9 +202,10 @@ orb.host=localhost
 orb.port=3699
 
 ########################################################################
-## Environment variable JVMOPTS_RUNTESTCOMMAND may be set to JVM 
-#  options to pass when running ExecTSTestCmd command.
-#  This is a convenience intended for adding Java SE 17+ options.
+## JVMOPTS_RUNTESTCOMMAND is a marker that implementations may replace with
+#  the JVM options to pass when starting JVMs for running tests.
+#  This is intended to be used for implementations convencience.
+#  See file docker/run_jakartaeetck.sh for an example.
 ########################################################################
 
 ########################################################################

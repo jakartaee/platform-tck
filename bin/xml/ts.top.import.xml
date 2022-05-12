@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,14 +38,6 @@
         <javaversion atleast="18"/>
     </condition>
     <property name="noSecurityManager" value="false"/>
-
-    <if>
-        <isset property="env.JVMOPTS_RUNTESTCOMMAND"/>
-        <then>
-            <property name="JVMOPTS_RUNTESTCOMMAND"
-                        value="${env.JVMOPTS_RUNTESTCOMMAND}"/>
-        </then>
-    </if>
 
     <!-- Set the archives to deploy - default to wars-->
     <target name="setup.archive.set">
