@@ -24,6 +24,7 @@
 
 	<property name="all.test.dir" value="
                   com/sun/ts/tests/ejb30/lite,
+				  com/sun/ts/tests/ejb30/common/lite,
                   com/sun/ts/tests/ejb32/lite"/>
 
 	<!--
