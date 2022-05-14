@@ -29,7 +29,10 @@ com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/Pinger.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyIF.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyClientBase.class,
+com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyJsfClientBase.class,
+
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/ClientBase.class,
+com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/JsfClientBase.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/StatefulConcurrencyBeanBase.class
         ">
         </ts.vehicles>
