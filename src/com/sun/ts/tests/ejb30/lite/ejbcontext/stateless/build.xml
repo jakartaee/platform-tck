@@ -28,6 +28,7 @@
 	com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
 	com/sun/ts/tests/ejb30/lite/ejbcontext/common/EJBContextBeanBase.class,
 	com/sun/ts/tests/ejb30/lite/ejbcontext/common/ClientBase.class,
+	com/sun/ts/tests/ejb30/lite/ejbcontext/common/JsfClientBase.class,
 	com/sun/ts/tests/ejb30/lite/ejbcontext/common/Util.class,
 	com/sun/ts/tests/ejb30/lite/ejbcontext/common/Interceptor1.class,
 	com/sun/ts/tests/ejb30/lite/ejbcontext/common/EJBContext2IF.class,

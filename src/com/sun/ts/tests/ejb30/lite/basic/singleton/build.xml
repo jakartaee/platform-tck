@@ -29,6 +29,7 @@
 	    com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanBase.class,
 	    com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanHelper.class,
 	    com/sun/ts/tests/ejb30/lite/basic/common/ClientBase.class,
+	    com/sun/ts/tests/ejb30/lite/basic/common/JsfClientBase.class,
 	    com/sun/ts/tests/ejb30/lite/basic/common/GlobalJNDITest.class,
 	    com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class
 	">
