@@ -33,6 +33,7 @@
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/InterceptorOverrideBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/ClientBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/business/JsfClientBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor1.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor2.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/business/Interceptor3.class,
