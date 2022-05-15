@@ -27,6 +27,7 @@
         com/sun/ts/tests/ejb30/lite/async/common/descriptor/TimeoutDescriptorBeanBase.class,
         com/sun/ts/tests/ejb30/lite/async/common/descriptor/DescriptorBean.class,
         com/sun/ts/tests/ejb30/lite/async/common/descriptor/DescriptorClientBase.class,
+        com/sun/ts/tests/ejb30/lite/async/common/descriptor/DescriptorJsfClientBase.class,
         com/sun/ts/tests/ejb30/lite/async/common/descriptor/DescriptorIF.class,
         com/sun/ts/tests/ejb30/lite/async/common/descriptor/Descriptor2IF.class
 	">
