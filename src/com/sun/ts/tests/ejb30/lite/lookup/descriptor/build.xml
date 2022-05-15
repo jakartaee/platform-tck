@@ -26,6 +26,7 @@
         <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
 	    com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
             com/sun/ts/tests/ejb30/lite/lookup/common/ClientBase.class,
+            com/sun/ts/tests/ejb30/lite/lookup/common/JsfClientBase.class,
             com/sun/ts/tests/ejb30/lite/lookup/common/LookupIF.class,
             com/sun/ts/tests/ejb30/lite/lookup/common/LookupBeanPlainBase.class
 	">
