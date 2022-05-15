@@ -24,7 +24,8 @@
    
     <target name="package">
         <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
-	com/sun/ts/tests/ejb30/lite/enventry/common/ClientBase.class,
+        com/sun/ts/tests/ejb30/lite/enventry/common/ClientBase.class,
+        com/sun/ts/tests/ejb30/lite/enventry/common/JsfClientBase.class,
         com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
         com/sun/ts/tests/ejb30/lite/enventry/common/EnvEntryBeanBase.class
 	">
