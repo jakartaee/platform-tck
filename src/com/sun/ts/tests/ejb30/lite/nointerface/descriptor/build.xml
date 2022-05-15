@@ -30,6 +30,7 @@
         com/sun/ts/tests/ejb30/lite/nointerface/annotated/BeanBase.class,
         com/sun/ts/tests/ejb30/lite/nointerface/annotated/HasInterface.class,
         com/sun/ts/tests/ejb30/lite/nointerface/annotated/ClientBase.class
+        com/sun/ts/tests/ejb30/lite/nointerface/annotated/JsfClientBase.class
 	">
         </ts.vehicles>
     </target>
