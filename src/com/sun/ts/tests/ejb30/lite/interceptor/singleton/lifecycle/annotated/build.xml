@@ -29,6 +29,7 @@
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/InterceptorBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/InterceptorOverrideBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/ClientBase.class,
+	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/JsfClientBase.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/Interceptor1.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/Interceptor2.class,
 	com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/Interceptor3.class,
