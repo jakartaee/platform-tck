@@ -26,6 +26,7 @@
     <target name="package">
         <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
         com/sun/ts/tests/ejb30/lite/singleton/concurrency/common/ClientBase*.class,
+        com/sun/ts/tests/ejb30/lite/singleton/concurrency/common/JsfClientBase*.class,
         com/sun/ts/tests/ejb30/lite/singleton/concurrency/common/ConcurrencyIF.class">
         </ts.vehicles>
     </target>
