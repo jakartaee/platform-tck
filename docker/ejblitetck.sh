@@ -40,7 +40,7 @@ else
 fi
 
 if [ -z "$1" ]; then
-  test_suite="ejb30/lite/appexception"
+  test_suite="ejb30/lite/appexception/stateful/annotated"
   vehicle=""
 elif [[ $1 = *'_'* ]]; then
   test_suite=`echo "$1" | cut -f1 -d_`
