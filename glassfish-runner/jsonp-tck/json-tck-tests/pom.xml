@@ -6,11 +6,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.glassfish</groupId>
-  <artifactId>glassfish.jsonb-tck</artifactId>
-  <version>3.0.0</version>
+  <artifactId>json-tck-tests</artifactId>
+  <version>2.1.0</version>
 
   <properties>
-    <jsonb.tck.version>3.0.0</jsonb.tck.version>
+    <json.tck.version>2.1.0</json.tck.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <glassfish.container.version>7.0.0-M4</glassfish.container.version>
@@ -34,15 +34,17 @@
 
   <dependencies>
       <dependency>
-        <groupId>jakarta.json.bind</groupId>
-        <artifactId>jakarta.json.bind-tck</artifactId>
-        <version>${jsonb.tck.version}</version>
+        <groupId>jakarta.json</groupId>
+        <artifactId>jakarta.json-tck-common</artifactId>
+        <version>${json.tck.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.json</groupId>
+        <artifactId>jakarta.json-tck-tests</artifactId>
+        <version>${json.tck.version}</version>
         <scope>test</scope>
         <exclusions>
-          <exclusion> 
-            <groupId>jakarta.json.bind</groupId>
-            <artifactId>jakarta.json.bind-api</artifactId>
-          </exclusion>
           <exclusion> 
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
@@ -53,7 +55,7 @@
         <groupId>org.netbeans.tools</groupId>
         <artifactId>sigtest-maven-plugin</artifactId>
         <version>1.6</version>
-      </dependency>
+      </dependency> 
   </dependencies>
 
   <build>
@@ -87,24 +89,28 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>
-        <configuration>
-          <trimStackTrace>false</trimStackTrace>
-          <failIfNoTests>true</failIfNoTests>
-            <dependenciesToScan>jakarta.json.bind:jakarta.json.bind-tck</dependenciesToScan>
-            <systemPropertyVariables>
-                <jimage.dir>${project.build.directory}/jdk-bundle</jimage.dir>
-                <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json.bind-api.jar:${project.build.directory}/jdk-bundle/java.base:${project.build.directory}/jdk-bundle/java.rmi:${project.build.directory}/jdk-bundle/java.sql:${project.build.directory}/jdk-bundle/java.naming</signature.sigTestClasspath>
-            </systemPropertyVariables>
-            <additionalClasspathElements>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json.bind-api.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json-api.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.enterprise.cdi-api.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.inject-api.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/yasson.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/lib/appclient/weld-se-shaded.jar</additionalClasspathElement>
-          </additionalClasspathElements>
-          </configuration>
+        <executions>
+          <execution>
+            <id>tests</id>
+            <goals>
+             <goal>test</goal>
+            </goals>
+            <configuration>
+            <trimStackTrace>false</trimStackTrace>
+            <failIfNoTests>true</failIfNoTests>
+            <testFailureIgnore>true</testFailureIgnore> 
+              <dependenciesToScan>jakarta.json:jakarta.json-tck-tests</dependenciesToScan>
+              <systemPropertyVariables>
+                  <jimage.dir>${project.build.directory}/jdk-bundle</jimage.dir>
+                  <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json-api.jar:${project.build.directory}/jdk-bundle/java.base:${project.build.directory}/jdk-bundle/java.rmi:${project.build.directory}/jdk-bundle/java.sql:${project.build.directory}/jdk-bundle/java.naming</signature.sigTestClasspath>
+              </systemPropertyVariables>
+              <additionalClasspathElements>
+                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json-api.jar</additionalClasspathElement>
+                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+              </additionalClasspathElements>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>

@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
@@ -19,12 +18,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.glassfish</groupId>
-    <artifactId>json-tck</artifactId>
-    <version>2.1.0</version>
+    <artifactId>standalone-tck</artifactId>
+    <version>10.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>json-tck-tests</module>
-        <module>json-tck-tests-pluggability</module>
+        <module>batch-tck</module>
+        <module>concurrency-tck</module>
+        <module>jaxrs-tck</module>
+        <module>jsonp-tck</module>
+        <module>jsonb-tck</module>
     </modules>
 </project>
