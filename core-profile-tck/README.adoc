@@ -1,0 +1,19 @@
+= Jakarta Core Profile TCK Development
+
+This is the repository for the Jakarta Core Profile TCK
+
+## Sources in GIT
+
+Main branch contains the work-in-progress on Jakarta Core Profile TCK 10.0
+
+### Source Layout
+
+* .github - the GitHub actions configuration
+* cdi-tck-suite - the TestNG suite.xml file artifact for the set of CDI Lite tests one needs to pass for the Core Profile TCK
+* examples - submodule(s) for compatible implementation maven configurations that illustrate how to setup and run the Core Profile TCK
+* jsonp-tck-ext - An experimental module that adds support for running the JSON-P TCK within an Arquillian container.
+* tck-dist - A standalone module that contains the TCK userguide and assembly to create the distribution zip
+* tck - The Core Profile specific integration tests for the TCK
+* LICENSE - the project development license, Apache License
+Version 2.0. When distributed as a final TCK the bundled license is the https://www.eclipse.org/legal/tck.php[Eclipse Foundation Technology Compatibility Kit License].
+* README.adoc - this doc

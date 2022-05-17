@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CDI TCK">
+    <test name="CDI Lite TCK">
+        <groups>
+            <run>
+                <exclude name="cdi-full"/>
+                <exclude name="se"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="org.jboss.cdi.tck.tests.*" />
+            <package name="org.jboss.cdi.tck.interceptors.tests.*" />
+        </packages>
+        
+        <classes>
+            <!-- https://github.com/eclipse-ee4j/cdi/issues/607 -->
+            <class name="org.jboss.cdi.tck.tests.full.deployment.exclude.ExcludeFiltersTest">
+                <methods>
+                    <exclude name=".*"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

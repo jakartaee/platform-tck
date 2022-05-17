@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+   <id>dist</id>
+
+   <baseDirectory>core-profile-tck-${project.version}</baseDirectory>
+   <formats>
+      <format>zip</format>
+   </formats>
+
+   <files>
+      <!-- This is the final EFTL license -->
+      <file>
+         <source>EFTL.txt</source>
+         <destName>LICENSE</destName>
+      </file>
+      <file>
+         <source>README.adoc</source>
+      </file>
+
+      <!-- A maven pom.xml to install the TCK artifacts into a local maven repo -->
+      <file>
+         <source>artifacts-pom.xml</source>
+         <destName>pom.xml</destName>
+         <outputDirectory>artifacts</outputDirectory>
+      </file>
+      <!-- The HTML and PDF versions of the TCK userguide -->
+      <file>
+         <source>target/generated-docs/core-profile-tck-reference-guide.pdf</source>
+         <outputDirectory>/doc</outputDirectory>
+      </file>
+      <file>
+         <source>target/generated-docs/core-profile-tck-reference-guide.html</source>
+         <outputDirectory>/doc</outputDirectory>
+      </file>
+   </files>
+   <!-- The compatible implementation tck runner examples -->
+   <fileSets>
+      <fileSet>
+         <directory>${project.parent.basedir}/examples</directory>
+         <outputDirectory>examples</outputDirectory>
+         <includes>
+            <include>README.adoc</include>
+            <include>wf-core-tck-runner/**</include>
+         </includes>
+         <excludes>
+            <exclude>**/target/**</exclude>
+         </excludes>
+      </fileSet>
+   </fileSets>
+
+   <dependencySets>
+      <dependencySet>
+         <includes>
+            <include>jakarta.ee.tck:core-tck-parent</include>
+            <include>jakarta.ee.tck:cdi-lite-tck-suite</include>
+            <include>jakarta.ee.tck:core-profile-tck-impl</include>
+            <include>jakarta.ee.tck:core-tck-jsonp-extension</include>
+         </includes>
+         <useTransitiveDependencies>true</useTransitiveDependencies>
+         <outputDirectory>artifacts</outputDirectory>
+         <useProjectArtifact>false</useProjectArtifact>
+      </dependencySet>
+   </dependencySets>
+
+</assembly>
