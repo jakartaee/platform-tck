@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
-abstract public class RWJsfClientBase extends EJBLiteClientBase {
+abstract public class RWClientBase extends EJBLiteClientBase {
   protected RWTestBeanBase0 testBean; // injected in subclass
 
   // overridden in stateful to use lookup

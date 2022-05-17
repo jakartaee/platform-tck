@@ -20,7 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TestLogic;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
 
@@ -39,7 +39,7 @@ import jakarta.ejb.EJBs;
     @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "<local EBean>"),
 
     @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "<local FBean>") })
-abstract public class InheritanceJsfClientBase extends EJBLiteJsfClientBase {
+abstract public class InheritanceClientBase extends EJBLiteClientBase {
   /*
    * testName: aBeanLocal
    * 

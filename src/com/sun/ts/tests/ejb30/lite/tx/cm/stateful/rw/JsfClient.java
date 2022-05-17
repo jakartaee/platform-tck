@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw;
 
-import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase;
+import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase0;
 
