@@ -27,7 +27,7 @@
         <ts.vehicles name="${app.name}" buildleveloverride="2"
         classes="
 com/sun/ts/tests/ejb30/lite/tx/cm/common/InheritanceClientBase.class,
-
+com/sun/ts/tests/ejb30/lite/tx/cm/common/InheritanceJsfClientBase.class,
 com/sun/ts/tests/ejb30/common/helper/TestFailedException.class,
 com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
 com/sun/ts/tests/ejb30/tx/common/session/inheritance/TxCommonIF.class,

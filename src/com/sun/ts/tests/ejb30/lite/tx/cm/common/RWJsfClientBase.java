@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,14 +14,11 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 
-abstract public class RWJsfClientBase extends EJBLiteClientBase {
+abstract public class RWJsfClientBase extends EJBLiteJsfClientBase {
   protected RWTestBeanBase0 testBean; // injected in subclass
 
   // overridden in stateful to use lookup
