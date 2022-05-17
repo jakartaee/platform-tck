@@ -27,7 +27,7 @@ import jakarta.ejb.EJB;
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient
-    extends com.sun.ts.tests.ejb30.lite.interceptor.common.business.ClientBase implements Serializable {
+    extends com.sun.ts.tests.ejb30.lite.interceptor.common.business.JsfClientBase implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
