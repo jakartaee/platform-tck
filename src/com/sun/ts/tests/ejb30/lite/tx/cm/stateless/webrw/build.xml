@@ -37,6 +37,7 @@
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/CoffeeUtil.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWTxBeanBase.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWClientBase.class,
+		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWJsfClientBase.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/stateless/rw/TxBean.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/stateless/rw/TestBean.class
 	">

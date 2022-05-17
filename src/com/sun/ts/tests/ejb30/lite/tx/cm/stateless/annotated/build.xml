@@ -26,7 +26,7 @@
     <target name="package">
         <ts.vehicles name="${app.name}" buildleveloverride="2"
         classes="com/sun/ts/tests/ejb30/lite/tx/cm/common/ClientBase.class,
-	
+com/sun/ts/tests/ejb30/lite/tx/cm/common/JsfClientBase.class,
 com/sun/ts/tests/ejb30/tx/common/session/cm/LocalTxIF.class,
 com/sun/ts/tests/ejb30/tx/common/session/cm/LocalTxBeanBase.class,
 com/sun/ts/tests/ejb30/tx/common/session/cm/LocalTxBean.class,
