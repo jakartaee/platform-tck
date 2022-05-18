@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,6 +26,7 @@
         <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
 	    com/sun/ts/tests/ejb30/lite/basic/common/Basic1IF.class,
 	    com/sun/ts/tests/ejb30/lite/basic/common/BasicBeanBase.class,
+	    com/sun/ts/tests/ejb30/common/lite/EJBLiteJsfClientBase.class,
             com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class
 	">
         </ts.vehicles>

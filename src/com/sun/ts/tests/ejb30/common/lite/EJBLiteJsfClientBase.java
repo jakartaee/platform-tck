@@ -164,6 +164,9 @@ public class EJBLiteJsfClientBase extends ServiceEETest
   }
 
   public String getModuleName() {
+    if (moduleName.startsWith("/")) {
+      return moduleName.substring(1);
+    }
     return moduleName;
   }
 

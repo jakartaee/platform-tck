@@ -25,6 +25,7 @@
   <target name="package">
     <ts.vehicles name="${app.name}" buildleveloverride="2"
       classes="
+        com/sun/ts/tests/ejb30/common/lite/EJBLiteClientBase.class,
         com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
         com/sun/ts/tests/ejb30/lite/xmloverride/ejbref/XmlOverrideBean.class,
         com/sun/ts/tests/ejb30/lite/xmloverride/ejbref/XmlOverride2Bean.class
