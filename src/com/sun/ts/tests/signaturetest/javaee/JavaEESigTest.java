@@ -85,9 +85,9 @@ public class JavaEESigTest extends SigTestEE {
 
   public static final String KEYWORD_JAVAEE = "ejb interceptors caj jms wsmd javamail"
       + " cdi di beanval persistence jaxb saaj jaxws connector"
-      + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch jsonb securityapi";
+      + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
+  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
