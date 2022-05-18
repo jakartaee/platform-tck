@@ -177,6 +177,8 @@ public class JavaEESigTest extends SigTestEE {
         "jakarta.security.enterprise.authentication.mechanism.http",
         "jakarta.security.enterprise.credential",
         "jakarta.security.enterprise.identitystore" });
+    EJB_MAP.put("concurrency", 
+        new String[] { "jakarta.enterprise.concurrent" });
 
     SERVLET_MAP.putAll(EJB_MAP);
     SERVLET_MAP.put("el", new String[] { "jakarta.el" });
