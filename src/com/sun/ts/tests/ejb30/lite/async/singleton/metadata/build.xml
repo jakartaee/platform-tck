@@ -33,7 +33,7 @@
         com/sun/ts/tests/ejb30/lite/async/common/AsyncClientBase.class,
         com/sun/ts/tests/ejb30/lite/async/common/AsyncJsfClientBase.class,
         com/sun/ts/tests/ejb30/lite/async/common/metadata/MetadataClientBase.class,
-        com/sun/ts/tests/ejb30/lite/async/common/metadata/MetadataJsfClientBase.java,
+        com/sun/ts/tests/ejb30/lite/async/common/metadata/MetadataJsfClientBase.class,
 	com/sun/ts/tests/ejb30/lite/async/common/metadata/BeanClassLevel2BeanBase*.class,
 	com/sun/ts/tests/ejb30/lite/async/common/metadata/BeanClassLevel0BeanBase.class,
 	com/sun/ts/tests/ejb30/lite/async/common/metadata/BeanClassLevel1BeanBase.class,
