@@ -23,6 +23,7 @@
          <source>artifacts-pom.xml</source>
          <destName>pom.xml</destName>
          <outputDirectory>artifacts</outputDirectory>
+         <filtered>true</filtered>
       </file>
       <!-- The HTML and PDF versions of the TCK userguide -->
       <file>
