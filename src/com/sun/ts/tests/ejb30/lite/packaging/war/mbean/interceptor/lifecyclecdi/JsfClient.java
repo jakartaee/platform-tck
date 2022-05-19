@@ -25,7 +25,7 @@ import java.util.List;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import jakarta.annotation.Resource;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 /**
  * This test directory contains an empty beans.xml that will be packaged in WAR
@@ -34,7 +34,7 @@ import jakarta.enterprise.context.ApplicationScoped;
  * beans.xml are in ../lifecycle.
  */
 @jakarta.inject.Named("client")
-@ApplicationScoped
+@RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
 
   private static final long serialVersionUID = 1L;

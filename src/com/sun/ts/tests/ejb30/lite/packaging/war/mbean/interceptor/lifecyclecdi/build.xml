@@ -24,7 +24,7 @@
   <target name="package">
     <ts.vehicles name="${app.name}" buildleveloverride="2"
       classes="
-  com/sun/ts/tests/ejb30/common/lite/EJBLiteJsfClientBase.class
+  com/sun/ts/tests/ejb30/common/lite/EJBLiteJsfClientBase.class,
   com/sun/ts/tests/ejb30/lite/interceptor/common/lifecycle/HistorySingletonBean.class
           ">
     </ts.vehicles>

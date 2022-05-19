@@ -29,7 +29,6 @@
                 includes="com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/BeanBase.class,
                 com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/Client.class,
                 com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/JsfClient.class,
-                com/sun/ts/tests/ejb30/lite/interceptor/common/business/JsfClientBase.class,
                 com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class"/>
         </jar>
         <jar destfile="${dist.dir}/${pkg.dir}/1.jar">
