@@ -33,7 +33,7 @@ import jakarta.ejb.NoSuchEJBException;
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends
-    com.sun.ts.tests.ejb30.lite.async.common.annotated.AnnotatedClientBase implements Serializable {
+    com.sun.ts.tests.ejb30.lite.async.common.annotated.AnnotatedJsfClientBase implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
