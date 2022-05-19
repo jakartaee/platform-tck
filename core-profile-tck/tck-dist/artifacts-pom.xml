@@ -37,40 +37,40 @@
             </goals>
             <configuration>
               <target>
-                <mkdir dir="${project.build.directory}/tcks"/>
+                <mkdir dir="downloads/tcks"/>
                 <!-- download file -->
                 <get src="https://download.eclipse.org/jakartaee/jsonp/2.1/jakarta-jsonp-tck-2.1.0.zip"
 
-                     dest="${project.build.directory}/tcks/"
+                     dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
                 <get src="https://download.eclipse.org/jakartaee/jsonb/3.0/jakarta-jsonb-tck-3.0.0.zip"
-                     dest="${project.build.directory}/tcks/"
+                     dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
                 <get src="https://download.eclipse.org/jakartaee/restful-ws/3.1/jakarta-restful-ws-tck-3.1.0.zip"
-                     dest="${project.build.directory}/tcks/"
+                     dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
                 <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-4.0.1-dist.zip"
-                     dest="${project.build.directory}/tcks/"
+                     dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <unzip src="${project.build.directory}/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="${project.build.directory}/tcks/" />
-                <unzip src="${project.build.directory}/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="${project.build.directory}/tcks/" />
-                <unzip src="${project.build.directory}/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="${project.build.directory}/tcks/rest-tck" />
-                <unzip src="${project.build.directory}/tcks/cdi-tck-4.0.1-dist.zip" dest="${project.build.directory}/tcks/" />
+                <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="downloads/tcks/rest-tck" />
+                <unzip src="downloads/tcks/cdi-tck-4.0.1-dist.zip" dest="downloads/tcks/" />
 
-                <exec executable="/bin/bash" dir="${project.build.directory}/tcks/jsonp-tck/artifacts">
-                  <arg value="${project.build.directory}/tcks/jsonp-tck/artifacts/artifact-install.sh"/>
+                <exec executable="/bin/bash" dir="downloads/tcks/jsonp-tck/artifacts">
+                  <arg value="artifact-install.sh"/>
                   <arg value="2.1.0" />
                 </exec>
-                <exec executable="/bin/bash" dir="${project.build.directory}/tcks/jsonb-tck/artifacts">
-                  <arg value="${project.build.directory}/tcks/jsonb-tck/artifacts/artifact-install.sh"/>
+                <exec executable="/bin/bash" dir="downloads/tcks/jsonb-tck/artifacts">
+                  <arg value="artifact-install.sh"/>
                   <arg value="3.0.0" />
                 </exec>
-                <exec executable="/bin/bash" dir="${project.build.directory}/tcks/cdi-tck-4.0.1/artifacts">
-                  <arg value="${project.build.directory}/tcks/cdi-tck-4.0.1/artifacts/artifact-install.sh"/>
+                <exec executable="/bin/bash" dir="downloads/tcks/cdi-tck-4.0.1/artifacts">
+                  <arg value="artifact-install.sh"/>
                   <arg value="4.0.1" />
                 </exec>
               </target>
@@ -158,7 +158,7 @@
               <artifactId>jakarta-restful-ws-tck</artifactId>
               <version>3.1.0</version>
               <packaging>jar</packaging>
-              <file>target/tcks/rest-tck/jakarta-restful-ws-tck-3.1.0.jar</file>
+              <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.0.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
