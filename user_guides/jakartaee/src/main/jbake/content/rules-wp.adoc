@@ -25,7 +25,7 @@ Appeals Process]
 * link:#CEGEHIBD[Specifications for Jakarta Platform, Enterprise Edition
 Version 10, Web Profile]
 * link:#CEGFDIEG[Libraries for Jakarta Platform, Enterprise Edition Version
-8, Web Profile]
+10, Web Profile]
 
 [[CEGEJDGE]][[certification-overview]]
 
@@ -516,7 +516,7 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 [[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-10-web-profile]]
 
 3.4 Specifications for Jakarta Platform, Enterprise Edition Version 10, Web Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Specifications for Jakarta Platform, Enterprise Edition 10, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
 site at `https://jakarta.ee/specifications/webprofile/10/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
@@ -524,7 +524,7 @@ site at `https://jakarta.ee/specifications/webprofile/10/`. You may also find in
 [[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-10-web-profile]]
 
 3.5 Libraries for Jakarta Platform, Enterprise Edition Version 10, Web Profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following location provides a list of packages that constitute the
 required class libraries for the full Java EE 10 platform:

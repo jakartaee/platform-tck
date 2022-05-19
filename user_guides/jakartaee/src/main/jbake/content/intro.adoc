@@ -131,7 +131,7 @@ Specification Process community page (https://jakarta.ee/specifications).
 [[GEUYK]][[about-jakarta-ee-10-platform-tck]]
 
 1.2 About Jakarta EE 10 Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta EE 10 Platform TCK is a portable, configurable, automated test suite for
 verifying the compliance of a Implementer's implementation of the Jakarta EE 10
@@ -188,7 +188,7 @@ following required and optional Jakarta EE 10 technologies:
 [[BHCGFHDI]][[jakarta-ee-10-web-profile-technologies-tested-with-jakarta-ee-10-platform-tck]]
 
 1.2.2 Jakarta EE 10 Web Profile Technologies Tested With Jakarta EE 10 Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta EE 10 Platform TCK test suite can also be used to test compatibility for
 the following required Jakarta EE 10 Web Profile technologies:
@@ -459,7 +459,7 @@ Linux software that meet the following software requirements:
 [[GEVCL]][[additional-jakarta-ee-10-platform-tck-requirements]]
 
 1.5 Additional Jakarta EE 10 Platform TCK Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to the instructions and requirements described in this
 document, all Jakarta EE 10 and Jakarta EE 10 Web Profile implementations must

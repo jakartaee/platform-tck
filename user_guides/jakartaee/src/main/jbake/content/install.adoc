@@ -32,7 +32,7 @@ This chapter covers the following topics:
 [[GEVGN]][[installing-the-jakarta-ee-8-compatible-implementation]]
 
 4.1 Installing the Jakarta EE 10 Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[sthref14]]
 
@@ -62,7 +62,7 @@ EE 10 CI.
 [[GEVHP]][[installing-the-jakarta-ee-10-platform-tck]]
 
 4.2 Installing the Jakarta EE 10 Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Complete the following procedure to install the Jakarta EE 10 Platform TCK on a
 system running the Solaris, Linux, or Windows operating system.

@@ -116,7 +116,7 @@ about Starting JavaTest and running tests.
 [[GEWTQ]][[configuring-a-jakarta-ee-10-server]]
 
 5.3 Configuring a Jakarta EE 10 Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section describes how to configure the Jakarta EE 10 server under test.
 You can run the TCK tests against the Jakarta EE 10 CI or your own Jakarta
@@ -182,7 +182,7 @@ These configuration scenarios are described in the following sections.
 [[GEWUI]][[configuring-the-java-ee-8-ri-as-the-vi]]
 
 5.3.2 Configuring the Jakarta EE 10 CI as the VI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To configure the Jakarta EE 10 CI as the server under test (that is, to use
 the Jakarta EE 10 CI as the VI) follow the steps listed below. In this

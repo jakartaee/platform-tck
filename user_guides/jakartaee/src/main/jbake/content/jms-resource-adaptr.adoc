@@ -57,7 +57,7 @@ ANT_HOME/bin.
 [[CJGDJCEC]][[f.2-configuring-jakarta-ee-10-platform-tck]]
 
 F.2 Configuring Jakarta EE 10 Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `ts.jte` file includes properties that must be set for testing a
 standalone Jakarta Messaging Resource Adapter using the Jakarta EE 10 CI. The Jakarta Messaging Resource
@@ -90,7 +90,7 @@ file is copied to the `JAVAEE_HOME/lib` directory.
 [[CJGFCJBA]][[f.3-configuring-the-jakarta-ee-8-CI-for-the-standalone-jakarta-messaging-resource-adapter]]
 
 F.3 Configuring a Jakarta EE 10 CI for the Standalone Jakarta Messaging Resource Adapter
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Invoke the config.vi Ant task to configure the Jakarta EE 10 CI, Eclipse GlassFish 6.1 for TCK 10
 and the standalone Jakarta Messaging Resource Adapter:
@@ -187,7 +187,7 @@ deployment descriptor XML files appropriate for your environment.
 [[CJGCDGIG]][[f.7-reconfiguring-jakarta-ee-8-CI-for-jakarta-ee-10-platform-tck-after-testing-the-standalone-jakarta-messaging-resource-adapter]]
 
 F.7 Reconfiguring Jakarta EE 10 CI for Jakarta EE 10 Platform TCK After Testing the Standalone Jakarta Messaging Resource Adapter
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After you finish testing the standalone Jakarta Messaging Resource Adapter, you need
 to reconfigure the Jakarta EE 10 CI before you can continue testing with

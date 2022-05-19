@@ -523,7 +523,7 @@ https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Dev
 [[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-10.0]]
 
 2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Specifications for Jakarta Platform, Enterprise Edition 10.0 are found on
 the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/10/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
@@ -531,7 +531,7 @@ the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.e
 [[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-10.0]]
 
 2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
 required for Jakarta EE 10.0:
