@@ -71,6 +71,7 @@
     <module>cdi-tck-suite</module>
     <module>tck</module>
     <module>jsonp-tck-ext</module>
+    <module>tck-dist</module>
   </modules>
 
   <properties>
