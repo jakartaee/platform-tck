@@ -60,7 +60,7 @@ interfaces and `Factory` classes for the porting package.
 [NOTE]
 =======================================================================
 
-You must not modify any of the CTS Release 9 TCK source code. Create your
+You must not modify any of the CTS Release 10 TCK source code. Create your
 own implementations of these interfaces and point to them in the
 appropriate section of the `ts.jte` file.
 
@@ -110,7 +110,7 @@ permitted to exit the VM (for example, by using the `System.exit` call).
 11.2 Porting Package APIs
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sections describe the API in the Jakarta EE 9.1 CTS porting
+The following sections describe the API in the Jakarta EE 10 CTS porting
 package. The implementation classes used with the Jakarta Platform,
 Enterprise Edition CI are located in the
 `<TS_HOME>/src/com/sun/ts/lib/implementation/sun/javaee` directory. You
@@ -145,7 +145,7 @@ still in the `ts.jte` file to reflect this and should not be changed:
 11.2.2 Ant-Based Deployment Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the Java-based deployment porting interfaces, Jakarta EE 9.1
+In addition to the Java-based deployment porting interfaces, Jakarta EE 10
 CTS introduces an Ant-based porting interface as well. The Java-based
 interface is still used for deployment/undeployment during test runs.
 The Ant-based interface is used when you want to only deploy/undeploy
@@ -168,14 +168,14 @@ an Ant-based deployment implementation.
 11.2.2.1 Creating Your Own Ant-based Deployment Implementation
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-The Ant-based deployment implementation for the Jakarta EE 9.1 CI is under
+The Ant-based deployment implementation for the Jakarta EE 10 CI is under
 `${ts.home}/bin/xml/impl/glassfish` directory. To create your own
 implementation, create a `deploy.xml` file under the
 `${ts.home}/bin/xml/impl/<vendor-name>` directory. Within the file,
 create and implement the -deploy and -undeploy targets.
 
 See `${ts.home}/bin/xml/impl/glassfish/deploy.xml` to see how these
-targets are implemented for the Jakarta EE 9.1 CI.
+targets are implemented for the Jakarta EE 10 CI.
 
 
 [NOTE]
@@ -183,7 +183,7 @@ targets are implemented for the Jakarta EE 9.1 CI.
 
 There is also a Java-based implementation of TSDeploymentInterface
 (`com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeployment`).
-This implementation, which leverages the Jakarta EE 9.1 CI implementation of
+This implementation, which leverages the Jakarta EE 10 CI implementation of
 the Ant-based deployment interface, calls the Ant targets
 programmatically.
 
