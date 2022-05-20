@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2013, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -60,6 +60,8 @@ $Id$
                       prefix="WEB-INF/classes"/>
           <zipfileset dir="${ts.home}/lib" includes="${provider.jar}"
                       prefix="WEB-INF/lib"/>
+          <zipfileset dir="." includes="glassfish-web.xml"
+                      prefix="WEB-INF"/>
         </servlet-elements>
         <jsp-elements>
           <zipfileset dir="${class.dir}" includes="${other.classes}"
@@ -68,6 +70,8 @@ $Id$
                       prefix="WEB-INF/classes"/>
           <zipfileset dir="${ts.home}/lib" includes="${provider.jar}"
                       prefix="WEB-INF/lib"/>
+          <zipfileset dir="." includes="glassfish-web.xml"
+                      prefix="WEB-INF"/>
         </jsp-elements>
 	<ear-elements>
 	    <zipfileset dir="${ts.home}/lib" includes="${provider.jar}" prefix="lib"/>
