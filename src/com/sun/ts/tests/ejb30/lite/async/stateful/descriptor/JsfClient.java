@@ -30,6 +30,8 @@ import com.sun.ts.tests.ejb30.lite.async.common.descriptor.TimeoutDescriptorBean
 import jakarta.ejb.EJB;
 
 @EJB(name = "timeoutDescriptorBean", beanInterface = TimeoutDescriptorBean.class, beanName = "TimeoutDescriptorBean")
+@jakarta.inject.Named("client")
+@jakarta.enterprise.context.RequestScoped
 public class JsfClient extends DescriptorJsfClientBase implements Serializable {
 
   private static final long serialVersionUID = 1L;
