@@ -74,7 +74,7 @@ public class CustomJsonbSerializationIT {
     }
 
     private static String generateKeyPair() throws Exception {
-        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
+        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
         KeyPairGenerator g = KeyPairGenerator.getInstance("EC");
         g.initialize(ecSpec, new SecureRandom());
 

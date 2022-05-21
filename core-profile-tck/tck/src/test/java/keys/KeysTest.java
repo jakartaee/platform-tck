@@ -9,7 +9,7 @@
  *
  */
 
-package ee.jakarta.tck.core.rest.jsonb.cdi;
+package keys;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,11 +29,18 @@ import java.security.spec.EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-public class TmpTest {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Validate key pair generation used by the CustomJsonbSerializationIT
+ */
+public class KeysTest {
     private static String PLAINTEXT = "Some message to verify";
 
-    public static void main(String[] args) throws Exception {
-        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
+    @Test
+    public void testKeyPairGen() throws Exception {
+        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
         KeyPairGenerator g = KeyPairGenerator.getInstance("EC");
         g.initialize(ecSpec, new SecureRandom());
 
@@ -64,7 +71,7 @@ public class TmpTest {
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
         PublicKey publicKeyCheck = keyFactory.generatePublic(publicKeySpec);
         if(!publicKeyCheck.equals(publicKey)) {
-            System.out.println("PublicKey from file does NOT match!");
+            Assertions.fail("PublicKey from file does NOT match!");
         } else {
             System.out.println("PublicKey from file matches!");
         }
@@ -73,14 +80,7 @@ public class TmpTest {
         ecdsaVerify.initVerify(publicKeyCheck);
         ecdsaVerify.update(PLAINTEXT.getBytes(StandardCharsets.UTF_8));
         boolean result = ecdsaVerify.verify(Base64.getDecoder().decode(sig));
-        System.out.printf("Veried(%s), %s\n", result, PLAINTEXT);
-
-        String respose_plaintext = PLAINTEXT + " reponse";
-        ecdsaVerify.update(respose_plaintext.getBytes(StandardCharsets.UTF_8));
-        byte[] signature2 = ecdsaVerify.sign();
-        String sig2 = Base64.getEncoder().encodeToString(signature2);
-        System.out.println(sig2);
-
+        Assertions.assertTrue(result,"Veried(%s), " + PLAINTEXT);
     }
 
     private static File[] generatePublicKeyAndPrivateKey(KeyPair keypair, String base)
