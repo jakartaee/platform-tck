@@ -28,14 +28,19 @@ public class KeysProducer {
 
     private PublicKey publicKey;
 
+    /**
+     * Load the public key from the deployment as a key.pub resource
+     * @throws Exception - on failure to read or initialize public key
+     */
     @PostConstruct
     private void loadKeys() throws Exception {
-        InputStream keyIS = getClass().getResourceAsStream("/key.pub");
-        if(keyIS == null) {
-            System.out.println("key.pub: "+getClass().getResourceAsStream("key.pub"));
-            throw new IllegalStateException("Failed to find /key.pub");
+        byte[] pubKeyData;
+        try (InputStream keyIS = getClass().getResourceAsStream("/key.pub")) {
+            if (keyIS == null) {
+                throw new IllegalStateException("Failed to find /key.pub");
+            }
+            pubKeyData = keyIS.readAllBytes();
         }
-        byte[] pubKeyData = keyIS.readAllBytes();
         String pubKeyString = new String(pubKeyData, StandardCharsets.UTF_8);
         System.out.println(pubKeyString);
         byte[] keyData = Base64.getDecoder().decode(pubKeyString);
