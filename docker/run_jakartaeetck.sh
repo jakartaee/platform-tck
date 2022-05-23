@@ -188,6 +188,7 @@ ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwo
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} set server-config.network-config.network-listeners.network-listener.admin-listener.port=5858
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Dorg.glassfish.orb.iiop.orbserverid=200
 
+
 sleep 5
 echo "Stopping RI domain"
 ${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
@@ -262,6 +263,7 @@ ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --password
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager
+${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options --add-exports=java.base/jdk.internal.vm.annotation=ALL-UNNAMED
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
 
 sleep 5
