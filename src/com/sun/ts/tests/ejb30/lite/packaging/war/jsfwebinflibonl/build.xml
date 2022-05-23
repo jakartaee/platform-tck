@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@
         <jar destfile="${dist.dir}/${pkg.dir}/0.jar">  <!--  common classes -->
             <fileset dir="${class.dir}" 
                 includes="com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/BeanBase.class,
-                com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/Client.class,
+                com/sun/ts/tests/ejb30/lite/packaging/war/jsfwebinflib/JsfClient.class,
                 com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class"/>
         </jar>
         <jar destfile="${dist.dir}/${pkg.dir}/1.jar">

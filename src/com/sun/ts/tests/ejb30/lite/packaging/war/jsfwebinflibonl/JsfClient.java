@@ -17,7 +17,7 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.packaging.war.webinflibonly;
+package com.sun.ts.tests.ejb30.lite.packaging.war.jsfwebinflibonl.webinflibonly;
 
 /**
  * See com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.Client. All ejb
