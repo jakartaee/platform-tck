@@ -19,7 +19,7 @@
 
 <project name="ejb3 lite" basedir="." default="usage">
    <import file="../../../../common/import.xml"/>
-   <property name="app.name" value="ejblite_packaging_war_webinflibonly"/>
+   <property name="app.name" value="ejblite_packaging_war_jsfwebinflibonly"/>
    <property name="app.common" value="com/sun/ts/tests/ejb30/lite/packaging/war/webinflib" />
    
     <target name="package">
