@@ -33,6 +33,9 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.OneBean;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.ThreeBean;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.TwoBean;
 
+import jakarta.annotation.Resource;
+import jakarta.transaction.UserTransaction;
+
 /**
  * See com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.Client. All ejb
  * classes are packaged under WEB-INF/lib/*.jar
