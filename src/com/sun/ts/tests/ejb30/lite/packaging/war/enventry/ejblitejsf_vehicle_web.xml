@@ -39,7 +39,7 @@
 	<env-entry-value> web.xml ${java.home} </env-entry-value>
     </env-entry>
     <env-entry>
-	<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.JsfClientt/myBooleanTrue</env-entry-name>
+	<env-entry-name>com.sun.ts.tests.ejb30.lite.packaging.war.enventry.JsfClient/myBooleanTrue</env-entry-name>
 	<env-entry-type>java.lang.Boolean</env-entry-type>
 	<env-entry-value>truE</env-entry-value>  <!-- true -->
     </env-entry>
