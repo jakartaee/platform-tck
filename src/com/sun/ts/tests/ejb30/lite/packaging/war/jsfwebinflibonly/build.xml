@@ -28,7 +28,7 @@
             <fileset dir="${class.dir}" 
                 includes="com/sun/ts/tests/ejb30/lite/packaging/war/webinflib/BeanBase.class,
                 com/sun/ts/tests/ejb30/lite/packaging/war/jsfwebinflib/JsfClient.class,
-                com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase,
+                com/sun/ts/tests/ejb30/common/lite/EJBLiteJsfClientBase.class,
                 com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class"/>
         </jar>
         <jar destfile="${dist.dir}/${pkg.dir}/1.jar">
