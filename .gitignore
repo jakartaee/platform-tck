@@ -21,3 +21,4 @@ target/
 *.iml
 .project
 .idea
+/glassfish-runner/batch-tck/apitests/test.properties
