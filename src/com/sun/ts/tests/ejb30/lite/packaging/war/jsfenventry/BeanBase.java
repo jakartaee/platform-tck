@@ -35,28 +35,28 @@ abstract public class BeanBase extends ComponentBase {
   @Resource
   private EJBContext ejbContext;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myBooleanTrue", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myBooleanTrue", description = "declared in web.xml")
   private boolean myBooleanTrueFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myBooleanFalse")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myBooleanFalse")
   private boolean myBooleanFalseFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanTrue", description = "declared in ejb-jar.xml#OneBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue", description = "declared in ejb-jar.xml#OneBean")
   private boolean myBooleanTrue;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanFalse")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanFalse")
   private boolean myBooleanFalse;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myBooleanTrue", description = "declared in ejb-jar.xml#TwoBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myBooleanTrue", description = "declared in ejb-jar.xml#TwoBean")
   private boolean myBooleanTrueFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myBooleanFalse")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myBooleanFalse")
   private boolean myBooleanFalseFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myBooleanTrue", description = "declared in ejb-jar.xml#ThreeBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myBooleanTrue", description = "declared in ejb-jar.xml#ThreeBean")
   private boolean myBooleanTrueFromThree;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myBooleanFalse")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myBooleanFalse")
   private boolean myBooleanFalseFromThree;
 
   @Resource(lookup = "java:module/ModuleName")

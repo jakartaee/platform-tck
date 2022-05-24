@@ -30,16 +30,16 @@ import jakarta.interceptor.Interceptors;
 @Interceptors({ Interceptor1.class, Interceptor2.class })
 public class TwoBean extends BeanBase {
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myShort", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myShort", description = "declared in web.xml")
   private short myShortFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myLong")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myLong")
   private long myLongFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myShort", description = "declared in ejb-jar.xml#OneBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myShort", description = "declared in ejb-jar.xml#OneBean")
   private short myShortFromOneBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myLong")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myLong")
   private long myLongFromOneBean;
 
   @Resource(description = "declared in ejb-jar.xml#TwoBean")
@@ -48,16 +48,16 @@ public class TwoBean extends BeanBase {
   @Resource(description = "declared in ejb-jar.xml#TwoBean")
   private long myLong;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myShort", description = "declared in ejb-jar.xml#ThreeBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myShort", description = "declared in ejb-jar.xml#ThreeBean")
   private short myShortFromThreeBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myLong")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myLong")
   private long myLongFromThreeBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myBooleanTrue2")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue2")
   private boolean myBooleanTrue2FromOneBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myBooleanTrue2")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myBooleanTrue2")
   private boolean myBooleanTrue2FromWebXml;
 
   @SuppressWarnings("unused")

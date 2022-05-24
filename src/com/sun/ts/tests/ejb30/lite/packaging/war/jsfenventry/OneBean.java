@@ -33,10 +33,10 @@ import jakarta.interceptor.Interceptors;
 @Interceptors({ Interceptor1.class, Interceptor2.class })
 public class OneBean extends BeanBase {
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myByte", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myByte", description = "declared in web.xml")
   private byte myByteFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myInt")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myInt")
   private int myIntFromWebXml;
 
   @Resource(description = "declared in ejb-jar.xml#OneBean")
@@ -45,16 +45,16 @@ public class OneBean extends BeanBase {
   @Resource(description = "declared in ejb-jar.xml#OneBean")
   private int myInt;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myByte", description = "declared in ejb-jar.xml#TwoBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myByte", description = "declared in ejb-jar.xml#TwoBean")
   private byte myByteFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myInt")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myInt")
   private int myIntFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myByte", description = "declared in ejb-jar.xml#ThreeBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myByte", description = "declared in ejb-jar.xml#ThreeBean")
   private byte myByteFromThree;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myInt")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myInt")
   private int myIntFromThree;
 
   // injected in ejb-jar.xml
