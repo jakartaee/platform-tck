@@ -16,22 +16,15 @@
 		<property name="deploymentExportPath">target/</property>
 	</engine>
 	
-	<container qualifier="glassfish" default="true">
+	  <container qualifier="glassfish-mgd" default="true">
 		<configuration>
 			<!-- Each variable used is set in surefire config in running pom.xml -->
-			<property name="domain">${domain}</property>
-			<property name="adminHost">${adminHost}</property>
-			<property name="adminPort">${adminPort}</property>
-			<property name="adminUser">${adminUser}</property>
-			<property name="adminPassword">${adminPassword}</property>
-			<property name="glassFishHome">${GLASSFISH_HOME}</property>
+			<property name="adminHost">localhost</property>
+			<property name="adminPort">4848</property>
+			<property name="adminUser">admin</property>
+			<property name="adminPassword"></property>
+			<property name="glassFishHome">./target/glassfish7</property>
 			<property name="allowConnectingToRunningServer">true</property>
-			<property name="serverName">${tck_server}</property>
-			<property name="hostName">${tck_hostname}</property>
-			<property name="username">${tck_username}</property>
-			<property name="password">${tck_password}</property>
-			<property name="httpPort">${tck_port}</property>
-			<property name="httpsPort">${tck_port_secure}</property>
 			<!-- Add additional properties for your container impl -->
 		</configuration>
 	</container>

@@ -20,7 +20,7 @@
     <groupId>jakarta</groupId>
     <artifactId>glassfish-rest-tck</artifactId>
     <version>3.1.0</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
     <name>Jakarta REST TCK run on glassfish</name>
     <description>This verifies the compliance of Eclipse Glassfish using Jakarta REST standalone TCK</description>
@@ -348,9 +348,9 @@
                                 <authuser>javajoe</authuser>
                                 <authpassword>javajoe</authpassword>
                                 <porting.ts.url.class.1>ee.jakarta.tck.ws.rs.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
-                                <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
+                                <jimage.dir>${project.build.directory}/jdk-bundle</jimage.dir>
                                 <optional.tech.packages.to.ignore>jakarta.xml.bind</optional.tech.packages.to.ignore>
-                                <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.ws.rs-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.xml.bind-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</signature.sigTestClasspath>
+                                <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.ws.rs-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.xml.bind-api.jar:${project.build.directory}/jdk-bundle/java.base:${project.build.directory}/jdk-bundle/java.rmi:${project.build.directory}/jdk-bundle/java.sql:${project.build.directory}/jdk-bundle/java.naming</signature.sigTestClasspath>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
