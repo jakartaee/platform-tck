@@ -19,7 +19,7 @@
 
 <project name="ejb3 lite" basedir="." default="usage">
    <import file="../../../../common/import.xml"/>
-   <property name="app.name" value="ejblite_packaging_war_enventry"/>
+   <property name="app.name" value="ejblite_packaging_war_jsfenventry"/>
    
     <target name="package">
         <ts.vehicles name="${app.name}" buildleveloverride="2" classes="
