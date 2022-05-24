@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -87,7 +87,7 @@ public class JavaEESigTest extends SigTestEE {
       + " cdi di beanval persistence jaxb saaj jaxws connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
+  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
