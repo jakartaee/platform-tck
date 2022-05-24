@@ -17,11 +17,11 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
+package com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Serializable;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
