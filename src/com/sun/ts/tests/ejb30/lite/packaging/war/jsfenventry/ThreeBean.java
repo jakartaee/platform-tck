@@ -30,10 +30,10 @@ import jakarta.interceptor.Interceptors;
 @Interceptors({ Interceptor1.class, Interceptor2.class })
 public class ThreeBean extends BeanBase {
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myFloat", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myFloat", description = "declared in web.xml")
   private float myFloatFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myDouble")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myDouble")
   private double myDoubleFromWebXml;
 
   @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myFloat", description = "declared in ejb-jar.xml#OneBean")

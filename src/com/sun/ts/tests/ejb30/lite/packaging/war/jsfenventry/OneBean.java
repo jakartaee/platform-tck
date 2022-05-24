@@ -33,10 +33,10 @@ import jakarta.interceptor.Interceptors;
 @Interceptors({ Interceptor1.class, Interceptor2.class })
 public class OneBean extends BeanBase {
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myByte", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myByte", description = "declared in web.xml")
   private byte myByteFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myInt")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myInt")
   private int myIntFromWebXml;
 
   @Resource(description = "declared in ejb-jar.xml#OneBean")

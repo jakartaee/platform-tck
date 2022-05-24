@@ -35,10 +35,10 @@ abstract public class BeanBase extends ComponentBase {
   @Resource
   private EJBContext ejbContext;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myBooleanTrue", description = "declared in web.xml")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanTrue", description = "declared in web.xml")
   private boolean myBooleanTrueFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.Client/myBooleanFalse")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanFalse")
   private boolean myBooleanFalseFromWebXml;
 
   @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue", description = "declared in ejb-jar.xml#OneBean")
