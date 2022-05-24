@@ -68,33 +68,6 @@ public class JsfClient
       beans.add(three);
     }
 
-    // related issue 8297
-    /*
-     * @testName: circularInjection
-     *
-     * @test_Strategy: package a stateless bean class in WEB-INF/lib/1.jar, and a
-     * singleton bean class in WEB-INF/lib/2.jar, and a stateful in
-     * WEB-INF/classes. Circular injections.
-     */
-    public void circularInjection() {
-      for (BeanBase b : beans) {
-        assertEquals(b.getInjectionRecords(), true, b.getInjectionStatus());
-      }
-    }
-
-    /*
-     * @testName: sameClassLoader
-     *
-     * @test_Strategy: EJBs packaged in a .war have the same class loading
-     * requirements as other non-EJB classes packaged in a .war.
-     */
-    public void sameClassLoader() {
-      int expected = System.identityHashCode(getClass().getClassLoader());
-      for (BeanBase b : beans) {
-        assertEquals(null, expected, b.getClassLoaderId());
-      }
-    }
-
     /*
      * @testName: clientToBeanClassLookup
      *
@@ -160,26 +133,4 @@ public class JsfClient
       assertEquals(null, two, b2);
       assertEquals(null, three, b3);
     }
-    /*
-   * @testName: clientToBeanClassLookup
-   * 
-   * @test_Strategy: client looking up ejb-ref injections in bean class. It must
-   * succeed since client and ejb packaged together share the same naming. Not
-   * for standalone client.
-   */
-
-  /*
-   * @testName: beanClassToClientLookup
-   * 
-   * @test_Strategy: bean looking up resource injected into client. It must
-   * succeed since client and ejb packaged together share the same naming. Not
-   * for standalone client.
-   */
-
-  /*
-   * @testName: crossEJBLookup
-   * 
-   * @test_Strategy: EJBContext looking up ejb-ref injected into other beans. It
-   * must succeed since ejbs packaged together share the same naming context.
-   */
 }
