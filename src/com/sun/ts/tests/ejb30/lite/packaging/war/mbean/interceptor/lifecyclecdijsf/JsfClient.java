@@ -17,7 +17,7 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdi;
+package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdijsf;
 
 import java.io.Serializable;
 import java.util.List;
@@ -68,7 +68,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
   }
 
   protected void checkPostConstructRecords(OverrideBeanBase b,
-      String[] expectedPostConstruct) {
+                                           String[] expectedPostConstruct) {
     List<String> actualPostConstruct = b.getPostConstructRecords();
     appendReason(
         Helper.compareResultList(expectedPostConstruct, actualPostConstruct));
