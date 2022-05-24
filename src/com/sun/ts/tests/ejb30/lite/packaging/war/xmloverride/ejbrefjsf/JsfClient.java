@@ -17,7 +17,7 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref;
+package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbrefjsf;
 
 import java.io.Serializable;
 

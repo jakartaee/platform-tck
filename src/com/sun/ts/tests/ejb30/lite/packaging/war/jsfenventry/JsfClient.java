@@ -17,11 +17,11 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.packaging.war.enventry;
+package com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Serializable;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
@@ -56,22 +56,22 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
   @Resource(name = "myChar")
   private char myChar;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myString", description = "declared in ejb-jar.xml#OneBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myString", description = "declared in ejb-jar.xml#OneBean")
   private String myStringFromOne;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myChar")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myChar")
   private char myCharFromOne;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myString", description = "declared in ejb-jar.xml#TwoBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myString", description = "declared in ejb-jar.xml#TwoBean")
   private String myStringFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myChar")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myChar")
   private char myCharFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myString", description = "declared in ejb-jar.xml#ThreeBean")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myString", description = "declared in ejb-jar.xml#ThreeBean")
   private String myStringFromThree;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myChar")
+  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myChar")
   private char myCharFromThree;
 
   @Resource(lookup = "java:module/ModuleName")
