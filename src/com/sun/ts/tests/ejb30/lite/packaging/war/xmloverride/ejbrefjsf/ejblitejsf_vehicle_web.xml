@@ -33,11 +33,11 @@
     </servlet-mapping>
     <ejb-local-ref>
         <description>ejb-local-ref in web.xml</description>
-        <ejb-ref-name>com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref.Client/overrideBean</ejb-ref-name>
+        <ejb-ref-name>com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbrefjsf.JsfClient/overrideBean</ejb-ref-name>
         <local>com.sun.ts.tests.ejb30.common.lite.NumberIF</local>
         <ejb-link>XmlOverrideBean</ejb-link>
         <injection-target>
-          <injection-target-class>com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref.Client</injection-target-class>
+          <injection-target-class>com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbrefjsf.JsfClient</injection-target-class>
           <injection-target-name>overrideBean</injection-target-name>
         </injection-target>
       </ejb-local-ref>

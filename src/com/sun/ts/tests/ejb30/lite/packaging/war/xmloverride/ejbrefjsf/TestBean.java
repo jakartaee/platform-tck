@@ -28,7 +28,7 @@ public class TestBean {
 
   public int getNumber() {
     NumberIF overrideBean = (NumberIF) ServiceLocator.lookupNoTry(
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref.Client/overrideBean");
+        "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbrefjsf.JsfClient/overrideBean");
     return overrideBean.getNumber();
   }
 }
