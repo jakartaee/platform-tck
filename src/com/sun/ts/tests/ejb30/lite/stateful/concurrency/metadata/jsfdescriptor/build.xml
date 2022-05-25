@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
 
 <project name="ejb3 lite" basedir="." default="usage">
    <import file="../../../../../common/import.xml"/>
-   <property name="app.name" value="ejblite_stateful_concurrency_metadata_descriptor"/>
+   <property name="app.name" value="ejblite_stateful_concurrency_metadata_jsfdescriptor"/>
    <property name="app.common" value="com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common"/>
    <property name="app.common.2" value="com/sun/ts/tests/ejb30/lite/stateful/concurrency/common"/>
    
@@ -28,9 +28,8 @@
 com/sun/ts/tests/ejb30/common/helper/ServiceLocator.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/Pinger.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyIF.class,
-com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyClientBase.class,
-
-com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/ClientBase.class,
+com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyJsfClientBase.class,
+com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/JsfClientBase.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/metadata/common/StatefulConcurrencyBeanBase.class
         ">
         </ts.vehicles>
