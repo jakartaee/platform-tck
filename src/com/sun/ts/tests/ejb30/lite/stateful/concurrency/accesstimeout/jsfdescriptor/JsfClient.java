@@ -17,7 +17,9 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.descriptor;
+package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.jsfdescriptor;
+
+import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,8 +28,6 @@ import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.Acc
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
-
-import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 
 @EJBs({
     @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class) })
