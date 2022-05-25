@@ -23,8 +23,39 @@
 	<import file="../../../bin/xml/ts.top.import.xml" optional="true"/>
 
 	<property name="all.test.dir" value="
-                  com/sun/ts/tests/ejb30/lite/stateful/concurrency/accesstimeout
-                  "/>
+                  com/sun/ts/tests/jaxp,
+                  com/sun/ts/tests/jacc,
+                  com/sun/ts/tests/jaspic,
+                  com/sun/ts/tests/signaturetest/javaee,
+                  com/sun/ts/tests/integration,
+                  com/sun/ts/tests/el,
+                  com/sun/ts/tests/ejb,
+                  com/sun/ts/tests/ejb30,
+                  com/sun/ts/tests/ejb32,
+                  com/sun/ts/tests/jpa,
+                  com/sun/ts/tests/jdbc,
+                  com/sun/ts/tests/connector,
+                  com/sun/ts/tests/xa,
+                  com/sun/ts/tests/jaxrs,
+                  com/sun/ts/tests/servlet,
+                  com/sun/ts/tests/javaee,
+                  com/sun/ts/tests/jsf,
+                  com/sun/ts/tests/jsp,
+                  com/sun/ts/tests/jstl,
+                  com/sun/ts/tests/appclient,
+                  com/sun/ts/tests/javamail,
+                  com/sun/ts/tests/assembly,
+                  com/sun/ts/tests/jta,
+                  com/sun/ts/tests/samples,
+                  com/sun/ts/tests/jms,
+                  com/sun/ts/tests/jsonp,
+                  com/sun/ts/tests/jsonb,
+                  com/sun/ts/tests/jaxws/common,
+                  com/sun/ts/tests/jaxws/wsi/constants,
+                  com/sun/ts/tests/webservices12,
+                  com/sun/ts/tests/webservices13,
+                  com/sun/ts/tests/websocket,
+                  com/sun/ts/tests/securityapi"/>
 
 	<!--
           These jaspic dirs involve tests that are not required for Java EE 6.
