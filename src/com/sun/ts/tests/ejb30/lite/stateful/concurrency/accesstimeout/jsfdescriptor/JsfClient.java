@@ -34,6 +34,8 @@ import java.util.List;
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyJsfClientBase;
+
+import jakarta.ejb.ConcurrentAccessTimeoutException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
