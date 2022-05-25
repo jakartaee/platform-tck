@@ -31,7 +31,7 @@ com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyIF.cl
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/common/StatefulConcurrencyClientBase.class,
 
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/accesstimeout/common/AccessTimeoutIF.class,
-com/sun/ts/tests/ejb30/lite/stateful/concurrency/accesstimeout/common/ClientBase.class,
+com/sun/ts/tests/ejb30/lite/stateful/concurrency/accesstimeout/common/ClientBase*.class,
 com/sun/ts/tests/ejb30/lite/stateful/concurrency/accesstimeout/common/PlainAccessTimeoutBeanBase.class
         ">
         </ts.vehicles>
