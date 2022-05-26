@@ -24,7 +24,7 @@ grant codeBase "file:${com.sun.enterprise.home}/lib/system/-" {
     permission java.security.AllPermission;
 };
 
-grant codeBase "file:${com.sun.enterprise.home}/lib/javaee.jar" {
+grant codeBase "file:${com.sun.enterprise.home}/lib/jakartaee.jar" {
     permission java.security.AllPermission;
 };
 
@@ -50,7 +50,7 @@ grant {
     // "standard" properies that can be read by anyone
     permission java.util.PropertyPermission "*", "read";
 
-    //Required by JAXP tests 
+    //Required by JAXP tests
     //jaxp/extension/com/saxhelpers/ParserFactoryTest.java#negative*
     permission java.util.PropertyPermission "org.xml.sax.parser", "write";
 
