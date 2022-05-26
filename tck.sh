@@ -11,3 +11,6 @@ echo "Build will take around 45 minutes..."
 cd "${WORKSPACE}"
 "${WORKSPACE}/docker/build_jakartaeetck.sh" $1 $2 $3 $4 $5
 
+echo "Curent timestamp: $(date --iso-8601=seconds)"
+echo "Build was successful!"
+
