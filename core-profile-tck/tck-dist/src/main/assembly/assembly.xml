@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) "2022" Red Hat and others
+  ~
+  ~ This program and the accompanying materials are made available under the
+  ~ Apache Software License 2.0 which is available at:
+  ~ https://www.apache.org/licenses/LICENSE-2.0.
+  ~
+  ~ SPDX-License-Identifier: Apache-2.0
+  ~
+  -->
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
    <id>dist</id>
@@ -46,6 +56,8 @@
          </includes>
          <excludes>
             <exclude>**/target/**</exclude>
+            <!-- So as not to confuse the tck dist license type -->
+            <exclude>wf-core-tck-runner/LICENSE</exclude>
          </excludes>
       </fileSet>
    </fileSets>

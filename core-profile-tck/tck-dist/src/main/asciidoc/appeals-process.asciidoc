@@ -11,7 +11,7 @@ link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK 
 
 Any test case (e.g., test class, +@Test+ method), test case configuration (e.g., beans.xml), test beans, annotations and other resources may be challenged by an appeal.
 
-What is generally not challengeable are the assertions made by the specification. The specification document is controlled by a separate process and challenges to it should be handled by the Maintenance Lead or by sending an e-mail to mailto:jakartaee-platform-dev@eclipse.org[Platform Dev List]
+What is generally not challengeable are the assertions made by the specification. The specification document is controlled by a separate process and challenges to it should be handled by sending an e-mail to mailto:jakartaee-platform-dev@eclipse.org[Platform Dev List]
 
 === How these challenges are submitted?
 

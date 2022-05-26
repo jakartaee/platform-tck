@@ -10,19 +10,19 @@ You can obtain a release of the Jakarta Core Profile TCK project from the link:$
 
 You can also download the current source code from link:$$https://github.com/eclipse-ee4j/jakartaee-tck/core-profile-tck$$[GitHub repository].
 
-Executing the TCK requires a Jakarta EE 10 or better runtime environment (i.e., application server), to which the test artifacts are deployed and the individual tests are invoked. The TCK does not depend on any particular Jakarta EE implementation.
+Executing the TCK requires a Jakarta EE 10 or newer runtime environment (i.e., application server), to which the test artifacts are deployed and the individual tests are invoked. The TCK does not depend on any particular Jakarta EE implementation.
 
-Naturally, to execute Java programs, you must have a Java SE runtime environment. The TCK requires Java SE 11 or better, which you can obtain from the link:$$http://www.oracle.com/technetwork/java/index.html$$[Java Software] website.
+Naturally, to execute Java programs, you must have a Java SE runtime environment. The TCK requires Java SE 11 or newer, which you can obtain from the link:$$http://www.oracle.com/technetwork/java/index.html$$[Java Software] website.
 
 === The TCK Environment
 
 The TCK requires the following two Java runtime environments:
 
-* Java SE 11 or better
+* Java SE 11 or newer
 
-* Maven 3.6 or better
+* Maven 3.6 or newer
 
-* Jakarta EE 10 or better (e.g., WildFly 27.x, GlassFish V7, OpenLiberty X)
+* Jakarta EE 10 or newer (e.g., WildFly 27.x, GlassFish V7, OpenLiberty X)
 
 You should refer to vendor instructions for how to install the runtime environment.
 

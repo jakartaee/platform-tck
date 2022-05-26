@@ -1,0 +1,5 @@
+= Jakarta Core Profile TCK Release notes
+
+== Version 10.0.0
+
+Version 10.0.0 is the initial version of the Jakarta Core Profile TCK
