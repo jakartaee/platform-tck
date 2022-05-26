@@ -21,7 +21,6 @@
         <arquillian.version>1.7.0.Alpha10</arquillian.version>
         <testng.version>6.14.3</testng.version>
         <sigtest.version>1.6</sigtest.version>
-        <derby.version>10.15.2.0</derby.version>
         <maven.dep.plugin.version>3.3.0</maven.dep.plugin.version>
         <maven.comp.plugin.version>3.10.1</maven.comp.plugin.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
@@ -32,7 +31,7 @@
         <!--  Output directory  -->
         <targetDirectory>${project.basedir}/target</targetDirectory>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-        <glassfish.container.version>7.0.0-M4</glassfish.container.version>
+        <glassfish.container.version>7.0.0-M5</glassfish.container.version>
     </properties>
 
     <!-- TODO: Temporarily enable snapshot repository -->
@@ -157,6 +156,25 @@
         
     </dependencies>
     <!--  end::testClientDep[]  -->
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
+        </profile>
+    </profiles>
+    
     <build>
         <directory>${targetDirectory}</directory>
         <defaultGoal>clean test</defaultGoal>
@@ -176,7 +194,7 @@
                                 <artifactItems>
                                     <artifactItem>
                                         <groupId>org.glassfish.main.distributions</groupId>
-                                        <artifactId>glassfish</artifactId>
+                                        <artifactId>${glassfish-artifact-id}</artifactId>
                                         <version>${glassfish.container.version}</version>
                                         <type>zip</type>
                                         <overWrite>false</overWrite>

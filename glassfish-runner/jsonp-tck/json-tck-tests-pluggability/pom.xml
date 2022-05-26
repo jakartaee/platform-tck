@@ -9,29 +9,14 @@
   <artifactId>json-tck-tests-pluggablity</artifactId>
   <version>2.1.0</version>
 
-  <properties>
-    <json.tck.version>2.1.0</json.tck.version>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-    <glassfish.container.version>7.0.0-M4</glassfish.container.version>
-    <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-  </properties>
+  <parent>
+        <groupId>org.glassfish</groupId>
+        <artifactId>json-tck</artifactId>
+        <version>2.1.0</version>
+        <relativePath>../pom.xml</relativePath>
+  </parent>
 
-  <repositories>
-      <repository>
-          <id>jakarta-snapshots</id>
-          <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
-      </repository>
-      <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-      </repository>
-      <repository>
-          <id>jboss</id>
-          <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
-      </repository>
-  </repositories>
-
+  
   <dependencies>
       <dependency>
         <groupId>jakarta.json</groupId>
@@ -58,6 +43,25 @@
       </dependency> 
   </dependencies>
 
+  <profiles>
+    <profile>
+        <id>full</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+        </properties>
+    </profile>
+    <profile>
+        <id>web</id>
+        <properties>
+            <glassfish-artifact-id>web</glassfish-artifact-id>
+        </properties>
+    </profile>
+  </profiles>
+    
+
   <build>
     <plugins>
       <plugin>
@@ -75,7 +79,7 @@
                     <artifactItems>
                         <artifactItem>
                             <groupId>org.glassfish.main.distributions</groupId>
-                            <artifactId>glassfish</artifactId>
+                            <artifactId>${glassfish-artifact-id}</artifactId>
                             <version>${glassfish.container.version}</version>
                             <type>zip</type>
                             <overWrite>false</overWrite>
@@ -88,7 +92,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>3.0.0-M4</version>
         <executions>
           <execution>
             <id>tests-pluggability</id>
@@ -96,21 +100,22 @@
              <goal>test</goal>
             </goals>
             <configuration>
-            <trimStackTrace>false</trimStackTrace>
-            <failIfNoTests>true</failIfNoTests>
-            <testFailureIgnore>true</testFailureIgnore> 
-              <dependenciesToScan>jakarta.json:jakarta.json-tck-tests-pluggability</dependenciesToScan>
-              <additionalClasspathElements>
-                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json-api.jar</additionalClasspathElement>
-                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-              </additionalClasspathElements>
-            </configuration>
+              <reuseForks>false</reuseForks>
+              <trimStackTrace>false</trimStackTrace>
+              <failIfNoTests>true</failIfNoTests>
+              <testFailureIgnore>true</testFailureIgnore> 
+                <dependenciesToScan>jakarta.json:jakarta.json-tck-tests-pluggability</dependenciesToScan>
+                <additionalClasspathElements>
+                  <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.json-api.jar</additionalClasspathElement>
+                  <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                </additionalClasspathElements>
+              </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>3.0.0-M4</version>
         <executions>
               <execution>
                 <id>post-unit-test</id>

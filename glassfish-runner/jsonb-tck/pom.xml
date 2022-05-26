@@ -9,28 +9,12 @@
   <artifactId>glassfish.jsonb-tck</artifactId>
   <version>3.0.0</version>
 
-  <properties>
-    <jsonb.tck.version>3.0.0</jsonb.tck.version>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-    <glassfish.container.version>7.0.0-M4</glassfish.container.version>
-    <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-  </properties>
-
-  <repositories>
-      <repository>
-          <id>jakarta-snapshots</id>
-          <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
-      </repository>
-      <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-      </repository>
-      <repository>
-          <id>jboss</id>
-          <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
-      </repository>
-  </repositories>
+  <parent>
+    <groupId>org.glassfish</groupId>
+    <artifactId>standalone-tck</artifactId>
+    <version>10.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
 
   <dependencies>
       <dependency>
@@ -55,7 +39,7 @@
         <version>1.6</version>
       </dependency>
   </dependencies>
-
+  
   <build>
     <plugins>
       <plugin>
@@ -73,7 +57,7 @@
                     <artifactItems>
                         <artifactItem>
                             <groupId>org.glassfish.main.distributions</groupId>
-                            <artifactId>glassfish</artifactId>
+                            <artifactId>${glassfish-artifact-id}</artifactId>
                             <version>${glassfish.container.version}</version>
                             <type>zip</type>
                             <overWrite>false</overWrite>
@@ -88,6 +72,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>
         <configuration>
+          <argLine>-Djava.locale.providers=COMPAT</argLine>
           <trimStackTrace>false</trimStackTrace>
           <failIfNoTests>true</failIfNoTests>
             <dependenciesToScan>jakarta.json.bind:jakarta.json.bind-tck</dependenciesToScan>
