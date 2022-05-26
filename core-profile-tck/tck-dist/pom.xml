@@ -142,6 +142,7 @@
                      <descriptors>
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                      </descriptors>
+                     <finalName>jakarta-core-profile-tck-${project.version}</finalName>
                      <appendAssemblyId>false</appendAssemblyId>
                   </configuration>
                </execution>
