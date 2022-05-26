@@ -57,7 +57,7 @@
          <excludes>
             <exclude>**/target/**</exclude>
             <!-- So as not to confuse the tck dist license type -->
-            <exclude>LICENSE</exclude>
+            <exclude>wf-core-tck-runner/LICENSE</exclude>
          </excludes>
       </fileSet>
    </fileSets>
