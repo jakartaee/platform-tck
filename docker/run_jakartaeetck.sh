@@ -353,7 +353,7 @@ fi
 
 sed -i.bak 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
 sed -i.bak 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
-sed -i.bak 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=180/g' ts.jte
+sed -i.bak 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=480/g' ts.jte
 sed -i.bak 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
 sed -i.bak 's/^impl\.deploy\.timeout\.multiplier=240/impl\.deploy\.timeout\.multiplier=480/g' ts.jte
 
