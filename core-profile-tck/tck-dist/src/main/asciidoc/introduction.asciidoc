@@ -77,7 +77,7 @@ intended for any other purpose.
                      operating systems and device drivers.
 |Conformance Tests   +|
                      All tests in the Test Suite for an indicated Technology Under Test, as
-                     distributed by the Maintenance Lead, excluding those tests on the
+                     distributed by the Platform Group, excluding those tests on the
                      Exclude List for the Technology Under Test.
 |Documented   +|
                      Made technically accessible and made known to users, typically by
@@ -87,14 +87,14 @@ intended for any other purpose.
                      A Version of the Java Platform. Editions include Java Platform
                      Standard Edition and Jakarta Platform Enterprise Edition.
 |Exclude List   +|
-                     The most current list of tests, distributed by the Maintenance Lead or TCK Lead,
+                     The most current list of tests, distributed by the Platform Group or TCK Lead,
                      that are not required to be passed to certify conformance. The
-                     Maintenance Lead or TCK Lead may add to the Exclude List for that Test Suite as
+                     Platform Group or TCK Lead may add to the Exclude List for that Test Suite as
                      needed at any time, in which case the updated Exclude List supplants
                      any previous Exclude Lists for that Test Suite.
 |Libraries   +|
                      The class libraries for the Technology Under Test.
-                     The Libraries for Jakarta Contexts and Dependency Injection Version {revnumver} are listed in <<libraries>>.
+                     The Libraries for Jakarta Contexts and Dependency Injection Version 4.0 are listed in libraries.
 |Location Resource   +|
                      A location of classes or native libraries that are components of the test
                      tools or tests, such that these classes or libraries may be required to
@@ -140,7 +140,7 @@ intended for any other purpose.
                      Specifications and the compatible implementation for Jakarta Contexts and Dependency Injection Version 3.0.
 |Test Suite   +|
                      The requirements, tests, and testing tools distributed by the
-                     Maintenance Lead or TCK Lead as applicable to a given Version of the Technology.
+                     Platform Group or TCK Lead as applicable to a given Version of the Technology.
 |Version  +|
                      A release of the Technology, as produced through the Jakarta EE Specification Process.
 |===============
@@ -184,10 +184,10 @@ binary Conformance Tests supplied as part of the Test Suite must be used to cert
 
 *CORE_PROFILE-10* In addition to the instructions and requirements the Core Profile TCK, each Product must pass the following standalone TCKs for the following technologies:
 
+* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
 * Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
 * Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
 * Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
-* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
 * Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/3.1/[Rest 3.1]
 
 === About the Jakarta Core Profile TCK
