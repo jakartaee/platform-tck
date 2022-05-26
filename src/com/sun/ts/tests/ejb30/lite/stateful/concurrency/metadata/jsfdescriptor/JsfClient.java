@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.descriptor;
+package com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.jsfdescriptor;
 
 import java.io.Serializable;
 
