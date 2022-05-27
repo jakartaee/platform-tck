@@ -5,7 +5,7 @@ next=TCKpreface.html
 prev=toc.html
 ~~~~~~
 Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
-===========================================================================================================
+=========================================================================================================
 
 [[oracle]] 
 Eclipse Foundation™
