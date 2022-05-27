@@ -466,16 +466,19 @@ document, all Jakarta EE 10 and Jakarta EE 10 Web Profile implementations must
 also pass the standalone TCKs for the following technologies:
 
 * Jakarta Batch 2.1
-* Jakarta Contexts and Dependency Injection 3.0
+* Jakarta Contexts and Dependency Injection 4.0
 * Jakarta Dependency Injection 2.0
 * Jakarta Bean Validation 3.0
 * Jakarta XML Binding 3.0
+* Jakarta JSON Binding 3.0
+* Jakarta JSON Processing 2.1
+* Jakarta RESTful Web Services 3.1
 
 For more information about the Jakarta Batch technology,
 see the specification at `https://jakarta.ee/specifications/batch/2.1/`
 
 For more information about the Jakarta Contexts and Dependency Injection technology, 
-see the specification at `https://jakarta.ee/specifications/cdi/3.0/`
+see the specification at `https://jakarta.ee/specifications/cdi/4.0/`
 
 For more information about the Jakarta Dependency Injection,
 see the specification at `https://jakarta.ee/specifications/dependency-injection/2.0/` 
@@ -485,6 +488,12 @@ specification at `https://jakarta.ee/specifications/bean-validation/3.0/`
 
 For more information about the Jakarta XML Binding technology, see the
 specification at `https://jakarta.ee/specifications/xml-binding/3.0/`
+
+For more information about the Jakarta JSON Binding technology, see the specification at `https://jakarta.ee/specifications/jsonb/3.0/`
+
+For more information about the Jakarta JSON Processing technology, see the specification at `https://jakarta.ee/specifications/jsonp/2.1/`
+
+For more information about the Jakarta RESTful Web Services technology, see the specification at `https://jakarta.ee/specifications/restful-ws/3.1/`
 
 [[GBFQW]][[getting-started-with-the-jakarta-ee-10-platform-tck-test-suite]]
 
