@@ -23,9 +23,9 @@
 # For updates to this file when the Connector spec gets updated,
 # as a good rule of thumb, we pull out any packages that end
 # up as being included with the J2SE. So if any of the packages
-# listed below ends up being incorporated into J2SE in the future, 
-# that will be a hint that those packages can likely be removed 
-# from this sig-test.map file. 
+# listed below ends up being incorporated into J2SE in the future,
+# that will be a hint that those packages can likely be removed
+# from this sig-test.map file.
 #
 # Note: Recording the signatures of a package includes all
 #       child packages.  The signature test tool looks for
@@ -45,7 +45,7 @@
 # Command used to record the Connector signatures in reflective mode
 #
 # $ANT_HOME/bin/ant -f record-build.xml \
-#   -Dsig.source=/appserver8/lib/javaee.jar:/java/lib/rt.jar \
+#   -Dsig.source=$JAVAEE_HOME/lib/jakartaee.jar:/java/lib/rt.jar \
 #   -Dmap.file=/connector-tck/bin/sig-test.map \
 #   -Drecorder.type=sigtest  \
 #   record.sig.batch
