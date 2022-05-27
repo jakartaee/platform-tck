@@ -414,6 +414,7 @@ EE21 Compliance testing for Jakarta EE 10.0 consists of running Jakarta EE 10.0
 TCK and the following Technology Compatibility Kits (TCKs):
 
 * Jakarta Authentication 3.0
+* Jakarta Batch 2.1
 * Jakarta Bean Validation 3.0
 * Jakarta Concurrency 3.0
 * Jakarta Contexts and Dependency Injection 4.0
