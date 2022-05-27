@@ -21,7 +21,6 @@ target/
 .idea
 *.iml
 .project
-.idea
 /glassfish-runner/batch-tck/apitests/test.properties
 .classpath
 .settings/
@@ -30,4 +29,5 @@ dist/
 .m2/
 release/
 jakartaeetck-bundles/
+/tck-env.cfg
 
