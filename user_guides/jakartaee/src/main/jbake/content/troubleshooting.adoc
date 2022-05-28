@@ -19,7 +19,7 @@ Test Suite.
 [[GFAUR]][[common-tck-problems-and-resolutions]]
 
 10 Common TCK Problems and Resolutions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This section lists common problems that you may encounter as you run the
 Jakarta Platform, Enterprise Edition Test Compatibility Kit software on

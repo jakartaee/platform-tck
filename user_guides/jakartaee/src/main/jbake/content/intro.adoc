@@ -145,7 +145,7 @@ test suite, see
 [[sthref4]][[jakarta-ee-10-technologies-tested-with-jakarta-ee-10-platform-tck]]
 
 1.2.1 Jakarta EE 10 Technologies Tested with Jakarta EE 10 Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta EE 10 Platform TCK test suite includes compatibility tests for the
 following required and optional Jakarta EE 10 technologies:
@@ -498,7 +498,7 @@ For more information about the Jakarta RESTful Web Services technology, see the 
 [[GBFQW]][[getting-started-with-the-jakarta-ee-10-platform-tck-test-suite]]
 
 1.6 Getting Started With the Jakarta EE 10 Platform TCK Test Suite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Installing, configuring, and using the Jakarta EE 10 Platform TCK involves the
 following general steps:

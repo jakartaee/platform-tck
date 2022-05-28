@@ -5,12 +5,12 @@ next=using.html
 prev=config.html
 ~~~~~~
 Setup and Configuration for Testing with the Jakarta EE 10 Web Profile
-=======================================================================
+======================================================================
 
 [[GJRHB]][[setup-and-configuration-for-testing-with-the-jakarta-ee-10-web-profile]]
 
 6 Setup and Configuration for Testing with the Jakarta EE 10 Web Profile
--------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 This chapter describes how to configure the Jakarta EE 10 Platform TCK test suite to
 work with your Jakarta EE 10 Web Profile test environment. It is recommended
@@ -20,7 +20,7 @@ Profile CI and then with your Jakarta EE 10 Web Profile server.
 [[GLSEL]][[configuring-the-jakarta-ee-10-web-profile-test-environment]]
 
 6.1 Configuring the Jakarta EE 10 Web Profile Test Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The instructions in this section and in
 link:config.html#GEWWA[Configuring Your Application Server as the VI]
@@ -30,7 +30,7 @@ Windows, and Linux platforms.
 [[GJWED]][[to-run-tests-against-a-jakarta-ee-10-web-profile-implementation]]
 
 6.1.1 To Run Tests Against a Jakarta EE 10 Web Profile Implementation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta EE 10 Platform TCK is the Technology Compatibility Kit (TCK) for the Jakarta
 Platform, Enterprise Edition as well as the Jakarta EE 10 Web Profile.

@@ -10,7 +10,7 @@ Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
 [[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-10-web-profile-certification]]
 
 3 Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version 10
@@ -245,7 +245,7 @@ Specification.
 [[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-10-products]]
 
 3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each implementation:
 
