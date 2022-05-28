@@ -40,7 +40,7 @@ respectively.
 [[GFADX]][[jakarta-ee-10-platform-tck-operating-assumptions]]
 
 7.1 Jakarta EE 10 Platform TCK Operating Assumptions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following are assumed in this chapter:
 

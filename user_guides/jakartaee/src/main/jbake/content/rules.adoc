@@ -10,7 +10,7 @@ Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
 [[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-10.0-certification]]
 
 2 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
-----------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
@@ -253,7 +253,7 @@ Specification.
 [[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-10.0-products]]
 
 2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each implementation:
 
