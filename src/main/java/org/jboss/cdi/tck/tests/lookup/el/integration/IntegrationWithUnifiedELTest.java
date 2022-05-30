@@ -46,7 +46,8 @@ public class IntegrationWithUnifiedELTest extends AbstractTest {
     @Deployment(testable = false)
     public static WebArchive createTestArchive() {
         return new WebArchiveBuilder().withTestClassPackage(IntegrationWithUnifiedELTest.class).withWebXml("web.xml")
-                .withWebResource("JSFTestPage.jsp", "JSFTestPage.jsp").withWebResource("JSPTestPage.jsp", "JSPTestPage.jsp")
+                .withWebResource("JSFTestPage.xhtml", "JSFTestPage.xhtml")
+                .withWebResource("JSPTestPage.jsp", "JSPTestPage.jsp")
                 .withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml").build();
     }
 
@@ -55,7 +56,7 @@ public class IntegrationWithUnifiedELTest extends AbstractTest {
             @SpecAssertion(section = NAME_RESOLUTION_EE, id = "a"), @SpecAssertion(section = NAMES_EE, id = "a") })
     public void testELResolverRegisteredWithJsf() throws Exception {
         WebClient webclient = new WebClient();
-        String content = webclient.getPage(contextPath + "JSFTestPage.jsf").getWebResponse().getContentAsString();
+        String content = webclient.getPage(contextPath + "JSFTestPage.xhtml").getWebResponse().getContentAsString();
         assert content.contains("Dolly");
     }
 
