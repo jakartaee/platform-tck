@@ -50,8 +50,8 @@ public class InjectionIntoNonContextualComponentTest extends AbstractTest {
                 .withClasses(Farm.class, ProcessAnnotatedTypeObserver.class, SessionBean.class, Sheep.class, TagLibraryListener.class,
                         TestFilter.class, TestListener.class, TestServlet.class, TestTagHandler.class)
                 .withWebXml("web2.xml")
-                .withWebResource("ManagedBeanTestPage.jsp", "ManagedBeanTestPage.jsp")
-                .withWebResource("TagPage.jsp", "TagPage.jsp").withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
+                .withWebResource("ManagedBeanTestPage.xhtml", "ManagedBeanTestPage.xhtml")
+                .withWebResource("TagPage.jsp", "TagPage.jsp")
                 .withWebResource("TestLibrary.tld", "WEB-INF/TestLibrary.tld")
                 .withDefaultPersistenceXml().build();
     }
