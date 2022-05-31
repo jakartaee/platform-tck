@@ -150,38 +150,35 @@ test suite, see
 The Jakarta EE 10 Platform TCK test suite includes compatibility tests for the
 following required and optional Jakarta EE 10 technologies:
 
-* Jakarta Enterprise Beans 4.0 +
+* Jakarta Authentication 3.0
+* Jakarta Authorization 2.1
+* Jakarta Bean Validation 3.0
+* Jakarta Common Annotations 2.1
+* Jakarta Contexts and Dependency Injection 4.0
+* Jakarta Concurrency 3.0
+* Jakarta Connectors 2.1
+* Jakarta Debugging Support for Other Languages 2.0
+* Jakarta Dependency Injection 2.0
+* Jakarta Enterprise Beans 4.0
+* Jakarta Expression Language 5.0
+* Jakarta Faces 4.0
+* Jakarta JSON Processing 2.1
+* Jakarta JSON Binding 3.0
+* Jakarta Interceptors 2.1
+* Jakarta Mail 2.1
+* Jakarta Messaging 3.1
+* Jakarta Persistence 3.1
+* Jakarta RESTful Web Services 3.1
+* Jakarta Security 3.0
 * Jakarta Server Pages 3.1
 * Jakarta Servlet 6.0
-* Jakarta Expression Language 5.0
-* Jakarta Messaging 3.0
+* Jakarta Standard Tag Library 3.0
 * Jakarta Transactions 2.0
-* Jakarta Mail 2.0
-* Jakarta Connectors 2.0
-* Jakarta Enterprise Web Services 2.0 (optional)
-* Jakarta RESTful Web Services 3.0
 * Jakarta WebSocket 2.1
-* Jakarta JSON Processing 2.0
-* Jakarta JSON Binding 2.0
-* Jakarta Concurrency 2.0
-* Jakarta Authorization 2.0
-* Jakarta Authentication 2.0
-* Jakarta Standard Tag Library 2.0
-* Jakarta Faces 3.0
-* Jakarta Security 2.0
-* Jakarta Annotations 2.0
-* Jakarta Persistence 3.0
-* Jakarta Bean Validation 3.0
-* Jakarta Managed Beans 2.0
-* Jakarta Interceptors 2.0
-* Jakarta Contexts and Dependency Injection 3.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Debugging Support for Other Languages 2.0
 * Jakarta Enterprise Beans 3.2 and earlier entity beans and associated Jakarta Enterprise Beans QL (optional)
 * Jakarta Enterprise Beans 2.x API group (optional)
-* Jakarta Enterprise Web Services 2.0 (optional)
-* Jakarta SOAP with Attachments 2.0 (optional)
-* Jakarta Web Services Metadata 3.0 (optional)
+* Jakarta Enterprise Web Services 4.0 (optional)
+* Jakarta SOAP with Attachments 3.0 (optional)
 * Jakarta XML Web Services 3.0 (optional)
 
 
@@ -193,27 +190,27 @@ following required and optional Jakarta EE 10 technologies:
 The Jakarta EE 10 Platform TCK test suite can also be used to test compatibility for
 the following required Jakarta EE 10 Web Profile technologies:
 
+* Jakarta Authentication 3.0, Servlet Container Profile
+* Jakarta Bean Validation 3.0
+* Jakarta Common Annotations 2.1
+* Jakarta Contexts and Dependency Injection 4.0
+* Jakarta Concurrency 3.0
+* Jakarta Debugging Support for Other Languages 2.0
+* Jakarta Dependency Injection 2.0
+* Jakarta Enterprise Beans Lite 4.0, Lite
+* Jakarta Expression Language 5.0
+* Jakarta Faces 4.0
+* Jakarta JSON Processing 2.1
+* Jakarta JSON Binding 3.0
+* Jakarta Interceptors 2.1
+* Jakarta Persistence 3.1
+* Jakarta RESTful Web Services 3.1
+* Jakarta Security 3.0
 * Jakarta Server Pages 3.1
 * Jakarta Servlet 6.0
-* Jakarta Expression Language 5.0
-* Jakarta Standard Tag Library 2.0
-* Jakarta Faces 3.0
-* Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.1
-* Jakarta JSON Processing 2.0
-* Jakarta JSON Binding 2.0
-* Jakarta Common Annotations 2.0
-* Jakarta Enterprise Beans 4.0, Lite
+* Jakarta Standard Tag Library 3.0
 * Jakarta Transactions 2.0
-* Jakarta Persistence 3.0
-* Jakarta Bean Validation 3.0
-* Jakarta Managed Beans 2.0
-* Jakarta Interceptors 2.0
-* Jakarta Contexts and Dependency Injection 3.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Security 2.0
-* Jakarta Authentication 2.0, Servlet Container Profile
-* Jakarta Debugging Support for Other Languages 2.0
+* Jakarta WebSocket 2.1
 
 [[GEUZS]][[tck-tests]]
 

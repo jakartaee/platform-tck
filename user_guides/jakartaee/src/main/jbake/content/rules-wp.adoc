@@ -5,7 +5,7 @@ next=install.html
 prev=rules.html
 ~~~~~~
 Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
-================================================================================
+===============================================================================
 
 [[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-10-web-profile-certification]]
 
