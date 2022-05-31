@@ -16,13 +16,11 @@ Guide
 
 Release 10 for Jakarta EE
 
-May 2021
+June 2022
 
 Provides detailed instructions for obtaining, installing, configuring,
 and using the Eclipse Jakarta, Enterprise Edition 10 Compatibility Test
 Suite for the Full Profile and the Web Profile.
-
-[[sthref1]]
 
 '''''
 

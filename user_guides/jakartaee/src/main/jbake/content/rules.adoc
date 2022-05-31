@@ -5,7 +5,7 @@ next=rules-wp.html
 prev=intro.html
 ~~~~~~
 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
-====================================================================
+=====================================================================
 
 [[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-10.0-certification]]
 

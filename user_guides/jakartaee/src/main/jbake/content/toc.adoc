@@ -4,7 +4,7 @@ title=Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's G
 next=title.html
 ~~~~~~
 Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
-===========================================================================================================
+=========================================================================================================
 
 [[contents]]
 Contents
@@ -40,8 +40,8 @@ link:intro.html#GBFOW[1 Introduction]
 ** link:intro.html#GEVCL[1.5 Additional Jakarta EE 10 Platform TCK Requirements]
 ** link:intro.html#GBFQW[1.6 Getting Started With the Jakarta EE 10 Platform TCK Test Suite]
 
-link:rules.html#GBFSN[2 Procedure for Jakarta Platform, Enterprise Edition 10 Certification]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+link:rules.html#GBFSN[2 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:rules.html#CJACEHEF[2.1 Certification Overview]
 ** link:rules.html#CJAJFCJI[2.2 Compatibility Requirements]
@@ -51,11 +51,12 @@ link:rules.html#GBFSN[2 Procedure for Jakarta Platform, Enterprise Edition 10 Ce
 *** link:rules.html#[2.3.1 Valid Challenges]
 *** link:rules.html#[2.3.2 Invalid Challenges]
 *** link:rules.html#CJAJEAEI[2.3.3 TCK Test Appeals Steps]
-** link:rules.html#CJAHFAJE[2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10]
-** link:rules.html#CJAHIGAB[2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10]
+** link:rules.html#CJAHFAJE[2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10.0]
+** link:rules.html#CJAHIGAB[2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10.0]
 
+[[procedure-for-jakarta-platform-enterprise-edition-10-web-profile-certification]]
 link:rules-wp.html#GJJPZ[3 Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:rules-wp.html#CEGEJDGE[3.1 Certification Overview]
 ** link:rules-wp.html#CEGFGHIC[3.2 Compatibility Requirements]
@@ -111,8 +112,9 @@ link:config.html#GBFVV[5 Setup and Configuration]
 *** link:config.html#GEYNM[5.5.1 Basic Configuration Overview]
 *** link:config.html#GEYOD[5.5.2 The Configuration Interview]
 
+[[setup-and-configuration-for-testing-with-the-jakarta-ee-10-web-profile]]
 link:webprofileconfig.html#GJRHB[6 Setup and Configuration for Testing with the Jakarta EE 10 Web Profile]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:webprofileconfig.html#GLSEL[6.1 Configuring the Jakarta EE 10 Web Profile Test Environment]
 *** link:webprofileconfig.html#GJWED[6.1.1 To Run Tests Against a Jakarta EE 10 Web Profile Implementation]
