@@ -73,7 +73,7 @@ public class ContainerEventTest extends AbstractTest {
                 .withClasses(Farm.class, ProcessAnnotatedTypeObserver.class, Sheep.class, TagLibraryListener.class,
                         TestFilter.class, TestListener.class, TestServlet.class, TestTagHandler.class, SessionBean.class)
                 .withExtension(ProcessAnnotatedTypeObserver.class)
-                .withWebResource("ManagedBeanTestPage.jsp", "ManagedBeanTestPage.jsp")
+                .withWebResource("ManagedBeanTestPage.xhtml", "ManagedBeanTestPage.xhtml")
                 .withWebResource("TagPage.jsp", "TagPage.jsp").withWebResource("faces-config.xml", "/WEB-INF/faces-config.xml")
                 .withWebResource("TestLibrary.tld", "WEB-INF/TestLibrary.tld")
                 .withDefaultPersistenceXml()
