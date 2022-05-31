@@ -197,7 +197,7 @@ the following required Jakarta EE 10 Web Profile technologies:
 * Jakarta Concurrency 3.0
 * Jakarta Debugging Support for Other Languages 2.0
 * Jakarta Dependency Injection 2.0
-* Jakarta Enterprise Beans 4.0
+* Jakarta Enterprise Beans Lite 4.0, Lite
 * Jakarta Expression Language 5.0
 * Jakarta Faces 4.0
 * Jakarta JSON Processing 2.1
