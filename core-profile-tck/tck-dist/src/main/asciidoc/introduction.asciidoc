@@ -207,7 +207,7 @@ This section lists the applicable requirements and specifications for the Jakart
 
 *  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 11 compatible runtime.
 
-*  *Jakarta Contexts and Dependency Injection {revnumber} API* - The Java API defined in the CDI specification and provided by the compatible implementation.
+*  *Jakarta Contexts and Dependency Injection API* - The Java API defined in the CDI specification and provided by the compatible implementation.
 
 *  *Testing platform* - The Jakarta Core Profile TCK requires version 1.7.0.Alpha10 of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap WebArchives of the test contents. The TCK test suite is based on Junit 5.8.2 (http://junit.org).
 
@@ -237,4 +237,4 @@ The Core Profile TCK includes the following components:
 
 The Core Profile TCK has been tested on following platforms:
 
-*  WildFly 27 Preview using Eclipse Temurin Java SE 11 on Linux based operation systems.
+*  WildFly 27 Preview using Eclipse Temurin Java SE 11 and Eclipse Temurin Java SE 17 on Linux based operating systems.
