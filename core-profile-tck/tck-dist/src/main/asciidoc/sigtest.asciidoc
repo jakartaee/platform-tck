@@ -4,8 +4,10 @@
 
 One of the requirements of an implementation passing the TCK is for it to pass the signature tests. This section describes how the signature file is generated and how to run it against your implementation.
 
-The Core Profile specification has no API artifact other than the utility api jar that is a combination of the various component specifications that make up the Core Profile.
+The Core Profile specification has no API artifact other than the utility api jar that is a combination of the various component specifications that make up the Core Profile. As such, there is no Core Profile signature test.
 
 === Running the Component Specification Signature Tests
 
-Each required component TCK describes how to run its signature tests. The JSON-P, JSON-B and Restful standalone TCKs include a test that sets up and runs the signature tests as part of the Junit 5 tests. The CDI TCK includes a pom file to executure the signature tests. See the CDI TCK user guide for how to run those tests.
+Each required component TCK describes how to run its signature tests. The JSON-P, JSON-B and Restful standalone TCKs include a test that sets up and runs the signature tests as part of the Junit 5 tests. Running those standalone TCKs generates the signature test results.
+
+The CDI TCK includes a pom file to execute the signature tests. See the CDI TCK user guide for how to run those tests.
