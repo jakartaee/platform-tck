@@ -10,7 +10,7 @@ This chapter explains the purpose of a TCK and identifies the foundation element
 
 A TCK, or Technology Compatibility Kit, is one of the three required pieces for any specification (the other two being the specification document and a compatible implementation). The TCK is a set of tools and tests to verify that an implementation of the technology conforms to the specification. The tests are the primary component, but the tools serve an equally critical role of providing a framework and/or set of SPIs for executing the tests.
 
-The tests in the TCK are derived from assertions in the written specification document. The assertions are itemized in an XML document, where they each get assigned a unique identifier, and materialize as a suite of automated tests that collectively validate whether an implementation complies with the aforementioned assertions, and in turn the specification. For a particular implementation to be certified, all of the required tests must pass (i.e., the provided test suite must be run unmodified).
+The tests in the TCK are derived from assertions in the written specification document. The assertions are itemized in an XML document, where they each get assigned a unique identifier, and materialize as a suite of automated tests that collectively validate whether an implementation complies with the aforementioned assertions, and in turn the specification. For a particular implementation to be certified, all the required tests must pass (i.e., the provided test suite must be run unmodified).
 
 A TCK is entirely implementation agnostic. Ideally, it should validate assertions by consulting the specification's public API.  However, when the information returned by the public API is not low-level enough to validate the assertion, the implementation must be consulted directly. In this case, the TCK provides an independent API as part of a porting package that enables this transparency. The porting package must be implemented for each Core Profile implementation.
 
@@ -152,7 +152,6 @@ component, and hardware platform Documented as supporting the Product:
 
 *CORE_PROFILE-1* The Product must be able to satisfy all applicable compatibility requirements, including passing all Conformance Tests Rules.
 
-
 *CORE_PROFILE-2* Some Conformance Tests may have properties that may be changed. Properties
 that can be changed are identified in the configuration interview. Properties that can be
 changed are specified in <<tck-properties>>. Apart from changing such properties and other allowed
@@ -184,7 +183,8 @@ binary Conformance Tests supplied as part of the Test Suite must be used to cert
 
 *CORE_PROFILE-10* In addition to the instructions and requirements the Core Profile TCK, each Product must pass the following standalone TCKs for the following technologies:
 
-* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
+* Jakarta Contexts and Dependency Injection, Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
+** This TCK includes compatibility and signature tests for Jakarta Annotations and Jakarta Interceptors.
 * Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
 * Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
 * Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
@@ -194,28 +194,28 @@ binary Conformance Tests supplied as part of the Test Suite must be used to cert
 
 The Jakarta Core Profile TCK is designed as a portable, configurable and automated test suite for verifying the compatibility of an implementation of the Jakarta CDI specification. The test suite is built atop Junit5 framework and Arquillian platform.
 
-Each test class in the suite acts as a deployable unit. The deployable units, or artifacts, can be either a WAR or an EAR.
+Each test class in the suite acts as a deployable unit. The deployable units, or artifacts are packaged as a WAR.
 
 [NOTE]
 ====
-The test archives are built with ShrinkWrap, a Java API for creating archives. ShrinkWrap is a part of the Arqullian platform ecosystem.
+The test archives are built with ShrinkWrap, a Java API for creating archives. ShrinkWrap is a part of the Arquillian platform ecosystem.
 ====
 
 ==== Jakarta Core Profile TCK Specifications and Requirements
 
 This section lists the applicable requirements and specifications for the Jakarta Core Profile TCK.
 
-*  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 11 compatible runtime.
+*  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 11 or newer compatible runtime.
 
 *  *Jakarta Contexts and Dependency Injection API* - The Java API defined in the CDI specification and provided by the compatible implementation.
 
-*  *Testing platform* - The Jakarta Core Profile TCK requires version 1.7.0.Alpha10 of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap WebArchives of the test contents. The TCK test suite is based on Junit 5.8.2 (http://junit.org).
+*  *Testing platform* - The Jakarta Core Profile TCK requires version 1.7.0.Alpha10 of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap `WebArchives` of the test contents. The TCK test suite is based on Junit 5.8.2 (http://junit.org).
 
 *  *Porting Package* - An implementation of SPIs that are required for the test suite to run the in-container tests and at times extend the Jakarta Core Profile 4.0 API to provide extra information to the TCK.
 
 *  *Compatible implementation* - A compatible implementation runtime for compatibility testing of the Jakarta Platform Enterprise Edition Core Profile 10.
 
-*  *Jarkarta Container and Dependency Injection (CDI)* - CDI builds on DI, and as such CDI implementations must additionally pass the CDI TCK.
+*  *Jarkarta Container and Dependency Injection (CDI)* - CDI builds on Jakarta Annotations and Jakarta Interceptors, and the standalone CDI TCK provides signature and unit testing for those component specifications. Passing the CDI TCK is sufficient for validation of compatibility of Jakarta Annotations and Jakarta Interceptors.
 
 *  *Jarkarta Dependency Injection (DI)* - CDI builds on DI, and as such CDI implementations must additionally pass the Jakarta Dependency Injection TCK.
 
@@ -228,6 +228,8 @@ The Core Profile TCK includes the following components:
 *  *Arquillian 1.7.0.Alpha10*
 
 *  *Junit 5.8.2*
+
+*  *TestNG 7.4.x*
 
 *  *Porting Package SPIs* - Extensions to the CDI SPIs to allow testing of a container.
 

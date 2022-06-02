@@ -52,14 +52,14 @@
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-4.0.1-dist.zip"
+                <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-4.0.2-dist.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
                 <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="downloads/tcks/rest-tck" />
-                <unzip src="downloads/tcks/cdi-tck-4.0.1-dist.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/cdi-tck-4.0.2-dist.zip" dest="downloads/tcks/" />
 
                 <exec executable="/bin/bash" dir="downloads/tcks/jsonp-tck/artifacts">
                   <arg value="artifact-install.sh"/>
@@ -69,9 +69,9 @@
                   <arg value="artifact-install.sh"/>
                   <arg value="3.0.0" />
                 </exec>
-                <exec executable="/bin/bash" dir="downloads/tcks/cdi-tck-4.0.1/artifacts">
+                <exec executable="/bin/bash" dir="downloads/tcks/cdi-tck-4.0.2/artifacts">
                   <arg value="artifact-install.sh"/>
-                  <arg value="4.0.1" />
+                  <arg value="4.0.2" />
                 </exec>
               </target>
             </configuration>

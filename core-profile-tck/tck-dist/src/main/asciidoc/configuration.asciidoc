@@ -13,9 +13,9 @@ The various TCKs will have properties or configuration variables that need to be
 
 [NOTE]
 ====
-The JSON-B standalone TCK configuration example includes running the the tests with the system property  java.locale.providers set to COMPAT. This addresses inconsistencies in at least one test when run under both Java SE 11 and Java SE 17.
+The JSON-B standalone TCK configuration example includes running the the tests with the system property `java.locale.providers` set to COMPAT. This addresses a known inconsistency in a test when run under both Java SE 11 and Java SE 17.
 ====
 
 === Standalone TCK Configuration
 
-Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The examples directory in the TCK distribution illustrates sample configuration setup using Maven.
+Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The `examples` directory in the TCK distribution illustrates sample configuration setup using Maven.
