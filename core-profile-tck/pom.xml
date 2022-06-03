@@ -96,7 +96,7 @@
     <!-- Required for distribution build, should be overriden for each build -->
     <core.tck.version>${project.version}</core.tck.version>
     <weld.version>5.0.0.SP1</weld.version>
-    <cdi.tck.version>4.0.1</cdi.tck.version>
+    <cdi.tck.version>4.0.3</cdi.tck.version>
   </properties>
 
   <!-- Dependency management -->
