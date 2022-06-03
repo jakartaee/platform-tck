@@ -137,11 +137,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.test-audit</groupId>
-            <artifactId>jboss-test-audit-api</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>jakarta.interceptor</groupId>
             <artifactId>jakarta.interceptor-api</artifactId>
         </dependency>
@@ -308,7 +303,13 @@
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.test-audit</groupId>
+                    <artifactId>jboss-test-audit-api</artifactId>
+                    <version>${jboss.test.audit.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.test-audit</groupId>
                     <artifactId>jboss-test-audit-impl</artifactId>
+                    <version>${jboss.test.audit.version}</version>
                 </dependency>
             </dependencies>
             <build>
