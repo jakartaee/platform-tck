@@ -21,7 +21,8 @@
   <name>Jakarta Core Profile TCK Dependencies</name>
 
   <properties>
-    <cdi.tck.version>4.0.2</cdi.tck.version>
+    <!-- Allow the CDI TCK version to be overriden from the artifact install pom -->
+    <cdi.tck.dist.version>${cdi.tck.version}</cdi.tck.dist.version>
   </properties>
 
   <build>
@@ -56,14 +57,14 @@
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-${cdi.tck.version}-dist.zip"
+                <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-${cdi.tck.dist.version}-dist.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
                 <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="downloads/tcks/rest-tck" />
-                <unzip src="downloads/tcks/cdi-tck-${cdi.tck.version}-dist.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/cdi-tck-${cdi.tck.dist.version}-dist.zip" dest="downloads/tcks/" />
 
                 <exec executable="/bin/bash" dir="downloads/tcks/jsonp-tck/artifacts">
                   <arg value="artifact-install.sh"/>
@@ -73,7 +74,7 @@
                   <arg value="artifact-install.sh"/>
                   <arg value="3.0.0" />
                 </exec>
-                <exec executable="mvn" dir="downloads/tcks/cdi-tck-${cdi.tck.version}/artifacts">
+                <exec executable="mvn" dir="downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts">
                   <arg value="install"/>
                 </exec>
               </target>
