@@ -860,8 +860,9 @@
 
 
 	<!-- build jaspics tssv.jar -->
+	<!-- build the JASPIC (JSR-196) provider jar file -->
+
 	<!--target name="build.tssv.jar">
-		<!-- build the JASPIC (JSR-196) provider jar file -->
 		<delete failonerror="true" file="${jaspic.tssv.jar}"/>
 		<antcall target="jaspic.lib.compile"/>
 		<jar jarfile="${jaspic.tssv.jar}"
