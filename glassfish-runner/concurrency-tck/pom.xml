@@ -435,6 +435,7 @@
                         </systemProperties>
                         <!--  end::logging[]  -->
                         <systemPropertyVariables>
+                            <arquillian.launch>glassfish-mgd</arquillian.launch>
                             <jimage.dir>${project.build.directory}/jdk-bundle</jimage.dir>
                             <signature.sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.enterprise.concurrent-api.jar:${project.build.directory}/jdk-bundle/java.base:${project.build.directory}/jdk-bundle/java.rmi:${project.build.directory}/jdk-bundle/java.sql:${project.build.directory}/jdk-bundle/java.naming</signature.sigTestClasspath>
                         </systemPropertyVariables>
