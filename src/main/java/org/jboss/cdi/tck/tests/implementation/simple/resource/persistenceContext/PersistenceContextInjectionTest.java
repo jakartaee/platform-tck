@@ -102,8 +102,8 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     public void testBeanTypesAndBindingTypesOfPersistenceContext() {
         Bean<EntityManager> manager = getBeans(EntityManager.class, new AnnotationLiteral<Database>() {
         }).iterator().next();
-        assert manager.getTypes().size() == 2;
-        assert typeSetMatches(manager.getTypes(), EntityManager.class, Object.class);
+        assert manager.getTypes().size() == 3;
+        assert typeSetMatches(manager.getTypes(), EntityManager.class, Object.class, AutoCloseable.class);
         assert manager.getQualifiers().size() == 2;
         assert annotationSetMatches(manager.getQualifiers(), Any.class, Database.class);
     }
@@ -113,7 +113,7 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     public void testBeanTypesOfPersistenceUnit() {
         Bean<EntityManagerFactory> factory = getBeans(EntityManagerFactory.class, new AnnotationLiteral<Database>() {
         }).iterator().next();
-        assert factory.getTypes().size() == 2;
-        assert typeSetMatches(factory.getTypes(), EntityManagerFactory.class, Object.class);
+        assert factory.getTypes().size() == 3;
+        assert typeSetMatches(factory.getTypes(), EntityManagerFactory.class, Object.class, AutoCloseable.class);
     }
 }
