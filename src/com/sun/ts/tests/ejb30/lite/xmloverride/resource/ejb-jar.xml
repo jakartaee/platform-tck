@@ -37,7 +37,11 @@
         <env-entry-type>java.lang.Integer</env-entry-type>
         <env-entry-value>0</env-entry-value>
       </env-entry>
-      
+      <env-entry>
+        <env-entry-name>unmappedEnvEntry</env-entry-name>
+        <env-entry-type>java.lang.Integer</env-entry-type>
+      </env-entry>
+
     </session>
   </enterprise-beans>
 </ejb-jar>

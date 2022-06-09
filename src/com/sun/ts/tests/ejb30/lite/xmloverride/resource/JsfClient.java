@@ -35,8 +35,9 @@ public class JsfClient extends EJBLiteJsfClientBase {
   /*
    * @testName: unmappedEnvEntry
    *
-   * @test_Strategy: this @Resource has no mapped <env-entry> in descriptor, so
-   * the default value of the field is unchanged.
+   * @test_Strategy: this @Resource injection corresponds to the <env-entry>
+   * without <env-entry-value> in descriptor, so the default value of the field
+   * is unchanged.
    */
   public void unmappedEnvEntry() {
     assertEquals("Check correct the default value is retained. ", 1,
