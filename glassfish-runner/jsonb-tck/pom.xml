@@ -89,6 +89,9 @@
               <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
               <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/lib/appclient/weld-se-shaded.jar</additionalClasspathElement>
           </additionalClasspathElements>
+          <excludes>
+             <exclude>ee.jakarta.tck.json.bind.cdi.customizedmapping.adapters.AdaptersCustomizationCDITest,ee.jakarta.tck.json.bind.cdi.customizedmapping.serializers.SerializersCustomizationCDITest</exclude>
+          </excludes>
           </configuration>
       </plugin>
       <plugin>
