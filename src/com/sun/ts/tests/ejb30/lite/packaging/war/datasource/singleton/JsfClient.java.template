@@ -38,7 +38,7 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
 
 // url is to be ignored
 @DataSourceDefinitions({
-@DataSourceDefinition(name="java:comp/env/compds",
+@DataSourceDefinition(name="java:comp/env/jsfcompds",
         className="@className@",
         portNumber=@portNumber@,
         serverName="@serverName@",
@@ -57,7 +57,7 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
         properties={@jdbc.datasource.props@},
         url="jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true"
 ),
-@DataSourceDefinition(name="java:comp/env/compds2",
+@DataSourceDefinition(name="java:comp/env/jsfcompds2",
         className="@className@",
         portNumber=@portNumber@,
         serverName="@serverName@",
@@ -82,11 +82,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     @Resource
     private DataSourceRepeatableBean dataSourceRBean;
     
-    @Resource(lookup="java:comp/env/compds")
-    private DataSource compds;
+    @Resource(lookup="java:comp/env/jsfcompds")
+    private DataSource jsfcompds;
     
-    @Resource(lookup="java:comp/env/compds2")
-    private DataSource compds2;
+    @Resource(lookup="java:comp/env/jsfcompds2")
+    private DataSource jsfcompds2;
     
     @Resource(lookup="java:comp/env/defaultds")
     private DataSource defaultds;
@@ -107,11 +107,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
         Helper.getLogger().info("In postConstruct of " + this);
         
         verifyDataSource(getReasonBuffer(), c, "java:comp/env/defaultds", "java:comp/env/defaultds2", 
-                                               "java:comp/env/compds", "java:comp/env/compds2",
+                                               "java:comp/env/jsfcompds", "java:comp/env/jsfcompds2",
                                                "java:module/env/moduleds", "java:module/env/moduleds2");
-        verifyDataSource(getReasonBuffer(), c, defaultds, defaultds2, compds, compds2, moduleds, moduleds2);
+        verifyDataSource(getReasonBuffer(), c, defaultds, defaultds2, jsfcompds, jsfcompds2, moduleds, moduleds2);
 
-        verifyDataSource(getReasonBuffer(), c, compds, compds2);
+        verifyDataSource(getReasonBuffer(), c, jsfcompds, jsfcompds2);
     }
     
     /*
