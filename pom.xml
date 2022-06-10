@@ -298,7 +298,9 @@
         <profile>
             <id>tck-audit</id>
             <activation>
-                <jdk>[1.8,)</jdk>
+                <property>
+                    <name>!skipTckAudit</name>
+                </property>
             </activation>
             <dependencies>
                 <dependency>
