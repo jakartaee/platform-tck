@@ -61,10 +61,16 @@
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
+                <get src="https://download.eclipse.org/jakartaee/dependency-injection/2.0/jakarta.inject-tck-2.0.2-bin.zip"
+                     dest="downloads/tcks/"
+                     verbose="false"
+                     usetimestamp="true"/>
                 <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="downloads/tcks/rest-tck" />
                 <unzip src="downloads/tcks/cdi-tck-${cdi.tck.dist.version}-dist.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta.inject-tck-2.0.2-bin.zip" dest="downloads/tcks/" />
+
 
                 <exec executable="/bin/bash" dir="downloads/tcks/jsonp-tck/artifacts">
                   <arg value="artifact-install.sh"/>
@@ -163,6 +169,22 @@
               <version>3.1.0</version>
               <packaging>jar</packaging>
               <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.0.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-inject-tck</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <groupId>jakarta.ws.rs</groupId>
+              <artifactId>jakarta-restful-ws-tck</artifactId>
+              <version>2.0.2</version>
+              <packaging>jar</packaging>
+              <file>downloads/tcks/jakarta.inject-tck-2.0.2/jakarta.inject-tck-2.0.2.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
