@@ -38,6 +38,11 @@
         <artifactId>sigtest-maven-plugin</artifactId>
         <version>1.6</version>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.weld.se</groupId>
+        <artifactId>weld-se-core</artifactId>
+        <version>5.0.0.SP2</version>
+      </dependency>
   </dependencies>
   
   <build>
@@ -87,7 +92,6 @@
               <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.inject-api.jar</additionalClasspathElement>
               <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/yasson.jar</additionalClasspathElement>
               <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-              <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/lib/appclient/weld-se-shaded.jar</additionalClasspathElement>
           </additionalClasspathElements>
           </configuration>
       </plugin>
