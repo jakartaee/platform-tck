@@ -68,6 +68,7 @@
   </licenses>
 
   <modules>
+    <module>ca-sigtest</module>
     <module>cdi-tck-suite</module>
     <module>tck</module>
     <module>jsonp-tck-ext</module>
@@ -78,7 +79,7 @@
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- Jakarta EE APIs Core -->
-    <annotations.api.version>2.1.0</annotations.api.version>
+    <annotations.api.version>2.1.1</annotations.api.version>
     <interceptors.api.version>2.1.0</interceptors.api.version>
     <inject.api.version>2.0.1</inject.api.version>
     <cdi.api.version>4.0.0</cdi.api.version>
