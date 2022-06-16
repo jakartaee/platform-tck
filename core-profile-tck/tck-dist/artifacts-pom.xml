@@ -153,7 +153,24 @@
               <version>${project.version}</version>
               <packaging>xml</packaging>
               <file>cdi-lite-tck-suite-${project.version}.xml</file>
-              <generatePom>true</generatePom>
+              <generatePom>false</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-common-annotations-sig</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <groupId>jakarta.ee.tck</groupId>
+              <artifactId>common-annotations-sigtest</artifactId>
+              <version>${project.version}</version>
+              <packaging>sig</packaging>
+              <classifier>jdk11</classifier>
+              <file>common-annotations-sigtest-${project.version}-jdk11.sig</file>
+              <generatePom>false</generatePom>
             </configuration>
           </execution>
 

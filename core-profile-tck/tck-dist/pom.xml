@@ -45,6 +45,13 @@
       </dependency>
       <dependency>
          <groupId>jakarta.ee.tck</groupId>
+         <artifactId>common-annotations-sigtest</artifactId>
+         <version>${project.version}</version>
+         <type>sig</type>
+         <classifier>jdk11</classifier>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.ee.tck</groupId>
          <artifactId>core-profile-tck-impl</artifactId>
          <version>${project.version}</version>
       </dependency>
