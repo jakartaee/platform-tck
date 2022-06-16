@@ -180,12 +180,29 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ws.rs</groupId>
-              <artifactId>jakarta-restful-ws-tck</artifactId>
+              <groupId>jakarta.inject</groupId>
+              <artifactId>jakarta.inject-tck</artifactId>
               <version>2.0.2</version>
               <packaging>jar</packaging>
               <file>downloads/tcks/jakarta.inject-tck-2.0.2/jakarta.inject-tck-2.0.2.jar</file>
               <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-cdi-tck-sigtest</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <groupId>jakarta.enterprise</groupId>
+              <artifactId>cdi-tck-core-impl</artifactId>
+              <version>${cdi.tck.dist.version}</version>
+              <packaging>sig</packaging>
+              <classifier>jdk11</classifier>
+              <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk11.sig</file>
+              <generatePom>false</generatePom>
             </configuration>
           </execution>
         </executions>

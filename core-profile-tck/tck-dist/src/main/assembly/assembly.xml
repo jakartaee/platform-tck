@@ -66,6 +66,7 @@
       <dependencySet>
          <includes>
             <include>jakarta.ee.tck:core-tck-parent</include>
+            <include>jakarta.ee.tck:common-annotations-sigtest</include>
             <include>jakarta.ee.tck:cdi-lite-tck-suite</include>
             <include>jakarta.ee.tck:core-profile-tck-impl</include>
             <include>jakarta.ee.tck:core-tck-jsonp-extension</include>

@@ -22,7 +22,7 @@
   <groupId>jakarta.ee.tck</groupId>
   <artifactId>core-tck-parent</artifactId>
   <packaging>pom</packaging>
-  <version>10.0.0-SNAPSHOT</version>
+  <version>10.0.0</version>
   <name>Jakarta Core TCK</name>
 
   <!-- Metadata -->
@@ -68,6 +68,7 @@
   </licenses>
 
   <modules>
+    <module>ca-sigtest</module>
     <module>cdi-tck-suite</module>
     <module>tck</module>
     <module>jsonp-tck-ext</module>
@@ -78,7 +79,7 @@
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- Jakarta EE APIs Core -->
-    <annotations.api.version>2.1.0</annotations.api.version>
+    <annotations.api.version>2.1.1</annotations.api.version>
     <interceptors.api.version>2.1.0</interceptors.api.version>
     <inject.api.version>2.0.1</inject.api.version>
     <cdi.api.version>4.0.0</cdi.api.version>
@@ -326,7 +327,7 @@
     <connection>scm:git:git@github.com:eclipse-ee4j/cdi-tck.git</connection>
     <developerConnection>scm:git:git@github.com:eclipse-ee4j/cdi-tck.git</developerConnection>
     <url>https://github.com/eclipse-ee4j/cdi-tck</url>
-    <tag>HEAD</tag>
+    <tag>10.0.0</tag>
   </scm>
 
   <profiles>
