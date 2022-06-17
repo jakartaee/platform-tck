@@ -184,11 +184,13 @@ binary Conformance Tests supplied as part of the Test Suite must be used to cert
 *CORE_PROFILE-10* In addition to the instructions and requirements the Core Profile TCK, each Product must pass the following standalone TCKs for the following technologies:
 
 * Jakarta Contexts and Dependency Injection, Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
-** This TCK includes compatibility and signature tests for Jakarta Annotations and Jakarta Interceptors.
+** This TCK includes compatibility and signature tests for Jakarta  Jakarta Interceptors.
+** The Jakarta Contexts and Dependency Injection Language Model TCK included in the CDI distribution.
 * Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
 * Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
 * Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
 * Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/3.1/[Rest 3.1]
+* Signature tests for Jakarta Common Annotations https://jakarta.ee/specifications/annotations/2.1/[Annotations 2.1.1]
 
 === About the Jakarta Core Profile TCK
 
@@ -240,3 +242,4 @@ The Core Profile TCK includes the following components:
 The Core Profile TCK has been tested on following platforms:
 
 *  WildFly 27 Preview using Eclipse Temurin Java SE 11 and Eclipse Temurin Java SE 17 on Linux based operating systems.
+
