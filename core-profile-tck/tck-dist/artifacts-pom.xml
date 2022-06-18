@@ -142,6 +142,21 @@
           </execution>
 
           <execution>
+            <id>install-cdi-lite-tck-suite-lib</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <groupId>jakarta.ee.tck</groupId>
+              <artifactId>cdi-lite-tck-suite</artifactId>
+              <version>${project.version}</version>
+              <packaging>jar</packaging>
+              <file>cdi-lite-tck-suite-${project.version}.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+          <execution>
             <id>install-cdi-lite-tck-suite</id>
             <goals>
               <goal>install-file</goal>

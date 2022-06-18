@@ -108,13 +108,13 @@
       <dependency>
         <groupId>jakarta.enterprise</groupId>
         <artifactId>cdi-tck-api</artifactId>
-        <version>${project.version}</version>
+        <version>${cdi.tck.version}</version>
       </dependency>
 
       <dependency>
         <groupId>jakarta.enterprise</groupId>
         <artifactId>cdi-tck-ext-lib</artifactId>
-        <version>${project.version}</version>
+        <version>${cdi.tck.version}</version>
       </dependency>
 
       <dependency>

@@ -19,7 +19,6 @@
     <version>10.0.0</version>
   </parent>
 
-  <packaging>pom</packaging>
   <artifactId>cdi-lite-tck-suite</artifactId>
   <name>CDI Lite suite.xml for Jakarta Core Profile TCK</name>
   <description>This module contains the TestNG suite.xml file to use to validate the CDI Lite tests from the CDI TCK</description>
@@ -29,7 +28,6 @@
       <groupId>jakarta.enterprise</groupId>
       <artifactId>cdi-tck-core-impl</artifactId>
       <version>${cdi.tck.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -51,7 +49,6 @@
                 <artifact>
                   <file>src/main/resources/cdi-lite-tck-suite.xml</file>
                   <type>xml</type>
-                  <!-- <classifier>xxx</classifier> -->
                 </artifact>
               </artifacts>
             </configuration>

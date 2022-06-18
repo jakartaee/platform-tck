@@ -41,6 +41,11 @@
          <groupId>jakarta.ee.tck</groupId>
          <artifactId>cdi-lite-tck-suite</artifactId>
          <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.ee.tck</groupId>
+         <artifactId>cdi-lite-tck-suite</artifactId>
+         <version>${project.version}</version>
          <type>xml</type>
       </dependency>
       <dependency>

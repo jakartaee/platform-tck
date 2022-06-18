@@ -10,6 +10,19 @@
   ~
   -->
 <suite name="CDI TCK">
+    <listeners>
+        <!-- Optional - intended for debug purpose only -->
+        <listener class-name="org.jboss.cdi.tck.impl.testng.ConfigurationLoggingListener"/>
+        <listener class-name="ee.jakarta.tck.core.util.SuiteLogger"/>
+        <listener class-name="org.jboss.cdi.tck.impl.testng.ProgressLoggingTestListener"/>
+        <!-- Optional - it's recommended to disable the default JUnit XML reporter -->
+        <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
+        <listener class-name="org.testng.reporters.FailedReporter"/>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+        <listener class-name="org.testng.reporters.EmailableReporter"/>
+        <listener class-name="org.testng.reporters.TestHTMLReporter" />
+    </listeners>
+
     <test name="CDI Lite TCK">
         <groups>
             <run>
@@ -21,14 +34,5 @@
             <package name="org.jboss.cdi.tck.tests.*" />
             <package name="org.jboss.cdi.tck.interceptors.tests.*" />
         </packages>
-        
-        <classes>
-            <!-- https://github.com/eclipse-ee4j/cdi/issues/607 -->
-            <class name="org.jboss.cdi.tck.tests.full.deployment.exclude.ExcludeFiltersTest">
-                <methods>
-                    <exclude name=".*"></exclude>
-                </methods>
-            </class>
-        </classes>
     </test>
 </suite>
