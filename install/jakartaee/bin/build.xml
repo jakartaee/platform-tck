@@ -25,7 +25,6 @@
 	<property name="all.test.dir" value="
                   com/sun/ts/tests/jaxp,
                   com/sun/ts/tests/jacc,
-                  com/sun/ts/tests/jaspic,
                   com/sun/ts/tests/signaturetest/javaee,
                   com/sun/ts/tests/integration,
                   com/sun/ts/tests/el,
@@ -67,11 +66,11 @@
           cts development workspace.
 
       -->
-	<property name="temp.test.exclude.dirs" 
+	<!--property name="temp.test.exclude.dirs" 
  	      value="
              com/sun/ts/tests/jaspic/spi/authstatus,
              com/sun/ts/tests/jaspic/spi/soap"
-        />
+        /-->
 
 	<target name="generate.coverage.numbers">
 		<ant antfile="coverage-build.xml" dir="${bin.dir}" target="all" />
@@ -732,9 +731,9 @@
 	<property name="provider.dir" value = "com/sun/ts/tests/jacc/provider"/>
 	<property name="provider.jar.name" value = "tsprovider.jar"/>
 	<property name="provider.jar" value = "${ts.home}/lib/${provider.jar.name}"/>
-	<property name="jaspic.tssv.dir" value = "com/sun/ts/tests/jaspic/tssv"/>
+	<!--property name="jaspic.tssv.dir" value = "com/sun/ts/tests/jaspic/tssv"/>
 	<property name="jaspic.tssv.jar.name" value = "tssv.jar"/>
-	<property name="jaspic.tssv.jar" value = "${ts.home}/lib/${jaspic.tssv.jar.name}"/>
+	<property name="jaspic.tssv.jar" value = "${ts.home}/lib/${jaspic.tssv.jar.name}"/-->
 	<property name="dbprocedures.jar" value = "${ts.home}/lib/dbprocedures.jar"/>
 	<property name="install.lib.dir" value = "${ts.home}/install/jakartaee/lib"/>
 
@@ -780,7 +779,7 @@
 		<rmic classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer" base="${class.dir}"/>
 	</target>
 
-	<target name="jaspic.lib.clean" depends="translatepath">
+	<!--target name="jaspic.lib.clean" depends="translatepath">
 		<delete failonerror="false">
 			<fileset dir="${class.dir}">
 				<include name="com/sun/ts/tests/jaspic"/>
@@ -788,10 +787,10 @@
 			</fileset>
 		</delete>
 		<delete failonerror="false" file="${jaspic.tssv.jar}"/>
-	</target>
+	</target-->
 
 
-	<target name="jaspic.lib.compile" depends="jaspic.lib.clean, bind.dtds">
+	<!--target name="jaspic.lib.compile" depends="jaspic.lib.clean, bind.dtds">
 		<ts.javac includes="${jaspic.tssv.dir}/config/**/*.java,
                             ${jaspic.tssv.dir}/module/**/*.java,
                             ${jaspic.tssv.dir}/util/**/*.java">
@@ -799,7 +798,7 @@
 				<pathelement path="${ts.lib.classpath}" />
 			</classpath>
 		</ts.javac>
-	</target>
+	</target-->
 
 
 	<target name="tslib" depends="tslib.compile">
@@ -820,7 +819,7 @@
 		</jar>
 
 		<antcall target="build.tsprovider.jar"/>
-		<antcall target="build.jaspic.jars"/>
+		<!--antcall target="build.jaspic.jars"/-->
 
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
 
@@ -832,9 +831,9 @@
 	</target>
 
 	<!-- build jaspic jars -->
-	<target name="build.jaspic.jars">
+	<!--target name="build.jaspic.jars">
 		<antcall target="build.tssv.jar"/>
-	</target>
+	</target-->
 
 
 	<!-- build jacc tsprovider jar -->
@@ -861,8 +860,9 @@
 
 
 	<!-- build jaspics tssv.jar -->
-	<target name="build.tssv.jar">
-		<!-- build the JASPIC (JSR-196) provider jar file -->
+	<!-- build the JASPIC (JSR-196) provider jar file -->
+
+	<!--target name="build.tssv.jar">
 		<delete failonerror="true" file="${jaspic.tssv.jar}"/>
 		<antcall target="jaspic.lib.compile"/>
 		<jar jarfile="${jaspic.tssv.jar}"
@@ -880,7 +880,7 @@
 		</jar>
 
 		<antcall target="update.tssv.jar"/>
-	</target>
+	</target-->
 
 
 
