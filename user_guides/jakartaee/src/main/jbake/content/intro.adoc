@@ -140,77 +140,122 @@ harness.
 
 For documentation on the test harness used for running the Jakarta EE 10 Platform TCK
 test suite, see
-`https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
+https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 
 [[sthref4]][[jakarta-ee-10-technologies-tested-with-jakarta-ee-10-platform-tck]]
 
-1.2.1 Jakarta EE 10 Technologies Tested with Jakarta EE 10 Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.1 Jakarta EE 10 Technologies Required for Jakarta EE 10 Platform Compatibility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 10 Platform TCK test suite includes compatibility tests for the
-following required and optional Jakarta EE 10 technologies:
+The Jakarta EE 10 Platform Specification defines the required and optional component specifications.
+The full list with specification version requirements is defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/10/), see the heading 'Full Jakarta™ EE Product Requirements,'
 
-* Jakarta Authentication 3.0
-* Jakarta Authorization 2.1
-* Jakarta Bean Validation 3.0
-* Jakarta Common Annotations 2.1
-* Jakarta Contexts and Dependency Injection 4.0
-* Jakarta Concurrency 3.0
-* Jakarta Connectors 2.1
-* Jakarta Debugging Support for Other Languages 2.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Enterprise Beans 4.0
-* Jakarta Expression Language 5.0
-* Jakarta Faces 4.0
-* Jakarta JSON Processing 2.1
-* Jakarta JSON Binding 3.0
-* Jakarta Interceptors 2.1
-* Jakarta Mail 2.1
-* Jakarta Messaging 3.1
-* Jakarta Persistence 3.1
-* Jakarta RESTful Web Services 3.1
-* Jakarta Security 3.0
-* Jakarta Server Pages 3.1
-* Jakarta Servlet 6.0
-* Jakarta Standard Tag Library 3.0
-* Jakarta Transactions 2.0
-* Jakarta WebSocket 2.1
-* Jakarta Enterprise Beans 3.2 and earlier entity beans and associated Jakarta Enterprise Beans QL (optional)
-* Jakarta Enterprise Beans 2.x API group (optional)
-* Jakarta Enterprise Web Services 4.0 (optional)
-* Jakarta SOAP with Attachments 3.0 (optional)
-* Jakarta XML Web Services 3.0 (optional)
+Jakarta EE 10 TCK tests verify partial compatibility for the Jakarta EE Platform.
+The Platform TCK includes tests for the following components:
 
+* Jakarta Activation
+* Jakarta Authentication
+* Jakarta Authorization
+* Jakarta Batch
+* Jakarta Bean Validation
+* Jakarta Common Annotations
+* Jakarta Concurrency
+* Jakarta Connectors
+* Jakarta Contexts and Dependency Injection
+* Jakarta Debugging Support for Other Languages
+* Jakarta Dependency Injection
+* Jakarta Enterprise Beans (also, see optional below)
+* Jakarta Enterprise Web Services
+* Jakarta Expression Language
+* Jakarta Server Faces
+* Jakarta Interceptors
+* Jakarta JSON Binding
+* Jakarta JSON Processing
+* Jakarta Mail
+* Jakarta Messaging
+* Jakarta Persistence
+* Jakarta RESTful Web Services
+* Jakarta Security
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta WebSocket
+
+The following optional technologies may also tested via the Jakarta EE Platform TCK:
+
+* Jakarta Enterprise Beans and earlier entity beans and associated Jakarta Enterprise Beans QL 
+* Jakarta Enterprise Beans 2.x API group 
+* Jakarta Enterprise Beans Container Managed Persistence, Bean Managed Persistence
+* Jakarta Enterprise Web Services 
+* Jakarta SOAP with Attachments 
+* Jakarta XML Binding 
+* Jakarta XML Web Services
+
+Jakarta EE 10 Platform TCK provides certification verification of implementations contained in the Platform for the following component specifications:
+
+* Jakarta Annotations
+* Jakarta Authorization
+* Jakarta Connectors
+* Jakarta Enterprise Beans (including optional elements)
+* Jakarta Expression Language
+* Jakarta Interceptors
+* Jakarta Messaging
+* Jakarta Persistence
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta SOAP with Attachments
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta Web Socket
+* Jakarta XML Web Services
 
 [[BHCGFHDI]][[jakarta-ee-10-web-profile-technologies-tested-with-jakarta-ee-10-platform-tck]]
 
 1.2.2 Jakarta EE 10 Web Profile Technologies Tested With Jakarta EE 10 Platform TCK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 10 Platform TCK test suite can also be used to test compatibility for
-the following required Jakarta EE 10 Web Profile technologies:
+The Jakarta EE 10 Web Profile Specification defines the required component specifications.
+The full list with specification version requirements is defined in the Web Profile specification document (https://jakarta.ee/specifications/webprofile/10/), see heading 'Web Profile Definition', sub-heading 'Required Components'.
 
-* Jakarta Authentication 3.0, Servlet Container Profile
-* Jakarta Bean Validation 3.0
-* Jakarta Common Annotations 2.1
-* Jakarta Contexts and Dependency Injection 4.0
-* Jakarta Concurrency 3.0
-* Jakarta Debugging Support for Other Languages 2.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Enterprise Beans Lite 4.0, Lite
-* Jakarta Expression Language 5.0
-* Jakarta Faces 4.0
-* Jakarta JSON Processing 2.1
-* Jakarta JSON Binding 3.0
-* Jakarta Interceptors 2.1
-* Jakarta Persistence 3.1
-* Jakarta RESTful Web Services 3.1
-* Jakarta Security 3.0
-* Jakarta Server Pages 3.1
-* Jakarta Servlet 6.0
-* Jakarta Standard Tag Library 3.0
-* Jakarta Transactions 2.0
-* Jakarta WebSocket 2.1
+The Jakarta EE 10 Platform TCK test suite provides partial compatibility verification for
+the following component technologies:
+
+* Jakarta Annotations
+* Jakarta Authentication, Servlet Container Profile
+* Jakarta Bean Validation
+* Jakarta Common Annotations
+* Jakarta Contexts and Dependency Injection
+* Jakarta Concurrency
+* Jakarta Debugging Support for Other Languages
+* Jakarta Dependency Injection
+* Jakarta Enterprise Beans, Lite
+* Jakarta Expression Language
+* Jakarta Faces
+* Jakarta Interceptors
+* Jakarta JSON Binding
+* Jakarta JSON Processing
+* Jakarta Persistence
+* Jakarta RESTful Web Services
+* Jakarta Security
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta WebSocket
+
+There are no optional specifications defined in the Web Profile specification.
+
+Jakarta EE 10 Platform TCK provides certification verification of implementations contained in the platform, Web Profile for the following component specifications:
+
+* Jakarta Annotations
+* Jakarta Enterprise Beans, Lite
+* Jakarta Expression Language
+* Jakarta Interceptors
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta Web Socket
 
 [[GEUZS]][[tck-tests]]
 
@@ -459,38 +504,39 @@ Linux software that meet the following software requirements:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to the instructions and requirements described in this
-document, all Jakarta EE 10 and Jakarta EE 10 Web Profile implementations must
+document, all Jakarta EE 10 Platform implementations must
 also pass the standalone TCKs for the following technologies:
 
-* Jakarta Batch 2.1
-* Jakarta Contexts and Dependency Injection 4.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Bean Validation 3.0
-* Jakarta XML Binding 3.0
-* Jakarta JSON Binding 3.0
-* Jakarta JSON Processing 2.1
-* Jakarta RESTful Web Services 3.1
+* Jakarta Activation -- see https://jakarta.ee/specifications/activation/ for additional details
+* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
+* Jakarta Batch -- see https://jakarta.ee/specifications/batch/2.1/ for additional details
+* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
+* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details
+* Jakarta Contexts and Dependency Injection -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
+* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
+* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ , for additional details
+* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
+* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
+* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
+* Jakarta Mail -- see https://jakarta.ee/specifications/mail/2.1/ for additional details
+* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/3.1/ for additional details
+* Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
+* Jakarta XML Binding -- see https://jakarta.ee/specifications/xml-binding/3.0/ for additional details
 
-For more information about the Jakarta Batch technology,
-see the specification at `https://jakarta.ee/specifications/batch/2.1/`
+All Jakarta EE 10 Web Profile implementations must also pass the standalone TCKs for the following technologies:
 
-For more information about the Jakarta Contexts and Dependency Injection technology, 
-see the specification at `https://jakarta.ee/specifications/cdi/4.0/`
+* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
+* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
+* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details
+* Jakarta Contexts and Dependency Injection -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
+* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
+* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ for additional details
+* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
+* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
+* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
+* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/3.1/ for additional details
+* Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
 
-For more information about the Jakarta Dependency Injection,
-see the specification at `https://jakarta.ee/specifications/dependency-injection/2.0/` 
-
-For more information about the Jakarta Bean Validation technology, see the
-specification at `https://jakarta.ee/specifications/bean-validation/3.0/`
-
-For more information about the Jakarta XML Binding technology, see the
-specification at `https://jakarta.ee/specifications/xml-binding/3.0/`
-
-For more information about the Jakarta JSON Binding technology, see the specification at `https://jakarta.ee/specifications/jsonb/3.0/`
-
-For more information about the Jakarta JSON Processing technology, see the specification at `https://jakarta.ee/specifications/jsonp/2.1/`
-
-For more information about the Jakarta RESTful Web Services technology, see the specification at `https://jakarta.ee/specifications/restful-ws/3.1/`
 
 [[GBFQW]][[getting-started-with-the-jakarta-ee-10-platform-tck-test-suite]]
 

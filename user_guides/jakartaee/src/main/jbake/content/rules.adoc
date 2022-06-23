@@ -411,20 +411,23 @@ programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
 EE21 Compliance testing for Jakarta EE 10.0 consists of running Jakarta EE 10.0
-TCK and the following Technology Compatibility Kits (TCKs):
+TCK and the following Technology Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/10/), see the heading 'Full Jakarta™ EE Product Requirements':
 
-* Jakarta Authentication 3.0
-* Jakarta Batch 2.1
-* Jakarta Bean Validation 3.0
-* Jakarta Concurrency 3.0
-* Jakarta Contexts and Dependency Injection 4.0
-* Jakarta Dependency Injection 2.0 
-* Jakarta Faces 4.0
-* Jakarta JSON Processing 2.1
-* Jakarta JSON Binding 3.0
-* Jakarta RESTful Web Services 3.1
-* Jakarta Security 3.0
-* Jakarta XML Binding 4.0 (If XML Binding is supported)
+* Jakarta Activation
+* Jakarta Authentication
+* Jakarta Batch
+* Jakarta Bean Validation
+* Jakarta Concurrency
+* Jakarta Contexts and Dependency Injection
+* Jakarta Debugging Support for Other Languages
+* Jakarta Dependency Injection
+* Jakarta Faces 
+* Jakarta JSON Binding
+* Jakarta JSON Processing
+* Jakarta Mail
+* Jakarta RESTful Web Services
+* Jakarta Security
+* Jakarta XML Binding (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
 Guide, Jakarta EE 10.0 implementations must also adhere to all of the
