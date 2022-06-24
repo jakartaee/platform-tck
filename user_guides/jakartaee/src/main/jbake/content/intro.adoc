@@ -182,7 +182,7 @@ The Platform TCK includes tests for the following components:
 * Jakarta Transactions
 * Jakarta WebSocket
 
-The following optional technologies may also tested via the Jakarta EE Platform TCK:
+The following optional technologies may also br tested via the Jakarta EE Platform TCK:
 
 * Jakarta Enterprise Beans and earlier entity beans and associated Jakarta Enterprise Beans QL 
 * Jakarta Enterprise Beans 2.x API group 
