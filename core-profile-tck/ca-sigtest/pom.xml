@@ -14,13 +14,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>jakarta.ee.tck</groupId>
+    <groupId>jakarta.ee.tck.coreprofile</groupId>
     <artifactId>core-tck-parent</artifactId>
     <version>10.0.0</version>
   </parent>
 
   <packaging>pom</packaging>
-  <artifactId>common-annotations-sigtest</artifactId>
+  <artifactId>common-annotations</artifactId>
   <name>Common Annotations Signature Gen for Core Profile TCK</name>
   <description>This module contains is run to generate the signature test file</description>
 
@@ -51,7 +51,7 @@
                 <artifact>
                   <file>src/main/resources/common-annotations-api-jdk11.sig</file>
                   <type>sig</type>
-                  <classifier>jdk11</classifier>
+                  <classifier>sigtest-jdk11</classifier>
                 </artifact>
               </artifacts>
             </configuration>

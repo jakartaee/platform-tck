@@ -24,34 +24,34 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>glassfish.batch-tck</artifactId>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
     </parent>
-
 
     <artifactId>glassfish.batch-tck.apitests</artifactId>
     <packaging>pom</packaging>
     <name>Jakarta Batch API TCK Runner for Glassfish</name>
-    
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <script.ext>.bat</script.ext>
+            </properties>
+        </profile>
+    </profiles>
+
     <properties>
         <derby.basedir>${project.build.directory}/derby</derby.basedir>
+        <script.ext/>
     </properties>
 
     <dependencies>
-
-        <!-- The parent project brings a dependency on `jakarta.batch.reporting` with group `${project.groupId}`, which isn't derived from the group of the parent, but actually from the group of the current project, which is `org.glassfish`. Such an artifact doesn't exist and it has to be ignored. There's no simple way to exclude a dependency defined in a parent POM except copying everything from the parent POM to this project. So, until this is fixed in the parent POM, we'll provide this dependency locally as an empty JAR file.
-        -->
-        
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.batch.reporting</artifactId>
-            <version>10000</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/hack-around-batch-tck-parent.jar</systemPath>
-        </dependency>
-
                 
         <!-- Common Batch TCK dependencies -->
-        
         <dependency>
             <groupId>jakarta.batch</groupId>
             <artifactId>com.ibm.jbatch.tck</artifactId>
@@ -69,30 +69,25 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>1.7.0.Alpha9</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
             <scope>test</scope>
-            <version>1.7.0.Alpha9</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
-            <version>1.7.0.Alpha9</version>
         </dependency>
         <dependency>
             <groupId>jakarta.batch</groupId>
             <artifactId>jakarta.batch.reporting</artifactId>
             <scope>test</scope>
-            <version>${jakarta.batch.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
-            <version>1.7.30</version>
         </dependency>
 
         <!-- GlassFish Batch TCK dependencies -->
@@ -216,7 +211,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
                                 <argument>stop-domain</argument>
                             </arguments>
@@ -229,7 +224,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>stop-database</argument>
@@ -247,7 +242,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
                                 <argument>start-domain</argument>
                             </arguments>
@@ -260,7 +255,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>start-database</argument>
@@ -274,7 +269,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/javadb/bin/ij</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/javadb/bin/ij${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>${basedir}/src/test/resources/derby.ddl.jbatch-tck.sql</argument>
@@ -288,7 +283,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
                                 <argument>create-jdbc-connection-pool</argument>
                                 <argument>--datasourceClassname=org.apache.derby.jdbc.ClientDataSource40</argument>
@@ -306,7 +301,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
                                 <argument>create-jdbc-resource</argument>
                                 <argument>--poolName=batchtck</argument>
@@ -321,7 +316,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
                                 <argument>stop-domain</argument>
                             </arguments>
@@ -334,7 +329,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>stop-database</argument>
@@ -355,5 +350,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                 </configuration>
             </plugin>
         </plugins>
+
+        
     </build>
 </project>

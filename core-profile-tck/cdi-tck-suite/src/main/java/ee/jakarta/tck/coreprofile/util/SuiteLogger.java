@@ -6,7 +6,7 @@
  *
  *  SPDX-License-Identifier: Apache-2.0
  */
-package ee.jakarta.tck.core.util;
+package ee.jakarta.tck.coreprofile.util;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -148,10 +148,12 @@ https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta EE 10 Platform Specification defines the required and optional component specifications.
-The full list with specification version requirements is defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/10/), see the heading 'Full Jakarta™ EE Product Requirements,'
+The full list with specification version requirements is defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/10/), see the heading 'Full Jakarta(TM) EE Product Requirements,'
 
 Jakarta EE 10 TCK tests verify partial compatibility for the Jakarta EE Platform.
 The Platform TCK includes tests for the following components:
+
+The complete list of Jakarta EE 10 technologies for the Platform can be found in section 9.7 of the https://jakarta.ee/specifications/platform/10/[Platform Specification].
 
 * Jakarta Activation
 * Jakarta Authentication
@@ -192,7 +194,7 @@ The following optional technologies may also be tested via the Jakarta EE Platfo
 * Jakarta XML Binding 
 * Jakarta XML Web Services
 
-Jakarta EE 10 Platform TCK provides certification verification of implementations contained in the Platform for the following component specifications:
+Jakarta EE 10 Platform TCK provides compatibility certification verification for implementations contained in the Platform for the following component specifications:
 
 * Jakarta Annotations
 * Jakarta Authorization
@@ -216,7 +218,7 @@ Jakarta EE 10 Platform TCK provides certification verification of implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Jakarta EE 10 Web Profile Specification defines the required component specifications.
-The full list with specification version requirements is defined in the Web Profile specification document (https://jakarta.ee/specifications/webprofile/10/), see heading 'Web Profile Definition', sub-heading 'Required Components'.
+The complete list with specification version requirements is defined in the Web Profile specification document (https://jakarta.ee/specifications/webprofile/10/), see heading 'Web Profile Definition', sub-heading 'Required Components'.
 
 The Jakarta EE 10 Platform TCK test suite provides partial compatibility verification for
 the following component technologies:
@@ -246,7 +248,7 @@ the following component technologies:
 
 There are no optional specifications defined in the Web Profile specification.
 
-Jakarta EE 10 Platform TCK provides certification verification of implementations contained in the platform, Web Profile for the following component specifications:
+Jakarta EE 10 Platform TCK provides compatibility certification verification for implementations contained in the platform, Web Profile for the following component specifications:
 
 * Jakarta Annotations
 * Jakarta Enterprise Beans, Lite
