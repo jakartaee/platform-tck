@@ -45,8 +45,8 @@
          <outputDirectory>/doc</outputDirectory>
       </file>
    </files>
-   <!-- The compatible implementation tck runner examples -->
    <fileSets>
+      <!-- The compatible implementation tck runner examples -->
       <fileSet>
          <directory>${project.parent.basedir}/examples</directory>
          <outputDirectory>examples</outputDirectory>
@@ -60,16 +60,22 @@
             <exclude>wf-core-tck-runner/LICENSE</exclude>
          </excludes>
       </fileSet>
+      <!-- The userguide source -->
+      <fileSet>
+         <directory>src/main/asciidoc</directory>
+         <outputDirectory>doc/asciidoc</outputDirectory>
+      </fileSet>
    </fileSets>
 
    <dependencySets>
       <dependencySet>
          <includes>
-            <include>jakarta.ee.tck:core-tck-parent</include>
-            <include>jakarta.ee.tck:common-annotations-sigtest</include>
-            <include>jakarta.ee.tck:cdi-lite-tck-suite</include>
-            <include>jakarta.ee.tck:core-profile-tck-impl</include>
-            <include>jakarta.ee.tck:core-tck-jsonp-extension</include>
+            <include>jakarta.ee.tck.coreprofile:core-tck-parent</include>
+            <include>jakarta.ee.tck.coreprofile:common-annotations</include>
+            <include>jakarta.ee.tck.coreprofile:cdi-lite-tck-suite</include>
+            <include>jakarta.ee.tck.coreprofile:rest-tck-suite</include>
+            <include>jakarta.ee.tck.coreprofile:core-profile-tck-impl</include>
+            <include>jakarta.ee.tck.coreprofile:core-tck-jsonp-extension</include>
          </includes>
          <useTransitiveDependencies>true</useTransitiveDependencies>
          <outputDirectory>artifacts</outputDirectory>

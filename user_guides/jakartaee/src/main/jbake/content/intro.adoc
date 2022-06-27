@@ -181,6 +181,7 @@ following required and optional Jakarta EE 10 technologies:
 * Jakarta SOAP with Attachments 3.0 (optional)
 * Jakarta XML Web Services 3.0 (optional)
 
+The complete list of Jakarta EE 10 technologies for the Platform can be found in section 9.7 of the https://jakarta.ee/specifications/platform/10/[Platform Specification].
 
 [[BHCGFHDI]][[jakarta-ee-10-web-profile-technologies-tested-with-jakarta-ee-10-platform-tck]]
 
@@ -211,6 +212,8 @@ the following required Jakarta EE 10 Web Profile technologies:
 * Jakarta Standard Tag Library 3.0
 * Jakarta Transactions 2.0
 * Jakarta WebSocket 2.1
+
+The complete list of Jakarta EE 10 technologies for the Web Profile can be found in section 2.1 of the https://jakarta.ee/specifications/webprofile/10/[Web Profile Specification].
 
 [[GEUZS]][[tck-tests]]
 

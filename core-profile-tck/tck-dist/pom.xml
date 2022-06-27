@@ -13,7 +13,7 @@
    <modelVersion>4.0.0</modelVersion>
 
    <parent>
-      <groupId>jakarta.ee.tck</groupId>
+      <groupId>jakarta.ee.tck.coreprofile</groupId>
       <artifactId>core-tck-parent</artifactId>
       <version>10.0.0</version>
       <relativePath>../pom.xml</relativePath>
@@ -32,47 +32,52 @@
 
    <dependencies>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>core-tck-parent</artifactId>
          <version>${project.version}</version>
          <type>pom</type>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>cdi-lite-tck-suite</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>cdi-lite-tck-suite</artifactId>
          <version>${project.version}</version>
          <type>xml</type>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
-         <artifactId>common-annotations-sigtest</artifactId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
+         <artifactId>rest-tck-suite</artifactId>
          <version>${project.version}</version>
-         <type>sig</type>
-         <classifier>jdk11</classifier>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
+         <artifactId>common-annotations</artifactId>
+         <version>${project.version}</version>
+         <type>sig</type>
+         <classifier>sigtest-jdk11</classifier>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>core-profile-tck-impl</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>core-profile-tck-impl</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>core-tck-jsonp-extension</artifactId>
          <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>jakarta.ee.tck</groupId>
+         <groupId>jakarta.ee.tck.coreprofile</groupId>
          <artifactId>core-tck-jsonp-extension</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
