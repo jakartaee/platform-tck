@@ -24,7 +24,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
     <parent>
         <groupId>jakarta.batch</groupId>
         <artifactId>jakarta.batch.arquillian.exec-parent</artifactId>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
     </parent>
 
     <groupId>org.glassfish</groupId>
@@ -44,20 +44,5 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
         <module>apitests</module>
     </modules>
 
-    <dependencies>
-
-        <!-- The parent project brings a dependency on `jakarta.batch.reporting` with group `${project.groupId}`, which isn't derived from the group of the parent, but actually from the group of the current project, which is `org.glassfish`. Such an artifact doesn't exist and it has to be ignored. There's no simple way to exclude a dependency defined in a parent POM except copying everything from the parent POM to this project. So, until this is fixed in the parent POM, we'll provide this dependency locally as an empty JAR file.
-        -->
-        
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.batch.reporting</artifactId>
-            <version>10000</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/hack-around-batch-tck-parent.jar</systemPath>
-        </dependency>
-
-                
-    </dependencies>
     
 </project>
