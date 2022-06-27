@@ -13,7 +13,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>jakarta.ee.tck</groupId>
+  <groupId>jakarta.ee.tck.coreprofile</groupId>
   <artifactId>core-profile-tck-dependencies</artifactId>
   <packaging>pom</packaging>
   <!-- This is set to project release version during assembly -->
@@ -100,7 +100,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
               <artifactId>core-tck-parent</artifactId>
               <version>${project.version}</version>
               <packaging>pom</packaging>
@@ -116,7 +116,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
               <artifactId>core-tck-jsonp-extension</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -132,7 +132,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
               <artifactId>core-profile-tck-impl</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -148,7 +148,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
               <artifactId>cdi-lite-tck-suite</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -163,7 +163,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
               <artifactId>cdi-lite-tck-suite</artifactId>
               <version>${project.version}</version>
               <packaging>xml</packaging>
@@ -179,12 +179,12 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck</groupId>
-              <artifactId>common-annotations-sigtest</artifactId>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <artifactId>common-annotations</artifactId>
               <version>${project.version}</version>
               <packaging>sig</packaging>
-              <classifier>jdk11</classifier>
-              <file>common-annotations-sigtest-${project.version}-jdk11.sig</file>
+              <classifier>sigtest-jdk11</classifier>
+              <file>common-annotations-${project.version}-sigtest-jdk11.sig</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>
@@ -201,6 +201,20 @@
               <version>3.1.0</version>
               <packaging>jar</packaging>
               <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.0.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+          <execution>
+            <id>install-coreprofile-restful-tck-suite</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <artifactId>rest-tck-suite</artifactId>
+              <version>${project.version}</version>
+              <file>rest-tck-suite-${project.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
@@ -232,7 +246,7 @@
               <artifactId>cdi-tck-core-impl</artifactId>
               <version>${cdi.tck.dist.version}</version>
               <packaging>sig</packaging>
-              <classifier>jdk11</classifier>
+              <classifier>sigtest-jdk11</classifier>
               <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk11.sig</file>
               <generatePom>false</generatePom>
             </configuration>

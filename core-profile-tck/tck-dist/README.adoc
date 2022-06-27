@@ -10,11 +10,12 @@ artifacts/
 
  – TCK binaries and sources, packaged as jars
  – TestNG suite.xml file for running the CDI Lite TCK
+ - Jakarta Common Annotations signature test map
  - maven pom.xml to install artifacts into a local repo
 
 doc/
 
- – A detailed reference guide for the current version of TCK in both pdf and html formats
+ – A detailed reference guide for the current version of TCK in both pdf and html formats along with the asciidoc source
 
 
 examples/
