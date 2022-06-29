@@ -530,7 +530,7 @@ All Jakarta EE 10 Web Profile implementations must also pass the standalone TCKs
 * Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
 * Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
 * Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details
-* Jakarta Contexts and Dependency Injection -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
+* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
 * Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
 * Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ for additional details
 * Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
