@@ -511,7 +511,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.build.directory}/suites/tck-web-suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <excludedGroups>se</excludedGroups>
+                    <excludedGroups>${excluded.groups}</excludedGroups>
                     <dependenciesToScan>
                         <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
                         <dependency>jakarta.enterprise:cdi-tck-web-impl</dependency>
