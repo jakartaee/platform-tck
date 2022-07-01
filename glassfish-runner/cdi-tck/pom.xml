@@ -34,7 +34,6 @@
 
         <!-- This matches the htmlunit version in TCK -->
         <htmlunit.version>2.50.0</htmlunit.version>
-        <excluded.groups>se</excluded.groups>
         <weld.version>5.0.0.SP2</weld.version>
         <glassfish.version>7.0.0-M6</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
@@ -235,8 +234,8 @@
             <artifactId>cdi-tck-core-impl</artifactId>
             <version>${cdi.tck-4-0.version}</version>
             <type>sig</type>
-            <classifier>sigtest-jdk11</classifier>
             <scope>test</scope>
+            <classifier>sigtest-jdk11</classifier>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.test-audit</groupId>
@@ -300,148 +299,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>cdi-signature-test</id>
-            <!-- API jars from the GlassFish distribution -->
-            <dependencies>
-                <dependency>
-                    <groupId>jakarta.annotation</groupId>
-                    <artifactId>jakarta.annotation-api</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.annotation-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>jakarta.el</groupId>
-                    <artifactId>jakarta.el-api</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.el-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>jakarta.interceptor</groupId>
-                    <artifactId>jakarta.interceptor-api</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.interceptor-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>jakarta.inject</groupId>
-                    <artifactId>jakarta.inject-api</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.inject-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>jakarta.enterprise</groupId>
-                    <artifactId>jakarta.enterprise.lang-model</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.enterprise.lang-model.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>jakarta.enterprise</groupId>
-                    <artifactId>jakarta.enterprise.cdi-api</artifactId>
-                    <scope>system</scope>
-                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.enterprise.cdi-api.jar</systemPath>
-                </dependency>
-            </dependencies>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.3.0</version>
-                        <executions>
-                            <execution>
-                                <id>unpack-glassfish</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <markersDirectory>${glassfish.root}/dependency-maven-plugin-markers</markersDirectory>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.glassfish.main.distributions</groupId>
-                                            <artifactId>${glassfish-artifact-id}</artifactId>
-                                            <version>${glassfish.version}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${glassfish.root}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                             </execution>
-                            <execution>
-                                <id>unpack-jars</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>unpack-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <overWriteReleases>true</overWriteReleases>
-                                    <outputDirectory>target/cdi-sigtest-classes</outputDirectory>
-                                    <includeScope>system</includeScope>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>copy-cdi-sigtest</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>copy-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <includeGroupIds>jakarta.enterprise</includeGroupIds>
-                                    <includeArtifactIds>cdi-tck-core-impl</includeArtifactIds>
-                                    <type>sig</type>
-                                    <classifier>jdk11</classifier>
-                                    <stripVersion>true</stripVersion>
-                                    <overWriteReleases>true</overWriteReleases>
-                                    <outputDirectory>${project.build.directory}/sigtest</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.netbeans.tools</groupId>
-                        <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sigtest</id>
-                                <phase>process-test-sources</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <sigfile>target/sigtest/cdi-tck-core-impl-jdk11.sig</sigfile>
-                            <packages>jakarta.decorator,jakarta.enterprise,jakarta.interceptor</packages>
-                            <classes>target/cdi-sigtest-classes</classes>
-                            <report>target/cdi-sig-report.txt</report>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-
     <build>
         <plugins>
             <plugin>
@@ -461,7 +318,7 @@
                             <goal>test-jar</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>target/dependency/lib</outputDirectory>
+                            <outputDirectory>${project.build.directory}/dependency/lib</outputDirectory>
                             <archive>
                                 <manifest>
                                   <addClasspath>false</addClasspath>
@@ -520,7 +377,77 @@
                             </artifactItems>
                         </configuration>
                      </execution>
-
+                     <execution>
+                        <id>unpack-jars</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <overWriteReleases>true</overWriteReleases>
+                            <outputDirectory>${project.build.directory}/cdi-sigtest-classes</outputDirectory>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>jakarta.enterprise</groupId>
+                                    <artifactId>cdi-tck-core-impl</artifactId>
+                                    <version>${cdi.tck-4-0.version}</version>
+                                    <scope>test</scope>
+                                </dependency>
+                            </dependencies>
+                            <includeTypes>jar</includeTypes>
+                            <excludes>*.*</excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-jars-gf</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <overWriteReleases>true</overWriteReleases>
+                            <outputDirectory>${project.build.directory}/cdi-sigtest-classes</outputDirectory>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>jakarta.annotation</groupId>
+                                    <artifactId>jakarta.annotation-api</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.annotation-api.jar</systemPath>
+                                </dependency>
+                                <dependency>
+                                    <groupId>jakarta.el</groupId>
+                                    <artifactId>jakarta.el-api</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.el-api.jar</systemPath>
+                                </dependency>
+                                <dependency>
+                                    <groupId>jakarta.interceptor</groupId>
+                                    <artifactId>jakarta.interceptor-api</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.interceptor-api.jar</systemPath>
+                                </dependency>
+                                <dependency>
+                                    <groupId>jakarta.inject</groupId>
+                                    <artifactId>jakarta.inject-api</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.inject-api.jar</systemPath>
+                                </dependency>
+                                <dependency>
+                                    <groupId>jakarta.enterprise</groupId>
+                                    <artifactId>jakarta.enterprise.lang-model</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.enterprise.lang-model.jar</systemPath>
+                                </dependency>
+                                <dependency>
+                                    <groupId>jakarta.enterprise</groupId>
+                                    <artifactId>jakarta.enterprise.cdi-api</artifactId>
+                                    <scope>system</scope>
+                                    <systemPath>${glassfish.home}/glassfish/modules/jakarta.enterprise.cdi-api.jar</systemPath>
+                                </dependency>
+                            </dependencies>
+                            <includeTypes>jar</includeTypes>
+                        </configuration>
+                    </execution>
                      <!-- Install a jar with a few amount of test classes, for which some of the tests are looking -->
                      <execution>
                         <id>install-cdi-tck-ext-lib</id>
@@ -539,19 +466,30 @@
                                     <outputDirectory>${glassfish.root}/glassfish7/glassfish/domains/domain1/lib/applibs</outputDirectory>
                                     <destFileName>cdi-tck-ext-lib.jar</destFileName>
                                 </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.enterprise</groupId>
-                                    <artifactId>cdi-tck-api</artifactId>
-                                    <version>${cdi.tck-4-0.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.root}/glassfish7/glassfish/domains/domain1/lib/applibs</outputDirectory>
-                                    <destFileName>cdi-tck-api.jar</destFileName>
-                                </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.netbeans.tools</groupId>
+                <artifactId>sigtest-maven-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sigtest</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sigfile>${project.build.directory}/cdi-sigtest-classes/cdi-api-jdk11.sig</sigfile>
+                    <packages>jakarta.decorator,jakarta.enterprise,jakarta.interceptor</packages>
+                    <classes>${project.build.directory}/cdi-sigtest-classes</classes>
+                    <report>${project.build.directory}/cdi-sig-report.txt</report>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -604,7 +542,7 @@
                             create-file-user --groups student:alarm --passwordfile ${project.build.directory}/test-classes/password.txt alarm
                         </glassfish.postBootCommands>
                         <libPath>${project.build.outputDirectory}</libPath>
-                        <org.jboss.cdi.tck.libraryDirectory>target/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
+                        <org.jboss.cdi.tck.libraryDirectory>${project.build.directory}/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
                         <debugMode>true</debugMode>
                     </systemPropertyVariables>
                 </configuration>
@@ -629,4 +567,23 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>javaee-full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <excluded.groups>se</excluded.groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>webprofile</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <excluded.groups>javaee-full,se</excluded.groups>
+            </properties>
+        </profile>
+    </profiles>
 </project>
