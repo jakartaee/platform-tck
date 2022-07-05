@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <concurrency.tck-3-0.version>3.0.0</concurrency.tck-3-0.version>
+        <concurrency.tck-3-0.version>3.0.1</concurrency.tck-3-0.version>
         <jakarta.concurrent.version>3.0.0</jakarta.concurrent.version>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
 
