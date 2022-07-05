@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.glassfish</groupId>
-    <artifactId>glassfish.concurreny-tck</artifactId>
+    <artifactId>glassfish.concurrency-tck</artifactId>
     <version>3.0.0</version>
     <name>Jakarta Concurrency TCK Runner for Glassfish</name>
 
