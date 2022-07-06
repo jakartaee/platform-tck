@@ -47,9 +47,9 @@ server :
 
 ** `-Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl`
 
-** `-Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyProvider`
+** `-Dvendor.jakarta.security.jacc.policy.provider=org.glassfish.exousia.modules.locked.SimplePolicyProvider`
 
-** `-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory` +
+** `-Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=org.glassfish.exousia.modules.locked.SimplePolicyConfigurationFactory` +
 
 [NOTE]
 =======================================================================
