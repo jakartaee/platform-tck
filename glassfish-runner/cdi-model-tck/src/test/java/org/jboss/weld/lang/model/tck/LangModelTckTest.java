@@ -21,6 +21,7 @@ import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
 import jakarta.enterprise.lang.model.declarations.ClassInfo;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.cdi.lang.model.tck.AnnotatedTypes;
 import org.jboss.cdi.lang.model.tck.LangModelVerifier;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
@@ -52,7 +53,7 @@ public class LangModelTckTest {
                 .addAsWebInfResource(new BeansXml(BeanDiscoveryMode.ALL), "beans.xml")
                 .addAsServiceProvider(BuildCompatibleExtension.class, LangModelExtension.class)
                 // add this class into the deployment so that it's subject to discovery
-                .addClasses(LangModelVerifier.class)
+                .addPackage(LangModelVerifier.class.getPackage())
                 .addClasses(LangModelExtension.class);
 
     }
