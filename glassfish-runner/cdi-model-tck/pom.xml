@@ -183,26 +183,6 @@
                             </artifactItems>
                         </configuration>
                      </execution>
-                      <execution>
-                        <id>install-cdi-tck-ext-lib</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.jboss.weld</groupId>
-                                    <artifactId>weld-core-test-common</artifactId>
-                                    <version>${weld.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.root}/glassfish7/glassfish/lib</outputDirectory>
-                                    <destFileName>weld-core-test-common.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>

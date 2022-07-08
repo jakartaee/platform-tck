@@ -17,20 +17,21 @@
 
 package org.jboss.weld.lang.model.tck;
 
-import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
-import jakarta.enterprise.lang.model.declarations.ClassInfo;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.cdi.lang.model.tck.AnnotatedTypes;
 import org.jboss.cdi.lang.model.tck.LangModelVerifier;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.BeanDiscoveryMode;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.BeansXml;
-import org.jboss.weld.tests.util.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension;
+import jakarta.enterprise.inject.spi.Extension;
+import jakarta.enterprise.lang.model.declarations.ClassInfo;
 
 /**
  * <p>
@@ -54,7 +55,11 @@ public class LangModelTckTest {
                 .addAsServiceProvider(BuildCompatibleExtension.class, LangModelExtension.class)
                 // add this class into the deployment so that it's subject to discovery
                 .addPackage(LangModelVerifier.class.getPackage())
-                .addClasses(LangModelExtension.class);
+                .addClasses(LangModelExtension.class)
+                // The cleanup extension that vetoes all classes that we're testing, since they are only
+                // meant for the lang model verifier and shouldn't be processed afterwards.
+                .addClass(CleanupExtension.class)
+                .addAsServiceProvider(Extension.class, CleanupExtension.class);
 
     }
 
