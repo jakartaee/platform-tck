@@ -299,7 +299,7 @@
             <id>tck-audit</id>
             <activation>
                 <property>
-                    <name>tckAuditSourceGen</name>
+                    <name>!skipTckAudit</name>
                 </property>
             </activation>
             <dependencies>
