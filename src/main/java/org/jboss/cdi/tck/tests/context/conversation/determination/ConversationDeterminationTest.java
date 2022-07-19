@@ -59,6 +59,7 @@ public class ConversationDeterminationTest extends AbstractTest {
     public void testConversationDetermination() throws Exception {
 
         WebClient webClient = new WebClient();
+        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
 
         // Begin long-running conversation
         TextPage cidPage = webClient.getPage(contextPath + "foo?action=begin");

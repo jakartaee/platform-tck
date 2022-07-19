@@ -82,6 +82,7 @@ public class SessionContextAsyncListenerTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = SESSION_CONTEXT_EE, id = "ad") })
     public void testSessionContextActiveOnError() throws Exception {
         WebClient webClient = new WebClient();
+        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         webClient.getPage(getPath(AsyncServlet.TEST_ERROR));
         TextPage results = webClient.getPage(contextPath + "Status");
         assertTrue(results.getContent().contains("onError: true"));

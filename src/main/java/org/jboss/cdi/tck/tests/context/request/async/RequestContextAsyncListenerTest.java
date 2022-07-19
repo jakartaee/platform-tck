@@ -86,6 +86,7 @@ public class RequestContextAsyncListenerTest extends AbstractTest {
     @SpecAssertion(section = REQUEST_CONTEXT_EE, id = "ad")
     public void testRequestContextActiveOnError() throws Exception {
         WebClient webClient = new WebClient();
+        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         webClient.getPage(getPath(AsyncServlet.TEST_ERROR));
         TextPage results = webClient.getPage(contextPath + "Status");
         assertTrue(results.getContent().contains("onError: true"));
