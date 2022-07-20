@@ -19,7 +19,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <groupId>jakarta</groupId>
     <artifactId>glassfish-rest-tck</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
     <name>Jakarta REST TCK run on glassfish</name>
@@ -33,7 +33,8 @@
     </parent>
 
     <properties>
-        <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>    
+        <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>
+        <tck.version>3.1.1</tck.version>    
     </properties>
 
 
@@ -83,7 +84,7 @@
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>${tck.artifactId}</artifactId>
-            <version>${project.version}</version>
+            <version>${tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
