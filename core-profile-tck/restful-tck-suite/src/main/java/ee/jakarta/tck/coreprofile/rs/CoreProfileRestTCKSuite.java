@@ -23,12 +23,7 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 @Suite
 @SuiteDisplayName("Jakarta Core Profile RESTful TCK")
 @SelectPackages("ee.jakarta.tck.ws.rs")
-@ExcludeTags("xml_binding")
-// Entire classes with xml binding or security
-@ExcludeClassNamePatterns({"ee.jakarta.tck.ws.rs.ee.rs.core.securitycontext.basic.JAXRSBasicClientIT.*",
-    "ee.jakarta.tck.ws.rs.ee.rs.container.requestcontext.security.JAXRSClientIT.*",
-    "ee.jakarta.tck.ws.rs.api.rs.core.linkjaxbadapter.JAXRSClientIT.*"
-})
+@ExcludeTags({"xml_binding", "servlet", "security"})
 @IncludeClassNamePatterns(".*IT.*")
 public class CoreProfileRestTCKSuite {
 
