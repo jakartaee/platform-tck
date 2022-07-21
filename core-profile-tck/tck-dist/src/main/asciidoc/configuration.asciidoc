@@ -34,4 +34,10 @@ In the WildFly runner example these are set to `unused`. These properties are va
 Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The `examples` directory in the TCK distribution illustrates sample configuration setup using Maven.
 
 ==== Jakarta RESTful TCK Configuration
-The Jakarta Core Profile TCK provides a JUnit 5 suite runner that removes tests that do not apply to the core profile. Currently this includes XML binding tests that are not properly tagged with `xml_binding` and security related tests that require Jakarta Security related setup on the server. The examples/wf-core-tck-runner/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.
+The Jakarta Core Profile TCK provides a JUnit 5 suite runner that excludes the tests tagged with `xml_binding`, `servlet` and `security` as these specifications are not part of the Core Profile. The examples/wf-core-tck-runner/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.
+
+
+[NOTE]
+====
+Implementations that support any of these technologies in their Core Profile implementation are free to remove these exclusions to enable these tests.
+====

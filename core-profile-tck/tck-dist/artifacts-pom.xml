@@ -53,7 +53,7 @@
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/restful-ws/3.1/jakarta-restful-ws-tck-3.1.0.zip"
+                <get src="https://download.eclipse.org/jakartaee/restful-ws/3.1/jakarta-restful-ws-tck-3.1.1.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
@@ -67,7 +67,7 @@
                      usetimestamp="true"/>
                 <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
-                <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.0.zip" dest="downloads/tcks/rest-tck" />
+                <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.1.zip" dest="downloads/tcks/rest-tck" />
                 <unzip src="downloads/tcks/cdi-tck-${cdi.tck.dist.version}-dist.zip" dest="downloads/tcks/" />
                 <unzip src="downloads/tcks/jakarta.inject-tck-2.0.2-bin.zip" dest="downloads/tcks/" />
 
@@ -198,9 +198,9 @@
             <configuration>
               <groupId>jakarta.ws.rs</groupId>
               <artifactId>jakarta-restful-ws-tck</artifactId>
-              <version>3.1.0</version>
+              <version>3.1.1</version>
               <packaging>jar</packaging>
-              <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.0.jar</file>
+              <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.1.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
