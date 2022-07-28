@@ -31,11 +31,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <concurrency.tck-3-0.version>3.0.1</concurrency.tck-3-0.version>
-        <jakarta.concurrent.version>3.0.0</jakarta.concurrent.version>
+        <concurrency.tck-3-0.version>3.0.2</concurrency.tck-3-0.version>
+        <jakarta.concurrent.version>3.0.1</jakarta.concurrent.version>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
 
-        <glassfish.version>7.0.0-M5</glassfish.version>
+        <glassfish.version>7.0.0-M7</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
     </properties>
@@ -144,12 +144,14 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <suiteXmlFile>suite.xml</suiteXmlFile>
             </properties>
         </profile>
         <profile>
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
+                <suiteXmlFile>suite-web.xml</suiteXmlFile>
             </properties>
         </profile>
     </profiles>
@@ -233,9 +235,9 @@
                     <argLine>-Xmx768m</argLine>
 
                     <!-- Surefire / TestNG Properties -->
-                    <!-- The suite, the exclude and the test dependencies together determine which tests are being run -->
+                    <!-- The suite and the test dependencies together determine which tests are being run -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>suite.xml</suiteXmlFile>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <dependenciesToScan>
                         <dependency>jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-tck</dependency>
