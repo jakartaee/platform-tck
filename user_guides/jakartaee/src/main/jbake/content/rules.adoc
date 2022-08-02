@@ -558,7 +558,7 @@ required for Jakarta EE 10.0:
 * jakarta.batch.runtime.context
 * jakarta.decorator
 * jakarta.ejb
-* jakarta.ejb.embeddable
+* jakarta.ejb.embeddable (removed from Jakarta EE 10 Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
 * jakarta.el
 * jakarta.enterprise.concurrent
