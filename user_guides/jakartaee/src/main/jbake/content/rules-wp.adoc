@@ -546,7 +546,7 @@ required for the Jakarta EE 10 Web Profile:
 * jakarta.annotation.sql
 * jakarta.decorator
 * jakarta.ejb
-* jakarta.ejb.embeddable
+* jakarta.ejb.embeddable (removed from Jakarta EE 10 Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
 * jakarta.el
 * jakarta.enterprise.context
