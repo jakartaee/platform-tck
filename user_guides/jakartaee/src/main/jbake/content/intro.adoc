@@ -184,13 +184,9 @@ The complete list of Jakarta EE 10 technologies for the Platform can be found in
 * Jakarta Transactions
 * Jakarta WebSocket
 
-The following (removed from Jakarta EE 10 Platform) technologies may be tested via the Jakarta EE Platform TCK:
-
-* Jakarta Enterprise Beans entity beans and associated Jakarta Enterprise Beans QL
-* Jakarta Enterprise Beans embeddable container 
-
 The following optional technologies may also be tested via the Jakarta EE Platform TCK:
 
+* Jakarta Enterprise Beans and earlier entity beans and associated Jakarta Enterprise Beans QL 
 * Jakarta Enterprise Beans 2.x API group 
 * Jakarta Enterprise Beans Container Managed Persistence, Bean Managed Persistence
 * Jakarta Enterprise Web Services 
