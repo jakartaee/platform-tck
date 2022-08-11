@@ -361,7 +361,9 @@ sed -i.bak 's/^javatest.timeout.factor=.*/javatest.timeout.factor=2.0/g' ts.jte
 sed -i.bak 's/^test.ejb.stateful.timeout.wait.seconds=.*/test.ejb.stateful.timeout.wait.seconds=480/g' ts.jte
 sed -i.bak 's/^harness.log.traceflag=.*/harness.log.traceflag=false/g' ts.jte
 sed -i.bak 's/^impl\.deploy\.timeout\.multiplier=240/impl\.deploy\.timeout\.multiplier=480/g' ts.jte
-
+if [ ! -z "${CLIENT_LOGGING_CFG}" ]; then
+  sed -i.bak "s#-Djava\.util\.logging\.config\.file=\${TS_HOME}/bin/client-logging.properties#-Djava\.util\.logging\.config\.file=${CLIENT_LOGGING_CFG}#g" ts.jte
+fi
 if [ "servlet" == "${test_suite}" ]; then
   sed -i.bak 's/s1as\.java\.endorsed\.dirs=.*/s1as.java.endorsed.dirs=\$\{endorsed.dirs\}\$\{pathsep\}\$\{ts.home\}\/endorsedlib/g' ts.jte
 fi

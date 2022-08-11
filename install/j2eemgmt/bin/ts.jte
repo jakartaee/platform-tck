@@ -66,7 +66,7 @@ env.ts_unix.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd DI
         LD_LIBRARY_PATH=${J2EE_HOME}/nativelib \
 	TZ=${TZ} \
         ${JAVA_HOME}/bin/java -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
-		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${J2EE_HOME}/config/client_logging.properties \
+		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
     -Dcts.tmp=$harness.temp.directory \
          -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
          -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
@@ -83,7 +83,7 @@ env.ts_unix.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd D
         LD_LIBRARY_PATH=${J2EE_HOME_RI}/nativelib \
 	TZ=${TZ} \
         ${JAVA_HOME}/bin/java -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
-		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${J2EE_HOME}/config/client_logging.properties \
+		${JAVA_OPTIONS} -Djava.security.policy=${TS_HOME}/bin/java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
     -Dcts.tmp=$harness.temp.directory \
          -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
          -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
@@ -122,7 +122,7 @@ env.ts_win32.command.testExecuteAppClient=com.sun.ts.lib.harness.ExecTSTestCmd \
 	PATH=${J2EE_HOME}\\nativelib \
         ${JAVA_HOME}\\bin\\java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST} \
     -Dcts.tmp=$harness.temp.directory \
-		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${J2EE_HOME}\\config\\client_logging.properties \
+		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
         -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
 	-Dorg.omg.CORBA.ORBInitialPort=${ORB_PORT} -Djms.home=${J2EE_HOME} -Djms\
@@ -139,7 +139,7 @@ env.ts_win32.command.testExecuteAppClient2=com.sun.ts.lib.harness.ExecTSTestCmd 
 	PATH=${J2EE_HOME_RI}\\nativelib \
         ${JAVA_HOME}\\bin\\java ${JAVA_OPTIONS} -Dorg.omg.CORBA.ORBInitialHost=${ORB_HOST_RI} \
     -Dcts.tmp=$harness.temp.directory \
-		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${J2EE_HOME}\\config\\client_logging.properties \
+		-Djava.security.policy=${TS_HOME}\\bin\\java.policy -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dorg.xml.sax.driver=org.apache.crimson.parser.XMLReaderImpl \
         -Dorg.xml.sax.parser=org.xml.sax.helpers.XMLReaderAdapter \
 	-Dorg.omg.CORBA.ORBInitialPort=${ORB_PORT_RI} -Djms.home=${J2EE_HOME_RI} -Djms\
