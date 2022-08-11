@@ -32,6 +32,12 @@
     </listeners>
 
     <test name="jakarta-concurrency.tck">
+        <groups>
+            <run>
+                <exclude name="eefull" />
+            </run>
+        </groups>
+    
         <packages>
             <package name="ee.jakarta.tck.concurrent.api.*"/>
             <package name="ee.jakarta.tck.concurrent.spec.*"/>
