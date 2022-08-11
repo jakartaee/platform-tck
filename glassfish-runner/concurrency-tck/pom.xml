@@ -154,6 +154,13 @@
                 <suiteXmlFile>suite-web.xml</suiteXmlFile>
             </properties>
         </profile>
+       <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <suiteXmlFile>suite-web-group2.xml</suiteXmlFile>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
