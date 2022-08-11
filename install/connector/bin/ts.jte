@@ -325,10 +325,9 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
         -Dcom.sun.aas.installRoot=${connector.home} \
         -Dcom.sun.aas.configRoot=${connector.home}/config \
-        -Djava.util.logging.config.file=${bin.dir}/logging.properties \
+        -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dlogical.hostname.servlet=${logical.hostname.servlet} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
-
 
 
 #########################################################################
