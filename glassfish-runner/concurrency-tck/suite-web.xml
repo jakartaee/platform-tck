@@ -44,6 +44,11 @@
         </packages>
         
         <classes>
+            <class name="ee.jakarta.tck.concurrent.spec.ManagedExecutorService.resourcedef.ManagedExecutorDefinitionWebTests">
+                <methods>
+                    <exclude name="testCopyCompletableFutureEJB"></exclude>
+                </methods>
+            </class>
             <class name="ee.jakarta.tck.concurrent.spec.ManagedExecutorService.resourcedef.ManagedExecutorDefinitionTests">
                 <methods>
                     <exclude name="testCompletedFuture"></exclude>
