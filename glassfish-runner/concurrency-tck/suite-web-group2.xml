@@ -30,19 +30,7 @@
         <listener class-name="org.testng.reporters.EmailableReporter"/>
         <listener class-name="org.testng.reporters.TestHTMLReporter" />
     </listeners>
-
     <test name="jakarta-concurrency.tck">
-        <groups>
-            <run>
-                <exclude name="eefull" />
-            </run>
-        </groups>
-    
-        <packages>
-            <package name="ee.jakarta.tck.concurrent.api.*"/>
-            <package name="ee.jakarta.tck.concurrent.spec.*"/>
-        </packages>
-        
         <classes>
             <class name="ee.jakarta.tck.concurrent.spec.ManagedExecutorService.resourcedef.ManagedExecutorDefinitionWebTests">
                 <methods>
