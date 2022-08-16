@@ -1245,7 +1245,7 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${JAVA_HOME}/bin/java \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
-        -Djava.util.logging.config.file=${javaee.home}/domains/domain1/config/logging.properties \
+        -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
