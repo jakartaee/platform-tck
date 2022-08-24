@@ -35,7 +35,7 @@
         <jakarta.concurrent.version>3.0.1</jakarta.concurrent.version>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
 
-        <glassfish.version>7.0.0-M7</glassfish.version>
+        <glassfish.version>7.0.0-M8</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
     </properties>
