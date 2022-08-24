@@ -12,7 +12,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <cdi.tck-4-0.version>4.0.5</cdi.tck-4-0.version>
         <weld.version>5.0.0.SP2</weld.version>
-        <glassfish.version>7.0.0-M6</glassfish.version>
+        <glassfish.version>7.0.0-M8</glassfish.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
         <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
 
