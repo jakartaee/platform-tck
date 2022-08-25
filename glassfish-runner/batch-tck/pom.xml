@@ -39,6 +39,14 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
         <jakarta.batch.version>2.1.0</jakarta.batch.version>
     </properties>
 
+
+    <repositories>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+    </repositories>
+
     <modules>
         <module>sigtests</module>
         <module>apitests</module>
