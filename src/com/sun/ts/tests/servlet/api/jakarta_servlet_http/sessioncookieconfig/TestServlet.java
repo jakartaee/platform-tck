@@ -40,7 +40,7 @@ public class TestServlet extends HttpTCKServlet {
 
     if (results.indexOf("-FAILED-") > -1) {
       ServletTestUtil.printResult(
-          new PrintWriter("At least on test failed.  " + results), false);
+          response.getWriter(), "At least on test failed.  " + results);
     }
 
   }

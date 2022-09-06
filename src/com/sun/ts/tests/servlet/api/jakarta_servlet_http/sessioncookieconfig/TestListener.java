@@ -43,42 +43,47 @@ public class TestListener implements ServletContextListener {
 
     scf.setDomain(domain);
     scf.setHttpOnly(httpOnly);
-    scf.setMaxAge(maxage);
     scf.setPath(path);
     scf.setSecure(isSecure);
     scf.setAttribute(attrName, attrValue);
 
     if (!scf.getPath().equals(path)) {
-      testData.append("|getPathFAILED-expecting-" + path + "-got-" + scf.getPath());
+      testData.append("|getPath-FAILED-expecting-" + path + "-got-" + scf.getPath());
     }
 
     if (!scf.isSecure()) {
-      testData.append("|isSecureFAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
+      testData.append("|isSecure-FAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
     }
 
     if (scf.isHttpOnly()) {
-      testData.append("|isHttpOnlyFAILED-expecting-" + httpOnly + "-got-" + scf.isHttpOnly());
+      testData.append("|isHttpOnly-FAILED-expecting-" + httpOnly + "-got-" + scf.isHttpOnly());
     }
 
     if (!scf.getDomain().equals(domain)) {
-      testData.append("|getDomainFAILED-expecting-" + domain + "-got-" + scf.getDomain());
+      testData.append("|getDomain-FAILED-expecting-" + domain + "-got-" + scf.getDomain());
     }
 
+
+    if (scf.getMaxAge() != -1) {
+      testData.append("|getMaxAge-FAILED-expecting-(-1)-got-" + scf.getMaxAge());
+    }
+
+    scf.setMaxAge(maxage);
     if (scf.getMaxAge() != maxage) {
-      testData.append("|getMaxAgeFAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
+      testData.append("|getMaxAge-FAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
     }
 
     if (!scf.getAttribute(attrName).equals(attrValue)) {
-      testData.append("|getAttributeFAILED-expecting-" + attrValue + "-got-" + scf.getAttribute(attrName));
+      testData.append("|getAttribute-FAILED-expecting-" + attrValue + "-got-" + scf.getAttribute(attrName));
     }
     
-    if (scf.getName() != null) {
-      testData.append("|getNameFAILED-expecting-null-got-" + scf.getName());
+    if (scf.getName() != null && !"JSESSIONID".equals(scf.getName())) {
+      testData.append("|getName-FAILED-expecting-null-or-JSESSIONID-got-" + scf.getName());
     }
 
     scf.setName(name);
     if (!scf.getName().equals(name)) {
-      testData.append("|getNameFAILED-expecting-" + name + "-got-" + scf.getName());
+      testData.append("|getName-FAILED-expecting-" + name + "-got-" + scf.getName());
     }
     
     sce.getServletContext().setAttribute(this.getClass().getName(), testData.toString());
