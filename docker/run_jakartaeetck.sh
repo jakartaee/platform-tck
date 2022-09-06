@@ -257,11 +257,11 @@ fi
 
 # do ts.jte parameter substitution here of ${JVMOPTS_RUNTESTCOMMAND}
 if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-   echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
-   search="..JVMOPTS_RUNTESTCOMMAND."
-   replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
-   sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
-   echo "updated ts.jte to use -add-opens for Java SE 17 "
+  echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
+  search="..JVMOPTS_RUNTESTCOMMAND."
+  replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
+  sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
+  echo "updated ts.jte to use -add-opens for Java SE 17 "
 fi
 
 ${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
