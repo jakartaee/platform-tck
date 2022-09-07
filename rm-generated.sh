@@ -48,6 +48,7 @@ rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/singleton/Clie
 rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/singleton/DataSourceBean.java
 rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/singleton/DataSourceMBean.java
 rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/singleton/DataSourceRepeatableBean.java
+rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/singleton/JsfClient.java
 rm -rf ./src/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/ejb-jar.xml
 rm -rf ./src/com/sun/ts/tests/ejb30/misc/datasource/appclientejb/Client.java
 rm -rf ./src/com/sun/ts/tests/ejb30/misc/datasource/appclientejb/DataSourceBean.java
