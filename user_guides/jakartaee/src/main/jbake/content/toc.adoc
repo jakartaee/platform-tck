@@ -1,9 +1,9 @@
 type=page
 status=published
-title=Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
+title=Jakarta EE Platform, Enterprise Edition 11 Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 next=title.html
 ~~~~~~
-Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
+Jakarta EE Platform, Enterprise Edition 11 Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 =========================================================================================================
 
 [[contents]]
@@ -28,52 +28,52 @@ link:intro.html#GBFOW[1 Introduction]
 *** link:intro.html#GBFPR[1.1.2 Compatibility Rules]
 *** link:intro.html#GBFPW[1.1.3 TCK Overview]
 *** link:intro.html#GBFPB[1.1.4 Jakarta Specification Community Process Program and Compatibility Testing]
-** link:intro.html#GEUYK[1.2 About Jakarta EE 10 Platform TCK]
-*** link:intro.html#sthref4[1.2.1 Jakarta EE 10 Technologies Required for Jakarta EE 10 Platform Compatibility]
-*** link:intro.html#BHCGFHDI[1.2.2 Jakarta EE 10 Web Profile Technologies Tested With Jakarta EE 10 Platform TCK]
+** link:intro.html#GEUYK[1.2 About Jakarta EE 11 Platform TCK]
+*** link:intro.html#sthref4[1.2.1 Jakarta EE 11 Technologies Required for Jakarta EE 11 Platform Compatibility]
+*** link:intro.html#BHCGFHDI[1.2.2 Jakarta EE 11 Web Profile Technologies Tested With Jakarta EE 11 Platform TCK]
 *** link:intro.html#GEUZS[1.2.3 TCK Tests]
 *** link:intro.html#GEUYR[1.2.4 JavaTest Harness]
 *** link:intro.html#GEUYQ[1.2.5 Exclude Lists]
 *** link:intro.html#GEUZN[1.2.6 Apache Ant]
 ** link:intro.html#GEVAD[1.3 Hardware Requirements]
 ** link:intro.html#GEVBB[1.4 Software Requirements]
-** link:intro.html#GEVCL[1.5 Additional Jakarta EE 10 Platform TCK Requirements]
-** link:intro.html#GBFQW[1.6 Getting Started With the Jakarta EE 10 Platform TCK Test Suite]
+** link:intro.html#GEVCL[1.5 Additional Jakarta EE 11 Platform TCK Requirements]
+** link:intro.html#GBFQW[1.6 Getting Started With the Jakarta EE 11 Platform TCK Test Suite]
 
-link:rules.html#GBFSN[2 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification]
+link:rules.html#GBFSN[2 Procedure for Jakarta Platform, Enterprise Edition 11.0 Certification]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:rules.html#CJACEHEF[2.1 Certification Overview]
 ** link:rules.html#CJAJFCJI[2.2 Compatibility Requirements]
 *** link:rules.html#definitions[2.2.1 Definitions]
-*** link:rules.html#CJAFEGEH[2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products]
+*** link:rules.html#CJAFEGEH[2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products]
 ** link:rules.html#CJACBJIB[2.3 Jakarta Platform, Enterprise Edition Test Appeals Process]
 *** link:rules.html#[2.3.1 Valid Challenges]
 *** link:rules.html#[2.3.2 Invalid Challenges]
 *** link:rules.html#CJAJEAEI[2.3.3 TCK Test Appeals Steps]
-** link:rules.html#CJAHFAJE[2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10.0]
-** link:rules.html#CJAHIGAB[2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10.0]
+** link:rules.html#CJAHFAJE[2.4 Specifications for Jakarta Platform, Enterprise Edition Version 11.0]
+** link:rules.html#CJAHIGAB[2.5 Libraries for Jakarta Platform, Enterprise Edition Version 11.0]
 
-[[procedure-for-jakarta-platform-enterprise-edition-10-web-profile-certification]]
-link:rules-wp.html#GJJPZ[3 Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification]
+[[procedure-for-jakarta-platform-enterprise-edition-11-web-profile-certification]]
+link:rules-wp.html#GJJPZ[3 Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ** link:rules-wp.html#CEGEJDGE[3.1 Certification Overview]
 ** link:rules-wp.html#CEGFGHIC[3.2 Compatibility Requirements]
 *** link:rules-wp.html#definitions[3.2.1 Definitions]
-*** link:rules-wp.html#CEGCFBHB[3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products]
+*** link:rules-wp.html#CEGCFBHB[3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products]
 ** link:rules-wp.html#CEGHFFED[3.3 Jakarta Platform, Enterprise Edition Test Appeals Process]
 *** link:rules-wp.html#[3.3.1 Valid Challenges]
 *** link:rules-wp.html#[3.3.2 Invalid Challenges]
 *** link:rules-wp.html#CJAJEAEI[3.3.3 TCK Test Appeals Steps]
-** link:rules-wp.html#CEGEHIBD[3.4 Specifications for Jakarta Platform, Enterprise Edition Version 10, Web Profile]
-** link:rules-wp.html#CEGFDIEG[3.5 Libraries for Jakarta Platform, Enterprise Edition Version 10, Web Profile]
+** link:rules-wp.html#CEGEHIBD[3.4 Specifications for Jakarta Platform, Enterprise Edition Version 11, Web Profile]
+** link:rules-wp.html#CEGFDIEG[3.5 Libraries for Jakarta Platform, Enterprise Edition Version 11, Web Profile]
 
 link:install.html#GBFTP[4 Installation]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:install.html#GEVGN[4.1 Installing the Jakarta EE 10 Compatible Implementation]
-** link:install.html#GEVHP[4.2 Installing the Jakarta EE 10 Platform TCK]
+** link:install.html#GEVGN[4.1 Installing the Jakarta EE 11 Compatible Implementation]
+** link:install.html#GEVHP[4.2 Installing the Jakarta EE 11 Platform TCK]
 ** link:install.html#GEVGZ[4.3 Verifying Your Installation (Optional)]
 
 [[setup-and-configuration]]
@@ -82,9 +82,9 @@ link:config.html#GBFVV[5 Setup and Configuration]
 
 ** link:config.html#GEWTL[5.1 Allowed Modifications]
 ** link:config.html#GEWTP[5.2 Configuring the Test Environment]
-** link:config.html#GEWTQ[5.3 Configuring a Jakarta EE 10 Server]
+** link:config.html#GEWTQ[5.3 Configuring a Jakarta EE 11 Server]
 *** link:config.html#GEWSQ[5.3.1 Jakarta Platform, Enterprise Edition Server Configuration Scenarios]
-*** link:config.html#GEWUI[5.3.2 Configuring the Jakarta EE 10 CI as the VI]
+*** link:config.html#GEWUI[5.3.2 Configuring the Jakarta EE 11 CI as the VI]
 *** link:config.html#GEWWA[5.3.3 Configuring Your Application Server as the VI]
 ** link:config.html#GEXPP[5.4 Modifying Environment Settings for Specific Technology Tests]
 *** link:config.html#GEXQT[5.4.1 Test Harness Setup]
@@ -112,18 +112,18 @@ link:config.html#GBFVV[5 Setup and Configuration]
 *** link:config.html#GEYNM[5.5.1 Basic Configuration Overview]
 *** link:config.html#GEYOD[5.5.2 The Configuration Interview]
 
-[[setup-and-configuration-for-testing-with-the-jakarta-ee-10-web-profile]]
-link:webprofileconfig.html#GJRHB[6 Setup and Configuration for Testing with the Jakarta EE 10 Web Profile]
+[[setup-and-configuration-for-testing-with-the-jakarta-ee-11-web-profile]]
+link:webprofileconfig.html#GJRHB[6 Setup and Configuration for Testing with the Jakarta EE 11 Web Profile]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:webprofileconfig.html#GLSEL[6.1 Configuring the Jakarta EE 10 Web Profile Test Environment]
-*** link:webprofileconfig.html#GJWED[6.1.1 To Run Tests Against a Jakarta EE 10 Web Profile Implementation]
+** link:webprofileconfig.html#GLSEL[6.1 Configuring the Jakarta EE 11 Web Profile Test Environment]
+*** link:webprofileconfig.html#GJWED[6.1.1 To Run Tests Against a Jakarta EE 11 Web Profile Implementation]
 
 [[executing-tests]]
 link:using.html#GBFWO[7 Executing Tests]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-** link:using.html#GFADX[7.1 Jakarta EE 10 Platform TCK Operating Assumptions]
+** link:using.html#GFADX[7.1 Jakarta EE 11 Platform TCK Operating Assumptions]
 ** link:using.html#GBFUZ[7.2 Starting JavaTest]
 *** link:using.html#GBFWH[7.2.1 To Start JavaTest in GUI Mode]
 *** link:using.html#GFAEF[7.2.2 To Start JavaTest in Command-Line Mode]
@@ -209,9 +209,9 @@ link:portingpackage.html#GFATG[11 Implementing the Porting Package]
 ** link:contextrootmappingrules.html#GJJWG[E.2 Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping]
 * link:jms-resource-adaptr.html#CJGFHFIF[F Testing a Standalone Jakarta Messaging Resource Adapter]
 ** link:jms-resource-adaptr.html#CJGGIEEJ[F.1 Setting Up Your Environment]
-** link:jms-resource-adaptr.html#CJGDJCEC[F.2 Configuring Jakarta EE 10 Platform TCK]
-** link:jms-resource-adaptr.html#CJGFCJBA[F.3 Configuring a Jakarta EE 10 CI for the Standalone Jakarta Messaging Resource Adapter]
+** link:jms-resource-adaptr.html#CJGDJCEC[F.2 Configuring Jakarta EE 11 Platform TCK]
+** link:jms-resource-adaptr.html#CJGFCJBA[F.3 Configuring a Jakarta EE 11 CI for the Standalone Jakarta Messaging Resource Adapter]
 ** link:jms-resource-adaptr.html#CJGEBECH[F.4 Modifying the Runtime Deployment Descriptors for the Jakarta Messaging MDB and Resource Adapter Tests]
 ** link:jms-resource-adaptr.html#CJGFHCBJ[F.5 Running the Jakarta Messaging Tests From the Command Line]
 ** link:jms-resource-adaptr.html#CJGCJGIH[F.6 Restoring the Runtime Deployment Descriptors for the Jakarta Messaging MDB and Resource Adapter Tests]
-** link:jms-resource-adaptr.html#CJGCDGIG[F.7 Reconfiguring Jakarta EE 10 CI for Jakarta EE 10 Platform TCK After Testing the Standalone Jakarta Messaging Resource Adapter]
+** link:jms-resource-adaptr.html#CJGCDGIG[F.7 Reconfiguring Jakarta EE 11 CI for Jakarta EE 11 Platform TCK After Testing the Standalone Jakarta Messaging Resource Adapter]
