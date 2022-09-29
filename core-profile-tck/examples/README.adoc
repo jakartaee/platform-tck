@@ -2,6 +2,8 @@
 
 This directory contains git submodules for Jakarta Core Profile compatible implementations TCK runner projects. To see the contents when cloning the core-profile-tck project, you either need to have used the `--recurse-submodule` option to clone, or you need to run `git submodule init` and `git submodule update` from within each subdirectory after the clone of core-profile-tck project to initialize and fetch the submodule project contents.
 
+When you are done making changes to your local branch and before switching to other git branches, remove the submodule (remote) repo from your local repo by running the `git submodule deinit wf-core-tck-runner` command from the `core-profile-tck/examples` folder.  Removing the submodule (repo) will ensure that the submodule will not be used in the branches that you switch to.
+
 == Current Compatible Implementation TCK Runner Projects
 
-* wf-core-tck-runner - this submodule contains the Maven project for WildFly 27 preview
+* wf-core-tck-runner - this submodule contains the Maven project for WildFly 27
