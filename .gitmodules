@@ -1,0 +1,3 @@
+[submodule "core-profile-tck/examples/wf-core-tck-runner"]
+	path = core-profile-tck/examples/wf-core-tck-runner
+	url = https://github.com/wildfly/wildfly-tck-runners
