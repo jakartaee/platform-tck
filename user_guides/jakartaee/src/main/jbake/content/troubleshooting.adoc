@@ -27,7 +27,7 @@ the Jakarta Platform, Enterprise Edition CI, Eclipse GlassFish 6.1. It also prop
 for the problems, where applicable.
 
 * Problem: +
-The following exception may occur when a Jakarta EE 10 Platform TCK test tries to
+The following exception may occur when a Jakarta EE 11 Platform TCK test tries to
 write a very long tracelog: +
 [source,oac_no_warn]
 ----

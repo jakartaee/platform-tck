@@ -1,29 +1,29 @@
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 11.0 Certification
 next=rules-wp.html
 prev=intro.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
+Procedure for Jakarta Platform, Enterprise Edition 11.0 Certification
 =====================================================================
 
-[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-10.0-certification]]
+[[GBFSN]][[procedure-for-jakarta-platform-enterprise-edition-11.0-certification]]
 
-2 Procedure for Jakarta Platform, Enterprise Edition 10.0 Certification
+2 Procedure for Jakarta Platform, Enterprise Edition 11.0 Certification
 -----------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
 compatibility requirements for Jakarta Platform, Enterprise Edition Version
-10.
+11.
 
 This chapter contains the following sections:
 
 * link:#CJACEHEF[Certification Overview]
 * link:#CJAJFCJI[Compatibility Requirements]
-* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 10 Test
+* link:#CJACBJIB[Jakarta Platform, Enterprise Edition Version 11 Test
 Appeals Process]
 * link:#CJAHFAJE[Specifications for Jakarta Platform, Enterprise Edition
-Version 10]
+Version 11]
 * link:#CJAHIGAB[Libraries for Jakarta Platform, Enterprise Edition Version
 8]
 
@@ -32,7 +32,7 @@ Version 10]
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 10.0 consists of the
+The certification process for Jakarta EE 11.0 consists of the
 following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
@@ -50,7 +50,7 @@ as required by the Eclipse Foundation TCK License.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 10.0 consist of meeting the
+The compatibility requirements for Jakarta EE 11.0 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
@@ -152,7 +152,7 @@ rules described in the Specifications.
 The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
-The Libraries for Jakarta Platform, Enterprise Edition Version 10 are listed
+The Libraries for Jakarta Platform, Enterprise Edition Version 11 are listed
 at the end of this chapter.
 
 |Location Resource a|
@@ -171,7 +171,7 @@ Technology. The Specification Project Team will propose revisions and
 updates to the Jakarta EE Specification Committee which will approve and 
 release new versions of the specification and TCK. Eclipse Jakarta EE 
 Specification Committee is the Maintenance Lead for Jakarta Platform, 
-Enterprise Edition Version 10. 
+Enterprise Edition Version 11. 
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -232,7 +232,7 @@ this chapter.
 through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
-for Jakarta Platform, Enterprise Edition Version 10.
+for Jakarta Platform, Enterprise Edition Version 11.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
@@ -250,9 +250,9 @@ Specification.
 |=======================================================================
 
 
-[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-10.0-products]]
+[[CJAFEGEH]][[rules-for-jakarta-platform-enterprise-edition-version-11.0-products]]
 
-2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products
+2.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each implementation:
@@ -410,8 +410,8 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE21 Compliance testing for Jakarta EE 10.0 consists of running Jakarta EE 10.0
-TCK and the following Technology Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/10/), see the heading 'Full Jakarta™ EE Product Requirements':
+EE21 Compliance testing for Jakarta EE 11.0 consists of running Jakarta EE 11.0
+TCK and the following Technology Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/11/), see the heading 'Full Jakarta™ EE Product Requirements':
 
 * Jakarta Activation
 * Jakarta Authentication
@@ -430,13 +430,13 @@ TCK and the following Technology Compatibility Kits (TCKs). Version details are 
 * Jakarta XML Binding (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 10.0 implementations must also adhere to all of the
+Guide, Jakarta EE 11.0 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
-EE21.1 If the Jakarta EE 10 implementation uses a runtime which has
+EE21.1 If the Jakarta EE 11 implementation uses a runtime which has
 already been validated by the Technology Compatibility Kit,
-the Jakarta EE 10 implementation may use result of such validation
+the Jakarta EE 11 implementation may use result of such validation
 to claim its compliance with the Technology Compatibility Kit.
 
 EE22 Source Code in WSDL-to-Java Output when compiled by a Reference
@@ -529,21 +529,21 @@ If there is a concern that a TCK process issue has not been resolved satisfactor
 https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
 
-[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-10.0]]
+[[CJAHFAJE]][[specifications-for-jakarta-platform-enterprise-edition-version-11.0]]
 
-2.4 Specifications for Jakarta Platform, Enterprise Edition Version 10.0
+2.4 Specifications for Jakarta Platform, Enterprise Edition Version 11.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 10.0 are found on
-the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/10/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 11.0 are found on
+the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.ee/specifications/platform/11/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-10.0]]
+[[CJAHIGAB]][[libraries-for-jakarta-platform-enterprise-edition-version-11.0]]
 
-2.5 Libraries for Jakarta Platform, Enterprise Edition Version 10.0
+2.5 Libraries for Jakarta Platform, Enterprise Edition Version 11.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
-required for Jakarta EE 10.0:
+required for Jakarta EE 11.0:
 
 * jakarta.annotation
 * jakarta.annotation.security
@@ -558,7 +558,7 @@ required for Jakarta EE 10.0:
 * jakarta.batch.runtime.context
 * jakarta.decorator
 * jakarta.ejb
-* jakarta.ejb.embeddable (removed from Jakarta EE 10 Platform but still part of Jakarta Enterprise Beans 4.0)
+* jakarta.ejb.embeddable (removed from Jakarta EE 11 Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
 * jakarta.el
 * jakarta.enterprise.concurrent

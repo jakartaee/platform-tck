@@ -1,38 +1,38 @@
 type=page
 status=published
-title=Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
+title=Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
 next=install.html
 prev=rules.html
 ~~~~~~
-Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
+Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
 ===============================================================================
 
-[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-10-web-profile-certification]]
+[[GJJPZ]][[procedure-for-jakarta-platform-enterprise-edition-11-web-profile-certification]]
 
-3 Procedure for Jakarta Platform, Enterprise Edition 10 Web Profile Certification
+3 Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile Certification
 ---------------------------------------------------------------------------------
 
 This chapter describes the compatibility testing procedure and
-compatibility requirements for Jakarta Platform, Enterprise Edition Version 10
+compatibility requirements for Jakarta Platform, Enterprise Edition Version 11
 Web Profile.
 
 This chapter contains the following sections:
 
 * link:#CEGEJDGE[Certification Overview]
 * link:#CEGFGHIC[Compatibility Requirements]
-* link:#CEGHFFED[Jakarta Platform, Enterprise Edition Version 10 Test
+* link:#CEGHFFED[Jakarta Platform, Enterprise Edition Version 11 Test
 Appeals Process]
 * link:#CEGEHIBD[Specifications for Jakarta Platform, Enterprise Edition
-Version 10, Web Profile]
+Version 11, Web Profile]
 * link:#CEGFDIEG[Libraries for Jakarta Platform, Enterprise Edition Version
-10, Web Profile]
+11, Web Profile]
 
 [[CEGEJDGE]][[certification-overview]]
 
 3.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 10, Web Profile consists of the following activities:
+The certification process for Jakarta EE 11, Web Profile consists of the following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
 (TCK) and execute it in accordance with the instructions in this User's
@@ -49,7 +49,7 @@ as required by the Eclipse Foundation TCK License.
 3.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 10, Web Profile consist of meeting the requirements set forth by the rules and
+The compatibility requirements for Jakarta EE 11, Web Profile consist of meeting the requirements set forth by the rules and
 associated definitions contained in this section.
 
 [[sthref10]][[definitions]]
@@ -144,7 +144,7 @@ rules described in the Specifications.
 The class libraries, as specified through the Jakarta EE Specification Process
 (JESP), for the Technology Under Test.
 
-The Libraries for Jakarta Platform, Enterprise Edition Version 10 are listed
+The Libraries for Jakarta Platform, Enterprise Edition Version 11 are listed
 at the end of this chapter.
 
 |Location Resource a|
@@ -163,7 +163,7 @@ Technology. The Specification Project Team will propose revisions and
 updates to the Jakarta EE Specification Committee which will approve and 
 release new versions of the specification and TCK. Eclipse Jakarta EE 
 Specification Committee is the Maintenance Lead for Jakarta Platform, 
-Enterprise Edition Version 10, Web Profile.
+Enterprise Edition Version 11, Web Profile.
 
 |Operating Mode a|
 Any Documented option of a Product that can be changed by a user in
@@ -224,7 +224,7 @@ this chapter.
 through the Jakarta EE Specification Process (JESP).
 
 |Technology Under Test |Specifications and a compatible implementation
-for Jakarta Platform, Enterprise Edition Version 10, Web Profile.
+for Jakarta Platform, Enterprise Edition Version 11, Web Profile.
 
 |Test Suite |The requirements, tests, and testing tools distributed by
 the Maintenance Lead as applicable to a given Version of the Technology.
@@ -242,9 +242,9 @@ Specification.
 |=======================================================================
 
 
-[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-10-products]]
+[[CEGCFBHB]][[rules-for-jakarta-platform-enterprise-edition-version-11-products]]
 
-3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 10 Products
+3.2.2 Rules for Jakarta Platform, Enterprise Edition Version 11 Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following rules apply for each implementation:
@@ -394,18 +394,18 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE-WP20 Compatibility testing for the Jakarta EE 10 Web Profile consists of
+EE-WP20 Compatibility testing for the Jakarta EE 11 Web Profile consists of
 running the tests for the technologies defined in
-link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 10 Web Profile
-Technologies Tested With Jakarta EE 10 Platform TCK."] If optional technologies
-defined in the Jakarta EE 10 Web Profile platform are implemented in
-addition to the required Jakarta EE 10 Web Profile technologies,
+link:intro.html#BHCGFHDI[Section 1.2.2, "Jakarta EE 11 Web Profile
+Technologies Tested With Jakarta EE 11 Platform TCK."] If optional technologies
+defined in the Jakarta EE 11 Web Profile platform are implemented in
+addition to the required Jakarta EE 11 Web Profile technologies,
 corresponding tests within this TCK for those additional technologies
 must also be run.
 
-EE-WP21 Compliance testing for Jakarta EE 10 Web Profile consists of running
-the Jakarta EE 10 Web Profile TCK tests and the following Technology
-Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/webprofile/10/), see heading 'Web Profile Definition', sub-heading 'Required Components':
+EE-WP21 Compliance testing for Jakarta EE 11 Web Profile consists of running
+the Jakarta EE 11 Web Profile TCK tests and the following Technology
+Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/webprofile/11/), see heading 'Web Profile Definition', sub-heading 'Required Components':
 
 * Jakarta Authentication
 * Jakarta Bean Validation
@@ -422,13 +422,13 @@ Compatibility Kits (TCKs). Version details are defined in the Platform EE Specif
 
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 10 implementations must also adhere to all of the
+Guide, Jakarta EE 11 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
-EE-WP21.1 If the Jakarta EE 10 Web Profile implementation uses a runtime which has
+EE-WP21.1 If the Jakarta EE 11 Web Profile implementation uses a runtime which has
 already been validated by the Technology Compatibility Kit,
-the Jakarta EE 10 Web Profile implementation may use result of such validation
+the Jakarta EE 11 Web Profile implementation may use result of such validation
 to claim its compliance with the Technology Compatibility Kit.
 
 EE-WP22 Source Code in WSDL-to-Java Output when compiled by a Reference
@@ -520,33 +520,33 @@ If the appeal is rejected, the `challenge-appeal` issue should closed with a lab
 If there is a concern that a TCK process issue has not been resolved satisfactorily, the
 https://www.eclipse.org/projects/dev_process/#6_5_Grievance_Handling[Eclipse Development Process Grievance Handling] procedure should be followed to escalate the resolution. Note that this is not a mechanism to attempt to handle implementation specific issues.
 
-[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-10-web-profile]]
+[[CEGEHIBD]][[specifications-for-jakarta-platform-enterprise-edition-version-11-web-profile]]
 
-3.4 Specifications for Jakarta Platform, Enterprise Edition Version 10, Web Profile
+3.4 Specifications for Jakarta Platform, Enterprise Edition Version 11, Web Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Specifications for Jakarta Platform, Enterprise Edition 10, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
-site at `https://jakarta.ee/specifications/webprofile/10/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
+The Specifications for Jakarta Platform, Enterprise Edition 11, Web Profile are found on the Eclipse Foundation, Jakarta EE Specification web
+site at `https://jakarta.ee/specifications/webprofile/11/`. You may also find information available from the EE4J Jakarta EE Platform project page, at `https://projects.eclipse.org/projects/ee4j.jakartaee-platform`.
 
-[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-10-web-profile]]
+[[CEGFDIEG]][[3libraries-for-jakarta-platform-enterprise-edition-version-11-web-profile]]
 
-3.5 Libraries for Jakarta Platform, Enterprise Edition Version 10, Web Profile
+3.5 Libraries for Jakarta Platform, Enterprise Edition Version 11, Web Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following location provides a list of packages that constitute the
-required class libraries for the full Java EE 10 platform:
+required class libraries for the full Java EE 11 platform:
 
 ``https://projects.eclipse.org/projects/ee4j.jakartaee-platform`
 
-The following list constitutes the subset of Jakarta EE 10 packages that are
-required for the Jakarta EE 10 Web Profile:
+The following list constitutes the subset of Jakarta EE 11 packages that are
+required for the Jakarta EE 11 Web Profile:
 
 * jakarta.annotation
 * jakarta.annotation.security
 * jakarta.annotation.sql
 * jakarta.decorator
 * jakarta.ejb
-* jakarta.ejb.embeddable (removed from Jakarta EE 10 Platform but still part of Jakarta Enterprise Beans 4.0)
+* jakarta.ejb.embeddable (removed from Jakarta EE 11 Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
 * jakarta.el
 * jakarta.enterprise.context

@@ -171,7 +171,7 @@ h4 {  font-style: italic; color: #000099}
         publishing.
       </li>
       <li>The <code>http.server.supports.endpoint.publish.2</code>
-        property indicates whether or not the Jakarta EE 10 CI server
+        property indicates whether or not the Jakarta EE 11 CI server
         supports endpoint publishing.
       </li>
     </ul>
@@ -185,7 +185,7 @@ h4 {  font-style: italic; color: #000099}
     <p> If your server does not support endpoint publishing (does not
       support the use of <code>jakarta.xml.ws.Endpoint.publish()</code>
       methods), set the property value to <code>"false"</code>. In a managed
-      environment, such as the Jakarta EE 10 Compatible Implementation,
+      environment, such as the Jakarta EE 11 Compatible Implementation,
       this is usually the case and this call would not be allowed. When
       the property is set to <code>"false"</code>, the tests will check that these
       endpoint publish methods do not publish the endpoints and an
@@ -193,10 +193,10 @@ h4 {  font-style: italic; color: #000099}
       scenario, the result is considered a PASS. </p>
     <p> The <code>http.server.supports.endpoint.publish.2</code> property
       settings are used to specify whether or not endpoint publishing is
-      supported by the Jakarta EE 10 CI HTTP server. The same settings and
+      supported by the Jakarta EE 11 CI HTTP server. The same settings and
       caveats as the <code>http.server.supports.endpoint.publish </code>
       property apply to this property, based on whether or not the Jakarta
-      EE 10 CI supports endpoint publishing. </p>
+      EE 11 CI supports endpoint publishing. </p>
     <hr>
 
     <h2><a name="install_setup_run">Installing, Setting Up, and Running

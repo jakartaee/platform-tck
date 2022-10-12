@@ -1,31 +1,31 @@
 type=page
 status=published
-title=Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
+title=Jakarta EE Platform, Enterprise Edition 11 Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 next=TCKpreface.html
 prev=toc.html
 ~~~~~~
-Jakarta EE Platform, Enterprise Edition 10 Test Compatibility Kit User's Guide, Release 10 for Jakarta EE
+Jakarta EE Platform, Enterprise Edition 11 Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
 =========================================================================================================
 
 [[oracle]] 
 Eclipse Foundation™
 -------------------
 
-Jakarta Platform, Enterprise Edition 10 Test Compatibility Kit User's
+Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit User's
 Guide
 
-Release 10 for Jakarta EE
+Release 11 for Jakarta EE
 
 June 2022
 
 Provides detailed instructions for obtaining, installing, configuring,
-and using the Eclipse Jakarta, Enterprise Edition 10 Compatibility Test
+and using the Eclipse Jakarta, Enterprise Edition 11 Compatibility Test
 Suite for the Full Profile and the Web Profile.
 
 '''''
 
-Jakarta Platform, Enterprise Edition 10 Test Compatibility Kit User's
-Guide, Release 10 for Jakarta EE
+Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit User's
+Guide, Release 11 for Jakarta EE
 
 Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.
 
