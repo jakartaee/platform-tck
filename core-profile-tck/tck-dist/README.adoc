@@ -39,6 +39,11 @@ To install the zip file distribution of TCK into local repository:
 
 Following the instructions in the examples/wf-core-tck-runner project to execute the required standalone and Core Profile TCK against WildFly.
 
+== Updating to a new TCK service release
+
+The list of TCKs to download and run are in file `artifacts/pom.xml`.  If you wish to upgrade to a newer TCK service release, make local changes to the `artifacts/pom.xml` file accordingly.  
+For example, you could change from https://download.eclipse.org/jakartaee/jsonp/2.1/jakarta-jsonp-tck-2.1.0.zip to any other TCK zip listed under the https://download.eclipse.org/jakartaee/jsonp/2.1 site.
+
 == Where to file challenges
 
 Challenges and bug reports should be filed against the TCK project issue tracker at
