@@ -16,9 +16,9 @@
     
     
     
-    No timeZone attribute: Nov 21, 2000 3:45 AM<br>
-    Nov 21, 2000 6:45 AM<br>
-    Nov 21, 2000 6:45 AM<br>
+    No timeZone attribute: Nov 21, 2000, 3:45 AM<br>
+    Nov 21, 2000, 6:45 AM<br>
+    Nov 21, 2000, 6:45 AM<br>
 
 </body>
 </html>

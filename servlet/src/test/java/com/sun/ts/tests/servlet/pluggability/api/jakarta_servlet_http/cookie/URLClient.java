@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,6 +31,7 @@ import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.cookie.CookieSpec;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.common.webclient.http.HttpResponse;
@@ -304,22 +305,6 @@ public class URLClient extends AbstractUrlClient {
   }
 
   /*
-   * @testName: setCommentTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:435
-   * 
-   * @test_Strategy: Create a web application with no web.xml and one fragment;
-   * Define everything in web-fragment.xml; Package everything in the fragment;
-   * Servlet tests method Cookie.setComment
-   */
-  public void setCommentTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setCommentVer0Test");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setCommentVer1Test");
-    invoke();
-  }
-
-  /*
    * @testName: setDomainTest
    * 
    * @assertion_ids: Servlet:JAVADOC:438
@@ -329,9 +314,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet tests method Cookie.setDomain
    */
   public void setDomainTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setDomainVer0Test");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setDomainVer1Test");
+    TEST_PROPS.setProperty(APITEST, "setDomainTest");
     invoke();
   }
 
@@ -347,7 +330,7 @@ public class URLClient extends AbstractUrlClient {
    */
   public void setMaxAgePositiveTest() throws Fault {
     // version 0 cookie
-    String testName = "setMaxAgeVer0PositiveTest";
+    String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
     String dateHeader = null;
     int index = -1;
@@ -410,12 +393,6 @@ public class URLClient extends AbstractUrlClient {
     if (body.indexOf(Data.PASSED) == -1) {
       throw new Fault("The string: " + Data.PASSED + " not found in response");
     }
-
-    // version 1 cookie
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeVer1PositiveTest");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##Max-Age=2");
-    invoke();
   }
 
   /*
@@ -429,13 +406,8 @@ public class URLClient extends AbstractUrlClient {
    * sent back to client and client verifies them
    */
   public void setMaxAgeZeroTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroVer0Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1");
-    invoke();
-
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroVer1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##Max-Age=0");
+    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroTest");
+    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
     invoke();
   }
 
@@ -450,13 +422,9 @@ public class URLClient extends AbstractUrlClient {
    * sent back to client and client verifies them
    */
   public void setMaxAgeNegativeTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeVer0Test");
+    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeTest");
     TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##!Expire");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeVer1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
-        "Set-Cookie:name1=value1##Version=1##!Max-Age");
+        "Set-Cookie:name1=value1##!Expire##!Max-Age");
     invoke();
   }
 
@@ -508,6 +476,32 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(APITEST, "setVersionVer0Test");
     invoke();
     TEST_PROPS.setProperty(APITEST, "setVersionVer1Test");
+    invoke();
+  }
+
+  /*
+   * @testName: setAttributeTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Create a web application with no web.xml and one fragment;
+   * Define everything in web-fragment.xml; Package everything in the fragment;
+   * Servlet tests method Cookie.setAttribute
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    invoke();
+  }
+  
+  /*
+   * @testName: getAttributesTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Servlet tests method and returns result to client
+   */
+  public void getAttributesTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "getAttributesTest");
     invoke();
   }
 }

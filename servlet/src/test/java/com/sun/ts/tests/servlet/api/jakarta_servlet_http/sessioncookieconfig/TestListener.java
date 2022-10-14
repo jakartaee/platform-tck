@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,71 +29,63 @@ public class TestListener implements ServletContextListener {
    * Test for SessionCookieConfig.SessionCookieConfig method
    */
   public void contextInitialized(ServletContextEvent sce) {
-    StringBuffer comment = new StringBuffer("Testing_Session_Cookie_Config");
+    StringBuffer testData = new StringBuffer("Testing_Session_Cookie_Config");
     String domain = "sun.com";
     String path = "/servlet_jsh_sessioncookieconfig_web/TestServlet";
     Boolean isSecure = true;
     Boolean httpOnly = false;
     int maxage = 50000;
+    String attrName = "a1";
+    String attrValue= "b2";
     String name = "TCK_Cookie_Name";
 
     SessionCookieConfig scf = sce.getServletContext().getSessionCookieConfig();
 
-    scf.setComment(comment.toString());
     scf.setDomain(domain);
     scf.setHttpOnly(httpOnly);
-    scf.setMaxAge(maxage);
     scf.setPath(path);
     scf.setSecure(isSecure);
-
-    if (!scf.getComment().equals(comment.toString())) {
-      comment.append("|getCommentFAILED-expecting-" + comment + "-got-"
-          + scf.getComment());
-      scf.setComment(comment.toString());
-    }
+    scf.setAttribute(attrName, attrValue);
 
     if (!scf.getPath().equals(path)) {
-      comment
-          .append("|getPathFAILED-expecting-" + path + "-got-" + scf.getPath());
-      scf.setComment(comment.toString());
+      testData.append("|getPath-FAILED-expecting-" + path + "-got-" + scf.getPath());
     }
 
     if (!scf.isSecure()) {
-      comment.append(
-          "|isSecureFAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
-      scf.setComment(comment.toString());
+      testData.append("|isSecure-FAILED-expecting-" + isSecure + "-got-" + scf.isSecure());
     }
+
     if (scf.isHttpOnly()) {
-      comment.append("|isHttpOnlyFAILED-expecting-" + httpOnly + "-got-"
-          + scf.isHttpOnly());
-      scf.setComment(comment.toString());
-    }
-    if (!scf.getDomain().equals(domain.toString())) {
-      comment.append(
-          "|getDomainFAILED-expecting-" + domain + "-got-" + scf.getDomain());
-      scf.setComment(comment.toString());
+      testData.append("|isHttpOnly-FAILED-expecting-" + httpOnly + "-got-" + scf.isHttpOnly());
     }
 
+    if (!scf.getDomain().equals(domain)) {
+      testData.append("|getDomain-FAILED-expecting-" + domain + "-got-" + scf.getDomain());
+    }
+
+
+    if (scf.getMaxAge() != -1) {
+      testData.append("|getMaxAge-FAILED-expecting-(-1)-got-" + scf.getMaxAge());
+    }
+
+    scf.setMaxAge(maxage);
     if (scf.getMaxAge() != maxage) {
-      comment.append(
-          "|getMaxAgeFAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
-      scf.setComment(comment.toString());
+      testData.append("|getMaxAge-FAILED-expecting-" + maxage + "-got-" + scf.getMaxAge());
     }
 
-    if (scf.getName() != null) {
-      comment.append("|getNameFAILED-expecting-null-got-" + scf.getName());
-      scf.setComment(comment.toString());
+    if (!scf.getAttribute(attrName).equals(attrValue)) {
+      testData.append("|getAttribute-FAILED-expecting-" + attrValue + "-got-" + scf.getAttribute(attrName));
+    }
+    
+    if (scf.getName() != null && !"JSESSIONID".equals(scf.getName())) {
+      testData.append("|getName-FAILED-expecting-null-or-JSESSIONID-got-" + scf.getName());
     }
 
     scf.setName(name);
     if (!scf.getName().equals(name)) {
-      comment
-          .append("|getNameFAILED-expecting-" + name + "-got-" + scf.getName());
-      scf.setComment(comment.toString());
+      testData.append("|getName-FAILED-expecting-" + name + "-got-" + scf.getName());
     }
-  }
-
-  public void contextDestroyed(ServletContextEvent sce) {
-
+    
+    sce.getServletContext().setAttribute(this.getClass().getName(), testData.toString());
   }
 }

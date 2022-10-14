@@ -154,7 +154,7 @@ ri.asenv.loc=${connector.home}/config
 ri.imqbin.loc=${connector.home}/imq/bin
 ri.lib=${connector.home}/modules
 ri.imq.share.lib=${connector.home}/imq/lib
-ri.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+ri.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 ri.java.endorsed.dirs=${endorsed.dirs}
 ri.applicationRoot=c:
 
@@ -171,10 +171,9 @@ s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.asenv.loc=${connector.home}/config
 s1as.imqbin.loc=${connector.home}/imq/bin
 s1as.imq.share.lib=${connector.home}/imq/lib
-s1as.jvm.options=-XX\\\:MaxPermSize=512m:-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
-s1as.db.ext.dirs=
 
 
 
@@ -274,7 +273,7 @@ alt.schema.dir=${ts.home}/lib/schemas
 # @ts.classpath         --  Classes used to build the Connector tests
 # @ts.lib.classpath     --  Classes used to build connector.jar 
 ###############################################################
-connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.servlet-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.authorization-api.jar${pathsep}${ri.lib}/jakarta.ejb-api.jar${pathsep}${ri.lib}/jakarta.enterprise.deploy-api.jar
+connector.classes.1=${ri.lib}/glassfish.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/web-core.jar${pathsep}${ri.lib}/webservices.security.jar${pathsep}${pathsep}${ri.lib}/connectors-admin.jar${pathsep}${ri.lib}/connectors-inbound-runtime.jar${pathsep}${ri.lib}/orb-connector.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.servlet-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.authorization-api.jar${pathsep}${ri.lib}/jakarta.ejb-api.jar${pathsep}${ri.lib}/jakarta.enterprise.deploy-api.jar
 
 connector.classes=${ts.home}/classes${pathsep}${connector.classes.1}
 
@@ -324,13 +323,11 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
         -Djavax.net.ssl.trustStore=${s1as.domain}/${sjsas.instance.config.dir}/cacerts.jks \
-        -Djava.endorsed.dirs=${s1as.java.endorsed.dirs} \
         -Dcom.sun.aas.installRoot=${connector.home} \
         -Dcom.sun.aas.configRoot=${connector.home}/config \
-        -Djava.util.logging.config.file=${bin.dir}/logging.properties \
+        -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dlogical.hostname.servlet=${logical.hostname.servlet} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
-
 
 
 #########################################################################
@@ -355,6 +352,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -362,7 +362,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${ri.lib}/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/lib/jce.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${ri.lib}/jakarta.annotation-api.jar${pathsep}${ri.lib}/jakarta.resource-api.jar${pathsep}${ri.lib}/jakarta.transaction-api.jar${pathsep}${ri.lib}/jakarta.security.auth.message-api.jar${pathsep}${ri.lib}/jakarta.security.jacc-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################################
@@ -480,20 +482,9 @@ certLoginUserAlias=cts
 #
 # @webServerHost  hostname for the Vendor's Java EE Web Server
 # @webServerPort  port number of the Vendor's Java EE Web Server
-# @ServletClientThreads  The ServletClientThreads property configures
-#                        the number of threads used by the client for
-#                        the SingleThreadModel servlet test. If the
-#                        container implementation supports pooling of
-#                        SingleThreadModel servlets, set the value of
-#                        ServletClientThreads to twice the value of
-#                        the default servlet instance pool size.  If
-#                        the container implementation only maintains
-#                        a single instance of a SingleTheadModel
-#                        servlet, leave the default value of 2.
 #####################################################################
 webServerHost=${orb.host}
 webServerPort=8001
-ServletClientThreads=2
 
 
 #########################################################################
@@ -537,7 +528,6 @@ whitebox-mixedmode=java:comp/env/eis/whitebox-mixedmode
 whitebox-multianno=java:comp/env/eis/whitebox-multianno
 whitebox-mdcomplete=java:comp/env/eis/whitebox-mdcomplete
 whitebox-permissiondd=java:comp/env/eis/whitebox-permissiondd
-
 
 #########################################################################
 ## The following properties must be set before running any security 
@@ -697,8 +687,4 @@ tools.jar=${jdk.home}/lib/tools.jar
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${connector.domain}/lib/ext
-
-
-
-
+extension.dir=${connector.domain}/lib

@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/permitted" %>
 <tck:test testName="negativePermittedTlvTest">
     <!-- core is not on the permitted list.  A fatail

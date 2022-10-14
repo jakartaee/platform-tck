@@ -26,8 +26,10 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceUnitUtil;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -97,11 +99,43 @@ public class Client extends PMClientBase {
   }
 
   /*
+   * @testName: autoCloseableTest
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2517;
+   *
+   * @test_Strategy: Create EntityManagerFactory in try with resources block
+   * and verify whether it's open inside and outside of the try block.
+   */
+  @SetupMethod(name = "setupNoData")
+  @CleanupMethod(name = "cleanupNoData")
+  public void autoCloseableTest() throws Fault {
+    EntityManagerFactory emf = null;
+    try (final EntityManagerFactory emfLocal
+                 = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
+      emf = emfLocal;
+      if (emf == null) {
+        throw new Fault("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
+      }
+      if (!emf.isOpen()) {
+        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
+      }
+    } catch (Fault f) {
+      throw f;
+    } catch (Throwable t) {
+      throw new Fault("autoCloseableTest failed with Exception", t);
+    } finally {
+      if (emf != null && emf.isOpen()) {
+        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
+      }
+    }
+  }
+
+  /*
    * @testName: getMetamodelTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:340;
-   * 
-   * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory an
+   *
+   * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and
    * make sure it is not null
    */
   @SetupMethod(name = "setupNoData")
@@ -126,9 +160,9 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getPersistenceUnitUtil
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:341;
-   * 
+   *
    * @test_Strategy: Get a PersistenceUnitUtil Object from the
    * EntityManagerFactory an make sure it is not null
    */
@@ -154,7 +188,7 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: getCriteriaBuilderTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:339; PERSISTENCE:SPEC:1702;
    *
    * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify
@@ -192,10 +226,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryMaxResultTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that max result of addNamedQuery is retained or can be
    * overridden
    */
@@ -629,10 +663,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryFlushModeTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be
    * overridden
    */
@@ -1026,10 +1060,10 @@ public class Client extends PMClientBase {
 
   /*
    * @testName: addNamedQueryLockModeTest
-   * 
+   *
    * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
    * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
-   * 
+   *
    * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be
    * overridden
    */

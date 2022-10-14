@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) "2022" Red Hat and others
+  ~
+  ~ This program and the accompanying materials are made available under the
+  ~ Apache Software License 2.0 which is available at:
+  ~ https://www.apache.org/licenses/LICENSE-2.0.
+  ~
+  ~ SPDX-License-Identifier: Apache-2.0
+  ~
+  -->
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+   <id>dist</id>
+
+   <baseDirectory>core-profile-tck-${project.version}</baseDirectory>
+   <formats>
+      <format>zip</format>
+   </formats>
+
+   <files>
+      <!-- This is the final EFTL license -->
+      <file>
+         <source>EFTL.txt</source>
+         <destName>LICENSE</destName>
+      </file>
+      <file>
+         <source>README.adoc</source>
+      </file>
+
+      <!-- A maven pom.xml to install the TCK artifacts into a local maven repo -->
+      <file>
+         <source>artifacts-pom.xml</source>
+         <destName>pom.xml</destName>
+         <outputDirectory>artifacts</outputDirectory>
+         <filtered>true</filtered>
+      </file>
+      <!-- The HTML and PDF versions of the TCK userguide -->
+      <file>
+         <source>target/generated-docs/core-profile-tck-reference-guide.pdf</source>
+         <outputDirectory>/doc</outputDirectory>
+      </file>
+      <file>
+         <source>target/generated-docs/core-profile-tck-reference-guide.html</source>
+         <outputDirectory>/doc</outputDirectory>
+      </file>
+   </files>
+   <fileSets>
+      <!-- The compatible implementation tck runner examples -->
+      <fileSet>
+         <directory>${project.parent.basedir}/examples</directory>
+         <outputDirectory>examples</outputDirectory>
+         <includes>
+            <include>README.adoc</include>
+            <include>wf-core-tck-runner/**</include>
+         </includes>
+         <excludes>
+            <exclude>**/target/**</exclude>
+            <!-- So as not to confuse the tck dist license type -->
+            <exclude>wf-core-tck-runner/LICENSE</exclude>
+         </excludes>
+      </fileSet>
+      <!-- The userguide source -->
+      <fileSet>
+         <directory>src/main/asciidoc</directory>
+         <outputDirectory>doc/asciidoc</outputDirectory>
+      </fileSet>
+   </fileSets>
+
+   <dependencySets>
+      <dependencySet>
+         <includes>
+            <include>jakarta.ee.tck.coreprofile:core-tck-parent</include>
+            <include>jakarta.ee.tck.coreprofile:common-annotations</include>
+            <include>jakarta.ee.tck.coreprofile:cdi-lite-tck-suite</include>
+            <include>jakarta.ee.tck.coreprofile:rest-tck-suite</include>
+            <include>jakarta.ee.tck.coreprofile:core-profile-tck-impl</include>
+            <include>jakarta.ee.tck.coreprofile:core-tck-jsonp-extension</include>
+         </includes>
+         <useTransitiveDependencies>true</useTransitiveDependencies>
+         <outputDirectory>artifacts</outputDirectory>
+         <useProjectArtifact>false</useProjectArtifact>
+      </dependencySet>
+   </dependencySets>
+
+</assembly>

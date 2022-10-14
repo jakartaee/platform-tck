@@ -35,7 +35,8 @@
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWTestBeanBase0.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/CoffeeUtil.class,
 		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWTxBeanBase.class,
-		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWClientBase.class
+		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWClientBase.class,
+		com/sun/ts/tests/ejb30/lite/tx/cm/common/RWJsfClientBase.class
 	">
 	</ts.vehicles>
 	<delete failonerror="false" dir="${class.dir}/META-INF"/>

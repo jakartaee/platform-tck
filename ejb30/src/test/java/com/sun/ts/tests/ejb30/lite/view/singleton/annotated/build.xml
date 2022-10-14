@@ -33,6 +33,7 @@ com/sun/ts/tests/ejb30/common/busiface/AnnotatedLocalBusinessInterface1.class,
 com/sun/ts/tests/ejb30/common/busiface/AnnotatedLocalBusinessInterface2.class,
 com/sun/ts/tests/ejb30/common/busiface/Constants.class,
 com/sun/ts/tests/ejb30/lite/view/common/ClientBase.class,
+com/sun/ts/tests/ejb30/lite/view/common/JsfClientBase.class,
 com/sun/ts/tests/ejb30/lite/view/common/SuperclassBean.class,
 com/sun/ts/tests/ejb30/lite/view/common/SuperclassBeanBase.class
         ">

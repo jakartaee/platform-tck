@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,11 +36,11 @@ else
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
@@ -55,25 +55,24 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
 fi
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version
 
-sed -i 's#orb\.port=.*#orb.port=3699#g' ts.jte
-sed -i 's#javaee\.level=.*#javaee.level=full#g' ts.jte
-sed -i "s#jacc\.home=.*#jacc.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
-sed -i 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak 's#orb\.port=.*#orb.port=3699#g' ts.jte
+sed -i.bak 's#javaee\.level=.*#javaee.level=full#g' ts.jte
+sed -i.bak "s#jacc\.home=.*#jacc.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
+sed -i.bak 's#jacc\.host=.*#jacc.host=localhost#g' ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 CONTENT='<property name="all.test.dir" value="com/sun/ts/tests/jacc/,com/sun/ts/tests/signaturetest/jacc,com/sun/ts/tests/common/vehicle/" />'
 C=$(echo $CONTENT | sed 's/\//\\\//g')
-sed -i "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
+sed -i.bak "/<\/project>/ s/.*/${C}\n&/" $TS_HOME/bin/build.xml
 
 mkdir -p $TCK_HOME/${TCK_NAME}report/${TCK_NAME}
 mkdir -p $TCK_HOME/${TCK_NAME}work/${TCK_NAME}

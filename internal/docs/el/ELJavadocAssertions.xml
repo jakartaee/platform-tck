@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -20,12 +20,12 @@
 -->
 
 <javadoc>
-  <next-available-id>411</next-available-id>
-  <previous-id>385</previous-id>
+  <next-available-id>414</next-available-id>
+  <previous-id>410</previous-id>
   <technology>EL</technology>
   <id>EL</id>
   <name>Expression Language</name>
-  <version>4.0</version>
+  <version>5.0</version>
   <assertions>
     <!-- ********************************************************************************** -->
     <!-- ********************************************************************************** -->
@@ -5027,6 +5027,27 @@
           <parameter>jakarta.el.ExpressionFactory</parameter>
         </parameters>
       </method>
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>EL:JAVADOC:411</id>
+      <description>Returns the name of the method</description>
+      <package>jakarta.el</package>
+      <class-interface>MethodInfo</class-interface>
+      <method name="getName" return-type="java.lang.String" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>EL:JAVADOC:412</id>
+      <description>Returns the return type of the method</description>
+      <package>jakarta.el</package>
+      <class-interface>MethodInfo</class-interface>
+      <method name="getReturnType" return-type="java.lang.Class" />
+    </assertion>
+    <assertion required="true" impl-spec="false" status="active" testable="true">
+      <id>EL:JAVADOC:413</id>
+      <description>Returns the parameter types of the method</description>
+      <package>jakarta.el</package>
+      <class-interface>MethodInfo</class-interface>
+      <method name="getParamTypes" return-type="java.lang.Class[]" />
     </assertion>
   </assertions>
 </javadoc>

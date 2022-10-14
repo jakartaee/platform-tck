@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -41,10 +41,12 @@ public class TestListener implements ServletContextListener {
     try {
       context.createFilter(
           com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.createfilter.CreateFilter.class);
+      passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {
       log.append("Expected UnsupportedOperationException thrown.");
     } catch (ServletException ex) {
+      passed = false;
       System.out.println("Error creating Servlet");
     }
 

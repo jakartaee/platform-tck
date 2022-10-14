@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 import jakarta.persistence.spi.ClassTransformer;
+import jakarta.persistence.spi.TransformerException;
 
 public class ClassTransformerImpl implements ClassTransformer {
 
@@ -32,7 +32,7 @@ public class ClassTransformerImpl implements ClassTransformer {
   @Override
   public byte[] transform(ClassLoader arg0, String className,
       Class<?> classBeingRedefined, ProtectionDomain arg3, byte[] arg4)
-      throws IllegalClassFormatException {
+      throws TransformerException {
     logger.log("Called ClassTransformerImpl.transform()");
 
     return null;// indicates no transformation

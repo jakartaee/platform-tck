@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,11 +36,11 @@ else
 fi
 
 if [ -z "$GF_TOPLEVEL_DIR" ]; then
-  export GF_TOPLEVEL_DIR=glassfish6
+  export GF_TOPLEVEL_DIR=glassfish7
 fi
 
 ##### installRI.sh starts here #####
-echo "Download and install GlassFish 6.0.0 ..."
+echo "Download and install GlassFish 7.0.0 ..."
 if [ -z "${GF_BUNDLE_URL}" ]; then
   echo "[ERROR] GF_BUNDLE_URL not set"
   exit 1
@@ -55,28 +55,27 @@ chmod -R 777 $TS_HOME
 
 cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-  cp ts.jte.jdk11 ts.jte
+if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
 fi
+export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version
 
-sed -i "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.persistence-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.transaction-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
-sed -i "s#jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbyclient.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbyshared.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbytools.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
-sed -i "s#jdbc\.db=.*#jdbc.db=derby#g" ts.jte
-sed -i "s#jakarta.persistence.provider=.*#jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider#g" ts.jte
-sed -i "s#jakarta.persistence.jdbc.driver=.*#jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver#g" ts.jte
-sed -i 's#jakarta.persistence.jdbc.url=.*#jakarta.persistence.jdbc.url=jdbc:derby:\/\/localhost:1527\/derbyDB;create=true#g' ts.jte
-sed -i "s#jakarta.persistence.jdbc.user=.*#jakarta.persistence.jdbc.user=cts1#g" ts.jte
-sed -i "s#jakarta.persistence.jdbc.password=.*#jakarta.persistence.jdbc.password=cts1#g" ts.jte
+sed -i.bak "s#^jpa.classes=.*#jpa.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.persistence-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.servlet-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.transaction-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/jakarta.ejb-api.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.antlr.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.asm.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.core.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.dbws.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.jpql.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.jpa.modelgen.processor.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.moxy.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish/modules/org.eclipse.persistence.oracle.jar#g" ts.jte
+sed -i.bak "s#jdbc\.driver\.classes=.*#jdbc.driver.classes=$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbyclient.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbyshared.jar:$TCK_HOME/$GF_TOPLEVEL_DIR/javadb/lib/derbytools.jar:$TS_HOME/lib/dbprocedures.jar#g" ts.jte
+sed -i.bak "s#jdbc\.db=.*#jdbc.db=derby#g" ts.jte
+sed -i.bak "s#jakarta.persistence.provider=.*#jakarta.persistence.provider=org.eclipse.persistence.jpa.PersistenceProvider#g" ts.jte
+sed -i.bak "s#jakarta.persistence.jdbc.driver=.*#jakarta.persistence.jdbc.driver=org.apache.derby.jdbc.ClientDriver#g" ts.jte
+sed -i.bak 's#jakarta.persistence.jdbc.url=.*#jakarta.persistence.jdbc.url=jdbc:derby:\/\/localhost:1527\/derbyDB;create=true#g' ts.jte
+sed -i.bak "s#jakarta.persistence.jdbc.user=.*#jakarta.persistence.jdbc.user=cts1#g" ts.jte
+sed -i.bak "s#jakarta.persistence.jdbc.password=.*#jakarta.persistence.jdbc.password=cts1#g" ts.jte
 echo "impl.vi=glassfish" >> ts.jte
-#sed -i "s#harness.log.traceflag=false.*#harness.log.traceflag=true#g" ts.jte
+#sed -i.bak "s#harness.log.traceflag=false.*#harness.log.traceflag=true#g" ts.jte
 
-sed -i "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
-sed -i "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^report.dir=.*#report.dir=$TCK_HOME/${TCK_NAME}report/${TCK_NAME}#g" ts.jte
+sed -i.bak "s#^work.dir=.*#work.dir=$TCK_HOME/${TCK_NAME}work/${TCK_NAME}#g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
   echo "javaee.level=web"  >> ts.jte

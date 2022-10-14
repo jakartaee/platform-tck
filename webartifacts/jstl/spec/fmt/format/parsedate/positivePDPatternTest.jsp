@@ -16,10 +16,10 @@
 
 --%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <tck:test testName="positivePDPatternTest">
     <c:set var="pat" value="yyyy.MM.dd G 'at' HH:mm:ss z"/>
     <c:set var="dte" value="2000.11.21 AD at 03:45:02 EST"/>

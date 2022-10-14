@@ -207,38 +207,16 @@ include::defns.inc[]
 2.2.2 Rules for {TechnologyFullName} Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following rules apply for each version of an operating system,
-software component, and hardware platform Documented as supporting the
-Product:
+The following rules apply for each implementation:
 
-*{techID}1* The Product must be able to satisfy all applicable compatibility
-requirements, including passing all Conformance Tests, in every Product
-Configuration and in every combination of Product Configurations, except
-only as specifically exempted by these Rules.
+*{techID}1* The implementation must be able to satisfy compatibility
+requirements, including passing all required TCK Tests.
 
-For example, if a Product provides distinct Operating Modes to optimize
-performance, then that Product must satisfy all applicable compatibility
-requirements for a Product in each Product Configuration, and
-combination of Product Configurations, of those Operating Modes.
+*{techID}1.1* Each implementation must have at least one configuration that can be used to pass
+all required TCK Tests, although such configuration may need adjustment (e.g. whether statically
+or via administrative tooling).
 
-*{techID}1.1* If an Operating Mode controls a Resource necessary for the
-basic execution of the Test Suite, testing may always use a Product
-Configuration of that Operating Mode providing that Resource, even if
-other Product Configurations do not provide that Resource.
-Notwithstanding such exceptions, each Product must have at least one set
-of Product Configurations of such Operating Modes that is able to pass
-all the Conformance Tests.
-
-For example, a Product with an Operating Mode that controls a security
-policy (i.e., Security Resource) which has one or more Product
-Configurations that cause Conformance Tests to fail may be tested using
-a Product Configuration that allows all Conformance Tests to pass.
-
-*{techID}1.2* A Product Configuration of an Operating Mode that causes the
-Product to report only version, usage, or diagnostic information is
-exempted from these compatibility rules.
-
-*{techID}1.3* An API Definition Product is exempt from all functional
+*{techID}1.2* An API Definition Product is exempt from all functional
 testing requirements defined here, except the signature tests.
 
 *{techID}2* Some Conformance Tests may have properties that may be changed.
@@ -267,11 +245,6 @@ that are not part of the Product but required for the Product to satisfy
 the compatibility requirements, must be Documented and available to
 users of the Product.
 
-For example, if a patch to a particular version of a supporting
-operating system is required for the Product to pass the Conformance
-Tests, that patch must be Documented and available to users of the
-Product.
-
 *{techID}7* The Product must contain the full set of public and protected
 classes and interfaces for all the Libraries. Those classes and
 interfaces must contain exactly the set of public and protected methods,
@@ -280,7 +253,7 @@ Libraries. No subsetting, supersetting, or modifications of the public
 and protected API of the Libraries are allowed except only as
 specifically exempted by these Rules.
 
-*{techID}7.1* If a Product includes Technologies in addition to the
+*{techID}7.1* If a Product includes Jakarta EE Technologies in addition to the
 Technology Under Test, then it must contain the full set of combined
 public and protected classes and interfaces. The API of the Product
 must contain the union of the included Technologies. No further
@@ -305,6 +278,9 @@ include::rules.inc[]
 
 2.3 Test Appeals Process
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Refer to https://jakarta.ee/committees/specification/tckprocess (version 1.2) as the definitive source for
+the TCK rules.
 
 Jakarta has a well established process for managing challenges to its
 TCKs. Any implementor may submit a challenge to one or more tests in the

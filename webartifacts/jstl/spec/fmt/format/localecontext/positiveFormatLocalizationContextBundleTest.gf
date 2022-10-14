@@ -18,7 +18,7 @@
              will not be considered. -->
     
         
-        Nov 21, 2000 3:45:02 AM
+        Nov 21, 2000, 3:45:02 AM
         1234
         1,234
     

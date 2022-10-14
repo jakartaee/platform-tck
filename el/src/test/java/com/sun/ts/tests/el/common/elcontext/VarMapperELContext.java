@@ -54,6 +54,7 @@ public class VarMapperELContext extends ELContext {
   public ELResolver getELResolver() {
     ELResolver elResolver;
     this.compResolver.add(new VariableELResolver());
+    this.compResolver.add(new jakarta.el.BeanELResolver());
     elResolver = (ELResolver) compResolver;
 
     return elResolver;

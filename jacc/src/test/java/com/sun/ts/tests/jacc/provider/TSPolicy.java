@@ -36,6 +36,8 @@ import com.sun.ts.lib.util.sec.security.provider.PolicyFile;
 
 import jakarta.security.jacc.EJBMethodPermission;
 import jakarta.security.jacc.EJBRoleRefPermission;
+import jakarta.security.jacc.PolicyConfiguration;
+import jakarta.security.jacc.PolicyConfigurationFactory;
 import jakarta.security.jacc.PolicyContext;
 import jakarta.security.jacc.WebResourcePermission;
 import jakarta.security.jacc.WebRoleRefPermission;
@@ -187,6 +189,31 @@ public final class TSPolicy extends java.security.Policy {
       }
     }
 
+    // If there is a PolicyContext.getContextID, verify new getPolicyConfiguration() methods work
+    String contextId = PolicyContext.getContextID();
+    if(contextId != null) {
+      try {
+        // Should be non-null PolicyConfiguration
+        PolicyConfigurationFactory pcf = PolicyConfigurationFactory.getPolicyConfigurationFactory();
+        PolicyConfiguration pc = pcf.getPolicyConfiguration();
+        if(pc != null) {
+          logger.log(Level.INFO, "PolicyConfigurationFactory.getPolicyConfiguration() : PASSED");
+        } else {
+          logger.log(Level.INFO, "PolicyConfigurationFactory.getPolicyConfiguration() : FAILED");
+        }
+        // Should be non-null PolicyConfiguration and match no-arg getPolicyConfiguration()
+        PolicyConfiguration pc2 = pcf.getPolicyConfiguration(contextId);
+        if(pc2 == null || !pc.equals(pc2)) {
+          logger.log(Level.INFO, "PolicyConfigurationFactory.getPolicyConfiguration(String) : FAILED");
+        } else {
+          logger.log(Level.INFO, "PolicyConfigurationFactory.getPolicyConfiguration(String) : PASSED");
+        }
+
+      } catch (Exception e) {
+        logger.log(Level.INFO, "PolicyConfigurationFactory.getPolicyConfiguration() : FAILED");
+      }
+    }
+
     return policy.implies(domain, permission);
   }
 
@@ -311,18 +338,16 @@ public final class TSPolicy extends java.security.Policy {
   private void policyContextKey1() {
     try {
       // Get HttpServletRequest object
-      Object o = PolicyContext
-          .getContext("jakarta.servlet.http.HttpServletRequest");
-      if (o instanceof jakarta.servlet.http.HttpServletRequest) {
-        logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
-            + "jakarta.servlet.http.HttpServletRequest");
-        logger.log(Level.INFO, "PolicyContextKey1: PASSED");
-      } else {
-        logger.log(Level.INFO,
-            "PolicyContext.getContext()" + "returned incorrect value for key "
-                + "jakarta.servlet.http.HttpServletRequest");
-        logger.log(Level.INFO, "PolicyContextKey1: FAILED");
-      }
+      jakarta.servlet.http.HttpServletRequest ctx = PolicyContext
+              .getContext("jakarta.servlet.http.HttpServletRequest");
+      logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
+              + "jakarta.servlet.http.HttpServletRequest");
+      logger.log(Level.INFO, "PolicyContextKey1: PASSED");
+    } catch (ClassCastException e) {
+      logger.log(Level.INFO,
+                 "PolicyContext.getContext()" + "returned incorrect value for key "
+                         + "jakarta.servlet.http.HttpServletRequest");
+      logger.log(Level.SEVERE, "PolicyContextKey1: FAILED");
     } catch (Exception e) {
       logger.log(Level.SEVERE, "PolicyContextKey1: FAILED");
     }
@@ -342,18 +367,16 @@ public final class TSPolicy extends java.security.Policy {
   private void policyContextKey3() {
     try {
       // Get Subject
-      Object o = PolicyContext
-          .getContext("javax.security.auth.Subject.container");
-      if (o instanceof javax.security.auth.Subject) {
-        logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
-            + "javax.security.auth.Subject.container");
-        logger.log(Level.INFO, "PolicyContextKey3: PASSED");
-      } else {
-        logger.log(Level.INFO,
-            "PolicyContext.getContext()" + "returned incorrect value for key "
-                + "javax.security.auth.Subject.container");
-        logger.log(Level.INFO, "PolicyContextKey3: FAILED");
-      }
+      javax.security.auth.Subject subject = PolicyContext
+              .getContext("javax.security.auth.Subject.container");
+      logger.log(Level.INFO, "PolicyContext.getContext() " + "test passed for"
+              + "javax.security.auth.Subject.container");
+      logger.log(Level.INFO, "PolicyContextKey3: PASSED");
+    } catch (ClassCastException e) {
+      logger.log(Level.INFO,
+                 "PolicyContext.getContext()" + "returned incorrect value for key "
+                         + "javax.security.auth.Subject.container");
+      logger.log(Level.INFO, "PolicyContextKey3: FAILED");
     } catch (Exception e) {
       logger.log(Level.SEVERE, "PolicyContextKey3: FAILED");
     }

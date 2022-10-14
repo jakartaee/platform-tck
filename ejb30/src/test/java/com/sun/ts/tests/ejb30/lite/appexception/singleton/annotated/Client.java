@@ -24,7 +24,7 @@ import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import jakarta.ejb.EJB;
 
 public class Client
-    extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {
+    extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {  
   @Override
   @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
   protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {

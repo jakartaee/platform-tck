@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,7 +38,8 @@ import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jws.common.JWS_Util;
 import com.sun.ts.tests.jws.common.XMLUtils;
-import com.sun.ts.tests.jws.oneway.server.OnewayWebService;
+import com.sun.ts.tests.jws.oneway.server.OnewayWebServiceInterface;
+
 
 public class Client extends ServiceEETest {
 
@@ -90,7 +91,7 @@ public class Client extends ServiceEETest {
 
   private URL wsdlurl = null;
 
-  private OnewayWebService port;
+  private OnewayWebServiceInterface port;
 
   private void getTestURLs() throws Exception {
     TestUtil.logMsg("Get URL's used by the test");
@@ -105,14 +106,14 @@ public class Client extends ServiceEETest {
   private void getPortJavaEE() throws Exception {
     TestUtil.logMsg("Obtain service via WebServiceRef annotation");
     TestUtil.logMsg("service=" + service);
-    port = (OnewayWebService) service.getPort(OnewayWebService.class);
+    port = (OnewayWebServiceInterface) service.getPort(OnewayWebServiceInterface.class);
     TestUtil.logMsg("port=" + port);
     TestUtil.logMsg("Obtained port");
   }
 
   private void getPortStandalone() throws Exception {
-    port = (OnewayWebService) JWS_Util.getPort(wsdlurl, SERVICE_QNAME,
-        OnewayWebServiceService.class, PORT_QNAME, OnewayWebService.class);
+    port = (OnewayWebServiceInterface) JWS_Util.getPort(wsdlurl, SERVICE_QNAME,
+        OnewayWebServiceService.class, PORT_QNAME, OnewayWebServiceInterface.class);
     JWS_Util.setTargetEndpointAddress(port, url);
   }
 

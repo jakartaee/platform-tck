@@ -150,7 +150,7 @@ includes a reference to the whitebox extension library. The
 separate entity that all the standalone RAR files can access. This
 extension library is needed to address classloading issues.
 
-[[GJOUV]][[connectors-2.0-tck-resource-adapter-files]]
+[[GJOUV]][[connectors-2.1-tck-resource-adapter-files]]
 
 4.3.1.1 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapter Files
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -172,7 +172,7 @@ resource adapter server may employ the library mechanisms in Jakarta EE {Jakarta
 See section 20.2.0.4 of the {TechnologyShortName} {TechnologyVersion} specification, which uses the
 classloading requirements listed in section 20.3 in the specification.
 
-[[GJOUR]][[connectors-2.0-tck-resource-adapters-and-classloading]]
+[[GJOUR]][[connectors-2.1-tck-resource-adapters-and-classloading]]
 
 4.3.1.2 {TechnologyShortName} {TechnologyVersion} TCK Resource Adapters and Classloading
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

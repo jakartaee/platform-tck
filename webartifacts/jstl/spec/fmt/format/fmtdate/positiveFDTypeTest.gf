@@ -18,8 +18,8 @@
     date: Dec 26, 1997<br>
     time: 10:11:34 PM<br>
     time: 10:11:34 PM<br>
-    both: Dec 26, 1997 10:11:34 PM<br>
-    both: Dec 26, 1997 10:11:34 PM<br>
+    both: Dec 26, 1997, 10:11:34 PM<br>
+    both: Dec 26, 1997, 10:11:34 PM<br>
     
 
 </body>

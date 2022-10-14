@@ -2,7 +2,7 @@
 <!DOCTYPE spec SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/spec_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -22,12 +22,12 @@
 <?xml-stylesheet href = 'file:///files/workspaces/tools/docs/xsl/assertions/spec_assertions_comments.xsl' type = 'text/xsl'?>
 <spec>
 	<!-- @(#)ELSpecAssertions.xml 1.0 03/23/06 -->
-	<next-available-id>52</next-available-id>
+	<next-available-id>82</next-available-id>
 	<previous-id>48</previous-id>
 	<technology>EL</technology>
 	<id>EL</id>
 	<name>Expression Language</name>
-	<version>4.0</version>
+	<version>5.0</version>
 	<location-names>
 		<chapters>
 			<chapter id="1" name="Language Syntax and Semantics">
@@ -78,8 +78,10 @@
 					<section id="23.4" name="Coerce A to Character" />
 					<section id="23.5" name="Coerce A to Boolean or boolean" />
 					<section id="23.6" name="Coerce A to an Enum Type T" />
-					<section id="23.7" name="Coerce A to Any Other Type T" />
-					<section id="19" name="Collected Syntax " />
+					<section id="23.7" name="Coerce A to an array of Type T" />
+					<section id="23.8" name="Coerce A to functional interface method invocation" />
+					<section id="23.9" name="Coerce A to Any Other Type T" />
+					<section id="24" name="Collected Syntax " />
 				</sections>
 			</chapter>
 			<chapter id="2" name="Operations on Collection Objects">
@@ -174,6 +176,15 @@
 			<id>EL:SPEC:5</id>
 			<description>There is no coercion performed by method expressions.
 				[MethodExprSignature]</description>
+			<location chapter="1" section="2.1.2" />
+		</assertion>
+		<assertion required="true" impl-spec="false" defined-by="technology"
+			status="active" testable="true">
+			<id>EL:SPEC:80</id>
+			<description>Identification of methods in method expressions from
+				parameter types follows the rules of the JLS with the addition
+				that coercion resolution is less specific than overload
+				resolution. [MethodExpressionMatch]</description>
 			<location chapter="1" section="2.1.2" />
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
@@ -1812,21 +1823,89 @@
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology"
 			status="active" testable="false">
+			<id>EL:SPEC:81</id>
+			<description>Coerce A to array of type T</description>
+			<location chapter="1" section="23.7" />
+			<sub-assertions>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:81.1</id>
+					<description>If A is null, return null</description>
+					<location chapter="1" section="23.7" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:81.2</id>
+					<description>If A is assignable to an array of type T, coerce
+						quietly</description>
+					<location chapter="1" section="23.7" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:81.3</id>
+					<description>If A is an array, return a copy of the array where
+						each element has been coerced to type T using these
+						rules</description>
+					<location chapter="1" section="23.7" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:81.4</id>
+					<description>If A is an array but at least one element of the
+						array cannot be coerced to type T, error</description>
+					<location chapter="1" section="23.7" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:81.5</id>
+					<description>If A is not an array, error</description>
+					<location chapter="1" section="23.7" />
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required="true" impl-spec="false" defined-by="technology"
+			status="active" testable="false">
+			<id>EL:SPEC:79</id>
+			<description>Coerce A to functional interface method invocation</description>
+			<location chapter="1" section="23.8" />
+			<sub-assertions>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:79.1</id>
+					<description>If A is LamdaEXpression and parameters are an exact match, coerce to functional interface invocation.</description>
+					<location chapter="1" section="23.8" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:79.2</id>
+					<description>If A is not LamdaEXpression, follow 1.23.9 and throw an exception.</description>
+					<location chapter="1" section="23.8" />
+				</assertion>
+				<assertion required="true" impl-spec="false" defined-by="technology"
+					status="active" testable="true">
+					<id>EL:SPEC:79.3</id>
+					<description>If A is LamdaEXpression and parameters match if coerced, coerce to functional interface invocation.</description>
+					<location chapter="1" section="23.8" />
+				</assertion>
+			</sub-assertions>
+		</assertion>
+		<assertion required="true" impl-spec="false" defined-by="technology"
+			status="active" testable="false">
 			<id>EL:SPEC:43</id>
 			<description>Coerce A to any other type T</description>
-			<location chapter="1" section="23.7" />
+			<location chapter="1" section="23.9" />
 			<sub-assertions>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>EL:SPEC:43.1</id>
 					<description>If A is null, return null.</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>EL:SPEC:43.2</id>
 					<description>If A is assignable to T, coerce quietly.</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
@@ -1834,7 +1913,7 @@
 					<description>If A is String, and T has no Property Editor, then if
 						A is ""
 						return null, otherwise error.</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
@@ -1842,19 +1921,19 @@
 					<description>If A is String, and T's PropertyEditor throws
 						exception, then
 						if A is "" return null, otherwise error.</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>EL:SPEC:43.5</id>
 					<description>Otherwise, apply T's PropertyEditor</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 				<assertion required="true" impl-spec="false" defined-by="technology"
 					status="active" testable="true">
 					<id>EL:SPEC:43.6</id>
 					<description>Otherwise, error</description>
-					<location chapter="1" section="23.7" />
+					<location chapter="1" section="23.9" />
 				</assertion>
 			</sub-assertions>
 		</assertion>

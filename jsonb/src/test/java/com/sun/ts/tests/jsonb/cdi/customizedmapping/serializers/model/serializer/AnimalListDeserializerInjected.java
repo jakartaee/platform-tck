@@ -24,8 +24,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalDeserializer;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
 
 import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;

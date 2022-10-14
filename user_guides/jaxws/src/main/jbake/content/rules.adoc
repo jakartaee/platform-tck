@@ -202,7 +202,7 @@ include::defns.inc[]
 |=======================================================================
 
 
-[[sthref7]][[rules-for-products]]
+[[sthref6]][[rules-for-products]]
 
 2.2.2 Rules for {TechnologyFullName} Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

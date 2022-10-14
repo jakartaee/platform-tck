@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,6 +27,7 @@ import java.util.logging.Level;
 
 import jakarta.security.jacc.PolicyConfiguration;
 import jakarta.security.jacc.PolicyConfigurationFactory;
+import jakarta.security.jacc.PolicyContext;
 import jakarta.security.jacc.PolicyContextException;
 
 /**
@@ -84,7 +85,7 @@ public class TSPolicyConfigurationFactoryImpl
    * be thread safe.
    * <P>
    * 
-   * @param contextID
+   * @param contextId
    *          A String identifying the policy context whose PolicyConfiguration
    *          interface is to be returned. The value passed to this parameter
    *          must not be null.
@@ -187,7 +188,7 @@ public class TSPolicyConfigurationFactoryImpl
    * "inService" in the Policy provider associated with the factory.
    * <P>
    * 
-   * @param contextID
+   * @param contextId
    *          A string identifying a policy context
    *
    * @return true if the identified policy context exists within the provider
@@ -219,6 +220,33 @@ public class TSPolicyConfigurationFactoryImpl
     }
 
     return pcFactory.inService(contextId);
+  }
+
+  public PolicyConfiguration getPolicyConfiguration(String contextID){
+    if (lgr.isLoggable(Level.FINER)) {
+      lgr.entering("PolicyConfigurationFactoryImpl", "getPolicyConfiguration(String)");
+    }
+    PolicyConfiguration polConf = pcFactory.getPolicyConfiguration(contextID);
+    lgr.log(Level.INFO,
+            "PolicyConfigurationFactory.getPolicyConfiguration(String) invoked");
+    return polConf;
+  }
+
+  public PolicyConfiguration getPolicyConfiguration(){
+    String contextId = PolicyContext.getContextID();
+    PolicyConfiguration polConf = null;
+    // check if we can invoke method
+    if (lgr.isLoggable(Level.FINER)) {
+      lgr.entering("PolicyConfigurationFactoryImpl", "getPolicyConfiguration()");
+    }
+    polConf = pcFactory.getPolicyConfiguration(contextId);
+    lgr.log(Level.INFO,
+            "PolicyConfigurationFactory.getPolicyConfiguration(String) invoked");
+    lgr.log(Level.FINER,
+            "Getting PolicyConfiguration object with id = " + contextId);
+    policyConfiguration = (TSPolicyConfigurationImpl) polConf;
+
+    return polConf;
   }
 
   private static void getTSLogger() {

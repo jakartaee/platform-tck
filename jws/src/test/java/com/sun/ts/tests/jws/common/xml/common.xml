@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -509,7 +509,7 @@
                       catalog="${ts.home}/bin/catalog/META-INF/jax-ws-catalog.xml"
                       wsdl="${wsdl.file}">
                       <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
- 		           <jvmarg line="${wsimport.jvmargs} -Djava.endorsed.dirs=${endorsed.dirs}"/>
+ 		           <jvmarg line="${wsimport.jvmargs} "/>
                    </vi_wsimport>
                </then>
                <else>
@@ -535,7 +535,7 @@
                      catalog="${ts.home}/bin/catalog/META-INF/jax-ws-catalog.xml"
                      wsdl="${wsdl.file}">
                      <binding dir="${_src.pkg.dir}" includes="${customization.binding.files}" excludes="${excluded.customization.binding.files}"/>
-		             <jvmarg line="${ri.wsimport.jvmargs} -Djava.endorsed.dirs=${endorsed.dirs.ri}"/>
+		             <jvmarg line="${ri.wsimport.jvmargs} "/>
                    </ri_wsimport>
                </else>
                </if>
@@ -613,7 +613,7 @@
                       <classpath>
                          <pathelement path="${_classpath}" />
                       </classpath>
- 		              <jvmarg line="-Djava.endorsed.dirs=${endorsed.dirs}"/>
+ 		              <jvmarg line=""/>
                     </vi_wsgen>
                 </then>
                <else>
@@ -642,7 +642,7 @@
                         <classpath>
                             <pathelement path="${_classpath}" />
                         </classpath>
-                        <jvmarg line="-Djava.endorsed.dirs=${endorsed.dirs.ri}"/>
+                        <jvmarg line=""/>
                     </ri_wsgen>
                </else>
                </if>

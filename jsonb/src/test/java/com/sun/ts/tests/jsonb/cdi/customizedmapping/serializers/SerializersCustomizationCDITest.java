@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,9 +29,9 @@ import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Cat;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Dog;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog;
 
 /**
  * @test

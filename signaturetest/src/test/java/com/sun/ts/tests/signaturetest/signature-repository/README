@@ -12,14 +12,9 @@ a subset of the signature files stored in this directory.
 Sig File Naming Schemes:
 ------------------------
 The signature files have the following naming scheme:
-	<package_name>.sig_<version_id>
+	<package_name>.sig
 Where <package_name> is the name of the package who's signatures are in this
-file, note this includes all sub-packages.  The <version_id> is a unique ID
-used to denote one version of a package signature file from another (since
-we now support changing APIs between Jakarta EE platform releases).  Typically,
-the version ID should be the version ID of the technology that the package
-belongs to. (eg.  jakarta.xml.soap.sig_2.0 are the signatures that apply to
-the SOAP v2.0 technology)
+file, note this includes all sub-packages.  
 
 ----------------------------------
 Which Sig Files Apply To Your TCK:
@@ -27,8 +22,5 @@ Which Sig Files Apply To Your TCK:
 All TCKs which contain public API's need to perform signature test verifications.
 The names of the signature files used by a TCK is called out in the 
 $TS_HOME/bin/sig-test.map file.  The sig-test.map file contains key-value pairs
-where the key=package_name and value=version_id.  These key-value pairs
-are used to satisfy our naming scheme of:    
-    <package_name>.sig_<version_id>
-
+where the key=package_name and value=version_id.  
 

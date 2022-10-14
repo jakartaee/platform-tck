@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Contributors to Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -45,26 +46,61 @@ import jakarta.jms.TopicConnectionFactory;
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinitions(value = {
-    @JMSDestinationDefinition(description = "Define Queue AppClientMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/AppClientMyTestQueue", destinationName = "AppClientMyTestQueue"),
+@JMSDestinationDefinition(
+      description="Define Queue AppClientMyTestQueue",
+      interfaceName="jakarta.jms.Queue",
+      name="java:global/env/AppClientMyTestQueue",
+      destinationName="AppClientMyTestQueue"
+ )
 
-    @JMSDestinationDefinition(description = "Define Topic AppClientMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/AppClientMyTestTopic", destinationName = "AppClientMyTestTopic")
+@JMSDestinationDefinition(
+      description="Define Topic AppClientMyTestTopic",
+      interfaceName="jakarta.jms.Topic",
+      name="java:app/env/AppClientMyTestTopic",
+      destinationName="AppClientMyTestTopic"
+ )
 
-})
 
-// -------------------------------------------
+//-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
-// -------------------------------------------
-@JMSConnectionFactoryDefinitions(value = {
-    @JMSConnectionFactoryDefinition(description = "Define ConnectionFactory AppClientMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/AppClientMyTestConnectionFactory", user = "j2ee", password = "j2ee"),
+//-------------------------------------------
+@JMSConnectionFactoryDefinition(
+      description="Define ConnectionFactory AppClientMyTestConnectionFactory",
+      interfaceName="jakarta.jms.ConnectionFactory",
+      name="java:global/AppClientMyTestConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/AppClientMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee"),
+@JMSConnectionFactoryDefinition(
+      description="Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory",
+      interfaceName="jakarta.jms.QueueConnectionFactory",
+      name="java:app/AppClientMyTestQueueConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/AppClientMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee"),
+@JMSConnectionFactoryDefinition(
+      description="Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:module/AppClientMyTestTopicConnectionFactory",
+      user = "j2ee",
+      password = "j2ee"
+ )
 
-    @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
-        "Property1=10",
-        "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20) })
+
+@JMSConnectionFactoryDefinition(
+      description="Define Durable TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory",
+      interfaceName="jakarta.jms.TopicConnectionFactory",
+      name="java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory",
+      user = "j2ee",
+      password = "j2ee",
+      clientId = "MyClientID",
+      properties = { "Property1=10", "Property2=20" },
+      transactional = false,
+      maxPoolSize = 30,
+      minPoolSize = 20
+ )
 
 public class Client extends EETest {
   private static final long serialVersionUID = 1L;

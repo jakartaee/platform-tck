@@ -13,7 +13,7 @@
              or the basename or locale scoped attributes don't exist,
              the browser's preferred locales are used. -->
     
-    Nov 21, 2000 3:45:02 AM
+    Nov 21, 2000, 3:45:02 AM
     1234
     1,234
 

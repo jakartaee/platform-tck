@@ -87,7 +87,7 @@ public class JavaEESigTest extends SigTestEE {
       + " cdi di beanval persistence jaxb saaj jaxws connector"
       + " jacc jaspic jsonp jta el servlet jsf jaxrs websocket batch concurrency jsonb securityapi";
 
-  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket jsonb securityapi";
+  public static final String KEYWORD_WEB = "caj ejb persistence el jsf jsonp jsp servlet jta jaxrs cdi di beanval interceptors websocket concurrency jsonb securityapi";
 
   public static final ArrayList<String> KEYWORD_JAVAEE_FULL_OPTIONAL_TECHS = new ArrayList<String>();
 
@@ -172,12 +172,13 @@ public class JavaEESigTest extends SigTestEE {
             "jakarta.batch.api.chunk.listener", "jakarta.batch.api.listener",
             "jakarta.batch.api.partition", "jakarta.batch.operations",
             "jakarta.batch.runtime", "jakarta.batch.runtime.context" });
-    EJB_MAP.put("concurrency", new String[] { "jakarta.enterprise.concurrent" });
     EJB_MAP.put("securityapi",
         new String[] { "jakarta.security.enterprise",
         "jakarta.security.enterprise.authentication.mechanism.http",
         "jakarta.security.enterprise.credential",
         "jakarta.security.enterprise.identitystore" });
+    EJB_MAP.put("concurrency", 
+        new String[] { "jakarta.enterprise.concurrent" });
 
     SERVLET_MAP.putAll(EJB_MAP);
     SERVLET_MAP.put("el", new String[] { "jakarta.el" });

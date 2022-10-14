@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,17 +33,18 @@ public class TestListener implements ServletContextListener {
    *          The ServletContextEvent
    */
   public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
+    boolean passed = false;
     ServletContext context = sce.getServletContext();
     StringBuilder log = new StringBuilder();
 
     try {
       context.getEffectiveMajorVersion();
+      passed = true;
       log.append(
-          "Expected UnsupportedOperationException not thrown by getEffectiveMajorVersion().");
+          "UnsupportedOperationException not thrown by getEffectiveMajorVersion().");
     } catch (UnsupportedOperationException ex) {
       log.append(
-          "Expected UnsupportedOperationException thrown by getEffectiveMajorVersion().");
+          "UnsupportedOperationException thrown by getEffectiveMajorVersion().");
     }
 
     context.setAttribute("TCK_TEST_STATUS", log.toString());

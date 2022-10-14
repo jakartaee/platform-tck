@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2022 Contributors to Eclipse Foundation. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -1241,7 +1242,7 @@ public class Client extends ServiceEETest {
           durableSubscriptionName);
 
       TestUtil
-          .logMsg("Try and receive a message from comsumer1 (should get NONE)");
+          .logMsg("Try and receive a message from consumer1 (should get NONE)");
       actTextMessage = (TextMessage) consumer.receive(timeout);
       if (actTextMessage != null) {
         TestUtil.logErr("Consumer1 received a message (FAIL)");
@@ -1251,7 +1252,7 @@ public class Client extends ServiceEETest {
       }
 
       TestUtil
-          .logMsg("Try and receive a message from comsumer2 (should get NONE)");
+          .logMsg("Try and receive a message from consumer2 (should get NONE)");
       actTextMessage = (TextMessage) consumer2.receive(timeout);
       if (actTextMessage != null) {
         TestUtil.logErr("Consumer2 received a message (FAIL)");
@@ -1478,7 +1479,7 @@ public class Client extends ServiceEETest {
           durableSubscriptionName);
 
       TestUtil
-          .logMsg("Try and receive a message from comsumer1 (should get NONE)");
+          .logMsg("Try and receive a message from consumer1 (should get NONE)");
       actTextMessage = (TextMessage) consumer.receive(timeout);
       if (actTextMessage != null) {
         TestUtil.logErr("Consumer1 received a message (FAIL)");
@@ -1488,7 +1489,7 @@ public class Client extends ServiceEETest {
       }
 
       TestUtil
-          .logMsg("Try and receive a message from comsumer2 (should get NONE)");
+          .logMsg("Try and receive a message from consumer2 (should get NONE)");
       actTextMessage = (TextMessage) consumer2.receive(timeout);
       if (actTextMessage != null) {
         TestUtil.logErr("Consumer2 received a message (FAIL)");

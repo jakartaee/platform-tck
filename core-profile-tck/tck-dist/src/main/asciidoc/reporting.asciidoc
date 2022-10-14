@@ -1,0 +1,23 @@
+[[reporting]]
+
+== Reporting
+
+This chapter covers the execution results.
+
+=== Maven, Failsafe, Surefire and TestNG
+
+When the Jakarta Core Profile TCK test suite is executed during the Maven test phase of the TCK runner project, TestNG is invoked indirectly through the Maven Surefire plugin. Surefire is a test execution abstraction layer capable of executing a mix of tests written for JUnit, TestNG, and other supported test frameworks.
+
+Why is this relevant? It means two things. First, it means that you are going to get a summary of the test run on the commandline.
+
+
+If the Maven reporting plugin that complements Surefire is configured properly, Maven will also generate a generic HTML test result report. That report is written to the file test-report.html in the target/surefire-reports directory of the TCK runner project. It shows how many tests were run, how many failed and the success rate of the test run.
+
+The one drawback of the Maven Surefire report plugin is that it buffers the test failures and puts them in the HTML report rather than outputting them to the commandline. If you are running the test suite to determine if there are any failures, it may be more useful to get this information in the foreground. You can prevent the failures from being redirected to the report using the following commandline switch:
+
+[source, bash]
+----
+mvn test -Dsurefire.useFile=false
+----
+
+The unit test reports will be placed into target/failsafe or target/surefire depending on which TCK is being run.

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
-    Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2020, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -119,17 +119,17 @@ ${pathsep}${web.home}/modules/tyrus-spi.jar
   This property is required for the TCK Ant targets.
   i.  `impl.vi` to the name of the Vendor implementation. +
   This property is used for identifying the deployment handler. +
-  Set this property to `glassfish` for the Jakarta EE 9 CI (Eclipse GlassFish 6.0) full-, or web-profile CI.
+  Set this property to `glassfish` for the Jakarta EE 10 CI (Eclipse GlassFish 7.0) full-, or web-profile CI.
   j. `impl.vi.deploy.dir` to the Vendor implementation deployment
   directory. +
   Set this property to `${web.home}/domains/domain1/autodeploy` for the
-   CI (Eclipse GlassFish 6.0) full-, or web-profile CI.
+   CI (Eclipse GlassFish 7.0) full-, or web-profile CI.
 +
 3.  Add permissions from the file `<TS_HOME>/bin/server_policy.append`
-to the Java policy file or files on your Jakarta EE 9 server. +
-In case of Jakarta EE 9 CI (Eclipse GlassFish 6.0), add permissions that are not already defined to
+to the Java policy file or files on your Jakarta EE 10 server. +
+In case of Jakarta EE 10 CI (Eclipse GlassFish 7.0), add permissions that are not already defined to
 the file $\{web.home}`/domains/domain1/config/server.policy`, where
-$\{web.home} is the location of your installation of the Jakarta EE 9 CI (Eclipse GlassFish 6.0).
+$\{web.home} is the location of your installation of the Jakarta EE 10 CI (Eclipse GlassFish 7.0).
 4. When creating CI-specific application server settings, it is
 recommended that you create a configuring file named `config.vi.xml`
 under `$TS_HOME/bin/xml/${impl_vi}`. +
@@ -261,14 +261,14 @@ ${pathsep}${web.home}/modules/tyrus-spi.jar
   This property is required for the TCK Ant targets.
   i.  `impl.vi` to the name of the Vendor implementation. +
   This property is used for identifying the deployment handler. +
-  Set this property to `glassfish` for the Jakarta EE 9 VI (Eclipse GlassFish 6.0) full-, or web-profile VI.
+  Set this property to `glassfish` for the Jakarta EE 10 VI (Eclipse GlassFish 7.0) full-, or web-profile VI.
   j. `impl.vi.deploy.dir` to the Vendor implementation deployment
   directory. +
   Set this property to `${web.home}/domains/domain1/autodeploy` for the
-   VI (Eclipse GlassFish 6.0) full-, or web-profile VI.
+   VI (Eclipse GlassFish 7.0) full-, or web-profile VI.
 +
 3.  Add permissions from the file `<TS_HOME>/bin/server_policy.append`
-to the Java policy file or files on your Jakarta EE 9 server.
+to the Java policy file or files on your Jakarta EE 10 server.
 4. When creating VI-specific application server settings, it is
 recommended that you create a configuring file named `config.vi.xml`
 under `$TS_HOME/bin/xml/${impl_vi}`. +
