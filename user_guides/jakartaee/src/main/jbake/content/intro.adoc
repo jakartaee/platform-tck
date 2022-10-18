@@ -13,17 +13,17 @@ Introduction
 --------------
 
 This document provides instructions for installing, configuring, and
-running the Jakarta Platform, Enterprise Edition 9.1 Test Compatibility Kit
-(Jakarta EE 9.1 Platform TCK).
+running the Jakarta Platform, Enterprise Edition 11 Test Compatibility Kit
+(Jakarta EE 11 Platform TCK).
 
 This chapter includes the following topics:
 
 * link:#GBFTK[Compatibility Testing]
-* link:#GEUYK[About Jakarta EE 9.1 Platform TCK]
+* link:#GEUYK[About Jakarta EE 11 Platform TCK]
 * link:#GEVAD[Hardware Requirements]
 * link:#GEVBB[Software Requirements]
-* link:#GEVCL[Additional Jakarta EE 9.1 Platform TCK Requirements]
-* link:#GBFQW[Getting Started With the Jakarta EE 9.1 Platform TCK Test Suite]
+* link:#GEVCL[Additional Jakarta EE 11 Platform TCK Requirements]
+* link:#GBFQW[Getting Started With the Jakarta EE 11 Platform TCK Test Suite]
 
 [[GBFTK]][[compatibility-testing]]
 
@@ -74,11 +74,11 @@ level playing field for all Jakarta Platform ports.
 
 Compatibility criteria for all technology implementations are embodied
 in the Compatibility Rules that apply to a specified technology. The
-Jakarta EE 9.1 Platform TCK tests for adherence to these Rules as described in
+Jakarta EE 11 Platform TCK tests for adherence to these Rules as described in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
-Edition 9.1 Certification,"] for Jakarta EE 9.1 and
+Edition 11 Certification,"] for Jakarta EE 11 and
 link:rules-wp.html#GJJPZ[Chapter 3, "Procedure for Jakarta Platform,
-Enterprise Edition 9.1 Web Profile Certification,"] for Jakarta EE 9.1 Web
+Enterprise Edition 11 Web Profile Certification,"] for Jakarta EE 11 Web
 Profile.
 
 [[GBFPW]][[tck-overview]]
@@ -86,8 +86,8 @@ Profile.
 1.1.3 TCK Overview
 ^^^^^^^^^^^^^^^^^^
 
-A Jakarta EE 9.1 Platform TCK is a set of tools and tests used to verify that a
-Implementer's implementation of Jakarta EE 9.1 technology conforms to the
+A Jakarta EE 11 Platform TCK is a set of tools and tests used to verify that a
+Implementer's implementation of Jakarta EE 11 technology conforms to the
 applicable specification. All tests in the TCK are based on the written
 specifications for the Jakarta Platform. The TCK tests compatibility of a
 Implementer's implementation of a technology to the applicable
@@ -95,7 +95,7 @@ specification of the technology. Compatibility testing is a means of
 ensuring correctness, completeness, and consistency across all
 implementations developed by technology Implementers.
 
-The set of tests included with the Jakarta EE 9.1 Platform TCK is called the test
+The set of tests included with the Jakarta EE 11 Platform TCK is called the test
 suite. All tests in the TCK test suite are self-checking, but some tests
 may require tester interaction. Most tests return either a Pass or Fail
 status. For a given platform to be certified, all of the required tests
@@ -104,7 +104,7 @@ platform.
 
 The definition of required tests will change over time. Before your
 final certification test pass, be sure to download the latest Exclude
-List for the Jakarta EE 9.1 Platform TCK. The definition of required tests will change
+List for the Jakarta EE 11 Platform TCK. The definition of required tests will change
 over time. See link:#GEUYQ[Section 1.2.5, "Exclude Lists,"] for more
 information.
 
@@ -128,101 +128,148 @@ direction of the responsible specification project committer group:
 For further information about the JESP program, go to Jakarta EE
 Specification Process community page (https://jakarta.ee/specifications).
 
-[[GEUYK]][[about-jakarta-ee-9-platform-tck]]
+[[GEUYK]][[about-jakarta-ee-11-platform-tck]]
 
-1.2 About Jakarta EE 9.1 Platform TCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.2 About Jakarta EE 11 Platform TCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jakarta EE 9.1 Platform TCK is a portable, configurable, automated test suite for
-verifying the compliance of a Implementer's implementation of the Jakarta EE 9.1
-technologies. Jakarta EE 9.1 Platform TCK includes version 5.0 of the JavaTest
+Jakarta EE 11 Platform TCK is a portable, configurable, automated test suite for
+verifying the compliance of a Implementer's implementation of the Jakarta EE 11
+technologies. Jakarta EE 11 Platform TCK includes version 5.0 of the JavaTest
 harness.
 
-For documentation on the test harness used for running the Jakarta EE 9.1 Platform TCK
+For documentation on the test harness used for running the Jakarta EE 11 Platform TCK
 test suite, see
-`https://wiki.openjdk.java.net/display/CodeTools/Documentation`.
+https://wiki.openjdk.java.net/display/CodeTools/Documentation.
 
-[[sthref4]][[jakarta-ee-9-technologies-tested-with-jakarta-ee-9-platform-tck]]
+[[sthref4]][[jakarta-ee-11-technologies-tested-with-jakarta-ee-11-platform-tck]]
 
-1.2.1 Jakarta EE 9.1 Technologies Tested with Jakarta EE 9.1 Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.2.1 Jakarta EE 11 Technologies Required for Jakarta EE 11 Platform Compatibility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9.1 Platform TCK test suite includes compatibility tests for the
-following required and optional Jakarta EE 9.1 technologies:
+The Jakarta EE 11 Platform Specification defines the required and optional component specifications.
+The full list with specification version requirements is defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/11/), see the heading 'Full Jakarta(TM) EE Product Requirements,'
 
-* Jakarta Enterprise Beans 4.0 +
-* Jakarta Servlet 5.0
-* Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
-* Jakarta Messaging 3.0
-* Jakarta Transactions 2.0
-* Jakarta Mail 2.0
-* Jakarta Connectors 2.0
-* Jakarta Enterprise Web Services 2.0 (optional)
-* Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
-* Jakarta JSON Processing 2.0
-* Jakarta JSON Binding 2.0
-* Jakarta Concurrency 2.0
-* Jakarta Batch 2.0
-* Jakarta Authorization 2.0
-* Jakarta Authentication 2.0
-* Jakarta Standard Tag Library 2.0
-* Jakarta Faces 3.0
-* Jakarta Security 2.0
-* Jakarta Annotations 2.0
-* Jakarta Persistence 3.0
-* Jakarta Bean Validation 3.0
-* Jakarta Managed Beans 2.0
-* Jakarta Interceptors 2.0
-* Jakarta Contexts and Dependency Injection 3.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Debugging Support for Other Languages 2.0
-* Jakarta Enterprise Beans 3.2 and earlier entity beans and associated Jakarta Enterprise Beans QL (optional)
-* Jakarta Enterprise Beans 2.x API group (optional)
-* Jakarta Enterprise Web Services 2.0 (optional)
-* Jakarta SOAP with Attachments 2.0 (optional)
-* Jakarta Web Services Metadata 3.0 (optional)
-* Jakarta XML Web Services 3.0 (optional)
+Jakarta EE 11 TCK tests verify partial compatibility for the Jakarta EE Platform.
+The Platform TCK includes tests for the following components:
 
+The complete list of Jakarta EE 11 technologies for the Platform can be found in section 9.7 of the https://jakarta.ee/specifications/platform/11/[Platform Specification].
 
-[[BHCGFHDI]][[jakarta-ee-9-web-profile-technologies-tested-with-jakarta-ee-9-platform-tck]]
+* Jakarta Activation
+* Jakarta Authentication
+* Jakarta Authorization
+* Jakarta Batch
+* Jakarta Bean Validation
+* Jakarta Common Annotations
+* Jakarta Concurrency
+* Jakarta Connectors
+* Jakarta Contexts and Dependency Injection
+* Jakarta Debugging Support for Other Languages
+* Jakarta Dependency Injection
+* Jakarta Enterprise Beans (also, see optional below)
+* Jakarta Enterprise Web Services
+* Jakarta Expression Language
+* Jakarta Server Faces
+* Jakarta Interceptors
+* Jakarta JSON Binding
+* Jakarta JSON Processing
+* Jakarta Mail
+* Jakarta Messaging
+* Jakarta Persistence
+* Jakarta RESTful Web Services
+* Jakarta Security
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta WebSocket
 
-1.2.2 Jakarta EE 9.1 Web Profile Technologies Tested With Jakarta EE 9.1 Platform TCK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following (removed from Jakarta EE 11 Platform) technologies may be tested via the Jakarta EE Platform TCK:
 
-The Jakarta EE 9.1 Platform TCK test suite can also be used to test compatibility for
-the following required Jakarta EE 9.1 Web Profile technologies:
+* Jakarta Enterprise Beans entity beans and associated Jakarta Enterprise Beans QL
+* Jakarta Enterprise Beans embeddable container 
 
-* Jakarta Servlet 5.0
-* Jakarta Server Pages 3.0
-* Jakarta Expression Language 4.0
-* Jakarta Standard Tag Library 2.0
-* Jakarta Faces 3.0
-* Jakarta RESTful Web Services 3.0
-* Jakarta WebSocket 2.0
-* Jakarta JSON Processing 2.0
-* Jakarta JSON Binding 2.0
-* Jakarta Common Annotations 2.0
-* Jakarta Enterprise Beans 4.0, Lite
-* Jakarta Transactions 2.0
-* Jakarta Persistence 3.0
-* Jakarta Bean Validation 3.0
-* Jakarta Managed Beans 2.0
-* Jakarta Interceptors 2.0
-* Jakarta Contexts and Dependency Injection 3.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Security 2.0
-* Jakarta Authentication 2.0, Servlet Container Profile
-* Jakarta Debugging Support for Other Languages 2.0
+The following optional technologies may also be tested via the Jakarta EE Platform TCK:
+
+* Jakarta Enterprise Beans 2.x API group 
+* Jakarta Enterprise Beans Container Managed Persistence, Bean Managed Persistence
+* Jakarta Enterprise Web Services 
+* Jakarta SOAP with Attachments 
+* Jakarta XML Binding 
+* Jakarta XML Web Services
+
+Jakarta EE 11 Platform TCK provides compatibility certification verification for implementations contained in the Platform for the following component specifications:
+
+* Jakarta Annotations
+* Jakarta Authorization
+* Jakarta Connectors
+* Jakarta Enterprise Beans (including optional elements)
+* Jakarta Expression Language
+* Jakarta Interceptors
+* Jakarta Messaging
+* Jakarta Persistence
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta SOAP with Attachments
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta Web Socket
+* Jakarta XML Web Services
+
+[[BHCGFHDI]][[jakarta-ee-11-web-profile-technologies-tested-with-jakarta-ee-11-platform-tck]]
+
+1.2.2 Jakarta EE 11 Web Profile Technologies Tested With Jakarta EE 11 Platform TCK
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Jakarta EE 11 Web Profile Specification defines the required component specifications.
+The complete list with specification version requirements is defined in the Web Profile specification document (https://jakarta.ee/specifications/webprofile/11/), see heading 'Web Profile Definition', sub-heading 'Required Components'.
+
+The Jakarta EE 11 Platform TCK test suite provides partial compatibility verification for
+the following component technologies:
+
+* Jakarta Annotations
+* Jakarta Authentication, Servlet Container Profile
+* Jakarta Bean Validation
+* Jakarta Common Annotations
+* Jakarta Contexts and Dependency Injection
+* Jakarta Concurrency
+* Jakarta Debugging Support for Other Languages
+* Jakarta Dependency Injection
+* Jakarta Enterprise Beans, Lite
+* Jakarta Expression Language
+* Jakarta Faces
+* Jakarta Interceptors
+* Jakarta JSON Binding
+* Jakarta JSON Processing
+* Jakarta Persistence
+* Jakarta RESTful Web Services
+* Jakarta Security
+* Jakarta Server Pages
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta WebSocket
+
+There are no optional specifications defined in the Web Profile specification.
+
+Jakarta EE 11 Platform TCK provides compatibility certification verification for implementations contained in the platform, Web Profile for the following component specifications:
+
+* Jakarta Annotations
+* Jakarta Enterprise Beans, Lite
+* Jakarta Expression Language
+* Jakarta Interceptors
+* Jakarta Servlet
+* Jakarta Standard Tag Library
+* Jakarta Transactions
+* Jakarta Web Socket
 
 [[GEUZS]][[tck-tests]]
 
 1.2.3 TCK Tests
 ^^^^^^^^^^^^^^^
 
-The Jakarta EE 9.1 Platform TCK contains API tests and enterprise edition tests, which
-are tests that start in the Jakarta EE 9.1 platform and use the underlying
+The Jakarta EE 11 Platform TCK contains API tests and enterprise edition tests, which
+are tests that start in the Jakarta EE 11 platform and use the underlying
 enterprise service or services as specified. For example, a JDBC
 enterprise edition test connects to a database, uses SQL commands and
 the JDBC 4.2 API to populate the database tables with data, queries the
@@ -238,29 +285,29 @@ Note: References in diagram to Java EE refer to Jakarta EE.
 
 link:#GEUZU[Figure 1-1] shows how most Implementers will use the test
 suite. They will set up and run the test suite with the Jakarta Platform,
-Enterprise Edition 9.1 Compatible Implementation (Jakarta EE 9.1 CI) first to
+Enterprise Edition 11 Compatible Implementation (Jakarta EE 11 CI) first to
 become familiar with the testing process. Then they will set up and run
-the test suite with their own Jakarta EE 9.1 implementation. This is called the
+the test suite with their own Jakarta EE 11 implementation. This is called the
 Vendor Implementation, or VI in this document. When they pass
 all of the tests, they will apply for and be granted certification.
 
 * Before you do anything with the test suite, read the rules in
 link:rules.html#GBFSN[Chapter 2, "Procedure for Jakarta Platform, Enterprise
 Edition 8 Certification,"] or link:rules-wp.html#GJJPZ[Chapter 3,
-"Procedure for Jakarta Platform, Enterprise Edition 9.1 Web Profile
+"Procedure for Jakarta Platform, Enterprise Edition 11 Web Profile
 Certification."] These chapters explain the certification process and
-provides a definitive list of certification rules for Jakarta EE 9.1 and Jakarta
-EE 9.1 Web Profile implementations.
+provides a definitive list of certification rules for Jakarta EE 11 and Jakarta
+EE 11 Web Profile implementations.
 * Next, take a look at the test assertions in the Assertion List, which
-you can find in the Jakarta EE 9.1 Platform TCK documentation bundle. The assertions
+you can find in the Jakarta EE 11 Platform TCK documentation bundle. The assertions
 explain what each test is testing. When you run the tests with the
 JavaTest GUI, the assertion being tested as part of the test description
 of the currently selected test is displayed.
-* Third, install and configure the Jakarta EE 9.1 Platform TCK software and the Jakarta
-EE 9.1 CI or Jakarta EE 9.1 Web Profile CI and run the tests as described in
+* Third, install and configure the Jakarta EE 11 Platform TCK software and the Jakarta
+EE 11 CI or Jakarta EE 11 Web Profile CI and run the tests as described in
 this guide. This will familiarize you with the testing process.
-* Finally, set up and run the test suite with your own Jakarta EE 9.1 or Jakarta
-EE 9.1 Web Profile implementation.
+* Finally, set up and run the test suite with your own Jakarta EE 11 or Jakarta
+EE 11 Web Profile implementation.
 
 
 [NOTE]
@@ -315,7 +362,7 @@ filters you are using and queues them up for execution.
 1.2.5 Exclude Lists
 ^^^^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9.1 Platform TCK includes an Exclude List contained in a `.jtx` file.
+The Jakarta EE 11 Platform TCK includes an Exclude List contained in a `.jtx` file.
 This is a list of test file URLs that identify tests which do not have
 to be run for the specific version of the TCK being used. Whenever tests
 are run, the JavaTest harness automatically excludes any test on the
@@ -323,14 +370,14 @@ Exclude List from being executed.
 
 A implementor is not required to pass or run any test on the Exclude List.
 The Exclude List file, `<TS_HOME>/bin/ts.jtx`, is included in the Jakarta
-EE 9.1 TCK.
+EE 11 TCK.
 
 
 [NOTE]
 =======================================================================
 
 Always make sure you are using an up-to-date copy of the Exclude List
-before running the Jakarta EE 9.1 Platform TCK test suite to verify your
+before running the Jakarta EE 11 Platform TCK test suite to verify your
 implementation.
 
 =======================================================================
@@ -373,31 +420,31 @@ Edition TCK Test Appeals Steps."]
 1.2.6 Apache Ant
 ^^^^^^^^^^^^^^^^
 
-The Jakarta EE 9.1 CI, Jakarta EE 9.1 Web Profile CI, and Jakarta EE 9.1 Platform TCK require
+The Jakarta EE 11 CI, Jakarta EE 11 Web Profile CI, and Jakarta EE 11 Platform TCK require
 implementations of Apache Ant 1.9.7 from the Apache Ant Project
 (`http://ant.apache.org/`). Apache Ant is a free, open-source,
 Java-based build tool, similar in some ways to the make tool, but more
 flexible, cross-platform compatible, and centered around XML-based
 configuration files.
 
-Ant is invoked in the Jakarta EE 9.1 CI, Jakarta EE 9.1 Web Profile CI, and Jakarta
-EE 9.1 TCK in conjunction with various XML files containing Ant targets.
+Ant is invoked in the Jakarta EE 11 CI, Jakarta EE 11 Web Profile CI, and Jakarta
+EE 11 TCK in conjunction with various XML files containing Ant targets.
 These Ant targets provide a convenient way to automate various
-configuration tasks for Jakarta EE 9.1 Platform TCK. For example, the initial
-configuration of the Jakarta EE 9.1 CI or Jakarta EE 9.1 Web Profile CI for TCK is
+configuration tasks for Jakarta EE 11 Platform TCK. For example, the initial
+configuration of the Jakarta EE 11 CI or Jakarta EE 11 Web Profile CI for TCK is
 done by means of the `config.vi` Ant target.
 
 The Ant configuration targets are there for your convenience. When
-configuring your Jakarta EE 9.1 or Jakarta EE 9.1 Web Profile implementation for
-the Jakarta EE 9.1 Platform TCK, you can either set up your environment to use the Ant
+configuring your Jakarta EE 11 or Jakarta EE 11 Web Profile implementation for
+the Jakarta EE 11 Platform TCK, you can either set up your environment to use the Ant
 tools, or you can perform some or all of your configuration procedures
-manually. Jakarta EE 9.1 Platform TCK includes the Ant Contrib package, and the tasks
+manually. Jakarta EE 11 Platform TCK includes the Ant Contrib package, and the tasks
 included with Ant Contrib are used within the TCK build files. See
 `http://ant-contrib.sourceforge.net/` for more information about Ant
 Contrib.
 
 This User's Guide does not provide in-depth instruction on Ant internals
-or how to configure Ant targets for your particular Jakarta EE 9.1 or Jakarta EE
+or how to configure Ant targets for your particular Jakarta EE 11 or Jakarta EE
 8 Web Profile implementation. For complete information about Ant, refer
 to the extensive documentation on the Apache Ant Project site. The
 Apache Ant Manual is available at
@@ -422,8 +469,8 @@ is available on the Apache Ant Project license page at
 1.3 Hardware Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following section lists the hardware requirements for the Jakarta EE 9.1
-TCK software, using the Jakarta EE 9.1 CI or Jakarta EE 9.1 Web Profile CI.
+The following section lists the hardware requirements for the Jakarta EE 11
+TCK software, using the Jakarta EE 11 CI or Jakarta EE 11 Web Profile CI.
 Hardware requirements for other compatible implementations will vary.
 
 All systems should meet the following recommended hardware requirements:
@@ -431,7 +478,7 @@ All systems should meet the following recommended hardware requirements:
 * CPU running at 2.0 GHz or higher
 * 4 GB of RAM or more
 * 2 GB of swap space , if required
-* 6 GB of free disk space for writing data to log files, the Jakarta EE 9.1
+* 6 GB of free disk space for writing data to log files, the Jakarta EE 11
 repository, and the database
 * Network access to the Internet
 
@@ -440,7 +487,7 @@ repository, and the database
 1.4 Software Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can run the Jakarta EE 9.1 Platform TCK software on platforms running the
+You can run the Jakarta EE 11 Platform TCK software on platforms running the
 Linux software that meet the following software requirements:
 
 * Operating Systems:
@@ -449,7 +496,7 @@ Linux software that meet the following software requirements:
 
 ** Alpine Linux v3.12
 * Java SE 8 (1.8) or 11
-* Jakarta EE 9.1 CI or Jakarta EE 9.1 Web Profile CI
+* Jakarta EE 11 CI or Jakarta EE 11 Web Profile CI
 * Mail server that supports the IMAP and SMTP protocols
 * One of the following databases:
 
@@ -457,48 +504,62 @@ Linux software that meet the following software requirements:
 
 ** Apache Derby
 
-[[GEVCL]][[additional-jakarta-ee-9-platform-tck-requirements]]
+[[GEVCL]][[additional-jakarta-ee-11-platform-tck-requirements]]
 
-1.5 Additional Jakarta EE 9.1 Platform TCK Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.5 Additional Jakarta EE 11 Platform TCK Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to the instructions and requirements described in this
-document, all Jakarta EE 9.1 and Jakarta EE 9.1 Web Profile implementations must
+document, all Jakarta EE 11 Platform implementations must
 also pass the standalone TCKs for the following technologies:
 
-* Jakarta Contexts and Dependency Injection 3.0
-* Jakarta Dependency Injection 2.0
-* Jakarta Bean Validation 3.0
-* Jakarta XML Binding 3.0
+* Jakarta Activation -- see https://jakarta.ee/specifications/activation/ for additional details
+* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
+* Jakarta Batch -- see https://jakarta.ee/specifications/batch/2.1/ for additional details
+* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
+* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details
+* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
+* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
+* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ , for additional details
+* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
+* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
+* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
+* Jakarta Mail -- see https://jakarta.ee/specifications/mail/2.1/ for additional details
+* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/3.1/ for additional details
+* Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
+* Jakarta XML Binding -- see https://jakarta.ee/specifications/xml-binding/3.0/ for additional details
 
-For more information about the Jakarta Contexts and Dependency Injection technology, 
-see the specification at `https://jakarta.ee/specifications/cdi/3.0/`
+All Jakarta EE 11 Web Profile implementations must also pass the standalone TCKs for the following technologies:
 
-For more information about the Jakarta Dependency Injection,
-see the specification at `https://jakarta.ee/specifications/dependency-injection/2.0/` 
+* Jakarta Authentication -- see https://jakarta.ee/specifications/authentication/3.0/ for additional details
+* Jakarta Bean Validation -- see https://jakarta.ee/specifications/bean-validation/3.0/ for additional details
+* Jakarta Concurrency -- see https://jakarta.ee/specifications/concurrency/3.0/ for additional details
+* Jakarta Contexts and Dependency Injection (including Language Model TCK) -- see https://jakarta.ee/specifications/cdi/4.0/ for additional details
+* Jakarta Debugging Support for Other Languages -- see https://jakarta.ee/specifications/debugging/ for additional details
+* Jakarta Dependency Injection -- see https://jakarta.ee/specifications/dependency-injection/2.0/ for additional details
+* Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
+* Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
+* Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
+* Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/3.1/ for additional details
+* Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
 
-For more information about the Jakarta Bean Validation technology, see the
-specification at `https://jakarta.ee/specifications/bean-validation/3.0/`
 
-For more information about the Jakarta XML Binding technology, see the
-specification at `https://jakarta.ee/specifications/xml-binding/3.0/`
+[[GBFQW]][[getting-started-with-the-jakarta-ee-11-platform-tck-test-suite]]
 
-[[GBFQW]][[getting-started-with-the-jakarta-ee-9-platform-tck-test-suite]]
+1.6 Getting Started With the Jakarta EE 11 Platform TCK Test Suite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.6 Getting Started With the Jakarta EE 9.1 Platform TCK Test Suite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Installing, configuring, and using the Jakarta EE 9.1 Platform TCK involves the
+Installing, configuring, and using the Jakarta EE 11 Platform TCK involves the
 following general steps:
 
-1.  Download, install, and configure a Jakarta EE 9.1 CI or Jakarta EE 9.1 Web
+1.  Download, install, and configure a Jakarta EE 11 CI or Jakarta EE 11 Web
 Profile CI. For example Eclipse GlassFish 6.1.
-2.  Download and install the Jakarta EE 9.1 Platform TCK package.
+2.  Download and install the Jakarta EE 11 Platform TCK package.
 3.  Configure your database to work with your CI.
 4.  Configure TCK to work with your database and CI.
 5.  Run the TCK tests.
 
 The remainder of this guide explains these steps in detail. If you just
-want to get started quickly with the Jakarta EE 9.1 Platform TCK using the most basic
+want to get started quickly with the Jakarta EE 11 Platform TCK using the most basic
 test configuration, refer to link:install.html#GBFTP[Chapter 4,
 "Installation."]

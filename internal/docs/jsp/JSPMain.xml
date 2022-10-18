@@ -22,8 +22,8 @@
 	<next-available-id>2</next-available-id>
 	<previous-id>1</previous-id>
 	<technology>JSP</technology>
-	<id>2.0</id>
-	<name>Java Server(TM) Pages</name>
+	<id>3.1</id>
+	<name>Jakarta Server Pages</name>
 	<version>Proposed Final Draft</version>
 	<location-names>
 		<chapters>

@@ -11,7 +11,7 @@ RUN chgrp -R 0 /root /logs /logs/james.log /var && \
     sed -i s/:110/:1110/g /root/conf/pop3server.xml && \
     sed -i s/:25/:1025/g /root/conf/smtpserver.xml && \
     sed -i s/:465/:1465/g /root/conf/smtpserver.xml && \
-    sed -i s/:587/:1587/g /root/conf/smtpserver.xml 
+    sed -i s/:587/:1587/g /root/conf/smtpserver.xml
 
 #CMD /root/startup.sh
 ENTRYPOINT cat

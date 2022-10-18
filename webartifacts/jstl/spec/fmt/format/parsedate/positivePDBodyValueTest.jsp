@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <tck:test testName="positivePDBodyValueTest">
@@ -26,7 +26,7 @@
     <!-- The date to be parsed can be provided as body content to the
               action. -->
     <fmt:parseDate type="both" var="e2">
-        Nov 21, 2000 3:45:02 AM
+        Nov 21, 2000, 3:45:02 AM
     </fmt:parseDate>
     <fmt:formatDate value="${e2}" type="both" timeZone="EST"/>
 

@@ -108,7 +108,6 @@
         <module>integration</module>
         <module>internal</module>
         <module>jacc</module>
-        <module>jaspic</module>
         <module>javaee</module>
         <module>javamail</module>
         <module>jaxrs</module>

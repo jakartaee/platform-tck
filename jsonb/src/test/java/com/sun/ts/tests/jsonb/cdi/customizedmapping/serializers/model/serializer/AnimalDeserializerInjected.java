@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.CAT;
-import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.DOG;
-import static com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.GENERIC;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.CAT;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.DOG;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.GENERIC;
 
 import java.lang.reflect.Type;
 
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.Animal;
-import com.sun.ts.tests.jsonb.customizedmapping.serializers.model.serializer.AnimalBuilder;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
 
 import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;

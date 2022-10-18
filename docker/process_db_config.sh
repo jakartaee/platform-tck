@@ -27,7 +27,7 @@ do
     echo "Key: $key"
     echo "Value: $value"
     if [[ ! -z "$key" && ! -z "$value" ]]; then
-      sed -i "s#$key#$value#g" $TS_HOME/bin/ts.jte
+      sed -i.bak "s#$key#$value#g" $TS_HOME/bin/ts.jte
     fi
   fi
 done <${DB_CFG_FILE}

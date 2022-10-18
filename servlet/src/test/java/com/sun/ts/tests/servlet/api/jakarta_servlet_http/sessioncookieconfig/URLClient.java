@@ -77,6 +77,7 @@ public class URLClient extends AbstractUrlClient {
         "Set-Cookie:" + "TCK_Cookie_Name=" + "##Expires="
             + "##Path=/servlet_jsh_sessioncookieconfig_web/TestServlet"
             + "##Secure");
+    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -175,6 +176,20 @@ public class URLClient extends AbstractUrlClient {
    */
   public void setSecureTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "setSecureTest");
+    invoke();
+  }
+
+  /*
+   * @testName: setAttributeTest
+   *
+   * @assertion_ids:
+   *
+   * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
+   * HttpSession on; Verify in servlet SessionCookieConfig.setAttribute cannot be
+   * called once is set.
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
     invoke();
   }
 }

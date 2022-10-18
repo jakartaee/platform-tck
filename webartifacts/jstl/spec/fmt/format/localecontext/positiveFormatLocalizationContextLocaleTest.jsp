@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,9 @@
 
 --%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="java.util.Date" %>
 <tck:test testName="positiveFormatLocalizationContextLocaleTest">
@@ -28,7 +28,7 @@
     %>
     <fmt:setTimeZone value="EST"/>
     <fmt:setLocale value="en_US"/>
-    <c:set var="dt" value="Nov 21, 2000 3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
     <!-- If the jakarta.servlet.jsp.jstl.fmt.locale attribute
              is present, it will take precedence over the browser

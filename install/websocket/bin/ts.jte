@@ -204,12 +204,12 @@ ClientThreads=2
 # @ts.classpath         -- Classes used to build the  Web Socket TCK tests
 # @ts.run.classpath     -- Classpath required to run Web Socket TCK tests
 ##########################################################################
-websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar
+websocket.api=${web.home}/modules/jakarta.websocket-api.jar${pathsep}${web.home}/modules/jakarta.websocket-client-api.jar${pathsep}${web.home}/modules/jakarta.servlet-api.jar${pathsep}${web.home}/modules/jakarta.enterprise.cdi-api.jar
 websocket.classes=${web.home}/modules/tyrus-websocket-core.jar${pathsep}${web.home}/modules/tyrus-client.jar${pathsep}${web.home}/modules/tyrus-core.jar${pathsep}${web.home}/modules/tyrus-container-grizzly.jar${pathsep}${web.home}/modules/glassfish-grizzly-extra-all.jar${pathsep}${web.home}/modules/nucleus-grizzly-all.jar${pathsep}${web.home}/modules/tyrus-server.jar${pathsep}${web.home}/modules/tyrus-container-servlet.jar${pathsep}${web.home}/modules/tyrus-container-grizzly-client.jar${pathsep}${web.home}/modules/tyrus-spi.jar
 
 ts.classpath=${websocket.api}${pathsep}${ts.harness.classpath}
 
-ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/websockettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/classes${pathsep}${websocket.classes}${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar${pathsep}${ts.home}/lib/jaxb-impl.jar${pathsep}${ts.home}/lib/jaxb-api.jar
+ts.harness.classpath=${ts.home}/lib/jaxb-xjc.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/websockettck.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ant.home}/lib/ant.jar${pathsep}${ts.home}/classes${pathsep}${websocket.classes}${pathsep}${ts.home}/lib/sigtest.jar${pathsep}${ts.home}/lib/javatest.jar${pathsep}${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/commons-httpclient-3.1.jar${pathsep}${ts.home}/lib/commons-logging-1.1.3.jar${pathsep}${ts.home}/lib/commons-codec-1.9.jar
 
 ts.run.classpath=${websocket.api}${pathsep}${websocket.classes}${pathsep}${ts.harness.classpath}
 
@@ -238,10 +238,15 @@ alt.dtd.dir=${ts.home}/lib/dtds
 alt.schema.dir=${ts.home}/lib/schemas
 
 ##########################################################################
-# The sigTestClasspath specify the location of websocket implementation 
-# classes that used for signature test
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
+# @sigTestClasspath: This property specifies the location of websocket
+#                    implementation classes used for the signature test
 ##########################################################################
-sigTestClasspath=${java.home}/lib/rt.jar${pathsep}${websocket.classes}${pathsep}${websocket.api}
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${websocket.classes}${pathsep}${websocket.api}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 ##########################################################################
 ## Deliverables wanting ts.* packaging tasks to add extension list
@@ -340,11 +345,7 @@ javaee.home=${web.home}
 # @s1as.java.endorsed.dirs -- endorsed directory used by SJSAS
 # @s1as.applicationRoot-- Location of application repository
 #                         Only needed when running on windows
-# @s1as.db.ext.dirs    -- The extension directory for DB Type 2
-#                         drivers.  Currently, this only needs
-#                         to be set when using DB2 else it
-#                         should be empty.
-############################################################### 
+###############################################################
 s1as.admin=${javaee.home}/bin/asadmin
 s1as.domain.dir=${javaee.home}/domains
 s1as.domain.name=domain1
@@ -357,5 +358,5 @@ s1as.admin.port=${glassfish.admin.port}
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${web.home}/domains/domain1/lib/ext
+extension.dir=${web.home}/domains/domain1/lib/
 

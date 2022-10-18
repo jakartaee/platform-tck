@@ -1,0 +1,10 @@
+[[executing]]
+
+== Executing (Core Profile TCK)
+The Jakarta Core Profile is designed to be executed in a framework like Maven where the Core Profile TCK along with each standalone TCK described as required in the <<introduction>> are configured in a profile that defined the dependencies and configuration to run the associated TCK.
+
+== WildFly Example
+
+In the examples directory of the TCK distribution, there is a wf-core-tck-runner maven project that illustrates running the standalone TCKs along with the Jakarta Core Profile TCK. The `wf-core-tck-runner/README-WFP.adoc` describes how to run these TCKs against WildFly.
+
+The associated `pom.xml` Maven files in each TCK runner directory illustrate the configuration needed to run the tests using Maven and Arquillian.

@@ -240,7 +240,6 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${JAVA_HOME}/bin/java \
         -Djava.security.policy="${bin.dir}/harness.policy" \
         -Djava.security.manager \
-        -Djava.endorsed.dirs=${endorsed.dirs} \
         -Ddeliverable.class=${deliverable.class} \
             $testExecuteClass $testExecuteArgs
 
@@ -263,6 +262,9 @@ env.ts_win32.menu=true
 ##env.ts_win32.command.testExecute=
 
 #########################################################################
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
 #                    jar files and/or directories which contain your 
@@ -270,7 +272,9 @@ env.ts_win32.menu=true
 #                    separated by the appropriate path separator 
 #                    (';' windows, ':' Unixes).
 #########################################################################
-sigTestClasspath=${local.classes}${pathsep}${java.home}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${local.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming${pathsep}${jimage.dir}/java.xml
 
 ###############################################################
 ## This command allows the test clients to be run in
@@ -294,4 +298,6 @@ tslib.name=saajtck
 # The CTS config.vi target will copy the CTS library 
 # jars to this location, used only for RI.
 ###############################################################
-extension.dir=${webcontainer.home}/domains/domain1/lib/ext
+extension.dir=${webcontainer.home}/domains/domain1/lib
+
+

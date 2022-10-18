@@ -1,6 +1,7 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2022 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,3 +29,4 @@
             </jsp:params>
             <jsp:fallback>fallback_text</jsp:fallback>
 </jsp:plugin>
+expected_text

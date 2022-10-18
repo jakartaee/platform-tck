@@ -17,7 +17,7 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <%-- If encoding is not specified, then use the encoding specfied
      in the response. In this case, the response will be UTF-16. --%>

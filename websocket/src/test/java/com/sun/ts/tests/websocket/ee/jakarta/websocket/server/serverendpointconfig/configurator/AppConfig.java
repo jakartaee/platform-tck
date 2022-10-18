@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -46,6 +46,8 @@ public class AppConfig implements ServerApplicationConfig {
     set.add(WSCOriginServerReturningFalse.class);
     set.add(WSCOriginServerReturningFalseConfigurator.class);
     set.add(WSCModifyHandshakeServer.class);
+    set.add(WSCGetContainerDefaultConfiguratorServerA.class);
+    set.add(WSCGetContainerDefaultConfiguratorServerB.class);
     return set;
   }
 }

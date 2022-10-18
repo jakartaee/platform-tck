@@ -34,13 +34,15 @@
     com/sun/ts/tests/ejb30/common/statussingleton/StatusSingletonBean.class,
 
     com/sun/ts/tests/ejb30/lite/async/common/AsyncClientBase.class,
+    com/sun/ts/tests/ejb30/lite/async/common/AsyncJsfClientBase.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncIF.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/Async2IF.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncAnnotatedMethodsCommonIF.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncAnnotatedMethodsIF.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncBeanBase.class,
     com/sun/ts/tests/ejb30/lite/async/common/annotated/AnnotatedClientBase.class,
-    com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncAnnotatedMethodsBeanBase*.class,
+    com/sun/ts/tests/ejb30/lite/async/common/annotated/AnnotatedJsfClientBase.class,
+    com/sun/ts/tests/ejb30/lite/async/common/annotated/AsyncAnnotatedMethodsBeanBase*.class
 	">
         </ts.vehicles>
 

@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +18,7 @@
 
 <%@page contentType="text/html"%>
 <%@taglib prefix="ejblitesecuredjsp" uri="/WEB-INF/tlds/ejblitesecuredjsp.tld"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 
 <html>
     <head><title>${param['testName']}_from_ejblitesecuredjsp</title></head>

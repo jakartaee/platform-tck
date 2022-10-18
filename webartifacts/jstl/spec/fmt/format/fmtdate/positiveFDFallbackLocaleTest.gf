@@ -12,7 +12,7 @@
              used if no locale match can be determined. -->
     Dec 26, 1997
     10:11:34 PM
-    Dec 26, 1997 10:11:34 PM
+    Dec 26, 1997, 10:11:34 PM
 
 </body>
 </html>

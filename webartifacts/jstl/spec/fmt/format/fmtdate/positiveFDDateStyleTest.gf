@@ -54,18 +54,18 @@
      10:11:34 PM<br>
 
      <br>'type' set to 'both' -- dateStyle should be applied<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     12/26/97 10:11:34 PM<br>
-     12/26/97 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     Dec 26, 1997 10:11:34 PM<br>
-     December 26, 1997 10:11:34 PM<br>
-     December 26, 1997 10:11:34 PM<br>
-     Friday, December 26, 1997 10:11:34 PM<br>
-     Friday, December 26, 1997 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     12/26/97, 10:11:34 PM<br>
+     12/26/97, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     Dec 26, 1997, 10:11:34 PM<br>
+     December 26, 1997, 10:11:34 PM<br>
+     December 26, 1997, 10:11:34 PM<br>
+     Friday, December 26, 1997, 10:11:34 PM<br>
+     Friday, December 26, 1997, 10:11:34 PM<br>
 
 </body>
 </html>

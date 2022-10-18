@@ -22,6 +22,7 @@ package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet_http.sessionco
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class URLClient extends AbstractUrlClient {
@@ -175,6 +176,20 @@ public class URLClient extends AbstractUrlClient {
    */
   public void setSecureTest() throws Fault {
     TEST_PROPS.setProperty(APITEST, "setSecureTest");
+    invoke();
+  }
+
+  /*
+   * @testName: setAttributeTest
+   *
+   * @assertion_ids:
+   *
+   * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
+   * HttpSession on; Verify in servlet SessionCookieConfig.setAttribute cannot be
+   * called once is set.
+   */
+  public void setAttributeTest() throws Fault {
+    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
     invoke();
   }
 }

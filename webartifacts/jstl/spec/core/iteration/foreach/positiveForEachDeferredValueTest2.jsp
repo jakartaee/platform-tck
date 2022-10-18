@@ -16,7 +16,7 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 
 <%@ page import="java.util.ArrayList" %>
@@ -36,7 +36,7 @@
           ValueExpression ve = (ValueExpression) al.get(i);
    %>
           <%= i %>
-          <%= ve.getValue(pageContext.getELContext()) %>
+          <%= (Object) ve.getValue(pageContext.getELContext()) %>
           <br/>
    <%
        }

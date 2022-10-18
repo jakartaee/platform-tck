@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -113,6 +113,9 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     } else if (testname.equals("createNameTest2")) {
       TestUtil.logMsg("Starting createNameTest2");
       createNameTest2(req, res);
+    } else if (testname.equals("createNameTest3")) {
+      TestUtil.logMsg("Starting createNameTest3");
+      createNameTest3(req, res);
     } else {
       throw new ServletException(
           "The testname '" + testname + "' was not found in the test servlet");
@@ -445,4 +448,58 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
       resultProps.setProperty("TESTRESULT", "fail");
     resultProps.list(out);
   }
+
+  private void createNameTest3(HttpServletRequest req, HttpServletResponse res)
+      throws ServletException, IOException {
+    TestUtil.logTrace("createNameTest3");
+    Properties resultProps = new Properties();
+    boolean pass = true;
+
+    res.setContentType("text/plain");
+    PrintWriter out = res.getWriter();
+
+    try {
+      setup();
+      TestUtil.logMsg("Create name element localName=MyName1, "
+          + "uri=MyUri1");
+      Name name = envelope.createName("MyName1", "MyUri1");
+      if (name == null) {
+        TestUtil.logErr("createName() returned null");
+        pass = false;
+      } else {
+        String localName = name.getLocalName();
+        String uri = name.getURI();
+        TestUtil.logMsg("localName=" + localName);
+        TestUtil.logMsg("uri=" + uri);
+        if (localName == null) {
+          TestUtil.logErr("localName is null (expected MyName1)");
+          pass = false;
+        } else if (!localName.equals("MyName1")) {
+          TestUtil.logErr("localName is wrong (expected MyName1)");
+          pass = false;
+        } else if (uri == null) {
+          TestUtil.logErr("uri is null (expected MyUri1)");
+          pass = false;
+        } else if (!uri.equals("MyUri1")) {
+          TestUtil.logErr("uri is wrong (expected MyUri1)");
+          pass = false;
+        }
+      }
+    } catch (Exception e) {
+      TestUtil.logErr("Exception: " + e);
+      TestUtil.printStackTrace(e);
+      pass = false;
+    }
+    if (pass)
+      TestUtil.logMsg("createNameTest3() test PASSED");
+    else
+      TestUtil.logErr("createNameTest3() test FAILED");
+    // Send response object and test result back to client
+    if (pass)
+      resultProps.setProperty("TESTRESULT", "pass");
+    else
+      resultProps.setProperty("TESTRESULT", "fail");
+    resultProps.list(out);
+  }
+
 }

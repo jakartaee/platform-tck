@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,113 +51,6 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Exception: ", e);
       throw new Fault("Setup failed:", e);
     }
-  }
-  /*
-   * @testName: nativeQueryTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1009; PERSISTENCE:JAVADOC:199;
-   * PERSISTENCE:JAVADOC:64; PERSISTENCE:JAVADOC:41; PERSISTENCE:SPEC:736;
-   * 
-   * @test_Strategy: When multiple entities are returned by a SQL query, the
-   * entities must be mapped to the column results of the SQL statement in a
-   * SqlResultSetMapping metadata definition.
-   *
-   * The query with the associated SqlResultSetMapping metadata returns multiple
-   * entities and uses default metadata and column name defaults.
-   */
-
-  public void nativeQueryTest1() throws Fault {
-
-    boolean pass = false;
-    int passCounter = 0;
-    List q;
-
-    try {
-      getEntityTransaction().begin();
-
-      TestUtil.logTrace("Create Items");
-      final Item i1 = new Item(4, "WaterShoes");
-      final Item i2 = new Item(5, "FlipFlops");
-      final Item i3 = new Item(6, "Sandals");
-
-      TestUtil.logTrace("Create Order1s");
-      Order1 o4 = new Order1(4, 25.0D);
-      o4.setItem(i1);
-      getEntityManager().persist(o4);
-      Order1 o5 = new Order1(5, 125.0D);
-      o5.setItem(i2);
-      getEntityManager().persist(o5);
-      Order1 o6 = new Order1(6, 150.0D);
-      o6.setItem(i3);
-      getEntityManager().persist(o6);
-
-      TestUtil.logTrace("Execute Query ");
-      q = getEntityManager().createNativeQuery(
-          "Select o.\"ID\", o.\"TOTALPRICE\", "
-              + " o.\"FK1_FOR_ITEM\", i.\"ID\", i.\"ITEMNAME\" from \"ORDER1\" o, \"ITEM\" i "
-              + "WHERE (o.\"TOTALPRICE\" > 140) AND (o.\"FK1_FOR_ITEM\" = i.\"ID\")",
-          "Order1ItemResults").getResultList();
-
-      if (q.size() != 1) {
-        TestUtil.logErr(" Did not get expected results.  Expected: 1, "
-            + "got: " + q.size());
-      } else {
-        TestUtil.logTrace("Expected size received, verify contents . . . ");
-        for (Object obj : q) {
-
-          // each element in the query result list should be an Object[], which
-          // has exactly 2 elements. The first element is of type Order1, and
-          // the
-          // second of type Item.
-
-          Object[] objectArray = (Object[]) obj;
-
-          // make sure this object array has exactly 2 elements.
-          if (objectArray.length != 2) {
-            TestUtil.logErr("Expecting the object array have 2 elements, "
-                + "but the object array is " + Arrays.toString(objectArray));
-          }
-
-          for (Object o : objectArray) {
-
-            if (o instanceof Order1) {
-              Order1 orderReturned = (Order1) o;
-
-              if (!orderReturned.equals(o6)) {
-                TestUtil.logErr("Expected:" + o6 + ", actual:" + orderReturned);
-              } else {
-                TestUtil.logTrace("Received expected order");
-                passCounter++;
-              }
-            } else if (o instanceof Item) {
-              Item itemReturned = (Item) o;
-              if (!itemReturned.equals(i3)) {
-                TestUtil.logErr("Expected:" + i3 + ", actual:" + itemReturned);
-              } else {
-                TestUtil.logTrace("Received expected item");
-
-                passCounter++;
-              }
-
-            } else {
-              TestUtil.logErr("Received unexpected object:" + o);
-
-            }
-          }
-        }
-      }
-
-      if (passCounter == 2) {
-        pass = true;
-      }
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-
-    if (!pass)
-      throw new Fault("nativeQueryTest1 failed");
   }
 
   /*

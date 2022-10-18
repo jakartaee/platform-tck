@@ -18,7 +18,7 @@
              this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->
     
-    Nov 21, 2000 3:45:02 AM
+    Nov 21, 2000, 3:45:02 AM
     1234
     1,234
 
@@ -26,7 +26,7 @@
              this will be used in preference to the jakarta.servlet.jstl.fmt.locale
              attribute. -->
     
-    Nov 21, 2000 3:45:02 AM
+    Nov 21, 2000, 3:45:02 AM
     1234
     1,234
 

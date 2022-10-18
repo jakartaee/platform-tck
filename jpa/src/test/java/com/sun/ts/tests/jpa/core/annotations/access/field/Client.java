@@ -18,6 +18,7 @@ package com.sun.ts.tests.jpa.core.annotations.access.field;
 
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.GregorianCalendar;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
@@ -26,6 +27,7 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
 
@@ -88,6 +90,22 @@ public class Client extends PMClientBase {
       throw new Fault("Setup failed:", e);
     }
   }
+
+  public void setup4(String[] args, Properties p) throws Fault {
+    TestUtil.logTrace("setup3");
+    try {
+
+      super.setup(args, p);
+      removeTestData();
+      createTestData4();
+      TestUtil.logTrace("Done creating test data");
+
+    } catch (Exception e) {
+      TestUtil.logErr("Unexpected exception occurred", e);
+      throw new Fault("Setup failed:", e);
+    }
+  }
+
   /*
    * @testName: fieldTypeTest1
    * 
@@ -1169,6 +1187,315 @@ public class Client extends PMClientBase {
       throw new Fault("transientTest failed");
   }
 
+  /*
+   * @testName: testExtractDateYear
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.1
+   *
+   * @test_Strategy: SELECT EXTRACT(YEAR FROM d.id) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateYear() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(YEAR FROM d.id) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long y = q1.getSingleResult().longValue();
+      System.out.println("DATETIME -- YEAR: " + y);
+      if (y != TD4_YEAR) {
+        throw new Fault("EXTRACT(YEAR FROM date) returned wrong value: expeted " + TD4_YEAR + " but got " + y);
+      }
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateQuarter
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.2
+   *
+   * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.id) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateQuarter() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(QUARTER FROM d.id) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long q = q1.getSingleResult().longValue();
+      if (q != TD4_QUARTER) {
+        throw new Fault("EXTRACT(QUARTER FROM date) returned wrong value: expeted " + TD4_QUARTER + " but got " + q);
+      }
+      System.out.println("DATETIME -- QUARTER: " + q);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateMonth
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.3
+   *
+   * @test_Strategy: SELECT EXTRACT(MONTH FROM d.id) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateMonth() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(MONTH FROM d.id) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long m = q1.getSingleResult().longValue();
+      if (m != TD4_MONTH) {
+        throw new Fault("EXTRACT(MONTH FROM date) returned wrong value: expeted " + TD4_MONTH + " but got " + m);
+      }
+      System.out.println("DATETIME -- MONTH: " + m);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateDay
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.5
+   *
+   * @test_Strategy: SELECT EXTRACT(DAY FROM d.id) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateDay() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(DAY FROM d.id) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long d = q1.getSingleResult().longValue();
+      if (d != TD4_DAY) {
+        throw new Fault("EXTRACT(DAY FROM date) returned wrong value: expeted " + TD4_DAY + " but got " + d);
+      }
+      System.out.println("DATETIME -- DAY: " + d);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractTimeHour
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.6
+   *
+   * @test_Strategy: SELECT EXTRACT(HOUR FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractTimeHour() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(HOUR FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long h = q1.getSingleResult().longValue();
+      if (h != TD4_HOUR) {
+        throw new Fault("EXTRACT(HOUR FROM time) returned wrong value: expeted " + TD4_HOUR + " but got " + h);
+      }
+      System.out.println("DATETIME -- HOUR: " + h);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractTimeMinute
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.7
+   *
+   * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractTimeMinute() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(MINUTE FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long m = q1.getSingleResult().longValue();
+      if (m != TD4_MINUTE) {
+        throw new Fault("EXTRACT(MINUTE FROM time) returned wrong value: expeted " + TD4_MINUTE + " but got " + m);
+      }
+      System.out.println("DATETIME -- MINUTE: " + m);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractTimeSecond
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.8
+   *
+   * @test_Strategy: SELECT EXTRACT(SECOND FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractTimeSecond() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(SECOND FROM d.timeData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long s = q1.getSingleResult().longValue();
+      if (s != TD4_SECOND) {
+        throw new Fault("EXTRACT(SECOND FROM time) returned wrong value: expeted " + TD4_SECOND + " but got " + s);
+      }
+      System.out.println("DATETIME -- SECOND: " + s);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeYear
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.1
+   *
+   * @test_Strategy: SELECT EXTRACT(YEAR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeYear() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(YEAR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long y = q1.getSingleResult().longValue();
+      System.out.println("DATETIME -- YEAR: " + y);
+      if (y != TD4_YEAR) {
+        throw new Fault("EXTRACT(YEAR FROM timestamp) returned wrong value: expeted " + TD4_YEAR + " but got " + y);
+      }
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeQuarter
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.2
+   *
+   * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeQuarter() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(QUARTER FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long q = q1.getSingleResult().longValue();
+      if (q != TD4_QUARTER) {
+        throw new Fault("EXTRACT(QUARTER FROM timestamp) returned wrong value: expeted " + TD4_QUARTER + " but got " + q);
+      }
+      System.out.println("DATETIME -- QUARTER: " + q);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeMonth
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.3
+   *
+   * @test_Strategy: SELECT EXTRACT(MONTH FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeMonth() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(MONTH FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long m = q1.getSingleResult().longValue();
+      if (m != TD4_MONTH) {
+        throw new Fault("EXTRACT(MONTH FROM timestamp) returned wrong value: expeted " + TD4_MONTH + " but got " + m);
+      }
+      System.out.println("DATETIME -- MONTH: " + m);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeDay
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.5
+   *
+   * @test_Strategy: SELECT EXTRACT(DAY FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeDay() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(DAY FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long d = q1.getSingleResult().longValue();
+      if (d != TD4_DAY) {
+        throw new Fault("EXTRACT(DAY FROM timestamp) returned wrong value: expeted " + TD4_DAY + " but got " + d);
+      }
+      System.out.println("DATETIME -- DAY: " + d);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeHour
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.6
+   *
+   * @test_Strategy: SELECT EXTRACT(HOUR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeHour() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(HOUR FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long h = q1.getSingleResult().longValue();
+      if (h != TD4_HOUR) {
+        throw new Fault("EXTRACT(HOUR FROM timestamp) returned wrong value: expeted " + TD4_HOUR + " but got " + h);
+      }
+      System.out.println("DATETIME -- HOUR: " + h);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeMinute
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.7
+   *
+   * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeMinute() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(MINUTE FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long m = q1.getSingleResult().longValue();
+      if (m != TD4_MINUTE) {
+        throw new Fault("EXTRACT(MINUTE FROM timestamp) returned wrong value: expeted " + TD4_MINUTE + " but got " + m);
+      }
+      System.out.println("DATETIME -- MINUTE: " + m);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+  /*
+   * @testName: testExtractDateTimeSecond
+   *
+   * @assertion_ids: PERSISTENCE:SPEC:2519.8
+   *
+   * @test_Strategy: SELECT EXTRACT(SECOND FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id
+   */
+  @SetupMethod(name = "setup4")
+  public void testExtractDateTimeSecond() throws Fault {
+    try {
+      TypedQuery<Number> q1 = getEntityManager().createQuery("SELECT EXTRACT(SECOND FROM d.tsData) FROM DataTypes2 d WHERE d.id = :id", Number.class);
+      q1.setParameter("id", t4Date());
+      long s = q1.getSingleResult().longValue();
+      if (s != TD4_SECOND) {
+        throw new Fault("EXTRACT(SECOND FROM timestamp) returned wrong value: expeted " + TD4_SECOND + " but got " + s);
+      }
+      System.out.println("DATETIME -- SECOND: " + s);
+    } catch (Exception ex) {
+      throw new Fault(ex);
+    }
+  }
+
+
   // Methods used for Tests
 
   public void createTestData() {
@@ -1236,6 +1563,46 @@ public class Client extends PMClientBase {
       getEntityManager().persist(d1);
       getEntityTransaction().commit();
 
+    } catch (Exception e) {
+      TestUtil.logErr("Unexpected Exception in createTestData:", e);
+    } finally {
+      try {
+        if (getEntityTransaction().isActive()) {
+          getEntityTransaction().rollback();
+        }
+      } catch (Exception re) {
+        TestUtil.logErr("Unexpected Exception during Rollback:", re);
+      }
+    }
+
+  }
+
+  private final int TD4_YEAR = 1989;
+  private final int TD4_QUARTER= 4;
+  private final int TD4_MONTH = 11;
+  private final int TD4_DAY = 17;
+  private final int TD4_HOUR = 11;
+  private final int TD4_MINUTE = 23;
+  private final int TD4_SECOND = 36;
+
+  private java.sql.Date t4Date() {
+    final GregorianCalendar cal = new GregorianCalendar(TD4_YEAR, TD4_MONTH-1, TD4_DAY, TD4_HOUR, TD4_MINUTE, TD4_SECOND);
+    final java.sql.Timestamp ts = new java.sql.Timestamp(cal.getTimeInMillis());
+    return java.sql.Date.valueOf(ts.toLocalDateTime().toLocalDate());
+  }
+
+  public void createTestData4() {
+    TestUtil.logTrace("createTestData4");
+    final GregorianCalendar cal = new GregorianCalendar(TD4_YEAR, TD4_MONTH-1, TD4_DAY, TD4_HOUR, TD4_MINUTE, TD4_SECOND);
+    final java.sql.Timestamp ts = new java.sql.Timestamp(cal.getTimeInMillis());
+    final java.sql.Date dt = java.sql.Date.valueOf(ts.toLocalDateTime().toLocalDate());
+    final java.sql.Time tm = java.sql.Time.valueOf(ts.toLocalDateTime().toLocalTime());
+
+    try {
+      getEntityTransaction().begin();
+      DataTypes2 dataTypes2 = new DataTypes2(dt, tm, ts);
+      getEntityManager().persist(dataTypes2);
+      getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Unexpected Exception in createTestData:", e);
     } finally {

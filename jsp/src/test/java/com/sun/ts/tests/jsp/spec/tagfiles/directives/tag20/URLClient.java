@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -150,7 +151,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:SPEC:229.19.1
    * 
    * @test_Strategy: Validate that classes from the jakarta.servlet.http package
-   * are implicitly imported by creating and using an instance of HttpUtils.
+   * are implicitly imported by creating and using an instance of Cookie.
    */
 
   public void implicitImportHttpTest() throws Fault {

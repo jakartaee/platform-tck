@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -172,10 +172,15 @@ public class WSCClient extends WebSocketCommonClient {
     ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
         .extensions((List<Extension>) extensions).build();
     setClientEndpointConfig(config);
-
-    List<Extension> installed = new ExtensionsServerEndpointConfig()
-        .getExtensions(); // order must be kept, no need to sort
-    invoke("extensions", "installed", ExtensionImpl.toString(installed));
+    
+    // order must be kept, no need to sort
+    List<Extension> installed = new ExtensionsServerEndpointConfig().getExtensions();
+    String search = ExtensionImpl.toString(installed);
+    // There may be container provided extensions added to the end of the list.
+    // Therefore remove the closing '}'. Leaving the opening '{' as that ensures
+    // that the extensions configured by the application appear first.
+    search = search.substring(0, search.length() - 1);
+    invoke("extensions", "installed", search);
   }
 
   /*
@@ -381,5 +386,24 @@ public class WSCClient extends WebSocketCommonClient {
    */
   public void modifyHandshakeResponseTest() throws Fault {
     invoke("modifyhandshake", "response", "true");
+  }
+  /*
+   * @testName: getContainerDefaultConfiguratorTest
+   * 
+   * @assertion_ids:
+   * 
+   * @test_Strategy: Obtain the container default configurator from two separate
+   * endpoints and check that the same object is ontained.
+   */
+
+  public void getContainerDefaultConfiguratorTest() throws Fault {
+    invoke("containerdefaultconfiguratorA", "anything", "");
+    String containerdefaultconfiguratorIdA = getResponseAsString();
+    
+    invoke("containerdefaultconfiguratorB", "anything", "");
+    String containerdefaultconfiguratorIdB = getResponseAsString();
+
+    assertEquals(containerdefaultconfiguratorIdA, containerdefaultconfiguratorIdB,
+        "Different instances returned for container default configurator");
   }
 }

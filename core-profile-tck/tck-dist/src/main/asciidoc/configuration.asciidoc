@@ -1,0 +1,43 @@
+[[configuration]]
+
+== Core Profile TCK Configuration
+
+This chapter lays out how to configure the TCK Harness by specifying the SPI implementation classes, defining the target container connection information, and various other switches. You then learn how to setup a TCK runner project that executes the TCK test suite, putting these settings into practice.
+
+[[tck-properties]]
+
+
+=== TCK Properties
+
+The various TCKs will have properties or configuration variables that need to be set in order to enable running the TCK agains a compatible implementation. The examples directory in the TCK distribution illustrates sample properties setup using Maven.
+
+[NOTE]
+====
+The JSON-B standalone TCK configuration example includes running the the tests with the system property `java.locale.providers` set to COMPAT. This addresses a known inconsistency in a test when run under both Java SE 11 and Java SE 17.
+====
+
+[NOTE]
+====
+The RESTful TCK configuration expects the following system properties related to security to be set, even though the security tests are disabled. The value of these is meaningless:
+
+* `user` .
+* `password`
+* `authuser`
+* `authpassword`
+
+In the WildFly runner example these are set to `unused`. These properties are validated by the initialization of the security related test classes before the tests are run. In addition, the Jakarta Core Profile TCK overrides the default RESTful TCK implicit test suite to remove tests that use XML binding but are not tagged with `xml_binding` and security tests that require some Jakarta Security related configuration on the server side.
+====
+
+
+=== Standalone TCK Configuration
+
+Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The `examples` directory in the TCK distribution illustrates sample configuration setup using Maven.
+
+==== Jakarta RESTful TCK Configuration
+The Jakarta Core Profile TCK provides a JUnit 5 suite runner that excludes the tests tagged with `xml_binding`, `servlet` and `security` as these specifications are not part of the Core Profile. The examples/wf-core-tck-runner/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.
+
+
+[NOTE]
+====
+Implementations that support any of these technologies in their Core Profile implementation are free to remove these exclusions to enable these tests.
+====

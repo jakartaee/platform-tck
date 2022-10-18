@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,6 +26,7 @@ import java.security.Permission;
 import java.security.PermissionCollection;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.Vector;
 import java.util.logging.Level;
 
@@ -936,6 +937,18 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
       }
     }
     return ((new String(outStr)).trim());
+  }
+
+  public PermissionCollection getExcludedPermissions(){
+    return policyConfiguration.getExcludedPermissions();
+  }
+
+  public PermissionCollection getUncheckedPermissions(){
+    return policyConfiguration.getUncheckedPermissions();
+  }
+
+  public Map<String, PermissionCollection> getPerRolePermissions(){
+    return policyConfiguration.getPerRolePermissions();
   }
 
   private void assertIsInserviceState(String callingMethod) {

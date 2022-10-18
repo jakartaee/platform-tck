@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+# Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -49,9 +49,13 @@ el.classes=
 #     variable.mapper=com.sun.el.lang.VariableMapperImpl
 #
 ########################################################
-variable.mapper=com.sun.el.lang.VariableMapperImpl
+variable.mapper=org.glassfish.expressly.lang.VariableMapperImpl
 
 ########################################################
+#
+# @jimage.dir:       This property specifies the directory where Java 11+
+#                    modules will be expanded by the jimage tool for use
+#                    in sigTestClasspath
 #
 # @sigTestClasspath: This property must be set when running signature 
 #                    tests.  This property should be set to a list of
@@ -66,10 +70,12 @@ variable.mapper=com.sun.el.lang.VariableMapperImpl
 #       sigTestClasspath=${el.classes}${pathsep}${java.home}/jre/lib/rt.jar
 # 
 #       Solaris/Linux/Windows/MacOs Java 9:
-#       sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/modules
+#       sigTestClasspath=${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 #
 ########################################################
-sigTestClasspath=${el.classes}${pathsep}${java.home}/lib/rt.jar
+jimage.dir=${ts.home}/tmp/jdk-bundles
+
+sigTestClasspath=${el.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 
 
 ########################################################

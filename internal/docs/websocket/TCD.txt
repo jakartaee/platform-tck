@@ -89,10 +89,10 @@ Quality Assurance
 
 Justification of Adequacy
 -------------------------
-The WebSocket TCK Version 1.0 provides a comprehensive set of tests to ensure
-all implementations of the WebSocket 1.0 specification are compatible.  As with all
+The WebSocket TCK Version 2.1 provides a comprehensive set of tests to ensure
+all implementations of the WebSocket 2.1 specification are compatible.  As with all
 TCKs it is impossible to provide tests for 100% assertion coverage.  Note, while
-the CTS may not have tests for all assertions in the WebSocket 1.0 specification, all
+the CTS may not have tests for all assertions in the WebSocket 2.1 specification, all
 implementations must be compatible with the specification.
 
 Untested assertions are due to the effects of late specification changes, and

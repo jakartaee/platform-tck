@@ -16,8 +16,8 @@
 
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sql" uri="jakarta.tags.sql" %>
 <%@ page import="javax.sql.*" %>
 
 <tck:test testName="negativeQueryScopeAttributeRTTest">

@@ -17,8 +17,8 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:choose>
     <c:when test="${'one-two-three' == fn:join(fn:split('one|two|three', '|'), '-')}">

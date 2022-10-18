@@ -19,6 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.inheritance;
 
+
 public class Client extends
     com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.ClientBase {
 

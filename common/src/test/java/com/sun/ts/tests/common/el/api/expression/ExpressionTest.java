@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -26,11 +26,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.annotation.Annotation;
 
 import jakarta.el.ELContext;
 import jakarta.el.Expression;
 import jakarta.el.MethodExpression;
 import jakarta.el.MethodInfo;
+import jakarta.el.MethodReference;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.el.ValueExpression;
 
@@ -84,6 +86,85 @@ public class ExpressionTest {
         }
       }
     }
+    return pass;
+  }
+
+  public static boolean testMethodReference(MethodReference mref,
+      Object expectedBase, MethodInfo expectedMethodInfo,
+      Class<?>[] expectedAnnotationTypes,
+      Object[] expectedParamValues, StringBuffer buf) {
+
+    boolean pass = true;
+    
+    Object base = mref.getBase();
+    MethodInfo minfo = mref.getMethodInfo();
+    Annotation[] annotations = mref.getAnnotations();
+    Object[] parameterValues = mref.getEvaluatedParameters();
+    
+    if (base == null) {
+      buf.append("Did not get expected base object." + NLINE);
+      buf.append("Expected base = " + expectedBase + NLINE);
+      buf.append("Computed name = null" + NLINE);
+      pass = false;
+    } else if (!base.equals(expectedBase)) {
+      buf.append("Did not get expected base object." + NLINE);
+      buf.append("Expected base = " + expectedBase + NLINE);
+      buf.append("Computed base = " + base + NLINE);
+      pass = false;
+    }
+
+    if (minfo == null) {
+      buf.append("Did not get expected MethodInfo object." + NLINE);
+      buf.append("Expected MethodInfo = " + expectedMethodInfo + NLINE);
+      buf.append("Computed MethodInfo = null" + NLINE);
+      pass = false;
+    } else if (!minfo.equals(expectedMethodInfo)) {
+      buf.append("Did not get expected base object." + NLINE);
+      buf.append("Expected MethodInfo = " + expectedMethodInfo + NLINE);
+      buf.append("Computed MethodInfo = " + minfo + NLINE);
+      pass = false;
+    }
+
+    if (annotations == null) {
+      buf.append("Did not get expected annotation array." + NLINE);
+      buf.append("Computed array was null" + NLINE);
+      pass = false;
+    } else if (annotations.length != expectedAnnotationTypes.length) {
+      buf.append("Did not get expected number of annotations." + NLINE);
+      buf.append("Expected annotation array length = " + expectedAnnotationTypes.length + NLINE);
+      buf.append("Computed annotation array length = " + annotations.length + NLINE);
+      pass = false;
+    } else {
+      for (int i = 0; i < annotations.length; i++) {
+        if (!annotations[i].annotationType().equals(expectedAnnotationTypes[i])) {
+          buf.append("Did not get expected annotation type for array index = " + i + NLINE);
+          buf.append("Expected type = " + expectedAnnotationTypes[i] + NLINE);
+          buf.append("Computed type = " + annotations[i].getClass() + NLINE);
+          pass = false;
+        }
+      }
+    }
+
+    if (parameterValues == null) {
+      buf.append("Did not get expected parameter value array." + NLINE);
+      buf.append("Computed array was null" + NLINE);
+      pass = false;
+    } else if (parameterValues.length != expectedParamValues.length) {
+      buf.append("Did not get expected number of parameter values." + NLINE);
+      buf.append("Expected annotation array length = " + expectedParamValues.length + NLINE);
+      buf.append("Computed annotation array length = " + parameterValues.length + NLINE);
+      pass = false;
+    } else {
+      for (int i = 0; i < parameterValues.length; i++) {
+        if (!parameterValues[i].equals(expectedParamValues[i])) {
+          buf.append("Did not get expected parameter value for array index = " + i + NLINE);
+          buf.append("Expected type = " + expectedParamValues[i] + NLINE);
+          buf.append("Computed type = " + parameterValues[i] + NLINE);
+          pass = false;
+        }
+      }
+    }
+
     return pass;
   }
 

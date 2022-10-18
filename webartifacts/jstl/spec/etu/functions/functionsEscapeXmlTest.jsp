@@ -17,8 +17,8 @@
 --%>
 
 <%@ page contentType="text/plain" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <% pageContext.setAttribute("escString", "><&'\""); %>
 <c:choose>
     <c:when test="${'&gt;&lt;&amp;&#039;&#034;' == fn:escapeXml(escString)}">
