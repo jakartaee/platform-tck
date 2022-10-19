@@ -122,7 +122,6 @@
         <module>libutil</module>
         <module>saaj</module>
         <module>samples</module>
-        <module>securityapi</module>
         <module>servlet</module>
         <module>signaturetest</module>
         <module>webservices12</module>
