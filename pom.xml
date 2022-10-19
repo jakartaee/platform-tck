@@ -113,7 +113,6 @@
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
-        <module>jsf</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>
