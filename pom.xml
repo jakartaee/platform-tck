@@ -101,7 +101,6 @@
         <module>ejb30</module>
         <module>ejb32</module>
         <module>ejb</module>
-        <module>concurrency</module>
         <module>connector</module>
         <module>el</module>
         <module>integration</module>
