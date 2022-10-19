@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021  Contributors to the Eclipse Foundation
+    Copyright (c) 2022  Contributors to the Eclipse Foundation
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -90,7 +90,6 @@
     </properties>
 
     <modules>
-        <module>jbatch</module> 
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>
@@ -137,19 +136,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--
-                // TODO: don't build jbatch yet as it has been refactored already in https://github.com/eclipse-ee4j/batch-tck which we should sync with
-                <groupId>${project.groupId}</groupId>
-            <dependency>
-                <artifactId>jbatch</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-                  <dependency>
-                      <groupId>${project.groupId}</groupId>
-                      <artifactId>runtime</artifactId>
-                      <version>${project.version}</version>
-                  </dependency>
-            -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>appclient</artifactId>
