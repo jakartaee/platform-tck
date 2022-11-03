@@ -1,5 +1,12 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 10.0.1
+
+Adds bug fixes for two Core Profile TCK challenges:
+
+* https://github.com/eclipse-ee4j/jakartaee-tck/issues/1134[Expected status code in CustomJsonbSerializationIT]
+* https://github.com/eclipse-ee4j/jakartaee-tck/issues/1135[Invalid Custom JsonbResolver]
+
 == Version 10.0.0
 
 Version 10.0.0 is the initial version of the Jakarta Core Profile TCK
