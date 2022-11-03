@@ -25,7 +25,6 @@ import java.security.spec.ECGenParameterSpec;
 import java.util.Base64;
 
 import ee.jakarta.tck.core.rest.JaxRsActivator;
-import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -65,7 +64,6 @@ public class CustomJsonbSerializationIT {
                 .addClass(SomeMessage.class)
                 .addClass(Utils.class)
                 .addClass(JaxRsActivator.class)
-                .addAsServiceProvider(JsonbProvider.class, CustomJsonbResolver.class)
                 .addAsResource(new StringAsset(pubKeyString), "key.pub");
         ;
         System.out.printf("test archive: %s\n", archive.toString(true));
