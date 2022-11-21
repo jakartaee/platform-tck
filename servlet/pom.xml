@@ -33,47 +33,64 @@
     <name>Servlet</name>
     <description>Servlet</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assembly</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jsp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javatest</groupId>
+            <artifactId>javatest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.5.4</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>add-source</goal>
+                            <goal>wsimport</goal>
                         </goals>
                         <configuration>
-                            <sources>
-                                <source>./</source>
-                            </sources>
+                            <wsdlDirectory>${project.basedir}/src/main/java/com/sun/ts/tests/servlet/ee/common/sharedwebservices/servlethttptestservice</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>ServletHttpTestService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice</packageName>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>

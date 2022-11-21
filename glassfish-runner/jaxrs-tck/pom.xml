@@ -34,7 +34,7 @@
 
     <properties>
         <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>
-        <tck.version>3.1.1</tck.version>    
+        <tck.version>3.1.2</tck.version>
     </properties>
 
 
