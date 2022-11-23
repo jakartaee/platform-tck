@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton

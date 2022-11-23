@@ -29,19 +29,18 @@ import jakarta.jws.WebService;
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebMethodWebServiceService.wsdl")
 public class webMethodWebService {
 
-  @WebMethod(operationName = "helloString", action = "urn:HelloString")
-  public String hello(@WebParam(name = "name") String name) {
-    return "Hello " + name + " to Web Service";
-  }
+    @WebMethod(operationName = "helloString", action = "urn:HelloString")
+    public String hello(@WebParam(name = "name") String name) {
+        return "Hello " + name + " to Web Service";
+    }
 
-  @WebMethod(operationName = "helloString2", action = "urn:HelloString")
-  public String hello2(@WebParam(name = "name") String name, String name2) {
-    return "Hello " + name + " to Web Service";
-  }
+    @WebMethod(operationName = "helloString2", action = "urn:HelloString")
+    public String hello2(@WebParam(name = "name") String name, String name2) {
+        return "Hello " + name + " to Web Service";
+    }
 
-  @WebMethod(exclude = true)
-  public String excludeMe() {
-    return "Hello to Web Service";
-  }
-
+    @WebMethod(exclude = true)
+    public String excludeMe() {
+        return "Hello to Web Service";
+    }
 }

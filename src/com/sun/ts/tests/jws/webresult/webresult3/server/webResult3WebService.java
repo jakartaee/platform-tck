@@ -23,7 +23,6 @@ package com.sun.ts.tests.jws.webresult.webresult3.server;
 
 import com.sun.ts.tests.jws.common.Employee;
 import com.sun.ts.tests.jws.common.NameException;
-
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
@@ -31,53 +30,50 @@ import jakarta.jws.soap.SOAPBinding;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebResult3WebServiceService.wsdl")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL)
-
 public class webResult3WebService {
 
-  @WebMethod(operationName = "helloString", action = "urn:HelloString")
-  public String hello(String name) {
-    return "hello1 : Hello " + name + " to Web Service";
-  }
+    @WebMethod(operationName = "helloString", action = "urn:HelloString")
+    public String hello(String name) {
+        return "hello1 : Hello " + name + " to Web Service";
+    }
 
-  @WebMethod(operationName = "helloString2", action = "urn:HelloString2")
-  @WebResult()
-  public String hello2(com.sun.ts.tests.jws.common.Name name2) {
-    return "hello2 : Hello " + name2 + " to Web Service";
-  }
+    @WebMethod(operationName = "helloString2", action = "urn:HelloString2")
+    @WebResult()
+    public String hello2(com.sun.ts.tests.jws.common.Name name2) {
+        return "hello2 : Hello " + name2 + " to Web Service";
+    }
 
-  @WebMethod(operationName = "helloString3", action = "urn:HelloString3")
-  @WebResult(name = "name3")
-  public com.sun.ts.tests.jws.common.Name hello3(boolean input) {
+    @WebMethod(operationName = "helloString3", action = "urn:HelloString3")
+    @WebResult(name = "name3")
+    public com.sun.ts.tests.jws.common.Name hello3(boolean input) {
 
-    System.out.println(" Invoking hello3 ");
-    com.sun.ts.tests.jws.common.Name newName = new com.sun.ts.tests.jws.common.Name();
-    newName.setFirstName("jsr181");
-    newName.setLastName("jsr109");
+        System.out.println(" Invoking hello3 ");
+        com.sun.ts.tests.jws.common.Name newName = new com.sun.ts.tests.jws.common.Name();
+        newName.setFirstName("jsr181");
+        newName.setLastName("jsr109");
 
-    return newName;
-  }
+        return newName;
+    }
 
-  @WebMethod(operationName = "helloString4", action = "urn:HelloString4")
-  @WebResult(name = "employee", partName = "Employee", targetNamespace = "hello4/employee")
-  public Employee hello4() throws NameException {
+    @WebMethod(operationName = "helloString4", action = "urn:HelloString4")
+    @WebResult(name = "employee", partName = "Employee", targetNamespace = "hello4/employee")
+    public Employee hello4() throws NameException {
 
-    System.out.println(" Invoking hello4 ");
+        System.out.println(" Invoking hello4 ");
 
-    com.sun.ts.tests.jws.common.Name newName = new com.sun.ts.tests.jws.common.Name();
-    newName.setFirstName("jsr181");
-    newName.setLastName("jaxws");
+        com.sun.ts.tests.jws.common.Name newName = new com.sun.ts.tests.jws.common.Name();
+        newName.setFirstName("jsr181");
+        newName.setLastName("jaxws");
 
-    com.sun.ts.tests.jws.common.Employee employee = new com.sun.ts.tests.jws.common.Employee();
-    employee.setName(newName);
+        com.sun.ts.tests.jws.common.Employee employee = new com.sun.ts.tests.jws.common.Employee();
+        employee.setName(newName);
 
-    return employee;
+        return employee;
+    }
 
-  }
-
-  @WebMethod(operationName = "helloString5", action = "urn:HelloString")
-  @WebResult(name = "name5", partName = "name5", targetNamespace = "hello5/name", header = true)
-  public String hello5(int age) {
-    return "Hello " + age + " to Web Service";
-  }
-
+    @WebMethod(operationName = "helloString5", action = "urn:HelloString")
+    @WebResult(name = "name5", partName = "name5", targetNamespace = "hello5/name", header = true)
+    public String hello5(int age) {
+        return "Hello " + age + " to Web Service";
+    }
 }

@@ -21,5 +21,5 @@
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 
 public interface SameMethodLocalIF {
-  public void sameMethod();
+    public void sameMethod();
 }

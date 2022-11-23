@@ -20,95 +20,92 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public abstract class DepartmentEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract Integer getId();
+    public abstract Integer getId();
 
-  public abstract void setId(Integer v);
+    public abstract void setId(Integer v);
 
-  public abstract String getName();
+    public abstract String getName();
 
-  public abstract void setName(String v);
+    public abstract void setName(String v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // ===========================================================
-  // select methods
-  // ===========================================================
+    // ===========================================================
+    // select methods
+    // ===========================================================
 
-  // ===========================================================
-  // life cycle methods
-  // ===========================================================
+    // ===========================================================
+    // life cycle methods
+    // ===========================================================
 
-  public Integer ejbCreate(Integer id, String name) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setName(name);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public Integer ejbCreate(Integer id, String name) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setName(name);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
 
-  }
-
-  public void ejbPostCreate(Integer id, String name) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbPostCreate(Integer id, String name) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
+
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

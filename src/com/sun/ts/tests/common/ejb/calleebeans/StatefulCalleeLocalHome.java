@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
+import java.util.Properties;
 
 public interface StatefulCalleeLocalHome extends EJBLocalHome {
 
-  public StatefulCalleeLocal create(Properties p, SimpleArgument arg)
-      throws CreateException;
+    public StatefulCalleeLocal create(Properties p, SimpleArgument arg) throws CreateException;
 
-  public StatefulCalleeLocal create(Properties p) throws CreateException;
+    public StatefulCalleeLocal create(Properties p) throws CreateException;
 }

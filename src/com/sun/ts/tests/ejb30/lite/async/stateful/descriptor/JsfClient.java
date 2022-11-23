@@ -19,81 +19,77 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.stateful.descriptor;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.Descriptor2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorBean;
-import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorIF;
+import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.TimeoutDescriptorBeanBase;
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @EJB(name = "timeoutDescriptorBean", beanInterface = TimeoutDescriptorBean.class, beanName = "TimeoutDescriptorBean")
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends DescriptorJsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Override
-  protected Descriptor2IF getDescriptor2IF() {
-    return (Descriptor2IF) ServiceLocator
-        .lookupByShortNameNoTry("descriptor2IF");
-  }
+    @Override
+    protected Descriptor2IF getDescriptor2IF() {
+        return (Descriptor2IF) ServiceLocator.lookupByShortNameNoTry("descriptor2IF");
+    }
 
-  @Override
-  protected DescriptorIF getDescriptorIF() {
-    return (DescriptorIF) ServiceLocator.lookupByShortNameNoTry("descriptorIF");
-  }
+    @Override
+    protected DescriptorIF getDescriptorIF() {
+        return (DescriptorIF) ServiceLocator.lookupByShortNameNoTry("descriptorIF");
+    }
 
-  @Override
-  protected DescriptorBean getNoInterface() {
-    return (DescriptorBean) ServiceLocator
-        .lookupByShortNameNoTry("noInterface");
-  }
+    @Override
+    protected DescriptorBean getNoInterface() {
+        return (DescriptorBean) ServiceLocator.lookupByShortNameNoTry("noInterface");
+    }
 
-  @Override
-  protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
-    return (TimeoutDescriptorBeanBase) ServiceLocator
-        .lookupByShortNameNoTry("timeoutDescriptorBean");
-  }
+    @Override
+    protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
+        return (TimeoutDescriptorBeanBase) ServiceLocator.lookupByShortNameNoTry("timeoutDescriptorBean");
+    }
 
-  /*
-   * @testName: allViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: allParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: noParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParamsLocalViews
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: allViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: allParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: noParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParamsLocalViews
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: timeoutDescriptorBean
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: timeoutDescriptorBean
+     *
+     * @test_Strategy:
+     */
 
 }

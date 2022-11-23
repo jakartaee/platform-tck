@@ -20,36 +20,29 @@
 
 package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Test extends EJBObject {
-  public boolean IsCallerB1(String caller) throws RemoteException;
+    public boolean IsCallerB1(String caller) throws RemoteException;
 
-  public boolean IsCallerB2(String caller, java.util.Properties p)
-      throws RemoteException;
+    public boolean IsCallerB2(String caller, java.util.Properties p) throws RemoteException;
 
-  public boolean InRole(String role, java.util.Properties p)
-      throws RemoteException;
+    public boolean InRole(String role, java.util.Properties p) throws RemoteException;
 
-  public boolean EjbNotAuthz(java.util.Properties p) throws RemoteException;
+    public boolean EjbNotAuthz(java.util.Properties p) throws RemoteException;
 
-  public boolean EjbIsAuthz(java.util.Properties p) throws RemoteException;
+    public boolean EjbIsAuthz(java.util.Properties p) throws RemoteException;
 
-  public boolean EjbSecRoleRef(String role, java.util.Properties p)
-      throws RemoteException;
+    public boolean EjbSecRoleRef(String role, java.util.Properties p) throws RemoteException;
 
-  public boolean EjbSecRoleRef1(String role, java.util.Properties p)
-      throws RemoteException;
+    public boolean EjbSecRoleRef1(String role, java.util.Properties p) throws RemoteException;
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2,
-      java.util.Properties p) throws RemoteException;
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2, java.util.Properties p) throws RemoteException;
 
-  public boolean EjbSecRoleRefScope(String role, java.util.Properties p)
-      throws RemoteException;
+    public boolean EjbSecRoleRefScope(String role, java.util.Properties p) throws RemoteException;
 
-  public boolean checktest1(java.util.Properties p) throws RemoteException;
+    public boolean checktest1(java.util.Properties p) throws RemoteException;
 
-  public boolean excludetest1(java.util.Properties p) throws RemoteException;
+    public boolean excludetest1(java.util.Properties p) throws RemoteException;
 }

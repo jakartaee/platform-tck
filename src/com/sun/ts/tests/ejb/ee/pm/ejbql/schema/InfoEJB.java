@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
@@ -29,113 +28,110 @@ import jakarta.ejb.RemoveException;
 
 public abstract class InfoEJB implements EntityBean {
 
-  private static final String SpouseLocal = "java:comp/env/ejb/SpouseLocal";
+    private static final String SpouseLocal = "java:comp/env/ejb/SpouseLocal";
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getStreet();
+    public abstract String getStreet();
 
-  public abstract void setStreet(String v);
+    public abstract void setStreet(String v);
 
-  public abstract String getCity();
+    public abstract String getCity();
 
-  public abstract void setCity(String v);
+    public abstract void setCity(String v);
 
-  public abstract String getState();
+    public abstract String getState();
 
-  public abstract void setState(String v);
+    public abstract void setState(String v);
 
-  public abstract String getZip();
+    public abstract String getZip();
 
-  public abstract void setZip(String v);
+    public abstract void setZip(String v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // 1x1
-  public abstract SpouseLocal getSpouse();
+    // 1x1
+    public abstract SpouseLocal getSpouse();
 
-  public abstract void setSpouse(SpouseLocal v);
+    public abstract void setSpouse(SpouseLocal v);
 
-  // ===========================================================
+    // ===========================================================
 
-  public String ejbCreate(String id, String street, String city, String state,
-      String zip, SpouseLocal spouseLocal) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setStreet(street);
-      setCity(city);
-      setState(state);
-      setZip(zip);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public String ejbCreate(String id, String street, String city, String state, String zip, SpouseLocal spouseLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setStreet(street);
+            setCity(city);
+            setState(state);
+            setZip(zip);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String street, String city, String state,
-      String zip, SpouseLocal spouseLocal) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-    setSpouse(spouseLocal);
-  }
-
-  public String ejbCreate(String id, String street, String city, String state,
-      String zip) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setStreet(street);
-      setCity(city);
-      setState(state);
-      setZip(zip);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ejbPostCreate(String id, String street, String city, String state, String zip, SpouseLocal spouseLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+        setSpouse(spouseLocal);
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String street, String city, String state,
-      String zip) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
+    public String ejbCreate(String id, String street, String city, String state, String zip) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setStreet(street);
+            setCity(city);
+            setState(state);
+            setZip(zip);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public void ejbPostCreate(String id, String street, String city, String state, String zip) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 }

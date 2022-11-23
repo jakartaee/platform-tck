@@ -19,45 +19,39 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import jakarta.annotation.PostConstruct;
+import jakarta.interceptor.InvocationContext;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-
-import jakarta.annotation.PostConstruct;
-import jakarta.interceptor.InvocationContext;
-
 public class Interceptor8 extends InterceptorOverrideBase {
-  private static final String simpleName = "Interceptor8";
+    private static final String simpleName = "Interceptor8";
 
-  @Override // override and replace the superclass' PostConstruct method
-  @PostConstruct
-  protected void postConstructInInterceptorOverrideBase(InvocationContext inv) {
-    try {
-      Object[] parameters = inv.getParameters();
-      throw new RuntimeException(
-          "Expecting IllegalStateException when calling InvocationContext.getParameters in PostConstruct, but got "
-              + Arrays.toString(parameters));
-    } catch (IllegalStateException e) {
-      Helper.getLogger().info(
-          "Got expected exception when calling InvocationContext.getParameters in PostConstruct "
-              + e);
+    @Override // override and replace the superclass' PostConstruct method
+    @PostConstruct
+    protected void postConstructInInterceptorOverrideBase(InvocationContext inv) {
+        try {
+            Object[] parameters = inv.getParameters();
+            throw new RuntimeException(
+                    "Expecting IllegalStateException when calling InvocationContext.getParameters in PostConstruct, but got "
+                            + Arrays.toString(parameters));
+        } catch (IllegalStateException e) {
+            Helper.getLogger()
+                    .info("Got expected exception when calling InvocationContext.getParameters in PostConstruct " + e);
+        }
+        Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct", "Adding postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
+        try {
+            inv.proceed();
+        } catch (Exception ex) {
+            Helper.getLogger().log(Level.SEVERE, simpleName, ex);
+            historySingletonBean.addPostConstructRecordFor(inv.getTarget(), ex.toString());
+        }
     }
-    Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct",
-        "Adding postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
-    try {
-      inv.proceed();
-    } catch (Exception ex) {
-      Helper.getLogger().log(Level.SEVERE, simpleName, ex);
-      historySingletonBean.addPostConstructRecordFor(inv.getTarget(),
-          ex.toString());
-    }
-  }
 
-  @Override // override and disable the super-superclass' PostConstruct method
-  final protected void postConstructInInterceptorBaseBase(
-      InvocationContext inv) {
-    super.postConstructInInterceptorBaseBase(inv);
-  }
+    @Override // override and disable the super-superclass' PostConstruct method
+    protected final void postConstructInInterceptorBaseBase(InvocationContext inv) {
+        super.postConstructInInterceptorBaseBase(inv);
+    }
 }

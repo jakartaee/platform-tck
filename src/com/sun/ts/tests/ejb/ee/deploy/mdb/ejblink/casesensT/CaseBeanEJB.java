@@ -24,8 +24,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class CaseBeanEJB extends StatelessWrapper {
 
-  public String whoAreYou() {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
-
+    public String whoAreYou() {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

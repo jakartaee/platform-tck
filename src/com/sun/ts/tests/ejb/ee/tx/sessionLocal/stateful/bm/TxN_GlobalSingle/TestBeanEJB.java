@@ -20,136 +20,132 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateful.bm.TxN_GlobalSingle;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBean;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
 
-  // beanProps represent the bean specific properties of the TestBean
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // beanProps represent the bean specific properties of the TestBean
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  // The TxBean variables
-  private static final String txBeanNever = "java:comp/env/ejb/TxNever";
+    // The TxBean variables
+    private static final String txBeanNever = "java:comp/env/ejb/TxNever";
 
-  private TxBeanHome beanHome = null;
+    private TxBeanHome beanHome = null;
 
-  private TxBean beanRef = null;
+    private TxBean beanRef = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-      TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanNever);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanNever);
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanNever);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanNever);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logTrace("test1");
-    TestUtil.logTrace("Ensure jakarta.ejb.EJBException is thrown for TX_NEVER");
-
-    boolean testResult = false;
-    String tName = this.tName1;
-    UserTransaction ut = null;
-
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanNever);
-      beanRef = (TxBean) beanHome.create();
-      TestUtil.logTrace("beanRef=" + beanRef);
-
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      TestUtil.logTrace("BEGIN transaction");
-      ut.begin();
-
-      int level = beanRef.getDefaultTxIsolationLevel(tName);
-
-      testResult = false;
-
-    } catch (jakarta.ejb.EJBException ee) {
-      TestUtil.logTrace("Got expected EJBException");
-      testResult = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        ut.rollback();
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Exception cleaning up bean", e);
-      }
-      ;
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-    return testResult;
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    // Get the table names
-    this.tName1 = TestUtil
-        .getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
-    TestUtil.logTrace("tName1: " + this.tName1);
-
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
 
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public boolean test1() {
+        TestUtil.logTrace("test1");
+        TestUtil.logTrace("Ensure jakarta.ejb.EJBException is thrown for TX_NEVER");
+
+        boolean testResult = false;
+        String tName = this.tName1;
+        UserTransaction ut = null;
+
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanNever);
+            beanRef = (TxBean) beanHome.create();
+            TestUtil.logTrace("beanRef=" + beanRef);
+
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            TestUtil.logTrace("BEGIN transaction");
+            ut.begin();
+
+            int level = beanRef.getDefaultTxIsolationLevel(tName);
+
+            testResult = false;
+
+        } catch (jakarta.ejb.EJBException ee) {
+            TestUtil.logTrace("Got expected EJBException");
+            testResult = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                ut.rollback();
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Exception cleaning up bean", e);
+            }
+            ;
+        }
+        return testResult;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        // Get the table names
+        this.tName1 = TestUtil.getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
+        TestUtil.logTrace("tName1: " + this.tName1);
+
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

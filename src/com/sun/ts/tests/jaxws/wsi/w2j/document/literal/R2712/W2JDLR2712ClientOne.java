@@ -20,36 +20,34 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712;
 
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JDLR2712ClientOne extends SOAPClient {
 
-  public W2JDLR2712ClientOne(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JDLR2712ClientOne(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JDLR2712ClientOne(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace("http://w2jdlr2712testservice.org/wsdl");
-    stubContext.setService("W2JDLR2712TestService");
-    stubContext.setPort("W2JDLR2712TestOnePort");
-    stubContext.setEndpointInterface(W2JDLR2712TestOne.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JDLR2712ClientOne(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://w2jdlr2712testservice.org/wsdl");
+        stubContext.setService("W2JDLR2712TestService");
+        stubContext.setPort("W2JDLR2712TestOnePort");
+        stubContext.setEndpointInterface(W2JDLR2712TestOne.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jdlr2712.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jdlr2712.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jdlr2712.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jdlr2712.wsdlloc.1";
+    }
 
-  public HelloResponse hello(HelloRequest item) throws Exception {
-    return ((W2JDLR2712TestOne) stubContext.getStub()).hello(item);
-  }
-
+    public HelloResponse hello(HelloRequest item) throws Exception {
+        return ((W2JDLR2712TestOne) stubContext.getStub()).hello(item);
+    }
 }

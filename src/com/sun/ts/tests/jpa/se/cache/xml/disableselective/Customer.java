@@ -17,67 +17,67 @@
 package com.sun.ts.tests.jpa.se.cache.xml.disableselective;
 
 public class Customer implements java.io.Serializable {
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String name;
+    private String name;
 
-  public Customer() {
-  }
-
-  public Customer(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for CMP fields
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String v) {
-    this.id = v;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String v) {
-    this.name = v;
-  }
-
-  public boolean equals(Object o) {
-    Customer other;
-    boolean same = true;
-
-    if (!(o instanceof Customer)) {
-      return false;
+    public Customer() {
     }
-    other = (Customer) o;
 
-    same &= this.id.equals(other.id);
+    public Customer(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-    return same;
-  }
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public int hashCode() {
-    int myHash;
+    public String getId() {
+        return id;
+    }
 
-    myHash = this.id.hashCode() + this.getName().hashCode();
+    public void setId(String v) {
+        this.id = v;
+    }
 
-    return myHash;
-  }
+    public String getName() {
+        return name;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(",  name: " + getName());
-    result.append("]");
-    return result.toString();
-  }
+    public void setName(String v) {
+        this.name = v;
+    }
+
+    public boolean equals(Object o) {
+        Customer other;
+        boolean same = true;
+
+        if (!(o instanceof Customer)) {
+            return false;
+        }
+        other = (Customer) o;
+
+        same &= this.id.equals(other.id);
+
+        return same;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.id.hashCode() + this.getName().hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(",  name: " + getName());
+        result.append("]");
+        return result.toString();
+    }
 }

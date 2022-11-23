@@ -20,32 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Order extends EJBObject {
-  // Business Methods for A CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for A CMP Fields
+    public String getId() throws RemoteException;
 
-  public double getTotalPrice() throws RemoteException;
+    public double getTotalPrice() throws RemoteException;
 
-  public void setTotalPrice(double v) throws RemoteException;
+    public void setTotalPrice(double v) throws RemoteException;
 
-  // Miscellaneous Buisness Methods
-  public void addLineItem(LineItemDVC p)
-      throws RemoteException, LineItemException;
+    // Miscellaneous Buisness Methods
+    public void addLineItem(LineItemDVC p) throws RemoteException, LineItemException;
 
-  public void addSampleLineItem(LineItemDVC l)
-      throws RemoteException, LineItemException;
+    public void addSampleLineItem(LineItemDVC l) throws RemoteException, LineItemException;
 
-  public Collection getClientLineItems()
-      throws RemoteException, LineItemException;
+    public Collection getClientLineItems() throws RemoteException, LineItemException;
 
-  public CreditCardDVC getClientCreditCard()
-      throws RemoteException, CreditCardException;
+    public CreditCardDVC getClientCreditCard() throws RemoteException, CreditCardException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

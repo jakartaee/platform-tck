@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.argsemantics;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CallerBeanHome extends EJBHome {
 
-  public CallerBean create(Properties props, int keyId, String brandName,
-      float price) throws RemoteException, CreateException;
+    public CallerBean create(Properties props, int keyId, String brandName, float price)
+            throws RemoteException, CreateException;
 
-  public CallerBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public CallerBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

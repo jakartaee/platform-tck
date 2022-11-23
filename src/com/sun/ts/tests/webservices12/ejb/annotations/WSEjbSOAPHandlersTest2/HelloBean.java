@@ -23,10 +23,10 @@ import jakarta.jws.*;
 @WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest2.Hello")
 @Stateless(name = "WSEjbSOAPHandlersTest2")
 public class HelloBean {
-  public String helloEcho(String s) {
-    String messages = HandlerTracker.getMessages1();
-    if (s.equals("secondcall"))
-      HandlerTracker.purge();
-    return messages;
-  }
+    public String helloEcho(String s) {
+        String messages = HandlerTracker.getMessages1();
+        if (s.equals("secondcall"))
+            HandlerTracker.purge();
+        return messages;
+    }
 }

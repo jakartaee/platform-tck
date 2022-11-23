@@ -17,8 +17,8 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefWithNoDDsTest;
 
 import jakarta.ejb.Stateless;
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.Style;
 
@@ -27,24 +27,24 @@ import jakarta.jws.soap.SOAPBinding.Style;
 @SOAPBinding(style = Style.RPC)
 public class WSEjbWSRefWithNoDDsTestHelloEJB {
 
-  @WebMethod
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    @WebMethod
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  @WebMethod
-  public String bye(String str) {
-    return str + " and take care";
-  }
+    @WebMethod
+    public String bye(String str) {
+        return str + " and take care";
+    }
 
-  @WebMethod
-  public String extra(String str, int i) {
-    String tmp = str + i + ", all from yours truly";
-    return tmp;
-  }
+    @WebMethod
+    public String extra(String str, int i) {
+        String tmp = str + i + ", all from yours truly";
+        return tmp;
+    }
 
-  @WebMethod
-  public void extraExtra(long i) {
-    long ll = i * 2002 + 1999 + 8734895;
-  }
+    @WebMethod
+    public void extraExtra(long i) {
+        long ll = i * 2002 + 1999 + 8734895;
+    }
 }

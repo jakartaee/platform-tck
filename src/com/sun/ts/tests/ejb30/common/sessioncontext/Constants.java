@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
 public interface Constants {
-  public static final String FROM_CLIENT = "from client";
+    public static final String FROM_CLIENT = "from client";
 
-  public static final String FROM_BEAN = "from bean";
+    public static final String FROM_BEAN = "from bean";
 }

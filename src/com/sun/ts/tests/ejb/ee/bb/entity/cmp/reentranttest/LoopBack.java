@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.reentranttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface LoopBack extends EJBObject {
-  public boolean loopBackTest() throws RemoteException;
+    public boolean loopBackTest() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

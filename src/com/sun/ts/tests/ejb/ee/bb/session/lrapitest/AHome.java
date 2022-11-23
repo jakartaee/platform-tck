@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface AHome extends EJBHome {
-  public A createA(String whoAmI) throws RemoteException, CreateException;
+    public A createA(String whoAmI) throws RemoteException, CreateException;
 }

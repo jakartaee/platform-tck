@@ -28,10 +28,8 @@ import jakarta.jws.WebService;
 
 @WebService()
 @HandlerChain(file = "HandlerChainWebServiceInterface_handler.xml")
-
 public interface HandlerChainWebServiceInterface {
 
-  @WebMethod
-  public String hello(String name);
-
+    @WebMethod
+    public String hello(String name);
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.lite.appexception.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.appexception.RollbackBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.RollbackIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;

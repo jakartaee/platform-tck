@@ -24,61 +24,60 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.busiface.TestBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.TestIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
 
-//@Remote({TestIF.class})
-//@Stateless
+// @Remote({TestIF.class})
+// @Stateless
 public class TestBean extends TestBeanBase implements TestIF {
-  @Resource(name = "sctx")
-  private SessionContext sctx;
+    @Resource(name = "sctx")
+    private SessionContext sctx;
 
-  @EJB(beanName = "BusinessBean", name = "localBean1")
-  private BusinessLocalIF1 localBean1;
+    @EJB(beanName = "BusinessBean", name = "localBean1")
+    private BusinessLocalIF1 localBean1;
 
-  @EJB(beanName = "BusinessBean", name = "localBean2")
-  private BusinessLocalIF2 localBean2;
+    @EJB(beanName = "BusinessBean", name = "localBean2")
+    private BusinessLocalIF2 localBean2;
 
-  @EJB(beanName = "SerializableLocalBean", name = "serializableLocalBean")
-  private BusinessLocalIF1 serializableLocalBean;
+    @EJB(beanName = "SerializableLocalBean", name = "serializableLocalBean")
+    private BusinessLocalIF1 serializableLocalBean;
 
-  @EJB(beanName = "ExternalizableLocalBean", name = "externalizableLocalBean")
-  private BusinessLocalIF1 externalizableLocalBean;
+    @EJB(beanName = "ExternalizableLocalBean", name = "externalizableLocalBean")
+    private BusinessLocalIF1 externalizableLocalBean;
 
-  @EJB(beanName = "TimedObjectLocalBean", name = "timedObjectLocalBean")
-  private BusinessLocalIF1 timedObjectLocalBean;
+    @EJB(beanName = "TimedObjectLocalBean", name = "timedObjectLocalBean")
+    private BusinessLocalIF1 timedObjectLocalBean;
 
-  @EJB(beanName = "SessionBeanLocalBean", name = "sessionBeanLocalBean")
-  private BusinessLocalIF1 sessionBeanLocalBean;
+    @EJB(beanName = "SessionBeanLocalBean", name = "sessionBeanLocalBean")
+    private BusinessLocalIF1 sessionBeanLocalBean;
 
-  protected BusinessLocalIF2 getLocalBean2() {
-    return (BusinessLocalIF2) (sctx.lookup("localBean2"));
-  }
+    protected BusinessLocalIF2 getLocalBean2() {
+        return (BusinessLocalIF2) (sctx.lookup("localBean2"));
+    }
 
-  protected BusinessLocalIF1 getLocalBean1() {
-    return (BusinessLocalIF1) (sctx.lookup("localBean1"));
-  }
+    protected BusinessLocalIF1 getLocalBean1() {
+        return (BusinessLocalIF1) (sctx.lookup("localBean1"));
+    }
 
-  protected BusinessLocalIF1 getSerializableLocalBean() {
-    return (BusinessLocalIF1) (sctx.lookup("serializableLocalBean"));
-  }
+    protected BusinessLocalIF1 getSerializableLocalBean() {
+        return (BusinessLocalIF1) (sctx.lookup("serializableLocalBean"));
+    }
 
-  protected BusinessLocalIF1 getSessionBeanLocalBean() {
-    return (BusinessLocalIF1) (sctx.lookup("sessionBeanLocalBean"));
-  }
+    protected BusinessLocalIF1 getSessionBeanLocalBean() {
+        return (BusinessLocalIF1) (sctx.lookup("sessionBeanLocalBean"));
+    }
 
-  protected BusinessLocalIF1 getExternalizableLocalBean() {
-    return (BusinessLocalIF1) (sctx.lookup("externalizableLocalBean"));
-  }
+    protected BusinessLocalIF1 getExternalizableLocalBean() {
+        return (BusinessLocalIF1) (sctx.lookup("externalizableLocalBean"));
+    }
 
-  // this one does not apply to slsb
-  protected BusinessLocalIF1 getSessionSynchronizationLocalBean() {
-    return null;
-  }
+    // this one does not apply to slsb
+    protected BusinessLocalIF1 getSessionSynchronizationLocalBean() {
+        return null;
+    }
 
-  protected BusinessLocalIF1 getTimedObjectLocalBean() {
-    return (BusinessLocalIF1) (sctx.lookup("timedObjectLocalBean"));
-  }
+    protected BusinessLocalIF1 getTimedObjectLocalBean() {
+        return (BusinessLocalIF1) (sctx.lookup("timedObjectLocalBean"));
+    }
 }

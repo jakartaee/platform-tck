@@ -23,17 +23,17 @@ package com.sun.ts.lib.harness;
  * @version @(#)TestRunException.java 1.2 99/03/15
  */
 public class TestRunException extends RuntimeException {
-  private static final long serialVersionUID = -9119523505446607510L;
+    private static final long serialVersionUID = -9119523505446607510L;
 
-  public TestRunException(String msg) {
-    super(msg);
-  } // TestRunException()
+    public TestRunException(String msg) {
+        super(msg);
+    } // TestRunException()
 
-  public TestRunException(Throwable t) {
-    super(t.getMessage(), t);
-  } // TestRunException()
+    public TestRunException(Throwable t) {
+        super(t.getMessage(), t);
+    } // TestRunException()
 
-  public Throwable getThrowable() {
-    return getCause();
-  } // getThrowable()
+    public Throwable getThrowable() {
+        return getCause();
+    } // getThrowable()
 }

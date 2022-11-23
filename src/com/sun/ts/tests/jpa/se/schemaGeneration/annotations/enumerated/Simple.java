@@ -26,65 +26,64 @@ import jakarta.persistence.Table;
 @Table(name = "SCHEMAGENSIMPLE")
 public class Simple implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  int id;
+    // ===========================================================
+    // instance variables
+    int id;
 
-  Grade enumData;
+    Grade enumData;
 
-  // ===========================================================
-  // constructors
-  public Simple() {
-  }
-
-  public Simple(int id) {
-    this.id = id;
-  }
-
-  @Id
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Enumerated(EnumType.STRING)
-  public Grade getEnumData() {
-    return enumData;
-  }
-
-  public void setEnumData(Grade enumData) {
-    this.enumData = enumData;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
-
-    Simple o1 = (Simple) o;
-
-    boolean result = false;
-
-    if (this.getId() == o1.getId()) {
-      result = true;
+    // ===========================================================
+    // constructors
+    public Simple() {
     }
 
-    return result;
-  }
+    public Simple(int id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append("]");
-    return result.toString();
-  }
+    @Id
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Grade getEnumData() {
+        return enumData;
+    }
+
+    public void setEnumData(Grade enumData) {
+        this.enumData = enumData;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // check for self-comparison
+        if (this == o)
+            return true;
+        if (!(o instanceof Simple))
+            return false;
+
+        Simple o1 = (Simple) o;
+
+        boolean result = false;
+
+        if (this.getId() == o1.getId()) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append("]");
+        return result.toString();
+    }
 }

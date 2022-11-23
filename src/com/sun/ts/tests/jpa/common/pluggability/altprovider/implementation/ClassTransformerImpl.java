@@ -16,26 +16,24 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import java.security.ProtectionDomain;
-
 import jakarta.persistence.spi.ClassTransformer;
 import jakarta.persistence.spi.TransformerException;
+import java.security.ProtectionDomain;
 
 public class ClassTransformerImpl implements ClassTransformer {
 
-  protected TSLogger logger;
+    protected TSLogger logger;
 
-  public ClassTransformerImpl() {
-    logger = TSLogger.getInstance();
-  }
+    public ClassTransformerImpl() {
+        logger = TSLogger.getInstance();
+    }
 
-  @Override
-  public byte[] transform(ClassLoader arg0, String className,
-      Class<?> classBeingRedefined, ProtectionDomain arg3, byte[] arg4)
-      throws TransformerException {
-    logger.log("Called ClassTransformerImpl.transform()");
+    @Override
+    public byte[] transform(
+            ClassLoader arg0, String className, Class<?> classBeingRedefined, ProtectionDomain arg3, byte[] arg4)
+            throws TransformerException {
+        logger.log("Called ClassTransformerImpl.transform()");
 
-    return null;// indicates no transformation
-  }
-
+        return null; // indicates no transformation
+    }
 }

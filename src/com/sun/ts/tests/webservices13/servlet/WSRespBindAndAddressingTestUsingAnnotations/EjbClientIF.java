@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingA
 
 public interface EjbClientIF {
 
-  public void init(java.util.Properties p);
+    public void init(java.util.Properties p);
 
-  public boolean echo(String string, String testName);
+    public boolean echo(String string, String testName);
 }

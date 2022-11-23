@@ -26,6 +26,5 @@ import jakarta.jws.WebService;
 @WebService(targetNamespace = "http://bea/jsr181/tck/portType")
 public interface parentInterface {
 
-  public String hello(String myname);
-
+    public String hello(String myname);
 }

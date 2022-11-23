@@ -20,9 +20,9 @@ import java.io.Console;
 import java.nio.charset.Charset;
 
 public interface JavaIOAccess {
-  public Console console();
+    public Console console();
 
-  public Runnable consoleRestoreHook();
+    public Runnable consoleRestoreHook();
 
-  public Charset charset();
+    public Charset charset();
 }

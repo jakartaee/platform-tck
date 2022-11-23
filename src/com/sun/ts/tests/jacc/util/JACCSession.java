@@ -20,21 +20,18 @@
  * @author Raja Perumal
  *         08/22/02
  */
-
 package com.sun.ts.tests.jacc.util;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface JACCSession extends EJBObject {
 
-  public String getArg1() throws RemoteException;
+    public String getArg1() throws RemoteException;
 
-  public int getArg2() throws RemoteException;
+    public int getArg2() throws RemoteException;
 
-  public long getArg3() throws RemoteException;
+    public long getArg3() throws RemoteException;
 
-  public String getCallerName() throws RemoteException;
-
+    public String getCallerName() throws RemoteException;
 }

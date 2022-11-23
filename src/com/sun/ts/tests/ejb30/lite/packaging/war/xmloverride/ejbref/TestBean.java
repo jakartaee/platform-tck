@@ -21,15 +21,14 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
 public class TestBean {
 
-  public int getNumber() {
-    NumberIF overrideBean = (NumberIF) ServiceLocator.lookupNoTry(
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref.Client/overrideBean");
-    return overrideBean.getNumber();
-  }
+    public int getNumber() {
+        NumberIF overrideBean = (NumberIF) ServiceLocator.lookupNoTry(
+                "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref.Client/overrideBean");
+        return overrideBean.getNumber();
+    }
 }

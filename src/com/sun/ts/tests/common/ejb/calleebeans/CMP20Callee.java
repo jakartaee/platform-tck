@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface CMP20Callee extends EJBObject {
 
-  public void call(Properties props, SimpleArgument arg) throws RemoteException;
-
+    public void call(Properties props, SimpleArgument arg) throws RemoteException;
 }

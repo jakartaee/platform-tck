@@ -20,108 +20,102 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public class LongBeanEJB implements EntityBean {
 
-  /* CMP fields */
-  public Long cmpID;
+    /* CMP fields */
+    public Long cmpID;
 
-  public String cmpBrandName;
+    public String cmpBrandName;
 
-  public float cmpPrice;
+    public float cmpPrice;
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  public void ping() {
-    TestUtil.logTrace("LongBean: ping()");
-  }
-
-  /*
-   * Bean life cycle.
-   */
-
-  public Long ejbCreate(Properties props, Long id, String brandName,
-      float price) throws CreateException {
-
-    try {
-      TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
-
-      TestUtil.init(props);
-
-      this.cmpID = id;
-      this.cmpBrandName = brandName;
-      this.cmpPrice = price;
-
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ping() {
+        TestUtil.logTrace("LongBean: ping()");
     }
 
-    return this.cmpID;
-  }
+    /*
+     * Bean life cycle.
+     */
 
-  public void ejbPostCreate(Properties props, Long id, String brandName,
-      float price) {
+    public Long ejbCreate(Properties props, Long id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("LongBean: ejbPostCreate()");
-  }
+        try {
+            TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("LongBean: ejbRemove()");
-  }
+            TestUtil.init(props);
 
-  public void setEntityContext(EntityContext x) throws EJBException {
+            this.cmpID = id;
+            this.cmpBrandName = brandName;
+            this.cmpPrice = price;
 
-    TestUtil.logTrace("LongBean: setEntityContext()");
-    ectx = x;
-    try {
-      TestUtil.logMsg("LongBean: Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("LongBean: Naming Exception : " + e, e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("LongBean: Caught exception: " + e, e);
-      throw new EJBException("Caught exception: " + e);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return this.cmpID;
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("LongBean: unsetEntityContext()");
-  }
+    public void ejbPostCreate(Properties props, Long id, String brandName, float price) {
 
-  public void ejbStore() {
-    TestUtil.logTrace("LongBean: ejbStore()");
-  }
+        TestUtil.logTrace("LongBean: ejbPostCreate()");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("LongBean: ejbLoad()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("LongBean: ejbRemove()");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("LongBean: ejbActivate()");
-  }
+    public void setEntityContext(EntityContext x) throws EJBException {
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("LongBean: ejbPassivate()");
-  }
+        TestUtil.logTrace("LongBean: setEntityContext()");
+        ectx = x;
+        try {
+            TestUtil.logMsg("LongBean: Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("LongBean: Naming Exception : " + e, e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("LongBean: Caught exception: " + e, e);
+            throw new EJBException("Caught exception: " + e);
+        }
+    }
 
+    public void unsetEntityContext() {
+        TestUtil.logTrace("LongBean: unsetEntityContext()");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("LongBean: ejbStore()");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("LongBean: ejbLoad()");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("LongBean: ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("LongBean: ejbPassivate()");
+    }
 }

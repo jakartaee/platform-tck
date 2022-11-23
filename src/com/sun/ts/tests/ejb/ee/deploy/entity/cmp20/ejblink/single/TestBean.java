@@ -20,32 +20,31 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejblink.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public boolean testStatelessInternal(Properties props) throws RemoteException;
+    public boolean testStatelessInternal(Properties props) throws RemoteException;
 
-  public boolean testStatelessExternal(Properties props) throws RemoteException;
+    public boolean testStatelessExternal(Properties props) throws RemoteException;
 
-  public boolean testStatefulInternal(Properties props) throws RemoteException;
+    public boolean testStatefulInternal(Properties props) throws RemoteException;
 
-  public boolean testStatefulExternal(Properties props) throws RemoteException;
+    public boolean testStatefulExternal(Properties props) throws RemoteException;
 
-  public boolean testBMPInternal(Properties props) throws RemoteException;
+    public boolean testBMPInternal(Properties props) throws RemoteException;
 
-  public boolean testBMPExternal(Properties props) throws RemoteException;
+    public boolean testBMPExternal(Properties props) throws RemoteException;
 
-  public boolean testCMP11Internal(Properties props) throws RemoteException;
+    public boolean testCMP11Internal(Properties props) throws RemoteException;
 
-  public boolean testCMP11External(Properties props) throws RemoteException;
+    public boolean testCMP11External(Properties props) throws RemoteException;
 
-  public boolean testCMP20Internal(Properties props) throws RemoteException;
+    public boolean testCMP20Internal(Properties props) throws RemoteException;
 
-  public boolean testCMP20External(Properties props) throws RemoteException;
+    public boolean testCMP20External(Properties props) throws RemoteException;
 
-  public void cleanUpBean() throws RemoteException;
+    public void cleanUpBean() throws RemoteException;
 }

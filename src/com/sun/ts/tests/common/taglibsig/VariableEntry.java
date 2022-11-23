@@ -26,56 +26,56 @@ package com.sun.ts.tests.common.taglibsig;
 
 public class VariableEntry {
 
-  public static final String NO_VARIABLE_NAME = "no variable name";
+    public static final String NO_VARIABLE_NAME = "no variable name";
 
-  private String nameGiven = NO_VARIABLE_NAME;
+    private String nameGiven = NO_VARIABLE_NAME;
 
-  private String declare = "false";
+    private String declare = "false";
 
-  private String variableClass = "java.lang.String";
+    private String variableClass = "java.lang.String";
 
-  private String scope = "AT_BEGIN";
+    private String scope = "AT_BEGIN";
 
-  public VariableEntry() {
-  }
-
-  public String getNameGiven() {
-    return nameGiven;
-  }
-
-  public void setNameGiven(String nameGiven) {
-    if (nameGiven != null) {
-      this.nameGiven = nameGiven;
+    public VariableEntry() {
     }
-  }
 
-  public String getDeclare() {
-    return declare;
-  }
-
-  public void setDeclare(String declare) {
-    if (declare != null) {
-      this.declare = declare;
+    public String getNameGiven() {
+        return nameGiven;
     }
-  }
 
-  public String getVariableClass() {
-    return variableClass;
-  }
-
-  public void setVariableClass(String variableClass) {
-    if (variableClass != null) {
-      this.variableClass = variableClass;
+    public void setNameGiven(String nameGiven) {
+        if (nameGiven != null) {
+            this.nameGiven = nameGiven;
+        }
     }
-  }
 
-  public String getScope() {
-    return scope;
-  }
-
-  public void setScope(String scope) {
-    if (scope != null) {
-      this.scope = scope;
+    public String getDeclare() {
+        return declare;
     }
-  }
+
+    public void setDeclare(String declare) {
+        if (declare != null) {
+            this.declare = declare;
+        }
+    }
+
+    public String getVariableClass() {
+        return variableClass;
+    }
+
+    public void setVariableClass(String variableClass) {
+        if (variableClass != null) {
+            this.variableClass = variableClass;
+        }
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        if (scope != null) {
+            this.scope = scope;
+        }
+    }
 }

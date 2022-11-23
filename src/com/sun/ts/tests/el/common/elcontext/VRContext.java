@@ -20,78 +20,75 @@
  */
 package com.sun.ts.tests.el.common.elcontext;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.api.jakarta_el.valueexpression.Worker;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
-
 import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
+import java.util.Properties;
 
 public class VRContext extends ELContext {
 
-  private final VariableMapper varMapper;
+    private final VariableMapper varMapper;
 
-  private final CompositeELResolver compResolver;
+    private final CompositeELResolver compResolver;
 
-  public VRContext(Properties testProps) {
-    this.compResolver = new CompositeELResolver();
-    varMapper = this.getVariableMapperImpl(testProps);
-  }
-
-  public ELResolver getELResolver() {
-    ELResolver elResolver;
-    ELResolver rel = new VariableELResolver();
-    rel.setValue(this, "worker", null, new Worker());
-    compResolver.add(rel);
-
-    BeanELResolver br = new BeanELResolver();
-    br.setValue(this, "worker", null, new Worker());
-    compResolver.add(br);
-    elResolver = compResolver;
-
-    return elResolver;
-  }
-
-  @Override
-  public FunctionMapper getFunctionMapper() {
-
-    return new TCKFunctionMapper();
-  }
-
-  @Override
-  public VariableMapper getVariableMapper() {
-    return varMapper;
-  }
-
-  private Object getImplSpecificInstance(String classname) {
-
-    Class clazz;
-    Object instance = null;
-
-    try {
-      clazz = Class.forName(classname);
-      instance = clazz.newInstance();
-    } catch (ClassNotFoundException cnfe) {
-      TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
-    } catch (InstantiationException ie) {
-      TestUtil.logErr("InstantiationException: " + ie.getMessage());
-    } catch (IllegalAccessException iae) {
-      TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
+    public VRContext(Properties testProps) {
+        this.compResolver = new CompositeELResolver();
+        varMapper = this.getVariableMapperImpl(testProps);
     }
-    return instance;
-  }
 
-  private VariableMapper getVariableMapperImpl(Properties testProps) {
-    String implSpecificClassName = testProps.getProperty("variable.mapper");
+    public ELResolver getELResolver() {
+        ELResolver elResolver;
+        ELResolver rel = new VariableELResolver();
+        rel.setValue(this, "worker", null, new Worker());
+        compResolver.add(rel);
 
-    return (implSpecificClassName == null) ? null
-        : (VariableMapper) getImplSpecificInstance(implSpecificClassName);
-  }
+        BeanELResolver br = new BeanELResolver();
+        br.setValue(this, "worker", null, new Worker());
+        compResolver.add(br);
+        elResolver = compResolver;
+
+        return elResolver;
+    }
+
+    @Override
+    public FunctionMapper getFunctionMapper() {
+
+        return new TCKFunctionMapper();
+    }
+
+    @Override
+    public VariableMapper getVariableMapper() {
+        return varMapper;
+    }
+
+    private Object getImplSpecificInstance(String classname) {
+
+        Class clazz;
+        Object instance = null;
+
+        try {
+            clazz = Class.forName(classname);
+            instance = clazz.newInstance();
+        } catch (ClassNotFoundException cnfe) {
+            TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
+        } catch (InstantiationException ie) {
+            TestUtil.logErr("InstantiationException: " + ie.getMessage());
+        } catch (IllegalAccessException iae) {
+            TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
+        }
+        return instance;
+    }
+
+    private VariableMapper getVariableMapperImpl(Properties testProps) {
+        String implSpecificClassName = testProps.getProperty("variable.mapper");
+
+        return (implSpecificClassName == null) ? null : (VariableMapper) getImplSpecificInstance(implSpecificClassName);
+    }
 }

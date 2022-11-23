@@ -21,5 +21,5 @@
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
 public interface SecTest {
-  public String getCallerPrincipalName();
+    public String getCallerPrincipalName();
 }

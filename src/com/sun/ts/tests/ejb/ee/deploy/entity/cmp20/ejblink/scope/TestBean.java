@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejblink.scope;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public boolean testSimpleLinkScope(Properties p) throws RemoteException;
-
+    public boolean testSimpleLinkScope(Properties p) throws RemoteException;
 }

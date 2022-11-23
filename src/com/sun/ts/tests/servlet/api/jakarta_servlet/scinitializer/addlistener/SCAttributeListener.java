@@ -23,24 +23,19 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener;
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
 
-public final class SCAttributeListener
-    implements ServletContextAttributeListener {
+public final class SCAttributeListener implements ServletContextAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(ServletContextAttributeEvent event) {
-    System.out
-        .print("SCAttributeAdded:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        System.out.print("SCAttributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(ServletContextAttributeEvent event) {
-    System.out.print(
-        "SCAttributeRemoved:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        System.out.print("SCAttributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeReplaced(ServletContextAttributeEvent event) {
-    System.out.print(
-        "SCAttributeReplaced:" + event.getName() + "," + event.getValue());
-  }
-
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        System.out.print("SCAttributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

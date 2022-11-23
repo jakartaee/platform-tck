@@ -20,27 +20,25 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequestwrapper;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class SetCharacterEncodingTest extends SetCharacterEncodingTestWrapper {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  // merely validate the default behavior of RequestWrapper -- delegates call
-  // to the ServletRequest object it wraps.
+    // merely validate the default behavior of RequestWrapper -- delegates call
+    // to the ServletRequest object it wraps.
 
-  public void service(ServletRequest servletRequest,
-      ServletResponse servletResponse) throws ServletException, IOException {
-    ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
-    super.service(wrapper, servletResponse);
-  }
-
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
+        ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
+        super.service(wrapper, servletResponse);
+    }
 }

@@ -20,43 +20,33 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejbref.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean testStatelessInternal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testStatelessInternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testStatelessExternal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testStatelessExternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testStatefulInternal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testStatefulInternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testStatefulExternal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testStatefulExternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testBMPInternal(java.util.Properties p) throws RemoteException;
+    public boolean testBMPInternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testBMPExternal(java.util.Properties p) throws RemoteException;
+    public boolean testBMPExternal(java.util.Properties p) throws RemoteException;
 
-  public boolean testCMP11Internal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testCMP11Internal(java.util.Properties p) throws RemoteException;
 
-  public boolean testCMP11External(java.util.Properties p)
-      throws RemoteException;
+    public boolean testCMP11External(java.util.Properties p) throws RemoteException;
 
-  public boolean testCMP20Internal(java.util.Properties p)
-      throws RemoteException;
+    public boolean testCMP20Internal(java.util.Properties p) throws RemoteException;
 
-  public boolean testCMP20External(java.util.Properties p)
-      throws RemoteException;
+    public boolean testCMP20External(java.util.Properties p) throws RemoteException;
 
-  public void cleanUpBean() throws RemoteException;
-
+    public void cleanUpBean() throws RemoteException;
 }

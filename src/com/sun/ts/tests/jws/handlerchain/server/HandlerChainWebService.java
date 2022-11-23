@@ -29,8 +29,7 @@ import jakarta.jws.WebService;
 @HandlerChain(file = "HandlerChainWebService_handler.xml")
 public class HandlerChainWebService implements HandlerChainWebServiceInterface {
 
-  public String hello(String name) {
-    return name;
-  }
-
+    public String hello(String name) {
+        return name;
+    }
 }

@@ -24,9 +24,9 @@
 package com.sun.ts.tests.jws.common;
 
 public final class EmployeeType {
-  public static final int PERMANENT = 0;
+    public static final int PERMANENT = 0;
 
-  public static final int TEMP = 1;
+    public static final int TEMP = 1;
 
-  public static final int CONTRACTOR = 2;
+    public static final int CONTRACTOR = 2;
 }

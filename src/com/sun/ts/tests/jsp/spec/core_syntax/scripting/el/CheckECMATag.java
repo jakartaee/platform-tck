@@ -23,38 +23,32 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 import jakarta.servlet.jsp.JspException;
 
 /**
- * Tag implementation to perform validation of JSP 2.0 expression language
- * ECMA-like operators <tt>'.'</tt> and <tt>'[]'</tt>.
+ * Tag implementation to perform validation of JSP 2.0 expression language ECMA-like operators <tt>'.'</tt> and
+ * <tt>'[]'</tt>.
  */
 public class CheckECMATag extends BaseCheckTag {
 
-  /**
-   * Validates ECMA treatment of the <tt>'.'</tt> and <tt>'[]'</tt> operators.
-   * Validation is performed as follows:
-   * <ul>
-   * <li>If the control object is null, the object under test must be null as
-   * well or FAIL.</li>
-   * <li>If the control and test objects are not equal, fail</li>
-   * </ul>
-   * 
-   * @throws JspException
-   *           if an error occurs
-   */
-  protected void performCheck() throws JspException {
-    String message = null;
+    /**
+     * Validates ECMA treatment of the <tt>'.'</tt> and <tt>'[]'</tt> operators. Validation is performed as follows:
+     * <ul>
+     * <li>If the control object is null, the object under test must be null as well or FAIL.</li>
+     * <li>If the control and test objects are not equal, fail</li>
+     * </ul>
+     *
+     * @throws JspException if an error occurs
+     */
+    protected void performCheck() throws JspException {
+        String message = null;
 
-    if (_control == null) {
-      if (_object != null) {
-        message = "Test FAILED.  Expected evaluation of expression to be"
-            + " null when " + _name + " was null";
-      }
-    } else {
-      if (!_control.equals(_object)) {
-        message = "Test FAILED.  Expected result of evaluation to be: "
-            + _control + ", received: " + _object;
-      }
+        if (_control == null) {
+            if (_object != null) {
+                message = "Test FAILED.  Expected evaluation of expression to be" + " null when " + _name + " was null";
+            }
+        } else {
+            if (!_control.equals(_object)) {
+                message = "Test FAILED.  Expected result of evaluation to be: " + _control + ", received: " + _object;
+            }
+        }
+        displayTestStatus(message);
     }
-    displayTestStatus(message);
-  }
-
 }

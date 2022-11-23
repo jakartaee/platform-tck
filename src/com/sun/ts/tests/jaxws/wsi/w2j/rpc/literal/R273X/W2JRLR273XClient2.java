@@ -24,32 +24,30 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR273XClient2 extends SOAPClient {
-  public W2JRLR273XClient2(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR273XClient2(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR273XClient2(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr273Xtestservice.org/W2JRLR273XTestService.wsdl");
-    stubContext.setService("W2JRLR273XTestService");
-    stubContext.setPort("W2JRLR273XTest2Port");
-    stubContext.setEndpointInterface(W2JRLR273XTest2.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR273XClient2(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr273Xtestservice.org/W2JRLR273XTestService.wsdl");
+        stubContext.setService("W2JRLR273XTestService");
+        stubContext.setPort("W2JRLR273XTest2Port");
+        stubContext.setEndpointInterface(W2JRLR273XTest2.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr273X.endpoint.2";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr273X.endpoint.2";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr273X.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr273X.wsdlloc.1";
+    }
 
-  public FooBar echoFooBar(FooBar fb) throws Exception {
-    FooBar fb1 = ((W2JRLR273XTest2) stubContext.getStub()).echoFooBar(fb);
-    return fb1;
-  }
+    public FooBar echoFooBar(FooBar fb) throws Exception {
+        FooBar fb1 = ((W2JRLR273XTest2) stubContext.getStub()).echoFooBar(fb);
+        return fb1;
+    }
 }

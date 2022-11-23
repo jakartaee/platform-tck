@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.integration.entity.servletejbjdbc;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Account extends EJBObject {
-  public double balance() throws RemoteException;
+    public double balance() throws RemoteException;
 
-  public double withdraw(double amt) throws RemoteException;
+    public double withdraw(double amt) throws RemoteException;
 
-  public double deposit(double amt) throws RemoteException;
+    public double deposit(double amt) throws RemoteException;
 }

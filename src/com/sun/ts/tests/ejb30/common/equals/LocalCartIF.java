@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.common.equals;
 
 public interface LocalCartIF extends CartIF {
-
 }

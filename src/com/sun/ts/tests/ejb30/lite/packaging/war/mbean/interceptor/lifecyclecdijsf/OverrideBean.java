@@ -26,31 +26,31 @@ import jakarta.annotation.PreDestroy;
 
 @ManagedBean("OverrideBean")
 public class OverrideBean extends OverrideBeanBase {
-  private static final String simpleName = "OverrideBean";
+    private static final String simpleName = "OverrideBean";
 
-  // @PostConstruct //override with a non-PostConstruct, neither is invoked
-  @Override
-  public void postConstructInOverrideBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this,
-        "should not reach here: OverrideBean.postConstructInOverrideBeanBase");
-  }
+    // @PostConstruct //override with a non-PostConstruct, neither is invoked
+    @Override
+    public void postConstructInOverrideBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(
+                this, "should not reach here: OverrideBean.postConstructInOverrideBeanBase");
+    }
 
-  @Override
-  // @PreDestroy //override with a non-PreDestroy method, neither is invoked
-  public void preDestroyInOverrideBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this,
-        "should not reach here: OverrideBean.preDestroyInOverrideBeanBase");
-  }
+    @Override
+    // @PreDestroy //override with a non-PreDestroy method, neither is invoked
+    public void preDestroyInOverrideBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(
+                this, "should not reach here: OverrideBean.preDestroyInOverrideBeanBase");
+    }
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In preDestroy of " + this);
-  }
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In preDestroy of " + this);
+    }
 }

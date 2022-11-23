@@ -17,22 +17,22 @@
 package com.sun.ts.tests.jaxrs.platform.managedbean;
 
 public class ApplicationHolderSingleton {
-  public ApplicationHolderSingleton(TSAppConfig config) {
-    super();
-    this.config = config;
-  }
+    public ApplicationHolderSingleton(TSAppConfig config) {
+        super();
+        this.config = config;
+    }
 
-  private TSAppConfig config;
+    private TSAppConfig config;
 
-  public int getValue() {
-    return config.getValue();
-  }
+    public int getValue() {
+        return config.getValue();
+    }
 
-  public void setValue(int value) {
-    config.setValue(value);
-  }
+    public void setValue(int value) {
+        config.setValue(value);
+    }
 
-  public boolean isUriInfoInjectedBeforePostConstruct() {
-    return config.isUriInfoInjectedBeforePostConstruct();
-  }
+    public boolean isUriInfoInjectedBeforePostConstruct() {
+        return config.isUriInfoInjectedBeforePostConstruct();
+    }
 }

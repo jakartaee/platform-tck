@@ -23,11 +23,11 @@ import jakarta.jws.WebService;
 @Stateless(name = "WSEjbMultipleClientInjectionTest1")
 public class HelloBean {
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  public String bye(String str) {
-    return str + " and take care!";
-  }
+    public String bye(String str) {
+        return str + " and take care!";
+    }
 }

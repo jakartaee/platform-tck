@@ -22,20 +22,19 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 @jakarta.xml.ws.WebFault(name = "MyOtherFault", messageName = "YesItsMyOtherFault", targetNamespace = "http://doclitservice.org/wsdl", faultBean = "MyOtherFaultBean")
 public class MyOtherFault extends Exception {
-  private MyOtherFaultBean faultInfo;
+    private MyOtherFaultBean faultInfo;
 
-  public MyOtherFault(String message, MyOtherFaultBean faultInfo) {
-    super(message);
-    this.faultInfo = faultInfo;
-  }
+    public MyOtherFault(String message, MyOtherFaultBean faultInfo) {
+        super(message);
+        this.faultInfo = faultInfo;
+    }
 
-  public MyOtherFault(String message, MyOtherFaultBean faultInfo,
-      Throwable cause) {
-    super(message, cause);
-    this.faultInfo = faultInfo;
-  }
+    public MyOtherFault(String message, MyOtherFaultBean faultInfo, Throwable cause) {
+        super(message, cause);
+        this.faultInfo = faultInfo;
+    }
 
-  public MyOtherFaultBean getFaultInfo() {
-    return faultInfo;
-  }
+    public MyOtherFaultBean getFaultInfo() {
+        return faultInfo;
+    }
 }

@@ -17,22 +17,20 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
 
-import java.security.Principal;
-import java.util.Arrays;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.security.Principal;
+import java.util.Arrays;
 
 public class GetUserPrincipalNotAuthenticatedConfigurator extends Configurator {
-  static final String KEY = "GetUserPrincipalNotAuthenticatedConfigurator";
+    static final String KEY = "GetUserPrincipalNotAuthenticatedConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Principal principal = request.getUserPrincipal();
-    String value = String.valueOf(principal == null);
-    response.getHeaders().put(KEY, Arrays.asList(value));
-  }
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        Principal principal = request.getUserPrincipal();
+        String value = String.valueOf(principal == null);
+        response.getHeaders().put(KEY, Arrays.asList(value));
+    }
 }

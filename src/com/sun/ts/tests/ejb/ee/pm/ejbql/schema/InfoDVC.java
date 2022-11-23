@@ -24,83 +24,81 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class InfoDVC implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String street;
+    private String street;
 
-  private String city;
+    private String city;
 
-  private String state;
+    private String state;
 
-  private String zip;
+    private String zip;
 
-  private SpouseDVC spouse;
+    private SpouseDVC spouse;
 
-  public InfoDVC(String v1, String v2, String v3, String v4, String v5) {
-    id = v1;
-    street = v2;
-    city = v3;
-    state = v4;
-    zip = v5;
-  }
+    public InfoDVC(String v1, String v2, String v3, String v4, String v5) {
+        id = v1;
+        street = v2;
+        city = v3;
+        state = v4;
+        zip = v5;
+    }
 
-  public InfoDVC(String v1, String v2, String v3, String v4, String v5,
-      SpouseDVC v6) {
-    id = v1;
-    street = v2;
-    city = v3;
-    state = v4;
-    zip = v5;
-    spouse = v6;
-  }
+    public InfoDVC(String v1, String v2, String v3, String v4, String v5, SpouseDVC v6) {
+        id = v1;
+        street = v2;
+        city = v3;
+        state = v4;
+        zip = v5;
+        spouse = v6;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public String getStreet() {
-    return street;
-  }
+    public String getStreet() {
+        return street;
+    }
 
-  public void setStreet(String v) {
-    street = v;
-  }
+    public void setStreet(String v) {
+        street = v;
+    }
 
-  public String getState() {
-    return state;
-  }
+    public String getState() {
+        return state;
+    }
 
-  public void setState(String v) {
-    state = v;
-  }
+    public void setState(String v) {
+        state = v;
+    }
 
-  public String getCity() {
-    return city;
-  }
+    public String getCity() {
+        return city;
+    }
 
-  public void setCity(String v) {
-    city = v;
-  }
+    public void setCity(String v) {
+        city = v;
+    }
 
-  public String getZip() {
-    return zip;
-  }
+    public String getZip() {
+        return zip;
+    }
 
-  public void setZip(String v) {
-    zip = v;
-  }
+    public void setZip(String v) {
+        zip = v;
+    }
 
-  public SpouseDVC getSpouse() {
-    return spouse;
-  }
+    public SpouseDVC getSpouse() {
+        return spouse;
+    }
 
-  public void setSpouse(SpouseDVC v) {
-    spouse = v;
-  }
-
+    public void setSpouse(SpouseDVC v) {
+        spouse = v;
+    }
 }

@@ -24,14 +24,12 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class HasInterfaceSingletonBean extends BeanBase
-    implements HasInterface {
-  @EJB
-  private NoInterfaceSingletonBean singleton;
+public class HasInterfaceSingletonBean extends BeanBase implements HasInterface {
+    @EJB
+    private NoInterfaceSingletonBean singleton;
 
-  @Override
-  public NoInterfaceSingletonBean passAsReturn() {
-    return singleton;
-  }
-
+    @Override
+    public NoInterfaceSingletonBean passAsReturn() {
+        return singleton;
+    }
 }

@@ -17,20 +17,18 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
 
-import java.util.List;
-import java.util.Map;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.List;
+import java.util.Map;
 
 public class PathParamConfigurator extends Configurator {
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getParameterMap();
-    response.getHeaders().putAll(map);
-  }
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        Map<String, List<String>> map = request.getParameterMap();
+        response.getHeaders().putAll(map);
+    }
 }

@@ -20,5 +20,4 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface Descriptor2RemoteIF extends Descriptor2IF {
-
 }

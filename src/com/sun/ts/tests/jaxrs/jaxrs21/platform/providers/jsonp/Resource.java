@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.jaxrs21.platform.providers.jsonp;
 
-import java.math.BigDecimal;
-
 import jakarta.json.Json;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonString;
@@ -26,37 +24,38 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import java.math.BigDecimal;
 
 @Path("resource")
 public class Resource {
 
-  public static final String MESSAGE = "This.is.some.message.to.be.sent.as.json";
+    public static final String MESSAGE = "This.is.some.message.to.be.sent.as.json";
 
-  @Path("tostring")
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  public JsonString toStructure() {
-    return Json.createValue(MESSAGE);
-  }
+    @Path("tostring")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonString toStructure() {
+        return Json.createValue(MESSAGE);
+    }
 
-  @Path("tonumber")
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  public JsonNumber toNumber() {
-    return Json.createValue(BigDecimal.valueOf(Long.MIN_VALUE));
-  }
+    @Path("tonumber")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonNumber toNumber() {
+        return Json.createValue(BigDecimal.valueOf(Long.MIN_VALUE));
+    }
 
-  @Path("fromstring")
-  @POST
-  @Produces(MediaType.APPLICATION_JSON)
-  public String fromObject(JsonString string) {
-    return string.getString();
-  }
+    @Path("fromstring")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String fromObject(JsonString string) {
+        return string.getString();
+    }
 
-  @Path("fromnumber")
-  @POST
-  @Produces(MediaType.APPLICATION_JSON)
-  public String fromNumber(JsonNumber number) {
-    return number.bigDecimalValue().toString();
-  }
+    @Path("fromnumber")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String fromNumber(JsonNumber number) {
+        return number.bigDecimalValue().toString();
+    }
 }

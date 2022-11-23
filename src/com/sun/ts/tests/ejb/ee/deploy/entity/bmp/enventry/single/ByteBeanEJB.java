@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class ByteBeanEJB extends BMPWrapper {
 
-  public boolean testByteEntry() {
-    return TestCode.testByteEntry(nctx);
-  }
-
+    public boolean testByteEntry() {
+        return TestCode.testByteEntry(nctx);
+    }
 }

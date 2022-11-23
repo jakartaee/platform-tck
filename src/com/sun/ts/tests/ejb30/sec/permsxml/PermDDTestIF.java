@@ -17,15 +17,15 @@
 package com.sun.ts.tests.ejb30.sec.permsxml;
 
 public interface PermDDTestIF {
-  public boolean validateCustomPerm();
+    public boolean validateCustomPerm();
 
-  public boolean validateLocalGrantForCustomPerm();
+    public boolean validateLocalGrantForCustomPerm();
 
-  public boolean validateRequiredPermSet();
+    public boolean validateRequiredPermSet();
 
-  public boolean validateMissingPermFails();
+    public boolean validateMissingPermFails();
 
-  public boolean validateRestrictedLocalPerm();
+    public boolean validateRestrictedLocalPerm();
 
-  public boolean validateLocalPermsInvalidName();
+    public boolean validateLocalPermsInvalidName();
 }

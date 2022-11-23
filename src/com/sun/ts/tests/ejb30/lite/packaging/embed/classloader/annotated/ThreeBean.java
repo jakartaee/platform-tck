@@ -24,8 +24,7 @@ import jakarta.ejb.Singleton;
 @Singleton
 public class ThreeBean extends BeanBase implements LocalIF {
 
-  public String getName() {
-    return "ThreeBean";
-  }
-
+    public String getName() {
+        return "ThreeBean";
+    }
 }

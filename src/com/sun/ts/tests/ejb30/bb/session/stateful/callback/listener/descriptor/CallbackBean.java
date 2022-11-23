@@ -22,13 +22,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.descriptor;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
-//@todo
-//import jakarta.ejb.Init;
+// @todo
+// import jakarta.ejb.Init;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
@@ -37,24 +36,22 @@ import jakarta.ejb.Stateful;
 // @Interceptors(
 // {StatefulCallbackListener.class}
 // )
-public class CallbackBean extends CallbackBeanBase
-    implements CallbackIF, java.io.Serializable {
-  @Resource
-  private SessionContext sctx;
+public class CallbackBean extends CallbackBeanBase implements CallbackIF, java.io.Serializable {
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBean() {
-    super();
-  }
+    public CallbackBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================= callback methods ====================================
+    // ================= callback methods ====================================
 
-  // ================== business methods ====================================
-  @Remove
-  public void removeFoo() {
-  }
-
+    // ================== business methods ====================================
+    @Remove
+    public void removeFoo() {
+    }
 }

@@ -19,50 +19,45 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class BadServlet extends GenericServlet {
 
-  // Non-zero argument constructor
-  public BadServlet(String x) throws ServletException {
-    throw new ServletException("Negative Test for createServlet");
-  }
-
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-
-    pw.println("Negative Test for createServlet Failed");
-
-    ArrayList result = (ArrayList) getServletContext()
-        .getAttribute("arraylist");
-
-    for (Object tmp : result) {
-      pw.println(tmp.toString());
-
+    // Non-zero argument constructor
+    public BadServlet(String x) throws ServletException {
+        throw new ServletException("Negative Test for createServlet");
     }
-    getServletContext().removeAttribute("arraylist");
 
-    result = StaticLog.getClear();
-    if (result != null) {
-      for (Object tmp : result) {
-        if (tmp != null) {
-          pw.println(tmp.toString());
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
+        PrintWriter pw = response.getWriter();
+
+        pw.println("Negative Test for createServlet Failed");
+
+        ArrayList result = (ArrayList) getServletContext().getAttribute("arraylist");
+
+        for (Object tmp : result) {
+            pw.println(tmp.toString());
         }
-      }
+        getServletContext().removeAttribute("arraylist");
+
+        result = StaticLog.getClear();
+        if (result != null) {
+            for (Object tmp : result) {
+                if (tmp != null) {
+                    pw.println(tmp.toString());
+                }
+            }
+        }
+        StaticLog.clear();
+        ServletTestUtil.printResult(pw, true);
     }
-    StaticLog.clear();
-    ServletTestUtil.printResult(pw, true);
-  }
 }

@@ -20,27 +20,24 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
-public class SimpleEmptyBodyTag extends SimpleTagSupport
-    implements DynamicAttributes {
+public class SimpleEmptyBodyTag extends SimpleTagSupport implements DynamicAttributes {
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    // no-op
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspWriter out = getJspContext().getOut();
-    if (getJspBody() == null) {
-      out.println("Test PASSED");
-    } else {
-      out.println("Test FAILED.  The body of the action was not empty.");
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        // no-op
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+        JspWriter out = getJspContext().getOut();
+        if (getJspBody() == null) {
+            out.println("Test PASSED");
+        } else {
+            out.println("Test FAILED.  The body of the action was not empty.");
+        }
+    }
 }

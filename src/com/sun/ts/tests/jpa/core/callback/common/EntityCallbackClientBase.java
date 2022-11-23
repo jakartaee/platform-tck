@@ -20,64 +20,61 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import java.sql.SQLException;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import java.sql.SQLException;
 
 public abstract class EntityCallbackClientBase extends PMClientBase {
-  protected EntityCallbackClientBase() {
-    super();
-  }
+    protected EntityCallbackClientBase() {
+        super();
+    }
 
-  protected Object txShouldRollback(Object b, String testName) throws Fault {
-    String reason = "";
-    try {
-      TestUtil.logTrace("Persisting: " + b.getClass().getName());
-      getEntityManager().persist(b);
-      TestUtil.logTrace("Committing: " + b.getClass().getName() + " changes");
-      getEntityTransaction().commit();
-      reason = "Expecting ArithmeticException from callback method, but got none.";
-      throw new Fault(reason);
-    } catch (ArithmeticException e) {
-      reason = "EntityCallbackClientBase: Got expected exception: "
-          + e.toString();
-      TestUtil.logTrace(reason);
-      if (!getEntityTransaction().isActive()) {
-        reason = "No Transaction was active, even though one was previously started";
-        throw new Fault(reason, e);
-      }
-    } catch (Exception e) {
-      reason = "EntityCallbackClientBase: Expecting ArithmeticException, but got unexpected exception: ["
-          + e.toString() + "]";
-      throw new Fault(reason, e);
-    }
-    TestUtil.logTrace("Clearing cache");
-    clearCache();
-    TestUtil.logTrace("Executing find");
+    protected Object txShouldRollback(Object b, String testName) throws Fault {
+        String reason = "";
+        try {
+            TestUtil.logTrace("Persisting: " + b.getClass().getName());
+            getEntityManager().persist(b);
+            TestUtil.logTrace("Committing: " + b.getClass().getName() + " changes");
+            getEntityTransaction().commit();
+            reason = "Expecting ArithmeticException from callback method, but got none.";
+            throw new Fault(reason);
+        } catch (ArithmeticException e) {
+            reason = "EntityCallbackClientBase: Got expected exception: " + e.toString();
+            TestUtil.logTrace(reason);
+            if (!getEntityTransaction().isActive()) {
+                reason = "No Transaction was active, even though one was previously started";
+                throw new Fault(reason, e);
+            }
+        } catch (Exception e) {
+            reason = "EntityCallbackClientBase: Expecting ArithmeticException, but got unexpected exception: ["
+                    + e.toString() + "]";
+            throw new Fault(reason, e);
+        }
+        TestUtil.logTrace("Clearing cache");
+        clearCache();
+        TestUtil.logTrace("Executing find");
 
-    Object p2 = null;
-    try {
-      //Transaction is marked as rollback. TransactionManger is in an undefined state. SQLException is a possibility
-      p2 = getEntityManager().find(b.getClass(), testName);
-    } catch (RuntimeException e) {
-      Throwable cause = e;
-      while (cause != null && !SQLException.class.isInstance(cause)) {
-        cause = cause.getCause();
-      }
-      if (cause == null) {
-       throw new Fault(e);
-      }
+        Object p2 = null;
+        try {
+            // Transaction is marked as rollback. TransactionManger is in an undefined state. SQLException is a
+            // possibility
+            p2 = getEntityManager().find(b.getClass(), testName);
+        } catch (RuntimeException e) {
+            Throwable cause = e;
+            while (cause != null && !SQLException.class.isInstance(cause)) {
+                cause = cause.getCause();
+            }
+            if (cause == null) {
+                throw new Fault(e);
+            }
+        }
+        if (p2 == null) {
+            reason = "EntityCallbackClientBase: Got expected result: entity with id " + testName + " was not found.";
+            TestUtil.logTrace(reason);
+        } else {
+            reason = "EntityCallbackClientBase: Unexpected result: found entity with id " + testName;
+            throw new Fault(reason);
+        }
+        return b;
     }
-    if (p2 == null) {
-      reason = "EntityCallbackClientBase: Got expected result: entity with id "
-          + testName + " was not found.";
-      TestUtil.logTrace(reason);
-    } else {
-      reason = "EntityCallbackClientBase: Unexpected result: found entity with id "
-          + testName;
-      throw new Fault(reason);
-    }
-    return b;
-  }
 }

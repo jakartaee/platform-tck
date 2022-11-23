@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.timer.service.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 

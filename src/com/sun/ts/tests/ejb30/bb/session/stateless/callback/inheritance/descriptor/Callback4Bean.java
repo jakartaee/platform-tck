@@ -22,24 +22,21 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorJ;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
 /**
- * A bean that does not contain any lifecycle methods. Its superclass contains
- * lifecycle methods, and also overrides/disables lifecycle methods in ITS
- * superclasses.
+ * A bean that does not contain any lifecycle methods. Its superclass contains lifecycle methods, and also
+ * overrides/disables lifecycle methods in ITS superclasses.
  */
 @Stateless(name = "Callback4Bean")
 @Remote({ Callback2IF.class })
 @Interceptors({ InterceptorJ.class })
 @ExcludeDefaultInterceptors
 public class Callback4Bean extends Callback4BeanSuper {
-  public Callback4Bean() {
-    super();
-  }
-
+    public Callback4Bean() {
+        super();
+    }
 }

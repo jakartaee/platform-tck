@@ -16,44 +16,40 @@
 
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundConstruct;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 public class InterceptorA extends Interceptor9 {
 
-  private static final String simpleName = "InterceptorA";
+    private static final String simpleName = "InterceptorA";
 
-  @AroundConstruct
-  @SuppressWarnings("unused")
-  private void aroundConstruct(InvocationContext ic) {
-    // Target should be null before proceed()
-    Object savedTarget = ic.getTarget();
+    @AroundConstruct
+    @SuppressWarnings("unused")
+    private void aroundConstruct(InvocationContext ic) {
+        // Target should be null before proceed()
+        Object savedTarget = ic.getTarget();
 
-    try {
-      ic.proceed();
-    } catch (Exception ex) {
-      Helper.getLogger().log(Level.SEVERE, simpleName, ex);
-      // Add a AroundConstruct record using addPostConstructRecordFor() to
-      // verify their order being invoked
-      historySingletonBean.addPostConstructRecordFor(ic.getTarget(),
-          ex.toString());
-      return;
+        try {
+            ic.proceed();
+        } catch (Exception ex) {
+            Helper.getLogger().log(Level.SEVERE, simpleName, ex);
+            // Add a AroundConstruct record using addPostConstructRecordFor() to
+            // verify their order being invoked
+            historySingletonBean.addPostConstructRecordFor(ic.getTarget(), ex.toString());
+            return;
+        }
+
+        if (savedTarget != null) {
+            historySingletonBean.addPostConstructRecordFor(ic.getTarget(), "NotNullTargetBeforeProceed");
+            return;
+        }
+
+        Helper.getLogger()
+                .logp(Level.FINE, simpleName, "aroundConstruct", "Adding aroundConstruct record: " + simpleName);
+        // Add a AroundConstruct record using addPostConstructRecordFor() to
+        // verify their order being invoked
+        historySingletonBean.addPostConstructRecordFor(ic.getTarget(), simpleName);
     }
-
-    if (savedTarget != null) {
-      historySingletonBean.addPostConstructRecordFor(ic.getTarget(),
-          "NotNullTargetBeforeProceed");
-      return;
-    }
-
-    Helper.getLogger().logp(Level.FINE, simpleName, "aroundConstruct",
-        "Adding aroundConstruct record: " + simpleName);
-    // Add a AroundConstruct record using addPostConstructRecordFor() to
-    // verify their order being invoked
-    historySingletonBean.addPostConstructRecordFor(ic.getTarget(), simpleName);
-  }
 }

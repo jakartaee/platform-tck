@@ -19,11 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.Timer;
@@ -31,39 +27,38 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+import java.io.Serializable;
+import java.util.Date;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.NEVER)
-public class SingletonTimerBean extends SharingTimerBeanBase
-    implements TimerIF, TimedObject {
+public class SingletonTimerBean extends SharingTimerBeanBase implements TimerIF, TimedObject {
 
-  // override business methods to apply tx attr NEVER
-  @Override
-  public String accessTimers() throws TestFailedException {
-    return super.accessTimers();
-  }
+    // override business methods to apply tx attr NEVER
+    @Override
+    public String accessTimers() throws TestFailedException {
+        return super.accessTimers();
+    }
 
-  @Override
-  public Timer createTimer(long duration, Serializable timerInfo) {
-    return super.createTimer(duration, timerInfo);
-  }
+    @Override
+    public Timer createTimer(long duration, Serializable timerInfo) {
+        return super.createTimer(duration, timerInfo);
+    }
 
-  @Override
-  public Timer createTimer(Date expiration, long duration,
-      Serializable timerInfo) {
-    return super.createTimer(expiration, duration, timerInfo);
-  }
+    @Override
+    public Timer createTimer(Date expiration, long duration, Serializable timerInfo) {
+        return super.createTimer(expiration, duration, timerInfo);
+    }
 
-  @Override
-  public void cancelAllTimers() {
-    super.cancelAllTimers();
-  }
+    @Override
+    public void cancelAllTimers() {
+        super.cancelAllTimers();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void createTimerRollback(long duration,
-      java.io.Serializable timerInfo) {
-    timerService.createTimer(duration, timerInfo);
-    ejbContext.setRollbackOnly();
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void createTimerRollback(long duration, java.io.Serializable timerInfo) {
+        timerService.createTimer(duration, timerInfo);
+        ejbContext.setRollbackOnly();
+    }
 }

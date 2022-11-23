@@ -17,28 +17,27 @@
 package com.sun.ts.tests.websocket.common.stringbean;
 
 /**
- * This is the object which standard implementation does not have a provider
- * for, even though its some simple String holder. It can also be used as
- * mutable string.
+ * This is the object which standard implementation does not have a provider for, even though its some simple String
+ * holder. It can also be used as mutable string.
  */
 public class StringBean {
-  private String value;
+    private String value;
 
-  public String get() {
-    return value;
-  }
+    public String get() {
+        return value;
+    }
 
-  public void set(String value) {
-    this.value = value;
-  }
+    public void set(String value) {
+        this.value = value;
+    }
 
-  @Override
-  public String toString() {
-    return "StringBean. To get a value, use rather #get() method.";
-  }
+    @Override
+    public String toString() {
+        return "StringBean. To get a value, use rather #get() method.";
+    }
 
-  public StringBean(String value) {
-    super();
-    this.value = value;
-  }
+    public StringBean(String value) {
+        super();
+        this.value = value;
+    }
 }

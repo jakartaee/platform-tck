@@ -23,18 +23,18 @@ package com.sun.ts.tests.jaxws.wsa.common;
 import jakarta.xml.ws.WebServiceException;
 
 public class AddressingHeaderException extends WebServiceException {
-  String detail;
+    String detail;
 
-  public AddressingHeaderException(String message) {
-    super(message);
-  }
+    public AddressingHeaderException(String message) {
+        super(message);
+    }
 
-  public AddressingHeaderException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public AddressingHeaderException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

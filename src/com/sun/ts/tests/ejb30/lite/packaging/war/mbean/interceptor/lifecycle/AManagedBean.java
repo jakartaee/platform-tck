@@ -20,26 +20,25 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PreDestroy;
 
 @ManagedBean("AManagedBean")
 public class AManagedBean {
 
-  public int identityHashCode() {
-    return System.identityHashCode(this);
-  }
+    public int identityHashCode() {
+        return System.identityHashCode(this);
+    }
 
-  // @SuppressWarnings("unused")
-  // @PostConstruct
-  // private void postConstruct() {
-  // Helper.getLogger().info("In PostConstruct of " + this);
-  // }
+    // @SuppressWarnings("unused")
+    // @PostConstruct
+    // private void postConstruct() {
+    // Helper.getLogger().info("In PostConstruct of " + this);
+    // }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In PreDestroy of " + this);
-  }
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In PreDestroy of " + this);
+    }
 }

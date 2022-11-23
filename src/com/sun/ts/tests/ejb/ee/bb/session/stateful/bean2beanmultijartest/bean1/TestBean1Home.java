@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface TestBean1Home extends EJBHome {
-  public TestBean1 create(Properties p) throws RemoteException, CreateException;
+    public TestBean1 create(Properties p) throws RemoteException, CreateException;
 }

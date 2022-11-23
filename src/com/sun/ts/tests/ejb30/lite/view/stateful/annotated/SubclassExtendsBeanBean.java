@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.lite.view.common.SuperclassBean;
-
 import jakarta.ejb.Stateful;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
@@ -30,18 +29,18 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 // only expose no-interface view. BusinessLocalIF1, which is implemented by
 // SuperclassBean is not exposed as business interface.
 public class SubclassExtendsBeanBean extends SuperclassBean {
-  @Override
-  public String[] businessMethodLocal1(String[] s) {
-    try {
-      sessionContext.getBusinessObject(BusinessLocalIF1.class);
-    } catch (IllegalStateException e) {
-      s[0] = IllegalStateException.class.getSimpleName();
-    }
+    @Override
+    public String[] businessMethodLocal1(String[] s) {
+        try {
+            sessionContext.getBusinessObject(BusinessLocalIF1.class);
+        } catch (IllegalStateException e) {
+            s[0] = IllegalStateException.class.getSimpleName();
+        }
 
-    Class<SubclassExtendsBeanBean> intf = SubclassExtendsBeanBean.class;
-    SubclassExtendsBeanBean b = sessionContext.getBusinessObject(intf);
-    b.toString();
-    s[1] = intf.getSimpleName();
-    return s;
-  }
+        Class<SubclassExtendsBeanBean> intf = SubclassExtendsBeanBean.class;
+        SubclassExtendsBeanBean b = sessionContext.getBusinessObject(intf);
+        b.toString();
+        s[1] = intf.getSimpleName();
+        return s;
+    }
 }

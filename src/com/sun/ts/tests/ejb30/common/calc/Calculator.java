@@ -22,14 +22,13 @@ package com.sun.ts.tests.ejb30.common.calc;
 
 /**
  * A root (local by default) calculator interface.
- * 
+ *
  * @author Cheng Fang
  */
-
 public interface Calculator {
-  public int add(int a, int b);
+    public int add(int a, int b);
 
-  public int subtract(int a, int b);
+    public int subtract(int a, int b);
 
-  public void throwIt() throws CalculatorException;
+    public void throwIt() throws CalculatorException;
 }

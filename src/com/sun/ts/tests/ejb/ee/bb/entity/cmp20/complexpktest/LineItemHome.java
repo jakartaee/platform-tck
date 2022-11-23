@@ -20,18 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface LineItemHome extends EJBHome {
-  public LineItem create(String id, int quantity)
-      throws RemoteException, CreateException;
+    public LineItem create(String id, int quantity) throws RemoteException, CreateException;
 
-  public LineItem findByPrimaryKey(String id)
-      throws RemoteException, FinderException;
+    public LineItem findByPrimaryKey(String id) throws RemoteException, FinderException;
 
-  public int selectCountByBrandName() throws RemoteException;
+    public int selectCountByBrandName() throws RemoteException;
 }

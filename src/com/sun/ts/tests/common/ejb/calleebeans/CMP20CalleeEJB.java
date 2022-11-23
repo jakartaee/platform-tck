@@ -20,48 +20,45 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
-
 import jakarta.ejb.CreateException;
+import java.util.Properties;
 
 public abstract class CMP20CalleeEJB extends CMP20Wrapper {
 
-  /** Modify arg, and call CMP20Wrapper create method */
-  public Integer ejbCreate(Properties props, int id, String brandName,
-      float price, SimpleArgument arg) throws CreateException {
+    /** Modify arg, and call CMP20Wrapper create method */
+    public Integer ejbCreate(Properties props, int id, String brandName, float price, SimpleArgument arg)
+            throws CreateException {
 
-    try {
-      TestUtil.init(props);
-      TestUtil.logTrace("[CMP20Callee] ejbCreate()");
-      super.ejbCreate(props, id, brandName, price);
-      logArgStatus("create input", arg);
-      arg.modify();
-      logArgStatus("create output", arg);
-    } catch (Exception e) {
-      TestUtil.logErr("[CMP20Callee] Caught exception: ", e);
-      throw new CreateException(e.getMessage());
+        try {
+            TestUtil.init(props);
+            TestUtil.logTrace("[CMP20Callee] ejbCreate()");
+            super.ejbCreate(props, id, brandName, price);
+            logArgStatus("create input", arg);
+            arg.modify();
+            logArgStatus("create output", arg);
+        } catch (Exception e) {
+            TestUtil.logErr("[CMP20Callee] Caught exception: ", e);
+            throw new CreateException(e.getMessage());
+        }
+
+        return null;
     }
 
-    return null;
-  }
+    public void ejbPostCreate(Properties props, int id, String brandName, float price, SimpleArgument arg)
+            throws CreateException {
 
-  public void ejbPostCreate(Properties props, int id, String brandName,
-      float price, SimpleArgument arg) throws CreateException {
+        TestUtil.logTrace("[CMP20Callee] ejbPostCreate()");
+    }
 
-    TestUtil.logTrace("[CMP20Callee] ejbPostCreate()");
-  }
+    public void call(Properties props, SimpleArgument arg) {
+        logArgStatus("input", arg);
+        arg.modify();
+        logArgStatus("output", arg);
+    }
 
-  public void call(Properties props, SimpleArgument arg) {
-    logArgStatus("input", arg);
-    arg.modify();
-    logArgStatus("output", arg);
-  }
-
-  public void logArgStatus(String msg, SimpleArgument arg) {
-    TestUtil.logTrace("[CMP20Callee] " + msg + " arg = " + arg.getValue());
-  }
-
+    public void logArgStatus(String msg, SimpleArgument arg) {
+        TestUtil.logTrace("[CMP20Callee] " + msg + " arg = " + arg.getValue());
+    }
 }

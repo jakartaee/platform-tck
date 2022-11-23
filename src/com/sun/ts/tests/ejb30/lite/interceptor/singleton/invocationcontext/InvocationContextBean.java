@@ -22,17 +22,15 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.invocationcontext;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextTestImpl;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 @Singleton
-public class InvocationContextBean extends InvocationContextBase
-    implements InvocationContextIF {
-  @AroundInvoke
-  private Object intercep(InvocationContext inv) throws Exception {
-    InvocationContextTestImpl.interceptAll(inv);
-    return inv.proceed();
-  }
+public class InvocationContextBean extends InvocationContextBase implements InvocationContextIF {
+    @AroundInvoke
+    private Object intercep(InvocationContext inv) throws Exception {
+        InvocationContextTestImpl.interceptAll(inv);
+        return inv.proceed();
+    }
 }

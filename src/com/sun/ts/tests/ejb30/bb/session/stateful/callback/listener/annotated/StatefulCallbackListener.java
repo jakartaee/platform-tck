@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.PostActivate;
@@ -30,64 +29,62 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A callback listerner for stateful session beans. Callback methods may throw
- * RuntimeException. They are declared in the throws list, though not necessary.
+ * A callback listerner for stateful session beans. Callback methods may throw RuntimeException. They are declared in
+ * the throws list, though not necessary.
  */
 public class StatefulCallbackListener {
 
-  public StatefulCallbackListener() {
-    super();
-  }
+    public StatefulCallbackListener() {
+        super();
+    }
 
-  @PostConstruct
-  @PostActivate
-  private void myCreate(InvocationContext inv) throws RuntimeException {
-    // public void myCreate(CallbackBean bean) throws RuntimeException {
-    CallbackBean bean = (CallbackBean) inv.getTarget();
-    bean.setPostConstructCalled(true);
-    TLogger.log("PostConstruct or PostActivate method in " + this
-        + " called for bean " + bean);
-    if (bean.getEJBContext() != null) {
-      bean.setInjectionDone(true);
+    @PostConstruct
+    @PostActivate
+    private void myCreate(InvocationContext inv) throws RuntimeException {
+        // public void myCreate(CallbackBean bean) throws RuntimeException {
+        CallbackBean bean = (CallbackBean) inv.getTarget();
+        bean.setPostConstructCalled(true);
+        TLogger.log("PostConstruct or PostActivate method in " + this + " called for bean " + bean);
+        if (bean.getEJBContext() != null) {
+            bean.setInjectionDone(true);
+        }
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+        // try {
+        // bean.getEJBContext().setRollbackOnly();
+        // } catch (IllegalStateException e) {
+        // //just log it. The test will fail inside the business method.
+        // TLogger.log("WARN: failed to setRollbackOnly inside PostConstruct or
+        // PostActivate");
+        // }
     }
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    }
-    // try {
-    // bean.getEJBContext().setRollbackOnly();
-    // } catch (IllegalStateException e) {
-    // //just log it. The test will fail inside the business method.
-    // TLogger.log("WARN: failed to setRollbackOnly inside PostConstruct or
-    // PostActivate");
-    // }
-  }
 
-  @PreDestroy
-  @PrePassivate
-  private void myRemove(InvocationContext inv) throws RuntimeException {
-    // public void myRemove(Object bean) throws RuntimeException {
-    Object bean = inv.getTarget();
-    if (bean instanceof CallbackBean) {
-      CallbackBean b = (CallbackBean) bean;
-      b.setPreDestroyCalled(true);
-      TLogger.log("PreDestroy or PrePassivate method in " + this
-          + " called for bean " + bean);
+    @PreDestroy
+    @PrePassivate
+    private void myRemove(InvocationContext inv) throws RuntimeException {
+        // public void myRemove(Object bean) throws RuntimeException {
+        Object bean = inv.getTarget();
+        if (bean instanceof CallbackBean) {
+            CallbackBean b = (CallbackBean) bean;
+            b.setPreDestroyCalled(true);
+            TLogger.log("PreDestroy or PrePassivate method in " + this + " called for bean " + bean);
+        }
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    }
-  }
 
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    return inv.proceed();
-  }
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        return inv.proceed();
+    }
 }

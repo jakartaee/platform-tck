@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.cm.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
-import jakarta.ejb.EJBObject;
-
 public interface Helper extends EJBObject {
-  public void setData(Hashtable d) throws RemoteException;
+    public void setData(Hashtable d) throws RemoteException;
 
-  public Hashtable getData() throws RemoteException;
+    public Hashtable getData() throws RemoteException;
 }

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class LongBeanEJB extends StatefulWrapper {
 
-  public boolean testLongEntry() {
-    return TestCode.testLongEntry(nctx);
-  }
-
+    public boolean testLongEntry() {
+        return TestCode.testLongEntry(nctx);
+    }
 }

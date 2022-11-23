@@ -22,10 +22,9 @@ package com.sun.ts.tests.ejb30.lite.async.common.metadata;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
-//No @Asynchronous
-abstract public class BeanClassLevel0BeanBase
-    extends InterfaceTypeLevelBeanBase {
-  public void syncMethodException0() throws CalculatorException {
-    throw new CalculatorException("syncMethodException0");
-  }
+// No @Asynchronous
+public abstract class BeanClassLevel0BeanBase extends InterfaceTypeLevelBeanBase {
+    public void syncMethodException0() throws CalculatorException {
+        throw new CalculatorException("syncMethodException0");
+    }
 }

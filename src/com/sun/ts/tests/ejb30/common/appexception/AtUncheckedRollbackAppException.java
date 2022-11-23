@@ -20,38 +20,35 @@
 
 package com.sun.ts.tests.ejb30.common.appexception;
 
+import jakarta.ejb.ApplicationException;
 import java.io.Serializable;
 
-import jakarta.ejb.ApplicationException;
-
 @ApplicationException(rollback = true)
-public class AtUncheckedRollbackAppException extends RuntimeException
-    implements Serializable {
+public class AtUncheckedRollbackAppException extends RuntimeException implements Serializable {
 
-  public AtUncheckedRollbackAppException() {
-    super();
-  }
+    public AtUncheckedRollbackAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public AtUncheckedRollbackAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public AtUncheckedRollbackAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public AtUncheckedRollbackAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public AtUncheckedRollbackAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public AtUncheckedRollbackAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public AtUncheckedRollbackAppException(Throwable cause) {
+        super(cause);
+    }
 }

@@ -21,47 +21,44 @@
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest;
 
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-
 import com.sun.ts.tests.jaxws.common.*;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class SwaTestClient2 extends SOAPClient {
 
-  public SwaTestClient2(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public SwaTestClient2(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public SwaTestClient2(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
+    public SwaTestClient2(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
 
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace("http://SwaTestService.org/wsdl");
-    stubContext.setService("WSIDLSwaTestService");
-    stubContext.setPort("SwaTestTwoPort");
-    stubContext.setEndpointInterface(SwaTest2.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://SwaTestService.org/wsdl");
+        stubContext.setService("WSIDLSwaTestService");
+        stubContext.setPort("SwaTestTwoPort");
+        stubContext.setEndpointInterface(SwaTest2.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsidlswatest.endpoint.2";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsidlswatest.endpoint.2";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsidlswatest.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsidlswatest.wsdlloc.1";
+    }
 
-  public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString putMultipleAttachments(
-      com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestPut request,
-      jakarta.activation.DataHandler attach1,
-      jakarta.activation.DataHandler attach2) throws Exception {
-    return ((SwaTest2) stubContext.getStub()).putMultipleAttachments(request,
-        attach1, attach2);
-  }
+    public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString putMultipleAttachments(
+            com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestPut request,
+            jakarta.activation.DataHandler attach1,
+            jakarta.activation.DataHandler attach2)
+            throws Exception {
+        return ((SwaTest2) stubContext.getStub()).putMultipleAttachments(request, attach1, attach2);
+    }
 
-  public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString echoNoAttachments(
-      com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestString request)
-      throws Exception {
-    return ((SwaTest2) stubContext.getStub()).echoNoAttachments(request);
-  }
+    public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString echoNoAttachments(
+            com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestString request) throws Exception {
+        return ((SwaTest2) stubContext.getStub()).echoNoAttachments(request);
+    }
 }

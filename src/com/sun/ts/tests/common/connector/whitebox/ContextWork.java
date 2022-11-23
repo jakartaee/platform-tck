@@ -16,119 +16,114 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkContext;
 import jakarta.resource.spi.work.WorkContextProvider;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * this class is used to help facilitate the testing of both nested
- * work objects/instances as well as nested (work) contexts.  In 
+ * work objects/instances as well as nested (work) contexts.  In
  * order to properly use this class to test nested work and contexts,
  * you should create an instance of this class, add a context to it
  * by using the addWorkContext() method, then add a NestedWork
- * instance to it - where the NestedWork instance will need to 
+ * instance to it - where the NestedWork instance will need to
  * have its own context assigned to it BEFOR it gets added into
  * this class.
  *
  */
 public class ContextWork implements Work, WorkContextProvider {
 
-  private List<WorkContext> contextsList = new ArrayList<WorkContext>();
+    private List<WorkContext> contextsList = new ArrayList<WorkContext>();
 
-  private WorkManager wm;
+    private WorkManager wm;
 
-  private NestWork nw = null;
+    private NestWork nw = null;
 
-  private String name = "ContextWork.name";
+    private String name = "ContextWork.name";
 
-  private String description = "ContextWork.description";
+    private String description = "ContextWork.description";
 
-  public ContextWork(WorkManager wm) {
-    this.wm = wm;
-    Debug.trace("WorkImpl.constructor");
-  }
-
-  public void addNestedWork(NestWork val) {
-    nw = val;
-  }
-
-  public NestWork getNestWork() {
-    return nw;
-  }
-
-  public WorkManager getWorkManager() {
-    return wm;
-  }
-
-  @Override
-  public List<WorkContext> getWorkContexts() {
-    return contextsList;
-  }
-
-  public void setWorkContexts(List<WorkContext> val) {
-    contextsList = val;
-  }
-
-  public void addWorkContext(WorkContext ic) {
-    contextsList.add(ic);
-  }
-
-  @Override
-  public void release() {
-    Debug.trace("WorkImpl.release");
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void run() {
-    try {
-      Debug.trace("ContextWork.run");
-      if (nw != null) {
-        wm.doWork(nw);
-      }
-
-      // we expect nw to be executed with no SIC and thus an unauthenticated
-      // user...but what the work manager chooses to do with that is not
-      // defined.
-      Debug.trace(
-          "ContextWork.run:  just executed wm.doWork(nw) where nw has no SIC");
-      if ((nw != null) && (nw.hasContextEntry())) {
-        String str = "(ContextWork) ";
-        str += "It appears that Security context is being inherited from parent SIC.";
-        Debug.trace(str);
-      }
-
-    } catch (WorkException we) {
-      Debug.trace(
-          "ContextWork.run:  got WorkException - which is fine since child had no SIC");
-      if ((nw != null) && (!nw.hasContextEntry())) {
-        // excellant - this is what we expected (for Connector:SPEC:305)
-        // this verifies that nw did not inherit the SIC from
-        // this (ie its parent) work class.
-        String str = "Security Context info not inherited from parent Work";
-        ConnectorStatus.getConnectorStatus().logState(str);
-        Debug.trace(str);
-      } else if ((nw != null) && (nw.hasContextEntry())) {
-        // this verified Connector:SPEC:210 becaue we should have
-        // a SIC with invalid creds that could not be authenticated
-        String str = "Security Context info had invalid creds.";
-        ConnectorStatus.getConnectorStatus().logState(str);
-        Debug.trace(str);
-      }
+    public ContextWork(WorkManager wm) {
+        this.wm = wm;
+        Debug.trace("WorkImpl.constructor");
     }
-  }
 
+    public void addNestedWork(NestWork val) {
+        nw = val;
+    }
+
+    public NestWork getNestWork() {
+        return nw;
+    }
+
+    public WorkManager getWorkManager() {
+        return wm;
+    }
+
+    @Override
+    public List<WorkContext> getWorkContexts() {
+        return contextsList;
+    }
+
+    public void setWorkContexts(List<WorkContext> val) {
+        contextsList = val;
+    }
+
+    public void addWorkContext(WorkContext ic) {
+        contextsList.add(ic);
+    }
+
+    @Override
+    public void release() {
+        Debug.trace("WorkImpl.release");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void run() {
+        try {
+            Debug.trace("ContextWork.run");
+            if (nw != null) {
+                wm.doWork(nw);
+            }
+
+            // we expect nw to be executed with no SIC and thus an unauthenticated
+            // user...but what the work manager chooses to do with that is not
+            // defined.
+            Debug.trace("ContextWork.run:  just executed wm.doWork(nw) where nw has no SIC");
+            if ((nw != null) && (nw.hasContextEntry())) {
+                String str = "(ContextWork) ";
+                str += "It appears that Security context is being inherited from parent SIC.";
+                Debug.trace(str);
+            }
+
+        } catch (WorkException we) {
+            Debug.trace("ContextWork.run:  got WorkException - which is fine since child had no SIC");
+            if ((nw != null) && (!nw.hasContextEntry())) {
+                // excellant - this is what we expected (for Connector:SPEC:305)
+                // this verifies that nw did not inherit the SIC from
+                // this (ie its parent) work class.
+                String str = "Security Context info not inherited from parent Work";
+                ConnectorStatus.getConnectorStatus().logState(str);
+                Debug.trace(str);
+            } else if ((nw != null) && (nw.hasContextEntry())) {
+                // this verified Connector:SPEC:210 becaue we should have
+                // a SIC with invalid creds that could not be authenticated
+                String str = "Security Context info had invalid creds.";
+                ConnectorStatus.getConnectorStatus().logState(str);
+                Debug.trace(str);
+            }
+        }
+    }
 }

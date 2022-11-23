@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejbref.scope;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface ReferencingBean extends EJBObject {
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public String whoIsYourPartner(Properties p) throws RemoteException;
+    public String whoIsYourPartner(Properties p) throws RemoteException;
 }

@@ -25,11 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class CMP11ExternalEJB extends CMP11Wrapper {
 
-  /**
-   * Method used to identify this bean (only available for this bean).
-   */
-  public boolean isTestCMP11External() {
-    TestUtil.logTrace("CMP11External: isTestCMP11External()");
-    return true;
-  }
+    /**
+     * Method used to identify this bean (only available for this bean).
+     */
+    public boolean isTestCMP11External() {
+        TestUtil.logTrace("CMP11External: isTestCMP11External()");
+        return true;
+    }
 }

@@ -21,14 +21,13 @@ package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.annotated
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClassLevelAnnotatedAccessTimeoutBeanBase;
-
 import jakarta.ejb.Stateful;
 
 /**
- * All @AccessTimeout metadata are specified in superclass (either class-level
- * or method-level or method-level overriding class-level).
+ * All @AccessTimeout metadata are specified in superclass (either class-level or method-level or method-level
+ * overriding class-level).
  */
 @Stateful
-public class AnnotatedSuperClassAccessTimeoutBean extends
-    ClassLevelAnnotatedAccessTimeoutBeanBase implements AccessTimeoutIF {
+public class AnnotatedSuperClassAccessTimeoutBean extends ClassLevelAnnotatedAccessTimeoutBeanBase
+        implements AccessTimeoutIF {
 }

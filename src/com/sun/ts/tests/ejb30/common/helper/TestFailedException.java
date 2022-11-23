@@ -23,35 +23,33 @@ package com.sun.ts.tests.ejb30.common.helper;
 import java.io.Serializable;
 
 /**
- * An application exception for reporting test failure status and reason back to
- * test client.
+ * An application exception for reporting test failure status and reason back to test client.
  */
 public class TestFailedException extends Exception implements Serializable {
 
-  public TestFailedException() {
-    super();
-  }
+    public TestFailedException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public TestFailedException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public TestFailedException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public TestFailedException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public TestFailedException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public TestFailedException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public TestFailedException(Throwable cause) {
+        super(cause);
+    }
 }

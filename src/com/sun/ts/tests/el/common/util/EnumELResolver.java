@@ -21,5 +21,7 @@
 package com.sun.ts.tests.el.common.elresolver;
 
 public enum EnumELResolver {
-  EMPLOYEE_ELRESOLVER, VARIABLE_ELRESOLVER, VECT_ELRESOLVER;
+    EMPLOYEE_ELRESOLVER,
+    VARIABLE_ELRESOLVER,
+    VECT_ELRESOLVER;
 }

@@ -64,30 +64,29 @@ import jakarta.servlet.ServletContextListener;
 
 public final class ContextListener implements ServletContextListener {
 
-  // The servlet context with which we are associated.
-  private ServletContext context = null;
+    // The servlet context with which we are associated.
+    private ServletContext context = null;
 
-  public void contextDestroyed(ServletContextEvent event) {
-    createAttribute("ContextDestroyed");
-    this.context = null;
-  }
-
-  public void contextInitialized(ServletContextEvent event) {
-    this.context = event.getServletContext();
-    createAttribute("ContextInitialized");
-  }
-
-  private void createAttribute(String s) {
-    String tmp = null;
-    Object o = context.getAttribute("ContextListener");
-    if (o != null) {
-      if (o instanceof String) {
-        tmp = (String) o + s;
-      }
-    } else {
-      tmp = s;
+    public void contextDestroyed(ServletContextEvent event) {
+        createAttribute("ContextDestroyed");
+        this.context = null;
     }
-    context.setAttribute("ContextListener", tmp);
-  }
 
+    public void contextInitialized(ServletContextEvent event) {
+        this.context = event.getServletContext();
+        createAttribute("ContextInitialized");
+    }
+
+    private void createAttribute(String s) {
+        String tmp = null;
+        Object o = context.getAttribute("ContextListener");
+        if (o != null) {
+            if (o instanceof String) {
+                tmp = (String) o + s;
+            }
+        } else {
+            tmp = s;
+        }
+        context.setAttribute("ContextListener", tmp);
+    }
 }

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class TopicBeanEJB extends CMP11Wrapper {
 
-  public boolean checkYourTopic() {
-    return TopicCode.checkYourTopic(nctx);
-  }
-
+    public boolean checkYourTopic() {
+        return TopicCode.checkYourTopic(nctx);
+    }
 }

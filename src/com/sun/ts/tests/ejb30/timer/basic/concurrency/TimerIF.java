@@ -20,25 +20,24 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.concurrency;
 
+import jakarta.ejb.Timer;
 import java.util.Date;
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Timer;
-
 public interface TimerIF {
-  public void cancelAllTimers();
+    public void cancelAllTimers();
 
-  public Future<Timer> createTimer(String name, Date d);
+    public Future<Timer> createTimer(String name, Date d);
 
-  public int getAndResetResult();
+    public int getAndResetResult();
 
-  public void setIncrement(int i);
+    public void setIncrement(int i);
 
-  public void readLockBusyAdd();
+    public void readLockBusyAdd();
 
-  public Future<String> lookupTimerService();
+    public Future<String> lookupTimerService();
 
-  public boolean isResultComplete(int expected);
+    public boolean isResultComplete(int expected);
 
-  public void resetResult();
+    public void resetResult();
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -36,17 +35,17 @@ import jakarta.ejb.Stateless;
 // )
 public class CallbackBean extends CallbackBeanBase implements CallbackIF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBean() {
-    super();
-  }
+    public CallbackBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

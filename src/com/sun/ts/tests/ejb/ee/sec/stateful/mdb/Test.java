@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Test extends EJBObject {
-  public boolean EjbNotAuthz() throws RemoteException;
+    public boolean EjbNotAuthz() throws RemoteException;
 
-  public boolean EjbIsAuthz() throws RemoteException;
+    public boolean EjbIsAuthz() throws RemoteException;
 }

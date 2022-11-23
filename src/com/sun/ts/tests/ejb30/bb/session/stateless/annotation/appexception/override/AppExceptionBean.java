@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.appexception.over
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionLocalIF;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 
@@ -35,6 +34,5 @@ import jakarta.ejb.Stateless;
 // Stateless BMT and MDB BMT beans cannot have an active transaction when their
 // business method completes.
 // @TransactionManagement(TransactionManagementType.BEAN)
-public class AppExceptionBean extends AppExceptionBeanBase
-    implements AppExceptionIF, AppExceptionLocalIF {
+public class AppExceptionBean extends AppExceptionBeanBase implements AppExceptionIF, AppExceptionLocalIF {
 }

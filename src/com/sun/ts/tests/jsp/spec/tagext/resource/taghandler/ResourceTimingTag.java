@@ -20,37 +20,36 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
-import java.io.IOException;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.JMSException;
 import jakarta.jms.Queue;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class ResourceTimingTag extends TagSupport {
 
-  @Resource(name = "myQueue")
-  private Queue myQueue;
+    @Resource(name = "myQueue")
+    private Queue myQueue;
 
-  private String queueName;
+    private String queueName;
 
-  public void setQueueName(String ignoreThis) throws JMSException {
-    queueName = myQueue.getQueueName();
-  }
-
-  public int doStartTag() throws JspException {
-
-    JspWriter out = pageContext.getOut();
-
-    try {
-      if (queueName.equals("MY_QUEUE"))
-        ;
-      out.println("Test PASSED");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected Exception", ioe);
+    public void setQueueName(String ignoreThis) throws JMSException {
+        queueName = myQueue.getQueueName();
     }
-    return SKIP_BODY;
-  }
+
+    public int doStartTag() throws JspException {
+
+        JspWriter out = pageContext.getOut();
+
+        try {
+            if (queueName.equals("MY_QUEUE"))
+                ;
+            out.println("Test PASSED");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected Exception", ioe);
+        }
+        return SKIP_BODY;
+    }
 }

@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
 public interface AcceptLocalIF extends AcceptIF {
-
 }

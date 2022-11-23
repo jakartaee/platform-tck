@@ -23,30 +23,29 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 import java.util.List;
 
 public interface SessionSyncIF {
-  public static final String afterBegin = "afterBegin";
+    public static final String afterBegin = "afterBegin";
 
-  public static final String beforeCompletion = "beforeCompletion";
+    public static final String beforeCompletion = "beforeCompletion";
 
-  public static final String afterCompletion = "afterCompletion";
+    public static final String afterCompletion = "afterCompletion";
 
-  public static final String getHistory = "getHistory";
+    public static final String getHistory = "getHistory";
 
-  public static final String aroundInvoke1 = "aroundInvoke1";
+    public static final String aroundInvoke1 = "aroundInvoke1";
 
-  public static final String aroundInvoke2 = "aroundInvoke2";
+    public static final String aroundInvoke2 = "aroundInvoke2";
 
-  /**
-   * Gets the sequence of invocations of SessionSynchronization callbacks
-   * 
-   * @return a read-only copy of the callback invocation history
-   */
-  public List<String> getHistory();
+    /**
+     * Gets the sequence of invocations of SessionSynchronization callbacks
+     *
+     * @return a read-only copy of the callback invocation history
+     */
+    public List<String> getHistory();
 
-  /**
-   * Adds an item to the history of SessionSynchronization callbacks.
-   * 
-   * @param s
-   */
-  public void addToHistory(String s);
-
+    /**
+     * Adds an item to the history of SessionSynchronization callbacks.
+     *
+     * @param s
+     */
+    public void addToHistory(String s);
 }

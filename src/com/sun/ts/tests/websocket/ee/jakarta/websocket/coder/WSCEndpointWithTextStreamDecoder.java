@@ -20,7 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,35 +30,33 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(decoders = InitDestroyTextStreamDecoder.class)
-public class WSCEndpointWithTextStreamDecoder
-    extends AnnotatedClientEndpoint<StringBean> {
+public class WSCEndpointWithTextStreamDecoder extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSCEndpointWithTextStreamDecoder() {
-    super(new StringBeanClientEndpoint());
-  }
+    public WSCEndpointWithTextStreamDecoder() {
+        super(new StringBeanClientEndpoint());
+    }
 
-  @Override
-  @OnMessage
-  public void onMessage(StringBean msg) {
-    super.onMessage(msg);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(StringBean msg) {
+        super.onMessage(msg);
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
-
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 }

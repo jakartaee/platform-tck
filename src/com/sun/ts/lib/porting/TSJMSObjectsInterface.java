@@ -23,42 +23,33 @@ package com.sun.ts.lib.porting;
 import jakarta.jms.*;
 
 /**
- * This is the TSJMSObjectsInterface. An implementation of this interface must
- * be provided by each JMS implementation to support their own implementation of
- * getting administered objects.
+ * This is the TSJMSObjectsInterface. An implementation of this interface must be provided by each JMS implementation to
+ * support their own implementation of getting administered objects.
  *
  */
 public interface TSJMSObjectsInterface {
-  /**
-   * This method allows JMS implementation to get Queue
-   */
+    /**
+     * This method allows JMS implementation to get Queue
+     */
+    public Queue getQueue(String name) throws Exception;
 
-  public Queue getQueue(String name) throws Exception;
+    /**
+     * This method allows JMS implementation to get Topic
+     */
+    public Topic getTopic(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get Topic
-   */
+    /**
+     * This method allows JMS implementation to get TopicConnectionFactory
+     */
+    public TopicConnectionFactory getTopicConnectionFactory(String name) throws Exception;
 
-  public Topic getTopic(String name) throws Exception;
+    /**
+     * This method allows JMS implementation to get QueueConnectionFactory
+     */
+    public QueueConnectionFactory getQueueConnectionFactory(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get TopicConnectionFactory
-   */
-
-  public TopicConnectionFactory getTopicConnectionFactory(String name)
-      throws Exception;
-
-  /**
-   * This method allows JMS implementation to get QueueConnectionFactory
-   */
-
-  public QueueConnectionFactory getQueueConnectionFactory(String name)
-      throws Exception;
-
-  /**
-   * This method allows JMS implementation to get ConnectionFactory
-   */
-
-  public ConnectionFactory getConnectionFactory(String name) throws Exception;
-
+    /**
+     * This method allows JMS implementation to get ConnectionFactory
+     */
+    public ConnectionFactory getConnectionFactory(String name) throws Exception;
 }

@@ -24,6 +24,5 @@ package com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2;
 @jakarta.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl")
 @jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface HandlerChainTest {
-  public String helloWorld(String str);
-
+    public String helloWorld(String str);
 }

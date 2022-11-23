@@ -24,5 +24,5 @@ import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.RemoveException;
 
 public interface BeanC extends EJBLocalObject {
-  public boolean helloC() throws RemoveException;
+    public boolean helloC() throws RemoveException;
 }

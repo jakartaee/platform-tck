@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.statetest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface CounterHome extends EJBHome {
-  public Counter create() throws RemoteException, CreateException;
+    public Counter create() throws RemoteException, CreateException;
 }

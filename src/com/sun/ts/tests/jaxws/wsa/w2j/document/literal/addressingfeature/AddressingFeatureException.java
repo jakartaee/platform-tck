@@ -22,18 +22,18 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature;
 import jakarta.xml.ws.WebServiceException;
 
 public class AddressingFeatureException extends WebServiceException {
-  String detail;
+    String detail;
 
-  public AddressingFeatureException(String message) {
-    super(message);
-  }
+    public AddressingFeatureException(String message) {
+        super(message);
+    }
 
-  public AddressingFeatureException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public AddressingFeatureException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

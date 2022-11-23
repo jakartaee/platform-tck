@@ -58,83 +58,74 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srevent;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void constructorTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void constructorTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
 
-    ServletRequestEvent sre = new ServletRequestEvent(getServletContext(),
-        request);
-    if (sre != null) {
-      passed = true;
-    } else {
-      passed = false;
-      pw.println("ServletRequstEvent retuirned a null");
+        ServletRequestEvent sre = new ServletRequestEvent(getServletContext(), request);
+        if (sre != null) {
+            passed = true;
+        } else {
+            passed = false;
+            pw.println("ServletRequstEvent retuirned a null");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void getServletRequestTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void getServletRequestTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
 
-    ServletRequestEvent sre = new ServletRequestEvent(getServletContext(),
-        request);
-    if (sre != null) {
-      ServletRequest actual = sre.getServletRequest();
-      if (!request.equals(actual)) {
-        passed = false;
-        pw.println(
-            "getServletRequest() did not return the same request used in the constructor");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("ServletRequstEvent retuirned a null");
+        ServletRequestEvent sre = new ServletRequestEvent(getServletContext(), request);
+        if (sre != null) {
+            ServletRequest actual = sre.getServletRequest();
+            if (!request.equals(actual)) {
+                passed = false;
+                pw.println("getServletRequest() did not return the same request used in the constructor");
+            } else {
+                passed = true;
+            }
+        } else {
+            passed = false;
+            pw.println("ServletRequstEvent retuirned a null");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void getServletContextTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void getServletContextTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
 
-    ServletRequestEvent sre = new ServletRequestEvent(getServletContext(),
-        request);
-    if (sre != null) {
-      ServletContext actual = sre.getServletContext();
-      if (!getServletContext().equals(actual)) {
-        passed = false;
-        pw.println(
-            "getServletContext() did not return the same context used in the constructor");
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("ServletRequstEvent retuirned a null");
+        ServletRequestEvent sre = new ServletRequestEvent(getServletContext(), request);
+        if (sre != null) {
+            ServletContext actual = sre.getServletContext();
+            if (!getServletContext().equals(actual)) {
+                passed = false;
+                pw.println("getServletContext() did not return the same context used in the constructor");
+            } else {
+                passed = true;
+            }
+        } else {
+            passed = false;
+            pw.println("ServletRequstEvent retuirned a null");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
 }

@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 public interface InheritedInterface {
-  public String hello(String hello);
+    public String hello(String hello);
 
-  public String bye(String bye);
+    public String bye(String bye);
 }

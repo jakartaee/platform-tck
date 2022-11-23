@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
-import java.io.IOException;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class IncludeTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    String path = "/include/IncludedServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.include(request, response);
-  }
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path = "/include/IncludedServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.include(request, response);
+    }
 }

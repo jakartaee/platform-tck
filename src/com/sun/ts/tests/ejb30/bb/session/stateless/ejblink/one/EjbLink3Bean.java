@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.one;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
@@ -33,31 +32,31 @@ import jakarta.ejb.Stateless;
 @Local({})
 
 /*
- * This bean is to be packaged in the same ejb-jar as EjbLink2Bean. bean2 calls
- * bean3.call(), but this bean does not call any other beans.
+ * This bean is to be packaged in the same ejb-jar as EjbLink2Bean. bean2 calls bean3.call(), but this bean does not
+ * call any other beans.
  */
 public class EjbLink3Bean extends EjbLinkBeanBase implements EjbLinkIF {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public EjbLink3Bean() {
-  }
+    public EjbLink3Bean() {
+    }
 
-  public void remove() {
-  }
+    public void remove() {
+    }
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  public void callThree() throws TestFailedException {
-    throw new IllegalStateException("Cannot call bean3 from bean3");
-  }
+    public void callThree() throws TestFailedException {
+        throw new IllegalStateException("Cannot call bean3 from bean3");
+    }
 
-  public void callTwo() throws TestFailedException {
-    throw new IllegalStateException("Cannot call bean2 from bean3");
-  }
+    public void callTwo() throws TestFailedException {
+        throw new IllegalStateException("Cannot call bean2 from bean3");
+    }
 
-  public void callOne() throws TestFailedException {
-    throw new IllegalStateException("Cannot call bean1 from bean3");
-  }
+    public void callOne() throws TestFailedException {
+        throw new IllegalStateException("Cannot call bean1 from bean3");
+    }
 }

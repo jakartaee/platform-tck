@@ -25,31 +25,29 @@ import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JDLR4003Client extends SOAPClient {
 
-  public W2JDLR4003Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JDLR4003Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JDLR4003Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jdlr4003testservice.org/W2JDLR4003TestService.wsdl");
-    stubContext.setService("W2JDLR4003TestService");
-    stubContext.setPort("W2JDLR4003TestPort");
-    stubContext.setEndpointInterface(W2JDLR4003Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JDLR4003Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jdlr4003testservice.org/W2JDLR4003TestService.wsdl");
+        stubContext.setService("W2JDLR4003TestService");
+        stubContext.setPort("W2JDLR4003TestPort");
+        stubContext.setEndpointInterface(W2JDLR4003Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jdlr4003.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jdlr4003.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jdlr4003.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jdlr4003.wsdlloc.1";
+    }
 
-  public String echoString(String str) throws Exception {
-    return ((W2JDLR4003Test) stubContext.getStub()).echoString(str);
-  }
+    public String echoString(String str) throws Exception {
+        return ((W2JDLR4003Test) stubContext.getStub()).echoString(str);
+    }
 }

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class IntegerBeanEJB extends BMPWrapper {
 
-  public boolean testIntegerEntry() {
-    return TestCode.testIntegerEntry(nctx);
-  }
-
+    public boolean testIntegerEntry() {
+        return TestCode.testIntegerEntry(nctx);
+    }
 }

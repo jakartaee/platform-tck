@@ -17,30 +17,28 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.srv.binarynodecoder;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.negdep.StringHolder;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(StringHolder holder) throws IOException {
-    String s = null;
-    s = holder.toString();
-    return s;
-  }
+    @OnMessage
+    public String echo(StringHolder holder) throws IOException {
+        String s = null;
+        s = holder.toString();
+        return s;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

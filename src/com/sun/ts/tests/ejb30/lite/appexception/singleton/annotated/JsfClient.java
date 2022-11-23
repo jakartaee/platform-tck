@@ -17,111 +17,109 @@
 package com.sun.ts.tests.ejb30.lite.appexception.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
-
 import jakarta.ejb.EJB;
 import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends com.sun.ts.tests.ejb30.lite.appexception.common.JsfClientBase implements Serializable {
-  
-  private static final long serialVersionUID = -2564031884412676327L;
-  
-  @Override
-  @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
-  protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {
-    this.noInterfaceBean = noInterfaceBean;
-  }
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.appexception.common.JsfClientBase implements Serializable {
 
-  /*
-   * @testName: checkedAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
+    private static final long serialVersionUID = -2564031884412676327L;
+
+    @Override
+    @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
+    protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {
+        this.noInterfaceBean = noInterfaceBean;
+    }
+
+    /*
+     * @testName: checkedAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedAppExceptionTest2
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedAppExceptionTest2
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTest2
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
 }

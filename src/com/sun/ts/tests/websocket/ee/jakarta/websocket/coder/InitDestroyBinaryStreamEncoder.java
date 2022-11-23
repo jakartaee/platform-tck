@@ -17,31 +17,27 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncoder;
+import jakarta.websocket.EncodeException;
+import jakarta.websocket.EndpointConfig;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncoder;
+public class InitDestroyBinaryStreamEncoder extends StringBeanBinaryStreamEncoder {
+    @Override
+    public void init(EndpointConfig config) {
+        Logger.onInit(getClass());
+    }
 
-import jakarta.websocket.EncodeException;
-import jakarta.websocket.EndpointConfig;
+    @Override
+    public void destroy() {
+        Logger.onDestroy(getClass());
+    }
 
-public class InitDestroyBinaryStreamEncoder
-    extends StringBeanBinaryStreamEncoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
-
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
-
-  @Override
-  public void encode(StringBean bean, OutputStream stream)
-      throws EncodeException, IOException {
-    Logger.onCode(getClass());
-    super.encode(bean, stream);
-  }
+    @Override
+    public void encode(StringBean bean, OutputStream stream) throws EncodeException, IOException {
+        Logger.onCode(getClass());
+        super.encode(bean, stream);
+    }
 }

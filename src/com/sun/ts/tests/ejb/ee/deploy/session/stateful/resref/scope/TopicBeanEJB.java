@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class TopicBeanEJB extends StatefulWrapper {
 
-  public boolean checkYourTopic() {
-    return TopicCode.checkYourTopic(nctx);
-  }
-
+    public boolean checkYourTopic() {
+        return TopicCode.checkYourTopic(nctx);
+    }
 }

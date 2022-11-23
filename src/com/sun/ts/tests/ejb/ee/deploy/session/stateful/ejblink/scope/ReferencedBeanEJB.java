@@ -24,8 +24,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class ReferencedBeanEJB extends StatefulWrapper {
 
-  public String whoAreYou() {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
-
+    public String whoAreYou() {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

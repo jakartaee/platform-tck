@@ -23,15 +23,15 @@ import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
 @Provider
-public class ServiceUnavailableExceptionMapper
-    implements ExceptionMapper<ServiceUnavailableException> {
+public class ServiceUnavailableExceptionMapper implements ExceptionMapper<ServiceUnavailableException> {
 
-  @Override
-  public Response toResponse(ServiceUnavailableException exception) {
-    String entity = new StringBuilder().append(exception.getClass().getName())
-        .append(";status=").append(exception.getResponse().getStatus())
-        .toString();
-    return Response.status(Status.REQUEST_TIMEOUT).entity(entity).build();
-  }
-
+    @Override
+    public Response toResponse(ServiceUnavailableException exception) {
+        String entity = new StringBuilder()
+                .append(exception.getClass().getName())
+                .append(";status=")
+                .append(exception.getResponse().getStatus())
+                .toString();
+        return Response.status(Status.REQUEST_TIMEOUT).entity(entity).build();
+    }
 }

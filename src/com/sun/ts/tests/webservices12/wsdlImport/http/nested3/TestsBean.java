@@ -20,14 +20,12 @@ import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
 @WebService(portName = "TestsPort", serviceName = "Nested3HttpSvc", targetNamespace = "http://Nested3HttpSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/nestedimportwsdl.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Tests")
-
 @Stateless(name = "WSNested3Http")
 public class TestsBean {
 
-  public com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring invokeTest1() {
-    com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring();
-    result.setResult("Hello");
-    return result;
-  }
-
+    public com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring invokeTest1() {
+        com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.http.nested3.Astring();
+        result.setResult("Hello");
+        return result;
+    }
 }

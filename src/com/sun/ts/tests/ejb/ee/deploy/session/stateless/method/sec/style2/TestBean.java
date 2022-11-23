@@ -20,19 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.method.sec.style2;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test1(int i) throws RemoteException;
+    public boolean test1(int i) throws RemoteException;
 
-  public boolean test2() throws RemoteException;
-
+    public boolean test2() throws RemoteException;
 }

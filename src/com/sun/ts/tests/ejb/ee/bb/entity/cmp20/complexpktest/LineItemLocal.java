@@ -24,16 +24,15 @@ import jakarta.ejb.EJBLocalObject;
 
 public interface LineItemLocal extends EJBLocalObject {
 
-  // Methods for LineItemLocal CMP Fields
-  public String getId();
+    // Methods for LineItemLocal CMP Fields
+    public String getId();
 
-  public int getQuantity();
+    public int getQuantity();
 
-  public void setQuantity(int v);
+    public void setQuantity(int v);
 
-  // Methods for LineItemLocal CMR Fields
-  public TestBeanLocal getTestBean();
+    // Methods for LineItemLocal CMR Fields
+    public TestBeanLocal getTestBean();
 
-  public void setTestBean(TestBeanLocal v);
-
+    public void setTestBean(TestBeanLocal v);
 }

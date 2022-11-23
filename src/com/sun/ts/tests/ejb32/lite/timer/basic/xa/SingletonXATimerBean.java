@@ -16,57 +16,52 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.xa;
 
-import java.util.Date;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;
+import java.util.Date;
+import java.util.logging.Level;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
 public class SingletonXATimerBean extends XATimerBeanBase {
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  @Override
-  public void persistCoffee(int id, String brandName) {
-    try {
-      ut.begin();
-      CoffeeUtil.findDeletePersist(id, brandName, em);
-      ut.commit();
-    } catch (Exception e) {
-      Helper.getLogger().log(Level.WARNING, "Failed in findDeletePersist: ", e);
-      try {
-        ut.rollback();
-      } catch (Exception ee) {
-      }
+    @Override
+    public void persistCoffee(int id, String brandName) {
+        try {
+            ut.begin();
+            CoffeeUtil.findDeletePersist(id, brandName, em);
+            ut.commit();
+        } catch (Exception e) {
+            Helper.getLogger().log(Level.WARNING, "Failed in findDeletePersist: ", e);
+            try {
+                ut.rollback();
+            } catch (Exception ee) {
+            }
+        }
     }
-  }
 
-  @Override
-  public boolean persistCoffeeCreateTimerRollback(int id, String brandName,
-      Date expireation, TimerInfo info) {
-    boolean result = false;
-    try {
-      ut.begin();
-      result = super.persistCoffeeCreateTimerRollback(id, brandName,
-          expireation, info);
-      ut.commit();
-    } catch (Exception e) {
-      Helper.getLogger().log(Level.WARNING,
-          "Failed in persistCoffeeCreateTimerRollback", e);
-      try {
-        ut.rollback();
-      } catch (Exception ee) {
-      }
+    @Override
+    public boolean persistCoffeeCreateTimerRollback(int id, String brandName, Date expireation, TimerInfo info) {
+        boolean result = false;
+        try {
+            ut.begin();
+            result = super.persistCoffeeCreateTimerRollback(id, brandName, expireation, info);
+            ut.commit();
+        } catch (Exception e) {
+            Helper.getLogger().log(Level.WARNING, "Failed in persistCoffeeCreateTimerRollback", e);
+            try {
+                ut.rollback();
+            } catch (Exception ee) {
+            }
+        }
+        return result;
     }
-    return result;
-  }
 }

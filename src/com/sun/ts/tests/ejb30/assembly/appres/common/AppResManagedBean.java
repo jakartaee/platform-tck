@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -28,34 +27,32 @@ import jakarta.ejb.EJB;
 
 @ManagedBean("test-managed-bean")
 public class AppResManagedBean extends AppResBeanBase {
-  public static final String NAME = "AppResManagedBean";
+    public static final String NAME = "AppResManagedBean";
 
-  @EJB(lookup = "java:app/env/hello")
-  private HelloRemoteIF hello;
+    @EJB(lookup = "java:app/env/hello")
+    private HelloRemoteIF hello;
 
-  @EJB(lookup = "java:app/env/AppResBean-remote")
-  private AppResRemoteIF appResBeanRemote;
+    @EJB(lookup = "java:app/env/AppResBean-remote")
+    private AppResRemoteIF appResBeanRemote;
 
-  @EJB(lookup = "java:app/env/AppResBean-local")
-  private AppResLocalIF appResBeanLocal;
+    @EJB(lookup = "java:app/env/AppResBean-local")
+    private AppResLocalIF appResBeanLocal;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true,
-        false);
-    AppResTest.verifyInjections(getPostConstructRecords(), hello,
-        appResBeanRemote, appResBeanLocal);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true, false);
+        AppResTest.verifyInjections(getPostConstructRecords(), hello, appResBeanRemote, appResBeanLocal);
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(lookup = "java:app/env/myString")
-  private void setMyString(String s) {
-    this.myString = s;
-  }
+    @SuppressWarnings("unused")
+    @Resource(lookup = "java:app/env/myString")
+    private void setMyString(String s) {
+        this.myString = s;
+    }
 
-  @Override
-  public String getName() {
-    return NAME;
-  }
+    @Override
+    public String getName() {
+        return NAME;
+    }
 }

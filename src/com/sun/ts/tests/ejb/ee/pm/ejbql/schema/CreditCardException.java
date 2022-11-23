@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class CreditCardException extends Exception {
-  public String reason = null;
+    public String reason = null;
 
-  public CreditCardException() {
-    super();
-  }
+    public CreditCardException() {
+        super();
+    }
 
-  public CreditCardException(String msg) {
-    super(msg);
-    reason = msg;
-  }
+    public CreditCardException(String msg) {
+        super(msg);
+        reason = msg;
+    }
 }

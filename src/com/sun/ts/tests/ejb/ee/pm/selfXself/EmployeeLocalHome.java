@@ -25,8 +25,8 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface EmployeeLocalHome extends EJBLocalHome {
-  public EmployeeLocal create(Integer id, String firstName, String lastName,
-      java.util.Date hireDate, float salary) throws CreateException;
+    public EmployeeLocal create(Integer id, String firstName, String lastName, java.util.Date hireDate, float salary)
+            throws CreateException;
 
-  public EmployeeLocal findByPrimaryKey(Integer key) throws FinderException;
+    public EmployeeLocal findByPrimaryKey(Integer key) throws FinderException;
 }

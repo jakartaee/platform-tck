@@ -24,8 +24,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class ReferencedBeanEJB extends CMP11Wrapper {
 
-  public String whoAreYou() {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
-
+    public String whoAreYou() {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

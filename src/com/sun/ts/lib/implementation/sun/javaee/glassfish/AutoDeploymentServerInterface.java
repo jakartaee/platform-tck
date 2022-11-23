@@ -16,13 +16,12 @@
 
 package com.sun.ts.lib.implementation.sun.javaee.glassfish;
 
+import com.sun.ts.lib.porting.DeploymentInfo;
 import java.util.Map;
 import java.util.Properties;
-import com.sun.ts.lib.porting.DeploymentInfo;
 
 public interface AutoDeploymentServerInterface extends java.rmi.Remote {
-  public void init(Properties jteProps, Map extraProps)
-      throws java.rmi.RemoteException;
+    public void init(Properties jteProps, Map extraProps) throws java.rmi.RemoteException;
 
-  public String deploy(DeploymentInfo info) throws java.rmi.RemoteException;
+    public String deploy(DeploymentInfo info) throws java.rmi.RemoteException;
 }

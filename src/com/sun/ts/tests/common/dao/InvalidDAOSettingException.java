@@ -21,35 +21,33 @@
 package com.sun.ts.tests.common.dao;
 
 /**
- * 
+ *
  */
-public class InvalidDAOSettingException extends RuntimeException
-    implements java.io.Serializable {
+public class InvalidDAOSettingException extends RuntimeException implements java.io.Serializable {
 
-  String property;
+    String property;
 
-  String value;
+    String value;
 
-  String message;
+    String message;
 
-  InvalidDAOSettingException(String property, String value, String message) {
-    super(message);
-    this.property = property;
-    this.value = value;
-    this.message = message;
-  }
+    InvalidDAOSettingException(String property, String value, String message) {
+        super(message);
+        this.property = property;
+        this.value = value;
+        this.message = message;
+    }
 
-  public String toString() {
-    StringBuffer sb = new StringBuffer();
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
 
-    sb.append("Invalid DAO Setting ( ");
-    sb.append(property);
-    sb.append(" / ");
-    sb.append(value);
-    sb.append(" : ");
-    sb.append(super.toString());
+        sb.append("Invalid DAO Setting ( ");
+        sb.append(property);
+        sb.append(" / ");
+        sb.append(value);
+        sb.append(" : ");
+        sb.append(super.toString());
 
-    return sb.toString();
-  }
-
+        return sb.toString();
+    }
 }

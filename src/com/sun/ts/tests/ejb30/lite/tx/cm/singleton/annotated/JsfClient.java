@@ -17,52 +17,50 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends com.sun.ts.tests.ejb30.lite.tx.cm.common.JsfClientBase {
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(LocalTestBeanBase b) {
-    this.testBean = b;
-  }
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.tx.cm.common.JsfClientBase {
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(LocalTestBeanBase b) {
+        this.testBean = b;
+    }
 
-  /*
-   * @testName: localMandatoryTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localNeverTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localSupportsTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localSystemExceptionTest
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localRequiresNewTest
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: localMandatoryTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localNeverTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localSupportsTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localSystemExceptionTest
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localRequiresNewTest
+     *
+     * @test_Strategy:
+     */
 }

@@ -21,15 +21,14 @@ package com.sun.ts.tests.ejb30.lite.basic.singleton;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Singleton;
 
 @Singleton
 @LocalBean // only exposed no-interface view
 public class BasicBean extends BasicBeanBase implements Basic1IF {
-  @Override
-  public Class<? extends BasicBeanBase> getBusinessInterface() {
-    return BasicBean.class;
-  }
+    @Override
+    public Class<? extends BasicBeanBase> getBusinessInterface() {
+        return BasicBean.class;
+    }
 }

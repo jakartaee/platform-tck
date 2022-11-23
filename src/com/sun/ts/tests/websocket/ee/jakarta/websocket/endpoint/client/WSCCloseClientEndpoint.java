@@ -17,48 +17,45 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.client;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class WSCCloseClientEndpoint extends StringClientEndpoint {
-  boolean onCloseCalled = false;
+    boolean onCloseCalled = false;
 
-  private CountDownLatch countDown = new CountDownLatch(1);
+    private CountDownLatch countDown = new CountDownLatch(1);
 
-  @Override
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
-
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
-
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-    onCloseCalled = true;
-    countDown.countDown();
-  }
-
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
-
-  public void waitForClose(long seconds) {
-    try {
-      countDown.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    @Override
+    public void onMessage(String msg) {
+        super.onMessage(msg);
     }
-  }
 
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
+
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+        onCloseCalled = true;
+        countDown.countDown();
+    }
+
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
+
+    public void waitForClose(long seconds) {
+        try {
+            countDown.await(seconds, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

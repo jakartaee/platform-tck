@@ -20,30 +20,29 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Product extends EJBObject {
-  // Business Methods for CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public double getPrice() throws RemoteException;
+    public double getPrice() throws RemoteException;
 
-  public void setPrice(double v) throws RemoteException;
+    public void setPrice(double v) throws RemoteException;
 
-  public int getQuantity() throws RemoteException;
+    public int getQuantity() throws RemoteException;
 
-  public void setQuantity(int v) throws RemoteException;
+    public void setQuantity(int v) throws RemoteException;
 
-  public long getPartNumber() throws RemoteException;
+    public long getPartNumber() throws RemoteException;
 
-  public void setPartNumber(long v) throws RemoteException;
+    public void setPartNumber(long v) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface TopicBean extends EJBObject {
 
-  public boolean checkYourTopic() throws RemoteException;
-
+    public boolean checkYourTopic() throws RemoteException;
 }

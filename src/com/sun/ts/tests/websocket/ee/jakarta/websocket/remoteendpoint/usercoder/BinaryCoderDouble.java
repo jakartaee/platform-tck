@@ -17,14 +17,13 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
-import java.nio.ByteBuffer;
-
 import jakarta.websocket.DecodeException;
+import java.nio.ByteBuffer;
 
 public class BinaryCoderDouble extends CoderSuperClassBinary<Double> {
 
-  @Override
-  public Double decode(ByteBuffer bytes) throws DecodeException {
-    return NUMERIC.doubleValue();
-  }
+    @Override
+    public Double decode(ByteBuffer bytes) throws DecodeException {
+        return NUMERIC.doubleValue();
+    }
 }

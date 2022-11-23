@@ -20,32 +20,30 @@
 
 package com.sun.ts.tests.common.vehicle.stateless3;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import java.util.Properties;
 
 public class Stateless3VehicleRunner implements VehicleRunnable {
 
-  public static final String STATELESS3_REF_NAME = "java:comp/env/ejb/Stateless3VehicleBean";
+    public static final String STATELESS3_REF_NAME = "java:comp/env/ejb/Stateless3VehicleBean";
 
-  public Status run(String[] args, Properties props) {
-    Status sTestStatus = null;
-    Class beanType = Stateless3VehicleIF.class;
-    String refName = beanType.getName();
-    try {
-      TSNamingContext jc = new TSNamingContext();
-      Stateless3VehicleIF bean = (Stateless3VehicleIF) jc
-          .lookup(STATELESS3_REF_NAME);
-      TestUtil.logTrace("stateless3 runner looked up vehicle: " + bean);
-      props.put("persistence.unit.name", "CTS-EM");
-      sTestStatus = (bean.runTest(args, props)).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed.", e);
-      sTestStatus = Status.failed("Test run in stateless3 vehicle failed.");
+    public Status run(String[] args, Properties props) {
+        Status sTestStatus = null;
+        Class beanType = Stateless3VehicleIF.class;
+        String refName = beanType.getName();
+        try {
+            TSNamingContext jc = new TSNamingContext();
+            Stateless3VehicleIF bean = (Stateless3VehicleIF) jc.lookup(STATELESS3_REF_NAME);
+            TestUtil.logTrace("stateless3 runner looked up vehicle: " + bean);
+            props.put("persistence.unit.name", "CTS-EM");
+            sTestStatus = (bean.runTest(args, props)).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed.", e);
+            sTestStatus = Status.failed("Test run in stateless3 vehicle failed.");
+        }
+        return sTestStatus;
     }
-    return sTestStatus;
-  }
 }

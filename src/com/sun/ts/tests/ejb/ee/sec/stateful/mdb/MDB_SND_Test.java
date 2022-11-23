@@ -20,17 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface MDB_SND_Test extends EJBObject {
 
-  boolean askMDBToSendAMessage(String messageType) throws RemoteException;
+    boolean askMDBToSendAMessage(String messageType) throws RemoteException;
 
-  boolean checkOnResponse(String prop) throws RemoteException;
+    boolean checkOnResponse(String prop) throws RemoteException;
 
-  boolean isThereSomethingInTheQueue() throws RemoteException;
+    boolean isThereSomethingInTheQueue() throws RemoteException;
 
-  void cleanTheQueue() throws RemoteException;
+    void cleanTheQueue() throws RemoteException;
 }

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remove;
@@ -31,21 +30,20 @@ import jakarta.ejb.Stateful;
 @LocalBean
 public class NoInterfaceStatefulBean extends BeanBase {
 
-  @Remove
-  @Override
-  public void remove() {
-    Helper.getLogger().fine("In NoInterfaceStatefulBean.remove()");
-  }
+    @Remove
+    @Override
+    public void remove() {
+        Helper.getLogger().fine("In NoInterfaceStatefulBean.remove()");
+    }
 
-  @Override
-  public NoInterfaceStatefulBean passAsReturn() {
-    return sessionContext.getBusinessObject(NoInterfaceStatefulBean.class);
-  }
+    @Override
+    public NoInterfaceStatefulBean passAsReturn() {
+        return sessionContext.getBusinessObject(NoInterfaceStatefulBean.class);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().fine("In NoInterfaceStatefulBean.preDestroy()");
-  }
-
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().fine("In NoInterfaceStatefulBean.preDestroy()");
+    }
 }

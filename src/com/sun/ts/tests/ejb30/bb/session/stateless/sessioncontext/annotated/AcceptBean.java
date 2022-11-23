@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -34,17 +33,16 @@ import jakarta.ejb.Stateless;
 @Remote({ AcceptIF.class })
 @Local({ AcceptLocalIF.class })
 public class AcceptBean extends AcceptBeanBase {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public AcceptBean() {
-  }
+    public AcceptBean() {
+    }
 
-  public void remove() {
-  }
-
+    public void remove() {
+    }
 }

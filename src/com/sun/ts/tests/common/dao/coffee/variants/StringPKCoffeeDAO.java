@@ -22,35 +22,30 @@ package com.sun.ts.tests.common.dao.coffee.variants;
 
 import com.sun.ts.tests.common.dao.DAO;
 import com.sun.ts.tests.common.dao.DAOException;
-
 import jakarta.ejb.CreateException;
 
 /**
- * DAO Object for table using a variant of the "coffee" DB schema with a String
- * primary key.
+ * DAO Object for table using a variant of the "coffee" DB schema with a String primary key.
  *
  * id (String, primary key) | name (String) | price (float)
  *
  */
 public interface StringPKCoffeeDAO extends DAO {
 
-  public boolean exists(String id) throws DAOException;
+    public boolean exists(String id) throws DAOException;
 
-  public void create(String id, String name, float price)
-      throws CreateException, DAOException;
+    public void create(String id, String name, float price) throws CreateException, DAOException;
 
-  public float loadPrice(String id) throws DAOException;
+    public float loadPrice(String id) throws DAOException;
 
-  public void storePrice(String id, float price) throws DAOException;
+    public void storePrice(String id, float price) throws DAOException;
 
-  public void delete(String id) throws DAOException;
+    public void delete(String id) throws DAOException;
 
-  public void deleteAll() throws DAOException;
+    public void deleteAll() throws DAOException;
 
-  /**
-   * Convenience method for test setup. Start its own session and delete all
-   * pre-existing entities
-   */
-  public void cleanup() throws DAOException;
-
+    /**
+     * Convenience method for test setup. Start its own session and delete all pre-existing entities
+     */
+    public void cleanup() throws DAOException;
 }

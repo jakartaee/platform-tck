@@ -22,33 +22,31 @@ import javax.security.auth.callback.NameCallback;
 import javax.security.auth.callback.PasswordCallback;
 
 public class AuthDataCallbackHandler implements CallbackHandler {
-  private String user;
+    private String user;
 
-  private String password;
+    private String password;
 
-  public AuthDataCallbackHandler() {
-    // Default constructor sets the user and password to j2ee
-    // this is used for ejb3.0 dependency injection based tests and others
-    user = "j2ee";
-    password = "j2ee";
-
-  }
-
-  public AuthDataCallbackHandler(String usr, String pwd) {
-    user = usr;
-    password = pwd;
-
-  }
-
-  public void handle(Callback[] callbacks) {
-    for (Callback cb : callbacks) {
-      if (cb instanceof NameCallback) {
-        NameCallback nc = (NameCallback) cb;
-        nc.setName(user);
-      } else if (cb instanceof PasswordCallback) {
-        PasswordCallback pc = (PasswordCallback) cb;
-        pc.setPassword(password.toCharArray());
-      }
+    public AuthDataCallbackHandler() {
+        // Default constructor sets the user and password to j2ee
+        // this is used for ejb3.0 dependency injection based tests and others
+        user = "j2ee";
+        password = "j2ee";
     }
-  }
+
+    public AuthDataCallbackHandler(String usr, String pwd) {
+        user = usr;
+        password = pwd;
+    }
+
+    public void handle(Callback[] callbacks) {
+        for (Callback cb : callbacks) {
+            if (cb instanceof NameCallback) {
+                NameCallback nc = (NameCallback) cb;
+                nc.setName(user);
+            } else if (cb instanceof PasswordCallback) {
+                PasswordCallback pc = (PasswordCallback) cb;
+                pc.setPassword(password.toCharArray());
+            }
+        }
+    }
 }

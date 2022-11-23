@@ -19,34 +19,31 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
+import java.util.ArrayList;
 
 @WebListener("HttpSessionListener")
 public final class HSListener implements HttpSessionListener {
 
-  public void sessionCreated(HttpSessionEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getSession().getServletContext()
-        .getAttribute("HSList");
-    if (al == null) {
-      al = new ArrayList();
+    public void sessionCreated(HttpSessionEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getSession().getServletContext().getAttribute("HSList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("HSListener:sessionCreated");
+        event.getSession().getServletContext().setAttribute("HSList", al);
     }
-    al.add("HSListener:sessionCreated");
-    event.getSession().getServletContext().setAttribute("HSList", al);
-  }
 
-  public void sessionDestroyed(HttpSessionEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getSession().getServletContext()
-        .getAttribute("HSList");
-    if (al == null) {
-      al = new ArrayList();
+    public void sessionDestroyed(HttpSessionEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getSession().getServletContext().getAttribute("HSList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("HSListener:sessionDestroyed");
+        event.getSession().getServletContext().setAttribute("HSList", al);
     }
-    al.add("HSListener:sessionDestroyed");
-    event.getSession().getServletContext().setAttribute("HSList", al);
-  }
 }

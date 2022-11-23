@@ -23,8 +23,7 @@ import jakarta.jws.WebService;
 @Stateless(name = "WSSimple6Http")
 public class TestsBean {
 
-  public String invokeTest1() {
-    return "Hello";
-  }
-
+    public String invokeTest1() {
+        return "Hello";
+    }
 }

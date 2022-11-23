@@ -16,135 +16,116 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.asyncevent;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.AsyncEvent;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class AsyncTestServlet extends GenericTCKServlet {
 
-  public void constructorTest1(ServletRequest request, ServletResponse response)
-      throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac);
-    if (ae == null) {
-      response.getWriter().println(
-          "The constructor for AsyncEvent(AsyncContext) returned a null. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void constructorTest1(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac);
+        if (ae == null) {
+            response.getWriter().println("The constructor for AsyncEvent(AsyncContext) returned a null. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void constructorTest2(ServletRequest request, ServletResponse response)
-      throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response);
-    if (ae == null) {
-      response.getWriter().println(
-          "The constructor for AsyncEvent(AsyncContext, ServletRequest, ServletResponse) returned a null. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void constructorTest2(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response);
+        if (ae == null) {
+            response.getWriter()
+                    .println(
+                            "The constructor for AsyncEvent(AsyncContext, ServletRequest, ServletResponse) returned a null. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void constructorTest3(ServletRequest request, ServletResponse response)
-      throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, new IOException("AsyncEvent"));
-    if (ae == null) {
-      response.getWriter().println(
-          "The constructor for AsyncEvent(AsyncContext, Throwable) returned a null. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void constructorTest3(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, new IOException("AsyncEvent"));
+        if (ae == null) {
+            response.getWriter()
+                    .println("The constructor for AsyncEvent(AsyncContext, Throwable) returned a null. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void constructorTest4(ServletRequest request, ServletResponse response)
-      throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response,
-        new IOException("AsyncEvent"));
-    if (ae == null) {
-      response.getWriter().println(
-          "The constructor for AsyncEvent(AsyncContext, Throwable) returned a null. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void constructorTest4(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response, new IOException("AsyncEvent"));
+        if (ae == null) {
+            response.getWriter()
+                    .println("The constructor for AsyncEvent(AsyncContext, Throwable) returned a null. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void getSuppliedRequestTest1(ServletRequest request,
-      ServletResponse response) throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response);
-    if (request != ae.getSuppliedRequest()) {
-      response.getWriter()
-          .println("getSuppliedRequest() returned are incorrect. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void getSuppliedRequestTest1(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response);
+        if (request != ae.getSuppliedRequest()) {
+            response.getWriter().println("getSuppliedRequest() returned are incorrect. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void getSuppliedRequestTest2(ServletRequest request,
-      ServletResponse response) throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response,
-        new IOException("AsyncEvent"));
-    if (request != ae.getSuppliedRequest()) {
-      response.getWriter()
-          .println("getSuppliedRequest() returned are incorrect. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void getSuppliedRequestTest2(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response, new IOException("AsyncEvent"));
+        if (request != ae.getSuppliedRequest()) {
+            response.getWriter().println("getSuppliedRequest() returned are incorrect. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void getSuppliedResponseTest1(ServletRequest request,
-      ServletResponse response) throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response);
-    if (response != ae.getSuppliedResponse()) {
-      response.getWriter()
-          .println("getSuppliedResponse() returned are incorrect. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void getSuppliedResponseTest1(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response);
+        if (response != ae.getSuppliedResponse()) {
+            response.getWriter().println("getSuppliedResponse() returned are incorrect. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void getSuppliedResponseTest2(ServletRequest request,
-      ServletResponse response) throws IOException {
-    AsyncContext ac = request.startAsync();
-    AsyncEvent ae = new AsyncEvent(ac, request, response,
-        new IOException("AsyncEvent"));
-    if (response != ae.getSuppliedResponse()) {
-      response.getWriter()
-          .println("getSuppliedResponse() returned are incorrect. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void getSuppliedResponseTest2(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        AsyncEvent ae = new AsyncEvent(ac, request, response, new IOException("AsyncEvent"));
+        if (response != ae.getSuppliedResponse()) {
+            response.getWriter().println("getSuppliedResponse() returned are incorrect. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 
-  public void getThrowableTest(ServletRequest request, ServletResponse response)
-      throws IOException {
-    AsyncContext ac = request.startAsync();
-    IOException ie = new IOException("AsyncEvent");
-    AsyncEvent ae = new AsyncEvent(ac, request, response, ie);
-    if (ie != ae.getThrowable()) {
-      response.getWriter()
-          .println("getThrowable() returned are incorrect. Test FAILED");
-    } else {
-      response.getWriter().println("Test PASSED");
+    public void getThrowableTest(ServletRequest request, ServletResponse response) throws IOException {
+        AsyncContext ac = request.startAsync();
+        IOException ie = new IOException("AsyncEvent");
+        AsyncEvent ae = new AsyncEvent(ac, request, response, ie);
+        if (ie != ae.getThrowable()) {
+            response.getWriter().println("getThrowable() returned are incorrect. Test FAILED");
+        } else {
+            response.getWriter().println("Test PASSED");
+        }
+        ac.complete();
     }
-    ac.complete();
-  }
 }

@@ -21,13 +21,11 @@ package com.sun.ts.tests.assembly.compat.cocktail.compat12_14;
 
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
-
 import jakarta.ejb.EJBException;
 
 public class ReferencedBeanEJB extends StatelessWrapper {
 
-  public String whoAreYou() throws EJBException {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
-
+    public String whoAreYou() throws EJBException {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

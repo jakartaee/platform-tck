@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class FloatBeanEJB extends CMP11Wrapper {
 
-  public boolean testFloatEntry() {
-    return TestCode.testFloatEntry(nctx);
-  }
-
+    public boolean testFloatEntry() {
+        return TestCode.testFloatEntry(nctx);
+    }
 }

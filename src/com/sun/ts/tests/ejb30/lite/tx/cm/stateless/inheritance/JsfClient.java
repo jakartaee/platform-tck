@@ -21,34 +21,34 @@ import com.sun.ts.tests.ejb30.lite.tx.cm.common.InheritanceJsfClientBase;
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends InheritanceJsfClientBase {
-  /*
-   * @testName: aBeanLocal
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: bBeanLocal
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: cBeanLocal
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: dBeanLocal
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: eBeanLocal
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: overloadedMethodsTxLocal
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: aBeanLocal
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: bBeanLocal
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: cBeanLocal
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: dBeanLocal
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: eBeanLocal
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: overloadedMethodsTxLocal
+     *
+     * @test_Strategy:
+     */
 }

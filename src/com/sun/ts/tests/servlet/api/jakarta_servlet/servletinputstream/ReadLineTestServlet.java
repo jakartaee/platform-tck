@@ -56,49 +56,45 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletinputstream;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ReadLineTestServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
-    ServletInputStream sins = request.getInputStream();
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
+        ServletInputStream sins = request.getInputStream();
 
-    int contentLen = request.getContentLength();
+        int contentLen = request.getContentLength();
 
-    if (contentLen >= 1) {
+        if (contentLen >= 1) {
 
-      byte buffer[] = new byte[contentLen + 1];
-      int len = sins.readLine(buffer, 0, contentLen);
+            byte buffer[] = new byte[contentLen + 1];
+            int len = sins.readLine(buffer, 0, contentLen);
 
-      String expectedResult = "test data";
-      String result = new String(buffer);
+            String expectedResult = "test data";
+            String result = new String(buffer);
 
-      if (!(result.trim()).equals(expectedResult)) {
-        passed = false;
-        pw.println("readLine() returned incorrect result");
-        pw.println("Expected result = " + expectedResult);
-        pw.println("Actual result = |" + result + "|");
-      }
-    } else {
-      passed = false;
-      pw.println("ServletRequest.getContentLength() returned incorrect result");
-      pw.println("Expected a result >= 1");
-      pw.println("Actual result = " + contentLen);
+            if (!(result.trim()).equals(expectedResult)) {
+                passed = false;
+                pw.println("readLine() returned incorrect result");
+                pw.println("Expected result = " + expectedResult);
+                pw.println("Actual result = |" + result + "|");
+            }
+        } else {
+            passed = false;
+            pw.println("ServletRequest.getContentLength() returned incorrect result");
+            pw.println("Expected a result >= 1");
+            pw.println("Actual result = " + contentLen);
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

@@ -59,25 +59,22 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionattributelistener;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionAttributeListener;
 import jakarta.servlet.http.HttpSessionBindingEvent;
 
 public final class HSAttributeListener implements HttpSessionAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(HttpSessionBindingEvent event) {
-    StaticLog.add("attributeAdded:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(HttpSessionBindingEvent event) {
-    StaticLog
-        .add("attributeRemoved:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeReplaced(HttpSessionBindingEvent event) {
-    StaticLog
-        .add("attributeReplaced:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeReplaced(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

@@ -22,20 +22,18 @@ package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase;
-
 import jakarta.annotation.PreDestroy;
 
 public class NoInterfaceStatefulBean extends BeanBase {
 
-  @Override
-  public NoInterfaceStatefulBean passAsReturn() {
-    return sessionContext.getBusinessObject(NoInterfaceStatefulBean.class);
-  }
+    @Override
+    public NoInterfaceStatefulBean passAsReturn() {
+        return sessionContext.getBusinessObject(NoInterfaceStatefulBean.class);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().fine("In NoInterfaceStatefulBean.preDestroy()");
-  }
-
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().fine("In NoInterfaceStatefulBean.preDestroy()");
+    }
 }

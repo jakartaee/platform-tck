@@ -22,33 +22,31 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 
-public class Callback3BeanSuperSuper extends Callback2BeanBase
-    implements Callback2IF {
+public class Callback3BeanSuperSuper extends Callback2BeanBase implements Callback2IF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public Callback3BeanSuperSuper() {
-    super();
-  }
+    public Callback3BeanSuperSuper() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // this PostConstruct method is intended to be called. So it should not
-  // be overridden in any way. Make it private.
-  @PostConstruct
-  private void postConstructMethodInSuperSuper() throws RuntimeException {
-    addPostConstructCall("SUPERSUPER");
-  }
+    // this PostConstruct method is intended to be called. So it should not
+    // be overridden in any way. Make it private.
+    @PostConstruct
+    private void postConstructMethodInSuperSuper() throws RuntimeException {
+        addPostConstructCall("SUPERSUPER");
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

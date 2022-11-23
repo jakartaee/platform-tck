@@ -24,7 +24,6 @@ package com.sun.ts.tests.ejb30.sec.stateless.common;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Local;
@@ -44,30 +43,29 @@ import jakarta.ejb.TransactionManagementType;
 
 public class SecTestRoleRefEJB implements SecTestRoleRef {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  // This is equivalent to * as all the roles can call this method
-  // @RolesAllowed("*")
+    // This is equivalent to * as all the roles can call this method
+    // @RolesAllowed("*")
 
-  @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void initLogging(java.util.Properties p) {
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.logErr("SecTestRoleRefEJB initLogging failed.", e);
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void initLogging(java.util.Properties p) {
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.logErr("SecTestRoleRefEJB initLogging failed.", e);
+        }
     }
-  }
 
-  @RolesAllowed({ "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbSecRoleRefScope(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    @RolesAllowed({ "Manager", "Employee" })
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbSecRoleRefScope(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
-
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 }

@@ -23,11 +23,11 @@ import jakarta.jws.WebService;
 @Stateless(name = "WSEjbPortFieldInjectionTest")
 public class HelloBean {
 
-  public String hello(String str) {
-    return "WebSvcTest-Hello " + str;
-  }
+    public String hello(String str) {
+        return "WebSvcTest-Hello " + str;
+    }
 
-  public String bye(String str) {
-    return "WebSvcTest-Bye and take care " + str;
-  }
+    public String bye(String str) {
+        return "WebSvcTest-Bye and take care " + str;
+    }
 }

@@ -23,14 +23,13 @@ import jakarta.resource.spi.AdministeredObject;
 @AdministeredObject(adminObjectInterfaces = { Queue.class })
 public class CRDAdminObject implements Queue {
 
-  @Override
-  public String getQueueName() throws JMSException {
-    return "CRDAdminObject_Queue_Name";
-  }
+    @Override
+    public String getQueueName() throws JMSException {
+        return "CRDAdminObject_Queue_Name";
+    }
 
-  @Override
-  public String toString() {
-    return "CRDAdminObject";
-  }
-
+    @Override
+    public String toString() {
+        return "CRDAdminObject";
+    }
 }

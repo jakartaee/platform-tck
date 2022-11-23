@@ -20,42 +20,38 @@
 
 package com.sun.ts.tests.servlet.spec.multifiltermapping;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void forwardTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String param = "parameter1";
-    PrintWriter pw = response.getWriter();
-    String path = request.getParameter(param);
-    pw.println("path to access: " + path);
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
-
-  public void includeTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String param = "parameter1";
-    PrintWriter pw = response.getWriter();
-    String path = request.getParameter(param);
-    pw.println("path to access: " + path);
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-
-    try {
-      rd.include(request, response);
-    } catch (IOException ex) {
-      pw.println("Resource " + path + " not available");
-      throw new FileNotFoundException("Resource " + path + " not available");
+    public void forwardTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String param = "parameter1";
+        PrintWriter pw = response.getWriter();
+        String path = request.getParameter(param);
+        pw.println("path to access: " + path);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
     }
-  }
+
+    public void includeTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String param = "parameter1";
+        PrintWriter pw = response.getWriter();
+        String path = request.getParameter(param);
+        pw.println("path to access: " + path);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+
+        try {
+            rd.include(request, response);
+        } catch (IOException ex) {
+            pw.println("Resource " + path + " not available");
+            throw new FileNotFoundException("Resource " + path + " not available");
+        }
+    }
 }

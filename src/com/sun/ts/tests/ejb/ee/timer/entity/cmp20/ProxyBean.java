@@ -20,25 +20,23 @@
 
 package com.sun.ts.tests.ejb.ee.timer.entity.cmp20;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface ProxyBean extends EJBObject {
-  public boolean setup() throws RemoteException;
+    public boolean setup() throws RemoteException;
 
-  public void cleanup() throws RemoteException;
+    public void cleanup() throws RemoteException;
 
-  public boolean initializeTimer(int timerType, int timeoutAction)
-      throws RemoteException;
+    public boolean initializeTimer(int timerType, int timeoutAction) throws RemoteException;
 
-  public boolean initializeAndCancelTimer(int timerType) throws RemoteException;
+    public boolean initializeAndCancelTimer(int timerType) throws RemoteException;
 
-  public boolean cancelAndRollback(int timerType) throws RemoteException;
+    public boolean cancelAndRollback(int timerType) throws RemoteException;
 
-  public boolean removeBeanWithTimers(int timerType) throws RemoteException;
+    public boolean removeBeanWithTimers(int timerType) throws RemoteException;
 
-  public boolean timerExists() throws RemoteException;
+    public boolean timerExists() throws RemoteException;
 
-  public boolean timerDoesNotExist() throws RemoteException;
+    public boolean timerDoesNotExist() throws RemoteException;
 }

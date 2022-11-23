@@ -20,42 +20,39 @@
 
 package com.sun.ts.tests.common.vehicle.wsejb;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import java.util.Properties;
 
 public class WSEJBVehicleRunner implements VehicleRunnable {
-  public Status run(String[] argv, Properties p) {
-    String sVehicle = p.getProperty("vehicle");
-    Status sTestStatus = Status.passed("");
+    public Status run(String[] argv, Properties p) {
+        String sVehicle = p.getProperty("vehicle");
+        Status sTestStatus = Status.passed("");
 
-    WSEJBVehicleHome home = null;
-    String sEJBVehicleJndiName = "";
-    WSEJBVehicleRemote ref = null;
-    try {
-      TSNamingContext jc = new TSNamingContext();
-      sEJBVehicleJndiName = "java:comp/env/ejb/WSEJBVehicle";
-      home = (WSEJBVehicleHome) jc.lookup(sEJBVehicleJndiName,
-          WSEJBVehicleHome.class);
-      ref = (WSEJBVehicleRemote) home.create(argv, p);
-      TestUtil.logTrace("in wsejbvehicle: home.create() ok; call runTest()");
-      sTestStatus = (ref.runTest()).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed", e);
-      sTestStatus = Status.failed("Test run in wsejb vehicle failed");
-    } finally {
-      if (ref != null) {
+        WSEJBVehicleHome home = null;
+        String sEJBVehicleJndiName = "";
+        WSEJBVehicleRemote ref = null;
         try {
-          ref.remove();
-        } catch (Exception e2) {
-          TestUtil.logHarnessDebug(
-              "Exception while trying to remove the EJB Vehicle bean.");
+            TSNamingContext jc = new TSNamingContext();
+            sEJBVehicleJndiName = "java:comp/env/ejb/WSEJBVehicle";
+            home = (WSEJBVehicleHome) jc.lookup(sEJBVehicleJndiName, WSEJBVehicleHome.class);
+            ref = (WSEJBVehicleRemote) home.create(argv, p);
+            TestUtil.logTrace("in wsejbvehicle: home.create() ok; call runTest()");
+            sTestStatus = (ref.runTest()).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed", e);
+            sTestStatus = Status.failed("Test run in wsejb vehicle failed");
+        } finally {
+            if (ref != null) {
+                try {
+                    ref.remove();
+                } catch (Exception e2) {
+                    TestUtil.logHarnessDebug("Exception while trying to remove the EJB Vehicle bean.");
+                }
+            }
         }
-      }
+        return sTestStatus;
     }
-    return sTestStatus;
-  }
 }

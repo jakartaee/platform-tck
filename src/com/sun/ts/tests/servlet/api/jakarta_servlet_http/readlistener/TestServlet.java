@@ -19,8 +19,6 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.readlistener;
 
-import java.io.IOException;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletInputStream;
@@ -29,17 +27,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(value = "/TestServlet", asyncSupported = true)
 public class TestServlet extends HttpServlet {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    AsyncContext ac = request.startAsync();
-    ServletOutputStream output = response.getOutputStream();
-    ServletInputStream input = request.getInputStream();
-    TestListener readListener = new TestListener(input, output, ac);
-    input.setReadListener(readListener);
-  }
+        AsyncContext ac = request.startAsync();
+        ServletOutputStream output = response.getOutputStream();
+        ServletInputStream input = request.getInputStream();
+        TestListener readListener = new TestListener(input, output, ac);
+        input.setReadListener(readListener);
+    }
 }

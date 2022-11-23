@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface JTATestHome extends EJBHome {
-  JTATest create(java.util.Properties p)
-      throws RemoteException, CreateException;
+    JTATest create(java.util.Properties p) throws RemoteException, CreateException;
 }

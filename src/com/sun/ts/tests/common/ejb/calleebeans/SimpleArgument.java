@@ -21,23 +21,22 @@
 package com.sun.ts.tests.common.ejb.calleebeans;
 
 public class SimpleArgument implements java.io.Serializable {
-  protected int value;
+    protected int value;
 
-  public SimpleArgument(int initialValue) throws IllegalArgumentException {
+    public SimpleArgument(int initialValue) throws IllegalArgumentException {
 
-    if (0 == initialValue) {
-      throw new IllegalArgumentException("Cannot be zero!");
+        if (0 == initialValue) {
+            throw new IllegalArgumentException("Cannot be zero!");
+        }
+
+        this.value = initialValue;
     }
 
-    this.value = initialValue;
-  }
+    public void modify() {
+        value += value;
+    }
 
-  public void modify() {
-    value += value;
-  }
-
-  public int getValue() {
-    return value;
-  }
-
+    public int getValue() {
+        return value;
+    }
 }

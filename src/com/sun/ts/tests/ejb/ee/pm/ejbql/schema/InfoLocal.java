@@ -23,30 +23,29 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface InfoLocal extends EJBLocalObject {
-  // CMP fields
+    // CMP fields
 
-  public String getId();
+    public String getId();
 
-  public String getStreet();
+    public String getStreet();
 
-  public void setStreet(String v);
+    public void setStreet(String v);
 
-  public String getCity();
+    public String getCity();
 
-  public void setCity(String v);
+    public void setCity(String v);
 
-  public String getState();
+    public String getState();
 
-  public void setState(String v);
+    public void setState(String v);
 
-  public String getZip();
+    public String getZip();
 
-  public void setZip(String v);
+    public void setZip(String v);
 
-  // CMR fields
+    // CMR fields
 
-  public SpouseLocal getSpouse();
+    public SpouseLocal getSpouse();
 
-  public void setSpouse(SpouseLocal v);
-
+    public void setSpouse(SpouseLocal v);
 }

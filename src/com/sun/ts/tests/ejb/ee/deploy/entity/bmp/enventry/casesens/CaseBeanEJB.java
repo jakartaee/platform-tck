@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class CaseBeanEJB extends BMPWrapper {
 
-  public boolean testCaseSensitivity() {
-    return TestCode.testCaseSensitivity(nctx);
-  }
-
+    public boolean testCaseSensitivity() {
+        return TestCode.testCaseSensitivity(nctx);
+    }
 }

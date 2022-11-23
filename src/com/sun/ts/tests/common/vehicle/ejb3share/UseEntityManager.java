@@ -24,16 +24,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 public interface UseEntityManager {
-  public void setEntityManager(EntityManager em);
+    public void setEntityManager(EntityManager em);
 
-  public EntityManager getEntityManager();
+    public EntityManager getEntityManager();
 
-  public void setEntityTransaction(EntityTransaction entityTransaction);
+    public void setEntityTransaction(EntityTransaction entityTransaction);
 
-  public EntityTransaction getEntityTransaction();
+    public EntityTransaction getEntityTransaction();
 
-  public void setInContainer(boolean inContainer);
+    public void setInContainer(boolean inContainer);
 
-  public boolean isInContainer();
-
+    public boolean isInContainer();
 }

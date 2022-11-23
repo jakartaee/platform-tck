@@ -23,23 +23,22 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface TestIF {
-  // app name and module name literal values are also used in @EJB injections in
-  // this class and TestBean class
+    // app name and module name literal values are also used in @EJB injections in
+    // this class and TestBean class
 
-  public static final String APP_NAME = "misc_jndi_earjar";
+    public static final String APP_NAME = "misc_jndi_earjar";
 
-  public static final String EJB_MODULE_NAME = "misc_jndi_earjar_ejb";
+    public static final String EJB_MODULE_NAME = "misc_jndi_earjar_ejb";
 
-  public String globalJNDI(String appName, String moduleName);
+    public String globalJNDI(String appName, String moduleName);
 
-  public String appJNDI(String moduleName);
+    public String appJNDI(String moduleName);
 
-  public String moduleJNDI();
+    public String moduleJNDI();
 
-  public int add(int a, int b);
+    public int add(int a, int b);
 
-  public String globalJNDIHelloEJB(String appName, String moduleName,
-      String beanName, Class<?> intf);
+    public String globalJNDIHelloEJB(String appName, String moduleName, String beanName, Class<?> intf);
 
-  public String appNameModuleName();
+    public String appNameModuleName();
 }

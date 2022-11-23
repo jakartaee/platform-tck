@@ -24,59 +24,56 @@
 
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class WrapServlet extends HttpServlet {
 
-  ServletContext ctx = null;
+    ServletContext ctx = null;
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("WRAP INIT...");
-    ctx = servletConfig.getServletContext();
-  }
-
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    System.out.println("IN WRAP SERVLET...");
-    Object ctxRequest = ctx.getAttribute("tck.request");
-    Object ctxResponse = ctx.getAttribute("tck.response");
-    ctx.removeAttribute("tck.request");
-    ctx.removeAttribute("tck.response");
-
-    PrintWriter pw = response.getWriter();
-    pw.println("In Wrap servlet...");
-    if (ctxRequest != null && ctxResponse != null) {
-      if (ctxRequest == request) {
-        if (ctxResponse == response) {
-          pw.println("Test PASSED");
-        } else {
-          pw.println("Test FAILED.  Expected the response object passed to"
-              + " the target of a RequestDispatcher operation to be the same that"
-              + " was passed to the RequestDispatcher.");
-          pw.println("Original response: " + ctxResponse);
-          pw.println("Passed responset: " + response);
-        }
-      } else {
-        pw.println("Test FAILED.  Expected the request object passed to"
-            + " the target of a RequestDispatcher operation to be the same that"
-            + " was passed to the RequestDispatcher.");
-        pw.println("Original request: " + ctxRequest);
-        pw.println("Passed request: " + request);
-      }
-    } else {
-      pw.println(
-          "Test FAILED. Unable to find all required ServletContext values.");
-      pw.println("tck.request: " + ctxRequest);
-      pw.println("tck.response: " + ctxResponse);
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+        System.out.println("WRAP INIT...");
+        ctx = servletConfig.getServletContext();
     }
-  }
+
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("IN WRAP SERVLET...");
+        Object ctxRequest = ctx.getAttribute("tck.request");
+        Object ctxResponse = ctx.getAttribute("tck.response");
+        ctx.removeAttribute("tck.request");
+        ctx.removeAttribute("tck.response");
+
+        PrintWriter pw = response.getWriter();
+        pw.println("In Wrap servlet...");
+        if (ctxRequest != null && ctxResponse != null) {
+            if (ctxRequest == request) {
+                if (ctxResponse == response) {
+                    pw.println("Test PASSED");
+                } else {
+                    pw.println("Test FAILED.  Expected the response object passed to"
+                            + " the target of a RequestDispatcher operation to be the same that"
+                            + " was passed to the RequestDispatcher.");
+                    pw.println("Original response: " + ctxResponse);
+                    pw.println("Passed responset: " + response);
+                }
+            } else {
+                pw.println("Test FAILED.  Expected the request object passed to"
+                        + " the target of a RequestDispatcher operation to be the same that"
+                        + " was passed to the RequestDispatcher.");
+                pw.println("Original request: " + ctxRequest);
+                pw.println("Passed request: " + request);
+            }
+        } else {
+            pw.println("Test FAILED. Unable to find all required ServletContext values.");
+            pw.println("tck.request: " + ctxRequest);
+            pw.println("tck.response: " + ctxResponse);
+        }
+    }
 }

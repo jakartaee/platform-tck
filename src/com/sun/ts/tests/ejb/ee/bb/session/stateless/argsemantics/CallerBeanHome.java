@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface CallerBeanHome extends EJBHome {
 
-  public CallerBean create() throws RemoteException, CreateException;
-
+    public CallerBean create() throws RemoteException, CreateException;
 }

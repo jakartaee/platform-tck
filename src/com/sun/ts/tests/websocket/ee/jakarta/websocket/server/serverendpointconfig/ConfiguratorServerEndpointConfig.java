@@ -17,55 +17,53 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class ConfiguratorServerEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+    @Override
+    public Map<String, Object> getUserProperties() {
+        return Collections.emptyMap();
+    }
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSProgramaticConfiguratorServer.class;
-  }
+    @Override
+    public Class<?> getEndpointClass() {
+        return WSProgramaticConfiguratorServer.class;
+    }
 
-  @Override
-  public String getPath() {
-    return "/programatic/configurator";
-  }
+    @Override
+    public String getPath() {
+        return "/programatic/configurator";
+    }
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<String> getSubprotocols() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Extension> getExtensions() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfigConfigurator();
-  }
+    @Override
+    public Configurator getConfigurator() {
+        return new ServerEndpointConfigConfigurator();
+    }
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Class<? extends Encoder>> getEncoders() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
-
+    @Override
+    public List<Class<? extends Decoder>> getDecoders() {
+        return Collections.emptyList();
+    }
 }

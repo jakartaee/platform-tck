@@ -17,5 +17,9 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
 public enum OPS {
-  TEXT, TEXTPARTIAL, BINARY, BINARYPARTIAL, PONG
+    TEXT,
+    TEXTPARTIAL,
+    BINARY,
+    BINARYPARTIAL,
+    PONG
 }

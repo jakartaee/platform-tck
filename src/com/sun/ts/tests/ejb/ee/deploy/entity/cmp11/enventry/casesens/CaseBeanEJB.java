@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class CaseBeanEJB extends CMP11Wrapper {
 
-  public boolean testCaseSensitivity() {
-    return TestCode.testCaseSensitivity(nctx);
-  }
-
+    public boolean testCaseSensitivity() {
+        return TestCode.testCaseSensitivity(nctx);
+    }
 }

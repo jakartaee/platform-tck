@@ -20,74 +20,71 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import java.net.URL;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.net.URL;
+import javax.naming.NamingException;
 
-abstract public class AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF {
-  private int postConstructCalls;
+public abstract class AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
+    private int postConstructCalls;
 
-  public AssemblyBeanBase() {
-  }
-
-  // helloBean is deployed in a separate ejb module. Therefore, it can only
-  // be accessed via its remote business intf.
-  protected HelloRemoteIF getHelloBean() {
-    HelloRemoteIF helloBean;
-    try {
-      helloBean = (HelloRemoteIF) ServiceLocator.lookupByShortName("helloBean");
-    } catch (NamingException ex) {
-      throw new IllegalStateException(ex);
+    public AssemblyBeanBase() {
     }
-    return helloBean;
-  }
 
-  protected void incrementPostConstructCalls() {
-    this.postConstructCalls++;
-  }
+    // helloBean is deployed in a separate ejb module. Therefore, it can only
+    // be accessed via its remote business intf.
+    protected HelloRemoteIF getHelloBean() {
+        HelloRemoteIF helloBean;
+        try {
+            helloBean = (HelloRemoteIF) ServiceLocator.lookupByShortName("helloBean");
+        } catch (NamingException ex) {
+            throw new IllegalStateException(ex);
+        }
+        return helloBean;
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // business methods
-  //////////////////////////////////////////////////////////////////////
-  public int remoteAdd(int a, int b) {
-    return a + b;
-  }
+    protected void incrementPostConstructCalls() {
+        this.postConstructCalls++;
+    }
 
-  public int getPostConstructCalls() {
-    return postConstructCalls;
-  }
+    //////////////////////////////////////////////////////////////////////
+    // business methods
+    //////////////////////////////////////////////////////////////////////
+    public int remoteAdd(int a, int b) {
+        return a + b;
+    }
 
-  public String callHelloBean() {
-    // just check if helloBean can be accessed
-    HelloRemoteIF helloBean = getHelloBean();
-    helloBean.add(1, 2);
-    return helloBean.toString();
-  }
+    public int getPostConstructCalls() {
+        return postConstructCalls;
+    }
 
-  public void libSubdirNotScanned() throws TestFailedException {
-    Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
-  }
+    public String callHelloBean() {
+        // just check if helloBean can be accessed
+        HelloRemoteIF helloBean = getHelloBean();
+        helloBean.add(1, 2);
+        return helloBean.toString();
+    }
 
-  public void earLibNotInClasspath() throws TestFailedException {
-    Util.verifyGetResource(getClass(), EAR_LIB_JAR_NAME, null);
-  }
+    public void libSubdirNotScanned() throws TestFailedException {
+        Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
+    }
 
-  public URL getResource(String name) {
-    return getClass().getResource(name);
-  }
+    public void earLibNotInClasspath() throws TestFailedException {
+        Util.verifyGetResource(getClass(), EAR_LIB_JAR_NAME, null);
+    }
 
-  public String dirUsedInClassPath() {
-    throw new UnsupportedOperationException(
-        "This is the default implementation. Subclasses that need this method should override it");
-  }
+    public URL getResource(String name) {
+        return getClass().getResource(name);
+    }
 
-  public String getResourceContent(String name) throws TestFailedException {
-    throw new UnsupportedOperationException(
-        "This is the default implementation. Subclasses that need this method should override it");
-  }
+    public String dirUsedInClassPath() {
+        throw new UnsupportedOperationException(
+                "This is the default implementation. Subclasses that need this method should override it");
+    }
+
+    public String getResourceContent(String name) throws TestFailedException {
+        throw new UnsupportedOperationException(
+                "This is the default implementation. Subclasses that need this method should override it");
+    }
 }

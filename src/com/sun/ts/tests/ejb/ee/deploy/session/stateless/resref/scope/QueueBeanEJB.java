@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class QueueBeanEJB extends StatelessWrapper {
 
-  public boolean checkYourQueue() {
-    return QueueCode.checkYourQueue(nctx);
-  }
-
+    public boolean checkYourQueue() {
+        return QueueCode.checkYourQueue(nctx);
+    }
 }

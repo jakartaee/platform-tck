@@ -18,6 +18,5 @@ package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
 public interface NormalInterface2 {
 
-  public int businessMethod2();
-
+    public int businessMethod2();
 }

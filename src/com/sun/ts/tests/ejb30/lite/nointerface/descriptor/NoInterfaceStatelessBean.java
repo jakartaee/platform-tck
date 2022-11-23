@@ -24,8 +24,8 @@ import com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase;
 
 public class NoInterfaceStatelessBean extends BeanBase {
 
-  @Override
-  public NoInterfaceStatelessBean passAsReturn() {
-    return sessionContext.getBusinessObject(NoInterfaceStatelessBean.class);
-  }
+    @Override
+    public NoInterfaceStatelessBean passAsReturn() {
+        return sessionContext.getBusinessObject(NoInterfaceStatelessBean.class);
+    }
 }

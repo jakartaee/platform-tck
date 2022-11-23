@@ -24,7 +24,7 @@ import jakarta.jws.WebService;
 
 @WebService(portName = "WSHello2Port", serviceName = "WSHello2Service", targetNamespace = "http://helloservlet.org/wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server2.WSHello2")
 public class WSHello2Servlet implements WSHello2 {
-  public String sayServletHello(String who) {
-    return "WSHello2Servlet: " + who;
-  }
+    public String sayServletHello(String who) {
+        return "WSHello2Servlet: " + who;
+    }
 }

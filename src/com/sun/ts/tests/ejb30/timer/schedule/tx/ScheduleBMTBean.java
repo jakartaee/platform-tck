@@ -19,11 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.tx;
 
-import java.util.logging.Level;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
@@ -32,52 +29,59 @@ import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
+import java.util.logging.Level;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ScheduleBMTBean extends ScheduleTxBeanBase {
 
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  @Override
-  protected void setRollbackOnly() {
-    try {
-      ut.setRollbackOnly();
-    } catch (SystemException ex) {
-      throw new IllegalStateException(ex);
+    @Override
+    protected void setRollbackOnly() {
+        try {
+            ut.setRollbackOnly();
+        } catch (SystemException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
-  }
 
-  @Override
-  protected void beginTransaction() {
-    try {
-      ut.begin();
-    } catch (NotSupportedException ex) {
-      throw new IllegalStateException(ex);
-    } catch (SystemException ex) {
-      throw new IllegalStateException(ex);
+    @Override
+    protected void beginTransaction() {
+        try {
+            ut.begin();
+        } catch (NotSupportedException ex) {
+            throw new IllegalStateException(ex);
+        } catch (SystemException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
-  }
 
-  @Override
-  protected void commitTransaction() {
-    try {
-      if (ut.getStatus() == Status.STATUS_ACTIVE) {
-        Helper.getLogger().logp(Level.FINE, "ScheduleBMTBean",
-            "commitTransaction",
-            "About to commit UserTransaction, current status "
-                + TestUtil.getTransactionStatus(ut.getStatus()));
-        ut.commit();
-      } else if (ut.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
-        Helper.getLogger().logp(Level.FINE, "ScheduleBMTBean",
-            "commitTransaction",
-            "About to roll back UserTransaction, current status "
-                + TestUtil.getTransactionStatus(ut.getStatus()));
-        ut.rollback();
-      }
-    } catch (Exception ex) {
-      throw new IllegalStateException(ex);
+    @Override
+    protected void commitTransaction() {
+        try {
+            if (ut.getStatus() == Status.STATUS_ACTIVE) {
+                Helper.getLogger()
+                        .logp(
+                                Level.FINE,
+                                "ScheduleBMTBean",
+                                "commitTransaction",
+                                "About to commit UserTransaction, current status "
+                                        + TestUtil.getTransactionStatus(ut.getStatus()));
+                ut.commit();
+            } else if (ut.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
+                Helper.getLogger()
+                        .logp(
+                                Level.FINE,
+                                "ScheduleBMTBean",
+                                "commitTransaction",
+                                "About to roll back UserTransaction, current status "
+                                        + TestUtil.getTransactionStatus(ut.getStatus()));
+                ut.rollback();
+            }
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        }
     }
-  }
 }

@@ -23,17 +23,17 @@ package com.sun.ts.tests.ejb30.common.ejblink;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface CommonIF {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public void call() throws TestFailedException;
+    public void call() throws TestFailedException;
 
-  public void callOne() throws TestFailedException;
+    public void callOne() throws TestFailedException;
 
-  public void callTwo() throws TestFailedException;
+    public void callTwo() throws TestFailedException;
 
-  public void callThree() throws TestFailedException;
+    public void callThree() throws TestFailedException;
 
-  public void callOneLocal() throws TestFailedException;
+    public void callOneLocal() throws TestFailedException;
 
-  public void localCall(int[] f) throws TestFailedException;
+    public void localCall(int[] f) throws TestFailedException;
 }

@@ -19,84 +19,72 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void getServletContextTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void getServletContextTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    ServletContext actual = request.getServletContext();
-    ServletContext expected = this.getServletConfig().getServletContext();
+        ServletContext actual = request.getServletContext();
+        ServletContext expected = this.getServletConfig().getServletContext();
 
-    if (actual != expected) {
-      response.getWriter().println(
-          "getServletContext() returned inconsistent result. Test FAILED.");
-    } else {
-      response.getWriter().println("Test PASSED.");
-    }
-  }
-
-  public void getDispatcherTypeTestRequest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-  }
-
-  public void getDispatcherTypeTestForward(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-
-    String path = "/forward/ForwardedServlet?testname=getDispatcherTypeTest";
-    RequestDispatcher rd = request.getRequestDispatcher(path);
-
-    if (rd == null) {
-      response.getWriter()
-          .println("Null RequestDispatcher got for path=" + path);
-    } else {
-      rd.forward(request, response);
+        if (actual != expected) {
+            response.getWriter().println("getServletContext() returned inconsistent result. Test FAILED.");
+        } else {
+            response.getWriter().println("Test PASSED.");
+        }
     }
 
-  }
+    public void getDispatcherTypeTestRequest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-  public void getDispatcherTypeTestInclude(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-
-    String path = "/include/IncludedServlet?testname=getDispatcherTypeTest";
-    RequestDispatcher rd = request.getRequestDispatcher(path);
-
-    if (rd == null) {
-      response.getWriter()
-          .println("Null RequestDispatcher got for path=" + path);
-    } else {
-      rd.include(request, response);
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
     }
-  }
 
-  public void isAsyncSupportedTest(ServletRequest request,
-      ServletResponse response) throws IOException {
-    response.getWriter()
-        .println("isAsyncSupported=" + request.isAsyncSupported());
-  }
+    public void getDispatcherTypeTestForward(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-  public void startAsyncTest(ServletRequest request, ServletResponse response)
-      throws IOException {
-    try {
-      AsyncContext startAsync = request.startAsync();
-      response.getWriter()
-          .println("Expected IllegalStateException not thrown. Test FAILED.");
-    } catch (IllegalStateException ise) {
-      response.getWriter()
-          .println("Expected IllegalStateException thrown. Test PASSED.");
+        String path = "/forward/ForwardedServlet?testname=getDispatcherTypeTest";
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+
+        if (rd == null) {
+            response.getWriter().println("Null RequestDispatcher got for path=" + path);
+        } else {
+            rd.forward(request, response);
+        }
     }
-  }
+
+    public void getDispatcherTypeTestInclude(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+
+        String path = "/include/IncludedServlet?testname=getDispatcherTypeTest";
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+
+        if (rd == null) {
+            response.getWriter().println("Null RequestDispatcher got for path=" + path);
+        } else {
+            rd.include(request, response);
+        }
+    }
+
+    public void isAsyncSupportedTest(ServletRequest request, ServletResponse response) throws IOException {
+        response.getWriter().println("isAsyncSupported=" + request.isAsyncSupported());
+    }
+
+    public void startAsyncTest(ServletRequest request, ServletResponse response) throws IOException {
+        try {
+            AsyncContext startAsync = request.startAsync();
+            response.getWriter().println("Expected IllegalStateException not thrown. Test FAILED.");
+        } catch (IllegalStateException ise) {
+            response.getWriter().println("Expected IllegalStateException thrown. Test PASSED.");
+        }
+    }
 }

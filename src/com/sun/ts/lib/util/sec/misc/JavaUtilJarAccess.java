@@ -20,5 +20,5 @@ import java.io.IOException;
 import java.util.jar.JarFile;
 
 public interface JavaUtilJarAccess {
-  public boolean jarFileHasClassPathAttribute(JarFile jar) throws IOException;
+    public boolean jarFileHasClassPathAttribute(JarFile jar) throws IOException;
 }

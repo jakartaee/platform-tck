@@ -19,13 +19,11 @@
  */
 package com.sun.ts.tests.assembly.altDD;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface PainterBeanHome extends EJBHome {
 
-  public PainterBean create() throws RemoteException, CreateException;
-
+    public PainterBean create() throws RemoteException, CreateException;
 }

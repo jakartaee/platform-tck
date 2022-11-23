@@ -20,25 +20,23 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean testDatasource() throws RemoteException;
+    public boolean testDatasource() throws RemoteException;
 
-  public boolean testSession() throws RemoteException;
+    public boolean testSession() throws RemoteException;
 
-  public boolean testURL() throws RemoteException;
+    public boolean testURL() throws RemoteException;
 
-  public boolean testQueue() throws RemoteException;
+    public boolean testQueue() throws RemoteException;
 
-  public boolean testTopic() throws RemoteException;
+    public boolean testTopic() throws RemoteException;
 
-  public boolean testAll() throws RemoteException;
-
+    public boolean testAll() throws RemoteException;
 }

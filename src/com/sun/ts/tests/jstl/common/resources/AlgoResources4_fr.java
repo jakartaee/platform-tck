@@ -24,17 +24,16 @@ import java.util.Arrays;
 
 public class AlgoResources4_fr extends java.util.ListResourceBundle {
 
-  private static final Object[][] resources = { { "mkey", "fr message" } };
+    private static final Object[][] resources = { { "mkey", "fr message" } };
 
-  /** Creates new AlogResources4_fr */
-  public AlgoResources4_fr() {
-  }
+    /** Creates new AlogResources4_fr */
+    public AlgoResources4_fr() {
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
-  public java.lang.Object[][] getContents() {
-    return Arrays.copyOf(resources, resources.length);
-  }
+    /*
+     * public methods ========================================================================
+     */
+    public java.lang.Object[][] getContents() {
+        return Arrays.copyOf(resources, resources.length);
+    }
 }

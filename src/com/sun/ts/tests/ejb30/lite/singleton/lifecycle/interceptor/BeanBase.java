@@ -24,14 +24,13 @@ import jakarta.interceptor.Interceptors;
 
 public class BeanBase implements CommonSingletonIF {
 
-  @Interceptors(Interceptor3.class)
-  public int identityHashCode(String interceptorName) {
-    return -1;
-  }
+    @Interceptors(Interceptor3.class)
+    public int identityHashCode(String interceptorName) {
+        return -1;
+    }
 
-  @Interceptors(Interceptor3.class)
-  public void error(String InterceptorName) {
-    throw new IllegalStateException(
-        "Should not reach here due to interceptors.");
-  }
+    @Interceptors(Interceptor3.class)
+    public void error(String InterceptorName) {
+        throw new IllegalStateException("Should not reach here due to interceptors.");
+    }
 }

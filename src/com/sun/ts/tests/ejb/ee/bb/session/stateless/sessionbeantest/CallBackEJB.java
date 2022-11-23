@@ -21,93 +21,92 @@
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.sessionbeantest;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class CallBackEJB implements SessionBean {
-  private boolean ejbCreateFlag = false;
+    private boolean ejbCreateFlag = false;
 
-  private boolean ejbActivateFlag = false;
+    private boolean ejbActivateFlag = false;
 
-  private boolean ejbPassivateFlag = false;
+    private boolean ejbPassivateFlag = false;
 
-  private boolean ejbRemoveFlag = false;
+    private boolean ejbRemoveFlag = false;
 
-  private boolean ejbSessionContextFlag = false;
+    private boolean ejbSessionContextFlag = false;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  // ===========================================================
-  // CallBack interface (our business methods)
+    // ===========================================================
+    // CallBack interface (our business methods)
 
-  public void reset() {
-    ejbCreateFlag = false;
-    ejbActivateFlag = false;
-    ejbPassivateFlag = false;
-    ejbRemoveFlag = false;
-    ejbSessionContextFlag = false;
-  }
+    public void reset() {
+        ejbCreateFlag = false;
+        ejbActivateFlag = false;
+        ejbPassivateFlag = false;
+        ejbRemoveFlag = false;
+        ejbSessionContextFlag = false;
+    }
 
-  public void setCreate(boolean b) {
-    ejbCreateFlag = b;
-  }
+    public void setCreate(boolean b) {
+        ejbCreateFlag = b;
+    }
 
-  public boolean isCreate() {
-    return ejbCreateFlag;
-  }
+    public boolean isCreate() {
+        return ejbCreateFlag;
+    }
 
-  public void setActivate(boolean b) {
-    ejbActivateFlag = b;
-  }
+    public void setActivate(boolean b) {
+        ejbActivateFlag = b;
+    }
 
-  public boolean isActivate() {
-    return ejbActivateFlag;
-  }
+    public boolean isActivate() {
+        return ejbActivateFlag;
+    }
 
-  public void setPassivate(boolean b) {
-    ejbPassivateFlag = b;
-  }
+    public void setPassivate(boolean b) {
+        ejbPassivateFlag = b;
+    }
 
-  public boolean isPassivate() {
-    return ejbPassivateFlag;
-  }
+    public boolean isPassivate() {
+        return ejbPassivateFlag;
+    }
 
-  public void setRemove(boolean b) {
-    ejbRemoveFlag = b;
-  }
+    public void setRemove(boolean b) {
+        ejbRemoveFlag = b;
+    }
 
-  public boolean isRemove() {
-    return ejbRemoveFlag;
-  }
+    public boolean isRemove() {
+        return ejbRemoveFlag;
+    }
 
-  public void setContext(boolean b) {
-    ejbSessionContextFlag = b;
-  }
+    public void setContext(boolean b) {
+        ejbSessionContextFlag = b;
+    }
 
-  public boolean isContext() {
-    return ejbSessionContextFlag;
-  }
+    public boolean isContext() {
+        return ejbSessionContextFlag;
+    }
 }

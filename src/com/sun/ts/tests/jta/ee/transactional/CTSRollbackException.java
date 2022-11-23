@@ -18,8 +18,7 @@ package com.sun.ts.tests.jta.ee.transactional;
 
 public class CTSRollbackException extends RuntimeException {
 
-  public CTSRollbackException(String message) {
-    super(message);
-  }
-
+    public CTSRollbackException(String message) {
+        super(message);
+    }
 }

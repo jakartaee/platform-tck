@@ -20,67 +20,66 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.singleT;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+import java.util.Properties;
 
 public class MsgBean extends MDBWrapper {
 
-  boolean pass;
+    boolean pass;
 
-  public Boolean testStatelessInternal(Properties props) {
-    pass = TestCode.testStatelessInternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testStatelessInternal(Properties props) {
+        pass = TestCode.testStatelessInternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testStatelessExternal(Properties props) {
-    pass = TestCode.testStatelessExternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testStatelessExternal(Properties props) {
+        pass = TestCode.testStatelessExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testStatefulInternal(Properties props) {
-    pass = TestCode.testStatefulInternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testStatefulInternal(Properties props) {
+        pass = TestCode.testStatefulInternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testStatefulExternal(Properties props) {
-    pass = TestCode.testStatefulExternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testStatefulExternal(Properties props) {
+        pass = TestCode.testStatefulExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testBMPInternal(Properties props) {
-    pass = TestCode.testBMPInternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testBMPInternal(Properties props) {
+        pass = TestCode.testBMPInternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testBMPExternal(Properties props) {
-    pass = TestCode.testBMPExternal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testBMPExternal(Properties props) {
+        pass = TestCode.testBMPExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP11Internal(Properties props) {
-    pass = TestCode.testCMP11Internal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testCMP11Internal(Properties props) {
+        pass = TestCode.testCMP11Internal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP11External(Properties props) {
-    pass = TestCode.testCMP11External(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testCMP11External(Properties props) {
+        pass = TestCode.testCMP11External(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP20Internal(Properties props) {
-    pass = TestCode.testCMP20Internal(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testCMP20Internal(Properties props) {
+        pass = TestCode.testCMP20Internal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP20External(Properties props) {
-    pass = TestCode.testCMP20External(nctx, props);
-    return new Boolean(pass);
-  }
+    public Boolean testCMP20External(Properties props) {
+        pass = TestCode.testCMP20External(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean cleanUpBean(Properties props) {
-    TestCode.cleanUpStatefulBean();
-    return Boolean.TRUE;
-  }
+    public Boolean cleanUpBean(Properties props) {
+        TestCode.cleanUpStatefulBean();
+        return Boolean.TRUE;
+    }
 }

@@ -16,12 +16,9 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import javax.transaction.xa.Xid;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.NestedWorkXid;
-
 import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.TransactionContext;
 import jakarta.resource.spi.work.Work;
@@ -29,74 +26,74 @@ import jakarta.resource.spi.work.WorkCompletedException;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 import jakarta.resource.spi.work.WorkRejectedException;
+import javax.transaction.xa.Xid;
 
 public class NestedWorkXid1 implements Work {
 
-  public enum ContextType {
-    EXECUTION_CONTEXT, TRANSACTION_CONTEXT, SECURITY_CONTEXT
-  };
+    public enum ContextType {
+        EXECUTION_CONTEXT,
+        TRANSACTION_CONTEXT,
+        SECURITY_CONTEXT
+    };
 
-  private WorkManager wm;
+    private WorkManager wm;
 
-  private Xid xid;
+    private Xid xid;
 
-  private ContextType contxtType;
+    private ContextType contxtType;
 
-  public NestedWorkXid1(WorkManager wm, Xid xid, ContextType contxt) {
-    this.wm = wm;
-    this.xid = xid;
-    this.contxtType = contxt;
+    public NestedWorkXid1(WorkManager wm, Xid xid, ContextType contxt) {
+        this.wm = wm;
+        this.xid = xid;
+        this.contxtType = contxt;
 
-    ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.constructor",
-        "", "");
-    Debug.trace("NestedWorkXid1.constructor");
-  }
-
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.release", "",
-        "");
-    Debug.trace("NestedWorkXid1.release");
-  }
-
-  public void run() {
-    String strPass = "anno based NestedWorkXid1 child context submitted";
-    try {
-      Debug.trace("NestedWorkXid1.run");
-      ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.run", "", "");
-      Debug.trace("Got the xid");
-      NestedWorkXid workid = new NestedWorkXid();
-
-      if (contxtType == ContextType.TRANSACTION_CONTEXT) {
-        Debug.trace("Using TRANSACTION_CONTEXT to set the xid in tc");
-        TransactionContext tc = new TransactionContext();
-        tc.setXid(this.xid);
-        wm.doWork(workid, wm.INDEFINITE, tc, null);
-      } else {
-        // assume ExecutionContext - no need for SecurityContext yet
-        Debug.trace("Using EXECUTION_CONTEXT to set the xid in ec");
-        ExecutionContext ec = new ExecutionContext();
-        ec.setXid(this.xid);
-        wm.doWork(workid, wm.INDEFINITE, ec, null);
-      }
-
-      // flow could make it here or could throw WorkCompletedException
-      Debug.trace(strPass);
-      ConnectorStatus.getConnectorStatus().logState(strPass);
-
-    } catch (WorkCompletedException we) {
-      // could make it here upon successful completion of work
-      Debug.trace(strPass);
-      ConnectorStatus.getConnectorStatus().logState(strPass);
-    } catch (WorkRejectedException we) {
-      // should not make it here
-      Debug.trace("WorkRejectedException in NestedWorkXid1");
-    } catch (WorkException we) {
-      // should not make it here
-      Debug.trace("WorkException in NestedWorkXid1");
-    } catch (Exception ex) {
-      // should not make it here
-      Debug.trace("Exception in NestedWorkXid1");
+        ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.constructor", "", "");
+        Debug.trace("NestedWorkXid1.constructor");
     }
-  }
 
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.release", "", "");
+        Debug.trace("NestedWorkXid1.release");
+    }
+
+    public void run() {
+        String strPass = "anno based NestedWorkXid1 child context submitted";
+        try {
+            Debug.trace("NestedWorkXid1.run");
+            ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid1.run", "", "");
+            Debug.trace("Got the xid");
+            NestedWorkXid workid = new NestedWorkXid();
+
+            if (contxtType == ContextType.TRANSACTION_CONTEXT) {
+                Debug.trace("Using TRANSACTION_CONTEXT to set the xid in tc");
+                TransactionContext tc = new TransactionContext();
+                tc.setXid(this.xid);
+                wm.doWork(workid, wm.INDEFINITE, tc, null);
+            } else {
+                // assume ExecutionContext - no need for SecurityContext yet
+                Debug.trace("Using EXECUTION_CONTEXT to set the xid in ec");
+                ExecutionContext ec = new ExecutionContext();
+                ec.setXid(this.xid);
+                wm.doWork(workid, wm.INDEFINITE, ec, null);
+            }
+
+            // flow could make it here or could throw WorkCompletedException
+            Debug.trace(strPass);
+            ConnectorStatus.getConnectorStatus().logState(strPass);
+
+        } catch (WorkCompletedException we) {
+            // could make it here upon successful completion of work
+            Debug.trace(strPass);
+            ConnectorStatus.getConnectorStatus().logState(strPass);
+        } catch (WorkRejectedException we) {
+            // should not make it here
+            Debug.trace("WorkRejectedException in NestedWorkXid1");
+        } catch (WorkException we) {
+            // should not make it here
+            Debug.trace("WorkException in NestedWorkXid1");
+        } catch (Exception ex) {
+            // should not make it here
+            Debug.trace("Exception in NestedWorkXid1");
+        }
+    }
 }

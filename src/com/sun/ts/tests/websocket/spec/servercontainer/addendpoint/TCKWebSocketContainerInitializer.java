@@ -20,19 +20,15 @@
  */
 package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 
-import java.util.Set;
-
 import jakarta.servlet.ServletContainerInitializer;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import java.util.Set;
 
-public class TCKWebSocketContainerInitializer
-    implements ServletContainerInitializer {
+public class TCKWebSocketContainerInitializer implements ServletContainerInitializer {
 
-  @Override
-  public void onStartup(Set<Class<?>> arg0, ServletContext context)
-      throws ServletException {
-    context.addListener(
-        com.sun.ts.tests.websocket.spec.servercontainer.addendpoint.TestListener.class);
-  }
+    @Override
+    public void onStartup(Set<Class<?>> arg0, ServletContext context) throws ServletException {
+        context.addListener(com.sun.ts.tests.websocket.spec.servercontainer.addendpoint.TestListener.class);
+    }
 }

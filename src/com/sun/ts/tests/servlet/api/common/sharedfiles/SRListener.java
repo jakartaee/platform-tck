@@ -20,17 +20,16 @@
 package com.sun.ts.tests.servlet.api.common.sharedfiles;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
 
 public final class SRListener implements ServletRequestListener {
 
-  public void requestDestroyed(ServletRequestEvent event) {
-    StaticLog.add("SRListenerDestroyed.");
-  }
+    public void requestDestroyed(ServletRequestEvent event) {
+        StaticLog.add("SRListenerDestroyed.");
+    }
 
-  public void requestInitialized(ServletRequestEvent event) {
-    StaticLog.add("SRListenerInitialized.");
-  }
+    public void requestInitialized(ServletRequestEvent event) {
+        StaticLog.add("SRListenerInitialized.");
+    }
 }

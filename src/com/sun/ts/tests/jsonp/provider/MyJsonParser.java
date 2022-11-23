@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.json.stream.JsonLocation;
+import jakarta.json.stream.JsonParser;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.json.stream.JsonLocation;
-import jakarta.json.stream.JsonParser;
 
 /*
  * MyJsonParser is a Json Test Parser used by the pluggability tests
@@ -36,88 +34,88 @@ import jakarta.json.stream.JsonParser;
  */
 
 public class MyJsonParser implements JsonParser {
-  private InputStream in = null;
+    private InputStream in = null;
 
-  private Reader reader = null;
+    private Reader reader = null;
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("reader=" + reader);
-    TestUtil.logTrace("in=" + in);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("reader=" + reader);
+        TestUtil.logTrace("in=" + in);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonParser(InputStream in) {
-    this.in = in;
-  }
+    public MyJsonParser(InputStream in) {
+        this.in = in;
+    }
 
-  public MyJsonParser(Reader reader) {
-    this.reader = reader;
-  }
+    public MyJsonParser(Reader reader) {
+        this.reader = reader;
+    }
 
-  public void close() {
-    TestUtil.logTrace("public void close()");
-    addCalls("public void close()");
-  }
+    public void close() {
+        TestUtil.logTrace("public void close()");
+        addCalls("public void close()");
+    }
 
-  public BigDecimal getBigDecimal() {
-    TestUtil.logTrace("public BigDecimal getBigDecimal()");
-    addCalls("public BigDecimal getBigDecimal()");
-    return null;
-  }
+    public BigDecimal getBigDecimal() {
+        TestUtil.logTrace("public BigDecimal getBigDecimal()");
+        addCalls("public BigDecimal getBigDecimal()");
+        return null;
+    }
 
-  public int getInt() {
-    TestUtil.logTrace("public int getInt()");
-    addCalls("public int getInt()");
-    return -1;
-  }
+    public int getInt() {
+        TestUtil.logTrace("public int getInt()");
+        addCalls("public int getInt()");
+        return -1;
+    }
 
-  public JsonLocation getLocation() {
-    TestUtil.logTrace("public JsonLocation getLocation()");
-    addCalls("public JsonLocation getLocation()");
-    return null;
-  }
+    public JsonLocation getLocation() {
+        TestUtil.logTrace("public JsonLocation getLocation()");
+        addCalls("public JsonLocation getLocation()");
+        return null;
+    }
 
-  public long getLong() {
-    TestUtil.logTrace("public long getLong()");
-    addCalls("public long getLong()");
-    return -1;
-  }
+    public long getLong() {
+        TestUtil.logTrace("public long getLong()");
+        addCalls("public long getLong()");
+        return -1;
+    }
 
-  public boolean isIntegralNumber() {
-    TestUtil.logTrace("public boolean isIntegralNumber()");
-    addCalls("public boolean isIntegralNumber()");
-    return false;
-  }
+    public boolean isIntegralNumber() {
+        TestUtil.logTrace("public boolean isIntegralNumber()");
+        addCalls("public boolean isIntegralNumber()");
+        return false;
+    }
 
-  public String getString() {
-    TestUtil.logTrace("public String getString()");
-    addCalls("public String getString()");
-    return null;
-  }
+    public String getString() {
+        TestUtil.logTrace("public String getString()");
+        addCalls("public String getString()");
+        return null;
+    }
 
-  public boolean hasNext() {
-    TestUtil.logTrace("public boolean hasNext()");
-    addCalls("public boolean hasNext()");
-    return false;
-  }
+    public boolean hasNext() {
+        TestUtil.logTrace("public boolean hasNext()");
+        addCalls("public boolean hasNext()");
+        return false;
+    }
 
-  public JsonParser.Event next() {
-    TestUtil.logTrace("public JsonParser.Event next()");
-    addCalls("public JsonParser.Event next()");
-    return null;
-  }
+    public JsonParser.Event next() {
+        TestUtil.logTrace("public JsonParser.Event next()");
+        addCalls("public JsonParser.Event next()");
+        return null;
+    }
 }

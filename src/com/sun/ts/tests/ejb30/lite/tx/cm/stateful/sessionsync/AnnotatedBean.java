@@ -27,24 +27,22 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 /**
- * SessionSynchronization methods are annotated. afterCompletion method is not
- * implemented and there should be no callback calls for afterCompletion.
+ * SessionSynchronization methods are annotated. afterCompletion method is not implemented and there should be no
+ * callback calls for afterCompletion.
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class AnnotatedBean extends SessionSyncBeanBase
-    implements SessionSyncIF {
+public class AnnotatedBean extends SessionSyncBeanBase implements SessionSyncIF {
 
-  @SuppressWarnings("unused")
-  @AfterBegin()
-  private void afterBeginAnnotated() {
-    super.afterBegin();
-  }
+    @SuppressWarnings("unused")
+    @AfterBegin()
+    private void afterBeginAnnotated() {
+        super.afterBegin();
+    }
 
-  @SuppressWarnings("unused")
-  @BeforeCompletion
-  private void beforeCompletionAnnotated() {
-    super.beforeCompletion();
-  }
-
+    @SuppressWarnings("unused")
+    @BeforeCompletion
+    private void beforeCompletionAnnotated() {
+        super.beforeCompletion();
+    }
 }

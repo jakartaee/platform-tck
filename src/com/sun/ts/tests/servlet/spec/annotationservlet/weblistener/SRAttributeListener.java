@@ -16,43 +16,41 @@
 
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 import jakarta.servlet.annotation.WebListener;
+import java.util.ArrayList;
 
 @WebListener(value = "ServletRequestAttributeListener")
-public final class SRAttributeListener
-    implements ServletRequestAttributeListener {
+public final class SRAttributeListener implements ServletRequestAttributeListener {
 
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SRAList");
-    if (al == null) {
-      al = new ArrayList();
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SRAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("SRAAdded:" + event.getName() + "," + event.getValue());
+        event.getServletContext().setAttribute("SRAList", al);
     }
-    al.add("SRAAdded:" + event.getName() + "," + event.getValue());
-    event.getServletContext().setAttribute("SRAList", al);
-  }
 
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SRAList");
-    if (al == null) {
-      al = new ArrayList();
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SRAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("SRARemoved:" + event.getName() + "," + event.getValue());
+        event.getServletContext().setAttribute("SRAList", al);
     }
-    al.add("SRARemoved:" + event.getName() + "," + event.getValue());
-    event.getServletContext().setAttribute("SRAList", al);
-  }
 
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SRAList");
-    if (al == null) {
-      al = new ArrayList();
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SRAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("SRAReplaced:" + event.getName() + "," + event.getValue());
+        event.getServletContext().setAttribute("SRAList", al);
     }
-    al.add("SRAReplaced:" + event.getName() + "," + event.getValue());
-    event.getServletContext().setAttribute("SRAList", al);
-  }
 }

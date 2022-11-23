@@ -25,17 +25,17 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ThrowTag extends TagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public ThrowTag() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public ThrowTag() {
+        super();
+    }
 
-  /**
-   * Throws an exception.
-   */
-  public int doEndTag() throws JspException {
-    throw new JspException("body");
-  }
+    /**
+     * Throws an exception.
+     */
+    public int doEndTag() throws JspException {
+        throw new JspException("body");
+    }
 }

@@ -20,31 +20,30 @@
 
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
-abstract public class CommonBeanBase implements CommonIF {
-  abstract protected void verifyInjectedEJB();
+public abstract class CommonBeanBase implements CommonIF {
+    protected abstract void verifyInjectedEJB();
 
-  abstract protected String getBeanName();
+    protected abstract String getBeanName();
 
-  // to verify overriding the 3 methods from java.lang.Object should be
-  // harmless.
-  @Override
-  public boolean equals(Object obj) {
-    return super.equals(obj);
-  }
+    // to verify overriding the 3 methods from java.lang.Object should be
+    // harmless.
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
-  @Override
-  public String toString() {
-    return super.toString();
-  }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
-  @Override
-  public int hashCode() {
-    return super.hashCode();
-  }
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
-  public String getShortName() {
-    verifyInjectedEJB();
-    return getBeanName();
-  }
-
+    public String getShortName() {
+        verifyInjectedEJB();
+        return getBeanName();
+    }
 }

@@ -17,29 +17,28 @@
 
 package com.sun.ts.tests.websocket.spec.application.lifecycle;
 
-import java.util.concurrent.CountDownLatch;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
+import java.util.concurrent.CountDownLatch;
 
 public class OuterEndpoint extends InnerEndpoint {
-  private InnerEndpoint innerEndpoint;
+    private InnerEndpoint innerEndpoint;
 
-  public OuterEndpoint(InnerEndpoint innerEndpoint, CountDownLatch latch) {
-    super(latch);
-    this.innerEndpoint = innerEndpoint;
-  }
+    public OuterEndpoint(InnerEndpoint innerEndpoint, CountDownLatch latch) {
+        super(latch);
+        this.innerEndpoint = innerEndpoint;
+    }
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(this);
-  }
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        session.addMessageHandler(this);
+    }
 
-  @Override
-  public void onMessage(String message) {
-    this.receivedMessage += message;
-    innerEndpoint.sendMessage("anything");
-    innerEndpoint.await(5L);
-    latch.countDown();
-  }
+    @Override
+    public void onMessage(String message) {
+        this.receivedMessage += message;
+        innerEndpoint.sendMessage("anything");
+        innerEndpoint.await(5L);
+        latch.countDown();
+    }
 }

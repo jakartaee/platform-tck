@@ -29,23 +29,23 @@ import jakarta.ejb.TransactionManagementType;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class OneBean extends BeanBase {
 
-  @EJB
-  protected void setOne(OneBean one) {
-    this.one = one;
-  }
+    @EJB
+    protected void setOne(OneBean one) {
+        this.one = one;
+    }
 
-  @EJB
-  protected void setThree(ThreeBean three) {
-    this.three = three;
-  }
+    @EJB
+    protected void setThree(ThreeBean three) {
+        this.three = three;
+    }
 
-  @EJB
-  protected void setTwo(TwoBean two) {
-    this.two = two;
-  }
+    @EJB
+    protected void setTwo(TwoBean two) {
+        this.two = two;
+    }
 
-  @Override
-  public String getRefNamePrefix() {
-    return OneBean.class.getName();
-  }
+    @Override
+    public String getRefNamePrefix() {
+        return OneBean.class.getName();
+    }
 }

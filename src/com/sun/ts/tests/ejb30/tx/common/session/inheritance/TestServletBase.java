@@ -19,174 +19,173 @@
  */
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @EJBs({
-    @EJB(name = "abeanRemote", beanName = "ABean", beanInterface = TxRemoteIF.class, description = "remote ABean"),
-    @EJB(name = "bbeanRemote", beanName = "BBean", beanInterface = TxRemoteIF.class, description = "remote BBean"),
-    @EJB(name = "cbeanRemote", beanName = "CBean", beanInterface = TxRemoteIF.class, description = "remote CBean"),
-    @EJB(name = "dbeanRemote", beanName = "DBean", beanInterface = TxRemoteIF.class, description = "remote DBean"),
-    @EJB(name = "ebeanRemote", beanName = "EBean", beanInterface = TxRemoteIF.class, description = "remote EBean"),
-    @EJB(name = "fbeanRemote", beanName = "FBean", beanInterface = TxRemoteIF.class, description = ""),
-    @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "local ABean"),
-    @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "local BBean"),
-    @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "local CBean"),
-    @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "local DBean"),
-    @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "local EBean"),
-    @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "") })
-abstract public class TestServletBase extends HttpTCKServlet {
-  public void aBeanRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.aBeanRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+        @EJB(name = "abeanRemote", beanName = "ABean", beanInterface = TxRemoteIF.class, description = "remote ABean"),
+        @EJB(name = "bbeanRemote", beanName = "BBean", beanInterface = TxRemoteIF.class, description = "remote BBean"),
+        @EJB(name = "cbeanRemote", beanName = "CBean", beanInterface = TxRemoteIF.class, description = "remote CBean"),
+        @EJB(name = "dbeanRemote", beanName = "DBean", beanInterface = TxRemoteIF.class, description = "remote DBean"),
+        @EJB(name = "ebeanRemote", beanName = "EBean", beanInterface = TxRemoteIF.class, description = "remote EBean"),
+        @EJB(name = "fbeanRemote", beanName = "FBean", beanInterface = TxRemoteIF.class, description = ""),
+        @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "local ABean"),
+        @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "local BBean"),
+        @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "local CBean"),
+        @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "local DBean"),
+        @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "local EBean"),
+        @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "")
+})
+public abstract class TestServletBase extends HttpTCKServlet {
+    public void aBeanRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.aBeanRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void aBeanLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.aBeanLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void aBeanLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.aBeanLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void bBeanRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.bBeanRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void bBeanRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.bBeanRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void bBeanLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.bBeanLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void bBeanLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.bBeanLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void cBeanRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.cBeanRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void cBeanRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.cBeanRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void cBeanLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.cBeanLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void cBeanLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.cBeanLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void dBeanRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.dBeanRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void dBeanRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.dBeanRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void dBeanLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.dBeanLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void dBeanLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.dBeanLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void eBeanRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.eBeanRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void eBeanRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.eBeanRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void eBeanLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.eBeanLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void eBeanLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.eBeanLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void overloadedMethodsTxLocal(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.overloadedMethodsTxLocal(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void overloadedMethodsTxLocal(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.overloadedMethodsTxLocal(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 
-  public void overloadedMethodsTxRemote(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      TestLogic.overloadedMethodsTxRemote(reason);
-      pw.println(Data.PASSED + reason.toString());
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + e.getMessage());
+    public void overloadedMethodsTxRemote(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            TestLogic.overloadedMethodsTxRemote(reason);
+            pw.println(Data.PASSED + reason.toString());
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + e.getMessage());
+        }
     }
-  }
 }

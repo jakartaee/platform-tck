@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.appexception.stateless.annotated;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
-
 import jakarta.ejb.Stateless;
 
 @Stateless

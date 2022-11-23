@@ -20,105 +20,103 @@
 package com.sun.ts.tests.ejb30.lite.appexception.stateless.override;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
-
 import jakarta.ejb.EJB;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.lite.appexception.common.ClientBase {
 
-  @Override
-  @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
-  protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {
-    this.noInterfaceBean = noInterfaceBean;
-  }
+    @Override
+    @EJB(beanInterface = NoInterfaceAppExceptionBean.class, beanName = "NoInterfaceAppExceptionBean")
+    protected void setNoInterfaceBean(AppExceptionIF noInterfaceBean) {
+        this.noInterfaceBean = noInterfaceBean;
+    }
 
-  // tests used by both */appexception/annotated/ and */appexception/override/
+    // tests used by both */appexception/annotated/ and */appexception/override/
 
-  /*
-   * @testName: atCheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: checkedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedAppExceptionTest2
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: checkedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
 
-  // tests used by */appexception/override/
+    // tests used by */appexception/override/
 
-  /*
-   * @testName: uncheckedAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: uncheckedAppExceptionTest2
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: uncheckedAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: uncheckedRollbackAppExceptionTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: uncheckedRollbackAppExceptionTestLocal
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: uncheckedAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: uncheckedAppExceptionTest2
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: uncheckedAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: uncheckedRollbackAppExceptionTest
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: uncheckedRollbackAppExceptionTestLocal
+     *
+     * @test_Strategy:
+     *
+     */
 }

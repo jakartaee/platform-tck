@@ -20,36 +20,32 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import java.io.IOException;
-import java.io.StringWriter;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.io.StringWriter;
 
-public class SimpleBodyTag extends SimpleTagSupport
-    implements DynamicAttributes {
+public class SimpleBodyTag extends SimpleTagSupport implements DynamicAttributes {
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    // no-op
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspFragment body = getJspBody();
-    if (body != null) {
-      StringWriter writer = new StringWriter();
-      body.invoke(writer);
-      String bodyValue = writer.toString().trim();
-      JspWriter out = getJspContext().getOut();
-      if ("testpassed".equals(bodyValue)) {
-        out.println("Test PASSED");
-      } else {
-        out.println("Test FAILED.  Expected body to be 'testpassed'."
-            + "  Received: " + bodyValue);
-      }
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        // no-op
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+        JspFragment body = getJspBody();
+        if (body != null) {
+            StringWriter writer = new StringWriter();
+            body.invoke(writer);
+            String bodyValue = writer.toString().trim();
+            JspWriter out = getJspContext().getOut();
+            if ("testpassed".equals(bodyValue)) {
+                out.println("Test PASSED");
+            } else {
+                out.println("Test FAILED.  Expected body to be 'testpassed'." + "  Received: " + bodyValue);
+            }
+        }
+    }
 }

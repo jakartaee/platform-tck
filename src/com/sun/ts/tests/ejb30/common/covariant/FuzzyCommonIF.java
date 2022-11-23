@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb30.common.covariant;
 
 public interface FuzzyCommonIF {
-  Object getMessage();
+    Object getMessage();
 
-  Object[] getMessages();
+    Object[] getMessages();
 
-  Object[] getNumbers();
+    Object[] getNumbers();
 }

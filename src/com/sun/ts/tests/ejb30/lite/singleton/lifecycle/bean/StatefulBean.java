@@ -24,5 +24,4 @@ import jakarta.ejb.Stateful;
 
 @Stateful
 public class StatefulBean extends BeanBase {
-
 }

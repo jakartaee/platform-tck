@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface ReferencedBean2 extends EJBObject {
 
-  public String whoAreYou() throws RemoteException;
-
+    public String whoAreYou() throws RemoteException;
 }

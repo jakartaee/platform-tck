@@ -27,5 +27,4 @@ package com.sun.ts.tests.common.dao.coffee;
  *
  */
 public interface TxCoffeeDAO extends CoffeeDAO {
-
 }

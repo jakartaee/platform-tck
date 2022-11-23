@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase;
 
 public class ServerLogicalHandler1 extends LogicalHandlerBase {
-  private static final String WHICHHANDLERTYPE = "Server";
+    private static final String WHICHHANDLERTYPE = "Server";
 
-  private static final String HANDLERNAME = "ServerLogicalHandler1";
+    private static final String HANDLERNAME = "ServerLogicalHandler1";
 
-  public ServerLogicalHandler1() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ServerLogicalHandler1() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

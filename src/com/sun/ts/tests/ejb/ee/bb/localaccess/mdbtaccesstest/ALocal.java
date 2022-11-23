@@ -23,17 +23,17 @@ package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbtaccesstest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface ALocal extends EJBLocalObject {
-  // Business Methods for ALocal CMP Fields
-  public Integer getId();
+    // Business Methods for ALocal CMP Fields
+    public Integer getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Other Business Methods
-  public String whoAmI();
+    // Other Business Methods
+    public String whoAmI();
 }

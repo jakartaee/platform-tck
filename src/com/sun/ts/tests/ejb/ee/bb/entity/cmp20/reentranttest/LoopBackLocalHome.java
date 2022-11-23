@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface LoopBackLocalHome extends EJBLocalHome {
-  public LoopBackLocal create(TestBeanLocal r) throws CreateException;
+    public LoopBackLocal create(TestBeanLocal r) throws CreateException;
 }

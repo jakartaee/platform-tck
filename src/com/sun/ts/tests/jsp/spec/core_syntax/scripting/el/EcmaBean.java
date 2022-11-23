@@ -22,17 +22,17 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
 public class EcmaBean {
 
-  private String _simple = null;
+    private String _simple = null;
 
-  public String getSimple() {
-    return _simple;
-  }
+    public String getSimple() {
+        return _simple;
+    }
 
-  public void setSimple(String simple) {
-    _simple = simple;
-  }
+    public void setSimple(String simple) {
+        _simple = simple;
+    }
 
-  public String getException() {
-    throw new RuntimeException();
-  }
+    public String getException() {
+        throw new RuntimeException();
+    }
 }

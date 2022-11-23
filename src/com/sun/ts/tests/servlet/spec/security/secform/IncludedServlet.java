@@ -20,44 +20,40 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class IncludedServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
-    response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
 
-    out.println("Contents from IncludedServlet");
+        out.println("Contents from IncludedServlet");
 
-    out.println("From IncludedServlet: getRemoteUser(): "
-        + request.getRemoteUser() + "<BR>");
+        out.println("From IncludedServlet: getRemoteUser(): " + request.getRemoteUser() + "<BR>");
 
-    out.println("From IncludedServlet: isUserInRole(\"Administrator\"): !"
-        + request.isUserInRole("Administrator") + "!<BR>");
+        out.println("From IncludedServlet: isUserInRole(\"Administrator\"): !" + request.isUserInRole("Administrator")
+                + "!<BR>");
 
-    // String forwardedServletAttribute=null;
-    // HttpSession session = request.getSession(true);
-    // out.println("HttpSession Id :"+ session.getId());
+        // String forwardedServletAttribute=null;
+        // HttpSession session = request.getSession(true);
+        // out.println("HttpSession Id :"+ session.getId());
 
-    // forwardedServletAttribute =
-    // (String)session.getAttribute("ForwardedServletAttribute");
-    // out.println("Attributes set from Forwarded Servlet: "+
-    // forwardedServletAttribute);
+        // forwardedServletAttribute =
+        // (String)session.getAttribute("ForwardedServletAttribute");
+        // out.println("Attributes set from Forwarded Servlet: "+
+        // forwardedServletAttribute);
 
-    // if(forwardedServletAttribute!=null)
-    // out.println("HttpSession object attributes are shared between contexts");
+        // if(forwardedServletAttribute!=null)
+        // out.println("HttpSession object attributes are shared between contexts");
 
-    out.flush();
-    out.close();
-
-  }
+        out.flush();
+        out.close();
+    }
 }

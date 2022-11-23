@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
-import java.util.List;
-
 import jakarta.ejb.Remote;
+import java.util.List;
 
 @Remote
 public interface EventLoggerRemote {
-  boolean awaitInvocations();
+    boolean awaitInvocations();
 
-  List<String> getEventRecords();
+    List<String> getEventRecords();
 }

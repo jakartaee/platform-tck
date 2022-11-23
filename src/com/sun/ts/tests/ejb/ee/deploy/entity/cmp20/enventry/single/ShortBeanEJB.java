@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class ShortBeanEJB extends CMP20Wrapper {
 
-  public boolean testShortEntry() {
-    return TestCode.testShortEntry(nctx);
-  }
-
+    public boolean testShortEntry() {
+        return TestCode.testShortEntry(nctx);
+    }
 }

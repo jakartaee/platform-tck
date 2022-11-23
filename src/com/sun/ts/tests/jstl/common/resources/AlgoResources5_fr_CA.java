@@ -24,17 +24,16 @@ import java.util.Arrays;
 
 public class AlgoResources5_fr_CA extends java.util.ListResourceBundle {
 
-  private static final Object[][] resources = { { "mkey", "fr_CA message" } };
+    private static final Object[][] resources = { { "mkey", "fr_CA message" } };
 
-  /** Creates new AlgoResources5_fr_CA */
-  public AlgoResources5_fr_CA() {
-  }
+    /** Creates new AlgoResources5_fr_CA */
+    public AlgoResources5_fr_CA() {
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
-  public java.lang.Object[][] getContents() {
-    return Arrays.copyOf(resources, resources.length);
-  }
+    /*
+     * public methods ========================================================================
+     */
+    public java.lang.Object[][] getContents() {
+        return Arrays.copyOf(resources, resources.length);
+    }
 }

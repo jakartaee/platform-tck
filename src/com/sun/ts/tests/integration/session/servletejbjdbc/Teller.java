@@ -20,18 +20,17 @@
 
 package com.sun.ts.tests.integration.session.servletejbjdbc;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Teller extends EJBObject {
-  public void transfer(int from, int to, double amt) throws RemoteException;
+    public void transfer(int from, int to, double amt) throws RemoteException;
 
-  public double balance(int acct) throws RemoteException;
+    public double balance(int acct) throws RemoteException;
 
-  public double withdraw(int acct, double amt) throws RemoteException;
+    public double withdraw(int acct, double amt) throws RemoteException;
 
-  public double deposit(int acct, double amt) throws RemoteException;
+    public double deposit(int acct, double amt) throws RemoteException;
 
-  public String getAllAccounts() throws RemoteException;
+    public String getAllAccounts() throws RemoteException;
 }

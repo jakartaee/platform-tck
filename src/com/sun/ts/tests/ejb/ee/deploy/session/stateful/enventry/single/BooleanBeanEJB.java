@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class BooleanBeanEJB extends StatefulWrapper {
 
-  public boolean testBooleanEntry() {
-    return TestCode.testBooleanEntry(nctx);
-  }
-
+    public boolean testBooleanEntry() {
+        return TestCode.testBooleanEntry(nctx);
+    }
 }

@@ -27,8 +27,8 @@ import jakarta.ejb.Stateless;
 @LocalBean
 public class NoInterfaceStatelessBean extends BeanBase {
 
-  @Override
-  public NoInterfaceStatelessBean passAsReturn() {
-    return sessionContext.getBusinessObject(NoInterfaceStatelessBean.class);
-  }
+    @Override
+    public NoInterfaceStatelessBean passAsReturn() {
+        return sessionContext.getBusinessObject(NoInterfaceStatelessBean.class);
+    }
 }

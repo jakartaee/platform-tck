@@ -20,64 +20,62 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBeanNoTxEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-      TestUtil.logMsg("obtaining naming context");
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.logErr("Exception occurred: " + e);
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+            TestUtil.logMsg("obtaining naming context");
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.logErr("Exception occurred: " + e);
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  // ===========================================================
-  // TestBeanNoTx interface (our business methods)
+    // ===========================================================
+    // TestBeanNoTx interface (our business methods)
 
-  public void okay() {
-    TestUtil.logTrace("okay");
-  }
+    public void okay() {
+        TestUtil.logTrace("okay");
+    }
 
-  public void not_okay() {
-    TestUtil.logTrace("not_okay");
-    throw new EJBException("not_okay");
-  }
+    public void not_okay() {
+        TestUtil.logTrace("not_okay");
+        throw new EJBException("not_okay");
+    }
 }

@@ -21,13 +21,12 @@ package com.sun.ts.tests.ejb30.lite.lookup.descriptor;
 
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupBeanPlainBase;
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
 public class LookupBean extends LookupBeanPlainBase implements LookupIF {
-  @Override
-  public String getName() {
-    return LOOKUP_BEAN;
-  }
+    @Override
+    public String getName() {
+        return LOOKUP_BEAN;
+    }
 }

@@ -19,19 +19,16 @@ package com.sun.ts.tests.ejb30.bb.async.stateless.metadata;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.BeanClassLevel3BeanBase;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.PlainInterfaceTypeLevelIF;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.PlainInterfaceTypeLevelRemoteIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 
 /**
- * The purpose of this bean is to verify the superclasses of a bean class can
- * have type-level @Asynchronous, which applies to all business methods
- * implemented there. Bean class hierarchy:
+ * The purpose of this bean is to verify the superclasses of a bean class can have type-level @Asynchronous, which
+ * applies to all business methods implemented there. Bean class hierarchy:
  *
- * InterfaceTypeLevelBeanBase BeanClassLevel0BeanBase
- * BeanClassLevel1BeanBase @Asynchronous BeanClassLevel2BeanBase @Asynchronous
- * BeanClassLevel3BeanBase BeanClassLevelBean
+ * InterfaceTypeLevelBeanBase BeanClassLevel0BeanBase BeanClassLevel1BeanBase @Asynchronous
+ * BeanClassLevel2BeanBase @Asynchronous BeanClassLevel3BeanBase BeanClassLevelBean
  */
 @Stateless
 @Local(PlainInterfaceTypeLevelIF.class)

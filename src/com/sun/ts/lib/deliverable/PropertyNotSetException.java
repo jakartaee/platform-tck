@@ -17,7 +17,7 @@
 package com.sun.ts.lib.deliverable;
 
 public class PropertyNotSetException extends java.lang.Exception {
-  public PropertyNotSetException(String s) {
-    super(s);
-  }
+    public PropertyNotSetException(String s) {
+        super(s);
+    }
 }

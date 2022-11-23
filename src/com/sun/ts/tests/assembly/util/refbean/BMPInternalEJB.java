@@ -25,11 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class BMPInternalEJB extends BMPWrapper {
 
-  /**
-   * Method used to identify this bean (only available for this bean).
-   */
-  public boolean isTestBMPInternal() {
-    TestUtil.logTrace("BMPInternal: isTestBMPInternal()");
-    return true;
-  }
+    /**
+     * Method used to identify this bean (only available for this bean).
+     */
+    public boolean isTestBMPInternal() {
+        TestUtil.logTrace("BMPInternal: isTestBMPInternal()");
+        return true;
+    }
 }

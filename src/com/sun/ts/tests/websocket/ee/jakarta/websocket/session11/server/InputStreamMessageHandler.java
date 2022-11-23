@@ -17,34 +17,31 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
+public class InputStreamMessageHandler implements MessageHandler.Whole<InputStream> {
 
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
+    protected Session session;
 
-public class InputStreamMessageHandler
-    implements MessageHandler.Whole<InputStream> {
+    public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
 
-  protected Session session;
-
-  public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
-
-  public InputStreamMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(InputStream message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromStream(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public InputStreamMessageHandler(Session session) {
+        super();
+        this.session = session;
     }
-  }
+
+    @Override
+    public void onMessage(InputStream message) {
+        String msg = null;
+        try {
+            msg = IOUtil.readFromStream(message);
+            session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

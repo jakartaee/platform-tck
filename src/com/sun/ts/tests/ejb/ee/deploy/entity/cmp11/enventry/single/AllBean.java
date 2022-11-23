@@ -20,28 +20,26 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.single;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface AllBean extends EJBObject {
 
-  public boolean testCharacterEntry() throws RemoteException;
+    public boolean testCharacterEntry() throws RemoteException;
 
-  public boolean testStringEntry() throws RemoteException;
+    public boolean testStringEntry() throws RemoteException;
 
-  public boolean testBooleanEntry() throws RemoteException;
+    public boolean testBooleanEntry() throws RemoteException;
 
-  public boolean testByteEntry() throws RemoteException;
+    public boolean testByteEntry() throws RemoteException;
 
-  public boolean testShortEntry() throws RemoteException;
+    public boolean testShortEntry() throws RemoteException;
 
-  public boolean testIntegerEntry() throws RemoteException;
+    public boolean testIntegerEntry() throws RemoteException;
 
-  public boolean testLongEntry() throws RemoteException;
+    public boolean testLongEntry() throws RemoteException;
 
-  public boolean testFloatEntry() throws RemoteException;
+    public boolean testFloatEntry() throws RemoteException;
 
-  public boolean testDoubleEntry() throws RemoteException;
-
+    public boolean testDoubleEntry() throws RemoteException;
 }

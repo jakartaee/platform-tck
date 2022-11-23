@@ -20,142 +20,136 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Collection;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public abstract class TestBeanEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  // JNDI Names for Local Home Interfaces
+    // JNDI Names for Local Home Interfaces
 
-  private static final String LineItemLocal = "java:comp/env/ejb/LineItemLocal";
+    private static final String LineItemLocal = "java:comp/env/ejb/LineItemLocal";
 
-  private static final String LineItem = "java:comp/env/ejb/LineItem";
+    private static final String LineItem = "java:comp/env/ejb/LineItem";
 
-  // Entity instance data
-  public abstract Integer getId();
+    // Entity instance data
+    public abstract Integer getId();
 
-  public abstract void setId(Integer i);
+    public abstract void setId(Integer i);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract double getPrice();
+    public abstract double getPrice();
 
-  public abstract void setPrice(double p);
+    public abstract void setPrice(double p);
 
-  public abstract Product getProduct();
+    public abstract Product getProduct();
 
-  public abstract void setProduct(Product p);
+    public abstract void setProduct(Product p);
 
-  // CMR
-  // 1XMany
-  public abstract Collection getLineItems();
+    // CMR
+    // 1XMany
+    public abstract Collection getLineItems();
 
-  public abstract void setLineItems(Collection v);
+    public abstract void setLineItems(Collection v);
 
-  public ComplexPK ejbCreate(int id, String brandName, double price,
-      int quantity, String country) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    Integer Id = new Integer(id);
-    Product product = new Product(quantity, country);
-    try {
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-      setId(Id);
-      setBrandName(brandName);
-      setPrice(price);
-      setProduct(product);
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Unable to obtain naming context");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public ComplexPK ejbCreate(int id, String brandName, double price, int quantity, String country)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        Integer Id = new Integer(id);
+        Product product = new Product(quantity, country);
+        try {
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+            setId(Id);
+            setBrandName(brandName);
+            setPrice(price);
+            setProduct(product);
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Unable to obtain naming context");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(int id, String brandName, double price,
-      int quantity, String country) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public String ping(String s) {
-    TestUtil.logTrace("ping : " + s);
-    return "ping: " + s;
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbPostCreate(int id, String brandName, double price, int quantity, String country) {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
 
-  public void addLineItem(LineItem l) {
-    try {
-      String liPK = (String) l.getPrimaryKey();
-      TSNamingContext nctx = new TSNamingContext();
-      LineItemLocalHome lineItemLocalHome = (LineItemLocalHome) nctx
-          .lookup(LineItemLocal);
-      LineItemLocal lLeb = lineItemLocalHome.findByPrimaryKey(liPK);
-      Collection col = getLineItems();
-      col.add(lLeb);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("addLineItem:" + e);
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
     }
-  }
 
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public String ping(String s) {
+        TestUtil.logTrace("ping : " + s);
+        return "ping: " + s;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    public void addLineItem(LineItem l) {
+        try {
+            String liPK = (String) l.getPrimaryKey();
+            TSNamingContext nctx = new TSNamingContext();
+            LineItemLocalHome lineItemLocalHome = (LineItemLocalHome) nctx.lookup(LineItemLocal);
+            LineItemLocal lLeb = lineItemLocalHome.findByPrimaryKey(liPK);
+            Collection col = getLineItems();
+            col.add(lLeb);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("addLineItem:" + e);
+        }
+    }
 }

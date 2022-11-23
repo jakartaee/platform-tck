@@ -24,33 +24,33 @@ import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.InterceptorBase;
 
 public class CMInterceptorBase extends InterceptorBase {
 
-  // copied from SingletonBean
+    // copied from SingletonBean
 
-  private long unlockedSum;
+    private long unlockedSum;
 
-  private long lockedSum;
+    private long lockedSum;
 
-  protected long getAndResetLockedSum() {
-    long result = lockedSum;
-    lockedSum = 0;
-    return result;
-  }
-
-  protected void addLocked(int num) {
-    for (int i = 0; i < num; i++) {
-      lockedSum++;
+    protected long getAndResetLockedSum() {
+        long result = lockedSum;
+        lockedSum = 0;
+        return result;
     }
-  }
 
-  protected long getAndResetUnlockedSum() {
-    long result = unlockedSum;
-    unlockedSum = 0;
-    return result;
-  }
-
-  protected void addUnlocked(int num) {
-    for (int i = 0; i < num; i++) {
-      unlockedSum++;
+    protected void addLocked(int num) {
+        for (int i = 0; i < num; i++) {
+            lockedSum++;
+        }
     }
-  }
+
+    protected long getAndResetUnlockedSum() {
+        long result = unlockedSum;
+        unlockedSum = 0;
+        return result;
+    }
+
+    protected void addUnlocked(int num) {
+        for (int i = 0; i < num; i++) {
+            unlockedSum++;
+        }
+    }
 }

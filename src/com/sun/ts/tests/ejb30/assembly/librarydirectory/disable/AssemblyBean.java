@@ -24,41 +24,36 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyBeanBase;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyInterceptor;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 /**
- * This bean is packaged into lib/shared.jar, but this library-directory is
- * disabled by using an empty element value. Although this bean has the same
- * name as the one in ../../common, and implements the same remote/local
- * interface, it should not cause any conflict since this directory is disabled
- * in application.xml
+ * This bean is packaged into lib/shared.jar, but this library-directory is disabled by using an empty element value.
+ * Although this bean has the same name as the one in ../../common, and implements the same remote/local interface, it
+ * should not cause any conflict since this directory is disabled in application.xml
  */
 @Stateless(name = "AssemblyBean")
 @Interceptors({ AssemblyInterceptor.class })
-public class AssemblyBean extends AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF {
+public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
 
-  public AssemblyBean() {
-  }
+    public AssemblyBean() {
+    }
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    fail();
-    return 9999999;
-  }
+    @Override
+    public int remoteAdd(int a, int b) {
+        fail();
+        return 9999999;
+    }
 
-  private void fail() throws EJBException {
-    throw new EJBException("Should not get here since this bean is packaged "
-        + "in a library jar that has been disabled in application.xml");
-  }
+    private void fail() throws EJBException {
+        throw new EJBException("Should not get here since this bean is packaged "
+                + "in a library jar that has been disabled in application.xml");
+    }
 
-  @Override
-  public int getPostConstructCalls() {
-    fail();
-    return 999999;
-  }
-
+    @Override
+    public int getPostConstructCalls() {
+        fail();
+        return 999999;
+    }
 }

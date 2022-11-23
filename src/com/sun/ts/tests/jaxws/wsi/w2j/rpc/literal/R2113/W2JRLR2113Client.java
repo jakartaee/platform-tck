@@ -20,43 +20,41 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113;
 
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR2113Client extends SOAPClient {
-  public W2JRLR2113Client(String webServerHost, int port, int mode)
-      throws EETest.Fault {
-    this(webServerHost, port, mode, null);
-  }
-
-  public W2JRLR2113Client(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace("http://simpletestservice.org/wsdl");
-    stubContext.setService("SimpleTest");
-    stubContext.setPort("SimpleEndpointPort");
-    stubContext.setEndpointInterface(SimpleEndpoint.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
-
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2113.endpoint.1";
-  }
-
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2113.wsdlloc.1";
-  }
-
-  public String helloWorld() throws Exception {
-    return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
-  }
-
-  public String arrayOperationFromClient(String[] array) throws Exception {
-    StringArray sa = new StringArray();
-    for (int i = 0; i < array.length; i++) {
-      sa.getString().add(array[i]);
+    public W2JRLR2113Client(String webServerHost, int port, int mode) throws EETest.Fault {
+        this(webServerHost, port, mode, null);
     }
-    return ((SimpleEndpoint) stubContext.getStub())
-        .arrayOperationFromClient(sa);
-  }
+
+    public W2JRLR2113Client(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://simpletestservice.org/wsdl");
+        stubContext.setService("SimpleTest");
+        stubContext.setPort("SimpleEndpointPort");
+        stubContext.setEndpointInterface(SimpleEndpoint.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
+
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2113.endpoint.1";
+    }
+
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2113.wsdlloc.1";
+    }
+
+    public String helloWorld() throws Exception {
+        return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
+    }
+
+    public String arrayOperationFromClient(String[] array) throws Exception {
+        StringArray sa = new StringArray();
+        for (int i = 0; i < array.length; i++) {
+            sa.getString().add(array[i]);
+        }
+        return ((SimpleEndpoint) stubContext.getStub()).arrayOperationFromClient(sa);
+    }
 }

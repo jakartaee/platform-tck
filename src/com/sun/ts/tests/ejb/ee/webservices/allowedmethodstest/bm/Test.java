@@ -24,7 +24,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Test extends Remote {
-  public boolean businessMethod() throws RemoteException;
+    public boolean businessMethod() throws RemoteException;
 
-  public boolean getCallerPrincipalTest(String s) throws RemoteException;
+    public boolean getCallerPrincipalTest(String s) throws RemoteException;
 }

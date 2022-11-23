@@ -17,30 +17,27 @@
 
 package com.sun.ts.tests.websocket.spec.application.lifecycle;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/lifecycle")
 public class WSCServerLifecycleServer {
-  int hitCount = 0;
+    int hitCount = 0;
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public int onMessage(String msg, Session session) {
-    return hitCount++;
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public int onMessage(String msg, Session session) {
+        return hitCount++;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

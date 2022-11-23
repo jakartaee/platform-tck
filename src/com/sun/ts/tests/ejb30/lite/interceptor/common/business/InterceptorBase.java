@@ -19,22 +19,24 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-abstract public class InterceptorBase extends InterceptorBaseBase {
-  private static final String simpleName = "InterceptorBase";
+public abstract class InterceptorBase extends InterceptorBaseBase {
+    private static final String simpleName = "InterceptorBase";
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName, "intercept",
-        "Adding around-invoke record: " + simpleName + ", this: " + this);
-    addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "intercept",
+                        "Adding around-invoke record: " + simpleName + ", this: " + this);
+        addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

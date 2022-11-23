@@ -19,22 +19,18 @@
  */
 package com.sun.ts.tests.servlet.spec.security.secbasic;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GuestPageTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
-    out.println("The user principal is: " + request.getUserPrincipal().getName()
-        + "<BR>");
-
-  }
+        PrintWriter out = response.getWriter();
+        out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+    }
 }

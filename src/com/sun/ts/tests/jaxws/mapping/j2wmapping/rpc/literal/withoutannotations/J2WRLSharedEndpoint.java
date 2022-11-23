@@ -24,15 +24,15 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations
 @jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC)
 public interface J2WRLSharedEndpoint {
 
-  public java.lang.String arrayOperationFromClient(java.lang.String[] arg0);
+    public java.lang.String arrayOperationFromClient(java.lang.String[] arg0);
 
-  public com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedBean getBean();
+    public com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedBean getBean();
 
-  public java.lang.String[] arrayOperation();
+    public java.lang.String[] arrayOperation();
 
-  public java.lang.String stringOperation(java.lang.String arg0);
+    public java.lang.String stringOperation(java.lang.String arg0);
 
-  public java.lang.String helloWorld();
+    public java.lang.String helloWorld();
 
-  public void oneWayOperation();
+    public void oneWayOperation();
 }

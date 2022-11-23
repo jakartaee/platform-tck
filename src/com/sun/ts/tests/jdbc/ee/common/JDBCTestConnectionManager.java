@@ -25,6 +25,5 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public interface JDBCTestConnectionManager {
-  public Connection getConnection(Properties p)
-      throws ClassNotFoundException, SQLException, Exception;
+    public Connection getConnection(Properties p) throws ClassNotFoundException, SQLException, Exception;
 }

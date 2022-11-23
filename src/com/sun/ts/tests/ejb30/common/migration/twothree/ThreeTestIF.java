@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.migration.twothree;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface ThreeTestIF {
-  public void callRemote() throws TestFailedException;
+    public void callRemote() throws TestFailedException;
 
-  public void callLocal() throws TestFailedException;
+    public void callLocal() throws TestFailedException;
 }

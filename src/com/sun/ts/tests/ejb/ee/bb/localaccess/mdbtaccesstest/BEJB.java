@@ -20,48 +20,46 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbtaccesstest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class BEJB implements SessionBean {
 
-  private SessionContext context = null;
+    private SessionContext context = null;
 
-  private Properties harnessProps;
+    private Properties harnessProps;
 
-  // ===========================================================
-  // B interface business methods
+    // ===========================================================
+    // B interface business methods
 
-  public String whoAmI() {
-    return "session-stateful";
-  }
+    public String whoAmI() {
+        return "session-stateful";
+    }
 
-  // ===========================================================
-  // EJB Specification Required Methods
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbCreateB() throws CreateException {
-    TestUtil.logTrace("ejbCreateB");
-  }
+    public void ejbCreateB() throws CreateException {
+        TestUtil.logTrace("ejbCreateB");
+    }
 
-  public void setSessionContext(SessionContext c) {
-    TestUtil.logTrace("setSessionContext");
-    context = c;
-  }
+    public void setSessionContext(SessionContext c) {
+        TestUtil.logTrace("setSessionContext");
+        context = c;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

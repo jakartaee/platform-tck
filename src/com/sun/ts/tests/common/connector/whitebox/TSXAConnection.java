@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.XAResource;
-
 import jakarta.resource.spi.ConnectionEventListener;
+import javax.transaction.xa.XAResource;
 
 public interface TSXAConnection {
 
-  public TSConnection getConnection() throws Exception;
+    public TSConnection getConnection() throws Exception;
 
-  public TSConnection getConnection(String usr, char[] password)
-      throws Exception;
+    public TSConnection getConnection(String usr, char[] password) throws Exception;
 
-  public XAResource getXAResource(TSManagedConnection mc) throws Exception;
+    public XAResource getXAResource(TSManagedConnection mc) throws Exception;
 
-  public void close() throws Exception;
+    public void close() throws Exception;
 
-  public void addConnectionEventListener(ConnectionEventListener cel);
+    public void addConnectionEventListener(ConnectionEventListener cel);
 }

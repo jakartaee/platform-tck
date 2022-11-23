@@ -17,5 +17,10 @@
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.enumerated;
 
 public enum Grade {
-  A, B, C, D, F, INCOMPLETE
+    A,
+    B,
+    C,
+    D,
+    F,
+    INCOMPLETE
 };

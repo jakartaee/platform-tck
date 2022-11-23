@@ -23,38 +23,32 @@ package com.sun.ts.tests.ejb30.common.invocationcontext;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface InvocationContextIF {
-  public Number[] setParametersIllegalArgumentExceptionForNumber(Number m,
-      Number n) throws TestFailedException;
+    public Number[] setParametersIllegalArgumentExceptionForNumber(Number m, Number n) throws TestFailedException;
 
-  public char[] setParametersIllegalArgumentExceptionForChar(char m, char n)
-      throws TestFailedException;
+    public char[] setParametersIllegalArgumentExceptionForChar(char m, char n) throws TestFailedException;
 
-  public String[] setParametersIllegalArgumentExceptionForString(String m,
-      String n) throws TestFailedException;
+    public String[] setParametersIllegalArgumentExceptionForString(String m, String n) throws TestFailedException;
 
-  // This overloaded method is for confusion purpose, not used by tests.
-  // After resetting params from (String, String) to (null, null),
-  // setParametersIllegalArgumentExceptionForString(String, String) must still
-  // be called, not
-  // setParametersIllegalArgumentExceptionForString(Object, Object)
-  public String[] setParametersIllegalArgumentExceptionForString(Object o,
-      Object p) throws TestFailedException;
+    // This overloaded method is for confusion purpose, not used by tests.
+    // After resetting params from (String, String) to (null, null),
+    // setParametersIllegalArgumentExceptionForString(String, String) must still
+    // be called, not
+    // setParametersIllegalArgumentExceptionForString(Object, Object)
+    public String[] setParametersIllegalArgumentExceptionForString(Object o, Object p) throws TestFailedException;
 
-  public String[] setParametersIllegalArgumentExceptionForStringArray(
-      String[] ss) throws TestFailedException;
+    public String[] setParametersIllegalArgumentExceptionForStringArray(String[] ss) throws TestFailedException;
 
-  public Number[] setParametersIllegalArgumentExceptionForShortLong(short s,
-      long l) throws TestFailedException;
+    public Number[] setParametersIllegalArgumentExceptionForShortLong(short s, long l) throws TestFailedException;
 
-  public boolean proceedAgain(int count) throws TestFailedException;
+    public boolean proceedAgain(int count) throws TestFailedException;
 
-  public int getTarget() throws TestFailedException;
+    public int getTarget() throws TestFailedException;
 
-  public void getSetParametersEmpty() throws TestFailedException;
+    public void getSetParametersEmpty() throws TestFailedException;
 
-  public String getSetParameters(String a, String b) throws TestFailedException;
+    public String getSetParameters(String a, String b) throws TestFailedException;
 
-  public void getContextData() throws TestFailedException;
+    public void getContextData() throws TestFailedException;
 
-  public void getTimer() throws TestFailedException;
+    public void getTimer() throws TestFailedException;
 }

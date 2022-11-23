@@ -20,33 +20,32 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.cascadedelete;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Bean extends EJBObject {
-  // Business Methods for A CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for A CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public int getValue() throws RemoteException;
+    public int getValue() throws RemoteException;
 
-  public void setValue(int v) throws RemoteException;
+    public void setValue(int v) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void init(Properties p) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void init(Properties p) throws RemoteException;
 
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test2a() throws RemoteException;
+    public boolean test2a() throws RemoteException;
 
-  public boolean test2b() throws RemoteException;
+    public boolean test2b() throws RemoteException;
 
-  public boolean test3() throws RemoteException;
+    public boolean test3() throws RemoteException;
 
-  public boolean test4() throws RemoteException;
+    public boolean test4() throws RemoteException;
 }

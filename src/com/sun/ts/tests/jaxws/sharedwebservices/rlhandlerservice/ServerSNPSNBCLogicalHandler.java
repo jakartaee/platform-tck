@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice;
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
 
 public class ServerSNPSNBCLogicalHandler extends LogicalHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Server";
+    private static final String WHICHHANDLERTYPE = "Server";
 
-  private static final String HANDLERNAME = "ServerServiceNamePatternShouldNotBeCalledLogicalHandler";
+    private static final String HANDLERNAME = "ServerServiceNamePatternShouldNotBeCalledLogicalHandler";
 
-  public ServerSNPSNBCLogicalHandler() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ServerSNPSNBCLogicalHandler() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

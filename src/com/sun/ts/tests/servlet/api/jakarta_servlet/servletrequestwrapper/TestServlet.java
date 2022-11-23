@@ -58,26 +58,24 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
-public class TestServlet
-    extends com.sun.ts.tests.servlet.api.common.request.RequestTestServlet {
+public class TestServlet extends com.sun.ts.tests.servlet.api.common.request.RequestTestServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  // merely validate the default behavior of RequestWrapper -- delegates call
-  // to the ServletRequest object it wraps.
-  public void service(ServletRequest servletRequest,
-      ServletResponse servletResponse) throws ServletException, IOException {
-    ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
-    super.service(wrapper, servletResponse);
-  }
+    // merely validate the default behavior of RequestWrapper -- delegates call
+    // to the ServletRequest object it wraps.
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
+        ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
+        super.service(wrapper, servletResponse);
+    }
 }

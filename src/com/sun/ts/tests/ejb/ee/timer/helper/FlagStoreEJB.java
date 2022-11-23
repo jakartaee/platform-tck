@@ -20,69 +20,72 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
-
 import jakarta.ejb.CreateException;
+import java.util.Properties;
 
 public abstract class FlagStoreEJB extends CMP20Wrapper {
 
-  public abstract boolean getRequiredAccessed();
+    public abstract boolean getRequiredAccessed();
 
-  public abstract void setRequiredAccessed(boolean accessed);
+    public abstract void setRequiredAccessed(boolean accessed);
 
-  public abstract boolean getRequiresNewAccessed();
+    public abstract boolean getRequiresNewAccessed();
 
-  public abstract void setRequiresNewAccessed(boolean accessed);
+    public abstract void setRequiresNewAccessed(boolean accessed);
 
-  public FlagStoreEJB() {
-    TestUtil.logTrace("FlagStoreEJB no arg constructor");
-  }
-
-  public Integer ejbCreate(Properties props, int id, String brandName,
-      float price, boolean requiredAccess, boolean requiresNewAccess)
-      throws CreateException {
-
-    Integer pk = new Integer(id);
-
-    try {
-      setRequiredAccessed(requiredAccess);
-      setRequiresNewAccessed(requiresNewAccess);
-      TestUtil.logTrace("[FlagstoreBean] initialize logging...");
-      TestUtil.init(props);
-      setId(pk);
-      setBrandName(brandName);
-      setPrice(price);
-    } catch (Exception e) {
-      TestUtil.logErr("FlagStoreEJB Caught exception: " + e, e);
-      throw new CreateException("Exception occurred: " + e);
+    public FlagStoreEJB() {
+        TestUtil.logTrace("FlagStoreEJB no arg constructor");
     }
-    return null;
-  }
 
-  public void ejbPostCreate(Properties props, int id, String brandName,
-      float price, boolean requiredAccess, boolean requiresNewAccess) {
+    public Integer ejbCreate(
+            Properties props, int id, String brandName, float price, boolean requiredAccess, boolean requiresNewAccess)
+            throws CreateException {
 
-    TestUtil.logTrace("[FlagstoreBean] ejbPostCreate");
-  }
+        Integer pk = new Integer(id);
 
-  // business methods are used to store and retrieve flags
-  // that indicates whether this bean has been accessed
-  public void setRequiredAccessFlag(boolean flag) {
-    setRequiredAccessed(flag);
-  }
+        try {
+            setRequiredAccessed(requiredAccess);
+            setRequiresNewAccessed(requiresNewAccess);
+            TestUtil.logTrace("[FlagstoreBean] initialize logging...");
+            TestUtil.init(props);
+            setId(pk);
+            setBrandName(brandName);
+            setPrice(price);
+        } catch (Exception e) {
+            TestUtil.logErr("FlagStoreEJB Caught exception: " + e, e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public boolean getRequiredAccessFlag() {
-    return getRequiredAccessed();
-  }
+    public void ejbPostCreate(
+            Properties props,
+            int id,
+            String brandName,
+            float price,
+            boolean requiredAccess,
+            boolean requiresNewAccess) {
 
-  public void setRequiresNewAccessFlag(boolean flag) {
-    setRequiresNewAccessed(flag);
-  }
+        TestUtil.logTrace("[FlagstoreBean] ejbPostCreate");
+    }
 
-  public boolean getRequiresNewAccessFlag() {
-    return getRequiresNewAccessed();
-  }
+    // business methods are used to store and retrieve flags
+    // that indicates whether this bean has been accessed
+    public void setRequiredAccessFlag(boolean flag) {
+        setRequiredAccessed(flag);
+    }
+
+    public boolean getRequiredAccessFlag() {
+        return getRequiredAccessed();
+    }
+
+    public void setRequiresNewAccessFlag(boolean flag) {
+        setRequiresNewAccessed(flag);
+    }
+
+    public boolean getRequiresNewAccessFlag() {
+        return getRequiresNewAccessed();
+    }
 }

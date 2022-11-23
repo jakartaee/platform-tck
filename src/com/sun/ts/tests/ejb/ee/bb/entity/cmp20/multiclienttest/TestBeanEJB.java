@@ -20,116 +20,111 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.multiclienttest;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public abstract class TestBeanEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  // ===========================================================
-  // getters and setters for cmp fields
+    // ===========================================================
+    // getters and setters for cmp fields
 
-  public abstract Integer getId();
+    public abstract Integer getId();
 
-  public abstract void setId(Integer i);
+    public abstract void setId(Integer i);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract float getPrice();
+    public abstract float getPrice();
 
-  public abstract void setPrice(float p);
+    public abstract void setPrice(float p);
 
-  // ===========================================================
+    // ===========================================================
 
-  public Integer ejbCreate(Properties p, int id, String brandName, float price)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    Integer pk = new Integer(id);
-    try {
-      setId(pk);
-      setBrandName(brandName);
-      setPrice(price);
-      TestUtil.logMsg("Initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public Integer ejbCreate(Properties p, int id, String brandName, float price) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        Integer pk = new Integer(id);
+        try {
+            setId(pk);
+            setBrandName(brandName);
+            setPrice(price);
+            TestUtil.logMsg("Initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(Properties p, int id, String brandName,
-      float price) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-    try {
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("NamingException ... " + e, e);
-      throw new EJBException("unable to obtain naming context");
-    } catch (Exception e) {
-      TestUtil.logErr("Exception ... " + e, e);
-      throw new EJBException("Exception occurred: " + e);
+    public void ejbPostCreate(Properties p, int id, String brandName, float price) {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
+        try {
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("NamingException ... " + e, e);
+            throw new EJBException("unable to obtain naming context");
+        } catch (Exception e) {
+            TestUtil.logErr("Exception ... " + e, e);
+            throw new EJBException("Exception occurred: " + e);
+        }
     }
-  }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

@@ -24,13 +24,13 @@ import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
 
 public class ClientLogicalHandler2 extends LogicalHandlerBase2 {
 
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientLogicalHandler2";
+    private static final String HANDLERNAME = "ClientLogicalHandler2";
 
-  public ClientLogicalHandler2() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientLogicalHandler2() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

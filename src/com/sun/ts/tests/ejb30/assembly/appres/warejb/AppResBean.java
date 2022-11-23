@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -37,38 +36,38 @@ import jakarta.validation.ValidatorFactory;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
-public class AppResBean extends AppResBeanBase
-    implements AppResRemoteIF, AppResLocalIF {
-  @EJB(lookup = "java:app/env/hello")
-  private HelloRemoteIF hello;
+public class AppResBean extends AppResBeanBase implements AppResRemoteIF, AppResLocalIF {
+    @EJB(lookup = "java:app/env/hello")
+    private HelloRemoteIF hello;
 
-  @EJB(lookup = "java:app/env/AppResBean-remote")
-  private AppResRemoteIF appResBeanRemote;
+    @EJB(lookup = "java:app/env/AppResBean-remote")
+    private AppResRemoteIF appResBeanRemote;
 
-  @EJB(lookup = "java:app/env/AppResBean-local")
-  private AppResLocalIF appResBeanLocal;
+    @EJB(lookup = "java:app/env/AppResBean-local")
+    private AppResLocalIF appResBeanLocal;
 
-  @Resource
-  private Validator validator;
+    @Resource
+    private Validator validator;
 
-  @Resource
-  private ValidatorFactory validatorFactory;
+    @Resource
+    private ValidatorFactory validatorFactory;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true,
-        true);
-    AppResTest.verifyInjections(getPostConstructRecords(), hello,
-        appResBeanRemote, appResBeanLocal, validatorFactory, validator);
-    DataSourceTest.verifyDataSource(getPostConstructRecords(), false,
-        "java:app/env/appds",
-        "java:global/env/ejb3_assembly_appres_warejb/globalds");
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true, true);
+        AppResTest.verifyInjections(
+                getPostConstructRecords(), hello, appResBeanRemote, appResBeanLocal, validatorFactory, validator);
+        DataSourceTest.verifyDataSource(
+                getPostConstructRecords(),
+                false,
+                "java:app/env/appds",
+                "java:global/env/ejb3_assembly_appres_warejb/globalds");
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(lookup = "java:app/env/myString")
-  private void setMyString(String s) {
-    this.myString = s;
-  }
+    @SuppressWarnings("unused")
+    @Resource(lookup = "java:app/env/myString")
+    private void setMyString(String s) {
+        this.myString = s;
+    }
 }

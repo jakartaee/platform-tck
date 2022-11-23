@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * This servlet will be used by test17.  The output from this servlet will
@@ -44,59 +43,54 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class ServletProgrammaticLogout extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-    out.println("enterred ServletProgrammaticLogout.service()");
-    System.out.println("enterred ServletProgrammaticLogout.service()");
+        out.println("enterred ServletProgrammaticLogout.service()");
+        System.out.println("enterred ServletProgrammaticLogout.service()");
 
-    // we should be authenticated at this point so a call to getRemoteUser(),
-    // getUserPrincipal(), and getAuthType() MUST NOT return null value
-    // (per Servlet 3.1 speec (section 13.3).
-    if ((request.getRemoteUser() == null)
-        || (request.getUserPrincipal() == null)
-        || (request.getAuthType() == null)) {
-      String str = "ERROR - HttpServletRequest.logout() - we got null for the following calls: ";
-      str += " getRemoteUser(), getUserPrincipal(), getAuthType()";
-      sendOutput(str, out);
+        // we should be authenticated at this point so a call to getRemoteUser(),
+        // getUserPrincipal(), and getAuthType() MUST NOT return null value
+        // (per Servlet 3.1 speec (section 13.3).
+        if ((request.getRemoteUser() == null)
+                || (request.getUserPrincipal() == null)
+                || (request.getAuthType() == null)) {
+            String str = "ERROR - HttpServletRequest.logout() - we got null for the following calls: ";
+            str += " getRemoteUser(), getUserPrincipal(), getAuthType()";
+            sendOutput(str, out);
 
-      // debug aid
-      sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
-      sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(),
-          out);
-      sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+            // debug aid
+            sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+            sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(), out);
+            sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+        }
+
+        try {
+            request.logout();
+
+            // per javadoc, if logout() worked with no exception then there must
+            // be null values for getUserPrincipal, getRemoteUser, and getAuthType.
+            if ((request.getRemoteUser() != null)
+                    || (request.getUserPrincipal() != null)
+                    || (request.getAuthType() != null)) {
+                sendOutput("ERROR - HttpServletRequest.logout() failed", out);
+
+                // debug aid
+                sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+                sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(), out);
+                sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+            } else {
+                sendOutput("request.getRemoteUser()=" + request.getRemoteUser(), out);
+            }
+        } catch (ServletException e) {
+            sendOutput("ERROR - HttpServletRequest.logout() failed", out);
+        }
     }
 
-    try {
-      request.logout();
-
-      // per javadoc, if logout() worked with no exception then there must
-      // be null values for getUserPrincipal, getRemoteUser, and getAuthType.
-      if ((request.getRemoteUser() != null)
-          || (request.getUserPrincipal() != null)
-          || (request.getAuthType() != null)) {
-        sendOutput("ERROR - HttpServletRequest.logout() failed", out);
-
-        // debug aid
-        sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
-        sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(),
-            out);
-        sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
-      } else {
-        sendOutput("request.getRemoteUser()=" + request.getRemoteUser(), out);
-      }
-    } catch (ServletException e) {
-      sendOutput("ERROR - HttpServletRequest.logout() failed", out);
+    public void sendOutput(String str, PrintWriter out) {
+        String HDR = "ServletProgrammaticLogout:  ";
+        out.println(HDR + str); // this line is used for test validation
+        System.out.println(HDR + str); // this line is for debug aid
     }
-
-  }
-
-  public void sendOutput(String str, PrintWriter out) {
-    String HDR = "ServletProgrammaticLogout:  ";
-    out.println(HDR + str); // this line is used for test validation
-    System.out.println(HDR + str); // this line is for debug aid
-  }
-
 }

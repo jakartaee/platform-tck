@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Collection;
 
 public interface AddressLocalHome extends EJBLocalHome {
-  public AddressLocal create(String id, String street, String city,
-      String state, String zip) throws CreateException;
+    public AddressLocal create(String id, String street, String city, String state, String zip) throws CreateException;
 
-  public AddressLocal create(String id, String street, String city,
-      String state, String zip, Collection phones) throws CreateException;
+    public AddressLocal create(String id, String street, String city, String state, String zip, Collection phones)
+            throws CreateException;
 
-  public AddressLocal findByPrimaryKey(String id) throws FinderException;
+    public AddressLocal findByPrimaryKey(String id) throws FinderException;
 }

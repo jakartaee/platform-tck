@@ -20,28 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.entitycontexttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean getEJBObjectTest() throws RemoteException;
+    public boolean getEJBObjectTest() throws RemoteException;
 
-  public boolean getEJBHomeTest() throws RemoteException;
+    public boolean getEJBHomeTest() throws RemoteException;
 
-  public boolean getEnvironmentTest() throws RemoteException;
+    public boolean getEnvironmentTest() throws RemoteException;
 
-  public boolean getCallerPrincipalTest(String s) throws RemoteException;
+    public boolean getCallerPrincipalTest(String s) throws RemoteException;
 
-  public boolean isCallerInRoleTest(String s) throws RemoteException;
+    public boolean isCallerInRoleTest(String s) throws RemoteException;
 
-  public boolean getUserTransactionTest() throws RemoteException;
+    public boolean getUserTransactionTest() throws RemoteException;
 
-  public boolean setRollbackOnlyTest() throws RemoteException;
+    public boolean setRollbackOnlyTest() throws RemoteException;
 
-  public boolean getRollbackOnlyTest() throws RemoteException;
+    public boolean getRollbackOnlyTest() throws RemoteException;
 
-  public boolean getPrimaryKeyTest(Integer pk) throws RemoteException;
+    public boolean getPrimaryKeyTest(Integer pk) throws RemoteException;
 
-  public boolean getTimerServiceTest() throws RemoteException;
+    public boolean getTimerServiceTest() throws RemoteException;
 }

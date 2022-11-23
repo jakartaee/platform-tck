@@ -19,19 +19,17 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext304;
 
-import java.util.EventListener;
-
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletRequestEvent;
+import java.util.EventListener;
 
 public final class CreateGenericEventListener implements EventListener {
 
-  public void listenerDestroyed(ServletRequestEvent event) {
-    StaticLog.add("CreateGenericEventListener_Destroyed.");
-  }
+    public void listenerDestroyed(ServletRequestEvent event) {
+        StaticLog.add("CreateGenericEventListener_Destroyed.");
+    }
 
-  public void listenerInitialized(ServletRequestEvent event) {
-    StaticLog.add("CreateGenericEventListener_Initialized.");
-  }
+    public void listenerInitialized(ServletRequestEvent event) {
+        StaticLog.add("CreateGenericEventListener_Initialized.");
+    }
 }

@@ -20,60 +20,52 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.XAException;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
+import javax.transaction.xa.XAException;
 
 public class LocalTxMessageListener implements WorkListener {
 
-  private XidImpl xid;
+    private XidImpl xid;
 
-  private BootstrapContext bsc;
+    private BootstrapContext bsc;
 
-  public LocalTxMessageListener(XidImpl xid, BootstrapContext bsc) {
-    this.xid = xid;
-    this.bsc = bsc;
-  }
-
-  @Override
-  public void workAccepted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxMessageListener.workAccepted");
-    System.out.println("LocalTxMessageListener.workAccepted");
-  }
-
-  @Override
-  public void workRejected(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxMessageListener.workRejected");
-    System.out.println("LocalTxMessageListener.workRejected");
-  }
-
-  @Override
-  public void workStarted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxMessageListener.workStarted");
-    System.out.println("LocalTxMessageListener.workStarted");
-  }
-
-  @Override
-  public void workCompleted(WorkEvent e) {
-    try {
-      XATerminator xt = bsc.getXATerminator();
-      xt.commit(this.xid, true);
-      System.out.println("LocalTxMessageListener.workCompleted");
-      System.out.println(
-          "XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
-      ConnectorStatus.getConnectorStatus()
-          .logState("LocalTxMessageListener committed Xid");
-    } catch (XAException ex) {
-      ex.printStackTrace();
+    public LocalTxMessageListener(XidImpl xid, BootstrapContext bsc) {
+        this.xid = xid;
+        this.bsc = bsc;
     }
-  }
 
+    @Override
+    public void workAccepted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("LocalTxMessageListener.workAccepted");
+        System.out.println("LocalTxMessageListener.workAccepted");
+    }
+
+    @Override
+    public void workRejected(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("LocalTxMessageListener.workRejected");
+        System.out.println("LocalTxMessageListener.workRejected");
+    }
+
+    @Override
+    public void workStarted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("LocalTxMessageListener.workStarted");
+        System.out.println("LocalTxMessageListener.workStarted");
+    }
+
+    @Override
+    public void workCompleted(WorkEvent e) {
+        try {
+            XATerminator xt = bsc.getXATerminator();
+            xt.commit(this.xid, true);
+            System.out.println("LocalTxMessageListener.workCompleted");
+            System.out.println("XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
+            ConnectorStatus.getConnectorStatus().logState("LocalTxMessageListener committed Xid");
+        } catch (XAException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

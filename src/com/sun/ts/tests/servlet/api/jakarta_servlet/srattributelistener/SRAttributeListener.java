@@ -59,28 +59,22 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributelistener;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 
-public final class SRAttributeListener
-    implements ServletRequestAttributeListener {
+public final class SRAttributeListener implements ServletRequestAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  }
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("AttributeRemoved:" + event.getName() + "," + event.getValue());
-  }
-
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("AttributeReplaced:" + event.getName() + "," + event.getValue());
-  }
-
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

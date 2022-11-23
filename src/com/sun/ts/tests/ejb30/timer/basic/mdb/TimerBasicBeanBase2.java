@@ -25,60 +25,52 @@ import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceTest;
 import com.sun.ts.tests.ejb30.timer.common.MethodDispatcher;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerMessageBeanBase;
-
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
-abstract public class TimerBasicBeanBase2 extends TimerMessageBeanBase
-    implements MessageListener {
-  private static final String RESOURCE_NAME = "foo.txt";
+public abstract class TimerBasicBeanBase2 extends TimerMessageBeanBase implements MessageListener {
+    private static final String RESOURCE_NAME = "foo.txt";
 
-  private static final String RESOURCE_CONTENT = "foo.txt";
+    private static final String RESOURCE_CONTENT = "foo.txt";
 
-  private static final String RESOURCE_NAME_ABSOLUTE = "com/sun/ts/tests/ejb30/timer/basic/mdb/foo.txt";
+    private static final String RESOURCE_NAME_ABSOLUTE = "com/sun/ts/tests/ejb30/timer/basic/mdb/foo.txt";
 
-  private GetResourceTest tester = new GetResourceTest();
+    private GetResourceTest tester = new GetResourceTest();
 
-  protected TimerBasicBeanBase2() {
-    super();
-  }
+    protected TimerBasicBeanBase2() {
+        super();
+    }
 
-  public void onMessage(Message message) throws RuntimeException {
-    initTimerInfo(message);
-    MethodDispatcher.dispatchOnMessage(message, this,
-        getTimerInfo().getTestName());
-  }
+    public void onMessage(Message message) throws RuntimeException {
+        initTimerInfo(message);
+        MethodDispatcher.dispatchOnMessage(message, this, getTimerInfo().getTestName());
+    }
 
-  @SuppressWarnings("unused")
-  @Timeout
-  private void timeOut(Timer timer) throws RuntimeException {
-    MethodDispatcher.dispatchTimeOut(timer, this, getQFactory(),
-        getReplyQueue());
-  }
+    @SuppressWarnings("unused")
+    @Timeout
+    private void timeOut(Timer timer) throws RuntimeException {
+        MethodDispatcher.dispatchTimeOut(timer, this, getQFactory(), getReplyQueue());
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // test methods
-  //////////////////////////////////////////////////////////////////////
-  public void onMessage_getResourceInTimeOut(Message msg) {
-    getTimerService().createTimer(1, getTimerInfo());
-  }
+    //////////////////////////////////////////////////////////////////////
+    // test methods
+    //////////////////////////////////////////////////////////////////////
+    public void onMessage_getResourceInTimeOut(Message msg) {
+        getTimerService().createTimer(1, getTimerInfo());
+    }
 
-  public void onMessage_test1(Message msg) {
-    getTimerService().createTimer(1, getTimerInfo());
-  }
+    public void onMessage_test1(Message msg) {
+        getTimerService().createTimer(1, getTimerInfo());
+    }
 
-  public void timeOut_getResourceInTimeOut(Timer timer, TimerInfo ti)
-      throws TestFailedException {
-    tester.getResourceWithClass(getClass(), RESOURCE_NAME, RESOURCE_CONTENT);
-    tester.getResourceWithClassLoader(getClass(), RESOURCE_NAME_ABSOLUTE,
-        RESOURCE_CONTENT);
-  }
+    public void timeOut_getResourceInTimeOut(Timer timer, TimerInfo ti) throws TestFailedException {
+        tester.getResourceWithClass(getClass(), RESOURCE_NAME, RESOURCE_CONTENT);
+        tester.getResourceWithClassLoader(getClass(), RESOURCE_NAME_ABSOLUTE, RESOURCE_CONTENT);
+    }
 
-  public void timeOut_test1(Timer timer, TimerInfo ti)
-      throws TestFailedException {
-    // just to verify TimeOut method is invoked and timer info can be accessed.
-  }
-
+    public void timeOut_test1(Timer timer, TimerInfo ti) throws TestFailedException {
+        // just to verify TimeOut method is invoked and timer info can be accessed.
+    }
 }

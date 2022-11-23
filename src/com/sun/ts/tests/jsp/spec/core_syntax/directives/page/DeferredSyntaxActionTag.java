@@ -16,28 +16,26 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.directives.page;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class DeferredSyntaxActionTag extends SimpleTagSupport {
 
-  private String literal;
+    private String literal;
 
-  public void setLiteral(String literal) {
-    this.literal = literal;
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspWriter out = getJspContext().getOut();
-    try {
-      out.println(literal);
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "DeferredSyntaxActionTag");
+    public void setLiteral(String literal) {
+        this.literal = literal;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+        JspWriter out = getJspContext().getOut();
+        try {
+            out.println(literal);
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "DeferredSyntaxActionTag");
+        }
+    }
 }

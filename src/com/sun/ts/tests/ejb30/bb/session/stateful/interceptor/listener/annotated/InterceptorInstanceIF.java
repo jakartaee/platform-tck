@@ -21,12 +21,11 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-
 import jakarta.ejb.Remote;
 
 @Remote()
 public interface InterceptorInstanceIF {
-  public int[] count(int[] times) throws CalculatorException;
+    public int[] count(int[] times) throws CalculatorException;
 
-  public void remove();
+    public void remove();
 }

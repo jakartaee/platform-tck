@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.allowed.stateful;
 import jakarta.ejb.TimerHandle;
 
 public interface TimerLocalIF {
-  public TimerHandle startTimer(long duration, String info);
+    public TimerHandle startTimer(long duration, String info);
 
-  public void findAndCancelTimer();
+    public void findAndCancelTimer();
 }

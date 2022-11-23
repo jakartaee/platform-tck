@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbqaccesstest;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface CLocalHome extends EJBLocalHome {
-  public CLocal createC(Properties p, int cofID, String cofName, float cofPrice)
-      throws CreateException;
+    public CLocal createC(Properties p, int cofID, String cofName, float cofPrice) throws CreateException;
 
-  public CLocal findByPrimaryKey(Integer key) throws FinderException;
+    public CLocal findByPrimaryKey(Integer key) throws FinderException;
 }

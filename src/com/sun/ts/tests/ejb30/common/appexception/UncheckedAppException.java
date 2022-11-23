@@ -22,33 +22,31 @@ package com.sun.ts.tests.ejb30.common.appexception;
 
 import java.io.Serializable;
 
-public class UncheckedAppException extends RuntimeException
-    implements Serializable {
+public class UncheckedAppException extends RuntimeException implements Serializable {
 
-  public UncheckedAppException() {
-    super();
-  }
+    public UncheckedAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public UncheckedAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public UncheckedAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public UncheckedAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public UncheckedAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public UncheckedAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public UncheckedAppException(Throwable cause) {
+        super(cause);
+    }
 }

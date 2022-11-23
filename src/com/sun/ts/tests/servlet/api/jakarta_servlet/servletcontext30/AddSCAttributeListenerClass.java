@@ -21,28 +21,22 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
 
-public final class AddSCAttributeListenerClass
-    implements ServletContextAttributeListener {
+public final class AddSCAttributeListenerClass implements ServletContextAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(ServletContextAttributeEvent event) {
-    StaticLog.add(
-        "SCAttributeAddedClass:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        StaticLog.add("SCAttributeAddedClass:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(ServletContextAttributeEvent event) {
-    StaticLog.add(
-        "SCAttributeRemovedClass:" + event.getName() + "," + event.getValue());
-  }
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        StaticLog.add("SCAttributeRemovedClass:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeReplaced(ServletContextAttributeEvent event) {
-    StaticLog.add(
-        "SCAttributeReplacedClass:" + event.getName() + "," + event.getValue());
-  }
-
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        StaticLog.add("SCAttributeReplacedClass:" + event.getName() + "," + event.getValue());
+    }
 }

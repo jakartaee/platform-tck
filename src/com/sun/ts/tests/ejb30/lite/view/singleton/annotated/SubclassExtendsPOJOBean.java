@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.lite.view.common.SuperclassBeanBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
@@ -30,18 +29,18 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 // only expose no-interface view. BusinessLocalIF1, which is implemented by
 // SuperclassBeanBase is not exposed as business interface.
 public class SubclassExtendsPOJOBean extends SuperclassBeanBase {
-  @Override
-  public String[] businessMethodLocal1(String[] s) {
-    try {
-      sessionContext.getBusinessObject(BusinessLocalIF1.class);
-    } catch (IllegalStateException e) {
-      s[0] = IllegalStateException.class.getSimpleName();
-    }
+    @Override
+    public String[] businessMethodLocal1(String[] s) {
+        try {
+            sessionContext.getBusinessObject(BusinessLocalIF1.class);
+        } catch (IllegalStateException e) {
+            s[0] = IllegalStateException.class.getSimpleName();
+        }
 
-    Class<SubclassExtendsPOJOBean> intf = SubclassExtendsPOJOBean.class;
-    SubclassExtendsPOJOBean b = sessionContext.getBusinessObject(intf);
-    b.remove();
-    s[1] = intf.getSimpleName();
-    return s;
-  }
+        Class<SubclassExtendsPOJOBean> intf = SubclassExtendsPOJOBean.class;
+        SubclassExtendsPOJOBean b = sessionContext.getBusinessObject(intf);
+        b.remove();
+        s[1] = intf.getSimpleName();
+        return s;
+    }
 }

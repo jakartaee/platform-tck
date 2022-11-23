@@ -24,45 +24,44 @@ import java.util.Vector;
 
 public interface TSDataSource extends TSConnectionFactory {
 
-  /*
-   * @name checkConnectionManager
-   * 
-   * @desc return true if ConnectionManager is Serializable
-   * 
-   * @return boolean
-   */
-  public boolean checkConnectionManager();
+    /*
+     * @name checkConnectionManager
+     *
+     * @desc return true if ConnectionManager is Serializable
+     *
+     * @return boolean
+     */
+    public boolean checkConnectionManager();
 
-  /*
-   * @name getLog
-   * 
-   * @desc returns the Log.
-   * 
-   * @return Log
-   */
-  public Vector getLog();
+    /*
+     * @name getLog
+     *
+     * @desc returns the Log.
+     *
+     * @return Log
+     */
+    public Vector getLog();
 
-  /*
-   * @name clearLog
-   * 
-   * @desc Empties the Log
-   */
-  public void clearLog();
+    /*
+     * @name clearLog
+     *
+     * @desc Empties the Log
+     */
+    public void clearLog();
 
-  /*
-   * @name setLogFlag
-   * 
-   * @desc Turns logging on/off
-   */
-  public void setLogFlag(boolean b);
+    /*
+     * @name setLogFlag
+     *
+     * @desc Turns logging on/off
+     */
+    public void setLogFlag(boolean b);
 
-  /*
-   * @name getStateLog
-   * 
-   * @desc returns the Log.
-   * 
-   * @return Log
-   */
-  public Vector getStateLog();
-
+    /*
+     * @name getStateLog
+     *
+     * @desc returns the Log.
+     *
+     * @return Log
+     */
+    public Vector getStateLog();
 }

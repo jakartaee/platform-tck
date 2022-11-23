@@ -23,11 +23,11 @@ package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
-  public void ping();
+    public void ping();
 
-  public void sleep(int n);
+    public void sleep(int n);
 
-  public boolean loopBackSameBeanLocal();
+    public boolean loopBackSameBeanLocal();
 
-  public boolean loopBackAnotherBeanLocal();
+    public boolean loopBackAnotherBeanLocal();
 }

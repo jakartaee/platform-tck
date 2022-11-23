@@ -25,7 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface ALocalHome extends EJBLocalHome {
-  public ALocal createA(int id, String name, int value) throws CreateException;
+    public ALocal createA(int id, String name, int value) throws CreateException;
 
-  public ALocal findByPrimaryKey(Integer id) throws FinderException;
+    public ALocal findByPrimaryKey(Integer id) throws FinderException;
 }

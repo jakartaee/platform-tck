@@ -19,11 +19,10 @@
  */
 package com.sun.ts.tests.appclient.deploy.ejblink.path;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface ReferencedBean2Home extends EJBHome {
-  public ReferencedBean2 create() throws RemoteException, CreateException;
+    public ReferencedBean2 create() throws RemoteException, CreateException;
 }

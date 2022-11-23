@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
 
 public class ServerSNPSNBCSOAPHandler extends SOAPHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Server";
+    private static final String WHICHHANDLERTYPE = "Server";
 
-  private static final String HANDLERNAME = "ServerServiceNamePatternShouldNotBeCalledSOAPHandler";
+    private static final String HANDLERNAME = "ServerServiceNamePatternShouldNotBeCalledSOAPHandler";
 
-  public ServerSNPSNBCSOAPHandler() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ServerSNPSNBCSOAPHandler() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

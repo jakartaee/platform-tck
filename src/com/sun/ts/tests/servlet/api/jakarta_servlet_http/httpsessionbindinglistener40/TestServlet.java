@@ -58,30 +58,28 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionbindinglistener40;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void defaultMethodsTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void defaultMethodsTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    HttpSession session = ((HttpServletRequest) request).getSession(true);
-    HSBindingListener40 hsbl = new HSBindingListener40();
-    session.setAttribute("hsbinding", hsbl);
+        HttpSession session = ((HttpServletRequest) request).getSession(true);
+        HSBindingListener40 hsbl = new HSBindingListener40();
+        session.setAttribute("hsbinding", hsbl);
 
-    pw.println("In HttpSessionBindingListener40.TestServlet");
-    ServletTestUtil.printResult(pw, true);
-  }
+        pw.println("In HttpSessionBindingListener40.TestServlet");
+        ServletTestUtil.printResult(pw, true);
+    }
 }

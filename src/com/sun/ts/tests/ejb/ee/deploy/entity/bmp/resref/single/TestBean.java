@@ -20,22 +20,20 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.single;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface TestBean extends EJBObject {
 
-  public boolean testDatasource() throws RemoteException;
+    public boolean testDatasource() throws RemoteException;
 
-  public boolean testSession() throws RemoteException;
+    public boolean testSession() throws RemoteException;
 
-  public boolean testURL() throws RemoteException;
+    public boolean testURL() throws RemoteException;
 
-  public boolean testQueue() throws RemoteException;
+    public boolean testQueue() throws RemoteException;
 
-  public boolean testTopic() throws RemoteException;
+    public boolean testTopic() throws RemoteException;
 
-  public boolean testAll() throws RemoteException;
-
+    public boolean testAll() throws RemoteException;
 }

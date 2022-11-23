@@ -25,14 +25,13 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class TestBeanEJB extends CMP20Wrapper {
 
-  public boolean test1(int i) {
-    TestUtil.logTrace("[TestBean] test1(int)");
-    return true;
-  }
+    public boolean test1(int i) {
+        TestUtil.logTrace("[TestBean] test1(int)");
+        return true;
+    }
 
-  public boolean test1(double d) {
-    TestUtil.logTrace("[TestBean] test1(double)");
-    return true;
-  }
-
+    public boolean test1(double d) {
+        TestUtil.logTrace("[TestBean] test1(double)");
+        return true;
+    }
 }

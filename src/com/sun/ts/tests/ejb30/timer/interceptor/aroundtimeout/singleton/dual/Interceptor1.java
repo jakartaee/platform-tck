@@ -23,36 +23,33 @@ import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 {
-  static final String simpleName = "Interceptor1";
+    static final String simpleName = "Interceptor1";
 
-  static final String asBusiness = "asBusiness";
+    static final String asBusiness = "asBusiness";
 
-  static final String asTimeout = "asTimeout";
+    static final String asTimeout = "asTimeout";
 
-  @SuppressWarnings("unused")
-  @AroundTimeout
-  private Object aroundTimeoutInInterceptor1(InvocationContext inv)
-      throws Exception {
-    Object result = null;
-    String methodName = inv.getMethod().getName();
-    if (methodName.equals(asBusiness)) {
-      // this @Schedule method will not expire until year 9999.
-      throw new IllegalStateException(
-          methodName + " should not trigger this @AroundTimeout method.");
+    @SuppressWarnings("unused")
+    @AroundTimeout
+    private Object aroundTimeoutInInterceptor1(InvocationContext inv) throws Exception {
+        Object result = null;
+        String methodName = inv.getMethod().getName();
+        if (methodName.equals(asBusiness)) {
+            // this @Schedule method will not expire until year 9999.
+            throw new IllegalStateException(methodName + " should not trigger this @AroundTimeout method.");
+        }
+        result = inv.proceed();
+        return result;
     }
-    result = inv.proceed();
-    return result;
-  }
 
-  @SuppressWarnings("unused")
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    Object result = null;
-    String methodName = inv.getMethod().getName();
-    if (methodName.equals(asTimeout)) {
-      throw new IllegalStateException(methodName
-          + " should not be triggered as a result of timeout callback");
+    @SuppressWarnings("unused")
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        Object result = null;
+        String methodName = inv.getMethod().getName();
+        if (methodName.equals(asTimeout)) {
+            throw new IllegalStateException(methodName + " should not be triggered as a result of timeout callback");
+        }
+        result = inv.proceed();
+        return result;
     }
-    result = inv.proceed();
-    return result;
-  }
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -34,19 +33,19 @@ import jakarta.interceptor.Interceptors;
 @Remote({ Callback2IF.class })
 @Interceptors({ StatelessCallbackListener2.class })
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
-  private boolean postConstructOrPreDestroyCalled;
+    private boolean postConstructOrPreDestroyCalled;
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public Callback2Bean() {
-    super();
-  }
+    public Callback2Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

@@ -24,13 +24,13 @@
 package com.sun.ts.tests.jws.common;
 
 public class TitleException extends Exception {
-  private String message = "Title Error";
+    private String message = "Title Error";
 
-  public TitleException(String message) {
-    super(message);
-  }
+    public TitleException(String message) {
+        super(message);
+    }
 
-  public TitleException() {
-    super();
-  }
+    public TitleException() {
+        super();
+    }
 }

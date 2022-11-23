@@ -21,22 +21,20 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descriptor;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.PostConstruct;
 
-public class Callback2BeanSuper extends Callback2BeanSuperSuper
-    implements Callback2IF {
+public class Callback2BeanSuper extends Callback2BeanSuperSuper implements Callback2IF {
 
-  public Callback2BeanSuper() {
-    super();
-  }
+    public Callback2BeanSuper() {
+        super();
+    }
 
-  // this PostConstruct method may be overridden by subclasses.
-  @PostConstruct
-  protected void postConstructMethodInSuper() throws RuntimeException {
-    addPostConstructCall("SUPER");
-  }
+    // this PostConstruct method may be overridden by subclasses.
+    @PostConstruct
+    protected void postConstructMethodInSuper() throws RuntimeException {
+        addPostConstructCall("SUPER");
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

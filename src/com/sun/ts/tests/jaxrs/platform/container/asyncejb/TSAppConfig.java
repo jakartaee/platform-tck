@@ -16,19 +16,17 @@
 
 package com.sun.ts.tests.jaxrs.platform.container.asyncejb;
 
+import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
+import jakarta.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
-
-import jakarta.ws.rs.core.Application;
-
 public class TSAppConfig extends Application {
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(Resource.class);
-    resources.add(PrintingErrorHandler.class);
-    return resources;
-  }
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<Class<?>>();
+        resources.add(Resource.class);
+        resources.add(PrintingErrorHandler.class);
+        return resources;
+    }
 }

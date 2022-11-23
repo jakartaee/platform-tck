@@ -25,16 +25,16 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface RemoveNotRetainIF {
-  void remove() throws TestFailedException;
+    void remove() throws TestFailedException;
 
-  void remove(boolean retainIfException) throws TestFailedException;
+    void remove(boolean retainIfException) throws TestFailedException;
 
-  void remove2() throws AtUncheckedAppException, UncheckedAppException;
+    void remove2() throws AtUncheckedAppException, UncheckedAppException;
 
-  void remove2(boolean retainIfException, boolean retainIfException2)
-      throws AtUncheckedAppException, UncheckedAppException;
+    void remove2(boolean retainIfException, boolean retainIfException2)
+            throws AtUncheckedAppException, UncheckedAppException;
 
-  void hi();
+    void hi();
 
-  void alwaysRemoveAfterSystemException();
+    void alwaysRemoveAfterSystemException();
 }

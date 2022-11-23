@@ -17,30 +17,28 @@
 
 package com.sun.ts.tests.websocket.spec.application.containers;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/srv")
 public class WSCServer {
-  @OnMessage
-  public String onMessage(String msg, Session session) {
-    WebSocketContainer container;
-    container = session.getContainer();
-    msg = String.valueOf(container.hashCode());
-    return msg;
-  }
+    @OnMessage
+    public String onMessage(String msg, Session session) {
+        WebSocketContainer container;
+        container = session.getContainer();
+        msg = String.valueOf(container.hashCode());
+        return msg;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

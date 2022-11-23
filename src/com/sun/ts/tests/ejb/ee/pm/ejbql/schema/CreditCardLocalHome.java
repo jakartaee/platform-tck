@@ -25,9 +25,16 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface CreditCardLocalHome extends EJBLocalHome {
-  public CreditCardLocal create(String id, String number, String type,
-      String expires, boolean approved, double balance, OrderLocal orderLocal,
-      CustomerLocal customerLocal) throws CreateException;
+    public CreditCardLocal create(
+            String id,
+            String number,
+            String type,
+            String expires,
+            boolean approved,
+            double balance,
+            OrderLocal orderLocal,
+            CustomerLocal customerLocal)
+            throws CreateException;
 
-  public CreditCardLocal findByPrimaryKey(String id) throws FinderException;
+    public CreditCardLocal findByPrimaryKey(String id) throws FinderException;
 }

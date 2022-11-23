@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TwoRemoteHome extends EJBHome {
-  public TwoRemoteIF create() throws RemoteException, CreateException;
-
+    public TwoRemoteIF create() throws RemoteException, CreateException;
 }

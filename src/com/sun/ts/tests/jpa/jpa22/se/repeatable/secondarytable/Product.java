@@ -30,9 +30,9 @@ import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Table;
 
 /*
- * 
+ *
  * Product
- *	  
+ *
  */
 
 @Entity
@@ -43,73 +43,72 @@ import jakarta.persistence.Table;
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Product")
 public class Product implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+    private static final long serialVersionUID = 22L;
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private int quantity;
+    private int quantity;
 
-  public Product() {
-  }
-
-  public Product(String id, int quantity) {
-    this.id = id;
-    this.quantity = quantity;
-  }
-
-  // ===========================================================
-  // getters and setters for State fields
-
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(int v) {
-    this.quantity = v;
-  }
-
-  public boolean equals(Object o) {
-    Product other;
-    boolean same = true;
-
-    if (!(o instanceof Product)) {
-      return false;
+    public Product() {
     }
-    other = (Product) o;
 
-    same &= this.id.equals(other.id);
+    public Product(String id, int quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
 
-    return same;
-  }
+    // ===========================================================
+    // getters and setters for State fields
 
-  public int hashCode() {
-    int myHash;
+    @Id
+    @Column(name = "ID")
+    public String getId() {
+        return id;
+    }
 
-    myHash = this.id.hashCode();
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    return myHash;
-  }
+    @Column(name = "QUANTITY")
+    public int getQuantity() {
+        return quantity;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", quantity: " + getQuantity());
-    result.append("]");
-    return result.toString();
-  }
+    public void setQuantity(int v) {
+        this.quantity = v;
+    }
 
+    public boolean equals(Object o) {
+        Product other;
+        boolean same = true;
+
+        if (!(o instanceof Product)) {
+            return false;
+        }
+        other = (Product) o;
+
+        same &= this.id.equals(other.id);
+
+        return same;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.id.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", quantity: " + getQuantity());
+        result.append("]");
+        return result.toString();
+    }
 }

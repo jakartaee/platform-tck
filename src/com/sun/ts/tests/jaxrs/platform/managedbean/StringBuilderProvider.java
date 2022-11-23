@@ -16,11 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.platform.managedbean;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.Interceptors;
@@ -31,57 +26,64 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.MultivaluedMap;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Provider;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 
 @Provider
 @ManagedBean("provider")
 public class StringBuilderProvider implements MessageBodyWriter<StringBuilder> {
 
-  private int value = 999;
+    private int value = 999;
 
-  public int getValue() {
-    return value;
-  }
+    public int getValue() {
+        return value;
+    }
 
-  @Interceptors(InterceptorSingleton.class)
-  public String getInterceptedValue() {
-    return String.valueOf(value);
-  }
+    @Interceptors(InterceptorSingleton.class)
+    public String getInterceptedValue() {
+        return String.valueOf(value);
+    }
 
-  @Override
-  public long getSize(StringBuilder arg0, Class<?> arg1, Type arg2,
-      Annotation[] arg3, MediaType arg4) {
-    return 13;
-  }
+    @Override
+    public long getSize(StringBuilder arg0, Class<?> arg1, Type arg2, Annotation[] arg3, MediaType arg4) {
+        return 13;
+    }
 
-  @Override
-  public boolean isWriteable(Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType) {
-    return type == StringBuilder.class;
-  }
+    @Override
+    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return type == StringBuilder.class;
+    }
 
-  @Override
-  public void writeTo(StringBuilder t, Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType,
-      MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-      throws IOException, WebApplicationException {
-    entityStream.write(t.toString().getBytes());
-  }
+    @Override
+    public void writeTo(
+            StringBuilder t,
+            Class<?> type,
+            Type genericType,
+            Annotation[] annotations,
+            MediaType mediaType,
+            MultivaluedMap<String, Object> httpHeaders,
+            OutputStream entityStream)
+            throws IOException, WebApplicationException {
+        entityStream.write(t.toString().getBytes());
+    }
 
-  // <JAXRS:SPEC:53.1 ----------------------------------------------->
-  @Context
-  private Application application;
+    // <JAXRS:SPEC:53.1 ----------------------------------------------->
+    @Context
+    private Application application;
 
-  private boolean isApplicationInjectedBeforePostConstruct;
+    private boolean isApplicationInjectedBeforePostConstruct;
 
-  public boolean isApplicationInjectedBeforePostConstruct() {
-    return isApplicationInjectedBeforePostConstruct;
-  }
+    public boolean isApplicationInjectedBeforePostConstruct() {
+        return isApplicationInjectedBeforePostConstruct;
+    }
 
-  @PostConstruct
-  public void postConstruct() {
-    value++;
-    isApplicationInjectedBeforePostConstruct = application != null;
-  }
-  // </JAXRS:SPEC:53.1 ----------------------------------------------->
+    @PostConstruct
+    public void postConstruct() {
+        value++;
+        isApplicationInjectedBeforePostConstruct = application != null;
+    }
+    // </JAXRS:SPEC:53.1 ----------------------------------------------->
 
 }

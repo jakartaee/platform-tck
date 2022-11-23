@@ -20,38 +20,36 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.JMSException;
 import jakarta.jms.Queue;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ResourceTimingSimpleTag extends SimpleTagSupport {
 
-  @Resource(name = "myQueue")
-  private Queue myQueue;
+    @Resource(name = "myQueue")
+    private Queue myQueue;
 
-  private String queueName;
+    private String queueName;
 
-  public void setQueueName(String ignoreThis) throws JMSException {
-    queueName = myQueue.getQueueName();
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      if (queueName.equals("MY_QUEUE"))
-        ;
-      out.println("Test PASSED");
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ResourceTimingSimpleTag");
+    public void setQueueName(String ignoreThis) throws JMSException {
+        queueName = myQueue.getQueueName();
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            if (queueName.equals("MY_QUEUE"))
+                ;
+            out.println("Test PASSED");
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ResourceTimingSimpleTag");
+        }
+    }
 }

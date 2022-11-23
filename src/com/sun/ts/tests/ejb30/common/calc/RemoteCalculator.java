@@ -22,26 +22,25 @@ package com.sun.ts.tests.ejb30.common.calc;
 
 /**
  * A calculator with special remoteAdd and removeSubtract operations.
- * 
+ *
  * @author Cheng Fang
  */
-
 public interface RemoteCalculator {
-  public static final int EXTRA = 0;
+    public static final int EXTRA = 0;
 
-  /**
-   * @param a
-   * @param b
-   * @return a + b + RemoteCalculator.EXTRA
-   */
-  public int remoteAdd(int a, int b);
+    /**
+     * @param a
+     * @param b
+     * @return a + b + RemoteCalculator.EXTRA
+     */
+    public int remoteAdd(int a, int b);
 
-  /**
-   * @param a
-   * @param b
-   * @return a - b + RemoteCalculator.EXTRA
-   */
-  public int remoteSubtract(int a, int b);
+    /**
+     * @param a
+     * @param b
+     * @return a - b + RemoteCalculator.EXTRA
+     */
+    public int remoteSubtract(int a, int b);
 
-  public void remoteThrowIt() throws CalculatorException;
+    public void remoteThrowIt() throws CalculatorException;
 }

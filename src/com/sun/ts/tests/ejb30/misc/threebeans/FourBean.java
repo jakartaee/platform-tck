@@ -30,33 +30,33 @@ import jakarta.ejb.Stateful;
 @Remote(ThreeRemoteIF.class)
 public class FourBean extends CommonBeanBase {
 
-  // Injection of stateful (self or other) into stateful bean caused
-  // StackOverflow.
-  // 6633835 (Cyclic injection of stateful EJBs causes deployment failure)
-  // Comment it out (also see ThreeBean) since it is not required by spec
+    // Injection of stateful (self or other) into stateful bean caused
+    // StackOverflow.
+    // 6633835 (Cyclic injection of stateful EJBs causes deployment failure)
+    // Comment it out (also see ThreeBean) since it is not required by spec
 
-  // @EJB(beanName="ThreeBean")
-  // private ThreeLocalIF threeLocal;
-  //
-  // @EJB(beanName="ThreeBean")
-  // private ThreeRemoteIF threeRemote;
+    // @EJB(beanName="ThreeBean")
+    // private ThreeLocalIF threeLocal;
+    //
+    // @EJB(beanName="ThreeBean")
+    // private ThreeRemoteIF threeRemote;
 
-  @Override
-  protected void verifyInjectedEJB() {
-    // if(threeLocal == null)
-    // throw new IllegalStateException("threeLocal was not injected.");
-    // if(threeRemote == null)
-    // throw new IllegalStateException("threeRemote was not injected.");
-  }
+    @Override
+    protected void verifyInjectedEJB() {
+        // if(threeLocal == null)
+        // throw new IllegalStateException("threeLocal was not injected.");
+        // if(threeRemote == null)
+        // throw new IllegalStateException("threeRemote was not injected.");
+    }
 
-  @Override
-  @Remove(retainIfException = false)
-  public String getShortName() {
-    return super.getShortName();
-  }
+    @Override
+    @Remove(retainIfException = false)
+    public String getShortName() {
+        return super.getShortName();
+    }
 
-  @Override
-  protected String getBeanName() {
-    return "FourBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "FourBean";
+    }
 }

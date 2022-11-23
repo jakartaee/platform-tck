@@ -17,35 +17,30 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+public class LinkedListHashSetMessageHandler implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
 
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
+    public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
 
-public class LinkedListHashSetMessageHandler
-    implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
+    private Session session;
 
-  public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
-
-  private Session session;
-
-  public LinkedListHashSetMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(LinkedList<HashSet<String>> arg0) {
-    try {
-      session.getBasicRemote().sendText(
-          HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public LinkedListHashSetMessageHandler(Session session) {
+        super();
+        this.session = session;
     }
-  }
 
+    @Override
+    public void onMessage(LinkedList<HashSet<String>> arg0) {
+        try {
+            session.getBasicRemote().sendText(HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

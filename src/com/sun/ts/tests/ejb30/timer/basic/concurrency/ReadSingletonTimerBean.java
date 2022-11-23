@@ -33,13 +33,12 @@ import jakarta.ejb.TransactionManagementType;
 @TransactionManagement(TransactionManagementType.BEAN)
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @Lock(LockType.READ)
-public class ReadSingletonTimerBean extends LockSingletonTimerBeanBase
-    implements TimerIF {
-  // Override to apply the class-level LockType.READ.
-  // The @Timeout method in superclass should not be deemed a timeout-method.
-  @Override
-  @Timeout
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-  }
+public class ReadSingletonTimerBean extends LockSingletonTimerBeanBase implements TimerIF {
+    // Override to apply the class-level LockType.READ.
+    // The @Timeout method in superclass should not be deemed a timeout-method.
+    @Override
+    @Timeout
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+    }
 }

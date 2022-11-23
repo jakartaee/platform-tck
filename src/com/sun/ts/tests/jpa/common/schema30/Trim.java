@@ -29,70 +29,70 @@ import jakarta.persistence.Table;
 @Table(name = "TRIM_TABLE")
 public class Trim implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String name;
+    private String name;
 
-  public Trim() {
-  }
-
-  public Trim(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for CMP fields
-
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String v) {
-    this.id = v;
-  }
-
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String s) {
-    this.name = s;
-  }
-
-  public boolean equals(Object o) {
-    Trim other;
-    boolean same = true;
-
-    if (!(o instanceof Trim)) {
-      return false;
+    public Trim() {
     }
-    other = (Trim) o;
 
-    same &= this.id.equals(other.id);
+    public Trim(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-    return same;
-  }
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public int hashCode() {
-    int myHash;
+    @Id
+    @Column(name = "ID")
+    public String getId() {
+        return id;
+    }
 
-    myHash = this.id.hashCode();
+    public void setId(String v) {
+        this.id = v;
+    }
 
-    return myHash;
-  }
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(",  name: |" + getName() + "|");
-    result.append("]");
-    return result.toString();
-  }
+    public void setName(String s) {
+        this.name = s;
+    }
+
+    public boolean equals(Object o) {
+        Trim other;
+        boolean same = true;
+
+        if (!(o instanceof Trim)) {
+            return false;
+        }
+        other = (Trim) o;
+
+        same &= this.id.equals(other.id);
+
+        return same;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.id.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(",  name: |" + getName() + "|");
+        result.append("]");
+        return result.toString();
+    }
 }

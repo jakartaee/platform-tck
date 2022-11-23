@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb.ee.timer.common;
 
 public class TimerImplException extends Exception {
 
-  public TimerImplException() {
-    super();
-  }
+    public TimerImplException() {
+        super();
+    }
 
-  public TimerImplException(String msg) {
-    super(msg);
-  }
+    public TimerImplException(String msg) {
+        super(msg);
+    }
 }

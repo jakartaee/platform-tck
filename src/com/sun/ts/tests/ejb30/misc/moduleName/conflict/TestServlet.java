@@ -20,41 +20,38 @@
 
 package com.sun.ts.tests.ejb30.misc.moduleName.conflict;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends TestServletBase {
 
-  @EJB(beanName = "ModuleBean")
-  private AppResCommonIF moduleBean;
+    @EJB(beanName = "ModuleBean")
+    private AppResCommonIF moduleBean;
 
-  @EJB(beanName = "Module2Bean")
-  private AppResRemoteIF module2Bean;
+    @EJB(beanName = "Module2Bean")
+    private AppResRemoteIF module2Bean;
 
-  private void nonPostConstruct() {
-    postConstructRecords = new StringBuilder();
-    String name1 = moduleBean.getName();
-    String name2 = module2Bean.getName();
+    private void nonPostConstruct() {
+        postConstructRecords = new StringBuilder();
+        String name1 = moduleBean.getName();
+        String name2 = module2Bean.getName();
 
-    Helper.assertNotEquals(null, name1, name2, postConstructRecords);
-    Helper.assertNotEquals(null, null, name1, postConstructRecords);
-  }
+        Helper.assertNotEquals(null, name1, name2, postConstructRecords);
+        Helper.assertNotEquals(null, null, name1, postConstructRecords);
+    }
 
-  public void servletPostConstruct(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    nonPostConstruct();
-    verifyRecords(request, response, postConstructRecords);
-  }
-
+    public void servletPostConstruct(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        nonPostConstruct();
+        verifyRecords(request, response, postConstructRecords);
+    }
 }

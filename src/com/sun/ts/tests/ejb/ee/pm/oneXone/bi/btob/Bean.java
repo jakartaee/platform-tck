@@ -20,33 +20,32 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXone.bi.btob;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Bean extends EJBObject {
-  // Business Methods for Bean CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for Bean CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public int getValue() throws RemoteException;
+    public int getValue() throws RemoteException;
 
-  public void setValue(int v) throws RemoteException;
+    public void setValue(int v) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void init(Properties p) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void init(Properties p) throws RemoteException;
 
-  public boolean test0() throws RemoteException;
+    public boolean test0() throws RemoteException;
 
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 
-  public ADVC getAInfoFromB() throws RemoteException;
+    public ADVC getAInfoFromB() throws RemoteException;
 
-  public BDVC getBInfoFromA() throws RemoteException;
+    public BDVC getBInfoFromA() throws RemoteException;
 }

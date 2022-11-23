@@ -17,34 +17,32 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.srv.pongduplicate;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(PongMessage pong) {
-    return IOUtil.byteBufferToString(pong.getApplicationData());
-  }
+    @OnMessage
+    public String echo(PongMessage pong) {
+        return IOUtil.byteBufferToString(pong.getApplicationData());
+    }
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(PongMessage pong, Session session) {
-    return IOUtil.byteBufferToString(pong.getApplicationData());
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String echo(PongMessage pong, Session session) {
+        return IOUtil.byteBufferToString(pong.getApplicationData());
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

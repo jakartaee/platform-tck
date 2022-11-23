@@ -24,14 +24,13 @@
 package com.sun.ts.tests.jws.common;
 
 public class TypeException extends Exception {
-  private String message = "Type Error";
+    private String message = "Type Error";
 
-  public TypeException(String message) {
-    super(message);
-  }
+    public TypeException(String message) {
+        super(message);
+    }
 
-  public TypeException() {
-    super();
-  }
-
+    public TypeException() {
+        super();
+    }
 }

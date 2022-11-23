@@ -20,30 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.scopeT;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+import java.util.Properties;
 
 public class MsgBean extends MDBWrapper {
 
-  public Boolean checkEntry(Properties props) {
-    boolean pass;
-    String entryLookup = null;
-    String expectedValue = null;
+    public Boolean checkEntry(Properties props) {
+        boolean pass;
+        String entryLookup = null;
+        String expectedValue = null;
 
-    try {
-      entryLookup = TestUtil.getProperty("entryLookup");
-      expectedValue = TestUtil.getProperty("expectedValue");
+        try {
+            entryLookup = TestUtil.getProperty("entryLookup");
+            expectedValue = TestUtil.getProperty("expectedValue");
 
-      pass = TestCode.checkEntry(nctx, entryLookup, expectedValue);
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("[MsgBean] caught exception: ", e);
+            pass = TestCode.checkEntry(nctx, entryLookup, expectedValue);
+        } catch (Exception e) {
+            pass = false;
+            TestUtil.logErr("[MsgBean] caught exception: ", e);
+        }
+
+        return new Boolean(pass);
     }
-
-    return new Boolean(pass);
-  }
-
 }

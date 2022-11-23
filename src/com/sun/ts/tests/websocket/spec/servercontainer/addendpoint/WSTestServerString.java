@@ -20,40 +20,38 @@
  */
 package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 
-import java.io.IOException;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/TCKTestServerString")
 public class WSTestServerString {
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    session.getBasicRemote().sendText("========TCKTestServerString opened");
-  }
-
-  @OnMessage
-  public void respond(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========TCKTestServerString received String: " + message);
-      session.getBasicRemote().sendText("========TCKTestServerString responds");
-    } catch (Exception e) {
-      e.printStackTrace();
+    @OnOpen
+    public void init(Session session) throws IOException {
+        session.getBasicRemote().sendText("========TCKTestServerString opened");
     }
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    try {
-      session.getBasicRemote().sendText("========TCKTestServerString onError");
-    } catch (Exception e) {
-      e.printStackTrace();
+    @OnMessage
+    public void respond(String message, Session session) {
+        try {
+            session.getBasicRemote().sendText("========TCKTestServerString received String: " + message);
+            session.getBasicRemote().sendText("========TCKTestServerString responds");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    t.printStackTrace();
-  }
+
+    @OnError
+    public void onError(Session session, Throwable t) {
+        try {
+            session.getBasicRemote().sendText("========TCKTestServerString onError");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        t.printStackTrace();
+    }
 }

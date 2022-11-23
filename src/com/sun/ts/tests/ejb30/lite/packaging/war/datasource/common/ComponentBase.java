@@ -19,20 +19,19 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common;
 
-abstract public class ComponentBase implements DataSourceIF {
+public abstract class ComponentBase implements DataSourceIF {
 
-  private StringBuilder postConstructRecords = new StringBuilder();
+    private StringBuilder postConstructRecords = new StringBuilder();
 
-  public StringBuilder getPostConstructRecords() {
-    return postConstructRecords;
-  }
+    public StringBuilder getPostConstructRecords() {
+        return postConstructRecords;
+    }
 
-  public StringBuilder getConnection() {
-    return null;
-  }
+    public StringBuilder getConnection() {
+        return null;
+    }
 
-  public StringBuilder getPostConstructRecordsFromInterceptor() {
-    return null;
-  }
-
+    public StringBuilder getPostConstructRecordsFromInterceptor() {
+        return null;
+    }
 }

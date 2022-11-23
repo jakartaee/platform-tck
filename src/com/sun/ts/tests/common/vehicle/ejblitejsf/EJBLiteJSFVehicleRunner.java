@@ -23,8 +23,8 @@ import com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteWebVehicleRunner;
 
 public class EJBLiteJSFVehicleRunner extends EJBLiteWebVehicleRunner {
 
-  @Override
-  protected String getServletPath(String vehicle) {
-    return "/faces/" + vehicle + "_vehicle.xhtml";
-  }
+    @Override
+    protected String getServletPath(String vehicle) {
+        return "/faces/" + vehicle + "_vehicle.xhtml";
+    }
 }

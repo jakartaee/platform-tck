@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Hashtable;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface TestBeanLocal extends EJBLocalObject {
-  public Hashtable getResults();
+    public Hashtable getResults();
 
-  public void businessMethod();
+    public void businessMethod();
 
-  public void setHelper(Helper ref);
+    public void setHelper(Helper ref);
 }

@@ -21,7 +21,7 @@ import jakarta.servlet.ServletResponseWrapper;
 
 public class TCKServletResponseWrapper extends ServletResponseWrapper {
 
-  public TCKServletResponseWrapper(ServletResponse res) {
-    super(res);
-  }
+    public TCKServletResponseWrapper(ServletResponse res) {
+        super(res);
+    }
 }

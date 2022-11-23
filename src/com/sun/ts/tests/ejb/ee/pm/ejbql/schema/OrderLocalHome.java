@@ -25,7 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface OrderLocalHome extends EJBLocalHome {
-  public OrderLocal create(String id, Customer customer) throws CreateException;
+    public OrderLocal create(String id, Customer customer) throws CreateException;
 
-  public OrderLocal findByPrimaryKey(String key) throws FinderException;
+    public OrderLocal findByPrimaryKey(String key) throws FinderException;
 }

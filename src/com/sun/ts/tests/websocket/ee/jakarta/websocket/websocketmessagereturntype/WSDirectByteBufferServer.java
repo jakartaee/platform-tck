@@ -17,6 +17,12 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessagereturntype;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.OnClose;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,46 +31,37 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel.MapMode;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-
-import jakarta.websocket.OnClose;
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.Session;
-import jakarta.websocket.server.ServerEndpoint;
-
 @ServerEndpoint("/directbytebuffer")
 public class WSDirectByteBufferServer {
-  private File f;
+    private File f;
 
-  @OnClose
-  public void onClose() {
-    f.delete();
-  }
+    @OnClose
+    public void onClose() {
+        f.delete();
+    }
 
-  private static File createTempFile(String data) throws IOException {
-    File f = File.createTempFile("tcktemp", "file");
-    FileOutputStream fos = new FileOutputStream(f);
-    fos.write(data.getBytes());
-    fos.close();
-    return f;
-  }
+    private static File createTempFile(String data) throws IOException {
+        File f = File.createTempFile("tcktemp", "file");
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(data.getBytes());
+        fos.close();
+        return f;
+    }
 
-  @OnMessage
-  public ByteBuffer echo(String data) throws IOException {
-    f = createTempFile(data);
+    @OnMessage
+    public ByteBuffer echo(String data) throws IOException {
+        f = createTempFile(data);
 
-    FileInputStream fis = new FileInputStream(f);
-    MappedByteBuffer mbb = fis.getChannel().map(MapMode.READ_ONLY, 0,
-        data.length());
-    fis.close();
-    return mbb;
-  }
+        FileInputStream fis = new FileInputStream(f);
+        MappedByteBuffer mbb = fis.getChannel().map(MapMode.READ_ONLY, 0, data.length());
+        fis.close();
+        return mbb;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

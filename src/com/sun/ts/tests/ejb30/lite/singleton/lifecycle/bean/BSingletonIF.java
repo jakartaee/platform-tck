@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 
 public interface BSingletonIF extends CommonSingletonIF {
-
 }

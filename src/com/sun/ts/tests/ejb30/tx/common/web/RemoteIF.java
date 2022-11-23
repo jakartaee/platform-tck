@@ -21,13 +21,13 @@
 package com.sun.ts.tests.ejb30.tx.common.web;
 
 public interface RemoteIF {
-  public void remove();
+    public void remove();
 
-  public void required();
+    public void required();
 
-  public void mandatory();
+    public void mandatory();
 
-  public void requiresNew();
+    public void requiresNew();
 
-  public void never();
+    public void never();
 }

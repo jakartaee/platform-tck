@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.common.vehicle.ejb;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface EJBVehicleHome extends EJBHome {
-  // public EJBVehicleRemote create ( EETest testImpl, String args, Properties p
-  // ) throws RemoteException, CreateException;
-  // call below works now so am commenting out call above-- Vella
-  public EJBVehicleRemote create(String[] args, Properties p)
-      throws RemoteException, CreateException;
+    // public EJBVehicleRemote create ( EETest testImpl, String args, Properties p
+    // ) throws RemoteException, CreateException;
+    // call below works now so am commenting out call above-- Vella
+    public EJBVehicleRemote create(String[] args, Properties p) throws RemoteException, CreateException;
 }

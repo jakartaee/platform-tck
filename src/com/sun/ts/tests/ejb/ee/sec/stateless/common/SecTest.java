@@ -20,27 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface SecTest extends EJBObject {
-  public void initLogging(java.util.Properties p) throws RemoteException;
+    public void initLogging(java.util.Properties p) throws RemoteException;
 
-  public boolean IsCaller(String caller) throws RemoteException;
+    public boolean IsCaller(String caller) throws RemoteException;
 
-  public boolean EjbNotAuthz() throws RemoteException;
+    public boolean EjbNotAuthz() throws RemoteException;
 
-  public boolean EjbIsAuthz() throws RemoteException;
+    public boolean EjbIsAuthz() throws RemoteException;
 
-  public boolean EjbSecRoleRef(String role) throws RemoteException;
+    public boolean EjbSecRoleRef(String role) throws RemoteException;
 
-  public boolean EjbOverloadedSecRoleRefs(String role1) throws RemoteException;
+    public boolean EjbOverloadedSecRoleRefs(String role1) throws RemoteException;
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2)
-      throws RemoteException;
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) throws RemoteException;
 
-  public boolean checktest1() throws RemoteException;
+    public boolean checktest1() throws RemoteException;
 
-  public boolean excludetest1() throws RemoteException;
+    public boolean excludetest1() throws RemoteException;
 }

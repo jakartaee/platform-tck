@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.integration.entity.servletejbjdbc;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface AccountHome extends EJBHome {
-  Account create(int account, double balance, boolean newtable,
-      Properties props) throws CreateException, RemoteException;
+    Account create(int account, double balance, boolean newtable, Properties props)
+            throws CreateException, RemoteException;
 
-  Account findTheBean(Integer account, Properties props)
-      throws FinderException, RemoteException;
+    Account findTheBean(Integer account, Properties props) throws FinderException, RemoteException;
 
-  Account findByPrimaryKey(Integer account)
-      throws FinderException, RemoteException;
+    Account findByPrimaryKey(Integer account) throws FinderException, RemoteException;
 }

@@ -24,14 +24,14 @@
 package com.sun.ts.tests.jws.common;
 
 public class AddressException extends Exception {
-  private String message = "Address Error";
+    private String message = "Address Error";
 
-  public AddressException(String message) {
-    super(message);
-    this.message = message;
-  }
+    public AddressException(String message) {
+        super(message);
+        this.message = message;
+    }
 
-  public AddressException() {
-    super();
-  }
+    public AddressException() {
+        super();
+    }
 }

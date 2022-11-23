@@ -20,97 +20,96 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class ClassicTypeTag extends TagSupport {
-  private static final String FAIL_MSG = "Test FAILED.";
+    private static final String FAIL_MSG = "Test FAILED.";
 
-  private Boolean _boolean = null;
+    private Boolean _boolean = null;
 
-  private Character _character = null;
+    private Character _character = null;
 
-  private Short _short = null;
+    private Short _short = null;
 
-  private Integer _integer = null;
+    private Integer _integer = null;
 
-  private Long _long = null;
+    private Long _long = null;
 
-  private Float _float = null;
+    private Float _float = null;
 
-  private Double _double = null;
+    private Double _double = null;
 
-  private String _string = null;
+    private String _string = null;
 
-  public void setString(String _string) {
-    this._string = _string;
-  }
-
-  public void setBoolean(Boolean _boolean) {
-    this._boolean = _boolean;
-  }
-
-  public void setCharacter(Character _character) {
-    this._character = _character;
-  }
-
-  public void setShort(Short _short) {
-    this._short = _short;
-  }
-
-  public void setInteger(Integer _integer) {
-    this._integer = _integer;
-  }
-
-  public void setLong(Long _long) {
-    this._long = _long;
-  }
-
-  public void setFloat(Float _float) {
-    this._float = _float;
-  }
-
-  public void setDouble(Double _double) {
-    this._double = _double;
-  }
-
-  public int doStartTag() throws JspException {
-    try {
-      JspWriter out = pageContext.getOut();
-      if (_boolean == null) {
-        out.println(FAIL_MSG + " boolean value not set.");
-
-      } else if (_character == null) {
-        out.println(FAIL_MSG + "  character value not set.");
-
-      } else if (_short == null) {
-        out.println(FAIL_MSG + "  short value not set.");
-
-      } else if (_integer == null) {
-        out.println(FAIL_MSG + "  integer value not set.");
-
-      } else if (_long == null) {
-        out.println(FAIL_MSG + "  long value not set.");
-
-      } else if (_float == null) {
-        out.println(FAIL_MSG + "  float value not set.");
-
-      } else if (_double == null) {
-        out.println(FAIL_MSG + "  double value not set.");
-
-      } else if (_string == null) {
-        out.println(FAIL_MSG + "  string value not set.");
-
-      } else {
-        out.println("Test PASSED");
-      }
-
-    } catch (IOException ioe) {
-      throw new JspException(FAIL_MSG + " Unexpected IOException!", ioe);
+    public void setString(String _string) {
+        this._string = _string;
     }
-    return SKIP_BODY;
-  }
+
+    public void setBoolean(Boolean _boolean) {
+        this._boolean = _boolean;
+    }
+
+    public void setCharacter(Character _character) {
+        this._character = _character;
+    }
+
+    public void setShort(Short _short) {
+        this._short = _short;
+    }
+
+    public void setInteger(Integer _integer) {
+        this._integer = _integer;
+    }
+
+    public void setLong(Long _long) {
+        this._long = _long;
+    }
+
+    public void setFloat(Float _float) {
+        this._float = _float;
+    }
+
+    public void setDouble(Double _double) {
+        this._double = _double;
+    }
+
+    public int doStartTag() throws JspException {
+        try {
+            JspWriter out = pageContext.getOut();
+            if (_boolean == null) {
+                out.println(FAIL_MSG + " boolean value not set.");
+
+            } else if (_character == null) {
+                out.println(FAIL_MSG + "  character value not set.");
+
+            } else if (_short == null) {
+                out.println(FAIL_MSG + "  short value not set.");
+
+            } else if (_integer == null) {
+                out.println(FAIL_MSG + "  integer value not set.");
+
+            } else if (_long == null) {
+                out.println(FAIL_MSG + "  long value not set.");
+
+            } else if (_float == null) {
+                out.println(FAIL_MSG + "  float value not set.");
+
+            } else if (_double == null) {
+                out.println(FAIL_MSG + "  double value not set.");
+
+            } else if (_string == null) {
+                out.println(FAIL_MSG + "  string value not set.");
+
+            } else {
+                out.println("Test PASSED");
+            }
+
+        } catch (IOException ioe) {
+            throw new JspException(FAIL_MSG + " Unexpected IOException!", ioe);
+        }
+        return SKIP_BODY;
+    }
 }

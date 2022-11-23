@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.clientviewtest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean isCreated() throws RemoteException;
+    public boolean isCreated() throws RemoteException;
 
-  public String Ping(String s) throws RemoteException;
+    public String Ping(String s) throws RemoteException;
 
-  public EJBObject Pass(EJBObject obj) throws RemoteException;
+    public EJBObject Pass(EJBObject obj) throws RemoteException;
 }

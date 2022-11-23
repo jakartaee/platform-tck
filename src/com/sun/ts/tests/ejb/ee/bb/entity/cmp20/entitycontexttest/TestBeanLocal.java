@@ -23,15 +23,15 @@ package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
-  // Business Methods for TestBean CMP Fields
-  public String getId();
+    // Business Methods for TestBean CMP Fields
+    public String getId();
 
-  public String getBrandName();
+    public String getBrandName();
 
-  public void setBrandName(String s);
+    public void setBrandName(String s);
 
-  // non-cmp business methods
-  public String getIt(String envEntryName);
+    // non-cmp business methods
+    public String getIt(String envEntryName);
 
-  public String setIt(String envEntryName);
+    public String setIt(String envEntryName);
 }

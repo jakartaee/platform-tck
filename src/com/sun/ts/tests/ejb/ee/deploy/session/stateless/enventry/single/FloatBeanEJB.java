@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class FloatBeanEJB extends StatelessWrapper {
 
-  public boolean testFloatEntry() {
-    return TestCode.testFloatEntry(nctx);
-  }
+    public boolean testFloatEntry() {
+        return TestCode.testFloatEntry(nctx);
+    }
 }

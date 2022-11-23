@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestIF;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;

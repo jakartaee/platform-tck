@@ -16,25 +16,22 @@
 
 package com.sun.ts.tests.ejb32.timer.service.common;
 
-import java.util.Collection;
-import java.util.Date;
-
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
+import java.util.Collection;
+import java.util.Date;
 
 public interface TimerIF {
-  Collection<Timer> getAllTimers();
+    Collection<Timer> getAllTimers();
 
-  Timer createTimer(Date expiration, TimerConfig timerConfig);
+    Timer createTimer(Date expiration, TimerConfig timerConfig);
 
-  Timer createTimer(Date initialExpiration, long intervalDuration,
-      TimerConfig timerConfig);
+    Timer createTimer(Date initialExpiration, long intervalDuration, TimerConfig timerConfig);
 
-  Timer createTimer(long duration, TimerConfig timerConfig);
+    Timer createTimer(long duration, TimerConfig timerConfig);
 
-  Timer createTimer(long InitialDuration, long intervalDuration,
-      TimerConfig timerConfig);
+    Timer createTimer(long InitialDuration, long intervalDuration, TimerConfig timerConfig);
 
-  Timer createTimer(ScheduleExpression exp, TimerConfig timerConfig);
+    Timer createTimer(ScheduleExpression exp, TimerConfig timerConfig);
 }

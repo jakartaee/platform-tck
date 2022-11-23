@@ -23,28 +23,20 @@ package com.sun.ts.tests.ejb30.common.appexception;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface RollbackIF extends CommonIF {
-  public void checkedAppExceptionLocal()
-      throws CheckedAppException, TestFailedException;
+    public void checkedAppExceptionLocal() throws CheckedAppException, TestFailedException;
 
-  public void uncheckedAppExceptionLocal()
-      throws UncheckedAppException, TestFailedException;
+    public void uncheckedAppExceptionLocal() throws UncheckedAppException, TestFailedException;
 
-  public void checkedRollbackAppExceptionLocal()
-      throws CheckedRollbackAppException, TestFailedException;
+    public void checkedRollbackAppExceptionLocal() throws CheckedRollbackAppException, TestFailedException;
 
-  public void uncheckedRollbackAppExceptionLocal()
-      throws UncheckedRollbackAppException, TestFailedException;
+    public void uncheckedRollbackAppExceptionLocal() throws UncheckedRollbackAppException, TestFailedException;
 
-  // for /at/ and /override/ only
-  public void atCheckedAppExceptionLocal()
-      throws AtCheckedAppException, TestFailedException;
+    // for /at/ and /override/ only
+    public void atCheckedAppExceptionLocal() throws AtCheckedAppException, TestFailedException;
 
-  public void atUncheckedAppExceptionLocal()
-      throws AtUncheckedAppException, TestFailedException;
+    public void atUncheckedAppExceptionLocal() throws AtUncheckedAppException, TestFailedException;
 
-  public void atCheckedRollbackAppExceptionLocal()
-      throws AtCheckedRollbackAppException, TestFailedException;
+    public void atCheckedRollbackAppExceptionLocal() throws AtCheckedRollbackAppException, TestFailedException;
 
-  public void atUncheckedRollbackAppExceptionLocal()
-      throws AtUncheckedRollbackAppException, TestFailedException;
+    public void atUncheckedRollbackAppExceptionLocal() throws AtUncheckedRollbackAppException, TestFailedException;
 }

@@ -21,69 +21,68 @@
 package com.sun.ts.tests.ejb30.common.interceptor;
 
 public interface Constants {
-  // test methods in client
-  public static final String getBeanTest = "getBeanTest";
+    // test methods in client
+    public static final String getBeanTest = "getBeanTest";
 
-  public static final String getMethodTest = "getMethodTest";
+    public static final String getMethodTest = "getMethodTest";
 
-  public static final String getParametersTest = "getParametersTest";
+    public static final String getParametersTest = "getParametersTest";
 
-  public static final String getParametersEmptyTest = "getParametersEmptyTest";
+    public static final String getParametersEmptyTest = "getParametersEmptyTest";
 
-  public static final String setParametersTest = "setParametersTest";
+    public static final String setParametersTest = "setParametersTest";
 
-  public static final String getEJBContextTest = "getEJBContextTest";
+    public static final String getEJBContextTest = "getEJBContextTest";
 
-  public static final String getContextDataTest = "getContextDataTest";
+    public static final String getContextDataTest = "getContextDataTest";
 
-  public static final String exceptionTest = "exceptionTest";
+    public static final String exceptionTest = "exceptionTest";
 
-  public static final String txRollbackOnlyTest = "txRollbackOnlyTest";
+    public static final String txRollbackOnlyTest = "txRollbackOnlyTest";
 
-  public static final String txRollbackOnlyAfterTest = "txRollbackOnlyAfterTest";
+    public static final String txRollbackOnlyAfterTest = "txRollbackOnlyAfterTest";
 
-  public static final String runtimeExceptionTest = "runtimeExceptionTest";
+    public static final String runtimeExceptionTest = "runtimeExceptionTest";
 
-  public static final String runtimeExceptionAfterTest = "runtimeExceptionAfterTest";
+    public static final String runtimeExceptionAfterTest = "runtimeExceptionAfterTest";
 
-  public static final String suppressExceptionTest = "suppressExceptionTest";
+    public static final String suppressExceptionTest = "suppressExceptionTest";
 
-  public static final String methodLevelInterceptorMixedTest = "methodLevelInterceptorMixedTest";
+    public static final String methodLevelInterceptorMixedTest = "methodLevelInterceptorMixedTest";
 
-  public static final String repeatedInterceptors = "repeatedInterceptors";
+    public static final String repeatedInterceptors = "repeatedInterceptors";
 
-  public static final String methodLevelClassLevelInterceptorMixedTest = "methodLevelClassLevelInterceptorMixedTest";
+    public static final String methodLevelClassLevelInterceptorMixedTest = "methodLevelClassLevelInterceptorMixedTest";
 
-  public static final String interceptorOrderingOverride = "interceptorOrderingOverride";
+    public static final String interceptorOrderingOverride = "interceptorOrderingOverride";
 
-  // test method used with interceptor listener class
-  public static final String orderTest = "orderTest";
+    // test method used with interceptor listener class
+    public static final String orderTest = "orderTest";
 
-  public static final String sameInvocationContextTest = "sameInvocationContextTest";
+    public static final String sameInvocationContextTest = "sameInvocationContextTest";
 
-  // test method used stateful session beans that implements
-  // SessionSynchronization
-  public static final String afterBeginTest = "afterBeginTest";
+    // test method used stateful session beans that implements
+    // SessionSynchronization
+    public static final String afterBeginTest = "afterBeginTest";
 
-  public static final String beforeCompletionTest = "beforeCompletionTest";
+    public static final String beforeCompletionTest = "beforeCompletionTest";
 
-  public static final String sameSecContextTest = "sameSecContextTest";
+    public static final String sameSecContextTest = "sameSecContextTest";
 
-  // mdb method
-  public static final String onMessage = "onMessage";
+    // mdb method
+    public static final String onMessage = "onMessage";
 
-  public static final String OLD_PARAM_VALUE = "old param value";
+    public static final String OLD_PARAM_VALUE = "old param value";
 
-  public static final String NEW_PARAM_VALUE = "new param value";
+    public static final String NEW_PARAM_VALUE = "new param value";
 
-  public static final String INTERCEPTOR_MSG = "from bean class intercept()";
+    public static final String INTERCEPTOR_MSG = "from bean class intercept()";
 
-  public static final String INTERCEPTOR_MSG_KEY = "msg.key";
+    public static final String INTERCEPTOR_MSG_KEY = "msg.key";
 
-  public static final String INTERCEPTOR_ORDER_KEY = "interceptor.order";
+    public static final String INTERCEPTOR_ORDER_KEY = "interceptor.order";
 
-  public static final String SAME_INVOCATIONCONTEXT_KEY = "same.invocationcontext";
+    public static final String SAME_INVOCATIONCONTEXT_KEY = "same.invocationcontext";
 
-  public static final int NUM_OF_INTERCEPTORS = 3;
-
+    public static final int NUM_OF_INTERCEPTORS = 3;
 }

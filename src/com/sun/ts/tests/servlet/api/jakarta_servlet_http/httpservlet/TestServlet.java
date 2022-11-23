@@ -58,174 +58,164 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservlet;
 
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 public class TestServlet extends HttpTCKServlet {
 
-  public void getServletConfigTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void getServletConfigTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
 
-    if (getServletConfig() == null) {
-      passed = false;
-      pw.println("getServletConfig method returned a null");
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
-
-  public void getServletContextTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    if (getServletContext() == null) {
-      passed = false;
-      pw.println("getServletContext method returned a null");
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void getServletInfoTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    if (getServletInfo() == null) {
-      passed = false;
-      pw.println("getServletInfo method returned a null");
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void getServletNameTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    String expected = "TestServlet";
-    String actual = getServletName();
-
-    if (actual != null) {
-      if (!expected.equals(actual)) {
-        passed = false;
-        pw.println("getServletName returned the wrong result");
-        pw.println("Expected result= " + expected);
-        pw.println("Actual result= " + actual);
-      } else {
-        passed = true;
-      }
-    } else {
-      passed = false;
-      pw.println("getServletName method returned a null");
-    }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
-
-  public void getInitParameterTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    String expected = "value1";
-
-    String actual = getInitParameter("parameter1");
-    if (!expected.equals(actual)) {
-      passed = false;
-      pw.println("getInitParameter(String) did not return the correct result");
-      pw.println("Expected result=" + expected);
-      pw.println("Actual result=" + actual);
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void getInitParameterTestNull(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    String actual = getInitParameter(
-        "something_that_will_not_be_there_no_matter_how_many_time");
-    if (actual != null) {
-      passed = false;
-      pw.println("getInitParameter(String) did not return exected null");
-      pw.println("Actual result=" + actual);
-    } else {
-      passed = true;
-      pw.println("getInitParameter(String) return exected null");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  public void getInitParameterNamesTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
-
-    String expectedResult1 = "parameter1";
-    boolean expectedResult1Found = false;
-    String expectedResult2 = "parameter2";
-    boolean expectedResult2Found = false;
-    Enumeration initP = getInitParameterNames();
-
-    if (initP.hasMoreElements()) {
-      while (initP.hasMoreElements()) {
-        String name = (String) initP.nextElement();
-        pw.println("Initialization parameter: " + name);
-
-        if (name.equals(expectedResult1)) {
-          if (!expectedResult1Found) {
-            expectedResult1Found = true;
-          } else {
+        if (getServletConfig() == null) {
             passed = false;
-            pw.println(
-                "getInitParameterNames() method return an attribute name twice ");
-            pw.println(
-                "The attribute already specified was " + expectedResult1 + " ");
-          }
-        } else if (name.equals(expectedResult2)) {
-          if (!expectedResult2Found) {
-            expectedResult2Found = true;
-          } else {
-            passed = false;
-            pw.println(
-                "getInitParameterNames() method return an attribute name twice ");
-            pw.println(
-                "The attribute already specified was " + expectedResult2 + " ");
-          }
+            pw.println("getServletConfig method returned a null");
+        } else {
+            passed = true;
         }
-      }
-
-      if (!expectedResult1Found && expectedResult2Found) {
-        passed = false;
-        pw.println(
-            "getInitParameterNames() method did not return all the init parameters");
-      }
-    } else {
-      passed = false;
-      pw.println("getInitParameterNames() returned and empty enumeration");
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
+
+    public void getServletContextTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        if (getServletContext() == null) {
+            passed = false;
+            pw.println("getServletContext method returned a null");
+        } else {
+            passed = true;
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
+
+    public void getServletInfoTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        if (getServletInfo() == null) {
+            passed = false;
+            pw.println("getServletInfo method returned a null");
+        } else {
+            passed = true;
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
+
+    public void getServletNameTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        String expected = "TestServlet";
+        String actual = getServletName();
+
+        if (actual != null) {
+            if (!expected.equals(actual)) {
+                passed = false;
+                pw.println("getServletName returned the wrong result");
+                pw.println("Expected result= " + expected);
+                pw.println("Actual result= " + actual);
+            } else {
+                passed = true;
+            }
+        } else {
+            passed = false;
+            pw.println("getServletName method returned a null");
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
+
+    public void getInitParameterTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        String expected = "value1";
+
+        String actual = getInitParameter("parameter1");
+        if (!expected.equals(actual)) {
+            passed = false;
+            pw.println("getInitParameter(String) did not return the correct result");
+            pw.println("Expected result=" + expected);
+            pw.println("Actual result=" + actual);
+        } else {
+            passed = true;
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
+
+    public void getInitParameterTestNull(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        String actual = getInitParameter("something_that_will_not_be_there_no_matter_how_many_time");
+        if (actual != null) {
+            passed = false;
+            pw.println("getInitParameter(String) did not return exected null");
+            pw.println("Actual result=" + actual);
+        } else {
+            passed = true;
+            pw.println("getInitParameter(String) return exected null");
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
+
+    public void getInitParameterNamesTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
+
+        String expectedResult1 = "parameter1";
+        boolean expectedResult1Found = false;
+        String expectedResult2 = "parameter2";
+        boolean expectedResult2Found = false;
+        Enumeration initP = getInitParameterNames();
+
+        if (initP.hasMoreElements()) {
+            while (initP.hasMoreElements()) {
+                String name = (String) initP.nextElement();
+                pw.println("Initialization parameter: " + name);
+
+                if (name.equals(expectedResult1)) {
+                    if (!expectedResult1Found) {
+                        expectedResult1Found = true;
+                    } else {
+                        passed = false;
+                        pw.println("getInitParameterNames() method return an attribute name twice ");
+                        pw.println("The attribute already specified was " + expectedResult1 + " ");
+                    }
+                } else if (name.equals(expectedResult2)) {
+                    if (!expectedResult2Found) {
+                        expectedResult2Found = true;
+                    } else {
+                        passed = false;
+                        pw.println("getInitParameterNames() method return an attribute name twice ");
+                        pw.println("The attribute already specified was " + expectedResult2 + " ");
+                    }
+                }
+            }
+
+            if (!expectedResult1Found && expectedResult2Found) {
+                passed = false;
+                pw.println("getInitParameterNames() method did not return all the init parameters");
+            }
+        } else {
+            passed = false;
+            pw.println("getInitParameterNames() returned and empty enumeration");
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
 }

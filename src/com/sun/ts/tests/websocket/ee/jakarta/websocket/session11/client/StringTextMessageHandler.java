@@ -18,23 +18,21 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
-
 import jakarta.websocket.MessageHandler;
 
 public class StringTextMessageHandler implements MessageHandler.Whole<String> {
 
-  ClientEndpoint<String> endpoint;
+    ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "StringTextMessageHandler says: ";
+    public static final String HANDLER_SAYS = "StringTextMessageHandler says: ";
 
-  public StringTextMessageHandler(ClientEndpoint<String> endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+    public StringTextMessageHandler(ClientEndpoint<String> endpoint) {
+        super();
+        this.endpoint = endpoint;
+    }
 
-  @Override
-  public void onMessage(String message) {
-    endpoint.onMessage(HANDLER_SAYS + message);
-  }
-
+    @Override
+    public void onMessage(String message) {
+        endpoint.onMessage(HANDLER_SAYS + message);
+    }
 }

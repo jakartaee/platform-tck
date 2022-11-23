@@ -23,20 +23,17 @@ package com.sun.ts.tests.ejb30.bb.localaccess.common;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TestBeanIF {
-  public void passByValueTest(String[] args) throws TestFailedException;
+    public void passByValueTest(String[] args) throws TestFailedException;
 
-  public void passByReferenceTest(String[] args, String refName, Class klass)
-      throws TestFailedException;
+    public void passByReferenceTest(String[] args, String refName, Class klass) throws TestFailedException;
 
-  public void exceptionTest(String refName, Class klass)
-      throws TestFailedException;
+    public void exceptionTest(String refName, Class klass) throws TestFailedException;
 
-  public void runtimeExceptionTest(String refName, Class klass)
-      throws TestFailedException;
+    public void runtimeExceptionTest(String refName, Class klass) throws TestFailedException;
 
-  public void remove();
+    public void remove();
 
-  public String passByValueTest2(String obj);
+    public String passByValueTest2(String obj);
 
-  public StringBuffer passByValueTest3(StringBuffer obj);
+    public StringBuffer passByValueTest3(StringBuffer obj);
 }

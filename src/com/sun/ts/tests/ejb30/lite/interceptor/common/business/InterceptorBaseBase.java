@@ -19,49 +19,49 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.InvocationContext;
 import java.util.List;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
+public abstract class InterceptorBaseBase {
+    // we cannot use a getSimpleName() method, since it will always return the
+    // simpleName of the subclass. So we have to declare a static simpleName
+    // in each layer of the class hierarchy
+    private static final String simpleName = "InterceptorBaseBase";
 
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
+    @AroundInvoke
+    protected Object interceptInInterceptorBaseBase(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "interceptInInterceptorBaseBase",
+                        "Adding around-invoke record: " + simpleName + ", this:" + this);
+        addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 
-abstract public class InterceptorBaseBase {
-  // we cannot use a getSimpleName() method, since it will always return the
-  // simpleName of the subclass. So we have to declare a static simpleName
-  // in each layer of the class hierarchy
-  private static final String simpleName = "InterceptorBaseBase";
+    // Only add the simple name of the actual concrete class.
+    // No names like InterceptorBaseBase or InterceptorBase will be added.
+    // It's possible some interceptors are configured twice (e.g., as both
+    // class-level and method-level interceptors. In this case,
+    // the second adding will overwrite the first one in the context data.
+    private static void addContextData(InvocationContext inv, String name) {
+        inv.getContextData().put(name, inv.getTarget());
+    }
 
-  @AroundInvoke
-  protected Object interceptInInterceptorBaseBase(InvocationContext inv)
-      throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName,
-        "interceptInInterceptorBaseBase",
-        "Adding around-invoke record: " + simpleName + ", this:" + this);
-    addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
-
-  // Only add the simple name of the actual concrete class.
-  // No names like InterceptorBaseBase or InterceptorBase will be added.
-  // It's possible some interceptors are configured twice (e.g., as both
-  // class-level and method-level interceptors. In this case,
-  // the second adding will overwrite the first one in the context data.
-  private static void addContextData(InvocationContext inv, String name) {
-    inv.getContextData().put(name, inv.getTarget());
-  }
-
-  // the history, an ordered list of interceptor names, is the param of the
-  // business method. Each interceptor adds its simpleName
-  // to this list, which is verified by the client after business method
-  // invocation.
-  // Therefore, this only works for local EJB invocations.
-  @SuppressWarnings("unchecked")
-  public static void addToHistory(InvocationContext inv, String name) {
-    Object[] params = inv.getParameters();
-    List<String> history = (List<String>) params[0];
-    history.add(name);
-    addContextData(inv, name);
-  }
+    // the history, an ordered list of interceptor names, is the param of the
+    // business method. Each interceptor adds its simpleName
+    // to this list, which is verified by the client after business method
+    // invocation.
+    // Therefore, this only works for local EJB invocations.
+    @SuppressWarnings("unchecked")
+    public static void addToHistory(InvocationContext inv, String name) {
+        Object[] params = inv.getParameters();
+        List<String> history = (List<String>) params[0];
+        history.add(name);
+        addContextData(inv, name);
+    }
 }

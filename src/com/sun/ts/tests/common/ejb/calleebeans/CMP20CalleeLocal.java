@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
-
 import jakarta.ejb.EJBLocalObject;
+import java.util.Properties;
 
 public interface CMP20CalleeLocal extends EJBLocalObject {
 
-  public void call(Properties props, SimpleArgument arg);
-
+    public void call(Properties props, SimpleArgument arg);
 }

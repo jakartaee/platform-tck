@@ -27,16 +27,15 @@ import jakarta.jws.WebService;
 @WebService(wsdlLocation = "WEB-INF/wsdl/DefaultWebMethodWebServiceService.wsdl")
 public class defaultWebMethodWebService {
 
-  public String hello(String name) {
-    return "Hello " + name + " to Web Service";
-  }
+    public String hello(String name) {
+        return "Hello " + name + " to Web Service";
+    }
 
-  public String hello2(String name, String name2) {
-    return "Hello " + name + ", " + name2 + " to Web Service";
-  }
+    public String hello2(String name, String name2) {
+        return "Hello " + name + ", " + name2 + " to Web Service";
+    }
 
-  public String hello3(String name, String name2, String name3) {
-    return "Hello " + name + ", " + name2 + ", " + name3 + " to Web Service";
-  }
-
+    public String hello3(String name, String name2, String name3) {
+        return "Hello " + name + ", " + name2 + ", " + name3 + " to Web Service";
+    }
 }

@@ -22,33 +22,29 @@ package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.scope;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
-
 import jakarta.ejb.EJBException;
 
 public class ReferencingBeanEJB extends StatefulWrapper {
 
-  private static final String lookupName = "java:comp/env/ejb/Partner";
+    private static final String lookupName = "java:comp/env/ejb/Partner";
 
-  public String whoIsYourPartner() {
-    ReferencedBeanHome home = null;
-    ReferencedBean bean = null;
-    String partnerName;
+    public String whoIsYourPartner() {
+        ReferencedBeanHome home = null;
+        ReferencedBean bean = null;
+        String partnerName;
 
-    try {
-      TestUtil.logTrace("ReferencingBean: looking up " + lookupName);
-      home = (ReferencedBeanHome) nctx.lookup(lookupName,
-          ReferencedBeanHome.class);
-      bean = home.create(props);
-      partnerName = bean.whoAreYou();
-      TestUtil.logTrace("ReferencingBean: my partner is " + partnerName);
-      bean.remove();
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "ReferencingBean: Caught exception in " + "whoIsYourPartner(): " + e,
-          e);
-      throw new EJBException(e.getMessage());
+        try {
+            TestUtil.logTrace("ReferencingBean: looking up " + lookupName);
+            home = (ReferencedBeanHome) nctx.lookup(lookupName, ReferencedBeanHome.class);
+            bean = home.create(props);
+            partnerName = bean.whoAreYou();
+            TestUtil.logTrace("ReferencingBean: my partner is " + partnerName);
+            bean.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("ReferencingBean: Caught exception in " + "whoIsYourPartner(): " + e, e);
+            throw new EJBException(e.getMessage());
+        }
+
+        return partnerName;
     }
-
-    return partnerName;
-  }
 }

@@ -17,31 +17,28 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/primitivedoublesessionpathparam/{param}")
 public class WSPrimitiveDoubleAndSessionAndPathParamServer {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(@PathParam("param") double param, double d, Session s) {
-    return (String.valueOf(d) + String.valueOf(param)).replace(".0", "");
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String echo(@PathParam("param") double param, double d, Session s) {
+        return (String.valueOf(d) + String.valueOf(param)).replace(".0", "");
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

@@ -22,11 +22,11 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
 public class ConfigHeaderFault extends Exception {
 
-  public ConfigHeaderFault(String message) {
-    super(message);
-  }
+    public ConfigHeaderFault(String message) {
+        super(message);
+    }
 
-  public ConfigHeaderFault(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public ConfigHeaderFault(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.integration.session.servletejbjdbc;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface TellerHome extends EJBHome {
-  Teller create(String name, Properties props)
-      throws CreateException, RemoteException;
+    Teller create(String name, Properties props) throws CreateException, RemoteException;
 }

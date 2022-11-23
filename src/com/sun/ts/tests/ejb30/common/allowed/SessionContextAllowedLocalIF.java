@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.common.allowed;
 
 public interface SessionContextAllowedLocalIF extends SessionContextAllowedIF {
-
 }

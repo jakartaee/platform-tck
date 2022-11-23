@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBeanNoTx extends EJBObject {
-  public void okay() throws RemoteException;
+    public void okay() throws RemoteException;
 
-  public void not_okay() throws RemoteException;
+    public void not_okay() throws RemoteException;
 }

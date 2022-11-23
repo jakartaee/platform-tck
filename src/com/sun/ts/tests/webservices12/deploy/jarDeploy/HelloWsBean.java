@@ -23,9 +23,9 @@ import jakarta.jws.WebService;
 @Stateless(name = "WSJarDeployApp")
 public class HelloWsBean implements HelloWs {
 
-  public HelloResponse sayHello(HelloRequest input) {
-    HelloResponse response = new HelloResponse();
-    response.setArgument("'" + input.getArgument() + "' to you too!");
-    return response;
-  }
+    public HelloResponse sayHello(HelloRequest input) {
+        HelloResponse response = new HelloResponse();
+        response.setArgument("'" + input.getArgument() + "' to you too!");
+        return response;
+    }
 }

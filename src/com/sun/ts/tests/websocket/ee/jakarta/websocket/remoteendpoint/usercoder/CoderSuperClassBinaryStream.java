@@ -17,21 +17,18 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import jakarta.websocket.Decoder;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public abstract class CoderSuperClassBinaryStream<T> extends CoderSuperClass
-    implements Encoder.BinaryStream<T>, Decoder.BinaryStream<T> {
+        implements Encoder.BinaryStream<T>, Decoder.BinaryStream<T> {
 
-  @Override
-  public void encode(T object, OutputStream os)
-      throws EncodeException, IOException {
-    os.write(COMMON_CODED_STRING.getBytes());
-    os.close();
-  }
-
+    @Override
+    public void encode(T object, OutputStream os) throws EncodeException, IOException {
+        os.write(COMMON_CODED_STRING.getBytes());
+        os.close();
+    }
 }

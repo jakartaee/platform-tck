@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.json.JsonWriter;
+import jakarta.json.JsonWriterFactory;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Map;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.json.JsonWriter;
-import jakarta.json.JsonWriterFactory;
 
 /*
  * MyJsonWriterFactory is a Json Test WriterFactory used by the pluggability tests
@@ -37,65 +35,65 @@ import jakarta.json.JsonWriterFactory;
  */
 
 public class MyJsonWriterFactory implements JsonWriterFactory {
-  private OutputStream out = null;
+    private OutputStream out = null;
 
-  private Writer writer = null;
+    private Writer writer = null;
 
-  private Charset charset = null;
+    private Charset charset = null;
 
-  private Map<String, ?> config = null;
+    private Map<String, ?> config = null;
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("writer=" + writer);
-    TestUtil.logTrace("out=" + out);
-    TestUtil.logTrace("charset=" + charset);
-    TestUtil.logTrace("config=" + config);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("writer=" + writer);
+        TestUtil.logTrace("out=" + out);
+        TestUtil.logTrace("charset=" + charset);
+        TestUtil.logTrace("config=" + config);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonWriterFactory(Map<String, ?> config) {
-    this.config = config;
-  }
+    public MyJsonWriterFactory(Map<String, ?> config) {
+        this.config = config;
+    }
 
-  public Map<String, ?> getConfigInUse() {
-    TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
-    addCalls("public Map<String, ?> getConfigInUse()");
-    return config;
-  }
+    public Map<String, ?> getConfigInUse() {
+        TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
+        addCalls("public Map<String, ?> getConfigInUse()");
+        return config;
+    }
 
-  public JsonWriter createWriter(OutputStream out) {
-    TestUtil.logTrace("public JsonWriter createWriter(OutputStream)");
-    addCalls("public JsonWriter createWriter(OutputStream)");
-    this.out = out;
-    return null;
-  }
+    public JsonWriter createWriter(OutputStream out) {
+        TestUtil.logTrace("public JsonWriter createWriter(OutputStream)");
+        addCalls("public JsonWriter createWriter(OutputStream)");
+        this.out = out;
+        return null;
+    }
 
-  public JsonWriter createWriter(OutputStream out, Charset charset) {
-    TestUtil.logTrace("public JsonWriter createWriter(OutputStream, Charset)");
-    addCalls("public JsonWriter createWriter(OutputStream, Charset)");
-    this.out = out;
-    this.charset = charset;
-    return null;
-  }
+    public JsonWriter createWriter(OutputStream out, Charset charset) {
+        TestUtil.logTrace("public JsonWriter createWriter(OutputStream, Charset)");
+        addCalls("public JsonWriter createWriter(OutputStream, Charset)");
+        this.out = out;
+        this.charset = charset;
+        return null;
+    }
 
-  public JsonWriter createWriter(Writer writer) {
-    TestUtil.logTrace("public JsonWriter createWriter(Writer)");
-    addCalls("public JsonWriter createWriter(Writer)");
-    this.writer = writer;
-    return null;
-  }
+    public JsonWriter createWriter(Writer writer) {
+        TestUtil.logTrace("public JsonWriter createWriter(Writer)");
+        addCalls("public JsonWriter createWriter(Writer)");
+        this.writer = writer;
+        return null;
+    }
 }

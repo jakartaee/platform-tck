@@ -17,28 +17,26 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.srv.textbigdecimal;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.math.BigDecimal;
 
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(BigDecimal echo) {
-    return echo.toString();
-  }
+    @OnMessage
+    public String echo(BigDecimal echo) {
+        return echo.toString();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

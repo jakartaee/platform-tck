@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface SecTestRoleRefLocalHome extends EJBLocalHome {
-  SecTestRoleRefLocal create() throws CreateException;
+    SecTestRoleRefLocal create() throws CreateException;
 }

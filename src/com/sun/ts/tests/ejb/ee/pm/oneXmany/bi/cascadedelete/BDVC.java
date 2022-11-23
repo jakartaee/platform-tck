@@ -22,39 +22,39 @@ package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.cascadedelete;
 
 public class BDVC implements java.io.Serializable {
 
-  private String id;
+    private String id;
 
-  private String name;
+    private String name;
 
-  private int value;
+    private int value;
 
-  public BDVC(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+    public BDVC(String id, String name, int value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String v) {
-    name = v;
-  }
+    public void setName(String v) {
+        name = v;
+    }
 
-  public int getValue() {
-    return value;
-  }
+    public int getValue() {
+        return value;
+    }
 
-  public void setValue(int v) {
-    value = v;
-  }
+    public void setValue(int v) {
+        value = v;
+    }
 }

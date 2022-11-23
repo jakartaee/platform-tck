@@ -20,26 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface EmployeeHome extends EJBHome {
-  public Employee create(Integer id, String firstName, String lastName,
-      java.util.Date hireDate, float salary)
-      throws RemoteException, CreateException;
+    public Employee create(Integer id, String firstName, String lastName, java.util.Date hireDate, float salary)
+            throws RemoteException, CreateException;
 
-  public Employee findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public Employee findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findAllEmployees() throws RemoteException, FinderException;
+    public Collection findAllEmployees() throws RemoteException, FinderException;
 
-  public Employee findEmployeeByQuery1(String s)
-      throws RemoteException, FinderException;
+    public Employee findEmployeeByQuery1(String s) throws RemoteException, FinderException;
 
-  public Employee findEmployeeByQuery2(String s)
-      throws RemoteException, FinderException;
+    public Employee findEmployeeByQuery2(String s) throws RemoteException, FinderException;
 }

@@ -20,54 +20,53 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.entitybeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Helper extends EJBObject {
-  public void reset() throws RemoteException;
+    public void reset() throws RemoteException;
 
-  public void setCreate(boolean b) throws RemoteException;
+    public void setCreate(boolean b) throws RemoteException;
 
-  public boolean isCreate() throws RemoteException;
+    public boolean isCreate() throws RemoteException;
 
-  public void setActivate(boolean b) throws RemoteException;
+    public void setActivate(boolean b) throws RemoteException;
 
-  public boolean isActivate() throws RemoteException;
+    public boolean isActivate() throws RemoteException;
 
-  public void setPassivate(boolean b) throws RemoteException;
+    public void setPassivate(boolean b) throws RemoteException;
 
-  public boolean isPassivate() throws RemoteException;
+    public boolean isPassivate() throws RemoteException;
 
-  public void setRemove(boolean b) throws RemoteException;
+    public void setRemove(boolean b) throws RemoteException;
 
-  public boolean isRemove() throws RemoteException;
+    public boolean isRemove() throws RemoteException;
 
-  public void setContext(boolean b) throws RemoteException;
+    public void setContext(boolean b) throws RemoteException;
 
-  public boolean isContext() throws RemoteException;
+    public boolean isContext() throws RemoteException;
 
-  public void setUnsetContext(boolean b) throws RemoteException;
+    public void setUnsetContext(boolean b) throws RemoteException;
 
-  public boolean isUnsetContext() throws RemoteException;
+    public boolean isUnsetContext() throws RemoteException;
 
-  public void setLoad(boolean b) throws RemoteException;
+    public void setLoad(boolean b) throws RemoteException;
 
-  public boolean isLoad() throws RemoteException;
+    public boolean isLoad() throws RemoteException;
 
-  public void setStore(boolean b) throws RemoteException;
+    public void setStore(boolean b) throws RemoteException;
 
-  public boolean isStore() throws RemoteException;
+    public boolean isStore() throws RemoteException;
 
-  public void setCreateLifeCycle(boolean b) throws RemoteException;
+    public void setCreateLifeCycle(boolean b) throws RemoteException;
 
-  public boolean isCreateLifeCycle() throws RemoteException;
+    public boolean isCreateLifeCycle() throws RemoteException;
 
-  public void setCreateMethodCalled(int b) throws RemoteException;
+    public void setCreateMethodCalled(int b) throws RemoteException;
 
-  public int isCreateMethodCalled() throws RemoteException;
+    public int isCreateMethodCalled() throws RemoteException;
 
-  public boolean isCreateLifeCycle1() throws RemoteException;
+    public boolean isCreateLifeCycle1() throws RemoteException;
 
-  public boolean isCreateLifeCycle2() throws RemoteException;
+    public boolean isCreateLifeCycle2() throws RemoteException;
 }

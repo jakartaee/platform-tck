@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.connector.deployment;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface DeploymentHome extends EJBHome {
-  Deployment create(java.util.Properties p)
-      throws RemoteException, CreateException;
+    Deployment create(java.util.Properties p) throws RemoteException, CreateException;
 }

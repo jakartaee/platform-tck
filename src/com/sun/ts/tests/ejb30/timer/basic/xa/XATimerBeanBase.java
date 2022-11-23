@@ -19,56 +19,62 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.xa;
 
-import java.util.Date;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.Timer;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceException;
+import java.util.Date;
+import java.util.logging.Level;
 
-abstract public class XATimerBeanBase extends TimerBeanBase {
-  @PersistenceContext(unitName = "ejblite-pu")
-  protected EntityManager em;
+public abstract class XATimerBeanBase extends TimerBeanBase {
+    @PersistenceContext(unitName = "ejblite-pu")
+    protected EntityManager em;
 
-  abstract public void persistCoffee(int id, String brandName);
+    public abstract void persistCoffee(int id, String brandName);
 
-  public boolean persistCoffeeCreateTimerRollback(int id, String brandName,
-      Date expireation, TimerInfo info) {
-    boolean result = false;
-    Timer timer = timerService.createTimer(expireation, info);
-    Helper.getLogger().logp(Level.INFO, "XATimerBeanBase",
-        "persistCoffeeCreateTimerRollback",
-        "Temporarily created timer: " + TimerUtil.toString(timer));
-    CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
-    if (coffeeFound == null) {
-      throw new IllegalStateException("Expecting 1 coffee, but found none.");
+    public boolean persistCoffeeCreateTimerRollback(int id, String brandName, Date expireation, TimerInfo info) {
+        boolean result = false;
+        Timer timer = timerService.createTimer(expireation, info);
+        Helper.getLogger()
+                .logp(
+                        Level.INFO,
+                        "XATimerBeanBase",
+                        "persistCoffeeCreateTimerRollback",
+                        "Temporarily created timer: " + TimerUtil.toString(timer));
+        CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
+        if (coffeeFound == null) {
+            throw new IllegalStateException("Expecting 1 coffee, but found none.");
+        }
+        Helper.getLogger()
+                .logp(
+                        Level.INFO,
+                        "XATimerBeanBase",
+                        "persistCoffeeCreateTimerRollback",
+                        "Found the newly-persisted coffee: " + coffeeFound);
+        CoffeeEJBLite c = new CoffeeEJBLite(id, brandName, id);
+        // try to persist a coffee that already exists. It will cause
+        // EntityExistsException and tx rollback. The timer creation must also
+        // rollback.
+        try {
+            em.persist(c);
+            em.flush();
+            Helper.getLogger()
+                    .logp(
+                            Level.INFO,
+                            "XATimerBeanBase",
+                            "persistCoffeeCreateTimerRollback",
+                            "Expecting EntityExistsException or another PersistenceContext, but got none");
+            result = false;
+        } catch (PersistenceException e) {
+            Helper.getLogger()
+                    .logp(Level.INFO, "XATimerBeanBase", "persistCoffeeCreateTimerRollback", "Got the expected " + e);
+            result = true;
+        }
+        return result;
     }
-    Helper.getLogger().logp(Level.INFO, "XATimerBeanBase",
-        "persistCoffeeCreateTimerRollback",
-        "Found the newly-persisted coffee: " + coffeeFound);
-    CoffeeEJBLite c = new CoffeeEJBLite(id, brandName, id);
-    // try to persist a coffee that already exists. It will cause
-    // EntityExistsException and tx rollback. The timer creation must also
-    // rollback.
-    try {
-      em.persist(c);
-      em.flush();
-      Helper.getLogger().logp(Level.INFO, "XATimerBeanBase",
-          "persistCoffeeCreateTimerRollback",
-          "Expecting EntityExistsException or another PersistenceContext, but got none");
-      result = false;
-    } catch (PersistenceException e) {
-      Helper.getLogger().logp(Level.INFO, "XATimerBeanBase",
-          "persistCoffeeCreateTimerRollback", "Got the expected " + e);
-      result = true;
-    }
-    return result;
-  }
 }

@@ -22,53 +22,47 @@ package com.sun.ts.tests.ejb30.common.allowed;
 
 import static com.sun.ts.tests.ejb30.common.allowed.Constants.EJBContextLookupName;
 
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import jakarta.ejb.SessionContext;
 import java.util.Properties;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
+public abstract class InjectiontAllowedBeanBase extends SessionContextAllowedBeanBase
+        implements SessionContextAllowedIF, SessionContextAllowedLocalIF {
+    protected boolean myBoolean;
 
-import jakarta.ejb.SessionContext;
-
-public abstract class InjectiontAllowedBeanBase
-    extends SessionContextAllowedBeanBase
-    implements SessionContextAllowedIF, SessionContextAllowedLocalIF {
-  protected boolean myBoolean;
-
-  @Override
-  public void setSessionContext(SessionContext sc) {
-    this.sessionContext = sc;
-  }
-
-  public void setMyBoolean(boolean b) {
-    myBoolean = b;
-    this.results = null;
-    SessionContext sctxNotNull = null;
-    if (sessionContext != null) {
-      TLogger.log("SessionContext has been injected, no need to look it up.");
-      sctxNotNull = this.sessionContext;
-    } else {
-      TLogger.log("SessionContext has not been injected, need to look it up.");
-      try {
-        InitialContext ic = new InitialContext();
-        sctxNotNull = (SessionContext) ic.lookup(EJBContextLookupName);
-      } catch (NamingException ex) {
-        TLogger.log("Failed to look up SessionContext with name "
-            + EJBContextLookupName, ex.getMessage());
-      }
+    @Override
+    public void setSessionContext(SessionContext sc) {
+        this.sessionContext = sc;
     }
-    this.results = runOperations(sctxNotNull);
-  }
 
-  public Properties runOperations(SessionContext sctx) {
-    Operations op = Operations.getInstance();
-    Properties results = new Properties();
-    op.runGetEJBHome(sctx, results);
-    op.runGetEJBLocalHome(sctx, results);
-    op.runJndiAccess(sctx, results);
-    op.runEJBContextLookup(sctx, results);
-    return results;
-  }
+    public void setMyBoolean(boolean b) {
+        myBoolean = b;
+        this.results = null;
+        SessionContext sctxNotNull = null;
+        if (sessionContext != null) {
+            TLogger.log("SessionContext has been injected, no need to look it up.");
+            sctxNotNull = this.sessionContext;
+        } else {
+            TLogger.log("SessionContext has not been injected, need to look it up.");
+            try {
+                InitialContext ic = new InitialContext();
+                sctxNotNull = (SessionContext) ic.lookup(EJBContextLookupName);
+            } catch (NamingException ex) {
+                TLogger.log("Failed to look up SessionContext with name " + EJBContextLookupName, ex.getMessage());
+            }
+        }
+        this.results = runOperations(sctxNotNull);
+    }
 
+    public Properties runOperations(SessionContext sctx) {
+        Operations op = Operations.getInstance();
+        Properties results = new Properties();
+        op.runGetEJBHome(sctx, results);
+        op.runGetEJBLocalHome(sctx, results);
+        op.runJndiAccess(sctx, results);
+        op.runEJBContextLookup(sctx, results);
+        return results;
+    }
 }

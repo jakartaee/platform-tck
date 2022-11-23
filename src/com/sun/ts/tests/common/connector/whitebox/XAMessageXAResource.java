@@ -20,91 +20,88 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
-import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 public class XAMessageXAResource implements XAResource {
 
-  public XAMessageXAResource() {
-    System.out.println("XAMessageXAResource constructor");
-  }
-
-  private void handleResourceException(Exception ex) throws XAException {
-
-    XAException xae = new XAException(ex.toString());
-    xae.errorCode = XAException.XAER_RMERR;
-    throw xae;
-  }
-
-  public void commit(Xid xid, boolean onePhase) throws XAException {
-    try {
-      System.out.println("XAMessageXAResource.commit");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public XAMessageXAResource() {
+        System.out.println("XAMessageXAResource constructor");
     }
-  }
 
-  public void start(Xid xid, int flags) throws XAException {
-    try {
-      System.out.println("XAMessageXAResource.start");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    private void handleResourceException(Exception ex) throws XAException {
+
+        XAException xae = new XAException(ex.toString());
+        xae.errorCode = XAException.XAER_RMERR;
+        throw xae;
     }
-  }
 
-  public void end(Xid xid, int flags) throws XAException {
-    try {
-      System.out.println("XAMessageXAResource.end");
-      // ConnectorStatus.getConnectorStatus().logAPI("MessageXAResource.end" ,
-      // "", "");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void commit(Xid xid, boolean onePhase) throws XAException {
+        try {
+            System.out.println("XAMessageXAResource.commit");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public void forget(Xid xid) throws XAException {
-    System.out.println("XAMessageXAResource.forget");
-  }
-
-  public int getTransactionTimeout() throws XAException {
-    return 1;
-  }
-
-  public boolean isSameRM(XAResource other) throws XAException {
-    System.out.println("XAMessageXAResource.isSameRM");
-    return false;
-  }
-
-  public int prepare(Xid xid) throws XAException {
-    ConnectorStatus.getConnectorStatus().logAPI("XAMessageXAResource.prepare",
-        "", "");
-    System.out.println("XAMessageXAResource.prepare");
-    try {
-      return XAResource.XA_OK;
-    } catch (Exception ex) {
-      handleResourceException(ex);
-      return XAException.XAER_RMERR;
+    public void start(Xid xid, int flags) throws XAException {
+        try {
+            System.out.println("XAMessageXAResource.start");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public Xid[] recover(int flag) throws XAException {
-    System.out.println("XAMessageXAResource.recover");
-    return null;
-  }
-
-  public void rollback(Xid xid) throws XAException {
-    try {
-      System.out.println("XAMessageXAResource.rollback");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void end(Xid xid, int flags) throws XAException {
+        try {
+            System.out.println("XAMessageXAResource.end");
+            // ConnectorStatus.getConnectorStatus().logAPI("MessageXAResource.end" ,
+            // "", "");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public boolean setTransactionTimeout(int seconds) throws XAException {
-    return true;
-  }
+    public void forget(Xid xid) throws XAException {
+        System.out.println("XAMessageXAResource.forget");
+    }
 
+    public int getTransactionTimeout() throws XAException {
+        return 1;
+    }
+
+    public boolean isSameRM(XAResource other) throws XAException {
+        System.out.println("XAMessageXAResource.isSameRM");
+        return false;
+    }
+
+    public int prepare(Xid xid) throws XAException {
+        ConnectorStatus.getConnectorStatus().logAPI("XAMessageXAResource.prepare", "", "");
+        System.out.println("XAMessageXAResource.prepare");
+        try {
+            return XAResource.XA_OK;
+        } catch (Exception ex) {
+            handleResourceException(ex);
+            return XAException.XAER_RMERR;
+        }
+    }
+
+    public Xid[] recover(int flag) throws XAException {
+        System.out.println("XAMessageXAResource.recover");
+        return null;
+    }
+
+    public void rollback(Xid xid) throws XAException {
+        try {
+            System.out.println("XAMessageXAResource.rollback");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
+    }
+
+    public boolean setTransactionTimeout(int seconds) throws XAException {
+        return true;
+    }
 }

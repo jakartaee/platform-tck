@@ -19,47 +19,43 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void forward1(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void forward1(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/Servlet1";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        String path = "/Servlet1";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null) {
-      pw.println("Null RequestDispatcher got for path=" + path);
-    } else {
-      request.setAttribute("from", "TestServlet");
-      rd.forward(request, response);
+        if (rd == null) {
+            pw.println("Null RequestDispatcher got for path=" + path);
+        } else {
+            request.setAttribute("from", "TestServlet");
+            rd.forward(request, response);
+        }
     }
-  }
 
-  public void include1(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void include1(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/Servlet1";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        String path = "/Servlet1";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null) {
-      pw.println("Null RequestDispatcher got for path=" + path);
-    } else {
-      request.setAttribute("from", "TestServlet");
-      rd.include(request, response);
+        if (rd == null) {
+            pw.println("Null RequestDispatcher got for path=" + path);
+        } else {
+            request.setAttribute("from", "TestServlet");
+            rd.include(request, response);
+        }
+        ServletTestUtil.printResult(pw, true);
     }
-    ServletTestUtil.printResult(pw, true);
-  }
 }

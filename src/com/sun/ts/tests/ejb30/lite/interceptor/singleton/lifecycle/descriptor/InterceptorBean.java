@@ -21,17 +21,15 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.descriptor;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class InterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorBean";
+public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorBean";
 
-  @SuppressWarnings("unused")
-  // @PostConstruct specified in ejb-jar.xml
-  private void postConstruct() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @SuppressWarnings("unused")
+    // @PostConstruct specified in ejb-jar.xml
+    private void postConstruct() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

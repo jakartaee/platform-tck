@@ -23,58 +23,58 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue("PartProduct")
 public class PartProduct extends Product implements java.io.Serializable {
-  private long partNumber;
+    private long partNumber;
 
-  public PartProduct() {
-    super();
-  }
-
-  @Column(name = "PNUM")
-  public long getPartNumber() {
-    return partNumber;
-  }
-
-  public void setPartNumber(long v) {
-    this.partNumber = v;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append(", quantity: " + getQuantity());
-    result.append(", partNumber: " + getPartNumber());
-    result.append("]");
-    return result.toString();
-  }
-
-  @Override
-  public int hashCode() {
-    return this.getId().hashCode();
-  }
-
-  public boolean equals(Object o) {
-    PartProduct other;
-    boolean result = false;
-
-    if (!(o instanceof PartProduct)) {
-      return result;
-    }
-    other = (PartProduct) o;
-
-    if (this.getId().equals(other.getId())
-        && this.getName().equals(other.getName())
-        && this.getQuantity() == other.getQuantity()
-        && this.getPartNumber() == other.getQuantity()) {
-      result = true;
+    public PartProduct() {
+        super();
     }
 
-    return result;
-  }
+    @Column(name = "PNUM")
+    public long getPartNumber() {
+        return partNumber;
+    }
+
+    public void setPartNumber(long v) {
+        this.partNumber = v;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getName() != null) {
+            result.append(", name: " + getName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append(", quantity: " + getQuantity());
+        result.append(", partNumber: " + getPartNumber());
+        result.append("]");
+        return result.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
+
+    public boolean equals(Object o) {
+        PartProduct other;
+        boolean result = false;
+
+        if (!(o instanceof PartProduct)) {
+            return result;
+        }
+        other = (PartProduct) o;
+
+        if (this.getId().equals(other.getId())
+                && this.getName().equals(other.getName())
+                && this.getQuantity() == other.getQuantity()
+                && this.getPartNumber() == other.getQuantity()) {
+            result = true;
+        }
+
+        return result;
+    }
 }

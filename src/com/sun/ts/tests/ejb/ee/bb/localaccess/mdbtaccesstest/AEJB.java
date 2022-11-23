@@ -20,101 +20,97 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbtaccesstest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public abstract class AEJB implements EntityBean {
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  // ===========================================================
-  // getters and setters for cmp fields
+    // ===========================================================
+    // getters and setters for cmp fields
 
-  public abstract Integer getId();
+    public abstract Integer getId();
 
-  public abstract void setId(Integer v);
+    public abstract void setId(Integer v);
 
-  public abstract String getName();
+    public abstract String getName();
 
-  public abstract void setName(String v);
+    public abstract void setName(String v);
 
-  public abstract int getValue();
+    public abstract int getValue();
 
-  public abstract void setValue(int v);
+    public abstract void setValue(int v);
 
-  // ===========================================================
-  // A interface business methods
+    // ===========================================================
+    // A interface business methods
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void init(Properties p) {
+        TestUtil.logTrace("init");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
     }
-  }
 
-  public String whoAmI() {
-    return "entity-cmp";
-  }
-
-  // ===========================================================
-  // EJB Specification Required Methods
-
-  public Integer ejbCreateA(int id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreateA");
-    try {
-      setId(new Integer(id));
-      setName(name);
-      setValue(value);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public String whoAmI() {
+        return "entity-cmp";
     }
-    return null;
-  }
 
-  public void ejbPostCreateA(int id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbPostCreateA");
-  }
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public Integer ejbCreateA(int id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbCreateA");
+        try {
+            setId(new Integer(id));
+            setName(name);
+            setValue(value);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void ejbPostCreateA(int id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbPostCreateA");
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 }

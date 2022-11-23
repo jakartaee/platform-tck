@@ -58,20 +58,17 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservlet;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class DestroyTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    // Generally we shouldn't call destroy method explicitly.
-    destroy();
-
-  }
+        // Generally we shouldn't call destroy method explicitly.
+        destroy();
+    }
 }

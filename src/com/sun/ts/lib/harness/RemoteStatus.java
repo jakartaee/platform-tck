@@ -16,25 +16,24 @@
 
 package com.sun.ts.lib.harness;
 
-import java.io.*;
 import com.sun.javatest.Status;
+import java.io.*;
 
 public class RemoteStatus implements Serializable {
-  int type;
+    int type;
 
-  String reason;
+    String reason;
 
-  public RemoteStatus(Status s) {
-    type = s.getType();
-    reason = s.getReason();
-  }
+    public RemoteStatus(Status s) {
+        type = s.getType();
+        reason = s.getReason();
+    }
 
-  public Status toStatus() {
-    return new Status(type, reason);
-  }
+    public Status toStatus() {
+        return new Status(type, reason);
+    }
 
-  public int getType() {
-    return type;
-  }
-
+    public int getType() {
+        return type;
+    }
 }

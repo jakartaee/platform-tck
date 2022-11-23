@@ -16,19 +16,18 @@
 
 package com.sun.ts.tests.jaxrs.platform.servletapp1;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
+import java.util.HashSet;
+import java.util.Set;
 
 @ApplicationPath("/ServletApp1")
 public class TSAppConfig extends Application {
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(com.sun.ts.tests.jaxrs.spec.inheritance.ChildResource.class);
-    resources.add(com.sun.ts.tests.jaxrs.spec.inheritance.ChildResource1.class);
-    return resources;
-  }
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<Class<?>>();
+        resources.add(com.sun.ts.tests.jaxrs.spec.inheritance.ChildResource.class);
+        resources.add(com.sun.ts.tests.jaxrs.spec.inheritance.ChildResource1.class);
+        return resources;
+    }
 }

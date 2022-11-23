@@ -24,20 +24,18 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 
 @ManagedBean("ModuleMBean")
 public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    String lookup = "java:module/ModuleName";
-    String moduleName = (String) lookupNoTry(lookup);
-    Helper.assertEquals("Check " + lookup, "renamed_appclientejb_ejb",
-        moduleName, postConstructRecords);
-    Helper.getLogger().info("Looked up " + lookup + ": " + moduleName);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        String lookup = "java:module/ModuleName";
+        String moduleName = (String) lookupNoTry(lookup);
+        Helper.assertEquals("Check " + lookup, "renamed_appclientejb_ejb", moduleName, postConstructRecords);
+        Helper.getLogger().info("Looked up " + lookup + ": " + moduleName);
+    }
 }

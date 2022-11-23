@@ -19,26 +19,24 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
 
 public class HttpTestServlet extends HttpTCKServlet {
 
-  public void httpSessionListenerTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void httpSessionListenerTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    HttpSession session = request.getSession(true);
-    session.invalidate();
+        HttpSession session = request.getSession(true);
+        session.invalidate();
 
-    response.getWriter().println(getServletContext().getAttribute("HSList"));
-    getServletContext().removeAttribute("SRList");
-    getServletContext().removeAttribute("SRAList");
-    getServletContext().removeAttribute("HSList");
-  }
+        response.getWriter().println(getServletContext().getAttribute("HSList"));
+        getServletContext().removeAttribute("SRList");
+        getServletContext().removeAttribute("SRAList");
+        getServletContext().removeAttribute("HSList");
+    }
 }

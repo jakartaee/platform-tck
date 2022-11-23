@@ -23,30 +23,30 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.common;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 
-abstract public class BeanBase implements ConcurrencyIF {
+public abstract class BeanBase implements ConcurrencyIF {
 
-  private static final String msg = "Should not reach here. The interceptors should have returned "
-      + "the result. Maybe the interceptors are not ignored?";
+    private static final String msg = "Should not reach here. The interceptors should have returned "
+            + "the result. Maybe the interceptors are not ignored?";
 
-  // Interceptor3 in bm or cm, is bound to these methods in ejb-jar.xml
+    // Interceptor3 in bm or cm, is bound to these methods in ejb-jar.xml
 
-  @Lock(LockType.WRITE)
-  public long getAndResetLockedSumFromInterceptor(String interceptorName) {
-    throw new RuntimeException(msg);
-  }
+    @Lock(LockType.WRITE)
+    public long getAndResetLockedSumFromInterceptor(String interceptorName) {
+        throw new RuntimeException(msg);
+    }
 
-  @Lock(LockType.WRITE)
-  public void addLockedFromInterceptor(String interceptorName, int num) {
-    throw new RuntimeException(msg);
-  }
+    @Lock(LockType.WRITE)
+    public void addLockedFromInterceptor(String interceptorName, int num) {
+        throw new RuntimeException(msg);
+    }
 
-  @Lock(LockType.READ)
-  public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
-    throw new RuntimeException(msg);
-  }
+    @Lock(LockType.READ)
+    public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
+        throw new RuntimeException(msg);
+    }
 
-  @Lock(LockType.READ)
-  public void addUnlockedFromInterceptor(String interceptorName, int num) {
-    throw new RuntimeException(msg);
-  }
+    @Lock(LockType.READ)
+    public void addUnlockedFromInterceptor(String interceptorName, int num) {
+        throw new RuntimeException(msg);
+    }
 }

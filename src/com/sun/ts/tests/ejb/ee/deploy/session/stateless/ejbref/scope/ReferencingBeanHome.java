@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejbref.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface ReferencingBeanHome extends EJBHome {
 
-  public ReferencingBean create() throws RemoteException, CreateException;
-
+    public ReferencingBean create() throws RemoteException, CreateException;
 }

@@ -24,8 +24,8 @@ import jakarta.ws.rs.GET;
 
 public interface SingletonLocalIF {
 
-  public void remove();
+    public void remove();
 
-  @GET
-  public String get() throws TestFailedException;
+    @GET
+    public String get() throws TestFailedException;
 }

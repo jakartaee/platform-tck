@@ -20,46 +20,45 @@
 
 package com.sun.ts.tests.appclient.deploy.resref.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.TopicCode;
+import java.util.Properties;
 
 /** This client is never run by the TS harness */
 public class TopicClient extends EETest {
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    TopicClient theTests = new TopicClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[TopicClient] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("[TopicClient] Setup failed:", e);
+    public static void main(String[] args) {
+        TopicClient theTests = new TopicClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* This method is never called by the TS harness */
-  public void checkYourTopic() {
-    TopicCode.checkYourTopic(nctx);
-  }
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-  public void cleanup() throws Fault {
-    logMsg("[TopicClient] cleanup()");
-  }
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[TopicClient] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("[TopicClient] Setup failed:", e);
+        }
+    }
+
+    /* This method is never called by the TS harness */
+    public void checkYourTopic() {
+        TopicCode.checkYourTopic(nctx);
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[TopicClient] cleanup()");
+    }
 }

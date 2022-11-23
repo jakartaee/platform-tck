@@ -17,55 +17,55 @@
 package com.sun.ts.tests.jws.common;
 
 public interface SOAPConstants {
-  public static final String SOAP_NAMESPACE_URI = "http://schemas.xmlsoap.org/wsdl/soap/";
+    public static final String SOAP_NAMESPACE_URI = "http://schemas.xmlsoap.org/wsdl/soap/";
 
-  public static final String SOAP_ADDRESS_LOCAL_NAME = "address";
+    public static final String SOAP_ADDRESS_LOCAL_NAME = "address";
 
-  public static final String SOAP_BINDING_LOCAL_NAME = "binding";
+    public static final String SOAP_BINDING_LOCAL_NAME = "binding";
 
-  public static final String SOAP_BODY_LOCAL_NAME = "body";
+    public static final String SOAP_BODY_LOCAL_NAME = "body";
 
-  public static final String SOAP_FAULT_LOCAL_NAME = "fault";
+    public static final String SOAP_FAULT_LOCAL_NAME = "fault";
 
-  public static final String SOAP_HEADER_LOCAL_NAME = "header";
+    public static final String SOAP_HEADER_LOCAL_NAME = "header";
 
-  public static final String SOAP_HEADERFAULT_LOCAL_NAME = "headerfault";
+    public static final String SOAP_HEADERFAULT_LOCAL_NAME = "headerfault";
 
-  public static final String SOAP_OPERATION_LOCAL_NAME = "operation";
+    public static final String SOAP_OPERATION_LOCAL_NAME = "operation";
 
-  public static final String SOAP_SOAPACTION_ATTR = "soapAction";
+    public static final String SOAP_SOAPACTION_ATTR = "soapAction";
 
-  public static final String SOAP_ENCODINGSTYLE_ATTR = "encodingStyle";
+    public static final String SOAP_ENCODINGSTYLE_ATTR = "encodingStyle";
 
-  public static final String SOAP_LOCATION_ATTR = "location";
+    public static final String SOAP_LOCATION_ATTR = "location";
 
-  public static final String SOAP_MUST_UNDERSTAND_ATTR = "mustUnderstand";
+    public static final String SOAP_MUST_UNDERSTAND_ATTR = "mustUnderstand";
 
-  public static final String SOAP_NAME_ATTR = "name";
+    public static final String SOAP_NAME_ATTR = "name";
 
-  public static final String SOAP_NAMESPACE_ATTR = "namespace";
+    public static final String SOAP_NAMESPACE_ATTR = "namespace";
 
-  public static final String SOAP_PART_ATTR = "part";
+    public static final String SOAP_PART_ATTR = "part";
 
-  public static final String SOAP_PARTS_ATTR = "parts";
+    public static final String SOAP_PARTS_ATTR = "parts";
 
-  public static final String SOAP_STYLE_ATTR = "style";
+    public static final String SOAP_STYLE_ATTR = "style";
 
-  public static final String SOAP_TRANSPORT_ATTR = "transport";
+    public static final String SOAP_TRANSPORT_ATTR = "transport";
 
-  public static final String SOAP_USE_ATTR = "use";
+    public static final String SOAP_USE_ATTR = "use";
 
-  public static final String SOAP_DOCUMENT = "document";
+    public static final String SOAP_DOCUMENT = "document";
 
-  public static final String SOAP_ENCODED = "encoded";
+    public static final String SOAP_ENCODED = "encoded";
 
-  public static final String SOAP_LITERAL = "literal";
+    public static final String SOAP_LITERAL = "literal";
 
-  public static final String SOAP_RPC = "rpc";
+    public static final String SOAP_RPC = "rpc";
 
-  public static final String SOAP_TRANSPORT = "http://schemas.xmlsoap.org/soap/http";
+    public static final String SOAP_TRANSPORT = "http://schemas.xmlsoap.org/soap/http";
 
-  public static final String SOAP_ACTION_HEADER_NAME = "SOAPAction";
+    public static final String SOAP_ACTION_HEADER_NAME = "SOAPAction";
 
-  public static final String SOAP_1_2_PROTOCOL = "";
+    public static final String SOAP_1_2_PROTOCOL = "";
 }

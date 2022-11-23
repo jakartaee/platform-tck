@@ -16,56 +16,54 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ELDeferredValueValueTag extends SimpleTagSupport {
 
-  private final static String LITVAL = "foo";
+    private static final String LITVAL = "foo";
 
-  private final static String POUNDVAL = "bar";
+    private static final String POUNDVAL = "bar";
 
-  private ValueExpression litExpr;
+    private ValueExpression litExpr;
 
-  private ValueExpression poundExpr;
+    private ValueExpression poundExpr;
 
-  public void setLitExpr(ValueExpression litExpr) {
-    this.litExpr = litExpr;
-  }
-
-  public void setPoundExpr(ValueExpression poundExpr) {
-    this.poundExpr = poundExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    ELContext elContext = getJspContext().getELContext();
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      String litVal = (String) litExpr.getValue(elContext);
-      if (!litVal.equals(LITVAL)) {
-        out.println("Test FAILED. Wrong value for literal expression.");
-        out.println("Expected value: " + LITVAL);
-        out.println("Retrieved value: " + litVal);
-        return;
-      }
-      String poundVal = (String) poundExpr.getValue(elContext);
-      if (!poundVal.equals(POUNDVAL)) {
-        out.println("Test FAILED. Wrong value for pound expression.");
-        out.println("Expected value: " + POUNDVAL);
-        out.println("Retrieved value: " + poundVal);
-        return;
-      }
-      out.println("Test PASSED.");
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ELDeferredValueValueTag");
+    public void setLitExpr(ValueExpression litExpr) {
+        this.litExpr = litExpr;
     }
-  }
+
+    public void setPoundExpr(ValueExpression poundExpr) {
+        this.poundExpr = poundExpr;
+    }
+
+    public void doTag() throws JspException, IOException {
+        ELContext elContext = getJspContext().getELContext();
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            String litVal = (String) litExpr.getValue(elContext);
+            if (!litVal.equals(LITVAL)) {
+                out.println("Test FAILED. Wrong value for literal expression.");
+                out.println("Expected value: " + LITVAL);
+                out.println("Retrieved value: " + litVal);
+                return;
+            }
+            String poundVal = (String) poundExpr.getValue(elContext);
+            if (!poundVal.equals(POUNDVAL)) {
+                out.println("Test FAILED. Wrong value for pound expression.");
+                out.println("Expected value: " + POUNDVAL);
+                out.println("Retrieved value: " + poundVal);
+                return;
+            }
+            out.println("Test PASSED.");
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ELDeferredValueValueTag");
+        }
+    }
 }

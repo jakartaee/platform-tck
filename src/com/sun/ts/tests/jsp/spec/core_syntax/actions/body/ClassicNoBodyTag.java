@@ -23,5 +23,4 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ClassicNoBodyTag extends TagSupport {
-
 }

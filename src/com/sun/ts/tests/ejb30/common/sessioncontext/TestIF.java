@@ -23,25 +23,23 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TestIF {
-  public void remove();
+    public void remove();
 
-  public void getBusinessObjectLocal1() throws TestFailedException;
+    public void getBusinessObjectLocal1() throws TestFailedException;
 
-  public void getBusinessObjectLocal2() throws TestFailedException;
+    public void getBusinessObjectLocal2() throws TestFailedException;
 
-  public void passBusinessObjectLocal1() throws TestFailedException;
+    public void passBusinessObjectLocal1() throws TestFailedException;
 
-  public void passBusinessObjectLocal2() throws TestFailedException;
+    public void passBusinessObjectLocal2() throws TestFailedException;
 
-  public void getInvokedBusinessInterfaceLocal1() throws TestFailedException;
+    public void getInvokedBusinessInterfaceLocal1() throws TestFailedException;
 
-  public void getInvokedBusinessInterfaceLocal2() throws TestFailedException;
+    public void getInvokedBusinessInterfaceLocal2() throws TestFailedException;
 
-  public abstract void lookupIllegalArgumentException()
-      throws TestFailedException;
+    public abstract void lookupIllegalArgumentException() throws TestFailedException;
 
-  public void getBusinessObjectLocal1Illegal() throws TestFailedException;
+    public void getBusinessObjectLocal1Illegal() throws TestFailedException;
 
-  public void getInvokedBusinessInterfaceLocalIllegal()
-      throws TestFailedException;
+    public void getInvokedBusinessInterfaceLocalIllegal() throws TestFailedException;
 }

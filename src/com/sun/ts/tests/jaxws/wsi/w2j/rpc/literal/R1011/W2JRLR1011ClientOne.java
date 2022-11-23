@@ -24,34 +24,32 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR1011ClientOne extends SOAPClient {
-  public W2JRLR1011ClientOne(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR1011ClientOne(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR1011ClientOne(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr1011testservice.org/W2JRLR1011TestService.wsdl");
-    stubContext.setService("W2JRLR1011TestService");
-    stubContext.setPort("W2JRLR1011TestOnePort");
-    stubContext.setEndpointInterface(W2JRLR1011TestOne.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR1011ClientOne(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr1011testservice.org/W2JRLR1011TestService.wsdl");
+        stubContext.setService("W2JRLR1011TestService");
+        stubContext.setPort("W2JRLR1011TestOnePort");
+        stubContext.setEndpointInterface(W2JRLR1011TestOne.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr1011.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr1011.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr1011.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr1011.wsdlloc.1";
+    }
 
-  public String echoString(String str) throws Exception {
-    NonNullString nns = new NonNullString();
-    nns.setP1(str);
-    nns = ((W2JRLR1011TestOne) stubContext.getStub()).echoString(nns);
-    return nns.getP1();
-  }
+    public String echoString(String str) throws Exception {
+        NonNullString nns = new NonNullString();
+        nns.setP1(str);
+        nns = ((W2JRLR1011TestOne) stubContext.getStub()).echoString(nns);
+        return nns.getP1();
+    }
 }

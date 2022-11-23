@@ -19,61 +19,59 @@
  */
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBean2EJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // Logging method for TS
-
-  public void initLogging(Properties p) {
-    try {
-      TestUtil.init(p);
-    } catch (Exception e) {
-      TestUtil.logErr("init failed", e);
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
-  }
 
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public void bean2Test() {
-    TestUtil.logTrace("bean2Test");
-    try {
-      TestUtil.logMsg("print this line out: bean2Test ok");
-    } catch (Exception e) {
-      TestUtil.logErr("bean2Test failed", e);
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-  }
 
-  // ===========================================================
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // Logging method for TS
+
+    public void initLogging(Properties p) {
+        try {
+            TestUtil.init(p);
+        } catch (Exception e) {
+            TestUtil.logErr("init failed", e);
+        }
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public void bean2Test() {
+        TestUtil.logTrace("bean2Test");
+        try {
+            TestUtil.logMsg("print this line out: bean2Test ok");
+        } catch (Exception e) {
+            TestUtil.logErr("bean2Test failed", e);
+        }
+    }
+
+    // ===========================================================
 }

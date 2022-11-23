@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class TopicBeanEJB extends CMP20Wrapper {
 
-  public boolean checkYourTopic() {
-    return TopicCode.checkYourTopic(nctx);
-  }
-
+    public boolean checkYourTopic() {
+        return TopicCode.checkYourTopic(nctx);
+    }
 }

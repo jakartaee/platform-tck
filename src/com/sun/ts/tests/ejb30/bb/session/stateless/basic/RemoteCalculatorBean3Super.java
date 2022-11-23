@@ -23,29 +23,26 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 
-abstract public class RemoteCalculatorBean3Super extends BaseRemoteCalculator
-    implements RemoteCalculator {
+public abstract class RemoteCalculatorBean3Super extends BaseRemoteCalculator implements RemoteCalculator {
 
-  private int postConstructCallsCount;
+    private int postConstructCallsCount;
 
-  @PostConstruct
-  private void postConstruct() {
-    TLogger.log("PostConstruct method in bean superclass invoked.");
-    postConstructCallsCount++;
-  }
+    @PostConstruct
+    private void postConstruct() {
+        TLogger.log("PostConstruct method in bean superclass invoked.");
+        postConstructCallsCount++;
+    }
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    int retValue;
-    retValue = super.remoteAdd(a, b);
-    return retValue + getPostConstructCallsCount();
-  }
+    @Override
+    public int remoteAdd(int a, int b) {
+        int retValue;
+        retValue = super.remoteAdd(a, b);
+        return retValue + getPostConstructCallsCount();
+    }
 
-  public int getPostConstructCallsCount() {
-    return postConstructCallsCount;
-  }
-
+    public int getPostConstructCallsCount() {
+        return postConstructCallsCount;
+    }
 }

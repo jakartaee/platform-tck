@@ -17,5 +17,4 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
 public class WSCTextStreamEncoderServer extends WSCBinaryEncoderServer {
-
 }

@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class DynamicTag extends TagSupport implements DynamicAttributes {
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    try {
-      pageContext.getOut().println(s1 + "=\"" + o + "\"");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        try {
+            pageContext.getOut().println(s1 + "=\"" + o + "\"");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
     }
-  }
 }

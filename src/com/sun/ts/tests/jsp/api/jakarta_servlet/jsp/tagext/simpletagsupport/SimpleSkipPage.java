@@ -24,25 +24,23 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.SkipPageException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleSkipPage extends SimpleTagSupport {
 
-  /**
-   * Default Constructor.
-   */
-  public SimpleSkipPage() {
-    super();
-  }
+    /**
+     * Default Constructor.
+     */
+    public SimpleSkipPage() {
+        super();
+    }
 
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleSkipPage] in doTag()");
-    throw new SkipPageException("Test PASSED");
-  }
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleSkipPage] in doTag()");
+        throw new SkipPageException("Test PASSED");
+    }
 }

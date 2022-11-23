@@ -17,10 +17,7 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -29,39 +26,38 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
 @ClientEndpoint
-public class WSStringPartialAndSessionClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSStringPartialAndSessionClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  private StringBuilder sb = new StringBuilder();
+    private StringBuilder sb = new StringBuilder();
 
-  @OnMessage
-  public void partial(String msg, boolean finito, Session s)
-      throws IOException {
-    sb.append(msg).append("(").append(finito).append(")");
-    if (finito) {
-      s.getBasicRemote().sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
-      super.onMessage(sb.toString());
-      sb = new StringBuilder();
+    @OnMessage
+    public void partial(String msg, boolean finito, Session s) throws IOException {
+        sb.append(msg).append("(").append(finito).append(")");
+        if (finito) {
+            s.getBasicRemote().sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
+            super.onMessage(sb.toString());
+            sb = new StringBuilder();
+        }
     }
-  }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

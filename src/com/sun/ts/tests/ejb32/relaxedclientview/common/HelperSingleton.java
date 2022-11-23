@@ -17,21 +17,20 @@
 package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Remote;
 
 @Remote
 public interface HelperSingleton {
 
-  public String noAnnotationTest() throws TestFailedException;
+    public String noAnnotationTest() throws TestFailedException;
 
-  public String localAnnotationTest() throws TestFailedException;
+    public String localAnnotationTest() throws TestFailedException;
 
-  public String oneRemoteAnnotationOnInterfaceTest() throws TestFailedException;
+    public String oneRemoteAnnotationOnInterfaceTest() throws TestFailedException;
 
-  public String oneRemoteAnnotationOnEjbTest() throws TestFailedException;
+    public String oneRemoteAnnotationOnEjbTest() throws TestFailedException;
 
-  public String noInterfaceViewTest() throws TestFailedException;
+    public String noInterfaceViewTest() throws TestFailedException;
 
-  public String localDDTest() throws TestFailedException;
+    public String localDDTest() throws TestFailedException;
 }

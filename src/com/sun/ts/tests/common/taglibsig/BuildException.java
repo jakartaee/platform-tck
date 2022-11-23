@@ -26,11 +26,11 @@ package com.sun.ts.tests.common.taglibsig;
 
 public class BuildException extends Exception {
 
-  public BuildException() {
-    super();
-  }
+    public BuildException() {
+        super();
+    }
 
-  public BuildException(String message) {
-    super(message);
-  }
+    public BuildException(String message) {
+        super(message);
+    }
 }

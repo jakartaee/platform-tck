@@ -22,19 +22,17 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.business.descriptor;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-
 import jakarta.interceptor.InvocationContext;
 
-//@Singleton
-//@Interceptors({Interceptor5.class, Interceptor4.class})
-public class InterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorBean";
+// @Singleton
+// @Interceptors({Interceptor5.class, Interceptor4.class})
+public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorBean";
 
-  @SuppressWarnings("unused")
-  // @AroundInvoke specified in ejb-jar.xml
-  private Object intercep(InvocationContext inv) throws Exception {
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    // @AroundInvoke specified in ejb-jar.xml
+    private Object intercep(InvocationContext inv) throws Exception {
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

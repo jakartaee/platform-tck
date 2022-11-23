@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.bean;
 
 public class Interceptor3 extends BMInterceptorBase {
 
-  @Override
-  final protected String getSimpleName() {
-    return Interceptor3.class.getSimpleName();
-  }
+    @Override
+    protected final String getSimpleName() {
+        return Interceptor3.class.getSimpleName();
+    }
 }

@@ -24,5 +24,4 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface AssemblyRemoteIF extends AssemblyCommonIF {
-
 }

@@ -24,9 +24,8 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  /*
-   * Simplistic Session Stateless bean. See StatelessWrapper code for more
-   * details.
-   */
+    /*
+     * Simplistic Session Stateless bean. See StatelessWrapper code for more details.
+     */
 
 }

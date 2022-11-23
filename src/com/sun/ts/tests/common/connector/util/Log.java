@@ -24,11 +24,11 @@ import java.util.Vector;
 
 public interface Log {
 
-  public void logAPI(String raAPI, String inParams, String outParams);
+    public void logAPI(String raAPI, String inParams, String outParams);
 
-  public void purge();
+    public void purge();
 
-  public Vector getLogVector();
+    public Vector getLogVector();
 
-  public void setLogFlag(boolean b);
+    public void setLogFlag(boolean b);
 }

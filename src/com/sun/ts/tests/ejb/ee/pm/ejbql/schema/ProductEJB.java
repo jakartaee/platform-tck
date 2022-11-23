@@ -20,174 +20,168 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.Collection;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.RemoveException;
+import java.util.Collection;
+import java.util.Properties;
 
 public abstract class ProductEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getName();
+    public abstract String getName();
 
-  public abstract void setName(String v);
+    public abstract void setName(String v);
 
-  public abstract double getPrice();
+    public abstract double getPrice();
 
-  public abstract void setPrice(double v);
+    public abstract void setPrice(double v);
 
-  public abstract int getQuantity();
+    public abstract int getQuantity();
 
-  public abstract void setQuantity(int v);
+    public abstract void setQuantity(int v);
 
-  public abstract long getPartNumber();
+    public abstract long getPartNumber();
 
-  public abstract void setPartNumber(long v);
+    public abstract void setPartNumber(long v);
 
-  // ===========================================================
-  // select methods
+    // ===========================================================
+    // select methods
 
-  public abstract Collection ejbSelectAllProducts() throws FinderException;
+    public abstract Collection ejbSelectAllProducts() throws FinderException;
 
-  public abstract Product ejbSelectProductByName(String name)
-      throws FinderException;
+    public abstract Product ejbSelectProductByName(String name) throws FinderException;
 
-  public abstract Product ejbSelectProductByType() throws FinderException;
+    public abstract Product ejbSelectProductByType() throws FinderException;
 
-  public abstract Collection ejbSelectProductsByPartNumber()
-      throws FinderException;
+    public abstract Collection ejbSelectProductsByPartNumber() throws FinderException;
 
-  public abstract long ejbSelectCountSingle() throws FinderException;
+    public abstract long ejbSelectCountSingle() throws FinderException;
 
-  public abstract double ejbSelectSumSingle() throws FinderException;
+    public abstract double ejbSelectSumSingle() throws FinderException;
 
-  // ===========================================================
+    // ===========================================================
 
-  public String ejbCreate(String id, String name, double price, int quantity,
-      long partNumber) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setName(name);
-      setPrice(price);
-      setQuantity(quantity);
-      setPartNumber(partNumber);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public String ejbCreate(String id, String name, double price, int quantity, long partNumber)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setName(name);
+            setPrice(price);
+            setQuantity(quantity);
+            setPartNumber(partNumber);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
 
-  }
-
-  public void ejbPostCreate(String id, String name, double price, int quantity,
-      long partNumber) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public Collection ejbHomeSelectAllProducts() throws FinderException {
-    TestUtil.logTrace("ejbHomeSelectAllProducts");
-    try {
-      Collection ccol = ejbSelectAllProducts();
-      return ccol;
-    } catch (FinderException e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("ejbHomeSelectAllProducts: " + e);
+    public void ejbPostCreate(String id, String name, double price, int quantity, long partNumber)
+            throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
 
-  public Product ejbHomeSelectProductByName(String name)
-      throws FinderException {
-    TestUtil.logTrace("ejbHomeSelectProductByName");
-    Product product = ejbSelectProductByName(name);
-    return product;
-  }
-
-  public Product ejbHomeSelectProductByType() throws FinderException {
-    TestUtil.logTrace("ejbHomeSelectProductByType");
-    Product product = ejbSelectProductByType();
-    return product;
-  }
-
-  public Collection ejbHomeSelectProductsByPartNumber() throws FinderException {
-    TestUtil.logTrace("ejbHomeSelectProductsByPartNumber");
-    Collection pNum = ejbSelectProductsByPartNumber();
-    return pNum;
-  }
-
-  public long ejbHomeSelectCountSingle() {
-    TestUtil.logTrace("ejbHomeSelectCountSingle");
-    try {
-      long l = ejbSelectCountSingle();
-      return l;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("ejbHomeSelectCountSingle: " + e);
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
     }
-  }
 
-  public double ejbHomeSelectSumSingle() {
-    TestUtil.logTrace("ejbHomeSelectSumSingle");
-    try {
-      double d = ejbSelectSumSingle();
-      return d;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("ejbHomeSelectSumSingle: " + e);
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
     }
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public Collection ejbHomeSelectAllProducts() throws FinderException {
+        TestUtil.logTrace("ejbHomeSelectAllProducts");
+        try {
+            Collection ccol = ejbSelectAllProducts();
+            return ccol;
+        } catch (FinderException e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("ejbHomeSelectAllProducts: " + e);
+        }
+    }
+
+    public Product ejbHomeSelectProductByName(String name) throws FinderException {
+        TestUtil.logTrace("ejbHomeSelectProductByName");
+        Product product = ejbSelectProductByName(name);
+        return product;
+    }
+
+    public Product ejbHomeSelectProductByType() throws FinderException {
+        TestUtil.logTrace("ejbHomeSelectProductByType");
+        Product product = ejbSelectProductByType();
+        return product;
+    }
+
+    public Collection ejbHomeSelectProductsByPartNumber() throws FinderException {
+        TestUtil.logTrace("ejbHomeSelectProductsByPartNumber");
+        Collection pNum = ejbSelectProductsByPartNumber();
+        return pNum;
+    }
+
+    public long ejbHomeSelectCountSingle() {
+        TestUtil.logTrace("ejbHomeSelectCountSingle");
+        try {
+            long l = ejbSelectCountSingle();
+            return l;
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("ejbHomeSelectCountSingle: " + e);
+        }
+    }
+
+    public double ejbHomeSelectSumSingle() {
+        TestUtil.logTrace("ejbHomeSelectSumSingle");
+        try {
+            double d = ejbSelectSumSingle();
+            return d;
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("ejbHomeSelectSumSingle: " + e);
+        }
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

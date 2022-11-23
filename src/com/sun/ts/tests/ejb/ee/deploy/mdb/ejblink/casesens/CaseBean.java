@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.casesens;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface CaseBean extends EJBObject {
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public String whoAreYou() throws RemoteException;
+    public String whoAreYou() throws RemoteException;
 }

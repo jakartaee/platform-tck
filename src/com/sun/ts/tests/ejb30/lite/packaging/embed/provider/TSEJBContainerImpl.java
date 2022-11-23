@@ -20,5 +20,4 @@
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
 public final class TSEJBContainerImpl extends TSEJBContainerImplBase {
-
 }

@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.bmp.bm.TxR_Diamond;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
+import java.util.Properties;
 
 public interface BeanCHome extends EJBLocalHome {
-  public BeanC create() throws CreateException;
+    public BeanC create() throws CreateException;
 
-  public BeanC create(Properties p) throws CreateException;
+    public BeanC create(Properties p) throws CreateException;
 }

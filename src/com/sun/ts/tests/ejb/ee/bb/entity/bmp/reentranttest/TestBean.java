@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.reentranttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public void ping() throws RemoteException;
+    public void ping() throws RemoteException;
 
-  public void sleep(int n) throws RemoteException;
+    public void sleep(int n) throws RemoteException;
 
-  public boolean loopBackSameBean() throws RemoteException;
+    public boolean loopBackSameBean() throws RemoteException;
 
-  public boolean loopBackAnotherBean(LoopBack ref) throws RemoteException;
+    public boolean loopBackAnotherBean(LoopBack ref) throws RemoteException;
 }

@@ -24,86 +24,85 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeTestIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoTestRemoteHome;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  // declared in descriptor, too
-  // the type of the target EJB is present in descriptor only.
-  @EJB(name = "twoTestBeanHome")
-  private static Object twoTestBeanHome;
+    // declared in descriptor, too
+    // the type of the target EJB is present in descriptor only.
+    @EJB(name = "twoTestBeanHome")
+    private static Object twoTestBeanHome;
 
-  @EJB(name = "threeTestBean")
-  private static ThreeTestIF threeTestBean;
+    @EJB(name = "threeTestBean")
+    private static ThreeTestIF threeTestBean;
 
-  protected TwoTestRemoteHome getTwoTestRemoteHome() {
-    return (TwoTestRemoteHome) twoTestBeanHome;
-  }
+    protected TwoTestRemoteHome getTwoTestRemoteHome() {
+        return (TwoTestRemoteHome) twoTestBeanHome;
+    }
 
-  protected ThreeTestIF getThreeTestBean() {
-    return threeTestBean;
-  }
+    protected ThreeTestIF getThreeTestBean() {
+        return threeTestBean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  /*
-   * @testName: callRemoteTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callRemoteTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callLocalTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callLocalTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callRemoteSameTxContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callRemoteSameTxContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callLocalSameTxContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callLocalSameTxContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callThreeRemoteTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callThreeRemoteTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callThreeLocalTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callThreeLocalTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
 }

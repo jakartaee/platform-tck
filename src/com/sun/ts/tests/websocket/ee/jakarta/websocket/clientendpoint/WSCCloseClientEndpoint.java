@@ -17,12 +17,8 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,49 +27,50 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @ClientEndpoint
 public class WSCCloseClientEndpoint extends AnnotatedClientEndpoint<String> {
-  boolean onCloseCalled = false;
+    boolean onCloseCalled = false;
 
-  CountDownLatch countDown = new CountDownLatch(1);
+    CountDownLatch countDown = new CountDownLatch(1);
 
-  public WSCCloseClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
-
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
-
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
-
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-    onCloseCalled = true;
-    countDown.countDown();
-  }
-
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
-
-  public void waitForClose(long seconds) {
-    try {
-      countDown.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    public WSCCloseClientEndpoint() {
+        super(new StringClientEndpoint());
     }
-  }
 
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        super.onMessage(msg);
+    }
+
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
+
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+        onCloseCalled = true;
+        countDown.countDown();
+    }
+
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
+
+    public void waitForClose(long seconds) {
+        try {
+            countDown.await(seconds, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

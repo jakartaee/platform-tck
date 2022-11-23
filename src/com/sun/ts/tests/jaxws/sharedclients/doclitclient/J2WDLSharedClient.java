@@ -24,31 +24,30 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class J2WDLSharedClient extends SOAPClient {
-  public J2WDLSharedClient(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-  }
+    public J2WDLSharedClient(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+    }
 
-  public J2WDLSharedClient(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-  }
+    public J2WDLSharedClient(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.jaxws.wsi.clients.Client#getEndpointURLProperty()
-   */
-  protected String getEndpointURLProperty() {
-    return "wsi.j2wdlshared.endpoint.1";
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.jaxws.wsi.clients.Client#getEndpointURLProperty()
+     */
+    protected String getEndpointURLProperty() {
+        return "wsi.j2wdlshared.endpoint.1";
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.jaxws.wsi.clients.Client#getWSDLURLProperty()
-   */
-  protected String getWSDLURLProperty() {
-    return "wsi.j2wdlshared.wsdlloc.1";
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.jaxws.wsi.clients.Client#getWSDLURLProperty()
+     */
+    protected String getWSDLURLProperty() {
+        return "wsi.j2wdlshared.wsdlloc.1";
+    }
 }

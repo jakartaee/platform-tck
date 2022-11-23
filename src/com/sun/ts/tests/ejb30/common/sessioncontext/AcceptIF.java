@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface AcceptIF {
-  void remove();
+    void remove();
 
-  void accept(CommonIF bean) throws TestFailedException;
+    void accept(CommonIF bean) throws TestFailedException;
 }

@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.method.sec.style1;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TestBeanHome extends EJBHome {
 
-  TestBean create() throws RemoteException, CreateException;
-
+    TestBean create() throws RemoteException, CreateException;
 }

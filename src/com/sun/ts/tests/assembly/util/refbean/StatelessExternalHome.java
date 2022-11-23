@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface StatelessExternalHome extends EJBHome {
 
-  public StatelessExternal create() throws RemoteException, CreateException;
-
+    public StatelessExternal create() throws RemoteException, CreateException;
 }

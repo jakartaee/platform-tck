@@ -22,42 +22,39 @@ package com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-
 import jakarta.xml.ws.*;
-import jakarta.xml.ws.soap.SOAPBinding;
 
 public class MTOMClientTwo extends SOAPClient {
 
-  public MTOMClientTwo(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public MTOMClientTwo(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public MTOMClientTwo(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace("http://mtomtestservice.org/wsdl");
-    stubContext.setService("MTOMTestService");
-    stubContext.setPort("MTOMTestTwoPort");
-    stubContext.setEndpointInterface(MTOMTestTwo.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public MTOMClientTwo(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://mtomtestservice.org/wsdl");
+        stubContext.setService("MTOMTestService");
+        stubContext.setPort("MTOMTestTwoPort");
+        stubContext.setEndpointInterface(MTOMTestTwo.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsservletmtomsoapbindingwithannotationstest.endpoint.2";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsservletmtomsoapbindingwithannotationstest.endpoint.2";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsservletmtomsoapbindingwithannotationstest.wsdlloc.2";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsservletmtomsoapbindingwithannotationstest.wsdlloc.2";
+    }
 
-  public String mtomIn2(DataType3 d) throws Exception {
-    MTOMTestTwo port = (MTOMTestTwo) stubContext.getStub();
-    return port.mtomIn2(d);
-  }
+    public String mtomIn2(DataType3 d) throws Exception {
+        MTOMTestTwo port = (MTOMTestTwo) stubContext.getStub();
+        return port.mtomIn2(d);
+    }
 
-  public MTOMTestTwo returnPort() throws Exception {
-    MTOMTestTwo port = (MTOMTestTwo) stubContext.getStub();
-    return port;
-  }
+    public MTOMTestTwo returnPort() throws Exception {
+        MTOMTestTwo port = (MTOMTestTwo) stubContext.getStub();
+        return port;
+    }
 }

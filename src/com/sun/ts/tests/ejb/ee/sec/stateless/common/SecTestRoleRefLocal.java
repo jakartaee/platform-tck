@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SecTestRoleRefLocal extends EJBLocalObject {
-  public boolean EjbSecRoleRefScope(String role);
+    public boolean EjbSecRoleRefScope(String role);
 
-  public void initLogging(java.util.Properties p);
+    public void initLogging(java.util.Properties p);
 }

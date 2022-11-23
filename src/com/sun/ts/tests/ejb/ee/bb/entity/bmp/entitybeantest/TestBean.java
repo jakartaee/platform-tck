@@ -20,22 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.entitybeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public void setHelper(Helper ref) throws RemoteException;
+    public void setHelper(Helper ref) throws RemoteException;
 
-  public void ping() throws RemoteException;
+    public void ping() throws RemoteException;
 
-  public void loadOrStoreTest(Helper ref) throws RemoteException;
+    public void loadOrStoreTest(Helper ref) throws RemoteException;
 
-  public void reset() throws RemoteException;
+    public void reset() throws RemoteException;
 
-  public void throwEJBException() throws RemoteException;
+    public void throwEJBException() throws RemoteException;
 
-  public void throwError() throws RemoteException;
+    public void throwError() throws RemoteException;
 
-  public boolean iAmDestroyed() throws RemoteException;
+    public boolean iAmDestroyed() throws RemoteException;
 }

@@ -20,17 +20,16 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
 public final class AddHttpSessionListenerClass implements HttpSessionListener {
 
-  public void sessionCreated(HttpSessionEvent event) {
-    StaticLog.add("AddHttpSessionListenerClass Created;");
-  }
+    public void sessionCreated(HttpSessionEvent event) {
+        StaticLog.add("AddHttpSessionListenerClass Created;");
+    }
 
-  public void sessionDestroyed(HttpSessionEvent arg0) {
-    StaticLog.add("AddHttpSessionListenerClass Destroyed;");
-  }
+    public void sessionDestroyed(HttpSessionEvent arg0) {
+        StaticLog.add("AddHttpSessionListenerClass Destroyed;");
+    }
 }

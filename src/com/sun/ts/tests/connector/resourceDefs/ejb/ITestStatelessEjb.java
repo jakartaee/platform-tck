@@ -23,5 +23,5 @@ import jakarta.ejb.Local;
  */
 @Local
 public interface ITestStatelessEjb {
-  public boolean validateConnectorResource(String jndiName);
+    public boolean validateConnectorResource(String jndiName);
 }

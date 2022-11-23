@@ -22,40 +22,35 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2009;
 
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
-
 import java.math.BigInteger;
 
 public class W2JRLR2009Client extends SOAPClient {
-  public W2JRLR2009Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR2009Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR2009Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr2009testservice.org/W2JRLR2009TestService.wsdl");
-    stubContext.setService("W2JRLR2009TestService");
-    stubContext.setPort("W2JRLR2009TestPort");
-    stubContext.setEndpointInterface(W2JRLR2009Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR2009Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr2009testservice.org/W2JRLR2009TestService.wsdl");
+        stubContext.setService("W2JRLR2009TestService");
+        stubContext.setPort("W2JRLR2009TestPort");
+        stubContext.setEndpointInterface(W2JRLR2009Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2009.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2009.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2009.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2009.wsdlloc.1";
+    }
 
-  public BigInteger echoIncludedUTF16IntegerTest(BigInteger bi)
-      throws Exception {
-    IncludedUTF16IntegerRequest irq = new IncludedUTF16IntegerRequest();
-    irq.setBigInteger(bi);
-    IncludedUTF16IntegerResponse irp = ((W2JRLR2009Test) stubContext.getStub())
-        .echoIncludedUTF16IntegerTest(irq);
-    return irp.getBigInteger();
-  }
+    public BigInteger echoIncludedUTF16IntegerTest(BigInteger bi) throws Exception {
+        IncludedUTF16IntegerRequest irq = new IncludedUTF16IntegerRequest();
+        irq.setBigInteger(bi);
+        IncludedUTF16IntegerResponse irp = ((W2JRLR2009Test) stubContext.getStub()).echoIncludedUTF16IntegerTest(irq);
+        return irp.getBigInteger();
+    }
 }

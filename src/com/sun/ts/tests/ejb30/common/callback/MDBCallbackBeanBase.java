@@ -22,53 +22,55 @@ package com.sun.ts.tests.ejb30.common.callback;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-
 import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-abstract public class MDBCallbackBeanBase extends CallbackBeanBase
-    implements MessageListener {
-  // @Resource(name="qFactory")
-  // private QueueConnectionFactory qFactory;
-  //
-  // @Resource(name="replyQueue")
-  // private Queue replyQueue;
+public abstract class MDBCallbackBeanBase extends CallbackBeanBase implements MessageListener {
+    // @Resource(name="qFactory")
+    // private QueueConnectionFactory qFactory;
+    //
+    // @Resource(name="replyQueue")
+    // private Queue replyQueue;
 
-  // ================== business methods ====================================
-  public void onMessage(jakarta.jms.Message msg) {
-    boolean status = false;
-    String reason = null;
-    String testname = null;
-    try {
-      testname = msg.getStringProperty(
-          com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
-    } catch (jakarta.jms.JMSException e) {
-      status = false;
-      reason = "Failed to get test name from message: " + msg;
-      TLogger.log(reason);
-      StatusReporter.report(testname, status, reason,
-          (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
-          (Queue) getEJBContext().lookup("replyQueue"));
-      return;
+    // ================== business methods ====================================
+    public void onMessage(jakarta.jms.Message msg) {
+        boolean status = false;
+        String reason = null;
+        String testname = null;
+        try {
+            testname = msg.getStringProperty(com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY);
+        } catch (jakarta.jms.JMSException e) {
+            status = false;
+            reason = "Failed to get test name from message: " + msg;
+            TLogger.log(reason);
+            StatusReporter.report(
+                    testname,
+                    status,
+                    reason,
+                    (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
+                    (Queue) getEJBContext().lookup("replyQueue"));
+            return;
+        }
+        if (testname.equals(isInjectionDoneTest)) {
+            status = isInjectionDone();
+            reason = "isInjectionDone() in onMessage returns: " + status;
+        } else if (testname.equals(isPostConstructCalledTest)) {
+            status = isPostConstructCalled();
+            reason = "isPostConstructCalled() in onMessage returns: " + status;
+        } else if (testname.equals(isPostConstructOrPreDestroyCalledTest)) {
+            status = isPostConstructCalled() || isPreDestroyCalled();
+            reason = "isPostConstructCalled() or isPreDestroyCalled() in onMessage returns: " + status;
+        } else {
+            status = false;
+            reason = "Unrecognized test: " + testname;
+        }
+        TLogger.log(reason);
+        StatusReporter.report(
+                testname,
+                status,
+                reason,
+                (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
+                (Queue) getEJBContext().lookup("replyQueue"));
     }
-    if (testname.equals(isInjectionDoneTest)) {
-      status = isInjectionDone();
-      reason = "isInjectionDone() in onMessage returns: " + status;
-    } else if (testname.equals(isPostConstructCalledTest)) {
-      status = isPostConstructCalled();
-      reason = "isPostConstructCalled() in onMessage returns: " + status;
-    } else if (testname.equals(isPostConstructOrPreDestroyCalledTest)) {
-      status = isPostConstructCalled() || isPreDestroyCalled();
-      reason = "isPostConstructCalled() or isPreDestroyCalled() in onMessage returns: "
-          + status;
-    } else {
-      status = false;
-      reason = "Unrecognized test: " + testname;
-    }
-    TLogger.log(reason);
-    StatusReporter.report(testname, status, reason,
-        (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
-        (Queue) getEJBContext().lookup("replyQueue"));
-  }
 }

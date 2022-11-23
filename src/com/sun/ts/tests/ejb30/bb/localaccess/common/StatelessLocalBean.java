@@ -30,13 +30,13 @@ import jakarta.ejb.Stateless;
 @Local({ LocalIF.class })
 public class StatelessLocalBean extends CommonBase implements LocalIF {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public StatelessLocalBean() {
-    super();
-  }
+    public StatelessLocalBean() {
+        super();
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

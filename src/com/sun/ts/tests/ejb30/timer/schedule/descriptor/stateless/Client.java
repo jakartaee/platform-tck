@@ -25,85 +25,82 @@ import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutPar
 import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.PROGRAMMATIC_TIMER_SUFFIX;
 import static com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF.WithParamTimeoutBean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client extends ClientBase {
 
-  @EJB(beanName = NoParamTimeoutBean)
-  private TimeoutParamIF noParamTimeoutBean;
+    @EJB(beanName = NoParamTimeoutBean)
+    private TimeoutParamIF noParamTimeoutBean;
 
-  @EJB(beanName = EmptyParamTimeoutBean)
-  private TimeoutParamIF emptyParamTimeoutBean;
+    @EJB(beanName = EmptyParamTimeoutBean)
+    private TimeoutParamIF emptyParamTimeoutBean;
 
-  @EJB(beanName = WithParamTimeoutBean)
-  private TimeoutParamIF withParamTimeoutBean;
+    @EJB(beanName = WithParamTimeoutBean)
+    private TimeoutParamIF withParamTimeoutBean;
 
-  private List<TimeoutParamIF> beans = new ArrayList<TimeoutParamIF>();
+    private List<TimeoutParamIF> beans = new ArrayList<TimeoutParamIF>();
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    beans.add(noParamTimeoutBean);
-    beans.add(emptyParamTimeoutBean);
-    beans.add(withParamTimeoutBean);
-  }
-
-  /*
-   * @testName: programmatic
-   * 
-   * @test_Strategy:
-   */
-  public void programmatic() {
-    for (TimeoutParamIF b : beans) {
-      String timerName = b.getBeanName() + PROGRAMMATIC_TIMER_SUFFIX;
-      Timer t = b.createSecondLaterTimer(timerName, 2);
-      appendReason("Created a timer with name " + timerName + "; " + t);
-      passIfTimeout(timerName);
-      removeStatusAndRecords(timerName);
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        beans.add(noParamTimeoutBean);
+        beans.add(emptyParamTimeoutBean);
+        beans.add(withParamTimeoutBean);
     }
-  }
 
-  /*
-   * @testName: autoNoParamTimeoutBean
-   * 
-   * @test_Strategy:
-   */
-  public void autoNoParamTimeoutBean() {
-    auto(noParamTimeoutBean);
-  }
+    /*
+     * @testName: programmatic
+     *
+     * @test_Strategy:
+     */
+    public void programmatic() {
+        for (TimeoutParamIF b : beans) {
+            String timerName = b.getBeanName() + PROGRAMMATIC_TIMER_SUFFIX;
+            Timer t = b.createSecondLaterTimer(timerName, 2);
+            appendReason("Created a timer with name " + timerName + "; " + t);
+            passIfTimeout(timerName);
+            removeStatusAndRecords(timerName);
+        }
+    }
 
-  /*
-   * @testName: autoEmptyParamTimeoutBean
-   * 
-   * @test_Strategy:
-   */
-  public void autoEmptyParamTimeoutBean() {
-    auto(emptyParamTimeoutBean);
-  }
+    /*
+     * @testName: autoNoParamTimeoutBean
+     *
+     * @test_Strategy:
+     */
+    public void autoNoParamTimeoutBean() {
+        auto(noParamTimeoutBean);
+    }
 
-  /*
-   * @testName: autoWithParamTimeoutBean
-   * 
-   * @test_Strategy:
-   */
-  public void autoWithParamTimeoutBean() {
-    auto(withParamTimeoutBean);
-  }
+    /*
+     * @testName: autoEmptyParamTimeoutBean
+     *
+     * @test_Strategy:
+     */
+    public void autoEmptyParamTimeoutBean() {
+        auto(emptyParamTimeoutBean);
+    }
 
-  private void auto(TimeoutParamIF b) {
-    passIfRecurringTimeout(b.getBeanName() + AUTO_TIMER_SUFFIX);
+    /*
+     * @testName: autoWithParamTimeoutBean
+     *
+     * @test_Strategy:
+     */
+    public void autoWithParamTimeoutBean() {
+        auto(withParamTimeoutBean);
+    }
 
-    // If cancel timers, then the subsequent test run won't pass without a
-    // redeploy.
-    // b.cancelAllTimers();
-  }
+    private void auto(TimeoutParamIF b) {
+        passIfRecurringTimeout(b.getBeanName() + AUTO_TIMER_SUFFIX);
 
+        // If cancel timers, then the subsequent test run won't pass without a
+        // redeploy.
+        // b.cancelAllTimers();
+    }
 }

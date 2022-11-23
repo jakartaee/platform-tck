@@ -20,19 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.enventry.scope;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface BeanHome extends EJBHome {
 
-  public Bean create(Properties p, int cofID, String cofName, float cofPrice)
-      throws RemoteException, CreateException;
+    public Bean create(Properties p, int cofID, String cofName, float cofPrice) throws RemoteException, CreateException;
 
-  public Bean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public Bean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

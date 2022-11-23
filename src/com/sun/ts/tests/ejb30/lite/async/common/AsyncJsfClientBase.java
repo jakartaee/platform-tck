@@ -24,24 +24,23 @@ import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
 import jakarta.ejb.EJB;
 
-abstract public class AsyncJsfClientBase extends EJBLiteJsfClientBase {
+public abstract class AsyncJsfClientBase extends EJBLiteJsfClientBase {
 
-  private static final long DEFAULT_MAX_WAIT_MILLIS = 1000 * 60;
+    private static final long DEFAULT_MAX_WAIT_MILLIS = 1000 * 60;
 
-  private static final long POLL_INTERVAL_MILLIS = 500;
+    private static final long POLL_INTERVAL_MILLIS = 500;
 
-  @EJB(beanName = "StatusSingletonBean")
-  protected StatusSingletonBean statusSingleton;
+    @EJB(beanName = "StatusSingletonBean")
+    protected StatusSingletonBean statusSingleton;
 
-  protected Integer getAndResetResult(Integer key, long... maxWaitMillis) {
-    final long waitFor = maxWaitMillis.length == 0 ? DEFAULT_MAX_WAIT_MILLIS
-        : maxWaitMillis[0];
-    final long stopTime = System.currentTimeMillis() + waitFor;
-    boolean avail = statusSingleton.isResultAvailable(key);
-    while (!avail && System.currentTimeMillis() < stopTime) {
-      TestUtil.sleep((int) POLL_INTERVAL_MILLIS);
-      avail = statusSingleton.isResultAvailable(key);
+    protected Integer getAndResetResult(Integer key, long... maxWaitMillis) {
+        final long waitFor = maxWaitMillis.length == 0 ? DEFAULT_MAX_WAIT_MILLIS : maxWaitMillis[0];
+        final long stopTime = System.currentTimeMillis() + waitFor;
+        boolean avail = statusSingleton.isResultAvailable(key);
+        while (!avail && System.currentTimeMillis() < stopTime) {
+            TestUtil.sleep((int) POLL_INTERVAL_MILLIS);
+            avail = statusSingleton.isResultAvailable(key);
+        }
+        return statusSingleton.getAndResetResult(key);
     }
-    return statusSingleton.getAndResetResult(key);
-  }
 }

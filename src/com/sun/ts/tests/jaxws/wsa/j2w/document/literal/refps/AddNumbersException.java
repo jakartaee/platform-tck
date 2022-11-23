@@ -21,14 +21,14 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps;
 
 public class AddNumbersException extends Exception {
-  String detail;
+    String detail;
 
-  public AddNumbersException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public AddNumbersException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

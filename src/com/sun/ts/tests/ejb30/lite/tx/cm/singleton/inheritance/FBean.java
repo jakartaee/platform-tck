@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.inheritance;
 
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.FBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
-
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;

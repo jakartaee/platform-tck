@@ -25,12 +25,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 
 public class PUServletVehicleRunner extends WebVehicleRunner {
-  protected Status run() {
-    // run in a pmservlet
-    sTestStatus = runWebVehicleTest(sVehicle);
+    protected Status run() {
+        // run in a pmservlet
+        sTestStatus = runWebVehicleTest(sVehicle);
 
-    TestUtil.logMsg("Test: returning from running in a puservlet vehicle");
+        TestUtil.logMsg("Test: returning from running in a puservlet vehicle");
 
-    return sTestStatus;
-  }// run
+        return sTestStatus;
+    } // run
 }

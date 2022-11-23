@@ -21,43 +21,42 @@
 package com.sun.ts.tests.integration.sec.propagation;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class Bean2EJB implements SessionBean {
 
-  private SessionContext sessionContext = null;
+    private SessionContext sessionContext = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate OK");
-  }
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate OK");
+    }
 
-  /**
-   * Returns the name of the caller principal
-   */
-  public String getCallerPrincipalName() {
-    return sessionContext.getCallerPrincipal().getName();
-  }
+    /**
+     * Returns the name of the caller principal
+     */
+    public String getCallerPrincipalName() {
+        return sessionContext.getCallerPrincipal().getName();
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    sessionContext = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        sessionContext = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
+    public void ejbDestroy() {
+        TestUtil.logTrace("ejbDestroy");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

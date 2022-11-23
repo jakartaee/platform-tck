@@ -17,22 +17,21 @@
 package com.sun.ts.tests.jacc.ejb.mr;
 
 public interface InterMediate {
-  public void initLogging(java.util.Properties p);
+    public void initLogging(java.util.Properties p);
 
-  public boolean IsCallerB1(String caller);
+    public boolean IsCallerB1(String caller);
 
-  public boolean IsCallerB2(String caller, java.util.Properties p);
+    public boolean IsCallerB2(String caller, java.util.Properties p);
 
-  public boolean InRole(String role, java.util.Properties p);
+    public boolean InRole(String role, java.util.Properties p);
 
-  public boolean EjbNotAuthz(java.util.Properties p);
+    public boolean EjbNotAuthz(java.util.Properties p);
 
-  public boolean EjbIsAuthz(java.util.Properties p);
+    public boolean EjbIsAuthz(java.util.Properties p);
 
-  public boolean EjbSecRoleRef(String role, java.util.Properties p);
+    public boolean EjbSecRoleRef(String role, java.util.Properties p);
 
-  public boolean uncheckedTest(java.util.Properties p);
+    public boolean uncheckedTest(java.util.Properties p);
 
-  public boolean excludeTest(java.util.Properties p);
-
+    public boolean excludeTest(java.util.Properties p);
 }

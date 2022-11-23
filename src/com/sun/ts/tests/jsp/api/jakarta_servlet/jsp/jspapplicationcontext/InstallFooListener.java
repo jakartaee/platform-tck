@@ -23,17 +23,15 @@ import jakarta.servlet.jsp.JspApplicationContext;
 import jakarta.servlet.jsp.JspFactory;
 
 /**
- * ServletContextListener that installs the FooELResolver, enabling the use of
- * ${Foo}.
+ * ServletContextListener that installs the FooELResolver, enabling the use of ${Foo}.
  */
 public class InstallFooListener implements ServletContextListener {
-  public void contextInitialized(ServletContextEvent evt) {
-    ServletContext context = evt.getServletContext();
-    JspApplicationContext jspContext = JspFactory.getDefaultFactory()
-        .getJspApplicationContext(context);
-    jspContext.addELResolver(new FooELResolver());
-  }
+    public void contextInitialized(ServletContextEvent evt) {
+        ServletContext context = evt.getServletContext();
+        JspApplicationContext jspContext = JspFactory.getDefaultFactory().getJspApplicationContext(context);
+        jspContext.addELResolver(new FooELResolver());
+    }
 
-  public void contextDestroyed(ServletContextEvent evt) {
-  }
+    public void contextDestroyed(ServletContextEvent evt) {
+    }
 }

@@ -20,19 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.delete;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface BeanHome extends EJBHome {
-  public Bean create(String id, String name, int value, ADVC a1, BDVC b1,
-      int flag) throws RemoteException, CreateException;
+    public Bean create(String id, String name, int value, ADVC a1, BDVC b1, int flag)
+            throws RemoteException, CreateException;
 
-  public Bean create(String id, String name, int value, ADVC a1, BDVC b1,
-      BDVC b2) throws RemoteException, CreateException;
+    public Bean create(String id, String name, int value, ADVC a1, BDVC b1, BDVC b2)
+            throws RemoteException, CreateException;
 
-  public Bean findByPrimaryKey(String id)
-      throws RemoteException, FinderException;
+    public Bean findByPrimaryKey(String id) throws RemoteException, FinderException;
 }

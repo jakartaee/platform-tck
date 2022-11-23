@@ -20,34 +20,31 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
+import jakarta.inject.Inject;
+import jakarta.json.bind.adapter.JsonbAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
+public class InjectedListAdapter implements JsonbAdapter<List<Animal>, List<AnimalJson>> {
+    @Inject
+    private InjectedAdapter animalAdapter;
 
-import jakarta.inject.Inject;
-import jakarta.json.bind.adapter.JsonbAdapter;
-
-public class InjectedListAdapter
-    implements JsonbAdapter<List<Animal>, List<AnimalJson>> {
-  @Inject
-  private InjectedAdapter animalAdapter;
-
-  @Override
-  public List<AnimalJson> adaptToJson(List<Animal> animals) throws Exception {
-    List<AnimalJson> adapted = new ArrayList<>();
-    for (Animal animal : animals) {
-      adapted.add(animalAdapter.adaptToJson(animal));
+    @Override
+    public List<AnimalJson> adaptToJson(List<Animal> animals) throws Exception {
+        List<AnimalJson> adapted = new ArrayList<>();
+        for (Animal animal : animals) {
+            adapted.add(animalAdapter.adaptToJson(animal));
+        }
+        return adapted;
     }
-    return adapted;
-  }
 
-  @Override
-  public List<Animal> adaptFromJson(List<AnimalJson> adapted) throws Exception {
-    List<Animal> animals = new ArrayList<>();
-    for (AnimalJson animal : adapted) {
-      animals.add(animalAdapter.adaptFromJson(animal));
+    @Override
+    public List<Animal> adaptFromJson(List<AnimalJson> adapted) throws Exception {
+        List<Animal> animals = new ArrayList<>();
+        for (AnimalJson animal : adapted) {
+            animals.add(animalAdapter.adaptFromJson(animal));
+        }
+        return animals;
     }
-    return animals;
-  }
 }

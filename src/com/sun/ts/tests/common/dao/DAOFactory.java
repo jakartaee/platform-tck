@@ -20,52 +20,48 @@
 
 package com.sun.ts.tests.common.dao;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.TxCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.FloatPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.LongPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.StringPKCoffeeDAO;
+import java.util.Properties;
 
 /**
- * 
+ *
  */
 public abstract class DAOFactory implements java.io.Serializable {
 
-  protected static DAOFactory _INSTANCE;
+    protected static DAOFactory _INSTANCE;
 
-  /** Return a DAOFactory instance. This method is NOT thread safe */
-  public final static DAOFactory getInstance() {
-    return getInstance(null);
-  }
-
-  /** Return a DAOFactory instance. This method is NOT thread safe */
-  public final static DAOFactory getInstance(Properties props) {
-    if (null == _INSTANCE) {
-      _INSTANCE = new TSDAOFactory();
+    /** Return a DAOFactory instance. This method is NOT thread safe */
+    public static final DAOFactory getInstance() {
+        return getInstance(null);
     }
 
-    return _INSTANCE;
-  }
+    /** Return a DAOFactory instance. This method is NOT thread safe */
+    public static final DAOFactory getInstance(Properties props) {
+        if (null == _INSTANCE) {
+            _INSTANCE = new TSDAOFactory();
+        }
 
-  public abstract CoffeeDAO getCoffeeDAO() throws DAOException;
+        return _INSTANCE;
+    }
 
-  public abstract CoffeeDAO getCoffeeDAO(Properties props) throws DAOException;
+    public abstract CoffeeDAO getCoffeeDAO() throws DAOException;
 
-  public abstract TxCoffeeDAO getTxCoffeeDAO() throws DAOException;
+    public abstract CoffeeDAO getCoffeeDAO(Properties props) throws DAOException;
 
-  public abstract TxCoffeeDAO getTxCoffeeDAO(Properties props)
-      throws DAOException;
+    public abstract TxCoffeeDAO getTxCoffeeDAO() throws DAOException;
 
-  public abstract StringPKCoffeeDAO getStringPKCoffeeDAO() throws DAOException;
+    public abstract TxCoffeeDAO getTxCoffeeDAO(Properties props) throws DAOException;
 
-  public abstract LongPKCoffeeDAO getLongPKCoffeeDAO() throws DAOException;
+    public abstract StringPKCoffeeDAO getStringPKCoffeeDAO() throws DAOException;
 
-  public abstract FloatPKCoffeeDAO getFloatPKCoffeeDAO() throws DAOException;
+    public abstract LongPKCoffeeDAO getLongPKCoffeeDAO() throws DAOException;
 
-  public abstract CompoundPKCoffeeDAO getCompoundPKCoffeeDAO()
-      throws DAOException;
+    public abstract FloatPKCoffeeDAO getFloatPKCoffeeDAO() throws DAOException;
 
+    public abstract CompoundPKCoffeeDAO getCompoundPKCoffeeDAO() throws DAOException;
 }

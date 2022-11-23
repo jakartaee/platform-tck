@@ -23,6 +23,5 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface ThreeLocal1IF extends CommonIF {
-  public void getBusinessObjectLocal1Illegal() throws TestFailedException;
-
+    public void getBusinessObjectLocal1Illegal() throws TestFailedException;
 }

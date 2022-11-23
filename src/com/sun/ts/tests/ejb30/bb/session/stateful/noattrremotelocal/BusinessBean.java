@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.noattrremotelocal;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
@@ -36,15 +35,15 @@ import jakarta.ejb.Stateful;
 // @Remote({BusinessIF1.class, BusinessIF2.class})
 @Local({ BusinessLocalIF1.class })
 public class BusinessBean extends BusinessBeanBase {
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public BusinessBean() {
-  }
+    public BusinessBean() {
+    }
 
-  public void remove() {
-  }
+    public void remove() {
+    }
 
-  public void remove2() {
-  }
+    public void remove2() {
+    }
 }

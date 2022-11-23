@@ -23,7 +23,7 @@ import com.sun.ts.lib.deliverable.cts.resource.Dog;
 
 public interface SameEJBClassRemoteIF {
 
-  public Dog testDTO(int i, String s, Dog dog);
+    public Dog testDTO(int i, String s, Dog dog);
 
-  public Dog testDTO(int i, String s, Object obj);
+    public Dog testDTO(int i, String s, Object obj);
 }

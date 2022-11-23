@@ -25,15 +25,15 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface RemoveIF {
-  void remove();
+    void remove();
 
-  void remove(String s);
+    void remove(String s);
 
-  void remove2();
+    void remove2();
 
-  void retain() throws TestFailedException;
+    void retain() throws TestFailedException;
 
-  void retain2() throws AtUncheckedAppException, UncheckedAppException;
+    void retain2() throws AtUncheckedAppException, UncheckedAppException;
 
-  void hi();
+    void hi();
 }

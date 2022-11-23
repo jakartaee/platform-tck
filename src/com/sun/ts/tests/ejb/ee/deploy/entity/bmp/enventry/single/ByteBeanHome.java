@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.enventry.single;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface ByteBeanHome extends EJBHome {
 
-  public ByteBean create(Properties p, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public ByteBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public ByteBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public ByteBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

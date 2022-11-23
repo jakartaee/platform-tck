@@ -21,43 +21,42 @@
 package com.sun.ts.tests.ejb.ee.bb.localaccess.sbaccesstest;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class DEJB implements SessionBean {
 
-  private SessionContext context = null;
+    private SessionContext context = null;
 
-  // ===========================================================
-  // D interface business methods
+    // ===========================================================
+    // D interface business methods
 
-  public String whoAmI() {
-    return "session-stateless";
-  }
+    public String whoAmI() {
+        return "session-stateless";
+    }
 
-  // ===========================================================
-  // EJB Specification Required Methods
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+    }
 
-  public void setSessionContext(SessionContext c) {
-    TestUtil.logTrace("setSessionContext");
-    context = c;
-  }
+    public void setSessionContext(SessionContext c) {
+        TestUtil.logTrace("setSessionContext");
+        context = c;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

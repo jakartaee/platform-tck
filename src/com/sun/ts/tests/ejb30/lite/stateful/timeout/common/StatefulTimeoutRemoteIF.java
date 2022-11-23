@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.lite.stateful.timeout.common;
 
 public interface StatefulTimeoutRemoteIF extends StatefulTimeoutIF {
-
 }

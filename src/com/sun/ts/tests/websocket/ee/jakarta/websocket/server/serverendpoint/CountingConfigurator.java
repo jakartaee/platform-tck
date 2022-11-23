@@ -17,18 +17,17 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 
+import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import jakarta.websocket.server.ServerEndpointConfig.Configurator;
-
 public class CountingConfigurator extends Configurator {
-  public final static AtomicInteger COUNTER = new AtomicInteger(0);
+    public static final AtomicInteger COUNTER = new AtomicInteger(0);
 
-  public CountingConfigurator() {
-    COUNTER.incrementAndGet();
-  }
+    public CountingConfigurator() {
+        COUNTER.incrementAndGet();
+    }
 
-  public int getCounterValue() {
-    return COUNTER.intValue();
-  }
+    public int getCounterValue() {
+        return COUNTER.intValue();
+    }
 }

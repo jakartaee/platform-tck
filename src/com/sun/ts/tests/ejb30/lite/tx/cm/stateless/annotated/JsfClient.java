@@ -17,52 +17,50 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends com.sun.ts.tests.ejb30.lite.tx.cm.common.JsfClientBase {
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(LocalTestBeanBase b) {
-    this.testBean = b;
-  }
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.tx.cm.common.JsfClientBase {
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(LocalTestBeanBase b) {
+        this.testBean = b;
+    }
 
-  /*
-   * @testName: localMandatoryTest
-   * 
-   * @test_Strategy: client -> local bm slsb -> local cm slsb
-   */
-  /*
-   * @testName: localNeverTest
-   * 
-   * @test_Strategy: client -> local bm slsb -> local cm slsb
-   */
-  /*
-   * @testName: localSupportsTest
-   * 
-   * @test_Strategy: client -> local bm slsb -> local cm slsb
-   */
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> local bm bean -> local cm bean
-   */
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> local bm bean -> local cm bean
-   */
-  /*
-   * @testName: localSystemExceptionTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm sfsb
-   */
-  /*
-   * @testName: localRequiresNewTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
+    /*
+     * @testName: localMandatoryTest
+     *
+     * @test_Strategy: client -> local bm slsb -> local cm slsb
+     */
+    /*
+     * @testName: localNeverTest
+     *
+     * @test_Strategy: client -> local bm slsb -> local cm slsb
+     */
+    /*
+     * @testName: localSupportsTest
+     *
+     * @test_Strategy: client -> local bm slsb -> local cm slsb
+     */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> local bm bean -> local cm bean
+     */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> local bm bean -> local cm bean
+     */
+    /*
+     * @testName: localSystemExceptionTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm sfsb
+     */
+    /*
+     * @testName: localRequiresNewTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
 }

@@ -21,32 +21,30 @@
 package com.sun.ts.tests.ejb30.common.calc;
 
 /**
- * A local calculator class without implementing any interface. This is to test
- * a bean class without implementing any interface must have its business
- * interface generated. When @Local is applied to such interfaceless bean
- * classes, the generated business interface must have local accessibility.
- * 
+ * A local calculator class without implementing any interface. This is to test a bean class without implementing any
+ * interface must have its business interface generated. When @Local is applied to such interfaceless bean classes, the
+ * generated business interface must have local accessibility.
+ *
  * @author Cheng Fang
  */
 public class NoInterfaceCalculator {
 
-  /** Creates a new instance of NoInterfaceCalculator */
-  public NoInterfaceCalculator() {
-  }
+    /** Creates a new instance of NoInterfaceCalculator */
+    public NoInterfaceCalculator() {
+    }
 
-  public int subtract(int a, int b) {
-    return a - b;
-  }
+    public int subtract(int a, int b) {
+        return a - b;
+    }
 
-  public int add(int a, int b) {
-    return a + b;
-  }
+    public int add(int a, int b) {
+        return a + b;
+    }
 
-  /*
-   * Tests that the methods in business interface may throw arbitrary
-   * application exceptions.
-   */
-  public void throwIt() throws CalculatorException {
-    throw new CalculatorException();
-  }
+    /*
+     * Tests that the methods in business interface may throw arbitrary application exceptions.
+     */
+    public void throwIt() throws CalculatorException {
+        throw new CalculatorException();
+    }
 }

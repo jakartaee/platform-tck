@@ -21,5 +21,5 @@ import jakarta.ejb.Remote;
 @Remote
 public interface DataStoreRemote {
 
-  public String getData();
+    public String getData();
 }

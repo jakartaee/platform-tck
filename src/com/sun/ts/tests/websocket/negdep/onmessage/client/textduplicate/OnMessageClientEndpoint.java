@@ -20,7 +20,6 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.textduplicate;
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
@@ -31,26 +30,26 @@ import jakarta.websocket.Session;
 @ClientEndpoint(decoders = { StringBeanTextDecoder.class })
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(String msg, boolean finito) {
-    clientEndpoint.onMessage(msg);
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public void onMessage(String msg, boolean finito) {
+        clientEndpoint.onMessage(msg);
+    }
 
-  @OnMessage
-  public void onMessage(StringBean bean) {
-    clientEndpoint.onMessage(bean.get());
-  }
+    @OnMessage
+    public void onMessage(StringBean bean) {
+        clientEndpoint.onMessage(bean.get());
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 }

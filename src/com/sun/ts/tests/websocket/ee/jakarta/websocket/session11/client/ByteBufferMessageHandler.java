@@ -17,26 +17,23 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
 import java.nio.ByteBuffer;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
+public class ByteBufferMessageHandler implements MessageHandler.Whole<ByteBuffer> {
 
-import jakarta.websocket.MessageHandler;
+    MixedProgramaticEndpoint endpoint;
 
-public class ByteBufferMessageHandler
-    implements MessageHandler.Whole<ByteBuffer> {
+    public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
 
-  MixedProgramaticEndpoint endpoint;
+    public ByteBufferMessageHandler(MixedProgramaticEndpoint endpoint) {
+        super();
+        this.endpoint = endpoint;
+    }
 
-  public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
-
-  public ByteBufferMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
-
-  @Override
-  public void onMessage(ByteBuffer message) {
-    endpoint.onMessage(HANDLER_SAYS + IOUtil.byteBufferToString(message));
-  }
+    @Override
+    public void onMessage(ByteBuffer message) {
+        endpoint.onMessage(HANDLER_SAYS + IOUtil.byteBufferToString(message));
+    }
 }

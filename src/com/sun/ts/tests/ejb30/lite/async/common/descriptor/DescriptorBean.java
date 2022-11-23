@@ -21,55 +21,55 @@ package com.sun.ts.tests.ejb30.lite.async.common.descriptor;
 
 public class DescriptorBean implements DescriptorIF {
 
-  private void throwRuntimeException() {
-    throw new RuntimeException(EXCEPTION_MESSAGE);
-  }
+    private void throwRuntimeException() {
+        throw new RuntimeException(EXCEPTION_MESSAGE);
+    }
 
-  public void allParams() {
-    throwRuntimeException();
-  }
+    public void allParams() {
+        throwRuntimeException();
+    }
 
-  public void allParams(int i) {
-    throwRuntimeException();
-  }
+    public void allParams(int i) {
+        throwRuntimeException();
+    }
 
-  public void allParams(String s) {
-    throwRuntimeException();
-  }
+    public void allParams(String s) {
+        throwRuntimeException();
+    }
 
-  public void allViews() {
-    throwRuntimeException();
-  }
+    public void allViews() {
+        throwRuntimeException();
+    }
 
-  public void intParams(int i, int j) {
-    throwRuntimeException();
-  }
+    public void intParams(int i, int j) {
+        throwRuntimeException();
+    }
 
-  public void intParams(int i, int j, int k) {
-    throwRuntimeException();
-  }
+    public void intParams(int i, int j, int k) {
+        throwRuntimeException();
+    }
 
-  public void intParamsLocalViews() {
-    throwRuntimeException();
-  }
+    public void intParamsLocalViews() {
+        throwRuntimeException();
+    }
 
-  public void localViews() {
-    throwRuntimeException();
-  }
+    public void localViews() {
+        throwRuntimeException();
+    }
 
-  public void noParams() {
-    throwRuntimeException();
-  }
+    public void noParams() {
+        throwRuntimeException();
+    }
 
-  public void noParams(int i) {
-    throwRuntimeException();
-  }
+    public void noParams(int i) {
+        throwRuntimeException();
+    }
 
-  public void remoteViews() {
-    throwRuntimeException();
-  }
+    public void remoteViews() {
+        throwRuntimeException();
+    }
 
-  public void intParamsLocalViews(int i, int j) {
-    throwRuntimeException();
-  }
+    public void intParamsLocalViews(int i, int j) {
+        throwRuntimeException();
+    }
 }

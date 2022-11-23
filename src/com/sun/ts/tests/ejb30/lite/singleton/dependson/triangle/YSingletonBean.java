@@ -21,15 +21,14 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
 
 @Singleton
 @DependsOn("ZSingletonBean")
 public class YSingletonBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "YSingletonBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "YSingletonBean";
+    }
 }

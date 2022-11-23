@@ -21,7 +21,7 @@ import jakarta.ws.rs.Path;
 @Path(value = "/InheritanceTest")
 public class ChildResource implements ParentResource {
 
-  public String firstest() {
-    return "First";
-  }
+    public String firstest() {
+        return "First";
+    }
 }

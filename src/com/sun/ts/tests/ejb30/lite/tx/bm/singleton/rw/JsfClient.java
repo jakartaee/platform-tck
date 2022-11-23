@@ -18,22 +18,21 @@ package com.sun.ts.tests.ejb30.lite.tx.bm.singleton.rw;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends RWJsfClientBase {
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
+    }
 
-  /*
-   * @testName: postConstructTransaction
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: postConstructTransaction
+     *
+     * @test_Strategy:
+     */
 }

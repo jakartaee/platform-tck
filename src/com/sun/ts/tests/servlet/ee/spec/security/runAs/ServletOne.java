@@ -19,38 +19,35 @@
  */
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ServletOne extends HttpServlet {
-  @EJB
-  SecTest secTest;
+    @EJB
+    SecTest secTest;
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    String webUserPrincipalName = null;
-    String ejbUserPrincipalName = null;
-    PrintWriter out = response.getWriter();
+        String webUserPrincipalName = null;
+        String ejbUserPrincipalName = null;
+        PrintWriter out = response.getWriter();
 
-    if (request.getUserPrincipal() != null) {
-      webUserPrincipalName = request.getUserPrincipal().getName();
+        if (request.getUserPrincipal() != null) {
+            webUserPrincipalName = request.getUserPrincipal().getName();
+        }
+        out.println("Servlet accessed as User :" + webUserPrincipalName + "\n");
+
+        try {
+            ejbUserPrincipalName = secTest.getCallerPrincipalName();
+            out.println("EJB accessed as User :" + ejbUserPrincipalName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.println(e.getMessage());
+        }
     }
-    out.println("Servlet accessed as User :" + webUserPrincipalName + "\n");
-
-    try {
-      ejbUserPrincipalName = secTest.getCallerPrincipalName();
-      out.println("EJB accessed as User :" + ejbUserPrincipalName);
-    } catch (Exception e) {
-      e.printStackTrace();
-      out.println(e.getMessage());
-    }
-
-  }
 }

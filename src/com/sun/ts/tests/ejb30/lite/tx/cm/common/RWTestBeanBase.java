@@ -24,16 +24,16 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.UserTransaction;
 
-abstract public class RWTestBeanBase extends RWTestBeanBase0 {
-  @Override
-  @PersistenceContext(unitName = "ejblite-pu")
-  public void setEm(EntityManager em) {
-    this.em = em;
-  }
+public abstract class RWTestBeanBase extends RWTestBeanBase0 {
+    @Override
+    @PersistenceContext(unitName = "ejblite-pu")
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
 
-  @Override
-  @Resource
-  public void setUt(UserTransaction ut) {
-    this.ut = ut;
-  }
+    @Override
+    @Resource
+    public void setUt(UserTransaction ut) {
+        this.ut = ut;
+    }
 }

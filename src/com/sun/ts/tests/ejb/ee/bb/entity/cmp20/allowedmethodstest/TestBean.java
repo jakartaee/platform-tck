@@ -20,32 +20,31 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // Business Methods for TestBean CMP Fields
-  public Integer getId() throws RemoteException;
+    // Business Methods for TestBean CMP Fields
+    public Integer getId() throws RemoteException;
 
-  public String getBrandName() throws RemoteException;
+    public String getBrandName() throws RemoteException;
 
-  public void setBrandName(String s) throws RemoteException;
+    public void setBrandName(String s) throws RemoteException;
 
-  public float getPrice() throws RemoteException;
+    public float getPrice() throws RemoteException;
 
-  public void setPrice(float p) throws RemoteException;
+    public void setPrice(float p) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void initLogging(Properties p) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void initLogging(Properties p) throws RemoteException;
 
-  public Hashtable getResults() throws RemoteException;
+    public Hashtable getResults() throws RemoteException;
 
-  public void businessMethod(Helper ref) throws RemoteException;
+    public void businessMethod(Helper ref) throws RemoteException;
 
-  public void findAndCancelTimer() throws RemoteException;
+    public void findAndCancelTimer() throws RemoteException;
 
-  public boolean getCallerPrincipalTest(String s) throws RemoteException;
+    public boolean getCallerPrincipalTest(String s) throws RemoteException;
 }

@@ -25,27 +25,26 @@ import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorF extends InterceptorE {
-  public InterceptorF() {
-    super();
-  }
+    public InterceptorF() {
+        super();
+    }
 
-  public String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    public String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  @Override
-  protected String getShortName() {
-    return "F";
-  }
+    @Override
+    protected String getShortName() {
+        return "F";
+    }
 
-  @PostConstruct
-  protected void myCreateInF(InvocationContext inv) throws RuntimeException {
-    myCreate0(inv, "F");
-  }
+    @PostConstruct
+    protected void myCreateInF(InvocationContext inv) throws RuntimeException {
+        myCreate0(inv, "F");
+    }
 
-  @PreDestroy
-  protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
-    myRemove0(inv);
-  }
-
+    @PreDestroy
+    protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
+        myRemove0(inv);
+    }
 }

@@ -18,42 +18,41 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.rw;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends RWJsfClientBase {
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
+    }
 
-  /*
-   * @testName: mandatory
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: required
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiredNoExistingTransaction
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: supports
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiresNew
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: mandatory
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: required
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiredNoExistingTransaction
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: supports
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiresNew
+     *
+     * @test_Strategy:
+     */
 }

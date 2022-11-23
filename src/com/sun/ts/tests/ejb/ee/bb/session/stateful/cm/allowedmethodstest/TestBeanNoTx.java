@@ -20,17 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBeanNoTx extends EJBObject {
-  public Hashtable getResults() throws RemoteException;
+    public Hashtable getResults() throws RemoteException;
 
-  public void txNotSupported() throws RemoteException;
+    public void txNotSupported() throws RemoteException;
 
-  public void txSupports() throws RemoteException;
+    public void txSupports() throws RemoteException;
 
-  public void txNever() throws RemoteException;
+    public void txNever() throws RemoteException;
 }

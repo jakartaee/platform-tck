@@ -24,7 +24,7 @@ import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.TimerHandle;
 
 public interface TimerLocal extends EJBLocalObject {
-  public TimerHandle startTimer(long duration, String info);
+    public TimerHandle startTimer(long duration, String info);
 
-  public void findAndCancelTimer();
+    public void findAndCancelTimer();
 }

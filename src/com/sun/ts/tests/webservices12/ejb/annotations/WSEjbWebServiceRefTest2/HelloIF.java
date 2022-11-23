@@ -17,11 +17,11 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefTest2;
 
 public interface HelloIF {
-  public String hello(String str);
+    public String hello(String str);
 
-  public String bye(String str);
+    public String bye(String str);
 
-  public String extra(String str, int i);
+    public String extra(String str, int i);
 
-  public void extraExtra(long i);
+    public void extraExtra(long i);
 }

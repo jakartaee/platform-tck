@@ -22,17 +22,14 @@ package com.sun.ts.tests.ejb30.lite.nointerface.descriptor;
 
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.BeanBase;
 import com.sun.ts.tests.ejb30.lite.nointerface.annotated.HasInterface;
-
 import jakarta.ejb.EJB;
 
-public class HasInterfaceSingletonBean extends BeanBase
-    implements HasInterface {
-  @EJB
-  private NoInterfaceSingletonBean singleton;
+public class HasInterfaceSingletonBean extends BeanBase implements HasInterface {
+    @EJB
+    private NoInterfaceSingletonBean singleton;
 
-  @Override
-  public NoInterfaceSingletonBean passAsReturn() {
-    return singleton;
-  }
-
+    @Override
+    public NoInterfaceSingletonBean passAsReturn() {
+        return singleton;
+    }
 }

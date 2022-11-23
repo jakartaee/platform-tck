@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-import java.util.concurrent.CountDownLatch;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnClose;
@@ -27,57 +25,56 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
+import java.util.concurrent.CountDownLatch;
 
 /**
- * For tests where the annotated client endpoint is to be tested, this
- * predefined endpoint can be used. Though merely a bridge to a ClientEndpoint
- * which can be used to connect to server using it in
+ * For tests where the annotated client endpoint is to be tested, this predefined endpoint can be used. Though merely a
+ * bridge to a ClientEndpoint which can be used to connect to server using it in
  * {@link WebSocketContainer#connectToServer(jakarta.websocket.Endpoint, jakarta.websocket.ClientEndpointConfig, java.net.URI)}
- * , this annotated endpoint is used to test the {@link OnMessage},
- * {@link OnError}, {@link OnOpen}, and {@link OnClose} are being called.
- * 
+ * , this annotated endpoint is used to test the {@link OnMessage}, {@link OnError}, {@link OnOpen}, and {@link OnClose}
+ * are being called.
+ *
  * </p>
- * Note that {@link ClientEndpoint} annotation is to be add to subclasses, and
- * {@link OnMessage}, {@link OnError}, {@link OnOpen}, and {@link OnClose} are
- * to be overridden when convenient.
+ * Note that {@link ClientEndpoint} annotation is to be add to subclasses, and {@link OnMessage}, {@link OnError},
+ * {@link OnOpen}, and {@link OnClose} are to be overridden when convenient.
  */
 public abstract class AnnotatedClientEndpoint<DATATYPE> {
 
-  protected ClientEndpoint<DATATYPE> clientEndpoint;
+    protected ClientEndpoint<DATATYPE> clientEndpoint;
 
-  public AnnotatedClientEndpoint(ClientEndpoint<DATATYPE> endpoint) {
-    this.clientEndpoint = endpoint;
-  }
+    public AnnotatedClientEndpoint(ClientEndpoint<DATATYPE> endpoint) {
+        this.clientEndpoint = endpoint;
+    }
 
-  // @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    // @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 
-  // @OnMessage
-  public void onMessage(DATATYPE msg) {
-    clientEndpoint.onMessage(msg);
-  }
+    // @OnMessage
+    public void onMessage(DATATYPE msg) {
+        clientEndpoint.onMessage(msg);
+    }
 
-  // @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+    // @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        clientEndpoint.onClose(session, closeReason);
+    }
 
-  // @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    // @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  public CountDownLatch getCountDownLatch() {
-    return ClientEndpoint.getCountDownLatch();
-  }
+    public CountDownLatch getCountDownLatch() {
+        return ClientEndpoint.getCountDownLatch();
+    }
 
-  public StringBuffer getMessageBuilder() {
-    return ClientEndpoint.getMessageBuilder();
-  }
+    public StringBuffer getMessageBuilder() {
+        return ClientEndpoint.getMessageBuilder();
+    }
 
-  public Throwable getLastError() {
-    return ClientEndpoint.getLastError();
-  }
+    public Throwable getLastError() {
+        return ClientEndpoint.getLastError();
+    }
 }

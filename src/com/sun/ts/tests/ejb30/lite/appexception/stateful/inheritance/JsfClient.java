@@ -21,49 +21,49 @@ import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient extends
-    com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.JsfClientBase implements Serializable {
-  
-  private static final long serialVersionUID = -2564031884423676327L;
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.JsfClientBase
+        implements Serializable {
 
-  @Override
-  protected InheritanceIF getBean() {
-    return (InheritanceIF) lookup(BEAN_LOOKUP_NAME, "InheritanceBean", null);
-  }
+    private static final long serialVersionUID = -2564031884423676327L;
 
-  /*
-   * @testName: uncheckedAppException1
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException2
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException3
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedSystemException4
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedSystemException5
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException6
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException7
-   * 
-   * @test_Strategy:
-   */
+    @Override
+    protected InheritanceIF getBean() {
+        return (InheritanceIF) lookup(BEAN_LOOKUP_NAME, "InheritanceBean", null);
+    }
+
+    /*
+     * @testName: uncheckedAppException1
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException2
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException3
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedSystemException4
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedSystemException5
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException6
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException7
+     *
+     * @test_Strategy:
+     */
 }

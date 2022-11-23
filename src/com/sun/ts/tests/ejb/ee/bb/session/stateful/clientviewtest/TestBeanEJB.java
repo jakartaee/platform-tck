@@ -20,73 +20,71 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.clientviewtest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBObject;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private boolean ejbCreateFlag = false;
+    private boolean ejbCreateFlag = false;
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
+        ejbCreateFlag = true;
     }
-    ejbCreateFlag = true;
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-    ejbCreateFlag = false;
-  }
+    public void ejbDestroy() {
+        TestUtil.logTrace("ejbDestroy");
+        ejbCreateFlag = false;
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  // ===========================================================
-  // TestBean interface (our business methods)
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-  public String Ping(String s) {
-    TestUtil.logTrace("ping");
-    return "ping: " + s;
-  }
+    public String Ping(String s) {
+        TestUtil.logTrace("ping");
+        return "ping: " + s;
+    }
 
-  public boolean isCreated() {
-    return ejbCreateFlag;
-  }
+    public boolean isCreated() {
+        return ejbCreateFlag;
+    }
 
-  public EJBObject Pass(EJBObject obj) {
-    TestUtil.logTrace("The EJBObject was passed into a EJBObject.");
-    return obj;
-  }
-  // ===========================================================
+    public EJBObject Pass(EJBObject obj) {
+        TestUtil.logTrace("The EJBObject was passed into a EJBObject.");
+        return obj;
+    }
+    // ===========================================================
 }

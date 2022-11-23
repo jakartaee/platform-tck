@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejbref.scope;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface ReferencingBean extends EJBObject {
 
-  public String whoIsYourPartner(Properties p, int pkey) throws RemoteException;
-
+    public String whoIsYourPartner(Properties p, int pkey) throws RemoteException;
 }

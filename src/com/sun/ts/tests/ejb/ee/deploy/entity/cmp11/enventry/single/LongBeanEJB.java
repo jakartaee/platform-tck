@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class LongBeanEJB extends CMP11Wrapper {
 
-  public boolean testLongEntry() {
-    return TestCode.testLongEntry(nctx);
-  }
-
+    public boolean testLongEntry() {
+        return TestCode.testLongEntry(nctx);
+    }
 }

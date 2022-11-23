@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface B extends EJBObject {
-  // Business Methods
-  public void init(Properties p) throws RemoteException;
+    // Business Methods
+    public void init(Properties p) throws RemoteException;
 
-  public String whoAmIRemote() throws RemoteException;
+    public String whoAmIRemote() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 }

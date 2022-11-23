@@ -24,20 +24,18 @@
 
 package com.sun.ts.tests.xa.ee.resXcomp3;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Ejb2Test extends EJBObject {
-  public void dbConnect(String tName) throws RemoteException;
+    public void dbConnect(String tName) throws RemoteException;
 
-  public void insert(String tName) throws RemoteException;
+    public void insert(String tName) throws RemoteException;
 
-  public void dbUnConnect(String tName) throws RemoteException;
+    public void dbUnConnect(String tName) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public void throwEJBException() throws RemoteException;
-
+    public void throwEJBException() throws RemoteException;
 }

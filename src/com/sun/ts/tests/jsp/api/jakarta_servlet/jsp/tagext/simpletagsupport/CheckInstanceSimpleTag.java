@@ -20,47 +20,43 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckInstanceSimpleTag extends SimpleTagSupport {
-  public CheckInstanceSimpleTag() {
-    super();
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[CheckInstanceSimpleTag] in doTag()");
-    JspContext ctx = this.getJspContext();
-    JspWriter out = ctx.getOut();
-
-    Object obj = ctx.getAttribute("handlers", PageContext.REQUEST_SCOPE);
-    List handlers = null;
-    if (obj == null) {
-      handlers = new ArrayList();
-      ctx.setAttribute("handlers", handlers, PageContext.REQUEST_SCOPE);
-    } else {
-      handlers = (List) obj;
+    public CheckInstanceSimpleTag() {
+        super();
     }
-    int numHandlers = handlers.size();
-    out.println("Comparing with prior " + numHandlers
-        + " instances of CheckInstanceSimpleTag");
-    for (int i = 0; i < numHandlers; i++) {
-      Object o = handlers.get(i);
-      if (this == o) {
-        throw new JspException(
-            "Test FAILED. The same instance of CheckInstanceSimpleTag is used in this invocation: "
-                + this);
-      }
+
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[CheckInstanceSimpleTag] in doTag()");
+        JspContext ctx = this.getJspContext();
+        JspWriter out = ctx.getOut();
+
+        Object obj = ctx.getAttribute("handlers", PageContext.REQUEST_SCOPE);
+        List handlers = null;
+        if (obj == null) {
+            handlers = new ArrayList();
+            ctx.setAttribute("handlers", handlers, PageContext.REQUEST_SCOPE);
+        } else {
+            handlers = (List) obj;
+        }
+        int numHandlers = handlers.size();
+        out.println("Comparing with prior " + numHandlers + " instances of CheckInstanceSimpleTag");
+        for (int i = 0; i < numHandlers; i++) {
+            Object o = handlers.get(i);
+            if (this == o) {
+                throw new JspException(
+                        "Test FAILED. The same instance of CheckInstanceSimpleTag is used in this invocation: " + this);
+            }
+        }
+        handlers.add(this);
     }
-    handlers.add(this);
-  }
 }

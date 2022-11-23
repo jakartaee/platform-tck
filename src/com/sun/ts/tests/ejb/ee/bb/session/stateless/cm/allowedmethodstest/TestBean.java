@@ -20,29 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.cm.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public Hashtable getResults() throws RemoteException;
+    public Hashtable getResults() throws RemoteException;
 
-  public void businessMethod(Helper ref) throws RemoteException;
+    public void businessMethod(Helper ref) throws RemoteException;
 
-  public void setHelper(Helper ref) throws RemoteException;
+    public void setHelper(Helper ref) throws RemoteException;
 
-  public void txNotSupported(Helper ref) throws RemoteException;
+    public void txNotSupported(Helper ref) throws RemoteException;
 
-  public void txSupports(Helper ref) throws RemoteException;
+    public void txSupports(Helper ref) throws RemoteException;
 
-  public void txNever(Helper ref) throws RemoteException;
+    public void txNever(Helper ref) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean getCallerPrincipalTest(String s) throws RemoteException;
+    public boolean getCallerPrincipalTest(String s) throws RemoteException;
 
-  public void findAndCancelTimer() throws RemoteException;
-
+    public void findAndCancelTimer() throws RemoteException;
 }

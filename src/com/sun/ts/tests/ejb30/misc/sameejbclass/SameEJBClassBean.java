@@ -23,52 +23,50 @@ package com.sun.ts.tests.ejb30.misc.sameejbclass;
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
-//@Stateless
+// @Stateless
 public class SameEJBClassBean implements SameEJBClassIF {
-  @Resource(name = "myChar")
-  private Character myChar;
+    @Resource(name = "myChar")
+    private Character myChar;
 
-  private boolean myCharInjected;
+    private boolean myCharInjected;
 
-  private String reason;
+    private String reason;
 
-  @PostConstruct
-  private void checkEnvEntry0() {
-    Helper.getLogger().fine("In PostConstruct method of bean instance " + this);
-    if (myChar != null) {
-      if (myChar == '1' || myChar == '2' || myChar == '3' || myChar == '4') {
-        myCharInjected = true;
-        reason = "env-entry myChar has been correctly injected: " + myChar;
-      } else {
-        reason = "env-entry myChar has been incorrectly injected.  Expecting "
-            + "1,2,3 or 4, but actual " + myChar;
-      }
-    } else {
-      reason = "env-entry myChar has not been injected.";
+    @PostConstruct
+    private void checkEnvEntry0() {
+        Helper.getLogger().fine("In PostConstruct method of bean instance " + this);
+        if (myChar != null) {
+            if (myChar == '1' || myChar == '2' || myChar == '3' || myChar == '4') {
+                myCharInjected = true;
+                reason = "env-entry myChar has been correctly injected: " + myChar;
+            } else {
+                reason = "env-entry myChar has been incorrectly injected.  Expecting " + "1,2,3 or 4, but actual "
+                        + myChar;
+            }
+        } else {
+            reason = "env-entry myChar has not been injected.";
+        }
     }
-  }
 
-  public Dog testDTO(int i, String s, Dog dog) {
-    dog.setName(s);
-    return dog;
-  }
-
-  public Dog testDTO(int i, String s, Object obj) {
-    Dog dog = (Dog) obj;
-    dog.setName(s);
-    return dog;
-  }
-
-  public String checkEnvEntry(String beanName) throws TestFailedException {
-    Helper.getLogger()
-        .fine("Injected myChar=" + myChar + ", bean instance=" + this);
-    if (myCharInjected) {
-      return reason;
+    public Dog testDTO(int i, String s, Dog dog) {
+        dog.setName(s);
+        return dog;
     }
-    throw new TestFailedException("Inside " + beanName + ", " + reason);
-  }
+
+    public Dog testDTO(int i, String s, Object obj) {
+        Dog dog = (Dog) obj;
+        dog.setName(s);
+        return dog;
+    }
+
+    public String checkEnvEntry(String beanName) throws TestFailedException {
+        Helper.getLogger().fine("Injected myChar=" + myChar + ", bean instance=" + this);
+        if (myCharInjected) {
+            return reason;
+        }
+        throw new TestFailedException("Inside " + beanName + ", " + reason);
+    }
 }

@@ -21,8 +21,7 @@
 package com.sun.ts.tests.ejb30.common.busiface;
 
 public interface Constants {
-  public static final String VALUE = "value";
+    public static final String VALUE = "value";
 
-  public static final String VALUE_RESET = "value-reset";
-
+    public static final String VALUE_RESET = "value-reset";
 }

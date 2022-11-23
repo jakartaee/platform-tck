@@ -24,29 +24,29 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class Country implements java.io.Serializable {
 
-  // Instance variables
-  private String country;
+    // Instance variables
+    private String country;
 
-  private String code;
+    private String code;
 
-  public Country(String v1, String v2) {
-    country = v1;
-    code = v2;
-  }
+    public Country(String v1, String v2) {
+        country = v1;
+        code = v2;
+    }
 
-  public String getCountry() {
-    return country;
-  }
+    public String getCountry() {
+        return country;
+    }
 
-  public void setCountry(String v) {
-    country = v;
-  }
+    public void setCountry(String v) {
+        country = v;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public void setCode(String v) {
-    code = v;
-  }
+    public void setCode(String v) {
+        code = v;
+    }
 }

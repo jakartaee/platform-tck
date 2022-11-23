@@ -17,22 +17,20 @@
 
 package com.sun.ts.tests.websocket.platform.jakarta.websocket.server.handshakerequest.authenticatedssl;
 
-import java.util.Arrays;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.Arrays;
 
 public class IsUserInRoleConfigurator extends Configurator {
-  static final String KEY = "IsUserInRoleConfigurator";
+    static final String KEY = "IsUserInRoleConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    String role = request.getHeaders().get(KEY).iterator().next();
-    boolean isInRole = request.isUserInRole(role);
-    String value = String.valueOf(isInRole);
-    response.getHeaders().put(KEY, Arrays.asList(value));
-  }
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        String role = request.getHeaders().get(KEY).iterator().next();
+        boolean isInRole = request.isUserInRole(role);
+        String value = String.valueOf(isInRole);
+        response.getHeaders().put(KEY, Arrays.asList(value));
+    }
 }

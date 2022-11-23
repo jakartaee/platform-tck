@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars;
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.InterceptorUsed;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -34,7 +33,7 @@ import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
-//annotations NOT to be ignored
+// annotations NOT to be ignored
 @Stateless(name = "StatelessAnnotationUsedRemoteCalculatorBean")
 @Remote({ RemoteCalculator.class })
 @ExcludeDefaultInterceptors
@@ -47,51 +46,47 @@ import jakarta.interceptor.Interceptors;
 @Interceptors({ BusinessInterceptorNotUsed.class, InterceptorUsed.class })
 // @Interceptors({BusinessInterceptorNotUsed.class})
 
-public class StatelessAnnotationUsedRemoteCalculatorBean
-    extends BaseRemoteCalculator implements RemoteCalculator {
-  private int postConstructCallsCount;
+public class StatelessAnnotationUsedRemoteCalculatorBean extends BaseRemoteCalculator implements RemoteCalculator {
+    private int postConstructCallsCount;
 
-  @Resource(name = "sessionContext") // NOT to be ignored
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext") // NOT to be ignored
+    private SessionContext sessionContext;
 
-  public StatelessAnnotationUsedRemoteCalculatorBean() {
-  }
-
-  @PostConstruct // NOT to be ignored
-  public void postConstruct() {
-    postConstructCallsCount++;
-  }
-
-  @PreDestroy // NOT to be ignored
-  public void preDestroy() {
-    postConstructCallsCount = 0;
-  }
-
-  /**
-   * Returns a + b + postConstructCallsCount. Note that a and b may have been
-   * modified by interceptor methods. This method also checks that resource
-   * injections that are specified via annotations have been injected.
-   */
-  @ExcludeDefaultInterceptors
-  @ExcludeClassInterceptors
-  @Interceptors({ InterceptorUsed.class })
-  public int remoteAdd(int a, int b) {
-    if (sessionContext == null) {
-      throw new IllegalStateException("sessionContext field should have been "
-          + "injected, but its actual value is null.  The ejb-jar where "
-          + "this bean is in has been marked as metadata-complete=false");
+    public StatelessAnnotationUsedRemoteCalculatorBean() {
     }
-    return postConstructCallsCount + a + b;
-  }
 
-  @Override
-  @ExcludeDefaultInterceptors
-  @ExcludeClassInterceptors
-  @Interceptors({ InterceptorUsed.class })
-  public int remoteSubtract(int a, int b) {
-    // do the same thing as remoteAdd(int, int)
-    return postConstructCallsCount + a + b;
-  }
- 
+    @PostConstruct // NOT to be ignored
+    public void postConstruct() {
+        postConstructCallsCount++;
+    }
 
+    @PreDestroy // NOT to be ignored
+    public void preDestroy() {
+        postConstructCallsCount = 0;
+    }
+
+    /**
+     * Returns a + b + postConstructCallsCount. Note that a and b may have been modified by interceptor methods. This method
+     * also checks that resource injections that are specified via annotations have been injected.
+     */
+    @ExcludeDefaultInterceptors
+    @ExcludeClassInterceptors
+    @Interceptors({ InterceptorUsed.class })
+    public int remoteAdd(int a, int b) {
+        if (sessionContext == null) {
+            throw new IllegalStateException("sessionContext field should have been "
+                    + "injected, but its actual value is null.  The ejb-jar where "
+                    + "this bean is in has been marked as metadata-complete=false");
+        }
+        return postConstructCallsCount + a + b;
+    }
+
+    @Override
+    @ExcludeDefaultInterceptors
+    @ExcludeClassInterceptors
+    @Interceptors({ InterceptorUsed.class })
+    public int remoteSubtract(int a, int b) {
+        // do the same thing as remoteAdd(int, int)
+        return postConstructCallsCount + a + b;
+    }
 }

@@ -20,32 +20,29 @@
 
 package com.sun.ts.tests.servlet.pluggability.common;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebServlet;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet("/TestServlet3")
 public class TestServlet3 extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.println("TestServlet3 is invoked");
-    pw.append("msg1=" + getInitParameter("msg1"));
-    pw.append("msg2=" + getInitParameter("msg2"));
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.println("TestServlet3 is invoked");
+        pw.append("msg1=" + getInitParameter("msg1"));
+        pw.append("msg2=" + getInitParameter("msg2"));
 
-    ArrayList result = (ArrayList) getServletContext()
-        .getAttribute("testmessage");
+        ArrayList result = (ArrayList) getServletContext().getAttribute("testmessage");
 
-    Object results[] = result.toArray();
-    for (int i = 0; i < results.length; i++) {
-      pw.println(results[i].toString());
+        Object results[] = result.toArray();
+        for (int i = 0; i < results.length; i++) {
+            pw.println(results[i].toString());
+        }
     }
-  }
 }

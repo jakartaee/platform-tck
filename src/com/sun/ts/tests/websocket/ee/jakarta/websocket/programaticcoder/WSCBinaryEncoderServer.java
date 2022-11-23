@@ -17,45 +17,42 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
-public class WSCBinaryEncoderServer extends Endpoint
-    implements MessageHandler.Whole<String> {
+public class WSCBinaryEncoderServer extends Endpoint implements MessageHandler.Whole<String> {
 
-  private Session session;
+    private Session session;
 
-  @Override
-  public void onMessage(String bean) {
-    try {
-      session.getBasicRemote().sendObject(new StringBean(bean));
-    } catch (Exception e) {
-      onError(session, e);
+    @Override
+    public void onMessage(String bean) {
+        try {
+            session.getBasicRemote().sendObject(new StringBean(bean));
+        } catch (Exception e) {
+            onError(session, e);
+        }
     }
-  }
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
+    @Override
+    public void onError(Session session, Throwable t) {
+        System.out.println("@OnError in" + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(t);
+        try {
+            session.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    this.session.addMessageHandler(this);
-  }
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+        this.session.addMessageHandler(this);
+    }
 }

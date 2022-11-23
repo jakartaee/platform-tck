@@ -23,6 +23,6 @@ package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface DLocal extends EJBLocalObject {
-  // Business Methods
-  public String ping();
+    // Business Methods
+    public String ping();
 }

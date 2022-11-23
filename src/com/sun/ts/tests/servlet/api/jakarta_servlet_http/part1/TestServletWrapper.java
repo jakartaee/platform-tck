@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.part1;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -29,23 +27,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet("/TestServletWrapper")
 @MultipartConfig(maxFileSize = 200)
-public class TestServletWrapper
-    extends com.sun.ts.tests.servlet.api.jakarta_servlet_http.part.TestServlet {
+public class TestServletWrapper extends com.sun.ts.tests.servlet.api.jakarta_servlet_http.part.TestServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  // Simply validate the default behavior of the RequestWrapper is to delegate
-  // the call to the wrapped object.
-  public void service(HttpServletRequest servletRequest,
-      HttpServletResponse servletResponse)
-      throws ServletException, IOException {
-    HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(
-        servletRequest);
-    super.service(wrapper, servletResponse);
-  }
+    // Simply validate the default behavior of the RequestWrapper is to delegate
+    // the call to the wrapped object.
+    public void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+            throws ServletException, IOException {
+        HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(servletRequest);
+        super.service(wrapper, servletResponse);
+    }
 }

@@ -20,18 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.bmp.cm.Tx_SetRollbackOnly;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 
-  public boolean test5() throws RemoteException;
+    public boolean test5() throws RemoteException;
 
-  public boolean test8() throws RemoteException;
+    public boolean test8() throws RemoteException;
 
-  public boolean test9() throws RemoteException;
+    public boolean test9() throws RemoteException;
 }

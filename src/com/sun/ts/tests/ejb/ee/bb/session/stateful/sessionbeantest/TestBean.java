@@ -20,37 +20,34 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public void ping() throws RemoteException;
+    public void ping() throws RemoteException;
 
-  public void setCallBack(CallBack ref) throws RemoteException;
+    public void setCallBack(CallBack ref) throws RemoteException;
 
-  public boolean isCreateLifeCycle1() throws RemoteException;
+    public boolean isCreateLifeCycle1() throws RemoteException;
 
-  public boolean isCreateLifeCycle2() throws RemoteException;
+    public boolean isCreateLifeCycle2() throws RemoteException;
 
-  public boolean isSyncLifeCycle1(String tx) throws RemoteException;
+    public boolean isSyncLifeCycle1(String tx) throws RemoteException;
 
-  public boolean isSyncLifeCycle2(String tx, boolean b1, boolean b2)
-      throws RemoteException;
+    public boolean isSyncLifeCycle2(String tx, boolean b1, boolean b2) throws RemoteException;
 
-  public boolean isSyncLifeCycle3(String tx, boolean b1, boolean b2)
-      throws RemoteException;
+    public boolean isSyncLifeCycle3(String tx, boolean b1, boolean b2) throws RemoteException;
 
-  public boolean noSyncLifeCycle(String tx) throws RemoteException;
+    public boolean noSyncLifeCycle(String tx) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean beginTransaction() throws RemoteException;
+    public boolean beginTransaction() throws RemoteException;
 
-  public boolean commitTransaction() throws RemoteException;
+    public boolean commitTransaction() throws RemoteException;
 
-  public boolean okay(String tx) throws RemoteException;
+    public boolean okay(String tx) throws RemoteException;
 
-  public boolean not_okay(String tx) throws RemoteException;
+    public boolean not_okay(String tx) throws RemoteException;
 }

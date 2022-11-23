@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient;
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
 
 public class ClientPNPSNBCLogicalHandler extends LogicalHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientPortNamePatternShouldNotBeCalledLogicalHandler";
+    private static final String HANDLERNAME = "ClientPortNamePatternShouldNotBeCalledLogicalHandler";
 
-  public ClientPNPSNBCLogicalHandler() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientPNPSNBCLogicalHandler() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

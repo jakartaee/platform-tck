@@ -23,28 +23,27 @@ package com.sun.ts.tests.ejb30.common.equals;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TestIF {
-  public static final boolean LOG_IF_OK = true;
+    public static final boolean LOG_IF_OK = true;
 
-  public void remove();
+    public void remove();
 
-  public void selfEquals() throws TestFailedException;
+    public void selfEquals() throws TestFailedException;
 
-  // this method is only for stateless beans
-  public void otherEquals() throws TestFailedException;
+    // this method is only for stateless beans
+    public void otherEquals() throws TestFailedException;
 
-  // this method is only for stateful beans
-  public void otherNotEquals() throws TestFailedException;
+    // this method is only for stateful beans
+    public void otherNotEquals() throws TestFailedException;
 
-  public void differentInterfaceNotEqual() throws TestFailedException;
+    public void differentInterfaceNotEqual() throws TestFailedException;
 
-  public void selfEqualsLookup() throws TestFailedException;
+    public void selfEqualsLookup() throws TestFailedException;
 
-  // this method is only for stateless beans
-  public void otherEqualsLookup() throws TestFailedException;
+    // this method is only for stateless beans
+    public void otherEqualsLookup() throws TestFailedException;
 
-  // this method is only for stateful beans
-  public void otherNotEqualsLookup() throws TestFailedException;
+    // this method is only for stateful beans
+    public void otherNotEqualsLookup() throws TestFailedException;
 
-  public void differentInterfaceNotEqualLookup() throws TestFailedException;
-
+    public void differentInterfaceNotEqualLookup() throws TestFailedException;
 }

@@ -16,26 +16,24 @@
 
 package com.sun.ts.tests.jpa.common.schema30;
 
-import java.sql.Date;
-
 import jakarta.annotation.Generated;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;
+import java.sql.Date;
 
 @Generated("EclipseLink JPA 2.0 Canonical Model Generation")
 @StaticMetamodel(Employee.class)
 public class Employee_ {
 
-  public static volatile SingularAttribute<Employee, Integer> id;
+    public static volatile SingularAttribute<Employee, Integer> id;
 
-  public static volatile SingularAttribute<Employee, String> lastName;
+    public static volatile SingularAttribute<Employee, String> lastName;
 
-  public static volatile SingularAttribute<Employee, Department> department;
+    public static volatile SingularAttribute<Employee, Department> department;
 
-  public static volatile SingularAttribute<Employee, Date> hireDate;
+    public static volatile SingularAttribute<Employee, Date> hireDate;
 
-  public static volatile SingularAttribute<Employee, Float> salary;
+    public static volatile SingularAttribute<Employee, Float> salary;
 
-  public static volatile SingularAttribute<Employee, String> firstName;
-
+    public static volatile SingularAttribute<Employee, String> firstName;
 }

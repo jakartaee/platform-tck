@@ -20,19 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.pkey;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface FloatBeanHome extends EJBHome {
 
-  public FloatBean create(Properties p, float id, String name, float price)
-      throws RemoteException, CreateException;
+    public FloatBean create(Properties p, float id, String name, float price) throws RemoteException, CreateException;
 
-  public FloatBean findByPrimaryKey(Float key)
-      throws RemoteException, FinderException;
-
+    public FloatBean findByPrimaryKey(Float key) throws RemoteException, FinderException;
 }

@@ -20,39 +20,37 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics.TestLogic;
+import java.util.Properties;
 
 public class CallerBeanEJB extends StatelessWrapper {
 
-  public boolean testStatefulRemote(Properties props) {
-    return TestLogic.testStatefulRemote(nctx, props);
-  }
+    public boolean testStatefulRemote(Properties props) {
+        return TestLogic.testStatefulRemote(nctx, props);
+    }
 
-  public boolean testStatefulLocal(Properties props) {
-    return TestLogic.testStatefulLocal(nctx, props);
-  }
+    public boolean testStatefulLocal(Properties props) {
+        return TestLogic.testStatefulLocal(nctx, props);
+    }
 
-  public boolean testStatefulBoth(Properties props) {
-    return TestLogic.testStatefulBoth(nctx, props);
-  }
+    public boolean testStatefulBoth(Properties props) {
+        return TestLogic.testStatefulBoth(nctx, props);
+    }
 
-  public boolean testCMP20Remote(Properties props) {
-    return TestLogic.testCMP20Remote(nctx, props);
-  }
+    public boolean testCMP20Remote(Properties props) {
+        return TestLogic.testCMP20Remote(nctx, props);
+    }
 
-  public boolean testCMP20Local(Properties props) {
-    return TestLogic.testCMP20Local(nctx, props);
-  }
+    public boolean testCMP20Local(Properties props) {
+        return TestLogic.testCMP20Local(nctx, props);
+    }
 
-  public boolean testCMP20Both(Properties props) {
-    return TestLogic.testCMP20Both(nctx, props);
-  }
+    public boolean testCMP20Both(Properties props) {
+        return TestLogic.testCMP20Both(nctx, props);
+    }
 
-  public void cleanUpBean() {
-    TestLogic.cleanUpStatefulBean();
-  }
-
+    public void cleanUpBean() {
+        TestLogic.cleanUpStatefulBean();
+    }
 }

@@ -20,23 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBeanTx extends EJBObject {
-  public void syncTest(boolean b) throws RemoteException;
+    public void syncTest(boolean b) throws RemoteException;
 
-  public void syncTestWithDbConnection(boolean b1, boolean b2)
-      throws RemoteException;
+    public void syncTestWithDbConnection(boolean b1, boolean b2) throws RemoteException;
 
-  public boolean isSyncLifeCycle1(boolean b) throws RemoteException;
+    public boolean isSyncLifeCycle1(boolean b) throws RemoteException;
 
-  public boolean isSyncLifeCycle2() throws RemoteException;
+    public boolean isSyncLifeCycle2() throws RemoteException;
 
-  public boolean isSyncLifeCycle3() throws RemoteException;
+    public boolean isSyncLifeCycle3() throws RemoteException;
 
-  public boolean noSyncLifeCycle() throws RemoteException;
+    public boolean noSyncLifeCycle() throws RemoteException;
 
-  public void dbUnConnect() throws RemoteException;
+    public void dbUnConnect() throws RemoteException;
 }

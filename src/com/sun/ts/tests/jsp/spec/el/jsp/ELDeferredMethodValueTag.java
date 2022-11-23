@@ -16,41 +16,39 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ELDeferredMethodValueTag extends SimpleTagSupport {
 
-  private MethodExpression litExpr;
+    private MethodExpression litExpr;
 
-  private MethodExpression poundExpr;
+    private MethodExpression poundExpr;
 
-  public void setLitExpr(MethodExpression litExpr) {
-    this.litExpr = litExpr;
-  }
-
-  public void setPoundExpr(MethodExpression poundExpr) {
-    this.poundExpr = poundExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    ELContext elContext = getJspContext().getELContext();
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      litExpr.getMethodInfo(elContext);
-      out.println("getMethodInfo() called for literal expression");
-      poundExpr.getMethodInfo(elContext);
-      out.println("Test PASSED.");
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ELDeferredMethodValueTag");
+    public void setLitExpr(MethodExpression litExpr) {
+        this.litExpr = litExpr;
     }
-  }
+
+    public void setPoundExpr(MethodExpression poundExpr) {
+        this.poundExpr = poundExpr;
+    }
+
+    public void doTag() throws JspException, IOException {
+        ELContext elContext = getJspContext().getELContext();
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            litExpr.getMethodInfo(elContext);
+            out.println("getMethodInfo() called for literal expression");
+            poundExpr.getMethodInfo(elContext);
+            out.println("Test PASSED.");
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ELDeferredMethodValueTag");
+        }
+    }
 }

@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.pm.bm.TxR_Diamond;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface BeanAHome extends EJBHome {
-  public BeanA create() throws RemoteException, CreateException;
+    public BeanA create() throws RemoteException, CreateException;
 
-  public BeanA create(Properties props) throws RemoteException, CreateException;
+    public BeanA create(Properties props) throws RemoteException, CreateException;
 }

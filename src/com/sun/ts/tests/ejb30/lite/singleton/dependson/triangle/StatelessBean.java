@@ -21,13 +21,12 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
 public class StatelessBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "StatelessBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "StatelessBean";
+    }
 }

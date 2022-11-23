@@ -24,16 +24,15 @@ import jakarta.resource.spi.work.Work;
 
 public class WorkXid implements Work {
 
-  public WorkXid() {
-    Debug.trace("WorkXid.constructor");
-  }
+    public WorkXid() {
+        Debug.trace("WorkXid.constructor");
+    }
 
-  public void release() {
-    Debug.trace("WorkXid.release");
-  }
+    public void release() {
+        Debug.trace("WorkXid.release");
+    }
 
-  public void run() {
-    Debug.trace("WorkXid.run");
-  }
-
+    public void run() {
+        Debug.trace("WorkXid.run");
+    }
 }

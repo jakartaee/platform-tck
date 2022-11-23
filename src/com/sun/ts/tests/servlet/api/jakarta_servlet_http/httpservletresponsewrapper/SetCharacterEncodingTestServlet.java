@@ -58,22 +58,19 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletresponsewrapper;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.api.common.response.ResponseTests;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
+import java.io.IOException;
 
 public class SetCharacterEncodingTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    HttpServletResponseWrapper hsrw = new HttpServletResponseWrapper(response);
-    ResponseTests.setCharacterEncodingTest(request, hsrw);
-  }
+        HttpServletResponseWrapper hsrw = new HttpServletResponseWrapper(response);
+        ResponseTests.setCharacterEncodingTest(request, hsrw);
+    }
 }

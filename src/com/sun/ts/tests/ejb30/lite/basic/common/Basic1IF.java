@@ -22,6 +22,5 @@ package com.sun.ts.tests.ejb30.lite.basic.common;
 
 public interface Basic1IF {
 
-  int add(int a, int b);
-
+    int add(int a, int b);
 }

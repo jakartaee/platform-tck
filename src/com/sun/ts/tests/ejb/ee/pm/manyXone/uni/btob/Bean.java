@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXone.uni.btob;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Bean extends EJBObject {
-  // Business Methods for Bean CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for Bean CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public int getValue() throws RemoteException;
+    public int getValue() throws RemoteException;
 
-  public void setValue(int v) throws RemoteException;
+    public void setValue(int v) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void init(Properties p) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void init(Properties p) throws RemoteException;
 
-  public boolean isA() throws RemoteException;
+    public boolean isA() throws RemoteException;
 
-  public ADVC getAInfo(int i) throws RemoteException;
+    public ADVC getAInfo(int i) throws RemoteException;
 
-  public boolean doAssignmentTest() throws RemoteException;
+    public boolean doAssignmentTest() throws RemoteException;
 }

@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.negdep.onerror.client.toomanyargs;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -29,30 +28,29 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class AnnotatedOnErrorClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class AnnotatedOnErrorClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(msg);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        clientEndpoint.onMessage(msg);
+    }
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        clientEndpoint.onClose(session, closeReason);
+    }
 
-  @SuppressWarnings("unused")
-  @OnError
-  public void onError(Session session, Throwable t, CloseReason closeReason) {
-    clientEndpoint.onError(session, t);
-  }
+    @SuppressWarnings("unused")
+    @OnError
+    public void onError(Session session, Throwable t, CloseReason closeReason) {
+        clientEndpoint.onError(session, t);
+    }
 }

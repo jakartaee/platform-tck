@@ -24,12 +24,12 @@ import com.sun.ts.lib.util.TestUtil;
  *  This should lookup and invoke the vehicle in the container (if there is one).
  */
 public class JaspicServletVehicleRunner extends JaspicVehicleRunner {
-  protected Status run() {
-    // run in a jaspicservlet
-    sTestStatus = runWebVehicleTest(sVehicle);
+    protected Status run() {
+        // run in a jaspicservlet
+        sTestStatus = runWebVehicleTest(sVehicle);
 
-    TestUtil.logMsg("Test: returning from running in a jaspicservlet vehicle");
+        TestUtil.logMsg("Test: returning from running in a jaspicservlet vehicle");
 
-    return sTestStatus;
-  }// run
+        return sTestStatus;
+    } // run
 }

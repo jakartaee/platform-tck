@@ -17,27 +17,23 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.pasrv.nomoreendpoints;
 
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.server.ServerEndpointConfig;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.websocket.Endpoint;
-import jakarta.websocket.server.ServerEndpointConfig;
+public class AppConfig implements jakarta.websocket.server.ServerApplicationConfig {
 
-public class AppConfig
-    implements jakarta.websocket.server.ServerApplicationConfig {
+    @Override
+    public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+        Set<ServerEndpointConfig> set = new HashSet<>();
+        return set;
+    }
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    return set;
-  }
-
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(OnMessageServerEndpoint.class);
-    return set;
-  }
-
+    @Override
+    public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+        Set<Class<?>> set = new HashSet<>();
+        set.add(OnMessageServerEndpoint.class);
+        return set;
+    }
 }

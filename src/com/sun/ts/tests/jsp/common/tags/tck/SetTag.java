@@ -21,22 +21,21 @@ import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 /**
- * This tag is a simplified version of the jstl c:set tag. It assigns a String
- * value to a variable.
+ * This tag is a simplified version of the jstl c:set tag. It assigns a String value to a variable.
  */
 public class SetTag extends SimpleTagSupport {
 
-  private String var, value;
+    private String var, value;
 
-  public void setVar(String var) {
-    this.var = var;
-  }
+    public void setVar(String var) {
+        this.var = var;
+    }
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-  public void doTag() throws JspException {
-    getJspContext().setAttribute(var, value, PageContext.PAGE_SCOPE);
-  }
+    public void doTag() throws JspException {
+        getJspContext().setAttribute(var, value, PageContext.PAGE_SCOPE);
+    }
 }

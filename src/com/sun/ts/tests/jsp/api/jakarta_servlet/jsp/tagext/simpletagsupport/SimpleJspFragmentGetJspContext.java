@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleJspFragmentGetJspContext extends SimpleTagSupport {
-  public SimpleJspFragmentGetJspContext() {
-    super();
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleJspFragmentGetJspContext] in doTag()");
-    JspFragment aBody = getJspBody();
-    JspContext ctx = aBody.getJspContext();
-    if (ctx == null) {
-      this.getJspContext().getOut().println(
-          "Test FAILED in simple tag. jspFragment.getJspContext() returned null.");
-    } else {
-      ctx.getOut().println("Test PASSED in simple tag.");
+    public SimpleJspFragmentGetJspContext() {
+        super();
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleJspFragmentGetJspContext] in doTag()");
+        JspFragment aBody = getJspBody();
+        JspContext ctx = aBody.getJspContext();
+        if (ctx == null) {
+            this.getJspContext()
+                    .getOut()
+                    .println("Test FAILED in simple tag. jspFragment.getJspContext() returned null.");
+        } else {
+            ctx.getOut().println("Test PASSED in simple tag.");
+        }
+    }
 }

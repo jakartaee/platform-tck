@@ -26,18 +26,17 @@ import jakarta.ws.rs.Path;
 @ValidateOnExecution(type = ExecutableType.NON_GETTER_METHODS)
 public class ValidateExecutableResource {
 
-  @Path("nogetter")
-  @GET
-  @Valid
-  public NotShortNorFiveStringBean stringBean() {
-    return new NotShortNorFiveStringBean("1");
-  }
+    @Path("nogetter")
+    @GET
+    @Valid
+    public NotShortNorFiveStringBean stringBean() {
+        return new NotShortNorFiveStringBean("1");
+    }
 
-  @Path("getter")
-  @GET
-  @Valid
-  public NotShortNorFiveStringBean getStringBean() {
-    return new NotShortNorFiveStringBean("1");
-  }
-
+    @Path("getter")
+    @GET
+    @Valid
+    public NotShortNorFiveStringBean getStringBean() {
+        return new NotShortNorFiveStringBean("1");
+    }
 }

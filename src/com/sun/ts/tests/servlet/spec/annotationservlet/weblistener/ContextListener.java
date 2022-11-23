@@ -24,28 +24,28 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener(value = "ContextListener")
 public final class ContextListener implements ServletContextListener {
 
-  private ServletContext context = null;
+    private ServletContext context = null;
 
-  public void contextDestroyed(ServletContextEvent event) {
-    createAttribute("ContextDestroyed");
-    this.context = null;
-  }
-
-  public void contextInitialized(ServletContextEvent event) {
-    this.context = event.getServletContext();
-    createAttribute("ContextInitialized");
-  }
-
-  private void createAttribute(String s) {
-    String tmp = null;
-    Object o = context.getAttribute("ContextListener");
-    if (o != null) {
-      if (o instanceof String) {
-        tmp = (String) o + s;
-      }
-    } else {
-      tmp = s;
+    public void contextDestroyed(ServletContextEvent event) {
+        createAttribute("ContextDestroyed");
+        this.context = null;
     }
-    context.setAttribute("ContextListener", tmp);
-  }
+
+    public void contextInitialized(ServletContextEvent event) {
+        this.context = event.getServletContext();
+        createAttribute("ContextInitialized");
+    }
+
+    private void createAttribute(String s) {
+        String tmp = null;
+        Object o = context.getAttribute("ContextListener");
+        if (o != null) {
+            if (o instanceof String) {
+                tmp = (String) o + s;
+            }
+        } else {
+            tmp = s;
+        }
+        context.setAttribute("ContextListener", tmp);
+    }
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.interceptor.listener.descriptor;
 
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -52,45 +51,43 @@ import jakarta.jms.QueueConnectionFactory;
 // })
 
 public class AroundInvokeBean extends AroundInvokeBase {
-  @Resource(name = "ejbContext")
-  private MessageDrivenContext ejbContext;
+    @Resource(name = "ejbContext")
+    private MessageDrivenContext ejbContext;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public AroundInvokeBean() {
+        super();
+    }
 
-  public void onMessage(Message msg) {
-    AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
-  }
+    public void onMessage(Message msg) {
+        AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    // this interceptor should be invoked last, unless overrid by deployment
-    // descriptor.
-    Object result = null;
-    int orderInChain = 3;
-    result = AroundInvokeTestMDBImpl.intercept2(ctx, orderInChain);
-    return result;
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        // this interceptor should be invoked last, unless overrid by deployment
+        // descriptor.
+        Object result = null;
+        int orderInChain = 3;
+        result = AroundInvokeTestMDBImpl.intercept2(ctx, orderInChain);
+        return result;
+    }
 
-  @PostConstruct
-  private void postConstruct() {
+    @PostConstruct
+    private void postConstruct() {
+    }
 
-  }
+    @PreDestroy
+    private void preDestroy() {
+    }
 
-  @PreDestroy
-  private void preDestroy() {
-
-  }
-
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 }

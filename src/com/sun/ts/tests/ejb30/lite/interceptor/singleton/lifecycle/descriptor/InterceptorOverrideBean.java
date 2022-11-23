@@ -21,25 +21,23 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.descriptor;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
 // @ExcludeDefaultInterceptors
-public class InterceptorOverrideBean extends InterceptorBeanBase
-    implements InterceptorIF {
+public class InterceptorOverrideBean extends InterceptorBeanBase implements InterceptorIF {
 
-  private static final String simpleName = "InterceptorOverrideBean";
+    private static final String simpleName = "InterceptorOverrideBean";
 
-  // @PostConstruct specified in ejb-jar.xml
-  protected void postConstruct() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    // @PostConstruct specified in ejb-jar.xml
+    protected void postConstruct() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 
-  @Override // override the superclass' PostConstruct method with a
-            // non-PostConstruct method
-  final protected void postConstructInInterceptorBeanBase() {
-    throw new RuntimeException(
-        "Overriding the superclass' PostConstruct method with a non-PostConstruct method, and neither is to be called.");
-  }
+    @Override // override the superclass' PostConstruct method with a
+    // non-PostConstruct method
+    protected final void postConstructInInterceptorBeanBase() {
+        throw new RuntimeException(
+                "Overriding the superclass' PostConstruct method with a non-PostConstruct method, and neither is to be called.");
+    }
 }

@@ -27,29 +27,28 @@ import com.sun.ts.lib.harness.ServiceEETest;
  * Class used as a client of all vehicle tests.
  */
 public class VehicleClient extends ServiceEETest {
-  String[] sVehicles;
+    String[] sVehicles;
 
-  private static Object theSharedObject = null;
+    private static Object theSharedObject = null;
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    VehicleClient client = new VehicleClient();
-    Status s = client.run(args, System.out, System.err);
-    s.exit();
-  }
+    /* Run test in standalone mode */
+    public static void main(String[] args) {
+        VehicleClient client = new VehicleClient();
+        Status s = client.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * Set shared object
-   */
-  public static void setClientSharedObject(Object o) {
-    theSharedObject = o;
-  }
+    /*
+     * Set shared object
+     */
+    public static void setClientSharedObject(Object o) {
+        theSharedObject = o;
+    }
 
-  /*
-   * Get shared object
-   */
-  public static Object getClientSharedObject() {
-    return theSharedObject;
-  }
-
+    /*
+     * Get shared object
+     */
+    public static Object getClientSharedObject() {
+        return theSharedObject;
+    }
 }

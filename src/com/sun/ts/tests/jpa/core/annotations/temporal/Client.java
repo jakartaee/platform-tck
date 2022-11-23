@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.temporal;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
@@ -66,10 +65,10 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: basicFieldTest
-     * 
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
-     * 
-     * @test_Strategy:  Used with a Basic annotation for field access
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
+     *
+     * @test_Strategy: Used with a Basic annotation for field access
      */
     public void basicFieldTest() throws Fault {
 
@@ -92,15 +91,14 @@ public class Client extends PMClientBase {
         if (!pass) {
             throw new Fault("basicFieldTest failed");
         }
-
     }
 
     /*
      * @testName: basicPropertyTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
      *
-     * @test_Strategy:  Used with a Basic annotation for property access
+     * @test_Strategy: Used with a Basic annotation for property access
      */
     public void basicPropertyTest() throws Fault {
         boolean pass = false;
@@ -108,7 +106,7 @@ public class Client extends PMClientBase {
             A_Property a = getEntityManager().find(A_Property.class, "2");
             if (a != null) {
                 if (aPropertyRef.equals(a)) {
-                    TestUtil.logTrace("Received expected entity:"+a.toString());
+                    TestUtil.logTrace("Received expected entity:" + a.toString());
                     pass = true;
                 } else {
                     TestUtil.logErr("Expected:" + aPropertyRef.toString() + ", actual:" + a.toString());
@@ -124,14 +122,15 @@ public class Client extends PMClientBase {
         if (!pass) {
             throw new Fault("basicPropertyTest failed");
         }
-
     }
 
     /*
-    * @testName: fieldElementCollectionTemporalTest
-    * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
-    * @test_Strategy:   ElementCollection of a basic type
-    */
+     * @testName: fieldElementCollectionTemporalTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
+     *
+     * @test_Strategy: ElementCollection of a basic type
+     */
     public void fieldElementCollectionTemporalTest() throws Fault {
         boolean pass = false;
         try {
@@ -140,7 +139,9 @@ public class Client extends PMClientBase {
             A_Field a = getEntityManager().find(A_Field.class, "1");
             if (a != null) {
                 TestUtil.logTrace("Found A: " + a.toString());
-                if (a.getDates().containsAll(expectedDates) && expectedDates.containsAll(a.getDates()) && a.getDates().size() == expectedDates.size()) {
+                if (a.getDates().containsAll(expectedDates)
+                        && expectedDates.containsAll(a.getDates())
+                        && a.getDates().size() == expectedDates.size()) {
                     TestUtil.logTrace("Received expected Dates:");
                     for (Date d : a.getDates()) {
                         TestUtil.logTrace("date:" + d);
@@ -171,10 +172,12 @@ public class Client extends PMClientBase {
     }
 
     /*
-    * @testName: propertyElementCollectionTemporalTest
-    * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
-    * @test_Strategy:   ElementCollection of a basic type
-    */
+     * @testName: propertyElementCollectionTemporalTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
+     *
+     * @test_Strategy: ElementCollection of a basic type
+     */
     public void propertyElementCollectionTemporalTest() throws Fault {
         boolean pass = false;
         try {
@@ -183,7 +186,9 @@ public class Client extends PMClientBase {
             A_Property a = getEntityManager().find(A_Property.class, "2");
             if (a != null) {
                 TestUtil.logTrace("Found A2: " + a.toString());
-                if (a.getDates().containsAll(expectedCalendars) && expectedCalendars.containsAll(a.getDates()) && a.getDates().size() == expectedCalendars.size()) {
+                if (a.getDates().containsAll(expectedCalendars)
+                        && expectedCalendars.containsAll(a.getDates())
+                        && a.getDates().size() == expectedCalendars.size()) {
                     TestUtil.logTrace("Received expected Dates:");
                     for (Calendar d : a.getDates()) {
                         TestUtil.logTrace("date:" + d);
@@ -213,13 +218,12 @@ public class Client extends PMClientBase {
         }
     }
 
-
     /*
      * @testName: idFieldTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
      *
-     * @test_Strategy:  Used with a id annotation for field access
+     * @test_Strategy: Used with a id annotation for field access
      */
     public void idFieldTest() throws Fault {
 
@@ -242,15 +246,14 @@ public class Client extends PMClientBase {
         if (!pass) {
             throw new Fault("idFieldTest failed");
         }
-
     }
 
     /*
      * @testName: idPropertyTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
      *
-     * @test_Strategy:  Used with a id annotation for property access
+     * @test_Strategy: Used with a id annotation for property access
      */
     public void idPropertyTest() throws Fault {
         boolean pass = false;
@@ -258,7 +261,7 @@ public class Client extends PMClientBase {
             A2_Property a = getEntityManager().find(A2_Property.class, calendar2);
             if (a != null) {
                 if (a2PropertyRef.equals(a)) {
-                    TestUtil.logTrace("Received expected entity:"+a.toString());
+                    TestUtil.logTrace("Received expected entity:" + a.toString());
                     pass = true;
                 } else {
                     TestUtil.logErr("Expected:" + a2PropertyRef.toString() + ", actual:" + a.toString());
@@ -274,9 +277,7 @@ public class Client extends PMClientBase {
         if (!pass) {
             throw new Fault("idPropertyTest failed");
         }
-
     }
-
 
     public void cleanup() throws Fault {
         TestUtil.logTrace("cleanup");
@@ -299,25 +300,24 @@ public class Client extends PMClientBase {
             calendar = Calendar.getInstance();
             calendar.clear();
             calendar.set(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
-            calendar2 = getCalDate(2001,06,27);
+            calendar2 = getCalDate(2001, 06, 27);
             String sCalendar2 = "2001-06-27";
 
             expectedDates = new ArrayList<Date>();
             expectedDates.add(getUtilDate("2000-02-14"));
             expectedDates.add(getUtilDate("2001-06-27"));
             expectedDates.add(getUtilDate("2002-07-07"));
-            aFieldRef = new A_Field("1", date, calendar,expectedDates);
+            aFieldRef = new A_Field("1", date, calendar, expectedDates);
 
             expectedCalendars = new ArrayList<Calendar>();
-            expectedCalendars.add(getCalDate(2000,02,14));
-            expectedCalendars.add(getCalDate(2001,06,27));
-            expectedCalendars.add(getCalDate(2002,07,07));
+            expectedCalendars.add(getCalDate(2000, 02, 14));
+            expectedCalendars.add(getCalDate(2001, 06, 27));
+            expectedCalendars.add(getCalDate(2002, 07, 07));
             aPropertyRef = new A_Property("2", date, calendar, expectedCalendars);
             getEntityManager().persist(aFieldRef);
             getEntityManager().persist(aPropertyRef);
 
-
-            a2FieldRef = new A2_Field(date2,sDate2);
+            a2FieldRef = new A2_Field(date2, sDate2);
             a2PropertyRef = new A2_Property(calendar2, sCalendar2);
 
             getEntityManager().persist(a2FieldRef);
@@ -336,7 +336,6 @@ public class Client extends PMClientBase {
                 TestUtil.logErr("Unexpected Exception during Rollback:", re);
             }
         }
-
     }
 
     private void removeTestData() {

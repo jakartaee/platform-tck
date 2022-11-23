@@ -17,34 +17,30 @@
 
 package com.sun.ts.tests.websocket.negdep.onerror.srv.toomanyargs;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid")
 public class OnErrorServerEndpoint {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(String echo) {
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String echo(String echo) {
 
-    // return echo;
-    throw new RuntimeException();
-  }
+        // return echo;
+        throw new RuntimeException();
+    }
 
-  @SuppressWarnings("unused")
-  @OnError
-  public void onError(Session session, Throwable thr, CloseReason reason)
-      throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @SuppressWarnings("unused")
+    @OnError
+    public void onError(Session session, Throwable thr, CloseReason reason) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.casesens;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.enventry.casesens.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+import java.util.Properties;
 
 public class MsgBean extends MDBWrapper {
 
-  public Boolean testEntryCaseSensitivity(Properties props) {
-    boolean pass;
+    public Boolean testEntryCaseSensitivity(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testCaseSensitivity(nctx);
-    return new Boolean(pass);
-  }
-
+        pass = TestCode.testCaseSensitivity(nctx);
+        return new Boolean(pass);
+    }
 }

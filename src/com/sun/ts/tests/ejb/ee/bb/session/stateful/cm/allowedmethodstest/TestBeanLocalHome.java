@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
+import java.util.Properties;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
-  public TestBeanLocal create(Properties p, int doTest) throws CreateException;
+    public TestBeanLocal create(Properties p, int doTest) throws CreateException;
 }

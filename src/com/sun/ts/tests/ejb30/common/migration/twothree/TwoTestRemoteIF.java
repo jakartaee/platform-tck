@@ -20,20 +20,16 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
-import jakarta.ejb.EJBObject;
-
 public interface TwoTestRemoteIF extends EJBObject {
-  public void callRemote() throws TestFailedException, RemoteException;
+    public void callRemote() throws TestFailedException, RemoteException;
 
-  public void callLocal() throws TestFailedException, RemoteException;
+    public void callLocal() throws TestFailedException, RemoteException;
 
-  public void callRemoteSameTxContext()
-      throws TestFailedException, RemoteException;
+    public void callRemoteSameTxContext() throws TestFailedException, RemoteException;
 
-  public void callLocalSameTxContext()
-      throws TestFailedException, RemoteException;
+    public void callLocalSameTxContext() throws TestFailedException, RemoteException;
 }

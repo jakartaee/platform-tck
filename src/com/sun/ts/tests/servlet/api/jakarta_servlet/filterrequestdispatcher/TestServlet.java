@@ -20,71 +20,62 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void forwardServletTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    String path = "/generic/DummyServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
+    public void forwardServletTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        String path = "/generic/DummyServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
 
-  public void forwardJSPTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/generic/dummyJSP";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
+    public void forwardJSPTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/generic/dummyJSP";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
 
-  public void forwardHTMLTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/dummy.html";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
+    public void forwardHTMLTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/dummy.html";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
 
-  public void forwardTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/forward/ForwardedServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
+    public void forwardTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/forward/ForwardedServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
 
-  public void includeServletTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    String path = "/generic/DummyServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.include(request, response);
-  }
+    public void includeServletTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        String path = "/generic/DummyServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.include(request, response);
+    }
 
-  public void includeJSPTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/generic/dummyJSP";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.include(request, response);
-  }
+    public void includeJSPTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/generic/dummyJSP";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.include(request, response);
+    }
 
-  public void includeHTMLTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/dummy.html";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.include(request, response);
-  }
+    public void includeHTMLTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/dummy.html";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.include(request, response);
+    }
 
-  public void includeTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/include/IncludedServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.include(request, response);
-  }
-
+    public void includeTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        String path = "/include/IncludedServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.include(request, response);
+    }
 }

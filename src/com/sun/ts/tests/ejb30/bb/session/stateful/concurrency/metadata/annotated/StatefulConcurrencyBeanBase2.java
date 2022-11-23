@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-
 import jakarta.ejb.AsyncResult;
 import jakarta.ejb.Asynchronous;
+import java.util.concurrent.Future;
 
 @Asynchronous
 public class StatefulConcurrencyBeanBase2 implements StatefulConcurrencyIF {
 
-  public Future<String> ping() {
-    Helper.busyWait(PING_WAIT_MILLIS);
-    return new AsyncResult<String>(
-        String.valueOf(System.identityHashCode(this)));
-  }
-
+    public Future<String> ping() {
+        Helper.busyWait(PING_WAIT_MILLIS);
+        return new AsyncResult<String>(String.valueOf(System.identityHashCode(this)));
+    }
 }

@@ -18,71 +18,62 @@
  *
  * @author Raja Perumal
  */
-
 package com.sun.ts.lib.deliverable.jaspic;
 
-import com.sun.ts.lib.deliverable.PropertyManagerInterface;
-import com.sun.ts.lib.porting.DeploymentInfo;
-import com.sun.ts.lib.implementation.sun.javaee.runtime.SunRIDeploymentInfo;
-import com.sun.ts.lib.deliverable.AbstractDeliverable;
-import com.sun.ts.lib.deliverable.PropertyNotSetException;
-import com.sun.ts.lib.util.TestUtil;
-
 import com.sun.javatest.TestEnvironment;
-
-import java.util.Properties;
-import java.util.Map;
+import com.sun.ts.lib.deliverable.AbstractDeliverable;
+import com.sun.ts.lib.deliverable.PropertyManagerInterface;
+import com.sun.ts.lib.implementation.sun.javaee.runtime.SunRIDeploymentInfo;
+import com.sun.ts.lib.porting.DeploymentInfo;
+import com.sun.ts.lib.util.TestUtil;
 import java.io.File;
+import java.util.Properties;
 
 /**
  * This class serves as a place for JaspicJakartaEE Deliverable specific info.
  */
 public class JaspicJakartaEEDeliverable extends AbstractDeliverable {
 
-  public PropertyManagerInterface createPropertyManager(TestEnvironment te)
-      throws Exception {
+    public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
 
-    JaspicJakartaEEPropertyManager propMgr = JaspicJakartaEEPropertyManager
-        .getJaspicJakartaEEPropertyManager(te);
+        JaspicJakartaEEPropertyManager propMgr = JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager(te);
 
-    // create JaspicJakartaEE specific working directories
-    createDir(propMgr.getProperty("wsdlRepository1"));
-    createDir(propMgr.getProperty("wsdlRepository2"));
-    return propMgr;
-  }
-
-  public PropertyManagerInterface createPropertyManager(Properties p)
-      throws Exception {
-    return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager(p);
-  }
-
-  public PropertyManagerInterface getPropertyManager() throws Exception {
-    return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager();
-  }
-
-  public DeploymentInfo getDeploymentInfo(String earFile,
-      String[] sValidRuntimeInfoFilesArray) {
-    DeploymentInfo info = null;
-    try {
-      info = new SunRIDeploymentInfo(earFile, sValidRuntimeInfoFilesArray);
-    } catch (Exception e) {
-      e.printStackTrace();
+        // create JaspicJakartaEE specific working directories
+        createDir(propMgr.getProperty("wsdlRepository1"));
+        createDir(propMgr.getProperty("wsdlRepository2"));
+        return propMgr;
     }
-    return info;
-  }
 
-  public boolean supportsInterop() {
-    return false;
-  }
-
-  private void createDir(String sDir) throws Exception {
-    File fDir = new File(sDir);
-
-    if (!fDir.exists()) {
-      if (!fDir.mkdirs()) {
-        throw new Exception("Failed to create directory: " + sDir);
-      }
-      TestUtil.logHarnessDebug("Successfully created directory: " + sDir);
+    public PropertyManagerInterface createPropertyManager(Properties p) throws Exception {
+        return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager(p);
     }
-  }
+
+    public PropertyManagerInterface getPropertyManager() throws Exception {
+        return JaspicJakartaEEPropertyManager.getJaspicJakartaEEPropertyManager();
+    }
+
+    public DeploymentInfo getDeploymentInfo(String earFile, String[] sValidRuntimeInfoFilesArray) {
+        DeploymentInfo info = null;
+        try {
+            info = new SunRIDeploymentInfo(earFile, sValidRuntimeInfoFilesArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return info;
+    }
+
+    public boolean supportsInterop() {
+        return false;
+    }
+
+    private void createDir(String sDir) throws Exception {
+        File fDir = new File(sDir);
+
+        if (!fDir.exists()) {
+            if (!fDir.mkdirs()) {
+                throw new Exception("Failed to create directory: " + sDir);
+            }
+            TestUtil.logHarnessDebug("Successfully created directory: " + sDir);
+        }
+    }
 }

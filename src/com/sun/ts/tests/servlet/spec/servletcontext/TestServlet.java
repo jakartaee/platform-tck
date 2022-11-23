@@ -16,32 +16,30 @@
 
 package com.sun.ts.tests.servlet.spec.servletcontext;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.descriptor.JspConfigDescriptor;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void getJspConfigDescriptorTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
-    PrintWriter pw = response.getWriter();
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
-    JspConfigDescriptor results = context.getJspConfigDescriptor();
-    if (results != null) {
-      passed = false;
-      pw.println("Unexpected JspConfigDescriptor exists: " + results);
+    public void getJspConfigDescriptorTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
+        PrintWriter pw = response.getWriter();
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
+        JspConfigDescriptor results = context.getJspConfigDescriptor();
+        if (results != null) {
+            passed = false;
+            pw.println("Unexpected JspConfigDescriptor exists: " + results);
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

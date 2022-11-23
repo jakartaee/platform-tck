@@ -21,10 +21,9 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 @LocalBean
-
 public class DataStoreBean implements DataStore, DataStoreRemote {
 
-  public String getData() {
-    return "42";
-  }
+    public String getData() {
+        return "42";
+    }
 }

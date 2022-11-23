@@ -20,33 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.clientviewtest;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(Properties p, boolean newTable, int cofID,
-      String cofName, float cofPrice) throws RemoteException, CreateException;
+    public TestBean create(Properties p, boolean newTable, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public TestBean findTheBean(Properties p, Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findTheBean(Properties p, Integer key) throws RemoteException, FinderException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByName(Properties p, String name)
-      throws RemoteException, FinderException;
+    public Collection findByName(Properties p, String name) throws RemoteException, FinderException;
 
-  public Collection findByPrice(Properties p, float price)
-      throws RemoteException, FinderException;
+    public Collection findByPrice(Properties p, float price) throws RemoteException, FinderException;
 
-  public Collection findWithinPriceRange(Properties p, float pmin, float pmax)
-      throws RemoteException, FinderException;
+    public Collection findWithinPriceRange(Properties p, float pmin, float pmax)
+            throws RemoteException, FinderException;
 
-  public Collection findWithinPrimaryKeyRange(Properties p, Integer kmin,
-      Integer kmax) throws RemoteException, FinderException;
+    public Collection findWithinPrimaryKeyRange(Properties p, Integer kmin, Integer kmax)
+            throws RemoteException, FinderException;
 }

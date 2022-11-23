@@ -24,35 +24,31 @@ import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 
 /**
- * This bean is similar to RemoteCalculatorBean, and is added here to see
- * multiple beans with the same remote business interface can co-exist.
+ * This bean is similar to RemoteCalculatorBean, and is added here to see multiple beans with the same remote business
+ * interface can co-exist.
  *
- * This bean contains no resource or ejb injection. It has a post-construct
- * method that is declared in ejb-jar.xml. This is to verify that the post-
- * construct method is invoked even when there is no resource/ejb injection in a
- * bean.
+ * This bean contains no resource or ejb injection. It has a post-construct method that is declared in ejb-jar.xml. This
+ * is to verify that the post- construct method is invoked even when there is no resource/ejb injection in a bean.
  */
 // @Stateless(name="RemoteCalculatorBean2",
 // description="a simple stateless session bean")
 // @Remote({RemoteCalculator.class})
-public class RemoteCalculatorBean2 extends BaseRemoteCalculator
-    implements RemoteCalculator {
+public class RemoteCalculatorBean2 extends BaseRemoteCalculator implements RemoteCalculator {
 
-  private int postConstructCallsCount;
+    private int postConstructCallsCount;
 
-  public RemoteCalculatorBean2() {
-  }
+    public RemoteCalculatorBean2() {
+    }
 
-  // @PostConstruct
-  private void postConstruct() {
-    postConstructCallsCount++;
-  }
+    // @PostConstruct
+    private void postConstruct() {
+        postConstructCallsCount++;
+    }
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    int retValue;
-    retValue = super.remoteAdd(a, b);
-    return retValue + postConstructCallsCount;
-  }
-
+    @Override
+    public int remoteAdd(int a, int b) {
+        int retValue;
+        retValue = super.remoteAdd(a, b);
+        return retValue + postConstructCallsCount;
+    }
 }

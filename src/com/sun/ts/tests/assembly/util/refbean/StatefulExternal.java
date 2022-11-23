@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface StatefulExternal extends EJBObject {
-  public boolean isTestStatefulExternal() throws RemoteException;
+    public boolean isTestStatefulExternal() throws RemoteException;
 }

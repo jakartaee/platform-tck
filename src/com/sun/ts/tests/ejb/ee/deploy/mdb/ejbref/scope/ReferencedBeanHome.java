@@ -19,13 +19,11 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface ReferencedBeanHome extends EJBHome {
 
-  public ReferencedBean create() throws RemoteException, CreateException;
-
+    public ReferencedBean create() throws RemoteException, CreateException;
 }

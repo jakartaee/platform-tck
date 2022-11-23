@@ -22,34 +22,34 @@ package com.sun.ts.tests.integration.util;
 
 public class Account implements java.io.Serializable {
 
-  private int id;
+    private int id;
 
-  private double balance;
+    private double balance;
 
-  public Account(int n) {
-    this(n, 0.0);
-  }
+    public Account(int n) {
+        this(n, 0.0);
+    }
 
-  public Account(int n, double v) {
-    id = n;
-    balance = v;
-  }
+    public Account(int n, double v) {
+        id = n;
+        balance = v;
+    }
 
-  public int id() {
-    return id;
-  }
+    public int id() {
+        return id;
+    }
 
-  public double balance() {
-    return balance;
-  }
+    public double balance() {
+        return balance;
+    }
 
-  public double deposit(double v) {
-    balance += v;
-    return balance;
-  }
+    public double deposit(double v) {
+        balance += v;
+        return balance;
+    }
 
-  public double withdraw(double v) {
-    balance -= v;
-    return balance;
-  }
+    public double withdraw(double v) {
+        balance -= v;
+        return balance;
+    }
 }

@@ -20,71 +20,68 @@
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
 
 public class BeanBase implements CommonSingletonIF {
-  @Resource
-  private EJBContext ejbContext;
+    @Resource
+    private EJBContext ejbContext;
 
-  @EJB
-  private ASingletonBean aSingleton; // no interface
+    @EJB
+    private ASingletonBean aSingleton; // no interface
 
-  @EJB
-  private BSingletonIF bSingleton; // 1 interface
+    @EJB
+    private BSingletonIF bSingleton; // 1 interface
 
-  @EJB
-  private CSingletonIF cSingleton; // c interface 1
+    @EJB
+    private CSingletonIF cSingleton; // c interface 1
 
-  @EJB
-  private C2SingletonIF c2Singleton; // c interface 2
+    @EJB
+    private C2SingletonIF c2Singleton; // c interface 2
 
-  public <T extends CommonSingletonIF> T getSingletonReference(Class<T> type) {
-    if (ASingletonBean.class.isAssignableFrom(type)) {
-      return (T) aSingleton;
-    } else if (BSingletonIF.class.isAssignableFrom(type)) {
-      return (T) bSingleton;
-    } else if (C2SingletonIF.class.isAssignableFrom(type)) {
-      // Since C2SingletonIF extends CSingletonIF, we should first compare C2
-      // to avoid fall into CSingleton
-      return (T) c2Singleton;
-    } else if (CSingletonIF.class.isAssignableFrom(type)) {
-      return (T) cSingleton;
+    public <T extends CommonSingletonIF> T getSingletonReference(Class<T> type) {
+        if (ASingletonBean.class.isAssignableFrom(type)) {
+            return (T) aSingleton;
+        } else if (BSingletonIF.class.isAssignableFrom(type)) {
+            return (T) bSingleton;
+        } else if (C2SingletonIF.class.isAssignableFrom(type)) {
+            // Since C2SingletonIF extends CSingletonIF, we should first compare C2
+            // to avoid fall into CSingleton
+            return (T) c2Singleton;
+        } else if (CSingletonIF.class.isAssignableFrom(type)) {
+            return (T) cSingleton;
+        }
+        throw new IllegalArgumentException("Unrecognized singleton type: " + type);
     }
-    throw new IllegalArgumentException("Unrecognized singleton type: " + type);
-  }
 
-  public <T extends CommonSingletonIF> T getSingletonReferenceFromEJBContext(
-      Class<T> type) {
-    String prefix = BeanBase.class.getName();
-    if (ASingletonBean.class.isAssignableFrom(type)) {
-      return (T) ejbContext.lookup(prefix + "/aSingleton");
-    } else if (BSingletonIF.class.isAssignableFrom(type)) {
-      return (T) ejbContext.lookup(prefix + "/bSingleton");
-    } else if (C2SingletonIF.class.isAssignableFrom(type)) {
-      // Since C2SingletonIF extends CSingletonIF, we should first compare C2
-      // to avoid fall into CSingleton
-      return (T) ejbContext.lookup(prefix + "/c2Singleton");
-    } else if (CSingletonIF.class.isAssignableFrom(type)) {
-      return (T) ejbContext.lookup(prefix + "/cSingleton");
+    public <T extends CommonSingletonIF> T getSingletonReferenceFromEJBContext(Class<T> type) {
+        String prefix = BeanBase.class.getName();
+        if (ASingletonBean.class.isAssignableFrom(type)) {
+            return (T) ejbContext.lookup(prefix + "/aSingleton");
+        } else if (BSingletonIF.class.isAssignableFrom(type)) {
+            return (T) ejbContext.lookup(prefix + "/bSingleton");
+        } else if (C2SingletonIF.class.isAssignableFrom(type)) {
+            // Since C2SingletonIF extends CSingletonIF, we should first compare C2
+            // to avoid fall into CSingleton
+            return (T) ejbContext.lookup(prefix + "/c2Singleton");
+        } else if (CSingletonIF.class.isAssignableFrom(type)) {
+            return (T) ejbContext.lookup(prefix + "/cSingleton");
+        }
+        throw new IllegalArgumentException("Unrecognized singleton type: " + type);
     }
-    throw new IllegalArgumentException("Unrecognized singleton type: " + type);
-  }
 
-  public void error() throws RuntimeException {
-    throw new RuntimeException(
-        "System exception from tests, but the single bean should not be destroyed.");
-  }
+    public void error() throws RuntimeException {
+        throw new RuntimeException("System exception from tests, but the single bean should not be destroyed.");
+    }
 
-  public int identityHashCode() {
-    return System.identityHashCode(this);
-  }
+    public int identityHashCode() {
+        return System.identityHashCode(this);
+    }
 
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In BeanBase.preDestroy()");
-  }
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In BeanBase.preDestroy()");
+    }
 }

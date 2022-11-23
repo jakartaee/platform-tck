@@ -20,30 +20,26 @@
 
 package com.sun.ts.tests.common.vehicle.appmanaged;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import java.util.Properties;
 
 public class AppManagedVehicleRunner implements VehicleRunnable {
-  public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
+    public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
 
-  public Status run(String[] args, Properties props) {
-    Status sTestStatus = null;
-    try {
-      TSNamingContext jc = new TSNamingContext();
-      AppManagedVehicleIF bean = (AppManagedVehicleIF) jc
-          .lookup(APPMANAGED_REF_NAME);
-      TestUtil.logTrace(
-          "application-managed JTA runner looked up vehicle: " + bean);
-      sTestStatus = (bean.runTest(args, props)).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed.", e);
-      sTestStatus = Status
-          .failed("Test run in application-managed JTA vehicle failed.");
+    public Status run(String[] args, Properties props) {
+        Status sTestStatus = null;
+        try {
+            TSNamingContext jc = new TSNamingContext();
+            AppManagedVehicleIF bean = (AppManagedVehicleIF) jc.lookup(APPMANAGED_REF_NAME);
+            TestUtil.logTrace("application-managed JTA runner looked up vehicle: " + bean);
+            sTestStatus = (bean.runTest(args, props)).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed.", e);
+            sTestStatus = Status.failed("Test run in application-managed JTA vehicle failed.");
+        }
+        return sTestStatus;
     }
-    return sTestStatus;
-  }
 }

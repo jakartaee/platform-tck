@@ -20,29 +20,27 @@
 
 package com.sun.ts.tests.jsp.spec.configuration.charsequence;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class DeferredSyntaxAllowedAsLiteralTag extends SimpleTagSupport {
 
-  private String poundExpr;
+    private String poundExpr;
 
-  public void setPoundExpr(String poundExpr) {
-    this.poundExpr = poundExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      out.println("From tag handler: " + poundExpr);
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "DeferredSyntaxAllowedAsLiteralTag");
+    public void setPoundExpr(String poundExpr) {
+        this.poundExpr = poundExpr;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            out.println("From tag handler: " + poundExpr);
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "DeferredSyntaxAllowedAsLiteralTag");
+        }
+    }
 }

@@ -16,30 +16,27 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionx;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class SetMaxInterval extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
 
-    HttpSession session = request.getSession(true);
-    pw.println("From setMaxInterval: Session created.");
+        HttpSession session = request.getSession(true);
+        pw.println("From setMaxInterval: Session created.");
 
-    session.setMaxInactiveInterval(10);
-    pw.println("From setMaxInterval: MaxInactiveInterval is set to 10 sec");
+        session.setMaxInactiveInterval(10);
+        pw.println("From setMaxInterval: MaxInactiveInterval is set to 10 sec");
 
-    ServletTestUtil.printResult(pw, true);
-  }
+        ServletTestUtil.printResult(pw, true);
+    }
 }

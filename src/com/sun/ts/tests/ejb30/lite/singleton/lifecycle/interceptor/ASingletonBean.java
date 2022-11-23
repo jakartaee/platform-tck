@@ -26,9 +26,8 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.Interceptors;
 
 /**
- * A no-interface singleton. BeanBase implements CommonSingletonIF, but it must
- * not be treated as ASingletonBean's business interface. CommonSingletonIF is
- * used in the client to serve as a common type for A, B, and CSingletonBean.
+ * A no-interface singleton. BeanBase implements CommonSingletonIF, but it must not be treated as ASingletonBean's
+ * business interface. CommonSingletonIF is used in the client to serve as a common type for A, B, and CSingletonBean.
  */
 @Singleton
 @Interceptors({ Interceptor1.class, Interceptor2.class })

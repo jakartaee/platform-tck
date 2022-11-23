@@ -25,10 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface SecTestRoleRefLocalHome extends EJBLocalHome {
-  public SecTestRoleRefLocal create(int cofID, String cofName, float cofPrice)
-      throws CreateException;
+    public SecTestRoleRefLocal create(int cofID, String cofName, float cofPrice) throws CreateException;
 
-  public SecTestRoleRefLocal findByPrimaryKey(Integer key)
-      throws FinderException;
-
+    public SecTestRoleRefLocal findByPrimaryKey(Integer key) throws FinderException;
 }

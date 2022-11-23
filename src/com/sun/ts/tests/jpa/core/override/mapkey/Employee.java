@@ -16,72 +16,70 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "EMPLOYEE_2")
 public class Employee implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String code;
+    private String code;
 
-  private Department department;
+    private Department department;
 
-  public Employee() {
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Employee)) {
-      return false;
+    public Employee() {
     }
-    Employee other = (Employee) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public Long getId() {
+        return id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "Employee[id="
-        + getId() + "]";
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof Employee)) {
+            return false;
+        }
+        Employee other = (Employee) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public Department getDepartment() {
-    return department;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.mapkey." + "Employee[id=" + getId() + "]";
+    }
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

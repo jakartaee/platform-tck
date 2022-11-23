@@ -20,11 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface SecTestRoleRef extends EJBObject {
-  public boolean EjbSecRoleRefScope(String role) throws RemoteException;
-
+    public boolean EjbSecRoleRefScope(String role) throws RemoteException;
 }

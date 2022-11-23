@@ -16,26 +16,23 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext40;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 public class TestServlet extends HttpServlet {
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    List list = (List) getServletContext().getAttribute("arraylist");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List list = (List) getServletContext().getAttribute("arraylist");
 
-    PrintWriter pw = resp.getWriter();
+        PrintWriter pw = resp.getWriter();
 
-    for (Object tmp : list) {
-      pw.println(tmp.toString());
-
+        for (Object tmp : list) {
+            pw.println(tmp.toString());
+        }
     }
-  }
 }

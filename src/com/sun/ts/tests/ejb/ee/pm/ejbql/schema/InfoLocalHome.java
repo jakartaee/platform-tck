@@ -25,11 +25,10 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface InfoLocalHome extends EJBLocalHome {
-  public InfoLocal create(String id, String street, String city, String state,
-      String zip, SpouseLocal spouseLocal) throws CreateException;
+    public InfoLocal create(String id, String street, String city, String state, String zip, SpouseLocal spouseLocal)
+            throws CreateException;
 
-  public InfoLocal create(String id, String street, String city, String state,
-      String zip) throws CreateException;
+    public InfoLocal create(String id, String street, String city, String state, String zip) throws CreateException;
 
-  public InfoLocal findByPrimaryKey(String id) throws FinderException;
+    public InfoLocal findByPrimaryKey(String id) throws FinderException;
 }

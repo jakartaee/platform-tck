@@ -23,34 +23,33 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SpouseLocal extends EJBLocalObject {
-  // CMP fields
+    // CMP fields
 
-  public String getId();
+    public String getId();
 
-  public String getFirstName();
+    public String getFirstName();
 
-  public void setFirstName(String v);
+    public void setFirstName(String v);
 
-  public String getMaidenName();
+    public String getMaidenName();
 
-  public void setMaidenName(String v);
+    public void setMaidenName(String v);
 
-  public String getLastName();
+    public String getLastName();
 
-  public void setLastName(String v);
+    public void setLastName(String v);
 
-  public String getSocialSecurityNumber();
+    public String getSocialSecurityNumber();
 
-  public void setSocialSecurityNumber(String v);
+    public void setSocialSecurityNumber(String v);
 
-  // CMR fields
+    // CMR fields
 
-  public CustomerLocal getCustomer();
+    public CustomerLocal getCustomer();
 
-  public void setCustomer(CustomerLocal v);
+    public void setCustomer(CustomerLocal v);
 
-  public InfoLocal getInfo();
+    public InfoLocal getInfo();
 
-  public void setInfo(InfoLocal v);
-
+    public void setInfo(InfoLocal v);
 }

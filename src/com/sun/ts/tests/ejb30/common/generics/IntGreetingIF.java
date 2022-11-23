@@ -21,5 +21,5 @@
 package com.sun.ts.tests.ejb30.common.generics;
 
 public interface IntGreetingIF extends GenericGreetingIF<Integer> {
-  public Integer negate(Integer i);
+    public Integer negate(Integer i);
 }

@@ -20,20 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface DepartmentHome extends EJBHome {
-  public Department create(Integer id, String name)
-      throws RemoteException, CreateException;
+    public Department create(Integer id, String name) throws RemoteException, CreateException;
 
-  public Department findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public Department findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findAllDepartments()
-      throws RemoteException, FinderException;
+    public Collection findAllDepartments() throws RemoteException, FinderException;
 }

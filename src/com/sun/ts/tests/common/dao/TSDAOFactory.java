@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.common.dao;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.DataSourceCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.TxCoffeeDAO;
@@ -33,234 +31,219 @@ import com.sun.ts.tests.common.dao.coffee.variants.LongPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.LongPKDSCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.StringPKCoffeeDAO;
 import com.sun.ts.tests.common.dao.coffee.variants.StringPKDSCoffeeDAO;
+import java.util.Properties;
 
 /**
- * 
+ *
  */
 public class TSDAOFactory extends DAOFactory {
 
-  private boolean debug = true;
+    private boolean debug = true;
 
-  private static final String PKG = "com.sun.ts.tests.common.dao.daofactory";
+    private static final String PKG = "com.sun.ts.tests.common.dao.daofactory";
 
-  /*
-   * Back-end properties
-   */
-  public static final String BACKEND_ACCESS_PROPERTY = PKG + ".backend.access";
+    /*
+     * Back-end properties
+     */
+    public static final String BACKEND_ACCESS_PROPERTY = PKG + ".backend.access";
 
-  public static final String BACKEND_ACCESS_DATASOURCE = "DataSource";
+    public static final String BACKEND_ACCESS_DATASOURCE = "DataSource";
 
-  /*
-   * Authorization properties
-   */
-  public static final String AUTH_TYPE_PROPERTY = PKG + ".authorization.type";
+    /*
+     * Authorization properties
+     */
+    public static final String AUTH_TYPE_PROPERTY = PKG + ".authorization.type";
 
-  public static final String AUTH_TYPE_CONTAINER = "Container";
+    public static final String AUTH_TYPE_CONTAINER = "Container";
 
-  public static final String AUTH_TYPE_COMPONENT = "Component";
+    public static final String AUTH_TYPE_COMPONENT = "Component";
 
-  public static final String AUTH_USER_PROPERTY = PKG
-      + ".authorization.component.user";
+    public static final String AUTH_USER_PROPERTY = PKG + ".authorization.component.user";
 
-  public static final String AUTH_PASSWORD_PROPERTY = PKG
-      + ".authorization.component.password";
+    public static final String AUTH_PASSWORD_PROPERTY = PKG + ".authorization.component.password";
 
-  /*
-   * DataSource backend specific properties
-   */
-  public static final String TABLE_PREFIX_PROPERTY = PKG + ".db.table.prefix";
+    /*
+     * DataSource backend specific properties
+     */
+    public static final String TABLE_PREFIX_PROPERTY = PKG + ".db.table.prefix";
 
-  /** Data structure used for Coffee DAO's */
-  public class CoffeeDAOInfo {
-    public String tablePrefix;
+    /** Data structure used for Coffee DAO's */
+    public class CoffeeDAOInfo {
+        public String tablePrefix;
 
-    public boolean containerAuth;
+        public boolean containerAuth;
 
-    public String user;
+        public String user;
 
-    public String password;
-  }
-
-  public CoffeeDAO getCoffeeDAO() throws DAOException {
-    return getCoffeeDAO(new Properties());
-  }
-
-  public CoffeeDAO getCoffeeDAO(Properties p) throws DAOException {
-    CoffeeDAOInfo info;
-    CoffeeDAO dao;
-
-    info = parseCoffeeProps(p, DataSourceCoffeeDAO.DEFAULT_TABLE_PREFIX);
-
-    if (info.containerAuth) {
-      dao = new DataSourceCoffeeDAO(info.tablePrefix);
-    } else {
-      dao = new DataSourceCoffeeDAO(info.tablePrefix, info.user, info.password);
+        public String password;
     }
 
-    if (debug) {
-      dao.setPolicy(DAO.STRICT_POLICY);
+    public CoffeeDAO getCoffeeDAO() throws DAOException {
+        return getCoffeeDAO(new Properties());
     }
 
-    return dao;
-  }
+    public CoffeeDAO getCoffeeDAO(Properties p) throws DAOException {
+        CoffeeDAOInfo info;
+        CoffeeDAO dao;
 
-  public TxCoffeeDAO getTxCoffeeDAO() throws DAOException {
-    throw new UnsupportedOperationException("To be implemented");
-  }
+        info = parseCoffeeProps(p, DataSourceCoffeeDAO.DEFAULT_TABLE_PREFIX);
 
-  public TxCoffeeDAO getTxCoffeeDAO(Properties p) throws DAOException {
-    throw new UnsupportedOperationException("To be implemented");
-  }
+        if (info.containerAuth) {
+            dao = new DataSourceCoffeeDAO(info.tablePrefix);
+        } else {
+            dao = new DataSourceCoffeeDAO(info.tablePrefix, info.user, info.password);
+        }
 
-  public StringPKCoffeeDAO getStringPKCoffeeDAO() throws DAOException {
-    return getStringPKCoffeeDAO(new Properties());
-  }
+        if (debug) {
+            dao.setPolicy(DAO.STRICT_POLICY);
+        }
 
-  public StringPKCoffeeDAO getStringPKCoffeeDAO(Properties p)
-      throws DAOException {
-
-    CoffeeDAOInfo info;
-    StringPKCoffeeDAO dao;
-
-    info = parseCoffeeProps(p, StringPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
-
-    if (info.containerAuth) {
-      dao = new StringPKDSCoffeeDAO(info.tablePrefix);
-    } else {
-      dao = new StringPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
-    }
-    if (debug) {
-      dao.setPolicy(DAO.STRICT_POLICY);
+        return dao;
     }
 
-    return dao;
-  }
-
-  public LongPKCoffeeDAO getLongPKCoffeeDAO() throws DAOException {
-    return getLongPKCoffeeDAO(new Properties());
-  }
-
-  public LongPKCoffeeDAO getLongPKCoffeeDAO(Properties p) throws DAOException {
-
-    CoffeeDAOInfo info;
-    LongPKCoffeeDAO dao;
-
-    info = parseCoffeeProps(p, LongPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
-
-    if (info.containerAuth) {
-      dao = new LongPKDSCoffeeDAO(info.tablePrefix);
-    } else {
-      dao = new LongPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
-    }
-    if (debug) {
-      dao.setPolicy(DAO.STRICT_POLICY);
+    public TxCoffeeDAO getTxCoffeeDAO() throws DAOException {
+        throw new UnsupportedOperationException("To be implemented");
     }
 
-    return dao;
-  }
-
-  public FloatPKCoffeeDAO getFloatPKCoffeeDAO() throws DAOException {
-    return getFloatPKCoffeeDAO(new Properties());
-  }
-
-  public FloatPKCoffeeDAO getFloatPKCoffeeDAO(Properties p)
-      throws DAOException {
-
-    CoffeeDAOInfo info;
-    FloatPKCoffeeDAO dao;
-
-    info = parseCoffeeProps(p, FloatPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
-
-    if (info.containerAuth) {
-      dao = new FloatPKDSCoffeeDAO(info.tablePrefix);
-    } else {
-      dao = new FloatPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
-    }
-    if (debug) {
-      dao.setPolicy(DAO.STRICT_POLICY);
+    public TxCoffeeDAO getTxCoffeeDAO(Properties p) throws DAOException {
+        throw new UnsupportedOperationException("To be implemented");
     }
 
-    return dao;
-  }
-
-  public CompoundPKCoffeeDAO getCompoundPKCoffeeDAO() throws DAOException {
-    return getCompoundPKCoffeeDAO(new Properties());
-  }
-
-  public CompoundPKCoffeeDAO getCompoundPKCoffeeDAO(Properties p)
-      throws DAOException {
-
-    CoffeeDAOInfo info;
-    CompoundPKCoffeeDAO dao;
-
-    info = parseCoffeeProps(p, CompoundPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
-
-    if (info.containerAuth) {
-      dao = new CompoundPKDSCoffeeDAO(info.tablePrefix);
-    } else {
-      dao = new CompoundPKDSCoffeeDAO(info.tablePrefix, info.user,
-          info.password);
-    }
-    if (debug) {
-      dao.setPolicy(DAO.STRICT_POLICY);
+    public StringPKCoffeeDAO getStringPKCoffeeDAO() throws DAOException {
+        return getStringPKCoffeeDAO(new Properties());
     }
 
-    return dao;
-  }
+    public StringPKCoffeeDAO getStringPKCoffeeDAO(Properties p) throws DAOException {
 
-  protected CoffeeDAOInfo parseCoffeeProps(Properties props,
-      String defaultTablePrefix) throws DAOException {
+        CoffeeDAOInfo info;
+        StringPKCoffeeDAO dao;
 
-    String authType;
-    String backendAccess;
-    CoffeeDAOInfo info = new CoffeeDAOInfo();
+        info = parseCoffeeProps(p, StringPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
 
-    if (null == props) {
-      throw new IllegalArgumentException("Null props");
-    }
-    if (null == defaultTablePrefix || "".equals(defaultTablePrefix)) {
-      throw new IllegalArgumentException(
-          "Invalid table prefix: " + defaultTablePrefix);
-    }
+        if (info.containerAuth) {
+            dao = new StringPKDSCoffeeDAO(info.tablePrefix);
+        } else {
+            dao = new StringPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
+        }
+        if (debug) {
+            dao.setPolicy(DAO.STRICT_POLICY);
+        }
 
-    info.tablePrefix = props.getProperty(TABLE_PREFIX_PROPERTY,
-        defaultTablePrefix);
-
-    authType = props.getProperty(AUTH_TYPE_PROPERTY, AUTH_TYPE_CONTAINER);
-    backendAccess = props.getProperty(BACKEND_ACCESS_PROPERTY,
-        BACKEND_ACCESS_DATASOURCE);
-
-    if (!backendAccess.equals(BACKEND_ACCESS_DATASOURCE)) {
-      /* Only supports DataSource access for now */
-      throw new InvalidDAOSettingException(BACKEND_ACCESS_PROPERTY,
-          backendAccess, "Unsupported backend access");
+        return dao;
     }
 
-    if (null == info.tablePrefix || info.tablePrefix.equals("")) {
-      throw new InvalidDAOSettingException(TABLE_PREFIX_PROPERTY,
-          info.tablePrefix, "Null or empty table prefix");
-    }
-    info.containerAuth = authType.equals(AUTH_TYPE_CONTAINER);
-
-    if (!(authType.equals(AUTH_TYPE_COMPONENT) || info.containerAuth)) {
-      throw new InvalidDAOSettingException(AUTH_TYPE_PROPERTY, authType,
-          "Unknown authorization type");
+    public LongPKCoffeeDAO getLongPKCoffeeDAO() throws DAOException {
+        return getLongPKCoffeeDAO(new Properties());
     }
 
-    if (!info.containerAuth) {
-      info.user = props.getProperty(AUTH_USER_PROPERTY);
-      if (null == info.user) {
-        throw new InvalidDAOSettingException(AUTH_USER_PROPERTY, info.user,
-            "No username!");
-      }
-      info.password = props.getProperty(AUTH_PASSWORD_PROPERTY);
-      if (null == info.password) {
-        throw new InvalidDAOSettingException(AUTH_PASSWORD_PROPERTY,
-            info.password, "No password!");
-      }
+    public LongPKCoffeeDAO getLongPKCoffeeDAO(Properties p) throws DAOException {
+
+        CoffeeDAOInfo info;
+        LongPKCoffeeDAO dao;
+
+        info = parseCoffeeProps(p, LongPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
+
+        if (info.containerAuth) {
+            dao = new LongPKDSCoffeeDAO(info.tablePrefix);
+        } else {
+            dao = new LongPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
+        }
+        if (debug) {
+            dao.setPolicy(DAO.STRICT_POLICY);
+        }
+
+        return dao;
     }
 
-    return info;
-  }
+    public FloatPKCoffeeDAO getFloatPKCoffeeDAO() throws DAOException {
+        return getFloatPKCoffeeDAO(new Properties());
+    }
 
+    public FloatPKCoffeeDAO getFloatPKCoffeeDAO(Properties p) throws DAOException {
+
+        CoffeeDAOInfo info;
+        FloatPKCoffeeDAO dao;
+
+        info = parseCoffeeProps(p, FloatPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
+
+        if (info.containerAuth) {
+            dao = new FloatPKDSCoffeeDAO(info.tablePrefix);
+        } else {
+            dao = new FloatPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
+        }
+        if (debug) {
+            dao.setPolicy(DAO.STRICT_POLICY);
+        }
+
+        return dao;
+    }
+
+    public CompoundPKCoffeeDAO getCompoundPKCoffeeDAO() throws DAOException {
+        return getCompoundPKCoffeeDAO(new Properties());
+    }
+
+    public CompoundPKCoffeeDAO getCompoundPKCoffeeDAO(Properties p) throws DAOException {
+
+        CoffeeDAOInfo info;
+        CompoundPKCoffeeDAO dao;
+
+        info = parseCoffeeProps(p, CompoundPKDSCoffeeDAO.DEFAULT_TABLE_PREFIX);
+
+        if (info.containerAuth) {
+            dao = new CompoundPKDSCoffeeDAO(info.tablePrefix);
+        } else {
+            dao = new CompoundPKDSCoffeeDAO(info.tablePrefix, info.user, info.password);
+        }
+        if (debug) {
+            dao.setPolicy(DAO.STRICT_POLICY);
+        }
+
+        return dao;
+    }
+
+    protected CoffeeDAOInfo parseCoffeeProps(Properties props, String defaultTablePrefix) throws DAOException {
+
+        String authType;
+        String backendAccess;
+        CoffeeDAOInfo info = new CoffeeDAOInfo();
+
+        if (null == props) {
+            throw new IllegalArgumentException("Null props");
+        }
+        if (null == defaultTablePrefix || "".equals(defaultTablePrefix)) {
+            throw new IllegalArgumentException("Invalid table prefix: " + defaultTablePrefix);
+        }
+
+        info.tablePrefix = props.getProperty(TABLE_PREFIX_PROPERTY, defaultTablePrefix);
+
+        authType = props.getProperty(AUTH_TYPE_PROPERTY, AUTH_TYPE_CONTAINER);
+        backendAccess = props.getProperty(BACKEND_ACCESS_PROPERTY, BACKEND_ACCESS_DATASOURCE);
+
+        if (!backendAccess.equals(BACKEND_ACCESS_DATASOURCE)) {
+            /* Only supports DataSource access for now */
+            throw new InvalidDAOSettingException(BACKEND_ACCESS_PROPERTY, backendAccess, "Unsupported backend access");
+        }
+
+        if (null == info.tablePrefix || info.tablePrefix.equals("")) {
+            throw new InvalidDAOSettingException(TABLE_PREFIX_PROPERTY, info.tablePrefix, "Null or empty table prefix");
+        }
+        info.containerAuth = authType.equals(AUTH_TYPE_CONTAINER);
+
+        if (!(authType.equals(AUTH_TYPE_COMPONENT) || info.containerAuth)) {
+            throw new InvalidDAOSettingException(AUTH_TYPE_PROPERTY, authType, "Unknown authorization type");
+        }
+
+        if (!info.containerAuth) {
+            info.user = props.getProperty(AUTH_USER_PROPERTY);
+            if (null == info.user) {
+                throw new InvalidDAOSettingException(AUTH_USER_PROPERTY, info.user, "No username!");
+            }
+            info.password = props.getProperty(AUTH_PASSWORD_PROPERTY);
+            if (null == info.password) {
+                throw new InvalidDAOSettingException(AUTH_PASSWORD_PROPERTY, info.password, "No password!");
+            }
+        }
+
+        return info;
+    }
 }

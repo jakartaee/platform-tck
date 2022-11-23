@@ -24,12 +24,12 @@ import jakarta.servlet.ServletRequestListener;
 
 public final class SRListener implements ServletRequestListener {
 
-  // Public Methods
-  public void requestDestroyed(ServletRequestEvent event) {
-    System.out.print("in requestDestroyed method of CreateSRListener");
-  }
+    // Public Methods
+    public void requestDestroyed(ServletRequestEvent event) {
+        System.out.print("in requestDestroyed method of CreateSRListener");
+    }
 
-  public void requestInitialized(ServletRequestEvent event) {
-    System.out.print("CreateSRListener_INVOKED");
-  }
+    public void requestInitialized(ServletRequestEvent event) {
+        System.out.print("CreateSRListener_INVOKED");
+    }
 }

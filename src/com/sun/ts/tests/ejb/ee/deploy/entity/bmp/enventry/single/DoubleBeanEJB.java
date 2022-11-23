@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class DoubleBeanEJB extends BMPWrapper {
 
-  public boolean testDoubleEntry() {
-    return TestCode.testDoubleEntry(nctx);
-  }
-
+    public boolean testDoubleEntry() {
+        return TestCode.testDoubleEntry(nctx);
+    }
 }

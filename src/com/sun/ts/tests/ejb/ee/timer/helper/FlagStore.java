@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface FlagStore extends EJBObject {
-  public boolean getRequiredAccessFlag() throws RemoteException;
+    public boolean getRequiredAccessFlag() throws RemoteException;
 
-  public void setRequiredAccessFlag(boolean flag) throws RemoteException;
+    public void setRequiredAccessFlag(boolean flag) throws RemoteException;
 
-  public boolean getRequiresNewAccessFlag() throws RemoteException;
+    public boolean getRequiresNewAccessFlag() throws RemoteException;
 
-  public void setRequiresNewAccessFlag(boolean flag) throws RemoteException;
+    public void setRequiresNewAccessFlag(boolean flag) throws RemoteException;
 }

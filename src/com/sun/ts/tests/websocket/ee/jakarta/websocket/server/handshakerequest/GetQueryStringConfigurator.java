@@ -17,21 +17,19 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
 
-import java.util.Arrays;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.Arrays;
 
 public class GetQueryStringConfigurator extends Configurator {
-  static final String KEY = "GetQueryStringConfigurator";
+    static final String KEY = "GetQueryStringConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    String query = request.getQueryString();
-    query = query == null ? "NULL" : query;
-    response.getHeaders().put(KEY, Arrays.asList(query));
-  }
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        String query = request.getQueryString();
+        query = query == null ? "NULL" : query;
+        response.getHeaders().put(KEY, Arrays.asList(query));
+    }
 }

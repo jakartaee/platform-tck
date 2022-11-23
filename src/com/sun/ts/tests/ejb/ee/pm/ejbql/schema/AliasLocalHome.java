@@ -25,7 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface AliasLocalHome extends EJBLocalHome {
-  public AliasLocal create(String id, String alias) throws CreateException;
+    public AliasLocal create(String id, String alias) throws CreateException;
 
-  public AliasLocal findByPrimaryKey(String key) throws FinderException;
+    public AliasLocal findByPrimaryKey(String key) throws FinderException;
 }

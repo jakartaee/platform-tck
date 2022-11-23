@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.common.busiface;
 
 public interface BusinessLocalIF1 {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public String[] businessMethodLocal1(String[] s);
+    public String[] businessMethodLocal1(String[] s);
 }

@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -35,25 +34,25 @@ import jakarta.ejb.TransactionManagementType;
 
 @Stateful
 @TransactionManagement(TransactionManagementType.BEAN)
-public class AppResBean extends AppResBeanBase
-    implements AppResRemoteIF, AppResLocalIF {
-  @EJB(lookup = "java:app/env/hello")
-  private HelloRemoteIF hello;
+public class AppResBean extends AppResBeanBase implements AppResRemoteIF, AppResLocalIF {
+    @EJB(lookup = "java:app/env/hello")
+    private HelloRemoteIF hello;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    AppResTest.beanPostConstruct(myString, getPostConstructRecords(), false,
-        false);
-    DataSourceTest.verifyDataSource(getPostConstructRecords(), false,
-        "java:app/env/appds",
-        "java:global/env/ejb3_assembly_appres_appclientejb/globalds");
-    AppResTest.verifyInjections(getPostConstructRecords(), hello);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        AppResTest.beanPostConstruct(myString, getPostConstructRecords(), false, false);
+        DataSourceTest.verifyDataSource(
+                getPostConstructRecords(),
+                false,
+                "java:app/env/appds",
+                "java:global/env/ejb3_assembly_appres_appclientejb/globalds");
+        AppResTest.verifyInjections(getPostConstructRecords(), hello);
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(lookup = "java:app/env/myString")
-  private void setMyString(String s) {
-    this.myString = s;
-  }
+    @SuppressWarnings("unused")
+    @Resource(lookup = "java:app/env/myString")
+    private void setMyString(String s) {
+        this.myString = s;
+    }
 }

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
@@ -30,120 +29,120 @@ import jakarta.ejb.RemoveException;
 
 public abstract class SpouseEJB implements EntityBean {
 
-  private static final String CustomerLocal = "java:comp/env/ejb/CustomerLocal";
+    private static final String CustomerLocal = "java:comp/env/ejb/CustomerLocal";
 
-  private static final String InfoLocal = "java:comp/env/ejb/InfoLocal";
+    private static final String InfoLocal = "java:comp/env/ejb/InfoLocal";
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getFirstName();
+    public abstract String getFirstName();
 
-  public abstract void setFirstName(String v);
+    public abstract void setFirstName(String v);
 
-  public abstract String getMaidenName();
+    public abstract String getMaidenName();
 
-  public abstract void setMaidenName(String v);
+    public abstract void setMaidenName(String v);
 
-  public abstract String getLastName();
+    public abstract String getLastName();
 
-  public abstract void setLastName(String v);
+    public abstract void setLastName(String v);
 
-  public abstract String getSocialSecurityNumber();
+    public abstract String getSocialSecurityNumber();
 
-  public abstract void setSocialSecurityNumber(String v);
+    public abstract void setSocialSecurityNumber(String v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // 1x1
-  public abstract InfoLocal getInfo();
+    // 1x1
+    public abstract InfoLocal getInfo();
 
-  public abstract void setInfo(InfoLocal v);
+    public abstract void setInfo(InfoLocal v);
 
-  // 1x1
-  public abstract CustomerLocal getCustomer();
+    // 1x1
+    public abstract CustomerLocal getCustomer();
 
-  public abstract void setCustomer(CustomerLocal v);
+    public abstract void setCustomer(CustomerLocal v);
 
-  // ===========================================================
-  // select methods
-  public abstract java.lang.String ejbSelectSpouseInfo() throws FinderException;
+    // ===========================================================
+    // select methods
+    public abstract java.lang.String ejbSelectSpouseInfo() throws FinderException;
 
-  // =============================================================
+    // =============================================================
 
-  public String ejbCreate(String id, String firstName, String maidenName,
-      String lastName, String sNumber, InfoLocal infoLocal)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setFirstName(firstName);
-      setMaidenName(maidenName);
-      setLastName(lastName);
-      setSocialSecurityNumber(sNumber);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public String ejbCreate(
+            String id, String firstName, String maidenName, String lastName, String sNumber, InfoLocal infoLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setFirstName(firstName);
+            setMaidenName(maidenName);
+            setLastName(lastName);
+            setSocialSecurityNumber(sNumber);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String firstName, String maidenName,
-      String lastName, String sNumber, InfoLocal infoLocal)
-      throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-    try {
-      setInfo(infoLocal);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ejbPostCreate(
+            String id, String firstName, String maidenName, String lastName, String sNumber, InfoLocal infoLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+        try {
+            setInfo(infoLocal);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
     }
-  }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public java.lang.String ejbHomeSelectSpouseInfo() throws SpouseException {
-    TestUtil.logTrace("ejbHomeSelectSpouseInfo");
-    try {
-      String s = ejbSelectSpouseInfo();
-      return s;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new SpouseException("ejbHomeSelectSpouseInfo: " + e);
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
     }
-  }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public java.lang.String ejbHomeSelectSpouseInfo() throws SpouseException {
+        TestUtil.logTrace("ejbHomeSelectSpouseInfo");
+        try {
+            String s = ejbSelectSpouseInfo();
+            return s;
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new SpouseException("ejbHomeSelectSpouseInfo: " + e);
+        }
+    }
 }

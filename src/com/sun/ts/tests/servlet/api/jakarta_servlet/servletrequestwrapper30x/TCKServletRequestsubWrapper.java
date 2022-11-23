@@ -20,7 +20,7 @@ import jakarta.servlet.ServletRequest;
 
 public class TCKServletRequestsubWrapper extends TCKServletRequestWrapper {
 
-  public TCKServletRequestsubWrapper(ServletRequest req) {
-    super(req);
-  }
+    public TCKServletRequestsubWrapper(ServletRequest req) {
+        super(req);
+    }
 }

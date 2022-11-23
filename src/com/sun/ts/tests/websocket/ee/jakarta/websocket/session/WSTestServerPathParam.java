@@ -20,57 +20,51 @@
  */
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 @ServerEndpoint(value = "/TCKTestServerPathParam/{param1}/{param2}")
 public class WSTestServerPathParam {
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    String message = "========WSTestServerPathParam opened";
-    session.getBasicRemote().sendText(message);
-  }
-
-  @OnMessage
-  public void respond(String message, Session session) {
-    System.out
-        .println("========WSTestServerPathParam received String:" + message);
-    StringBuffer sb = new StringBuffer();
-
-    try {
-      session.getBasicRemote().sendText(
-          "========WSTestServerPathParam received String: " + message);
-      Map<String, String> pathparams = session.getPathParameters();
-      Set<String> keys = pathparams.keySet();
-      for (Object key : keys) {
-        System.out.println(
-            ";" + key.toString() + "=" + pathparams.get(key.toString()));
-        sb.append(";" + key.toString() + "=" + pathparams.get(key.toString()));
-      }
-      session.getBasicRemote().sendText(
-          "========WSTestServerPathParam: pathparams returned" + sb.toString());
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    @OnOpen
+    public void init(Session session) throws IOException {
+        String message = "========WSTestServerPathParam opened";
+        session.getBasicRemote().sendText(message);
     }
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    System.out.println("WSTestServerPathParam onError");
-    try {
-      session.getBasicRemote()
-          .sendText("========WSTestServerPathParam onError");
-    } catch (Exception e) {
-      e.printStackTrace();
+    @OnMessage
+    public void respond(String message, Session session) {
+        System.out.println("========WSTestServerPathParam received String:" + message);
+        StringBuffer sb = new StringBuffer();
+
+        try {
+            session.getBasicRemote().sendText("========WSTestServerPathParam received String: " + message);
+            Map<String, String> pathparams = session.getPathParameters();
+            Set<String> keys = pathparams.keySet();
+            for (Object key : keys) {
+                System.out.println(";" + key.toString() + "=" + pathparams.get(key.toString()));
+                sb.append(";" + key.toString() + "=" + pathparams.get(key.toString()));
+            }
+            session.getBasicRemote().sendText("========WSTestServerPathParam: pathparams returned" + sb.toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-    t.printStackTrace();
-  }
+
+    @OnError
+    public void onError(Session session, Throwable t) {
+        System.out.println("WSTestServerPathParam onError");
+        try {
+            session.getBasicRemote().sendText("========WSTestServerPathParam onError");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        t.printStackTrace();
+    }
 }

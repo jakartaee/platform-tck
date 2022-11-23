@@ -20,48 +20,46 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspIdConsumer;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class MultiThreeTag extends SimpleTagSupport implements JspIdConsumer {
 
-  private String jspId;
+    private String jspId;
 
-  private JspWriter out;
+    private JspWriter out;
 
-  public void setJspId(String id) {
-    jspId = id;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    out = getJspContext().getOut();
-
-    try {
-      String jspId1 = MultiOneTag.getJspId();
-      String jspId2 = MultiTwoTag.getJspId();
-      if (jspId == null || jspId1 == null || jspId2 == null) {
-        out.println("Some ID(s) not assigned. Test FAILED");
-        return;
-      }
-      out.println("MultiThreeTag: JspId is " + jspId);
-      out.println("MultiThreeTag: JspId1 is " + jspId1);
-      out.println("MultiThreeTag: JspId2 is " + jspId2);
-
-      if (jspId == jspId1 || jspId == jspId2 || jspId1 == jspId2) {
-        out.println("Identical IDs found. Test FAILED");
-        return;
-      }
-      out.println("Test PASSED");
-
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "MultiThreeTag");
+    public void setJspId(String id) {
+        jspId = id;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        out = getJspContext().getOut();
+
+        try {
+            String jspId1 = MultiOneTag.getJspId();
+            String jspId2 = MultiTwoTag.getJspId();
+            if (jspId == null || jspId1 == null || jspId2 == null) {
+                out.println("Some ID(s) not assigned. Test FAILED");
+                return;
+            }
+            out.println("MultiThreeTag: JspId is " + jspId);
+            out.println("MultiThreeTag: JspId1 is " + jspId1);
+            out.println("MultiThreeTag: JspId2 is " + jspId2);
+
+            if (jspId == jspId1 || jspId == jspId2 || jspId1 == jspId2) {
+                out.println("Identical IDs found. Test FAILED");
+                return;
+            }
+            out.println("Test PASSED");
+
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "MultiThreeTag");
+        }
+    }
 }

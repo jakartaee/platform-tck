@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.rw;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
@@ -30,9 +29,9 @@ import jakarta.ejb.TransactionManagementType;
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends RWTestBeanBase {
-  @EJB(beanInterface = TxBean.class)
-  @Override
-  public void setTxBean(RWTxBeanBase b) {
-    txBean = b;
-  }
+    @EJB(beanInterface = TxBean.class)
+    @Override
+    public void setTxBean(RWTxBeanBase b) {
+        txBean = b;
+    }
 }

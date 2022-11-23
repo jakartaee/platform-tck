@@ -19,10 +19,7 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.readlistener1;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletInputStream;
@@ -30,45 +27,45 @@ import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(value = "/TestServlet", asyncSupported = true)
 public class TestServlet extends HttpTCKServlet {
 
-  public void nioInputTest1(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void nioInputTest1(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    AsyncContext ac = request.startAsync();
-    ServletOutputStream output = response.getOutputStream();
-    ServletInputStream input = request.getInputStream();
+        AsyncContext ac = request.startAsync();
+        ServletOutputStream output = response.getOutputStream();
+        ServletInputStream input = request.getInputStream();
 
-    try {
-      input.setReadListener(null);
-    } catch (NullPointerException npe) {
-      output.println("Test PASSED - expected NullPointerException thrown.");
-    }
-    ac.complete();
-  }
-
-  public void nioInputTest2(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    AsyncContext ac = null;
-
-    String where = (String) request.getAttribute("WHERE");
-    if ("ASYNC".equals(where)) {
-      ServletOutputStream output = response.getOutputStream();
-      ServletInputStream input = request.getInputStream();
-      TestListener readListener = new TestListener(input, output, ac);
-
-      try {
-        input.setReadListener(readListener);
-      } catch (IllegalStateException npe) {
-        output.println("Test PASSED - expected IllegalStateException thrown.");
-      }
-    } else {
-      ac = request.startAsync();
-      request.setAttribute("WHERE", "ASYNC");
-      ac.dispatch();
+        try {
+            input.setReadListener(null);
+        } catch (NullPointerException npe) {
+            output.println("Test PASSED - expected NullPointerException thrown.");
+        }
+        ac.complete();
     }
 
-  }
+    public void nioInputTest2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        AsyncContext ac = null;
+
+        String where = (String) request.getAttribute("WHERE");
+        if ("ASYNC".equals(where)) {
+            ServletOutputStream output = response.getOutputStream();
+            ServletInputStream input = request.getInputStream();
+            TestListener readListener = new TestListener(input, output, ac);
+
+            try {
+                input.setReadListener(readListener);
+            } catch (IllegalStateException npe) {
+                output.println("Test PASSED - expected IllegalStateException thrown.");
+            }
+        } else {
+            ac = request.startAsync();
+            request.setAttribute("WHERE", "ASYNC");
+            ac.dispatch();
+        }
+    }
 }

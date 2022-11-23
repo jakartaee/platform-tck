@@ -16,34 +16,33 @@
 
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
 import jakarta.servlet.annotation.WebListener;
+import java.util.ArrayList;
 
 @WebListener(value = "ServletRequestListener")
 public final class SRListener implements ServletRequestListener {
 
-  public void requestDestroyed(ServletRequestEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SRList");
-    if (al == null) {
-      al = new ArrayList();
+    public void requestDestroyed(ServletRequestEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SRList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+
+        al.add("in requestDestroyed method of listener");
+        event.getServletContext().setAttribute("SRList", al);
     }
 
-    al.add("in requestDestroyed method of listener");
-    event.getServletContext().setAttribute("SRList", al);
-  }
+    public void requestInitialized(ServletRequestEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SRList");
+        if (al == null) {
+            al = new ArrayList();
+        }
 
-  public void requestInitialized(ServletRequestEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SRList");
-    if (al == null) {
-      al = new ArrayList();
+        al.add("in requestInitialized method of listener");
+        event.getServletContext().setAttribute("SRList", al);
     }
-
-    al.add("in requestInitialized method of listener");
-    event.getServletContext().setAttribute("SRList", al);
-  }
 }

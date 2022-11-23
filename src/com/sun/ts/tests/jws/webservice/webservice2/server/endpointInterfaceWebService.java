@@ -26,7 +26,7 @@ import jakarta.jws.WebService;
 @WebService(endpointInterface = "com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebServiceEI", wsdlLocation = "WEB-INF/wsdl/EndpointInterfaceWebServiceService.wsdl")
 public class endpointInterfaceWebService {
 
-  public String hello(String name) {
-    return "Hello " + name + " to Web Service";
-  }
+    public String hello(String name) {
+        return "Hello " + name + " to Web Service";
+    }
 }

@@ -17,28 +17,26 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryEncoder;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.EndpointConfig;
+import java.nio.ByteBuffer;
 
 public class InitDestroyBinaryEncoder extends StringBeanBinaryEncoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+    @Override
+    public void init(EndpointConfig config) {
+        Logger.onInit(getClass());
+    }
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+    @Override
+    public void destroy() {
+        Logger.onDestroy(getClass());
+    }
 
-  @Override
-  public ByteBuffer encode(StringBean bean) throws EncodeException {
-    Logger.onCode(getClass());
-    return super.encode(bean);
-  }
+    @Override
+    public ByteBuffer encode(StringBean bean) throws EncodeException {
+        Logger.onCode(getClass());
+        return super.encode(bean);
+    }
 }

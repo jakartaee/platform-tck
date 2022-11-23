@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CaseBeanEJB extends CMP20Wrapper {
 
-  public boolean testCaseSensitivity() {
-    return TestCode.testCaseSensitivity(nctx);
-  }
-
+    public boolean testCaseSensitivity() {
+        return TestCode.testCaseSensitivity(nctx);
+    }
 }

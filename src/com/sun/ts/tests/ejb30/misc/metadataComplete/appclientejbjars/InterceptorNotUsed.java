@@ -26,33 +26,33 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * An interceptor annotated onto beans. Since a metadata-complete descriptor is
- * used, this interceptor should be ignored.
+ * An interceptor annotated onto beans. Since a metadata-complete descriptor is used, this interceptor should be
+ * ignored.
  */
 public class InterceptorNotUsed {
 
-  public InterceptorNotUsed() {
-    super();
-  }
+    public InterceptorNotUsed() {
+        super();
+    }
 
-  @PostConstruct
-  protected void myCreate(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here since we are using a "
-        + "meta-complete descriptor. This interceptor is annotated onto "
-        + "the bean and therefore should be ignored.");
-  }
+    @PostConstruct
+    protected void myCreate(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here since we are using a "
+                + "meta-complete descriptor. This interceptor is annotated onto "
+                + "the bean and therefore should be ignored.");
+    }
 
-  @PreDestroy
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here since we are using a "
-        + "meta-complete descriptor. This interceptor is annotated onto "
-        + "the bean and therefore should be ignored.");
-  }
+    @PreDestroy
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here since we are using a "
+                + "meta-complete descriptor. This interceptor is annotated onto "
+                + "the bean and therefore should be ignored.");
+    }
 
-  @AroundInvoke
-  protected Object intercept(InvocationContext inv) throws Exception {
-    throw new IllegalStateException("Should not get here since we are using a "
-        + "meta-complete descriptor. This interceptor is annotated onto "
-        + "the bean and therefore should be ignored.");
-  }
+    @AroundInvoke
+    protected Object intercept(InvocationContext inv) throws Exception {
+        throw new IllegalStateException("Should not get here since we are using a "
+                + "meta-complete descriptor. This interceptor is annotated onto "
+                + "the bean and therefore should be ignored.");
+    }
 }

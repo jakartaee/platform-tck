@@ -24,30 +24,29 @@ import java.io.Serializable;
 
 public class CheckedAppException extends Exception implements Serializable {
 
-  public CheckedAppException() {
-    super();
-  }
+    public CheckedAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public CheckedAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public CheckedAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public CheckedAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public CheckedAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public CheckedAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public CheckedAppException(Throwable cause) {
+        super(cause);
+    }
 }

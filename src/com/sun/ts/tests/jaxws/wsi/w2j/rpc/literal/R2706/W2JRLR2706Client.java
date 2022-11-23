@@ -23,32 +23,30 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR2706Client extends SOAPClient {
-  public W2JRLR2706Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR2706Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR2706Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace("http://w2jrlr2706testservice.org/wsdl");
-    stubContext.setService("W2JRLR2706TestService");
-    stubContext.setPort("W2JRLR2706TestPort");
-    stubContext.setEndpointInterface(W2JRLR2706Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR2706Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr2706testservice.org/wsdl");
+        stubContext.setService("W2JRLR2706TestService");
+        stubContext.setPort("W2JRLR2706TestPort");
+        stubContext.setEndpointInterface(W2JRLR2706Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2706.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2706.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2706.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2706.wsdlloc.1";
+    }
 
-  public String echoString(String str,
-      com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.MyHeader mh)
-      throws Exception {
-    return ((W2JRLR2706Test) stubContext.getStub()).echoString(str, mh);
-  }
+    public String echoString(String str, com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.MyHeader mh)
+            throws Exception {
+        return ((W2JRLR2706Test) stubContext.getStub()).echoString(str, mh);
+    }
 }

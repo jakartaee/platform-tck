@@ -16,51 +16,47 @@
 
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionAttributeListener;
 import jakarta.servlet.http.HttpSessionBindingEvent;
+import java.util.ArrayList;
 
 @WebListener(value = "HttpSessionAttributeListener")
 public final class HSAttributeListener implements HttpSessionAttributeListener {
 
-  public void attributeAdded(HttpSessionBindingEvent event) {
-    System.out.println("in HSAttributeListener.attributeAdded");
-    ArrayList al = null;
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        System.out.println("in HSAttributeListener.attributeAdded");
+        ArrayList al = null;
 
-    al = (ArrayList) event.getSession().getServletContext()
-        .getAttribute("HSAList");
-    if (al == null) {
-      al = new ArrayList();
+        al = (ArrayList) event.getSession().getServletContext().getAttribute("HSAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("HSAttributeListener.attributeAdded");
+        event.getSession().getServletContext().setAttribute("HSAList", al);
     }
-    al.add("HSAttributeListener.attributeAdded");
-    event.getSession().getServletContext().setAttribute("HSAList", al);
-  }
 
-  public void attributeRemoved(HttpSessionBindingEvent event) {
-    System.out.println("in HSAttributeListener.attributeRemoved");
-    ArrayList al = null;
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        System.out.println("in HSAttributeListener.attributeRemoved");
+        ArrayList al = null;
 
-    al = (ArrayList) event.getSession().getServletContext()
-        .getAttribute("HSAList");
-    if (al == null) {
-      al = new ArrayList();
+        al = (ArrayList) event.getSession().getServletContext().getAttribute("HSAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("HSAttributeListener.attributeRemoved");
+        event.getSession().getServletContext().setAttribute("HSAList", al);
     }
-    al.add("HSAttributeListener.attributeRemoved");
-    event.getSession().getServletContext().setAttribute("HSAList", al);
-  }
 
-  public void attributeReplaced(HttpSessionBindingEvent event) {
-    System.out.println("in HSAttributeListener.attributeReplaced");
-    ArrayList al = null;
+    public void attributeReplaced(HttpSessionBindingEvent event) {
+        System.out.println("in HSAttributeListener.attributeReplaced");
+        ArrayList al = null;
 
-    al = (ArrayList) event.getSession().getServletContext()
-        .getAttribute("HSAList");
-    if (al == null) {
-      al = new ArrayList();
+        al = (ArrayList) event.getSession().getServletContext().getAttribute("HSAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("HSAttributeListener.attributeReplaced");
+        event.getSession().getServletContext().setAttribute("HSAList", al);
     }
-    al.add("HSAttributeListener.attributeReplaced");
-    event.getSession().getServletContext().setAttribute("HSAList", al);
-  }
 }

@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * This servlet will be used by test16.  The output from this servlet will
@@ -41,58 +40,55 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class ServletProgrammaticLogin extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-    out.println("enterred ServletProgrammaticLogin.service()");
-    System.out.println("enterred ServletProgrammaticLogin.service()");
+        out.println("enterred ServletProgrammaticLogin.service()");
+        System.out.println("enterred ServletProgrammaticLogin.service()");
 
-    // get user creds that are set in secformClient.test16()
-    String the_username = request.getParameter("the_username");
-    String the_password = request.getParameter("the_password");
+        // get user creds that are set in secformClient.test16()
+        String the_username = request.getParameter("the_username");
+        String the_password = request.getParameter("the_password");
 
-    // we are not yet authenticated so at this point a call to getRemoteUser()
-    // MUST return null (per Servlet 3.1 speec (section 13.3).
-    if ((request.getRemoteUser() != null)
-        || (request.getUserPrincipal() != null)
-        || (request.getAuthType() != null)) {
-      String str = "ERROR - HttpServletRequest.login() test failure.  ";
-      str += "We did not get null for the following calls: ";
-      str += " getRemoteUser(), getUserPrincipal(), getAuthType()";
-      sendOutput(str, out);
+        // we are not yet authenticated so at this point a call to getRemoteUser()
+        // MUST return null (per Servlet 3.1 speec (section 13.3).
+        if ((request.getRemoteUser() != null)
+                || (request.getUserPrincipal() != null)
+                || (request.getAuthType() != null)) {
+            String str = "ERROR - HttpServletRequest.login() test failure.  ";
+            str += "We did not get null for the following calls: ";
+            str += " getRemoteUser(), getUserPrincipal(), getAuthType()";
+            sendOutput(str, out);
+        }
+
+        try {
+            request.login(the_username, the_password);
+
+            // per javadoc, if login() worked with no exception then there must
+            // be non-null values for getUserPrincipal, getRemoteUser, and
+            // getAuthType.
+            if ((request.getRemoteUser() == null)
+                    || (request.getUserPrincipal() == null)
+                    || (request.getAuthType() == null)) {
+                sendOutput("ERROR - HttpServletRequest.login() failed", out);
+                sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+                sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(), out);
+                sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
+            } else {
+                sendOutput("request.getRemoteUser()=" + request.getRemoteUser(), out);
+            }
+        } catch (ServletException e) {
+            // per javadoc - if here, login failed.
+            sendOutput("ERROR - HttpServletRequest.login() failed", out);
+        }
+
+        sendOutput("HttpServletRequest.login() passed", out);
     }
 
-    try {
-      request.login(the_username, the_password);
-
-      // per javadoc, if login() worked with no exception then there must
-      // be non-null values for getUserPrincipal, getRemoteUser, and
-      // getAuthType.
-      if ((request.getRemoteUser() == null)
-          || (request.getUserPrincipal() == null)
-          || (request.getAuthType() == null)) {
-        sendOutput("ERROR - HttpServletRequest.login() failed", out);
-        sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
-        sendOutput("request.getUserPrincipal() = " + request.getUserPrincipal(),
-            out);
-        sendOutput("request.getRemoteUser() = " + request.getRemoteUser(), out);
-      } else {
-        sendOutput("request.getRemoteUser()=" + request.getRemoteUser(), out);
-      }
-    } catch (ServletException e) {
-      // per javadoc - if here, login failed.
-      sendOutput("ERROR - HttpServletRequest.login() failed", out);
+    public void sendOutput(String str, PrintWriter out) {
+        String HDR = "ServletProgrammaticLogin:  ";
+        out.println(HDR + str); // this line is used for test validation
+        System.out.println(HDR + str); // this line is for debug aid
     }
-
-    sendOutput("HttpServletRequest.login() passed", out);
-  }
-
-  public void sendOutput(String str, PrintWriter out) {
-    String HDR = "ServletProgrammaticLogin:  ";
-    out.println(HDR + str); // this line is used for test validation
-    System.out.println(HDR + str); // this line is for debug aid
-  }
-
 }

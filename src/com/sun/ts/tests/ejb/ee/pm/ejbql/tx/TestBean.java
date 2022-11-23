@@ -20,23 +20,22 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean txTest1() throws RemoteException;
+    public boolean txTest1() throws RemoteException;
 
-  public boolean txTest2() throws RemoteException;
+    public boolean txTest2() throws RemoteException;
 
-  public boolean txTest3() throws RemoteException;
+    public boolean txTest3() throws RemoteException;
 
-  public boolean txTest4() throws RemoteException;
+    public boolean txTest4() throws RemoteException;
 
-  public boolean txTest5() throws RemoteException;
+    public boolean txTest5() throws RemoteException;
 
-  public boolean txTest6() throws RemoteException;
+    public boolean txTest6() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

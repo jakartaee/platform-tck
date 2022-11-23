@@ -24,5 +24,4 @@ import jakarta.ejb.Local;
 
 @Local
 public interface LocalIntGreetingIF extends IntGreetingIF {
-
 }

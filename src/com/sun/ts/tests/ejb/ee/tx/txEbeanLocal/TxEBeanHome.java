@@ -20,31 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txEbeanLocal;
 
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.DuplicateKeyException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.ObjectNotFoundException;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Properties;
 
 public interface TxEBeanHome extends EJBLocalHome {
 
-  public TxEBean create(String tName, int key, String brand, float price,
-      Properties p) throws CreateException, DuplicateKeyException, SQLException;
+    public TxEBean create(String tName, int key, String brand, float price, Properties p)
+            throws CreateException, DuplicateKeyException, SQLException;
 
-  public TxEBean findtxEbean(String tName, Integer key, Properties p)
-      throws FinderException, ObjectNotFoundException;
+    public TxEBean findtxEbean(String tName, Integer key, Properties p) throws FinderException, ObjectNotFoundException;
 
-  public TxEBean findByPrimaryKey(Integer key)
-      throws FinderException, ObjectNotFoundException;
+    public TxEBean findByPrimaryKey(Integer key) throws FinderException, ObjectNotFoundException;
 
-  public Collection findByBrandName(String tName, String brandName,
-      Properties p) throws FinderException;
+    public Collection findByBrandName(String tName, String brandName, Properties p) throws FinderException;
 
-  public Collection findByPrice(String tName, float price, Properties p)
-      throws FinderException;
-
+    public Collection findByPrice(String tName, float price, Properties p) throws FinderException;
 }

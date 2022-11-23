@@ -25,51 +25,50 @@ package com.sun.ts.tests.common.dao.coffee;
  */
 public class CoffeeBean implements java.io.Serializable {
 
-  private int id = 0; /* Coffee ID (Primary Key) */
+    private int id = 0; /* Coffee ID (Primary Key) */
 
-  private String name = null; /* Coffee Name */
+    private String name = null; /* Coffee Name */
 
-  private float price = 0; /* Coffee Price */
+    private float price = 0; /* Coffee Price */
 
-  public CoffeeBean() throws Exception {
-    this(0, "", 0);
-  }
-
-  public CoffeeBean(int id, String name, float price) {
-    if (null == name) {
-      throw new IllegalArgumentException("null name");
+    public CoffeeBean() throws Exception {
+        this(0, "", 0);
     }
 
-    this.id = id;
-    this.name = name;
-    this.price = price;
-  }
+    public CoffeeBean(int id, String name, float price) {
+        if (null == name) {
+            throw new IllegalArgumentException("null name");
+        }
 
-  public int getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public float getPrice() {
-    return price;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public void setName(String name) {
-    if (null == name) {
-      throw new IllegalArgumentException("null name");
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
-    this.name = name;
-  }
 
-  public void setPrice(float price) {
-    this.price = price;
-  }
+    public int getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        if (null == name) {
+            throw new IllegalArgumentException("null name");
+        }
+        this.name = name;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 }

@@ -25,11 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class CMP11InternalEJB extends CMP11Wrapper {
 
-  /**
-   * Method used to identify this bean (only available for this bean).
-   */
-  public boolean isTestCMP11Internal() {
-    TestUtil.logTrace("CMP11Internal: isTestCMP11Internal()");
-    return true;
-  }
+    /**
+     * Method used to identify this bean (only available for this bean).
+     */
+    public boolean isTestCMP11Internal() {
+        TestUtil.logTrace("CMP11Internal: isTestCMP11Internal()");
+        return true;
+    }
 }

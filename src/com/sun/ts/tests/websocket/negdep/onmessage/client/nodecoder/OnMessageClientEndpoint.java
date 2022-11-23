@@ -17,41 +17,38 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.nodecoder;
 
-//import java.nio.ByteBuffer;
-
-import java.nio.ByteBuffer;
+// import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
 import com.sun.ts.tests.websocket.negdep.StringHolder;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.nio.ByteBuffer;
 
 /**
- * There is no tell whether @OnMessage on this endpoint is accepting binary or
- * text messages, there is not Decoder.
+ * There is no tell whether @OnMessage on this endpoint is accepting binary or text messages, there is not Decoder.
  */
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
-  @OnMessage
-  public void onMessage(StringHolder holder) {
-    clientEndpoint.onMessage(ByteBuffer.wrap(holder.toString().getBytes()));
-  }
+    @OnMessage
+    public void onMessage(StringHolder holder) {
+        clientEndpoint.onMessage(ByteBuffer.wrap(holder.toString().getBytes()));
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 }

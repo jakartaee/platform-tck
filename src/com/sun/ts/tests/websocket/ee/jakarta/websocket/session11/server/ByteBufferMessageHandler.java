@@ -17,34 +17,31 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
+public class ByteBufferMessageHandler implements MessageHandler.Whole<ByteBuffer> {
 
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
+    private Session session;
 
-public class ByteBufferMessageHandler
-    implements MessageHandler.Whole<ByteBuffer> {
+    public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
 
-  private Session session;
-
-  public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
-
-  public ByteBufferMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(ByteBuffer message) {
-    String msg = null;
-    try {
-      msg = IOUtil.byteBufferToString(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public ByteBufferMessageHandler(Session session) {
+        super();
+        this.session = session;
     }
-  }
+
+    @Override
+    public void onMessage(ByteBuffer message) {
+        String msg = null;
+        try {
+            msg = IOUtil.byteBufferToString(message);
+            session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

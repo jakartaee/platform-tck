@@ -20,55 +20,53 @@
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.ExceptionListener;
 import jakarta.jms.JMSException;
 
 public class MyExceptionListener implements ExceptionListener {
 
-  private String name = null;
+    private String name = null;
 
-  private JMSException exception = null;
+    private JMSException exception = null;
 
-  boolean complete = false;
+    boolean complete = false;
 
-  public MyExceptionListener() {
-    this("MyExceptionListener");
-  }
+    public MyExceptionListener() {
+        this("MyExceptionListener");
+    }
 
-  public MyExceptionListener(String name) {
-    this.name = name;
-  }
+    public MyExceptionListener(String name) {
+        this.name = name;
+    }
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+    // getters/setters
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public JMSException getException() {
-    return exception;
-  }
+    public JMSException getException() {
+        return exception;
+    }
 
-  public void setException(JMSException exception) {
-    this.exception = exception;
-  }
+    public void setException(JMSException exception) {
+        this.exception = exception;
+    }
 
-  public boolean isComplete() {
-    return complete;
-  }
+    public boolean isComplete() {
+        return complete;
+    }
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 
-  public void onException(JMSException exception) {
-    TestUtil.logMsg("Got JMSException: " + exception);
-    this.exception = exception;
-    complete = true;
-  }
-
+    public void onException(JMSException exception) {
+        TestUtil.logMsg("Got JMSException: " + exception);
+        this.exception = exception;
+        complete = true;
+    }
 }

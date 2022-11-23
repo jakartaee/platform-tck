@@ -17,17 +17,17 @@
 package com.sun.ts.tests.jacc.ejb.mr;
 
 public interface Target {
-  public void initLogging(java.util.Properties p);
+    public void initLogging(java.util.Properties p);
 
-  public boolean IsCaller(String caller);
+    public boolean IsCaller(String caller);
 
-  public boolean EjbNotAuthz();
+    public boolean EjbNotAuthz();
 
-  public boolean EjbIsAuthz();
+    public boolean EjbIsAuthz();
 
-  public boolean EjbSecRoleRef(String role);
+    public boolean EjbSecRoleRef(String role);
 
-  public boolean uncheckedTest();
+    public boolean uncheckedTest();
 
-  public boolean excludeTest();
+    public boolean excludeTest();
 }

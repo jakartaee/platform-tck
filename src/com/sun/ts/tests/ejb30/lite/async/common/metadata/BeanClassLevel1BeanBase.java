@@ -20,20 +20,19 @@
 
 package com.sun.ts.tests.ejb30.lite.async.common.metadata;
 
+import jakarta.ejb.Asynchronous;
 import java.util.concurrent.Future;
 
-import jakarta.ejb.Asynchronous;
-
 @Asynchronous
-abstract public class BeanClassLevel1BeanBase extends BeanClassLevel0BeanBase {
+public abstract class BeanClassLevel1BeanBase extends BeanClassLevel0BeanBase {
 
-  @Override
-  public void voidRuntimeException() {
-    throw new RuntimeException("This exception is not visible to the client.");
-  }
+    @Override
+    public void voidRuntimeException() {
+        throw new RuntimeException("This exception is not visible to the client.");
+    }
 
-  @Override
-  public Future<Integer> futureRuntimeException() {
-    throw new RuntimeException("futureRuntimeException");
-  }
+    @Override
+    public Future<Integer> futureRuntimeException() {
+        throw new RuntimeException("futureRuntimeException");
+    }
 }

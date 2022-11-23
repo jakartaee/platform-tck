@@ -31,24 +31,23 @@ import jakarta.ejb.TransactionManagementType;
 @Remote({ TxIF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class TxBean extends TxBeanBase implements TxIF {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void mandatoryTest() {
-    super.mandatoryTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void mandatoryTest() {
+        super.mandatoryTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-    super.neverTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  // The two overloaded methods are added to verify that
-  // any tx attribute on their no-arg counterpart does not apply here
-  public void neverTest(String s) {
-    super.neverTest(s);
-  }
+    // The two overloaded methods are added to verify that
+    // any tx attribute on their no-arg counterpart does not apply here
+    public void neverTest(String s) {
+        super.neverTest(s);
+    }
 
-  public void mandatoryTest(String s) {
-    super.mandatoryTest(s);
-  }
-
+    public void mandatoryTest(String s) {
+        super.mandatoryTest(s);
+    }
 }

@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TimerBeanHome extends EJBHome {
-  public TimerBean create() throws RemoteException, CreateException;
+    public TimerBean create() throws RemoteException, CreateException;
 }

@@ -19,23 +19,20 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30;
 
-import java.io.IOException;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class SecondServlet extends GenericServlet {
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    getDispatcherTypeTest(req, res);
-  }
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        getDispatcherTypeTest(req, res);
+    }
 
-  public void getDispatcherTypeTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-  }
+    public void getDispatcherTypeTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
+    }
 }

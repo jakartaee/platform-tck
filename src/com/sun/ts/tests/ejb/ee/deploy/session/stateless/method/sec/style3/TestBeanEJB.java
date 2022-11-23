@@ -25,14 +25,13 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  public boolean test1(int i) {
-    TestUtil.logTrace("[TestBean] test1(int)");
-    return true;
-  }
+    public boolean test1(int i) {
+        TestUtil.logTrace("[TestBean] test1(int)");
+        return true;
+    }
 
-  public boolean test1(double d) {
-    TestUtil.logTrace("[TestBean] test1(double)");
-    return true;
-  }
-
+    public boolean test1(double d) {
+        TestUtil.logTrace("[TestBean] test1(double)");
+        return true;
+    }
 }

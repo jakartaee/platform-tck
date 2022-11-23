@@ -21,5 +21,5 @@
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
 public interface CommonIF {
-  public String getShortName();
+    public String getShortName();
 }

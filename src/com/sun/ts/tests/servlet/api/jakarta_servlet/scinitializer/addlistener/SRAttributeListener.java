@@ -23,23 +23,17 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener;
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 
-public final class SRAttributeListener
-    implements ServletRequestAttributeListener {
+public final class SRAttributeListener implements ServletRequestAttributeListener {
 
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    System.out
-        .print("SRAttributeAdded:" + event.getName() + "," + event.getValue());
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        System.out.print("SRAttributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  }
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+        System.out.print("SRAttributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-    System.out.print(
-        "SRAttributeRemoved:" + event.getName() + "," + event.getValue());
-  }
-
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-    System.out.print(
-        "SRAttributeReplaced:" + event.getName() + "," + event.getValue());
-  }
-
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+        System.out.print("SRAttributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

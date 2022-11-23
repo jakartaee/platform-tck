@@ -58,47 +58,45 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.sclistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void contextInitializedTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void contextInitializedTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    String expected = "ContextInitialized";
-    ServletConfig config = getServletConfig();
-    ServletContext context = config.getServletContext();
-    Object o = context.getAttribute("ContextListener");
-    if (o != null) {
-      if (o instanceof String) {
-        String actual = (String) o;
-        if (actual.equals(expected)) {
-          ServletTestUtil.printResult(pw, true);
+        String expected = "ContextInitialized";
+        ServletConfig config = getServletConfig();
+        ServletContext context = config.getServletContext();
+        Object o = context.getAttribute("ContextListener");
+        if (o != null) {
+            if (o instanceof String) {
+                String actual = (String) o;
+                if (actual.equals(expected)) {
+                    ServletTestUtil.printResult(pw, true);
+                } else {
+                    ServletTestUtil.printResult(pw, false);
+                    pw.println("expected=" + expected);
+                    pw.println("actual=" + actual);
+                }
+            } else {
+                ServletTestUtil.printResult(pw, false);
+                pw.println("Object returned was not and instance of String");
+            }
         } else {
-          ServletTestUtil.printResult(pw, false);
-          pw.println("expected=" + expected);
-          pw.println("actual=" + actual);
-        }
-      } else {
-        ServletTestUtil.printResult(pw, false);
-        pw.println("Object returned was not and instance of String");
-      }
-    } else {
-      ServletTestUtil.printResult(pw, false);
+            ServletTestUtil.printResult(pw, false);
 
-      pw.println("ContextListener attribute not found");
+            pw.println("ContextListener attribute not found");
+        }
     }
-  }
 }

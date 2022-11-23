@@ -20,67 +20,64 @@
 
 package com.sun.ts.tests.common.ejb.wrappers;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 /**
- * Stateful wrapper that provide the bean life cycle methods for a Stateful
- * Session bean. This class is intended to be subclassed by the final entity
- * bean class that will provide the test logic (business methods).
+ * Stateful wrapper that provide the bean life cycle methods for a Stateful Session bean. This class is intended to be
+ * subclassed by the final entity bean class that will provide the test logic (business methods).
  */
 public class StatefulWrapper implements SessionBean {
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  protected SessionContext sctx = null;
+    protected SessionContext sctx = null;
 
-  protected Properties props;
+    protected Properties props;
 
-  /*
-   * Bean life cycle
-   */
+    /*
+     * Bean life cycle
+     */
 
-  public void ejbCreate(Properties props) throws CreateException {
-    try {
-      this.props = props;
-      TestUtil.init(props);
-      TestUtil.logTrace("[StatefulWrapper] ejbCreate()");
-    } catch (RemoteLoggingInitException e) {
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties props) throws CreateException {
+        try {
+            this.props = props;
+            TestUtil.init(props);
+            TestUtil.logTrace("[StatefulWrapper] ejbCreate()");
+        } catch (RemoteLoggingInitException e) {
+            throw new CreateException(e.getMessage());
+        }
+        TestUtil.logTrace("[StatefulWrapper] ejbCreate OK");
     }
-    TestUtil.logTrace("[StatefulWrapper] ejbCreate OK");
-  }
 
-  public void ejbPostCreate(Properties props) throws CreateException {
-    TestUtil.logTrace("[StatefulWrapper] ejbPostCreate()");
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("[StatefulWrapper] setSessionContext()");
-    sctx = sc;
-    try {
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      TestUtil.logErr("[StatefulWrapper] Cannot create Naming Context: " + e);
+    public void ejbPostCreate(Properties props) throws CreateException {
+        TestUtil.logTrace("[StatefulWrapper] ejbPostCreate()");
     }
-  }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("[StatefulWrapper] ejbRemove()");
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("[StatefulWrapper] setSessionContext()");
+        sctx = sc;
+        try {
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            TestUtil.logErr("[StatefulWrapper] Cannot create Naming Context: " + e);
+        }
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("[StatefulWrapper] ejbActivate()");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("[StatefulWrapper] ejbRemove()");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("[StatefulWrapper] ejbPassivate()");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("[StatefulWrapper] ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("[StatefulWrapper] ejbPassivate()");
+    }
 }

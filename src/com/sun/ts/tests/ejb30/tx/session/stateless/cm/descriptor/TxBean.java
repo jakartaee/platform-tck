@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TxBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TxIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
@@ -31,30 +30,28 @@ import jakarta.ejb.Stateless;
 @Remote({ TxIF.class, SameMethodRemoteIF.class })
 @Local(SameMethodLocalIF.class)
 // @TransactionAttribute(TransactionAttributeType.NEVER)
-public class TxBean extends TxBeanBase
-    implements TxIF, SameMethodLocalIF, SameMethodRemoteIF {
-  // @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void mandatoryTest() {
-    super.mandatoryTest();
-  }
+public class TxBean extends TxBeanBase implements TxIF, SameMethodLocalIF, SameMethodRemoteIF {
+    // @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void mandatoryTest() {
+        super.mandatoryTest();
+    }
 
-  // @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-    super.neverTest();
-  }
+    // @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  public void sameMethod() {
-  }
+    public void sameMethod() {
+    }
 
-  // The two overloaded methods share the same transaction-attribute with
-  // their respective no-arg methods, since transaction-attribute is specified
-  // in ejb-jar.xml without using <method-params>
-  public void neverTest(String s) {
-    super.neverTest(s);
-  }
+    // The two overloaded methods share the same transaction-attribute with
+    // their respective no-arg methods, since transaction-attribute is specified
+    // in ejb-jar.xml without using <method-params>
+    public void neverTest(String s) {
+        super.neverTest(s);
+    }
 
-  public void mandatoryTest(String s) {
-    super.mandatoryTest(s);
-  }
-
+    public void mandatoryTest(String s) {
+        super.mandatoryTest(s);
+    }
 }

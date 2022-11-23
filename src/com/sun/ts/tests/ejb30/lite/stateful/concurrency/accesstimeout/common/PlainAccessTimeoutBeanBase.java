@@ -20,49 +20,46 @@
 
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.ejb.AsyncResult;
+import java.util.concurrent.Future;
 
 public class PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
 
-  public Future<String> ping() {
-    Helper.busyWait(PING_WAIT_MILLIS);
-    return new AsyncResult<String>("ping result.");
-  }
+    public Future<String> ping() {
+        Helper.busyWait(PING_WAIT_MILLIS);
+        return new AsyncResult<String>("ping result.");
+    }
 
-  public Future<String> beanClassLevel() {
-    return error();
-  }
+    public Future<String> beanClassLevel() {
+        return error();
+    }
 
-  public Future<String> beanClassLevel2() {
-    return error();
-  }
+    public Future<String> beanClassLevel2() {
+        return error();
+    }
 
-  public Future<String> beanClassMethodLevel() {
-    return error();
-  }
+    public Future<String> beanClassMethodLevel() {
+        return error();
+    }
 
-  public Future<String> beanClassMethodLevelOverride() {
-    return error();
-  }
+    public Future<String> beanClassMethodLevelOverride() {
+        return error();
+    }
 
-  public Future<String> beanSuperClassLevel() {
-    return error();
-  }
+    public Future<String> beanSuperClassLevel() {
+        return error();
+    }
 
-  public Future<String> beanSuperClassMethodLevel() {
-    return error();
-  }
+    public Future<String> beanSuperClassMethodLevel() {
+        return error();
+    }
 
-  public Future<String> beanSuperClassMethodLevelOverride() {
-    return error();
-  }
+    public Future<String> beanSuperClassMethodLevelOverride() {
+        return error();
+    }
 
-  private Future<String> error() {
-    throw new RuntimeException("Should not reach here.");
-  }
-
+    private Future<String> error() {
+        throw new RuntimeException("Should not reach here.");
+    }
 }

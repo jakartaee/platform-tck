@@ -19,30 +19,27 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpupgradehandler;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(value = "/TestServlet")
 public class TestServlet extends HttpServlet {
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    if (request.getHeader("Upgrade") != null) {
-      response.setStatus(101);
-      response.setHeader("Upgrade", "YES");
-      response.setHeader("Connection", "Upgrade");
-      TCKHttpUpgradeHandler handler = request
-          .upgrade(TCKHttpUpgradeHandler.class);
-      handler.setDelimiter("/");
-    } else {
-      response.getWriter().println("No upgrade");
-      response.getWriter().println("End of Test");
+        if (request.getHeader("Upgrade") != null) {
+            response.setStatus(101);
+            response.setHeader("Upgrade", "YES");
+            response.setHeader("Connection", "Upgrade");
+            TCKHttpUpgradeHandler handler = request.upgrade(TCKHttpUpgradeHandler.class);
+            handler.setDelimiter("/");
+        } else {
+            response.getWriter().println("No upgrade");
+            response.getWriter().println("End of Test");
+        }
     }
-  }
 }

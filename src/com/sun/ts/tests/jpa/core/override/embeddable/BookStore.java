@@ -16,64 +16,62 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 public class BookStore implements Serializable {
 
-  @Id
-  private Integer id;
+    @Id
+    private Integer id;
 
-  @Embedded
-  private Publisher publisher;
+    @Embedded
+    private Publisher publisher;
 
-  public BookStore() {
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BookStore)) {
-      return false;
+    public BookStore() {
     }
-    BookStore other = (BookStore) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.embeddable." + "BookStore[id="
-        + getId() + "]";
-  }
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof BookStore)) {
+            return false;
+        }
+        BookStore other = (BookStore) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public Publisher getPublisher() {
-    return publisher;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.embeddable." + "BookStore[id=" + getId() + "]";
+    }
 
-  public void setPublisher(Publisher publisher) {
-    this.publisher = publisher;
-  }
+    public Publisher getPublisher() {
+        return publisher;
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

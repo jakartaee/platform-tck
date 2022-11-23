@@ -20,20 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.bmp.bm.Tx_Multi;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean doTest1(Integer pkey, String tName, int i)
-      throws RemoteException;
+    public boolean doTest1(Integer pkey, String tName, int i) throws RemoteException;
 
-  public boolean doTest2(Integer pkey, String tName, int i)
-      throws RemoteException;
+    public boolean doTest2(Integer pkey, String tName, int i) throws RemoteException;
 
-  public boolean doTest5(Integer pkey, String tName, int i)
-      throws RemoteException;
+    public boolean doTest5(Integer pkey, String tName, int i) throws RemoteException;
 
-  public boolean doTest6(Integer pkey, String tName, int i)
-      throws RemoteException;
+    public boolean doTest6(Integer pkey, String tName, int i) throws RemoteException;
 }

@@ -16,44 +16,38 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+import jakarta.ejb.TimedObject;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+public abstract class SharingTimerBeanBase extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {
 
-import jakarta.ejb.TimedObject;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerConfig;
-
-abstract public class SharingTimerBeanBase
-    extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {
-
-  public void ejbTimeout(Timer timer) {
-    timeout(timer);
-  }
-
-  public String accessTimers() throws TestFailedException {
-    Collection<Timer> timers = timerService.getTimers();
-    if (timers.size() == 1) {
-      return "Timer in bean class: " + this + "\n";
+    public void ejbTimeout(Timer timer) {
+        timeout(timer);
     }
-    throw new TestFailedException("Expecting 1 timer, but actual "
-        + timers.size() + ", bean class: " + this);
-  }
 
-  @Override
-  public Timer createTimer(long duration, Serializable timerInfo) {
-    // return super.createTimer(duration, timerInfo);
-    return super.createTimer(duration, new TimerConfig(timerInfo, false));
-  }
+    public String accessTimers() throws TestFailedException {
+        Collection<Timer> timers = timerService.getTimers();
+        if (timers.size() == 1) {
+            return "Timer in bean class: " + this + "\n";
+        }
+        throw new TestFailedException("Expecting 1 timer, but actual " + timers.size() + ", bean class: " + this);
+    }
 
-  @Override
-  public Timer createTimer(Date expiration, long duration,
-      Serializable timerInfo) {
-    // return super.createTimer(expiration, duration, timerInfo);
-    return super.createTimer(expiration, duration,
-        new TimerConfig(timerInfo, false));
-  }
+    @Override
+    public Timer createTimer(long duration, Serializable timerInfo) {
+        // return super.createTimer(duration, timerInfo);
+        return super.createTimer(duration, new TimerConfig(timerInfo, false));
+    }
+
+    @Override
+    public Timer createTimer(Date expiration, long duration, Serializable timerInfo) {
+        // return super.createTimer(expiration, duration, timerInfo);
+        return super.createTimer(expiration, duration, new TimerConfig(timerInfo, false));
+    }
 }

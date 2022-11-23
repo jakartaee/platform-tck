@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejbref.casesens;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface CaseBean extends EJBObject {
 
-  public String whoAreYou() throws RemoteException;
-
+    public String whoAreYou() throws RemoteException;
 }

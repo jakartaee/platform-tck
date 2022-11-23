@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessioncontexttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean2 extends EJBObject {
-  public boolean getUserTransactionTest() throws RemoteException;
+    public boolean getUserTransactionTest() throws RemoteException;
 
-  public boolean getRollbackOnlyTest() throws RemoteException;
+    public boolean getRollbackOnlyTest() throws RemoteException;
 
-  public boolean setRollbackOnlyTest() throws RemoteException;
+    public boolean setRollbackOnlyTest() throws RemoteException;
 }

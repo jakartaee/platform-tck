@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class StringBeanEJB extends CMP20Wrapper {
 
-  public boolean testStringEntry() {
-    return TestCode.testStringEntry(nctx);
-  }
-
+    public boolean testStringEntry() {
+        return TestCode.testStringEntry(nctx);
+    }
 }

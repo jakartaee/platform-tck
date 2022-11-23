@@ -61,66 +61,62 @@ package com.sun.ts.tests.common.webclient.handler;
 
 /**
  * <PRE>
- * The HandlerManager is responsible for returning the appropriate handler
- * instance based on the provided value.
+ * The HandlerManager is responsible for returning the appropriate handler instance based on the provided value.
  */
 public class HandlerFactory {
 
-  /**
-   * Content-Type handler name.
-   */
-  private static final String CONTENT_TYPE = "content-type";
+    /**
+     * Content-Type handler name.
+     */
+    private static final String CONTENT_TYPE = "content-type";
 
-  /**
-   * Location handler name.
-   */
-  private static final String LOCATION = "location";
+    /**
+     * Location handler name.
+     */
+    private static final String LOCATION = "location";
 
-  /**
-   * Set-Cookie handler name.
-   */
-  private static final String SET_COOKIE = "set-cookie";
+    /**
+     * Set-Cookie handler name.
+     */
+    private static final String SET_COOKIE = "set-cookie";
 
-  /**
-   * ALLOW handler name.
-   */
-  private static final String ALLOW = "allow";
+    /**
+     * ALLOW handler name.
+     */
+    private static final String ALLOW = "allow";
 
-  /**
-   * www-authenticate handler name.
-   */
-  private static final String WWW_AUTH = "www-authenticate";
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /**
+     * www-authenticate handler name.
+     */
+    private static final String WWW_AUTH = "www-authenticate";
+    /*
+     * public methods ========================================================================
+     */
 
-  /**
-   * Constructs a new HandlerManager instance
-   */
-  private HandlerFactory() {
-  }
-
-  /**
-   * Returns the appropriate handler instance based on provided discriminate (a
-   * header name).
-   *
-   * @param handlerName
-   *          handler instance to obtain.
-   */
-  public static Handler getHandler(String handlerName) {
-    if (CONTENT_TYPE.equals(handlerName.toLowerCase())) {
-      return ContentTypeHandler.getInstance();
-    } else if (LOCATION.equals(handlerName.toLowerCase())) {
-      return LocationHandler.getInstance();
-    } else if (SET_COOKIE.equals(handlerName.toLowerCase())) {
-      return SetCookieHandler.getInstance();
-    } else if (WWW_AUTH.equals(handlerName.toLowerCase())) {
-      return WWWAuthenticateHandler.getInstance();
-    } else if (ALLOW.equals(handlerName.toLowerCase())) {
-      return ALLOWHandler.getInstance();
-    } else {
-      return DefaultHandler.getInstance();
+    /**
+     * Constructs a new HandlerManager instance
+     */
+    private HandlerFactory() {
     }
-  }
+
+    /**
+     * Returns the appropriate handler instance based on provided discriminate (a header name).
+     *
+     * @param handlerName handler instance to obtain.
+     */
+    public static Handler getHandler(String handlerName) {
+        if (CONTENT_TYPE.equals(handlerName.toLowerCase())) {
+            return ContentTypeHandler.getInstance();
+        } else if (LOCATION.equals(handlerName.toLowerCase())) {
+            return LocationHandler.getInstance();
+        } else if (SET_COOKIE.equals(handlerName.toLowerCase())) {
+            return SetCookieHandler.getInstance();
+        } else if (WWW_AUTH.equals(handlerName.toLowerCase())) {
+            return WWWAuthenticateHandler.getInstance();
+        } else if (ALLOW.equals(handlerName.toLowerCase())) {
+            return ALLOWHandler.getInstance();
+        } else {
+            return DefaultHandler.getInstance();
+        }
+    }
 }

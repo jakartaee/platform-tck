@@ -23,14 +23,14 @@ package com.sun.ts.tests.ejb.ee.pm.manyXmany.bi.delete;
 import jakarta.ejb.EJBLocalObject;
 
 public interface BeanLocal extends EJBLocalObject {
-  // Business Methods for Bean CMP Fields
-  public String getId();
+    // Business Methods for Bean CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 }

@@ -20,19 +20,18 @@
 
 package com.sun.ts.tests.jsp.spec.tagfiles.semantics;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class MyClassicTag extends TagSupport {
 
-  public int doStartTag() throws JspException {
-    try {
-      pageContext.getOut().println("MyClassicTag:Test PASSED.");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected Exception", ioe);
+    public int doStartTag() throws JspException {
+        try {
+            pageContext.getOut().println("MyClassicTag:Test PASSED.");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected Exception", ioe);
+        }
+        return SKIP_BODY;
     }
-    return SKIP_BODY;
-  }
 }

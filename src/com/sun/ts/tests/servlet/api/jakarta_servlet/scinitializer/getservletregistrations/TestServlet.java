@@ -19,28 +19,25 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getservletregistrations;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void getServletRegistrationsTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
-    PrintWriter pw = response.getWriter();
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
-    passed = (Boolean) context.getAttribute("TCK_TEST_PASS_STATUS");
-    ServletTestUtil.printResult(
-        pw.append((String) context.getAttribute("TCK_TEST_STATUS")), passed);
-  }
+    public void getServletRegistrationsTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
+        PrintWriter pw = response.getWriter();
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
+        passed = (Boolean) context.getAttribute("TCK_TEST_PASS_STATUS");
+        ServletTestUtil.printResult(pw.append((String) context.getAttribute("TCK_TEST_STATUS")), passed);
+    }
 }

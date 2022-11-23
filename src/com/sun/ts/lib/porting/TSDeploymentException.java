@@ -21,15 +21,15 @@
 package com.sun.ts.lib.porting;
 
 public class TSDeploymentException extends java.lang.Exception {
-  public TSDeploymentException() {
-    super();
-  }
+    public TSDeploymentException() {
+        super();
+    }
 
-  public TSDeploymentException(String s) {
-    super(s);
-  }
+    public TSDeploymentException(String s) {
+        super(s);
+    }
 
-  public TSDeploymentException(String s, Throwable e) {
-    super(s);
-  }
+    public TSDeploymentException(String s, Throwable e) {
+        super(s);
+    }
 }

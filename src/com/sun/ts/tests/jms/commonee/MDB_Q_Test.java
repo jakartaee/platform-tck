@@ -19,24 +19,22 @@
  */
 package com.sun.ts.tests.jms.commonee;
 
-import java.util.Properties;
-
 import jakarta.ejb.Remote;
+import java.util.Properties;
 
 @Remote
 public interface MDB_Q_Test {
-  boolean askMDBToRunATest(String typeOfTest);
+    boolean askMDBToRunATest(String typeOfTest);
 
-  boolean askMDBToSendAMessage(String messageType);
+    boolean askMDBToSendAMessage(String messageType);
 
-  boolean checkOnResponse(String prop);
+    boolean checkOnResponse(String prop);
 
-  boolean isThereSomethingInTheQueue();
+    boolean isThereSomethingInTheQueue();
 
-  void setup(Properties p);
+    void setup(Properties p);
 
-  void cleanTheQueue();
+    void cleanTheQueue();
 
-  void remove();
-
+    void remove();
 }

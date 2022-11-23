@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jsonp.common;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-
-import com.sun.ts.lib.util.TestUtil;
 
 // A wrapper class to BufferedReader class used to inject IOException errors
 // when the throwIOException instance variable is set. All methods delegate
@@ -33,59 +32,59 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class MyBufferedReader extends BufferedReader {
 
-  private boolean throwIOException;
+    private boolean throwIOException;
 
-  public MyBufferedReader(Reader in) {
-    super(in);
-  }
-
-  public MyBufferedReader(Reader in, int sz) {
-    super(in, sz);
-  }
-
-  public MyBufferedReader(Reader in, int sz, boolean throwIOException) {
-    super(in, sz);
-    this.throwIOException = throwIOException;
-  }
-
-  private void checkToTripIOException() throws IOException {
-    if (throwIOException) {
-      TestUtil.logMsg("*** tripping an IOException ***");
-      throw new IOException("tripping an IOException");
+    public MyBufferedReader(Reader in) {
+        super(in);
     }
-  }
 
-  public void setThrowIOException(boolean throwIOException) {
-    this.throwIOException = throwIOException;
-  }
+    public MyBufferedReader(Reader in, int sz) {
+        super(in, sz);
+    }
 
-  public int read() throws IOException {
-    checkToTripIOException();
-    return super.read();
-  }
+    public MyBufferedReader(Reader in, int sz, boolean throwIOException) {
+        super(in, sz);
+        this.throwIOException = throwIOException;
+    }
 
-  public int read(char[] cbuf, int off, int len) throws IOException {
-    checkToTripIOException();
-    return super.read(cbuf, off, len);
-  }
+    private void checkToTripIOException() throws IOException {
+        if (throwIOException) {
+            TestUtil.logMsg("*** tripping an IOException ***");
+            throw new IOException("tripping an IOException");
+        }
+    }
 
-  public String readLine() throws IOException {
-    checkToTripIOException();
-    return super.readLine();
-  }
+    public void setThrowIOException(boolean throwIOException) {
+        this.throwIOException = throwIOException;
+    }
 
-  public boolean ready() throws IOException {
-    checkToTripIOException();
-    return super.ready();
-  }
+    public int read() throws IOException {
+        checkToTripIOException();
+        return super.read();
+    }
 
-  public void reset() throws IOException {
-    checkToTripIOException();
-    super.reset();
-  }
+    public int read(char[] cbuf, int off, int len) throws IOException {
+        checkToTripIOException();
+        return super.read(cbuf, off, len);
+    }
 
-  public void close() throws IOException {
-    checkToTripIOException();
-    super.close();
-  }
+    public String readLine() throws IOException {
+        checkToTripIOException();
+        return super.readLine();
+    }
+
+    public boolean ready() throws IOException {
+        checkToTripIOException();
+        return super.ready();
+    }
+
+    public void reset() throws IOException {
+        checkToTripIOException();
+        super.reset();
+    }
+
+    public void close() throws IOException {
+        checkToTripIOException();
+        super.close();
+    }
 }

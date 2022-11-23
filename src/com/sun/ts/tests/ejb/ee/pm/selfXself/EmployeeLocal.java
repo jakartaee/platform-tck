@@ -23,32 +23,32 @@ package com.sun.ts.tests.ejb.ee.pm.selfXself;
 import jakarta.ejb.EJBLocalObject;
 
 public interface EmployeeLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public Integer getId();
+    // Business Methods for CMP Fields
+    public Integer getId();
 
-  public String getFirstName();
+    public String getFirstName();
 
-  public void setFirstName(String v);
+    public void setFirstName(String v);
 
-  public String getLastName();
+    public String getLastName();
 
-  public void setLastName(String v);
+    public void setLastName(String v);
 
-  public java.util.Date getHireDate();
+    public java.util.Date getHireDate();
 
-  public void setHireDate(java.util.Date d);
+    public void setHireDate(java.util.Date d);
 
-  public float getSalary();
+    public float getSalary();
 
-  public void setSalary(float f);
+    public void setSalary(float f);
 
-  // Business Methods for CMR Fields
+    // Business Methods for CMR Fields
 
-  public DepartmentLocal getDepartment();
+    public DepartmentLocal getDepartment();
 
-  public void setDepartment(DepartmentLocal v);
+    public void setDepartment(DepartmentLocal v);
 
-  public EmployeeLocal getManager();
+    public EmployeeLocal getManager();
 
-  public void setManager(EmployeeLocal v);
+    public void setManager(EmployeeLocal v);
 }

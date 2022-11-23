@@ -23,24 +23,23 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface LocalTxIF {
-  public void localMandatoryTest();
+    public void localMandatoryTest();
 
-  public String systemExceptionTest() throws TestFailedException; // this method
-                                                                  // is also in
-                                                                  // TxIF
+    public String systemExceptionTest() throws TestFailedException; // this method
+    // is also in
+    // TxIF
 
-  public void neverTest();
+    public void neverTest();
 
-  void localRequiresNewTest();
+    void localRequiresNewTest();
 
-  void localRequiresNewRemoveTest();
+    void localRequiresNewRemoveTest();
 
-  String localSupportsTest() throws TestFailedException;
+    String localSupportsTest() throws TestFailedException;
 
-  String localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
+    String localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
 
-  String localIllegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException;
+    String localIllegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException;
 
-  void requiresNewNoop() throws TestFailedException;
+    void requiresNewNoop() throws TestFailedException;
 }

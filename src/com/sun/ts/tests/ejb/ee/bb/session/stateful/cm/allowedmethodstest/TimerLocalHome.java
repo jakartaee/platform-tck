@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface TimerLocalHome extends EJBLocalHome {
-  public TimerLocal create() throws CreateException;
+    public TimerLocal create() throws CreateException;
 }

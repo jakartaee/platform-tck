@@ -23,8 +23,7 @@ package com.sun.ts.tests.ejb30.common.annotation.resource;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface UserTransactionNegativeIF {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public void testUserTransactionNegativeLookup() throws TestFailedException;
-
+    public void testUserTransactionNegativeLookup() throws TestFailedException;
 }

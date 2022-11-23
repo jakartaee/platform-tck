@@ -21,5 +21,4 @@
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
 public interface EJBContext2IF extends EJBContextIF {
-
 }

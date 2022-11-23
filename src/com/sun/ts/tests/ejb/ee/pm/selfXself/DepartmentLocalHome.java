@@ -25,7 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface DepartmentLocalHome extends EJBLocalHome {
-  public DepartmentLocal create(Integer id, String name) throws CreateException;
+    public DepartmentLocal create(Integer id, String name) throws CreateException;
 
-  public DepartmentLocal findByPrimaryKey(Integer key) throws FinderException;
+    public DepartmentLocal findByPrimaryKey(Integer key) throws FinderException;
 }

@@ -20,58 +20,57 @@
 package com.sun.ts.tests.jms.core20.appclient.jmscontextqueuetests;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 public class MyMessageListener2 implements MessageListener {
 
-  private String name = null;
+    private String name = null;
 
-  private Message message = null;
+    private Message message = null;
 
-  private Exception exception = null;
+    private Exception exception = null;
 
-  private int numMessages = 1;
+    private int numMessages = 1;
 
-  boolean complete = false;
+    boolean complete = false;
 
-  public MyMessageListener2() {
-    this("MyMessageListener2");
-  }
+    public MyMessageListener2() {
+        this("MyMessageListener2");
+    }
 
-  public MyMessageListener2(String name) {
-    this.name = name;
-  }
+    public MyMessageListener2(String name) {
+        this.name = name;
+    }
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+    // getters/setters
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Message getMessage() {
-    return message;
-  }
+    public Message getMessage() {
+        return message;
+    }
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+    public void setMessage(Message message) {
+        this.message = message;
+    }
 
-  public boolean isComplete() {
-    return complete;
-  }
+    public boolean isComplete() {
+        return complete;
+    }
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 
-  public void onMessage(Message message) {
-    TestUtil.logMsg("onCompletion(): Got Message: " + message);
-    this.message = message;
-    complete = true;
-  }
+    public void onMessage(Message message) {
+        TestUtil.logMsg("onCompletion(): Got Message: " + message);
+        this.message = message;
+        complete = true;
+    }
 }

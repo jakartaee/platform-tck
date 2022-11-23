@@ -16,73 +16,62 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
-import javax.transaction.xa.XAException;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.XidImpl;
-
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
+import javax.transaction.xa.XAException;
 
 public class IBAnnoMessageListener implements WorkListener {
 
-  private XidImpl xid;
+    private XidImpl xid;
 
-  private BootstrapContext bsc;
+    private BootstrapContext bsc;
 
-  public IBAnnoMessageListener(XidImpl xid, BootstrapContext bsc) {
-    this.xid = xid;
-    this.bsc = bsc;
-  }
-
-  public void workAccepted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("IBAnnoMessageListener.workAccepted");
-    if (xid != null) {
-      System.out.println("IBAnnoMessageListener.workAccepted() for XID = "
-          + xid.getFormatId());
-    } else {
-      // should not get here but just in case...
-      System.out.println("IBAnnoMessageListener.workAccepted() for XID = null");
+    public IBAnnoMessageListener(XidImpl xid, BootstrapContext bsc) {
+        this.xid = xid;
+        this.bsc = bsc;
     }
-  }
 
-  public void workRejected(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("IBAnnoMessageListener.workRejected");
-    if (xid != null) {
-      System.out.println("IBAnnoMessageListener.workRejected() for XID = "
-          + xid.getFormatId());
-    } else {
-      // should not get here but just in case...
-      System.out.println("IBAnnoMessageListener.workRejected() for XID = null");
+    public void workAccepted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("IBAnnoMessageListener.workAccepted");
+        if (xid != null) {
+            System.out.println("IBAnnoMessageListener.workAccepted() for XID = " + xid.getFormatId());
+        } else {
+            // should not get here but just in case...
+            System.out.println("IBAnnoMessageListener.workAccepted() for XID = null");
+        }
     }
-  }
 
-  public void workStarted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("IBAnnoMessageListener.workStarted");
-    System.out.println("IBAnnoMessageListener.workStarted");
-  }
-
-  public void workCompleted(WorkEvent e) {
-    try {
-      XATerminator xt = bsc.getXATerminator();
-      System.out.println(
-          "IBAnnoMessageListener.workCompleted and about to call XATerminator.commit()");
-      System.out.println(
-          "XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
-      xt.commit(this.xid, true);
-      ConnectorStatus.getConnectorStatus()
-          .logState("IBAnnoMessageListener committed Xid");
-    } catch (XAException ex) {
-      Debug.trace("IBAnnoMessageListener.workCompleted() got XAException");
-      Debug.trace("XAException.toString() = " + ex.toString());
-      ex.printStackTrace();
+    public void workRejected(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("IBAnnoMessageListener.workRejected");
+        if (xid != null) {
+            System.out.println("IBAnnoMessageListener.workRejected() for XID = " + xid.getFormatId());
+        } else {
+            // should not get here but just in case...
+            System.out.println("IBAnnoMessageListener.workRejected() for XID = null");
+        }
     }
-  }
 
+    public void workStarted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("IBAnnoMessageListener.workStarted");
+        System.out.println("IBAnnoMessageListener.workStarted");
+    }
+
+    public void workCompleted(WorkEvent e) {
+        try {
+            XATerminator xt = bsc.getXATerminator();
+            System.out.println("IBAnnoMessageListener.workCompleted and about to call XATerminator.commit()");
+            System.out.println("XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
+            xt.commit(this.xid, true);
+            ConnectorStatus.getConnectorStatus().logState("IBAnnoMessageListener committed Xid");
+        } catch (XAException ex) {
+            Debug.trace("IBAnnoMessageListener.workCompleted() got XAException");
+            Debug.trace("XAException.toString() = " + ex.toString());
+            ex.printStackTrace();
+        }
+    }
 }

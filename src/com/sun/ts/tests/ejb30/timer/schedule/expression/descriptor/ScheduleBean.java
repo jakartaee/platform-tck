@@ -22,9 +22,8 @@ package com.sun.ts.tests.ejb30.timer.schedule.expression.descriptor;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 
 public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
-  @SuppressWarnings("unused")
-  private void auto() {
-    // do nothing
-  }
-
+    @SuppressWarnings("unused")
+    private void auto() {
+        // do nothing
+    }
 }

@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Local;
@@ -34,5 +33,4 @@ import jakarta.ejb.Stateful;
 @LocalBean
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class ContainerConcurrencyBean extends StatefulConcurrencyBeanBase2 {
-
 }

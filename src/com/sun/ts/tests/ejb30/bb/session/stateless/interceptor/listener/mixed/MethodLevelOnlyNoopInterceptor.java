@@ -26,18 +26,18 @@ import jakarta.interceptor.InvocationContext;
 
 public class MethodLevelOnlyNoopInterceptor {
 
-  public MethodLevelOnlyNoopInterceptor() {
-    super();
-  }
+    public MethodLevelOnlyNoopInterceptor() {
+        super();
+    }
 
-  @AroundInvoke
-  public Object intercept1(InvocationContext ctx) throws Exception {
-    return ctx.proceed();
-  }
+    @AroundInvoke
+    public Object intercept1(InvocationContext ctx) throws Exception {
+        return ctx.proceed();
+    }
 
-  @PostConstruct
-  public void postConstruct(InvocationContext inv) {
-    throw new IllegalStateException(
-        "This interceptor is declared as a method-level interceptor and this PostConstruct method must be ignored.");
-  }
+    @PostConstruct
+    public void postConstruct(InvocationContext inv) {
+        throw new IllegalStateException(
+                "This interceptor is declared as a method-level interceptor and this PostConstruct method must be ignored.");
+    }
 }

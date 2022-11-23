@@ -25,28 +25,28 @@ import jakarta.servlet.WriteListener;
 
 public class TestListener implements WriteListener {
 
-  private ServletOutputStream output = null;
+    private ServletOutputStream output = null;
 
-  private AsyncContext ac = null;
+    private AsyncContext ac = null;
 
-  TestListener(ServletOutputStream sos, AsyncContext c) {
-    output = sos;
-    ac = c;
-  }
-
-  public void onWritePossible() {
-    String message = "=onWritePossible";
-    try {
-      output.write(message.getBytes());
-      ac.complete();
-    } catch (Exception ex) {
-      ac.complete();
-      throw new IllegalStateException(ex);
+    TestListener(ServletOutputStream sos, AsyncContext c) {
+        output = sos;
+        ac = c;
     }
-  }
 
-  public void onError(final Throwable t) {
-    ac.complete();
-    t.printStackTrace();
-  }
+    public void onWritePossible() {
+        String message = "=onWritePossible";
+        try {
+            output.write(message.getBytes());
+            ac.complete();
+        } catch (Exception ex) {
+            ac.complete();
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    public void onError(final Throwable t) {
+        ac.complete();
+        t.printStackTrace();
+    }
 }

@@ -20,57 +20,42 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface AliasHome extends EJBHome {
-  public Alias create(String id, String alias)
-      throws RemoteException, CreateException;
+    public Alias create(String id, String alias) throws RemoteException, CreateException;
 
-  public Alias findByPrimaryKey(String key)
-      throws RemoteException, FinderException;
+    public Alias findByPrimaryKey(String key) throws RemoteException, FinderException;
 
-  public Collection findAllAliases() throws RemoteException, FinderException;
+    public Collection findAllAliases() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery2()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery2() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery3(String s, int i, int j)
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery3(String s, int i, int j) throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery4()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery4() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery5()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery5() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery6()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery6() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery7()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery7() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery8(String s)
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery8(String s) throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery9(String s)
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery9(String s) throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery10()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery10() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery11()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery11() throws RemoteException, FinderException;
 
-  public Collection findAliasesByQuery12()
-      throws RemoteException, FinderException;
+    public Collection findAliasesByQuery12() throws RemoteException, FinderException;
 
-  public Collection findCustomerAliasesByOrder()
-      throws RemoteException, FinderException;
+    public Collection findCustomerAliasesByOrder() throws RemoteException, FinderException;
 
-  public Collection selectNullAlias(String s) throws RemoteException;
+    public Collection selectNullAlias(String s) throws RemoteException;
 }

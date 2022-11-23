@@ -20,13 +20,13 @@ import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
 public interface TxRemote extends EJBObject {
-  public String txRequired(String str) throws RemoteException;
+    public String txRequired(String str) throws RemoteException;
 
-  public String txRequiresNew(String str) throws RemoteException;
+    public String txRequiresNew(String str) throws RemoteException;
 
-  public String txSupports(String str) throws RemoteException;
+    public String txSupports(String str) throws RemoteException;
 
-  public String txNotSupported(String str) throws RemoteException;
+    public String txNotSupported(String str) throws RemoteException;
 
-  public String txNever(String str) throws RemoteException;
+    public String txNever(String str) throws RemoteException;
 }

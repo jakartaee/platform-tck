@@ -58,23 +58,20 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.requestdispatcher;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ForwardedServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    pw.println("Content from ForwardedServlet");
-    ServletTestUtil.printResult(pw, true);
-  }
+        pw.println("Content from ForwardedServlet");
+        ServletTestUtil.printResult(pw, true);
+    }
 }

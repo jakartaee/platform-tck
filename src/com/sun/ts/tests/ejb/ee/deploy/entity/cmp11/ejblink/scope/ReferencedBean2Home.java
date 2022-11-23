@@ -19,19 +19,16 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.ejblink.scope;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface ReferencedBean2Home extends EJBHome {
 
-  public ReferencedBean2 create(Properties p, int keyId, String brandName,
-      float price) throws RemoteException, CreateException;
+    public ReferencedBean2 create(Properties p, int keyId, String brandName, float price)
+            throws RemoteException, CreateException;
 
-  public ReferencedBean2 findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public ReferencedBean2 findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.assembly.initorder.common;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
@@ -31,12 +30,11 @@ import jakarta.ejb.Startup;
 @Startup
 public class InitOrderBean implements InitOrderRemoteIF {
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().info("In postConstruct of " + this);
-    HelloRemoteIF helloBean = (HelloRemoteIF) ServiceLocator
-        .lookupNoTry(HelloRemoteIF.GLOBAL_JNDI_NAME);
-    helloBean.addRecord("InitOrderBean");
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().info("In postConstruct of " + this);
+        HelloRemoteIF helloBean = (HelloRemoteIF) ServiceLocator.lookupNoTry(HelloRemoteIF.GLOBAL_JNDI_NAME);
+        helloBean.addRecord("InitOrderBean");
+    }
 }

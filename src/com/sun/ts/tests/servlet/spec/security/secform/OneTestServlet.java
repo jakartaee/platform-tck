@@ -20,26 +20,23 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class OneTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
-    out.println("This page can be accessed by the following URLs" + "<BR>");
-    out.println("http://hostname:port/jsp_secform/One.jsp" + "<BR>");
-    out.println("http://hostname:port/jsp_secform/On*" + "<BR>");
-    out.println("http://hostname:port/jsp_secform/One/index.html" + "<BR>");
-    out.println("http://hostname:port/jsp_secform/One/*" + "<BR>");
-    out.println("<BR>");
-
-  }
+        PrintWriter out = response.getWriter();
+        out.println("This page can be accessed by the following URLs" + "<BR>");
+        out.println("http://hostname:port/jsp_secform/One.jsp" + "<BR>");
+        out.println("http://hostname:port/jsp_secform/On*" + "<BR>");
+        out.println("http://hostname:port/jsp_secform/One/index.html" + "<BR>");
+        out.println("http://hostname:port/jsp_secform/One/*" + "<BR>");
+        out.println("<BR>");
+    }
 }

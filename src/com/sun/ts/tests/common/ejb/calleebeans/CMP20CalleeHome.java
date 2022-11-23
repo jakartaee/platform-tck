@@ -20,22 +20,19 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CMP20CalleeHome extends EJBHome {
 
-  public CMP20Callee create(Properties p, int keyId, String brandName,
-      float price) throws RemoteException, CreateException;
+    public CMP20Callee create(Properties p, int keyId, String brandName, float price)
+            throws RemoteException, CreateException;
 
-  public CMP20Callee create(Properties p, int keyId, String brandName,
-      float price, SimpleArgument arg) throws RemoteException, CreateException;
+    public CMP20Callee create(Properties p, int keyId, String brandName, float price, SimpleArgument arg)
+            throws RemoteException, CreateException;
 
-  public CMP20Callee findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public CMP20Callee findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

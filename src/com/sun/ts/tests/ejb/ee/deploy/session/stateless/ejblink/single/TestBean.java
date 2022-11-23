@@ -20,35 +20,33 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejblink.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean testStatelessInternal(Properties p) throws RemoteException;
+    public boolean testStatelessInternal(Properties p) throws RemoteException;
 
-  public boolean testStatelessExternal(Properties p) throws RemoteException;
+    public boolean testStatelessExternal(Properties p) throws RemoteException;
 
-  public boolean testStatefulInternal(Properties p) throws RemoteException;
+    public boolean testStatefulInternal(Properties p) throws RemoteException;
 
-  public boolean testStatefulExternal(Properties p) throws RemoteException;
+    public boolean testStatefulExternal(Properties p) throws RemoteException;
 
-  public boolean testBMPInternal(Properties p) throws RemoteException;
+    public boolean testBMPInternal(Properties p) throws RemoteException;
 
-  public boolean testBMPExternal(Properties p) throws RemoteException;
+    public boolean testBMPExternal(Properties p) throws RemoteException;
 
-  public boolean testCMP11Internal(Properties p) throws RemoteException;
+    public boolean testCMP11Internal(Properties p) throws RemoteException;
 
-  public boolean testCMP11External(Properties p) throws RemoteException;
+    public boolean testCMP11External(Properties p) throws RemoteException;
 
-  public boolean testCMP20Internal(Properties p) throws RemoteException;
+    public boolean testCMP20Internal(Properties p) throws RemoteException;
 
-  public boolean testCMP20External(Properties p) throws RemoteException;
+    public boolean testCMP20External(Properties p) throws RemoteException;
 
-  public void cleanUpBean() throws RemoteException;
-
+    public void cleanUpBean() throws RemoteException;
 }

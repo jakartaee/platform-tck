@@ -20,31 +20,30 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.single;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface TestBean extends EJBObject {
 
-  public boolean testStatelessInternal() throws RemoteException;
+    public boolean testStatelessInternal() throws RemoteException;
 
-  public boolean testStatelessExternal() throws RemoteException;
+    public boolean testStatelessExternal() throws RemoteException;
 
-  public boolean testStatefulInternal() throws RemoteException;
+    public boolean testStatefulInternal() throws RemoteException;
 
-  public boolean testStatefulExternal() throws RemoteException;
+    public boolean testStatefulExternal() throws RemoteException;
 
-  public boolean testBMPInternal() throws RemoteException;
+    public boolean testBMPInternal() throws RemoteException;
 
-  public boolean testBMPExternal() throws RemoteException;
+    public boolean testBMPExternal() throws RemoteException;
 
-  public boolean testCMP11Internal() throws RemoteException;
+    public boolean testCMP11Internal() throws RemoteException;
 
-  public boolean testCMP11External() throws RemoteException;
+    public boolean testCMP11External() throws RemoteException;
 
-  public boolean testCMP20Internal() throws RemoteException;
+    public boolean testCMP20Internal() throws RemoteException;
 
-  public boolean testCMP20External() throws RemoteException;
+    public boolean testCMP20External() throws RemoteException;
 
-  public void cleanUpBean() throws RemoteException;
+    public void cleanUpBean() throws RemoteException;
 }

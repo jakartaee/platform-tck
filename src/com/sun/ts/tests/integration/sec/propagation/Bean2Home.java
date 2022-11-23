@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.integration.sec.propagation;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface Bean2Home extends EJBHome {
-  Bean2 create() throws RemoteException, CreateException;
+    Bean2 create() throws RemoteException, CreateException;
 }

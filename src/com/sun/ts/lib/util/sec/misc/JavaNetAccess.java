@@ -19,8 +19,8 @@ package com.sun.ts.lib.util.sec.misc;
 import java.net.URLClassLoader;
 
 public interface JavaNetAccess {
-  /**
-   * return the URLClassPath belonging to the given loader
-   */
-  URLClassPath getURLClassPath(URLClassLoader u);
+    /**
+     * return the URLClassPath belonging to the given loader
+     */
+    URLClassPath getURLClassPath(URLClassLoader u);
 }

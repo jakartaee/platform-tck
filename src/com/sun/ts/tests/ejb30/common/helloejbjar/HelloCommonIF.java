@@ -23,13 +23,13 @@ package com.sun.ts.tests.ejb30.common.helloejbjar;
 import java.util.List;
 
 public interface HelloCommonIF {
-  void hello();
+    void hello();
 
-  int add(int a, int b);
+    int add(int a, int b);
 
-  Object getMessage();
+    Object getMessage();
 
-  void addRecord(String rec);
+    void addRecord(String rec);
 
-  List<String> getAndClearRecords();
+    List<String> getAndClearRecords();
 }

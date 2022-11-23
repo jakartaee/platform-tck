@@ -16,10 +16,7 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
@@ -28,25 +25,23 @@ import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;
+import java.util.logging.Level;
 
 @Stateless()
 @Local
 @TransactionManagement(TransactionManagementType.BEAN)
-public class StatelessTimerBean extends SharingTimerBeanBase
-    implements TimerIF, TimedObject {
-  @Resource
-  private UserTransaction ut;
+public class StatelessTimerBean extends SharingTimerBeanBase implements TimerIF, TimedObject {
+    @Resource
+    private UserTransaction ut;
 
-  public void createTimerRollback(long duration,
-      java.io.Serializable timerInfo) {
-    try {
-      ut.begin();
-      // timerService.createTimer(duration, timerInfo);
-      timerService.createSingleActionTimer(duration,
-          new TimerConfig(timerInfo, false));
-      ut.rollback();
-    } catch (Exception e) {
-      Helper.getLogger().log(Level.FINE, null, e);
+    public void createTimerRollback(long duration, java.io.Serializable timerInfo) {
+        try {
+            ut.begin();
+            // timerService.createTimer(duration, timerInfo);
+            timerService.createSingleActionTimer(duration, new TimerConfig(timerInfo, false));
+            ut.rollback();
+        } catch (Exception e) {
+            Helper.getLogger().log(Level.FINE, null, e);
+        }
     }
-  }
 }

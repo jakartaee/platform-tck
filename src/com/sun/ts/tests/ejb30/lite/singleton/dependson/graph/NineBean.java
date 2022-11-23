@@ -20,15 +20,14 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.graph;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
 @Startup
 @Singleton
 public class NineBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "NineBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "NineBean";
+    }
 }

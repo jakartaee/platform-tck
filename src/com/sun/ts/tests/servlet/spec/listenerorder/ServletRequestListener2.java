@@ -26,30 +26,25 @@ import jakarta.servlet.ServletRequestListener;
 
 public class ServletRequestListener2 implements ServletRequestListener {
 
-  public void requestInitialized(ServletRequestEvent sre) {
-    ServletRequest sr = sre.getServletRequest();
-    if (sr.getAttribute("name_1") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute name_1 during requestInitialized");
+    public void requestInitialized(ServletRequestEvent sre) {
+        ServletRequest sr = sre.getServletRequest();
+        if (sr.getAttribute("name_1") == null) {
+            throw new IllegalStateException("Missing request attribute name_1 during requestInitialized");
+        }
+        if (sr.getAttribute("name_3") != null) {
+            throw new IllegalStateException("Unexpected request attribute name_3 during requestInitialized");
+        }
+        sr.setAttribute("name_2", "value_2");
     }
-    if (sr.getAttribute("name_3") != null) {
-      throw new IllegalStateException(
-          "Unexpected request attribute name_3 during requestInitialized");
-    }
-    sr.setAttribute("name_2", "value_2");
-  }
 
-  public void requestDestroyed(ServletRequestEvent sre) {
-    ServletRequest sr = sre.getServletRequest();
-    if (sr.getAttribute("name_1") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute during requestDestroyed");
+    public void requestDestroyed(ServletRequestEvent sre) {
+        ServletRequest sr = sre.getServletRequest();
+        if (sr.getAttribute("name_1") == null) {
+            throw new IllegalStateException("Missing request attribute during requestDestroyed");
+        }
+        if (sr.getAttribute("name_3") != null) {
+            throw new IllegalStateException("Unexpected request attribute name_3 during requestInitialized");
+        }
+        sr.removeAttribute("name_2");
     }
-    if (sr.getAttribute("name_3") != null) {
-      throw new IllegalStateException(
-          "Unexpected request attribute name_3 during requestInitialized");
-    }
-    sr.removeAttribute("name_2");
-  }
-
 }

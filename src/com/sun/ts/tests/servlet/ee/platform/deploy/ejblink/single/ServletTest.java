@@ -20,51 +20,50 @@
 
 package com.sun.ts.tests.servlet.ee.platform.deploy.ejblink.single;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.web.ServletWrapper;
+import java.util.Properties;
 
 /** Servlet test driver */
 public class ServletTest extends ServletWrapper {
 
-  public Boolean testStateless(Properties props) {
-    boolean pass;
+    public Boolean testStateless(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testStatelessExternal(nctx, props);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testStatelessExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testStateful(Properties props) {
-    boolean pass;
+    public Boolean testStateful(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testStatefulExternal(nctx, props);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testStatefulExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testBMP(Properties props) {
-    boolean pass;
+    public Boolean testBMP(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testBMPExternal(nctx, props);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testBMPExternal(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP11(Properties props) {
-    boolean pass;
+    public Boolean testCMP11(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testCMP11External(nctx, props);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testCMP11External(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean testCMP20(Properties props) {
-    boolean pass;
+    public Boolean testCMP20(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testCMP20External(nctx, props);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testCMP20External(nctx, props);
+        return new Boolean(pass);
+    }
 
-  public Boolean cleanUpBean(Properties props) {
-    TestCode.cleanUpStatefulBean();
-    return Boolean.TRUE;
-  }
+    public Boolean cleanUpBean(Properties props) {
+        TestCode.cleanUpStatefulBean();
+        return Boolean.TRUE;
+    }
 }

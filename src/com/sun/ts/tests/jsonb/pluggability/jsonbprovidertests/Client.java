@@ -19,17 +19,15 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.spi.JsonbProvider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.json.bind.spi.JsonbProvider;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 
 public class Client extends ServiceEETest {
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
@@ -40,7 +38,6 @@ public class Client extends ServiceEETest {
         Status s = theTests.run(args, System.out, System.err);
         s.exit();
     }
-
 
     /* Test setup */
 
@@ -60,8 +57,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest1
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider()
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider()
      */
     public void jsonbProviderTest1() throws Fault {
         try {
@@ -77,8 +73,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest2
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider(String provider)
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider(String
+     * provider)
      */
     public void jsonbProviderTest2() throws Fault {
         boolean pass = true;
@@ -95,10 +91,10 @@ public class Client extends ServiceEETest {
                 ServiceLoader<JsonbProvider> loader = ServiceLoader.load(JsonbProvider.class);
                 Iterator<JsonbProvider> it = loader.iterator();
                 List<JsonbProvider> providers = new ArrayList<>();
-                while(it.hasNext()) {
+                while (it.hasNext()) {
                     providers.add(it.next());
                 }
-                logMsg("Providers: "+providers);
+                logMsg("Providers: " + providers);
             }
         } catch (Exception e) {
             throw new Fault("jsonbProviderTest2 Failed: ", e);
@@ -128,5 +124,4 @@ public class Client extends ServiceEETest {
             throw new Fault("jsonbProviderTest3 Failed: ", e);
         }
     }
-
 }

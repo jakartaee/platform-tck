@@ -19,52 +19,51 @@
  */
 package com.sun.ts.tests.ejb30.common.statussingleton;
 
+import jakarta.ejb.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.ejb.Singleton;
-
 @Singleton
 public class StatusSingletonBean {
-  private Map<String, String> results = new HashMap<String, String>();
+    private Map<String, String> results = new HashMap<String, String>();
 
-  public void addResult(int key, int sum) {
-    results.put(String.valueOf(key), String.valueOf(sum));
-  }
+    public void addResult(int key, int sum) {
+        results.put(String.valueOf(key), String.valueOf(sum));
+    }
 
-  public void addResult(String key, String val) {
-    results.put(key, val);
-  }
+    public void addResult(String key, String val) {
+        results.put(key, val);
+    }
 
-  public void removeResult(Integer key) {
-    results.remove(String.valueOf(key));
-  }
+    public void removeResult(Integer key) {
+        results.remove(String.valueOf(key));
+    }
 
-  public void removeResult(String key) {
-    results.remove(key);
-  }
+    public void removeResult(String key) {
+        results.remove(key);
+    }
 
-  // IMPORTANT:
-  // The client should wait and poll for the result stored in this class.
-  // This method should not hold the lock and wait.
-  public Integer getAndResetResult(Integer key) {
-    final String sKey = String.valueOf(key);
-    final String result = results.get(sKey);
-    results.remove(sKey);
-    return Integer.valueOf(result);
-  }
+    // IMPORTANT:
+    // The client should wait and poll for the result stored in this class.
+    // This method should not hold the lock and wait.
+    public Integer getAndResetResult(Integer key) {
+        final String sKey = String.valueOf(key);
+        final String result = results.get(sKey);
+        results.remove(sKey);
+        return Integer.valueOf(result);
+    }
 
-  public String getAndResetResult(String key) {
-    final String result = results.get(key);
-    results.remove(key);
-    return result;
-  }
+    public String getAndResetResult(String key) {
+        final String result = results.get(key);
+        results.remove(key);
+        return result;
+    }
 
-  public boolean isResultAvailable(Integer key) {
-    return results.containsKey(String.valueOf(key));
-  }
+    public boolean isResultAvailable(Integer key) {
+        return results.containsKey(String.valueOf(key));
+    }
 
-  public boolean isResultAvailable(String key) {
-    return results.containsKey(key);
-  }
+    public boolean isResultAvailable(String key) {
+        return results.containsKey(key);
+    }
 }

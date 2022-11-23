@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class PhoneException extends Exception {
-  public String reason = null;
+    public String reason = null;
 
-  public PhoneException() {
-    super();
-  }
+    public PhoneException() {
+        super();
+    }
 
-  public PhoneException(String msg) {
-    super(msg);
-    reason = msg;
-  }
+    public PhoneException(String msg) {
+        super(msg);
+        reason = msg;
+    }
 }

@@ -21,6 +21,5 @@
 package com.sun.ts.tests.ejb30.common.equals;
 
 public interface CartIF {
-  public void remove();
-
+    public void remove();
 }

@@ -22,8 +22,8 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 import java.util.List;
 
 public interface InterceptorIF {
-  /**
-   * Returns a list of PostConstruct invocation records
-   */
-  List<String> allInterceptors();
+    /**
+     * Returns a list of PostConstruct invocation records
+     */
+    List<String> allInterceptors();
 }

@@ -23,7 +23,7 @@ import java.io.FileDescriptor;
  */
 
 public interface JavaIOFileDescriptorAccess {
-  public void set(FileDescriptor obj, int fd);
+    public void set(FileDescriptor obj, int fd);
 
-  public int get(FileDescriptor fd);
+    public int get(FileDescriptor fd);
 }

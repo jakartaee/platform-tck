@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class SpouseException extends Exception {
-  public String reason = null;
+    public String reason = null;
 
-  public SpouseException() {
-    super();
-  }
+    public SpouseException() {
+        super();
+    }
 
-  public SpouseException(String msg) {
-    super(msg);
-    reason = msg;
-  }
+    public SpouseException(String msg) {
+        super(msg);
+        reason = msg;
+    }
 }

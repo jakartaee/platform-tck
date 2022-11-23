@@ -20,24 +20,26 @@
 
 package com.sun.ts.tests.ejb30.common.invocationcontext;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 public class InterceptorForAll {
 
-  public InterceptorForAll() {
-    super();
-  }
+    public InterceptorForAll() {
+        super();
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    Helper.getLogger().logp(Level.FINE, "InterceptorForAll", "intercept",
-        "Invoking around-invoke method, target:" + inv.getTarget());
-    InvocationContextTestImpl.interceptAll(inv);
-    return inv.proceed();
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        "InterceptorForAll",
+                        "intercept",
+                        "Invoking around-invoke method, target:" + inv.getTarget());
+        InvocationContextTestImpl.interceptAll(inv);
+        return inv.proceed();
+    }
 }

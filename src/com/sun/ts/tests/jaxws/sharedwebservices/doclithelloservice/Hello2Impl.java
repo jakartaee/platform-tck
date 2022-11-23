@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import jakarta.xml.ws.WebServiceException;
-
 import jakarta.jws.WebService;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;
@@ -30,17 +28,17 @@ import jakarta.xml.ws.soap.MTOM;
 @Addressing
 @MTOM
 public class Hello2Impl implements Hello2 {
-  private static final ObjectFactory of = new ObjectFactory();
+    private static final ObjectFactory of = new ObjectFactory();
 
-  public HelloResponse hello(HelloRequest req) {
-    System.out.println("Hello2Impl received: " + req.getArgument());
-    HelloResponse resp = null;
-    resp = of.createHelloResponse();
-    resp.setArgument(req.getArgument());
-    return resp;
-  }
+    public HelloResponse hello(HelloRequest req) {
+        System.out.println("Hello2Impl received: " + req.getArgument());
+        HelloResponse resp = null;
+        resp = of.createHelloResponse();
+        resp.setArgument(req.getArgument());
+        return resp;
+    }
 
-  public void helloOneWay(HelloOneWayRequest req) {
-    System.out.println("Hello2Impl received: " + req.getArgument());
-  }
+    public void helloOneWay(HelloOneWayRequest req) {
+        System.out.println("Hello2Impl received: " + req.getArgument());
+    }
 }

@@ -20,25 +20,23 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext305;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionAttributeListener;
 import jakarta.servlet.http.HttpSessionBindingEvent;
 
-public final class AddHttpSessionAttributeListenerString
-    implements HttpSessionAttributeListener {
+public final class AddHttpSessionAttributeListenerString implements HttpSessionAttributeListener {
 
-  public void attributeAdded(HttpSessionBindingEvent event) {
-    StaticLog.add("AddHttpSessionAttributeListenerString attributeAdded:"
-        + event.getName() + "," + event.getValue());
-  }
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        StaticLog.add(
+                "AddHttpSessionAttributeListenerString attributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(HttpSessionBindingEvent event) {
-    StaticLog.add("AddHttpSessionAttributeListenerString attributeRemoved:"
-        + event.getName() + "," + event.getValue());
-  }
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        StaticLog.add(
+                "AddHttpSessionAttributeListenerString attributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeReplaced(HttpSessionBindingEvent event) {
-    StaticLog.add("AddHttpSessionAttributeListenerString attributeReplaced:"
-        + event.getName() + "," + event.getValue());
-  }
+    public void attributeReplaced(HttpSessionBindingEvent event) {
+        StaticLog.add(
+                "AddHttpSessionAttributeListenerString attributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

@@ -19,29 +19,26 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.jsfdescriptor;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.Future;
 
 @Stateful
-public class BeanClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
+public class BeanClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
 
-  @Override
-  public Future<String> beanClassLevel() {
-    return ping();
-  }
+    @Override
+    public Future<String> beanClassLevel() {
+        return ping();
+    }
 
-  @Override
-  public Future<String> beanClassLevel2() {
-    return ping();
-  }
+    @Override
+    public Future<String> beanClassLevel2() {
+        return ping();
+    }
 
-  @Override
-  public Future<String> beanClassMethodLevel() {
-    return ping();
-  }
-
+    @Override
+    public Future<String> beanClassMethodLevel() {
+        return ping();
+    }
 }

@@ -21,23 +21,22 @@ package com.sun.ts.tests.ejb30.misc.moduleName.twojars;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.Resource;
 
 @ManagedBean("ModuleMBean")
 public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {
-  @Resource(lookup = "java:module/ModuleName")
-  private String moduleName;
+    @Resource(lookup = "java:module/ModuleName")
+    private String moduleName;
 
-  @Resource(lookup = "java:app/AppName")
-  private String appName;
+    @Resource(lookup = "java:app/AppName")
+    private String appName;
 
-  public String getModuleName() {
-    return moduleName;
-  }
+    public String getModuleName() {
+        return moduleName;
+    }
 
-  public String getAppName() {
-    return appName;
-  }
+    public String getAppName() {
+        return appName;
+    }
 }

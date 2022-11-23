@@ -24,17 +24,17 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A business method interceptor for session beans. Only one AroundInvoke method
- * may be present on the bean class or on any given interceptor class.
+ * A business method interceptor for session beans. Only one AroundInvoke method may be present on the bean class or on
+ * any given interceptor class.
  */
 public class InterceptorMDB1 extends AroundInvokeTestMDBImpl {
 
-  public InterceptorMDB1() {
-    super();
-  }
+    public InterceptorMDB1() {
+        super();
+    }
 
-  @AroundInvoke
-  public Object intercept1(InvocationContext ctx) throws Exception {
-    return super.intercept(ctx);
-  }
+    @AroundInvoke
+    public Object intercept1(InvocationContext ctx) throws Exception {
+        return super.intercept(ctx);
+    }
 }

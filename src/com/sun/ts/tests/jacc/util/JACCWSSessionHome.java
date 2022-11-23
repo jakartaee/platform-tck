@@ -20,14 +20,12 @@
  * @author Raja Perumal
  *         03/13/03
  */
-
 package com.sun.ts.tests.jacc.util;
-
-import java.rmi.RemoteException;
 
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface JACCWSSessionHome extends EJBHome {
-  JACCWSSessionRemote create() throws RemoteException, CreateException;
+    JACCWSSessionRemote create() throws RemoteException, CreateException;
 }

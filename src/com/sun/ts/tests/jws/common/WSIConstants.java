@@ -17,20 +17,19 @@
 package com.sun.ts.tests.jws.common;
 
 public interface WSIConstants {
-  public static final String WSI_CLAIM_NAMESPACE_URI = "http://ws-i.org/schemas/conformanceClaim/";
+    public static final String WSI_CLAIM_NAMESPACE_URI = "http://ws-i.org/schemas/conformanceClaim/";
 
-  public static final String WSI_CLAIM_LOCAL_NAME = "Claim";
+    public static final String WSI_CLAIM_LOCAL_NAME = "Claim";
 
-  public static final String WSI_CLAIM_PREFIX = "wsi";
+    public static final String WSI_CLAIM_PREFIX = "wsi";
 
-  public static final String WSI_CLAIM_CONFORMS_TO_ATTR = "conformsTo";
+    public static final String WSI_CLAIM_CONFORMS_TO_ATTR = "conformsTo";
 
-  public static final String WSI_CLAIM_CONFORMS_TO_VALUE = "http://ws-i.org/profiles/basic1.0/";
+    public static final String WSI_CLAIM_CONFORMS_TO_VALUE = "http://ws-i.org/profiles/basic1.0/";
 
-  public static final String SOAP_ENV_NS = "http://schemas.xmlsoap.org/soap/envelope/";
+    public static final String SOAP_ENV_NS = "http://schemas.xmlsoap.org/soap/envelope/";
 
-  public static final String SOAP_ENC_STYLE = "encodingStyle";
+    public static final String SOAP_ENC_STYLE = "encodingStyle";
 
-  public static final String SOAP_ENC_ARRAY_TYPE = "arrayType";
-
+    public static final String SOAP_ENC_ARRAY_TYPE = "arrayType";
 }

@@ -24,12 +24,11 @@ import jakarta.ws.rs.core.UriInfo;
 @Stateless
 public class StatelessResource {
 
-  @Context
-  private UriInfo ui;
+    @Context
+    private UriInfo ui;
 
-  @GET
-  public String get() {
-    return "GET: " + ui.getRequestUri().toASCIIString()
-        + " Hello From Stateless EJB Sub";
-  }
+    @GET
+    public String get() {
+        return "GET: " + ui.getRequestUri().toASCIIString() + " Hello From Stateless EJB Sub";
+    }
 }

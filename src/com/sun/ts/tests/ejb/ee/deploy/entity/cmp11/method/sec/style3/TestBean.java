@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.method.sec.style3;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface TestBean extends EJBObject {
 
-  public boolean test1(int i) throws RemoteException;
+    public boolean test1(int i) throws RemoteException;
 
-  public boolean test1(double d) throws RemoteException;
-
+    public boolean test1(double d) throws RemoteException;
 }

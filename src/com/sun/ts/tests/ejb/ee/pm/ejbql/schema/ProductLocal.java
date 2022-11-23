@@ -23,22 +23,22 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface ProductLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public String getId();
+    // Business Methods for CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public double getPrice();
+    public double getPrice();
 
-  public void setPrice(double v);
+    public void setPrice(double v);
 
-  public int getQuantity();
+    public int getQuantity();
 
-  public void setQuantity(int v);
+    public void setQuantity(int v);
 
-  public long getPartNumber();
+    public long getPartNumber();
 
-  public void setPartNumber(long v);
+    public void setPartNumber(long v);
 }

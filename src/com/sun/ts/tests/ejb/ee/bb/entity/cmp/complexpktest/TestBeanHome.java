@@ -20,26 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.complexpktest;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(int id, String brandName, double price, int quantity,
-      String country) throws RemoteException, CreateException;
+    public TestBean create(int id, String brandName, double price, int quantity, String country)
+            throws RemoteException, CreateException;
 
-  public TestBean findByPrimaryKey(ComplexPK key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(ComplexPK key) throws RemoteException, FinderException;
 
-  public Collection findById(Integer id)
-      throws RemoteException, FinderException;
+    public Collection findById(Integer id) throws RemoteException, FinderException;
 
-  public Collection findByName(String name)
-      throws RemoteException, FinderException;
+    public Collection findByName(String name) throws RemoteException, FinderException;
 
-  public Collection findByPrice(double price)
-      throws RemoteException, FinderException;
+    public Collection findByPrice(double price) throws RemoteException, FinderException;
 }

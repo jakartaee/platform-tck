@@ -20,67 +20,61 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.Xid;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
+import javax.transaction.xa.Xid;
 
 public class WorkXid1 implements Work {
 
-  private WorkManager wm;
+    private WorkManager wm;
 
-  private Xid xid;
+    private Xid xid;
 
-  public WorkXid1(WorkManager wm, Xid xid) {
-    this.wm = wm;
-    this.xid = xid;
-    ConnectorStatus.getConnectorStatus().logAPI("WorkXid.constructor", "", "");
-    Debug.trace("WorkXid1.constructor");
-  }
-
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("WorkXid.release", "", "");
-    Debug.trace("WorkXid1.release() called.");
-
-    if ((xid != null) && (xid.getGlobalTransactionId() != null)) {
-      Debug.trace("WorkXid1.release() xid was: "
-          + new String(xid.getGlobalTransactionId()));
-    } else if (xid != null) {
-      Debug.trace(
-          "WorkXid1.release() xid was NOT null but xid.getGlobalTransactionId() was null.");
-    } else {
-      Debug.trace("WorkXid1.release() xid was: null");
+    public WorkXid1(WorkManager wm, Xid xid) {
+        this.wm = wm;
+        this.xid = xid;
+        ConnectorStatus.getConnectorStatus().logAPI("WorkXid.constructor", "", "");
+        Debug.trace("WorkXid1.constructor");
     }
-    Debug.trace("WorkXid1.release() xid being set == null");
 
-    this.xid = null;
-  }
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("WorkXid.release", "", "");
+        Debug.trace("WorkXid1.release() called.");
 
-  public void run() {
-    try {
-      ConnectorStatus.getConnectorStatus().logAPI("WorkXid.run", "", "");
-      Debug.trace("WorkXid1.run");
-      ConnectorStatus.getConnectorStatus().logAPI("WorkXid1.run", "", "");
-      NestedWorkXid workid = new NestedWorkXid();
+        if ((xid != null) && (xid.getGlobalTransactionId() != null)) {
+            Debug.trace("WorkXid1.release() xid was: " + new String(xid.getGlobalTransactionId()));
+        } else if (xid != null) {
+            Debug.trace("WorkXid1.release() xid was NOT null but xid.getGlobalTransactionId() was null.");
+        } else {
+            Debug.trace("WorkXid1.release() xid was: null");
+        }
+        Debug.trace("WorkXid1.release() xid being set == null");
 
-      ExecutionContext ec = new ExecutionContext();
-      ec.setXid(this.xid);
-      Debug.trace("set the xid in ec");
-      wm.doWork(workid, wm.INDEFINITE, ec, null);
-      Debug.trace("submitted the nested xid work");
-      ConnectorStatus.getConnectorStatus().logState("WorkXid Submitted");
-
-    } catch (WorkException we) {
-      if (we.TX_CONCURRENT_WORK_DISALLOWED == WorkException.TX_CONCURRENT_WORK_DISALLOWED) {
-        Debug.trace("In the WorkException of Concurrent xid");
-        ConnectorStatus.getConnectorStatus()
-            .logState("WorkException.TX_CONCURRENT_WORK_DISALLOWED caught");
-      }
+        this.xid = null;
     }
-  }
 
+    public void run() {
+        try {
+            ConnectorStatus.getConnectorStatus().logAPI("WorkXid.run", "", "");
+            Debug.trace("WorkXid1.run");
+            ConnectorStatus.getConnectorStatus().logAPI("WorkXid1.run", "", "");
+            NestedWorkXid workid = new NestedWorkXid();
+
+            ExecutionContext ec = new ExecutionContext();
+            ec.setXid(this.xid);
+            Debug.trace("set the xid in ec");
+            wm.doWork(workid, wm.INDEFINITE, ec, null);
+            Debug.trace("submitted the nested xid work");
+            ConnectorStatus.getConnectorStatus().logState("WorkXid Submitted");
+
+        } catch (WorkException we) {
+            if (we.TX_CONCURRENT_WORK_DISALLOWED == WorkException.TX_CONCURRENT_WORK_DISALLOWED) {
+                Debug.trace("In the WorkException of Concurrent xid");
+                ConnectorStatus.getConnectorStatus().logState("WorkException.TX_CONCURRENT_WORK_DISALLOWED caught");
+            }
+        }
+    }
 }

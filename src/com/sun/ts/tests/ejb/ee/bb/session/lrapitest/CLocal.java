@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface CLocal extends EJBLocalObject {
-  // Business Methods
-  public String whoAmILocal();
+    // Business Methods
+    public String whoAmILocal();
 
-  public boolean test3();
+    public boolean test3();
 }

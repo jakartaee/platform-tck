@@ -20,21 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface FlagStoreHome extends EJBHome {
-  public FlagStore create(Properties props, int id, String brandName,
-      float price, boolean requiredAccess, boolean requiresNewAccess)
-      throws RemoteException, CreateException;
+    public FlagStore create(
+            Properties props, int id, String brandName, float price, boolean requiredAccess, boolean requiresNewAccess)
+            throws RemoteException, CreateException;
 
-  public FlagStore create(Properties props, int id, String brandName,
-      float price) throws RemoteException, CreateException;
+    public FlagStore create(Properties props, int id, String brandName, float price)
+            throws RemoteException, CreateException;
 
-  public FlagStore findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public FlagStore findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

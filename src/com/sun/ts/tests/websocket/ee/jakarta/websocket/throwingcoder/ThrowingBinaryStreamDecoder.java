@@ -17,21 +17,17 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.DecodeException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ThrowingBinaryStreamDecoder extends StringBeanBinaryStreamDecoder {
 
-  @Override
-  public StringBean decode(InputStream arg0)
-      throws DecodeException, IOException {
-    throw new DecodeException(IOUtil.readFromStream(arg0),
-        ThrowingTextDecoder.ERR_MSG);
-  }
+    @Override
+    public StringBean decode(InputStream arg0) throws DecodeException, IOException {
+        throw new DecodeException(IOUtil.readFromStream(arg0), ThrowingTextDecoder.ERR_MSG);
+    }
 }

@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
 
 public class ClientPNPSNBCSOAPHandler extends SOAPHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientPortNamePatternShouldNotBeCalledSOAPHandler";
+    private static final String HANDLERNAME = "ClientPortNamePatternShouldNotBeCalledSOAPHandler";
 
-  public ClientPNPSNBCSOAPHandler() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientPNPSNBCSOAPHandler() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

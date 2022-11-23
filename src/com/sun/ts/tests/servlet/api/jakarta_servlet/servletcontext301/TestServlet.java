@@ -19,29 +19,25 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext301;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void addListenerTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addListenerTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String name = "LISTENER_TEST";
+        String name = "LISTENER_TEST";
 
-    pw.println(
-        name + "=" + getServletContext().getInitParameter(name).toUpperCase());
-    getServletContext().removeAttribute(name);
+        pw.println(name + "=" + getServletContext().getInitParameter(name).toUpperCase());
+        getServletContext().removeAttribute(name);
 
-    ServletTestUtil.printResult(pw, true);
-    getServletContext().removeAttribute("arraylist");
-  }
+        ServletTestUtil.printResult(pw, true);
+        getServletContext().removeAttribute("arraylist");
+    }
 }

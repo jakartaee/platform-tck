@@ -15,17 +15,16 @@
  */
 
 /*
- * 
- * $Id$ 
- * 
+ *
+ * $Id$
+ *
  */
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean2 extends EJBObject {
-  public String ping(String s) throws RemoteException;
+    public String ping(String s) throws RemoteException;
 }

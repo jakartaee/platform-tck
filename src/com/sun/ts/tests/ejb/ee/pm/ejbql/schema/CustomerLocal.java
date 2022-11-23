@@ -20,42 +20,40 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface CustomerLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public String getId();
+    // Business Methods for CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public Country getCountry();
+    public Country getCountry();
 
-  public void setCountry(Country v);
+    public void setCountry(Country v);
 
-  // Business Methods for CMR Fields
+    // Business Methods for CMR Fields
 
-  public AddressLocal getHome();
+    public AddressLocal getHome();
 
-  public void setHome(AddressLocal v);
+    public void setHome(AddressLocal v);
 
-  public AddressLocal getWork();
+    public AddressLocal getWork();
 
-  public void setWork(AddressLocal v);
+    public void setWork(AddressLocal v);
 
-  public Collection getCreditCards();
+    public Collection getCreditCards();
 
-  public void setCreditCards(Collection v);
+    public void setCreditCards(Collection v);
 
-  public Collection getOrders();
+    public Collection getOrders();
 
-  public void setOrders(Collection v);
+    public void setOrders(Collection v);
 
-  public Collection getAliases();
+    public Collection getAliases();
 
-  public void setAliases(Collection v);
-
+    public void setAliases(Collection v);
 }

@@ -58,40 +58,36 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class DoServletInfoTestServlet extends CoreServletTest {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    String expectedResult = "Servlet Info";
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        String expectedResult = "Servlet Info";
 
-    if (getServletInfo() != null) {
-      String result = getServletInfo();
+        if (getServletInfo() != null) {
+            String result = getServletInfo();
 
-      if (result.equals(expectedResult)) {
-        passed = true;
-      } else {
-        passed = false;
-        pw.println("getServletInfo() returned an incorrect result");
-        pw.println("Expected result = " + expectedResult);
-        pw.println("Actual result = " + result);
-      }
-    } else {
-      passed = false;
-      pw.println("getServletInfo() returned a null result");
+            if (result.equals(expectedResult)) {
+                passed = true;
+            } else {
+                passed = false;
+                pw.println("getServletInfo() returned an incorrect result");
+                pw.println("Expected result = " + expectedResult);
+                pw.println("Actual result = " + result);
+            }
+        } else {
+            passed = false;
+            pw.println("getServletInfo() returned a null result");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

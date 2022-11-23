@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
 public interface AccessTimeoutIF {
-  int longRead(long waitTimeMillis, int readVal);
+    int longRead(long waitTimeMillis, int readVal);
 
-  int longRead2(long waitTimeMillis, int readVal);
+    int longRead2(long waitTimeMillis, int readVal);
 
-  void longWrite(long waitTimeMillis);
+    void longWrite(long waitTimeMillis);
 }

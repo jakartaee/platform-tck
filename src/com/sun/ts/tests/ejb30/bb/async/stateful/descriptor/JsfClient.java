@@ -19,12 +19,11 @@ package com.sun.ts.tests.ejb30.bb.async.stateful.descriptor;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.Descriptor2IF;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.Descriptor2RemoteIF;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorBean;
-import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorJsfClientBase;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorIF;
+import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorJsfClientBase;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorRemoteIF;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.TimeoutDescriptorBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.ejb.EJB;
 
 @EJB(name = "timeoutDescriptorBean", beanInterface = TimeoutDescriptorBean.class, beanName = "TimeoutDescriptorBean")
@@ -32,81 +31,76 @@ import jakarta.ejb.EJB;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends DescriptorJsfClientBase {
 
-  @Override
-  protected Descriptor2IF getDescriptor2IF() {
-    return (Descriptor2IF) ServiceLocator
-        .lookupByShortNameNoTry("descriptor2IF");
-  }
+    @Override
+    protected Descriptor2IF getDescriptor2IF() {
+        return (Descriptor2IF) ServiceLocator.lookupByShortNameNoTry("descriptor2IF");
+    }
 
-  @Override
-  protected Descriptor2RemoteIF getDescriptor2RemoteIF() {
-    return (Descriptor2RemoteIF) ServiceLocator
-        .lookupByShortNameNoTry("descriptor2RemoteIF");
-  }
+    @Override
+    protected Descriptor2RemoteIF getDescriptor2RemoteIF() {
+        return (Descriptor2RemoteIF) ServiceLocator.lookupByShortNameNoTry("descriptor2RemoteIF");
+    }
 
-  @Override
-  protected DescriptorIF getDescriptorIF() {
-    return (DescriptorIF) ServiceLocator.lookupByShortNameNoTry("descriptorIF");
-  }
+    @Override
+    protected DescriptorIF getDescriptorIF() {
+        return (DescriptorIF) ServiceLocator.lookupByShortNameNoTry("descriptorIF");
+    }
 
-  @Override
-  protected DescriptorRemoteIF getDescriptorRemoteIF() {
-    return (DescriptorRemoteIF) ServiceLocator
-        .lookupByShortNameNoTry("descriptorRemoteIF");
-  }
+    @Override
+    protected DescriptorRemoteIF getDescriptorRemoteIF() {
+        return (DescriptorRemoteIF) ServiceLocator.lookupByShortNameNoTry("descriptorRemoteIF");
+    }
 
-  @Override
-  protected DescriptorBean getNoInterface() {
-    return (DescriptorBean) ServiceLocator
-        .lookupByShortNameNoTry("noInterface");
-  }
+    @Override
+    protected DescriptorBean getNoInterface() {
+        return (DescriptorBean) ServiceLocator.lookupByShortNameNoTry("noInterface");
+    }
 
-  @Override
-  protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
-    return (TimeoutDescriptorBeanBase) ServiceLocator
-        .lookupByShortNameNoTry("timeoutDescriptorBean");
-  }
+    @Override
+    protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
+        return (TimeoutDescriptorBeanBase) ServiceLocator.lookupByShortNameNoTry("timeoutDescriptorBean");
+    }
 
-  /*
-   * @testName: allViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: remoteViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: allParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: noParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParamsLocalViews
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: allViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: remoteViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: allParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: noParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParamsLocalViews
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: timeoutDescriptorBean
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: timeoutDescriptorBean
+     *
+     * @test_Strategy:
+     */
 
 }

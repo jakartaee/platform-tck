@@ -25,12 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class StatefulExternalEJB extends StatefulWrapper {
 
-  /**
-   * Method used to identify this bean (only available for this bean).
-   */
-  public boolean isTestStatefulExternal() {
-    TestUtil.logTrace("StatefulExternal: isTestStatefulExternal()");
-    return true;
-  }
-
+    /**
+     * Method used to identify this bean (only available for this bean).
+     */
+    public boolean isTestStatefulExternal() {
+        TestUtil.logTrace("StatefulExternal: isTestStatefulExternal()");
+        return true;
+    }
 }

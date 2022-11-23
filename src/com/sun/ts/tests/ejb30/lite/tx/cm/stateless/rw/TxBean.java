@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateless.rw;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-
 import jakarta.ejb.Stateless;
 
 @Stateless

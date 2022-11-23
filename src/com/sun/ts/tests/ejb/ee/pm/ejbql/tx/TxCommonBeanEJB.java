@@ -19,121 +19,117 @@
  */
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public abstract class TxCommonBeanEJB implements EntityBean {
 
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  // ===========================================================
-  // getters and setters for cmp fields
+    // ===========================================================
+    // getters and setters for cmp fields
 
-  public abstract Integer getId();
+    public abstract Integer getId();
 
-  public abstract void setId(Integer i);
+    public abstract void setId(Integer i);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract float getPrice();
+    public abstract float getPrice();
 
-  public abstract void setPrice(float p);
+    public abstract void setPrice(float p);
 
-  // ===========================================================
-  // Required Entity EJB methods
-  // ===========================================================
-  // public constructor which takes no arguments
+    // ===========================================================
+    // Required Entity EJB methods
+    // ===========================================================
+    // public constructor which takes no arguments
 
-  public TxCommonBeanEJB() {
-    TestUtil.logTrace("TxCommonBeanEJB no arg constructor");
-  }
-
-  public Integer ejbCreate(Integer id, String brandName, float price,
-      Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      initLogging(p);
-      setId(id);
-      setBrandName(brandName);
-      setPrice(price);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught .....", e);
-      throw new CreateException(e.getMessage());
+    public TxCommonBeanEJB() {
+        TestUtil.logTrace("TxCommonBeanEJB no arg constructor");
     }
-    return null;
-  }
 
-  public void ejbPostCreate(Integer id, String brandName, float price,
-      Properties p) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // The TxCommonBean business methods
-
-  public void updateBrandName(String newBrandName) {
-    TestUtil.logMsg("updateBrandName");
-    setBrandName(newBrandName);
-  }
-
-  public void updatePrice(float newPriceName) {
-    TestUtil.logTrace("updatePrice");
-    setPrice(newPriceName);
-  }
-
-  // ===========================================================
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public Integer ejbCreate(Integer id, String brandName, float price, Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            initLogging(p);
+            setId(id);
+            setBrandName(brandName);
+            setPrice(price);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught .....", e);
+            throw new CreateException(e.getMessage());
+        }
+        return null;
     }
-  }
+
+    public void ejbPostCreate(Integer id, String brandName, float price, Properties p) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+    }
+
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // The TxCommonBean business methods
+
+    public void updateBrandName(String newBrandName) {
+        TestUtil.logMsg("updateBrandName");
+        setBrandName(newBrandName);
+    }
+
+    public void updatePrice(float newPriceName) {
+        TestUtil.logTrace("updatePrice");
+        setPrice(newPriceName);
+    }
+
+    // ===========================================================
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

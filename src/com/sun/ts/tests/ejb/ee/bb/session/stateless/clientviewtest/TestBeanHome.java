@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.clientviewtest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create() throws RemoteException, CreateException;
+    public TestBean create() throws RemoteException, CreateException;
 }

@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.client;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
 
 public class ClientSOAPHandler1 extends SOAPHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientSOAPHandler1";
+    private static final String HANDLERNAME = "ClientSOAPHandler1";
 
-  public ClientSOAPHandler1() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientSOAPHandler1() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

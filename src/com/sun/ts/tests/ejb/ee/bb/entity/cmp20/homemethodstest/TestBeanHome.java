@@ -20,34 +20,35 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.homemethodstest;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(int id, String first, String middle, String last,
-      String accountNumber) throws RemoteException, CreateException;
+    public TestBean create(int id, String first, String middle, String last, String accountNumber)
+            throws RemoteException, CreateException;
 
-  public TestBean create(int id, String accountNumber, String paymentType,
-      double cardBalance, String creditCardNumber, String expires)
-      throws RemoteException, CreateException;
+    public TestBean create(
+            int id,
+            String accountNumber,
+            String paymentType,
+            double cardBalance,
+            String creditCardNumber,
+            String expires)
+            throws RemoteException, CreateException;
 
-  public TestBean createHomeAddress(int id, String street, String city,
-      String state, int zip) throws RemoteException, CreateException;
+    public TestBean createHomeAddress(int id, String street, String city, String state, int zip)
+            throws RemoteException, CreateException;
 
-  public TestBean createCountry(int id, String name, String code)
-      throws RemoteException, CreateException;
+    public TestBean createCountry(int id, String name, String code) throws RemoteException, CreateException;
 
-  public TestBean createPhone(int id, String homePhone, String workPhone)
-      throws RemoteException, CreateException;
+    public TestBean createPhone(int id, String homePhone, String workPhone) throws RemoteException, CreateException;
 
-  public void addCardFee(Integer key, double fee) throws RemoteException;
+    public void addCardFee(Integer key, double fee) throws RemoteException;
 
-  public Collection findAllBeans() throws RemoteException, FinderException;
+    public Collection findAllBeans() throws RemoteException, FinderException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

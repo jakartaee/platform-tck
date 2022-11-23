@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimeoutStatusBean;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
@@ -29,28 +28,23 @@ import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.InvocationContext;
 
-public class MethodOverrideBeanBase extends TimerBeanBaseWithoutTimeOutMethod
-    implements AroundTimeoutIF {
+public class MethodOverrideBeanBase extends TimerBeanBaseWithoutTimeOutMethod implements AroundTimeoutIF {
 
-  private static final String simpleName = "MethodOverrideBeanBase";
+    private static final String simpleName = "MethodOverrideBeanBase";
 
-  @EJB
-  protected TimeoutStatusBean timeoutStatusBean;
+    @EJB
+    protected TimeoutStatusBean timeoutStatusBean;
 
-  @Override
-  @Timeout
-  @ExcludeClassInterceptors
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-    InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this,
-        "timeout", timeoutStatusBean);
-  }
+    @Override
+    @Timeout
+    @ExcludeClassInterceptors
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+        InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this, "timeout", timeoutStatusBean);
+    }
 
-  @AroundTimeout
-  protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv)
-      throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInMethodOverrideBeanBase");
-  }
-
+    @AroundTimeout
+    protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInMethodOverrideBeanBase");
+    }
 }

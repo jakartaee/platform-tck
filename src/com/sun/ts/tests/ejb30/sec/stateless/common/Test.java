@@ -22,29 +22,27 @@
 package com.sun.ts.tests.ejb30.sec.stateless.common;
 
 public interface Test {
-  public void initLogging(java.util.Properties p);
+    public void initLogging(java.util.Properties p);
 
-  public boolean IsCallerB1(String caller);
+    public boolean IsCallerB1(String caller);
 
-  public boolean IsCallerB2(String caller, java.util.Properties p);
+    public boolean IsCallerB2(String caller, java.util.Properties p);
 
-  public boolean InRole(String role, java.util.Properties p);
+    public boolean InRole(String role, java.util.Properties p);
 
-  public boolean EjbNotAuthz(java.util.Properties p);
+    public boolean EjbNotAuthz(java.util.Properties p);
 
-  public boolean EjbIsAuthz(java.util.Properties p);
+    public boolean EjbIsAuthz(java.util.Properties p);
 
-  public boolean EjbSecRoleRef(String role, java.util.Properties p);
+    public boolean EjbSecRoleRef(String role, java.util.Properties p);
 
-  public boolean EjbSecRoleRef1(String role, java.util.Properties p);
+    public boolean EjbSecRoleRef1(String role, java.util.Properties p);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2,
-      java.util.Properties p);
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2, java.util.Properties p);
 
-  public boolean EjbSecRoleRefScope(String role, java.util.Properties p);
+    public boolean EjbSecRoleRefScope(String role, java.util.Properties p);
 
-  public boolean checktest1(java.util.Properties p);
+    public boolean checktest1(java.util.Properties p);
 
-  public boolean excludetest1(java.util.Properties p);
-
+    public boolean excludetest1(java.util.Properties p);
 }

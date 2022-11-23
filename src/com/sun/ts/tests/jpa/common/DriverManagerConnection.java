@@ -16,37 +16,35 @@
 
 package com.sun.ts.tests.jpa.common;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class DriverManagerConnection {
 
-  public Connection getConnection(Properties p) throws Exception {
-    String dbUrl, dbUser, dbPassword, dbDriver;
-    dbUrl = dbUser = dbPassword = dbDriver = null;
+    public Connection getConnection(Properties p) throws Exception {
+        String dbUrl, dbUser, dbPassword, dbDriver;
+        dbUrl = dbUser = dbPassword = dbDriver = null;
 
-    dbUrl = p.getProperty("jakarta.persistence.jdbc.url", "");
-    dbUser = p.getProperty("jakarta.persistence.jdbc.user", "");
-    dbPassword = p.getProperty("jakarta.persistence.jdbc.password", "");
-    dbDriver = p.getProperty("jakarta.persistence.jdbc.driver", "");
+        dbUrl = p.getProperty("jakarta.persistence.jdbc.url", "");
+        dbUser = p.getProperty("jakarta.persistence.jdbc.user", "");
+        dbPassword = p.getProperty("jakarta.persistence.jdbc.password", "");
+        dbDriver = p.getProperty("jakarta.persistence.jdbc.driver", "");
 
-    TestUtil.logTrace("Url : " + dbUrl);
-    TestUtil.logTrace("Username  : " + dbUser);
-    TestUtil.logTrace("Password  : " + dbPassword);
-    TestUtil.logTrace("Driver    : " + dbDriver);
+        TestUtil.logTrace("Url : " + dbUrl);
+        TestUtil.logTrace("Username  : " + dbUser);
+        TestUtil.logTrace("Password  : " + dbPassword);
+        TestUtil.logTrace("Driver    : " + dbDriver);
 
-    TestUtil.logTrace("About to load the driver class");
-    Class.forName(dbDriver);
-    TestUtil.logMsg("Successfully loaded the driver class");
+        TestUtil.logTrace("About to load the driver class");
+        Class.forName(dbDriver);
+        TestUtil.logMsg("Successfully loaded the driver class");
 
-    TestUtil.logTrace("About to make the DB connection");
-    Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-    TestUtil.logMsg("Made the JDBC connection to the DB");
+        TestUtil.logTrace("About to make the DB connection");
+        Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+        TestUtil.logMsg("Made the JDBC connection to the DB");
 
-    return con;
-  }
-
+        return con;
+    }
 }

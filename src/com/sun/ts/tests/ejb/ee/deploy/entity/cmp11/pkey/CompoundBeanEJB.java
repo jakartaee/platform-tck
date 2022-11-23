@@ -20,117 +20,111 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public class CompoundBeanEJB implements EntityBean {
 
-  /*
-   * CMP fields
-   */
-  public Integer pmIDInteger; /* 1st field of compound PK */
+    /*
+     * CMP fields
+     */
+    public Integer pmIDInteger; /* 1st field of compound PK */
 
-  public String pmIDString; /* 2nd field of compound PK */
+    public String pmIDString; /* 2nd field of compound PK */
 
-  public Float pmIDFloat; /* 3rd field of compound PK */
+    public Float pmIDFloat; /* 3rd field of compound PK */
 
-  public String cmpBrandName;
+    public String cmpBrandName;
 
-  public float cmpPrice;
+    public float cmpPrice;
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  public void ping() {
-    TestUtil.logTrace("CompoundBean: ping()");
-  }
-
-  /*
-   * Bean life cycle.
-   */
-
-  public CompoundPK ejbCreate(Properties props, CompoundPK id, String brandName,
-      float price) throws CreateException {
-
-    try {
-      TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
-
-      TestUtil.init(props);
-
-      this.pmIDInteger = id.pmIDInteger;
-      this.pmIDString = id.pmIDString;
-      this.pmIDFloat = id.pmIDFloat;
-      this.cmpBrandName = brandName;
-      this.cmpPrice = price;
-
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ping() {
+        TestUtil.logTrace("CompoundBean: ping()");
     }
 
-    return null;
-  }
+    /*
+     * Bean life cycle.
+     */
 
-  public void ejbPostCreate(Properties props, CompoundPK id, String brandName,
-      float price) {
+    public CompoundPK ejbCreate(Properties props, CompoundPK id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("CompoundBean: ejbPostCreate()");
-  }
+        try {
+            TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("CompoundBean: ejbRemove()");
-  }
+            TestUtil.init(props);
 
-  public void setEntityContext(EntityContext x) throws EJBException {
+            this.pmIDInteger = id.pmIDInteger;
+            this.pmIDString = id.pmIDString;
+            this.pmIDFloat = id.pmIDFloat;
+            this.cmpBrandName = brandName;
+            this.cmpPrice = price;
 
-    TestUtil.logTrace("CompoundBean: setEntityContext()");
-    ectx = x;
-    try {
-      TestUtil.logMsg("CompoundBean: Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("CompoundBean: Naming Exception : " + e, e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("CompoundBean: Caught exception: " + e, e);
-      throw new EJBException("Caught exception: " + e);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return null;
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("CompoundBean: unsetEntityContext()");
-  }
+    public void ejbPostCreate(Properties props, CompoundPK id, String brandName, float price) {
 
-  public void ejbStore() {
-    TestUtil.logTrace("CompoundBean: ejbStore()");
-  }
+        TestUtil.logTrace("CompoundBean: ejbPostCreate()");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("CompoundBean: ejbLoad()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("CompoundBean: ejbRemove()");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("CompoundBean: ejbActivate()");
-  }
+    public void setEntityContext(EntityContext x) throws EJBException {
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("CompoundBean: ejbPassivate()");
-  }
+        TestUtil.logTrace("CompoundBean: setEntityContext()");
+        ectx = x;
+        try {
+            TestUtil.logMsg("CompoundBean: Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("CompoundBean: Naming Exception : " + e, e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("CompoundBean: Caught exception: " + e, e);
+            throw new EJBException("Caught exception: " + e);
+        }
+    }
 
+    public void unsetEntityContext() {
+        TestUtil.logTrace("CompoundBean: unsetEntityContext()");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("CompoundBean: ejbStore()");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("CompoundBean: ejbLoad()");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("CompoundBean: ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("CompoundBean: ejbPassivate()");
+    }
 }

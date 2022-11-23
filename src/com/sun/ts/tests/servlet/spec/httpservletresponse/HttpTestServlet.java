@@ -24,68 +24,65 @@
 
 package com.sun.ts.tests.servlet.spec.httpservletresponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HttpTestServlet extends HttpTCKServlet {
 
-  public void intHeaderTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    response.addIntHeader("header1", 12345);
-    response.flushBuffer();
-    response.addIntHeader("header2", 56789);
-  }
-
-  public void flushBufferTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    int size = 40;
-    response.setContentLength(size);
-
-    PrintWriter pw = response.getWriter();
-    pw.println("Test PASSED");
-    StringBuffer tmp = new StringBuffer(2 * size);
-    int i = 0;
-
-    while (i < 8) {
-      tmp = tmp.append("111111111x");
-      i = i + 1;
+    public void intHeaderTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.addIntHeader("header1", 12345);
+        response.flushBuffer();
+        response.addIntHeader("header2", 56789);
     }
-    pw.println(tmp);
-    response.addIntHeader("header1", 12345);
-  }
 
-  public void sendErrorCommitTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void flushBufferTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int size = 40;
+        response.setContentLength(size);
 
-    response.sendError(HttpServletResponse.SC_OK, "sendErrorCommitTest");
-    response.addIntHeader("header1", 12345);
+        PrintWriter pw = response.getWriter();
+        pw.println("Test PASSED");
+        StringBuffer tmp = new StringBuffer(2 * size);
+        int i = 0;
 
-    pw.println("Test FAILED in sendErrorCommitTest");
-  }
+        while (i < 8) {
+            tmp = tmp.append("111111111x");
+            i = i + 1;
+        }
+        pw.println(tmp);
+        response.addIntHeader("header1", 12345);
+    }
 
-  public void sendRedirectClearBufferTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.println("Test FAILED in sendRedirectClearBufferTest");
+    public void sendErrorCommitTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    response.sendRedirect("/RedirectedTest");
+        response.sendError(HttpServletResponse.SC_OK, "sendErrorCommitTest");
+        response.addIntHeader("header1", 12345);
 
-  }
+        pw.println("Test FAILED in sendErrorCommitTest");
+    }
 
-  public void sendRedirectCommitTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void sendRedirectClearBufferTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.println("Test FAILED in sendRedirectClearBufferTest");
 
-    response.sendRedirect("/RedirectedTest");
-    response.addIntHeader("header1", 12345);
+        response.sendRedirect("/RedirectedTest");
+    }
 
-    pw.println("Test FAILED in sendRedirectCommitTest");
-  }
+    public void sendRedirectCommitTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+
+        response.sendRedirect("/RedirectedTest");
+        response.addIntHeader("header1", 12345);
+
+        pw.println("Test FAILED in sendRedirectCommitTest");
+    }
 }

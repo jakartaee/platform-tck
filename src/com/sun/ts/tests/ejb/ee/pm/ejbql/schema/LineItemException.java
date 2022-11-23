@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class LineItemException extends Exception {
-  public String reason = null;
+    public String reason = null;
 
-  public LineItemException() {
-    super();
-  }
+    public LineItemException() {
+        super();
+    }
 
-  public LineItemException(String msg) {
-    super(msg);
-    reason = msg;
-  }
+    public LineItemException(String msg) {
+        super(msg);
+        reason = msg;
+    }
 }

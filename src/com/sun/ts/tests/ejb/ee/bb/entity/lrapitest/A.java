@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface A extends EJBObject {
-  // Business Methods for A CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for A CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public int getValue() throws RemoteException;
+    public int getValue() throws RemoteException;
 
-  public void setValue(int v) throws RemoteException;
+    public void setValue(int v) throws RemoteException;
 
-  // Other Business Methods
-  public void init(Properties p) throws RemoteException;
+    // Other Business Methods
+    public void init(Properties p) throws RemoteException;
 
-  public String whoAmIRemote() throws RemoteException;
+    public String whoAmIRemote() throws RemoteException;
 
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public EJBObject getRemoteRef() throws RemoteException;
+    public EJBObject getRemoteRef() throws RemoteException;
 }

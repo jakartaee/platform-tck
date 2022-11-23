@@ -59,20 +59,18 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionlistener;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
 public final class HSListener implements HttpSessionListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void sessionCreated(HttpSessionEvent event) {
-    StaticLog.add("HSListener:sessionCreated");
-  }
+    public void sessionCreated(HttpSessionEvent event) {
+        StaticLog.add("HSListener:sessionCreated");
+    }
 
-  public void sessionDestroyed(HttpSessionEvent event) {
-    StaticLog.add("HSListener:sessionDestroyed");
-  }
-
+    public void sessionDestroyed(HttpSessionEvent event) {
+        StaticLog.add("HSListener:sessionDestroyed");
+    }
 }

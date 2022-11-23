@@ -22,11 +22,11 @@ package com.sun.ts.tests.common.connector.util;
 
 public class AppException extends Exception {
 
-  public AppException() {
-    super();
-  }
+    public AppException() {
+        super();
+    }
 
-  public AppException(String msg) {
-    super(msg);
-  }
+    public AppException(String msg) {
+        super(msg);
+    }
 }

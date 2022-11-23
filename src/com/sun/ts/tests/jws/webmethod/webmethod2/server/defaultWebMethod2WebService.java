@@ -28,9 +28,8 @@ import jakarta.jws.WebService;
 @WebService(wsdlLocation = "WEB-INF/wsdl/DefaultWebMethod2WebServiceService.wsdl")
 public class defaultWebMethod2WebService {
 
-  @WebMethod
-  public String hello(String name) {
-    return "Hello " + name + " to Web Service";
-  }
-
+    @WebMethod
+    public String hello(String name) {
+        return "Hello " + name + " to Web Service";
+    }
 }

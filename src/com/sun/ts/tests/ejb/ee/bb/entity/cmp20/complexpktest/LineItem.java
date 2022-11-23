@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface LineItem extends EJBObject {
 
-  // Methods for LineItem CMP Fields
-  public String getId() throws RemoteException;
+    // Methods for LineItem CMP Fields
+    public String getId() throws RemoteException;
 
-  public int getQuantity() throws RemoteException;
+    public int getQuantity() throws RemoteException;
 
-  public void setQuantity(int v) throws RemoteException;
-
+    public void setQuantity(int v) throws RemoteException;
 }

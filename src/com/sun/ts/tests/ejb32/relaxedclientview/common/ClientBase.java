@@ -16,137 +16,127 @@
 
 package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
 public class ClientBase extends EETest implements TestConstants {
 
-  @EJB(beanName = "HelperSingletonBean", name = "helperSingleton")
-  static HelperSingleton helperSingleton;
+    @EJB(beanName = "HelperSingletonBean", name = "helperSingleton")
+    static HelperSingleton helperSingleton;
 
-  @EJB(beanName = "RemoteAnnotationBean", name = "remoteAnnotationNormalInterface1")
-  static NormalInterface1 remoteAnnotationNormalInterface1;
+    @EJB(beanName = "RemoteAnnotationBean", name = "remoteAnnotationNormalInterface1")
+    static NormalInterface1 remoteAnnotationNormalInterface1;
 
-  @EJB(beanName = "RemoteAnnotationBean", name = "remoteAnnotationNormalInterface2")
-  static NormalInterface2 remoteAnnotationNormalInterface2;
+    @EJB(beanName = "RemoteAnnotationBean", name = "remoteAnnotationNormalInterface2")
+    static NormalInterface2 remoteAnnotationNormalInterface2;
 
-  @EJB(beanName = "OneRemoteAnnotationOnInterfaceBean", name = "oneRemoteAnnotationOnInterface1")
-  static RemoteAnnotationInterface1 oneRemoteAnnotationOnInterface1;
+    @EJB(beanName = "OneRemoteAnnotationOnInterfaceBean", name = "oneRemoteAnnotationOnInterface1")
+    static RemoteAnnotationInterface1 oneRemoteAnnotationOnInterface1;
 
-  @EJB(beanName = "OneRemoteAnnotationOnEjbBean", name = "oneRemoteAnnotationOnEjb1")
-  static NormalInterface1 oneRemoteAnnotationOnEjb1;
+    @EJB(beanName = "OneRemoteAnnotationOnEjbBean", name = "oneRemoteAnnotationOnEjb1")
+    static NormalInterface1 oneRemoteAnnotationOnEjb1;
 
-  public static void main(String[] args) {
-    ClientBase theTests = new ClientBase();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void cleanup() throws Fault {
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-  }
-
-  /*
-   * testName: noAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces without any annotations
-   */
-  public void noAnnotationTest() throws TestFailedException {
-    TLogger.log(helperSingleton.noAnnotationTest());
-  }
-
-  /*
-   * testName: localAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces with local annotation on ejb
-   */
-  public void localAnnotationTest() throws TestFailedException {
-    TLogger.log(helperSingleton.localAnnotationTest());
-  }
-
-  /*
-   * testName: remoteAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces with remote annotation on ejb
-   */
-  public void remoteAnnotationTest() throws TestFailedException {
-
-    try {
-      int result = remoteAnnotationNormalInterface1.businessMethod1()
-          + remoteAnnotationNormalInterface2.businessMethod2();
-
-      if (result == EXPECTED_RESULT1) {
-        TLogger.log(
-            String.format(SUCCESSFULLY_RUN_RESULT, "remoteAnnotationTest"));
-      } else {
-        throw new TestFailedException(
-            String.format(GOT_WRONG_RESULT, EXPECTED_RESULT1, result));
-      }
-
-    } catch (Exception e) {
-      throw new TestFailedException(e);
+    public static void main(String[] args) {
+        ClientBase theTests = new ClientBase();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-  }
-
-  /*
-   * testName: oneRemoteAnnotationOnInterfaceTest
-   * 
-   * @test_Strategy: a remote annotation on one interface and another interface
-   * has nothing
-   */
-  public void oneRemoteAnnotationOnInterfaceTest() throws TestFailedException {
-    int result = oneRemoteAnnotationOnInterface1.businessMethod1();
-
-    if (result != EXPECTED_RESULT2) {
-      throw new TestFailedException(
-          String.format(GOT_WRONG_RESULT, EXPECTED_RESULT2, result));
+    public void cleanup() throws Fault {
     }
 
-    TLogger.log(helperSingleton.oneRemoteAnnotationOnInterfaceTest());
-  }
-
-  /*
-   * testName: oneRemoteAnnotationOnEjbTest
-   * 
-   * @test_Strategy: a remote annotation on ejb for one interface and another
-   * interface has nothing
-   */
-  public void oneRemoteAnnotationOnEjbTest() throws TestFailedException {
-    int result = oneRemoteAnnotationOnEjb1.businessMethod1();
-
-    if (result != EXPECTED_RESULT2) {
-      throw new TestFailedException(
-          String.format(GOT_WRONG_RESULT, EXPECTED_RESULT2, result));
+    public void setup(String[] args, Properties p) throws Fault {
     }
 
-    TLogger.log(helperSingleton.oneRemoteAnnotationOnEjbTest());
-  }
+    /*
+     * testName: noAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces without any annotations
+     */
+    public void noAnnotationTest() throws TestFailedException {
+        TLogger.log(helperSingleton.noAnnotationTest());
+    }
 
-  /*
-   * testName: noInterfaceViewTest
-   * 
-   * @test_Strategy: an ejb has no interface view, so all business interfaces
-   * must be explicitly designated
-   */
-  public void noInterfaceViewTest() throws TestFailedException {
-    TLogger.log(helperSingleton.noInterfaceViewTest());
-  }
+    /*
+     * testName: localAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces with local annotation on ejb
+     */
+    public void localAnnotationTest() throws TestFailedException {
+        TLogger.log(helperSingleton.localAnnotationTest());
+    }
 
-  /*
-   * testName: localDDTest
-   * 
-   * @test_Strategy: an ejb has dd local view
-   */
-  public void localDDTest() throws TestFailedException {
-    TLogger.log(helperSingleton.localDDTest());
-  }
+    /*
+     * testName: remoteAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces with remote annotation on ejb
+     */
+    public void remoteAnnotationTest() throws TestFailedException {
+
+        try {
+            int result = remoteAnnotationNormalInterface1.businessMethod1()
+                    + remoteAnnotationNormalInterface2.businessMethod2();
+
+            if (result == EXPECTED_RESULT1) {
+                TLogger.log(String.format(SUCCESSFULLY_RUN_RESULT, "remoteAnnotationTest"));
+            } else {
+                throw new TestFailedException(String.format(GOT_WRONG_RESULT, EXPECTED_RESULT1, result));
+            }
+
+        } catch (Exception e) {
+            throw new TestFailedException(e);
+        }
+    }
+
+    /*
+     * testName: oneRemoteAnnotationOnInterfaceTest
+     *
+     * @test_Strategy: a remote annotation on one interface and another interface has nothing
+     */
+    public void oneRemoteAnnotationOnInterfaceTest() throws TestFailedException {
+        int result = oneRemoteAnnotationOnInterface1.businessMethod1();
+
+        if (result != EXPECTED_RESULT2) {
+            throw new TestFailedException(String.format(GOT_WRONG_RESULT, EXPECTED_RESULT2, result));
+        }
+
+        TLogger.log(helperSingleton.oneRemoteAnnotationOnInterfaceTest());
+    }
+
+    /*
+     * testName: oneRemoteAnnotationOnEjbTest
+     *
+     * @test_Strategy: a remote annotation on ejb for one interface and another interface has nothing
+     */
+    public void oneRemoteAnnotationOnEjbTest() throws TestFailedException {
+        int result = oneRemoteAnnotationOnEjb1.businessMethod1();
+
+        if (result != EXPECTED_RESULT2) {
+            throw new TestFailedException(String.format(GOT_WRONG_RESULT, EXPECTED_RESULT2, result));
+        }
+
+        TLogger.log(helperSingleton.oneRemoteAnnotationOnEjbTest());
+    }
+
+    /*
+     * testName: noInterfaceViewTest
+     *
+     * @test_Strategy: an ejb has no interface view, so all business interfaces must be explicitly designated
+     */
+    public void noInterfaceViewTest() throws TestFailedException {
+        TLogger.log(helperSingleton.noInterfaceViewTest());
+    }
+
+    /*
+     * testName: localDDTest
+     *
+     * @test_Strategy: an ejb has dd local view
+     */
+    public void localDDTest() throws TestFailedException {
+        TLogger.log(helperSingleton.localDDTest());
+    }
 }

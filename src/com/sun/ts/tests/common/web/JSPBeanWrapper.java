@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.common.web;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TSNamingContext;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  *
@@ -33,27 +31,25 @@ import jakarta.servlet.http.HttpServletRequest;
  */
 public class JSPBeanWrapper implements java.io.Serializable {
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  /** No args constructor */
-  public JSPBeanWrapper() {
-    try {
-      WebUtil.logMsg("[JSPBeanWrapper] Getting Naming Context");
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      WebUtil.logErr("[JSPBeanWrapper] Unexpected exception", e);
+    /** No args constructor */
+    public JSPBeanWrapper() {
+        try {
+            WebUtil.logMsg("[JSPBeanWrapper] Getting Naming Context");
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            WebUtil.logErr("[JSPBeanWrapper] Unexpected exception", e);
+        }
     }
-  }
 
-  public String executeTest(HttpServletRequest request)
-      throws ServletException {
+    public String executeTest(HttpServletRequest request) throws ServletException {
 
-    Properties resultProps;
+        Properties resultProps;
 
-    WebUtil.logTrace("[JSPBeanWrapper] executeTest()");
-    resultProps = WebUtil.executeTest(this, nctx, request);
+        WebUtil.logTrace("[JSPBeanWrapper] executeTest()");
+        resultProps = WebUtil.executeTest(this, nctx, request);
 
-    return WebUtil.propsToString(resultProps);
-  }
-
+        return WebUtil.propsToString(resultProps);
+    }
 }

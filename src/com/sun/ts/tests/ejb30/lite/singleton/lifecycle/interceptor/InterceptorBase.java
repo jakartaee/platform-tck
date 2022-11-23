@@ -21,35 +21,34 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.singleton.common.SingletonInterceptorBase;
-
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorBase extends SingletonInterceptorBase {
-  @Override
-  final protected Object intercept0(InvocationContext inv, String methodName,
-      String interceptorName, Object[] params) throws Exception {
-    if (getSimpleName().equals(interceptorName)) {
-      Helper.getLogger()
-          .fine("Intercepting it and skipping the rest of interceptor chain. "
-              + " methodName:" + methodName + ", interceptorName:"
-              + interceptorName);
-      if ("identityHashCode".equals(methodName)) {
-        return identityHashCode();
-      } else if ("error".equals(methodName)) {
-        error();
-      } else {
-        throw new IllegalStateException("Invalid methodName: " + methodName);
-      }
+    @Override
+    protected final Object intercept0(InvocationContext inv, String methodName, String interceptorName, Object[] params)
+            throws Exception {
+        if (getSimpleName().equals(interceptorName)) {
+            Helper.getLogger()
+                    .fine("Intercepting it and skipping the rest of interceptor chain. "
+                            + " methodName:" + methodName + ", interceptorName:"
+                            + interceptorName);
+            if ("identityHashCode".equals(methodName)) {
+                return identityHashCode();
+            } else if ("error".equals(methodName)) {
+                error();
+            } else {
+                throw new IllegalStateException("Invalid methodName: " + methodName);
+            }
+        }
+        return inv.proceed();
     }
-    return inv.proceed();
-  }
 
-  protected void error() throws RuntimeException {
-    throw new RuntimeException(
-        "System exception from tests, but the singleton's interceptor should not be stroyed.");
-  }
+    protected void error() throws RuntimeException {
+        throw new RuntimeException(
+                "System exception from tests, but the singleton's interceptor should not be stroyed.");
+    }
 
-  protected int identityHashCode() {
-    return System.identityHashCode(this);
-  }
+    protected int identityHashCode() {
+        return System.identityHashCode(this);
+    }
 }

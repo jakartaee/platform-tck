@@ -31,13 +31,12 @@ package com.sun.ts.tests.common.connector.whitebox;
  */
 public class TSEISException extends Exception {
 
-  /**
-   * Creates exception with the message.
-   *
-   * @param message
-   *          Error message
-   */
-  public TSEISException(String message) {
-    super(message);
-  }
+    /**
+     * Creates exception with the message.
+     *
+     * @param message Error message
+     */
+    public TSEISException(String message) {
+        super(message);
+    }
 }

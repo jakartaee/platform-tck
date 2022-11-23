@@ -24,17 +24,16 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 public class TestBean {
-  private Integer overrideLookup;
+    private Integer overrideLookup;
 
-  // lookup is overridden in ejb-jar.xml
-  @SuppressWarnings("unused")
-  @Resource(name = "overrideLookup", lookup = "java:module/env/0")
-  private void setOverrideLookup(Integer i) {
-    this.overrideLookup = i;
-  }
+    // lookup is overridden in ejb-jar.xml
+    @SuppressWarnings("unused")
+    @Resource(name = "overrideLookup", lookup = "java:module/env/0")
+    private void setOverrideLookup(Integer i) {
+        this.overrideLookup = i;
+    }
 
-  public Integer overrideLookup() {
-    return overrideLookup;
-  }
-
+    public Integer overrideLookup() {
+        return overrideLookup;
+    }
 }

@@ -20,24 +20,23 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycleejbcdi;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
 
 @Singleton(name = "OverrideWithPostConstructBean")
 public class OverrideWithPostConstructBean extends OverrideBeanBase {
-  private static final String simpleName = "OverrideWithPostConstructBean";
+    private static final String simpleName = "OverrideWithPostConstructBean";
 
-  @PostConstruct
-  @Override
-  protected void postConstructInOverrideBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @PostConstruct
+    @Override
+    protected void postConstructInOverrideBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 
-  @Override
-  @PreDestroy
-  protected void preDestroyInOverrideBeanBase() {
-    Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
-  }
+    @Override
+    @PreDestroy
+    protected void preDestroyInOverrideBeanBase() {
+        Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
+    }
 }

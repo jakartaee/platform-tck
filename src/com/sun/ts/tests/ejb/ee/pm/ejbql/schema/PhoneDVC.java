@@ -24,40 +24,40 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class PhoneDVC implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String area;
+    private String area;
 
-  private String number;
+    private String number;
 
-  public PhoneDVC(String v1, String v2, String v3) {
-    id = v1;
-    area = v2;
-    number = v3;
-  }
+    public PhoneDVC(String v1, String v2, String v3) {
+        id = v1;
+        area = v2;
+        number = v3;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public String getArea() {
-    return area;
-  }
+    public String getArea() {
+        return area;
+    }
 
-  public void setArea(String v) {
-    area = v;
-  }
+    public void setArea(String v) {
+        area = v;
+    }
 
-  public String getNumber() {
-    return number;
-  }
+    public String getNumber() {
+        return number;
+    }
 
-  public void setNumber(String v) {
-    number = v;
-  }
+    public void setNumber(String v) {
+        number = v;
+    }
 }

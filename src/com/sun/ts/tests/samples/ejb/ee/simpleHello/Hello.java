@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.samples.ejb.ee.simpleHello;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Hello extends EJBObject {
-  String sayHello() throws RemoteException;
+    String sayHello() throws RemoteException;
 
-  String sayHelloAgain() throws RemoteException;
+    String sayHelloAgain() throws RemoteException;
 }

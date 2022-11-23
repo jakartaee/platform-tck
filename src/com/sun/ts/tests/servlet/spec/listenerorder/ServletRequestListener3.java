@@ -25,29 +25,25 @@ import jakarta.servlet.ServletRequestListener;
 
 public class ServletRequestListener3 implements ServletRequestListener {
 
-  public void requestInitialized(ServletRequestEvent sre) {
-    ServletRequest sr = sre.getServletRequest();
-    if (sr.getAttribute("name_1") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute during requestInitialized");
+    public void requestInitialized(ServletRequestEvent sre) {
+        ServletRequest sr = sre.getServletRequest();
+        if (sr.getAttribute("name_1") == null) {
+            throw new IllegalStateException("Missing request attribute during requestInitialized");
+        }
+        if (sr.getAttribute("name_2") == null) {
+            throw new IllegalStateException("Missing request attribute during requestInitialized");
+        }
+        sr.setAttribute("name_3", "value_3");
     }
-    if (sr.getAttribute("name_2") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute during requestInitialized");
-    }
-    sr.setAttribute("name_3", "value_3");
-  }
 
-  public void requestDestroyed(ServletRequestEvent sre) {
-    ServletRequest sr = sre.getServletRequest();
-    if (sr.getAttribute("name_1") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute during requestDestroyed");
+    public void requestDestroyed(ServletRequestEvent sre) {
+        ServletRequest sr = sre.getServletRequest();
+        if (sr.getAttribute("name_1") == null) {
+            throw new IllegalStateException("Missing request attribute during requestDestroyed");
+        }
+        if (sr.getAttribute("name_2") == null) {
+            throw new IllegalStateException("Missing request attribute during requestInitialized");
+        }
+        sr.removeAttribute("name_3");
     }
-    if (sr.getAttribute("name_2") == null) {
-      throw new IllegalStateException(
-          "Missing request attribute during requestInitialized");
-    }
-    sr.removeAttribute("name_3");
-  }
 }

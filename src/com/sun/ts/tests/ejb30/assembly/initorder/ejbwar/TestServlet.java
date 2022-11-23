@@ -20,53 +20,49 @@
 
 package com.sun.ts.tests.ejb30.assembly.initorder.ejbwar;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.List;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().info("In postConstruct of " + this);
-    getHelloBean().addRecord("TestServlet");
-  }
-
-  public void initOrder(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    StringBuilder reason = new StringBuilder();
-    try {
-      List<String> expected = Arrays.asList("InitOrderBean", "TestServlet");
-      List<String> records = getHelloBean().getAndClearRecords();
-      Helper.assertEquals(null, expected, records, reason);
-      pw.println(Data.PASSED);
-    } catch (Exception e) {
-      pw.println(Data.FAILED);
-      reason.append(TestUtil.printStackTraceToString(e));
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().info("In postConstruct of " + this);
+        getHelloBean().addRecord("TestServlet");
     }
-    pw.println(reason.toString());
-  }
 
-  private static HelloRemoteIF getHelloBean() {
-    return (HelloRemoteIF) ServiceLocator
-        .lookupNoTry(HelloRemoteIF.GLOBAL_JNDI_NAME);
-  }
+    public void initOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StringBuilder reason = new StringBuilder();
+        try {
+            List<String> expected = Arrays.asList("InitOrderBean", "TestServlet");
+            List<String> records = getHelloBean().getAndClearRecords();
+            Helper.assertEquals(null, expected, records, reason);
+            pw.println(Data.PASSED);
+        } catch (Exception e) {
+            pw.println(Data.FAILED);
+            reason.append(TestUtil.printStackTraceToString(e));
+        }
+        pw.println(reason.toString());
+    }
 
+    private static HelloRemoteIF getHelloBean() {
+        return (HelloRemoteIF) ServiceLocator.lookupNoTry(HelloRemoteIF.GLOBAL_JNDI_NAME);
+    }
 }

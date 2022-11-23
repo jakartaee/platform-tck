@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb30.bb.async.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncBeanBase;
-
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Singleton;
 

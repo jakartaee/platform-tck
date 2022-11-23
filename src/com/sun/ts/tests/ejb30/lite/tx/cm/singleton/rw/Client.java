@@ -19,58 +19,55 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.rw;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
 public class Client extends RWClientBase {
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
-
-  /*
-   * @testName: mandatory
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: required
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiredNoExistingTransaction
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: supports
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiresNew
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: postConstructTransaction
-   * 
-   * @test_Strategy:
-   */
-
-  @Override
-  public void setup(String[] args, Properties p) {
-    super.setup(args, p);
-    if (getContainer() != null) { // means we are in ejbembed
-      System.setProperty("ejbembed", "true");
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
     }
-  }
 
+    /*
+     * @testName: mandatory
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: required
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiredNoExistingTransaction
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: supports
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiresNew
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: postConstructTransaction
+     *
+     * @test_Strategy:
+     */
+
+    @Override
+    public void setup(String[] args, Properties p) {
+        super.setup(args, p);
+        if (getContainer() != null) { // means we are in ejbembed
+            System.setProperty("ejbembed", "true");
+        }
+    }
 }

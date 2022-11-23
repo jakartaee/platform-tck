@@ -17,32 +17,30 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.io.Reader;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
-
 public class ReaderMessageHandler implements MessageHandler.Whole<Reader> {
 
-  public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
+    public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
 
-  protected Session session;
+    protected Session session;
 
-  public ReaderMessageHandler(Session session) {
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(Reader message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromReader(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public ReaderMessageHandler(Session session) {
+        this.session = session;
     }
-  }
+
+    @Override
+    public void onMessage(Reader message) {
+        String msg = null;
+        try {
+            msg = IOUtil.readFromReader(message);
+            session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

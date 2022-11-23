@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.lite.basic.stateless;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
@@ -30,15 +29,14 @@ import jakarta.ejb.Stateless;
 @Stateless
 public class BasicBean extends BasicBeanBase {
 
-  // just to verify both SessionContext and EJBContext can be injected
-  // They are also in the superclass BasicBeanBase, which should cause no
-  // conflict
-  @SuppressWarnings("unused")
-  @Resource
-  private SessionContext sessionContext;
+    // just to verify both SessionContext and EJBContext can be injected
+    // They are also in the superclass BasicBeanBase, which should cause no
+    // conflict
+    @SuppressWarnings("unused")
+    @Resource
+    private SessionContext sessionContext;
 
-  @SuppressWarnings("unused")
-  @Resource
-  private EJBContext ejbContext;
-
+    @SuppressWarnings("unused")
+    @Resource
+    private EJBContext ejbContext;
 }

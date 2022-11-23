@@ -25,11 +25,10 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface BeanLocalHome extends EJBLocalHome {
-  public BeanLocal create(String id, String name, int value, ADVC a, BDVC b,
-      int flag) throws CreateException;
+    public BeanLocal create(String id, String name, int value, ADVC a, BDVC b, int flag) throws CreateException;
 
-  public BeanLocal create(String id, String name, int value, ADVC a1, BDVC b1,
-      ADVC a2, BDVC b2) throws CreateException;
+    public BeanLocal create(String id, String name, int value, ADVC a1, BDVC b1, ADVC a2, BDVC b2)
+            throws CreateException;
 
-  public BeanLocal findByPrimaryKey(String id) throws FinderException;
+    public BeanLocal findByPrimaryKey(String id) throws FinderException;
 }

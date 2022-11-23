@@ -24,7 +24,7 @@ import jakarta.jws.WebService;
 
 @WebService(name = "Hello", portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl")
 public class HelloImpl {
-  public String hello(String who) {
-    return "Hello, " + who;
-  }
+    public String hello(String who) {
+        return "Hello, " + who;
+    }
 }

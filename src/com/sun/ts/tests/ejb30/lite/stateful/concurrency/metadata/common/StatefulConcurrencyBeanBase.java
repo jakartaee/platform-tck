@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+import java.util.concurrent.Future;
 
 public class StatefulConcurrencyBeanBase implements StatefulConcurrencyIF {
 
-  public Future<String> ping() {
-    Helper.busyWait(PING_WAIT_MILLIS);
-    return null;
-  }
-
+    public Future<String> ping() {
+        Helper.busyWait(PING_WAIT_MILLIS);
+        return null;
+    }
 }

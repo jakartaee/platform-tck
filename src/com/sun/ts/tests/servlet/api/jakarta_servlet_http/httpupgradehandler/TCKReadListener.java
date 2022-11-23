@@ -25,45 +25,45 @@ import jakarta.servlet.ServletOutputStream;
 
 public class TCKReadListener implements ReadListener {
 
-  private ServletInputStream input = null;
+    private ServletInputStream input = null;
 
-  private ServletOutputStream output = null;
+    private ServletOutputStream output = null;
 
-  private String delimiter = null;
+    private String delimiter = null;
 
-  TCKReadListener(String del, ServletInputStream in, ServletOutputStream out) {
-    input = in;
-    output = out;
-    delimiter = del;
-  }
-
-  public void onDataAvailable() {
-    try {
-      output.println("=onDataAvailable");
-      StringBuilder sb = new StringBuilder();
-      int len = -1;
-      byte b[] = new byte[1024];
-      while (input.isReady() && (len = input.read(b)) != -1) {
-        String data = new String(b, 0, len);
-        sb.append(data);
-      }
-      output.println(delimiter + sb.toString());
-      output.flush();
-    } catch (Exception ex) {
-      throw new IllegalStateException(ex);
+    TCKReadListener(String del, ServletInputStream in, ServletOutputStream out) {
+        input = in;
+        output = out;
+        delimiter = del;
     }
-  }
 
-  public void onAllDataRead() {
-    try {
-      output.println("=onAllDataRead");
-      output.close();
-    } catch (Exception ex) {
-      throw new IllegalStateException(ex);
+    public void onDataAvailable() {
+        try {
+            output.println("=onDataAvailable");
+            StringBuilder sb = new StringBuilder();
+            int len = -1;
+            byte b[] = new byte[1024];
+            while (input.isReady() && (len = input.read(b)) != -1) {
+                String data = new String(b, 0, len);
+                sb.append(data);
+            }
+            output.println(delimiter + sb.toString());
+            output.flush();
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        }
     }
-  }
 
-  public void onError(final Throwable t) {
-    t.printStackTrace();
-  }
+    public void onAllDataRead() {
+        try {
+            output.println("=onAllDataRead");
+            output.close();
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    public void onError(final Throwable t) {
+        t.printStackTrace();
+    }
 }

@@ -19,37 +19,33 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
-import java.sql.Connection;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
+import java.sql.Connection;
 
 @Singleton
 public class OneBean extends BeanBase implements LocalIF {
 
-  public String getName() {
-    return "OneBean";
-  }
+    public String getName() {
+        return "OneBean";
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    // PreDestroy method is called during the processing of embeddable
-    // container close
-    Helper.getLogger().info("Invoking preDestroy in " + this);
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        // PreDestroy method is called during the processing of embeddable
+        // container close
+        Helper.getLogger().info("Invoking preDestroy in " + this);
 
-    TSDbUtil tsDbUtil = new TSDbUtil(databaseURL, databaseUser,
-        databasePassword, driverClassName);
-    Connection connection = tsDbUtil.getConnection();
-    tsDbUtil.writeToDatabase(connection, "OneBean", "PreDestroy called");
-    Helper.getLogger().info("Database write successful");
+        TSDbUtil tsDbUtil = new TSDbUtil(databaseURL, databaseUser, databasePassword, driverClassName);
+        Connection connection = tsDbUtil.getConnection();
+        tsDbUtil.writeToDatabase(connection, "OneBean", "PreDestroy called");
+        Helper.getLogger().info("Database write successful");
 
-    String msg = "OneBean PreDestroy called";
-    // add this msg to CopyOnWriteArrayList
-    arrayList.add(msg);
-    Helper.getLogger().info("Added message to CopyOnWriteArrayList");
-  }
-
+        String msg = "OneBean PreDestroy called";
+        // add this msg to CopyOnWriteArrayList
+        arrayList.add(msg);
+        Helper.getLogger().info("Added message to CopyOnWriteArrayList");
+    }
 }

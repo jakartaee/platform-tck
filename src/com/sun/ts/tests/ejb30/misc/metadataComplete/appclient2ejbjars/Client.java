@@ -24,62 +24,58 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 
-public class Client extends
-    com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.Client {
-  // injected in descriptor
-  private static RemoteCalculator statelessAnnotationUsedRemoteCalculatorBean;
+public class Client extends com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars.Client {
+    // injected in descriptor
+    private static RemoteCalculator statelessAnnotationUsedRemoteCalculatorBean;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @testName: annotationNotProcessedForStateless
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-
-  /*
-   * @testName: annotationNotProcessedForStateful
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-
-  /*
-   * @testName: annotationNotProcessedForAppclient
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-
-  /*
-   * @testName: annotationProcessedForStateless
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void annotationProcessedForStateless() throws Fault {
-    int param1 = 0;
-    int param2 = 0;
-    int additionByInterceptor = 100 + 100;
-    int postConstructCallsCount = 1;
-    int expected = param1 + param2 + additionByInterceptor
-        + postConstructCallsCount;
-    int actual = statelessAnnotationUsedRemoteCalculatorBean.remoteAdd(param1,
-        param2);
-    if (actual == expected) {
-      TLogger.log("Got expected result : " + actual);
-    } else {
-      throw new Fault(
-          "Expecting result: " + expected + ", but actual is " + actual);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
+
+    /*
+     * @testName: annotationNotProcessedForStateless
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+
+    /*
+     * @testName: annotationNotProcessedForStateful
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+
+    /*
+     * @testName: annotationNotProcessedForAppclient
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+
+    /*
+     * @testName: annotationProcessedForStateless
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void annotationProcessedForStateless() throws Fault {
+        int param1 = 0;
+        int param2 = 0;
+        int additionByInterceptor = 100 + 100;
+        int postConstructCallsCount = 1;
+        int expected = param1 + param2 + additionByInterceptor + postConstructCallsCount;
+        int actual = statelessAnnotationUsedRemoteCalculatorBean.remoteAdd(param1, param2);
+        if (actual == expected) {
+            TLogger.log("Got expected result : " + actual);
+        } else {
+            throw new Fault("Expecting result: " + expected + ", but actual is " + actual);
+        }
+    }
 }

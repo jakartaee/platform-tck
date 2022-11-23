@@ -24,14 +24,14 @@
 package com.sun.ts.tests.jws.common;
 
 public class SalaryException extends Exception {
-  private String message = "Salary Error";
+    private String message = "Salary Error";
 
-  public SalaryException(String message) {
-    super(message);
-    this.message = message;
-  }
+    public SalaryException(String message) {
+        super(message);
+        this.message = message;
+    }
 
-  public SalaryException() {
-    super();
-  }
+    public SalaryException() {
+        super();
+    }
 }

@@ -58,22 +58,19 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.api.common.request.RequestTests;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GetParameterNamesEmptyEnumTestServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    RequestTests.getParameterNamesEmptyEnumTest(pw, request, response);
-  }
+        PrintWriter pw = response.getWriter();
+        RequestTests.getParameterNamesEmptyEnumTest(pw, request, response);
+    }
 }

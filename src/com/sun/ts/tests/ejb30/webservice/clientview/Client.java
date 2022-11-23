@@ -16,105 +16,98 @@
 
 package com.sun.ts.tests.ejb30.webservice.clientview;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.javatest.Status;
-
-import jakarta.xml.ws.WebServiceRef;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.xml.ws.BindingProvider;
-import jakarta.xml.ws.ProtocolException;
-import java.util.Properties;
+import jakarta.xml.ws.WebServiceRef;
 import java.util.Map;
-import java.net.URL;
+import java.util.Properties;
 
 /**
  *
  * @author Raja Perumal
  */
 public class Client extends EETest {
-  @WebServiceRef(name = "service/HelloService")
-  static HelloService service;
+    @WebServiceRef(name = "service/HelloService")
+    static HelloService service;
 
-  private Hello port;
+    private Hello port;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSURL ctsurl = new TSURL();
+    private TSURL ctsurl = new TSURL();
 
-  private String hostname = "localhost";
+    private String hostname = "localhost";
 
-  private String PROTOCOL = "http";
+    private String PROTOCOL = "http";
 
-  private String urlString = null;
+    private String urlString = null;
 
-  private int portnum = 8000;
+    private int portnum = 8000;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    try {
-      hostname = props.getProperty("webServerHost");
-      portnum = Integer.parseInt(props.getProperty("webServerPort"));
-      urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum,
-          "/HelloService/Hello");
-
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    TestUtil.logMsg("setup ok");
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort;
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        try {
+            hostname = props.getProperty("webServerHost");
+            portnum = Integer.parseInt(props.getProperty("webServerPort"));
+            urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum, "/HelloService/Hello");
 
-  /*
-   * @testName: sayHelloTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void sayHelloTest() throws Fault {
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
 
-    try {
-      Hello port = null;
-
-      port = (Hello) getJavaEEPort();
-
-      BindingProvider bindingProvider = (BindingProvider) port;
-      Map<String, Object> map = bindingProvider.getRequestContext();
-
-      TestUtil.logMsg(
-          "Setting the target endpoint address on WS port: " + urlString);
-      map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
-
-      TestUtil.logMsg("Invoking sayHello on Hello port");
-      String text = port.sayHello("Raja");
-      TestUtil.logMsg("Got Output : " + text);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Fault("Test sayHello failed");
+        TestUtil.logMsg("setup ok");
     }
 
-  }
+    /*
+     * @testName: sayHelloTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    public void sayHelloTest() throws Fault {
 
-  public Object getJavaEEPort() throws Exception {
-    TestUtil.logMsg("Get Hello Port from HelloService");
-    Object port = service.getPort(Hello.class);
-    return port;
-  }
+        try {
+            Hello port = null;
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+            port = (Hello) getJavaEEPort();
 
+            BindingProvider bindingProvider = (BindingProvider) port;
+            Map<String, Object> map = bindingProvider.getRequestContext();
+
+            TestUtil.logMsg("Setting the target endpoint address on WS port: " + urlString);
+            map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
+
+            TestUtil.logMsg("Invoking sayHello on Hello port");
+            String text = port.sayHello("Raja");
+            TestUtil.logMsg("Got Output : " + text);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Fault("Test sayHello failed");
+        }
+    }
+
+    public Object getJavaEEPort() throws Exception {
+        TestUtil.logMsg("Get Hello Port from HelloService");
+        Object port = service.getPort(Hello.class);
+        return port;
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

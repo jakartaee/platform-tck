@@ -20,30 +20,29 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.cascadedelete;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface BLocal extends EJBLocalObject {
-  // Business Methods for BLocal CMP Fields
-  public String getId();
+    // Business Methods for BLocal CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Business Methods for A CMR Fields
-  public ALocal getA();
+    // Business Methods for A CMR Fields
+    public ALocal getA();
 
-  public void setA(ALocal v);
+    public void setA(ALocal v);
 
-  // Business Methods for Exposing B and A Relationship Info
-  // as DVC collections
-  public Collection getBInfoFromA();
+    // Business Methods for Exposing B and A Relationship Info
+    // as DVC collections
+    public Collection getBInfoFromA();
 
-  public Collection getAInfoFromB();
+    public Collection getAInfoFromB();
 }

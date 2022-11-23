@@ -21,13 +21,13 @@
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server;
 
 public class MyServiceException extends Exception {
-  private String theMessage;
+    private String theMessage;
 
-  public MyServiceException(String theMessage) {
-    this.theMessage = theMessage;
-  }
+    public MyServiceException(String theMessage) {
+        this.theMessage = theMessage;
+    }
 
-  public String getTheMessage() {
-    return theMessage;
-  }
+    public String getTheMessage() {
+        return theMessage;
+    }
 }

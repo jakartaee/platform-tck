@@ -20,132 +20,129 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class SBeanEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private static final String beanLocal = "java:comp/env/ejb/TestBeanLocal";
+    private static final String beanLocal = "java:comp/env/ejb/TestBeanLocal";
 
-  private TestBeanLocal beanLocalRef = null;
+    private TestBeanLocal beanLocalRef = null;
 
-  private TestBeanLocalHome beanLocalHome = null;
+    private TestBeanLocalHome beanLocalHome = null;
 
-  // ===========================================================
-  // private methods
+    // ===========================================================
+    // private methods
 
-  private TestBeanLocal createTestBean(int id, String name, float price)
-      throws Exception {
-    TestUtil.logTrace("createTestBean");
-    beanLocalHome = (TestBeanLocalHome) nctx.lookup(beanLocal);
-    beanLocalRef = beanLocalHome.create(harnessProps, id, name, price);
-    return beanLocalRef;
-  }
-
-  // ===========================================================
-  // EJB Specification Required Methods
-
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-      TestUtil.logMsg("obtain naming context");
-      nctx = new TSNamingContext();
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("unable to obtain naming context");
+    private TestBeanLocal createTestBean(int id, String name, float price) throws Exception {
+        TestUtil.logTrace("createTestBean");
+        beanLocalHome = (TestBeanLocalHome) nctx.lookup(beanLocal);
+        beanLocalRef = beanLocalHome.create(harnessProps, id, name, price);
+        return beanLocalRef;
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean loopBackSameBeanLocal() {
-    TestUtil.logTrace("loopBackSameBeanLocal");
-
-    boolean pass = true;
-
-    TestBeanLocal ref = null;
-    TestUtil.logMsg("Perform loopback test - local");
-    try {
-      // create EJB instance
-      TestUtil.logMsg("Create Local EJB instance");
-      ref = createTestBean(1, "coffee-1", (float) 1.0);
-      TestUtil.logMsg("Performing self-referential loopback call test");
-      pass = ref.loopBackSameBeanLocal();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logMsg("Exception: " + e);
-      pass = false;
-    } finally {
-      try {
-        ref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+            TestUtil.logMsg("obtain naming context");
+            nctx = new TSNamingContext();
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("unable to obtain naming context");
+        }
     }
-    return pass;
-  }
 
-  public boolean loopBackAnotherBeanLocal() {
-    TestUtil.logTrace("loopBackAnotherBeanLocal");
-
-    boolean pass = true;
-
-    TestBeanLocal ref = null;
-    try {
-      // create EJB instance
-      TestUtil.logMsg("Create Local EJB instance");
-      ref = createTestBean(1, "coffee-1", (float) 1.0);
-      TestUtil.logMsg("Performing loopback call test");
-      pass = ref.loopBackAnotherBeanLocal();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logMsg("Exception: " + e);
-      pass = false;
-    } finally {
-      try {
-        ref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-    return pass;
-  }
 
-  // ===========================================================
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public boolean loopBackSameBeanLocal() {
+        TestUtil.logTrace("loopBackSameBeanLocal");
+
+        boolean pass = true;
+
+        TestBeanLocal ref = null;
+        TestUtil.logMsg("Perform loopback test - local");
+        try {
+            // create EJB instance
+            TestUtil.logMsg("Create Local EJB instance");
+            ref = createTestBean(1, "coffee-1", (float) 1.0);
+            TestUtil.logMsg("Performing self-referential loopback call test");
+            pass = ref.loopBackSameBeanLocal();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            TestUtil.logMsg("Exception: " + e);
+            pass = false;
+        } finally {
+            try {
+                ref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+        return pass;
+    }
+
+    public boolean loopBackAnotherBeanLocal() {
+        TestUtil.logTrace("loopBackAnotherBeanLocal");
+
+        boolean pass = true;
+
+        TestBeanLocal ref = null;
+        try {
+            // create EJB instance
+            TestUtil.logMsg("Create Local EJB instance");
+            ref = createTestBean(1, "coffee-1", (float) 1.0);
+            TestUtil.logMsg("Performing loopback call test");
+            pass = ref.loopBackAnotherBeanLocal();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            TestUtil.logMsg("Exception: " + e);
+            pass = false;
+        } finally {
+            try {
+                ref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+        return pass;
+    }
+
+    // ===========================================================
 }

@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface TestBean extends EJBObject {
 
-  public boolean checkEntry(String name, String ref) throws RemoteException;
-
+    public boolean checkEntry(String name, String ref) throws RemoteException;
 }

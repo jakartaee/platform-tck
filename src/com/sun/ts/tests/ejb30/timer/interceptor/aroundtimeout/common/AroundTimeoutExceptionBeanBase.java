@@ -20,34 +20,29 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
 
-public class AroundTimeoutExceptionBeanBase
-    extends TimerBeanBaseWithoutTimeOutMethod implements AroundTimeoutIF {
+public class AroundTimeoutExceptionBeanBase extends TimerBeanBaseWithoutTimeOutMethod implements AroundTimeoutIF {
 
-  private static final String simpleName = "AroundTimeoutExceptionBeanBase";
+    private static final String simpleName = "AroundTimeoutExceptionBeanBase";
 
-  @Override
-  @Timeout
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-    InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this,
-        "timeout");
-  }
-
-  @AroundTimeout
-  // this method is also accessed as a business method, and in that case,
-  // InvocationContext is null.
-  public Object aroundTimeout(InvocationContext inv) throws Exception {
-    if (inv != null) {
-      InterceptorBase.addAroundInvokeRecord((Timer) inv.getTimer(), simpleName,
-          this, "aroundTimeout");
+    @Override
+    @Timeout
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+        InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this, "timeout");
     }
-    throw new RuntimeException(simpleName); // skip proceed()
-  }
 
+    @AroundTimeout
+    // this method is also accessed as a business method, and in that case,
+    // InvocationContext is null.
+    public Object aroundTimeout(InvocationContext inv) throws Exception {
+        if (inv != null) {
+            InterceptorBase.addAroundInvokeRecord((Timer) inv.getTimer(), simpleName, this, "aroundTimeout");
+        }
+        throw new RuntimeException(simpleName); // skip proceed()
+    }
 }

@@ -17,17 +17,15 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryEncoder;
-
 import jakarta.websocket.EncodeException;
+import java.nio.ByteBuffer;
 
 public class ThrowingBinaryEncoder extends StringBeanBinaryEncoder {
 
-  @Override
-  public ByteBuffer encode(StringBean bean) throws EncodeException {
-    throw new EncodeException(bean.get(), ThrowingTextDecoder.ERR_MSG);
-  }
+    @Override
+    public ByteBuffer encode(StringBean bean) throws EncodeException {
+        throw new EncodeException(bean.get(), ThrowingTextDecoder.ERR_MSG);
+    }
 }

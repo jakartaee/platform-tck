@@ -22,24 +22,19 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotat
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.MethodOverrideBeanBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * This class overrides the @AroundTimeout method in the superclass. The
- * overriding method in this class is also a @AroundTimeout method. Verifies
- * that the superclass' @AroundTimeout is disabled.
+ * This class overrides the @AroundTimeout method in the superclass. The overriding method in this class is also
+ * a @AroundTimeout method. Verifies that the superclass' @AroundTimeout is disabled.
  */
 @Singleton
-public class MethodOverride2Bean extends MethodOverrideBeanBase
-    implements AroundTimeoutIF {
-  private static final String simpleName = "MethodOverride2Bean";
+public class MethodOverride2Bean extends MethodOverrideBeanBase implements AroundTimeoutIF {
+    private static final String simpleName = "MethodOverride2Bean";
 
-  @Override
-  protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv)
-      throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInMethodOverrideBean");
-  }
+    @Override
+    protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInMethodOverrideBean");
+    }
 }

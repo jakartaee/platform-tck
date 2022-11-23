@@ -24,43 +24,39 @@
 
 package com.sun.ts.tests.servlet.spec.servletresponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HttpTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    response.setContentType("text/plain");
-    PrintWriter pw = response.getWriter();
+        response.setContentType("text/plain");
+        PrintWriter pw = response.getWriter();
 
-    pw.write("flushBufferTest for compatibility\n\r");
-    System.out.println("flushBufferTest for compatibility");
-    response.flushBuffer();
+        pw.write("flushBufferTest for compatibility\n\r");
+        System.out.println("flushBufferTest for compatibility");
+        response.flushBuffer();
 
-    try {
-      Thread.sleep(10000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // write the second part of the document and flush by exit method
+        pw.write("Test Failed\n\r");
     }
 
-    // write the second part of the document and flush by exit method
-    pw.write("Test Failed\n\r");
-  }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        service(request, response);
+    }
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    service(request, response);
-  }
-
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    service(request, response);
-  }
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        service(request, response);
+    }
 }

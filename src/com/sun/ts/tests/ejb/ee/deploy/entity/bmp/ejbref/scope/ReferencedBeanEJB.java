@@ -24,8 +24,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class ReferencedBeanEJB extends BMPWrapper {
 
-  public String whoAreYou() {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
-
+    public String whoAreYou() {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

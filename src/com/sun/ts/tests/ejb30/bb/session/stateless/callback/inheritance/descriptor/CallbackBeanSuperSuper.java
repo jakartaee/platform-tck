@@ -22,32 +22,30 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 
-public class CallbackBeanSuperSuper extends CallbackBeanBase
-    implements CallbackIF {
+public class CallbackBeanSuperSuper extends CallbackBeanBase implements CallbackIF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBeanSuperSuper() {
-    super();
-  }
+    public CallbackBeanSuperSuper() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // this PostConstruct method may be overridden by subclasses.
-  @PostConstruct
-  protected void postConstructMethodInSuperSuper() throws RuntimeException {
-    addPostConstructCall("SUPERSUPER");
-  }
+    // this PostConstruct method may be overridden by subclasses.
+    @PostConstruct
+    protected void postConstructMethodInSuperSuper() throws RuntimeException {
+        addPostConstructCall("SUPERSUPER");
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

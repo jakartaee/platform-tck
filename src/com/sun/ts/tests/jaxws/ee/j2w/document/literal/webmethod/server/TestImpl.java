@@ -20,54 +20,54 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService(name = "Test", serviceName = "TestService", targetNamespace = "http://test.org/wsdl")
 public class TestImpl extends TestImplBase {
 
-  @WebMethod
-  public String method3(String str) {
-    return str;
-  }
+    @WebMethod
+    public String method3(String str) {
+        return str;
+    }
 
-  // This is also a WebMethod since declaring class
-  // has WebService
-  public String method4(String str) {
-    return str;
-  }
+    // This is also a WebMethod since declaring class
+    // has WebService
+    public String method4(String str) {
+        return str;
+    }
 
-  // This is a WebMethod since exclude=false
-  @WebMethod(exclude = false)
-  public String method5(String str) {
-    return str;
-  }
+    // This is a WebMethod since exclude=false
+    @WebMethod(exclude = false)
+    public String method5(String str) {
+        return str;
+    }
 
-  // Not a web method since exclude=true
-  @WebMethod(exclude = true)
-  public String method6(String str) {
-    return str;
-  }
+    // Not a web method since exclude=true
+    @WebMethod(exclude = true)
+    public String method6(String str) {
+        return str;
+    }
 
-  // Not a web method a static method plus exclude=true
-  @WebMethod(exclude = true)
-  public static String method7(String str) {
-    return str;
-  }
+    // Not a web method a static method plus exclude=true
+    @WebMethod(exclude = true)
+    public static String method7(String str) {
+        return str;
+    }
 
-  // Not a web method a final method plus exclude=true
-  @WebMethod(exclude = true)
-  public final String method8(String str) {
-    return str;
-  }
+    // Not a web method a final method plus exclude=true
+    @WebMethod(exclude = true)
+    public final String method8(String str) {
+        return str;
+    }
 
-  // Not a web method a static method
-  public static String method9(String str) {
-    return str;
-  }
+    // Not a web method a static method
+    public static String method9(String str) {
+        return str;
+    }
 
-  // Not a web method a final method
-  public final String method10(String str) {
-    return str;
-  }
+    // Not a web method a final method
+    public final String method10(String str) {
+        return str;
+    }
 }

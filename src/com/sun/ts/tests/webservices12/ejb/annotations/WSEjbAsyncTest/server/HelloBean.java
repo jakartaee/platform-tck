@@ -23,11 +23,11 @@ import jakarta.jws.WebService;
 @Stateless(name = "WSEjbAsyncTest")
 public class HelloBean {
 
-  public HelloResponse hello(HelloRequest request) {
-    HelloResponse response = null;
-    System.out.println("Hello, " + request.getString() + "!");
-    response = new HelloResponse();
-    response.setResult("Hello, " + request.getString() + "!");
-    return response;
-  }
+    public HelloResponse hello(HelloRequest request) {
+        HelloResponse response = null;
+        System.out.println("Hello, " + request.getString() + "!");
+        response = new HelloResponse();
+        response.setResult("Hello, " + request.getString() + "!");
+        return response;
+    }
 }

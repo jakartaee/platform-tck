@@ -21,8 +21,7 @@
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
 public interface ThreeIF {
-  public void remove();
+    public void remove();
 
-  public String from3Client();
-
+    public String from3Client();
 }

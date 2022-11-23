@@ -17,41 +17,36 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.DistributableWork;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
 public class DistributedWorkImpl implements DistributableWork {
 
-  private WorkManager wm;
+    private WorkManager wm;
 
-  public DistributedWorkImpl(WorkManager wm) {
-    this.wm = wm;
+    public DistributedWorkImpl(WorkManager wm) {
+        this.wm = wm;
 
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("DistributedWorkImpl.constructor", "", "");
-    System.out.println("DistributedWorkImpl.constructor");
-  }
-
-  @Override
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("DistributedWorkImpl.release",
-        "", "");
-    System.out.println("DistributedWorkImpl.release");
-  }
-
-  public void run() {
-    try {
-      ConnectorStatus.getConnectorStatus().logAPI("DistributedWorkImpl.run", "",
-          "");
-      System.out.println("DistributedWorkImpl.run");
-      NestWork nw = new NestWork();
-      wm.doWork(nw);
-    } catch (WorkException e) {
-      // this could mean work completed or work rejected or something else.
-      System.out.println("DistributedWorkImpl WorkException caught");
+        ConnectorStatus.getConnectorStatus().logAPI("DistributedWorkImpl.constructor", "", "");
+        System.out.println("DistributedWorkImpl.constructor");
     }
-  }
 
+    @Override
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("DistributedWorkImpl.release", "", "");
+        System.out.println("DistributedWorkImpl.release");
+    }
+
+    public void run() {
+        try {
+            ConnectorStatus.getConnectorStatus().logAPI("DistributedWorkImpl.run", "", "");
+            System.out.println("DistributedWorkImpl.run");
+            NestWork nw = new NestWork();
+            wm.doWork(nw);
+        } catch (WorkException e) {
+            // this could mean work completed or work rejected or something else.
+            System.out.println("DistributedWorkImpl WorkException caught");
+        }
+    }
 }

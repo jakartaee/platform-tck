@@ -20,35 +20,32 @@
 
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServletBase extends HttpTCKServlet {
-  protected StringBuilder postConstructRecords;
+    protected StringBuilder postConstructRecords;
 
-  protected StringBuilder getPostConstructRecords() {
-    return postConstructRecords;
-  }
+    protected StringBuilder getPostConstructRecords() {
+        return postConstructRecords;
+    }
 
-  protected void setPostConstructRecords(StringBuilder postConstructRecords) {
-    this.postConstructRecords = postConstructRecords;
-  }
+    protected void setPostConstructRecords(StringBuilder postConstructRecords) {
+        this.postConstructRecords = postConstructRecords;
+    }
 
-  protected void verifyRecords(HttpServletRequest request,
-      HttpServletResponse response, StringBuilder sb)
-      throws IOException, ServletException {
-    PrintWriter pw = response.getWriter();
-    String result = sb.toString();
-    Helper.assertNotEquals(null, 0, result.length());
-    pw.println(result);
-    pw.println(Data.PASSED);
-  }
+    protected void verifyRecords(HttpServletRequest request, HttpServletResponse response, StringBuilder sb)
+            throws IOException, ServletException {
+        PrintWriter pw = response.getWriter();
+        String result = sb.toString();
+        Helper.assertNotEquals(null, 0, result.length());
+        pw.println(result);
+        pw.println(Data.PASSED);
+    }
 }

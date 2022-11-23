@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.stateful;
 
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.TimeUnit;
 
 @Stateful
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)
 public class BasicBean extends BasicBeanBase {
-  @Override
-  public Class<? extends BasicBeanBase> getBusinessInterface() {
-    return BasicBean.class;
-  }
+    @Override
+    public Class<? extends BasicBeanBase> getBusinessInterface() {
+        return BasicBean.class;
+    }
 }

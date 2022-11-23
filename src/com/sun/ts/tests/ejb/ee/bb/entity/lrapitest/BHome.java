@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface BHome extends EJBHome {
-  public B createB(String id, String name, int value)
-      throws RemoteException, CreateException;
+    public B createB(String id, String name, int value) throws RemoteException, CreateException;
 
-  public B findByPrimaryKey(String id) throws RemoteException, FinderException;
+    public B findByPrimaryKey(String id) throws RemoteException, FinderException;
 }

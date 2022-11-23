@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing2;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 }

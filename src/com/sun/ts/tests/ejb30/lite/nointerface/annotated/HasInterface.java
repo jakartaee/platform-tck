@@ -24,14 +24,13 @@ import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
 
 public interface HasInterface {
-  public String passAsParam(BeanBase b);
+    public String passAsParam(BeanBase b);
 
-  public String passAsParam(BeanBase... b);
+    public String passAsParam(BeanBase... b);
 
-  public BeanBase passAsReturn();
+    public BeanBase passAsReturn();
 
-  public int passEnumAsParams(NumberEnum e1, NumberIF e2);
+    public int passEnumAsParams(NumberEnum e1, NumberIF e2);
 
-  public NumberEnum passEnumAsReturn(int n);
-
+    public NumberEnum passEnumAsReturn(int n);
 }

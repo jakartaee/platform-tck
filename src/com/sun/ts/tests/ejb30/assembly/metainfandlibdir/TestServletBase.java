@@ -22,9 +22,6 @@ package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
 import static com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF.RESOURCE_NAME;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
@@ -33,80 +30,78 @@ import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-abstract public class TestServletBase extends HttpTCKServlet {
-  @EJB(name = "remoteAssemblyBean", beanInterface = AssemblyRemoteIF.class)
-  protected AssemblyCommonIF remoteAssemblyBean;
+public abstract class TestServletBase extends HttpTCKServlet {
+    @EJB(name = "remoteAssemblyBean", beanInterface = AssemblyRemoteIF.class)
+    protected AssemblyCommonIF remoteAssemblyBean;
 
-  // helloBean is deployed in a separate ejb module (see tests/ejb30/common/
-  // helloejbjar/). This ejb-ref is resolved by sun-web.xml
-  @EJB(name = "helloBean")
-  protected HelloRemoteIF helloBean;
+    // helloBean is deployed in a separate ejb module (see tests/ejb30/common/
+    // helloejbjar/). This ejb-ref is resolved by sun-web.xml
+    @EJB(name = "helloBean")
+    protected HelloRemoteIF helloBean;
 
-  public void ejbInjectionInFilterTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.println(
-        "Do nothing for testname ejbInjectionInFilterTest.  The test logic is in filter class.");
-  }
-
-  public void remoteAdd(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    int a = 1;
-    int b = 2;
-    int additionalByInterceptor = 100 * 2;
-    int expected = a + b + additionalByInterceptor;
-    int actual = remoteAssemblyBean.remoteAdd(a, b);
-    if (actual == expected) {
-      pw.println(Data.PASSED + " Got expected result: " + expected);
-    } else {
-      pw.println(Data.FAILED + " Expecting " + expected + ", but actual "
-          + actual + ". The interceptor may not have been invoked.");
+    public void ejbInjectionInFilterTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.println("Do nothing for testname ejbInjectionInFilterTest.  The test logic is in filter class.");
     }
-  }
 
-  public void remoteAddByHelloEJB(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    int a = 1;
-    int b = 1;
-    int expected = a + b;
-    int actual = helloBean.add(a, b);
-    if (actual == expected) {
-      pw.println(Data.PASSED + "Got expected result from calling helloBean.");
-    } else {
-      pw.println(Data.FAILED + "Expecting helloBean.add to return " + expected
-          + ", but actual was " + actual);
+    public void remoteAdd(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        int a = 1;
+        int b = 2;
+        int additionalByInterceptor = 100 * 2;
+        int expected = a + b + additionalByInterceptor;
+        int actual = remoteAssemblyBean.remoteAdd(a, b);
+        if (actual == expected) {
+            pw.println(Data.PASSED + " Got expected result: " + expected);
+        } else {
+            pw.println(Data.FAILED + " Expecting " + expected + ", but actual " + actual
+                    + ". The interceptor may not have been invoked.");
+        }
     }
-  }
 
-  public void remoteAddByHelloEJBFromAssemblyBean(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    String result = remoteAssemblyBean.callHelloBean();
-    if (result != null) {
-      pw.println(Data.PASSED + "Got expected result: " + result);
-    } else {
-      pw.println(Data.FAILED
-          + "Expecting a non-null result from remoteAssemblyBean.callHelloBean(), but got null.");
+    public void remoteAddByHelloEJB(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        int a = 1;
+        int b = 1;
+        int expected = a + b;
+        int actual = helloBean.add(a, b);
+        if (actual == expected) {
+            pw.println(Data.PASSED + "Got expected result from calling helloBean.");
+        } else {
+            pw.println(Data.FAILED + "Expecting helloBean.add to return " + expected + ", but actual was " + actual);
+        }
     }
-  }
 
-  public void libSubdirNotScanned(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    try {
-      Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
-      pw.println(Data.PASSED);
-    } catch (TestFailedException e) {
-      pw.println(Data.FAILED + TestUtil.printStackTraceToString(e));
+    public void remoteAddByHelloEJBFromAssemblyBean(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        String result = remoteAssemblyBean.callHelloBean();
+        if (result != null) {
+            pw.println(Data.PASSED + "Got expected result: " + result);
+        } else {
+            pw.println(
+                    Data.FAILED + "Expecting a non-null result from remoteAssemblyBean.callHelloBean(), but got null.");
+        }
     }
-  }
 
+    public void libSubdirNotScanned(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        try {
+            Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
+            pw.println(Data.PASSED);
+        } catch (TestFailedException e) {
+            pw.println(Data.FAILED + TestUtil.printStackTraceToString(e));
+        }
+    }
 }

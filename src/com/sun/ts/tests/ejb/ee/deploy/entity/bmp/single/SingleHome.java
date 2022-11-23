@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.single;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface SingleHome extends EJBHome {
 
-  public Single create(Properties p, int cofID, String cofName, float cofPrice)
-      throws RemoteException, CreateException;
+    public Single create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public Single findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public Single findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

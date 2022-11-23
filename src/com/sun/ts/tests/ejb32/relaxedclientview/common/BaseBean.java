@@ -18,11 +18,11 @@ package com.sun.ts.tests.ejb32.relaxedclientview.common;
 
 public abstract class BaseBean {
 
-  public int businessMethod1() {
-    return 1;
-  }
+    public int businessMethod1() {
+        return 1;
+    }
 
-  public int businessMethod2() {
-    return 2;
-  }
+    public int businessMethod2() {
+        return 2;
+    }
 }

@@ -16,105 +16,97 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.file.shared3.client;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-import java.util.Properties;
-
 import jakarta.xml.ws.Service;
-
+import java.util.Properties;
 import javax.naming.InitialContext;
 
 public class Client extends ServiceEETest {
-  private String SERVICE_NAME_WITH_WSDL_1 = "WSShared3File1";
+    private String SERVICE_NAME_WITH_WSDL_1 = "WSShared3File1";
 
-  private String SERVICE_NAME_WITH_WSDL_2 = "WSShared3File2";
+    private String SERVICE_NAME_WITH_WSDL_2 = "WSShared3File2";
 
-  private Tests1 port1;
+    private Tests1 port1;
 
-  private Tests2 port2;
+    private Tests2 port2;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.testArgs: -ap webservices-url-props.dat
-   * 
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      InitialContext ctx = new InitialContext();
-      Service svc1;
-      Service svc2;
-
-      TestUtil.logMsg(
-          "JNDI lookup for shared3 Service: " + SERVICE_NAME_WITH_WSDL_1);
-      svc1 = (jakarta.xml.ws.Service) ctx
-          .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_1);
-      TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_1 + "found");
-      TestUtil.logMsg("service=" + svc1);
-      JAXWS_Util.dumpServiceName((Service) svc1);
-      JAXWS_Util.dumpWSDLLocation((Service) svc1);
-      JAXWS_Util.dumpPorts((Service) svc1);
-      TestUtil.logMsg("Get port from Service");
-      port1 = (Tests1) svc1.getPort(Tests1.class);
-      TestUtil.logMsg("Port obtained");
-
-      TestUtil.logMsg(
-          "JNDI lookup for shared3 Service: " + SERVICE_NAME_WITH_WSDL_2);
-      svc2 = (jakarta.xml.ws.Service) ctx
-          .lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_2);
-      TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_2 + "found");
-      TestUtil.logMsg("service=" + svc2);
-      JAXWS_Util.dumpServiceName((Service) svc2);
-      JAXWS_Util.dumpWSDLLocation((Service) svc2);
-      JAXWS_Util.dumpPorts((Service) svc2);
-      TestUtil.logMsg("Get port from Service");
-      port2 = (Tests2) svc2.getPort(Tests2.class);
-      TestUtil.logMsg("Port obtained");
-    } catch (Exception e) {
-      throw new Fault("setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    logMsg("setup ok");
-  }
+    /* Test setup */
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @class.testArgs: -ap webservices-url-props.dat
+     *
+     * @class.setup_props: webServerHost; webServerPort;
+     */
 
-  /*
-   * @testName: InvokeMethod
-   *
-   * @assertion_ids: WS4EE:SPEC:65; WS4EE:SPEC:214; WS4EE:SPEC:227;
-   *
-   * @test_Strategy: Call a method in Tests.
-   */
-  public void InvokeMethod() throws Fault {
-    TestUtil.logMsg("InvokeMethod");
-    try {
-      TestUtil.logMsg("Invoking method on Service1");
-      port1.invokeTest1();
-      TestUtil.logMsg("Service1 passed");
-      TestUtil.logMsg("Invoking method on Service2");
-      port2.invokeTest2();
-      TestUtil.logMsg("Service2 passed");
-    } catch (Throwable t) {
-      TestUtil
-          .logMsg("test InvokeMethod failed: got exception " + t.toString());
-      throw new Fault("InvokeMethod failed");
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            InitialContext ctx = new InitialContext();
+            Service svc1;
+            Service svc2;
+
+            TestUtil.logMsg("JNDI lookup for shared3 Service: " + SERVICE_NAME_WITH_WSDL_1);
+            svc1 = (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_1);
+            TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_1 + "found");
+            TestUtil.logMsg("service=" + svc1);
+            JAXWS_Util.dumpServiceName((Service) svc1);
+            JAXWS_Util.dumpWSDLLocation((Service) svc1);
+            JAXWS_Util.dumpPorts((Service) svc1);
+            TestUtil.logMsg("Get port from Service");
+            port1 = (Tests1) svc1.getPort(Tests1.class);
+            TestUtil.logMsg("Port obtained");
+
+            TestUtil.logMsg("JNDI lookup for shared3 Service: " + SERVICE_NAME_WITH_WSDL_2);
+            svc2 = (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/" + SERVICE_NAME_WITH_WSDL_2);
+            TestUtil.logMsg("Service: " + SERVICE_NAME_WITH_WSDL_2 + "found");
+            TestUtil.logMsg("service=" + svc2);
+            JAXWS_Util.dumpServiceName((Service) svc2);
+            JAXWS_Util.dumpWSDLLocation((Service) svc2);
+            JAXWS_Util.dumpPorts((Service) svc2);
+            TestUtil.logMsg("Get port from Service");
+            port2 = (Tests2) svc2.getPort(Tests2.class);
+            TestUtil.logMsg("Port obtained");
+        } catch (Exception e) {
+            throw new Fault("setup failed:", e);
+        }
+
+        logMsg("setup ok");
     }
 
-    return;
-  }
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
+
+    /*
+     * @testName: InvokeMethod
+     *
+     * @assertion_ids: WS4EE:SPEC:65; WS4EE:SPEC:214; WS4EE:SPEC:227;
+     *
+     * @test_Strategy: Call a method in Tests.
+     */
+    public void InvokeMethod() throws Fault {
+        TestUtil.logMsg("InvokeMethod");
+        try {
+            TestUtil.logMsg("Invoking method on Service1");
+            port1.invokeTest1();
+            TestUtil.logMsg("Service1 passed");
+            TestUtil.logMsg("Invoking method on Service2");
+            port2.invokeTest2();
+            TestUtil.logMsg("Service2 passed");
+        } catch (Throwable t) {
+            TestUtil.logMsg("test InvokeMethod failed: got exception " + t.toString());
+            throw new Fault("InvokeMethod failed");
+        }
+
+        return;
+    }
 }

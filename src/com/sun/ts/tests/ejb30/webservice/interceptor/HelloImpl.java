@@ -22,11 +22,10 @@ import jakarta.jws.WebService;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless
-
 public class HelloImpl {
-  @Interceptors(com.sun.ts.tests.ejb30.webservice.interceptor.WebServiceInterceptor.class)
-  public String sayHello(String param) {
+    @Interceptors(com.sun.ts.tests.ejb30.webservice.interceptor.WebServiceInterceptor.class)
+    public String sayHello(String param) {
 
-    return "Hello " + param;
-  }
+        return "Hello " + param;
+    }
 }

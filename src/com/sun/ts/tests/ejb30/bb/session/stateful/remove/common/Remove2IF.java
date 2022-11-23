@@ -23,14 +23,14 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 import java.rmi.RemoteException;
 
 public interface Remove2IF extends java.rmi.Remote {
-  void remove() throws RemoteException;
+    void remove() throws RemoteException;
 
-  void remove2() throws RemoteException;
+    void remove2() throws RemoteException;
 
-  // methods can only throw java.rmi.RemoteException
-  // void retain() throws TestFailedException, RemoteException;
+    // methods can only throw java.rmi.RemoteException
+    // void retain() throws TestFailedException, RemoteException;
 
-  void retain2() throws RemoteException;
+    void retain2() throws RemoteException;
 
-  void hi() throws RemoteException;
+    void hi() throws RemoteException;
 }

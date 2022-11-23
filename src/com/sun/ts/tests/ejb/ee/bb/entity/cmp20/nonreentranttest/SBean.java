@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface SBean extends EJBObject {
-  public boolean sleep(int n) throws RemoteException;
+    public boolean sleep(int n) throws RemoteException;
 
-  public void setBeanRef(TestBean ref) throws RemoteException;
+    public void setBeanRef(TestBean ref) throws RemoteException;
 
-  public boolean loopBackSameBeanLocal() throws RemoteException;
+    public boolean loopBackSameBeanLocal() throws RemoteException;
 
-  public boolean loopBackAnotherBeanLocal() throws RemoteException;
+    public boolean loopBackAnotherBeanLocal() throws RemoteException;
 }

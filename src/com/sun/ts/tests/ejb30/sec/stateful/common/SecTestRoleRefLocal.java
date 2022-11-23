@@ -21,5 +21,5 @@
 package com.sun.ts.tests.ejb30.sec.stateful.common;
 
 public interface SecTestRoleRefLocal {
-  public boolean EjbSecRoleRefScope(String role);
+    public boolean EjbSecRoleRefScope(String role);
 }

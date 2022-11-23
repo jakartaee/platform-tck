@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface SBean extends EJBObject {
-  public boolean loopBackSameBeanLocal() throws RemoteException;
+    public boolean loopBackSameBeanLocal() throws RemoteException;
 
-  public boolean loopBackAnotherBeanLocal() throws RemoteException;
+    public boolean loopBackAnotherBeanLocal() throws RemoteException;
 }

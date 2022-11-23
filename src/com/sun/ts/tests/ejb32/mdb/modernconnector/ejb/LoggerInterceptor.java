@@ -21,14 +21,13 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class LoggerInterceptor {
-  @EJB
-  private EventLoggerBean eventLogger;
+    @EJB
+    private EventLoggerBean eventLogger;
 
-  @AroundInvoke
-  public Object log(InvocationContext context) throws Exception {
-    Object result = context.proceed();
-    eventLogger.logEvent((String) context.getContextData().get("data"));
-    return result;
-  }
-
+    @AroundInvoke
+    public Object log(InvocationContext context) throws Exception {
+        Object result = context.proceed();
+        eventLogger.logEvent((String) context.getContextData().get("data"));
+        return result;
+    }
 }

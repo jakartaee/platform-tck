@@ -22,6 +22,6 @@ package com.sun.ts.tests.ejb30.common.equals;
 
 import jakarta.ejb.SessionContext;
 
-abstract public class TestBeanBase implements TestIF {
-  abstract protected SessionContext getSessionContext();
+public abstract class TestBeanBase implements TestIF {
+    protected abstract SessionContext getSessionContext();
 }

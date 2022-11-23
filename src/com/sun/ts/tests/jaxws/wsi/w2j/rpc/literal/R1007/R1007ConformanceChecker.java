@@ -21,59 +21,57 @@
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1007;
 
 import com.sun.ts.tests.jaxws.common.RequestConformanceChecker;
-
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import jakarta.xml.soap.*;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.Iterator;
 
 public class R1007ConformanceChecker extends RequestConformanceChecker {
 
-  public void test(SOAPMessageContext context) throws SOAPException {
-    test(context.getMessage().getSOAPPart().getEnvelope().getBody());
-  }
+    public void test(SOAPMessageContext context) throws SOAPException {
+        test(context.getMessage().getSOAPPart().getEnvelope().getBody());
+    }
 
-  private void test(SOAPElement elem) {
-    boolean fails = false;
-    Iterator children = elem.getChildElements();
-    SOAPElement child;
-    while (children.hasNext() && !fails) {
-      fails = testChildren((SOAPElement) children.next());
+    private void test(SOAPElement elem) {
+        boolean fails = false;
+        Iterator children = elem.getChildElements();
+        SOAPElement child;
+        while (children.hasNext() && !fails) {
+            fails = testChildren((SOAPElement) children.next());
+        }
+        if (fails) {
+            response = "failed. Grandchildren of soap:Body cannot have soap:encodingStyle attribute.";
+        }
     }
-    if (fails) {
-      response = "failed. Grandchildren of soap:Body cannot have soap:encodingStyle attribute.";
-    }
-  }
 
-  private boolean testChildren(SOAPElement elem) {
-    boolean fails = false;
-    Iterator children = elem.getChildElements();
-    SOAPElement child;
-    String namespace;
-    while (children.hasNext() && !fails) {
-      child = (SOAPElement) children.next();
-      namespace = child.getElementName().getURI();
-      if (namespace != null && namespace.equals(SOAP_ENV_NS)) {
-        fails = hasEncodingStyleAttr(elem);
-      }
+    private boolean testChildren(SOAPElement elem) {
+        boolean fails = false;
+        Iterator children = elem.getChildElements();
+        SOAPElement child;
+        String namespace;
+        while (children.hasNext() && !fails) {
+            child = (SOAPElement) children.next();
+            namespace = child.getElementName().getURI();
+            if (namespace != null && namespace.equals(SOAP_ENV_NS)) {
+                fails = hasEncodingStyleAttr(elem);
+            }
+        }
+        return fails;
     }
-    return fails;
-  }
 
-  private boolean hasEncodingStyleAttr(SOAPElement elem) {
-    Iterator attrs = elem.getAllAttributes();
-    Name name;
-    String uri;
-    while (attrs.hasNext()) {
-      name = (Name) attrs.next();
-      uri = name.getURI();
-      if (uri == null) {
-        uri = "";
-      }
-      if (name.getLocalName().equals(SOAP_ENC_STYLE)
-          && uri.equals(SOAP_ENV_NS)) {
-        return true;
-      }
+    private boolean hasEncodingStyleAttr(SOAPElement elem) {
+        Iterator attrs = elem.getAllAttributes();
+        Name name;
+        String uri;
+        while (attrs.hasNext()) {
+            name = (Name) attrs.next();
+            uri = name.getURI();
+            if (uri == null) {
+                uri = "";
+            }
+            if (name.getLocalName().equals(SOAP_ENC_STYLE) && uri.equals(SOAP_ENV_NS)) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 }

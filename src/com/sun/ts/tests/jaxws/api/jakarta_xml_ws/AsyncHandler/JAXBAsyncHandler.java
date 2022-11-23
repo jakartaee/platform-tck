@@ -20,46 +20,44 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.AsyncHandler;
 
-import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
-
 import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.*;
 import jakarta.xml.ws.AsyncHandler;
 import jakarta.xml.ws.Response;
 
 public class JAXBAsyncHandler implements AsyncHandler<Object> {
-  private boolean dataReady = false;
+    private boolean dataReady = false;
 
-  private HelloResponse theData;
+    private HelloResponse theData;
 
-  private java.util.Map<String, Object> theContext;
+    private java.util.Map<String, Object> theContext;
 
-  public JAXBAsyncHandler() {
-    TestUtil.logMsg("in JAXBAsyncHandler");
-  }
-
-  public synchronized boolean isDataReady() {
-    return dataReady;
-  }
-
-  public HelloResponse getData() {
-    return theData;
-  }
-
-  public java.util.Map<String, Object> getContext() {
-    return theContext;
-  }
-
-  public void handleResponse(Response<Object> res) {
-    TestUtil.logMsg("in JAXBAsyncHandler.handleResponse()");
-    try {
-      theData = (HelloResponse) res.get();
-      theContext = res.getContext();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    synchronized (this) {
-      dataReady = true;
+    public JAXBAsyncHandler() {
+        TestUtil.logMsg("in JAXBAsyncHandler");
     }
 
-  }
+    public synchronized boolean isDataReady() {
+        return dataReady;
+    }
+
+    public HelloResponse getData() {
+        return theData;
+    }
+
+    public java.util.Map<String, Object> getContext() {
+        return theContext;
+    }
+
+    public void handleResponse(Response<Object> res) {
+        TestUtil.logMsg("in JAXBAsyncHandler.handleResponse()");
+        try {
+            theData = (HelloResponse) res.get();
+            theContext = res.getContext();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        synchronized (this) {
+            dataReady = true;
+        }
+    }
 }

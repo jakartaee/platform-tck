@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jpa.core.entitytest.detach.manyXone;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -31,49 +30,49 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_MX1_UNI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  @Basic
-  protected int value;
+    @Basic
+    protected int value;
 
-  // ===========================================================
-  // constructors
+    // ===========================================================
+    // constructors
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+    public A() {
+        TestUtil.logTrace("Entity A no arg constructor");
+    }
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+    public A(String id, String name, int value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 
-  // ===========================================================
-  // uni-directional relationship fields
-  // =======================================================================
-  // Business methods for test cases
+    // ===========================================================
+    // uni-directional relationship fields
+    // =======================================================================
+    // Business methods for test cases
 
-  public String getAId() {
-    return id;
-  }
+    public String getAId() {
+        return id;
+    }
 
-  public String getAName() {
-    return name;
-  }
+    public String getAName() {
+        return name;
+    }
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+    public void setAName(String name) {
+        this.name = name;
+    }
 
-  public int getAValue() {
-    return value;
-  }
+    public int getAValue() {
+        return value;
+    }
 }
